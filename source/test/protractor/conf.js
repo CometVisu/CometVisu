@@ -14,6 +14,17 @@ exports.config = {
     common: ['specs/d*spec.js'],
     widgets: ['specs/widgets/*spec.js']
   },
+  capabilities: {
+    browserName: 'chrome',
+    'chromeOptions': {
+      binary: process.env.CHROME_BIN,
+      args: [
+        '--headless',
+        '--disable-gpu',
+        '--window-size=1024,800'
+      ]
+    }
+  },
 
   jasmineNodeOpts: {
     showColors: true // Use colors in the command line report.

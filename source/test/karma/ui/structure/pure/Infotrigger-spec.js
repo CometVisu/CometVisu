@@ -35,7 +35,7 @@ describe("testing a infotrigger widget", function() {
 
     // check infoposition
     var info = obj.getInfoActor();
-    var actors = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getDescendants(widget))
+    var actors = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getDescendants(widget));
     expect(actors.indexOf(info)).toBe(0);
   });
 
@@ -49,7 +49,7 @@ describe("testing a infotrigger widget", function() {
 
     // check infoposition
     var info = obj.getInfoActor();
-    var actors = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getDescendants(widget));
+    actors = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getDescendants(widget));
     expect(actors.indexOf(info)).toBe(1);
   });
 
@@ -64,7 +64,7 @@ describe("testing a infotrigger widget", function() {
 
     // check infoposition
     var info = obj.getInfoActor();
-    var actors = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getDescendants(widget));
+    actors = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getDescendants(widget));
     expect(actors.indexOf(info)).toBe(2);
   });
 
@@ -110,5 +110,10 @@ describe("testing a infotrigger widget", function() {
     creator.update('12/7/37', 255);
     Reg.fireEvent(upActor, "tap", qx.event.type.Event, []);
     expect(creator.sendToBackend).toHaveBeenCalledWith(255, jasmine.any(Function));
+  });
+
+  it("should default all unknown infoposition values to left", function() {
+    var creator = this.createTestElement('infotrigger', {infoposition: 1});
+    expect(creator.getInfoPosition()).toBe('left');
   });
 });
