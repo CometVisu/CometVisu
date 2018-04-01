@@ -137,10 +137,10 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
 
     // property apply
     _applyMaxEntries: function(value) {
-      if (this.__messages.getLength() > value) {
-        this.__messages.splice(this.__messages.getLength() - value);
+      if (this._messages.getLength() > value) {
+        this._messages.splice(this._messages.getLength() - value);
       }
-      this.__messages.setMaxEntries(value);
+      this._messages.setMaxEntries(value);
     },
 
     /**
@@ -203,7 +203,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
           this._messages.push(message);
           this._updateHighestSeverity();
         }
-      } else {
+      } else if (this._list) {
         // refresh list
         this._list.update();
       }

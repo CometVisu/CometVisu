@@ -3,8 +3,6 @@ language: python
 dist: trusty
 services:
   - docker
-node_js:
-- '4.2'
 python:
 - '3.5'
 cache:
@@ -20,7 +18,7 @@ env:
 before_install:
 - if [ "$CV_BUILD" == "docs" ]; then docker pull cometvisu/dev-helper; fi
 - mkdir -p downloads
-- nvm install 4.2
+- nvm install 6.9
 - sudo ./utils/travis/browser-setup.sh
 - export CHROME_BIN=`pwd`/chrome/google-chrome
 - export PATH=`pwd`/firefox:$PATH
@@ -40,11 +38,6 @@ install:
 - deactivate
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install python-lxml python3-lxml; fi
-before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
-- sleep 3
 script:
 - if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi
@@ -52,24 +45,27 @@ script:
 - if [ "$CV_BUILD" == "test" ]; then deactivate; fi
 - export PATH=`pwd`/firefox:$PATH
 - if [ "$CV_BUILD" == "test" ]; then grunt karma:travis --browser $CV_BROWSER; fi
-- if [ "$CV_BUILD" == "test" ] && [ "$CV_BROWSER" == "Chrome" ]; then grunt e2e-chrome; fi
+- if [ "$CV_BUILD" == "test" ] && [ "$CV_BROWSER" == "Chrome_travis" ]; then grunt e2e-chrome; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
-after_script:
+after_success:
+- if [ "$CV_BUILD" == "test" ] && [ "$CV_VERSION" == "stable" ] ; then grunt coveralls; fi
 - "CLIENT_CHANGES=`git log --pretty=format: --name-only --since=\"2 days ago\" ${TRAVIS_BUILD_DIR}/client/ | sort | uniq | sed '/^$/d' | wc -l`"
 - "CORE_CHANGES=`git log --pretty=format: --name-only --since=\"2 days ago\" ${TRAVIS_BUILD_DIR}/source/ | sort | uniq | sed '/^$/d' | wc -l`"
 - echo "$CORE_CHANGES changes in core, $CLIENT_CHANGES changes in client, $CV_BUILD build, $CV_VERSION version, $TRAVIS_EVENT_TYPE event type"
+- export DEPLOY_NIGHTLY=0
+- if [[ $CV_BUILD == test && $CV_VERSION == stable && $TRAVIS_EVENT_TYPE == cron && ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0) ]]; then export DEPLOY_NIGHTLY=1; fi
+- if [[ $CV_BUILD == test && $CV_VERSION == stable && ${TRAVIS_COMMIT_MESSAGE:0:12} = "[ci nightly]" ]]; then export DEPLOY_NIGHTLY=1; fi
+- echo "$DEPLOY_NIGHTLY, $TRAVIS_COMMIT_MESSAGE, ${TRAVIS_COMMIT_MESSAGE:0:12}"
 before_deploy:
 - if [ $CORE_CHANGES -gt 0 ]; then grunt release-cv; fi
 - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
 deploy:
   on:
     branch: develop
-    condition: "$CV_BUILD = test && $CV_VERSION = stable && $TRAVIS_EVENT_TYPE = cron && ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0)"
+    condition: $DEPLOY_NIGHTLY = 1
   provider: bintray
   file: "./deploy.json"
   user: peuter
   key:
     secure: dnqHD0ynwCvyxeniG5ee+ImtnQPP02c4WkV8EVgVwSKcEQ5xtdlfy9/6M4znDMlEKcfwvUr9O8JVtrmTqyLNlcwxiIgnrzfIUBrzwPRhSrDgAbUUHOy4bpES58rGKZvwvavhaRhMnd5nQivG4w7ltKdVX4MY8ht4gGLVIlK5RSA=
   dry-run: false
-after_success:
-- if [ "$CV_BUILD" == "test" ] && [ "$CV_VERSION" == "stable" ] ; then grunt coveralls; fi
