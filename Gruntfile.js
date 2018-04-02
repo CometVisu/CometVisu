@@ -202,7 +202,7 @@ module.exports = function(grunt) {
           level: 9,
           archive: function() {
             var name = "CometVisu-"+pkg.version;
-            if (process.env.TRAVIS_EVENT_TYPE === "cron") {
+            if (process.env.DEPLOY_NIGHTLY) {
               // nightly build with date
               var now = new Date();
               name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
@@ -218,7 +218,7 @@ module.exports = function(grunt) {
           level: 9,
           archive: function() {
             var name = "CometVisu-"+pkg.version;
-            if (process.env.TRAVIS_EVENT_TYPE === "cron") {
+            if (process.env.DEPLOY_NIGHTLY) {
               // nightly build with date
               var now = new Date();
               name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
