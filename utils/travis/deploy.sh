@@ -53,7 +53,7 @@ echo "generating api version $VERSION"
 source temp-python/bin/activate
 {
   ./generate.py api -sI --macro=CV_VERSION:$VERSION &&
-
+  echo "API successfully generated"
 } || {
   echo "API generation failed"
   NO_API=1
