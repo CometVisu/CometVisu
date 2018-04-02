@@ -46,6 +46,7 @@ body
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 } 
 
 ::-webkit-scrollbar-track {
@@ -145,6 +146,24 @@ body hr
   margin-right: auto;
 }
 
+#navbarTop > .navbar
+{
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#navbarTop > .navbar::after
+{
+  content: "";
+  display: block;
+  height: auto;
+  visibility: visible;
+  flex: 1;
+  margin: 1px;
+  border-radius: 2px 0 0 2px;
+}
+
 #centerContainer
 {
   border: none;
@@ -235,6 +254,7 @@ body br
 }
 
 .page.type_2d > div.clearfix,
+#navbarTop > .navbar::after,
 .widget, h2
 {
   background: hsl(345,10%,20%);
