@@ -254,7 +254,7 @@ body br
   box-shadow: 2px 2px 3px -1px #555;
   */
   min-height: 2em;
-  overflow: hidden;
+  /*overflow: hidden;*/
   /*
   background: radial-gradient(ellipse 250% 100% at 100% 100%, #aaa, #0a0 10%, #0f0 49%, #8f8 51%, #8c8);
   -webkit-filter: blur(3px);
@@ -663,7 +663,7 @@ body br
 .ui-widget-content { /*border: 1px solid #dddddd; background: #000 ; color: #000;*/ background: linear-gradient(to bottom right, rgba(254,191,1,0) 0%,rgba(254,191,1,0) 48%,rgba(254,191,1,1) 52%,rgba(254,191,1,1) 100%) !important }
 .ui-widget-content { background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(254,191,1,1) 100%) !important }
 .ui-widget-content a { color: #333333; }
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { /*border: 1px solid #cccccc; background: #000 ; font-weight: bold;*/ color: #1c94c4; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: hsl(345,10%,20%); text-shadow: 0.5px 0.5px 2px #000; }
 a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited { 
   color: #000; 
   text-decoration: none;
@@ -694,6 +694,17 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
   /*
   border-color:  #fff #666 #666 #fff;
   */
+  transition: font-size 0.2s, min-width 0.2s, height 0.2s, padding-bottom 0.2s;
+}
+
+.widget .ui-slider-handle:hover
+{
+  font-size: 75%;
+  min-width: 4.0em;
+  height: 3.4em;
+  padding-bottom: 3em;
+  z-index: 20;
+  box-shadow: 0 0 2px #000, 3px 4px 8px -1px #000;
 }
 
 .widget.rgb > .actor > .value
