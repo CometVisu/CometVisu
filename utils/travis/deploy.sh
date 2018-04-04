@@ -30,6 +30,7 @@ fi
 REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
+NO_API=0
 
 # Clone the existing gh-pages for this repo into out/
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
@@ -50,7 +51,13 @@ VERSION=`./cv doc --get-version`
 utils/update_version.py
 echo "generating api version $VERSION"
 source temp-python/bin/activate
-./generate.py api -sI --macro=CV_VERSION:$VERSION
+{
+  ./generate.py api -sI --macro=CV_VERSION:$VERSION &&
+  echo "API successfully generated"
+} || {
+  echo "API generation failed"
+  NO_API=1
+}
 deactivate
 
 echo "updating english manual from source code doc comments"
@@ -64,12 +71,14 @@ echo "generating english manual, including screenshot generation for all languag
 echo "generating german manual again with existing screenshots"
 ./cv doc --doc-type manual -f -l de
 
-#echo "generate API screenshots"
-#./docker-run grunt screenshots --subDir=source --browserName=chrome --target=build --force
+if [[ "$NO_API" -eq 0 ]]; then
+    echo "generate API screenshots"
+    ./docker-run grunt screenshots --subDir=source --browserName=chrome --target=build --force
 
-# move the apiviewer to the correct version subfolder, including screenshots
-#rm -r out/en/$VERSION/api
-#./cv doc --move-apiviewer
+     move the apiviewer to the correct version subfolder, including screenshots
+    rm -r out/en/$VERSION/api
+    ./cv doc --move-apiviewer
+fi
 
 echo "generating feature yml file for homepage"
 ./cv doc --generate-features
