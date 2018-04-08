@@ -1,7 +1,9 @@
 .controllerinput .actor {
   position: relative;
   min-width: 8em;
+  width: 240px;
   min-height: 4em;
+  height: 120px;
   margin-top: 2em;
 }
 
@@ -12,92 +14,62 @@
   white-space: nowrap;
 }
 
-.controllerinput .handler {
-  width: 2em;
-  height: 2em;
-  border: 1px solid white;
-  box-sizing: border-box;
-  margin-top: 0px;
-  /* 2nd value of transform-origin must be inverted vertical margin! */
-  transform-origin: 0px -0px;
-  transition: transform 0.5s;
-  overflow: hidden;
-  background-color: black;
-  z-index: 1;
-}
-.controllerinput .handler.shadow {
-  display: none;
-  margin-top: 5px;
-  margin-left: 5px;
-  background: black;
-  -webkit-filter: blur(5px);
-  filter: blur(5px);
-}
-
-.controllerinput .handlervalue {
-  margin-left: calc(50% - 10em); /* assume the value will fit in 20em */
-  width: 20em;
-  text-align: center;
-  transition: transform 0.5s;
-}
-
-.controllerinput .roundbarbox {
+.controllerinputBar
+{
+  position: relative;
   width: 100%;
   height: 100%;
 }
 
-.controllerinput .roundbarbackground {
+.controllerinputBar > svg
+{
+  position: absolute;
   width: 100%;
   height: 100%;
-  margin: -2px;
-  border-radius: 1000em;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.controllerinput .roundbarbackground.border {
-  border: 10px solid #fff;
-  border-bottom: none;
-}
-.controllerinput .roundbarbackground.color {
-  border: 8px solid #000;
-  border-bottom: none;
-  margin: -1px;
-  width: calc(100% - 2px);
-  height: calc(100% - 2px);
+  overflow: visible;
 }
 
-.controllerinput .roundbarclip {
-  overflow: hidden;
-  width: calc(100% - 6px);
-  height: calc(100% - 6px);
-  margin-left: 1px;
-  margin-top: 1px;
+.controllerinputBar > .controllerinputBackground > path
+{
+  --r: 100px;
+  width: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 2px;
+  stroke: #fff;
+  fill:#000;
 }
-.controllerinput .roundbar {
-  width: 100%;
-  /* CSS trick to force 2:1 aspect ratio to parent: */ 
-  /*
-  padding-bottom: 50%;
-  margin: -1px;
-  padding: 1px;
-  */
-  border: 4px solid #fff;
-  border-bottom: none;
-  border-radius: 1000em;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  /*
-  -webkit-clip-path: polygon(50% 100%, -10% 100%, -10% -10%, 0% 100%);
-  transition: -webkit-clip-path 0.5s;
-  */
-  transform: rotate(180deg);
-  transform-origin: 50% 100%;
+.controllerinputBar > .controllerinputCurrent path
+{
+  --r: 100px;
+  width: 9.5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 2px;
+  stroke-width: 0;
+  fill:#f00;
+  transform-origin: 120px 120px;
+  transform: rotate(0deg);
   transition: transform 0.5s;
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
-  width: 100%;
-  height: 100%;
-  height: calc(100% + 3px);
+}
+.controllerinputBar > .controllerinputCurrent path.current
+{
+  border-radius: 0px;
+}
+.controllerinputBar > .controllerinputHandle > path
+{
+  --r: 100px;
+  width: 40px;
+  Imargin-left: 20px;
+  Imargin-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  stroke: #fff;
+  fill:#000;
+  transform-origin: 120px 120px;
+  transform: rotate(0deg);
+  transition: transform 0.5s;
 }
 
 .controllerinput .value {
@@ -106,7 +78,6 @@
   padding-top: 50%;
   padding-top: calc(50% - 1em );
 }
-
 
 .controllerinput .smallvalue {
   padding-top: calc(50% + 0.1em);

@@ -98,6 +98,76 @@ qx.Class.define('cv.plugins.ControllerInput', {
         'rrd'            : {},
         refresh          : {}
       };
+    },
+
+    /**
+     * Caclulate the SVG path string with an arc of radius "r" and thickness
+     * "width" with rounded edges of radius "borderRadius".
+     * (borderRadius is an array of the order:
+     * top-left, top-right, bottom-right, bottom-left)
+     * It will start "leftAngle" above the horizont and to to "rightAngle"
+     * above the horizon.
+     * 
+     * The arc (circle) is centered around (120,120)
+     * (0,0)            
+     *               ***(120,r)***
+     *             ******     ******
+     *            ***             ***
+     *     leftA ***               *** rightA
+     *           /                   \
+     * (0,120) (120-r,120)    (120+r,120)
+     */
+    createArcPath: function( r, width, borderRadius, leftAngle, rightAngle ) {
+      var
+        rI = r-width/2,
+        rO = r+width/2,
+        borderRadiusAtl = [borderRadius[0], borderRadius[0], 0, 0, 1]+',',
+        borderRadiusAtr = [borderRadius[1], borderRadius[1], 0, 0, 1]+',',
+        borderRadiusAbr = [borderRadius[2], borderRadius[2], 0, 0, 1]+',',
+        borderRadiusAbl = [borderRadius[3], borderRadius[3], 0, 0, 1]+',',
+        leftAngleS  = Math.sin(leftAngle),
+        leftAngleC  = Math.cos(leftAngle),
+        rightAngleS = Math.sin(rightAngle),
+        rightAngleC = Math.cos(rightAngle),
+        leftInnerInner  = [ 120- leftAngleC*(rI+borderRadius[3])+borderRadius[3]*(  leftAngleS+ leftAngleC), 120- leftAngleS*(rI+borderRadius[3])-borderRadius[3]*( -leftAngleS+ leftAngleC) ],
+        leftLeftInner   = [ 120- leftAngleC*(rI+borderRadius[3])                                           , 120- leftAngleS*(rI+borderRadius[3]) ],
+        leftLeftOuter   = [ 120- leftAngleC*(rO-borderRadius[0])                                           , 120- leftAngleS*(rO-borderRadius[0]) ],
+        leftOuterOuter  = [ 120- leftAngleC*(rO-borderRadius[0])+borderRadius[0]*(  leftAngleS- leftAngleC), 120- leftAngleS*(rO-borderRadius[0])-borderRadius[0]*(  leftAngleS+ leftAngleC) ],
+        rightOuterOuter = [ 120+rightAngleC*(rO-borderRadius[1])+borderRadius[1]*(-rightAngleS+rightAngleC), 120-rightAngleS*(rO-borderRadius[1])-borderRadius[1]*( rightAngleS+rightAngleC) ],
+        rightRightOuter = [ 120+rightAngleC*(rO-borderRadius[1])                                           , 120-rightAngleS*(rO-borderRadius[1]) ],
+        rightRightInner = [ 120+rightAngleC*(rI+borderRadius[2])                                           , 120-rightAngleS*(rI+borderRadius[2]) ],
+        rightInnerInner = [ 120+rightAngleC*(rI+borderRadius[2])+borderRadius[2]*(-rightAngleS-rightAngleC), 120-rightAngleS*(rI+borderRadius[2])-borderRadius[2]*(-rightAngleS+rightAngleC) ];
+        
+      return 'M'+leftLeftOuter
+        +'A'+borderRadiusAtl+leftOuterOuter
+        +'A'+[rO, rO, 0, 0, 1, rightOuterOuter]
+        +'A'+borderRadiusAtr+rightRightOuter
+        +'L'+rightRightInner
+        +'A'+borderRadiusAbr+rightInnerInner
+        +'A'+[rI, rI, 0, 0, 0, leftInnerInner]
+        +'A'+borderRadiusAbl+leftLeftInner
+        +'L'+leftLeftOuter;
+    },
+    
+    getDimensionsFromElement: function( element ){
+      var
+        CS = window.getComputedStyle( element ),
+        r = +CS.getPropertyValue('--r').slice(0,-2);
+        
+      return {
+        r: r,
+        width: +CS.getPropertyValue('width').slice(0,-2),
+        borderRadius: [
+          +CS.getPropertyValue('border-top-left-radius').slice(0,-2),
+          +CS.getPropertyValue('border-top-right-radius').slice(0,-2),
+          +CS.getPropertyValue('border-bottom-right-radius').slice(0,-2),
+          +CS.getPropertyValue('border-bottom-left-radius').slice(0,-2),
+        ],
+        leftM:  +CS.getPropertyValue('margin-left').slice(0,-2)/r,
+        rightM: +CS.getPropertyValue('margin-right').slice(0,-2)/r,
+        leftP:  +CS.getPropertyValue('padding-left').slice(0,-2)/r,
+        rightP: +CS.getPropertyValue('padding-right').slice(0,-2)/r
+      }
     }
   },
 
@@ -179,6 +249,37 @@ qx.Class.define('cv.plugins.ControllerInput', {
           // start refreshing when page is entered
           this._startRefresh(this._timer);
         }, this);
+        
+        // create paths to show
+        var
+          background = qx.bom.Selector.query('.controllerinputBackground path', this.getDomElement())[0],
+          backgroundDim = cv.plugins.ControllerInput.getDimensionsFromElement( background ),
+          backgroundD = cv.plugins.ControllerInput.createArcPath( backgroundDim.r, backgroundDim.width, backgroundDim.borderRadius, backgroundDim.leftM, backgroundDim.rightM ),
+          currentClip = qx.bom.Selector.query('.controllerinputCurrent #clip > path', this.getDomElement())[0],
+          currentClipDim = cv.plugins.ControllerInput.getDimensionsFromElement( currentClip ),
+          currentClipD = cv.plugins.ControllerInput.createArcPath( currentClipDim.r, currentClipDim.width, currentClipDim.borderRadius, currentClipDim.leftM, currentClipDim.rightM ),
+          current = qx.bom.Selector.query('.controllerinputCurrent .current', this.getDomElement())[0],
+          currentDim = cv.plugins.ControllerInput.getDimensionsFromElement( current ),
+          currentD = cv.plugins.ControllerInput.createArcPath( currentDim.r, currentDim.width, currentDim.borderRadius, currentDim.leftM, currentDim.rightM ),
+          handle = qx.bom.Selector.query('.controllerinputHandle path', this.getDomElement())[0],
+          handleDim = cv.plugins.ControllerInput.getDimensionsFromElement( handle ),
+          handleD = cv.plugins.ControllerInput.createArcPath( handleDim.r, handleDim.width, handleDim.borderRadius, 0,  Math.PI-handleDim.leftP-handleDim.rightP );
+        
+        background.setAttribute('d',backgroundD);
+        
+        currentClip.setAttribute('d',currentClipD);
+        current.setAttribute('d',currentD);
+        this._currentSize = 180 - (currentDim.leftM+currentDim.rightM)*180/Math.PI;
+        
+        handle.setAttribute('d',handleD);
+        this._handleStartOffset       = handleDim.leftM*180/Math.PI;
+        this._handleRange             = 180 - (handleDim.leftM+handleDim.leftP+handleDim.rightP+handleDim.rightM)*180/Math.PI;
+        this._handleCenterStartOffset = (handleDim.leftM+handleDim.leftP)*180/Math.PI;
+        this._handleCenterRange       = 180 - (handleDim.rightP+handleDim.rightM)*180/Math.PI - this._handleCenterStartOffset;
+        qx.bom.element.Style.set(
+          handle,
+          'transform', 'rotate('+this._handleStartOffset+'deg)'
+        );
 
         // initialize the diagram but don't make the initialization process wait for it
         // by using a deferred call
@@ -233,7 +334,13 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     _getInnerDomString: function () {
-      return '<div class="actor notransition"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow" style="transform:translate(-999cm,0)"></div><div class="handler" style="transform:translate(-999cm,0)"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">' + this.getMin() + '</div><div class="smallvalue right">' + this.getMax() + '</div><div class="sparkline"></div></div>';
+      return '<div class="actor notransition">'
+        +   '<div class="controllerinputBar">'
+        +   '<svg class="controllerinputBackground" viewBox="0 0 240 120"><path/></svg>'
+        +   '<svg class="controllerinputCurrent" viewBox="0 0 240 120"><defs><clipPath id="clip"><path/></clipPath></defs><g clip-path="url(#clip)"><path class="current"/></g></svg>'
+        +   '<svg class="controllerinputHandle" viewBox="0 0 240 120"><path/></svg>'
+        + '</div>'
+        + '<div class="value">-</div><div class="smallvalue left">' + this.getMin() + '</div><div class="smallvalue right">' + this.getMax() + '</div><div class="sparkline"></div></div>';
     },
 
     _setupRefreshAction: function() {
@@ -322,41 +429,13 @@ qx.Class.define('cv.plugins.ControllerInput', {
       };
     },
 
-    updateSetpoint: function ( id, format, value, percentage ) {
+    updateSetpoint: function ( id, format, value, ratio ) {
       var
-        roundbar = $('#' + id + ' .roundbar'),
-        roundbarStyle = roundbar.attr('style'),
-        isHidden = roundbar.outerHeight() === 0 ? (roundbar.css({
-          'position': 'absolute',
-          'visibility': 'hidden',
-          'display': 'block'
-        }), true) : false,
-        roundbarOH = roundbar.outerHeight(),
-        roundbarIH = roundbar.innerHeight(),
-        roundbarOW = roundbar.outerWidth(),
-        handler = $('#' + id + ' .handler'),
-        handlerStyle = handler.attr('style'),
-        handlerDummy = isHidden ? handler.css({
-          'position': 'absolute',
-          'visibility': 'hidden',
-          'display': 'block'
-        }) : undefined,
-        handlerOH = handler.outerHeight(true), // including margin to be able to move handler inside or outside
-        handlerOW = handler.outerWidth(),
-        handlerVal = $('#' + id + ' .handlervalue'),
-        handlerTranslate = 'translate(' + roundbarOW / 2 + 'px, ' + roundbarOH + 'px) ' +
-          'rotate(' + (percentage * 180 - 90) + 'deg) ' +
-          'translate( -' + handlerOW / 2 + 'px, -' + (handlerOH / 2 + roundbarOH - 0.5 * (roundbarOH - roundbarIH)) + 'px)';
-
-      if (isHidden) {
-        roundbar.attr('style', roundbarStyle);
-        handler.attr('style', handlerStyle);
-      }
-
-      this.debug('uSP', $('#' + id + ' .actor')[0].className, isHidden);
-      handler.css('transform', handlerTranslate);
-      handlerVal.css('transform', 'rotate(' + (90 - percentage * 180) + 'deg)');
-      handlerVal.text(format ? cv.util.String.sprintf(format, value) : value);
+        handle = qx.bom.Selector.query('.controllerinputHandle path', this.getDomElement())[0];
+      qx.bom.element.Style.set(
+        handle,
+        'transform', 'rotate('+(this._handleStartOffset+this._handleRange*ratio)+'deg)'
+      );
     },
 
     getRRDData: function(  ) {
@@ -406,50 +485,53 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     _update: function (ga, d) {
-      if( undefined === this.plot ) 
-      {
-        console.warn('undefined === this.plot  => early exit!', ga, d);
-        return;
-      }
-      
       var
         value = cv.Transform.decode( this.getAddress()[ ga ][0], d ),
-        plotData = this.plot.getData();
-
-      //templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
-      //this.debug( data.address[ ga ][2] );
-
-      var
+        hasPlot = undefined !== this.plot,
+        plotData = hasPlot && this.plot.getData(),
         showValue = Math.min(Math.max(this.getMin(), value), this.getMax()),
-        percentage = (showValue - this.getMin()) / (this.getMax() - this.getMin());
+        ratio = (showValue - this.getMin()) / (this.getMax() - this.getMin());
 
       switch (this.getAddress()[ga][2]) {
         case 'actual':
-          qx.bom.element.Transform.transform(qx.bom.Selector.query('.roundbar', this.getDomElement())[0], {
-            rotate: (180 + 180 * percentage) + 'deg'
-          });
+          var
+            current = qx.bom.Selector.query('.controllerinputCurrent .current', this.getDomElement())[0];
+          qx.bom.element.Style.set( current, 'transform', 'rotate(-'+((1-ratio)*this._currentSize)+'deg)' );
+          
           this.defaultUpdate(ga, d, this.getDomElement(), true, this.getPath());
-          plotData[0].data[plotData[0].data.length - 1][1] = value;
-          plotData[3].data[0][1] = value;
+          if( hasPlot )
+          {
+            plotData[0].data[plotData[0].data.length - 1][1] = value;
+            plotData[3].data[0][1] = value;
+          }
           break;
 
         case 'control':
-          plotData[1].data[plotData[1].data.length - 1][1] = value;
-          plotData[4].data[0][1] = value;
+          if( hasPlot )
+          {
+            plotData[1].data[plotData[1].data.length - 1][1] = value;
+            plotData[4].data[0][1] = value;
+          }
           break;
 
         case 'setpoint':
           this.debug('setpoint', value, this._inAction);
           if (!this._inAction) {
-            this.updateSetpoint(this.getPath(), this.getFormat(), value, percentage);
+            this.updateSetpoint(this.getPath(), this.getFormat(), value, ratio);
           }
-          plotData[2].data[plotData[2].data.length - 1][1] = value;
-          plotData[5].data[0][1] = value;
+          if( hasPlot )
+          {
+            plotData[2].data[plotData[2].data.length - 1][1] = value;
+            plotData[5].data[0][1] = value;
+          }
           break;
       }
-      this.plot.setData(plotData);
-      this.plot.setupGrid();
-      this.plot.draw();
+      if( hasPlot )
+      {
+        this.plot.setData(plotData);
+        this.plot.setupGrid();
+        this.plot.draw();
+      }
     },
     
     buttonPressed: function(event) {
@@ -481,7 +563,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
           cY = e._native.touches ? e._native.touches[0].clientY : e._native.clientY,
           dx = cX - bounds.left - bounds.width / 2,
           dy = -cY + (bounds.top + bounds.height),
-          percentageRaw = Math.atan2(dx, dy) / Math.PI + 0.5,
+          percentageRaw = (Math.atan2(dx, dy) / Math.PI + 0.5 - this._handleCenterStartOffset/180)*180/this._handleCenterRange,
           percentage = Math.min(Math.max(percentageRaw, 0), 1),
           value = this.getMin() + percentage * (this.getMax() - this.getMin());
         this.updateSetpoint(this.getPath(), this.getFormat(), value, percentage);
