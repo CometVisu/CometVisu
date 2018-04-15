@@ -98,6 +98,9 @@ current design are given.
 .. figure:: widgets/plugins/controllerinput/_static/design_schema.png
    :alt: Design schema
 
+``--check-hover`` Inform the browser to check mouse entry and exit to apply 
+    :hover rules.
+
 .. rubric:: Footnotes
 
 .. [#f1] The simple view might not show everything. To see all elements/attributes use the expert view.

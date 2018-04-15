@@ -238,7 +238,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
       if (!this.$$domReady) {
         var pageId = this.getParentPage().getPath();
         var broker = qx.event.message.Bus;
-
+        
         // stop refreshing when page is left
         broker.subscribe("path." + pageId + ".exitingPageChange", function () {
           this._stopRefresh(this._timer);
@@ -260,56 +260,62 @@ qx.Class.define('cv.plugins.ControllerInput', {
         }, this);
         
         // create paths to show
+        this.__background = qx.bom.Selector.query('.controllerinputBackground path', this.getDomElement())[0];
+        this.__currentClip = qx.bom.Selector.query('.controllerinputCurrent #clip > path', this.getDomElement())[0];
+        this.__current = qx.bom.Selector.query('.controllerinputCurrent .current', this.getDomElement())[0];
+        this.__handle = qx.bom.Selector.query('.controllerinputHandle path', this.getDomElement())[0];
+        this.__handleOuter = qx.bom.Selector.query('.controllerinputHandleValueOuter', this.getDomElement())[0];
+        this.__handleInner = qx.bom.Selector.query('.controllerinputHandleValueInner', this.getDomElement())[0];
+        this.__value = qx.bom.Selector.query('.actor > .value', this.getDomElement())[0];
+        
         var
-          background = qx.bom.Selector.query('.controllerinputBackground path', this.getDomElement())[0],
-          backgroundDim = cv.plugins.ControllerInput.getDimensionsFromElement( background ),
+          backgroundDim = cv.plugins.ControllerInput.getDimensionsFromElement( this.__background ),
           backgroundD = cv.plugins.ControllerInput.createArcPath( backgroundDim.r, backgroundDim.width, backgroundDim.borderRadius, backgroundDim.leftM, backgroundDim.rightM ),
-          currentClip = qx.bom.Selector.query('.controllerinputCurrent #clip > path', this.getDomElement())[0],
-          currentClipDim = cv.plugins.ControllerInput.getDimensionsFromElement( currentClip ),
+          currentClipDim = cv.plugins.ControllerInput.getDimensionsFromElement( this.__currentClip ),
           currentClipD = cv.plugins.ControllerInput.createArcPath( currentClipDim.r, currentClipDim.width, currentClipDim.borderRadius, currentClipDim.leftM, currentClipDim.rightM ),
-          current = qx.bom.Selector.query('.controllerinputCurrent .current', this.getDomElement())[0],
-          currentDim = cv.plugins.ControllerInput.getDimensionsFromElement( current ),
+          currentDim = cv.plugins.ControllerInput.getDimensionsFromElement( this.__current ),
           currentD = cv.plugins.ControllerInput.createArcPath( currentDim.r, currentDim.width, currentDim.borderRadius, currentDim.leftM, currentDim.rightM ),
-          handle = qx.bom.Selector.query('.controllerinputHandle path', this.getDomElement())[0],
-          handleDim = cv.plugins.ControllerInput.getDimensionsFromElement( handle ),
+          handleDim = cv.plugins.ControllerInput.getDimensionsFromElement( this.__handle ),
           handleD = cv.plugins.ControllerInput.createArcPath( handleDim.r, handleDim.width, handleDim.borderRadius, 0,  Math.PI-handleDim.leftP-handleDim.rightP );
         
-        background.setAttribute('d',backgroundD);
+        this.__background.setAttribute('d',backgroundD);
         if( undefined !== backgroundDim.fill )
         {
-          background.insertAdjacentHTML(
+          this.__background.insertAdjacentHTML(
             'beforebegin',
             '<defs><linearGradient id="Gradient1"> <stop offset="0%" stop-opacity="0" stop-color="#FEBF01"></stop> <stop offset="100%" stop-opacity="1" stop-color="#FEBF01"></stop> </linearGradient></defs>'
           );
-          background.setAttribute('style','fill:url(#Gradient1)');
+          this.__background.setAttribute('style','fill:url(#Gradient1)');
         }
         
-        currentClip.setAttribute('d',currentClipD);
-        current.setAttribute('d',currentD);
+        this.__currentClip.setAttribute('d',currentClipD);
+        this.__current.setAttribute('d',currentD);
         this._currentSize = 180 - (currentDim.leftM+currentDim.rightM)*180/Math.PI;
         
-        handle.setAttribute('d',handleD);
+        this.__handle.setAttribute('d',handleD);
         this._handleStartOffset       = handleDim.leftM*180/Math.PI;
         this._handleRange             = 180 - (handleDim.leftM+handleDim.leftP+handleDim.rightP+handleDim.rightM)*180/Math.PI;
         this._handleCenterStartOffset = (handleDim.leftM+handleDim.leftP)*180/Math.PI;
         this._handleCenterRange       = 180 - (handleDim.rightP+handleDim.rightM)*180/Math.PI - this._handleCenterStartOffset;
         qx.bom.element.Style.set(
-          handle,
+          this.__handle,
           'transform', 'rotate('+this._handleStartOffset+'deg)'
         );
 
         // observe for style changes to ba able to update paths
-        var checkHover = window.getComputedStyle( handle ).getPropertyValue('--check-hover');
+        var checkHover = window.getComputedStyle( this.__handle ).getPropertyValue('--check-hover');
         if( 'true' === checkHover.trim() )
         {
-          var callbackHover = function()
-          {
-            handleDim = cv.plugins.ControllerInput.getDimensionsFromElement( handle );
-            handleD = cv.plugins.ControllerInput.createArcPath( handleDim.r, handleDim.width, handleDim.borderRadius, 0,  Math.PI-handleDim.leftP-handleDim.rightP );
-            handle.setAttribute('d',handleD);
-          }
-          handle.addEventListener( 'mouseenter', callbackHover );
-          handle.addEventListener( 'mouseleave', callbackHover );
+          var
+            handle = this.__handle,
+            callbackHover = function()
+            {
+              handleDim = cv.plugins.ControllerInput.getDimensionsFromElement( handle );
+              handleD = cv.plugins.ControllerInput.createArcPath( handleDim.r, handleDim.width, handleDim.borderRadius, 0,  Math.PI-handleDim.leftP-handleDim.rightP );
+              handle.setAttribute('d',handleD);
+            };
+          this.__handle.addEventListener( 'mouseenter', callbackHover );
+          this.__handle.addEventListener( 'mouseleave', callbackHover );
         }
               
         // initialize the diagram but don't make the initialization process wait for it
@@ -370,9 +376,16 @@ qx.Class.define('cv.plugins.ControllerInput', {
         +   '<svg class="controllerinputBackground" viewBox="0 0 240 120"><path/></svg>'
         +   '<svg class="controllerinputCurrent" viewBox="0 0 240 120"><defs><clipPath id="clip"><path/></clipPath></defs><g clip-path="url(#clip)"><path class="current"/></g></svg>'
         +   '<svg class="controllerinputHandle" viewBox="0 0 240 120"><path/></svg>'
-        +   '<div class="controllerinputHandleValueOuter"><div class="controllerinputHandleValueInner">|X|</div></div>'
+        +   '<div class="controllerinputHandleValueOuter"><div class="controllerinputHandleValueInner"></div></div>'
         + '</div>'
         + '<div class="value">-</div><div class="smallvalue left">' + this.getMin() + '</div><div class="smallvalue right">' + this.getMax() + '</div><div class="sparkline"></div></div>';
+    },
+    
+    // overridden
+    getValueElement: function() {
+      if( 'setpoint' === this._updateElement )
+        return this.__handleInner;
+      return this.__value;
     },
 
     _setupRefreshAction: function() {
@@ -462,17 +475,13 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     updateSetpoint: function ( id, format, value, ratio ) {
-      var
-        handle   = qx.bom.Selector.query('.controllerinputHandle path', this.getDomElement())[0],
-        handleVO = qx.bom.Selector.query('.controllerinputHandleValueOuter', this.getDomElement())[0],
-        handleVI = qx.bom.Selector.query('.controllerinputHandleValueInner', this.getDomElement())[0];
-      qx.bom.element.Style.set( handle,
+      qx.bom.element.Style.set( this.__handle,
         'transform', 'rotate('+(this._handleStartOffset+this._handleRange*ratio)+'deg)'
       );
-      qx.bom.element.Style.set( handleVO,
+      qx.bom.element.Style.set( this.__handleOuter,
         'transform', 'rotate('+(this._handleStartOffset+this._handleRange*ratio)+'deg)'
       );
-      qx.bom.element.Style.set( handleVI,
+      qx.bom.element.Style.set( this.__handleInner,
         'transform', 'rotate('+(-this._handleStartOffset-this._handleRange*ratio)+'deg)'
       );
     },
@@ -533,10 +542,9 @@ qx.Class.define('cv.plugins.ControllerInput', {
 
       switch (this.getAddress()[ga][2]) {
         case 'actual':
-          var
-            current = qx.bom.Selector.query('.controllerinputCurrent .current', this.getDomElement())[0];
-          qx.bom.element.Style.set( current, 'transform', 'rotate(-'+((1-ratio)*this._currentSize)+'deg)' );
+          qx.bom.element.Style.set( this.__current, 'transform', 'rotate(-'+((1-ratio)*this._currentSize)+'deg)' );
           
+          this._updateElement = 'actual';
           this.defaultUpdate(ga, d, this.getDomElement(), true, this.getPath());
           if( hasPlot )
           {
@@ -554,7 +562,8 @@ qx.Class.define('cv.plugins.ControllerInput', {
           break;
 
         case 'setpoint':
-          this.debug('setpoint', value, this._inAction);
+          this._updateElement = 'setpoint';
+          this.defaultUpdate(ga, d, this.getDomElement(), true, this.getPath());
           if (!this._inAction) {
             this.updateSetpoint(this.getPath(), this.getFormat(), value, ratio);
           }
