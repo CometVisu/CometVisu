@@ -56,6 +56,11 @@
 {
   border-radius: 0px;
 }
+.controllerinputBar > .controllerinputHandle
+{
+  z-index: 1;
+}
+
 .controllerinputBar > .controllerinputHandle > path
 {
   --r: 100px;
@@ -69,6 +74,23 @@
   fill:#000;
   transform-origin: 120px 120px;
   transform: rotate(0deg);
+  transition: transform 0.5s;
+}
+
+.controllerinputHandleValueOuter 
+{
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 100%;
+  transition: transform 0.5s;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.controllerinputHandleValueInner 
+{
+  bottom: 10px;
+  left: 10px;
   transition: transform 0.5s;
 }
 

@@ -152,8 +152,16 @@ qx.Class.define('cv.plugins.ControllerInput', {
     getDimensionsFromElement: function( element ){
       var
         CS = window.getComputedStyle( element ),
-        r = +CS.getPropertyValue('--r').slice(0,-2);
-        
+        em = CS.getPropertyValue('font-size').slice(0,-2),
+        r = eval( CS.getPropertyValue('--r').replace(/(calc|px)/g,'').replace(/em/g,'*'+em) );
+      // Note: the browsers are passing custom CSS property as they are, see:
+      //   https://drafts.csswg.org/cssom/#the-cssstyledeclaration-interface
+      // This also means that calc() isn't called and 'em' units aren't 
+      // resolved, so we must do it manually.
+      // As the CSS value comes from the design that the user can't modify
+      // it's safe to call "eval()". Anyone able to attac this could change
+      // any other parts of the CometVisu as well, so that's not a degradation.
+      
       return {
         r: r,
         width: +CS.getPropertyValue('width').slice(0,-2),
@@ -166,7 +174,8 @@ qx.Class.define('cv.plugins.ControllerInput', {
         leftM:  +CS.getPropertyValue('margin-left').slice(0,-2)/r,
         rightM: +CS.getPropertyValue('margin-right').slice(0,-2)/r,
         leftP:  +CS.getPropertyValue('padding-left').slice(0,-2)/r,
-        rightP: +CS.getPropertyValue('padding-right').slice(0,-2)/r
+        rightP: +CS.getPropertyValue('padding-right').slice(0,-2)/r,
+        fill: CS.getPropertyValue('--fill') ? CS.getPropertyValue('--fill').replace(/linear-gradient\((.*)\)/,'$1').split(',') : undefined
       }
     }
   },
@@ -266,6 +275,14 @@ qx.Class.define('cv.plugins.ControllerInput', {
           handleD = cv.plugins.ControllerInput.createArcPath( handleDim.r, handleDim.width, handleDim.borderRadius, 0,  Math.PI-handleDim.leftP-handleDim.rightP );
         
         background.setAttribute('d',backgroundD);
+        if( undefined !== backgroundDim.fill )
+        {
+          background.insertAdjacentHTML(
+            'beforebegin',
+            '<defs><linearGradient id="Gradient1"> <stop offset="0%" stop-opacity="0" stop-color="#FEBF01"></stop> <stop offset="100%" stop-opacity="1" stop-color="#FEBF01"></stop> </linearGradient></defs>'
+          );
+          background.setAttribute('style','fill:url(#Gradient1)');
+        }
         
         currentClip.setAttribute('d',currentClipD);
         current.setAttribute('d',currentD);
@@ -281,6 +298,20 @@ qx.Class.define('cv.plugins.ControllerInput', {
           'transform', 'rotate('+this._handleStartOffset+'deg)'
         );
 
+        // observe for style changes to ba able to update paths
+        var checkHover = window.getComputedStyle( handle ).getPropertyValue('--check-hover');
+        if( 'true' === checkHover.trim() )
+        {
+          var callbackHover = function()
+          {
+            handleDim = cv.plugins.ControllerInput.getDimensionsFromElement( handle );
+            handleD = cv.plugins.ControllerInput.createArcPath( handleDim.r, handleDim.width, handleDim.borderRadius, 0,  Math.PI-handleDim.leftP-handleDim.rightP );
+            handle.setAttribute('d',handleD);
+          }
+          handle.addEventListener( 'mouseenter', callbackHover );
+          handle.addEventListener( 'mouseleave', callbackHover );
+        }
+              
         // initialize the diagram but don't make the initialization process wait for it
         // by using a deferred call
         if (this.isVisible()) {
@@ -339,6 +370,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
         +   '<svg class="controllerinputBackground" viewBox="0 0 240 120"><path/></svg>'
         +   '<svg class="controllerinputCurrent" viewBox="0 0 240 120"><defs><clipPath id="clip"><path/></clipPath></defs><g clip-path="url(#clip)"><path class="current"/></g></svg>'
         +   '<svg class="controllerinputHandle" viewBox="0 0 240 120"><path/></svg>'
+        +   '<div class="controllerinputHandleValueOuter"><div class="controllerinputHandleValueInner">|X|</div></div>'
         + '</div>'
         + '<div class="value">-</div><div class="smallvalue left">' + this.getMin() + '</div><div class="smallvalue right">' + this.getMax() + '</div><div class="sparkline"></div></div>';
     },
@@ -431,10 +463,17 @@ qx.Class.define('cv.plugins.ControllerInput', {
 
     updateSetpoint: function ( id, format, value, ratio ) {
       var
-        handle = qx.bom.Selector.query('.controllerinputHandle path', this.getDomElement())[0];
-      qx.bom.element.Style.set(
-        handle,
+        handle   = qx.bom.Selector.query('.controllerinputHandle path', this.getDomElement())[0],
+        handleVO = qx.bom.Selector.query('.controllerinputHandleValueOuter', this.getDomElement())[0],
+        handleVI = qx.bom.Selector.query('.controllerinputHandleValueInner', this.getDomElement())[0];
+      qx.bom.element.Style.set( handle,
         'transform', 'rotate('+(this._handleStartOffset+this._handleRange*ratio)+'deg)'
+      );
+      qx.bom.element.Style.set( handleVO,
+        'transform', 'rotate('+(this._handleStartOffset+this._handleRange*ratio)+'deg)'
+      );
+      qx.bom.element.Style.set( handleVI,
+        'transform', 'rotate('+(-this._handleStartOffset-this._handleRange*ratio)+'deg)'
       );
     },
 
@@ -572,7 +611,6 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
     
     _action: function (ev) {
-      console.log('_action',ev);
       this.debug('ci action', this._inAction);
       if (this._sendTimer) {
         this._sendTimer.stop();

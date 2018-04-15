@@ -683,6 +683,7 @@ body br
 .ui-widget-content { /*border: 1px solid #dddddd; background: #000 ; color: #000;*/ background: linear-gradient(to bottom right, rgba(254,191,1,0) 0%,rgba(254,191,1,0) 48%,rgba(254,191,1,1) 52%,rgba(254,191,1,1) 100%) !important }
 .ui-widget-content { background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(254,191,1,1) 100%) !important }
 .ui-widget-content a { color: #333333; }
+.controllerinputHandleValueInner,
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: hsl(345,10%,20%); text-shadow: 0.5px 0.5px 2px #000; }
 a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited { 
   color: #000; 
@@ -1138,7 +1139,8 @@ img.icon, canvas.icon, svg.icon
 /* use body to make sure these rules are more specific and thus win */
 body .page .controllerinput > .actor
 {
-  width: auto;
+  margin-top: 0;
+  width: 240px;
 }
 
 .page .controllerinput > .actor
@@ -1158,6 +1160,67 @@ body .page .controllerinput > .actor
   left: auto;
   transform: none;
 }
+
+.controllerinput .controllerinputHandle
+{
+  filter: drop-shadow(2px 3px 7px #000);
+  color: #0f0;
+}
+/*
+.controllerinput .controllerinputHandle:hover
+{
+  color: #f00;
+}*/
+
+body .controllerinputBar > .controllerinputBackground > path
+{
+  width: 1.3em;
+  margin: 0;
+  stroke: none;
+  fill: #FEBF01;
+  border-radius: 2px;
+  /* linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(254,191,1,1) 100%) !important */
+  --fill: linear-gradient( rgba(0,0,0,0) 0%, rgba(254,191,1,1) 100% )
+}
+
+body .controllerinputBar > .controllerinputCurrent path
+{
+  --r: calc(100px - 1.3em/2 + 0.2em);
+  width: 0.4em;
+  margin: 0;
+  fill: hsl(345,80%,50%);
+}
+
+body .controllerinputBar > .controllerinputHandle > path
+{
+  --r: calc(101px + 1.6em/2 - 1.3em/2);
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  width: 1.6em;
+  border-radius: 1px;
+  fill: hsl(345,35%,95%);
+  stroke: none;
+  /* border-color: #fff #666 #666 #fff; */
+  --check-hover: true;
+  transition: d 0.3s;
+}
+body .controllerinputBar > .controllerinputHandle > path:hover
+{
+  fill: #fff;
+  width: 2.6em;
+  padding-left: 1.63em;
+  padding-right: 1.63em;
+  --r: calc(101px + 2.6em/2 - 1.3em/2);
+}
+/*
+body .controllerinputBar > .controllerinputHandle:hover > path
+{
+  fill: #00f;
+}
+body .controllerinputBar:hover > .controllerinputHandle > path
+{
+  fill: #ff0;
+}*/
 
 body .controllerinput .roundbarbackground.border {
   display: none;
@@ -1196,7 +1259,7 @@ body .controllerinput .handler.shadow {
   -webkit-filter: none;
 }
 
-body .controllerinput .handlervalue {
+body .controllerinput .controllerinputHandleValueOuter {
   margin-top: -1.5em;
   font-size: 75%;
 }
