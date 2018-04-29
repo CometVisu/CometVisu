@@ -5,6 +5,7 @@
   min-height: 4em;
   height: 120px;
   margin-top: 2em;
+  touch-action: none;
 }
 
 .controllerinput .actor div {

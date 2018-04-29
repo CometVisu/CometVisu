@@ -241,7 +241,9 @@ qx.Class.define('cv.plugins.ControllerInput', {
         
         // stop refreshing when page is left
         broker.subscribe("path." + pageId + ".exitingPageChange", function () {
-          this._stopRefresh(this._timer);
+          if(this._timer && this._timer.isEnabled()) {
+            this._timer.stop();
+          }
         }, this);
 
         broker.subscribe("path." + pageId + ".beforePageChange", function () {
@@ -256,7 +258,9 @@ qx.Class.define('cv.plugins.ControllerInput', {
             this.createSparkline();
           }
           // start refreshing when page is entered
-          this._startRefresh(this._timer);
+          if(this._timer && !this._timer.isEnabled()) {
+            this._timer.start();
+          }
         }, this);
         
         // create paths to show
@@ -359,9 +363,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
           }, this);
         }
         
-        //this.addElementListener("pointerdown", this._onPointerDown, this);
-        this.addElementListener("pointerdown", this._downaction, this);
-
+        qx.event.Registration.addListener(this.getActor(), 'pointerdown', this._downaction, this);
       }
     },
 
@@ -475,6 +477,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     updateSetpoint: function ( id, format, value, ratio ) {
+      this._lastValue = value;
       qx.bom.element.Style.set( this.__handle,
         'transform', 'rotate('+(this._handleStartOffset+this._handleRange*ratio)+'deg)'
       );
@@ -582,29 +585,31 @@ qx.Class.define('cv.plugins.ControllerInput', {
       }
     },
     
-    buttonPressed: function(event) {
-      console.log('buttonPressed', event);
-    },
-    
     _downaction: function (event) {
-      console.log('_downaction', event);
-      this._inAction = true;
-      this._lastValue = undefined;
-      this.moveAction(event);
-      qx.bom.element.Class.add(this.getActor(), 'notransition');
+      if( !this._inAction )
+      {
+        qx.bom.element.Class.add(this.getActor(), 'action');
+        this._inAction = true;
+        this.moveAction(event);
+        qx.bom.element.Class.add(this.getActor(), 'notransition');
 
-      this._inAction = true;
-      //data.valueInternal = true;
-
-      qx.event.Registration.addListener(this.getActor(), 'pointermove', this.moveAction, this);
-      
-      this._sendTimer = new qx.event.Timer(250);
-      this._sendTimer.addListener('interval', this.sendSetpointToBackend, this );
-      this._sendTimer.start();
+        qx.event.Registration.addListener(this.getActor(), 'pointermove', this.moveAction, this);
+        
+        this._sendTimer = new qx.event.Timer(250);
+        this._sendTimer.addListener('interval', this.sendSetpointToBackend, this );
+        this._sendTimer.start();
+      }
     },
 
     moveAction: function (e) {
       if (e !== undefined) {
+        if( 0 === e._native.buttons )
+        {
+          // no button set anymore -> action was ended outside of widget
+          // => end listening
+          this._action(e);
+          return;
+        }
         var bounds = this.getActor().getBoundingClientRect();
         var
           cX = e._native.touches ? e._native.touches[0].clientX : e._native.clientX,
@@ -620,19 +625,22 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
     
     _action: function (ev) {
-      this.debug('ci action', this._inAction);
-      if (this._sendTimer) {
-        this._sendTimer.stop();
-        this._sendTimer = null;
+      if( this._inAction )
+      {
+        if (this._sendTimer) {
+          this._sendTimer.stop();
+          this._sendTimer = null;
+        }
+        this._inAction = false;
+        qx.bom.element.Class.remove(this.getActor(), 'notransition');
+        this.sendSetpointToBackend();
+        qx.bom.element.Class.remove(this.getActor(), 'action');
+        qx.event.Registration.removeListener(this.getActor(), 'pointermove', this.moveAction, this);
       }
-      this._inAction = false;
-      qx.bom.element.Class.remove(this.getActor(), 'notransition');
-      this.sendSetpointToBackend();
-      qx.event.Registration.removeListener(this.getActor(), 'pointermove', this.moveAction, this);
     },
     
     sendSetpointToBackend: function() {
-      this._lastBusValue = this.sendToBackend( this.getValue(), function(addr) {
+      this._lastBusValue = this.sendToBackend( this._lastValue, function(addr) {
         return addr[2] === 'setpoint';
       }, this._lastBusValue );
     }

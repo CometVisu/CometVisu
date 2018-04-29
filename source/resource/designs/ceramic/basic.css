@@ -1152,7 +1152,7 @@ body .page .controllerinput > .actor
 .page .controllerinput > .actor:first-child
 {
   left: 50%;
-  width: auto;
+  width: 240px;
 }
 
 .controllerinput .actor div
@@ -1185,7 +1185,7 @@ body .controllerinputBar > .controllerinputBackground > path
 
 body .controllerinputBar > .controllerinputCurrent path
 {
-  --r: calc(100px - 1.3em/2 + 0.2em);
+  --r: calc(102px - 1.3em/2 - 0.2em);
   width: 0.4em;
   margin: 0;
   fill: hsl(345,80%,50%);
@@ -1202,7 +1202,7 @@ body .controllerinputBar > .controllerinputHandle > path
   stroke: none;
   /* border-color: #fff #666 #666 #fff; */
   --check-hover: true;
-  transition: d 0.3s;
+  transition: d 0.3s !important;
 }
 body .controllerinputBar > .controllerinputHandle > path:hover
 {
@@ -1260,8 +1260,18 @@ body .controllerinput .handler.shadow {
 }
 
 body .controllerinput .controllerinputHandleValueOuter {
-  margin-top: -1.5em;
-  font-size: 75%;
+  font-size: 70%;
+}
+
+body .controllerinput .controllerinputHandleValueInner {
+  bottom: 1.5em;
+  width: 3em;
+  text-align: center;
+  transition: transform 0.3s, margin 0.3s !important;
+}
+body .controllerinput .action .controllerinputHandleValueInner {
+  margin-left: -2em;
+  transform: rotate(-80deg) !important;
 }
 
 .navbar .infoaction .label {
