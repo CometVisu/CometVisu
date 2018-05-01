@@ -487,6 +487,10 @@ qx.Class.define('cv.plugins.ControllerInput', {
       qx.bom.element.Style.set( this.__handleInner,
         'transform', 'rotate('+(-this._handleStartOffset-this._handleRange*ratio)+'deg)'
       );
+      if( this.getFormat() )
+        this.__handleInner.textContent = cv.util.String.sprintf( this.getFormat(), value );
+      else
+        this.__handleInner.textContent = value;
     },
 
     getRRDData: function(  ) {

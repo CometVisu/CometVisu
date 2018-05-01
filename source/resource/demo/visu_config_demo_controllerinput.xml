@@ -31,12 +31,12 @@
       <label>Change example values:</label>
       <layout colspan="6" rowspan="2" />
     </text>
-    <slide min="-20" max="40" format="%.1f">
+    <slide min="-20" max="40" format="%.1f°">
       <label>Actual value</label>
       <layout colspan="6" rowspan="1" />
       <address transform="DPT:9.001">12/7/90</address>
     </slide>
-    <slide min="-20" max="40" format="%.1f">
+    <slide min="-20" max="40" format="%.1f°">
       <label>Set point</label>
       <layout colspan="6" rowspan="1" />
       <address transform="DPT:9.001">12/7/91</address>
