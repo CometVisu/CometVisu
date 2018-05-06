@@ -145,7 +145,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
       var children = this.getActors();
       children.forEach(function(actor) {
         var index = children.indexOf(actor)+1;
-        var isPressed = this.getBasicValue() === this['getButton' + index + 'value']();
+        var isPressed = (''+this.getBasicValue()) === (''+this['getButton' + index + 'value']()); // compare as string
 
         // delay this a little bit to give the HasAnimatedButton stuff time to finish
         // otherwise it might override the settings here
