@@ -240,6 +240,10 @@ body br
   box-shadow: 0 0 30px #ff8000;
 }
 
+.break_container {
+  height: 0;
+}
+
 .rowspan {
   overflow: visible;
 }
@@ -742,7 +746,7 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
 }
 .multitrigger .label, .multitrigger .actor
 {
-  background: hsl(345,10%,20%);
+  background: linear-gradient( hsl(345,10%,22%), hsl(345,10%,18%) );
 }
 
 .multitrigger br
