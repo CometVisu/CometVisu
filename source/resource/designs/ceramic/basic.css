@@ -1142,36 +1142,25 @@ body .page .controllerinput > .actor
   margin-top: 0;
   width: 240px;
 }
-
 .page .controllerinput > .actor
 {
   left: 75%;
   transform: translateX(-50%);
 }
-
 .page .controllerinput > .actor:first-child
 {
   left: 50%;
   width: 240px;
 }
-
 .controllerinput .actor div
 {
   left: auto;
   transform: none;
 }
-
 .controllerinput .controllerinputHandle
 {
   filter: drop-shadow(2px 3px 7px #000);
-  color: #0f0;
 }
-/*
-.controllerinput .controllerinputHandle:hover
-{
-  color: #f00;
-}*/
-
 body .controllerinputBar > .controllerinputBackground > path
 {
   width: 1.3em;
@@ -1179,10 +1168,8 @@ body .controllerinputBar > .controllerinputBackground > path
   stroke: none;
   fill: #FEBF01;
   border-radius: 2px;
-  /* linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(254,191,1,1) 100%) !important */
   --fill: linear-gradient( rgba(0,0,0,0) 0%, rgba(254,191,1,1) 100% )
 }
-
 body .controllerinputBar > .controllerinputCurrent path
 {
   --r: calc(102px - 1.3em/2 - 0.2em);
@@ -1190,7 +1177,6 @@ body .controllerinputBar > .controllerinputCurrent path
   margin: 0;
   fill: hsl(345,80%,50%);
 }
-
 body .controllerinputBar > .controllerinputHandle > path
 {
   --r: calc(101px + 1.6em/2 - 1.3em/2);
@@ -1200,8 +1186,11 @@ body .controllerinputBar > .controllerinputHandle > path
   border-radius: 1px;
   fill: hsl(345,35%,95%);
   stroke: none;
-  /* border-color: #fff #666 #666 #fff; */
   --check-hover: true;
+  transition: transform 0.3s, d 0.3s !important;
+}
+body .notransition .controllerinputBar > .controllerinputHandle > path
+{
   transition: d 0.3s !important;
 }
 body .controllerinputBar > .controllerinputHandle > path:hover
@@ -1212,43 +1201,33 @@ body .controllerinputBar > .controllerinputHandle > path:hover
   padding-right: 1.63em;
   --r: calc(101px + 2.6em/2 - 1.3em/2);
 }
-/*
-body .controllerinputBar > .controllerinputHandle:hover > path
+body .controllerinput .roundbarbackground.border 
 {
-  fill: #00f;
-}
-body .controllerinputBar:hover > .controllerinputHandle > path
-{
-  fill: #ff0;
-}*/
-
-body .controllerinput .roundbarbackground.border {
   display: none;
 }
-
-body .controllerinput .roundbarbackground.color {
+body .controllerinput .roundbarbackground.color 
+{
   border: 3px solid rgba(0,0,128,0.5);
   border-bottom: none;
 }
-
-body .controllerinput .roundbar {
+body .controllerinput .roundbar 
+{
   border-color: #FEBF01;
 }
-
-body .controllerinput .value {
+body .controllerinput .value 
+{
   font-size: 200%;
 }
-
-body .controllerinput .handler {
+body .controllerinput .handler 
+{
   overflow: visible;
   background: hsl(345,35%,95%);
   width: 0.5em;
   height: 1.6em;
-  /*margin-top: -1.3em;*/
   border: none;
 }
-
-body .controllerinput .handler.shadow {
+body .controllerinput .handler.shadow 
+{
   display: block;
   background: #000;
   margin-left: 4px;
@@ -1258,20 +1237,39 @@ body .controllerinput .handler.shadow {
   height: calc(1.6em - 4px);
   -webkit-filter: none;
 }
-
-body .controllerinput .controllerinputHandleValueOuter {
+body .controllerinput .controllerinputHandleValueOuter 
+{
   font-size: 70%;
 }
-
-body .controllerinput .controllerinputHandleValueInner {
+body .controllerinput .controllerinputHandleValueInner 
+{
   bottom: 1.5em;
   width: 3em;
   text-align: center;
   transition: transform 0.3s, margin 0.3s !important;
 }
-body .controllerinput .action .controllerinputHandleValueInner {
-  margin-left: -2em;
+body .controllerinput .notransition .controllerinputHandleValueInner 
+{
+  transition: margin 0.3s !important;
+}
+body .controllerinput .hover .controllerinputHandleValueInner 
+{
+  margin-left: -1.9em;
+  margin-bottom: 0.4em;
   transform: rotate(-80deg) !important;
+}
+.controllerinput .smallvalue 
+{
+  width: 26px;
+  text-align: center;
+}
+body .controllerinput .smallvalue.left 
+{
+  margin-left: 7.5px;
+}
+body .controllerinput .smallvalue.right 
+{
+  right: 7.5px;
 }
 
 .navbar .infoaction .label {

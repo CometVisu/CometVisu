@@ -312,11 +312,28 @@ qx.Class.define('cv.plugins.ControllerInput', {
         {
           var
             handle = this.__handle,
-            callbackHover = function()
+            handleOuter = this.__handleOuter,
+            callbackHover = function(ev)
             {
+              // NOTE: Firefox has an event order problem, also described at
+              // https://bugzilla.mozilla.org/show_bug.cgi?id=1446832
+              // that creates troubles here:
+              // We are expecting that :hover is already unset when the 
+              // mouseleave event is sent.
+              // As this will be fixed in Firefox 61 no work around is attempted 
+              // here.
               handleDim = cv.plugins.ControllerInput.getDimensionsFromElement( handle );
               handleD = cv.plugins.ControllerInput.createArcPath( handleDim.r, handleDim.width, handleDim.borderRadius, 0,  Math.PI-handleDim.leftP-handleDim.rightP );
               handle.setAttribute('d',handleD);
+              switch( ev.type )
+              {
+                case 'mouseenter':
+                  handleOuter.classList.add('hover');
+                  break;
+                  
+                case 'mouseleave':
+                  handleOuter.classList.remove('hover');
+              }
             };
           this.__handle.addEventListener( 'mouseenter', callbackHover );
           this.__handle.addEventListener( 'mouseleave', callbackHover );
