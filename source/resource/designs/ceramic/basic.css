@@ -31,12 +31,13 @@ body
   background: url(background3.png) no-repeat center center fixed black; 
   background-size: cover;
   color: hsl(345,35%,95%);
+  color: hsl(345,10%,80%);
   font-family: Verdana, Helvetica, sans-serif;
   font-family: 'URW Gothic L','Century Gothic','Apple Gothic',Arial,sans-serif;
   font-family: Impact, Charcoal, sans-serif;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   font-family: 'Josefin Sans', Helvetica, sans-serif;
-  font-size: 5mm;
+  font-size: 4.3mm;
   overflow: hidden;
   margin:0;
   /*
@@ -100,6 +101,7 @@ h2
   padding-top: 0.3em;
   padding-bottom: 0.1em;
   font-kerning: normal;
+  line-height: calc(2.5rem - 9px);
 }
 
 body hr
@@ -264,6 +266,16 @@ body br
   background: hsl(345,10%,20%);
   background: linear-gradient( hsl(345,10%,22%), hsl(345,10%,18%) );
 }
+.icon
+{
+  width: 2.5em;
+  height: 2.5em;
+}
+.value > .icon
+{
+  width: 2em;
+  height: 2em;
+}
 
 .widget
 {
@@ -277,7 +289,8 @@ body br
   /*
   box-shadow: 2px 2px 3px -1px #555;
   */
-  min-height: 2em;
+  min-height: 2.5em;
+  /*line-height: 2.5em;*/
   /*overflow: hidden;*/
   /*
   background: radial-gradient(ellipse 250% 100% at 100% 100%, #aaa, #0a0 10%, #0f0 49%, #8f8 51%, #8c8);
@@ -301,7 +314,7 @@ body br
 .widget.group
 {
   background: none;
-  margin: 5px;
+  margin: 3px 0 0 3px;
   box-shadow: 6px 6px 23px -1px #000;
   border-radius: 5px;
   overflow: hidden;
@@ -318,7 +331,6 @@ body br
 
 .widget > .label,
 .widget.info .actor,
-.text > div,
 .link > a {
   padding: 5px;
 }
@@ -396,6 +408,7 @@ body br
 #navbarTop .navbar .pagejump:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor,#navbarTop .navbar .refresh:hover {
   color: hsl(345,10%,20%);
   background: hsl(345,35%,95%) !important;
+  background: hsl(345,10%,80%) !important;
   box-shadow: 2px 3px 7px rgba(0,0,0,0.5) inset;
 }
 
@@ -404,6 +417,7 @@ body br
   text-align: center;
   width: auto;
   min-width: 5em;
+  line-height: 1em;
 }
 
 .navbar .widget_container > .widget.pagejump > .actor {
@@ -524,6 +538,29 @@ body br
   position: relative;
 }
 
+.switch > .actor div,
+.trigger > .actor div,
+.multitrigger .actor div,
+.widget.rgb > .actor > .value
+{
+  padding: 0;
+  width: 4.5em;
+  float: left;
+  text-align: center;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  border: 1px solid hsl(345,35%,95%);
+  border: 1px solid hsl(345,10%,80%);
+  box-shadow: 2px 3px 7px rgba(0,0,0,0.5);
+  line-height: 2em;
+}
+
+.multitrigger .actor div
+{
+  line-height: 2.5em;
+}
+
 .switchUnpressed,
 .widget.rgb > .actor
 {
@@ -544,22 +581,21 @@ body br
   border-style:  solid;
   border-width:  1px;
   border-color:  #fff #666 #666 #fff;
-  */
-  padding: 3px;
+  padding: 0;
   width: 5em;
+  max-width: 100%;
   float: left;
   text-align: center;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  /*
   background: -webkit-gradient(linear, 100% 100%, 0 0, from(#000000), to(#0f0f0f));
   background: linear-gradient(-10deg, #000000, #0f0f0f);
   box-shadow: 0 -1px 1px #666666, 0 1px 1px #FFFFFF;
   box-shadow: 0 2px 5px #000;
-  */
   border: 1px solid hsl(345,35%,95%);
   box-shadow: 2px 3px 7px rgba(0,0,0,0.5);
+  */
 }
 
 .pagejump:hover,
@@ -615,14 +651,14 @@ body br
   right: -1px;
 }
 
-.switchPressed div
+.switch > .actor.switchPressed div
 {
   /*
   border-style:  solid;
   border-width:  1px;
   border-color:  #444 #666 #666 #444;
-  */
   padding: 3px;
+  padding: 0;
   width: 5em;
   float: left;
   text-align: center;
@@ -633,15 +669,16 @@ body br
   background: -webkit-gradient(linear, 0 0, 100% 100%, from(#000000), to(#0f0f0f));
   background: linear-gradient(170deg, #000000, #0f0f0f);
   box-shadow: 0 -1px 1px #666666, 0 1px 1px #FFFFFF;
-  */
   border: 1px solid hsl(345,35%,95%);
+  */
   background: hsl(345,35%,95%) !important;
+  background: hsl(345,10%,80%) !important;
   box-shadow: 2px 3px 7px rgba(0,0,0,0.5) inset;
 }
 
-.switchPressed div:hover
+.switch > .actor.switchPressed div:hover
 {
-  background: hsl(345,35%,100%);
+  background: hsl(345,35%,100%) !important;
 }
 
 .switchInvisible
@@ -665,15 +702,16 @@ body br
 }
 .ui-slider .ui-slider-handle { position: absolute; z-index: 2; cursor: default; 
   background: hsl(345,35%,95%);
+  background: hsl(345,10%,80%);
   box-shadow: 2px 3px 7px #000;
   min-width: 3em;
-  height: 1.6em;
+  height: 2em;
   min-height: 0; 
 }
 .ui-slider .ui-slider-handle:focus, .ui-slider .ui-slider-handle:hover { outline: none; box-shadow: 3px 4px 8px -1px #000; background: #fff; }
 .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
 
-.ui-slider-horizontal { height: 1.3em; }
+.ui-slider-horizontal { height: 1.5em; }
 .ui-slider-horizontal .ui-slider-handle { bottom: 0; border:none;}
 .ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
 .ui-slider-horizontal .ui-slider-range-min { left: 0; }
@@ -688,7 +726,7 @@ body br
 .ui-widget-content { background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(254,191,1,1) 100%) !important }
 .ui-widget-content a { color: #333333; }
 .controllerinputHandleValueInner,
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: hsl(345,10%,20%); text-shadow: 0.5px 0.5px 2px #000; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: hsl(345,10%,20%); text-shadowX: 0.5px 0.5px 4px #000; }
 a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited { 
   color: #000; 
   text-decoration: none;
@@ -726,8 +764,9 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
 {
   font-size: 75%;
   min-width: 4.0em;
-  height: 3.4em;
-  padding-bottom: 3em;
+  height: 3.0rem;
+  padding-bottom: 2.1rem;
+  line-height: 1em;
   z-index: 20;
   box-shadow: 0 0 2px #000, 3px 4px 8px -1px #000;
 }
@@ -769,8 +808,10 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
   jusitfy-content: space-between;
   width: calc(100% + 2px);
   margin-left: -2px;
-  min-height: 2em;
+  /*
+  min-height: 3em;
   line-height: 2em;
+  */
 }
 .widget.multitrigger .actor
 {
@@ -796,10 +837,17 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
   margin-top: -0.3em;
   padding-top: 0.3em;
   background-color: hsl(345,35%,95%);
+  background-color: hsl(345,10%,80%);
   background: linear-gradient( hsl(345,35%,97%), hsl(345,35%,93%) );
+  background: linear-gradient( hsl(345,10%,82%), hsl(345,10%,78%) );
   box-shadow: 5px 0px 10px rgba(0,0,0,0.5);
   box-shadow: 6px 2px 10px 2px rgba(0,0,0,0.4);
   z-index: 5;
+}
+.page .multitrigger .actor_container .switchPressed:hover
+{
+  background-color: hsl(345,35%,95%);
+  background: linear-gradient( hsl(345,35%,97%), hsl(345,35%,93%) );
 }
 
 .page .infotrigger > div:not(.label)
@@ -1018,6 +1066,7 @@ body hr,
 {
   background-color: hsl(165,35%,40%);
 }
+.flavour_blue:not(.group) .ui-slider,
 .flavour_antimony:not(.group) .ui-slider
 {
   background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(165,35%,40%) 100%) !important;
@@ -1041,6 +1090,7 @@ body hr,
 {
   background-color: hsl(105,35%,40%);
 }
+.flavour_green:not(.group) .ui-slider,
 .flavour_boron:not(.group) .ui-slider
 {
   background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(105,35%,40%) 100%) !important;
@@ -1064,6 +1114,7 @@ body hr,
 {
   background-color: hsl(345,35%,40%);
 }
+.flavour_red:not(.group) .ui-slider,
 .flavour_lithium:not(.group) .ui-slider
 {
   background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(345,35%,40%) 100%) !important;
@@ -1189,6 +1240,7 @@ body .controllerinputBar > .controllerinputHandle > path
   width: 1.6em;
   border-radius: 1px;
   fill: hsl(345,35%,95%);
+  fill: hsl(345,10%,80%);
   stroke: none;
   --check-hover: true;
   transition: transform 0.3s, d 0.3s !important;
@@ -1283,8 +1335,10 @@ body .controllerinput .smallvalue.right
 body .infoaction .widget_container.widgetinfo .widget {
   border-radius: 0 0 0 2px;
   background: hsl(345,35%,95%);
+  background: hsl(345,10%,80%);
   box-shadow: 0px 1px 5px 0px #000;
   min-height: fit-content;
+  line-height: 1em;
   font-size: 75%;
   /* FIXME Widgetinfo in the Top Leiste */
 }
