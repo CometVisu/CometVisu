@@ -535,6 +535,7 @@ body br
 {
   float:left;
   overflow: auto;
+  overflow-x: hidden;
   position: relative;
 }
 
