@@ -94,15 +94,23 @@ var createTestElement = function (name, attributes, content, address, addressAtt
   if (address) {
     if (!addressAttributes) {
       addressAttributes = {'transform': 'DPT:1.001', 'mode': 'readwrite'};
-    } else if (!addressAttributes.transform) {
+    } else if (!Array.isArray(addressAttributes) && !addressAttributes.transform) {
       addressAttributes.transform = 'DPT:1.001';
     }
-
-    content += "<address";
-    for (var key in addressAttributes) {
-      content += " " + key + "=\"" + addressAttributes[key] + "\"";
+    if (!Array.isArray(address)) {
+      address = [address];
     }
-    content += ">" + address + "</address>";
+    if (!Array.isArray(addressAttributes)) {
+      addressAttributes = [addressAttributes]
+    }
+
+    address.forEach(function (addr, index) {
+      content += "<address";
+      for (var key in addressAttributes[index]) {
+        content += " " + key + "=\"" + addressAttributes[index][key] + "\"";
+      }
+      content += ">" + addr + "</address>";
+    });
   }
 
   var container = document.createElement('div');
@@ -312,6 +320,9 @@ beforeEach(function () {
     qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
   };
+  templateEngine.visu = new cv.io.Mockup();
+  var model = cv.data.Model.getInstance();
+  templateEngine.visu.update = model.update.bind(model); // override clients update function
 });
 
 afterEach(function () {

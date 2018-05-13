@@ -3,7 +3,8 @@
 The Include element
 ===================
 
-.. api-doc:: Include
+| **Available since version**: 0.8.0 (2012)
+| **Author**: Christian Mayer
 
 Description
 -----------

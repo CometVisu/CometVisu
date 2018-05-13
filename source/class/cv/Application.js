@@ -176,7 +176,7 @@ qx.Class.define("cv.Application",
        -------------------------------------------------------------------------
        */
       // in debug mode load the uncompressed unobfuscated scripts
-      qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css'));
+      qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
 
       this.__init();
     },

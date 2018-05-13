@@ -69,8 +69,9 @@ qx.Class.define('cv.util.ScriptLoader', {
 
     addStyles: function(styleArr) {
       var queue = (qx.lang.Type.isString(styleArr) ? [ styleArr ] : qx.lang.Array.clone(styleArr));
+      var suffix = (cv.Config.forceReload === true) ? '?'+Date.now() : '';
       queue.forEach(function(style) {
-        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(style));
+        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
       }, this);
     },
 
