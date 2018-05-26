@@ -291,7 +291,7 @@ qx.Class.define('cv.TemplateEngine', {
       var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
       // design by url
       // design by config file
-      if (!settings.clientDesign) {
+      if (!cv.Config.clientDesign && !settings.clientDesign) {
         if (predefinedDesign) {
           settings.clientDesign = predefinedDesign;
         }
@@ -672,7 +672,7 @@ qx.Class.define('cv.TemplateEngine', {
       var body = qx.bom.Selector.query("body")[0];
 
       qx.bom.Selector.query('body > *').forEach(function(elem) {
-        qx.bom.element.Style(elem, 'display', 'none');
+        qx.bom.element.Style.set(elem, 'display', 'none');
       }, this);
       qx.bom.element.Style.set(body, 'backgroundColor', "black");
 
@@ -689,7 +689,7 @@ qx.Class.define('cv.TemplateEngine', {
 
       body.appendChild(div);
 
-      var store = new qx.data.store.Json("./designs/get_designs.php");
+      var store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php"));
 
       store.addListener("loaded", function () {
         var html = "<h1>Please select design</h1>";
@@ -709,8 +709,8 @@ qx.Class.define('cv.TemplateEngine', {
           });
 
           myDiv.innerHTML = "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>";
-          myDiv.innerHTML += "<iframe src=\"designs/design_preview.html?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
-          myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\"./demo/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
+          myDiv.innerHTML += "<iframe src=\""+qx.util.ResourceManager.getInstance().toUri("designs/design_preview.html")+"?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
+          myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\""+qx.util.ResourceManager.getInstance().toUri("demo/media/arrow.png")+"\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
 
           qx.dom.Element.insertEnd(myDiv, div);
 
@@ -738,10 +738,14 @@ qx.Class.define('cv.TemplateEngine', {
           }, this);
 
           qx.event.Registration.addListener(myDiv, 'tap', function() {
+            var href = document.location.href;
+            if (document.location.hash) {
+              href = href.split('#')[0];
+            }
             if (document.location.search === "") {
-              document.location.href = document.location.href + "?design=" + element;
+              document.location.href = href + "?design=" + element;
             } else {
-              document.location.href = document.location.href + "&design=" + element;
+              document.location.href = href + "&design=" + element;
             }
           });
         });
