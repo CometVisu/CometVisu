@@ -107,13 +107,13 @@ qx.Class.define('cv.ui.structure.AbstractBasicWidget', {
     },
 
     /**
-     * Get the widgets parent page (or navbar). This might not be the same as the parent widget.
-     * @return {cv.ui.structure.pure.Page|cv.ui.structure.pure.NavBar|null}
+     * Get the widgets parent page. This might not be the same as the parent widget.
+     * @return {cv.ui.structure.pure.Page|null}
      */
     getParentPage: function() {
       var parent = this.getParentWidget();
       while (parent) {
-        if (parent.get$$type() === "page" || parent.get$$type() === "navbar") {
+        if (parent.get$$type() === "page") {
           return parent;
         }
         parent = parent.getParentWidget();
