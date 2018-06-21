@@ -134,14 +134,3 @@ msgstr ""
 #: cv/util/ConfigLoader.js:191
 msgid "Unhandled error of type \"%1\""
 msgstr ""
-
-#~ msgid "Please check your backends response to the %1Login%2 request."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Your backend did send an invalid response to the %1Login%2 request: missing "
-#~ "protocol version."
-#~ msgstr ""
-
-#~ msgid "Your backend did send an invalid response: missing protocol version."
-#~ msgstr ""
