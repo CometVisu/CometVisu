@@ -11,64 +11,130 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cv/Application.js:175
+#: cv/Application.js:187
 msgid "Please describe what you have done until the error occured?"
 msgstr ""
 "Bitte beschreiben, was Sie gemacht haben bis der Fehler aufgetreten ist."
 
-#: cv/Application.js:207
+#: cv/Application.js:220
 msgid "An error occured"
 msgstr "Ein Fehler ist aufgetreten"
 
-#: cv/Application.js:214
+#: cv/Application.js:227
 msgid "Reload"
 msgstr "Neu laden"
 
-#: cv/Application.js:241
+#: cv/Application.js:254
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
 msgstr ""
 "Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Ticket "
 "zu hängen."
 
-#: cv/Application.js:248
+#: cv/Application.js:261
 msgid "Enable reporting on reload"
 msgstr "Neu laden mit aktivierter Aufzeichnung"
 
-#: cv/Application.js:253
+#: cv/Application.js:266
 msgid "Report Bug"
 msgstr "Fehler berichten"
 
-#: cv/Application.js:561
+#: cv/TemplateEngine.js:252
+msgid "Connection error"
+msgstr "Verbindungsfehler"
+
+#: cv/TemplateEngine.js:261
+msgid "Error requesting %1: %2 - %3."
+msgstr "Fehler beim Laden von %1: %2 - %3."
+
+#: cv/TemplateEngine.js:263
+msgid "Connection to backend is lost."
+msgstr "Verbindung zum Backend verloren."
+
+#: cv/TemplateEngine.js:277
+msgid "CometVisu protocol error"
+msgstr "CometVisu Protokollfehler"
+
+#: cv/TemplateEngine.js:278
+msgid ""
+"The backend did send an invalid response to the %1Login%2 request: missing "
+"protocol version."
+msgstr ""
+"Das Backend hat eine ungültige Antwort auf die %1Login%2-Anfrage geschickt: "
+"Fehlende Protokollversion."
+
+#: cv/TemplateEngine.js:281
+msgid "Please try to fix the problem in the backend."
+msgstr "Bitte versuchen Sie das Problem im Backend zu lösen."
+
+#: cv/TemplateEngine.js:282
+msgid "Backend-Response:"
+msgstr "Antwort des Backends:"
+
+#: cv/plugins/openhab/Settings.js:174
+msgid ""
+"The CometVisu seems to be delivered by a proxied webserver. Changing "
+"configuration values might not have the expected effect. Please proceed only"
+" if you know what you are doing."
+msgstr ""
+"Die CometVisu scheint über einen Proxy ausgeliefert zu werden. Änderungen an"
+" den Einstellungen könnten deshalb nicht den gewünschten Effekt habe.Bitte "
+"führen Sie daher nur Änderungen durch, wenn Sie wissen was Sie tun."
+
+#: cv/plugins/openhab/Settings.js:212
+msgid "openHAB backend settings"
+msgstr "openHAB Backend Einstellungen"
+
+#: cv/plugins/openhab/Settings.js:227
+msgid "Cancel"
+msgstr "Abbruch"
+
+#: cv/plugins/openhab/Settings.js:232
+msgid "Save"
+msgstr "Speichern"
+
+#: cv/ui/NotificationCenter.js:227
+msgid "Delete all"
+msgstr "Alle löschen"
+
+#: cv/ui/NotificationCenter.js:227
+msgid "Message center"
+msgstr "Nachrichtenzentrale"
+
+#: cv/ui/structure/pure/Unknown.js:88
+msgid "unknown: %1"
+msgstr "Unbekannt: %1"
+
+#: cv/util/ConfigLoader.js:170
 msgid "Config-File Error!"
 msgstr "Fehler in Konfigurations-Datei!"
 
-#: cv/Application.js:565
+#: cv/util/ConfigLoader.js:174
 msgid "Invalid config file!"
 msgstr "Ungültige Konfigurations-Datei!"
 
-#: cv/Application.js:565
+#: cv/util/ConfigLoader.js:174
 msgid "Please check!"
 msgstr "Bitte prüfen!"
 
-#: cv/Application.js:573
+#: cv/util/ConfigLoader.js:182
 msgid "Config file has wrong library version!"
 msgstr "Konfigurations-Datei hat die falsche 'library' Version"
 
-#: cv/Application.js:574
+#: cv/util/ConfigLoader.js:183
 msgid "This can cause problems with your configuration"
 msgstr "Das kann Probleme in Ihrer Konfiguration verursachen"
 
-#: cv/Application.js:575
+#: cv/util/ConfigLoader.js:184
 msgid "You can run the %1Configuration Upgrader%2."
 msgstr "Sie können den %1Konfigurations-Upgrader%2 laufen lassen."
 
-#: cv/Application.js:576
+#: cv/util/ConfigLoader.js:185
 msgid ""
 "Or you can start without upgrading %1with possible configuration problems%2"
 msgstr ""
 "Oder Sie starten ohne Upgrade %1mit möglichen Konfigurations-Problemen%2"
 
-#: cv/Application.js:579
+#: cv/util/ConfigLoader.js:188
 msgid ""
 "404: Config file not found. Neither as normal config (%1) nor as demo config"
 " (%2)."
@@ -76,52 +142,11 @@ msgstr ""
 "404: Konfigurations-Datei nicht gefunden. Weder als normale Konfiguration "
 "(%1) noch als Demo-Konfiguration (%2)"
 
-#: cv/Application.js:582
+#: cv/util/ConfigLoader.js:191
 msgid "Unhandled error of type \"%1\""
 msgstr "Unbekannter Fehler vom Typ \"%1\""
 
-#: cv/TemplateEngine.js:245
-msgid "Connection error"
-msgstr "Verbindungsfehler"
-
-#: cv/TemplateEngine.js:254
-msgid "Error requesting %1: %2 - %3."
-msgstr "Fehler beim Laden von %1: %2 - %3."
-
-#: cv/TemplateEngine.js:256
-msgid "Connection to backend is lost."
-msgstr "Verbindung zum Backend verloren."
-
-#: cv/plugins/openhab/Settings.js:173
-msgid ""
-"The CometVisu seems to be delivered by a proxied webserver. Changing "
-"configuration values might not have the expected effect. Please proceed only"
-" if you know what you are doing."
-msgstr ""
-"Die CometVisu scheint über einen Proxy ausgeliefert zu werden. Änderungen "
-"an den Einstellungen könnten deshalb nicht den gewünschten Effekt habe."
-"Bitte führen Sie daher nur Änderungen durch, wenn Sie wissen was Sie tun."
-
-#: cv/plugins/openhab/Settings.js:211
-msgid "openHAB backend settings"
-msgstr "openHAB Backend Einstellungen"
-
-#: cv/plugins/openhab/Settings.js:226
-msgid "Cancel"
-msgstr "Abbruch"
-
-#: cv/plugins/openhab/Settings.js:231
-msgid "Save"
-msgstr "Speichern"
-
-#: cv/ui/NotificationCenter.js:257
-msgid "Delete all"
-msgstr "Alle löschen"
-
-#: cv/ui/NotificationCenter.js:257
-msgid "Message center"
-msgstr "Nachrichtenzentrale"
-
-#: cv/ui/structure/pure/Unknown.js:88
-msgid "unknown: %1"
-msgstr "Unbekannt: %1"
+#~ msgid ""
+#~ "Your backend did send an invalid response to the %1Login%2 request: missing "
+#~ "protocol version."
+#~ msgstr ""

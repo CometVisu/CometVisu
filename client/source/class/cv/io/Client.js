@@ -90,6 +90,10 @@ qx.Class.define('cv.io.Client', {
   statics: {
     CLIENTS: [],
     TEST_MODE: false,
+    ERROR_CODES: {
+      CONNECTION: 1,
+      PROTOCOL_MISSING_VERSION: 10
+    },
 
     /**
      * Stop all running clients
@@ -645,7 +649,15 @@ qx.Class.define('cv.io.Client', {
      * @param type {String} type of event to record
      * @param data {Object} data to record
      */
-    record: function(type, data) {}  // jshint ignore:line
+    record: function(type, data) {}, // jshint ignore:line
+
+    /**
+     * Can be overridden to provide an error handler for client errors
+     * @param type {Number} one of cv.io.Client.ERROR_CODES
+     * @param message {String} detailed error message
+     * @param args
+     */
+    showError: function(type, message, args) {} // jshint ignore:line
   },
 
   /*
