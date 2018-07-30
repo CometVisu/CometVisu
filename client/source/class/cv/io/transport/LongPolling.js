@@ -62,13 +62,18 @@ qx.Class.define('cv.io.transport.LongPolling', {
     handleSession: function (args, connect) {
       var json =  this.client.getResponse(args);
       this.sessionId = json.s;
-      this.version = json.v.split('.', 3);
+      if (!json.hasOwnProperty('v')) {
+        this.error('CometVisu protocol error: missing protocol version');
+        this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION, json);
+      } else {
+        this.version = json.v.split('.', 3);
 
-      if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1])) {
-        this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
-      }
-      if (connect) {
-        this.connect();
+        if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1])) {
+          this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
+        }
+        if (connect) {
+          this.connect();
+        }
       }
     },
 

@@ -242,6 +242,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (cv.Config.reporting) {
         this.visu.record = qx.lang.Function.curry(cv.report.Record.getInstance().record, cv.report.Record.BACKEND).bind(cv.report.Record.getInstance());
       }
+      this.visu.showError = this._handleClientError.bind(this);
       this.visu.user = 'demo_user'; // example for setting a user
 
       // show connection state in NotificationCenter
@@ -264,6 +265,30 @@ qx.Class.define('cv.TemplateEngine', {
         }
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
       }, this);
+    },
+
+    _handleClientError: function (errorCode, varargs) {
+      varargs = qx.lang.Array.fromArguments(arguments, 1);
+      var notification;
+      switch (errorCode) {
+        case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
+          notification = {
+            topic: "cv.error",
+            title: qx.locale.Manager.tr('CometVisu protocol error'),
+            message:  qx.locale.Manager.tr('The backend did send an invalid response to the %1Login%2 request: missing protocol version.',
+              '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+              '</a>') + '<br/>' +
+              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
+            '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) +'</pre></div>',
+            severity: "urgent",
+            unique: true,
+            deletable: false
+          };
+          break;
+      }
+      if (notification) {
+        cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+      }
     },
 
     /**
