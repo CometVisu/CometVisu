@@ -33,23 +33,30 @@
  * Security considerations:
  * A pure proxy script could create security problems by itself. To prevent
  * a misuse this proxy will only access the configured TR-064 device.
- * So the GET parameter "device" must be included in the JSON file
- * "/config/hidden/hidden.json" and the URI will be matched against it.
+ * So the GET parameter "device" must be included in the file
+ * "/config/hidden.php" and the URI will be matched against it.
  */
 
-$device = $_GET['device'];
-$TR064devices = json_decode(file_get_contents('../../config/hidden/hidden.json'), TRUE);
-$TR064device = $TR064devices[$device];
+include '../../config/hidden.php';
+
+$TR064device = $hidden[$_GET['device']];
 if( !$TR064device )
 {
   header("HTTP/1.0 404 Not Found");
-  echo 'Device "' . $device . '" is not known.';
+  echo 'Device key "' . $_GET['device'] . '" is not known in config file.';
+  die();
+}
+$TR064_uri = $TR064device['uri'];
+if( !$TR064_uri )
+{
+  header("HTTP/1.0 404 Not Found");
+  echo 'Device uri not available.';
   die();
 }
 
 $uri = $_GET['uri'];
-if( strncmp( $TR064device, $uri, strlen($TR064device) ) != 0 )
-  $uri = $TR064device . $uri;
+if( strncmp( $TR064_uri, $uri, strlen($TR064_uri) ) != 0 )
+  $uri = $TR064_uri . $uri;
 
 if( $stream = @fopen($uri, 'r') )
 {

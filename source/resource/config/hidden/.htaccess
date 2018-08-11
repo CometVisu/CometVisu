@@ -1,4 +1,0 @@
-<FilesMatch "hidden.json">
-Order Allow,Deny
-Deny from all
-</FilesMatch>
