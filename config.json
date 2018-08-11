@@ -255,6 +255,10 @@
           {
             "include" : [ "${APPLICATION}.plugins.Timeout" ]
           },
+          "plugin-tr064" :
+          {
+            "include" : [ "${APPLICATION}.plugins.TR064" ]
+          },
           "plugin-svg" :
           {
             "include" : [ "${APPLICATION}.plugins.Svg" ]
