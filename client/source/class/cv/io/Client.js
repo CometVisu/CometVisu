@@ -92,7 +92,9 @@ qx.Class.define('cv.io.Client', {
     TEST_MODE: false,
     ERROR_CODES: {
       CONNECTION: 1,
-      PROTOCOL_MISSING_VERSION: 10
+      PROTOCOL_MISSING_VERSION: 10,
+      PROTOCOL_INVALID_READ_RESPONSE: 50,
+      PROTOCOL_INVALID_READ_RESPONSE_MISSING_I: 51,
     },
 
     /**

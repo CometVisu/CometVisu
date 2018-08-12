@@ -139,6 +139,10 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
       var data;
       if (json && !this.doRestart) {
+        if (!json.hasOwnProperty('i') || !json.i) {
+          this.error('CometVisu protocol error: backend responded to a read request without an "i"-parameter');
+          this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I, json);
+        }
         this.lastIndex = json.i;
         data = json.d;
         this.readResendHeaderValues();
