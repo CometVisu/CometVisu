@@ -84,7 +84,7 @@ qx.Class.define('cv.plugins.TR064', {
   */
   members: {
     _getInnerDomString: function () {
-      return '<div class="actor"><div class="tr064">Liste</div></div>';
+      return '<div class="actor"><div class="TR064">Liste</div></div>';
     }
   },
 

@@ -1,9 +1,9 @@
-.. _tr064:
+.. _TR064:
 
 The TR064 Plugin
 =================
 
-.. api-doc:: tr064
+.. api-doc:: TR064
 
 Description
 -----------
