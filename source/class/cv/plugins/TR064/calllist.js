@@ -1,4 +1,4 @@
-/* TR064.js 
+/* calllist.js 
  * 
  * copyright (c) 2018, Christian Mayer and the CometVisu contributers.
  * 
@@ -25,6 +25,20 @@
  * @author Christian Mayer
  * @since 0.11.0
  */
+/*
+
+https://avm.de/service/schnittstellen/
+https://fritz.box:49443/tr64desc.xml
+
+http://wiregate/CometVisuGit/source/resource/plugins/TR064/soap.php?device=fritzbox
+&location=upnp/control/x_tam&uri=urn:dslforum-org:service:X_AVM-DE_TAM:1&fn=GetMessageList&p[]=NewIndex&v[]=0
+&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetInfoByIndex&p[]=NewIndex&v[]=1
+&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList
+&location=upnp/control/wlanconfig1&uri=urn:dslforum-org:service:WLANConfiguration:1&fn=GetInfo
+
+&location=&uri=&fn=&p[]=&v[]=
+
+*/
 qx.Class.define('cv.plugins.TR064.calllist', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update],
@@ -62,9 +76,7 @@ qx.Class.define('cv.plugins.TR064.calllist', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'class': {target: 'cssClass'},
-        'text': {},
-        'href': {}
+        'device': {}
       };
     }
   },
@@ -75,6 +87,14 @@ qx.Class.define('cv.plugins.TR064.calllist', {
   ******************************************************
   */
   properties: {
+    device: {
+      check: 'String',
+      init: ''
+    },
+    index: {
+      check: 'Number',
+      init: 0
+    }
   },
 
   /*
@@ -83,12 +103,59 @@ qx.Class.define('cv.plugins.TR064.calllist', {
   ******************************************************
   */
   members: {
+    __calllistUri: '',
+    
     _getInnerDomString: function () {
+      this.refreshCalllist();
       return '<div class="actor"><div class="TR064">Liste</div></div>';
     },
     _onDomReady: function() {
     },
     _update: function(address, value) {
+    },
+    
+    /**
+     * Fetch the TR-064 resource
+     *   /upnp/control/x_contact urn:dslforum-org:service:X_AVM-DE_OnTel:1 
+     *   GetCallList
+     */
+    _getCallListURI: function() {
+      var
+        self = this,
+        url = 'resource/plugins/TR064/soap.php?device=' + this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
+      
+      fetch( url )
+       // .then( function(response){ response.json().then( function(data){
+        .then( function( response ) {
+          return response.json(); 
+        })
+        .then( function( data ) {
+          self.__calllistUri = data;
+          self.refreshCalllist();
+        });
+    },
+
+    refreshCalllist: function() {
+      if( this.__calllistUri === '' )
+      {
+        this._getCallListURI();
+        return;
+      }
+      
+      var
+        self = this,
+        url = 'resource/plugins/TR064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__calllistUri;
+        
+      fetch( url )
+        .then( function( response ) {
+          return response.text(); 
+        })
+        .then( function( str ) {
+          return (new window.DOMParser()).parseFromString(str, "text/xml");
+        })
+        .then( function( data ) {
+          console.log(data);
+        });
     }
   },
 
