@@ -26,10 +26,6 @@ before_install:
 install:
 - npm install -g grunt-cli
 - npm install
-- cd external/qooxdoo
-- npm install
-- grunt setup
-- cd ../../
 - sudo pip install -r utils/requirements.txt
 - virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
 - source temp-python/bin/activate
