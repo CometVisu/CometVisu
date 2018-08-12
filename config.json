@@ -255,7 +255,7 @@
           {
             "include" : [ "${APPLICATION}.plugins.Timeout" ]
           },
-          "plugin-TR064" :
+          "plugin-tr064" :
           {
             "include" : [ "${APPLICATION}.plugins.TR064" ]
           },

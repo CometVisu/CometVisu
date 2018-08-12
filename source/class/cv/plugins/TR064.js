@@ -34,8 +34,8 @@ qx.Class.define('cv.plugins.TR064', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(props) {
-  },
+  //construct: function(props) {
+  //},
 
   /*
   ******************************************************
@@ -85,12 +85,16 @@ qx.Class.define('cv.plugins.TR064', {
   members: {
     _getInnerDomString: function () {
       return '<div class="actor"><div class="TR064">Liste</div></div>';
+    },
+    _onDomReady: function() {
+    },
+    _update: function(address, value) {
     }
   },
 
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler("TR064", cv.plugins.TR064);
-    cv.ui.structure.WidgetFactory.registerClass("TR064", statics);
+    cv.parser.WidgetParser.addHandler("tr064", cv.plugins.TR064);
+    cv.ui.structure.WidgetFactory.registerClass("tr064", statics);
   }
 
 });
