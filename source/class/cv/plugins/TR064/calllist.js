@@ -25,7 +25,7 @@
  * @author Christian Mayer
  * @since 0.11.0
  */
-qx.Class.define('cv.plugins.TR064', {
+qx.Class.define('cv.plugins.TR064.calllist', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update],
 
@@ -93,8 +93,8 @@ qx.Class.define('cv.plugins.TR064', {
   },
 
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler("tr064", cv.plugins.TR064);
-    cv.ui.structure.WidgetFactory.registerClass("tr064", statics);
+    cv.parser.WidgetParser.addHandler("calllist", cv.plugins.TR064.calllist);
+    cv.ui.structure.WidgetFactory.registerClass("calllist", statics);
   }
 
 });

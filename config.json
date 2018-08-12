@@ -257,7 +257,7 @@
           },
           "plugin-tr064" :
           {
-            "include" : [ "${APPLICATION}.plugins.TR064" ]
+            "include" : [ "${APPLICATION}.plugins.TR064.*" ]
           },
           "plugin-svg" :
           {
