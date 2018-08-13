@@ -56,7 +56,9 @@ if( !$TR064_uri )
 
 $uri = $_GET['uri'];
 if( strncmp( $TR064_uri, $uri, strlen($TR064_uri) ) != 0 )
-  $uri = $TR064_uri . $uri;
+{
+  $uri = $TR064_uri . ltrim( $uri, '/' );
+}
 
 if( $stream = @fopen($uri, 'r') )
 {

@@ -76,7 +76,8 @@ qx.Class.define('cv.plugins.TR064.calllist', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'device': {}
+        'device': {},
+        'max': {transform: function(value) { return +value;}}
       };
     }
   },
@@ -94,6 +95,10 @@ qx.Class.define('cv.plugins.TR064.calllist', {
     index: {
       check: 'Number',
       init: 0
+    },
+    max: {
+      check: 'Number',
+      init: 0
     }
   },
 
@@ -104,14 +109,43 @@ qx.Class.define('cv.plugins.TR064.calllist', {
   */
   members: {
     __calllistUri: '',
+    __calllistList: undefined,
     
     _getInnerDomString: function () {
-      this.refreshCalllist();
-      return '<div class="actor"><div class="TR064">Liste</div></div>';
+      //this.refreshCalllist();
+      this.update();
+      return '<div class="actor"><table class="TR064_calllist"></table></div>';
     },
     _onDomReady: function() {
     },
     _update: function(address, value) {
+      if( undefined === this.__calllistList )
+      {
+        this.refreshCalllist();
+        return;
+      }
+      
+      var 
+        self = this,
+        clLi = this.getDomElement().getElementsByClassName('TR064_calllist')[0],
+        sid  = this.__calllistUri.replace(/.*sid=/,''),
+        html = '';
+      
+      this.__calllistList.forEach(function(cl){
+        var audio = '';
+        if( cl.Path )
+        {
+          audio = '<audio controls><source src="resource/plugins/TR064/proxy.php?device=' + self.getDevice() + '&uri='+cl.Path+'%26sid='+sid+'"></audio>';
+        }
+        
+        html += '<tr>'
+          + '<td>' + cl.Date   + '</td>'
+          + '<td>' + cl.Caller + '</td>'
+          + '<td>' + cl.Name   + '</td>'
+          + '<td>' + audio + '</td>'
+          + '</tr>';
+      });
+      clLi.innerHTML = html;
     },
     
     /**
@@ -144,7 +178,7 @@ qx.Class.define('cv.plugins.TR064.calllist', {
       
       var
         self = this,
-        url = 'resource/plugins/TR064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__calllistUri;
+        url = 'resource/plugins/TR064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__calllistUri + '%26max=' + this.getMax();
         
       fetch( url )
         .then( function( response ) {
@@ -154,7 +188,15 @@ qx.Class.define('cv.plugins.TR064.calllist', {
           return (new window.DOMParser()).parseFromString(str, "text/xml");
         })
         .then( function( data ) {
-          console.log(data);
+          self.__calllistList = [];
+          for( let item of data.getElementsByTagName('Call') ) {
+            var entry = {};
+            for( let node of item.children ) {
+              entry[node.nodeName] = node.textContent;
+            }
+            self.__calllistList.push( entry );
+          }
+          self._update();
         });
     }
   },
