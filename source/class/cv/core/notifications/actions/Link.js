@@ -79,7 +79,9 @@ qx.Class.define("cv.core.notifications.actions.Link", {
         case "restart":
           return cv.util.Location.reload;
       }
-      this.error("Unknown action: "+value);
+      if (value) {
+        this.error("Unknown action: " + value);
+      }
       return null;
     },
 

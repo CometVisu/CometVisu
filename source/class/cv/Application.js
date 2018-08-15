@@ -186,7 +186,7 @@ qx.Class.define("cv.Application",
       var bugData = cv.report.Record.getClientData();
       var body = "**"+qx.locale.Manager.tr("Please describe what you have done until the error occured?")+"**\n \n\n";
       var exString = "";
-      if (ex.getSourceException()) {
+      if (ex.getSourceException && ex.getSourceException()) {
         ex = ex.getSourceException();
       }
       else if (ex instanceof qx.core.WindowError) {
@@ -204,8 +204,13 @@ qx.Class.define("cv.Application",
           exString += "\n Description: " + ex.description;
         }
         try {
-          exString += "\nNormalized Stack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
-          exString += "\nOriginal Stack: " + ex.stack +"\n";
+          var nStack = qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t");
+          if (nStack) {
+            exString += "\nNormalized Stack: " + nStack + "\n";
+          }
+          if (ex.stack) {
+            exString += "\nOriginal Stack: " + ex.stack + "\n";
+          }
         } catch(exc) {
           if (ex.stack) {
             exString += "\nStack: " + ex.stack+"\n";
@@ -218,7 +223,7 @@ qx.Class.define("cv.Application",
         topic: "cv.error",
         target: cv.ui.PopupHandler,
         title: qx.locale.Manager.tr("An error occured"),
-        message: "<pre>"+ex.stack+"</pre>",
+        message: "<pre>"+ (ex.stack || exString) +"</pre>",
         severity: "urgent",
         deletable: false,
         actions: {
