@@ -270,6 +270,7 @@ qx.Class.define('cv.TemplateEngine', {
     _handleClientError: function (errorCode, varargs) {
       varargs = qx.lang.Array.fromArguments(arguments, 1);
       var notification;
+      var message = '';
       switch (errorCode) {
         case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
           notification = {
@@ -280,6 +281,21 @@ qx.Class.define('cv.TemplateEngine', {
               '</a>') + '<br/>' +
               qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
             '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) +'</pre></div>',
+            severity: "urgent",
+            unique: true,
+            deletable: false
+          };
+          break;
+
+        case cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I:
+          notification = {
+            topic: "cv.error",
+            title: qx.locale.Manager.tr('CometVisu protocol error'),
+            message:  qx.locale.Manager.tr('The backend did send an invalid response to a %1read%2 request: Missing "i" value.',
+              '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+              '</a>') + '<br/>' +
+              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
+              '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) +'</pre></div>',
             severity: "urgent",
             unique: true,
             deletable: false
