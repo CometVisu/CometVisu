@@ -79,31 +79,31 @@ qx.Class.define('cv.plugins.TR064.calllist', {
       return {
         'device': {},
         'max': {transform: function(value) { return +value;}},
-        'columns': { default: 'type;date;nameOrCaller;tam' },
-        'TAM':          { default: 'phone_answering' },
-        'TAMColor':     { default: '' },
-        'TAMwait':      { default: 'control_reload' },
-        'TAMwaitColor': { default: '' },
-        'TAMplay':      { default: 'audio_play' },
-        'TAMplayColor': { default: '' },
-        'TAMstop':      { default: 'phone_answering' },
-        'TAMstopColor': { default: '' },
-        'typeIncomming':              { default: 'phone_call_in' },
-        'typeIncommingColor':         { default: '' },
-        'typeMissed':                 { default: 'phone_missed_in' },
-        'typeMissedColor':            { default: '' },
-        'typeOutgoing':               { default: 'phone_call_out' },
-        'typeOutgoingColor':          { default: '' },
-        'typeActiveIncomming':        { default: 'phone_ring_in' },
-        'typeActiveIncommingColor':   { default: '' },
-        'typeRejectedIncomming':      { default: 'phone_call_end_in' },
-        'typeRejectedIncommingColor': { default: '' },
-        'typeActiveOutgoing':         { default: 'phone_ring_out' },
-        'typeActiveOutgoingColor':    { default: '' },
-        'typeUnknown':                { default: 'text_question_mark' },
-        'typeUnknownColor':           { default: '' }
+        'columns': { 'default': 'type;date;nameOrCaller;tam' },
+        'TAM':          { 'default': 'phone_answering' },
+        'TAMColor':     { 'default': '' },
+        'TAMwait':      { 'default': 'control_reload' },
+        'TAMwaitColor': { 'default': '' },
+        'TAMplay':      { 'default': 'audio_play' },
+        'TAMplayColor': { 'default': '' },
+        'TAMstop':      { 'default': 'phone_answering' },
+        'TAMstopColor': { 'default': '' },
+        'typeIncomming':              { 'default': 'phone_call_in' },
+        'typeIncommingColor':         { 'default': '' },
+        'typeMissed':                 { 'default': 'phone_missed_in' },
+        'typeMissedColor':            { 'default': '' },
+        'typeOutgoing':               { 'default': 'phone_call_out' },
+        'typeOutgoingColor':          { 'default': '' },
+        'typeActiveIncomming':        { 'default': 'phone_ring_in' },
+        'typeActiveIncommingColor':   { 'default': '' },
+        'typeRejectedIncomming':      { 'default': 'phone_call_end_in' },
+        'typeRejectedIncommingColor': { 'default': '' },
+        'typeActiveOutgoing':         { 'default': 'phone_ring_out' },
+        'typeActiveOutgoingColor':    { 'default': '' },
+        'typeUnknown':                { 'default': 'text_question_mark' },
+        'typeUnknownColor':           { 'default': '' }
       };
-    },
+    }
   },
 
   /*
@@ -248,8 +248,13 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         html += '</tr>';
       });
       clLi.innerHTML = html;
-      for( let tam of clLi.getElementsByClassName('tam') )
-        tam.addEventListener("click", function(){ self.__playTAM(this); } );
+      //// ES6:
+      // for( let tam of clLi.getElementsByClassName('tam') )
+      //   tam.addEventListener("click", function(){ self.__playTAM(this); } );
+      //// ES5:
+      var tamList = clLi.getElementsByClassName('tam');
+      for( var i = 0; i < tamList.length; i++ )
+        tamList[i].addEventListener("click", function(){ self.__playTAM(this); } );
     },
     
     /**
@@ -293,10 +298,25 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         })
         .then( function( data ) {
           self.__calllistList = [];
+          /**
+          ES6:
           for( let item of data.getElementsByTagName('Call') ) {
             var entry = {};
             for( let node of item.children ) {
               entry[node.nodeName] = node.textContent;
+            }
+            self.__calllistList.push( entry );
+          }
+          ---
+          ES5:
+          */
+          var itemList = data.getElementsByTagName('Call');
+          for( var i = 0; i < itemList.length; i++ ) {
+            var
+              childrenList = itemList[i].children,
+              entry = {};
+            for( var ii = 0; ii < childrenList.length; ii++ ) {
+              entry[childrenList[ii].nodeName] = childrenList[ii].textContent;
             }
             self.__calllistList.push( entry );
           }
