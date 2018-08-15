@@ -132,10 +132,14 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         html = '';
       
       this.__calllistList.forEach(function(cl){
+        console.log(cl);
         var audio = '';
         if( cl.Path )
         {
-          audio = '<audio controls><source src="resource/plugins/TR064/proxy.php?device=' + self.getDevice() + '&uri='+cl.Path+'%26sid='+sid+'"></audio>';
+          audio = '<audio preload="none">'
+            + '<source src="resource/plugins/TR064/proxy.php?device=' + self.getDevice() + '&uri='+cl.Path+'%26sid='+sid+'">'
+            + '</audio>'
+            + '<div class="tam" data-id="tr064clId' + cl.Id + '">TAM</div>';
         }
         
         html += '<tr>'
@@ -146,6 +150,27 @@ qx.Class.define('cv.plugins.TR064.calllist', {
           + '</tr>';
       });
       clLi.innerHTML = html;
+      for( let tam of clLi.getElementsByClassName('tam') )
+      {
+        tam.addEventListener("click", function(a,b,c){
+          var audio = this.previousElementSibling;
+          console.log(this,audio,self,audio.readyState,audio.paused,audio.ended);
+          audio.addEventListener('canplay', function(){console.log('canplay',audio.paused,audio.ended);} );
+          if( audio.readyState < 4 )
+            this.textContent = 'wait';
+            
+          if( audio.paused )
+          {
+            if( audio.readyState === 4 )
+              this.textContent = 'play';
+            audio.play();
+          } else {
+            this.textContent = 'stop';
+            audio.pause();
+            audio.currentTime = 0
+          }
+        });
+      }
     },
     
     /**
