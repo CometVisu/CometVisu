@@ -59,6 +59,12 @@ $_STRINGS = array(
     'Media file successfully replaced' => 'Media file (%s) successfully replaced',
     'Could not replace media file' => 'Could not replace media file (%s)',
     'Upload new media' => 'Upload new media',
+    'Hidden configuration:' => 'Hidden configuration:',
+    'Key' => 'Key',
+    'Value' => 'Value',
+    'Additional key' => 'Additional key',
+    'Additional name' => 'Additional name',
+    'Save hidden config' => 'Save hidden config',
     'Delete' => 'Delete',
     'deleteConfig(displayName,name)' => '"Do you really want to delete config \"" + displayName + "\"?"',
     'deleteMedia(displayName,name)' => '"Do you really want to delete media file \"" + displayName + "\"?"',
@@ -68,6 +74,7 @@ $_STRINGS = array(
     'Text edit' => 'Text edit',
     'Empty configuration is not readable -> CometVisu installation is badly broken!' => 'Empty configuration is not readable -> CometVisu installation is badly broken!',
     'Installation error - please check file permissions!' => 'Installation error - please check file permissions!',
+    'Installation error - please check file permissions to create!' => 'Installation error - please check file permissions to create!',
     'Name' => 'Name',
     'New configuration file successfully created' => 'New configuration file (%s) successfully created',
     'new_name' => 'new_name',
@@ -102,6 +109,12 @@ $_STRINGS = array(
     'Media file successfully replaced' => 'Mediendatei (%s) erfolgreich ersetzt',
     'Could not replace media file' => 'Konnte Mediendatei (%s) nicht ersetzen',
     'Upload new media' => 'Lade neue Mediendatei hoch',
+    'Hidden configuration:' => 'Versteckte Konfigurationen:',
+    'Key' => 'Schlüssel',
+    'Value' => 'Wert',
+    'Additional key' => 'Zusätzlicher Schlüssel',
+    'Additional name' => 'Zusätzlicher Name',
+    'Save hidden config' => 'Versteckte Konfiguration speichern',
     'Delete' => 'Löschen',
     'deleteConfig(displayName,name)' => '"Wollen Sie wirklich Konfiguration \"" + displayName + "\" endgültig löschen?"',
     'deleteMedia(displayName,name)' => '"Wollen Sie wirklich die Mediendatei \"" + displayName + "\" endgültig löschen?"',
@@ -111,6 +124,7 @@ $_STRINGS = array(
     'Text edit' => 'Text editieren',
     'Empty configuration is not readable -> CometVisu installation is badly broken!' => 'Die leere Konfigurationsdatei konnte nicht gelesen werden -> CometVisu-Installation ist defekt!',
     'Installation error - please check file permissions!' => 'Installationsfehler - bitte die Datei-Berechtigungen überprüfen!',
+    'Installation error - please check file permissions to create!' => 'Installationsfehler - bitte die Datei-Berechtigungen zum Erstellen überprüfen!',
     'Name' => 'Name',
     'New configuration file successfully created' => 'Neue Konfigurationsdatei (%s) erfolgreich erstellt.',
     'new_name' => 'neuer_name',
@@ -147,6 +161,12 @@ define( 'MEDIA_TABLE_ROW', '<tr class="visuline">'
 . '<td><label for="media_file">'.icon('control_return').'</label></td>'
 . '<td class="warn"><a href="javascript:deleteMedia(\'%1$s\', \'%1$s\')">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
+
+/**
+ * Get hidden configuraion
+ */
+define( 'HIDDEN_CONFIG_FILE', 'resource/config/hidden.php' );
+include( HIDDEN_CONFIG_FILE );
 
 /**
  * Return HTML tag needed to show a icon
@@ -315,23 +335,29 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
     if( @chmod( 'resource/config/visu_config.xml', 0666 ) ) // try to fix it
     {
       if( !is_writeable( 'resource/config/visu_config.xml' ) )
-        $actionDone = $_['Installation error - please check file permissions!'].' (resource/config/visu_config.xml)';
+        $actionDone = '#1: ' . $_['Installation error - please check file permissions!'].' (resource/config/visu_config.xml)';
     } else
-    $actionDone = $_['Installation error - please check file permissions!'].' (resource/config/visu_config.xml)';
+      $actionDone = '#2: ' . $_['Installation error - please check file permissions!'].' (resource/config/visu_config.xml)';
   }
   
-  if( !is_writeable( 'resource/config/visu_config_previewtemp.xml' ) )
+  if( !$actionDone && !file_exists( 'resource/config/visu_config_previewtemp.xml' ) )
+  {
+    if( !touch( 'resource/config/visu_config_previewtemp.xml' ) ) // try to fix it
+      $actionDone = '#3: ' . $_['Installation error - please check file permissions to create!'].' (resource/config/visu_config_previewtemp.xml)';
+  }
+  
+  if( !$actionDone && !is_writeable( 'resource/config/visu_config_previewtemp.xml' ) )
   { 
     if( chmod( 'resource/config/visu_config_previewtemp.xml', 0666 ) ) // try to fix it
     {
       if( !is_writeable( 'resource/config/visu_config_previewtemp.xml' ) )
-        $actionDone = $_['Installation error - please check file permissions!'].' (resource/config/visu_config_previewtemp.xml)';
+        $actionDone = '#4: ' . $_['Installation error - please check file permissions!'].' (resource/config/visu_config_previewtemp.xml)';
     } else
-      $actionDone = $_['Installation error - please check file permissions!'].' (resource/config/visu_config_previewtemp.xml)';
+      $actionDone = '#5: ' . $_['Installation error - please check file permissions!'].' (resource/config/visu_config_previewtemp.xml)';
   }
   
-  if( !is_readable( 'resource/demo/visu_config_empty.xml' ) )
-    $actionDone = $_['Installation error - please check file permissions!'].' (resource/demo/visu_config_empty.xml)';
+  if( !$actionDone && !is_readable( 'resource/demo/visu_config_empty.xml' ) )
+    $actionDone = '#6: ' . $_['Installation error - please check file permissions!'].' (resource/demo/visu_config_empty.xml)';
 }
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -416,6 +442,9 @@ if( $resetUrl )
       text-align: center;
       padding: 0;
     }
+    td.left {
+    text-align: left;
+    }
     td.name {
       text-align: left;
       padding-left: 4px;
@@ -431,7 +460,7 @@ if( $resetUrl )
     td > a:hover, td > label:hover {
       background: #66d;
     }
-    td > input {
+    .configfiles td > input {
       display: none;
     }
     .visuline:hover, #newConfig:hover {
@@ -459,18 +488,27 @@ if( $resetUrl )
     }
     .newFile {
       display: inline-block;
-      text-decoration: none;
-      color:black;
-      background: #ccc;
       padding: 4px;
       padding-right: 16px;
+      text-decoration: none;
+      color:black;
     }
-    .newFile .icon {
+    .newFile,
+    .newHidden {
+      background: #ccc;
+    }
+    .newFile .icon,
+    td .icon {
       vertical-align: middle;
       margin-right: 4px;
     }
-    .newFile:hover .icon {
+    .newFile:hover .icon,
+    .newHidden:hover .icon {
       background-color: #6d6;
+    }
+    .newHidden > a {
+      text-decoration: none;
+      color:black;
     }
     hr {
       height: 1px;
@@ -491,7 +529,7 @@ if( $resetUrl )
     <h1><?php printf( $_['Available Configurations:'], '<img src="resource/icon/comet_64_ff8000.png" />') ?></h1>
     <form enctype="multipart/form-data" action="manager.php" method="post" id="config_form">
     <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
-    <table>
+    <table class="configfiles">
       <?php
         echo '<tr class="head">'
         . '<th class="name">'.$_['Name'].'</th>'
@@ -535,6 +573,8 @@ if( $resetUrl )
     <a href="javascript:newConfig()" id="newConfig" class="newFile"><?php echo icon('control_plus') . $_['Create new config'] ?></a>
     </p>
     
+    <!-- ****************************************************************** -->
+    
     <h2><?php printf( $_['Available media files:'], '<img src="resource/icon/comet_64_ff8000.png" />') ?></h2>
     <form enctype="multipart/form-data" action="manager.php" method="post" id="media_form">
     <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
@@ -561,6 +601,37 @@ if( $resetUrl )
     <p>
     <a href="javascript:$('#media_file').trigger('click')" id="newMedia" class="newFile"><?php echo icon('control_plus') . $_['Upload new media'] ?></a>
     </p>
+    
+    <!-- ****************************************************************** -->
+    
+    <h2><?php printf( $_['Hidden configuration:'] ) ?></h2>
+    <form enctype="multipart/form-data" action="manager.php" method="post" id="hidden_form">
+    <table>
+    <?php
+    echo '<tr class="head">'
+      . '<th class="name">'.$_['Name'].'</th>'
+      . '<th class="name">'.$_['Key'].'</th>'
+      . '<th class="name">'.$_['Value'].'</th>'
+      . '<th>'.$_['Delete'].'</th></tr>';
+    foreach( $hidden as $hiddenConfigName => $hiddenConfigNameValues )
+    {
+      echo '<tr class="visuline"><td rowspan="' . (sizeof($hiddenConfigNameValues) + 2) . '"><input type="text" value="'.$hiddenConfigName.'"/></td><td colspan="2"></td><td class="warn"><a href="javascript:deleteHiddenName()">'.icon('message_garbage').'</a></td></tr>';
+      foreach( $hiddenConfigNameValues as $key => $value )
+      {
+        echo '<tr class="visuline"><td><input type="text" value="'. $key . '"/></td><td><input type="text" value="' . $value . '"/></td><td class="warn"><a href="javascript:deleteHiddenKey()">'.icon('message_garbage').'</a></td></tr>';
+      }
+      echo '<tr class="visuline"><td colspan="3" class="left newHidden"><a href="javascript:addHiddenKey()">' . icon('control_plus') . $_['Additional key'] . '</a></td></tr>';
+    }
+    echo '<tr class="visuline"><td colspan="4" class="left newHidden"><a href="javascript:addHiddenName()">' . icon('control_plus') . $_['Additional name'] . '</a></td></tr>';
+    ?>
+    </table>
+    <input type="submit" id="submit_media" style="display:none" />
+    </form>
+    <p>
+    <a href="javascript:saveHidden()" id="newMedia" class="newFile"><?php echo icon('edit_save') . $_['Save hidden config'] ?></a>
+    </p>
+    
+    <!-- ****************************************************************** -->
     
     <hr />
     <div id="footer">
