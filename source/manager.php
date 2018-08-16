@@ -161,7 +161,19 @@ define( 'MEDIA_TABLE_ROW', '<tr class="visuline">'
 . '<td><label for="media_file">'.icon('control_return').'</label></td>'
 . '<td class="warn"><a href="javascript:deleteMedia(\'%1$s\', \'%1$s\')">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
-
+define( 'HIDDEN_TABLE_NAME', '<tr class="visuline">'
+. '<td rowspan="%1$s"><input type="text" id="hiddenName%3$s" class="hiddenName" value="%2$s"/></td>'
+. '<td colspan="2"></td>'
+. '<td class="warn"><a href="javascript:deleteHiddenName(%3$s)">'.icon('message_garbage').'</a></td>'
+. '</tr>' );
+define( 'HIDDEN_TABLE_KEY', '<tr class="visuline">'
+. '<td><input type="text" value="%1$s"/></td>'
+. '<td><input type="text" value="%2$s"/></td>'
+. '<td class="warn"><a href="javascript:deleteHiddenKey(%3$s,%4$s)">'.icon('message_garbage').'</a></td>'
+. '</tr>' );
+define( 'HIDDEN_TABLE_KEY_ADD', '<tr class="visuline" id="hiddenKeyAdd%1$s">'
+. '<td colspan="3" class="left newHidden"><a href="javascript:addHiddenKey(%1$s)">'.icon('control_plus').'%2$s</a></td>'
+. '</tr>' );
 /**
  * Get hidden configuraion
  */
@@ -406,6 +418,46 @@ function newConfig()
   window.location.href = myUrl + '?config=' + newName + '&action=create';
 }
 
+function addHiddenName()
+{
+  var 
+    tr = $('#hidden_form tr'),
+    nr = $('.hiddenName').length,
+    html = '<?php 
+      printf( HIDDEN_TABLE_NAME, 2, '', '{}' ); 
+      printf( HIDDEN_TABLE_KEY_ADD, '{}', $_['Additional key'] );
+    ?>';
+  $(html.replace(/{}/g,nr)).insertAfter(tr[tr.length-2]);
+}
+
+function deleteHiddenName(a,b,c)
+{
+console.log(this,a,b,c);
+}
+
+function addHiddenKey(keyNr)
+{
+  var
+    tr = $('#hiddenKeyAdd'+keyNr),
+    tdName = $('#hiddenName'+keyNr).parent(),
+    entries = +tdName.attr('rowspan'),
+    html = '<?php
+      printf( HIDDEN_TABLE_KEY, '', '', '{1}', '{2}' );
+    ?>';
+  $(html.replace(/\{1\}/g,keyNr).replace(/\{2\}/g,entries-2)).insertBefore(tr);
+  tdName.attr('rowspan', entries+1 );
+}
+
+function deleteHiddenKey(a,b,c)
+{
+console.log(this,a,b,c);
+}
+
+function saveHidden(a,b,c)
+{
+console.log(this,a,b,c);
+}
+
 <?php
 if( $resetUrl )
 {
@@ -613,14 +665,17 @@ if( $resetUrl )
       . '<th class="name">'.$_['Key'].'</th>'
       . '<th class="name">'.$_['Value'].'</th>'
       . '<th>'.$_['Delete'].'</th></tr>';
+    $cntName = 0;
     foreach( $hidden as $hiddenConfigName => $hiddenConfigNameValues )
     {
-      echo '<tr class="visuline"><td rowspan="' . (sizeof($hiddenConfigNameValues) + 2) . '"><input type="text" value="'.$hiddenConfigName.'"/></td><td colspan="2"></td><td class="warn"><a href="javascript:deleteHiddenName()">'.icon('message_garbage').'</a></td></tr>';
+      printf( HIDDEN_TABLE_NAME, sizeof($hiddenConfigNameValues) + 2, $hiddenConfigName, $cntName );
+      $cntKey = 0;
       foreach( $hiddenConfigNameValues as $key => $value )
       {
-        echo '<tr class="visuline"><td><input type="text" value="'. $key . '"/></td><td><input type="text" value="' . $value . '"/></td><td class="warn"><a href="javascript:deleteHiddenKey()">'.icon('message_garbage').'</a></td></tr>';
+        printf( HIDDEN_TABLE_KEY, $key, $value, $cntName, $cntKey++ );
       }
-      echo '<tr class="visuline"><td colspan="3" class="left newHidden"><a href="javascript:addHiddenKey()">' . icon('control_plus') . $_['Additional key'] . '</a></td></tr>';
+      printf( HIDDEN_TABLE_KEY_ADD, $cntName, $_['Additional key'] );
+      $cntName++;
     }
     echo '<tr class="visuline"><td colspan="4" class="left newHidden"><a href="javascript:addHiddenName()">' . icon('control_plus') . $_['Additional name'] . '</a></td></tr>';
     ?>
