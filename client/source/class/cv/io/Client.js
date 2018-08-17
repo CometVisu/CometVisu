@@ -501,8 +501,8 @@ qx.Class.define('cv.io.Client', {
         }, options || {}));
         if (callback) {
           ajaxRequest.addListener("success", callback, context);
-          ajaxRequest.addListener("statusError", this._onError, this);
         }
+        ajaxRequest.addListener("statusError", this._onError, this);
         ajaxRequest.send();
         return ajaxRequest;
       }
@@ -627,7 +627,7 @@ qx.Class.define('cv.io.Client', {
        * could maybe selective based on UserAgent but isn't that costly on writes
        */
       var ts = new Date().getTime();
-      this.doRequest(this.getResourcePath("write"), {
+      this.doRequest("unknown", {
         s: this.session,
         a: address,
         v: value,
