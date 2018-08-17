@@ -627,7 +627,7 @@ qx.Class.define('cv.io.Client', {
        * could maybe selective based on UserAgent but isn't that costly on writes
        */
       var ts = new Date().getTime();
-      this.doRequest("unknown", {
+      this.doRequest(this.getResourcePath("write"), {
         s: this.session,
         a: address,
         v: value,
