@@ -65,7 +65,6 @@ qx.Class.define('cv.util.ConfigLoader', {
         this.__xml = xml;
         qx.bom.Selector.query('include', xml).forEach(this.loadInclude, this);
         this.__loadQueue.remove(uri);
-        this._checkQueue();
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
           this.configError("parsererror");
