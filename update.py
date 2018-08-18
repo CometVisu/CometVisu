@@ -1,10 +1,13 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import glob
 import json
 import os
 import shutil
 import time
-import urllib.request
+try:
+    import urllib.request as request
+except:
+    import urllib as request
 import xml.etree.ElementTree as ET
 import re
 from datetime import datetime
@@ -21,30 +24,32 @@ sep_width = 70
 
 
 def get_latest_nightly():
-    with urllib.request.urlopen(NIGHTLY_PATH) as response:
-        html = ET.fromstring(response.read())
-        newest = {'date': 0, 'name': '', 'version': ''}
-        for node in html.findall('.//body/pre/a'):
-            match = re.search('^CometVisu-([0-9\.]+(-dev)?)-([0-9]+)\.zip$', node.text)
-            if match is not None:
-                date = datetime.strptime(match.group(3), '%Y%m%d%H%M%S')
-                name = match.group(0)
-                version = match.group(1)
-                if newest['date'] == 0 or newest['date'] < date:
-                    newest = {'date': date, 'name': name, 'version': version, 'url': '%s%s' % (NIGHTLY_PATH, name)}
+    response = request.urlopen(NIGHTLY_PATH)
+    html = ET.fromstring(response.read())
+    response.close()
+    newest = {'date': 0, 'name': '', 'version': ''}
+    for node in html.findall('.//body/pre/a'):
+        match = re.search('^CometVisu-([0-9\.]+(-dev)?)-([0-9]+)\.zip$', node.text)
+        if match is not None:
+            date = datetime.strptime(match.group(3), '%Y%m%d%H%M%S')
+            name = match.group(0)
+            version = match.group(1)
+            if newest['date'] == 0 or newest['date'] < date:
+                newest = {'date': date, 'name': name, 'version': version, 'url': '%s%s' % (NIGHTLY_PATH, name)}
     return newest
 
 
 def get_latest_release():
-    with urllib.request.urlopen(RELEASE_PATH) as response:
-        data = json.loads(response.read())
-        release = {'date': datetime.strptime(data['published_at'], '%Y-%m-%dT%H:%M:%SZ'), 'name': data['name'], 'version': data['tag_name']}
-        for asset in data['assets']:
-            if asset['content_type'] == 'application/zip':
-                release['url'] = asset['browser_download_url']
-                release['name'] = asset['name']
+    response = request.urlopen(RELEASE_PATH)
+    data = json.loads(response.read())
+    response.close()
+    release = {'date': datetime.strptime(data['published_at'], '%Y-%m-%dT%H:%M:%SZ'), 'name': data['name'], 'version': data['tag_name']}
+    for asset in data['assets']:
+        if asset['content_type'] == 'application/zip':
+            release['url'] = asset['browser_download_url']
+            release['name'] = asset['name']
 
-        return release
+    return release
 
 
 def get_installed_version(current_dir):
@@ -59,7 +64,9 @@ def has_resource_folder(version):
 
 def install_version(cv, current_version, current_dir):
     # 1. Download + extract in temp dir
-    os.makedirs('tmp', exist_ok=True)
+    tmp_dir = 'tmp'
+    if not os.path.exists(tmp_dir):
+        os.makedirs(tmp_dir)
 
     # TODO: define source and target dirs from versions (>0.11 use resource folder, <=0.10 no resource folder)
 
@@ -69,9 +76,13 @@ def install_version(cv, current_version, current_dir):
     print('>>> Downloading %s to %s' % (cv['url'], tmp_file))
     if os.path.exists(tmp_file):
         os.remove(tmp_file)
-    with urllib.request.urlopen(cv['url']) as response, open(tmp_file, 'wb') as f:
+
+    with open(tmp_file, 'wb') as f:
+        response = request.urlopen(cv['url'])
         data = response.read() # a `bytes` object
+        response.close()
         f.write(data)
+
     print('-' * sep_width)
     # create tempdir
     new_cv_dir = os.path.join('tmp', 'cometvisu', 'release')
@@ -138,7 +149,7 @@ if __name__ == '__main__':
 
         # check if the current version is upgradable and let the user decide wich version to use
         print('Please choose which CometVisu version should be installed:')
-        action = input('(0) do nothing\n(1) latest release\n(2) latest nightly build\nPlease enter number: ')
+        action = str(input('(0) do nothing\n(1) latest release\n(2) latest nightly build\nPlease enter number: '))
         if action == "1":
             install_version(release, current, options.current)
         elif action == "2":
@@ -146,4 +157,4 @@ if __name__ == '__main__':
         elif action == "0":
             pass
         else:
-            print('unknown option: %s' % action)
+            print('unknown option: %s' % type(action))
