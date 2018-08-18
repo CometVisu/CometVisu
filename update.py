@@ -3,6 +3,7 @@ import glob
 import json
 import os
 import shutil
+import sys
 import time
 try:
     import urllib.request as request
@@ -19,6 +20,7 @@ locale.setlocale(locale.LC_ALL, '')
 
 NIGHTLY_PATH = 'https://dl.bintray.com/cometvisu/CometVisu/'
 RELEASE_PATH = 'https://api.github.com/repos/CometVisu/CometVisu/releases/latest'
+date_format = '%Y-%m-%dT%H:%M:%SZ'
 
 sep_width = 70
 
@@ -36,6 +38,7 @@ def get_latest_nightly():
             version = match.group(1)
             if newest['date'] == 0 or newest['date'] < date:
                 newest = {'date': date, 'name': name, 'version': version, 'url': '%s%s' % (NIGHTLY_PATH, name)}
+    newest['type'] = 'nightly'
     return newest
 
 
@@ -43,7 +46,12 @@ def get_latest_release():
     response = request.urlopen(RELEASE_PATH)
     data = json.loads(response.read())
     response.close()
-    release = {'date': datetime.strptime(data['published_at'], '%Y-%m-%dT%H:%M:%SZ'), 'name': data['name'], 'version': data['tag_name']}
+    release = {
+        'date': datetime.strptime(data['published_at'], date_format),
+        'name': data['name'],
+        'version': data['tag_name'],
+        'type': 'release'
+    }
     for asset in data['assets']:
         if asset['content_type'] == 'application/zip':
             release['url'] = asset['browser_download_url']
@@ -53,8 +61,20 @@ def get_latest_release():
 
 
 def get_installed_version(current_dir):
+    res = {
+        'version': '',
+        'type': '',
+        'date': None
+    }
     with open(os.path.join(current_dir, 'version')) as f:
-        return f.read()
+        res['version'] = f.read()
+    if os.path.exists(os.path.join(current_dir, 'NIGHTLY')):
+        with open(os.path.join(current_dir, 'NIGHTLY')) as f:
+            res['date'] = datetime.strptime(f.read(), date_format)
+            res['type'] = 'nightly'
+    else:
+        res['type'] = 'nightly' if res['version'][-4:] == '-dev' else 'release'
+    return res
 
 
 def has_resource_folder(version):
@@ -62,7 +82,7 @@ def has_resource_folder(version):
     return int(match.group(1)) > 0 or int(match.group(2)) >= 11
 
 
-def install_version(cv, current_version, current_dir):
+def install_version(cv, current, current_dir):
     # 1. Download + extract in temp dir
     tmp_dir = 'tmp'
     if not os.path.exists(tmp_dir):
@@ -91,9 +111,14 @@ def install_version(cv, current_version, current_dir):
                  if n.startswith('cometvisu/release/') and not n.endswith('/')]
         zip.extractall('tmp', members=files)
 
+    # create a timestamp file if the new version is a nightly build (used to compare fpr newer ones)
+    if cv['type'] == 'nightly':
+        with open(os.path.join(new_cv_dir, 'NIGHTLY'), 'w') as f:
+            f.write(cv['date'].strftime(date_format))
+
     # 2.1 copy config from old visu
     target_has_resource = has_resource_folder(cv['version'])
-    source_config_dir = os.path.join(current_dir, 'resource', 'config') if has_resource_folder(current_version) else os.path.join(current_dir, 'config')
+    source_config_dir = os.path.join(current_dir, 'resource', 'config') if has_resource_folder(current['version']) else os.path.join(current_dir, 'config')
     target_config_dir = os.path.join(new_cv_dir, 'resource', 'config') if target_has_resource else os.path.join(new_cv_dir, 'config')
     print()
     print('-' * sep_width)
@@ -134,6 +159,8 @@ def install_version(cv, current_version, current_dir):
 if __name__ == '__main__':
     parser = ArgumentParser(usage="%(prog)s - CometVisu update script")
     parser.add_argument('current', type=str, help='path to your current CometVisu installation', nargs='?')
+    parser.add_argument('--force', '-f', dest="force", action='store_true', help="show options even if we're up-to-date")
+
     options, unknown = parser.parse_known_args()
     if options.current is None:
         print('you have to specify a path to your current CometVisu installation')
@@ -141,16 +168,44 @@ if __name__ == '__main__':
         current = get_installed_version(options.current)
         nightly = get_latest_nightly()
         release = get_latest_release()
-        print('\t\t\t\tVersion\t\tDate')
+        print('No\t\t\t\t\tVersion\t\tDate')
         print('-' * sep_width)
-        print('Currently installed version:\t{0}'.format(current))
-        print('Latest nightly build:\t\t{:}\t{:%x %X}'.format(nightly['version'], nightly['date']))
-        print('Latest release:\t\t\t{:}\t\t{:%x %X}'.format(release['version'], release['date']))
+        print('0:\tCurrently installed version:\t{:}\t{:}'.format(
+            current['version'],
+            '{:%x %X}'.format(current['date']) if current['date'] is not None else '')
+        )
+        print('1:\tLatest nightly build:\t\t{:}\t{:%x %X}'.format(nightly['version'], nightly['date']))
+        print('2:\tLatest release:\t\t\t{:}\t\t{:%x %X}'.format(release['version'], release['date']))
 
-        # check if the current version is upgradable and let the user decide wich version to use
-        print('Please choose which CometVisu version should be installed:')
-        action = str(input('(0) do nothing\n(1) latest release\n(2) latest nightly build\nPlease enter number: '))
-        if action == "1":
+        if current['type'] == 'nightly' and current['date'] is None or current['date'] == nightly['date']:
+            print('')
+            msg = '* You are up to date: the latest available nightly build is installed on your system! *'
+            print('*' * len(msg))
+            print(msg)
+            if options.force is False:
+                print('* If you want to dowgrade to a release version run this script with --force parameter *')
+            print('*' * len(msg))
+            if options.force is False:
+                sys.exit(0)
+
+        # check if the current version is upgradable and let the user decide which version to use
+        print('\nPlease choose which CometVisu version should be installed:')
+        action_string = ''
+        available = ['0', '1']
+        if current['type'] == 'nightly':
+            action_string = '0 - do nothing\n1 - downgrade to latest release [%s]' % release['version']
+            if current['date'] is None or current['date'] > nightly['date']:
+                action_string += '\n2 - latest nightly build [%s]' % nightly['version']
+                available.append('2')
+        else:
+            action_string = '0 - do nothing\n1 - latest release [%s]\n2 - latest nightly build [%s]' % (release['version'], nightly['version'])
+            available.append('2')
+
+        action_string += '\nPlease enter number: '
+        action = str(input(action_string))
+        if action not in available:
+            print('unknown option: %s' % action)
+        elif action == "1":
             install_version(release, current, options.current)
         elif action == "2":
             install_version(nightly, current, options.current)
