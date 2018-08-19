@@ -190,8 +190,13 @@ if __name__ == '__main__':
                     sys.exit(0)
             else:
                 current = get_installed_version(options.current)
-        nightly = get_latest_nightly()
-        release = get_latest_release()
+        try:
+            nightly = get_latest_nightly()
+            release = get_latest_release()
+        except IOError as e:
+            print('An error occured while checking the latest CometVisu versions:\n%s\n\nPlease check your systems internet connection.' % str(e))
+            sys.exit(1)
+
         print('No\t\t\t\t\tVersion\t\tDate')
         print('-' * sep_width)
         if current is None:
