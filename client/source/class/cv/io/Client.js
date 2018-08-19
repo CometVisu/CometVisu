@@ -501,8 +501,8 @@ qx.Class.define('cv.io.Client', {
         }, options || {}));
         if (callback) {
           ajaxRequest.addListener("success", callback, context);
-          ajaxRequest.addListener("statusError", this._onError, this);
         }
+        ajaxRequest.addListener("statusError", this._onError, this);
         ajaxRequest.send();
         return ajaxRequest;
       }
