@@ -15,6 +15,10 @@ from datetime import datetime
 import locale
 from zipfile import ZipFile
 from argparse import ArgumentParser
+try:
+    input = raw_input
+except NameError:
+    pass
 
 locale.setlocale(locale.LC_ALL, '')
 
@@ -66,6 +70,8 @@ def get_installed_version(current_dir):
         'type': '',
         'date': None
     }
+    if not os.path.exists(os.path.join(current_dir, 'version')):
+        return None
     with open(os.path.join(current_dir, 'version')) as f:
         res['version'] = f.read()
     if os.path.exists(os.path.join(current_dir, 'NIGHTLY')):
@@ -117,39 +123,41 @@ def install_version(cv, current, current_dir):
             f.write(cv['date'].strftime(date_format))
 
     # 2.1 copy config from old visu
-    target_has_resource = has_resource_folder(cv['version'])
-    source_config_dir = os.path.join(current_dir, 'resource', 'config') if has_resource_folder(current['version']) else os.path.join(current_dir, 'config')
-    target_config_dir = os.path.join(new_cv_dir, 'resource', 'config') if target_has_resource else os.path.join(new_cv_dir, 'config')
-    print()
-    print('-' * sep_width)
-    print('>>> Copying customizable files from old installation')
-    if os.path.exists(source_config_dir):
-        shutil.rmtree(target_config_dir)
-        print(' - copying %s to %s' % (source_config_dir, target_config_dir))
-        shutil.copytree(source_config_dir, target_config_dir)
-    else:
-        print('existing config directory not found')
-        return
+    if current is not None:
+        target_has_resource = has_resource_folder(cv['version'])
+        source_config_dir = os.path.join(current_dir, 'resource', 'config') if has_resource_folder(current['version']) else os.path.join(current_dir, 'config')
+        target_config_dir = os.path.join(new_cv_dir, 'resource', 'config') if target_has_resource else os.path.join(new_cv_dir, 'config')
+        print()
+        print('-' * sep_width)
+        print('>>> Copying customizable files from old installation')
+        if os.path.exists(source_config_dir):
+            shutil.rmtree(target_config_dir)
+            print(' - copying %s to %s' % (source_config_dir, target_config_dir))
+            shutil.copytree(source_config_dir, target_config_dir)
+        else:
+            print('existing config directory not found')
+            return
 
-    # 2.2 copy design customs from old visu
-    for file in glob.glob(os.path.join(current_dir, '**', 'designs', '*', 'custom.css')):
-        match = re.search('.+%sdesigns%s(.+)%scustom\.css$' % (os.path.sep, os.path.sep, os.path.sep), file)
-        dest_dir = os.path.join(new_cv_dir, 'resource', 'designs', match.group(1)) if target_has_resource else os.path.join(new_cv_dir, 'designs', match.group(1))
-        print(' - copying %s to %s' % (file, dest_dir))
-        shutil.copy(file, dest_dir)
-    print('-' * sep_width)
+        # 2.2 copy design customs from old visu
+        for file in glob.glob(os.path.join(current_dir, '**', 'designs', '*', 'custom.css')):
+            match = re.search('.+%sdesigns%s(.+)%scustom\.css$' % (os.path.sep, os.path.sep, os.path.sep), file)
+            dest_dir = os.path.join(new_cv_dir, 'resource', 'designs', match.group(1)) if target_has_resource else os.path.join(new_cv_dir, 'designs', match.group(1))
+            print(' - copying %s to %s' % (file, dest_dir))
+            shutil.copy(file, dest_dir)
+        print('-' * sep_width)
 
-    # 3. move old visu to backup
-    print()
-    print('-' * sep_width)
-    print('>>> Replacing old installation')
-    backup_dir = os.path.join('cv-backup-%s' % time.time())
-    print(' - backup old installation to %s' % backup_dir)
-    shutil.move(current_dir, backup_dir)
+        # 3. move old visu to backup
+        print()
+        print('-' * sep_width)
+        print('>>> Replacing old installation')
+        backup_dir = os.path.join('cv-backup-%s' % time.time())
+        print(' - backup old installation to %s' % backup_dir)
+        shutil.move(current_dir, backup_dir)
 
     # 4. move new visu to old position
     print(' - move new installation to %s' % current_dir)
-    shutil.move(new_cv_dir, current_dir)
+    for f in os.listdir(new_cv_dir):
+        shutil.move(os.path.join(new_cv_dir, f), current_dir)
     print('-' * sep_width)
 
     print('')
@@ -157,42 +165,62 @@ def install_version(cv, current, current_dir):
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser(usage="%(prog)s - CometVisu update script")
+    parser = ArgumentParser(usage="%(prog)s [OPTIONS] [CURRENT]\nCometVisu update/install script updates your local installation to the latest release or nightly build.")
     parser.add_argument('current', type=str, help='path to your current CometVisu installation', nargs='?')
     parser.add_argument('--force', '-f', dest="force", action='store_true', help="show options even if we're up-to-date")
 
     options, unknown = parser.parse_known_args()
     if options.current is None:
         print('you have to specify a path to your current CometVisu installation')
+        parser.print_help()
     else:
-        current = get_installed_version(options.current)
+        current = None
+        if not os.path.exists(options.current):
+            print('no CometVisu found in path: %s' % options.current)
+            res = str(input('should I create the directory (Y/n):'))
+            if res.lower() in ['y', 'yes', '']:
+                os.makedirs(options.current)
+            else:
+                sys.exit(0)
+        else:
+            if not os.path.exists(os.path.join(options.current, 'version')):
+                print('%s does not seem to be a valid CometVisu installation. Proceed to install the CometVisu in this folder.' % options.current)
+                res = str(input('Proceed (Y/n):'))
+                if res.lower() not in ['y', 'yes', '']:
+                    sys.exit(0)
+            else:
+                current = get_installed_version(options.current)
         nightly = get_latest_nightly()
         release = get_latest_release()
         print('No\t\t\t\t\tVersion\t\tDate')
         print('-' * sep_width)
-        print('0:\tCurrently installed version:\t{:}\t{:}'.format(
-            current['version'],
-            '{:%x %X}'.format(current['date']) if current['date'] is not None else '')
-        )
+        if current is None:
+            print('0:\tCurrently installed version:\tNone')
+        else:
+            print('0:\tCurrently installed version:\t{:}\t{:}'.format(
+                current['version'],
+                '{:%x %X}'.format(current['date']) if current['date'] is not None else '')
+            )
         print('1:\tLatest nightly build:\t\t{:}\t{:%x %X}'.format(nightly['version'], nightly['date']))
         print('2:\tLatest release:\t\t\t{:}\t\t{:%x %X}'.format(release['version'], release['date']))
 
-        if current['type'] == 'nightly' and current['date'] is None or current['date'] == nightly['date']:
-            print('')
-            msg = '* You are up to date: the latest available nightly build is installed on your system! *'
-            print('*' * len(msg))
-            print(msg)
-            if options.force is False:
-                print('* If you want to dowgrade to a release version run this script with --force parameter *')
-            print('*' * len(msg))
-            if options.force is False:
-                sys.exit(0)
+        if current is not None:
+            if current['type'] == 'nightly' and current['date'] is None or current['date'] == nightly['date']:
+                print('')
+                msg = '* You are up to date: the latest available nightly build is installed on your system! *'
+                print('*' * len(msg))
+                print(msg)
+                if options.force is False:
+                    print('* If you want to dowgrade to a release version run this script with --force parameter *')
+                print('*' * len(msg))
+                if options.force is False:
+                    sys.exit(0)
 
         # check if the current version is upgradable and let the user decide which version to use
         print('\nPlease choose which CometVisu version should be installed:')
         action_string = ''
         available = ['0', '1']
-        if current['type'] == 'nightly':
+        if current is not None and current['type'] == 'nightly':
             action_string = '0 - do nothing\n1 - downgrade to latest release [%s]' % release['version']
             if current['date'] is None or current['date'] > nightly['date']:
                 action_string += '\n2 - latest nightly build [%s]' % nightly['version']
