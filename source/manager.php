@@ -167,8 +167,8 @@ define( 'HIDDEN_TABLE_NAME', '<tr class="visuline">'
 . '<td class="warn"><a href="javascript:deleteHiddenName(%3$s)">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
 define( 'HIDDEN_TABLE_KEY', '<tr class="visuline">'
-. '<td><input type="text" value="%1$s"/></td>'
-. '<td><input type="text" value="%2$s"/></td>'
+. '<td><input type="text" id="hiddenKey%3$s_%4$s" value="%1$s"/></td>'
+. '<td><input type="text" id="hiddenValue%3$s_%4$s" value="%2$s"/></td>'
 . '<td class="warn"><a href="javascript:deleteHiddenKey(%3$s,%4$s)">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
 define( 'HIDDEN_TABLE_KEY_ADD', '<tr class="visuline" id="hiddenKeyAdd%1$s">'
@@ -430,9 +430,16 @@ function addHiddenName()
   $(html.replace(/{}/g,nr)).insertAfter(tr[tr.length-2]);
 }
 
-function deleteHiddenName(a,b,c)
+function deleteHiddenName(nr)
 {
-console.log(this,a,b,c);
+  var 
+    id = $('#hiddenName'+nr).parent(),
+    rows = +id.attr('rowspan'),
+    start = id.parent();
+  while( rows-- > 1 )
+    start.next().remove();
+  start.remove();
+  fixHiddenTable();
 }
 
 function addHiddenKey(keyNr)
@@ -456,6 +463,45 @@ console.log(this,a,b,c);
 function saveHidden(a,b,c)
 {
 console.log(this,a,b,c);
+}
+
+function fixHiddenTable()
+{
+  var
+    cntName = 0,
+    cntKey = 0,
+    inKeys = false;
+
+  $('#hidden_form tr.visuline').each(function(){
+    var 
+      a = $('a', this),
+      input = $('input', this);
+    
+    console.log(input,a,inKeys);
+    if( inKeys )
+    {
+      console.log(input.size()>0,!!a,inKeys);
+      if( input.size()>0 )
+      {
+        input.get(0).id = 'hiddenKey' + cntName + '_' + cntKey;
+        input.get(1).id = 'hiddenValue' + cntName + '_' + cntKey;
+        a.attr('href', 'javascript:deleteHiddenKey('+cntName+','+cntKey+')' );
+        cntKey++;
+      } else {
+        a.attr('href', 'javascript:addHiddenKey('+cntName+')' );
+        cntName++;
+        inKeys = false;
+      }
+    } else {
+      if( input.size()>0 )
+      {
+        input.attr('id', 'hiddenName'+cntName );
+        a.attr('href', 'javascript:deleteHiddenName('+cntName+')' );
+      }
+      inKeys = true;
+      cntKey = 0;
+    }
+  });
 }
 
 <?php
@@ -561,6 +607,13 @@ if( $resetUrl )
     .newHidden > a {
       text-decoration: none;
       color:black;
+    }
+    #hidden_form td:first-child {
+      border-left: 1px solid #ffffff;
+      padding: 0 5px 0 5px;
+    }
+    #hidden_form td.left {
+      padding: 0;
     }
     hr {
       height: 1px;
