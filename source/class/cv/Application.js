@@ -218,6 +218,7 @@ qx.Class.define("cv.Application",
               }
             } else if (repeated > 0) {
               nStack += ' [repeated ' + repeated + ' times]';
+              nStack += '\n\t' + entry;
               repeated = 0;
             } else {
               nStack += '\n\t' + entry;
