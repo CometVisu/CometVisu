@@ -162,13 +162,13 @@ define( 'MEDIA_TABLE_ROW', '<tr class="visuline">'
 . '<td class="warn"><a href="javascript:deleteMedia(\'%1$s\', \'%1$s\')">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
 define( 'HIDDEN_TABLE_NAME', '<tr class="visuline">'
-. '<td rowspan="%1$s"><input type="text" id="hiddenName%3$s" class="hiddenName" value="%2$s"/></td>'
+. '<td rowspan="%1$s"><input type="text" id="hiddenName%3$s" name="hiddenName%3$s" class="hiddenName" value="%2$s"/></td>'
 . '<td colspan="2"></td>'
 . '<td class="warn"><a href="javascript:deleteHiddenName(%3$s)">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
 define( 'HIDDEN_TABLE_KEY', '<tr class="visuline">'
-. '<td><input type="text" id="hiddenKey%3$s_%4$s" value="%1$s"/></td>'
-. '<td><input type="text" id="hiddenValue%3$s_%4$s" value="%2$s"/></td>'
+. '<td><input type="text" id="hiddenKey%3$s_%4$s" name="hiddenKey%3$s_%4$s" value="%1$s"/></td>'
+. '<td><input type="text" id="hiddenValue%3$s_%4$s" name="hiddenValue%3$s_%4$s" value="%2$s"/></td>'
 . '<td class="warn"><a href="javascript:deleteHiddenKey(%3$s,%4$s)">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
 define( 'HIDDEN_TABLE_KEY_ADD', '<tr class="visuline" id="hiddenKeyAdd%1$s">'
@@ -229,6 +229,8 @@ fillAvailMedia();
 $actionDone = false;
 $actionSuccess = false;
 $resetUrl = false;
+$type   = array_key_exists( 'type',   $_GET  ) ? $_GET ['type']   :
+        ( array_key_exists( 'type',   $_POST ) ? $_POST['type']   : false );
 $config = array_key_exists( 'config', $_GET  ) ? $_GET ['config'] :
         ( array_key_exists( 'config', $_POST ) ? $_POST['config'] : false );
 $media  = array_key_exists( 'media',  $_GET  ) ? $_GET ['media']  :
@@ -236,7 +238,7 @@ $media  = array_key_exists( 'media',  $_GET  ) ? $_GET ['media']  :
 $action = array_key_exists( 'action', $_GET  ) ? $_GET ['action'] :
         ( array_key_exists( 'action', $_POST ) ? $_POST['action'] : false );
 
-if( ($config === '' || $config !== false) && ($media === false) && ($action !== false) )
+if( ($config === '' || $config !== false) && ($media === false) && ($action !== false) && ($type !== 'hidden') )
 {
   $configFile = sprintf( CONFIG_FILENAME, (''==$config ? '' : '_') . $config );
   if( !is_writeable( $configFile ) && 'create' != $action )
@@ -287,7 +289,7 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
         $actionDone = sprintf( $_['Could not replace configuraion'], $configFile );
       break;
   }
-} else if( ($media !== false) && ($action !== false) )
+} else if( ($media !== false) && ($action !== false) && ($type !== 'hidden') )
 {
   $mediaFile = MEDIA_PATH . $media;
   switch( $action )
@@ -340,6 +342,9 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
       }
       break;
   }
+} else if( $type === 'hidden' )
+{
+    ?><pre><?php var_dump($_POST);?></pre><?php
 } else {
   // nothing special to do - so at least do a few sanity checks
   if( !is_writeable( 'resource/config/visu_config.xml' ) )
@@ -430,10 +435,10 @@ function addHiddenName()
   $(html.replace(/{}/g,nr)).insertAfter(tr[tr.length-2]);
 }
 
-function deleteHiddenName(nr)
+function deleteHiddenName(nameNr)
 {
   var 
-    id = $('#hiddenName'+nr).parent(),
+    id = $('#hiddenName'+nameNr).parent(),
     rows = +id.attr('rowspan'),
     start = id.parent();
   while( rows-- > 1 )
@@ -442,27 +447,28 @@ function deleteHiddenName(nr)
   fixHiddenTable();
 }
 
-function addHiddenKey(keyNr)
+function addHiddenKey(nameNr)
 {
   var
-    tr = $('#hiddenKeyAdd'+keyNr),
-    tdName = $('#hiddenName'+keyNr).parent(),
+    tr = $('#hiddenKeyAdd'+nameNr),
+    tdName = $('#hiddenName'+nameNr).parent(),
     entries = +tdName.attr('rowspan'),
     html = '<?php
       printf( HIDDEN_TABLE_KEY, '', '', '{1}', '{2}' );
     ?>';
-  $(html.replace(/\{1\}/g,keyNr).replace(/\{2\}/g,entries-2)).insertBefore(tr);
+  $(html.replace(/\{1\}/g,nameNr).replace(/\{2\}/g,entries-2)).insertBefore(tr);
   tdName.attr('rowspan', entries+1 );
 }
 
-function deleteHiddenKey(a,b,c)
+function deleteHiddenKey(nameNr,keyNr)
 {
-console.log(this,a,b,c);
-}
-
-function saveHidden(a,b,c)
-{
-console.log(this,a,b,c);
+  var 
+    line = $('#hiddenKey'+nameNr+'_'+keyNr).parent().parent(),
+    tdName = $('#hiddenName'+nameNr).parent(),
+    entries = +tdName.attr('rowspan');
+  line.remove();
+  tdName.attr('rowspan', entries-1 );
+  fixHiddenTable();
 }
 
 function fixHiddenTable()
@@ -477,10 +483,8 @@ function fixHiddenTable()
       a = $('a', this),
       input = $('input', this);
     
-    console.log(input,a,inKeys);
     if( inKeys )
     {
-      console.log(input.size()>0,!!a,inKeys);
       if( input.size()>0 )
       {
         input.get(0).id = 'hiddenKey' + cntName + '_' + cntKey;
@@ -633,6 +637,7 @@ if( $resetUrl )
     ?>
     <h1><?php printf( $_['Available Configurations:'], '<img src="resource/icon/comet_64_ff8000.png" />') ?></h1>
     <form enctype="multipart/form-data" action="manager.php" method="post" id="config_form">
+    <input type="text" name="type" value="config" style="display:none" />
     <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
     <table class="configfiles">
       <?php
@@ -682,6 +687,7 @@ if( $resetUrl )
     
     <h2><?php printf( $_['Available media files:'], '<img src="resource/icon/comet_64_ff8000.png" />') ?></h2>
     <form enctype="multipart/form-data" action="manager.php" method="post" id="media_form">
+    <input type="text" name="type" value="media" style="display:none" />
     <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
     <table>
       <?php
@@ -711,6 +717,7 @@ if( $resetUrl )
     
     <h2><?php printf( $_['Hidden configuration:'] ) ?></h2>
     <form enctype="multipart/form-data" action="manager.php" method="post" id="hidden_form">
+    <input type="text" name="type" value="hidden" style="display:none" />
     <table>
     <?php
     echo '<tr class="head">'
@@ -733,10 +740,10 @@ if( $resetUrl )
     echo '<tr class="visuline"><td colspan="4" class="left newHidden"><a href="javascript:addHiddenName()">' . icon('control_plus') . $_['Additional name'] . '</a></td></tr>';
     ?>
     </table>
-    <input type="submit" id="submit_media" style="display:none" />
+    <input type="submit" id="submit_hidden" style="display:none" />
     </form>
     <p>
-    <a href="javascript:saveHidden()" id="newMedia" class="newFile"><?php echo icon('edit_save') . $_['Save hidden config'] ?></a>
+    <a href="javascript:$('#hidden_form').submit()" id="newMedia" class="newFile"><?php echo icon('edit_save') . $_['Save hidden config'] ?></a>
     </p>
     
     <!-- ****************************************************************** -->
