@@ -42,7 +42,7 @@ http://wiregate/CometVisuGit/source/resource/plugins/TR064/soap.php?device=fritz
 */
 qx.Class.define('cv.plugins.TR064.calllist', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.ui.common.Update],
+  include: [cv.ui.common.Refresh, cv.ui.common.Update],
 
   /*
   ******************************************************
@@ -72,6 +72,7 @@ qx.Class.define('cv.plugins.TR064.calllist', {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
+      cv.parser.WidgetParser.parseRefresh(xml, path);
       return data;
     },
 
@@ -156,13 +157,20 @@ qx.Class.define('cv.plugins.TR064.calllist', {
     __TAMeventAttached: {},
     
     _getInnerDomString: function () {
-      //this.refreshCalllist();
       this.update();
-      return '<div class="actor"><table class="TR064_calllist"></table></div>';
+      return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading...</td></tr></table></div>';
     },
     _onDomReady: function() {
     },
+    _setupRefreshAction: function() {
+      this._timer = new qx.event.Timer(this.getRefresh());
+      this._timer.addListener('interval', function () {
+        this.refreshCalllist();
+      }, this);
+      this._timer.start();
+    },
     _update: function(address, value) {
+      console.log('update',address, value);
       if( undefined === this.__calllistList )
       {
         this.refreshCalllist();
@@ -245,6 +253,10 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         tamList[i].addEventListener("click", function(){ self.__playTAM(this); } );
     },
     
+    handleUpdate: function(value) {
+      console.log('handleUpdate',value);
+    },
+    
     /**
      * Fetch the TR-064 resource
      *   /upnp/control/x_contact urn:dslforum-org:service:X_AVM-DE_OnTel:1 
@@ -256,7 +268,6 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         url = 'resource/plugins/TR064/soap.php?device=' + this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
       
       fetch( url )
-       // .then( function(response){ response.json().then( function(data){
         .then( function( response ) {
           return response.json(); 
         })
