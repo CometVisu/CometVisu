@@ -65,6 +65,7 @@ $_STRINGS = array(
     'Additional key' => 'Additional key',
     'Additional name' => 'Additional name',
     'Save hidden config' => 'Save hidden config',
+    'Names and Keys in the "Hidden configuration" must not be empty! Please fix before saving.' => 'Names and Keys in the "Hidden configuration" must not be empty! Please fix before saving.',
     'Delete' => 'Delete',
     'deleteConfig(displayName,name)' => '"Do you really want to delete config \"" + displayName + "\"?"',
     'deleteMedia(displayName,name)' => '"Do you really want to delete media file \"" + displayName + "\"?"',
@@ -115,6 +116,7 @@ $_STRINGS = array(
     'Additional key' => 'Zusätzlicher Schlüssel',
     'Additional name' => 'Zusätzlicher Name',
     'Save hidden config' => 'Versteckte Konfiguration speichern',
+    'Names and Keys in the "Hidden configuration" must not be empty! Please fix before saving.' => 'Name und Schlüssel ist der "Versteckten Konfiguration" dürfen nicht leer sein! Zum Speichern bitte beheben.',
     'Delete' => 'Löschen',
     'deleteConfig(displayName,name)' => '"Wollen Sie wirklich Konfiguration \"" + displayName + "\" endgültig löschen?"',
     'deleteMedia(displayName,name)' => '"Wollen Sie wirklich die Mediendatei \"" + displayName + "\" endgültig löschen?"',
@@ -162,12 +164,12 @@ define( 'MEDIA_TABLE_ROW', '<tr class="visuline">'
 . '<td class="warn"><a href="javascript:deleteMedia(\'%1$s\', \'%1$s\')">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
 define( 'HIDDEN_TABLE_NAME', '<tr class="visuline">'
-. '<td rowspan="%1$s"><input type="text" id="hiddenName%3$s" name="hiddenName%3$s" class="hiddenName" value="%2$s"/></td>'
+. '<td rowspan="%1$s"><input type="text" id="hiddenName%3$s" name="hiddenName%3$s" class="hiddenName" value="%2$s" required minlength="1"/></td>'
 . '<td colspan="2"></td>'
 . '<td class="warn"><a href="javascript:deleteHiddenName(%3$s)">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
 define( 'HIDDEN_TABLE_KEY', '<tr class="visuline">'
-. '<td><input type="text" id="hiddenKey%3$s_%4$s" name="hiddenKey%3$s_%4$s" value="%1$s"/></td>'
+. '<td><input type="text" id="hiddenKey%3$s_%4$s" name="hiddenKey%3$s_%4$s" value="%1$s" required minlength="1"/></td>'
 . '<td><input type="text" id="hiddenValue%3$s_%4$s" name="hiddenValue%3$s_%4$s" value="%2$s"/></td>'
 . '<td class="warn"><a href="javascript:deleteHiddenKey(%3$s,%4$s)">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
@@ -344,7 +346,70 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
   }
 } else if( $type === 'hidden' )
 {
-    ?><pre><?php var_dump($_POST);?></pre><?php
+  // step 1: parse POST into PHP arrays
+  // This implicitly sorts the variables when they woudln't be transmitted in
+  // order
+  $names = array();
+  $keysAndValues = array();
+  foreach( $_POST as $key => $value )
+  {
+    preg_match( "/([^0-9]*)([0-9]*)_?([0-9]*)/", $key, $k );
+    switch( $k[1] )
+    {
+      case 'hiddenName':
+        $names[$k[2]] = $value;
+        break;
+
+      case 'hiddenKey':
+        if( !array_key_exists($k[2], $keysAndValues) )
+          $keysAndValues[$k[2]] = array();
+        if( !array_key_exists($k[3], $keysAndValues[$k[2]]) )
+          $keysAndValues[$k[2]][$k[3]] = array();
+        $keysAndValues[$k[2]][$k[3]]['key'] = $value;
+        break;
+
+      case 'hiddenValue':
+        if( !array_key_exists($k[2], $keysAndValues) )
+          $keysAndValues[$k[2]] = array();
+        if( !array_key_exists($k[3], $keysAndValues[$k[2]]) )
+          $keysAndValues[$k[2]][$k[3]] = array();
+        $keysAndValues[$k[2]][$k[3]]['value'] = $value;
+        break;
+    }
+  }
+  
+  // step 2: create output
+  $out = <<<EOT
+<?php
+// File for configuraions that shouldn't be shared with the user
+\$hidden = array(
+
+EOT;
+  foreach( $names as $i => $name )
+  {
+    if( $i > 0 )
+      $out .= ",\n";
+    $out .= "  '$name' => array(";
+    
+    if( array_key_exists( $i, $keysAndValues ) )
+    {
+      foreach( $keysAndValues[$i] as $j => $keyAndValue )
+      {
+        if( $j > 0 )
+          $out .= ', ';
+        $out .= "'" . $keyAndValue['key'] . "' => '" . $keyAndValue['value'] . "'";
+      }
+    }
+    
+    $out .= ')';
+  }
+  $out .= "\n);\n?>";
+  
+  // step 3: write
+  file_put_contents( HIDDEN_CONFIG_FILE, $out );
+  
+  // step 4: read it in, so that the user sees it
+  include( HIDDEN_CONFIG_FILE );
 } else {
   // nothing special to do - so at least do a few sanity checks
   if( !is_writeable( 'resource/config/visu_config.xml' ) )
@@ -487,7 +552,9 @@ function fixHiddenTable()
     {
       if( input.size()>0 )
       {
+        input.get(0).name = 'hiddenKey' + cntName + '_' + cntKey;
         input.get(0).id = 'hiddenKey' + cntName + '_' + cntKey;
+        input.get(1).name = 'hiddenValue' + cntName + '_' + cntKey;
         input.get(1).id = 'hiddenValue' + cntName + '_' + cntKey;
         a.attr('href', 'javascript:deleteHiddenKey('+cntName+','+cntKey+')' );
         cntKey++;
@@ -499,6 +566,7 @@ function fixHiddenTable()
     } else {
       if( input.size()>0 )
       {
+        input.attr('name', 'hiddenName'+cntName );
         input.attr('id', 'hiddenName'+cntName );
         a.attr('href', 'javascript:deleteHiddenName('+cntName+')' );
       }
@@ -506,6 +574,20 @@ function fixHiddenTable()
       cntKey = 0;
     }
   });
+}
+
+function submitHiddenTable()
+{
+  var fail = false;
+  $('#hidden_form input[type=text]').each(function(){
+    if( this.name.match( /hiddenName|hiddenKey/ ) && this.value === '' )
+      fail = true;
+  });
+  
+  if( fail )
+    alert('<?php echo $_['Names and Keys in the "Hidden configuration" must not be empty! Please fix before saving.']; ?>');
+  else
+    $('#hidden_form').submit();
 }
 
 <?php
@@ -743,7 +825,7 @@ if( $resetUrl )
     <input type="submit" id="submit_hidden" style="display:none" />
     </form>
     <p>
-    <a href="javascript:$('#hidden_form').submit()" id="newMedia" class="newFile"><?php echo icon('edit_save') . $_['Save hidden config'] ?></a>
+    <a href="javascript:submitHiddenTable()" id="newMedia" class="newFile"><?php echo icon('edit_save') . $_['Save hidden config'] ?></a>
     </p>
     
     <!-- ****************************************************************** -->
