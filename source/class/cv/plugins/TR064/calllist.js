@@ -183,17 +183,6 @@ qx.Class.define('cv.plugins.TR064.calllist', {
           10: { name: this.getTypeRejectedIncomming(), color: this.getTypeRejectedIncommingColor() },
           11: { name: this.getTypeActiveOutgoing()   , color: this.getTypeActiveOutgoingColor()    }
         };
-        /*
-        types = {
-          0:  { name: this.getTypeUnknown          , color: this.getTypeColorUnknown           },
-          1:  { name: this.getTypeIncomming        , color: this.getTypeIncommingColor         },
-          2:  { name: this.getTypeMissed           , color: this.getTypeMissedColor            },
-          3:  { name: this.getTypeOutgoing         , color: this.getTypeOutgoingColor          },
-          9:  { name: this.getTypeActiveIncomming  , color: this.getTypeActiveIncommingColor   },
-          10: { name: this.getTypeRejectedIncomming, color: this.getTypeRejectedIncommingColor },
-          11: { name: this.getTypeActiveOutgoing   , color: this.getTypeActiveOutgoingColor    }
-        };
-        */
       
       this.__calllistList.forEach(function(cl){
         console.log(cl);
@@ -216,7 +205,6 @@ qx.Class.define('cv.plugins.TR064.calllist', {
           switch( col )
           {
             case 'type':
-//              html += '<td>' + cv.IconHandler.getInstance().getIconText( type.name(), '*', '*', type.color() )  + '</td>;'
               html += '<td>' + cv.IconHandler.getInstance().getIconText( type.name, '*', '*', type.color )  + '</td>';
               break;
             
