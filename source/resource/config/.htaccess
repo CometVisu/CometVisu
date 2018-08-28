@@ -1,2 +1,1 @@
-Header set X-CometVisu-Backend-LoginUrl "http://localhost:8080/rest/cv/"
-Header set X-CometVisu-Backend-Name "openhab2"
+
