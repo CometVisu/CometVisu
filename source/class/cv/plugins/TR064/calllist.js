@@ -154,29 +154,30 @@ qx.Class.define('cv.plugins.TR064.calllist', {
   members: {
     __calllistUri: '',
     __calllistList: undefined,
+    __refreshingCalllist: false,
     __TAMeventAttached: {},
     
     _getInnerDomString: function () {
       this.update();
       return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading...</td></tr></table></div>';
     },
-    _onDomReady: function() {
-    },
     _setupRefreshAction: function() {
       this._timer = new qx.event.Timer(this.getRefresh());
       this._timer.addListener('interval', function () {
-        this.refreshCalllist();
+        if( !this.__refreshingCalllist )
+          this.refreshCalllist('timer');
       }, this);
       this._timer.start();
     },
     _update: function(address, value) {
-      console.log('update',address, value);
-      if( undefined === this.__calllistList )
+      if( !this.__refreshingCalllist )
       {
-        this.refreshCalllist();
+        this.refreshCalllist('update');
         return;
       }
+    },
       
+    _displayCalllist: function() {
       var 
         self = this,
         clLi = this.getDomElement().getElementsByClassName('TR064_calllist')[0],
@@ -193,7 +194,6 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         };
       
       this.__calllistList.forEach(function(cl){
-        console.log(cl);
         var 
           audio = '',
           type = (cl.Type in types) ? types[cl.Type] : types[0];
@@ -253,10 +253,6 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         tamList[i].addEventListener("click", function(){ self.__playTAM(this); } );
     },
     
-    handleUpdate: function(value) {
-      console.log('handleUpdate',value);
-    },
-    
     /**
      * Fetch the TR-064 resource
      *   /upnp/control/x_contact urn:dslforum-org:service:X_AVM-DE_OnTel:1 
@@ -273,11 +269,14 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         })
         .then( function( data ) {
           self.__calllistUri = data;
-          self.refreshCalllist();
+          self.refreshCalllist('getCallListURI');
         });
     },
 
-    refreshCalllist: function() {
+    refreshCalllist: function(source) {
+      //console.log( 'refreshCalllist - source:', source, ', __refreshingCalllist:', this.__refreshingCalllist );
+      this.__refreshingCalllist = true;
+      
       if( this.__calllistUri === '' )
       {
         this._getCallListURI();
@@ -319,7 +318,8 @@ qx.Class.define('cv.plugins.TR064.calllist', {
             }
             self.__calllistList.push( entry );
           }
-          self._update();
+          self._displayCalllist();
+          self.__refreshingCalllist = false;
         })
         .catch( function( error ) { console.error( error ); } );
     },
