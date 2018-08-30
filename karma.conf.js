@@ -58,7 +58,9 @@ module.exports = function(config) {
       '/demo': '/base/source/resource/demo',
       '../source/resource': '/base/source/resource',
       '/script': '/base/source/script',
-      '/cgi-bin': '/base/source/resource/test'
+      '/cgi-bin': '/base/source/resource/test',
+      '/source/resource/plugins/TR064/soap.php': '/base/source/test/fixtures/tr064_soap.json',
+      '/source/resource/plugins/TR064/proxy.php': '/base/source/test/fixtures/tr064_proxy.xml'
     },
 
     // enable / disable colors in the output (reporters and logs)
