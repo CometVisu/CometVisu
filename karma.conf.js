@@ -20,6 +20,7 @@ module.exports = function(config) {
       "source/test/karma/helper-spec.js",
       { pattern: "source/test/karma/*.js" },
       { pattern: "source/test/karma/**/*.js" },
+      { pattern: "source/test/fixtures/**", included: false },
       { pattern: "source/resource/**/*", included: false, served: true, watched: false }
     ],
 
