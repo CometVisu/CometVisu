@@ -40,7 +40,7 @@ describe("testing a TR-064 plugin", function() {
   });
 
   it("should test the TR-064:calllist creator", function() {
-    var res = this.createTestWidgetString("calllist", {id: 'test'}, '<label>Test</label>');
+    var res = this.createTestWidgetString("calllist", {id: 'test', device: 'testdevice'}, '<label>Test</label>');
     var widget = qx.bom.Html.clean([res[1]])[0];
     var widgetInstance = res[0];
 
@@ -48,6 +48,14 @@ describe("testing a TR-064 plugin", function() {
     expect(widget).toHaveLabel('Test');
 
     expect(widgetInstance.getPath()).toBe("id_0");
+  });
+
+  it("should test the TR-064:calllist column selector", function() {
+    var res = this.createTestWidgetString("calllist", {id: 'test', device: 'testdevice', columns:"type;tam;name;caller;date;nameOrCaller"}, '<label>Test</label>');
+    var widget = qx.bom.Html.clean([res[1]])[0];
+
+    //expect(widget)
+    expect(widget).toHaveClass('calllist');
   });
 
 });
