@@ -474,22 +474,23 @@
 
   <xsd:group name="AvailablePlugins">
     <xsd:choice>
+      <xsd:element name="calendarlist" type="calendarlist" />
       <xsd:element name="clock" type="clock" />
       <xsd:element name="colorchooser" type="colorchooser" />
-      <xsd:element name="diagram_info" type="diagram_info" />
       <xsd:element name="diagram" type="diagram" />
+      <xsd:element name="diagram_info" type="diagram_info" />
+      <xsd:element name="gauge" type="gauge" />
+      <xsd:element name="infoaction" type="infoaction" />
       <xsd:element name="openweathermap" type="openweathermap" />
       <xsd:element name="powerspectrum" type="powerspectrum" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
+      <xsd:element name="speech" type="speech" />
       <xsd:element name="strftime" type="strftime" />
       <xsd:element name="svg" type="svg" />
-      <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="timeout" type="timeout" />
-      <xsd:element name="gauge" type="gauge" />
-      <xsd:element name="calendarlist" type="calendarlist" />
-      <xsd:element name="infoaction" type="infoaction" />
-      <xsd:element name="speech" type="speech" />
+      <xsd:element name="calllist" type="calllist" />
+      <xsd:element name="upnpcontroller" type="upnpcontroller" />
     </xsd:choice>
   </xsd:group>
 
@@ -1860,6 +1861,117 @@
     </xsd:attribute>
     <xsd:attribute ref="target" use="required" />
     <xsd:attribute name="debug" type="xsd:boolean" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="calllist">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="device" type="xsd:string" use="required" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID/Name of the device as used in the hidden configuration.</xsd:documentation>
+        <xsd:documentation xml:lang="de">ID/Name für das Gerät aus der versteckten Konfiguration.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="max" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximum numer of entries to fetch from the router.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximale Anzahl der vom Router zu ladenden Einträge.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="columns" type="xsd:string" use="optional">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">By semicolon separated list of column types
+            (allowed types: caller, date, name, nameOrCaller, tam, type)</xsd:documentation>
+          <xsd:documentation xml:lang="de">Durch Strichpunkt getrennte Liste mit Spaltentypen
+            (mögliche Spalten: caller, date, name, nameOrCaller, tam, type)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+    <xsd:attribute name="TAM" type="xsd:string" use="optional">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Icon for telephone answering machine.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Icon für Anrufbeantworter.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+    <xsd:attribute name="TAMColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="TAMwait" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for waiting for telephone answering machine.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für Warten auf Anrufbeantworter.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="TAMwaitColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="TAMplay" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for playing the telephone answering machine.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für Anrufbeantworter abspielen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="TAMplayColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="TAMstop" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for stopping the telephone answering machine.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für Anrufbeantworter Stop.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="TAMstopColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeIncomming" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for incomming call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für eingehenden Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeIncommingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeMissed" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for missed call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für verpassten Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeMissedColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeOutgoing" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for outgoing call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für abgehenden Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeOutgoingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeActiveIncomming" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for active incomming call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für aktiven, eingehenden Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeActiveIncommingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeRejectedIncomming" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for rejected incomming call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für abgelehnten, eingehenden Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeRejectedIncommingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeActiveOutgoing" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for active outgoing call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für aktiven, abgehenden Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeActiveOutgoingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeUnknown" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for unknown call type.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für unbekannten Anruftyp.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeUnknownColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="refresh" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Sets the update rate for the call list in seconds</xsd:documentation>
+        <xsd:documentation xml:lang="de">Definiert die Aktualisierungsrate der Anrufliste in Sekunden</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="break" />
