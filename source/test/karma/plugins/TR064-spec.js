@@ -50,13 +50,25 @@ describe("testing a TR-064 plugin", function() {
     expect(widgetInstance.getPath()).toBe("id_0");
   });
 
+  /*
   it("should test the TR-064:calllist column selector", function() {
-    var res = this.createTestWidgetString("calllist", {id: 'test', device: 'testdevice', columns:"type;tam;name;caller;date;nameOrCaller"}, '<label>Test</label>');
-    var widgetInstance = res[0];
+    var res = this.createTestElement("calllist", {id: 'test', device: 'testdevice', columns:"type;tam;name;caller;date;nameOrCaller"}, '<label>Test</label>');
+    var widgetInstance = res;//[0];
+    var widget = res.getDomElement();
+    qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
     // TODO:
     // create test to wait till widgetInstance._displayCalllist() was called an the table filled with the data
     // from soap.php and proxy.php calls
+    spyOn(widgetInstance, '_displayCalllist').and.callThrough();
+
+    setTimeout(function () {
+      expect(widgetInstance._displayCalllist).toHaveBeenCalled();
+      // TODO: test here
+
+      done();
+    }, 100);
   });
+  */
 
 });
