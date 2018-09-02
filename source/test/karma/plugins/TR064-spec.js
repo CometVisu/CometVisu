@@ -39,6 +39,12 @@ describe("testing a TR-064 plugin", function() {
     }, this);
   });
 
+  var originalTimeout;
+  beforeEach(function() {
+    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+  });
+
   it("should test the TR-064:calllist creator", function() {
     var res = this.createTestWidgetString("calllist", {id: 'test', device: 'testdevice'}, '<label>Test</label>');
     var widget = qx.bom.Html.clean([res[1]])[0];
@@ -60,9 +66,26 @@ describe("testing a TR-064 plugin", function() {
     setTimeout(function () {
       expect(widgetInstance._displayCalllist).toHaveBeenCalled();
       expect(widget.querySelector('tr').childElementCount).toBe(6); // expect 6 columns
-      expect(widget.querySelectorAll('tr').length).toBe(2);         // expect 2 rows
+      expect(widget.querySelectorAll('tr').length).toBe(3);         // expect 2 rows
       done();
-    }, 100);
+    }, 200);
   });
 
+  it("should test the TR-064:calllist refresh", function(done) {
+    var widgetInstance = this.createTestElement("calllist", {id: 'test', device: 'testdevice', refresh:1, columns:"type;tam;date;nameOrCaller"}, '<label>Test</label>');
+    spyOn(widgetInstance, 'refreshCalllist').and.callThrough();
+
+    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    var widget = widgetInstance.getDomElement();
+
+    setTimeout(function () {
+      expect(widget.querySelector('tr').childElementCount).toBe(4); // expect 4 columns
+      expect(widgetInstance.refreshCalllist).toHaveBeenCalledWith('timer');
+      done();
+    }, 5000);
+  });
+
+  afterEach(function() {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+  });
 });
