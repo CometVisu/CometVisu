@@ -186,6 +186,7 @@ qx.Class.define("cv.Application",
       var bugData = cv.report.Record.getClientData();
       var body = "**"+qx.locale.Manager.tr("Please describe what you have done until the error occured?")+"**\n \n\n";
       var exString = "";
+      var maxTraceLength = 2000;
       if (ex.getSourceException && ex.getSourceException()) {
         ex = ex.getSourceException();
       }
@@ -204,16 +205,44 @@ qx.Class.define("cv.Application",
           exString += "\n Description: " + ex.description;
         }
         try {
-          var nStack = qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t");
-          if (nStack) {
-            exString += "\nNormalized Stack: " + nStack + "\n";
+          var lastLine = '';
+          var repeated = 0;
+          var nStack = '';
+          qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (entry) {
+            if (lastLine === entry) {
+              if (repeated === 0) {
+                // count first occurance too
+                repeated = 2;
+              } else {
+                repeated++;
+              }
+            } else if (repeated > 0) {
+              nStack += ' [repeated ' + repeated + ' times]';
+              nStack += '\n\t' + entry;
+              repeated = 0;
+            } else {
+              nStack += '\n\t' + entry;
+              lastLine = entry;
+            }
+          }, this);
+          if (repeated > 0) {
+            nStack += ' [repeated ' + repeated + ' times]';
           }
-          if (ex.stack) {
+          if (nStack) {
+            exString += "\nNormalized Stack: " + nStack.substring(0, maxTraceLength) + "\n";
+            if (nStack.length > maxTraceLength) {
+              exString += 'Stacktrace has been cut off\n';
+            }
+          }
+          if (exString.length + ex.stack.length < maxTraceLength) {
             exString += "\nOriginal Stack: " + ex.stack + "\n";
           }
         } catch(exc) {
           if (ex.stack) {
-            exString += "\nStack: " + ex.stack+"\n";
+            exString += "\nStack: " + ex.stack.substring(0, maxTraceLength) + "\n";
+            if (ex.stack.length > maxTraceLength) {
+              exString += 'Stacktrace has been cut off\n';
+            }
           }
         }
       }
