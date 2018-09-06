@@ -228,8 +228,6 @@ qx.Class.define("cv.Application",
           if (repeated > 0) {
             nStack += ' [repeated ' + repeated + ' times]';
           }
-          // var nStack = qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t");
-          console.log(nStack.length);
           if (nStack) {
             exString += "\nNormalized Stack: " + nStack.substring(0, maxTraceLength) + "\n";
             if (nStack.length > maxTraceLength) {
