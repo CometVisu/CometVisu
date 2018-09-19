@@ -33,9 +33,11 @@ function xml_highlight($s)
 
 function libxml_display_error( $error )
 {
-  global $lines, $error_array;
+  global $combinedLines, $error_array, $lineMappings;
 
   $error_array[] = $error->line;
+
+  $return = "";
 
   switch ($error->level)
   {
@@ -52,13 +54,18 @@ function libxml_display_error( $error )
 
   $return .= trim( $error->message );
   $return .= ' on <a href="#' . ($error->line-1) . '">line <b>' . $error->line . '</b></a>';
+  foreach($lineMappings as $mapping) {
+      if ($error->line >= $mapping['start'] && $error->line <= $mapping['end']) {
+          $return .= ' [origin in file ' . $mapping['file'] . ' line ' . ($error->line - $mapping['start']) . ']';
+      }
+  }
 
   $return .= '<pre>';
   for( $i = max( 0, $error->line - 1 - 3); $i <= $error->line - 1 + 3; $i++ )
   {
     if( $i == $error->line - 1 ) $return .= '<b>';
     $return .= sprintf( '%4d: ', $i+1 );
-    $return .= xml_highlight( $lines[ $i ] );
+    $return .= xml_highlight( $combinedLines[ $i ] );
     if( $i == $error->line - 1 ) $return .= '</b>';
   }
   $return .= '</pre>';
@@ -85,7 +92,9 @@ function checkVersion( $dom )
 }
 
 // Enable user error handling 
-libxml_use_internal_errors(true); 
+libxml_use_internal_errors(true);
+
+$resourceDir = 'resource/';
 
 
 $dom = new DomDocument();
@@ -97,7 +106,7 @@ if (substr($_GET['config'],0,3)=="oh_" || $quercus) {
    $conffile = "http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT'].$_SERVER['SCRIPT_NAME']."/config/visu_config";
 }
 else {
-   $conffile = 'resource/config/visu_config';
+   $conffile = $resourceDir . 'config/visu_config';
 }
 if (defined('STDIN')) {
   $conffile = "visu_config_" . $argv[1];
@@ -107,7 +116,7 @@ if (defined('STDIN')) {
 $conffile .= '.xml';
 
 if ( false === is_readable( $conffile ) ) {
-  $conffile = 'resource/demo/visu_config';
+  $conffile = $resourceDir . 'demo/visu_config';
   if ($_GET['config']) {
     $conffile .= "_" . $_GET['config'];
   }
@@ -133,10 +142,47 @@ if( false === is_readable( $conffile ) )
     exit;
   }
 }
-$lines = file( $conffile );
-$dom->load( $conffile );
 
-if( $dom->schemaValidate( 'resource/visu_config.xsd' ) )
+$lines = file( $conffile );
+$combinedLines = $lines;
+$lineMappings = array();
+$mappedLineOffset = 0;
+
+foreach( $lines as $line_num => $line ) {
+    if (preg_match('/(\s*)(.*)<include src="([^"]+)"\s*\/>(.*)/', $line, $matches)) {
+        $includedLines = file($resourceDir . $matches[3]);
+        $func = function($value) {
+            global $matches;
+            return $matches[1] . $value;
+        };
+        $startLine = $line_num + $mappedLineOffset;
+        $mappingStart = $startLine;
+        array_unshift($includedLines, "<!-- Start of " . $matches[3] . " -->\n");
+        $mappingStart++;
+        $includedLines[sizeof($includedLines) -1 ] .= "\n";
+        array_push($includedLines, "<!-- End of " . $matches[3] . " -->\n");
+        $includedLines = array_map($func, $includedLines);
+        if (!empty($matches[2])) {
+            array_unshift($includedLines, $matches[2]);
+            $mappingStart++;
+        }
+
+        if (!empty($matches[4])) {
+            array_push($includedLines, $matches[4]);
+        }
+        array_splice($combinedLines, ($line_num + $mappedLineOffset), 1, $includedLines);
+        $lineMappings[] = array(
+            'file' => $matches[3],
+            'start' => $mappingStart,
+            'end' => $startLine + sizeof($includedLines) - 1
+        );
+        $mappedLineOffset += sizeof($includedLines) - 1;
+    }
+}
+$source = implode('', $combinedLines);
+$dom->loadXML( $source );
+
+if( $dom->schemaValidate( $resourceDir . 'visu_config.xsd' ) )
 {
   echo 'config <b>' . $conffile . ' is valid </b> XML';
   if( $_GET['src'] === 'editor' )
@@ -165,15 +211,15 @@ if( $dom->schemaValidate( 'resource/visu_config.xsd' ) )
 echo '<hr />';
 
 echo '<pre>';
-foreach( $lines as $line_num => $line )
+foreach( $combinedLines as $line_num => $line )
 {
   $error_in_line = in_array( $line_num+1, $error_array );
   if( $error_in_line ) echo '<b>';
   printf( '<a name="%s">%4d</a>: ', $line_num, $line_num+1 );
   echo xml_highlight( $line );
   if( $error_in_line ) echo '</b>';
-} 
+}
 echo '</pre>';
-?> 
+?>
   </body>
 </html>
