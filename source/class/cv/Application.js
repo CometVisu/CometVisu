@@ -307,7 +307,7 @@ qx.Class.define("cv.Application",
           needsConfirmation: false
         }
       );
-      if (qx.core.Environment.get('cv.sentry')) {
+      if (qx.core.Environment.get('cv.sentry') && window.Sentry) {
         notification.actions.link.push(
           {
             title: qx.locale.Manager.tr("Send error to sentry.io"),
