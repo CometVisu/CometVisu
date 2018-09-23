@@ -307,8 +307,26 @@ qx.Class.define("cv.Application",
           needsConfirmation: false
         }
       );
+      if (qx.core.Environment.get('cv.sentry')) {
+        notification.actions.link.push(
+          {
+            title: qx.locale.Manager.tr("Send error to sentry.io"),
+            action: function () {
+              Sentry.captureException(ex);
+            },
+            needsConfirmation: false
+          }
+        );
+      }
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
     },
+
+    throwError: qx.core.Environment.select('qx.globalErrorHandling', {
+      "true":  function () {
+        window.onerror(new Error('test error'));
+      },
+      "false": null
+    }),
 
     /**
      * Internal initialization method
