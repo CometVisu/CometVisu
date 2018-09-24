@@ -68,7 +68,7 @@ describe("testing a TR-064 plugin", function() {
       expect(widget.querySelector('tr').childElementCount).toBe(6); // expect 6 columns
       expect(widget.querySelectorAll('tr').length).toBe(3);         // expect 2 rows
       done();
-    }, 200);
+    }, 500);
   });
 
   it("should test the TR-064:calllist refresh", function(done) {
