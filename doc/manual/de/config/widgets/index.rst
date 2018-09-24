@@ -187,7 +187,7 @@ also z.B.:
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Timeout <plugins/timeout/index>`                   | Wechselt nach gewisser Zeit der Inaktivität auf eine andere Seite   |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`TR064 <plugins/TR064/index>`                       | Router Informationen, wie Anruflisten der Fritz!Box, über TR-064.   |
+| :doc:`tr064 <plugins/tr064/index>`                       | Router Informationen, wie Anruflisten der Fritz!Box, über TR-064.   |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`UPNPController <plugins/upnpcontroller/index>`     | UPNP-Controller                                                     |
 +----------------------------------------------------------+---------------------------------------------------------------------+

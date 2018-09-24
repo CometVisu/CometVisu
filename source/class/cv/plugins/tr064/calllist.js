@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * The TR-064 plugin and widget creates a interface to routers that are
  * configured by the TR-064 protocol, like the well known Fritz!Box routers.
@@ -27,20 +26,8 @@
  * @author Christian Mayer
  * @since 0.11.0
  */
-/*
 
-https://fritz.box:49443/tr64desc.xml
-
-http://wiregate/CometVisuGit/source/resource/plugins/TR064/soap.php?device=fritzbox
-&location=upnp/control/x_tam&uri=urn:dslforum-org:service:X_AVM-DE_TAM:1&fn=GetMessageList&p[]=NewIndex&v[]=0
-&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetInfoByIndex&p[]=NewIndex&v[]=1
-&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList
-&location=upnp/control/wlanconfig1&uri=urn:dslforum-org:service:WLANConfiguration:1&fn=GetInfo
-
-&location=&uri=&fn=&p[]=&v[]=
-
-*/
-qx.Class.define('cv.plugins.TR064.calllist', {
+qx.Class.define('cv.plugins.tr064.calllist', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Refresh, cv.ui.common.Update],
 
@@ -205,7 +192,7 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         if( cl.Path )
         {
           audio = '<audio preload="none">'
-            + '<source src="resource/plugins/TR064/proxy.php?device=' + self.getDevice() + '&uri='+cl.Path+'%26sid='+sid+'">'
+            + '<source src="resource/plugins/tr064/proxy.php?device=' + self.getDevice() + '&uri='+cl.Path+'%26sid='+sid+'">'
             + '</audio>'
             + '<div class="tam">'
             + cv.IconHandler.getInstance().getIconText( self.getTAM(), '*', '*', self.getTAMColor() )
@@ -265,7 +252,7 @@ qx.Class.define('cv.plugins.TR064.calllist', {
     _getCallListURI: function() {
       var
         self = this,
-        url = 'resource/plugins/TR064/soap.php?device=' + this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
+        url = 'resource/plugins/tr064/soap.php?device=' + this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
       
       window.fetch( url )
         .then( function( response ) {
@@ -288,7 +275,7 @@ qx.Class.define('cv.plugins.TR064.calllist', {
       
       var
         self = this,
-        url = 'resource/plugins/TR064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__calllistUri + '%26max=' + this.getMax();
+        url = 'resource/plugins/tr064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__calllistUri + '%26max=' + this.getMax();
         
       window.fetch( url )
         .then( function( response ) {
@@ -365,8 +352,8 @@ qx.Class.define('cv.plugins.TR064.calllist', {
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('resource/plugins/TR064/TR064.css');
-    cv.parser.WidgetParser.addHandler("calllist", cv.plugins.TR064.calllist);
+    loader.addStyles('resource/plugins/tr064/tr064.css');
+    cv.parser.WidgetParser.addHandler("calllist", cv.plugins.tr064.calllist);
     cv.ui.structure.WidgetFactory.registerClass("calllist", statics);
   }
 

@@ -1,9 +1,9 @@
-.. _TR064:
+.. _tr064:
 
-Das TR064 Plugin
+Das tr064 Plugin
 =================
 
-.. api-doc:: TR064
+.. api-doc:: tr064
 
 Beschreibung
 ------------
@@ -33,7 +33,7 @@ Einstellungen
 Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: :ref:`visu-config-details`.
 
-Das Verhalten und Aussehen des calllist-Widgets aus dem TR064-Plugin kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
+Das Verhalten und Aussehen des calllist-Widgets aus dem tr064-Plugin kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
 beides über den :ref:`Editor <editor>` bearbeitet werden kann.
 
@@ -80,7 +80,7 @@ Erlaubte Kind-Elemente und deren Attribute
     </meta>
     <calllist device="fritzbox">
         <layout colspan="4" />
-        <label>TR064 Calllist</label>
+        <label>TR-064 Calllist</label>
         <address transform="DPT:1.001" mode="read">1/1/0</address>
     </calllist>
 
@@ -94,7 +94,7 @@ der :doc:`visu_config.xml <../../../xml-format>` hinzufügen.
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 
-Hier der minimale Beispielcode der das calllist Widget aus dem TR064 Plugin aus dem folgenden Screenshot erzeugt:
+Hier der minimale Beispielcode der das calllist Widget aus dem tr064 Plugin aus dem folgenden Screenshot erzeugt:
 
 .. widget-example::
 

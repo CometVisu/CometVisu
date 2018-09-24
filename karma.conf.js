@@ -51,8 +51,8 @@ module.exports = function(config) {
     proxies: {
       '/source/resource/designs/get_designs.php': '/base/source/test/fixtures/designs.json',
       '/source/resource/designs': '/base/source/resource/designs',
-      '/resource/plugins/TR064/soap.php': '/base/source/test/fixtures/tr064_soap.json',
-      '/resource/plugins/TR064/proxy.php': '/base/source/test/fixtures/tr064_proxy.xml',
+      '/resource/plugins/tr064/soap.php': '/base/source/test/fixtures/tr064_soap.json',
+      '/resource/plugins/tr064/proxy.php': '/base/source/test/fixtures/tr064_proxy.xml',
       '/source/class/cv': '/base/source/class/cv',
       '/external/qooxdoo': '/base/external/qooxdoo',
       '/source/resource': '/base/source/resource',

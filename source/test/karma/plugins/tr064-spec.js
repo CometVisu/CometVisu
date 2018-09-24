@@ -19,7 +19,7 @@
 
 
 /**
- * Unit tests for TR064 plugin
+ * Unit tests for tr064 plugin
  *
  * @author Christian Mayer
  * @since 2018
