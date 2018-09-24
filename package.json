@@ -55,6 +55,6 @@
     "svgmin": "^0.1.0"
   },
   "dependencies": {
-    "monaco-editor": "^0.11.1"
+    "monaco-editor": "^0.14.3"
   }
 }
