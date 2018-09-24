@@ -1913,7 +1913,7 @@
     <xsd:attribute name="TAMstop" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Icon for stopping the telephone answering machine.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Icon für Anrufbeantworter Stop.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für Anrufbeantworter Stopp.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="TAMstopColor" type="xsd:string" use="optional" />

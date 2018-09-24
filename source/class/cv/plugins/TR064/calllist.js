@@ -49,8 +49,6 @@ qx.Class.define('cv.plugins.TR064.calllist', {
     CONSTRUCTOR
   ******************************************************
   */
-  //construct: function(props) {
-  //},
 
   /*
   ******************************************************
@@ -155,17 +153,24 @@ qx.Class.define('cv.plugins.TR064.calllist', {
     __calllistUri: '',
     __calllistList: undefined,
     __refreshingCalllist: false,
+    /**
+     * Prevent warning "Reference values are shared across all instances"
+     * as the keys are unique a share doesn't matter:
+     * @lint ignoreReferenceField(__TAMeventAttached)
+     */
     __TAMeventAttached: {},
     
     _getInnerDomString: function () {
-      this.update();
+      this.refreshCalllist('initial');
       return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading...</td></tr></table></div>';
     },
     _setupRefreshAction: function() {
       this._timer = new qx.event.Timer(this.getRefresh());
       this._timer.addListener('interval', function () {
         if( !this.__refreshingCalllist )
+        {
           this.refreshCalllist('timer');
+        }
       }, this);
       this._timer.start();
     },
@@ -173,7 +178,6 @@ qx.Class.define('cv.plugins.TR064.calllist', {
       if( !this.__refreshingCalllist )
       {
         this.refreshCalllist('update');
-        return;
       }
     },
       
@@ -230,9 +234,11 @@ qx.Class.define('cv.plugins.TR064.calllist', {
             
             case 'nameOrCaller':
               if( cl.Name !== '' )
+              {
                 html += '<td>' + cl.Name   + '</td>';
-              else
+              } else {
                 html += '<td>' + cl.Caller + '</td>';
+              }
               break;
             
             case 'tam':
@@ -244,13 +250,11 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         html += '</tr>';
       });
       clLi.innerHTML = html;
-      //// ES6:
-      // for( let tam of clLi.getElementsByClassName('tam') )
-      //   tam.addEventListener("click", function(){ self.__playTAM(this); } );
-      //// ES5:
       var tamList = clLi.getElementsByClassName('tam');
       for( var i = 0; i < tamList.length; i++ )
+      {
         tamList[i].addEventListener("click", function(){ self.__playTAM(this); } );
+      }
     },
     
     /**
@@ -263,7 +267,7 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         self = this,
         url = 'resource/plugins/TR064/soap.php?device=' + this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
       
-      fetch( url )
+      window.fetch( url )
         .then( function( response ) {
           return response.json(); 
         })
@@ -274,7 +278,6 @@ qx.Class.define('cv.plugins.TR064.calllist', {
     },
 
     refreshCalllist: function(source) {
-      //console.log( 'refreshCalllist - source:', source, ', __refreshingCalllist:', this.__refreshingCalllist );
       this.__refreshingCalllist = true;
       
       if( this.__calllistUri === '' )
@@ -287,7 +290,7 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         self = this,
         url = 'resource/plugins/TR064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__calllistUri + '%26max=' + this.getMax();
         
-      fetch( url )
+      window.fetch( url )
         .then( function( response ) {
           return response.text(); 
         })
@@ -296,18 +299,6 @@ qx.Class.define('cv.plugins.TR064.calllist', {
         })
         .then( function( data ) {
           self.__calllistList = [];
-          /**
-          ES6:
-          for( let item of data.getElementsByTagName('Call') ) {
-            var entry = {};
-            for( let node of item.children ) {
-              entry[node.nodeName] = node.textContent;
-            }
-            self.__calllistList.push( entry );
-          }
-          ---
-          ES5:
-          */
           var itemList = data.getElementsByTagName('Call');
           for( var i = 0; i < itemList.length; i++ ) {
             var
@@ -339,15 +330,19 @@ qx.Class.define('cv.plugins.TR064.calllist', {
       }
       
       if( audio.readyState < 4 ) // not ready yet
+      {
         this.__TAMwait(element);
+      }
       
       if( audio.paused )
       {
         var playPromise = audio.play();
         if( playPromise !== undefined )
+        {
           playPromise
             .then(function(){self.__TAMplay(element)})
             .catch(function(){/*NOP*/});
+        }
       } else {
         audio.pause();
         audio.currentTime = 0;
