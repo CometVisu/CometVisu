@@ -1,4 +1,4 @@
-/* calllist.js 
+/* CallList.js 
  * 
  * copyright (c) 2018, Christian Mayer and the CometVisu contributers.
  * 
@@ -27,7 +27,7 @@
  * @since 0.11.0
  */
 
-qx.Class.define('cv.plugins.tr064.calllist', {
+qx.Class.define('cv.plugins.tr064.CallList', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Refresh, cv.ui.common.Update],
 
@@ -353,7 +353,7 @@ qx.Class.define('cv.plugins.tr064.calllist', {
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('resource/plugins/tr064/tr064.css');
-    cv.parser.WidgetParser.addHandler("calllist", cv.plugins.tr064.calllist);
+    cv.parser.WidgetParser.addHandler("calllist", cv.plugins.tr064.CallList);
     cv.ui.structure.WidgetFactory.registerClass("calllist", statics);
   }
 
