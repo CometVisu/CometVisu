@@ -33,7 +33,10 @@ Zum 'clonen' des Repositories führt man folgende Schritte aus:
 #. Kommandozeile öffnen
 #. in einen Ordner gehen in dem der Unterordner des Projekts erstellt werden soll
 #. ``git clone https://github.com/<ihr-github-benutzername>/CometVisu.git`` (<ihr-github-benutzername> ersetzen durch den eigenen Benutzernamen)
-
+#. in den Projekt-Ordner gehen und die Submodule (Icons und Qooxdoo-Framework) wie folgt nachladen
+#. ``git submodule init``
+#. ``git submodule update``
+ 
 das wars schon, die lokale Arbeitskopie liegt dann im *CometVisu* Unterordner. Damit sind alle Vorbereitungen getroffen.
 
 Allgemeine Vorgehensweise

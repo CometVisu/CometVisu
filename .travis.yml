@@ -21,7 +21,9 @@ before_install:
 - nvm install 6.9
 - sudo ./utils/travis/browser-setup.sh
 - export CHROME_BIN=`pwd`/chrome/google-chrome
-- export PATH=`pwd`/firefox:$PATH
+- export PATH=`pwd`/firefox:`pwd`/chrome:$PATH
+- google-chrome --version
+- firefox --version
 - mkdir cache
 install:
 - npm install -g grunt-cli
