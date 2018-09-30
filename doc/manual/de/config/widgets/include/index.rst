@@ -27,8 +27,8 @@ Wie im Beispiel zu sehen, kann man z.B. für jeden Raum eine eigene XML-Datei an
 ``include`` an der gewünschten Stelle in der eigentlichen *visu_config.xml* einbinden.
 
 .. hint::
-    Der Pfad zu den inkludierten Dateien muss relative zum Wurzelverzeichnis angegeben werden (also das Verzeichnis in dem
-    die index.html liegt). Wenn die einzubindende Datei im config-Ordner liegt, muss also ``src=config/<dateiname>``
+    Der Pfad zu den inkludierten Dateien muss relativ zum ``resource``-Verzeichnis angegeben werden.
+    Wenn die einzubindende Datei im config-Ordner liegt, muss also ``src=config/<dateiname>``
     angegeben werden (siehe Beispielcode oben).
 
 .. hint::
