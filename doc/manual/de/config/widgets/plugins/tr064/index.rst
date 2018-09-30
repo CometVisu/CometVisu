@@ -112,6 +112,16 @@ Hier der minimale Beispielcode der das calllist Widget aus dem tr064 Plugin aus 
         <label>calllist</label>
     </calllist>
 
+    
+Voraussetzungen / Einrichtung auf dem Server
+--------------------------------------------
+
+Um dieses Plugin nutzen zu können muss auf dem Server PHP eingerichtet sein und
+die Unterstützung für SoapClient installiert sein.
+
+Unter Debian basierten Systemen muss daher das Paket ``php-soap`` installiert 
+sein.
+
 Einrichtung der Fritz!Box
 -------------------------
 

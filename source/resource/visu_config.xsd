@@ -1917,13 +1917,13 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="TAMstopColor" type="xsd:string" use="optional" />
-    <xsd:attribute name="typeIncomming" type="xsd:string" use="optional">
+    <xsd:attribute name="typeIncoming" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Icon for incomming call.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Icon for incoming call.</xsd:documentation>
         <xsd:documentation xml:lang="de">Icon für eingehenden Anruf.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="typeIncommingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeIncomingColor" type="xsd:string" use="optional" />
     <xsd:attribute name="typeMissed" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Icon for missed call.</xsd:documentation>
@@ -1938,20 +1938,20 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="typeOutgoingColor" type="xsd:string" use="optional" />
-    <xsd:attribute name="typeActiveIncomming" type="xsd:string" use="optional">
+    <xsd:attribute name="typeActiveIncoming" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Icon for active incomming call.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Icon for active incoming call.</xsd:documentation>
         <xsd:documentation xml:lang="de">Icon für aktiven, eingehenden Anruf.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="typeActiveIncommingColor" type="xsd:string" use="optional" />
-    <xsd:attribute name="typeRejectedIncomming" type="xsd:string" use="optional">
+    <xsd:attribute name="typeActiveIncomingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeRejectedIncoming" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Icon for rejected incomming call.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Icon for rejected incoming call.</xsd:documentation>
         <xsd:documentation xml:lang="de">Icon für abgelehnten, eingehenden Anruf.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="typeRejectedIncommingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeRejectedIncomingColor" type="xsd:string" use="optional" />
     <xsd:attribute name="typeActiveOutgoing" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Icon for active outgoing call.</xsd:documentation>

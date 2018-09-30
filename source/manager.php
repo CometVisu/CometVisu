@@ -60,6 +60,7 @@ $_STRINGS = array(
     'Could not replace media file' => 'Could not replace media file (%s)',
     'Upload new media' => 'Upload new media',
     'Hidden configuration:' => 'Hidden configuration:',
+    'Hidden config file is not writeable.' => 'Hidden config file (%s) is not writeable.',
     'Key' => 'Key',
     'Value' => 'Value',
     'Additional key' => 'Additional key',
@@ -111,6 +112,7 @@ $_STRINGS = array(
     'Could not replace media file' => 'Konnte Mediendatei (%s) nicht ersetzen',
     'Upload new media' => 'Lade neue Mediendatei hoch',
     'Hidden configuration:' => 'Versteckte Konfigurationen:',
+    'Hidden config file is not writeable.' => 'Datei für versteckte Konfigurationen (%s) ist nicht beschreibbar.',
     'Key' => 'Schlüssel',
     'Value' => 'Wert',
     'Additional key' => 'Zusätzlicher Schlüssel',
@@ -346,70 +348,75 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
   }
 } else if( $type === 'hidden' )
 {
-  // step 1: parse POST into PHP arrays
-  // This implicitly sorts the variables when they woudln't be transmitted in
-  // order
-  $names = array();
-  $keysAndValues = array();
-  foreach( $_POST as $key => $value )
+  if( !is_writeable( HIDDEN_CONFIG_FILE ) )
   {
-    preg_match( "/([^0-9]*)([0-9]*)_?([0-9]*)/", $key, $k );
-    switch( $k[1] )
+    $actionDone = sprintf( $_['Hidden config file is not writeable.'], HIDDEN_CONFIG_FILE );
+  } else {
+    // step 1: parse POST into PHP arrays
+    // This implicitly sorts the variables when they woudln't be transmitted in
+    // order
+    $names = array();
+    $keysAndValues = array();
+    foreach( $_POST as $key => $value )
     {
-      case 'hiddenName':
-        $names[$k[2]] = $value;
-        break;
+      preg_match( "/([^0-9]*)([0-9]*)_?([0-9]*)/", $key, $k );
+      switch( $k[1] )
+      {
+        case 'hiddenName':
+          $names[$k[2]] = $value;
+          break;
 
-      case 'hiddenKey':
-        if( !array_key_exists($k[2], $keysAndValues) )
-          $keysAndValues[$k[2]] = array();
-        if( !array_key_exists($k[3], $keysAndValues[$k[2]]) )
-          $keysAndValues[$k[2]][$k[3]] = array();
-        $keysAndValues[$k[2]][$k[3]]['key'] = $value;
-        break;
+        case 'hiddenKey':
+          if( !array_key_exists($k[2], $keysAndValues) )
+            $keysAndValues[$k[2]] = array();
+          if( !array_key_exists($k[3], $keysAndValues[$k[2]]) )
+            $keysAndValues[$k[2]][$k[3]] = array();
+          $keysAndValues[$k[2]][$k[3]]['key'] = $value;
+          break;
 
-      case 'hiddenValue':
-        if( !array_key_exists($k[2], $keysAndValues) )
-          $keysAndValues[$k[2]] = array();
-        if( !array_key_exists($k[3], $keysAndValues[$k[2]]) )
-          $keysAndValues[$k[2]][$k[3]] = array();
-        $keysAndValues[$k[2]][$k[3]]['value'] = $value;
-        break;
+        case 'hiddenValue':
+          if( !array_key_exists($k[2], $keysAndValues) )
+            $keysAndValues[$k[2]] = array();
+          if( !array_key_exists($k[3], $keysAndValues[$k[2]]) )
+            $keysAndValues[$k[2]][$k[3]] = array();
+          $keysAndValues[$k[2]][$k[3]]['value'] = $value;
+          break;
+      }
     }
-  }
-  
-  // step 2: create output
-  $out = <<<EOT
+    
+    // step 2: create output
+    $out = <<<EOT
 <?php
 // File for configuraions that shouldn't be shared with the user
 \$hidden = array(
 
 EOT;
-  foreach( $names as $i => $name )
-  {
-    if( $i > 0 )
-      $out .= ",\n";
-    $out .= "  '$name' => array(";
-    
-    if( array_key_exists( $i, $keysAndValues ) )
+    foreach( $names as $i => $name )
     {
-      foreach( $keysAndValues[$i] as $j => $keyAndValue )
+      if( $i > 0 )
+        $out .= ",\n";
+      $out .= "  '$name' => array(";
+      
+      if( array_key_exists( $i, $keysAndValues ) )
       {
-        if( $j > 0 )
-          $out .= ', ';
-        $out .= "'" . $keyAndValue['key'] . "' => '" . $keyAndValue['value'] . "'";
+        foreach( $keysAndValues[$i] as $j => $keyAndValue )
+        {
+          if( $j > 0 )
+            $out .= ', ';
+          $out .= "'" . $keyAndValue['key'] . "' => '" . $keyAndValue['value'] . "'";
+        }
       }
+      
+      $out .= ')';
     }
+    $out .= "\n);\n?>";
     
-    $out .= ')';
+    // step 3: write
+    file_put_contents( HIDDEN_CONFIG_FILE, $out );
+    
+    // step 4: read it in, so that the user sees it
+    include( HIDDEN_CONFIG_FILE );
   }
-  $out .= "\n);\n?>";
-  
-  // step 3: write
-  file_put_contents( HIDDEN_CONFIG_FILE, $out );
-  
-  // step 4: read it in, so that the user sees it
-  include( HIDDEN_CONFIG_FILE );
 } else {
   // nothing special to do - so at least do a few sanity checks
   if( !is_writeable( 'resource/config/visu_config.xml' ) )

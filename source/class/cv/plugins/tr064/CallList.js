@@ -74,16 +74,16 @@ qx.Class.define('cv.plugins.tr064.CallList', {
         'TAMplayColor': { 'default': '' },
         'TAMstop':      { 'default': 'phone_answering' },
         'TAMstopColor': { 'default': '' },
-        'typeIncomming':              { 'default': 'phone_call_in' },
-        'typeIncommingColor':         { 'default': '' },
+        'typeIncoming':               { 'default': 'phone_call_in' },
+        'typeIncomingColor':          { 'default': '' },
         'typeMissed':                 { 'default': 'phone_missed_in' },
         'typeMissedColor':            { 'default': '' },
         'typeOutgoing':               { 'default': 'phone_call_out' },
         'typeOutgoingColor':          { 'default': '' },
-        'typeActiveIncomming':        { 'default': 'phone_ring_in' },
-        'typeActiveIncommingColor':   { 'default': '' },
-        'typeRejectedIncomming':      { 'default': 'phone_call_end_in' },
-        'typeRejectedIncommingColor': { 'default': '' },
+        'typeActiveIncoming':         { 'default': 'phone_ring_in' },
+        'typeActiveIncomingColor':    { 'default': '' },
+        'typeRejectedIncoming':       { 'default': 'phone_call_end_in' },
+        'typeRejectedIncomingColor':  { 'default': '' },
         'typeActiveOutgoing':         { 'default': 'phone_ring_out' },
         'typeActiveOutgoingColor':    { 'default': '' },
         'typeUnknown':                { 'default': 'text_question_mark' },
@@ -115,16 +115,16 @@ qx.Class.define('cv.plugins.tr064.CallList', {
     TAMplayColor: { check: 'String' },
     TAMstop:      { check: 'String' },
     TAMstopColor: { check: 'String' },
-    typeIncomming:              { check: 'String' },
-    typeIncommingColor:         { check: 'String' },
+    typeIncoming:               { check: 'String' },
+    typeIncomingColor:          { check: 'String' },
     typeMissed:                 { check: 'String' },
     typeMissedColor:            { check: 'String' },
     typeOutgoing:               { check: 'String' },
     typeOutgoingColor:          { check: 'String' },
-    typeActiveIncomming:        { check: 'String' },
-    typeActiveIncommingColor:   { check: 'String' },
-    typeRejectedIncomming:      { check: 'String' },
-    typeRejectedIncommingColor: { check: 'String' },
+    typeActiveIncoming:         { check: 'String' },
+    typeActiveIncomingColor:    { check: 'String' },
+    typeRejectedIncoming:       { check: 'String' },
+    typeRejectedIncomingColor:  { check: 'String' },
     typeActiveOutgoing:         { check: 'String' },
     typeActiveOutgoingColor:    { check: 'String' },
     typeUnknown:                { check: 'String' },
@@ -172,15 +172,15 @@ qx.Class.define('cv.plugins.tr064.CallList', {
       var 
         self = this,
         clLi = this.getDomElement().getElementsByClassName('TR064_calllist')[0],
-        sid  = this.__calllistUri.replace(/.*sid=/,''),
+        sid  = this.__calllistUri ? this.__calllistUri.replace(/.*sid=/,'') : '',
         html = '',
         types = {
           0:  { name: this.getTypeUnknown()          , color: this.getTypeUnknownColor()           },
-          1:  { name: this.getTypeIncomming()        , color: this.getTypeIncommingColor()         },
+          1:  { name: this.getTypeIncoming()         , color: this.getTypeIncomingColor()          },
           2:  { name: this.getTypeMissed()           , color: this.getTypeMissedColor()            },
           3:  { name: this.getTypeOutgoing()         , color: this.getTypeOutgoingColor()          },
-          9:  { name: this.getTypeActiveIncomming () , color: this.getTypeActiveIncommingColor()   },
-          10: { name: this.getTypeRejectedIncomming(), color: this.getTypeRejectedIncommingColor() },
+          9:  { name: this.getTypeActiveIncoming ()  , color: this.getTypeActiveIncomingColor()    },
+          10: { name: this.getTypeRejectedIncoming() , color: this.getTypeRejectedIncomingColor()  },
           11: { name: this.getTypeActiveOutgoing()   , color: this.getTypeActiveOutgoingColor()    }
         };
       
@@ -256,7 +256,13 @@ qx.Class.define('cv.plugins.tr064.CallList', {
       
       window.fetch( url )
         .then( function( response ) {
-          return response.json(); 
+          if( response.ok )
+          {
+            return response.json(); 
+          }
+          // else:
+          console.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText );
+          self.__calllistUri = '<fail>';
         })
         .then( function( data ) {
           self.__calllistUri = data;
@@ -266,6 +272,11 @@ qx.Class.define('cv.plugins.tr064.CallList', {
 
     refreshCalllist: function(source) {
       this.__refreshingCalllist = true;
+      
+      if( this.__calllistUri === '<fail>' )
+      {
+        return; // this problem won't fix anymore during this instance
+      }
       
       if( this.__calllistUri === '' )
       {
@@ -279,7 +290,13 @@ qx.Class.define('cv.plugins.tr064.CallList', {
         
       window.fetch( url )
         .then( function( response ) {
-          return response.text(); 
+          if( response.ok )
+          {
+            return response.text(); 
+          }
+          // else:
+          console.error('Error: reading URL "' + response.url + ' failed with status ' + response.status + ': ' + response.statusText );
+          return '<xml/>';
         })
         .then( function( str ) {
           return (new window.DOMParser()).parseFromString(str, "text/xml");
@@ -299,7 +316,9 @@ qx.Class.define('cv.plugins.tr064.CallList', {
           self._displayCalllist();
           self.__refreshingCalllist = false;
         })
-        .catch( function( error ) { console.error( error ); } );
+        .catch( function( error ) { 
+          console.error( 'TR-064 refreshCalllist() error:', error ); 
+        });
     },
     
     /**
