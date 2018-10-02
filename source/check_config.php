@@ -33,7 +33,7 @@ function xml_highlight($s)
 
 function libxml_display_error( $error )
 {
-  global $combinedLines, $error_array, $lineMappings;
+  global $combinedLines, $error_array, $lineMappings, $conffile;
 
   $error_array[] = $error->line;
 
@@ -54,10 +54,21 @@ function libxml_display_error( $error )
 
   $return .= trim( $error->message );
   $return .= ' on <a href="#' . ($error->line-1) . '">line <b>' . $error->line . '</b></a>';
+  $errorInIncludedFile = false;
+  $outerFileLineNumber = $error->line;
   foreach($lineMappings as $mapping) {
       if ($error->line >= $mapping['start'] && $error->line <= $mapping['end']) {
+          // inside this file
           $return .= ' [origin in file ' . $mapping['file'] . ' line ' . ($error->line - $mapping['start']) . ']';
+          $errorInIncludedFile = true;
+      } elseif ($error->line > $mapping['end']) {
+          // subtract the includes number of lines from the calculate to get the "real" line number if the error occured in
+          // the "outer"-file
+          $outerFileLineNumber -= $mapping['end'] - $mapping['start'] + 1;
       }
+  }
+  if (!$errorInIncludedFile) {
+      $return .= ' [origin in file ' . $conffile . ' line ' . $outerFileLineNumber . ']';
   }
 
   $return .= '<pre>';
@@ -148,20 +159,21 @@ $combinedLines = $lines;
 $lineMappings = array();
 $mappedLineOffset = 0;
 
+function mapIncludedLines ($value) {
+    global $matches;
+    return $matches[1] . $value;
+}
+
 foreach( $lines as $line_num => $line ) {
     if (preg_match('/(\s*)(.*)<include src="([^"]+)"\s*\/>(.*)/', $line, $matches)) {
         $includedLines = file($resourceDir . $matches[3]);
-        $func = function($value) {
-            global $matches;
-            return $matches[1] . $value;
-        };
         $startLine = $line_num + $mappedLineOffset;
         $mappingStart = $startLine;
         array_unshift($includedLines, "<!-- Start of " . $matches[3] . " -->\n");
         $mappingStart++;
         $includedLines[sizeof($includedLines) -1 ] .= "\n";
         array_push($includedLines, "<!-- End of " . $matches[3] . " -->\n");
-        $includedLines = array_map($func, $includedLines);
+        $includedLines = array_map(mapIncludedLines, $includedLines);
         if (!empty($matches[2])) {
             array_unshift($includedLines, $matches[2]);
             $mappingStart++;
