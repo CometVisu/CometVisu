@@ -93,6 +93,15 @@ qx.Class.define('cv.plugins.tr064.CallList', {
   },
 
   /*
+  ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    'tr064ListRefreshed': 'qx.event.type.Event' // event to support unit test
+  },
+
+  /*
   ******************************************************
     PROPERTIES
   ******************************************************
@@ -194,7 +203,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
           audio = '<audio preload="none">'
             + '<source src="resource/plugins/tr064/proxy.php?device=' + self.getDevice() + '&uri='+cl.Path+'%26sid='+sid+'">'
             + '</audio>'
-            + '<div class="tam">'
+            + '<div class="tam clickable">'
             + cv.IconHandler.getInstance().getIconText( self.getTAM(), '*', '*', self.getTAMColor() )
             + '</div>';
         }
@@ -315,6 +324,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
           }
           self._displayCalllist();
           self.__refreshingCalllist = false;
+          self.fireEvent('tr064ListRefreshed');
         })
         .catch( function( error ) { 
           console.error( 'TR-064 refreshCalllist() error:', error ); 

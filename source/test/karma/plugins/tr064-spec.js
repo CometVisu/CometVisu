@@ -78,11 +78,11 @@ describe("testing a TR-064 plugin", function() {
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
     var widget = widgetInstance.getDomElement();
 
-    setTimeout(function () {
+    widgetInstance.addListener('tr064ListRefreshed', function () {
       expect(widget.querySelector('tr').childElementCount).toBe(4); // expect 4 columns
-      expect(widgetInstance.refreshCalllist).toHaveBeenCalledWith('timer');
+      expect(widgetInstance.refreshCalllist).toHaveBeenCalledWith('getCallListURI');
       done();
-    }, 5000);
+    });
   });
 
   afterEach(function() {
