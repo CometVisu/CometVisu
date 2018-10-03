@@ -5,6 +5,10 @@ Das tr064 Plugin
 
 .. api-doc:: tr064
 
+.. TODO::
+
+    Automatische Screenshot-Generierung (aus Dummy-Daten)
+
 Beschreibung
 ------------
 
@@ -87,7 +91,7 @@ Erlaubte Kind-Elemente und deren Attribute
 XML Syntax
 ----------
 
-Alternativ kann man für das %%%WIDGET_NAME%%% Plugin auch von Hand einen Eintrag in
+Alternativ kann man für das tr064-Plugin auch von Hand einen Eintrag in
 der :doc:`visu_config.xml <../../../xml-format>` hinzufügen.
 
 .. CAUTION::
@@ -96,6 +100,20 @@ der :doc:`visu_config.xml <../../../xml-format>` hinzufügen.
 
 Hier der minimale Beispielcode der das calllist Widget aus dem tr064 Plugin aus dem folgenden Screenshot erzeugt:
 
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <meta>
+        <plugins>
+            <plugin name="tr064" />
+        </plugins>
+    </meta>
+    <page name="TR-064" type="text">
+        <calllist device="fritzbox">
+            <label>calllist</label>
+        </calllist>
+    </page>
+    
 .. widget-example::
 
     <settings>

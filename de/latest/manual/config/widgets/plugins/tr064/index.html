@@ -204,6 +204,10 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <div class="section" id="das-tr064-plugin">
 <span id="tr064"></span><h1>Das tr064 Plugin<a class="headerlink" href="#das-tr064-plugin" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Zu tun</p>
+<p class="last">Automatische Screenshot-Generierung (aus Dummy-Daten)</p>
+</div>
 <div class="section" id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das Plugin ist ein Interface zu Routern die das TR-064 Protokoll implementieren, wie der weit verbreiteten Fritz!Box.
@@ -552,7 +556,7 @@ daher weg gelassen werden.</p>
 </div>
 <div class="section" id="xml-syntax">
 <h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Alternativ kann man für das %%%WIDGET_NAME%%% Plugin auch von Hand einen Eintrag in
+<p>Alternativ kann man für das tr064-Plugin auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../../xml-format.html"><span class="doc">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
 <p class="first admonition-title">Vorsicht</p>
@@ -560,6 +564,19 @@ der <a class="reference internal" href="../../../xml-format.html"><span class="d
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das calllist Widget aus dem tr064 Plugin aus dem folgenden Screenshot erzeugt:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;tr064&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+<span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;TR-064&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;calllist</span> <span class="na">device=</span><span class="s">&quot;fritzbox&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label&gt;</span>calllist<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/calllist&gt;</span>
+<span class="nt">&lt;/page&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="voraussetzungen-einrichtung-auf-dem-server">
 <h2>Voraussetzungen / Einrichtung auf dem Server<a class="headerlink" href="#voraussetzungen-einrichtung-auf-dem-server" title="Link zu dieser Überschrift">¶</a></h2>
