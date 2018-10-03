@@ -43,5 +43,14 @@ qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
       check: "Boolean",
       init: false
     }
-  }
+  },
+
+  /*
+  ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    close: 'qx.event.type.Event'
+  },
 });

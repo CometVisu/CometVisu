@@ -132,9 +132,6 @@
         },
         {
           "uri" : "resource/libs/favico.js"
-        },
-        {
-          "uri" : "resource/sentry/bundle.min.js"
         }
       ],
       "copy-files" :

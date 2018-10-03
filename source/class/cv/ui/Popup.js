@@ -190,6 +190,9 @@ qx.Class.define('cv.ui.Popup', {
           var typeActions = qx.lang.Type.isArray(attributes.actions[type]) ? attributes.actions[type] : [attributes.actions[type]];
           typeActions.forEach(function (action) {
             var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
+            actionButton.$$handler && actionButton.$$handler.addListener('close', function () {
+              this.close();
+            }, this);
             qx.dom.Element.insertEnd(actionButton, this.__elementMap.actions);
           }, this);
         }, this);

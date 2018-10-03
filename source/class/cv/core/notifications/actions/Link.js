@@ -102,6 +102,9 @@ qx.Class.define("cv.core.notifications.actions.Link", {
           cv.util.Location.open(this.getUrl(), '_blank');
         }
       }
+      if (this.isDeleteMessageAfterExecution) {
+        this.fireEvent('close');
+      }
     },
 
     getDomElement: function() {
@@ -109,6 +112,7 @@ qx.Class.define("cv.core.notifications.actions.Link", {
         "class": "action",
         "text": this.getTitle()
       });
+      actionButton.$$handler = this;
 
       qx.event.Registration.addListener(actionButton, "tap", this.handleAction, this);
       return actionButton;

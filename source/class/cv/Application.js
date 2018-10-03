@@ -268,13 +268,17 @@ qx.Class.define("cv.Application",
                   parent = parent.parentNode;
                 }
                 var box = qx.bom.Selector.query(".enableReporting", parent)[0];
+                var url = window.location.href.split("#").shift();
                 if (box.checked) {
                   // reload with reporting enabled
-                  var url = window.location.href.split("#").shift();
-                  cv.util.Location.setHref(qx.util.Uri.appendParamsToUrl(url, "reporting=true"));
-                } else {
-                  cv.util.Location.reload(true);
+                  url = qx.util.Uri.appendParamsToUrl(url, "reporting=true");
                 }
+                box = qx.bom.Selector.query(".reportErrors", parent)[0];
+                if (box && box.checked) {
+                  // reload with automatic error reporting enabled
+                  url = qx.util.Uri.appendParamsToUrl(url, "reportErrors=true");
+                }
+                cv.util.Location.setHref(url);
               },
               needsConfirmation: false
             }
@@ -283,18 +287,19 @@ qx.Class.define("cv.Application",
       };
       // reload with reporting checkbox
       var reportAction = null;
+      var link = "";
       if (cv.Config.reporting) {
         // reporting is enabled -> download log and show hint how to append it to the ticket
         body = '<!--\n'+qx.locale.Manager.tr("Please do not forget to attach the downloaded Logfile to this ticket.")+'\n-->\n\n'+body;
         reportAction = cv.report.Record.download;
       } else {
-        var link = "";
-        if (qx.locale.Manager.getInstance().getLocale() === "de") {
+        if (qx.locale.Manager.getInstance().getLanguage() === "de") {
           link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
         notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
 
       }
+
       notification.actions.link.push(
         {
           title: qx.locale.Manager.tr("Report Bug"),
@@ -307,16 +312,27 @@ qx.Class.define("cv.Application",
           needsConfirmation: false
         }
       );
-      if (qx.core.Environment.get('cv.sentry') && window.Sentry) {
-        notification.actions.link.push(
-          {
-            title: qx.locale.Manager.tr("Send error to sentry.io"),
-            action: function () {
-              Sentry.captureException(ex);
-            },
-            needsConfirmation: false
+      if (qx.core.Environment.get('cv.sentry')) {
+        if (window.Sentry) {
+          // Sentry has been loaded -> add option to send the error
+          notification.actions.link.push(
+            {
+              title: qx.locale.Manager.tr("Send error to sentry.io"),
+              action: function () {
+                Sentry.captureException(ex);
+                Sentry.showReportDialog();
+              },
+              needsConfirmation: false,
+              deleteMessageAfterExecution: true
+            }
+          );
+        } else {
+          link = "";
+          if (qx.locale.Manager.getInstance().getLanguage() === "de") {
+            link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
           }
-        );
+          notification.message+='<div class="actions"><input class="reportErrors" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable error reporting")+link+'</div>';
+        }
       }
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
     },
