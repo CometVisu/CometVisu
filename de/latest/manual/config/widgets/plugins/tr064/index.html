@@ -604,14 +604,18 @@ im Bereich der &#8220;Versteckten Konfigurationen&#8221;<a class="footnote-refer
 <p>Der dort verwendete Name muss im calllist Widget im Attribut <code class="docutils literal"><span class="pre">device</span></code> angegeben werden.</p>
 <p>Alternativ zum Manager lässt sich auch direkt die Datei <code class="docutils literal"><span class="pre">config/hidden.php</span></code> Editieren und eine Konfigurationszeile
 hinzufügen:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;?php
-// File for configuraions that shouldn&#39;t be shared with the user
-$hidden = array(
-  &#39;fritzbox&#39; =&gt; array(&#39;uri&#39; =&gt; &#39;https://192.168.0.1:49443/&#39;, &#39;user&#39; =&gt; &#39;CometVisuTestUser&#39;, &#39;pass&#39; =&gt; &#39;pa3bvNM4j9z4&#39;)
-);
-?&gt;
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">php</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>&lt;?php
+// File for configuraions that shouldn&#8217;t be shared with the user
+$hidden = array(</p>
+<blockquote>
+<div>&#8216;fritzbox&#8217; =&gt; array(&#8216;uri&#8217; =&gt; &#8216;<a class="reference external" href="https://192.168.0.1:49443/">https://192.168.0.1:49443/</a>&#8216;, &#8216;user&#8217; =&gt; &#8216;CometVisuTestUser&#8217;, &#8216;pass&#8217; =&gt; &#8216;pa3bvNM4j9z4&#8217;)</div></blockquote>
+<p>);
+?&gt;</p>
+</div></blockquote>
 <p class="rubric">Fußnoten</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
