@@ -89,6 +89,13 @@
     "de": "/de/latest/manual/config/widgets/plugins/openhab/index.html"
   "name": "openHAB"
   "screenshot": {}
+- "description":
+    "de": "Router Informationen, wie Anruflisten der Fritz!Box, über TR-064."
+    "en": "Router informationen, like Fritz!Box call lists, via TR-064."
+  "manual":
+    "de": "/de/latest/manual/config/widgets/plugins/tr064/index.html"
+    "en": "/en/latest/manual/config/widgets/plugins/tr064/index.html"
+  "name": "tr064"
 "widgets":
 - "description":
     "de": "Mit diesem Widget kann in die Visu eine Audio-Datei eingebunden werden, die sich über eine Adresse abspielen lässt."

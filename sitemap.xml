@@ -161,6 +161,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/0.11.0-dev/manual/config/widgets/plugins/tr064/index.html</loc>
+    <lastmod>2018-10-03</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/en/0.11.0-dev/manual/config/widgets/plugins/rss/index.html</loc>
     <lastmod>2018-10-03</lastmod>
     <priority>0.5</priority>
@@ -1802,6 +1807,11 @@
   </url>
   <url>
     <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/widgets/plugins/openhab/index.html</loc>
+    <lastmod>2018-10-03</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/widgets/plugins/tr064/index.html</loc>
     <lastmod>2018-10-03</lastmod>
     <priority>0.5</priority>
   </url>

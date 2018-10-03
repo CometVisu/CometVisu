@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>The timeout plugin &mdash; CometVisu</title>
+  <title>The tr064 Plugin &mdash; CometVisu</title>
   
 
   
@@ -39,8 +39,7 @@
         <link rel="search" title="Search" href="../../../../search.html"/>
     <link rel="top" title="CometVisu" href="../../../../index.html"/>
         <link rel="up" title="Operatable widgets" href="../../index.html"/>
-        <link rel="next" title="The tr064 Plugin" href="../tr064/index.html"/>
-        <link rel="prev" title="The strftime plugin" href="../strftime/index.html"/> 
+        <link rel="prev" title="The timeout plugin" href="../timeout/index.html"/> 
 
   
   <script src="../../../../_static/js/modernizr.min.js"></script>
@@ -109,17 +108,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../rss/index.html">The rss plugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../speech/index.html">The Speech plugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../strftime/index.html">The strftime plugin</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">The timeout plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../timeout/index.html">The timeout plugin</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The tr064 Plugin</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#settings">Settings</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#allowed-attributes-in-the-timeout-element">Allowed attributes in the timeout-element</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#allowed-child-elements-und-their-attributes">Allowed child-elements und their attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prequesites-setup-of-the-server">Prequesites / setup of the server</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tr064/index.html">The tr064 Plugin</a></li>
 </ul>
 </li>
 </ul>
@@ -168,7 +162,7 @@
         
           <li><a href="../../index.html">Operatable widgets</a> &raquo;</li>
         
-      <li>The timeout plugin</li>
+      <li>The tr064 Plugin</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -192,82 +186,17 @@ It is possible that some of the described features are not yet available in the 
 <p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
-<div class="section" id="the-timeout-plugin">
-<span id="timeout"></span><h1>The timeout plugin<a class="headerlink" href="#the-timeout-plugin" title="Permalink to this headline">¶</a></h1>
-<div class="line"><div class="line-block">
-<div class="line"><strong>Available since version</strong>: 2012</div>
-<div class="line"><strong>Author</strong>: Carsten Tschach (<a class="reference external" href="mailto:Carsten&#37;&#52;&#48;Tschach&#46;com">Carsten<span>&#64;</span>Tschach<span>&#46;</span>com</a>)</div>
-<div class="line"><br /></div>
-</div>
-</div>
+<div class="section" id="the-tr064-plugin">
+<span id="tr064"></span><h1>The tr064 Plugin<a class="headerlink" href="#the-tr064-plugin" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>This plugins jumps back to a defined page after a given timeout period</p>
 </div>
-<div class="section" id="settings">
-<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
-<p>For a general understanding of how the configuration files are structured and what elements and attributes are
-it is recommended to read this section first: <span class="xref std std-ref">visu-config-details</span>.</p>
-<p>The behaviour and appearance of the timeout plugins can be influenced by using certain attributes and elements.
-The following tables show the allowed attributes and elements and their possible values.
-The screenshots show, how both can be edited in the <span class="xref std std-ref">editor</span>.</p>
-<p>Attributes underlined by ..... are mandatory, all the others are optional and be omitted.</p>
-<div class="section" id="allowed-attributes-in-the-timeout-element">
-<h3>Allowed attributes in the timeout-element<a class="headerlink" href="#allowed-attributes-in-the-timeout-element" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
-<colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribute</th>
-</tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
-<th class="head">Name</th>
-<th class="head">Content</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="3">timeout</td>
-<td>time</td>
-<td>string</td>
-<td>Defines the time until target page is called.</td>
-</tr>
-<tr class="row-even"><td><abbr title="mandatory">target</abbr></td>
-<td>string</td>
-<td>The name of the page, that should be called.</td>
-</tr>
-<tr class="row-odd"><td>debug</td>
-<td><em>true</em> or <em>false</em></td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="allowed-child-elements-und-their-attributes">
-<h3>Allowed child-elements und their attributes<a class="headerlink" href="#allowed-child-elements-und-their-attributes" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>It is possible to manually edit the <span class="xref doc">visu_config.xml</span> and add an entry
-for the timeout plugin.</p>
-<div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
-XML-editor to UTF-8 mode!</p>
-</div>
-<p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[1]</td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
-</tbody>
-</table>
+<div class="section" id="prequesites-setup-of-the-server">
+<h2>Prequesites / setup of the server<a class="headerlink" href="#prequesites-setup-of-the-server" title="Permalink to this headline">¶</a></h2>
+<p>To be able to use the plugin the server must support PHP with the extension
+of the SoapClient package.</p>
+<p>On debian based systems it means that the <code class="docutils literal"><span class="pre">php-soap</span></code> package must be
+installed.</p>
 </div>
 </div>
 
@@ -281,10 +210,8 @@ XML-editor to UTF-8 mode!</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../tr064/index.html" class="btn btn-neutral float-right" title="The tr064 Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="../strftime/index.html" class="btn btn-neutral" title="The strftime plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../timeout/index.html" class="btn btn-neutral" title="The timeout plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
