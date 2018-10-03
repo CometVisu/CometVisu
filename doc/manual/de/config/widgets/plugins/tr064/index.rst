@@ -159,11 +159,13 @@ im Bereich der "Versteckten Konfigurationen"[#f2]_:
 
 Der dort verwendete Name muss im calllist Widget im Attribut ``device`` angegeben werden.
 
-Alternativ zum Manager lässt sich auch direkt die Datei ``config/hidden.php`` Editieren und eine Konfigurationszeile
-hinzufügen::
+Alternativ zum Manager lässt sich auch direkt die Datei ``config/hidden.php`` editieren und eine Konfigurationszeile
+hinzufügen:
+
+.. code-block:: php
 
     <?php
-    // File for configuraions that shouldn't be shared with the user
+    // File for configurations that shouldn't be shared with the user
     $hidden = array(
       'fritzbox' => array('uri' => 'https://192.168.0.1:49443/', 'user' => 'CometVisuTestUser', 'pass' => 'pa3bvNM4j9z4')
     );
