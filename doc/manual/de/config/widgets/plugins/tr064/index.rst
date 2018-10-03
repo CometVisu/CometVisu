@@ -162,8 +162,6 @@ Der dort verwendete Name muss im calllist Widget im Attribut ``device`` angegebe
 Alternativ zum Manager lässt sich auch direkt die Datei ``config/hidden.php`` Editieren und eine Konfigurationszeile
 hinzufügen::
 
-.. code-block:: php
-
     <?php
     // File for configuraions that shouldn't be shared with the user
     $hidden = array(
