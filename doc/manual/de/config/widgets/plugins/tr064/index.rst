@@ -3,7 +3,7 @@
 Das tr064 Plugin
 =================
 
-.. api-doc:: tr064
+.. api-doc:: cv.plugins.tr064.CallList
 
 .. TODO::
 
