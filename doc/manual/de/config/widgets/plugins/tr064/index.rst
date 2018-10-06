@@ -20,6 +20,10 @@ Namen der Anrufer (wenn im Router hinterlegt), also auch die Aufzeichnungen des 
     :hide-source: true
 
         <settings>
+          <fixtures>
+            <fixture source-file="source/test/fixtures/tr064_proxy.xml" target-path="resource/plugins/tr064/proxy.php"/>
+            <fixture source-file="source/test/fixtures/tr064_soap.json" target-path="resource/plugins/tr064/soap.php"/>
+          </fixtures>
           <screenshot name="calllist">
           </screenshot>
         </settings>
@@ -27,8 +31,9 @@ Namen der Anrufer (wenn im Router hinterlegt), also auch die Aufzeichnungen des 
           <plugins><plugin name="tr064"/></plugins>
         </meta>
         <calllist device="tr064device">
-          <layout colspan="6" rowspan="6" />
+          <layout colspan="6" />
         </calllist>
+
 
 
 Einstellungen
@@ -100,23 +105,13 @@ der :doc:`visu_config.xml <../../../xml-format>` hinzufügen.
 
 Hier der minimale Beispielcode der das calllist Widget aus dem tr064 Plugin aus dem folgenden Screenshot erzeugt:
 
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <meta>
-        <plugins>
-            <plugin name="tr064" />
-        </plugins>
-    </meta>
-    <page name="TR-064" type="text">
-        <calllist device="fritzbox">
-            <label>calllist</label>
-        </calllist>
-    </page>
-    
 .. widget-example::
 
     <settings>
+        <fixtures>
+          <fixture source-file="source/test/fixtures/tr064_proxy.xml" target-path="/resource/plugins/tr064/proxy.php"/>
+          <fixture source-file="source/test/fixtures/tr064_soap.json" target-path="/resource/plugins/tr064/soap.php"/>
+        </fixtures>
         <screenshot name="calllist_simple">
             <caption>calllist, einfaches Beispiel</caption>
         </screenshot>
