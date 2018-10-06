@@ -32,7 +32,6 @@ Namen der Anrufer (wenn im Router hinterlegt), also auch die Aufzeichnungen des 
         </meta>
         <calllist device="tr064device">
           <layout colspan="6" />
-          <address transform="DPT:1.001" mode="read">1/1/0</address>
         </calllist>
 
 
@@ -69,7 +68,6 @@ Erlaubte Attribute im calllist-Element
     </meta>
     <calllist device="fritzbox">
         <layout colspan="4" />
-        <address transform="DPT:1.001" mode="read">1/1/0</address>
     </calllist>
 
 
@@ -125,7 +123,6 @@ Hier der minimale Beispielcode der das calllist Widget aus dem tr064 Plugin aus 
     </meta>
     <calllist device="fritzbox">
         <label>calllist</label>
-        <address transform="DPT:1.001" mode="read">1/1/0</address>
     </calllist>
 
     
