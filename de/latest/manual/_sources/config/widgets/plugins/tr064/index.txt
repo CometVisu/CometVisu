@@ -5,9 +5,6 @@ Das tr064 Plugin
 
 .. api-doc:: cv.plugins.tr064.CallList
 
-.. TODO::
-
-    Automatische Screenshot-Generierung (aus Dummy-Daten)
 
 Beschreibung
 ------------
