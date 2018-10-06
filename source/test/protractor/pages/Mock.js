@@ -39,7 +39,8 @@ var CometVisuMockup = function (target) {
     var sourceFile = path.join(rootDir, fixture.sourceFile);
     var targetPath = fixture.targetPath;
     if (!targetPath.startsWith('/')) {
-      targetPath = '/' + targetPath;
+      // adding target only to relative paths
+      targetPath = '/' + target + '/' + targetPath;
     }
     if (fs.existsSync(sourceFile)) {
       var content = fs.readFileSync(sourceFile);
@@ -59,6 +60,17 @@ var CometVisuMockup = function (target) {
     } else {
       console.error("fixture file", sourceFile, 'not found');
     }
+  };
+
+  this.resetMockupFixture = function (fixture) {
+    var targetPath = fixture.targetPath;
+    if (!targetPath.startsWith('/')) {
+      targetPath = '/' + target + '/' + targetPath;
+    }
+    request({
+      method: 'DELETE',
+      uri: 'http://localhost:8000/mock' + targetPath,
+    });
   };
 
   this.pageLoaded = this.and(
