@@ -78,13 +78,16 @@ Hier der minimale Beispielcode der das Web Widget aus dem folgenden Screenshot e
 .. widget-example::
 
     <settings>
+        <fixtures>
+            <fixture source-file="source/test/fixtures/web.html" target-path="/source/web.html"/>
+        </fixtures>
         <screenshot name="web_simple" sleep="1000">
             <caption>Web, einfaches Beispiel</caption>
         </screenshot>
     </settings>
-    <web src="http://www.wikipedia.de" width="620px" height="300px" frameborder="false" background="black" refresh="20">
+    <web src="/source/web.html" width="620px" height="300px" frameborder="false" background="black" refresh="20">
       <layout colspan="6"/>
-      <label>Wikipedia</label>
+      <label>Web widget example</label>
     </web>
 
 

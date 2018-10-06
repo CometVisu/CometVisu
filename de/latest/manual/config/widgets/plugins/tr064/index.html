@@ -219,6 +219,9 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <p>Das Plugin ist ein Interface zu Routern die das TR-064 Protokoll implementieren, wie der weit verbreiteten Fritz!Box.
 Mit dem <code class="docutils literal"><span class="pre">calllist</span></code> Widget aus diesem Plugin lässt sich eine Anrufliste darstellen. Diese Liste enthält sowohl die
 Namen der Anrufer (wenn im Router hinterlegt), also auch die Aufzeichnungen des Anrufbeantworters.</p>
+<div class="figure">
+<img alt="../../../../_images/calllist.png" src="../../../../_images/calllist.png" />
+</div>
 </div>
 <div class="section" id="einstellungen">
 <h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
@@ -356,6 +359,10 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
+<div class="figure align-center" id="id3">
+<img alt="../../../../_images/de_config_widgets_plugins_tr064_index_editor_attributes.png" src="../../../../_images/de_config_widgets_plugins_tr064_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+</div>
 </div>
 <div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
@@ -514,7 +521,7 @@ daher weg gelassen werden.</p>
 <tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
 <dt>calllist</dt>
 <dd><ul class="first last simple">
-<li><abbr title="Pflichtangabe">address</abbr></li>
+<li>address</li>
 </ul>
 </dd>
 </dl>
@@ -554,7 +561,7 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id4">
 <img alt="../../../../_images/de_config_widgets_plugins_tr064_index_editor_elements.png" src="../../../../_images/de_config_widgets_plugins_tr064_index_editor_elements.png" />
 <p class="caption"><span class="caption-text">Elemente im Editor</span></p>
 </div>
@@ -570,17 +577,20 @@ der <a class="reference internal" href="../../../xml-format.html"><span class="d
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das calllist Widget aus dem tr064 Plugin aus dem folgenden Screenshot erzeugt:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<div class="figure" id="id5">
+<img alt="calllist, einfaches Beispiel" src="../../../../_images/calllist_simple.png" />
+<p class="caption"><span class="caption-text">calllist, einfaches Beispiel</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;plugins&gt;</span>
-        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;tr064&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;tr064&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/plugins&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
-<span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;TR-064&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;calllist</span> <span class="na">device=</span><span class="s">&quot;fritzbox&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;label&gt;</span>calllist<span class="nt">&lt;/label&gt;</span>
-    <span class="nt">&lt;/calllist&gt;</span>
-<span class="nt">&lt;/page&gt;</span>
+...
+<span class="nt">&lt;calllist</span> <span class="na">device=</span><span class="s">&quot;fritzbox&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label&gt;</span>calllist<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/calllist&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -603,7 +613,7 @@ angelegter Benutzer verwendet werden). Dies geht über die Benutzer-Verwaltung:<
 <img alt="../../../../_images/fritzbox_user.png" src="../../../../_images/fritzbox_user.png" />
 </div>
 <p>Damit das Plugin auf diesen Benutzer zugreifen kann, müssen dessen Login-Daten hinterlegt werden. Dies geht im Manager
-im Bereich der &#8220;Versteckten Konfigurationen&#8221;<a class="footnote-reference" href="#f2" id="id1">[2]</a>:</p>
+im Bereich der &#8220;Versteckten Konfigurationen&#8221;<a class="footnote-reference" href="#f2" id="id2">[2]</a>:</p>
 <div class="figure">
 <img alt="../../../../_images/hidden_config_de.png" src="../../../../_images/hidden_config_de.png" />
 </div>
@@ -622,13 +632,13 @@ hinzufügen:</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="f2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[2]</a></td><td><p class="first">Die &#8220;Versteckte Konfiguration&#8221; sind Konfigurationsdaten die nicht an den Client übertragen werden und auf dem
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><p class="first">Die &#8220;Versteckte Konfiguration&#8221; sind Konfigurationsdaten die nicht an den Client übertragen werden und auf dem
 Server bleiben. Daher werden diese vor dem Anwender &#8220;versteckt&#8221;, sind aber auf dem Server selbst im Klartext lesbar.
 Auch im Manager sind diese Informationen im Klartext lesbar.</p>
 <p class="last">Dies erzeugt für sich noch keine sichere Umgebung. Jedoch lässt sich hierdurch eine Sichere Umgebung aufbauen, in

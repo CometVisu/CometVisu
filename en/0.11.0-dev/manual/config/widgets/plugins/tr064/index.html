@@ -205,6 +205,9 @@ by an online translation service.</p>
 the widely used Fritz!Box. The <code class="docutils literal"><span class="pre">calllist</span></code> widget from this plugin displays
 a call list that contains the name of the callers (when known to the router)
 as well as the records of the answering machine.</p>
+<div class="figure">
+<img alt="../../../../_images/calllist.png" src="../../../../_images/calllist.png" />
+</div>
 </div>
 <div class="section" id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
@@ -341,6 +344,10 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </tr>
 </tbody>
 </table>
+<div class="figure align-center" id="id3">
+<img alt="../../../../_images/en_config_widgets_plugins_tr064_index_editor_attributes.png" src="../../../../_images/en_config_widgets_plugins_tr064_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+</div>
 </div>
 <div class="section" id="allowed-child-elements-und-their-attributes">
 <h3>Allowed child-elements und their attributes<a class="headerlink" href="#allowed-child-elements-und-their-attributes" title="Permalink to this headline">¶</a></h3>
@@ -499,7 +506,7 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 <tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
 <dt>calllist</dt>
 <dd><ul class="first last simple">
-<li><abbr title="mandatory">address</abbr></li>
+<li>address</li>
 </ul>
 </dd>
 </dl>
@@ -539,7 +546,7 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id4">
 <img alt="../../../../_images/en_config_widgets_plugins_tr064_index_editor_elements.png" src="../../../../_images/en_config_widgets_plugins_tr064_index_editor_elements.png" />
 <p class="caption"><span class="caption-text">Elemente im Editor</span></p>
 </div>
@@ -569,6 +576,22 @@ screenshot is:</p>
 <span class="nt">&lt;/page&gt;</span>
 </pre></div>
 </div>
+<div class="figure" id="id5">
+<img alt="calllist, einfaches Beispiel" src="../../../../_images/calllist_simple.png" />
+<p class="caption"><span class="caption-text">calllist, einfaches Beispiel</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;tr064&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;calllist</span> <span class="na">device=</span><span class="s">&quot;fritzbox&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label&gt;</span>calllist<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/calllist&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="prequesites-setup-of-the-server">
 <h2>Prequesites / setup of the server<a class="headerlink" href="#prequesites-setup-of-the-server" title="Permalink to this headline">¶</a></h2>
@@ -590,7 +613,7 @@ on the user page:</p>
 <img alt="../../../../_images/fritzbox_user.png" src="../../../../_images/fritzbox_user.png" />
 </div>
 <p>That the plugin can access this user account the credentials must be given.
-This can be done in the CometVisu manager in the area &#8220;hidden configuration&#8221;<a class="footnote-reference" href="#f2" id="id1">[2]</a>:</p>
+This can be done in the CometVisu manager in the area &#8220;hidden configuration&#8221;<a class="footnote-reference" href="#f2" id="id2">[2]</a>:</p>
 <div class="figure">
 <img alt="../../../../_images/hidden_config_en.png" src="../../../../_images/hidden_config_en.png" />
 </div>
@@ -609,14 +632,14 @@ $hidden = array(
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>In the simple view some things might be not visible. The expert view
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In the simple view some things might be not visible. The expert view
 will show all entries.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="f2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[2]</a></td><td><p class="first">The &#8220;hidden configuration&#8221; are configuraion datas that are not
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><p class="first">The &#8220;hidden configuration&#8221; are configuraion datas that are not
 transmitted to the client any stay on the server. So there information
 is &#8220;hidden&#8221; to the user. On the server it is still readable in clear
 text. This is also true for the manager.</p>
