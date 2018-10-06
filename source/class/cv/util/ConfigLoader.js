@@ -64,7 +64,7 @@ qx.Class.define('cv.util.ConfigLoader', {
         }
         this.__xml = xml;
         qx.bom.Selector.query('include', xml).forEach(this.loadInclude, this);
-        this.__loadQueue.remove(uri);
+        this.__loadQueue.remove(ajaxRequest.getUrl());
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
           this.configError("parsererror");
@@ -85,7 +85,7 @@ qx.Class.define('cv.util.ConfigLoader', {
             if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
               cv.Config.backend = req.getResponseHeader("X-CometVisu-Backend-Name");
             }
-            callback.call(context, xml);
+            this._checkQueue();
           }
         }
       }, this);
@@ -123,15 +123,15 @@ qx.Class.define('cv.util.ConfigLoader', {
       this.__loadQueue.push(url);
       var xhr = new qx.io.request.Xhr(url);
       xhr.set({
-        accept: "application/xml",
+        accept: "text/plain",
         async: false
       });
       xhr.addListenerOnce("success", function(e) {
         var req = e.getTarget();
-        var xml = req.getResponse();
+        var xml = qx.xml.Document.fromString('<root>' + req.getResponseText() + '</root>');
         var parent = includeElem.parentElement;
         parent.removeChild(includeElem);
-        qx.dom.Hierarchy.getChildElements(xml).forEach(function (child) {
+        qx.dom.Hierarchy.getChildElements(xml.firstChild).forEach(function (child) {
           parent.appendChild(child);
         });
         this.__loadQueue.remove(url);
