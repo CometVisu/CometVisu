@@ -3,7 +3,7 @@
 Das Speech Plugin
 =================
 
-.. api-doc:: speech
+.. api-doc:: cv.plugins.Speech
 
 Beschreibung
 ------------

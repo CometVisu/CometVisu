@@ -3,7 +3,7 @@
 Das PowerSpectrum Plugin
 ========================
 
-.. api-doc:: powerspectrum
+.. api-doc:: cv.plugins.PowerSpectrum
 
 Beschreibung
 ------------

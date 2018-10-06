@@ -3,7 +3,7 @@
 Das Timeout Plugin
 ==================
 
-.. api-doc:: timeout
+.. api-doc:: cv.plugins.Timeout
 
 Beschreibung
 ------------

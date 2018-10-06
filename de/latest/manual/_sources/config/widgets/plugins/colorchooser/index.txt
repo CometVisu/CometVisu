@@ -10,7 +10,7 @@
 Das ColorChooser Plugin
 =======================
 
-.. api-doc:: colorchooser
+.. api-doc:: cv.plugins.ColorChooser
 
 Beschreibung
 ------------
