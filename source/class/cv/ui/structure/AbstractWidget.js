@@ -55,7 +55,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
           this.setParentWidget(parent);
         }
       }
-      var parentPage = this.get$$type() === "page" || this.get$$type() === "navbar" ? null : this.getParentPage();
+      var parentPage = this.get$$type() === "page" || this.get$$type() === "navbar" ? null : this.getVisibilityParent();
       if (parentPage) {
         parentPage.bind("visible", this, "visible");
       }

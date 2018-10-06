@@ -36,11 +36,8 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
   ******************************************************
   */
   statics: {
+    states: new cv.ui.layout.States(),
 
-    invalidBackdrop: true,
-    invalidNavbar: true,
-    invalidPagesize: true,
-    invalidRowspan: true,
     $pageSize: null,
     $navbarTop: null,
     $navbarBottom: null,
@@ -51,10 +48,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     validationQueue: [],
 
     reset: function() {
-      this.invalidBackdrop = true;
-      this.invalidNavbar = true;
-      this.invalidPagesize = true;
-      this.invalidRowspan = true;
+      this.states.resetAll();
       this.$pageSize = null;
       this.$navbarTop = null;
       this.$navbarBottom = null;
@@ -103,10 +97,10 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     },
 
     makeAllSizesValid : function() {
-      if (this.invalidPagesize) { this.makePagesizeValid(); } // must be first due to dependencies
-      if (this.invalidNavbar) { this.makeNavbarValid(); }
-      if (this.invalidRowspan) { this.makeRowspanValid(); }
-      if (this.invalidBackdrop) { this.makeBackdropValid(); }
+      if (this.states.isPageSizeInvalid()) { this.makePagesizeValid(); } // must be first due to dependencies
+      if (this.states.isNavbarInvalid()) { this.makeNavbarValid(); }
+      if (this.states.isRowspanInvalid()) { this.makeRowspanValid(); }
+      if (this.states.isBackdropInvalid()) { this.makeBackdropValid(); }
     },
 
     makeBackdropValid: function () {
@@ -203,7 +197,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         }, this);
       }
 
-      this.invalidBackdrop = false;
+      this.states.setBackdropInvalid(false);
     },
 
     makeNavbarValid: function () {
@@ -232,7 +226,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         // the amount of columns has changed -> recalculate the widgets widths
         cv.ui.layout.Manager.applyColumnWidths();
       }
-      this.invalidNavbar = false;
+      this.states.setNavbarInvalid(false);
     },
 
     makePagesizeValid: function () {
@@ -261,7 +255,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         pageSizeElement.innerHTML = '#main,.page{width:' + this.width + 'px;height:' + this.height + 'px;}';
       }
 
-      this.invalidPagesize = false;
+      this.states.setPageSizeInvalid(false);
     },
 
     makeRowspanValid: function () {
@@ -302,27 +296,32 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       if (rowSpanStyle) {
         rowSpanStyle.innerHTML = styles;
       }
-      this.invalidRowspan = false;
+      this.states.setRowspanInvalid(false);
     },
 
     invalidateBackdrop: function () {
-      this.invalidBackdrop = true;
+      qx.log.Logger.debug(this, "backdrop");
+      this.states.setBackdropInvalid(true);
       this.makeAllSizesValid();
     },
     invalidateNavbar: function () {
-      this.invalidNavbar = true;
-      this.invalidPagesize = true;
+      qx.log.Logger.debug(this, "invalidateNavbar");
+      this.states.setNavbarInvalid(true);
+      this.states.setPageSizeInvalid(true);
       this.makeAllSizesValid();
     },
     invalidateRowspan: function () {
-      this.invalidRowspan = true;
+      this.states.setRowspanInvalid(true);
       this.makeAllSizesValid();
     },
     invalidateScreensize: function () {
-      this.invalidPagesize = true;
-      this.invalidRowspan = true;
-      this.invalidNavbar = true;
-      this.invalidBackdrop = true;
+      qx.log.Logger.debug(this, "invalidateScreensize");
+      this.states.set({
+        pageSizeInvalid: true,
+        rowspanInvalid: true,
+        navbarInvalid: true,
+        backdropInvalid: true
+      });
       this.makeAllSizesValid();
     }
   }
