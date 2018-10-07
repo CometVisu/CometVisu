@@ -29,8 +29,8 @@ date_format = '%Y-%m-%dT%H:%M:%SZ'
 
 sep_width = 70
 
-nodename = platform.uname()[1]
-if nodename[0:8] == "wiregate":
+kernel = platform.uname()[2]
+if "wiregate" in kernel:
     print('This script does not work on wiregate systems!')
     print('Downloading date from HTTPS sites is broken on the current wiregate systems.')
     sys.exit(1)
