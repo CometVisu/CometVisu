@@ -32,7 +32,7 @@ sep_width = 70
 kernel = platform.uname()[2]
 if "wiregate" in kernel:
     print('This script does not work on wiregate systems!')
-    print('Downloading date from HTTPS sites is broken on the current wiregate systems.')
+    print('Downloading data from HTTPS sites is broken on the current wiregate systems.')
     sys.exit(1)
 
 
