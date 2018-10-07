@@ -5,7 +5,7 @@
 Das Gauge Plugin
 ================
 
-.. api-doc:: gauge
+.. api-doc:: cv.plugins.Gauge
 
 Beschreibung
 ------------

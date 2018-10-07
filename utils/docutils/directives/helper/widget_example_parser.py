@@ -86,7 +86,8 @@ class WidgetExampleParser:
         settings = {
             "selector": ".widget_container",
             "screenshots": [],
-            "screenshotDir": self.screenshot_dir
+            "screenshotDir": self.screenshot_dir,
+            "fixtures": []
         }
         design = "metal"
 
@@ -97,6 +98,13 @@ class WidgetExampleParser:
             settings['selector'] = settings_node.get("selector", ".widget_container")
             if settings_node.get("sleep"):
                 settings['sleep'] = settings_node.get("sleep")
+
+            for fixture in settings_node.iter('fixture'):
+                values = {
+                    'sourceFile': fixture.get("source-file"),
+                    'targetPath': fixture.get("target-path")
+                }
+                settings['fixtures'].append(values)
 
             for screenshot in settings_node.iter('screenshot'):
                 shot = {

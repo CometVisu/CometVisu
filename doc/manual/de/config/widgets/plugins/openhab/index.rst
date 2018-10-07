@@ -3,7 +3,7 @@
 Das openHAB2 Plugin
 ===================
 
-.. api-doc:: openhab
+.. api-doc:: cv.plugins.openhab.Openhab
 
 Beschreibung
 ------------

@@ -51,6 +51,9 @@ class WidgetExampleDirective(Directive):
             :number-lines: 1
 
             <settings design="metal" selector=".widget_container">
+                <fixtures>
+                    <fixture source-file="/path/to/read/file/from" target-path="/target/path/to/serve/file/from"/>
+                </fixtures>
                 <screenshot name="switch_mapping_styling">
                     <data address="1/4/0">0</data>
                 </screenshot>

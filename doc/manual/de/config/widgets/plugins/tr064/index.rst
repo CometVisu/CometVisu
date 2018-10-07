@@ -3,7 +3,8 @@
 Das tr064 Plugin
 =================
 
-.. api-doc:: tr064
+.. api-doc:: cv.plugins.tr064.CallList
+
 
 Beschreibung
 ------------
@@ -16,6 +17,10 @@ Namen der Anrufer (wenn im Router hinterlegt), also auch die Aufzeichnungen des 
     :hide-source: true
 
         <settings>
+          <fixtures>
+            <fixture source-file="source/test/fixtures/tr064_proxy.xml" target-path="resource/plugins/tr064/proxy.php"/>
+            <fixture source-file="source/test/fixtures/tr064_soap.json" target-path="resource/plugins/tr064/soap.php"/>
+          </fixtures>
           <screenshot name="calllist">
           </screenshot>
         </settings>
@@ -23,8 +28,9 @@ Namen der Anrufer (wenn im Router hinterlegt), also auch die Aufzeichnungen des 
           <plugins><plugin name="tr064"/></plugins>
         </meta>
         <calllist device="tr064device">
-          <layout colspan="6" rowspan="6" />
+          <layout colspan="6" />
         </calllist>
+
 
 
 Einstellungen
@@ -87,7 +93,7 @@ Erlaubte Kind-Elemente und deren Attribute
 XML Syntax
 ----------
 
-Alternativ kann man für das %%%WIDGET_NAME%%% Plugin auch von Hand einen Eintrag in
+Alternativ kann man für das tr064-Plugin auch von Hand einen Eintrag in
 der :doc:`visu_config.xml <../../../xml-format>` hinzufügen.
 
 .. CAUTION::
@@ -99,6 +105,10 @@ Hier der minimale Beispielcode der das calllist Widget aus dem tr064 Plugin aus 
 .. widget-example::
 
     <settings>
+        <fixtures>
+          <fixture source-file="source/test/fixtures/tr064_proxy.xml" target-path="/resource/plugins/tr064/proxy.php"/>
+          <fixture source-file="source/test/fixtures/tr064_soap.json" target-path="/resource/plugins/tr064/soap.php"/>
+        </fixtures>
         <screenshot name="calllist_simple">
             <caption>calllist, einfaches Beispiel</caption>
         </screenshot>
@@ -141,11 +151,13 @@ im Bereich der "Versteckten Konfigurationen"[#f2]_:
 
 Der dort verwendete Name muss im calllist Widget im Attribut ``device`` angegeben werden.
 
-Alternativ zum Manager lässt sich auch direkt die Datei ``config/hidden.php`` Editieren und eine Konfigurationszeile
-hinzufügen::
+Alternativ zum Manager lässt sich auch direkt die Datei ``config/hidden.php`` editieren und eine Konfigurationszeile
+hinzufügen:
+
+.. code-block:: php
 
     <?php
-    // File for configuraions that shouldn't be shared with the user
+    // File for configurations that shouldn't be shared with the user
     $hidden = array(
       'fritzbox' => array('uri' => 'https://192.168.0.1:49443/', 'user' => 'CometVisuTestUser', 'pass' => 'pa3bvNM4j9z4')
     );

@@ -205,6 +205,8 @@ function filterPreview( $name )
 
 // very simple i18n:
 $userLang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+if( array_key_exists( 'lang', $_GET ) )
+  $userLang = $_GET['lang'];
 if( !array_key_exists( $userLang, $_STRINGS ) )
   $userLang = 'en'; // default
 $_ = $_STRINGS[ $userLang ];

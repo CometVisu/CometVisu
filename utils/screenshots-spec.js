@@ -152,18 +152,25 @@ var createDir = function(dir) {
 describe('generation screenshots from jsdoc examples', function () {
   'use strict';
   var mockupConfig = [];
+  var mockedFixtures = [];
+  var mockup = null;
 
   beforeEach(function () {
     var mockedConfigData = mockupConfig.shift();
-    if (mockedConfigData.mode == "cv") {
-      cvMockup.mockupConfig(mockedConfigData.data);
-      cvMockup.to();
-      cvMockup.at();
+    mockup = (mockedConfigData.mode === "cv") ? cvMockup : editorMockup;
+    if (mockedConfigData.hasOwnProperty('fixtures')) {
+      mockedFixtures = mockedConfigData.fixtures;
+      mockedConfigData.fixtures.forEach(fix => mockup.mockupFixture(fix));
     } else {
-      editorMockup.mockupConfig(mockedConfigData.data);
-      editorMockup.to();
-      editorMockup.at();
+      mockedFixtures = [];
     }
+    mockup.mockupConfig(mockedConfigData.data);
+    mockup.to();
+    mockup.at();
+  });
+
+  afterEach(function () {
+    mockedFixtures.forEach(fix => mockup.resetMockupFixture(fix));
   });
 
   var examplesDir = path.join("cache", "widget_examples");
@@ -191,7 +198,8 @@ describe('generation screenshots from jsdoc examples', function () {
             var selectorPrefix = ".activePage ";
             var mockedConfigData = {
               mode: "cv",
-              data: example.join("\n")
+              data: example.join("\n"),
+              fixtures: settings.fixtures
             };
 
             if (settings.editor) {
