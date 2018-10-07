@@ -11,6 +11,7 @@ except:
     import urllib as request
 import xml.etree.ElementTree as ET
 import re
+import platform
 from datetime import datetime
 import locale
 from zipfile import ZipFile
@@ -27,6 +28,12 @@ RELEASE_PATH = 'https://api.github.com/repos/CometVisu/CometVisu/releases/latest
 date_format = '%Y-%m-%dT%H:%M:%SZ'
 
 sep_width = 70
+
+nodename = platform.uname()[1]
+if nodename[0:8] == "wiregate":
+    print('This script does not work on wiregate systems!')
+    print('Downloading date from HTTPS sites is broken on the current wiregate systems.')
+    sys.exit(1)
 
 
 def get_latest_nightly():
