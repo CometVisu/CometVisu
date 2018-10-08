@@ -85,7 +85,7 @@ module.exports = function(grunt) {
       expand: true,
       cwd: '.',
       src: [
-        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md',
+        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md', 'update.py',
         'release/**'
       ],
       dest: 'cometvisu/',
