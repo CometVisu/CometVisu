@@ -248,6 +248,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
       // connect badge content
       this._messages.addListener("changeLength", this.__updateBadge, this);
+      this.__updateBadge();
 
       // update dimensions
       new qx.util.DeferredCall(this._onResize, this).schedule();

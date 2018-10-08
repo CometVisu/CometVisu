@@ -256,6 +256,7 @@ qx.Class.define("cv.Application",
         severity: "urgent",
         deletable: false,
         actions: {
+          option: [],
           link: [
             {
               title: qx.locale.Manager.tr("Reload"),
@@ -267,13 +268,13 @@ qx.Class.define("cv.Application",
                   }
                   parent = parent.parentNode;
                 }
-                var box = qx.bom.Selector.query(".enableReporting", parent)[0];
+                var box = qx.bom.Selector.query("#enableReporting", parent)[0];
                 var url = window.location.href.split("#").shift();
                 if (box.checked) {
                   // reload with reporting enabled
                   url = qx.util.Uri.appendParamsToUrl(url, "reporting=true");
                 }
-                box = qx.bom.Selector.query(".reportErrors", parent)[0];
+                box = qx.bom.Selector.query("#reportErrors", parent)[0];
                 if (box && box.checked) {
                   // reload with automatic error reporting enabled
                   url = qx.util.Uri.appendParamsToUrl(url, "reportErrors=true");
@@ -296,22 +297,13 @@ qx.Class.define("cv.Application",
         if (qx.locale.Manager.getInstance().getLanguage() === "de") {
           link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
-        notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
-
+        notification.actions.option.push({
+          title: qx.locale.Manager.tr("Enable reporting on reload") + link,
+          name: "enableReporting"
+        });
+        // notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
       }
 
-      notification.actions.link.push(
-        {
-          title: qx.locale.Manager.tr("Report Bug"),
-          url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
-            labels: "bug / bugfix",
-            title: ex.toString(),
-            body: body
-          }),
-          action: reportAction,
-          needsConfirmation: false
-        }
-      );
       if (qx.core.Environment.get('cv.sentry')) {
         if (window.Sentry) {
           // Sentry has been loaded -> add option to send the error
@@ -320,7 +312,6 @@ qx.Class.define("cv.Application",
               title: qx.locale.Manager.tr("Send error to sentry.io"),
               action: function () {
                 Sentry.captureException(ex);
-                Sentry.showReportDialog();
               },
               needsConfirmation: false,
               deleteMessageAfterExecution: true
@@ -331,7 +322,12 @@ qx.Class.define("cv.Application",
           if (qx.locale.Manager.getInstance().getLanguage() === "de") {
             link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
           }
-          notification.message+='<div class="actions"><input class="reportErrors" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable error reporting")+link+'</div>';
+          notification.actions.option.push({
+            title: qx.locale.Manager.tr("Enable error sending on reload") + link,
+            name: "reportErrors",
+            style: "margin-left: 18px"
+          });
+          // notification.message+='<div class="actions"><input class="reportErrors" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable error reporting")+link+'</div>';
         }
       }
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
@@ -363,11 +359,13 @@ qx.Class.define("cv.Application",
           cv.ConfigCache.restore();
           // initialize NotificationCenter
           cv.ui.NotificationCenter.getInstance();
+          cv.ui.ToastManager.getInstance();
         } else {
           // load empty HTML structure
           qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
           // initialize NotificationCenter
           cv.ui.NotificationCenter.getInstance();
+          cv.ui.ToastManager.getInstance();
         }
         var configLoader = new cv.util.ConfigLoader();
         configLoader.load(this.bootstrap, this);

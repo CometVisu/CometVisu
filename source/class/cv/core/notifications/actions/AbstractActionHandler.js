@@ -42,6 +42,10 @@ qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
     deleteMessageAfterExecution: {
       check: "Boolean",
       init: false
+    },
+    style: {
+      check: "String",
+      init: ""
     }
   },
 
