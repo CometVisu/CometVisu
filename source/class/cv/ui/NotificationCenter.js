@@ -256,16 +256,20 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     __updateBadge: function() {
       var currentContent = parseInt(qx.bom.element.Attribute.get(this.__badge, "html"));
-      var messages = this.getMessages().getLength();
-      if (this.getMessages().length === 0) {
-        // close center if empty
-        qx.event.Timer.once(function() {
-          // still empty
-          if (messages === 0) {
-            this.hide();
-          }
-        }, this, 1000);
+      if (isNaN(currentContent)) {
+        currentContent = 0;
       }
+      var messages = this.getMessages().getLength();
+      // close center if empty
+      qx.event.Timer.once(function() {
+        // still empty
+        if (this.getMessages().getLength() === 0) {
+          this.hide();
+        } else {
+          qx.bom.element.Style.reset(this.__element, "visibility");
+          this._onSeverityChange();
+        }
+      }, this, 1000);
       if (currentContent < messages) {
         // blink to get the users attention for the new message
         qx.bom.element.Animation.animate(this.__badge, cv.ui.NotificationCenter.BLINK);
@@ -279,16 +283,17 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     },
 
-    _onSeverityChange: function(ev) {
+    _onSeverityChange: function() {
+      var severity = this.getGlobalSeverity();
       if (this.__badge) {
         qx.bom.element.Class.removeClasses(this.__badge, this._severities);
-        qx.bom.element.Class.add(this.__badge, ev.getData());
+        qx.bom.element.Class.add(this.__badge, severity);
       }
 
       if (this.__favico) {
         // update favicon badge
         this.__favico.badge(this.getMessages().getLength(), {
-          bgColor: this.getSeverityColor(ev.getData())
+          bgColor: this.getSeverityColor(severity)
         });
       }
     },
