@@ -200,10 +200,12 @@ qx.Class.define('cv.ui.Popup', {
           target = wrapper;
           typeActions.forEach(function (action) {
             var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
-            actionButton.$$handler && actionButton.$$handler.addListener('close', function () {
-              this.close();
-            }, this);
-            qx.dom.Element.insertEnd(actionButton, target);
+            if (actionButton) {
+              actionButton.$$handler && actionButton.$$handler.addListener('close', function () {
+                this.close();
+              }, this);
+              qx.dom.Element.insertEnd(actionButton, target);
+            }
           }, this);
         }, this);
       } else {

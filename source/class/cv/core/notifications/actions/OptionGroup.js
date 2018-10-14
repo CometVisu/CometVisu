@@ -69,7 +69,10 @@ qx.Class.define("cv.core.notifications.actions.OptionGroup", {
     },
 
     getDomElement: function() {
-      var content = this.getTitle() + ' ';
+      if (this.getOptions().length === 0) {
+        return null;
+      }
+      var content =  this.getTitle() + ' ';
       var container = qx.dom.Element.create('div', {
         style: this.getStyle(),
         html: content
