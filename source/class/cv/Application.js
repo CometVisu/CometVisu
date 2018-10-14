@@ -256,6 +256,10 @@ qx.Class.define("cv.Application",
         severity: "urgent",
         deletable: false,
         actions: {
+          optionGroup: {
+            title: qx.locale.Manager.tr("Enable on reload:"),
+            options: []
+          },
           link: [
             {
               title: qx.locale.Manager.tr("Reload"),
@@ -267,14 +271,18 @@ qx.Class.define("cv.Application",
                   }
                   parent = parent.parentNode;
                 }
-                var box = qx.bom.Selector.query(".enableReporting", parent)[0];
-                if (box.checked) {
+                var box = qx.bom.Selector.query("#enableReporting", parent)[0];
+                var url = window.location.href.split("#").shift();
+                if (box && box.checked) {
                   // reload with reporting enabled
-                  var url = window.location.href.split("#").shift();
-                  cv.util.Location.setHref(qx.util.Uri.appendParamsToUrl(url, "reporting=true"));
-                } else {
-                  cv.util.Location.reload(true);
+                  url = qx.util.Uri.appendParamsToUrl(url, "reporting=true");
                 }
+                box = qx.bom.Selector.query("#reportErrors", parent)[0];
+                if (box && box.checked) {
+                  // reload with automatic error reporting enabled
+                  url = qx.util.Uri.appendParamsToUrl(url, "reportErrors=true");
+                }
+                cv.util.Location.setHref(url);
               },
               needsConfirmation: false
             }
@@ -283,32 +291,57 @@ qx.Class.define("cv.Application",
       };
       // reload with reporting checkbox
       var reportAction = null;
+      var link = "";
       if (cv.Config.reporting) {
         // reporting is enabled -> download log and show hint how to append it to the ticket
         body = '<!--\n'+qx.locale.Manager.tr("Please do not forget to attach the downloaded Logfile to this ticket.")+'\n-->\n\n'+body;
         reportAction = cv.report.Record.download;
       } else {
-        var link = "";
-        if (qx.locale.Manager.getInstance().getLocale() === "de") {
+        if (qx.locale.Manager.getInstance().getLanguage() === "de") {
           link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
-        notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
-
+        notification.actions.optionGroup.options.push({
+          title: qx.locale.Manager.tr("Action recording") + link,
+          name: "enableReporting"
+        });
+        // notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
       }
-      notification.actions.link.push(
-        {
-          title: qx.locale.Manager.tr("Report Bug"),
-          url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
-            labels: "bug / bugfix",
-            title: ex.toString(),
-            body: body
-          }),
-          action: reportAction,
-          needsConfirmation: false
+
+      if (qx.core.Environment.get('cv.sentry')) {
+        if (window.Sentry) {
+          // Sentry has been loaded -> add option to send the error
+          notification.actions.link.push(
+            {
+              title: qx.locale.Manager.tr("Send error to sentry.io"),
+              action: function () {
+                Sentry.captureException(ex);
+              },
+              needsConfirmation: false,
+              deleteMessageAfterExecution: true
+            }
+          );
+        } else {
+          link = "";
+          if (qx.locale.Manager.getInstance().getLanguage() === "de") {
+            link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
+          }
+          notification.actions.optionGroup.options.push({
+            title: qx.locale.Manager.tr("Error reporting (on sentry.io)") + link,
+            name: "reportErrors",
+            style: "margin-left: 18px"
+          });
+          // notification.message+='<div class="actions"><input class="reportErrors" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable error reporting")+link+'</div>';
         }
-      );
+      }
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
     },
+
+    throwError: qx.core.Environment.select('qx.globalErrorHandling', {
+      "true":  function () {
+        window.onerror(new Error('test error'));
+      },
+      "false": null
+    }),
 
     /**
      * Internal initialization method
@@ -329,11 +362,13 @@ qx.Class.define("cv.Application",
           cv.ConfigCache.restore();
           // initialize NotificationCenter
           cv.ui.NotificationCenter.getInstance();
+          cv.ui.ToastManager.getInstance();
         } else {
           // load empty HTML structure
           qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
           // initialize NotificationCenter
           cv.ui.NotificationCenter.getInstance();
+          cv.ui.ToastManager.getInstance();
         }
         var configLoader = new cv.util.ConfigLoader();
         configLoader.load(this.bootstrap, this);

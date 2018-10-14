@@ -55,6 +55,7 @@
     "svgmin": "^0.1.0"
   },
   "dependencies": {
+    "@sentry/browser": "^4.0.4",
     "monaco-editor": "^0.14.3"
   }
 }

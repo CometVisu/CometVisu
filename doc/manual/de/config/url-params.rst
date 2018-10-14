@@ -206,6 +206,27 @@ ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.
     Eine Log-Datei die 30 Minuten oder mehr läuft bis das Problem zu sehen ist, wird die Fehlerbehebung
     erschweren, da der Entwickler diese ggf. sehr oft abspielen muss während der Fehleranalyse und -behebung.
 
+.. _reportErrors:
+
+*reportErrors* - Fehlermeldungen automatisch an sentry.io senden
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Eine weitere Möglichkeit die Entwickler bei der Verbesserung der CometVisu zu unterstützen, ist das Aktivieren
+der automatischen Fehlerberichte. Diese Berichte werden bei Auftreten eines Fehlers teilweise komplett automatisch
+an einen Webdienst geschickt (sentry.io), welcher diese sammelt, aufbereitet und die CometVisu-Entwickler benachrichtigt.
+
+Da hierzu neben dem Fehler auch viele Informationen über z.b. den eingesetzten Browser zu sentry.io geschickt werden,
+muss diese Funktionalität explizit eingeschaltet werden über diesem URL-Parameter.
+
+.. code::
+
+    Default: false (reportErrors=false)
+    Options: true  (reportErrors=true), false (reportErrors=false)
+
+Um die Fehlerreports zu aktivieren muss die CometVisu mit `reportErrors=true` geladen werden. Die Fehlerdialoge
+der CometVisu bieten dazu die Option, die CometVisu mit diesem Parameter neu zu laden, sollte das noch nicht passiert sein.
+Dann kann der Benutzer versuchen, den Fehler erneut zu reproduzieren und dann einen Fehlerbericht mit weiteren
+Erklärungen an sentry.io schicken.
 
 .. _log:
 
