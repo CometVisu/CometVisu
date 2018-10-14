@@ -113,6 +113,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#testmode-testmodus-ohne-echtes-backend"><em>testMode</em> - Testmodus ohne echtes Backend</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablecache-caching-aktivieren"><em>enableCache</em> - Caching aktivieren</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reporting-session-aufzeichnen"><em>reporting</em> - Session aufzeichnen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reporterrors-fehlermeldungen-automatisch-an-sentry-io-senden"><em>reportErrors</em> - Fehlermeldungen automatisch an sentry.io senden</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#log-logging-in-der-browserconsole-an-abschalten"><em>log</em> - Logging in der Browserconsole an-/abschalten</a></li>
 </ul>
 </li>
@@ -379,6 +380,22 @@ ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.</
 Eine Log-Datei die 30 Minuten oder mehr läuft bis das Problem zu sehen ist, wird die Fehlerbehebung
 erschweren, da der Entwickler diese ggf. sehr oft abspielen muss während der Fehleranalyse und -behebung.</p>
 </div>
+</div>
+<div class="section" id="reporterrors-fehlermeldungen-automatisch-an-sentry-io-senden">
+<span id="reporterrors"></span><h3><em>reportErrors</em> - Fehlermeldungen automatisch an sentry.io senden<a class="headerlink" href="#reporterrors-fehlermeldungen-automatisch-an-sentry-io-senden" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Eine weitere Möglichkeit die Entwickler bei der Verbesserung der CometVisu zu unterstützen, ist das Aktivieren
+der automatischen Fehlerberichte. Diese Berichte werden bei Auftreten eines Fehlers teilweise komplett automatisch
+an einen Webdienst geschickt (sentry.io), welcher diese sammelt, aufbereitet und die CometVisu-Entwickler benachrichtigt.</p>
+<p>Da hierzu neben dem Fehler auch viele Informationen über z.b. den eingesetzten Browser zu sentry.io geschickt werden,
+muss diese Funktionalität explizit eingeschaltet werden über diesem URL-Parameter.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">reportErrors</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
+<span class="n">Options</span><span class="p">:</span> <span class="n">true</span>  <span class="p">(</span><span class="n">reportErrors</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">false</span> <span class="p">(</span><span class="n">reportErrors</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Um die Fehlerreports zu aktivieren muss die CometVisu mit <cite>reportErrors=true</cite> geladen werden. Die Fehlerdialoge
+der CometVisu bieten dazu die Option, die CometVisu mit diesem Parameter neu zu laden, sollte das noch nicht passiert sein.
+Dann kann der Benutzer versuchen, den Fehler erneut zu reproduzieren und dann einen Fehlerbericht mit weiteren
+Erklärungen an sentry.io schicken.</p>
 </div>
 <div class="section" id="log-logging-in-der-browserconsole-an-abschalten">
 <span id="log"></span><h3><em>log</em> - Logging in der Browserconsole an-/abschalten<a class="headerlink" href="#log-logging-in-der-browserconsole-an-abschalten" title="Link zu dieser Überschrift">¶</a></h3>
