@@ -294,9 +294,8 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       }.bind(this);
 
       // check if sizes are set yet, otherwise wait some time
-      // TODO: should be done with events
-      if (cv.ui.layout.ResizeHandler.invalidPagesize) {
-        qx.event.Timer.once(init, this, 10);
+      if (cv.ui.layout.ResizeHandler.states.isPageSizeInvalid()) {
+        cv.ui.layout.ResizeHandler.states.addListenerOnce('changePageSizeInvalid', init);
       } else {
         init();
       }
