@@ -8,7 +8,7 @@
 Das Strftime Plugin
 ===================
 
-.. api-doc:: strftime
+.. api-doc:: cv.plugins.Strftime
 
 Beschreibung
 ------------

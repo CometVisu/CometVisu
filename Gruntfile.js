@@ -8,22 +8,27 @@ function captureMock() {
   return function (req, res, next) {
 
     // match on POST requests starting with /mock
-    if (req.method === 'POST' && req.url.indexOf('/mock') === 0) {
-
+    if (req.url.indexOf('/mock') === 0) {
       // everything after /mock is the path that we need to mock
       var path = req.url.substring(5);
+      if (req.method === 'POST') {
+        var body = '';
+        req.on('data', function (data) {
+          body += data;
+        });
+        req.on('end', function () {
 
-      var body = '';
-      req.on('data', function (data) {
-        body += data;
-      });
-      req.on('end', function () {
+          mocks[path] = body;
 
-        mocks[path] = body;
-
+          res.writeHead(200);
+          res.end();
+        });
+        if (mocks.hasOwnProperty(path)) {
+          delete mocks[path];
+        }
         res.writeHead(200);
         res.end();
-      });
+      }
     } else {
       next();
     }
@@ -38,8 +43,18 @@ function mock() {
       url = url.replace(found[1],"");
     }
     var mockedResponse = mocks[url];
+    if (!mockedResponse && (url.includes('?') || url.includes('#'))) {
+      // try to find mocked url without querystring
+      url = url.split('#')[0];
+      url = url.split('?')[0];
+      mockedResponse = mocks[url];
+    }
     if (mockedResponse) {
-      res.writeHead(200, {'Content-Type': 'application/xml'});
+      if (req.url.endsWith('.xml')) {
+        res.writeHead(200, {'Content-Type': 'application/xml'});
+      } else if (req.url.endsWith('.json')) {
+        res.writeHead(200, {'Content-Type': 'application/json'});
+      }
       res.write(mockedResponse);
       res.end();
     } else if (url === "/designs/get_designs.php") {
@@ -70,7 +85,7 @@ module.exports = function(grunt) {
       expand: true,
       cwd: '.',
       src: [
-        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md',
+        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md', 'update.py',
         'release/**'
       ],
       dest: 'cometvisu/',

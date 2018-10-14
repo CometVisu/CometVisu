@@ -81,6 +81,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       this.base(arguments);
       var center = cv.ui.NotificationCenter.getInstance();
       center.getMessages().addListener("changeLength", this._onChangeCounter, this);
+      this._onChangeCounter();
       center.addListener("changeGlobalSeverity", this._onChangeGlobalSeverity, this);
     },
 
@@ -112,10 +113,11 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       }
     },
 
-    _onChangeCounter: function(ev) {
-      qx.bom.element.Attribute.set(this.__getBadgeElement(), "html", ""+ev.getData());
+    _onChangeCounter: function() {
+      var messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
+      qx.bom.element.Attribute.set(this.__getBadgeElement(), "html", ""+messages);
       if (this.isHideWhenEmpty()) {
-        qx.bom.element.Style.set(this.__getBadgeElement(), "display", ev.getData() === 0 ? "none" : "block");
+        qx.bom.element.Style.set(this.__getBadgeElement(), "display", messages === 0 ? "none" : "block");
       }
     },
 

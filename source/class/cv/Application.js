@@ -186,7 +186,8 @@ qx.Class.define("cv.Application",
       var bugData = cv.report.Record.getClientData();
       var body = "**"+qx.locale.Manager.tr("Please describe what you have done until the error occured?")+"**\n \n\n";
       var exString = "";
-      if (ex.getSourceException()) {
+      var maxTraceLength = 2000;
+      if (ex.getSourceException && ex.getSourceException()) {
         ex = ex.getSourceException();
       }
       else if (ex instanceof qx.core.WindowError) {
@@ -204,11 +205,44 @@ qx.Class.define("cv.Application",
           exString += "\n Description: " + ex.description;
         }
         try {
-          exString += "\nNormalized Stack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
-          exString += "\nOriginal Stack: " + ex.stack +"\n";
+          var lastLine = '';
+          var repeated = 0;
+          var nStack = '';
+          qx.dev.StackTrace.getStackTraceFromError(ex).forEach(function (entry) {
+            if (lastLine === entry) {
+              if (repeated === 0) {
+                // count first occurance too
+                repeated = 2;
+              } else {
+                repeated++;
+              }
+            } else if (repeated > 0) {
+              nStack += ' [repeated ' + repeated + ' times]';
+              nStack += '\n\t' + entry;
+              repeated = 0;
+            } else {
+              nStack += '\n\t' + entry;
+              lastLine = entry;
+            }
+          }, this);
+          if (repeated > 0) {
+            nStack += ' [repeated ' + repeated + ' times]';
+          }
+          if (nStack) {
+            exString += "\nNormalized Stack: " + nStack.substring(0, maxTraceLength) + "\n";
+            if (nStack.length > maxTraceLength) {
+              exString += 'Stacktrace has been cut off\n';
+            }
+          }
+          if (exString.length + ex.stack.length < maxTraceLength) {
+            exString += "\nOriginal Stack: " + ex.stack + "\n";
+          }
         } catch(exc) {
           if (ex.stack) {
-            exString += "\nStack: " + ex.stack+"\n";
+            exString += "\nStack: " + ex.stack.substring(0, maxTraceLength) + "\n";
+            if (ex.stack.length > maxTraceLength) {
+              exString += 'Stacktrace has been cut off\n';
+            }
           }
         }
       }
@@ -218,10 +252,14 @@ qx.Class.define("cv.Application",
         topic: "cv.error",
         target: cv.ui.PopupHandler,
         title: qx.locale.Manager.tr("An error occured"),
-        message: "<pre>"+ex.stack+"</pre>",
+        message: "<pre>"+ (ex.stack || exString) +"</pre>",
         severity: "urgent",
         deletable: false,
         actions: {
+          optionGroup: {
+            title: qx.locale.Manager.tr("Enable on reload:"),
+            options: []
+          },
           link: [
             {
               title: qx.locale.Manager.tr("Reload"),
@@ -233,14 +271,18 @@ qx.Class.define("cv.Application",
                   }
                   parent = parent.parentNode;
                 }
-                var box = qx.bom.Selector.query(".enableReporting", parent)[0];
-                if (box.checked) {
+                var box = qx.bom.Selector.query("#enableReporting", parent)[0];
+                var url = window.location.href.split("#").shift();
+                if (box && box.checked) {
                   // reload with reporting enabled
-                  var url = window.location.href.split("#").shift();
-                  cv.util.Location.setHref(qx.util.Uri.appendParamsToUrl(url, "reporting=true"));
-                } else {
-                  cv.util.Location.reload(true);
+                  url = qx.util.Uri.appendParamsToUrl(url, "reporting=true");
                 }
+                box = qx.bom.Selector.query("#reportErrors", parent)[0];
+                if (box && box.checked) {
+                  // reload with automatic error reporting enabled
+                  url = qx.util.Uri.appendParamsToUrl(url, "reportErrors=true");
+                }
+                cv.util.Location.setHref(url);
               },
               needsConfirmation: false
             }
@@ -249,32 +291,57 @@ qx.Class.define("cv.Application",
       };
       // reload with reporting checkbox
       var reportAction = null;
+      var link = "";
       if (cv.Config.reporting) {
         // reporting is enabled -> download log and show hint how to append it to the ticket
         body = '<!--\n'+qx.locale.Manager.tr("Please do not forget to attach the downloaded Logfile to this ticket.")+'\n-->\n\n'+body;
         reportAction = cv.report.Record.download;
       } else {
-        var link = "";
-        if (qx.locale.Manager.getInstance().getLocale() === "de") {
+        if (qx.locale.Manager.getInstance().getLanguage() === "de") {
           link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
-        notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
-
+        notification.actions.optionGroup.options.push({
+          title: qx.locale.Manager.tr("Action recording") + link,
+          name: "enableReporting"
+        });
+        // notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
       }
-      notification.actions.link.push(
-        {
-          title: qx.locale.Manager.tr("Report Bug"),
-          url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
-            labels: "bug / bugfix",
-            title: ex.toString(),
-            body: body
-          }),
-          action: reportAction,
-          needsConfirmation: false
+
+      if (qx.core.Environment.get('cv.sentry')) {
+        if (window.Sentry) {
+          // Sentry has been loaded -> add option to send the error
+          notification.actions.link.push(
+            {
+              title: qx.locale.Manager.tr("Send error to sentry.io"),
+              action: function () {
+                Sentry.captureException(ex);
+              },
+              needsConfirmation: false,
+              deleteMessageAfterExecution: true
+            }
+          );
+        } else {
+          link = "";
+          if (qx.locale.Manager.getInstance().getLanguage() === "de") {
+            link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
+          }
+          notification.actions.optionGroup.options.push({
+            title: qx.locale.Manager.tr("Error reporting (on sentry.io)") + link,
+            name: "reportErrors",
+            style: "margin-left: 18px"
+          });
+          // notification.message+='<div class="actions"><input class="reportErrors" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable error reporting")+link+'</div>';
         }
-      );
+      }
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
     },
+
+    throwError: qx.core.Environment.select('qx.globalErrorHandling', {
+      "true":  function () {
+        window.onerror(new Error('test error'));
+      },
+      "false": null
+    }),
 
     /**
      * Internal initialization method
@@ -295,11 +362,13 @@ qx.Class.define("cv.Application",
           cv.ConfigCache.restore();
           // initialize NotificationCenter
           cv.ui.NotificationCenter.getInstance();
+          cv.ui.ToastManager.getInstance();
         } else {
           // load empty HTML structure
           qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
           // initialize NotificationCenter
           cv.ui.NotificationCenter.getInstance();
+          cv.ui.ToastManager.getInstance();
         }
         var configLoader = new cv.util.ConfigLoader();
         configLoader.load(this.bootstrap, this);

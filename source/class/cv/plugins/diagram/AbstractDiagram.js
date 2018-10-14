@@ -52,7 +52,7 @@
  * </ul>
  *
  * @author Michael Hausl [michael at hausl dot com]
- * @since 2014
+ * @since 0.6.0
  *
  * @asset(plugins/diagram/dep/flot/*.min.js)
  */

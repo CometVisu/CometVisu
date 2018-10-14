@@ -5,7 +5,7 @@
 Das Diagramm_Info Plugin
 ========================
 
-.. api-doc:: diagram
+.. api-doc:: cv.plugins.diagram.AbstractDiagram
 
 .. TODO::
 

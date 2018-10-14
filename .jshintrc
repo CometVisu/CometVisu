@@ -46,6 +46,7 @@
     "HTMLDocument": false,
     "EVENT_RECORDER": true,
     "DOMWindow": false,
-    "Favico": false
+    "Favico": false,
+    "Sentry": true
   }
 }

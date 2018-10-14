@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
@@ -16,27 +16,35 @@ msgid "Please describe what you have done until the error occured?"
 msgstr ""
 "Bitte beschreiben, was Sie gemacht haben bis der Fehler aufgetreten ist."
 
-#: cv/Application.js:220
+#: cv/Application.js:254
 msgid "An error occured"
 msgstr "Ein Fehler ist aufgetreten"
 
-#: cv/Application.js:227
+#: cv/Application.js:260
+msgid "Enable on reload:"
+msgstr "Aktivieren beim neu Laden:"
+
+#: cv/Application.js:265
 msgid "Reload"
 msgstr "Neu laden"
 
-#: cv/Application.js:254
+#: cv/Application.js:297
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
 msgstr ""
 "Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Ticket "
 "zu hängen."
 
-#: cv/Application.js:261
-msgid "Enable reporting on reload"
-msgstr "Neu laden mit aktivierter Aufzeichnung"
+#: cv/Application.js:304
+msgid "Action recording"
+msgstr "Benutzerinteraktionen aufzeichnen"
 
-#: cv/Application.js:266
-msgid "Report Bug"
-msgstr "Fehler berichten"
+#: cv/Application.js:315
+msgid "Send error to sentry.io"
+msgstr "Fehlerbericht an sentry.io schicken"
+
+#: cv/Application.js:329
+msgid "Error reporting (on sentry.io)"
+msgstr "Absturzberichte senden (an sentry.io)"
 
 #: cv/TemplateEngine.js:252
 msgid "Connection error"
@@ -50,11 +58,11 @@ msgstr "Fehler beim Laden von %1: %2 - %3."
 msgid "Connection to backend is lost."
 msgstr "Verbindung zum Backend verloren."
 
-#: cv/TemplateEngine.js:277
+#: cv/TemplateEngine.js:278 cv/TemplateEngine.js:293
 msgid "CometVisu protocol error"
 msgstr "CometVisu Protokollfehler"
 
-#: cv/TemplateEngine.js:278
+#: cv/TemplateEngine.js:279
 msgid ""
 "The backend did send an invalid response to the %1Login%2 request: missing "
 "protocol version."
@@ -62,13 +70,19 @@ msgstr ""
 "Das Backend hat eine ungültige Antwort auf die %1Login%2-Anfrage geschickt: "
 "Fehlende Protokollversion."
 
-#: cv/TemplateEngine.js:281
+#: cv/TemplateEngine.js:282 cv/TemplateEngine.js:297
 msgid "Please try to fix the problem in the backend."
 msgstr "Bitte versuchen Sie das Problem im Backend zu lösen."
 
-#: cv/TemplateEngine.js:282
+#: cv/TemplateEngine.js:283 cv/TemplateEngine.js:298
 msgid "Backend-Response:"
 msgstr "Antwort des Backends:"
+
+#: cv/TemplateEngine.js:294
+msgid ""
+"The backend did send an invalid response to a %1read%2 request: Missing "
+"\"i\" value."
+msgstr ""
 
 #: cv/plugins/openhab/Settings.js:174
 msgid ""
@@ -104,37 +118,37 @@ msgstr "Nachrichtenzentrale"
 msgid "unknown: %1"
 msgstr "Unbekannt: %1"
 
-#: cv/util/ConfigLoader.js:170
+#: cv/util/ConfigLoader.js:169
 msgid "Config-File Error!"
 msgstr "Fehler in Konfigurations-Datei!"
 
-#: cv/util/ConfigLoader.js:174
+#: cv/util/ConfigLoader.js:173
 msgid "Invalid config file!"
 msgstr "Ungültige Konfigurations-Datei!"
 
-#: cv/util/ConfigLoader.js:174
+#: cv/util/ConfigLoader.js:173
 msgid "Please check!"
 msgstr "Bitte prüfen!"
 
-#: cv/util/ConfigLoader.js:182
+#: cv/util/ConfigLoader.js:181
 msgid "Config file has wrong library version!"
 msgstr "Konfigurations-Datei hat die falsche 'library' Version"
 
-#: cv/util/ConfigLoader.js:183
+#: cv/util/ConfigLoader.js:182
 msgid "This can cause problems with your configuration"
 msgstr "Das kann Probleme in Ihrer Konfiguration verursachen"
 
-#: cv/util/ConfigLoader.js:184
+#: cv/util/ConfigLoader.js:183
 msgid "You can run the %1Configuration Upgrader%2."
 msgstr "Sie können den %1Konfigurations-Upgrader%2 laufen lassen."
 
-#: cv/util/ConfigLoader.js:185
+#: cv/util/ConfigLoader.js:184
 msgid ""
 "Or you can start without upgrading %1with possible configuration problems%2"
 msgstr ""
 "Oder Sie starten ohne Upgrade %1mit möglichen Konfigurations-Problemen%2"
 
-#: cv/util/ConfigLoader.js:188
+#: cv/util/ConfigLoader.js:187
 msgid ""
 "404: Config file not found. Neither as normal config (%1) nor as demo config"
 " (%2)."
@@ -142,6 +156,30 @@ msgstr ""
 "404: Konfigurations-Datei nicht gefunden. Weder als normale Konfiguration "
 "(%1) noch als Demo-Konfiguration (%2)"
 
-#: cv/util/ConfigLoader.js:191
+#: cv/util/ConfigLoader.js:190
 msgid "Unhandled error of type \"%1\""
 msgstr "Unbekannter Fehler vom Typ \"%1\""
+
+#: cv/util/ScriptLoader.js:157
+msgid "Error loading plugin \"%1\""
+msgstr "Plugin \"%1\" konnte nicht geladen werden"
+
+#: cv/util/ScriptLoader.js:158 cv/util/ScriptLoader.js:166
+msgid "File %1 could not be loaded."
+msgstr "Date %1 konnte nicht geladen werden"
+
+#: cv/util/ScriptLoader.js:165
+msgid "File loading error"
+msgstr "Datei-Ladefehler"
+
+#~ msgid "Enable error reporting"
+#~ msgstr ""
+
+#~ msgid "Enable reporting on reload"
+#~ msgstr "Neu laden mit aktivierter Aufzeichnung"
+
+#~ msgid "Enable error sending on reload"
+#~ msgstr "Neu laden mit aktiviertem Senden von Fehlerberichten"
+
+#~ msgid "Report Bug"
+#~ msgstr "Fehler berichten"
