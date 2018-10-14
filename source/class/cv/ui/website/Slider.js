@@ -69,9 +69,12 @@ qx.Class.define('cv.ui.website.Slider', {
   members: {
     __pointerMoveEvent: null,
     __positionKnob: null,
+    __invalidPageSizeListener: null,
+    __sizeStates: null,
 
     init: function() {
       this.base(arguments);
+      this.__sizeStates = cv.ui.layout.ResizeHandler.states;
       if (this.getChildren(".ui-slider-range").length === 0) {
         this.append(qx.ui.website.Widget.create("<div>")
           .addClass("ui-slider-range"));
@@ -102,6 +105,23 @@ qx.Class.define('cv.ui.website.Slider', {
      */
     updatePositions: function() {
       this._onWindowResize();
+    },
+
+    _onWindowResize: function () {
+      var args = arguments;
+      if (this.__sizeStates.isPageSizeInvalid()) {
+        if (!this.__invalidPageSizeListener) {
+          this.__invalidPageSizeListener = this.__sizeStates.addListener('changePageSizeInvalid', function (ev) {
+            if (ev.getData() === false) {
+              this.__sizeStates.removeListenerById(this.__invalidPageSizeListener);
+              this.__invalidPageSizeListener = null;
+              this.base(args);
+            }
+          }, this);
+        }
+      } else {
+        this.base(args);
+      }
     },
 
     //overridden
@@ -143,5 +163,14 @@ qx.Class.define('cv.ui.website.Slider', {
     isInPointerMove: function() {
       return this.__pointerMoveEvent === true;
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this.__sizeStates = null;
   }
 });

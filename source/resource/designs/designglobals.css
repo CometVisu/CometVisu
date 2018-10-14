@@ -110,7 +110,7 @@ body
   -webkit-transform: translateZ(0);
   -webkit-overflow-scrolling:touch;
 }
-.page > .clearfix { position:relative; height: 100%; }
+.page > .clearfix:not(.navbar) { position:relative; height: 100%; }
 input, textarea, select, button { font: inherit; }
 /* 
  * colspans, each design needs to define a colspan0

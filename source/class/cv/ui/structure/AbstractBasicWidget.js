@@ -119,6 +119,21 @@ qx.Class.define('cv.ui.structure.AbstractBasicWidget', {
         parent = parent.getParentWidget();
       }
       return null;
+    },
+
+    /**
+     * Get the parent element that defines if this widget is visible. Can be either a page or a navbar
+     * @return {cv.ui.structure.pure.Page|cv.ui.structure.pure.NavBar|null}
+     */
+    getVisibilityParent: function () {
+      var parent = this.getParentWidget();
+      while (parent) {
+        if (parent.get$$type() === "page" || parent.get$$type() === "navbar") {
+          return parent;
+        }
+        parent = parent.getParentWidget();
+      }
+      return null;
     }
   }
 });
