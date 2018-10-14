@@ -1,4 +1,4 @@
-/* Option.js
+/* OptionGroup.js
  * 
  * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
@@ -19,12 +19,12 @@
 
 
 /**
- * Shows a checkbox in the actions to allow some boolean settings.
+ * Shows a group of checkboxes in the actions to allow some boolean settings.
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.actions.Option", {
+qx.Class.define("cv.core.notifications.actions.OptionGroup", {
   extend: cv.core.notifications.actions.AbstractActionHandler,
   implement: cv.core.notifications.IActionHandler,
 
@@ -48,9 +48,9 @@ qx.Class.define("cv.core.notifications.actions.Option", {
       check: "String",
       nullable: true
     },
-    name: {
-      check: "String",
-      init: ""
+    options: {
+      check: "Array",
+      nullable: true
     }
   },
 
@@ -69,25 +69,19 @@ qx.Class.define("cv.core.notifications.actions.Option", {
     },
 
     getDomElement: function() {
-      var container = qx.dom.Element.create('span', {
-        style: this.getStyle()
+      var content = this.getTitle() + ' ';
+      var container = qx.dom.Element.create('div', {
+        style: this.getStyle(),
+        html: content
       });
-
-      var checkbox = qx.dom.Element.create("input", {
-        "class": "action",
-        "type": "checkbox",
-        "value": "true",
-        "id": this.getName()
+      this.getOptions().forEach(function (option) {
+        container.appendChild(cv.core.notifications.ActionRegistry.createActionElement('option', option));
       });
-      container.appendChild(checkbox);
-      container.appendChild(qx.dom.Element.create('span', {
-        html: this.getTitle()
-      }))
       return container;
     }
   },
 
   defer: function() {
-    cv.core.notifications.ActionRegistry.registerActionHandler("option", cv.core.notifications.actions.Option);
+    cv.core.notifications.ActionRegistry.registerActionHandler("optionGroup", cv.core.notifications.actions.OptionGroup);
   }
 });

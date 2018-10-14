@@ -19,24 +19,28 @@ msgstr ""
 msgid "An error occured"
 msgstr ""
 
-#: cv/Application.js:262
+#: cv/Application.js:260
+msgid "Enable on reload:"
+msgstr ""
+
+#: cv/Application.js:265
 msgid "Reload"
 msgstr ""
 
-#: cv/Application.js:294
+#: cv/Application.js:297
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
 msgstr ""
 
-#: cv/Application.js:301
-msgid "Enable reporting on reload"
+#: cv/Application.js:304
+msgid "Action recording"
 msgstr ""
 
-#: cv/Application.js:312
+#: cv/Application.js:315
 msgid "Send error to sentry.io"
 msgstr ""
 
-#: cv/Application.js:326
-msgid "Enable error sending on reload"
+#: cv/Application.js:329
+msgid "Error reporting (on sentry.io)"
 msgstr ""
 
 #: cv/TemplateEngine.js:252
@@ -158,6 +162,12 @@ msgid "File loading error"
 msgstr ""
 
 #~ msgid "Enable error reporting"
+#~ msgstr ""
+
+#~ msgid "Enable reporting on reload"
+#~ msgstr ""
+
+#~ msgid "Enable error sending on reload"
 #~ msgstr ""
 
 #~ msgid "Report Bug"

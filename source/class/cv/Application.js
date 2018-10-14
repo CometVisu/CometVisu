@@ -256,7 +256,10 @@ qx.Class.define("cv.Application",
         severity: "urgent",
         deletable: false,
         actions: {
-          option: [],
+          optionGroup: {
+            title: qx.locale.Manager.tr("Enable on reload:"),
+            options: []
+          },
           link: [
             {
               title: qx.locale.Manager.tr("Reload"),
@@ -297,8 +300,8 @@ qx.Class.define("cv.Application",
         if (qx.locale.Manager.getInstance().getLanguage() === "de") {
           link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
-        notification.actions.option.push({
-          title: qx.locale.Manager.tr("Enable reporting on reload") + link,
+        notification.actions.optionGroup.options.push({
+          title: qx.locale.Manager.tr("Action recording") + link,
           name: "enableReporting"
         });
         // notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
@@ -322,8 +325,8 @@ qx.Class.define("cv.Application",
           if (qx.locale.Manager.getInstance().getLanguage() === "de") {
             link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
           }
-          notification.actions.option.push({
-            title: qx.locale.Manager.tr("Enable error sending on reload") + link,
+          notification.actions.optionGroup.options.push({
+            title: qx.locale.Manager.tr("Error reporting (on sentry.io)") + link,
             name: "reportErrors",
             style: "margin-left: 18px"
           });

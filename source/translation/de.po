@@ -20,27 +20,31 @@ msgstr ""
 msgid "An error occured"
 msgstr "Ein Fehler ist aufgetreten"
 
-#: cv/Application.js:262
+#: cv/Application.js:260
+msgid "Enable on reload:"
+msgstr "Aktivieren beim neu Laden:"
+
+#: cv/Application.js:265
 msgid "Reload"
 msgstr "Neu laden"
 
-#: cv/Application.js:294
+#: cv/Application.js:297
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
 msgstr ""
 "Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Ticket "
 "zu hängen."
 
-#: cv/Application.js:301
-msgid "Enable reporting on reload"
-msgstr "Neu laden mit aktivierter Aufzeichnung"
+#: cv/Application.js:304
+msgid "Action recording"
+msgstr "Benutzerinteraktionen aufzeichnen"
 
-#: cv/Application.js:312
+#: cv/Application.js:315
 msgid "Send error to sentry.io"
 msgstr "Fehlerbericht an sentry.io schicken"
 
-#: cv/Application.js:326
-msgid "Enable error sending on reload"
-msgstr "Neu laden mit aktiviertem Senden von Fehlerberichten"
+#: cv/Application.js:329
+msgid "Error reporting (on sentry.io)"
+msgstr "Absturzberichte senden (an sentry.io)"
 
 #: cv/TemplateEngine.js:252
 msgid "Connection error"
@@ -170,6 +174,12 @@ msgstr "Datei-Ladefehler"
 
 #~ msgid "Enable error reporting"
 #~ msgstr ""
+
+#~ msgid "Enable reporting on reload"
+#~ msgstr "Neu laden mit aktivierter Aufzeichnung"
+
+#~ msgid "Enable error sending on reload"
+#~ msgstr "Neu laden mit aktiviertem Senden von Fehlerberichten"
 
 #~ msgid "Report Bug"
 #~ msgstr "Fehler berichten"
