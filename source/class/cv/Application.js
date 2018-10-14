@@ -273,7 +273,7 @@ qx.Class.define("cv.Application",
                 }
                 var box = qx.bom.Selector.query("#enableReporting", parent)[0];
                 var url = window.location.href.split("#").shift();
-                if (box.checked) {
+                if (box && box.checked) {
                   // reload with reporting enabled
                   url = qx.util.Uri.appendParamsToUrl(url, "reporting=true");
                 }
