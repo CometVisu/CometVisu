@@ -1,4 +1,4 @@
-/* Link.js 
+/* OptionGroup.js
  * 
  * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
@@ -19,12 +19,12 @@
 
 
 /**
- * Opens a link in a new window.
+ * Shows a group of checkboxes in the actions to allow some boolean settings.
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.actions.Link", {
+qx.Class.define("cv.core.notifications.actions.OptionGroup", {
   extend: cv.core.notifications.actions.AbstractActionHandler,
   implement: cv.core.notifications.IActionHandler,
 
@@ -48,18 +48,9 @@ qx.Class.define("cv.core.notifications.actions.Link", {
       check: "String",
       nullable: true
     },
-    url: {
-      check: "String",
+    options: {
+      check: "Array",
       nullable: true
-    },
-    action: {
-      check: "Function",
-      nullable: true,
-      transform: "_transformAction"
-    },
-    hidden: {
-      check: "Boolean",
-      init: false
     }
   },
 
@@ -70,57 +61,30 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   */
   members: {
 
-    _transformAction: function(value) {
-      if (qx.lang.Type.isFunction(value)) {
-        return value;
-      }
-      switch(value) {
-        case "reload":
-        case "restart":
-          return cv.util.Location.reload;
-      }
-      if (value) {
-        this.error("Unknown action: " + value);
-      }
-      return null;
-    },
-
     handleAction: function(ev) {
       if (ev) {
         ev.stopPropagation();
         ev.preventDefault();
       }
-      if (this.getAction()) {
-        this.getAction()(ev);
-      }
-      if (this.getUrl()) {
-        if (this.isHidden()) {
-          // open link in background (fire and forget)
-          var req = new qx.io.request.Xhr(this.getUrl());
-          req.send();
-        } else {
-          cv.util.Location.open(this.getUrl(), '_blank');
-        }
-      }
-      if (this.isDeleteMessageAfterExecution) {
-        this.fireEvent('close');
-      }
     },
 
     getDomElement: function() {
-      var actionButton = qx.dom.Element.create("button", {
-        "class": "action",
-        "text": this.getTitle(),
-        "style": this.getStyle()
+      if (this.getOptions().length === 0) {
+        return null;
+      }
+      var content =  this.getTitle() + ' ';
+      var container = qx.dom.Element.create('div', {
+        style: this.getStyle(),
+        html: content
       });
-      actionButton.$$handler = this;
-
-      qx.event.Registration.addListener(actionButton, "tap", this.handleAction, this);
-      return actionButton;
+      this.getOptions().forEach(function (option) {
+        container.appendChild(cv.core.notifications.ActionRegistry.createActionElement('option', option));
+      });
+      return container;
     }
   },
 
   defer: function() {
-    cv.core.notifications.ActionRegistry.registerActionHandler("link", cv.core.notifications.actions.Link);
+    cv.core.notifications.ActionRegistry.registerActionHandler("optionGroup", cv.core.notifications.actions.OptionGroup);
   }
 });

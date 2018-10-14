@@ -131,7 +131,9 @@ qx.Class.define('cv.util.ScriptLoader', {
         loader.removeListener("loaded", this._onLoaded, this);
         loader.removeListener("failed", this._onFailed, this);
       }, this);
-      loader.start();
+      loader.start().catch(function () {
+        // do nothing here
+      });
       return loader;
     },
 
@@ -145,10 +147,26 @@ qx.Class.define('cv.util.ScriptLoader', {
     _onFailed: function(ev) {
       var data = ev.getData();
       this.__scriptQueue.remove(data.script);
-      this.error(data.script+" failed");
       if (data.script.startsWith("design")) {
         var failedDesign = data.script.split("/")[1];
         this.fireDataEvent("designError", failedDesign);
+      } else if (data.script.includes("/plugins/")) {
+        var match = /.+\/plugins\/([\w]+)\/index\.js.*/.exec(data.script);
+        if (match) {
+          cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
+            title: qx.locale.Manager.tr('Error loading plugin "%1"', match[1]),
+            message: qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
+            severity: "high",
+            deletable: true
+          });
+        }
+      } else {
+        cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
+          title: qx.locale.Manager.tr('File loading error'),
+          message:  qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
+          severity: "high",
+          deletable: true
+        });
       }
       this._checkQueue();
     },
