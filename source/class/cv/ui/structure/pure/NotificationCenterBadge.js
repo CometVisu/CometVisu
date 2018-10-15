@@ -82,7 +82,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       var center = cv.ui.NotificationCenter.getInstance();
       center.getMessages().addListener("changeLength", this._onChangeCounter, this);
       this._onChangeCounter();
-      center.addListener("changeGlobalSeverity", this._onChangeGlobalSeverity, this);
+      center.addListener("changedGlobalSeverity", this._onChangeGlobalSeverity, this);
     },
 
     // property apply
@@ -139,7 +139,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
   destruct: function() {
     var center = cv.ui.NotificationCenter.getInstance();
     center.getMessages().removeListener("changeLength", this._onChangeCounter, this);
-    center.removeListener("changeGlobalSeverity", this._onChangeGlobalSeverity, this);
+    center.removeListener("changedGlobalSeverity", this._onChangeGlobalSeverity, this);
   },
 
   defer: function(statics) {
