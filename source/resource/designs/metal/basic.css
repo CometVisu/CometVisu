@@ -215,7 +215,7 @@ body br
 	padding-left: 2.5em;
 }
 .green.switchPressed div, .green.switchUnpressed div {
-    background-image: radial-gradient(rgb(62, 123, 62), transparent 80%);
+    background-image: radial-gradient(rgba(88, 181, 0, 0.45), transparent 80%);
 	color: white !important;
 	text-shadow: none;
 }
