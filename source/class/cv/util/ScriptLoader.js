@@ -85,8 +85,9 @@ qx.Class.define('cv.util.ScriptLoader', {
           // in source load all scripts
           realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
         } else {
-          // in build do not load plugin scripts as they are included in the plugin script
-          if (queue[i].indexOf("plugins/") === -1) {
+          // in build do not load plugin dependency scripts as they are included in the plugin script
+          // unknown plugins should be loaded although
+          if (queue[i].indexOf("plugins/") === -1 || /resource\/plugins\/[^/]+\/index.js/.test(queue[i])) {
             realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
           }
         }
@@ -131,9 +132,7 @@ qx.Class.define('cv.util.ScriptLoader', {
         loader.removeListener("loaded", this._onLoaded, this);
         loader.removeListener("failed", this._onFailed, this);
       }, this);
-      loader.start().catch(function () {
-        // do nothing here
-      });
+      loader.start();
       return loader;
     },
 
