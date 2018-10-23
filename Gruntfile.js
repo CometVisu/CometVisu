@@ -484,7 +484,7 @@ module.exports = function(grunt) {
       buildClient: {
         command: [
           'cd client',
-          './generate.py build',
+          './generate.py build -sI',
           'cd ..'
         ].join('&&')
       },
@@ -498,7 +498,7 @@ module.exports = function(grunt) {
         command: './generate.py lint'
       },
       build: {
-        command: './generate.py build'
+        command: './generate.py build -sI'
       }
     },
 
