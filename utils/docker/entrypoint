@@ -1,0 +1,36 @@
+#!/bin/sh
+set -e
+
+if [ "${KNX_INTERFACE}" != "" ]; then
+    echo "starting knxd"
+    knxd -i $KNX_INTERFACE -e $KNX_PA $KNXD_PARAMETERS
+    chmod a+w /tmp/eib
+fi
+
+CGI_URL_PATH=${CGI_URL_PATH:-/cgi-bin/}
+if [ "${CGI_URL_PATH:-/cgi-bin/}" != "/cgi-bin/" ]; then
+    echo "Non default CGI_URL_PATH detected: '$CGI_URL_PATH'"
+
+    # Tell the CometVisu to path to the login
+    echo '<FilesMatch "visu_config.*xml$">'                             >  /var/www/html/.htaccess
+    echo "    Header set X-CometVisu-Backend-LoginUrl ${CGI_URL_PATH}l" >> /var/www/html/.htaccess
+    echo '</FilesMatch>'                                                >> /var/www/html/.htaccess
+
+    # Pass CometVisu the resource path during the login
+    sed -i 's@\\\"s\\\":\\\"SESSION\\\".*}\"@\\\"s\\\":\\\"SESSION\\\", \\\"c\\\": {\\\"baseURL\\\": \\\"'"$CGI_URL_PATH"'\\\"} }"@' /usr/lib/cgi-bin/l
+fi
+
+if [ "${BACKEND_PROXY_SOURCE}" != "" ] && [ "${BACKEND_PROXY_TARGET}" != "" ]; then
+    echo "proxying ${BACKEND_PROXY_SOURCE} -> ${BACKEND_PROXY_TARGET}"
+    echo "ProxyPass ${BACKEND_PROXY_SOURCE} ${BACKEND_PROXY_TARGET}"        >> $APACHE_CONFDIR/conf-available/cm-docker-php.conf
+    echo "ProxyPassReverse ${BACKEND_PROXY_TARGET} ${BACKEND_PROXY_SOURCE}" >> $APACHE_CONFDIR/conf-available/cm-docker-php.conf
+
+    a2enmod proxy_http > /dev/null
+fi
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+    set -- apache2-foreground "$@"
+fi
+
+exec "$@"

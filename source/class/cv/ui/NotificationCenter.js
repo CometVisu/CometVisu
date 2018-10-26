@@ -307,10 +307,14 @@ qx.Class.define("cv.ui.NotificationCenter", {
         this.__blocker.block();
         qx.bom.element.Style.reset(this.__element, "visibility");
         qx.event.Registration.addListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
-        var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
-        anim.on("end", function () {
+        if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
+          var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
+          anim.on("end", function () {
+            qx.bom.element.Transform.translate(this.__element, "-300px");
+          }, this);
+        } else {
           qx.bom.element.Transform.translate(this.__element, "-300px");
-        }, this);
+        }
       }
     },
 
@@ -332,11 +336,16 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (this.__visible) {
         this.__visible = false;
         qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
-        var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
-        anim.on("end", function () {
+        if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
+          var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
+          anim.on("end", function () {
+            qx.bom.element.Transform.translate(this.__element, "-0px");
+            this.__blocker.unblock();
+          }, this);
+        } else {
           qx.bom.element.Transform.translate(this.__element, "-0px");
           this.__blocker.unblock();
-        }, this);
+        }
       }
     }
   },
