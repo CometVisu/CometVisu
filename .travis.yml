@@ -23,7 +23,7 @@ stages:
 - name: lint
 - name: test
 - name: deploy
-  if: repo = CometVisu/CometVisu AND (NOT type IN (pull_request)) AND ( branch = docker OR tag =~ ^v[0-9] )
+  if: repo = CometVisu/CometVisu AND (NOT type IN (pull_request)) AND ( branch = develop OR tag =~ ^v[0-9] )
 jobs:
   include:
   - stage: lint
@@ -111,7 +111,7 @@ jobs:
     - mv release build # move back to build because the dockerfile is expecting the build here
     deploy:
       on:
-        branch: docker
+        branch: develop
         condition: "$DEPLOY_NIGHTLY = 1"
       provider: script
       script: utils/travis/docker_push.sh
