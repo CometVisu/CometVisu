@@ -27,6 +27,9 @@ describe('test the NotificationCenter', function () {
 
     expect(element).not.toBeUndefined();
 
+    // no animation for test
+    cv.ui.NotificationCenter.SLIDE.duration = 0;
+
     expect(qx.bom.element.Style.get(element, "transform")).toEqual("none");
     center.toggleVisibility();
     setTimeout(function() {
@@ -34,6 +37,7 @@ describe('test the NotificationCenter', function () {
       center.toggleVisibility();
       setTimeout(function() {
         expect(qx.bom.element.Style.get(element, "transform")).toEqual("matrix(1, 0, 0, 1, 0, 0)");
+        cv.ui.NotificationCenter.SLIDE.duration = 350;
         done();
       }, 100);
     }, 100);
