@@ -18,7 +18,10 @@ fi
 
 echo "building docker container for ${IMAGE_NAME}:${VERSION_TAG},${MASTER_TAG},${SUB_TAG} ..."
 
-docker build -t $IMAGE_NAME:$VERSION_TAG .
+BUILD_DATE=`date --iso-8601=seconds`
+VCS_REF=${TRAVIS_PULL_REQUEST_SHA}
+
+docker build -t $IMAGE_NAME:$VERSION_TAG --build-arg BUILD_DATE --build-arg VERSION_TAG --build-arg TRAVIS_JOB_NUMBER --build-arg TRAVIS_PULL_REQUEST.
 docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
 docker push "${IMAGE_NAME}:${MASTER_TAG}"
 docker push "${IMAGE_NAME}:${VERSION_TAG}"
