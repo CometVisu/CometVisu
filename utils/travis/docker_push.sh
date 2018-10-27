@@ -23,7 +23,7 @@ docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
 docker push "${IMAGE_NAME}:${MASTER_TAG}"
 docker push "${IMAGE_NAME}:${VERSION_TAG}"
 
-if [ -z "$SUB_TAG" ]; then
+if [[ "$SUB_TAG" != "" ]]; then
     docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${SUB_TAG}"
     docker push "${IMAGE_NAME}:${SUB_TAG}"
 fi
