@@ -448,6 +448,13 @@
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
+      <xsd:attribute name="class" type="xsd:string" use="optional">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">CSS class that will be added to the document body.</xsd:documentation>
+          <xsd:documentation xml:lang="de">CSS Klasse, die dem body-Element des Dokuments hinzugefügt wird. </xsd:documentation>
+          <xsd:appinfo>level:expert</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:attribute>
     </xsd:complexType>
   </xsd:element>
 
