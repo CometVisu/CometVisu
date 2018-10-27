@@ -7,7 +7,7 @@ echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 IMAGE_NAME=`echo $TRAVIS_REPO_SLUG | awk '{print tolower($0)}'`
 
 if [[ "$TRAVIS_BRANCH" = "master" ]]; then
-    MASTER_TAG=stable
+    MASTER_TAG=latest
 elif [[ "$TRAVIS_BRANCH" = "develop" ]]; then
     MASTER_TAG=testing
 fi
