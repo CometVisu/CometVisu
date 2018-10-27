@@ -107,9 +107,11 @@ RUN { \
     } | tee "/usr/lib/cgi-bin/l" \
  && chmod +x /usr/lib/cgi-bin/l \
  && a2enmod cgi \
- && a2enmod headers
+ && a2enmod headers \
+ && a2enmod rewrite
 
 COPY build/ /var/www/html/
+COPY utils/docker/_.htaccess /var/www/html/.htaccess
 
 # Options - especially for development.
 # DO NOT USE for running a real server!

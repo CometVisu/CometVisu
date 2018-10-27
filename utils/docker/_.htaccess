@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteRule ^\.htaccess$ - [F]
+
+    RewriteCond %{REQUEST_URI} ^(.*)/resource/(.*)$
+    RewriteCond %{DOCUMENT_ROOT}%1/resource/config/overlay/%2 -d [OR]
+    RewriteCond %{DOCUMENT_ROOT}%1/resource/config/overlay/%2 -f
+    RewriteCond %{REQUEST_URI} !.*/resource/config/.*
+    RewriteRule ^(.*)$ /%1/resource/config/overlay/%2 [L,R]
+</IfModule>

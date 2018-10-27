@@ -12,7 +12,7 @@ if [ "${CGI_URL_PATH:-/cgi-bin/}" != "/cgi-bin/" ]; then
     echo "Non default CGI_URL_PATH detected: '$CGI_URL_PATH'"
 
     # Tell the CometVisu to path to the login
-    echo '<FilesMatch "visu_config.*xml$">'                             >  /var/www/html/.htaccess
+    echo '<FilesMatch "visu_config.*xml$">'                             >>  /var/www/html/.htaccess
     echo "    Header set X-CometVisu-Backend-LoginUrl ${CGI_URL_PATH}l" >> /var/www/html/.htaccess
     echo '</FilesMatch>'                                                >> /var/www/html/.htaccess
 
