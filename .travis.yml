@@ -104,15 +104,15 @@ jobs:
       dry-run: false
       skip_cleanup: true
   - name: "[DOCKER] - Build and push Docker Container"
-    if: type = cron OR commit_message =~ /^\[ci nightly\].*/
-    script: *3
+    if: fork = false AND type != cron
+    script: skip
     before_deploy:
     - grunt release-cv
     - mv release build # move back to build because the dockerfile is expecting the build here
     deploy:
       on:
-        branch: develop
-        condition: "$DEPLOY_NIGHTLY = 1"
+        all_branches: true
+        condition: $TRAVIS_BRANCH =~ ^master|develop$
       provider: script
       script: utils/travis/docker_push.sh
       skip_cleanup: true

@@ -1,19 +1,29 @@
 #!/bin/bash
 
-VERSION=`cat build/version`
+VERSION_TAG=`cat build/version`
 
 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
 IMAGE_NAME=`echo $TRAVIS_REPO_SLUG | awk '{print tolower($0)}'`
 
-IMAGE_TAG="nightly"
-if [[ $TRAVIS_TAG != "" ]]; then
-    IMAGE_TAG=$TRAVIS_TAG
+if [[ "$TRAVIS_BRANCH" = "master" ]]; then
+    MASTER_TAG=stable
+elif [[ "$TRAVIS_BRANCH" = "develop" ]]; then
+    MASTER_TAG=testing
 fi
 
-echo "building docker container for ${IMAGE_NAME}:${IMAGE_TAG},${VERSION} ..."
+if [[ "$TRAVIS_BRANCH" = "develop" ]]; then
+    SUB_TAG="testing-`date +%Y%m%d`"
+fi
 
-docker build -t $IMAGE_NAME:$VERSION .
-docker tag "${IMAGE_NAME}:${VERSION}" "${IMAGE_NAME}:${IMAGE_TAG}"
-docker push "${IMAGE_NAME}:${IMAGE_TAG}"
-docker push "${IMAGE_NAME}:${VERSION}"
+echo "building docker container for ${IMAGE_NAME}:${VERSION_TAG},${MASTER_TAG},${SUB_TAG} ..."
+
+docker build -t $IMAGE_NAME:$VERSION_TAG .
+docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
+docker push "${IMAGE_NAME}:${MASTER_TAG}"
+docker push "${IMAGE_NAME}:${VERSION_TAG}"
+
+if [ -z "$SUB_TAG" ]; then
+    docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${SUB_TAG}"
+    docker push "${IMAGE_NAME}:${SUB_TAG}"
+fi
