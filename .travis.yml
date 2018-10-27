@@ -81,7 +81,7 @@ jobs:
     - sudo apt-get install python-lxml python3-lxml
     - utils/travis/deploy.sh
   - name: "[NIGHTLY] - Build and push Nightly Build"
-    if: type = cron OR commit_message =~ ^\[ci nightly\]
+    if: type = cron OR commit_message =~ /^\[ci nightly\].*/
     script: &3
     - 'CLIENT_CHANGES=`git log --pretty=format: --name-only --since="1 days ago" ${TRAVIS_BUILD_DIR}/client/ | sort | uniq | sed ''/^$/d'' | wc -l`'
     - 'CORE_CHANGES=`git log --pretty=format: --name-only --since="1 days ago" ${TRAVIS_BUILD_DIR}/source/ | sort | uniq | sed ''/^$/d'' | wc -l`'
