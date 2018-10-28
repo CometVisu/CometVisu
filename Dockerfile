@@ -38,40 +38,30 @@ RUN wget -O knxd_0.0.5.1.tar.gz "https://github.com/knxd/knxd/archive/0.0.5.1.ta
 # Run environment
 FROM php:7.2-apache
 
+ARG VCS_REF
+ARG VERSION_TAG
+ARG TRAVIS_JOB_NUMBER
+ARG TRAVIS_JOB_WEB_URL
+ARG TRAVIS_BUILD_WEB_URL
+
 # Own labels
 LABEL maintainer="http://www.cometvisu.org/"
-LABEL org.cometvisu.version="0.11.0"
+LABEL org.cometvisu.pthsem.version="2.0.8"
 LABEL org.cometvisu.knxd.version="0.0.5.1"
+LABEL org.cometvisu.travis-job-number=$TRAVIS_JOB_NUMBER
+LABEL org.cometvisu.travis-job-web-url=$TRAVIS_JOB_WEB_URL
+LABEL org.cometvisu.travis-build-web-url=$TRAVIS_BUILD_WEB_URL
 # Labels according to http://label-schema.org/rc1/
 LABEL org.label-schema.schema-version="1.0"
 LABEL org.label-schema.build-date=$BUILD_DATE
 LABEL org.label-schema.name="CometVisu"
 LABEL org.label-schema.description="The CometVisu visualistion"
 LABEL org.label-schema.usage="README.md"
-LABEL org.label-schema.url="http://www.cometvisu.org"
+LABEL org.label-schema.url="https://www.cometvisu.org"
 LABEL org.label-schema.vcs-url="https://github.com/CometVisu/CometVisu"
-LABEL org.label-schema.vcs-ref="<...>"
+LABEL org.label-schema.vcs-ref=$VCS_REF
 LABEL org.label-schema.vendor="The CometVisu project"
-LABEL org.label-schema.version="0.11.0"
-
-# just for testing automated variables
-ARG SOURCE_BRANCH
-ARG SOURCE_COMMIT
-ARG COMMIT_MSG
-ARG DOCKER_REPO
-ARG DOCKERFILE_PATH
-ARG CACHE_TAG
-ARG IMAGE_NAME
-ARG MYTEST
-LABEL test.SOURCE_BRANCH=$SOURCE_BRANCH
-LABEL test.SOURCE_COMMIT=$SOURCE_COMMIT
-LABEL test.COMMIT_MSG=$COMMIT_MSG
-LABEL test.DOCKER_REPO=$DOCKER_REPO
-LABEL test.DOCKERFILE_PATH=$DOCKERFILE_PATH
-LABEL test.CACHE_TAG=$CACHE_TAG
-LABEL test.IMAGE_NAME=$IMAGE_NAME
-RUN MYTEST=`date`
-LABEL test.test=$MYTEST
+LABEL org.label-schema.version=$VERSION_TAG
 
 COPY --from=builder /usr/local/bin/knxd /usr/bin/knxd
 COPY --from=builder /usr/local/lib/libpthsem.so.20 /usr/lib/
