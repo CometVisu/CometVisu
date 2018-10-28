@@ -9,10 +9,11 @@ describe('test the NotificationCenter', function () {
     center._init();
   });
 
-  afterEach(function() {
+  afterEach(function(done) {
     cv.ui.NotificationCenter.clear(true);
     cv.ui.NotificationCenter.hide();
     cv.ui.NotificationCenter.SLIDE.duration = 350;
+    setTimeout(done, 10);
   });
 
   it("should test some basics", function () {
@@ -36,8 +37,8 @@ describe('test the NotificationCenter', function () {
       setTimeout(function() {
         expect(qx.bom.element.Style.get(element, "transform")).toEqual("matrix(1, 0, 0, 1, 0, 0)");
         done();
-      }, 100);
-    }, 100);
+      }, 10);
+    }, 10);
   });
 
   it('should toggle the badge visibility', function(done) {
