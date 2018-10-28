@@ -38,12 +38,12 @@ RUN wget -O knxd_0.0.5.1.tar.gz "https://github.com/knxd/knxd/archive/0.0.5.1.ta
 # Run environment
 FROM php:7.2-apache
 
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION_TAG
 ARG TRAVIS_JOB_NUMBER
 ARG TRAVIS_JOB_WEB_URL
 ARG TRAVIS_BUILD_WEB_URL
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION_TAG
 
 # Own labels
 LABEL maintainer="http://www.cometvisu.org/"
