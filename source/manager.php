@@ -252,7 +252,7 @@ function fillAvailMedia()
   {
     $name = substr( $file, strlen( MEDIA_PATH ) );
     
-    if( in_array( $name, Array( '.gitignore' ) ) )
+    if( in_array( $name, Array( '.', '..', '.gitignore' ) ) )
       continue;
     
     array_push( $availMedia, $name );
@@ -524,6 +524,11 @@ function newConfig()
   
   var myUrl = window.location.href.split('?')[0];
   window.location.href = myUrl + '?config=' + newName + '&action=create';
+}
+
+function addMediaFile()
+{
+  $('#media_file').trigger('click');
 }
 
 function addHiddenName()
@@ -830,7 +835,7 @@ if( $resetUrl )
     </form>
     
     <p>
-    <a href="javascript:$('#media_file').trigger('click')" id="newMedia" class="newFile"><?php echo icon('control_plus') . $_['Upload new media'] ?></a>
+    <a href="javascript:addMediaFile()" id="newMedia" class="newFile"><?php echo icon('control_plus') . $_['Upload new media'] ?></a>
     </p>
     
     <!-- ****************************************************************** -->
