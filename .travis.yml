@@ -73,6 +73,8 @@ jobs:
     name: "[DOCS] - Generate and publish manual and API-viewer"
     env: CV_BUILD=docs ENCRYPTION_LABEL=4c79fec0aeb9 COMMIT_AUTHOR_EMAIL=generator@cometvisu.org CV_BROWSER=Chrome_travis CV_VERSION=stable
     script:
+    - sudo ./utils/travis/browser-setup.sh
+    - export CHROME_BIN=`pwd`/chrome/google-chrome
     - docker pull cometvisu/dev-helper
     - source temp-python/bin/activate
     - "./generate.py build -sI"
