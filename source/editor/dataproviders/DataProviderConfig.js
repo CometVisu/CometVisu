@@ -45,6 +45,13 @@ var DataProviderConfig = {
       userInputAllowed: true,
     },
   },
+  'influx': {
+    '_nodeValue':  {
+      url: 'editor/dataproviders/list_all_influxdbs.php',
+      cache: true,
+      userInputAllowed: true,
+    },
+  },
   'icon': {
     'name':  {
       url: 'editor/dataproviders/list_all_icons.php',
@@ -73,6 +80,11 @@ var DataProviderConfig = {
   '*': {
     'rrd':  {
       url: 'editor/dataproviders/list_all_rrds.php',
+      cache: true,
+      userInputAllowed: true,
+    },
+    'influx':  {
+      url: 'editor/dataproviders/list_all_influxdbs.php',
       cache: true,
       userInputAllowed: true,
     },

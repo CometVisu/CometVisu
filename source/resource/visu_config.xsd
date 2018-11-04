@@ -1555,6 +1555,7 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="axis" type="axis" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="influx" type="influx" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute name="width" type="dimension" use="optional" />
     <xsd:attribute name="height" type="dimension" use="optional" />
@@ -1647,6 +1648,7 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="axis" type="axis" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="influx" type="influx" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute ref="format" use="optional" />
@@ -2119,7 +2121,74 @@
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
-  
+
+  <xsd:complexType name="influx">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="yaxis" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Assigns the InfluxDB-data to a y-axis</xsd:documentation>
+            <xsd:documentation xml:lang="de">Weist die InfluxDB-Daten einer y-Achse zu</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="color" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the color of the data-line in the graph</xsd:documentation>
+            <xsd:documentation xml:lang="de">Legt die Farbe der Diagrammlinie fest</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="label" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the label of the data-series in the legend</xsd:documentation>
+            <xsd:documentation xml:lang="de">Defininiert den Namen der Datenreihe in der Legende</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="scaling" type="xsd:decimal" />
+        <xsd:attribute name="steps" type="xsd:boolean" />
+        <xsd:attribute name="fill" type="xsd:boolean" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Fill the space below the data-series or bar</xsd:documentation>
+            <xsd:documentation xml:lang="de">Füllt den Bereich unterhalb der Datenreihe bzw. Säule</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="style" use="optional" >
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="lines" />
+              <xsd:enumeration value="bars" />
+              <xsd:enumeration value="points" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="barWidth" type="xsd:integer" use="optional" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Width of the bars in units of the x axis, contrary to most other measures that are specified in pixels. For instance, for time series the unit is milliseconds so 24 * 60 * 60 * 1000 produces bars with the width of a day.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ref="align" use="optional" />
+        <xsd:attribute name="datasourceIndex" type="xsd:integer" use="optional" default="0" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">If there are multiple datasources in the InfluxDB series this index defines which one to show. TODO: Use "rrdtool info" to find the correct index.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Im Falle mehrerer Datenquellen in einer InfluxDB-Zeitreihe kann hier der Index der Datenquelle angegeben werden, die angezeigt werden soll. TODO: Um den richtigen Index herauszufinden, kann "rrdtool info" verwendet werden.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="resolution" type="xsd:integer" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The standard resolution for retrieving data from the TODO RRD file can be overriden with a custom value in seconds.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Die Standard-Auflösung für die Daten aus der TODO RRD-Datei kann überschrieben werden mit einem eigenen Sekunden-Wert.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="offset" type="xsd:integer" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">An offset in seconds to modify the timestamp of the retrieved data from the TODO RRD file.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Offset in Sekunden, um die Zeitstempel der Daten aus der TODO RRD-Datei zu modifizieren.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
   <xsd:complexType name="infoaction">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
