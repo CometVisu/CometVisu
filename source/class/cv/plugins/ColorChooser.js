@@ -230,6 +230,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
       if (this.__timer) {
         this.__timer.stop();
         this.__timer = null;
+        this.setRateLimiter(false);
       }
       farbtastic.setColor( color );
       this.__skipSending = false;
