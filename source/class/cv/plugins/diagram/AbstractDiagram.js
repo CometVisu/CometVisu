@@ -20,7 +20,7 @@
 
 /**
  * This plugins integrates flot (diagrams in javascript) into the visualization.
- * server-side data-storage is rrd
+ * server-side data-storage is rrd or InfluxDB.
  *
  * short documentation
  *
@@ -126,8 +126,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       var retVal = {
         axes    : [],
         axesnum : 0,
-        rrd     : [],
-        rrdnum  : 0
+        ts      : [],
+        tsnum   : 0
       };
       var axesNameIndex = [];
 
@@ -148,9 +148,10 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         axesNameIndex[qx.dom.Node.getText(elem)] = retVal.axesnum;
       }, this);
 
-      qx.bom.Selector.query("rrd", xmlElement).forEach(function(elem) {
+      qx.bom.Selector.query("influx,rrd", xmlElement).forEach(function(elem) {
         var src = qx.dom.Node.getText(elem);
-        retVal.rrd[retVal.rrdnum] = {
+        retVal.ts[retVal.tsnum] = {
+          tsType    : elem.tagName,
           src       : src,
           color     : elem.getAttribute('color'),
           label     : elem.getAttribute('label') || src,
@@ -166,26 +167,30 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           align     : elem.getAttribute('align') || "center",
           barWidth  : elem.getAttribute('barWidth') || 1
         };
-        if (retVal.rrd[retVal.rrdnum].dsIndex < 0) {
-          retVal.rrd[retVal.rrdnum].dsIndex = 0;
+        if (retVal.ts[retVal.tsnum].dsIndex < 0) {
+          retVal.ts[retVal.tsnum].dsIndex = 0;
         }
-        retVal.rrdnum++;
+        retVal.tsnum++;
       }, this);
       return retVal;
     },
 
     /**
-     * Get the rrd and put it's content in the cache.
+     * Get the rrd or InfluxDB and put it's content in the cache.
      * @param refresh {Number} time is seconds to refresh the data
      * @param force {Boolean} Update even when the cache is still valid
      * @param callback {Function} call when the data has arrived
      */
-    lookupRRDcache: function( rrd, start, end, res, refresh, force, callback, callbackParameter ) {
+    lookupTsCache: function(ts, start, end, res, refresh, force, callback, callbackParameter ) {
       var
-        url = cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
-        key = url + '|' + rrd.dsIndex,
+        url = cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+"?rrd=" + ts.src + ".rrd&ds=" + ts.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
+        key = url + '|' + ts.dsIndex,
         urlNotInCache = !(key in this.cache),
         doLoad = force || urlNotInCache || !('data' in this.cache[ key ]) || (refresh!==undefined && (Date.now()-this.cache[key].timestamp) > refresh*1000);
+
+      if( 'influx' === ts.tsType )
+        url = 'http://wiregate/CometVisuGit/source/resource/plugins/diagram/influxfetch.php?ts=' + ts.src;
+      console.log(ts,url);
 
       if( doLoad )
       {
@@ -202,7 +207,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           xhr.set({
             accept: "application/json"
           });
-          xhr.addListener("success", qx.lang.Function.curry(this._onSuccess, rrd, key), this);
+          xhr.addListener("success", qx.lang.Function.curry(this._onSuccess, ts, key), this);
           this.cache[ key ].xhr = xhr;
           xhr.send();
         }
@@ -593,44 +598,44 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       // init
       var loadedData = [];
-      var rrdloaded = 0;
-      var rrdSuccessful = 0;
-      // get all rrd data
-      this.getContent().rrd.forEach(function(rrd, index) {
+      var tsloaded = 0;
+      var tsSuccessful = 0;
+      // get all time series data
+      this.getContent().ts.forEach(function(ts, index) {
         var
-          res = rrd.resol ? rrd.resol : series.res,
+          res = ts.resol ? ts.resol : series.res,
           refresh = this.getRefresh() ? this.getRefresh() : res;
 
-        cv.plugins.diagram.AbstractDiagram.lookupRRDcache( rrd, series.start, series.end, res, refresh, forceReload, function( rrddata ){
-          rrdloaded++;
-          if (rrddata !== null) {
-            rrdSuccessful++;
+        cv.plugins.diagram.AbstractDiagram.lookupTsCache( ts, series.start, series.end, res, refresh, forceReload, function(tsdata ){
+          tsloaded++;
+          if (tsdata !== null) {
+            tsSuccessful++;
 
             // store the data for diagram plotting
             loadedData[index] = {
-              label: rrd.label,
-              color: rrd.color,
-              data: rrddata,
-              yaxis: parseInt(rrd.axisIndex),
-              bars: { show: rrd.style === "bars", fill: rrd.fill, barWidth: parseInt(rrd.barWidth), align: rrd.align },
-              lines: { show: rrd.style === "lines", steps: rrd.steps, fill: rrd.fill, zero: false },
-              points: { show: rrd.style === "points", fill: rrd.fill }
+              label: ts.label,
+              color: ts.color,
+              data: tsdata,
+              yaxis: parseInt(ts.axisIndex),
+              bars: { show: ts.style === "bars", fill: ts.fill, barWidth: parseInt(ts.barWidth), align: ts.align },
+              lines: { show: ts.style === "lines", steps: ts.steps, fill: ts.fill, zero: false },
+              points: { show: ts.style === "points", fill: ts.fill }
             };
           }
 
           // if loading has finished, i.e. all rrds have been retrieved,
           // go on and plot the diagram
-          if (rrdloaded === this.getContent().rrdnum) {
+          if (tsloaded === this.getContent().rrdnum) {
             var fulldata;
             // If all rrds were successfully loaded, no extra action is needed.
             // Otherwise we need to reduce the array to the loaded data.
-            if (rrdSuccessful === rrdloaded) {
+            if (tsSuccessful === tsloaded) {
               fulldata = loadedData;
             }
             else {
               fulldata = [];
               var loadedIndex = -1;
-              for (var j = 0; j < rrdSuccessful; j++) {
+              for (var j = 0; j < tsSuccessful; j++) {
                 for (var k = loadedIndex + 1; k < loadedData.length; k++) {
                   if (loadedData[k] !== null) {
                     fulldata[j] = loadedData[k];
