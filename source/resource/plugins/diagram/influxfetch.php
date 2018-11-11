@@ -36,7 +36,7 @@ function query( $q, $db = '' )
   return file_get_contents('http://localhost:8086/query?q=' . urlencode($q) . $db);
 }
 
-function getTs( $tsParameter )
+function getTs( $tsParameter, $start, $end, $ds, $res, $fill )
 {
   $ts = explode( '/', $tsParameter );
   if( '' == $ts[0] || '' == $ts[1] )
@@ -45,7 +45,66 @@ function getTs( $tsParameter )
   if( !preg_match('/^[A-Za-z0-9_\-]*$/', $ts[1]) )
     return 'Error: invalid series [' . $ts[1] . ']';
 
-  $q = 'SELECT * FROM ' . $ts[1];
+  switch( $end )
+  {
+    case 'now':
+      $end = 'now()';
+      break;
+
+    case 'midnight+24hour':
+      $end = strftime( "'%Y-%m-%d' + 1d" );
+      break;
+
+    default:
+      if( !preg_match( '/^[A-Za-z0-9: +\-()]$/', $end ) )
+        return 'Error: invalid end parameter [' . $end . ']';
+  }
+
+  preg_match_all( '/^end-([0-9]*)([a-z]*)$/', $start, $startParts );
+  $map = array( 'hour' => 'h', 'day' => 'd', 'week' => 'w', 'month' => 'm', 'year' => 'y' );
+  $start = $end . ' - ' . $startParts[1][0] . $map[ $startParts[2][0] ];
+
+  if( '' != $res )
+  {
+    if( !preg_match( '/^[0-9]+$/', $res ) )
+      return 'Error: invalid res parameter [' . $res . ']';
+    switch( $ds )
+    {
+      case 'COUNT':
+      case 'INTEGRAL':
+      case 'MAX':
+      case 'MEAN':
+      case 'MEDIAN':
+      case 'MIN':
+      case 'MODE':
+      case 'SPREAD':
+      case 'STDDEV':
+      case 'SUM':
+        break;
+
+      default:
+        return 'Error: invalid ds parameter (required when res is set) [' . $ds . ']';
+    }
+
+    $q = sprintf( 'SELECT %s(*) FROM "%s" WHERE time >= %s AND time <= %s GROUP BY time(%ss)', $ds, $ts[ 1 ], $start, $end, $res );
+
+    if( '' != $fill )
+    {
+      if( !preg_match( '/^([0-9eE.+-]+|linear|none|null|previous)$/', $fill ) )
+        return 'Error: invalid fill parameter [' . $fill . ']';
+
+      $q .= " fill($fill)";
+    }
+  } else {
+    $q = sprintf( 'SELECT * FROM "%s" WHERE time >= %s AND time <= %s', $ts[ 1 ], $start, $end );
+  }
+  $tz = date_default_timezone_get();
+  if( 'System/Localtime' == $tz )
+    $tz = 'Europe/Berlin';  // best guess for a not good set up system
+  $q .= " tz('$tz')";
+
+  if( '' != $_GET['debug'] )
+    var_dump($q);
 
   $arrData = array();
 
@@ -54,7 +113,7 @@ function getTs( $tsParameter )
   foreach( $series as $thisSeries )
   {
     $arrData[] = array(
-      strtotime( $thisSeries[0] ) * 1000,
+      strtotime( $thisSeries[0] ),// * 1000,
       array( (string)$thisSeries[1] )
     );
   }
@@ -62,10 +121,34 @@ function getTs( $tsParameter )
   return $arrData;
 }
 
-$arrData = getTs( $_GET['ts'] );
+function printRow( $row )
+{
+  print '[' . $row[0] . '000,[';
+  if( $row[1] )
+  {
+    print '"' . join('","', $row[1] ) . '"';
+  }
+  print ']]';
+}
+
+$arrData = getTs( $_GET['ts'], $_GET['start'], $_GET['end'], $_GET['ds'], $_GET['res'], $_GET['fill'] );
 
 Header("Content-type: application/json");
-print json_encode($arrData);
-exit;
+
+if( is_array( $arrData ) )
+{
+  print '[';
+  printRow( array_shift( $arrData ) );
+  if( $arrData )
+  {
+    foreach( $arrData as $row )
+    {
+      print ',';
+      printRow( $row );
+    }
+  }
+  print ']';
+} else
+  print $arrData;
 
 ?>

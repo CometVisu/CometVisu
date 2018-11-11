@@ -160,7 +160,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           fill      : (elem.getAttribute("fill") || "false") === "true",
           scaling   : parseFloat(elem.getAttribute('scaling')) || 1.0,
           dsIndex   : elem.getAttribute('datasourceIndex') || 0,
-          cFunc     : elem.getAttribute('consolidationFunction') || "AVERAGE",
+          cFunc     : elem.getAttribute('consolidationFunction') || (elem.tagName === 'rrd' ? 'AVERAGE' : 'MEAN'),
+          fillTs    : elem.getAttribute('fillMissing') || '',
           resol     : parseInt(elem.getAttribute('resolution')),
           offset    : parseInt(elem.getAttribute('offset')),
           style     : elem.getAttribute('style') || "lines",
@@ -183,13 +184,19 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      */
     lookupTsCache: function(ts, start, end, res, refresh, force, callback, callbackParameter ) {
       var
-        url = cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+"?rrd=" + ts.src + ".rrd&ds=" + ts.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
+        url = cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+'?rrd=' + encodeURIComponent(ts.src) + '.rrd',
         key = url + '|' + ts.dsIndex,
         urlNotInCache = !(key in this.cache),
         doLoad = force || urlNotInCache || !('data' in this.cache[ key ]) || (refresh!==undefined && (Date.now()-this.cache[key].timestamp) > refresh*1000);
 
       if( 'influx' === ts.tsType )
         url = 'http://wiregate/CometVisuGit/source/resource/plugins/diagram/influxfetch.php?ts=' + ts.src;
+      url += '&ds=' + encodeURIComponent(ts.cFunc)
+        + '&start=' + ('rrd' === ts.tsType ? start : encodeURIComponent(start))
+        + '&end=' + ('rrd' === ts.tsType ? end : encodeURIComponent(end))
+        + '&res=' + encodeURIComponent(res);
+      if( ts.fillTs )
+        url += '&fill=' + encodeURIComponent(ts.fillTs);
       console.log(ts,url);
 
       if( doLoad )
@@ -216,22 +223,22 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
     },
 
-    _onSuccess: function(rrd, key, ev) {
-      var rrddata = ev.getTarget().getResponse();
-      if (rrddata !== null) {
+    _onSuccess: function(ts, key, ev) {
+      var tsdata = ev.getTarget().getResponse();
+      if (tsdata !== null) {
         // calculate timestamp offset and scaling
-        var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
-        var newRrd = new Array(rrddata.length);
-        for (var j = 0, l = rrddata.length; j < l; j++) {
-          newRrd[j] = [(rrddata[j][0] + millisOffset), (parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling)];
+        var millisOffset = (ts.offset ? ts.offset * 1000 : 0);
+        var newRrd = new Array(tsdata.length);
+        for (var j = 0, l = tsdata.length; j < l; j++) {
+          newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling)];
         }
-        rrddata = newRrd;
+        tsdata = newRrd;
       }
-      this.cache[key].data = rrddata;
+      this.cache[key].data = tsdata;
       this.cache[key].timestamp = Date.now();
 
       this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
-        waitingCallback[0](rrddata, waitingCallback[1]);
+        waitingCallback[0](tsdata, waitingCallback[1]);
       }, this);
       this.cache[key].waitingCallbacks.length = 0; // empty array)
     }
@@ -623,11 +630,11 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
             };
           }
 
-          // if loading has finished, i.e. all rrds have been retrieved,
+          // if loading has finished, i.e. all time series have been retrieved,
           // go on and plot the diagram
-          if (tsloaded === this.getContent().rrdnum) {
+          if (tsloaded === this.getContent().tsnum) {
             var fulldata;
-            // If all rrds were successfully loaded, no extra action is needed.
+            // If all time series were successfully loaded, no extra action is needed.
             // Otherwise we need to reduce the array to the loaded data.
             if (tsSuccessful === tsloaded) {
               fulldata = loadedData;
