@@ -2090,6 +2090,10 @@
           </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="consolidationFunction" use="optional" default="AVERAGE" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Choose one of the consolidation functions of the RRDTool (see http://rrdtool.org).</xsd:documentation>
+            <xsd:documentation xml:lang="de">Auswählen einer der verfügbaren Consolidation Functions des RRDTools (http://rrdtool.org).</xsd:documentation>
+          </xsd:annotation>
           <xsd:simpleType>
               <xsd:restriction base="xsd:string">
                   <xsd:enumeration value="AVERAGE" />
@@ -2098,10 +2102,6 @@
                   <xsd:enumeration value="MAX" />
               </xsd:restriction>
           </xsd:simpleType>
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Choose one of the consolidation functions of the RRDTool (see http://rrdtool.org).</xsd:documentation>
-            <xsd:documentation xml:lang="de">Auswählen einer der verfügbaren Consolidation Functions des RRDTools (http://rrdtool.org).</xsd:documentation>
-          </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="resolution" type="xsd:integer" use="optional">
           <xsd:annotation>
@@ -2177,6 +2177,10 @@
           </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="consolidationFunction" use="optional" default="MEDIAN" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Choose one of the available data aggregation functions - required when the "resolution" attribute is set.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Auswählen einer der verfügbaren Daten Aggregierungs Funktionen - notwendig, wenn das Attribut "resolution" gesetzt ist.</xsd:documentation>
+          </xsd:annotation>
           <xsd:simpleType>
             <xsd:restriction base="xsd:string">
               <xsd:enumeration value="COUNT" />
@@ -2191,10 +2195,6 @@
               <xsd:enumeration value="SUM" />
             </xsd:restriction>
           </xsd:simpleType>
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Choose one of the available data aggregation functions - required when the "resolution" attribute is set.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Auswählen einer der verfügbaren Daten Aggregierungs Funktionen - notwendig, wenn das Attribut "resolution" gesetzt ist.</xsd:documentation>
-          </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="fillMissing" type="xsd:string" use="optional">
           <xsd:annotation>
