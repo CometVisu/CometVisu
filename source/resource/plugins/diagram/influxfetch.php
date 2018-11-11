@@ -36,7 +36,7 @@ function query( $q, $db = '' )
   return file_get_contents('http://localhost:8086/query?q=' . urlencode($q) . $db);
 }
 
-function getTs( $tsParameter, $start, $end, $ds, $res, $fill )
+function getTs( $tsParameter, $start, $end, $ds, $res, $fill, $filter )
 {
   $ts = explode( '/', $tsParameter );
   if( '' == $ts[0] || '' == $ts[1] )
@@ -64,6 +64,11 @@ function getTs( $tsParameter, $start, $end, $ds, $res, $fill )
   $map = array( 'hour' => 'h', 'day' => 'd', 'week' => 'w', 'month' => 'm', 'year' => 'y' );
   $start = $end . ' - ' . $startParts[1][0] . $map[ $startParts[2][0] ];
 
+  if( $filter )
+  {
+    $filter = 'AND ' . str_replace( "\\'", "'", $filter );
+  }
+
   if( '' != $res )
   {
     if( !preg_match( '/^[0-9]+$/', $res ) )
@@ -86,7 +91,7 @@ function getTs( $tsParameter, $start, $end, $ds, $res, $fill )
         return 'Error: invalid ds parameter (required when res is set) [' . $ds . ']';
     }
 
-    $q = sprintf( 'SELECT %s(*) FROM "%s" WHERE time >= %s AND time <= %s GROUP BY time(%ss)', $ds, $ts[ 1 ], $start, $end, $res );
+    $q = sprintf( 'SELECT %s(*) FROM "%s" WHERE time >= %s AND time <= %s %s GROUP BY time(%ss)', $ds, $ts[ 1 ], $start, $end, $filter, $res );
 
     if( '' != $fill )
     {
@@ -96,7 +101,7 @@ function getTs( $tsParameter, $start, $end, $ds, $res, $fill )
       $q .= " fill($fill)";
     }
   } else {
-    $q = sprintf( 'SELECT * FROM "%s" WHERE time >= %s AND time <= %s', $ts[ 1 ], $start, $end );
+    $q = sprintf( 'SELECT * FROM "%s" WHERE time >= %s AND time <= %s %s', $ts[ 1 ], $start, $end, $filter );
   }
   $tz = date_default_timezone_get();
   if( 'System/Localtime' == $tz )
@@ -131,7 +136,7 @@ function printRow( $row )
   print ']]';
 }
 
-$arrData = getTs( $_GET['ts'], $_GET['start'], $_GET['end'], $_GET['ds'], $_GET['res'], $_GET['fill'] );
+$arrData = getTs( $_GET['ts'], $_GET['start'], $_GET['end'], $_GET['ds'], $_GET['res'], $_GET['fill'], $_GET['filter'] );
 
 Header("Content-type: application/json");
 

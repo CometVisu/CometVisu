@@ -168,6 +168,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           align     : elem.getAttribute('align') || "center",
           barWidth  : elem.getAttribute('barWidth') || 1
         };
+        if( elem.tagName === 'influx' ) {
+          retVal.ts[retVal.tsnum]['filter'] = "GA = '4/2/0'";
+        }
         if (retVal.ts[retVal.tsnum].dsIndex < 0) {
           retVal.ts[retVal.tsnum].dsIndex = 0;
         }
@@ -197,6 +200,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         + '&res=' + encodeURIComponent(res);
       if( ts.fillTs )
         url += '&fill=' + encodeURIComponent(ts.fillTs);
+      console.log(ts.filter, encodeURIComponent(ts.filter));
+      if( ts.filter )
+        url += '&filter=' + encodeURIComponent(ts.filter);
       console.log(ts,url);
 
       if( doLoad )
