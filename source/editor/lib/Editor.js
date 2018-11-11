@@ -1006,7 +1006,7 @@ var EditorConfigurationElement = function (parent, element) {
         // only do this, if the XSD did not give us an enumeration!
         var dataProvider = DataProviderManager.getProvider(_element.name, attributeName);
         if (undefined != dataProvider) {
-          elementEnumeration = dataProvider.getEnumeration();
+          elementEnumeration = dataProvider.getEnumeration(_element);
           isUserInputAllowed = dataProvider.isUserInputAllowed();
         }
       }

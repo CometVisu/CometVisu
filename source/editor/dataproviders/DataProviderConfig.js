@@ -46,11 +46,23 @@ var DataProviderConfig = {
     },
   },
   'influx': {
-    '_nodeValue':  {
+    'measurement':  {
       url: 'editor/dataproviders/list_all_influxdbs.php',
       cache: true,
-      userInputAllowed: true,
+      userInputAllowed: false,
     },
+  },
+  'tag': {
+    'key': {
+        live: getInfluxTags,
+        cache: false,
+        userInputAllowed: false,
+    },
+    'value': {
+      live: getInfluxTagValues,
+      cache: false,
+      userInputAllowed: false,
+    }
   },
   'icon': {
     'name':  {
@@ -80,11 +92,6 @@ var DataProviderConfig = {
   '*': {
     'rrd':  {
       url: 'editor/dataproviders/list_all_rrds.php',
-      cache: true,
-      userInputAllowed: true,
-    },
-    'influx':  {
-      url: 'editor/dataproviders/list_all_influxdbs.php',
       cache: true,
       userInputAllowed: true,
     },
@@ -141,3 +148,60 @@ var DataProviderConfig = {
     },
   },
 };
+
+// Special cases:
+
+// get the InfluxDB tag and values for the measurement source of the parent influx element.
+// also cache it as it is relevant for each tag element below this influx element and it won't change between the
+// different measurements
+var influxCache = {};
+// Return tag key/value data for given measurement. When not available yet put it in the cache first.
+function retrieveInfluxCache( measurement ) {
+  if( !(measurement in influxCache) ) {
+    $.ajax('editor/dataproviders/list_all_influxdb_tags.php?measurement=' + measurement,
+      {
+        dataType: 'json',
+        async: false, // at this point, we can no longer async!
+        success: function (result) {
+          // what we get from the server is exactly what we need (hopefully ...)
+          influxCache[ measurement ] = result;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
+          $(document).trigger('dataprovider_loading_error', [result]);
+        }
+      }
+    );
+  }
+  return influxCache[ measurement ];
+}
+// Return the known tag keys for the measurement of the element
+function getInfluxTags( element ) {
+  var influx = element;
+  // walk the tree to get the selected data source in the influx element
+  while( 'influx' != influx.name )
+  {
+    influx = influx.getParentElement();
+    if( undefined === influx )
+      return []; // this safety measure can not happen without a bug somewhere!
+  }
+  var data = retrieveInfluxCache(influx.attributes.measurement);
+  return Object.keys(data).map( function(x){ return { value:x, label: x }; } );
+}
+// Return the known tag values for the key of the tag of the measurement of the element
+function getInfluxTagValues( element ) {
+  var influx = element;
+  // walk the tree to get the selected data source in the influx element
+  while( 'influx' != influx.name )
+  {
+    influx = influx.getParentElement();
+    if( undefined === influx )
+      return []; // this safety measure can not happen without a bug somewhere!
+  }
+  var data = retrieveInfluxCache(influx.attributes.measurement);
+
+  if( !(element.attributes.key in data) )
+    return [];
+
+  return data[element.attributes.key].map( function(x){ return { value:x, label: x }; } );
+}

@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=8 shiftwidth=2 softtabstop=2: */
 
 /**
- * Provide a list of all system-known InfluxDB timeseries.
+ * Provide a list of all tag key/value pairs for an InfluxDB measurement.
  *
  *
  * This file will output a json-encoded object with multiple dimensions.
@@ -32,7 +32,7 @@
  * @copyright   2018 Christian Mayer
  * @license     GPLv3 or later, http://opensource.org/licenses/gpl-license.php
  * @link        https://www.cometvisu.org/
- * @since       2018-11-04
+ * @since       2018-11-11
  */
 
 function query( $q, $db = '' )
@@ -43,19 +43,16 @@ function query( $q, $db = '' )
   return file_get_contents('http://localhost:8086/query?q=' . urlencode($q) . $db);
 }
 
-$arrData = array();
-
-$databases = json_decode( query( 'show databases' ), true );
-foreach( $databases[ 'results' ][ 0 ][ 'series' ][ 0 ][ 'values' ] as $databaseEntry )
+function getTags( $tsParameter )
 {
-  $database = $databaseEntry[ 0 ];
-  if( '_internal' == $database )
-    continue;
+  $ts = explode( '/', $tsParameter );
+  if( '' == $ts[0] || '' == $ts[1] )
+    return 'Error: wrong measurement parameter [' . $tsParameter . ']';
 
   $resSeries = array();
   $measurements = array();
 
-  $seriesArr = json_decode( query( 'SHOW SERIES', $database ), true );
+  $seriesArr = json_decode( query( 'SHOW SERIES FROM ' . $ts[1], $ts[0] ), true );
   $series = $seriesArr[ 'results' ][ 0 ][ 'series' ][ 0 ][ 'values' ];
   if( NULL != $series )
   {
@@ -82,17 +79,16 @@ foreach( $databases[ 'results' ][ 0 ][ 'series' ][ 0 ][ 'values' ] as $databaseE
     foreach( $measurements as $measurement => $measurementValues )
     {
       foreach( $measurementValues as $tag => $tagValues )
-        $measurements[ $measurement ][ $tag ] = array_keys( $tagValues );
-      $resSeries[ $measurement ] = $measurements[ $measurement ];
-
-      // now forget all the nice information and compact to the relevant one:
-      $arrData[] = array(
-        'value' => $database . '/' . $measurement,
-        'label' => ''
-      );
+      {
+        $arrData[$tag] = array_keys( $tagValues );
+      }
     }
   }
+
+  return $arrData;
 }
+
+$arrData = getTags( $_GET['measurement'] );
 
 Header("Content-type: application/json");
 print json_encode($arrData);

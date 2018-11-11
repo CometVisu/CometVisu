@@ -149,7 +149,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }, this);
 
       qx.bom.Selector.query("influx,rrd", xmlElement).forEach(function(elem) {
-        var src = qx.dom.Node.getText(elem);
+        var src = elem.tagName === 'rrd' ? qx.dom.Node.getText(elem) : elem.getAttribute('measurement');
         retVal.ts[retVal.tsnum] = {
           tsType    : elem.tagName,
           src       : src,
