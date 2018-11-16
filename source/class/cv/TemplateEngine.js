@@ -695,7 +695,7 @@ qx.Class.define('cv.TemplateEngine', {
         speed = cv.Config.configSettings.scrollSpeed;
       }
 
-      if (cv.Config.rememberLastPage) {
+      if (cv.Config.rememberLastPage && qx.core.Environment.get("html.storage.local")) {
         localStorage.lastpage = page_id;
       }
 

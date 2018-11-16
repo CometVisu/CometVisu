@@ -100,7 +100,7 @@ qx.Class.define('cv.report.Replay', {
       this.__log = log.log;
       this.__data = log.data;
       this.__config = qx.xml.Document.fromString(log.config);
-      if (log.data.cache) {
+      if (log.data.cache && qx.core.Environment.get("html.storage.local") === true) {
         localStorage.setItem(cv.Config.configSuffix + ".body", log.data.cache.body);
         localStorage.setItem(cv.Config.configSuffix + ".data", qx.lang.Json.stringify(log.data.cache.data));
       }
