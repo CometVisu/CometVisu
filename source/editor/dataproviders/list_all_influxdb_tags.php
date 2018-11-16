@@ -35,12 +35,35 @@
  * @since       2018-11-11
  */
 
+include "../../resource/config/hidden.php";
+
 function query( $q, $db = '' )
 {
+  global $hidden;
+
   if( $db )
     $db = '&db=' . $db;
 
-  return file_get_contents('http://localhost:8086/query?q=' . urlencode($q) . $db);
+  $context = NULL;
+  $uri = 'http://localhost:8086/query';
+
+  $influxKey = 'influx';
+  if( array_key_exists( $influxKey, $hidden ) )
+  {
+    if( array_key_exists( 'uri', $hidden[$influxKey] ) )
+      $uri = $hidden[$influxKey]['uri'];
+
+    $opts = array(
+      'http' => array(
+        'method' => "GET",
+        'header' => "Authorization: Basic " . base64_encode( $hidden[$influxKey]['user'] . ':' . $hidden[$influxKey]['pass'] )
+      )
+    );
+
+    $context = stream_context_create( $opts );
+  }
+
+  return file_get_contents($uri . '?q=' . urlencode($q) . $db, false, $context);
 }
 
 function getTags( $tsParameter )
