@@ -38,6 +38,9 @@ qx.Class.define('cv.ConfigCache', {
     _valid : null,
     
     dump : function(xml) {
+      if (qx.core.Environment.get("html.storage.local") === false) {
+        return;
+      }
       var config = qx.lang.Object.clone(cv.Config.configSettings, true);
       var model = cv.data.Model.getInstance();
       this.save(this._cacheKey, {
@@ -61,14 +64,22 @@ qx.Class.define('cv.ConfigCache', {
     },
     
     save: function(key, data) {
-      localStorage.setItem(cv.Config.configSuffix+"."+key, qx.lang.Json.stringify(data));
+      if (qx.core.Environment.get("html.storage.local") === true) {
+        localStorage.setItem(cv.Config.configSuffix + "." + key, qx.lang.Json.stringify(data));
+      }
     },
     
     getBody: function() {
+      if (qx.core.Environment.get("html.storage.local") === false) {
+        return null;
+      }
       return localStorage.getItem(cv.Config.configSuffix + ".body");
     },
     
     getData: function(key) {
+      if (qx.core.Environment.get("html.storage.local") === false) {
+        return null;
+      }
       if (!this._parseCacheData) {
         this._parseCacheData = qx.lang.Json.parse(localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey));
       }
@@ -86,6 +97,9 @@ qx.Class.define('cv.ConfigCache', {
      * Returns true if there is an existing cache for the current config file
      */
     isCached: function() {
+      if (qx.core.Environment.get("html.storage.local") === false) {
+        return false;
+      }
       if (localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey) !== null) {
         // compare versions
         var cacheVersion = this.getData("VERSION");
@@ -97,6 +111,9 @@ qx.Class.define('cv.ConfigCache', {
     },
     
     isValid: function(xml) {
+      if (qx.core.Environment.get("html.storage.local") === false) {
+        return false;
+      }
       // cache the result, as the config stays the same until next reload
       if (this._valid === null) {
         var hash = this.toHash(xml);
@@ -111,6 +128,9 @@ qx.Class.define('cv.ConfigCache', {
     },
     
     clear: function(configSuffix) {
+      if (qx.core.Environment.get("html.storage.local") === false) {
+        return;
+      }
       configSuffix = configSuffix || cv.Config.configSuffix;
       localStorage.removeItem(configSuffix+"."+this._cacheKey);
       localStorage.removeItem(configSuffix+".body");
