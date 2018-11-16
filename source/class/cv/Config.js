@@ -282,7 +282,8 @@ qx.Class.define('cv.Config', {
 
     // caching is only possible when localStorage is available
     if (qx.core.Environment.get("html.storage.local") === false) {
-      cv.Config.enableCache = true;
+      cv.Config.enableCache = false;
+      console.warn('localStorage is not available in your browser. Some advanced features, like caching will not work!');
     } else {
       if (req.queryKey.enableCache === "invalid") {
         cv.ConfigCache.clear(cv.Config.configSuffix);
