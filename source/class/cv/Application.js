@@ -547,7 +547,7 @@ qx.Class.define("cv.Application",
       var startpage = 'id_';
       if (cv.Config.startpage) {
         startpage = cv.Config.startpage;
-        if (typeof(Storage) !== 'undefined') {
+        if (qx.core.Environment.get("html.storage.local") === true) {
           if ('remember' === startpage) {
             startpage = localStorage.getItem('lastpage');
             cv.Config.rememberLastPage = true;
