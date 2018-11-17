@@ -37,7 +37,7 @@
 
 include "../../resource/config/hidden.php";
 
-function query( $q, $db = '' )
+function query( $q, $db = '', $auth )
 {
   global $hidden;
 
@@ -47,7 +47,12 @@ function query( $q, $db = '' )
   $context = NULL;
   $uri = 'http://localhost:8086/query';
 
-  $influxKey = 'influx';
+  // default to 'influx' when it is set in the hidden config but not set in the GET URL.
+  if( NULL == $auth && array_key_exists( 'influx', $hidden ) )
+    $influxKey = 'influx';
+  else
+    $influxKey = $auth;
+
   if( array_key_exists( $influxKey, $hidden ) )
   {
     if( array_key_exists( 'uri', $hidden[$influxKey] ) )
@@ -63,10 +68,17 @@ function query( $q, $db = '' )
     $context = stream_context_create( $opts );
   }
 
-  return file_get_contents($uri . '?q=' . urlencode($q) . $db, false, $context);
+  $content = @file_get_contents( $uri . '?q=' . urlencode( $q ) . $db, false, $context );
+  if( FALSE === $content )
+  {
+    $error = error_get_last();
+    print $error['message'];
+    exit;
+  }
+  return $content;
 }
 
-function getTags( $tsParameter )
+function getTags( $tsParameter, $auth )
 {
   $ts = explode( '/', $tsParameter );
   if( '' == $ts[0] || '' == $ts[1] )
@@ -75,7 +87,7 @@ function getTags( $tsParameter )
   $resSeries = array();
   $measurements = array();
 
-  $seriesArr = json_decode( query( 'SHOW SERIES FROM ' . $ts[1], $ts[0] ), true );
+  $seriesArr = json_decode( query( 'SHOW SERIES FROM ' . $ts[1], $ts[0], $auth ), true );
   $series = $seriesArr[ 'results' ][ 0 ][ 'series' ][ 0 ][ 'values' ];
   if( NULL != $series )
   {
@@ -111,7 +123,7 @@ function getTags( $tsParameter )
   return $arrData;
 }
 
-$arrData = getTags( $_GET['measurement'] );
+$arrData = getTags( $_GET['measurement'], $_GET['auth'] );
 
 Header("Content-type: application/json");
 print json_encode($arrData);

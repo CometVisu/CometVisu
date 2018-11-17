@@ -2200,10 +2200,16 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="align" use="optional" />
-    <xsd:attribute name="datasourceIndex" type="xsd:integer" use="optional" default="0" >
+    <xsd:attribute name="authentication" type="xsd:string" use="optional" default="influx" >
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">If there are multiple datasources in the InfluxDB series this index defines which one to show. TODO: Use "rrdtool info" to find the correct index.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Im Falle mehrerer Datenquellen in einer InfluxDB-Zeitreihe kann hier der Index der Datenquelle angegeben werden, die angezeigt werden soll. TODO: Um den richtigen Index herauszufinden, kann "rrdtool info" verwendet werden.</xsd:documentation>
+        <xsd:documentation xml:lang="en">When the InfluxDB requires authentication the credentials in the hidden config with this key will be used.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wenn die InfluxDB Authentifizierung benötigt, dann werden die Anmeldeinformationen aus der Hidden-Konfiguration mit diesem Schlüssel verwendet.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="field" type="xsd:string" use="optional" default="*" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">If there are multiple fields in the InfluxDB series this field defines which one to show. (When not set a default of "*" will be used.)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Im Falle mehrerer Felder (Spalten) in einer InfluxDB-Zeitreihe kann hier der Name des Feldes angegeben werden, die angezeigt werden soll. (Wenn nicht explizit angegeben wird "*" verwendet.)</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="resolution" type="xsd:integer" use="optional">

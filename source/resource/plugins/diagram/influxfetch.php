@@ -30,7 +30,7 @@
 
 include "../../config/hidden.php";
 
-function query( $q, $db = '' )
+function query( $q, $db = '', $auth )
 {
   global $hidden;
 
@@ -40,7 +40,11 @@ function query( $q, $db = '' )
   $context = NULL;
   $uri = 'http://localhost:8086/query';
 
-  $influxKey = 'influx';
+  if( NULL == $auth && array_key_exists( 'influx', $hidden ) )
+    $influxKey = 'influx';
+  else
+    $influxKey = $auth;
+
   if( array_key_exists( $influxKey, $hidden ) )
   {
     if( array_key_exists( 'uri', $hidden[$influxKey] ) )
@@ -56,7 +60,14 @@ function query( $q, $db = '' )
     $context = stream_context_create( $opts );
   }
 
-  return file_get_contents($uri . '?q=' . urlencode($q) . $db, false, $context);
+  $content = @file_get_contents( $uri . '?q=' . urlencode( $q ) . $db, false, $context );
+  if( FALSE === $content )
+  {
+    $error = error_get_last();
+    print $error['message'];
+    exit;
+  }
+  return $content;
 }
 
 function getTs( $tsParameter, $start, $end, $ds, $res, $fill, $filter )
@@ -136,7 +147,7 @@ function getTs( $tsParameter, $start, $end, $ds, $res, $fill, $filter )
 
   $arrData = array();
 
-  $seriesArr = json_decode( query( $q, $ts[0] ), true );
+  $seriesArr = json_decode( query( $q, $ts[0], $_GET['auth'] ), true );
   $series = $seriesArr['results'][0]['series'][0]['values'];
   foreach( $series as $thisSeries )
   {

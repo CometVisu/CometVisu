@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=8 shiftwidth=2 softtabstop=2: */
 
 /**
- * Provide a list of all system-known InfluxDB timeseries.
+ * Provide a list of all fields for an InfluxDB measurement.
  *
  *
  * This file will output a json-encoded object with multiple dimensions.
@@ -32,7 +32,7 @@
  * @copyright   2018 Christian Mayer
  * @license     GPLv3 or later, http://opensource.org/licenses/gpl-license.php
  * @link        https://www.cometvisu.org/
- * @since       2018-11-04
+ * @since       2018-11-17
  */
 
 include "../../resource/config/hidden.php";
@@ -47,6 +47,7 @@ function query( $q, $db = '', $auth )
   $context = NULL;
   $uri = 'http://localhost:8086/query';
 
+  // default to 'influx' when it is set in the hidden config but not set in the GET URL.
   if( NULL == $auth && array_key_exists( 'influx', $hidden ) )
     $influxKey = 'influx';
   else
@@ -77,56 +78,36 @@ function query( $q, $db = '', $auth )
   return $content;
 }
 
-$arrData = array();
-
-$databases = json_decode( query( 'show databases', $_GET['auth'] ), true );
-foreach( $databases[ 'results' ][ 0 ][ 'series' ][ 0 ][ 'values' ] as $databaseEntry )
+function getFields( $tsParameter, $auth )
 {
-  $database = $databaseEntry[ 0 ];
-  if( '_internal' == $database )
-    continue;
+  $ts = explode( '/', $tsParameter );
+  if( '' == $ts[0] || '' == $ts[1] )
+    return 'Error: wrong measurement parameter [' . $tsParameter . ']';
 
-  $resSeries = array();
-  $measurements = array();
+  $arrData = array(array('value' => '*', 'label' => 'Default: *', 'forceOnlyLabel' => 1 ));
 
-  $seriesArr = json_decode( query( 'SHOW SERIES', $database, $_GET['auth'] ), true );
-  $series = $seriesArr[ 'results' ][ 0 ][ 'series' ][ 0 ][ 'values' ];
-  if( NULL != $series )
+  $fieldsArr = json_decode( query( 'SHOW FIELD KEYS FROM ' . $ts[1], $ts[0], $auth ), true );
+  $fields = $fieldsArr[ 'results' ][ 0 ][ 'series' ][ 0 ][ 'values' ];
+  if( NULL != $fields )
   {
-    foreach( $series as $thisSeries )
+    foreach( $fields as $thisField )
     {
-      $list = explode( ',', $thisSeries[ 0 ] );
-      $measurement = array_shift( $list );
-      if( !array_key_exists( $measurement, $measurements ) )
-        $measurements[ $measurement ] = array();
+      $l = '';
+      $r = '';
 
-      foreach( $list as $tag )
+      if( 'string' == $thisField[1] )
       {
-        $tagKV = explode( '=', $tag );
-        if( array_key_exists( $tagKV[ 0 ], $measurements[ $measurement ] ) )
-        {
-          $measurements[ $measurement ][ $tagKV[ 0 ] ][ $tagKV[ 1 ] ] = 1; // fake set operation
-        } else
-        {
-          $measurements[ $measurement ][ $tagKV[ 0 ] ] = array( $tagKV[ 1 ] => 1 ); // fake set operation
-        }
+        $l = '[';
+        $r = ']';
       }
-    }
-    // translate fake set to real set/array
-    foreach( $measurements as $measurement => $measurementValues )
-    {
-      foreach( $measurementValues as $tag => $tagValues )
-        $measurements[ $measurement ][ $tag ] = array_keys( $tagValues );
-      $resSeries[ $measurement ] = $measurements[ $measurement ];
-
-      // now forget all the nice information and compact to the relevant one:
-      $arrData[] = array(
-        'value' => $database . '/' . $measurement,
-        'label' => ''
-      );
+      $arrData[] = array('value' => $thisField[0], 'label' => sprintf( '%s%s (%s)%s', $l, $thisField[0], $thisField[1], $r ), 'forceOnlyLabel' => 1 );
     }
   }
+
+  return $arrData;
 }
+
+$arrData = getFields( $_GET['measurement'], $_GET['auth'] );
 
 Header("Content-type: application/json");
 print json_encode($arrData);

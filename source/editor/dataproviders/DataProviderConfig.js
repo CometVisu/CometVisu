@@ -51,6 +51,11 @@ var DataProviderConfig = {
       cache: true,
       userInputAllowed: false,
     },
+    'field':  {
+      live: getInfluxFields,
+      cache: false,
+      userInputAllowed: false,
+    },
   },
   'tag': {
     'key': {
@@ -156,24 +161,29 @@ var DataProviderConfig = {
 // different measurements
 var influxCache = {};
 // Return tag key/value data for given measurement. When not available yet put it in the cache first.
-function retrieveInfluxCache( measurement ) {
+function retrieveInfluxCache( measurement, type ) {
   if( !(measurement in influxCache) ) {
-    $.ajax('editor/dataproviders/list_all_influxdb_tags.php?measurement=' + measurement,
-      {
-        dataType: 'json',
-        async: false, // at this point, we can no longer async!
-        success: function (result) {
-          // what we get from the server is exactly what we need (hopefully ...)
-          influxCache[ measurement ] = result;
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
-          $(document).trigger('dataprovider_loading_error', [result]);
+    influxCache[ measurement ] = {};
+    if( !(type in influxCache[ measurement ]) ) {
+      var uri = type === 'tags'
+        ? 'editor/dataproviders/list_relevant_influxdb_tags.php?measurement='
+        : 'editor/dataproviders/list_relevant_influxdb_fields.php?measurement=';
+      $.ajax( uri + measurement,
+        {
+          dataType: 'json',
+          async: false, // at this point, we can no longer async!
+          success: function (result) {
+            influxCache[ measurement ][ type ] = result;
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
+            $(document).trigger('dataprovider_loading_error', [result]);
+          }
         }
-      }
-    );
+      );
+    }
   }
-  return influxCache[ measurement ];
+  return influxCache[ measurement ][ type ];
 }
 // Return the known tag keys for the measurement of the element
 function getInfluxTags( element ) {
@@ -185,7 +195,7 @@ function getInfluxTags( element ) {
     if( undefined === influx )
       return []; // this safety measure can not happen without a bug somewhere!
   }
-  var data = retrieveInfluxCache(influx.attributes.measurement);
+  var data = retrieveInfluxCache( influx.attributes.measurement, 'tags' );
   return Object.keys(data).map( function(x){ return { value:x, label: x }; } );
 }
 // Return the known tag values for the key of the tag of the measurement of the element
@@ -198,10 +208,24 @@ function getInfluxTagValues( element ) {
     if( undefined === influx )
       return []; // this safety measure can not happen without a bug somewhere!
   }
-  var data = retrieveInfluxCache(influx.attributes.measurement);
+  var data = retrieveInfluxCache(influx.attributes.measurement, 'tags' );
 
   if( !(element.attributes.key in data) )
     return [];
 
   return data[element.attributes.key].map( function(x){ return { value:x, label: x }; } );
+}
+// Return the known fields for the measurement of the element
+function getInfluxFields( element ) {
+  var influx = element;
+  // walk the tree to get the selected data source in the influx element
+  while( 'influx' != influx.name )
+  {
+    influx = influx.getParentElement();
+    if( undefined === influx )
+      return []; // this safety measure can not happen without a bug somewhere!
+  }
+  var data = retrieveInfluxCache(influx.attributes.measurement, 'fields' );
+
+  return data;
 }

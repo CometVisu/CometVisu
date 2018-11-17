@@ -1528,7 +1528,7 @@ var EditorConfigurationElement = function (parent, element) {
           enumLabel = enumEntry.label;
           enumValue = enumEntry.value;
                     
-          if (enumValue != enumLabel) {
+          if (enumValue != enumLabel && !enumEntry.forceOnlyLabel) {
             // if label and value differ, we append the value to the label
             enumLabel += ' (' + enumEntry.value + ')'
           }

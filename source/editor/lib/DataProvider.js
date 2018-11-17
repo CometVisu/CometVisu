@@ -275,6 +275,7 @@ var DataProvider = function (config) {
       enumerationEntry = {
         label: dataEntry.label,
         value: dataEntry.value,
+        forceOnlyLabel: !!dataEntry.forceOnlyLabel
       };
 
       enumeration.push(enumerationEntry);
