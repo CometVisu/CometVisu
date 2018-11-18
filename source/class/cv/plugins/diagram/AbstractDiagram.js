@@ -217,7 +217,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
             break;
 
           default:
-            // ignore unknown
+            ; // ignore unknown
         }
       }
 
