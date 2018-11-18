@@ -64,6 +64,7 @@ function query( $q, $db = '', $auth )
   if( FALSE === $content )
   {
     $error = error_get_last();
+    header("HTTP/1.0 500 Internal Server Error");
     print $error['message'];
     exit;
   }
@@ -97,9 +98,15 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
         return 'Error: invalid end parameter [' . $end . ']';
   }
 
-  preg_match_all( '/^end-([0-9]*)([a-z]*)$/', $start, $startParts );
-  $map = array( 'hour' => 'h', 'day' => 'd', 'week' => 'w', 'month' => 'm', 'year' => 'y' );
-  $start = $end . ' - ' . $startParts[1][0] . $map[ $startParts[2][0] ];
+  if( is_numeric( $start ) )
+  {
+    $start .= '000000000';
+  } else
+  {
+    preg_match_all( '/^end-([0-9]*)([a-z]*)$/', $start, $startParts );
+    $map = array( 'hour' => 'h', 'day' => 'd', 'week' => 'w', 'month' => 'm', 'year' => 'y' );
+    $start = $end . ' - ' . $startParts[ 1 ][ 0 ] . $map[ $startParts[ 2 ][ 0 ] ];
+  }
 
   if( $filter )
   {

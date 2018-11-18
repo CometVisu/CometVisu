@@ -170,6 +170,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         if( elem.tagName === 'influx' ) {
           retVal.ts[retVal.tsnum]['filter'] = "GA = '4/2/0'"; // TODO
           retVal.ts[retVal.tsnum]['field'] = elem.getAttribute('field');
+          retVal.ts[retVal.tsnum]['authentication'] = elem.getAttribute('authentication');
         } else {
           var dsIndex = elem.getAttribute('datasourceIndex') || 0;
           if(dsIndex < 0) {
@@ -201,7 +202,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           + '&res='   + encodeURIComponent(res)
           + (ts.fillTs ? '&fill='   + encodeURIComponent(ts.fillTs) : '')
           + (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '')
-          + (ts.field  ? '&field='  + encodeURIComponent(ts.field ) : ''),
+          + (ts.field  ? '&field='  + encodeURIComponent(ts.field ) : '')
+          + (ts.authentication  ? '&auth='  + encodeURIComponent(ts.authentication ) : ''),
         key = url + ( 'rrd' === ts.tsType ? '|' + ts.dsIndex : ''),
         urlNotInCache = !(key in this.cache),
         doLoad = force || urlNotInCache || !('data' in this.cache[ key ]) || (refresh!==undefined && (Date.now()-this.cache[key].timestamp) > refresh*1000);
@@ -222,6 +224,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
             accept: "application/json"
           });
           xhr.addListener("success", qx.lang.Function.curry(this._onSuccess, ts, key), this);
+          xhr.addListener("statusError", qx.lang.Function.curry(this._onStatusError, ts, key), this);
           this.cache[ key ].xhr = xhr;
           xhr.send();
         }
@@ -244,6 +247,19 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         }
         tsdata = newRrd;
       }
+      this.cache[key].data = tsdata;
+      this.cache[key].timestamp = Date.now();
+
+      this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
+        waitingCallback[0](tsdata, waitingCallback[1]);
+      }, this);
+      this.cache[key].waitingCallbacks.length = 0; // empty array)
+    },
+
+    _onStatusError: function(ts, key, ev) {
+      console.log('_onStatusError',ts, key, ev);
+      var tsdata = [];
+
       this.cache[key].data = tsdata;
       this.cache[key].timestamp = Date.now();
 
