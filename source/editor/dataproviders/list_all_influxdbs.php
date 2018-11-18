@@ -71,6 +71,7 @@ function query( $q, $db = '', $auth )
   if( FALSE === $content )
   {
     $error = error_get_last();
+    header("HTTP/1.0 500 Internal Server Error");
     print $error['message'];
     exit;
   }
@@ -79,7 +80,7 @@ function query( $q, $db = '', $auth )
 
 $arrData = array();
 
-$databases = json_decode( query( 'show databases', $_GET['auth'] ), true );
+$databases = json_decode( query( 'show databases', NULL, $_GET['auth'] ), true );
 foreach( $databases[ 'results' ][ 0 ][ 'series' ][ 0 ][ 'values' ] as $databaseEntry )
 {
   $database = $databaseEntry[ 0 ];
@@ -122,7 +123,7 @@ foreach( $databases[ 'results' ][ 0 ][ 'series' ][ 0 ][ 'values' ] as $databaseE
       // now forget all the nice information and compact to the relevant one:
       $arrData[] = array(
         'value' => $database . '/' . $measurement,
-        'label' => ''
+        'label' => $database . '/' . $measurement
       );
     }
   }

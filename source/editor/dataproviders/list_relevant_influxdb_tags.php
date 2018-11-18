@@ -72,6 +72,7 @@ function query( $q, $db = '', $auth )
   if( FALSE === $content )
   {
     $error = error_get_last();
+    header("HTTP/1.0 500 Internal Server Error");
     print $error['message'];
     exit;
   }
