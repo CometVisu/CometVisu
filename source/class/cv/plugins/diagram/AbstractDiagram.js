@@ -168,7 +168,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           barWidth  : elem.getAttribute('barWidth') || 1
         };
         if( elem.tagName === 'influx' ) {
-          retVal.ts[retVal.tsnum]['filter'] = "GA = '4/2/0'"; // TODO
+          retVal.ts[retVal.tsnum]['filter'] = this.getInfluxFilter( elem );
           retVal.ts[retVal.tsnum]['field'] = elem.getAttribute('field');
           retVal.ts[retVal.tsnum]['authentication'] = elem.getAttribute('authentication');
         } else {
@@ -181,6 +181,50 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         retVal.tsnum++;
       }, this);
       return retVal;
+    },
+
+    /**
+     * Recursively walk through the elem to build filter sting
+     * @param elem
+     */
+    getInfluxFilter: function( elem, type )
+    {
+      var
+        children = elem.children,
+        length = children.length,
+        retval = '',
+        i = 0;
+
+      for( ; i < length; i++ )
+      {
+        var child = children[i];
+
+        if( '' != retval )
+          retval += ' ' + type + ' ';
+
+        switch( child.tagName )
+        {
+          case 'and':
+            retval += this.getInfluxFilter(child, 'AND');
+            break;
+
+          case 'or':
+            retval += this.getInfluxFilter(child, 'OR');
+            break;
+
+          case 'tag':
+            retval += child.getAttribute('key') + ' ' + child.getAttribute('operator') + " '" + child.getAttribute('value') + "'";
+            break;
+
+          default:
+            // ignore unknown
+        }
+      }
+
+      if( type )
+        return '(' + retval + ')';
+
+      return retval;
     },
 
     /**
@@ -554,6 +598,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       var that = this;
       diagram.bind("plotpan", function(event, plot, args) {
+        // TODO and FIXME: args.dragEnded doesn't exist, so data isn't reloaded after pan end!
         if (args.dragEnded) {
           that.loadDiagramData( plot, isPopup, false );
         }
