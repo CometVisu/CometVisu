@@ -159,7 +159,6 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           steps     : (elem.getAttribute("steps") || "false") === "true",
           fill      : (elem.getAttribute("fill") || "false") === "true",
           scaling   : parseFloat(elem.getAttribute('scaling')) || 1.0,
-          dsIndex   : elem.getAttribute('datasourceIndex') || 0,
           cFunc     : elem.getAttribute('consolidationFunction') || (elem.tagName === 'rrd' ? 'AVERAGE' : 'MEAN'),
           fillTs    : elem.getAttribute('fillMissing') || '',
           resol     : parseInt(elem.getAttribute('resolution')),
@@ -169,10 +168,14 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           barWidth  : elem.getAttribute('barWidth') || 1
         };
         if( elem.tagName === 'influx' ) {
-          retVal.ts[retVal.tsnum]['filter'] = "GA = '4/2/0'";
-        }
-        if (retVal.ts[retVal.tsnum].dsIndex < 0) {
-          retVal.ts[retVal.tsnum].dsIndex = 0;
+          retVal.ts[retVal.tsnum]['filter'] = "GA = '4/2/0'"; // TODO
+          retVal.ts[retVal.tsnum]['field'] = elem.getAttribute('field');
+        } else {
+          var dsIndex = elem.getAttribute('datasourceIndex') || 0;
+          if(dsIndex < 0) {
+            dsIndex = 0;
+          }
+          retVal.ts[retVal.tsnum].dsIndex = dsIndex;
         }
         retVal.tsnum++;
       }, this);
@@ -187,23 +190,21 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      */
     lookupTsCache: function(ts, start, end, res, refresh, force, callback, callbackParameter ) {
       var
-        url = cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+'?rrd=' + encodeURIComponent(ts.src) + '.rrd',
-        key = url + '|' + ts.dsIndex,
+        url = (( 'influx' === ts.tsType )
+            ? 'http://wiregate/CometVisuGit/source/resource/plugins/diagram/influxfetch.php?ts=' + ts.src
+            : cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+'?rrd=' + encodeURIComponent(ts.src) + '.rrd')
+          + '&ds='    + encodeURIComponent(ts.cFunc)
+          // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
+          //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
+          + '&start=' + ('rrd' === ts.tsType ? start : encodeURIComponent(start))
+          + '&end='   + ('rrd' === ts.tsType ? end : encodeURIComponent(end))
+          + '&res='   + encodeURIComponent(res)
+          + (ts.fillTs ? '&fill='   + encodeURIComponent(ts.fillTs) : '')
+          + (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '')
+          + (ts.field  ? '&field='  + encodeURIComponent(ts.field ) : ''),
+        key = url + ( 'rrd' === ts.tsType ? '|' + ts.dsIndex : ''),
         urlNotInCache = !(key in this.cache),
         doLoad = force || urlNotInCache || !('data' in this.cache[ key ]) || (refresh!==undefined && (Date.now()-this.cache[key].timestamp) > refresh*1000);
-
-      if( 'influx' === ts.tsType )
-        url = 'http://wiregate/CometVisuGit/source/resource/plugins/diagram/influxfetch.php?ts=' + ts.src;
-      url += '&ds=' + encodeURIComponent(ts.cFunc)
-        + '&start=' + ('rrd' === ts.tsType ? start : encodeURIComponent(start))
-        + '&end=' + ('rrd' === ts.tsType ? end : encodeURIComponent(end))
-        + '&res=' + encodeURIComponent(res);
-      if( ts.fillTs )
-        url += '&fill=' + encodeURIComponent(ts.fillTs);
-      console.log(ts.filter, encodeURIComponent(ts.filter));
-      if( ts.filter )
-        url += '&filter=' + encodeURIComponent(ts.filter);
-      console.log(ts,url);
 
       if( doLoad )
       {
@@ -236,7 +237,10 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         var millisOffset = (ts.offset ? ts.offset * 1000 : 0);
         var newRrd = new Array(tsdata.length);
         for (var j = 0, l = tsdata.length; j < l; j++) {
-          newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling)];
+          if( ts.type === 'rrd' )
+            newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling)];
+          else
+            newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1]) * ts.scaling)];
         }
         tsdata = newRrd;
       }

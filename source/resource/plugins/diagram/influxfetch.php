@@ -70,7 +70,7 @@ function query( $q, $db = '', $auth )
   return $content;
 }
 
-function getTs( $tsParameter, $start, $end, $ds, $res, $fill, $filter )
+function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
 {
   $ts = explode( '/', $tsParameter );
   if( '' == $ts[0] || '' == $ts[1] )
@@ -78,6 +78,9 @@ function getTs( $tsParameter, $start, $end, $ds, $res, $fill, $filter )
 
   if( !preg_match('/^[A-Za-z0-9_\-]*$/', $ts[1]) )
     return 'Error: invalid series [' . $ts[1] . ']';
+
+  if( '' == $field || !preg_match('/^[A-Za-z0-9_\-]*$/', $field) )
+    $field = '*';
 
   switch( $end )
   {
@@ -125,7 +128,7 @@ function getTs( $tsParameter, $start, $end, $ds, $res, $fill, $filter )
         return 'Error: invalid ds parameter (required when res is set) [' . $ds . ']';
     }
 
-    $q = sprintf( 'SELECT %s(*) FROM "%s" WHERE time >= %s AND time <= %s %s GROUP BY time(%ss)', $ds, $ts[ 1 ], $start, $end, $filter, $res );
+    $q = sprintf( 'SELECT %s(%s) FROM "%s" WHERE time >= %s AND time <= %s %s GROUP BY time(%ss)', $ds, $field, $ts[ 1 ], $start, $end, $filter, $res );
 
     if( '' != $fill )
     {
@@ -135,7 +138,7 @@ function getTs( $tsParameter, $start, $end, $ds, $res, $fill, $filter )
       $q .= " fill($fill)";
     }
   } else {
-    $q = sprintf( 'SELECT * FROM "%s" WHERE time >= %s AND time <= %s %s', $ts[ 1 ], $start, $end, $filter );
+    $q = sprintf( 'SELECT %s FROM "%s" WHERE time >= %s AND time <= %s %s', $field, $ts[ 1 ], $start, $end, $filter );
   }
   $tz = date_default_timezone_get();
   if( 'System/Localtime' == $tz )
@@ -170,7 +173,7 @@ function printRow( $row )
   print ']]';
 }
 
-$arrData = getTs( $_GET['ts'], $_GET['start'], $_GET['end'], $_GET['ds'], $_GET['res'], $_GET['fill'], $_GET['filter'] );
+$arrData = getTs( $_GET['ts'], $_GET['field'], $_GET['start'], $_GET['end'], $_GET['ds'], $_GET['res'], $_GET['fill'], $_GET['filter'] );
 
 Header("Content-type: application/json");
 
