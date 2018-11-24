@@ -37,6 +37,12 @@ Allgemeine Informationen über das CometVisu XML Format findet man
 :doc:`hier <xml-format>`, Informationen zu den einzelnen
 Widgets in den jeweiligen Unterseiten.
 
+Manche Widgets und Plugins benötigen noch zusätzliche Informationen, die nicht in der Config-Datei enthalten sein
+sollen, da diese frei lesbar an den Web-Browser übertragen wird (je nach installierter Umgebung kann der Transport
+verschlüsselt mit HTTPS erfolgen, jedoch ist der Inhalt durch den Benutzer am Browser mit entsprechenden Tricks
+lesbar). Durch die Verwendung der :doc:`Versteckten Konfigurationen <hidden-config>` können diese Informationen auf dem besser
+geschützten Server verbleiben.
+
 Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
 sollte man die Seite neu laden und den Browser-Cache löschen.
 

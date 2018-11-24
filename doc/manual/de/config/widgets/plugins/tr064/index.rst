@@ -144,32 +144,23 @@ Der Benutzer selbst benötigt noch die Rechte um auf die Anrufliste zugreifen zu
 
 .. figure:: _static/fritzbox_user.png
 
-Damit das Plugin auf diesen Benutzer zugreifen kann, müssen dessen Login-Daten hinterlegt werden. Dies geht im Manager
-im Bereich der "Versteckten Konfigurationen"[#f2]_:
-
-.. figure:: _static/hidden_config_de.png
+Damit das Plugin auf diesen Benutzer zugreifen kann, müssen dessen Login-Daten hinterlegt werden. Dies geht über die
+:ref:`"Versteckten Konfigurationen" <hidden-config>`.
 
 Der dort verwendete Name muss im calllist Widget im Attribut ``device`` angegeben werden.
 
-Alternativ zum Manager lässt sich auch direkt die Datei ``config/hidden.php`` editieren und eine Konfigurationszeile
-hinzufügen:
+Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:
 
-.. code-block:: php
-
-    <?php
-    // File for configurations that shouldn't be shared with the user
-    $hidden = array(
-      'fritzbox' => array('uri' => 'https://192.168.0.1:49443/', 'user' => 'CometVisuTestUser', 'pass' => 'pa3bvNM4j9z4')
-    );
-    ?>
++---------+-----------------------------------------------------+--------------------------+
+|Schlüssel|Wert                                                 |Beispiel                  |
++=========+=====================================================+==========================+
+|uri      |Die URI für den Zugriff auf die TR-064 Schnittstelle |https://192.168.0.1:49443/|
++---------+-----------------------------------------------------+--------------------------+
+|user     |Der Benutzername für den TR-064 Zugang               |CometVisuTestUser         |
++---------+-----------------------------------------------------+--------------------------+
+|pass     |Das Passwort für den TR-64 Zugang                    |`pa3bvNM4j9z4`            |
++---------+-----------------------------------------------------+--------------------------+
 
 .. rubric:: Fußnoten
 
 .. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.
-
-.. [#f2] Die "Versteckte Konfiguration" sind Konfigurationsdaten die nicht an den Client übertragen werden und auf dem
-   Server bleiben. Daher werden diese vor dem Anwender "versteckt", sind aber auf dem Server selbst im Klartext lesbar.
-   Auch im Manager sind diese Informationen im Klartext lesbar.
-
-   Dies erzeugt für sich noch keine sichere Umgebung. Jedoch lässt sich hierdurch eine Sichere Umgebung aufbauen, in
-   dem der Webserver so konfiguriert sein muss, dass der Anwender keinen Zugriff auf den Manager erhält.
