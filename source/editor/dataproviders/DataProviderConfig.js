@@ -47,9 +47,7 @@ var DataProviderConfig = {
   },
   'influx': {
     'measurement':  {
-      //url: 'editor/dataproviders/list_all_influxdbs.php',
       live: getInfluxMeasurements,
-      //cache: true,
       cache: false,
       userInputAllowed: false,
     },
