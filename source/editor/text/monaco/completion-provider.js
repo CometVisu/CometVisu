@@ -328,7 +328,7 @@ function CompletionProvider(monaco, schemaNode) {
             res = currentItem ? getAvailableElements(monaco, currentItem, usedItems) : [];
           }
         }
-        return res;
+        return {suggestions: res};
       }
     };
   };
