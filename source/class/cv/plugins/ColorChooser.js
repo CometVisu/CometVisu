@@ -99,6 +99,8 @@ qx.Class.define('cv.plugins.ColorChooser', {
   ******************************************************
   */
   members: {
+    __skipSending: false,
+
     _onDomReady: function() {
       this.base(arguments);
       var $actor = $( '#' + this.getPath() + ' .actor' );
@@ -107,7 +109,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
         this.setValueG(parseInt(color.substring(3, 5), 16) * 100 / 255.0);
         this.setValueB(parseInt(color.substring(5, 7), 16) * 100 / 255.0);
 
-        if( this.getRateLimiter() === false ) {// already requests going?
+        if( this.getRateLimiter() === false && this.__skipSending === false) {// already requests going?
           this._rateLimitedSend($actor);
         }
       }.bind(this));
@@ -173,7 +175,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
         this.setBusG(this.getValueG());
         this.setBusB(this.getValueB());
         this.setRateLimiter(true);
-        qx.event.Timer.once(this._rateLimitedSend, this, 250); // next call in 250ms
+        this.__timer = qx.event.Timer.once(this._rateLimitedSend, this, 250); // next call in 250ms
       } else {
         this.setRateLimiter(false);
       }
@@ -224,7 +226,14 @@ qx.Class.define('cv.plugins.ColorChooser', {
             color.substring(7);
           break;
       }
+      this.__skipSending = true;
+      if (this.__timer) {
+        this.__timer.stop();
+        this.__timer = null;
+        this.setRateLimiter(false);
+      }
       farbtastic.setColor( color );
+      this.__skipSending = false;
     }
   },
 
