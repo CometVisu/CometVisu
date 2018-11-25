@@ -186,29 +186,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // check coding-style: https://github.com/CometVisu/CometVisu/wiki/Coding-style
-    jscs: {
-      main: {
-        options: {
-          excludeFiles: [ "**/lib/**", "**/dep/**"],
-          //preset: "jquery",
-          validateIndentation: 2,
-          validateLineBreaks: "LF",
-          fix: false
-          //maximumLineLength : {
-          //  value: 120,
-          //  allExcept: [
-          //    "comments",
-          //    "functionSignature"
-          //  ]
-          //}
-        },
-        files: {
-          src: sourceFiles
-        }
-      }
-    },
-
     // make a zipfile
     compress: {
       tar: {
@@ -601,7 +578,6 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin tasks
-  grunt.loadNpmTasks("grunt-jscs");
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-github-releaser');

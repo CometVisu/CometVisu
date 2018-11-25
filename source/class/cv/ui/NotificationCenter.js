@@ -260,8 +260,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
         currentContent = 0;
       }
       var messages = this.getMessages().getLength();
-      // close center if empty
-      qx.event.Timer.once(function() {
+
+      var update = function() {
         // still empty
         if (this.getMessages().getLength() === 0) {
           this.hide();
@@ -269,7 +269,13 @@ qx.Class.define("cv.ui.NotificationCenter", {
           qx.bom.element.Style.reset(this.__element, "visibility");
           this._onSeverityChange();
         }
-      }, this, 1000);
+      }.bind(this);
+      // close center if empty
+      if (cv.ui.NotificationCenter.BLINK.duration > 0) {
+        qx.event.Timer.once(update, this, cv.ui.NotificationCenter.BLINK.duration);
+      } else {
+        update();
+      }
       if (currentContent < messages) {
         // blink to get the users attention for the new message
         qx.bom.element.Animation.animate(this.__badge, cv.ui.NotificationCenter.BLINK);

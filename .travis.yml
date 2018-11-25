@@ -30,7 +30,6 @@ jobs:
     name: Lint
     script:
     - source temp-python/bin/activate
-    - grunt jscs
     - "./generate.py lint"
   - stage: test
     name: 'Unit Tests: Chrome stable'
@@ -43,7 +42,7 @@ jobs:
     - source temp-python/bin/activate
     - "./generate.py source -sI"
     - deactivate
-    - grunt karma:travis --browser $CV_BROWSER
+    - grunt karma:travis --browser=$CV_BROWSER
     - if [ "$CV_BUILD" == "test" ] && [ "$CV_VERSION" == "stable" ] ; then grunt coveralls; fi
   - stage: test
     name: 'Unit Tests: Chrome beta'

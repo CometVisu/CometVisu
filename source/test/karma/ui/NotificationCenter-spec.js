@@ -6,6 +6,7 @@ describe('test the NotificationCenter', function () {
   beforeEach(function(done) {
     // set animation time to 0
     cv.ui.NotificationCenter.SLIDE.duration = 0;
+    cv.ui.NotificationCenter.BLINK.duration = 0;
     center._init();
     cv.ui.NotificationCenter.hide();
     setTimeout(done, 10);
@@ -14,6 +15,7 @@ describe('test the NotificationCenter', function () {
   afterEach(function() {
     cv.ui.NotificationCenter.clear(true);
     cv.ui.NotificationCenter.SLIDE.duration = 350;
+    cv.ui.NotificationCenter.BLINK.duration = 1000;
   });
 
   it("should test some basics", function () {
