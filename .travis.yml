@@ -30,7 +30,6 @@ jobs:
     name: Lint
     script:
     - source temp-python/bin/activate
-    - grunt jscs
     - "./generate.py lint"
   - stage: test
     name: 'Unit Tests: Chrome stable'
