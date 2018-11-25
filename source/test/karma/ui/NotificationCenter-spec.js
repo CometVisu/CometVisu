@@ -3,15 +3,19 @@ describe('test the NotificationCenter', function () {
 
   var center = cv.ui.NotificationCenter.getInstance();
 
-  beforeEach(function() {
+  beforeEach(function(done) {
     // set animation time to 0
     cv.ui.NotificationCenter.SLIDE.duration = 0;
+    cv.ui.NotificationCenter.BLINK.duration = 0;
     center._init();
+    cv.ui.NotificationCenter.hide();
+    setTimeout(done, 10);
   });
 
   afterEach(function() {
     cv.ui.NotificationCenter.clear(true);
     cv.ui.NotificationCenter.SLIDE.duration = 350;
+    cv.ui.NotificationCenter.BLINK.duration = 1000;
   });
 
   it("should test some basics", function () {
@@ -28,15 +32,15 @@ describe('test the NotificationCenter', function () {
     expect(element).not.toBeUndefined();
 
     expect(qx.bom.element.Style.get(element, "transform")).toEqual("none");
-    center.toggleVisibility();
+    center.show();
     setTimeout(function() {
       expect(qx.bom.element.Style.get(element, "transform")).toEqual("matrix(1, 0, 0, 1, -300, 0)");
-      center.toggleVisibility();
+      center.hide();
       setTimeout(function() {
         expect(qx.bom.element.Style.get(element, "transform")).toEqual("matrix(1, 0, 0, 1, 0, 0)");
         done();
-      }, 100);
-    }, 100);
+      }, 10);
+    }, 10);
   });
 
   it('should toggle the badge visibility', function(done) {

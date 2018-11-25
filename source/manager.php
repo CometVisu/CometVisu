@@ -48,6 +48,9 @@ $_STRINGS = array(
     'Configuration successfully replaced' => 'Configuration successfully replaced (%s).',
     'Could not replace configuraion' => 'Could not replace configuraion (%s).',
     'Create new config' => 'Create new config',
+    'Media directory does not exist and cannot be created -> CometVisu installation is badly broken!' => 'Media directory does not exist and cannot be created -> CometVisu installation is badly broken!',
+    'Path to media directory (%s) is not a directory -> CometVisu installation is badly broken!' => 'Path to media directory (%s) is not a directory -> CometVisu installation is badly broken!',
+    'Path to media directory (%s) is not readable or writeable -> CometVisu installation is badly broken!' => 'Path to media directory (%s) is not readable or writeable -> CometVisu installation is badly broken!',
     'Media directory is not writeable' => 'Media directory (%s) is not writeable',
     'Media file name is not valid' => 'Media file name (%s) is not valid',
     'Media file does already exist' => 'Media file (%s) does already exist',
@@ -100,6 +103,9 @@ $_STRINGS = array(
     'Configuration successfully replaced' => 'Konfigurationsdatei (%s) erfolgreich ersetzt.',
     'Could not replace configuraion' => 'Konnte Konfigurationsdatei (%s) nicht ersetzen.',
     'Create new config' => 'Erstelle neue Konfigurationsdatei',
+    'Media directory does not exist and cannot be created -> CometVisu installation is badly broken!' => 'Medien Verzeichnis existiert nicht und kann nicht erstellt werden -> CometVisu-Installation ist defekt!',
+    'Path to media directory (%s) is not a directory -> CometVisu installation is badly broken!' => 'Pfad für das Median Verzeichnis (%s) ist kein Verzeichnis -> CometVisu-Installation ist defekt!',
+    'Path to media directory (%s) is not readable or writeable -> CometVisu installation is badly broken!' => 'Pfad für das Median Verzeichnis (%s) ist nist lesbar oder beschreibbar -> CometVisu-Installation ist defekt!',
     'Media directory is not writeable' => 'Medienverzeichnis (%s) ist nicht beschreibbar',
     'Media file name is not valid' => 'Mediendatei-Name (%s) ist ungültig',
     'Media file does already exist' => 'Mediendatei (%s) existiert bereits',
@@ -182,7 +188,13 @@ define( 'HIDDEN_TABLE_KEY_ADD', '<tr class="visuline" id="hiddenKeyAdd%1$s">'
  * Get hidden configuraion
  */
 define( 'HIDDEN_CONFIG_FILE', 'resource/config/hidden.php' );
-include( HIDDEN_CONFIG_FILE );
+if( !is_readable( HIDDEN_CONFIG_FILE ) )
+{
+  touch( HIDDEN_CONFIG_FILE );
+  $hidden = array(); 
+} else {
+  include( HIDDEN_CONFIG_FILE );
+}
 
 /**
  * Return HTML tag needed to show a icon
@@ -216,20 +228,36 @@ $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), 'filterPrevi
 $availDemo = glob( sprintf( DEMO_FILENAME  , '*' ) );
 function fillAvailMedia()
 {
-  global $availMedia;
+  global $availMedia, $actionDone, $_;
   $availMedia = Array();
+  if( !file_exists( MEDIA_PATH ) )
+  {
+    if( !mkdir( MEDIA_PATH, 0777) )
+    {
+      $actionDone = $_['Media directory does not exist and cannot be created -> CometVisu installation is badly broken!'];
+      return;
+    }
+  } else if( !is_dir( MEDIA_PATH ) )
+  {
+    $actionDone = sprintf( $_['Path to media directory (%s) is not a directory -> CometVisu installation is badly broken!'], MEDIA_PATH );
+    return;
+  } else if( !is_readable( MEDIA_PATH ) || !is_writeable( MEDIA_PATH ) )
+  {
+    $actionDone = sprintf( $_['Path to media directory (%s) is not readable or writeable -> CometVisu installation is badly broken!'], MEDIA_PATH );
+    return;
+  }
+  
   $it = new RecursiveDirectoryIterator( MEDIA_PATH );
   foreach( new RecursiveIteratorIterator($it) as $file )
   {
     $name = substr( $file, strlen( MEDIA_PATH ) );
     
-    if( in_array( $name, Array( '.gitignore' ) ) )
+    if( in_array( $name, Array( '.', '..', '.gitignore' ) ) )
       continue;
     
     array_push( $availMedia, $name );
   }
 }
-fillAvailMedia();
 
 // check if we have to do something:
 $actionDone = false;
@@ -244,6 +272,7 @@ $media  = array_key_exists( 'media',  $_GET  ) ? $_GET ['media']  :
 $action = array_key_exists( 'action', $_GET  ) ? $_GET ['action'] :
         ( array_key_exists( 'action', $_POST ) ? $_POST['action'] : false );
 
+fillAvailMedia();
 if( ($config === '' || $config !== false) && ($media === false) && ($action !== false) && ($type !== 'hidden') )
 {
   $configFile = sprintf( CONFIG_FILENAME, (''==$config ? '' : '_') . $config );
@@ -495,6 +524,11 @@ function newConfig()
   
   var myUrl = window.location.href.split('?')[0];
   window.location.href = myUrl + '?config=' + newName + '&action=create';
+}
+
+function addMediaFile()
+{
+  $('#media_file').trigger('click');
 }
 
 function addHiddenName()
@@ -801,7 +835,7 @@ if( $resetUrl )
     </form>
     
     <p>
-    <a href="javascript:$('#media_file').trigger('click')" id="newMedia" class="newFile"><?php echo icon('control_plus') . $_['Upload new media'] ?></a>
+    <a href="javascript:addMediaFile()" id="newMedia" class="newFile"><?php echo icon('control_plus') . $_['Upload new media'] ?></a>
     </p>
     
     <!-- ****************************************************************** -->

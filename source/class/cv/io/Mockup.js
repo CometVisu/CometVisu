@@ -116,6 +116,7 @@ qx.Class.define('cv.io.Mockup', {
         d: {}
       };
       answer.d[address] = value;
+      this.debug('sending value: ' + value + ' to address: ' + address);
       this.receive(answer);
     },
 

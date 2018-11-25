@@ -168,9 +168,9 @@ var DataProvider = function (config) {
    *  
    * @return  array   the enumeration
    */
-  _provider.getEnumeration = function () {
+  _provider.getEnumeration = function ( element ) {
     // get the data, and create an enumeration from it
-    var data = getData();
+    var data = getData( element );
         
     var enumeration = [];
         
@@ -275,6 +275,7 @@ var DataProvider = function (config) {
       enumerationEntry = {
         label: dataEntry.label,
         value: dataEntry.value,
+        forceOnlyLabel: !!dataEntry.forceOnlyLabel
       };
 
       enumeration.push(enumerationEntry);
@@ -307,7 +308,7 @@ var DataProvider = function (config) {
    * 
    * @return  array   the data, as provided by the provider :)
    */
-  var getData = function () {
+  var getData = function ( element ) {
     if (dataCache !== undefined) {
       return dataCache;
     }
@@ -318,7 +319,7 @@ var DataProvider = function (config) {
 
     var data = [];
     if (typeof _providerConfig.live == 'function') {
-      data = _providerConfig.live();
+      data = _providerConfig.live( element );
             
       if (true == doCaching) {
         dataCache = data;

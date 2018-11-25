@@ -260,8 +260,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
         currentContent = 0;
       }
       var messages = this.getMessages().getLength();
-      // close center if empty
-      qx.event.Timer.once(function() {
+
+      var update = function() {
         // still empty
         if (this.getMessages().getLength() === 0) {
           this.hide();
@@ -269,7 +269,13 @@ qx.Class.define("cv.ui.NotificationCenter", {
           qx.bom.element.Style.reset(this.__element, "visibility");
           this._onSeverityChange();
         }
-      }, this, 1000);
+      }.bind(this);
+      // close center if empty
+      if (cv.ui.NotificationCenter.BLINK.duration > 0) {
+        qx.event.Timer.once(update, this, cv.ui.NotificationCenter.BLINK.duration);
+      } else {
+        update();
+      }
       if (currentContent < messages) {
         // blink to get the users attention for the new message
         qx.bom.element.Animation.animate(this.__badge, cv.ui.NotificationCenter.BLINK);
@@ -307,10 +313,14 @@ qx.Class.define("cv.ui.NotificationCenter", {
         this.__blocker.block();
         qx.bom.element.Style.reset(this.__element, "visibility");
         qx.event.Registration.addListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
-        var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
-        anim.on("end", function () {
+        if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
+          var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
+          anim.on("end", function () {
+            qx.bom.element.Transform.translate(this.__element, "-300px");
+          }, this);
+        } else {
           qx.bom.element.Transform.translate(this.__element, "-300px");
-        }, this);
+        }
       }
     },
 
@@ -332,11 +342,16 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (this.__visible) {
         this.__visible = false;
         qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
-        var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
-        anim.on("end", function () {
+        if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
+          var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
+          anim.on("end", function () {
+            qx.bom.element.Transform.translate(this.__element, "-0px");
+            this.__blocker.unblock();
+          }, this);
+        } else {
           qx.bom.element.Transform.translate(this.__element, "-0px");
           this.__blocker.unblock();
-        }, this);
+        }
       }
     }
   },

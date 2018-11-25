@@ -280,11 +280,17 @@ qx.Class.define('cv.Config', {
       cv.Config.reporting = req.queryKey.reporting === 'true';
     }
 
-    if (req.queryKey.enableCache === "invalid") {
-      cv.ConfigCache.clear(cv.Config.configSuffix);
-      cv.Config.enableCache = true;
+    // caching is only possible when localStorage is available
+    if (qx.core.Environment.get("html.storage.local") === false) {
+      cv.Config.enableCache = false;
+      console.warn('localStorage is not available in your browser. Some advanced features, like caching will not work!');
     } else {
-      cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : !qx.core.Environment.get("qx.debug");
+      if (req.queryKey.enableCache === "invalid") {
+        cv.ConfigCache.clear(cv.Config.configSuffix);
+        cv.Config.enableCache = true;
+      } else {
+        cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : !qx.core.Environment.get("qx.debug");
+      }
     }
 
     cv.Config.enableLogging = qx.core.Environment.get("html.console");

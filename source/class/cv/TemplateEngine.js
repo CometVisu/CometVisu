@@ -375,6 +375,11 @@ qx.Class.define('cv.TemplateEngine', {
         settings.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
       }
 
+      var globalClass = qx.bom.element.Attribute.get(pagesNode, 'class');
+      if (globalClass !== null) {
+        qx.bom.element.Class.add(qx.bom.Selector.query('body')[0], globalClass);
+      }
+
       settings.scriptsToLoad = [];
       settings.stylesToLoad = [];
       var design = cv.Config.getDesign();
@@ -690,7 +695,7 @@ qx.Class.define('cv.TemplateEngine', {
         speed = cv.Config.configSettings.scrollSpeed;
       }
 
-      if (cv.Config.rememberLastPage) {
+      if (cv.Config.rememberLastPage && qx.core.Environment.get("html.storage.local")) {
         localStorage.lastpage = page_id;
       }
 

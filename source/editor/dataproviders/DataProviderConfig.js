@@ -45,6 +45,30 @@ var DataProviderConfig = {
       userInputAllowed: true,
     },
   },
+  'influx': {
+    'measurement':  {
+      live: getInfluxMeasurements,
+      cache: false,
+      userInputAllowed: false,
+    },
+    'field':  {
+      live: getInfluxFields,
+      cache: false,
+      userInputAllowed: false,
+    },
+  },
+  'tag': {
+    'key': {
+      live: getInfluxTags,
+      cache: false,
+      userInputAllowed: false,
+    },
+    'value': {
+      live: getInfluxTagValues,
+      cache: false,
+      userInputAllowed: false,
+    }
+  },
   'icon': {
     'name':  {
       url: 'editor/dataproviders/list_all_icons.php',
@@ -129,3 +153,112 @@ var DataProviderConfig = {
     },
   },
 };
+
+// Special cases:
+
+var influxCache = {};
+function getInfluxMeasurements( element ) {
+  var
+    auth = element.attributes.authentication;
+
+  if( !(auth in influxCache) )
+    influxCache[ auth ] = {};
+
+  if( !('' in influxCache[ auth ]) ) {
+    $.ajax('editor/dataproviders/list_all_influxdbs.php' + (auth ? '?auth=' + auth : ''),
+      {
+        dataType: 'json',
+        async: false, // at this point, we can no longer async!
+        success: function (result) {
+          influxCache[auth][''] = result;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
+          $(document).trigger('dataprovider_loading_error', [result]);
+          influxCache[auth][''] = [];
+        }
+      }
+    );
+  }
+  return influxCache[ auth ][''];
+}
+// get the InfluxDB tag and values for the measurement source of the parent influx element.
+// also cache it as it is relevant for each tag element below this influx element and it won't change between the
+// different measurements
+// Return tag key/value data for given measurement. When not available yet put it in the cache first.
+function retrieveInfluxCache( measurement, type, auth ) {
+  if( undefined === auth )
+    auth = '';
+
+  if( !(auth in influxCache) )
+    influxCache[ auth ] = {};
+
+  if( !(measurement in influxCache[ auth ] ) )
+    influxCache[ auth ][ measurement ] = {};
+
+  if( !(type in influxCache[ auth ][ measurement ]) ) {
+    var uri = type === 'tags'
+      ? 'editor/dataproviders/list_relevant_influxdb_tags.php?measurement='
+      : 'editor/dataproviders/list_relevant_influxdb_fields.php?measurement=';
+    $.ajax( uri + measurement + (auth?'&auth='+auth:''),
+      {
+        dataType: 'json',
+        async: false, // at this point, we can no longer async!
+        success: function (result) {
+          influxCache[ auth ][ measurement ][ type ] = result;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
+          $(document).trigger('dataprovider_loading_error', [result]);
+          influxCache[ auth ][ measurement ][ type ] = [];
+        }
+      }
+    );
+  }
+
+  return influxCache[ auth ][ measurement ][ type ];
+}
+// Return the known tag keys for the measurement of the element
+function getInfluxTags( element ) {
+  var influx = element;
+  // walk the tree to get the selected data source in the influx element
+  while( 'influx' != influx.name )
+  {
+    influx = influx.getParentElement();
+    if( undefined === influx )
+      return []; // this safety measure can not happen without a bug somewhere!
+  }
+  var data = retrieveInfluxCache( influx.attributes.measurement, 'tags', influx.attributes.authentication  );
+  return Object.keys(data).map( function(x){ return { value:x, label: x }; } );
+}
+// Return the known tag values for the key of the tag of the measurement of the element
+function getInfluxTagValues( element ) {
+  var influx = element;
+  // walk the tree to get the selected data source in the influx element
+  while( 'influx' != influx.name )
+  {
+    influx = influx.getParentElement();
+    if( undefined === influx )
+      return []; // this safety measure can not happen without a bug somewhere!
+  }
+  var data = retrieveInfluxCache(influx.attributes.measurement, 'tags', influx.attributes.authentication );
+
+  if( !(element.attributes.key in data) )
+    return [];
+
+  return data[element.attributes.key].map( function(x){ return { value:x, label: x }; } );
+}
+// Return the known fields for the measurement of the element
+function getInfluxFields( element ) {
+  var influx = element;
+  // walk the tree to get the selected data source in the influx element
+  while( 'influx' != influx.name )
+  {
+    influx = influx.getParentElement();
+    if( undefined === influx )
+      return []; // this safety measure can not happen without a bug somewhere!
+  }
+  var data = retrieveInfluxCache(influx.attributes.measurement, 'fields', element.attributes.authentication );
+
+  return data;
+}

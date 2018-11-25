@@ -186,29 +186,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // check coding-style: https://github.com/CometVisu/CometVisu/wiki/Coding-style
-    jscs: {
-      main: {
-        options: {
-          excludeFiles: [ "**/lib/**", "**/dep/**"],
-          //preset: "jquery",
-          validateIndentation: 2,
-          validateLineBreaks: "LF",
-          fix: false
-          //maximumLineLength : {
-          //  value: 120,
-          //  allExcept: [
-          //    "comments",
-          //    "functionSignature"
-          //  ]
-          //}
-        },
-        files: {
-          src: sourceFiles
-        }
-      }
-    },
-
     // make a zipfile
     compress: {
       tar: {
@@ -377,7 +354,7 @@ module.exports = function(grunt) {
         configFile: 'karma.conf.js',
         singleRun: !grunt.option('no-single'),
         browsers: [grunt.option('browser') || 'Chrome'],
-        reporters: ['progress']
+        reporters: ['spec']
       }
     },
 
@@ -484,7 +461,7 @@ module.exports = function(grunt) {
       buildClient: {
         command: [
           'cd client',
-          './generate.py build',
+          './generate.py build -sI',
           'cd ..'
         ].join('&&')
       },
@@ -498,7 +475,7 @@ module.exports = function(grunt) {
         command: './generate.py lint'
       },
       build: {
-        command: './generate.py build'
+        command: './generate.py build -sI'
       }
     },
 
@@ -601,7 +578,6 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin tasks
-  grunt.loadNpmTasks("grunt-jscs");
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-github-releaser');
