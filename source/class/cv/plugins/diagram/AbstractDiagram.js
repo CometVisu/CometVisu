@@ -20,7 +20,7 @@
 
 /**
  * This plugins integrates flot (diagrams in javascript) into the visualization.
- * server-side data-storage is rrd
+ * server-side data-storage is rrd or InfluxDB.
  *
  * short documentation
  *
@@ -126,8 +126,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       var retVal = {
         axes    : [],
         axesnum : 0,
-        rrd     : [],
-        rrdnum  : 0
+        ts      : [],
+        tsnum   : 0
       };
       var axesNameIndex = [];
 
@@ -148,9 +148,10 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         axesNameIndex[qx.dom.Node.getText(elem)] = retVal.axesnum;
       }, this);
 
-      qx.bom.Selector.query("rrd", xmlElement).forEach(function(elem) {
-        var src = qx.dom.Node.getText(elem);
-        retVal.rrd[retVal.rrdnum] = {
+      qx.bom.Selector.query("influx,rrd", xmlElement).forEach(function(elem) {
+        var src = elem.tagName === 'rrd' ? qx.dom.Node.getText(elem) : elem.getAttribute('measurement');
+        retVal.ts[retVal.tsnum] = {
+          tsType    : elem.tagName,
           src       : src,
           color     : elem.getAttribute('color'),
           label     : elem.getAttribute('label') || src,
@@ -158,32 +159,96 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           steps     : (elem.getAttribute("steps") || "false") === "true",
           fill      : (elem.getAttribute("fill") || "false") === "true",
           scaling   : parseFloat(elem.getAttribute('scaling')) || 1.0,
-          dsIndex   : elem.getAttribute('datasourceIndex') || 0,
-          cFunc     : elem.getAttribute('consolidationFunction') || "AVERAGE",
+          cFunc     : elem.getAttribute('consolidationFunction') || (elem.tagName === 'rrd' ? 'AVERAGE' : 'MEAN'),
+          fillTs    : elem.getAttribute('fillMissing') || '',
           resol     : parseInt(elem.getAttribute('resolution')),
           offset    : parseInt(elem.getAttribute('offset')),
           style     : elem.getAttribute('style') || "lines",
           align     : elem.getAttribute('align') || "center",
           barWidth  : elem.getAttribute('barWidth') || 1
         };
-        if (retVal.rrd[retVal.rrdnum].dsIndex < 0) {
-          retVal.rrd[retVal.rrdnum].dsIndex = 0;
+        if( elem.tagName === 'influx' ) {
+          retVal.ts[retVal.tsnum]['filter'] = this.getInfluxFilter( elem, 'AND' );
+          retVal.ts[retVal.tsnum]['field'] = elem.getAttribute('field');
+          retVal.ts[retVal.tsnum]['authentication'] = elem.getAttribute('authentication');
+        } else {
+          var dsIndex = elem.getAttribute('datasourceIndex') || 0;
+          if(dsIndex < 0) {
+            dsIndex = 0;
+          }
+          retVal.ts[retVal.tsnum].dsIndex = dsIndex;
         }
-        retVal.rrdnum++;
+        retVal.tsnum++;
       }, this);
       return retVal;
     },
 
     /**
-     * Get the rrd and put it's content in the cache.
+     * Recursively walk through the elem to build filter sting
+     * @param elem
+     */
+    getInfluxFilter: function( elem, type )
+    {
+      var
+        children = elem.children,
+        length = children.length,
+        retval = '',
+        i = 0;
+
+      for( ; i < length; i++ )
+      {
+        var child = children[i];
+
+        if( '' != retval )
+          retval += ' ' + type + ' ';
+
+        switch( child.tagName )
+        {
+          case 'and':
+            retval += this.getInfluxFilter(child, 'AND');
+            break;
+
+          case 'or':
+            retval += this.getInfluxFilter(child, 'OR');
+            break;
+
+          case 'tag':
+            retval += child.getAttribute('key') + ' ' + child.getAttribute('operator') + " '" + child.getAttribute('value') + "'";
+            break;
+
+          default:
+            ; // ignore unknown
+        }
+      }
+
+      if( type )
+        return '(' + retval + ')';
+
+      return retval;
+    },
+
+    /**
+     * Get the rrd or InfluxDB and put it's content in the cache.
      * @param refresh {Number} time is seconds to refresh the data
      * @param force {Boolean} Update even when the cache is still valid
      * @param callback {Function} call when the data has arrived
      */
-    lookupRRDcache: function( rrd, start, end, res, refresh, force, callback, callbackParameter ) {
+    lookupTsCache: function(ts, start, end, res, refresh, force, callback, callbackParameter ) {
       var
-        url = cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
-        key = url + '|' + rrd.dsIndex,
+        url = (( 'influx' === ts.tsType )
+            ? 'http://wiregate/CometVisuGit/source/resource/plugins/diagram/influxfetch.php?ts=' + ts.src
+            : cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+'?rrd=' + encodeURIComponent(ts.src) + '.rrd')
+          + '&ds='    + encodeURIComponent(ts.cFunc)
+          // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
+          //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
+          + '&start=' + ('rrd' === ts.tsType ? start : encodeURIComponent(start))
+          + '&end='   + ('rrd' === ts.tsType ? end : encodeURIComponent(end))
+          + '&res='   + encodeURIComponent(res)
+          + (ts.fillTs ? '&fill='   + encodeURIComponent(ts.fillTs) : '')
+          + (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '')
+          + (ts.field  ? '&field='  + encodeURIComponent(ts.field ) : '')
+          + (ts.authentication  ? '&auth='  + encodeURIComponent(ts.authentication ) : ''),
+        key = url + ( 'rrd' === ts.tsType ? '|' + ts.dsIndex : ''),
         urlNotInCache = !(key in this.cache),
         doLoad = force || urlNotInCache || !('data' in this.cache[ key ]) || (refresh!==undefined && (Date.now()-this.cache[key].timestamp) > refresh*1000);
 
@@ -202,7 +267,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           xhr.set({
             accept: "application/json"
           });
-          xhr.addListener("success", qx.lang.Function.curry(this._onSuccess, rrd, key), this);
+          xhr.addListener("success", qx.lang.Function.curry(this._onSuccess, ts, key), this);
+          xhr.addListener("statusError", qx.lang.Function.curry(this._onStatusError, ts, key), this);
           this.cache[ key ].xhr = xhr;
           xhr.send();
         }
@@ -211,22 +277,38 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
     },
 
-    _onSuccess: function(rrd, key, ev) {
-      var rrddata = ev.getTarget().getResponse();
-      if (rrddata !== null) {
+    _onSuccess: function(ts, key, ev) {
+      var tsdata = ev.getTarget().getResponse();
+      if (tsdata !== null) {
         // calculate timestamp offset and scaling
-        var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
-        var newRrd = new Array(rrddata.length);
-        for (var j = 0, l = rrddata.length; j < l; j++) {
-          newRrd[j] = [(rrddata[j][0] + millisOffset), (parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling)];
+        var millisOffset = (ts.offset ? ts.offset * 1000 : 0);
+        var newRrd = new Array(tsdata.length);
+        for (var j = 0, l = tsdata.length; j < l; j++) {
+          if( ts.type === 'rrd' )
+            newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling)];
+          else
+            newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1]) * ts.scaling)];
         }
-        rrddata = newRrd;
+        tsdata = newRrd;
       }
-      this.cache[key].data = rrddata;
+      this.cache[key].data = tsdata;
       this.cache[key].timestamp = Date.now();
 
       this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
-        waitingCallback[0](rrddata, waitingCallback[1]);
+        waitingCallback[0](tsdata, waitingCallback[1]);
+      }, this);
+      this.cache[key].waitingCallbacks.length = 0; // empty array)
+    },
+
+    _onStatusError: function(ts, key, ev) {
+      console.log('_onStatusError',ts, key, ev);
+      var tsdata = [];
+
+      this.cache[key].data = tsdata;
+      this.cache[key].timestamp = Date.now();
+
+      this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
+        waitingCallback[0](tsdata, waitingCallback[1]);
       }, this);
       this.cache[key].waitingCallbacks.length = 0; // empty array)
     }
@@ -516,6 +598,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       var that = this;
       diagram.bind("plotpan", function(event, plot, args) {
+        // TODO and FIXME: args.dragEnded doesn't exist, so data isn't reloaded after pan end!
         if (args.dragEnded) {
           that.loadDiagramData( plot, isPopup, false );
         }
@@ -593,44 +676,44 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       // init
       var loadedData = [];
-      var rrdloaded = 0;
-      var rrdSuccessful = 0;
-      // get all rrd data
-      this.getContent().rrd.forEach(function(rrd, index) {
+      var tsloaded = 0;
+      var tsSuccessful = 0;
+      // get all time series data
+      this.getContent().ts.forEach(function(ts, index) {
         var
-          res = rrd.resol ? rrd.resol : series.res,
+          res = ts.resol ? ts.resol : series.res,
           refresh = this.getRefresh() ? this.getRefresh() : res;
 
-        cv.plugins.diagram.AbstractDiagram.lookupRRDcache( rrd, series.start, series.end, res, refresh, forceReload, function( rrddata ){
-          rrdloaded++;
-          if (rrddata !== null) {
-            rrdSuccessful++;
+        cv.plugins.diagram.AbstractDiagram.lookupTsCache( ts, series.start, series.end, res, refresh, forceReload, function(tsdata ){
+          tsloaded++;
+          if (tsdata !== null) {
+            tsSuccessful++;
 
             // store the data for diagram plotting
             loadedData[index] = {
-              label: rrd.label,
-              color: rrd.color,
-              data: rrddata,
-              yaxis: parseInt(rrd.axisIndex),
-              bars: { show: rrd.style === "bars", fill: rrd.fill, barWidth: parseInt(rrd.barWidth), align: rrd.align },
-              lines: { show: rrd.style === "lines", steps: rrd.steps, fill: rrd.fill, zero: false },
-              points: { show: rrd.style === "points", fill: rrd.fill }
+              label: ts.label,
+              color: ts.color,
+              data: tsdata,
+              yaxis: parseInt(ts.axisIndex),
+              bars: { show: ts.style === "bars", fill: ts.fill, barWidth: parseInt(ts.barWidth), align: ts.align },
+              lines: { show: ts.style === "lines", steps: ts.steps, fill: ts.fill, zero: false },
+              points: { show: ts.style === "points", fill: ts.fill }
             };
           }
 
-          // if loading has finished, i.e. all rrds have been retrieved,
+          // if loading has finished, i.e. all time series have been retrieved,
           // go on and plot the diagram
-          if (rrdloaded === this.getContent().rrdnum) {
+          if (tsloaded === this.getContent().tsnum) {
             var fulldata;
-            // If all rrds were successfully loaded, no extra action is needed.
+            // If all time series were successfully loaded, no extra action is needed.
             // Otherwise we need to reduce the array to the loaded data.
-            if (rrdSuccessful === rrdloaded) {
+            if (tsSuccessful === tsloaded) {
               fulldata = loadedData;
             }
             else {
               fulldata = [];
               var loadedIndex = -1;
-              for (var j = 0; j < rrdSuccessful; j++) {
+              for (var j = 0; j < tsSuccessful; j++) {
                 for (var k = loadedIndex + 1; k < loadedData.length; k++) {
                   if (loadedData[k] !== null) {
                     fulldata[j] = loadedData[k];
