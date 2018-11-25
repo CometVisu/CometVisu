@@ -87,6 +87,8 @@ describe('test the notification router', function () {
     router.dispatchMessage("test.*", {});
     expect(spy).toHaveBeenCalled();
     expect(callCounter).toEqual(2);
+
+    qx.Class.undefine("cv.test.MessageHandler");
   });
 
   it("should test the state notification handling", function() {
@@ -130,7 +132,6 @@ describe('test the notification router', function () {
     // as the condition isn't met anymore the popup must be gone
     expect(popup).toBeUndefined();
 
-    qx.Class.undefine("cv.test.MessageHandler");
     router.unregisterStateUpdatehandler(["0/0/1"]);
   });
 
