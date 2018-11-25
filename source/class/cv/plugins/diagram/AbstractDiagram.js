@@ -168,7 +168,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           barWidth  : elem.getAttribute('barWidth') || 1
         };
         if( elem.tagName === 'influx' ) {
-          retVal.ts[retVal.tsnum]['filter'] = this.getInfluxFilter( elem );
+          retVal.ts[retVal.tsnum]['filter'] = this.getInfluxFilter( elem, 'AND' );
           retVal.ts[retVal.tsnum]['field'] = elem.getAttribute('field');
           retVal.ts[retVal.tsnum]['authentication'] = elem.getAttribute('authentication');
         } else {
