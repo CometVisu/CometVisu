@@ -1,7 +1,7 @@
 .. _hidden-config:
 
-Versteckten Konfigurationen
-===========================
+Versteckte Konfigurationen
+==========================
 
 Hintergrund
 -----------
@@ -13,8 +13,8 @@ Auch im Manager sind diese Informationen im Klartext lesbar.
 Dies erzeugt für sich noch keine sichere Umgebung. Jedoch lässt sich hierdurch eine sichere Umgebung aufbauen, in
 dem der Webserver so konfiguriert sein muss, dass der Anwender keinen Zugriff auf den Manager erhält.
 
-Welches Widget oder Plugin Informationen aus der versteckten Konfiguration benötigt und in welcher Form wird dort
-beschrieben.
+Ob und in welcher Form Widgets und Plugins Informationen aus der versteckten
+Konfiguration benötigen wird in deren jeweiligen Dokumentation beschrieben.
 
 Aufbau
 ------
