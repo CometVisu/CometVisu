@@ -221,11 +221,11 @@ muss im rrd-Format vorliegen. Genaueres dazu im Abschnitt <a class="reference in
 <p>Das Diagramm wird standardmäßig im Inline-Modus als Widget dargestellt. Zusätzlich kann die Option Popup
 aktiviert werden, so dass das Diagramm nach dem Anklicken im Vollbildmodus erscheint. Je nach Widgetgröße kann
 für die Inline Ansicht festgelegt werden ob Legende bzw. Achsenbeschriftungen angezeigt werden sollen.</p>
-<div class="figure" id="id1">
+<div class="figure" id="id3">
 <img alt="../../../../_images/Diagram_simple_inline2.png" src="../../../../_images/Diagram_simple_inline2.png" />
 <p class="caption"><span class="caption-text">Diagramm als Widget (Inline-Diagramm) mit 5 Datenreihen und rechts unten als kleine Voransicht</span></p>
 </div>
-<div class="figure" id="id2">
+<div class="figure" id="id4">
 <img alt="../../../../_images/Diagram_simple_popup.png" src="../../../../_images/Diagram_simple_popup.png" />
 <p class="caption"><span class="caption-text">Diagramm Popup das nach dem Anklicken des Diagramms angezeigt wird.</span></p>
 </div>
@@ -606,7 +606,7 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tr>
 <tr class="row-odd"><td>consolidationFunction</td>
 <td><em>AVERAGE</em>, <em>LAST</em>, <em>MIN</em> oder <em>MAX</em></td>
-<td>&nbsp;</td>
+<td>Auswählen einer der verfügbaren Consolidation Functions des RRDTools (<a class="reference external" href="http://rrdtool.org">http://rrdtool.org</a>).</td>
 </tr>
 <tr class="row-even"><td>resolution</td>
 <td>integer</td>
@@ -632,6 +632,128 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 <td>&nbsp;</td>
 <td>Text</td>
 <td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="16"><dl class="first last docutils">
+<dt>diagram</dt>
+<dd><ul class="first last simple">
+<li>influx</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>measurement</td>
+<td>Text</td>
+<td>Auswahl des measurement aus den InfluxDB Daten (Default: <a href="#id1"><span class="problematic" id="id2">*</span></a>)</td>
+</tr>
+<tr class="row-even"><td>yaxis</td>
+<td>Text</td>
+<td>Weist die InfluxDB-Daten einer y-Achse zu</td>
+</tr>
+<tr class="row-odd"><td>color</td>
+<td>Text</td>
+<td>Legt die Farbe der Diagrammlinie fest</td>
+</tr>
+<tr class="row-even"><td>label</td>
+<td>Text</td>
+<td>Defininiert den Namen der Datenreihe in der Legende</td>
+</tr>
+<tr class="row-odd"><td>scaling</td>
+<td>Zahl</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>steps</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>fill</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Füllt den Bereich unterhalb der Datenreihe bzw. Säule</td>
+</tr>
+<tr class="row-even"><td>style</td>
+<td><em>lines</em>, <em>bars</em> oder <em>points</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>barWidth</td>
+<td>integer</td>
+<td>Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</td>
+</tr>
+<tr class="row-even"><td>align</td>
+<td><em>left</em>, <em>right</em> oder <em>center</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>authentication</td>
+<td>Text</td>
+<td>Wenn die InfluxDB Authentifizierung benötigt, dann werden die Anmeldeinformationen aus der Hidden-Konfiguration mit diesem Schlüssel verwendet.</td>
+</tr>
+<tr class="row-even"><td>field</td>
+<td>Text</td>
+<td>Im Falle mehrerer Felder (Spalten) in einer InfluxDB-Zeitreihe kann hier der Name des Feldes angegeben werden, die angezeigt werden soll. (Wenn nicht explizit angegeben wird &#8220;*&#8221; verwendet.)</td>
+</tr>
+<tr class="row-odd"><td>resolution</td>
+<td>integer</td>
+<td>Die zeitliche Auflösung für die Daten aus der InfluxDB kann auf eine eigenes Intervall (Wert in Sekunden) festgesetzt werden.</td>
+</tr>
+<tr class="row-even"><td>consolidationFunction</td>
+<td><em>COUNT</em>, <em>INTEGRAL</em>, <em>MAX</em>, <em>MEAN</em>, <em>MEDIAN</em>, <em>MIN</em>, <em>MODE</em>, <em>SPREAD</em>, <em>STDDEV</em> oder <em>SUM</em></td>
+<td>Auswählen einer der verfügbaren Daten Aggregierungs Funktionen - notwendig, wenn das Attribut &#8220;resolution&#8221; gesetzt ist.</td>
+</tr>
+<tr class="row-odd"><td>fillMissing</td>
+<td>Text</td>
+<td>Option wenn Attribut &#8220;resolution&#8221; gesetzt ist: fülle Zeitpunkte für die keine Daten vorhanden sind mit diesem Wert oder einem aus &#8220;linear&#8221;, &#8220;none&#8221;, &#8220;null&#8221; oder &#8220;previous&#8221;.</td>
+</tr>
+<tr class="row-even"><td>offset</td>
+<td>integer</td>
+<td>Offset in Sekunden, um die angezeigten Zeitstempel der Daten aus der InfluxDB zu modifizieren.</td>
+</tr>
+</tbody>
+</table>
+<p>Im <code class="docutils literal"><span class="pre">&lt;influx&gt;</span></code> Element kann über das <code class="docutils literal"><span class="pre">authentication</span></code> Attribut auf einen entsprechenden Eintrag aus der
+<a class="reference internal" href="../../../hidden-config.html#hidden-config"><span class="std std-ref">versteckten Konfiguration</span></a> verwiesen werden (als Default wird als Name <cite>influx</cite> angenommen).</p>
+<p>Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="59%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Schlüssel</th>
+<th class="head">Wert</th>
+<th class="head">Beispiel</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>uri</td>
+<td>Die URI für den Zugriff auf die InfluxDB (optional)</td>
+<td><a class="reference external" href="http://localhost:8086/query">http://localhost:8086/query</a></td>
+</tr>
+<tr class="row-odd"><td>user</td>
+<td>Der Benutzername für die InfluxDB</td>
+<td>InfluxDBTestUser</td>
+</tr>
+<tr class="row-even"><td>pass</td>
+<td>Das Passwort für die InfluxDB</td>
+<td><cite>Xsdwfw324SEs</cite></td>
 </tr>
 </tbody>
 </table>

@@ -600,7 +600,7 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tr>
 <tr class="row-odd"><td>consolidationFunction</td>
 <td><em>AVERAGE</em>, <em>LAST</em>, <em>MIN</em> oder <em>MAX</em></td>
-<td>&nbsp;</td>
+<td>Auswählen einer der verfügbaren Consolidation Functions des RRDTools (<a class="reference external" href="http://rrdtool.org">http://rrdtool.org</a>).</td>
 </tr>
 <tr class="row-even"><td>resolution</td>
 <td>integer</td>
@@ -626,6 +626,98 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 <td>&nbsp;</td>
 <td>Text</td>
 <td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribut</th>
+</tr>
+<tr class="row-even"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Inhalt</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="16"><dl class="first last docutils">
+<dt>diagram_info</dt>
+<dd><ul class="first last simple">
+<li>influx</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>measurement</td>
+<td>Text</td>
+<td>Auswahl des measurement aus den InfluxDB Daten (Default: <a href="#id1"><span class="problematic" id="id2">*</span></a>)</td>
+</tr>
+<tr class="row-even"><td>yaxis</td>
+<td>Text</td>
+<td>Weist die InfluxDB-Daten einer y-Achse zu</td>
+</tr>
+<tr class="row-odd"><td>color</td>
+<td>Text</td>
+<td>Legt die Farbe der Diagrammlinie fest</td>
+</tr>
+<tr class="row-even"><td>label</td>
+<td>Text</td>
+<td>Defininiert den Namen der Datenreihe in der Legende</td>
+</tr>
+<tr class="row-odd"><td>scaling</td>
+<td>Zahl</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>steps</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>fill</td>
+<td><em>true</em> oder <em>false</em></td>
+<td>Füllt den Bereich unterhalb der Datenreihe bzw. Säule</td>
+</tr>
+<tr class="row-even"><td>style</td>
+<td><em>lines</em>, <em>bars</em> oder <em>points</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>barWidth</td>
+<td>integer</td>
+<td>Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</td>
+</tr>
+<tr class="row-even"><td>align</td>
+<td><em>left</em>, <em>right</em> oder <em>center</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>authentication</td>
+<td>Text</td>
+<td>Wenn die InfluxDB Authentifizierung benötigt, dann werden die Anmeldeinformationen aus der Hidden-Konfiguration mit diesem Schlüssel verwendet.</td>
+</tr>
+<tr class="row-even"><td>field</td>
+<td>Text</td>
+<td>Im Falle mehrerer Felder (Spalten) in einer InfluxDB-Zeitreihe kann hier der Name des Feldes angegeben werden, die angezeigt werden soll. (Wenn nicht explizit angegeben wird &#8220;*&#8221; verwendet.)</td>
+</tr>
+<tr class="row-odd"><td>resolution</td>
+<td>integer</td>
+<td>Die zeitliche Auflösung für die Daten aus der InfluxDB kann auf eine eigenes Intervall (Wert in Sekunden) festgesetzt werden.</td>
+</tr>
+<tr class="row-even"><td>consolidationFunction</td>
+<td><em>COUNT</em>, <em>INTEGRAL</em>, <em>MAX</em>, <em>MEAN</em>, <em>MEDIAN</em>, <em>MIN</em>, <em>MODE</em>, <em>SPREAD</em>, <em>STDDEV</em> oder <em>SUM</em></td>
+<td>Auswählen einer der verfügbaren Daten Aggregierungs Funktionen - notwendig, wenn das Attribut &#8220;resolution&#8221; gesetzt ist.</td>
+</tr>
+<tr class="row-odd"><td>fillMissing</td>
+<td>Text</td>
+<td>Option wenn Attribut &#8220;resolution&#8221; gesetzt ist: fülle Zeitpunkte für die keine Daten vorhanden sind mit diesem Wert oder einem aus &#8220;linear&#8221;, &#8220;none&#8221;, &#8220;null&#8221; oder &#8220;previous&#8221;.</td>
+</tr>
+<tr class="row-even"><td>offset</td>
+<td>integer</td>
+<td>Offset in Sekunden, um die angezeigten Zeitstempel der Daten aus der InfluxDB zu modifizieren.</td>
 </tr>
 </tbody>
 </table>

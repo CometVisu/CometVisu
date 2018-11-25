@@ -1611,6 +1611,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/hidden-config.html</loc>
+    <lastmod>2018-11-25</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/hydraulik.html</loc>
     <lastmod>2018-11-25</lastmod>
     <priority>0.5</priority>

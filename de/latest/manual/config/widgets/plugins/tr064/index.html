@@ -355,7 +355,7 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id3">
+<div class="figure align-center" id="id2">
 <img alt="../../../../_images/de_config_widgets_plugins_tr064_index_editor_attributes.png" src="../../../../_images/de_config_widgets_plugins_tr064_index_editor_attributes.png" />
 <p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
 </div>
@@ -557,7 +557,7 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id4">
+<div class="figure align-center" id="id3">
 <img alt="../../../../_images/de_config_widgets_plugins_tr064_index_editor_elements.png" src="../../../../_images/de_config_widgets_plugins_tr064_index_editor_elements.png" />
 <p class="caption"><span class="caption-text">Elemente im Editor</span></p>
 </div>
@@ -573,7 +573,7 @@ der <a class="reference internal" href="../../../xml-format.html"><span class="d
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das calllist Widget aus dem tr064 Plugin aus dem folgenden Screenshot erzeugt:</p>
-<div class="figure" id="id5">
+<div class="figure" id="id4">
 <img alt="calllist, einfaches Beispiel" src="../../../../_images/calllist_simple.png" />
 <p class="caption"><span class="caption-text">calllist, einfaches Beispiel</span></p>
 </div>
@@ -608,38 +608,42 @@ angelegter Benutzer verwendet werden). Dies geht über die Benutzer-Verwaltung:<
 <div class="figure">
 <img alt="../../../../_images/fritzbox_user.png" src="../../../../_images/fritzbox_user.png" />
 </div>
-<p>Damit das Plugin auf diesen Benutzer zugreifen kann, müssen dessen Login-Daten hinterlegt werden. Dies geht im Manager
-im Bereich der &#8220;Versteckten Konfigurationen&#8221;<a class="footnote-reference" href="#f2" id="id2">[2]</a>:</p>
-<div class="figure">
-<img alt="../../../../_images/hidden_config_de.png" src="../../../../_images/hidden_config_de.png" />
-</div>
+<p>Damit das Plugin auf diesen Benutzer zugreifen kann, müssen dessen Login-Daten hinterlegt werden. Dies geht über die
+<a class="reference internal" href="../../../hidden-config.html#hidden-config"><span class="std std-ref">&#8220;Versteckten Konfigurationen&#8221;</span></a>.</p>
 <p>Der dort verwendete Name muss im calllist Widget im Attribut <code class="docutils literal"><span class="pre">device</span></code> angegeben werden.</p>
-<p>Alternativ zum Manager lässt sich auch direkt die Datei <code class="docutils literal"><span class="pre">config/hidden.php</span></code> editieren und eine Konfigurationszeile
-hinzufügen:</p>
-<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-<span class="c1">// File for configurations that shouldn&#39;t be shared with the user</span>
-<span class="nv">$hidden</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-  <span class="s1">&#39;fritzbox&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;uri&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://192.168.0.1:49443/&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CometVisuTestUser&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;pa3bvNM4j9z4&#39;</span><span class="p">)</span>
-<span class="p">);</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre></div>
-</div>
+<p>Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="60%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Schlüssel</th>
+<th class="head">Wert</th>
+<th class="head">Beispiel</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>uri</td>
+<td>Die URI für den Zugriff auf die TR-064 Schnittstelle</td>
+<td><a class="reference external" href="https://192.168.0.1:49443/">https://192.168.0.1:49443/</a></td>
+</tr>
+<tr class="row-odd"><td>user</td>
+<td>Der Benutzername für den TR-064 Zugang</td>
+<td>CometVisuTestUser</td>
+</tr>
+<tr class="row-even"><td>pass</td>
+<td>Das Passwort für den TR-64 Zugang</td>
+<td><cite>pa3bvNM4j9z4</cite></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Fußnoten</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="f2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><p class="first">Die &#8220;Versteckte Konfiguration&#8221; sind Konfigurationsdaten die nicht an den Client übertragen werden und auf dem
-Server bleiben. Daher werden diese vor dem Anwender &#8220;versteckt&#8221;, sind aber auf dem Server selbst im Klartext lesbar.
-Auch im Manager sind diese Informationen im Klartext lesbar.</p>
-<p class="last">Dies erzeugt für sich noch keine sichere Umgebung. Jedoch lässt sich hierdurch eine Sichere Umgebung aufbauen, in
-dem der Webserver so konfiguriert sein muss, dass der Anwender keinen Zugriff auf den Manager erhält.</p>
-</td></tr>
 </tbody>
 </table>
 </div>

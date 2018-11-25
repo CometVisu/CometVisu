@@ -237,6 +237,11 @@ MS XML Editor 2007 unter Windows und unter Linux z.B. vi mit &#8221;:syntax on&#
 <p>Allgemeine Informationen über das CometVisu XML Format findet man
 <a class="reference internal" href="xml-format.html"><span class="doc">hier</span></a>, Informationen zu den einzelnen
 Widgets in den jeweiligen Unterseiten.</p>
+<p>Manche Widgets und Plugins benötigen noch zusätzliche Informationen, die nicht in der Config-Datei enthalten sein
+sollen, da diese frei lesbar an den Web-Browser übertragen wird (je nach installierter Umgebung kann der Transport
+verschlüsselt mit HTTPS erfolgen, jedoch ist der Inhalt durch den Benutzer am Browser mit entsprechenden Tricks
+lesbar). Durch die Verwendung der <a class="reference internal" href="hidden-config.html"><span class="doc">Versteckten Konfigurationen</span></a> können diese Informationen auf dem besser
+geschützten Server verbleiben.</p>
 <p>Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
 sollte man die Seite neu laden und den Browser-Cache löschen.</p>
 <p>Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
