@@ -2154,8 +2154,8 @@
     </xsd:choice>
     <xsd:attribute name="measurement" type="xsd:string" >
       <xsd:annotation>
-        <xsd:documentation xml:lang="en"></xsd:documentation>
-        <xsd:documentation xml:lang="de"></xsd:documentation>
+        <xsd:documentation xml:lang="en">Selection of the measurement from the InfluxDB data (default: *)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Auswahl des measurement aus den InfluxDB Daten (Default: *)</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="yaxis" type="xsd:string" >
