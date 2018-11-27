@@ -99,6 +99,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../install/index.html">Installation der CometVisu</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../hidden-config.html">Versteckte Konfigurationen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../url-params.html">URL-Parameter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
@@ -221,11 +222,11 @@ muss im rrd-Format vorliegen. Genaueres dazu im Abschnitt <a class="reference in
 <p>Das Diagramm wird standardmäßig im Inline-Modus als Widget dargestellt. Zusätzlich kann die Option Popup
 aktiviert werden, so dass das Diagramm nach dem Anklicken im Vollbildmodus erscheint. Je nach Widgetgröße kann
 für die Inline Ansicht festgelegt werden ob Legende bzw. Achsenbeschriftungen angezeigt werden sollen.</p>
-<div class="figure" id="id3">
+<div class="figure" id="id1">
 <img alt="../../../../_images/Diagram_simple_inline2.png" src="../../../../_images/Diagram_simple_inline2.png" />
 <p class="caption"><span class="caption-text">Diagramm als Widget (Inline-Diagramm) mit 5 Datenreihen und rechts unten als kleine Voransicht</span></p>
 </div>
-<div class="figure" id="id4">
+<div class="figure" id="id2">
 <img alt="../../../../_images/Diagram_simple_popup.png" src="../../../../_images/Diagram_simple_popup.png" />
 <p class="caption"><span class="caption-text">Diagramm Popup das nach dem Anklicken des Diagramms angezeigt wird.</span></p>
 </div>
@@ -663,7 +664,7 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </td>
 <td>measurement</td>
 <td>Text</td>
-<td>Auswahl des measurement aus den InfluxDB Daten (Default: <a href="#id1"><span class="problematic" id="id2">*</span></a>)</td>
+<td>Auswahl der Datenbank und des Measurement (Beispiel: timeseries_db/KNX_LINE1)</td>
 </tr>
 <tr class="row-even"><td>yaxis</td>
 <td>Text</td>
@@ -757,6 +758,26 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tr>
 </tbody>
 </table>
+<p>Im <code class="docutils literal"><span class="pre">&lt;influx&gt;</span></code> Element können über <code class="docutils literal"><span class="pre">&lt;add&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;or&gt;</span></code> und <code class="docutils literal"><span class="pre">&lt;tag&gt;</span></code> Elemente
+die anzuzeigenden Daten gefiltert werden.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram</span> <span class="na">width=</span><span class="s">&quot;600&quot;</span> <span class="na">height=</span><span class="s">&quot;300&quot;</span> <span class="na">series=</span><span class="s">&quot;fullday&quot;</span> <span class="na">period=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;influx</span> <span class="na">field=</span><span class="s">&quot;Val&quot;</span> <span class="na">fillMissing=</span><span class="s">&quot;linear&quot;</span> <span class="na">style=</span><span class="s">&quot;lines&quot;</span> <span class="na">fill=</span><span class="s">&quot;true&quot;</span> <span class="na">measurement=</span><span class="s">&quot;timeseries_db/KNX_LINE1&quot;</span> <span class="na">authentication=</span><span class="s">&quot;influx&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;and&gt;</span>
+      <span class="nt">&lt;tag</span> <span class="na">key=</span><span class="s">&quot;PA&quot;</span> <span class="na">operator=</span><span class="s">&quot;=&quot;</span> <span class="na">value=</span><span class="s">&quot;1.2.3&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;or&gt;</span>
+        <span class="nt">&lt;tag</span> <span class="na">key=</span><span class="s">&quot;GA&quot;</span> <span class="na">operator=</span><span class="s">&quot;=&quot;</span> <span class="na">value=</span><span class="s">&quot;4/2/0&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;tag</span> <span class="na">key=</span><span class="s">&quot;GA&quot;</span> <span class="na">operator=</span><span class="s">&quot;=&quot;</span> <span class="na">value=</span><span class="s">&quot;4/2/1&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/or&gt;</span>
+    <span class="nt">&lt;/and&gt;</span>
+  <span class="nt">&lt;/influx&gt;</span>
+  <span class="nt">&lt;rrd</span> <span class="na">datasourceIndex=</span><span class="s">&quot;0&quot;</span> <span class="na">consolidationFunction=</span><span class="s">&quot;AVERAGE&quot;</span> <span class="na">fill=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>26.F25EE7000000_hum<span class="nt">&lt;/rrd&gt;</span>
+<span class="nt">&lt;/diagram&gt;</span>
+</pre></div>
+</div>
+<div class="figure" id="id3">
+<img alt="../../../../_images/Diagram_influx_editor.png" src="../../../../_images/Diagram_influx_editor.png" />
+<p class="caption"><span class="caption-text">Beispiel Influx-Datenquelle mit Filtern</span></p>
+</div>
 </div>
 </div>
 <div class="section" id="xml-syntax-minimal">
