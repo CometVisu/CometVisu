@@ -55,6 +55,7 @@ durch Anhängen von check_config.php an den URL erzwingen.
 .. toctree::
     :hidden:
 
+    hidden-config
     url-params
 
 Genaue Beschreibungen zu den verfügbaren URL-Parameter sind unter :doc:`URL-Parameter <url-params>` zu finden.

@@ -70,6 +70,29 @@ Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:
 |pass     |Das Passwort für die InfluxDB                      |`Xsdwfw324SEs`             |
 +---------+---------------------------------------------------+---------------------------+
 
+Im ``<influx>`` Element können über ``<add>``, ``<or>`` und ``<tag>`` Elemente
+die anzuzeigenden Daten gefiltert werden.
+
+
+.. code-block:: xml
+
+    <diagram width="600" height="300" series="fullday" period="8">
+      <influx field="Val" fillMissing="linear" style="lines" fill="true" measurement="timeseries_db/KNX_LINE1" authentication="influx">
+        <and>
+          <tag key="PA" operator="=" value="1.2.3"/>
+          <or>
+            <tag key="GA" operator="=" value="4/2/0"/>
+            <tag key="GA" operator="=" value="4/2/1"/>
+          </or>
+        </and>
+      </influx>
+      <rrd datasourceIndex="0" consolidationFunction="AVERAGE" fill="true">26.F25EE7000000_hum</rrd>
+    </diagram>
+
+.. figure:: _static/Diagram_influx_editor.png
+
+   Beispiel Influx-Datenquelle mit Filtern
+
 XML Syntax minimal
 ------------------
 
