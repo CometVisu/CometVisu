@@ -70,6 +70,9 @@ qx.Class.define("cv.ui.NotificationCenter", {
     cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
       'cv.*': {}
     });
+    this._openCommand = new qx.ui.command.Command("Ctrl+M");
+    this._openCommand.addListener("execute", this.toggleVisibility, this);
+    cv.TemplateEngine.getInstance().getCommands().add("open-notificationcenter", this._openCommand);
 
     qx.event.Registration.addListener(window, "resize", this._onResize, this);
 
@@ -156,18 +159,6 @@ qx.Class.define("cv.ui.NotificationCenter", {
     }
   },
 
-
-  /*
- *****************************************************************************
-    PROPERTIES
- *****************************************************************************
- */
-  properties: {
-
-
-
-  },
-
   /*
 *****************************************************************************
    MEMBERS
@@ -181,6 +172,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     __blocker: null,
     __badge: null,
     __favico: null,
+    _openCommand: null,
 
     disableBadge: function(value) {
       if (value) {
@@ -231,6 +223,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         // create new element
         elem = this.__element = qx.dom.Element.create("div", {
           id: this.getRootElementId(),
+          style: "visibility: hidden;",
           html: '<div class="badge"></div><header><h3>' + qx.locale.Manager.tr("Message center") + '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' + qx.locale.Manager.tr("Delete all") + '<div></div></footer>'
         });
         qx.dom.Element.insertEnd(elem, body);
@@ -255,6 +248,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
       // connect badge content
       this._messages.addListener("changeLength", this.__updateBadge, this);
+      this.__updateBadge();
 
       // update dimensions
       new qx.util.DeferredCall(this._onResize, this).schedule();
@@ -262,15 +256,25 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     __updateBadge: function() {
       var currentContent = parseInt(qx.bom.element.Attribute.get(this.__badge, "html"));
+      if (isNaN(currentContent)) {
+        currentContent = 0;
+      }
       var messages = this.getMessages().getLength();
-      if (this.getMessages().length === 0) {
-        // close center if empty
-        qx.event.Timer.once(function() {
-          // still empty
-          if (messages === 0) {
-            this.hide();
-          }
-        }, this, 1000);
+
+      var update = function() {
+        // still empty
+        if (this.getMessages().getLength() === 0) {
+          this.hide();
+        } else {
+          qx.bom.element.Style.reset(this.__element, "visibility");
+          this._onSeverityChange();
+        }
+      }.bind(this);
+      // close center if empty
+      if (cv.ui.NotificationCenter.BLINK.duration > 0) {
+        qx.event.Timer.once(update, this, cv.ui.NotificationCenter.BLINK.duration);
+      } else {
+        update();
       }
       if (currentContent < messages) {
         // blink to get the users attention for the new message
@@ -285,16 +289,17 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     },
 
-    _onSeverityChange: function(ev) {
+    _onSeverityChange: function() {
+      var severity = this.getGlobalSeverity();
       if (this.__badge) {
         qx.bom.element.Class.removeClasses(this.__badge, this._severities);
-        qx.bom.element.Class.add(this.__badge, ev.getData());
+        qx.bom.element.Class.add(this.__badge, severity);
       }
 
       if (this.__favico) {
         // update favicon badge
         this.__favico.badge(this.getMessages().getLength(), {
-          bgColor: this.getSeverityColor(ev.getData())
+          bgColor: this.getSeverityColor(severity)
         });
       }
     },
@@ -306,11 +311,16 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (!this.__visible) {
         this.__visible = true;
         this.__blocker.block();
+        qx.bom.element.Style.reset(this.__element, "visibility");
         qx.event.Registration.addListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
-        var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
-        anim.on("end", function () {
+        if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
+          var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
+          anim.on("end", function () {
+            qx.bom.element.Transform.translate(this.__element, "-300px");
+          }, this);
+        } else {
           qx.bom.element.Transform.translate(this.__element, "-300px");
-        }, this);
+        }
       }
     },
 
@@ -332,11 +342,16 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (this.__visible) {
         this.__visible = false;
         qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
-        var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
-        anim.on("end", function () {
+        if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
+          var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
+          anim.on("end", function () {
+            qx.bom.element.Transform.translate(this.__element, "-0px");
+            this.__blocker.unblock();
+          }, this);
+        } else {
           qx.bom.element.Transform.translate(this.__element, "-0px");
           this.__blocker.unblock();
-        }, this);
+        }
       }
     }
   },
@@ -350,6 +365,6 @@ qx.Class.define("cv.ui.NotificationCenter", {
     qx.event.Registration.removeListener(window, "resize", this._onResize, this);
     qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
     qx.event.Registration.removeListener(this.__messagesContainer, "tap", this._onListTap, this);
-    this._disposeObjects("__blocker", "__messagesContainer");
+    this._disposeObjects("__blocker", "__messagesContainer", "_openCommand");
   }
 });

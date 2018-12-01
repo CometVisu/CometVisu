@@ -65,12 +65,12 @@ Der Wert für diesen Parameter lässt sich leicht herausfinden, in dem man
 in einem Browser auf dem PC mit der Maus über den Link zur Unter-Seite
 fährt und den Inhalt des Links in der Browser-Statuszeile ansieht.
 Dieser lautet ähnlich wie ``javascript:templateEngine.scrollToPage('id_0_33')``.
-Hier wäre nun das ``0_33`` der Wert für den Parameter *startpage*,
+Hier wäre nun das ``id_0_33`` der Wert für den Parameter *startpage*,
 d.h. zusammengesetzt müsste an die URL angehängt werden:
-``startpage=0_33``
+``startpage=id_0_33``
 
 
-Gerade wenn man Visus an meheren Orten im Haus verteilt hat, kann es
+Gerade wenn man Visus an mehreren Orten im Haus verteilt hat, kann es
 Sinn machen bei einer gesammten Config-Datei je nach Visu-Standort die
 Unter-Seite als erstes anzuzeigen, die dem Raum entspricht.
 
@@ -169,7 +169,7 @@ Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu ang
 
 .. code::
 
-    Default: true (enableCache=true)
+    Default: Im Release: true, in der Entwicklerversion: false
     Options: false (enableCache=false), true (enableCache=true), invalid (enableCache=invalid)
 
 .. _reporting:
@@ -197,6 +197,8 @@ des Problems erheblich.
 Um diese Log-Dateien aufzuzeichnen, muss man die CometVisu mit `reporting=true` laden.
 Nachdem man den fehlerhaften Zustand erreicht hat, kann man die Log-Datei herunterladen indem man in der
 Browser-Console (öffnen mit F12) ``downloadLog()`` ein gibt und mit *enter* bestätigt.
+Neben dem automatischen Download der Logdatei, wird der Inhalt des Logs ebenfalls auf der Konsole
+ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.
 
 .. HINT::
 
@@ -204,6 +206,27 @@ Browser-Console (öffnen mit F12) ``downloadLog()`` ein gibt und mit *enter* bes
     Eine Log-Datei die 30 Minuten oder mehr läuft bis das Problem zu sehen ist, wird die Fehlerbehebung
     erschweren, da der Entwickler diese ggf. sehr oft abspielen muss während der Fehleranalyse und -behebung.
 
+.. _reportErrors:
+
+*reportErrors* - Fehlermeldungen automatisch an sentry.io senden
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Eine weitere Möglichkeit die Entwickler bei der Verbesserung der CometVisu zu unterstützen, ist das Aktivieren
+der automatischen Fehlerberichte. Diese Berichte werden bei Auftreten eines Fehlers teilweise komplett automatisch
+an einen Webdienst geschickt (sentry.io), welcher diese sammelt, aufbereitet und die CometVisu-Entwickler benachrichtigt.
+
+Da hierzu neben dem Fehler auch viele Informationen über z.b. den eingesetzten Browser zu sentry.io geschickt werden,
+muss diese Funktionalität explizit eingeschaltet werden über diesem URL-Parameter.
+
+.. code::
+
+    Default: false (reportErrors=false)
+    Options: true  (reportErrors=true), false (reportErrors=false)
+
+Um die Fehlerreports zu aktivieren muss die CometVisu mit `reportErrors=true` geladen werden. Die Fehlerdialoge
+der CometVisu bieten dazu die Option, die CometVisu mit diesem Parameter neu zu laden, sollte das noch nicht passiert sein.
+Dann kann der Benutzer versuchen, den Fehler erneut zu reproduzieren und dann einen Fehlerbericht mit weiteren
+Erklärungen an sentry.io schicken.
 
 .. _log:
 

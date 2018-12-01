@@ -68,11 +68,33 @@ qx.Class.define('cv.ui.website.Slider', {
   */
   members: {
     __pointerMoveEvent: null,
+    __positionKnob: null,
+    __invalidPageSizeListener: null,
+    __sizeStates: null,
+
+    init: function() {
+      this.base(arguments);
+      this.__sizeStates = cv.ui.layout.ResizeHandler.states;
+      if (this.getChildren(".ui-slider-range").length === 0) {
+        this.append(qx.ui.website.Widget.create("<div>")
+          .addClass("ui-slider-range"));
+      }
+      this.on("changePosition", function(pos) {
+        var knob = this.getChildren(".ui-slider-range");
+        var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
+        knob.setStyle("width", (pos+paddingLeft)+"px");
+        knob.setStyle("marginLeft", paddingLeft*-1+"px");
+      }, this);
+      this.on("pointerdown", function(ev) {
+        this._onSliderPointerUp(ev);
+        this._onPointerDown(ev);
+      }, this);
+    },
 
     // overridden
     _getKnobContent: function() {
       if (this.getFormat() && this.getValue() !== undefined) {
-        return sprintf(this.getFormat(), this.getValue());
+        return cv.util.String.sprintf(this.getFormat(), this.getValue());
       } else {
         return "";
       }
@@ -85,10 +107,45 @@ qx.Class.define('cv.ui.website.Slider', {
       this._onWindowResize();
     },
 
+    _onWindowResize: function () {
+      var args = arguments;
+      if (this.__sizeStates.isPageSizeInvalid()) {
+        if (!this.__invalidPageSizeListener) {
+          this.__invalidPageSizeListener = this.__sizeStates.addListener('changePageSizeInvalid', function (ev) {
+            if (ev.getData() === false) {
+              this.__sizeStates.removeListenerById(this.__invalidPageSizeListener);
+              this.__invalidPageSizeListener = null;
+              this.base(args);
+            }
+          }, this);
+        }
+      } else {
+        this.base(args);
+      }
+    },
+
     //overridden
     _onPointerMove : function(e) {
       this.__pointerMoveEvent = true;
-      this.base(arguments, e);
+      e.preventDefault();
+
+      if (this.__dragMode) {
+        // position normalization
+        var dragBoundaries = this._getDragBoundaries();
+        var dragPosition = Math.max(e.getDocumentLeft(), dragBoundaries.min);
+        dragPosition = Math.min(dragPosition, dragBoundaries.max);
+
+        var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
+        var positionKnob = dragPosition - this.getOffset().left - this._getHalfKnobWidth() - paddingLeft;
+
+        if (this.__positionKnob !== positionKnob) {
+          this.setValue(this._getNearestValue(dragPosition));
+          this._setKnobPosition(positionKnob);
+          this.emit("changePosition", positionKnob);
+          this.__positionKnob = positionKnob;
+        }
+        e.stopPropagation();
+      }
     },
 
     // overridden
@@ -106,5 +163,14 @@ qx.Class.define('cv.ui.website.Slider', {
     isInPointerMove: function() {
       return this.__pointerMoveEvent === true;
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this.__sizeStates = null;
   }
 });

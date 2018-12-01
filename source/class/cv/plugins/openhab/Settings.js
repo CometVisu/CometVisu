@@ -149,7 +149,9 @@ qx.Class.define("cv.plugins.openhab.Settings", {
         switch(param.type) {
           case "TEXT":
             field = new qx.ui.form.TextField();
-            field.setPlaceholder(param.defaultValue);
+            if (param.defaultValue) {
+              field.setPlaceholder(param.defaultValue);
+            }
             break;
           case "BOOLEAN":
             field = new qx.ui.form.CheckBox();

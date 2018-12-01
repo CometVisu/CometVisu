@@ -47,9 +47,10 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
 
     // listen to notifications
     var client = cv.TemplateEngine.getInstance().visu;
-    var sse = client.getCurrentTransport();
-    sse.subscribe("notifications", this._onNotification, this);
-
+    var sse = client.getCurrentTransport && client.getCurrentTransport();
+    if (sse) {
+      sse.subscribe("notifications", this._onNotification, this);
+    }
     cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
   },
 
@@ -61,6 +62,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
   members: {
     __notificationRouter: null,
     __settings: null,
+    _openSettings: null,
 
     _createSettings: function() {
       // add element structure to notification-center
@@ -69,9 +71,15 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
 
       // add a settings button to trigger opening the settings
       var button = qx.dom.Element.create("div", {
-        html: cv.util.IconTools.svgKUF("edit_settings")(null, "width: 22px; height: 22px;"),
+        html: cv.util.IconTools.svgKUF("edit_settings")(null, 'width: 22px; height: 22px;'),
         style: "float: left;"
       });
+      this._openSettings = new qx.ui.command.Command("Ctrl+S");
+      this._openSettings.addListener("execute", function() {
+        cv.ui.NotificationCenter.getInstance().show();
+        this.__settings.show();
+      }, this);
+      cv.TemplateEngine.getInstance().getCommands().add("open-settings", this._openSettings);
       qx.dom.Element.insertBegin(button, qx.bom.Selector.query("#notification-center footer")[0]);
       qx.event.Registration.addListener(button, "tap", function() {
         this.__settings.show();
@@ -111,7 +119,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
   ******************************************************
   */
   destruct: function() {
-    this._disposeObjects("__settings");
+    this._disposeObjects("__settings", "_openSettings");
     this.__notificationRouter = null;
   },
 

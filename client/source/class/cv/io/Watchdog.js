@@ -67,6 +67,9 @@ qx.Class.define("cv.io.Watchdog", {
     },
 
     start: function (watchdogTimer) {
+      if (this.__id) {
+        this.stop();
+      }
       this.__id = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
     },
 
@@ -75,6 +78,10 @@ qx.Class.define("cv.io.Watchdog", {
         clearInterval(this.__id);
         this.__id = null;
       }
+    },
+
+    isActive: function() {
+      return !!this.__id;
     },
 
     ping: function (fullReload) {

@@ -45,7 +45,7 @@ class WidgetExampleParser:
     def set_screenshot_dir(self, dir):
         self.screenshot_dir = dir
 
-    def parse(self, source, name=""):
+    def parse(self, source, name="", editor=False):
         meta_node = None
         settings_node = None
         global_caption = None
@@ -86,7 +86,8 @@ class WidgetExampleParser:
         settings = {
             "selector": ".widget_container",
             "screenshots": [],
-            "screenshotDir": self.screenshot_dir
+            "screenshotDir": self.screenshot_dir,
+            "fixtures": []
         }
         design = "metal"
 
@@ -97,6 +98,13 @@ class WidgetExampleParser:
             settings['selector'] = settings_node.get("selector", ".widget_container")
             if settings_node.get("sleep"):
                 settings['sleep'] = settings_node.get("sleep")
+
+            for fixture in settings_node.iter('fixture'):
+                values = {
+                    'sourceFile': fixture.get("source-file"),
+                    'targetPath': fixture.get("target-path")
+                }
+                settings['fixtures'].append(values)
 
             for screenshot in settings_node.iter('screenshot'):
                 shot = {
@@ -134,7 +142,7 @@ class WidgetExampleParser:
                 global_caption = caption.text
 
         # no screenshots defined, add a default one
-        if len(settings['screenshots']) == 0:
+        if len(settings['screenshots']) == 0 and editor is False:
             settings['screenshots'].append({
                 "name": name + str(self.counters[name] + shot_index)
             })

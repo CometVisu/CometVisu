@@ -79,7 +79,9 @@ qx.Class.define("cv.core.notifications.actions.Link", {
         case "restart":
           return cv.util.Location.reload;
       }
-      this.error("Unknown action: "+value);
+      if (value) {
+        this.error("Unknown action: " + value);
+      }
       return null;
     },
 
@@ -100,13 +102,18 @@ qx.Class.define("cv.core.notifications.actions.Link", {
           cv.util.Location.open(this.getUrl(), '_blank');
         }
       }
+      if (this.isDeleteMessageAfterExecution) {
+        this.fireEvent('close');
+      }
     },
 
     getDomElement: function() {
       var actionButton = qx.dom.Element.create("button", {
         "class": "action",
-        "text": this.getTitle()
+        "text": this.getTitle(),
+        "style": this.getStyle()
       });
+      actionButton.$$handler = this;
 
       qx.event.Registration.addListener(actionButton, "tap", this.handleAction, this);
       return actionButton;

@@ -33,7 +33,10 @@ Zum 'clonen' des Repositories führt man folgende Schritte aus:
 #. Kommandozeile öffnen
 #. in einen Ordner gehen in dem der Unterordner des Projekts erstellt werden soll
 #. ``git clone https://github.com/<ihr-github-benutzername>/CometVisu.git`` (<ihr-github-benutzername> ersetzen durch den eigenen Benutzernamen)
-
+#. in den Projekt-Ordner gehen und die Submodule (Icons und Qooxdoo-Framework) wie folgt nachladen
+#. ``git submodule init``
+#. ``git submodule update``
+ 
 das wars schon, die lokale Arbeitskopie liegt dann im *CometVisu* Unterordner. Damit sind alle Vorbereitungen getroffen.
 
 Allgemeine Vorgehensweise
@@ -233,14 +236,24 @@ Dokumentation schreiben mit VisualStudio Code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Der Editor `Visual Studio Code <https://code.visualstudio.com>`__ bietet ein Plugin, mit dessen Hilfe man sich eine
-Live Preview der geschriebenen Dokumentation anzeigen lassen kann. Dazu muss zunächst der Editor installiert werden und
-darin die Extension ``restructuredtext`` (über den Menüpunkt Anzeigen -> Extensions suchen nach rst) installiert werden.
-Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
+Live Preview der geschriebenen Dokumentation anzeigen lassen kann. 
+
+.. IMPORTANT::
+
+      Einige der verwendeten Tools stehen nur unter Linux zur Verfügung. Das Live Preview steht daher in Visual Studio 
+      Code unter Windows derzeit nicht zur Verfügung. Für Windows Anwender wird daher Visual Studio Code in einer 
+      Virtual Machine mit Linux (Ubuntu, Mint, ...) empfohlen. 
+      Siehe :doc:`VM Einrichten <howto-vm>` für eine detaillierte Vorgehensweise.
+
+Nach Installation des Editors muss darin die Extension ``restructuredtext`` (über den Menüpunkt Anzeigen -> Extensions 
+suchen nach rst) installiert werden. Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
 
 
 Damit die Live Preview funktioniert muss Python installiert sein.
 Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
-`Install Sphinx <https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md>`__
+`Install Sphinx <https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md>`__. 
+Um die erforderlichen Tools zu installieren, den Befehl ``sudo -H pip install -r utils/requirements.txt`` im 
+CometVisu Verzeichnis ausführen. 
 
 
 Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit ``Strg+Shift r`` das Live-Preview Fenster öffnen.
@@ -249,6 +262,11 @@ Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation ö
 .. figure:: doc/_static/visual_studio_live_preview.png
 
    Ansicht des Editors mit Live-Preview
+
+.. toctree::
+    :hidden:
+
+    howto-vm
 
 
 Mithilfe bei der Entwicklung
@@ -298,6 +316,8 @@ Log-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).
     Sie Aufzeichnung der Log-Dateien kann mit dem URL-Parameter ``reporting=true`` aktiviert werden
     (siehe: :ref:`URL-Parameter <reporting>`). Sobald man den Fehler nachgestellt hat, kann die Logdatei durch Eingabe
     des Befehls ``downloadLog()`` in der Browserkonsole (öffnen mit F12-Taste) heruntergeladen werden.
+    Neben dem automatischen Download der Logdatei, wird der Inhalt des Logs ebenfalls auf der Konsole
+    ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.
 
 Die Log-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
 ( z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.

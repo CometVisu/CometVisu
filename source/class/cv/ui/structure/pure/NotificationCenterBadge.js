@@ -80,8 +80,9 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     _onDomReady: function() {
       this.base(arguments);
       var center = cv.ui.NotificationCenter.getInstance();
-      center.addListener("changeCounter", this._onChangeCounter, this);
-      center.addListener("changeGlobalSeverity", this._onChangeGlobalSeverity, this);
+      center.getMessages().addListener("changeLength", this._onChangeCounter, this);
+      this._onChangeCounter();
+      center.addListener("changedGlobalSeverity", this._onChangeGlobalSeverity, this);
     },
 
     // property apply
@@ -90,7 +91,11 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       cv.ui.NotificationCenter.getInstance().disableBadge(value);
     },
 
-    action: function() {
+    action: function(ev) {
+      if (this._skipNextEvent === ev.getType()) {
+        this._skipNextEvent = null;
+        return;
+      }
       cv.ui.NotificationCenter.getInstance().toggleVisibility();
     },
 
@@ -108,10 +113,11 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       }
     },
 
-    _onChangeCounter: function(ev) {
-      qx.bom.element.Attribute.set(this.__getBadgeElement(), "html", ""+ev.getData());
+    _onChangeCounter: function() {
+      var messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
+      qx.bom.element.Attribute.set(this.__getBadgeElement(), "html", ""+messages);
       if (this.isHideWhenEmpty()) {
-        qx.bom.element.Style.set(this.__getBadgeElement(), "display", ev.getData() === 0 ? "none" : "block");
+        qx.bom.element.Style.set(this.__getBadgeElement(), "display", messages === 0 ? "none" : "block");
       }
     },
 
@@ -132,7 +138,8 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
   */
   destruct: function() {
     var center = cv.ui.NotificationCenter.getInstance();
-    center.removeListener("changeCounter", this._onChangeCounter, this);
+    center.getMessages().removeListener("changeLength", this._onChangeCounter, this);
+    center.removeListener("changedGlobalSeverity", this._onChangeGlobalSeverity, this);
   },
 
   defer: function(statics) {

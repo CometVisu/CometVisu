@@ -55,7 +55,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
           this.setParentWidget(parent);
         }
       }
-      var parentPage = this.get$$type() === "page" || this.get$$type() === "navbar" ? null : this.getParentPage();
+      var parentPage = this.get$$type() === "page" || this.get$$type() === "navbar" ? null : this.getVisibilityParent();
       if (parentPage) {
         parentPage.bind("visible", this, "visible");
       }
@@ -113,6 +113,8 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
   */
   members: {
     $$domReady: null,
+    __pointerDownElement: null,
+    _skipNextEvent: null,
 
     // property apply
     _applyVisible: function(value, old) {
@@ -202,6 +204,34 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
      */
     initListeners: function() {
       this.addElementListener("tap", this.action, this);
+
+      // we need to listen to pointerdown to detect taps with
+      if (this.buttonPressed) {
+        this.addElementListener("pointerdown", this._onPointerDown, this);
+      }
+    },
+
+    _onPointerDown: function(ev) {
+      // listen to pointerup globally
+      this.__pointerDownElement = ev.getCurrentTarget();
+      qx.event.Registration.addListener(document, "pointerup", this._onPointerUp, this);
+    },
+
+    _onPointerUp: function(ev) {
+      qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
+      var upElement = ev.getTarget();
+      while (upElement && upElement !== this.__pointerDownElement) {
+        upElement = upElement.parentNode;
+        if (upElement === this.getDomElement()) {
+          break;
+        }
+      }
+      if (upElement && upElement === this.__pointerDownElement) {
+        // both events happened on the same element
+        ev.setCurrentTarget(upElement);
+        this.action(ev);
+        this._skipNextEvent = "tap";
+      }
     },
 
     /**
@@ -215,9 +245,26 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       if (this.isAnonymous()) { return; }
       var widget = this.getInteractionElement();
       if (widget) {
+        qx.bom.element.Dataset.set(widget, "longtapable", type !== "longtap");
         return qx.event.Registration.addListener(widget, type, callback, context);
       }
       return null;
+    },
+
+    /**
+     * Remove a listener from the widgets interaction element
+     * @param type {String} event type
+     * @param callback {Function}
+     * @param context {Object} this context
+     * @return {Boolean} Whether the event was removed..
+     */
+    removeElementListener: function(type, callback, context) {
+      if (this.isAnonymous()) { return; }
+      var widget = this.getInteractionElement();
+      if (widget) {
+        return qx.event.Registration.removeListener(widget, type, callback, context);
+      }
+      return false;
     },
 
     /**
@@ -237,5 +284,14 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     _getInnerDomString: function() {
       return "";
     }
+  },
+
+  /*
+  ******************************************************
+    DESTRUCTOR
+  ******************************************************
+  */
+  destruct: function() {
+    qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
   }
 });

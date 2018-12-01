@@ -152,6 +152,10 @@ var BasePage = function () {
     return browser.executeScript('return window._widgetDataGet("'+path+'");');
   };
 
+  this.getModel = function() {
+    return browser.executeScript('return window._getWidgetDataModel();');
+  };
+
   this.getWidgetAddress = function(path) {
     this.getWidgetData(path).then(function(data) {
       var address;

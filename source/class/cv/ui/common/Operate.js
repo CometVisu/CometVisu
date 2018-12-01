@@ -37,6 +37,10 @@ qx.Mixin.define("cv.ui.common.Operate", {
      * @param event {Event} tap event
      */
     action: function (event) {
+      if (event && this._skipNextEvent === event.getType()) {
+        this._skipNextEvent = null;
+        return;
+      }
       if (this._action) {
         this._action(event);
       } else {
@@ -44,7 +48,7 @@ qx.Mixin.define("cv.ui.common.Operate", {
           this.sendToBackend(this.getActionValue(event));
         }
       }
-      if (event.getBubbles()) {
+      if (event && event.getBubbles()) {
         event.stopPropagation();
       }
     },
@@ -67,19 +71,33 @@ qx.Mixin.define("cv.ui.common.Operate", {
      *
      * @param value {var} value to send
      * @param filter {Function} optional filter function for addresses
+     * @param currentBusValues {Object} optional: the (assumed) last encoded values
+     *          that were sent on the bus. When the encoding of the new value
+     *          to send is equal to the currentBusValues a transmission will 
+     *          be suppressed. The object is a hash with the encoding as a key
+     *          for the encoded value
+     * @return the object/hash of encoded values that were sent last time
      */
-    sendToBackend: function (value, filter) {
+    sendToBackend: function (value, filter, currentBusValues) {
+      var encodedValues = {};
       if (this.getAddress) {
         var list = this.getAddress();
         for (var id in list) {
           if (list.hasOwnProperty(id)) {
             var address = list[id];
-            if (!!(address[1] & 2) && (!filter || filter(address))) {
-              cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address[0], value));
+            if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
+              var
+                encoding = address[0],
+                encodedValue = cv.Transform.encode(encoding, value);
+              if( !currentBusValues || encodedValue !== currentBusValues[encoding] ) {
+                cv.TemplateEngine.getInstance().visu.write(id, encodedValue);
+              }
+              encodedValues[encoding] = encodedValue;
             }
           }
         }
       }
+      return encodedValues;
     }
   }
 });

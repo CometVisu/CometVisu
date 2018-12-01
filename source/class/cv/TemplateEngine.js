@@ -36,6 +36,7 @@ qx.Class.define('cv.TemplateEngine', {
     }, this);
 
     this.defaults = {widget: {}, plugin: {}};
+    this.setCommands(new qx.ui.command.Group());
   },
 
   properties: {
@@ -81,6 +82,11 @@ qx.Class.define('cv.TemplateEngine', {
       init: false,
       apply: "_applyDomFinished",
       event: "changeDomFinished"
+    },
+
+    commands: {
+      check: "qx.ui.command.Group",
+      nullable: true
     }
   },
 
@@ -236,6 +242,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (cv.Config.reporting) {
         this.visu.record = qx.lang.Function.curry(cv.report.Record.getInstance().record, cv.report.Record.BACKEND).bind(cv.report.Record.getInstance());
       }
+      this.visu.showError = this._handleClientError.bind(this);
       this.visu.user = 'demo_user'; // example for setting a user
 
       // show connection state in NotificationCenter
@@ -258,6 +265,46 @@ qx.Class.define('cv.TemplateEngine', {
         }
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
       }, this);
+    },
+
+    _handleClientError: function (errorCode, varargs) {
+      varargs = qx.lang.Array.fromArguments(arguments, 1);
+      var notification;
+      var message = '';
+      switch (errorCode) {
+        case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
+          notification = {
+            topic: "cv.error",
+            title: qx.locale.Manager.tr('CometVisu protocol error'),
+            message:  qx.locale.Manager.tr('The backend did send an invalid response to the %1Login%2 request: missing protocol version.',
+              '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+              '</a>') + '<br/>' +
+              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
+            '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) +'</pre></div>',
+            severity: "urgent",
+            unique: true,
+            deletable: false
+          };
+          break;
+
+        case cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I:
+          notification = {
+            topic: "cv.error",
+            title: qx.locale.Manager.tr('CometVisu protocol error'),
+            message:  qx.locale.Manager.tr('The backend did send an invalid response to a %1read%2 request: Missing "i" value.',
+              '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+              '</a>') + '<br/>' +
+              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
+              '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) +'</pre></div>',
+            severity: "urgent",
+            unique: true,
+            deletable: false
+          };
+          break;
+      }
+      if (notification) {
+        cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+      }
     },
 
     /**
@@ -285,7 +332,7 @@ qx.Class.define('cv.TemplateEngine', {
       var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
       // design by url
       // design by config file
-      if (!settings.clientDesign) {
+      if (!cv.Config.clientDesign && !settings.clientDesign) {
         if (predefinedDesign) {
           settings.clientDesign = predefinedDesign;
         }
@@ -319,10 +366,18 @@ qx.Class.define('cv.TemplateEngine', {
         settings.minColumnWidth = qx.bom.element.Attribute.get(pagesNode, 'min_column_width');
       }
       settings.screensave_time = qx.bom.element.Attribute.get(pagesNode, 'screensave_time');
+      if (settings.screensave_time) {
+        settings.screensave_time = parseInt(settings.screensave_time, 10);
+      }
       settings.screensave_page = qx.bom.element.Attribute.get(pagesNode, 'screensave_page');
 
       if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null) {
         settings.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
+      }
+
+      var globalClass = qx.bom.element.Attribute.get(pagesNode, 'class');
+      if (globalClass !== null) {
+        qx.bom.element.Class.add(qx.bom.Selector.query('body')[0], globalClass);
       }
 
       settings.scriptsToLoad = [];
@@ -624,7 +679,7 @@ qx.Class.define('cv.TemplateEngine', {
 
     scrollToPage: function (target, speed, skipHistory) {
       if (undefined === target) {
-        target = this.screensave_page;
+        target = cv.Config.configSettings.screensave_page;
       }
       var page_id = this.getPageIdByPath(target);
       if (page_id === null) {
@@ -640,7 +695,7 @@ qx.Class.define('cv.TemplateEngine', {
         speed = cv.Config.configSettings.scrollSpeed;
       }
 
-      if (cv.Config.rememberLastPage) {
+      if (cv.Config.rememberLastPage && qx.core.Environment.get("html.storage.local")) {
         localStorage.lastpage = page_id;
       }
 
@@ -663,7 +718,7 @@ qx.Class.define('cv.TemplateEngine', {
       var body = qx.bom.Selector.query("body")[0];
 
       qx.bom.Selector.query('body > *').forEach(function(elem) {
-        qx.bom.element.Style(elem, 'display', 'none');
+        qx.bom.element.Style.set(elem, 'display', 'none');
       }, this);
       qx.bom.element.Style.set(body, 'backgroundColor', "black");
 
@@ -680,7 +735,7 @@ qx.Class.define('cv.TemplateEngine', {
 
       body.appendChild(div);
 
-      var store = new qx.data.store.Json("./designs/get_designs.php");
+      var store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php"));
 
       store.addListener("loaded", function () {
         var html = "<h1>Please select design</h1>";
@@ -700,8 +755,8 @@ qx.Class.define('cv.TemplateEngine', {
           });
 
           myDiv.innerHTML = "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>";
-          myDiv.innerHTML += "<iframe src=\"designs/design_preview.html?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
-          myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\"./demo/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
+          myDiv.innerHTML += "<iframe src=\""+qx.util.ResourceManager.getInstance().toUri("designs/design_preview.html")+"?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
+          myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\""+qx.util.ResourceManager.getInstance().toUri("demo/media/arrow.png")+"\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
 
           qx.dom.Element.insertEnd(myDiv, div);
 
@@ -729,10 +784,14 @@ qx.Class.define('cv.TemplateEngine', {
           }, this);
 
           qx.event.Registration.addListener(myDiv, 'tap', function() {
+            var href = document.location.href;
+            if (document.location.hash) {
+              href = href.split('#')[0];
+            }
             if (document.location.search === "") {
-              document.location.href = document.location.href + "?design=" + element;
+              document.location.href = href + "?design=" + element;
             } else {
-              document.location.href = document.location.href + "&design=" + element;
+              document.location.href = href + "&design=" + element;
             }
           });
         });

@@ -32,6 +32,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
    */
   construct: function(client) {
     this.client = client;
+    this.watchdog = new cv.io.Watchdog();
+    this.watchdog.setClient(client);
   },
 
 
@@ -41,6 +43,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
   ******************************************************
   */
   members: {
+    watchdog: null,
     doRestart: false, // are we currently in a restart, e.g. due to the watchdog
     xhr: null, // the ongoing AJAX request
     lastIndex: -1,    // index returned by the last request
@@ -59,13 +62,18 @@ qx.Class.define('cv.io.transport.LongPolling', {
     handleSession: function (args, connect) {
       var json =  this.client.getResponse(args);
       this.sessionId = json.s;
-      this.version = json.v.split('.', 3);
+      if (!json.hasOwnProperty('v')) {
+        this.error('CometVisu protocol error: missing protocol version');
+        this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION, json);
+      } else {
+        this.version = json.v.split('.', 3);
 
-      if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1])) {
-        this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
-      }
-      if (connect) {
-        this.connect();
+        if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1])) {
+          this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
+        }
+        if (connect) {
+          this.connect();
+        }
       }
     },
 
@@ -84,7 +92,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         successCallback = this.handleRead;
       }
       this.__startReading(data, successCallback);
-      this.client.watchdog.start(5);
+      this.watchdog.start(5);
     },
 
     __startReading: function(data, callback) {
@@ -117,9 +125,13 @@ qx.Class.define('cv.io.transport.LongPolling', {
           } else {
             this.error("restarting XHR read requests in "+delay+" ms");
           }
+          if (!this.watchdog.isActive()) {
+            // watchdog has been stopped in the abort function -> restart it
+            this.watchdog.start(5);
+          }
           qx.event.Timer.once(function () {
             this.__startReading();
-            this.client.watchdog.ping(true);
+            this.watchdog.ping(true);
           }, this, delay);
         }
         return;
@@ -127,6 +139,10 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
       var data;
       if (json && !this.doRestart) {
+        if (!json.hasOwnProperty('i')) {
+          this.error('CometVisu protocol error: backend responded to a read request without an "i"-parameter');
+          this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I, json);
+        }
         this.lastIndex = json.i;
         data = json.d;
         this.readResendHeaderValues();
@@ -143,7 +159,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         var url = this.xhr.getUrl().split("?").shift()+"?"+this.client.getQueryString(data);
         this.xhr.setUrl(url);
         this.xhr.send();
-        this.client.watchdog.ping();
+        this.watchdog.ping();
       }
     },
 
@@ -153,7 +169,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
           this.xhr.send();
-          this.client.watchdog.ping();
+          this.watchdog.ping();
         }
         return;
       }
@@ -179,7 +195,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.xhr.removeListener("success", this.handleReadStart, this);
         this.xhr.addListener("success", this.handleRead, this);
         this.xhr.send();
-        this.client.watchdog.ping();
+        this.watchdog.ping();
       }
     },
 
@@ -290,6 +306,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
           this.client.backend.hooks.onClose.bind(this);
         }
       }
+      this.watchdog.stop();
     }
   }
 });

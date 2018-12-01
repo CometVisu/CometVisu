@@ -37,6 +37,12 @@ Allgemeine Informationen über das CometVisu XML Format findet man
 :doc:`hier <xml-format>`, Informationen zu den einzelnen
 Widgets in den jeweiligen Unterseiten.
 
+Manche Widgets und Plugins benötigen noch zusätzliche Informationen, die nicht in der Config-Datei enthalten sein
+sollen, da diese frei lesbar an den Web-Browser übertragen wird (je nach installierter Umgebung kann der Transport
+verschlüsselt mit HTTPS erfolgen, jedoch ist der Inhalt durch den Benutzer am Browser mit entsprechenden Tricks
+lesbar). Durch die Verwendung der :doc:`Versteckten Konfigurationen <hidden-config>` können diese Informationen auf dem besser
+geschützten Server verbleiben.
+
 Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
 sollte man die Seite neu laden und den Browser-Cache löschen.
 
@@ -49,7 +55,10 @@ durch Anhängen von check_config.php an den URL erzwingen.
 .. toctree::
     :hidden:
 
+    hidden-config
     url-params
+
+Genaue Beschreibungen zu den verfügbaren URL-Parameter sind unter :doc:`URL-Parameter <url-params>` zu finden.
 
 .. _visu-config-details:
 
@@ -85,19 +94,43 @@ Arbeiten mit der Konfigurationsdatei
 
 Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
 Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
-Tags umschlossen aufgenommen werden.
+Tags umschlossen aufgenommen werden:
 
-.. toctree::
-
-    xml-format
-
+-  :ref:`Der xml-Header <xml-format_header>`
+-  :ref:`Plugins <xml-format_plugins>`
+-  :ref:`Mappings <xml-format_mappings>`
+-  :ref:`Stylings <xml-format_stylings>`
+-  :ref:`Icons <xml-format_icons>`
+-  :ref:`Statusbar <xml-format_statusbar>`
+-  :ref:`Aufbau der Visu-Seiten <xml-format_pages>`
 
 Navigationselemente in der CometVisu
 ------------------------------------
 
-.. TODO::
+Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten für die Navigation durch den Benutzer zur Verfügung:  
 
-    Beschreibung
+-  Das :ref:`Page-Widget <page>` ruft die zugehörige Unterseite auf.
+-  Die Top-Navigation Anzeige: zeigt den aktuellen Pfad und erlaubt auf übergeordnete Seiten
+   zurück zu navigieren .
+-  Der Zurück-Button des Browsers bzw. des Betriebssystems (zB. iOS, Android)  
+-  Das Navbar-Widget in Verbingung mit Pagejump-Widgets
+-  Das :ref:`Pagejump-Widget <pagejump>` erlaubt den Aufruf einer beliebigen Unterseite.
+-  Das :ref:`Group-Widget <group>` kann mit der Option ``target=`` ebenfalls eine beliebige Unterseite aufrufen.
+-  Eine Besonderheit ist der :ref:`Statusbar <xml-format_statusbar>` am unteren Bilschirmrand. Von dort können zB. externe URL aufgerufen werden.  
+
+.. figure:: _static/Navigation_withDescription.png
+    
+   Übersicht der wichtigsten Navigationselemente.
+
+Weiters sind verschiedene Funtionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:
+
+-  Per KNX Gruppenadresse kann auf eine Unterseite gesprungen werden, wenn das Attribut ``ga=x/y/z`` in der zugehörigen 
+   :ref:`Page Definition <page>` eingetragen ist.
+-  Die Optionen ``screensave_time`` und ``screensave_page``. Damit wird nach Ablauf einer definierten Zeit eine festgelegte 
+   Seite aufgerufen. 
+-  Das :ref:`timeout-Plugin <timeout>` funktioniert ähnlich der screensave-Funktion, wird aber auch ausgeführt, wenn die Unterseite
+   per GA aufgerufen wurde. 
+
 
 Die verfügbaren Designs
 ------------------------
@@ -113,6 +146,30 @@ Die verfügbaren Designs
 .. TODO::
 
     Weitere Beispielseiten für die anderen Designs
+
+
+Grundlegende Elemente zum Gestalten des Layouts
+-----------------------------------------------
+
+In der CometVisu kann die Größe und Anordnung der Widgets mit dem Kind-Element ``Layout`` gesteuert werden. 
+Damit kann ein "Responsive Design" realisiert werden, dass sich an die Displaygröße des Endgerätes anpasst, vom dem 
+aus die CometVisu betrachtet wird. Dies erfolgt nicht nur zum Zeitpunkt des URL-Aufrufes, sondern dynamisch 
+zB. auch beim Drehen des Endgerätes vom Quer- ins Hochformat bzw. beim Ändern der Fenstergröße am PC.   
+
+Innerhalb der Widgets stehen noch verschiedene Attribute wie ``width``, ``height``, etc. zur Verfügung. Damit kann
+die Größe des Widgetinhaltes (zB. Bild- und Diagrammgröße, etc.) gesteuert werden.
+
+Detaillierte Beschreibungen zur Formatierung der Widgetgrößen- und -inhalte:
+
+.. toctree::
+    :hidden:
+
+    layout
+    size-attributes
+ 
+-  :doc:`Layout <layout>` legt die Größe und Anordnung der Widgets fest 
+-  :doc:`Width und Height <size-attributes>` beeinflusst die Größe des Widgetinhaltes
+
 
 
 Elemente für Konvertierung und Formatierung in der CometVisu

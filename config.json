@@ -97,7 +97,8 @@
           "replayLog",
           "svg4everybody",
           "EVENT_RECORDER",
-          "Favico"
+          "Favico",
+          "Sentry"
         ]
       },
 
@@ -143,6 +144,7 @@
           "resource/libs/svg4everybody.js",
           "resource/libs/strftime.js",
           "resource/libs/favico.js",
+          "resource/sentry/bundle.min.js",
           "editor",
           "upgrade",
           "check_config.php",
@@ -174,7 +176,8 @@
           "replayLog",
           "svg4everybody",
           "EVENT_RECORDER",
-          "Favico"
+          "Favico",
+          "Sentry"
         ]
       }
     },
@@ -256,6 +259,10 @@
           {
             "include" : [ "${APPLICATION}.plugins.Timeout" ]
           },
+          "plugin-tr064" :
+          {
+            "include" : [ "${APPLICATION}.plugins.tr064.*" ]
+          },
           "plugin-svg" :
           {
             "include" : [ "${APPLICATION}.plugins.Svg" ]
@@ -278,6 +285,7 @@
       "environment" :
       {
         "cv.build": "source",
+        "cv.sentry": false,
         "qx.globalErrorHandling": false
       },
       "run" :
@@ -292,8 +300,9 @@
       "environment" :
       {
         "cv.build": "source",
+        "cv.sentry": true,
         "qx.globalErrorHandling": true
-      },
+      }
     },
 
     "source-hybrid" :
@@ -321,6 +330,7 @@
       "environment" :
       {
         "cv.build": "build",
+        "cv.sentry": true,
         "qx.globalErrorHandling": true
       },
       "run" :

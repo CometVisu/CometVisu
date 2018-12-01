@@ -1006,7 +1006,7 @@ var EditorConfigurationElement = function (parent, element) {
         // only do this, if the XSD did not give us an enumeration!
         var dataProvider = DataProviderManager.getProvider(_element.name, attributeName);
         if (undefined != dataProvider) {
-          elementEnumeration = dataProvider.getEnumeration();
+          elementEnumeration = dataProvider.getEnumeration(_element);
           isUserInputAllowed = dataProvider.isUserInputAllowed();
         }
       }
@@ -1528,7 +1528,7 @@ var EditorConfigurationElement = function (parent, element) {
           enumLabel = enumEntry.label;
           enumValue = enumEntry.value;
                     
-          if (enumValue != enumLabel) {
+          if (enumValue != enumLabel && !enumEntry.forceOnlyLabel) {
             // if label and value differ, we append the value to the label
             enumLabel += ' (' + enumEntry.value + ')'
           }

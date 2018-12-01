@@ -1,5 +1,4 @@
 // requires
-var qx = require("./external/qooxdoo/tool/grunt");
 var path = require('path');
 var fs = require('fs');
 
@@ -9,22 +8,27 @@ function captureMock() {
   return function (req, res, next) {
 
     // match on POST requests starting with /mock
-    if (req.method === 'POST' && req.url.indexOf('/mock') === 0) {
-
+    if (req.url.indexOf('/mock') === 0) {
       // everything after /mock is the path that we need to mock
       var path = req.url.substring(5);
+      if (req.method === 'POST') {
+        var body = '';
+        req.on('data', function (data) {
+          body += data;
+        });
+        req.on('end', function () {
 
-      var body = '';
-      req.on('data', function (data) {
-        body += data;
-      });
-      req.on('end', function () {
+          mocks[path] = body;
 
-        mocks[path] = body;
-
+          res.writeHead(200);
+          res.end();
+        });
+        if (mocks.hasOwnProperty(path)) {
+          delete mocks[path];
+        }
         res.writeHead(200);
         res.end();
-      });
+      }
     } else {
       next();
     }
@@ -39,8 +43,18 @@ function mock() {
       url = url.replace(found[1],"");
     }
     var mockedResponse = mocks[url];
+    if (!mockedResponse && (url.includes('?') || url.includes('#'))) {
+      // try to find mocked url without querystring
+      url = url.split('#')[0];
+      url = url.split('?')[0];
+      mockedResponse = mocks[url];
+    }
     if (mockedResponse) {
-      res.writeHead(200, {'Content-Type': 'application/xml'});
+      if (req.url.endsWith('.xml')) {
+        res.writeHead(200, {'Content-Type': 'application/xml'});
+      } else if (req.url.endsWith('.json')) {
+        res.writeHead(200, {'Content-Type': 'application/json'});
+      }
       res.write(mockedResponse);
       res.end();
     } else if (url === "/designs/get_designs.php") {
@@ -71,7 +85,7 @@ module.exports = function(grunt) {
       expand: true,
       cwd: '.',
       src: [
-        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md',
+        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md', 'update.py',
         'release/**'
       ],
       dest: 'cometvisu/',
@@ -91,57 +105,6 @@ module.exports = function(grunt) {
     ];
 
   var config = {
-
-    generator_config: {
-      let: {
-      }
-    },
-
-    common: {
-      "APPLICATION" : "cv",
-      "QOOXDOO_PATH" : "./external/qooxdoo",
-      "LOCALES": ["en", "de"],
-      "QXTHEME": "cv.theme.Theme"
-    },
-
-    'http-server': {
- 
-        'dev': {
- 
-            // the server root directory 
-            root: ".",
- 
-            // the server port 
-            // can also be written as a function, e.g. 
-            // port: function() { return 8282; } 
-            port: 9999,
- 
-            // the host ip address 
-            // If specified to, for example, "127.0.0.1" the server will 
-            // only be available on that ip. 
-            // Specify "0.0.0.0" to be available everywhere 
-            host: "127.0.0.1",
- 
-            showDir : true,
-            autoIndex: true,
- 
-            // server default file extension 
-            ext: "html",
- 
-            // specify a logger function. By default the requests are 
-            // sent to stdout. 
-            // logFn: function(req, res, error) {},
- 
-            // Proxies all requests which can't be resolved locally to the given url 
-            // Note this this will disable 'showDir' 
-            // proxy: "http://mybackendserver.com",
-
-            // Tell grunt task to open the browser 
-            openBrowser : true
- 
-        }
- 
-    },
 
     // license header adding
     usebanner: {
@@ -223,29 +186,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // check coding-style: https://github.com/CometVisu/CometVisu/wiki/Coding-style
-    jscs: {
-      main: {
-        options: {
-          excludeFiles: [ "**/lib/**", "**/dep/**"],
-          //preset: "jquery",
-          validateIndentation: 2,
-          validateLineBreaks: "LF",
-          fix: false
-          //maximumLineLength : {
-          //  value: 120,
-          //  allExcept: [
-          //    "comments",
-          //    "functionSignature"
-          //  ]
-          //}
-        },
-        files: {
-          src: sourceFiles
-        }
-      }
-    },
-
     // make a zipfile
     compress: {
       tar: {
@@ -254,7 +194,7 @@ module.exports = function(grunt) {
           level: 9,
           archive: function() {
             var name = "CometVisu-"+pkg.version;
-            if (process.env.TRAVIS_EVENT_TYPE === "cron") {
+            if (process.env.DEPLOY_NIGHTLY) {
               // nightly build with date
               var now = new Date();
               name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
@@ -270,7 +210,7 @@ module.exports = function(grunt) {
           level: 9,
           archive: function() {
             var name = "CometVisu-"+pkg.version;
-            if (process.env.TRAVIS_EVENT_TYPE === "cron") {
+            if (process.env.DEPLOY_NIGHTLY) {
               // nightly build with date
               var now = new Date();
               name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
@@ -414,7 +354,7 @@ module.exports = function(grunt) {
         configFile: 'karma.conf.js',
         singleRun: !grunt.option('no-single'),
         browsers: [grunt.option('browser') || 'Chrome'],
-        reporters: ['progress']
+        reporters: ['spec']
       }
     },
 
@@ -461,10 +401,6 @@ module.exports = function(grunt) {
               subDir: grunt.option('subDir'),
               screenshots: grunt.option('files'),
               target: grunt.option('target')
-            },
-            capabilities: {
-              browserName: grunt.option('browserName') || 'firefox',
-              marionette: true
             }
           }
         }
@@ -525,7 +461,7 @@ module.exports = function(grunt) {
       buildClient: {
         command: [
           'cd client',
-          './generate.py build',
+          './generate.py build -sI',
           'cd ..'
         ].join('&&')
       },
@@ -534,6 +470,12 @@ module.exports = function(grunt) {
           'rm -rf release',
           'mv build release'
         ].join('&&')
+      },
+      lint: {
+        command: './generate.py lint'
+      },
+      build: {
+        command: './generate.py build -sI'
       }
     },
 
@@ -571,19 +513,7 @@ module.exports = function(grunt) {
       }
     }
   };
-
-  var mergedConf = qx.config.mergeConfig(config);
-  grunt.initConfig(mergedConf);
-
-  qx.task.registerTasks(grunt);
-
-  // // 3. Where we tell Grunt we plan to use this plug-in.
-  // grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-http-server');
-
-  // // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-  // grunt.registerTask('default', ['concat']);
-  grunt.registerTask('source-server-nodejs', ['http-server:dev']);
+  grunt.initConfig(config);
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
@@ -648,7 +578,6 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin tasks
-  grunt.loadNpmTasks("grunt-jscs");
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-github-releaser');
@@ -672,7 +601,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
-    'updateicons', 'lint', 'clean', 'file-creator', 'buildicons', 'build',
+    'updateicons', 'shell:lint', 'clean', 'file-creator', 'buildicons', 'shell:build',
     'update-demo-config', 'chmod', 'shell:buildToRelease', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'rename-client-build']);

@@ -82,7 +82,7 @@ qx.Class.define('cv.ui.PageHandler', {
 
       templateEngine.resetPageValues();
 
-      templateEngine.currentPage = pageWidget;
+      templateEngine.setCurrentPage(pageWidget);
 
       // update visibility of navbars, top-navigation, footer
       templateEngine.pagePartsHandler.updatePageParts( pageWidget, speed );
@@ -111,22 +111,21 @@ qx.Class.define('cv.ui.PageHandler', {
           "display": "block",
           "overflow": "hidden"
         });
+        // set it to visible
+        pageWidget.setVisible(true);
       }
 
       if (!animationEnabled) {
         if (oldPageWidget) {
           this.__onLeavePage(oldPageWidget);
         }
-        pageWidget.setVisible(true);
-        this.__onEnterPage(pageWidget);
+        this.__onEnterPage(pageWidget, 0, true);
       } else {
         if (oldPageWidget) {
           var outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.out, speed);
           qx.bom.element.Style.set(oldPageWidget.getDomElement(), "overflowY", "hidden");
           outAnim.addListenerOnce("end", qx.lang.Function.curry(this.__onLeavePage, oldPageWidget), this);
         }
-        // get page widget and set it to visible
-        pageWidget.setVisible(true);
         var oldPos = qx.bom.element.Style.get(pageWidget.getDomElement(), "position");
         qx.bom.element.Style.set(pageWidget.getDomElement(), "position", "absolute");
         qx.bom.AnimationFrame.request(function() {
@@ -193,11 +192,17 @@ qx.Class.define('cv.ui.PageHandler', {
     /**
      * Cleanup after page has been entered
      * @param pageWidget {cv.ui.structure.pure.Page}
+     * @param oldPos {String} CSS-position value to set
+     * @param updateVisibility {Boolean} set the visibility property of the page to true or do not change it
      */
-    __onEnterPage: function(pageWidget, oldPos) {
+    __onEnterPage: function(pageWidget, oldPos, updateVisibility) {
       var page = pageWidget.getDomElement();
       var target = pageWidget.getPath();
       qx.bom.element.Class.addClasses(page, ['pageActive', 'activePage']);// show new page
+      if (updateVisibility === true) {
+        // set it to visible
+        pageWidget.setVisible(true);
+      }
       // final stuff
       this.setCurrentPath(target);
       cv.TemplateEngine.getInstance().pagePartsHandler.updateTopNavigation( target );
@@ -205,7 +210,11 @@ qx.Class.define('cv.ui.PageHandler', {
       qx.event.message.Bus.dispatchByName("page." + target + ".appear", target);
       qx.event.message.Bus.dispatchByName("path.pageChanged", target);
       // show scrollbar after animation
-      qx.bom.element.Style.setStyles(page, {"overflow": null, "display": null, "position": oldPos});
+      var styles =  {"overflow": null, "display": null}
+      if (oldPos) {
+        styles.position = oldPos;
+      }
+      qx.bom.element.Style.setStyles(page, styles);
     }
   }
 });

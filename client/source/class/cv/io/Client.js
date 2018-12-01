@@ -37,6 +37,10 @@ qx.Class.define('cv.io.Client', {
    CONSTRUCTOR
    ******************************************************
    */
+  /**
+   * @param backendName {String} name of the backend
+   * @param backendUrl {String} URL of the login resource
+   */
   construct: function(backendName, backendUrl) {
     this.base(arguments);
     cv.io.Client.CLIENTS.push(this);
@@ -69,9 +73,6 @@ qx.Class.define('cv.io.Client', {
 
     this.backendUrl = backendUrl;
 
-    this.watchdog = new cv.io.Watchdog();
-    this.watchdog.setClient(this);
-
     this.addresses = [];
     this.initialAddresses = [];
     this.filters = [];
@@ -89,6 +90,12 @@ qx.Class.define('cv.io.Client', {
   statics: {
     CLIENTS: [],
     TEST_MODE: false,
+    ERROR_CODES: {
+      CONNECTION: 1,
+      PROTOCOL_MISSING_VERSION: 10,
+      PROTOCOL_INVALID_READ_RESPONSE: 50,
+      PROTOCOL_INVALID_READ_RESPONSE_MISSING_I: 51
+    },
 
     /**
      * Stop all running clients
@@ -213,7 +220,6 @@ qx.Class.define('cv.io.Client', {
    ******************************************************
    */
   members: {
-    watchdog: null,
     backend: null,
     backendName: null,
     backendUrl: null,
@@ -336,8 +342,6 @@ qx.Class.define('cv.io.Client', {
         if (this.loginSettings.loginOnly === true) {
           // connect to the backend
           this.getCurrentTransport().connect();
-          // start the watchdog
-          this.watchdog.start(5);
           this.loginSettings.loginOnly = false;
         }
         else {
@@ -497,8 +501,8 @@ qx.Class.define('cv.io.Client', {
         }, options || {}));
         if (callback) {
           ajaxRequest.addListener("success", callback, context);
-          ajaxRequest.addListener("statusError", this._onError, this);
         }
+        ajaxRequest.addListener("statusError", this._onError, this);
         ajaxRequest.send();
         return ajaxRequest;
       }
@@ -559,8 +563,6 @@ qx.Class.define('cv.io.Client', {
         this.getCurrentTransport().handleSession(args, false);
       } else {
         this.getCurrentTransport().handleSession(args, true);
-        // once the connection is set up, start the watchdog
-        this.watchdog.start(5);
       }
       this.loginSettings.loggedIn = true;
       if (this.loginSettings.callbackAfterLoggedIn) {
@@ -580,7 +582,6 @@ qx.Class.define('cv.io.Client', {
         this.getCurrentTransport().abort();
       }
       this.loginSettings.loggedIn = false;
-      this.watchdog.stop();
     },
 
     /**
@@ -650,7 +651,15 @@ qx.Class.define('cv.io.Client', {
      * @param type {String} type of event to record
      * @param data {Object} data to record
      */
-    record: function(type, data) {}  // jshint ignore:line
+    record: function(type, data) {}, // jshint ignore:line
+
+    /**
+     * Can be overridden to provide an error handler for client errors
+     * @param type {Number} one of cv.io.Client.ERROR_CODES
+     * @param message {String} detailed error message
+     * @param args
+     */
+    showError: function(type, message, args) {} // jshint ignore:line
   },
 
   /*

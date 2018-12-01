@@ -5,32 +5,52 @@
   <head>
     <title>CometVisu Icon List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="../dependencies/jquery.js" type="text/javascript"></script>
+    <script src="../libs/jquery.js" type="text/javascript"></script>
     <script>
       "use strict";
-      
+
       var
         documentReady = false,
         hideInfobox   = true,
         iconlist      = [],
         pageContent   = '';
-      
-      // fake the AMD define function fot the iconconfig.js
-      function define( foo, content )
-      {
-        content();
-        main();
-      }
+
+      // fake qooxdoo environment
+      window.qx = {
+        Class : {
+          define: function(path, classDefinition) {
+            var parts = path.split('.');
+            var pointer = window[parts.shift()]
+            while (parts.length > 1) {
+              var part = parts.shift();
+              if (!pointer.hasOwnProperty(part)) {
+                pointer[part] = {}
+              }
+              pointer = pointer[part];
+            }
+            pointer[parts[0]] = classDefinition.statics;
+          }
+        }
+      };
+
       // our version of the SVG loader
-      function svgKUF( name )
-      {
-        iconlist.push( name );
-        pageContent 
-          += '<div class="symbol">'
-          +  '<svg><use xlink:href="knx-uf-iconset.svg#kuf-' + name + '"></use></svg>'
-          +  name
-          +  '</div>';
+      window.cv = {
+        util: {
+          IconTools: {
+            svgKUF: function (name) {
+              iconlist.push( name );
+              pageContent
+                += '<div class="symbol">'
+                +  '<svg><use xlink:href="knx-uf-iconset.svg#kuf-' + name + '"></use></svg>'
+                +  name
+                +  '</div>';
+            }
+          }
+        }
       }
+    </script>
+    <script src="../../class/cv/IconConfig.js" type="text/javascript"></script>
+    <script>
       // the main function for this file
       function main()
       {
@@ -61,7 +81,6 @@
       }
       $(document).ready( function(){ documentReady = true; main(); } );
     </script>
-    <script src="iconconfig.js" type="text/javascript"></script>
     <style type="text/css">
       #detail:empty {
         display: none;
@@ -81,10 +100,12 @@
       }
       
       .symbol {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         font-family: sans-serif;
         width: 25%;
         min-width: 20em;
+        cursor: pointer;
       }
       
       svg {

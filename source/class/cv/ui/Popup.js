@@ -185,12 +185,27 @@ qx.Class.define('cv.ui.Popup', {
           // clear content
           qx.bom.element.Attribute.set(this.__elementMap.actions, "html", "");
         }
-
-        Object.getOwnPropertyNames(attributes.actions).forEach(function (type) {
+        var actionTypes = Object.getOwnPropertyNames(attributes.actions).length;
+        Object.getOwnPropertyNames(attributes.actions).forEach(function (type, index) {
           var typeActions = qx.lang.Type.isArray(attributes.actions[type]) ? attributes.actions[type] : [attributes.actions[type]];
+
+          var target = this.__elementMap.actions;
+          var wrapper = null;
+          if (cv.core.notifications.actions[qx.lang.String.firstUp(type)] && cv.core.notifications.actions[qx.lang.String.firstUp(type)].getWrapper) {
+            wrapper = cv.core.notifications.actions[qx.lang.String.firstUp(type)].getWrapper();
+          } else {
+            wrapper = qx.dom.Element.create('div', (actionTypes > index + 1) ? {style: "margin-bottom: 20px"} : {});
+          }
+          qx.dom.Element.insertEnd(wrapper, target);
+          target = wrapper;
           typeActions.forEach(function (action) {
             var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
-            qx.dom.Element.insertEnd(actionButton, this.__elementMap.actions);
+            if (actionButton) {
+              actionButton.$$handler && actionButton.$$handler.addListener('close', function () {
+                this.close();
+              }, this);
+              qx.dom.Element.insertEnd(actionButton, target);
+            }
           }, this);
         }, this);
       } else {

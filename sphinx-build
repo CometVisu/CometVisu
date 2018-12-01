@@ -1,0 +1,21 @@
+#!/bin/bash
+:<<"::CMDLITERAL"
+@ECHO OFF
+GOTO :CMDSCRIPT
+::CMDLITERAL
+
+if type docker &> /dev/null; then
+    ./docker-run ./cv doc $@
+else
+    ./cv doc $@
+fi
+exit 0
+
+:CMDSCRIPT
+for /f %%a in ('docker ps -a -f name=dev-helper --quiet') do set "cid=%%a"
+IF "%cid%"=="" (
+    docker rm %cid%
+)
+ECHO "Creating 'dev-helper' container"
+ECHO %~dp0
+docker run --privileged --net=host -it -v %~dp0:%~dp0 --name dev-helper --workdir %~dp0 -e COMMAND="%" cometvisu/dev-helper

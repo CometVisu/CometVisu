@@ -37,7 +37,7 @@ $strJson   = (true === isset($_POST['data']))   ? $_POST['data']   : null;
 $strConfig = (true === isset($_POST['config'])) ? $_POST['config'] : null;
 $configType = (true === isset($_POST['configType'])) ? $_POST['configType'] : "json";
 
-$strConfigSuffix = preg_replace('/^resource\/config\/visu_config(_?.*?)\.xml$/', '$1', $strConfig);
+$strConfigSuffix = preg_replace('/^(resource\/)?config\/visu_config(_?.*?)\.xml$/', '$2', $strConfig);
 
 $isOhGenerated = false;
 if (substr($strConfigSuffix,1,3)=="oh_") {

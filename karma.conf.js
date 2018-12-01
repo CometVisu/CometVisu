@@ -11,7 +11,6 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['qooxdoo', 'jasmine'],
@@ -21,6 +20,7 @@ module.exports = function(config) {
       "source/test/karma/helper-spec.js",
       { pattern: "source/test/karma/*.js" },
       { pattern: "source/test/karma/**/*.js" },
+      { pattern: "source/test/fixtures/**", included: false },
       { pattern: "source/resource/**/*", included: false, served: true, watched: false }
     ],
 
@@ -35,7 +35,16 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+    reporters: ['spec', 'coverage'],
+
+    specReporter: {
+      maxLogLines: 5,         // limit number of lines logged per test
+      suppressErrorSummary: true,  // do not print error summary
+      suppressFailed: false,  // do not print information about failed tests
+      suppressPassed: false,  // do not print information about passed tests
+      suppressSkipped: true,  // do not print information about skipped tests
+      showSpecTiming: false // print the time elapsed for each spec
+    },
 
     coverageReporter : {
       dir: 'coverage',
@@ -51,6 +60,8 @@ module.exports = function(config) {
     proxies: {
       '/source/resource/designs/get_designs.php': '/base/source/test/fixtures/designs.json',
       '/source/resource/designs': '/base/source/resource/designs',
+      '/resource/plugins/tr064/soap.php': '/base/source/test/fixtures/tr064_soap.json',
+      '/resource/plugins/tr064/proxy.php': '/base/source/test/fixtures/tr064_proxy.xml',
       '/source/class/cv': '/base/source/class/cv',
       '/external/qooxdoo': '/base/external/qooxdoo',
       '/source/resource': '/base/source/resource',
@@ -68,6 +79,7 @@ module.exports = function(config) {
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
+    //logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes

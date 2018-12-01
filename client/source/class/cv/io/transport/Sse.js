@@ -91,7 +91,6 @@ qx.Class.define('cv.io.transport.Sse', {
         this.debug("connection established");
         this.client.setConnected(true);
       }.bind(this);
-      this.client.watchdog.start(5);
     },
 
     /**
@@ -101,7 +100,6 @@ qx.Class.define('cv.io.transport.Sse', {
       this.client.record("read", e.data);
       var json = JSON.parse(e.data);
       var data = json.d;
-      this.client.watchdog.ping(true);
       this.client.update(data);
       this.client.setDataReceived(true);
     },
@@ -160,12 +158,10 @@ qx.Class.define('cv.io.transport.Sse', {
     },
 
     /**
-     * Restart the read request, e.g. when the watchdog kicks in
-     *
-     *
+     * Restart the read request
      */
     restart: function (doFullReload) {
-      if (doFullReload || !this.isConnectionRunning()) {
+      if (doFullReload || this.eventSource.readyState === EventSource.CLOSED) {
         this.abort();
         this.connect();
       }

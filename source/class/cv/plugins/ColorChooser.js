@@ -99,6 +99,8 @@ qx.Class.define('cv.plugins.ColorChooser', {
   ******************************************************
   */
   members: {
+    __skipSending: false,
+
     _onDomReady: function() {
       this.base(arguments);
       var $actor = $( '#' + this.getPath() + ' .actor' );
@@ -107,7 +109,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
         this.setValueG(parseInt(color.substring(3, 5), 16) * 100 / 255.0);
         this.setValueB(parseInt(color.substring(5, 7), 16) * 100 / 255.0);
 
-        if( this.getRateLimiter() === false ) {// already requests going?
+        if( this.getRateLimiter() === false && this.__skipSending === false) {// already requests going?
           this._rateLimitedSend($actor);
         }
       }.bind(this));
@@ -126,7 +128,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
       var templateEngine = cv.TemplateEngine.getInstance();
       for( var addr in address )
       {
-        if( !(address[addr][1] & 2) ) { continue; } // skip when write flag not set
+        if( !cv.data.Model.isWriteAddress(address[addr]) ) { continue; } // skip when write flag not set
         switch( address[addr][2] )
         {
           case 'r':
@@ -160,7 +162,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
             var bv = cv.Transform.encode(address[addr][0], brgb );
             if( v[0] !== bv[0] || v[1] !== bv[1] || v[2] !== bv[2] )
             {
-              templateEngine.visu.write( addr, v );
+              templateEngine.visu.write( addr, v.join(",") );
               modified = true;
             }
             break;
@@ -173,7 +175,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
         this.setBusG(this.getValueG());
         this.setBusB(this.getValueB());
         this.setRateLimiter(true);
-        qx.event.Timer.once(this._rateLimitedSend, this, 250); // next call in 250ms
+        this.__timer = qx.event.Timer.once(this._rateLimitedSend, this, 250); // next call in 250ms
       } else {
         this.setRateLimiter(false);
       }
@@ -215,8 +217,8 @@ qx.Class.define('cv.plugins.ColorChooser', {
           break;
         case 'rgb':
           this.setBusR(value[0]);
-          this.setBusR(value[1]);
-          this.setBusR(value[2]);
+          this.setBusG(value[1]);
+          this.setBusB(value[2]);
           color = color.substring(0,1) +
             toHex( value[0]*255/100 )+
             toHex( value[1]*255/100 )+
@@ -224,7 +226,14 @@ qx.Class.define('cv.plugins.ColorChooser', {
             color.substring(7);
           break;
       }
+      this.__skipSending = true;
+      if (this.__timer) {
+        this.__timer.stop();
+        this.__timer = null;
+        this.setRateLimiter(false);
+      }
       farbtastic.setColor( color );
+      this.__skipSending = false;
     }
   },
 
