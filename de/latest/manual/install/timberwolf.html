@@ -108,9 +108,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#volume-fur-konfigurationsdateien">Volume für Konfigurationsdateien</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#anlegen-des-containers">Anlegen des Containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#proxy-einrichten">Proxy einrichten</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#aktualisieren">Aktualisieren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entwicklungsversion">Entwicklungsversion</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
@@ -220,7 +222,7 @@ am besten über den <span class="xref doc">Manager</span>.</p>
 <p>Unter Containers -&gt; Add Container</p>
 <ul class="simple">
 <li>Name: <code class="docutils literal"><span class="pre">CometVisu</span></code></li>
-<li>Image configuration Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu</span></code></li>
+<li>Image configuration Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest</span></code></li>
 <li>Port mapping: host 18080, container 80</li>
 <li>Advanced container settings:<ul>
 <li>Volumes: Volume mapping <code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code></li>
@@ -230,9 +232,41 @@ am besten über den <span class="xref doc">Manager</span>.</p>
 </ul>
 <p>Dann über &#8220;Deploy the container&#8221; diesen erzeugen.</p>
 </div>
+<div class="section" id="proxy-einrichten">
+<h3>Proxy einrichten<a class="headerlink" href="#proxy-einrichten" title="Link zu dieser Überschrift">¶</a></h3>
+<p>In der Timberwolf Oberfläche: Einstellungen -&gt; Remotezugriff -&gt; Reverse Proxy: cvtest/ und <a class="reference external" href="http://127.0.0.1:18080/">http://127.0.0.1:18080/</a> eintragen, dann auf Add gehen</p>
+<p>Nun sollte die CometVisu unter <a class="reference external" href="https:/">https:/</a>/&lt;URL des Timberwolf&gt;/proxy/cvtest/ aufrufbar sein.</p>
+</div>
 </div>
 <div class="section" id="aktualisieren">
 <h2>Aktualisieren<a class="headerlink" href="#aktualisieren" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Containers -&gt; CometVisuTest -&gt; Duplicate/Edit</p>
+<p>Dort unter Actions -&gt; Deploy the Container</p>
+<p>Replace</p>
+<p>Aufräumen: Unused Images löschen</p>
+</div>
+<div class="section" id="entwicklungsversion">
+<h2>Entwicklungsversion<a class="headerlink" href="#entwicklungsversion" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Grundsätzlich sind für die jeweils aktuelle Entwicklungsversion die gleichen
+Schritte wie für das Release durchzuführen.</p>
+<p>Wie unter <a class="reference internal" href="docker.html"><span class="doc">Docker</span></a> beschrieben hat die neueste
+Entwicklunglungsversion den Tag <code class="docutils literal"><span class="pre">testing</span></code>. Somit ist unter <cite>Anlegen des
+Containers</cite> als <code class="docutils literal"><span class="pre">name</span></code> <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code> zu verwenden.</p>
+<p>Um für Fehlerberichte u.ä. eine einheitliche Umgebung zu haben, ist die
+Empfehlung die Testing Version mit diesen Parametern zu installieren:</p>
+<ul class="simple">
+<li>Container:<ul>
+<li>Name: CometVisuTest</li>
+<li>: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code></li>
+<li>Port mapping: host 28080, container 80</li>
+<li>Advanced container settings: Env: <code class="docutils literal"><span class="pre">name</span></code>: <code class="docutils literal"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal"><span class="pre">value</span></code>: <code class="docutils literal"><span class="pre">/proxy/visutest/cgi-bin/</span></code></li>
+</ul>
+</li>
+<li>Proxy:<ul>
+<li>Reverse Proxy: <code class="docutils literal"><span class="pre">visutest/</span></code> <code class="docutils literal"><span class="pre">http://127.0.0.1:28080/</span></code></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
