@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation auf dem Timberwolf mittels Portainer &mdash; CometVisu</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Stichwortverzeichnis"
+              href="../genindex.html"/>
+        <link rel="search" title="Suche" href="../search.html"/>
+    <link rel="top" title="CometVisu" href="../index.html"/>
+        <link rel="up" title="Installation der CometVisu" href="index.html"/>
+        <link rel="next" title="Update der CometVisu auf dem Wiregate" href="update-wiregate.html"/>
+        <link rel="prev" title="Installation mittels Docker-Container" href="docker.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CometVisu
+          
+
+          
+            
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.11.0-dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="allgemein.html">Voraussetzungen für die Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation auf einem Debian System mit openHAB2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Installation mittels Docker-Container</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation auf dem Timberwolf mittels Portainer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#volume-fur-konfigurationsdateien">Volume für Konfigurationsdateien</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#anlegen-des-containers">Anlegen des Containers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#aktualisieren">Aktualisieren</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Installation der CometVisu</a> &raquo;</li>
+        
+      <li>Installation auf dem Timberwolf mittels Portainer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="installation-auf-dem-timberwolf-mittels-portainer">
+<span id="timberwolf"></span><h1>Installation auf dem Timberwolf mittels Portainer<a class="headerlink" href="#installation-auf-dem-timberwolf-mittels-portainer" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Um die CometVisu auf dem <a class="reference external" href="https://wiregate.de/">Timberwolf</a>-Server zu
+installieren wird die dort verwendete Administrationsoberfläche
+<a class="reference external" href="https://portainer.io/">Portainer</a> verwendet.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit dieser Anleitung wird die CometVisu auf dem Timberwolf Server über HTTPS
+unter der Adresse <code class="docutils literal"><span class="pre">https://&lt;mein</span> <span class="pre">timberwolf&gt;/proxy/visu/</span></code> aufrufbar sein.</p>
+<p>Grundsätzlich eignen sich diese Schritte auch als Referenz für die Installation
+über Portainer auf anderen Systemen, jedoch müssen die Schritte im Detail
+angepasst werden, da dort üblicherweise keine Proxy zur Verfügung steht, der
+die CometVisu über HTTPS zugreifbar macht.</p>
+<div class="section" id="volume-fur-konfigurationsdateien">
+<h3>Volume für Konfigurationsdateien<a class="headerlink" href="#volume-fur-konfigurationsdateien" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Zuerst ist ein Volume anzulegen um dort die Konfigurationsdateien abzulegen
+und diese über Neustarts und Aktualisierungen des Containers hinweg
+beizubehalten.</p>
+<p>Die notwendigen Schritte sind: Volumes -&gt; Add Volume -&gt; Name: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> -&gt; Create the Volume</p>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../_images/portainer_volume_add.png"><img alt="../_images/portainer_volume_add.png" src="../_images/portainer_volume_add.png" style="width: 813.0px; height: 562.0px;" /></a>
+<p class="caption"><span class="caption-text">Volume im Portainer anlegen</span></p>
+</div>
+<p>Dieses Volume kann von außen mit den Config-Dateien befüllt werden - oder
+am besten über den <span class="xref doc">Manager</span>.</p>
+</div>
+<div class="section" id="anlegen-des-containers">
+<h3>Anlegen des Containers<a class="headerlink" href="#anlegen-des-containers" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Unter Containers -&gt; Add Container</p>
+<ul class="simple">
+<li>Name: <code class="docutils literal"><span class="pre">CometVisu</span></code></li>
+<li>Image configuration Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu</span></code></li>
+<li>Port mapping: host 18080, container 80</li>
+<li>Advanced container settings:<ul>
+<li>Volumes: Volume mapping <code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code></li>
+<li>Env: Environment variables <code class="docutils literal"><span class="pre">name</span></code>: <code class="docutils literal"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal"><span class="pre">value</span></code>: <code class="docutils literal"><span class="pre">/proxy/visu/cgi-bin/</span></code></li>
+</ul>
+</li>
+</ul>
+<p>Dann über &#8220;Deploy the container&#8221; diesen erzeugen.</p>
+</div>
+</div>
+<div class="section" id="aktualisieren">
+<h2>Aktualisieren<a class="headerlink" href="#aktualisieren" title="Link zu dieser Überschrift">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="update-wiregate.html" class="btn btn-neutral float-right" title="Update der CometVisu auf dem Wiregate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="docker.html" class="btn btn-neutral" title="Installation mittels Docker-Container" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2010-2018 Christian Mayer and the CometVisu contributers.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.11.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../0.10.0/manual/index.html">0.10.0</a></dd>
+        
+          <dd><a href="../../../0.10.2/manual/index.html">0.10.2</a></dd>
+        
+          <dd><a href="../../../latest/manual/index.html">latest</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
