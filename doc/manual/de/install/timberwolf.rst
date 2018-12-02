@@ -41,7 +41,7 @@ Anlegen des Containers
 Unter Containers -> Add Container
 
 - Name: ``CometVisu``
-- Image configuration Name: ``cometvisu/cometvisu``
+- Image configuration Name: ``cometvisu/cometvisu:latest``
 - Port mapping: host 18080, container 80
 - Advanced container settings:
 
@@ -50,5 +50,44 @@ Unter Containers -> Add Container
 
 Dann über "Deploy the container" diesen erzeugen.
 
+Proxy einrichten
+~~~~~~~~~~~~~~~~
+
+In der Timberwolf Oberfläche: Einstellungen -> Remotezugriff -> Reverse Proxy: cvtest/ und http://127.0.0.1:18080/ eintragen, dann auf Add gehen
+
+Nun sollte die CometVisu unter https://<URL des Timberwolf>/proxy/cvtest/ aufrufbar sein.
+
 Aktualisieren
 -------------
+
+Containers -> CometVisuTest -> Duplicate/Edit
+
+Dort unter Actions -> Deploy the Container
+
+Replace
+
+Aufräumen: Unused Images löschen
+
+Entwicklungsversion
+-------------------
+
+Grundsätzlich sind für die jeweils aktuelle Entwicklungsversion die gleichen
+Schritte wie für das Release durchzuführen.
+
+Wie unter :doc:`Docker <docker>` beschrieben hat die neueste
+Entwicklunglungsversion den Tag ``testing``. Somit ist unter `Anlegen des
+Containers` als ``name`` ``cometvisu/cometvisu:testing`` zu verwenden.
+
+Um für Fehlerberichte u.ä. eine einheitliche Umgebung zu haben, ist die
+Empfehlung die Testing Version mit diesen Parametern zu installieren:
+
+- Container:
+
+  - Name: CometVisuTest
+  - : ``cometvisu/cometvisu:testing``
+  - Port mapping: host 28080, container 80
+  - Advanced container settings: Env: ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visutest/cgi-bin/``
+
+- Proxy:
+
+  - Reverse Proxy: ``visutest/`` ``http://127.0.0.1:28080/``
