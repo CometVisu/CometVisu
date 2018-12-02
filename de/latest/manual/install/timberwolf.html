@@ -106,7 +106,7 @@
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Installation mittels Docker-Container</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installation auf dem Timberwolf mittels Portainer</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#volume-fur-konfigurationsdateien">Volume für Konfigurationsdateien</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#volumes-anlegen">Volumes anlegen</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#anlegen-des-containers">Anlegen des Containers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#proxy-einrichten">Proxy einrichten</a></li>
 </ul>
@@ -204,8 +204,10 @@ unter der Adresse <code class="docutils literal"><span class="pre">https://&lt;m
 über Portainer auf anderen Systemen, jedoch müssen die Schritte im Detail
 angepasst werden, da dort üblicherweise keine Proxy zur Verfügung steht, der
 die CometVisu über HTTPS zugreifbar macht.</p>
+<div class="section" id="volumes-anlegen">
+<h3>Volumes anlegen<a class="headerlink" href="#volumes-anlegen" title="Link zu dieser Überschrift">¶</a></h3>
 <div class="section" id="volume-fur-konfigurationsdateien">
-<h3>Volume für Konfigurationsdateien<a class="headerlink" href="#volume-fur-konfigurationsdateien" title="Link zu dieser Überschrift">¶</a></h3>
+<h4>Volume für Konfigurationsdateien<a class="headerlink" href="#volume-fur-konfigurationsdateien" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Zuerst ist ein Volume anzulegen um dort die Konfigurationsdateien abzulegen
 und diese über Neustarts und Aktualisierungen des Containers hinweg
 beizubehalten.</p>
@@ -216,6 +218,32 @@ beizubehalten.</p>
 </div>
 <p>Dieses Volume kann von außen mit den Config-Dateien befüllt werden - oder
 am besten über den <span class="xref doc">Manager</span>.</p>
+</div>
+<div class="section" id="volume-fur-rrd">
+<h4>Volume für RRD<a class="headerlink" href="#volume-fur-rrd" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Dieser Schritt ist optional und nur notwendig, wenn das <span class="xref doc">Diagram Plugin</span>
+mit RRD Dateien genutzt werden sollen. Bei der reinen Verwendung der InfluxDB
+kann dieser Schritt übersprungen werden.</p>
+<p>Die Schritte für das Anlegen des <cite>Volume für Konfigurationsdateien</cite> ist zu
+wiederholen, jedoch wird hier sinnvoller Weise der Name <code class="docutils literal"><span class="pre">CometVisuRRD</span></code>
+gewählt.</p>
+<p>Das Befüllen dieses Containers muss extern erfolgen, z.B. durch einen anderen
+Container, der diesen RRD-Container gleichzeitig mit einbindet.</p>
+<p><strong>Wichtig:</strong> Das interne Format der RRD Dateien ist Architektur spezifisch.
+So können die RRD-Dateien vom WireGate (32 Bit Architektur) nicht direkt auf
+dem Timberwolf (64 Bit Architektur) verwendet werden.</p>
+<p>Um den Inhalt einer RRD Datei <code class="docutils literal"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine andere
+zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der Befehl</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool dump /var/www/rrd/RRD_Name.rrd &gt; RRD_Name.xml
+</pre></div>
+</div>
+<p>ausgeführt werden. Auf dem Ziel-System (also z.B. einem Container auf dem
+Timberwolf) wird dann mit dem Befehl</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>...
+</pre></div>
+</div>
+<p>die neue RRD-Datei angelegt.</p>
+</div>
 </div>
 <div class="section" id="anlegen-des-containers">
 <h3>Anlegen des Containers<a class="headerlink" href="#anlegen-des-containers" title="Link zu dieser Überschrift">¶</a></h3>

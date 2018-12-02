@@ -18,8 +18,11 @@ Grundsätzlich eignen sich diese Schritte auch als Referenz für die Installatio
 angepasst werden, da dort üblicherweise keine Proxy zur Verfügung steht, der
 die CometVisu über HTTPS zugreifbar macht.
 
+Volumes anlegen
+~~~~~~~~~~~~~~~
+
 Volume für Konfigurationsdateien
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+................................
 
 Zuerst ist ein Volume anzulegen um dort die Konfigurationsdateien abzulegen
 und diese über Neustarts und Aktualisierungen des Containers hinweg
@@ -34,6 +37,40 @@ Die notwendigen Schritte sind: Volumes -> Add Volume -> Name: ``CometVisuConfig`
 
 Dieses Volume kann von außen mit den Config-Dateien befüllt werden - oder
 am besten über den :doc:`Manager <manager>`.
+
+Volume für RRD
+..............
+
+Dieser Schritt ist optional und nur notwendig, wenn das :doc:`Diagram Plugin <diagram>`
+mit RRD Dateien genutzt werden sollen. Bei der reinen Verwendung der InfluxDB
+kann dieser Schritt übersprungen werden.
+
+Die Schritte für das Anlegen des `Volume für Konfigurationsdateien` ist zu
+wiederholen, jedoch wird hier sinnvoller Weise der Name ``CometVisuRRD``
+gewählt.
+
+Das Befüllen dieses Containers muss extern erfolgen, z.B. durch einen anderen
+Container, der diesen RRD-Container gleichzeitig mit einbindet.
+
+**Wichtig:** Das interne Format der RRD Dateien ist Architektur spezifisch.
+So können die RRD-Dateien vom WireGate (32 Bit Architektur) nicht direkt auf
+dem Timberwolf (64 Bit Architektur) verwendet werden.
+
+Um den Inhalt einer RRD Datei ``RRD_Name`` von einer Architektur auf eine andere
+zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der Befehl
+
+.. code-block:: bash
+
+   rrdtool dump /var/www/rrd/RRD_Name.rrd > RRD_Name.xml
+
+ausgeführt werden. Auf dem Ziel-System (also z.B. einem Container auf dem
+Timberwolf) wird dann mit dem Befehl
+
+.. code-block:: bash
+
+   ...
+
+die neue RRD-Datei angelegt.
 
 Anlegen des Containers
 ~~~~~~~~~~~~~~~~~~~~~~

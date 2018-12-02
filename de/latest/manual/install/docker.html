@@ -272,13 +272,13 @@ entnommen werden.</p>
 <div class="section" id="openhab">
 <h4>OpenHAB<a class="headerlink" href="#openhab" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Beispiel-Konfiguration für das openHAB Backend (wenn es auf einem Server mit
-der Addresse <code class="docutils literal"><span class="pre">192.168.0.10</span></code> läuft):
-.. code-block:: bash</p>
-<blockquote>
-<div>KNX_INTERFACE=
-CGI_URL_PATH=/rest/
-BACKEND_PROXY_SOURCE=/rest
-BACKEND_PROXY_TARGET=http://192.168.0.10:8080/rest</div></blockquote>
+der Addresse <code class="docutils literal"><span class="pre">192.168.0.10</span></code> läuft):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">KNX_INTERFACE</span><span class="o">=</span>
+<span class="nv">CGI_URL_PATH</span><span class="o">=</span>/rest/
+<span class="nv">BACKEND_PROXY_SOURCE</span><span class="o">=</span>/rest
+<span class="nv">BACKEND_PROXY_TARGET</span><span class="o">=</span>http://192.168.0.10:8080/rest
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="volumes">
@@ -292,7 +292,7 @@ exportiert.</p>
 </div>
 <div class="section" id="rrd-diagram-plugin">
 <h4>RRD (Diagram-Plugin)<a class="headerlink" href="#rrd-diagram-plugin" title="Link zu dieser Überschrift">¶</a></h4>
-<p>Für das <span class="xref doc">Diagram-Plugin</span> können die Zeitserien als RRD-Dateien
+<p>Für das <a class="reference internal" href="../config/widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Diagram-Plugin</span></a> können die Zeitserien als RRD-Dateien
 bereit gestellt werden. Diese müssen unter dem Pfad <code class="docutils literal"><span class="pre">/var/www/rrd</span></code> als
 Mount eingebunden werden. Die RRD-Dateien selbst müssen außerhalb befüllt
 und aktualisiert werden, z.B. von einem anderen Container der dieses Volume
