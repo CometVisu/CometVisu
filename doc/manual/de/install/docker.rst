@@ -70,7 +70,7 @@ OpenHAB
 
 Beispiel-Konfiguration für das openHAB Backend (wenn es auf einem Server mit
 der Addresse ``192.168.0.10`` läuft):
-::
+.. code-block:: bash
 
     KNX_INTERFACE=
     CGI_URL_PATH=/rest/
