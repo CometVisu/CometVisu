@@ -91,7 +91,7 @@ exportiert.
 RRD (Diagram-Plugin)
 ....................
 
-Für das :ref:`Diagram-Plugin <diagram>` können die Zeitserien als RRD-Dateien
+Für das :doc:`Diagram-Plugin <diagram>` können die Zeitserien als RRD-Dateien
 bereit gestellt werden. Diese müssen unter dem Pfad ``/var/www/rrd`` als
 Mount eingebunden werden. Die RRD-Dateien selbst müssen außerhalb befüllt
 und aktualisiert werden, z.B. von einem anderen Container der dieses Volume
