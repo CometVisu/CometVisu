@@ -18,7 +18,7 @@ setzt jedoch voraus, dass die CometVisu von einem PHP-fähigen Webserver (z.B Ap
 Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibbar ist.
 
 Am einfachsten greift man auf die verschiedenen Konfigurationsdateien über den
-`Manager <manager>`_ zu.
+:doc:`Manager <manager>` zu.
 
 Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
