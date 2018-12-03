@@ -212,7 +212,7 @@ die CometVisu über HTTPS zugreifbar macht.</p>
 und diese über Neustarts und Aktualisierungen des Containers hinweg
 beizubehalten.</p>
 <p>Die notwendigen Schritte sind: Volumes -&gt; Add Volume -&gt; Name: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> -&gt; Create the Volume</p>
-<div class="figure" id="id2">
+<div class="figure" id="id4">
 <a class="reference internal image-reference" href="../_images/portainer_volume_add.png"><img alt="../_images/portainer_volume_add.png" src="../_images/portainer_volume_add.png" style="width: 813.0px; height: 562.0px;" /></a>
 <p class="caption"><span class="caption-text">Volume im Portainer anlegen</span></p>
 </div>
@@ -224,24 +224,31 @@ am besten über den <span class="xref doc">Manager</span>.</p>
 <p>Dieser Schritt ist optional und nur notwendig, wenn das <span class="xref doc">Diagram Plugin</span>
 mit RRD Dateien genutzt werden sollen. Bei der reinen Verwendung der InfluxDB
 kann dieser Schritt übersprungen werden.</p>
-<p>Die Schritte für das Anlegen des <cite>Volume für Konfigurationsdateien</cite> ist zu
+<p>Die Schritte für das Anlegen des <em>Volume für Konfigurationsdateien</em> ist zu
 wiederholen, jedoch wird hier sinnvoller Weise der Name <code class="docutils literal"><span class="pre">CometVisuRRD</span></code>
 gewählt.</p>
 <p>Das Befüllen dieses Containers muss extern erfolgen, z.B. durch einen anderen
 Container, der diesen RRD-Container gleichzeitig mit einbindet.</p>
 <p><strong>Wichtig:</strong> Das interne Format der RRD Dateien ist Architektur spezifisch.
 So können die RRD-Dateien vom WireGate (32 Bit Architektur) nicht direkt auf
-dem Timberwolf (64 Bit Architektur) verwendet werden.</p>
-<p>Um den Inhalt einer RRD Datei <code class="docutils literal"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine andere
-zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der Befehl</p>
+dem Timberwolf (64 Bit Architektur) verwendet werden <a class="footnote-reference" href="#id3" id="id2">[1]</a>.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><p class="first">Um den Inhalt einer RRD Datei <code class="docutils literal"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine
+andere zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der
+Befehl</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool dump /var/www/rrd/RRD_Name.rrd &gt; RRD_Name.xml
 </pre></div>
 </div>
 <p>ausgeführt werden. Auf dem Ziel-System (also z.B. einem Container auf dem
 Timberwolf) wird dann mit dem Befehl</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>...
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>...
 </pre></div>
 </div>
+</td></tr>
+</tbody>
+</table>
 <p>die neue RRD-Datei angelegt.</p>
 </div>
 </div>
@@ -258,6 +265,22 @@ Timberwolf) wird dann mit dem Befehl</p>
 </ul>
 </li>
 </ul>
+<div class="figure" id="id5">
+<img alt="../_images/portainer_container_add.png" src="../_images/portainer_container_add.png" />
+<p class="caption"><span class="caption-text">Container im Portainer anlegen</span></p>
+</div>
+<div class="figure" id="id6">
+<img alt="../_images/portainer_container_volumes_add.png" src="../_images/portainer_container_volumes_add.png" />
+<p class="caption"><span class="caption-text">Container <em>Volumes</em> im Portainer konfigurieren</span></p>
+</div>
+<div class="figure" id="id7">
+<img alt="../_images/portainer_container_env_add.png" src="../_images/portainer_container_env_add.png" />
+<p class="caption"><span class="caption-text">Container <em>Env</em> im Portainer konfigurieren</span></p>
+</div>
+<div class="figure" id="id8">
+<img alt="../_images/portainer_container_restart_add.png" src="../_images/portainer_container_restart_add.png" />
+<p class="caption"><span class="caption-text">Container <em>Restart policy</em> im Portainer konfigurieren</span></p>
+</div>
 <p>Dann über &#8220;Deploy the container&#8221; diesen erzeugen.</p>
 </div>
 <div class="section" id="proxy-einrichten">
@@ -278,8 +301,8 @@ Timberwolf) wird dann mit dem Befehl</p>
 <p>Grundsätzlich sind für die jeweils aktuelle Entwicklungsversion die gleichen
 Schritte wie für das Release durchzuführen.</p>
 <p>Wie unter <a class="reference internal" href="docker.html"><span class="doc">Docker</span></a> beschrieben hat die neueste
-Entwicklunglungsversion den Tag <code class="docutils literal"><span class="pre">testing</span></code>. Somit ist unter <cite>Anlegen des
-Containers</cite> als <code class="docutils literal"><span class="pre">name</span></code> <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code> zu verwenden.</p>
+Entwicklunglungsversion den Tag <code class="docutils literal"><span class="pre">testing</span></code>. Somit ist unter <em>Anlegen des
+Containers</em> als <code class="docutils literal"><span class="pre">name</span></code> <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code> zu verwenden.</p>
 <p>Um für Fehlerberichte u.ä. eine einheitliche Umgebung zu haben, ist die
 Empfehlung die Testing Version mit diesen Parametern zu installieren:</p>
 <ul class="simple">
