@@ -4,6 +4,8 @@ set -e # Exit with nonzero exit code if anything fails
 SOURCE_BRANCH="develop"
 TARGET_BRANCH="gh-pages"
 REPO_SLUG="CometVisu/CometVisu"
+CV="./cv"
+DOCKER_RUN="./bin/docker-run"
 
 if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
     echo "Skipping deploy in cron build"
@@ -45,9 +47,9 @@ cd ..
 
 # Run our creation script
 echo "generating german manual to extract screenshot examples"
-./cv doc --doc-type manual -f -l de
+$CV doc --doc-type manual -f -l de
 
-VERSION=`./cv doc --get-version`
+VERSION=`${CV} doc --get-version`
 utils/update_version.py
 echo "generating api version $VERSION"
 source temp-python/bin/activate
@@ -61,30 +63,30 @@ source temp-python/bin/activate
 deactivate
 
 echo "updating english manual from source code doc comments"
-./cv doc --from-source
+${CV} doc --from-source
 
 # update symlinks and write version files
-./cv doc --process-versions
+${CV} doc --process-versions
 
 echo "generating english manual, including screenshot generation for all languages"
-./docker-run ./cv doc --doc-type manual -c -f -l en -t build
+${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build
 echo "generating german manual again with existing screenshots"
-./cv doc --doc-type manual -f -l de
+${CV} doc --doc-type manual -f -l de
 
 if [[ "$NO_API" -eq 0 ]]; then
     echo "generate API screenshots"
-    ./docker-run grunt screenshots --subDir=source --browserName=chrome --target=build --force
+    ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
 
-     move the apiviewer to the correct version subfolder, including screenshots
+    # move the apiviewer to the correct version subfolder, including screenshots
     rm -r out/en/$VERSION/api
-    ./cv doc --move-apiviewer
+    ${CV} doc --move-apiviewer
 fi
 
 echo "generating feature yml file for homepage"
-./cv doc --generate-features
+${CV} doc --generate-features
 
 echo "generating sitemap.xml for documentation"
-./cv sitemap
+${CV} sitemap
 
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
