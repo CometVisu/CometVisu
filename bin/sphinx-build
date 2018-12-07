@@ -5,9 +5,9 @@ GOTO :CMDSCRIPT
 ::CMDLITERAL
 
 if type docker &> /dev/null; then
-    ./docker-run ./cv doc $@
+    ./docker-run ../cv doc $@
 else
-    ./cv doc $@
+    ../cv doc $@
 fi
 exit 0
 

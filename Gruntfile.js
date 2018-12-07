@@ -334,11 +334,11 @@ module.exports = function(grunt) {
     // karma unit testing
     karma: {
       unit: {
-        configFile: 'karma.conf.js'
+        configFile: 'source/test/karma/karma.conf.js'
       },
       //continuous integration mode: run tests once in PhantomJS browser.
       travis: {
-        configFile: 'karma.conf.js',
+        configFile: 'source/test/karma/karma.conf.js',
         singleRun: true,
         browsers: [grunt.option('browser') || 'Chrome'],
         coverageReporter : {
@@ -351,7 +351,7 @@ module.exports = function(grunt) {
         }
       },
       debug: {
-        configFile: 'karma.conf.js',
+        configFile: 'source/test/karma/karma.conf.js',
         singleRun: !grunt.option('no-single'),
         browsers: [grunt.option('browser') || 'Chrome'],
         reporters: ['spec']
