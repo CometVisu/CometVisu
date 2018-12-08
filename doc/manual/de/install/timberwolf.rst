@@ -72,6 +72,7 @@ Unter *Containers* → *Add Container*
     - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional)*
 
   - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``
+  - Restart policy: ``Unless stopped``
 
 .. figure:: _static/portainer_container_add.png
 
@@ -200,12 +201,18 @@ Empfehlung die Testing Version mit diesen Parametern zu installieren:
 
   die neue RRD-Datei angelegt.
 
+  Wenn auf dem Quell-System mit einer Lokalisierung gearbeitet wird, die
+  Zahlen mit einem Komma als Dezimaltrennzeichen verwendet (so wie im
+  Deutschen üblich), so kann es sein, dass der RRD-Export mit Komma statt
+  Punkt erfolgt und somit der Import fehl schlägt. Hier wäre dann der Export
+  mit generischem ``LANG=C`` durchzuführen.
+
   Um eine größere Menge an RRD-Dateien zu konvertieren kann dies über eine
   Schleife vereinfacht werden:
 
   .. code-block:: bash
 
-     for f in *.rrd; do rrdtool dump ${f} > ${f}.xml; done
+     LANG=C; for f in *.rrd; do rrdtool dump ${f} > ${f}.xml; done
 
   bzw.
 
