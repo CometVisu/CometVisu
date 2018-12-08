@@ -9,6 +9,8 @@ Einfache Installation:
 -  :doc:`auf Raspberry Pi <raspberry>`
 -  auf einem Debian System mit openHAB1 (`OpenHAB-WIKI <https://github.com/openhab/openhab1-addons/wiki/CometVisu>`__)
 -  :doc:`auf einem Debian System mit openHAB2 <openhab2>`
+-  :doc:`Über Docker <docker>`
+-  :doc:`Auf dem Timberwolf / mittels Portainer <timberwolf>`
 
 .. toctree::
     :hidden:
@@ -18,6 +20,8 @@ Einfache Installation:
     raspberry
     install-dev
     openhab2
+    docker
+    timberwolf
 
 Schwieriger, nur für Fortgeschrittene:
 
