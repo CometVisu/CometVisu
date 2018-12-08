@@ -28,7 +28,7 @@ Zuerst ist ein Volume anzulegen um dort die Konfigurationsdateien abzulegen
 und diese über Neustarts und Aktualisierungen des Containers hinweg
 beizubehalten.
 
-Die notwendigen Schritte sind: Volumes -> Add Volume -> Name: ``CometVisuConfig`` -> Create the Volume
+Die notwendigen Schritte sind: *Volumes* → *Add Volume* → Name: ``CometVisuConfig`` → *Create the Volume*
 
 .. figure:: _static/portainer_volume_add.png
    :scale: 50 %
@@ -36,12 +36,12 @@ Die notwendigen Schritte sind: Volumes -> Add Volume -> Name: ``CometVisuConfig`
    Volume im Portainer anlegen
 
 Dieses Volume kann von außen mit den Config-Dateien befüllt werden - oder
-am besten über den :doc:`Manager <manager>`.
+am besten über den :ref:`Manager <manager>`.
 
 Volume für RRD
 ..............
 
-Dieser Schritt ist optional und nur notwendig, wenn das :doc:`Diagram Plugin <diagram>`
+Dieser Schritt ist optional und nur notwendig, wenn das :ref:`Diagram Plugin <diagram>`
 mit RRD Dateien genutzt werden sollen. Bei der reinen Verwendung der InfluxDB
 kann dieser Schritt übersprungen werden.
 
@@ -54,37 +54,25 @@ Container, der diesen RRD-Container gleichzeitig mit einbindet.
 
 **Wichtig:** Das interne Format der RRD Dateien ist Architektur spezifisch.
 So können die RRD-Dateien vom WireGate (32 Bit Architektur) nicht direkt auf
-dem Timberwolf (64 Bit Architektur) verwendet werden [#]_.
-
-.. [#] Um den Inhalt einer RRD Datei ``RRD_Name`` von einer Architektur auf eine
-  andere zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der
-  Befehl
-
-  .. code-block:: bash
-
-     rrdtool dump /var/www/rrd/RRD_Name.rrd > RRD_Name.xml
-
-  ausgeführt werden. Auf dem Ziel-System (also z.B. einem Container auf dem
-  Timberwolf) wird dann mit dem Befehl
-
-  .. code-block:: bash
-
-     ...
-
-die neue RRD-Datei angelegt.
+dem Timberwolf (64 Bit Architektur) verwendet werden [1]_.
 
 Anlegen des Containers
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Unter Containers -> Add Container
+Unter *Containers* → *Add Container*
 
 - Name: ``CometVisu``
-- Image configuration Name: ``cometvisu/cometvisu:latest``
-- Port mapping: host 18080, container 80
+- Image configuration: Name: ``cometvisu/cometvisu:latest``
+- Port mapping: host ``18080``, container ``80``
 - Advanced container settings:
 
-  - Volumes: Volume mapping ``container``: ``/var/www/html/config`` ⭢ ``volume``: ``CometVisuConfig``
+  - Volumes: Volume mapping
+
+    - ``container``: ``/var/www/html/config`` ⭢ ``volume``: ``CometVisuConfig``
+    - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional)*
+
   - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``
+  - Restart policy: ``Unless stopped``
 
 .. figure:: _static/portainer_container_add.png
 
@@ -102,33 +90,76 @@ Unter Containers -> Add Container
 
    Container *Restart policy* im Portainer konfigurieren
 
-Dann über "Deploy the container" diesen erzeugen.
+Dann über *Deploy the container* diesen erzeugen.
 
 Proxy einrichten
 ~~~~~~~~~~~~~~~~
 
-In der Timberwolf Oberfläche: Einstellungen -> Remotezugriff -> Reverse Proxy: cvtest/ und http://127.0.0.1:18080/ eintragen, dann auf Add gehen
+In der Timberwolf Oberfläche: *Einstellungen* → *Remotezugriff* → *Reverse Proxy*
 
-Nun sollte die CometVisu unter https://<URL des Timberwolf>/proxy/cvtest/ aufrufbar sein.
+- URL: ``visu``, Target ``http://127.0.0.1:18080/``
+
+Über *Add* bestätigen.
+
+.. figure:: _static/timberwolf_proxy_add.png
+
+   Timberwolf Proxy-Eintrag hinzufügen
+
+Die CometVisu ist nun über ``https://<mein timberwolf>/proxy/visu/`` aufrufbar.
 
 Aktualisieren
 -------------
 
-Containers -> CometVisuTest -> Duplicate/Edit
+Container ersetzen
+~~~~~~~~~~~~~~~~~~
 
-Dort unter Actions -> Deploy the Container
+Unter *Containers* → ``CometVisu`` wird über den Button *Duplicate/Edit* das
+Menü aufgerufen um den Container zu aktualisieren.
 
-Replace
+Hier ist sicher zu stellen, dass *Always pull the image* aktiv ist.
 
-Aufräumen: Unused Images löschen
+Unter *Advanced container settings* → *Labels* sollten die Labels gelöscht
+werden, um später leichter erkennen zu können welche CometVisu Container
+Version installiert ist.
+
+Mit *Actions* → *Deploy the Container* wird der Container nun durch die
+neueste Version ersetzt.
+
+.. figure:: _static/portainer_container_replace.png
+
+   Container im Portainer durch eine neue Version ersetzen
+
+Anschließend muss die Sicherheitsabfrage bestätigt werden.
+
+.. figure:: _static/portainer_container_replace_confirm.png
+
+   Bestätigung um den Container im Portainer durch eine neue Version zu ersetzen
+
+Aufräumen
+~~~~~~~~~
+
+Wenn ein Container durch einen neuen ersetzt wird, so bleibt der alte als
+*Unused* im System zurück und belegt weiterhin Platz. Dieser lässt sich unter
+*Images* löschen.
+
+Durch markieren des zu löschenden Images (zu erkennen am Label *Unused* und
+dem entsprechenden Tag) kann über *Remove* das Image entfernt werden.
+
+.. figure:: _static/portainer_image_remove.png
+
+   Portainer Dialog um ein Image zu löschen
 
 Entwicklungsversion
 -------------------
 
 Grundsätzlich sind für die jeweils aktuelle Entwicklungsversion die gleichen
-Schritte wie für das Release durchzuführen.
+Schritte wie für das Release durchzuführen. Auch wenn theoretisch das gleiche
+Konfigutations-Volume wie für die Produktiv-Version verwendet werden kann, so
+sollte ein getrenntes Volume (z.B. ``CometVisuTestConfig``) angelegt werden, da
+sich durch zukünftige Updates das Format der Config-Dateien inkompatibel ändern
+kann.
 
-Wie unter :doc:`Docker <docker>` beschrieben hat die neueste
+Wie unter :ref:`Docker <docker>` beschrieben hat die neueste
 Entwicklunglungsversion den Tag ``testing``. Somit ist unter *Anlegen des
 Containers* als ``name`` ``cometvisu/cometvisu:testing`` zu verwenden.
 
@@ -137,11 +168,54 @@ Empfehlung die Testing Version mit diesen Parametern zu installieren:
 
 - Container:
 
-  - Name: CometVisuTest
-  - : ``cometvisu/cometvisu:testing``
-  - Port mapping: host 28080, container 80
-  - Advanced container settings: Env: ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visutest/cgi-bin/``
+  - Name: ``CometVisuTest``
+  - Image configuration: Name: ``cometvisu/cometvisu:testing``
+  - Port mapping: host ``28080``, container ``80``
+  - Advanced container settings:
+
+    - Volumes: Volume mapping
+
+      - ``container``: ``/var/www/html/config`` ⭢ ``volume``: ``CometVisuTestConfig``
+      - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional)*
+
+    - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``
 
 - Proxy:
 
-  - Reverse Proxy: ``visutest/`` ``http://127.0.0.1:28080/``
+  - URL: ``visutest``, Target ``http://127.0.0.1:28080/``
+
+.. [1] Um den Inhalt einer RRD Datei ``RRD_Name`` von einer Architektur auf eine
+  andere zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der
+  Befehl
+
+  .. code-block:: bash
+
+     rrdtool dump /var/www/rrd/RRD_Name.rrd > RRD_Name.xml
+
+  ausgeführt werden. Auf dem Ziel-System (also z.B. einem Container auf dem
+  Timberwolf) wird dann mit dem Befehl
+
+  .. code-block:: bash
+
+     rrdtool restore -f RRD_Name.xml RRD_Name.rrd
+
+  die neue RRD-Datei angelegt.
+
+  Wenn auf dem Quell-System mit einer Lokalisierung gearbeitet wird, die
+  Zahlen mit einem Komma als Dezimaltrennzeichen verwendet (so wie im
+  Deutschen üblich), so kann es sein, dass der RRD-Export mit Komma statt
+  Punkt erfolgt und somit der Import fehl schlägt. Hier wäre dann der Export
+  mit generischem ``LANG=C`` durchzuführen.
+
+  Um eine größere Menge an RRD-Dateien zu konvertieren kann dies über eine
+  Schleife vereinfacht werden:
+
+  .. code-block:: bash
+
+     LANG=C; for f in *.rrd; do rrdtool dump ${f} > ${f}.xml; done
+
+  bzw.
+
+  .. code-block:: bash
+
+     for f in *.xml; do rrdtool restore ${f} ${f}.rrd; done

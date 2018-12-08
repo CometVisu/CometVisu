@@ -111,7 +111,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#proxy-einrichten">Proxy einrichten</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#aktualisieren">Aktualisieren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aktualisieren">Aktualisieren</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#container-ersetzen">Container ersetzen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aufraumen">Aufräumen</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#entwicklungsversion">Entwicklungsversion</a></li>
 </ul>
 </li>
@@ -211,17 +215,17 @@ die CometVisu über HTTPS zugreifbar macht.</p>
 <p>Zuerst ist ein Volume anzulegen um dort die Konfigurationsdateien abzulegen
 und diese über Neustarts und Aktualisierungen des Containers hinweg
 beizubehalten.</p>
-<p>Die notwendigen Schritte sind: Volumes -&gt; Add Volume -&gt; Name: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> -&gt; Create the Volume</p>
+<p>Die notwendigen Schritte sind: <em>Volumes</em> → <em>Add Volume</em> → Name: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> → <em>Create the Volume</em></p>
 <div class="figure" id="id4">
-<a class="reference internal image-reference" href="../_images/portainer_volume_add.png"><img alt="../_images/portainer_volume_add.png" src="../_images/portainer_volume_add.png" style="width: 813.0px; height: 562.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/portainer_volume_add.png"><img alt="../_images/portainer_volume_add.png" src="../_images/portainer_volume_add.png" style="width: 1362.0px; height: 615.0px;" /></a>
 <p class="caption"><span class="caption-text">Volume im Portainer anlegen</span></p>
 </div>
 <p>Dieses Volume kann von außen mit den Config-Dateien befüllt werden - oder
-am besten über den <span class="xref doc">Manager</span>.</p>
+am besten über den <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Manager</span></a>.</p>
 </div>
 <div class="section" id="volume-fur-rrd">
 <h4>Volume für RRD<a class="headerlink" href="#volume-fur-rrd" title="Link zu dieser Überschrift">¶</a></h4>
-<p>Dieser Schritt ist optional und nur notwendig, wenn das <span class="xref doc">Diagram Plugin</span>
+<p>Dieser Schritt ist optional und nur notwendig, wenn das <a class="reference internal" href="../config/widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Diagram Plugin</span></a>
 mit RRD Dateien genutzt werden sollen. Bei der reinen Verwendung der InfluxDB
 kann dieser Schritt übersprungen werden.</p>
 <p>Die Schritte für das Anlegen des <em>Volume für Konfigurationsdateien</em> ist zu
@@ -232,36 +236,23 @@ Container, der diesen RRD-Container gleichzeitig mit einbindet.</p>
 <p><strong>Wichtig:</strong> Das interne Format der RRD Dateien ist Architektur spezifisch.
 So können die RRD-Dateien vom WireGate (32 Bit Architektur) nicht direkt auf
 dem Timberwolf (64 Bit Architektur) verwendet werden <a class="footnote-reference" href="#id3" id="id2">[1]</a>.</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><p class="first">Um den Inhalt einer RRD Datei <code class="docutils literal"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine
-andere zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der
-Befehl</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool dump /var/www/rrd/RRD_Name.rrd &gt; RRD_Name.xml
-</pre></div>
-</div>
-<p>ausgeführt werden. Auf dem Ziel-System (also z.B. einem Container auf dem
-Timberwolf) wird dann mit dem Befehl</p>
-<div class="last highlight-bash"><div class="highlight"><pre><span></span>...
-</pre></div>
-</div>
-</td></tr>
-</tbody>
-</table>
-<p>die neue RRD-Datei angelegt.</p>
 </div>
 </div>
 <div class="section" id="anlegen-des-containers">
 <h3>Anlegen des Containers<a class="headerlink" href="#anlegen-des-containers" title="Link zu dieser Überschrift">¶</a></h3>
-<p>Unter Containers -&gt; Add Container</p>
+<p>Unter <em>Containers</em> → <em>Add Container</em></p>
 <ul class="simple">
 <li>Name: <code class="docutils literal"><span class="pre">CometVisu</span></code></li>
-<li>Image configuration Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest</span></code></li>
-<li>Port mapping: host 18080, container 80</li>
+<li>Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest</span></code></li>
+<li>Port mapping: host <code class="docutils literal"><span class="pre">18080</span></code>, container <code class="docutils literal"><span class="pre">80</span></code></li>
 <li>Advanced container settings:<ul>
-<li>Volumes: Volume mapping <code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code></li>
+<li>Volumes: Volume mapping<ul>
+<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code></li>
+<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/rrd</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">RRD</span></code> <em>(Optional)</em></li>
+</ul>
+</li>
 <li>Env: Environment variables <code class="docutils literal"><span class="pre">name</span></code>: <code class="docutils literal"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal"><span class="pre">value</span></code>: <code class="docutils literal"><span class="pre">/proxy/visu/cgi-bin/</span></code></li>
+<li>Restart policy: <code class="docutils literal"><span class="pre">Unless</span> <span class="pre">stopped</span></code></li>
 </ul>
 </li>
 </ul>
@@ -281,43 +272,123 @@ Timberwolf) wird dann mit dem Befehl</p>
 <img alt="../_images/portainer_container_restart_add.png" src="../_images/portainer_container_restart_add.png" />
 <p class="caption"><span class="caption-text">Container <em>Restart policy</em> im Portainer konfigurieren</span></p>
 </div>
-<p>Dann über &#8220;Deploy the container&#8221; diesen erzeugen.</p>
+<p>Dann über <em>Deploy the container</em> diesen erzeugen.</p>
 </div>
 <div class="section" id="proxy-einrichten">
 <h3>Proxy einrichten<a class="headerlink" href="#proxy-einrichten" title="Link zu dieser Überschrift">¶</a></h3>
-<p>In der Timberwolf Oberfläche: Einstellungen -&gt; Remotezugriff -&gt; Reverse Proxy: cvtest/ und <a class="reference external" href="http://127.0.0.1:18080/">http://127.0.0.1:18080/</a> eintragen, dann auf Add gehen</p>
-<p>Nun sollte die CometVisu unter <a class="reference external" href="https:/">https:/</a>/&lt;URL des Timberwolf&gt;/proxy/cvtest/ aufrufbar sein.</p>
+<p>In der Timberwolf Oberfläche: <em>Einstellungen</em> → <em>Remotezugriff</em> → <em>Reverse Proxy</em></p>
+<ul class="simple">
+<li>URL: <code class="docutils literal"><span class="pre">visu</span></code>, Target <code class="docutils literal"><span class="pre">http://127.0.0.1:18080/</span></code></li>
+</ul>
+<p>Über <em>Add</em> bestätigen.</p>
+<div class="figure" id="id9">
+<img alt="../_images/timberwolf_proxy_add.png" src="../_images/timberwolf_proxy_add.png" />
+<p class="caption"><span class="caption-text">Timberwolf Proxy-Eintrag hinzufügen</span></p>
+</div>
+<p>Die CometVisu ist nun über <code class="docutils literal"><span class="pre">https://&lt;mein</span> <span class="pre">timberwolf&gt;/proxy/visu/</span></code> aufrufbar.</p>
 </div>
 </div>
 <div class="section" id="aktualisieren">
 <h2>Aktualisieren<a class="headerlink" href="#aktualisieren" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Containers -&gt; CometVisuTest -&gt; Duplicate/Edit</p>
-<p>Dort unter Actions -&gt; Deploy the Container</p>
-<p>Replace</p>
-<p>Aufräumen: Unused Images löschen</p>
+<div class="section" id="container-ersetzen">
+<h3>Container ersetzen<a class="headerlink" href="#container-ersetzen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Unter <em>Containers</em> → <code class="docutils literal"><span class="pre">CometVisu</span></code> wird über den Button <em>Duplicate/Edit</em> das
+Menü aufgerufen um den Container zu aktualisieren.</p>
+<p>Hier ist sicher zu stellen, dass <em>Always pull the image</em> aktiv ist.</p>
+<p>Unter <em>Advanced container settings</em> → <em>Labels</em> sollten die Labels gelöscht
+werden, um später leichter erkennen zu können welche CometVisu Container
+Version installiert ist.</p>
+<p>Mit <em>Actions</em> → <em>Deploy the Container</em> wird der Container nun durch die
+neueste Version ersetzt.</p>
+<div class="figure" id="id10">
+<img alt="../_images/portainer_container_replace.png" src="../_images/portainer_container_replace.png" />
+<p class="caption"><span class="caption-text">Container im Portainer durch eine neue Version ersetzen</span></p>
+</div>
+<p>Anschließend muss die Sicherheitsabfrage bestätigt werden.</p>
+<div class="figure" id="id11">
+<img alt="../_images/portainer_container_replace_confirm.png" src="../_images/portainer_container_replace_confirm.png" />
+<p class="caption"><span class="caption-text">Bestätigung um den Container im Portainer durch eine neue Version zu ersetzen</span></p>
+</div>
+</div>
+<div class="section" id="aufraumen">
+<h3>Aufräumen<a class="headerlink" href="#aufraumen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Wenn ein Container durch einen neuen ersetzt wird, so bleibt der alte als
+<em>Unused</em> im System zurück und belegt weiterhin Platz. Dieser lässt sich unter
+<em>Images</em> löschen.</p>
+<p>Durch markieren des zu löschenden Images (zu erkennen am Label <em>Unused</em> und
+dem entsprechenden Tag) kann über <em>Remove</em> das Image entfernt werden.</p>
+<div class="figure" id="id12">
+<img alt="../_images/portainer_image_remove.png" src="../_images/portainer_image_remove.png" />
+<p class="caption"><span class="caption-text">Portainer Dialog um ein Image zu löschen</span></p>
+</div>
+</div>
 </div>
 <div class="section" id="entwicklungsversion">
 <h2>Entwicklungsversion<a class="headerlink" href="#entwicklungsversion" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Grundsätzlich sind für die jeweils aktuelle Entwicklungsversion die gleichen
-Schritte wie für das Release durchzuführen.</p>
-<p>Wie unter <a class="reference internal" href="docker.html"><span class="doc">Docker</span></a> beschrieben hat die neueste
+Schritte wie für das Release durchzuführen. Auch wenn theoretisch das gleiche
+Konfigutations-Volume wie für die Produktiv-Version verwendet werden kann, so
+sollte ein getrenntes Volume (z.B. <code class="docutils literal"><span class="pre">CometVisuTestConfig</span></code>) angelegt werden, da
+sich durch zukünftige Updates das Format der Config-Dateien inkompatibel ändern
+kann.</p>
+<p>Wie unter <a class="reference internal" href="docker.html#docker"><span class="std std-ref">Docker</span></a> beschrieben hat die neueste
 Entwicklunglungsversion den Tag <code class="docutils literal"><span class="pre">testing</span></code>. Somit ist unter <em>Anlegen des
 Containers</em> als <code class="docutils literal"><span class="pre">name</span></code> <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code> zu verwenden.</p>
 <p>Um für Fehlerberichte u.ä. eine einheitliche Umgebung zu haben, ist die
 Empfehlung die Testing Version mit diesen Parametern zu installieren:</p>
 <ul class="simple">
 <li>Container:<ul>
-<li>Name: CometVisuTest</li>
-<li>: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code></li>
-<li>Port mapping: host 28080, container 80</li>
-<li>Advanced container settings: Env: <code class="docutils literal"><span class="pre">name</span></code>: <code class="docutils literal"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal"><span class="pre">value</span></code>: <code class="docutils literal"><span class="pre">/proxy/visutest/cgi-bin/</span></code></li>
+<li>Name: <code class="docutils literal"><span class="pre">CometVisuTest</span></code></li>
+<li>Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code></li>
+<li>Port mapping: host <code class="docutils literal"><span class="pre">28080</span></code>, container <code class="docutils literal"><span class="pre">80</span></code></li>
+<li>Advanced container settings:<ul>
+<li>Volumes: Volume mapping<ul>
+<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuTestConfig</span></code></li>
+<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/rrd</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">RRD</span></code> <em>(Optional)</em></li>
+</ul>
+</li>
+<li>Env: Environment variables <code class="docutils literal"><span class="pre">name</span></code>: <code class="docutils literal"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal"><span class="pre">value</span></code>: <code class="docutils literal"><span class="pre">/proxy/visu/cgi-bin/</span></code></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Proxy:<ul>
-<li>Reverse Proxy: <code class="docutils literal"><span class="pre">visutest/</span></code> <code class="docutils literal"><span class="pre">http://127.0.0.1:28080/</span></code></li>
+<li>URL: <code class="docutils literal"><span class="pre">visutest</span></code>, Target <code class="docutils literal"><span class="pre">http://127.0.0.1:28080/</span></code></li>
 </ul>
 </li>
 </ul>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><p class="first">Um den Inhalt einer RRD Datei <code class="docutils literal"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine
+andere zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der
+Befehl</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool dump /var/www/rrd/RRD_Name.rrd &gt; RRD_Name.xml
+</pre></div>
+</div>
+<p>ausgeführt werden. Auf dem Ziel-System (also z.B. einem Container auf dem
+Timberwolf) wird dann mit dem Befehl</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool restore -f RRD_Name.xml RRD_Name.rrd
+</pre></div>
+</div>
+<p>die neue RRD-Datei angelegt.</p>
+<p>Wenn auf dem Quell-System mit einer Lokalisierung gearbeitet wird, die
+Zahlen mit einem Komma als Dezimaltrennzeichen verwendet (so wie im
+Deutschen üblich), so kann es sein, dass der RRD-Export mit Komma statt
+Punkt erfolgt und somit der Import fehl schlägt. Hier wäre dann der Export
+mit generischem <code class="docutils literal"><span class="pre">LANG=C</span></code> durchzuführen.</p>
+<p>Um eine größere Menge an RRD-Dateien zu konvertieren kann dies über eine
+Schleife vereinfacht werden:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">LANG</span><span class="o">=</span>C<span class="p">;</span> <span class="k">for</span> f in *.rrd<span class="p">;</span> <span class="k">do</span> rrdtool dump <span class="si">${</span><span class="nv">f</span><span class="si">}</span> &gt; <span class="si">${</span><span class="nv">f</span><span class="si">}</span>.xml<span class="p">;</span> <span class="k">done</span>
+</pre></div>
+</div>
+<p>bzw.</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="k">for</span> f in *.xml<span class="p">;</span> <span class="k">do</span> rrdtool restore <span class="si">${</span><span class="nv">f</span><span class="si">}</span> <span class="si">${</span><span class="nv">f</span><span class="si">}</span>.rrd<span class="p">;</span> <span class="k">done</span>
+</pre></div>
+</div>
+</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
