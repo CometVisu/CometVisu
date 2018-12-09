@@ -86,8 +86,9 @@ Konfigurations-Dateien
 
 Um über den Restart oder die Neuerstellung von Containern hinweg Daten persistent
 abzulegen zu können müssen diese in einem Volume liegen. Für die Config-Dateien
-wird hierzu das Verzeichnis ``/var/www/html/resource/config`` als Volume
-exportiert.
+wird hierzu das Verzeichnis ``/var/www/html/config`` (bis einschließlich
+Release 0.10.2) bzw. ``/var/www/html/resource/config`` (ab Release 0.11) als
+Volume exportiert.
 
 RRD (Diagram-Plugin)
 ....................

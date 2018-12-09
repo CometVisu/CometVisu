@@ -68,8 +68,9 @@ Unter *Containers* → *Add Container*
 
   - Volumes: Volume mapping
 
-    - ``container``: ``/var/www/html/config`` ⭢ ``volume``: ``CometVisuConfig``
-    - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional)*
+    - ``container``: ``/var/www/html/config`` ⭢ ``volume``: ``CometVisuConfig`` *(bis einschließlich Version 0.10.2)*
+    - ``container``: ``/var/www/html/resource/config`` ⭢ ``volume``: ``CometVisuConfig`` *(ab Version 0.11)*
+    - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional, wenn RRD genutzt werden soll)*
 
   - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``
   - Restart policy: ``Unless stopped``
@@ -126,6 +127,10 @@ Hier ist sicher zu stellen, dass *Always pull the image* aktiv ist.
 Unter *Advanced container settings* → *Labels* sollten die Labels gelöscht
 werden, um später leichter erkennen zu können welche CometVisu Container
 Version installiert ist.
+
+Wenn von der Version 0.10.2 auf eine Version aus der 0.11er Reihe gewechselt
+werden soll, so ist noch unter *Volumes* der Config-Pfad von
+``/var/www/html/config`` auf ``/var/www/html/resource/config`` anzupassen.
 
 Mit *Actions* → *Deploy the Container* wird der Container nun durch die
 neueste Version ersetzt.
