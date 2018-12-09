@@ -75,18 +75,22 @@ Unter *Containers* → *Add Container*
   - Restart policy: ``Unless stopped``
 
 .. figure:: _static/portainer_container_add.png
+   :scale: 50 %
 
    Container im Portainer anlegen
 
 .. figure:: _static/portainer_container_volumes_add.png
+   :scale: 50 %
 
    Container *Volumes* im Portainer konfigurieren
 
 .. figure:: _static/portainer_container_env_add.png
+   :scale: 50 %
 
    Container *Env* im Portainer konfigurieren
 
 .. figure:: _static/portainer_container_restart_add.png
+   :scale: 50 %
 
    Container *Restart policy* im Portainer konfigurieren
 
@@ -102,6 +106,7 @@ In der Timberwolf Oberfläche: *Einstellungen* → *Remotezugriff* → *Reverse 
 Über *Add* bestätigen.
 
 .. figure:: _static/timberwolf_proxy_add.png
+   :scale: 50 %
 
    Timberwolf Proxy-Eintrag hinzufügen
 
@@ -126,6 +131,7 @@ Mit *Actions* → *Deploy the Container* wird der Container nun durch die
 neueste Version ersetzt.
 
 .. figure:: _static/portainer_container_replace.png
+   :scale: 50 %
 
    Container im Portainer durch eine neue Version ersetzen
 
@@ -146,6 +152,7 @@ Durch markieren des zu löschenden Images (zu erkennen am Label *Unused* und
 dem entsprechenden Tag) kann über *Remove* das Image entfernt werden.
 
 .. figure:: _static/portainer_image_remove.png
+   :scale: 50 %
 
    Portainer Dialog um ein Image zu löschen
 
@@ -183,6 +190,8 @@ Empfehlung die Testing Version mit diesen Parametern zu installieren:
 - Proxy:
 
   - URL: ``visutest``, Target ``http://127.0.0.1:28080/``
+
+----
 
 .. [1] Um den Inhalt einer RRD Datei ``RRD_Name`` von einer Architektur auf eine
   andere zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der
