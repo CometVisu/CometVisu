@@ -247,8 +247,9 @@ dem Timberwolf (64 Bit Architektur) verwendet werden <a class="footnote-referenc
 <li>Port mapping: host <code class="docutils literal"><span class="pre">18080</span></code>, container <code class="docutils literal"><span class="pre">80</span></code></li>
 <li>Advanced container settings:<ul>
 <li>Volumes: Volume mapping<ul>
-<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code></li>
-<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/rrd</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">RRD</span></code> <em>(Optional)</em></li>
+<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> <em>(bis einschließlich Version 0.10.2)</em></li>
+<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/resource/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> <em>(ab Version 0.11)</em></li>
+<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/rrd</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">RRD</span></code> <em>(Optional, wenn RRD genutzt werden soll)</em></li>
 </ul>
 </li>
 <li>Env: Environment variables <code class="docutils literal"><span class="pre">name</span></code>: <code class="docutils literal"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal"><span class="pre">value</span></code>: <code class="docutils literal"><span class="pre">/proxy/visu/cgi-bin/</span></code></li>
@@ -298,6 +299,9 @@ Menü aufgerufen um den Container zu aktualisieren.</p>
 <p>Unter <em>Advanced container settings</em> → <em>Labels</em> sollten die Labels gelöscht
 werden, um später leichter erkennen zu können welche CometVisu Container
 Version installiert ist.</p>
+<p>Wenn von der Version 0.10.2 auf eine Version aus der 0.11er Reihe gewechselt
+werden soll, so ist noch unter <em>Volumes</em> der Config-Pfad von
+<code class="docutils literal"><span class="pre">/var/www/html/config</span></code> auf <code class="docutils literal"><span class="pre">/var/www/html/resource/config</span></code> anzupassen.</p>
 <p>Mit <em>Actions</em> → <em>Deploy the Container</em> wird der Container nun durch die
 neueste Version ersetzt.</p>
 <div class="figure" id="id10">
