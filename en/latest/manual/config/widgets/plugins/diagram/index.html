@@ -96,7 +96,10 @@
               
             
             
-              <ul class="current">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install/index.html">Installation of the CometVisu</a></li>
+</ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Operatable widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html#informative-widgets">Informative widgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html#other-widgets">Other widgets</a></li>
@@ -119,6 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../speech/index.html">The Speech plugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../strftime/index.html">The strftime plugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../timeout/index.html">The timeout plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tr064/index.html">The tr064 Plugin</a></li>
 </ul>
 </li>
 </ul>
@@ -194,7 +198,7 @@ by an online translation service.</p>
 <div class="section" id="the-diagram-plugin">
 <span id="diagram"></span><h1>The diagram plugin<a class="headerlink" href="#the-diagram-plugin" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
-<div class="line"><strong>Available since version</strong>: 2014</div>
+<div class="line"><strong>Available since version</strong>: 0.6.0</div>
 <div class="line"><strong>Author</strong>: Michael Hausl [michael at hausl dot com]</div>
 <div class="line"><br /></div>
 </div>
@@ -243,61 +247,55 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </tr>
 <tr class="row-odd"><td>popup</td>
 <td><em>true</em> or <em>false</em></td>
-<td>&nbsp;</td>
+<td>Makes diagram clickable and opens fullscreen view of diagram when clicked</td>
 </tr>
 <tr class="row-even"><td>previewlabels</td>
 <td><em>true</em> or <em>false</em></td>
-<td>&nbsp;</td>
+<td>Show labels on inline-diagram in widget</td>
 </tr>
 <tr class="row-odd"><td>series</td>
 <td><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em>, <em>year</em>, <em>fullday</em> or <em>custom</em></td>
-<td>&nbsp;</td>
+<td>Defines the base unit for the period attribute</td>
 </tr>
 <tr class="row-even"><td>refresh</td>
 <td>integer</td>
-<td>&nbsp;</td>
+<td>refresh-rate in seconds, no refresh if missing</td>
 </tr>
 <tr class="row-odd"><td>period</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Defines whether an interval of hours, weeks, month or years is displayed (as multiple of &#8220;series)&#8221;</td>
 </tr>
 <tr class="row-even"><td>gridcolor</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Color of the grid shown behind the graphs</td>
 </tr>
 <tr class="row-odd"><td>legend</td>
 <td><em>both</em>, <em>inline</em>, <em>popup</em> or <em>none</em></td>
-<td>&nbsp;</td>
+<td>Defines whether legend is shown in combination with popup attribute. &#8220;none&#8221; =&gt; no legend, &#8220;both&#8221; =&gt; legend is shown in small inline diagram and popup, &#8220;inline&#8221; =&gt; legend in inline diagram only, &#8220;popup&#8221; =&gt; legend is only dispayed in popup diagram</td>
 </tr>
 <tr class="row-even"><td>legendposition</td>
 <td><em>nw</em>, <em>ne</em>, <em>sw</em> or <em>se</em></td>
-<td><ul class="first last simple">
-<li><em>nw</em>: topleft</li>
-<li><em>ne</em>: topright</li>
-<li><em>sw</em>: bottomleft</li>
-<li><em>se</em>: bottomright</li>
-</ul>
-</td>
+<td>Defines position of legend in diagram</td>
 </tr>
 <tr class="row-odd"><td>title</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Adds a title to the diagram</td>
 </tr>
 <tr class="row-even"><td>tooltip</td>
 <td><em>true</em> or <em>false</em></td>
-<td>&nbsp;</td>
+<td>Enables a tooltip which displays the current value where the graph is clicked</td>
 </tr>
 <tr class="row-odd"><td>timeformat</td>
 <td>string</td>
-<td>The time format for formatting the x-axis of diagrams with following placeholders:&lt;br/&gt; %a: weekday name (customizable) %b: month name (customizable) %d: day of month, zero-padded (01-31) %e: day of month, space-padded ( 1-31) %H: hours, 24-hour time, zero-padded (00-23) %I: hours, 12-hour time, zero-padded (01-12) %m: month, zero-padded (01-12) %M: minutes, zero-padded (00-59) %q: quarter (1-4) %S: seconds, zero-padded (00-59) %y: year (two digits) %Y: year (four digits) %p: am/pm %P: AM/PM (uppercase version of %p) %w: weekday as number (0-6, 0 being Sunday)</td>
+<td>Defines time format for x-axis</td>
 </tr>
 <tr class="row-even"><td>timeformatTooltip</td>
 <td>string</td>
-<td>The time format for formatting the tooltip&#8217;s time value. See timeformat attribute for possible values</td>
+<td>Defines time format for displayed values if tooltip is used</td>
 </tr>
 <tr class="row-odd"><td>zoomYAxis</td>
 <td><em>true</em> or <em>false</em></td>
-<td>&nbsp;</td>
+<td>Defines whether zoom acts on y-axis in addition to x-axis</td>
 </tr>
 <tr class="row-even"><td>seriesStart</td>
 <td>string</td>
@@ -313,11 +311,9 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </tr>
 </tbody>
 </table>
-<div class="figure align-center">
-<img alt="../../../../_images/en_config_widgets_plugins_diagram_index0.png" src="../../../../_images/en_config_widgets_plugins_diagram_index0.png" />
-</div>
-<div class="figure align-center">
+<div class="figure align-center" id="id2">
 <img alt="../../../../_images/en_config_widgets_plugins_diagram_index_editor_attributes.png" src="../../../../_images/en_config_widgets_plugins_diagram_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
 </div>
 </div>
 <div class="section" id="allowed-child-elements-und-their-attributes">
@@ -431,7 +427,7 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </tr>
 <tr class="row-odd"><td>styling</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Change the color of the dispayed value depending on its value. See also <span class="xref std std-ref">styling</span></td>
 </tr>
 <tr class="row-even"><td>class</td>
 <td>string</td>
@@ -484,15 +480,15 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </td>
 <td>label</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Defines the label of the axis</td>
 </tr>
 <tr class="row-even"><td>min</td>
 <td>decimal</td>
-<td>&nbsp;</td>
+<td>Defines the minimum of y-axis.</td>
 </tr>
 <tr class="row-odd"><td>max</td>
 <td>decimal</td>
-<td>&nbsp;</td>
+<td>Defines the maximum of y-axis.</td>
 </tr>
 <tr class="row-even"><td>position</td>
 <td><em>left</em> or <em>right</em></td>
@@ -500,11 +496,11 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </tr>
 <tr class="row-odd"><td>unit</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Defines the unit shown behind values in y-axis and tooltip</td>
 </tr>
 <tr class="row-even"><td>decimals</td>
 <td>integer</td>
-<td>&nbsp;</td>
+<td>Defines the number of digits in values of y-axis</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
 <dt>diagram</dt>
@@ -553,15 +549,15 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </td>
 <td>yaxis</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Assigns the rrd-data to a y-axis</td>
 </tr>
 <tr class="row-even"><td>color</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Defines the color of the data-line in the graph</td>
 </tr>
 <tr class="row-odd"><td>label</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Defines the label of the data-series in the legend</td>
 </tr>
 <tr class="row-even"><td>scaling</td>
 <td>decimal</td>
@@ -573,7 +569,7 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </tr>
 <tr class="row-even"><td>fill</td>
 <td><em>true</em> or <em>false</em></td>
-<td>&nbsp;</td>
+<td>Fill the space below the data-series or bar</td>
 </tr>
 <tr class="row-odd"><td>style</td>
 <td><em>lines</em>, <em>bars</em> or <em>points</em></td>
@@ -593,7 +589,7 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </tr>
 <tr class="row-odd"><td>consolidationFunction</td>
 <td><em>AVERAGE</em>, <em>LAST</em>, <em>MIN</em> or <em>MAX</em></td>
-<td>&nbsp;</td>
+<td>Choose one of the consolidation functions of the RRDTool (see <a class="reference external" href="http://rrdtool.org">http://rrdtool.org</a>).</td>
 </tr>
 <tr class="row-even"><td>resolution</td>
 <td>integer</td>
@@ -622,6 +618,98 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 </tr>
 </tbody>
 </table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="16"><dl class="first last docutils">
+<dt>diagram</dt>
+<dd><ul class="first last simple">
+<li>influx</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>measurement</td>
+<td>string</td>
+<td>Selection of the database and measurement (example: timeseries_db/KNX_LINE1)</td>
+</tr>
+<tr class="row-even"><td>yaxis</td>
+<td>string</td>
+<td>Assigns the InfluxDB-data to a y-axis</td>
+</tr>
+<tr class="row-odd"><td>color</td>
+<td>string</td>
+<td>Defines the color of the data-line in the graph</td>
+</tr>
+<tr class="row-even"><td>label</td>
+<td>string</td>
+<td>Defines the label of the data-series in the legend</td>
+</tr>
+<tr class="row-odd"><td>scaling</td>
+<td>decimal</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>steps</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>fill</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Fill the space below the data-series or bar</td>
+</tr>
+<tr class="row-even"><td>style</td>
+<td><em>lines</em>, <em>bars</em> or <em>points</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>barWidth</td>
+<td>integer</td>
+<td>Width of the bars in units of the x axis, contrary to most other measures that are specified in pixels. For instance, for time series the unit is milliseconds so 24 * 60 * 60 * 1000 produces bars with the width of a day.</td>
+</tr>
+<tr class="row-even"><td>align</td>
+<td><em>left</em>, <em>right</em> or <em>center</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>authentication</td>
+<td>string</td>
+<td>When the InfluxDB requires authentication the credentials in the hidden config with this key will be used.</td>
+</tr>
+<tr class="row-even"><td>field</td>
+<td>string</td>
+<td>If there are multiple fields in the InfluxDB series this field defines which one to show. (When not set a default of &#8220;*&#8221; will be used.)</td>
+</tr>
+<tr class="row-odd"><td>resolution</td>
+<td>integer</td>
+<td>The temporal resolution for the InfluxDB data can be set to a fixed interval (value in seconds).</td>
+</tr>
+<tr class="row-even"><td>consolidationFunction</td>
+<td><em>COUNT</em>, <em>INTEGRAL</em>, <em>MAX</em>, <em>MEAN</em>, <em>MEDIAN</em>, <em>MIN</em>, <em>MODE</em>, <em>SPREAD</em>, <em>STDDEV</em> or <em>SUM</em></td>
+<td>Choose one of the available data aggregation functions - required when the &#8220;resolution&#8221; attribute is set.</td>
+</tr>
+<tr class="row-odd"><td>fillMissing</td>
+<td>string</td>
+<td>Optional when attribute &#8220;resolution&#8221; is set: fill the time steps where data is missing by this value or one of &#8220;linear&#8221;, &#8220;none&#8221;, &#8220;null&#8221; or &#8220;previous&#8221;.</td>
+</tr>
+<tr class="row-even"><td>offset</td>
+<td>integer</td>
+<td>An offset in seconds to modify the displayed timestamps of the retrieved data from the InfluxDB.</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="section" id="examples">
@@ -637,7 +725,7 @@ XML-editor to UTF-8 mode!</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
 </tbody>
 </table>
 </div>
@@ -665,7 +753,7 @@ XML-editor to UTF-8 mode!</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2017 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2018 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -693,6 +781,8 @@ XML-editor to UTF-8 mode!</p>
           <dd><a href="../../../../../../0.10.0/manual/index.html">0.10.0</a></dd>
         
           <dd><a href="../../../../../../0.10.2/manual/index.html">0.10.2</a></dd>
+        
+          <dd><a href="../../../../../../0.11.0-dev/manual/index.html">0.11.0-dev</a></dd>
         
           <dd><a href="../../../../../../latest/manual/index.html">latest</a></dd>
         

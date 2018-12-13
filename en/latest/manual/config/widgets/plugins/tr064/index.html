@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The tr064 Plugin &mdash; CometVisu</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="CometVisu" href="../../../../index.html"/>
+        <link rel="up" title="Operatable widgets" href="../../index.html"/>
+        <link rel="prev" title="The timeout plugin" href="../timeout/index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+          
+
+          
+            
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.11.0-dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install/index.html">Installation of the CometVisu</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Operatable widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html#informative-widgets">Informative widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html#other-widgets">Other widgets</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../diagram/index.html">The diagram plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gauge/index.html">The gauge plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../link/index.html">The link plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openweathermap/index.html">The openweathermap plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../powerspectrum/index.html">The powerspectrum plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rss/index.html">The rss plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../speech/index.html">The Speech plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../strftime/index.html">The strftime plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timeout/index.html">The timeout plugin</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The tr064 Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#settings">Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#allowed-attributes-in-the-calllist-element">Allowed attributes in the calllist-element</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allowed-child-elements-und-their-attributes">Allowed child-elements und their attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#xml-syntax">XML syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prequesites-setup-of-the-server">Prequesites / setup of the server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-of-the-fritz-box">Setup of the Fritz!Box</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CometVisu</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Operatable widgets</a> &raquo;</li>
+        
+      <li>The tr064 Plugin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<div class="section" id="the-tr064-plugin">
+<span id="tr064"></span><h1>The tr064 Plugin<a class="headerlink" href="#the-tr064-plugin" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Automatische Screenshot-Generierung (aus Dummy-Daten)</p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>The plugin is an interface to routers that implement the TR-064 protocol, like
+the widely used Fritz!Box. The <code class="docutils literal"><span class="pre">calllist</span></code> widget from this plugin displays
+a call list that contains the name of the callers (when known to the router)
+as well as the records of the answering machine.</p>
+<div class="figure">
+<img alt="../../../../_images/calllist.png" src="../../../../_images/calllist.png" />
+</div>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>For a general understanding of how the configuration files are structured and what elements and attributes are
+it is recommended to read this section first: <span class="xref std std-ref">visu-config-details</span>.</p>
+<p>The behaviour and appearance of the powerspectrum plugins can be influenced by using certain attributes and elements.
+The following tables show the allowed attributes and elements and their possible values.
+The screenshots show, how both can be edited in the <span class="xref std std-ref">editor</span>.</p>
+<p>Attributes underlined by ..... are mandatory, all the others are optional and be omitted.</p>
+<div class="section" id="allowed-attributes-in-the-calllist-element">
+<h3>Allowed attributes in the calllist-element<a class="headerlink" href="#allowed-attributes-in-the-calllist-element" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">&nbsp;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="26">calllist</td>
+<td><abbr title="mandatory">device</abbr></td>
+<td>string</td>
+<td>ID/Name of the device as used in the hidden configuration.</td>
+</tr>
+<tr class="row-even"><td>max</td>
+<td>decimal</td>
+<td>Maximum numer of entries to fetch from the router.</td>
+</tr>
+<tr class="row-odd"><td>columns</td>
+<td>string</td>
+<td>By semicolon separated list of column types (allowed types: caller, date, name, nameOrCaller, tam, type)</td>
+</tr>
+<tr class="row-even"><td>TAM</td>
+<td>string</td>
+<td>Icon for telephone answering machine.</td>
+</tr>
+<tr class="row-odd"><td>TAMColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>TAMwait</td>
+<td>string</td>
+<td>Icon for waiting for telephone answering machine.</td>
+</tr>
+<tr class="row-odd"><td>TAMwaitColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>TAMplay</td>
+<td>string</td>
+<td>Icon for playing the telephone answering machine.</td>
+</tr>
+<tr class="row-odd"><td>TAMplayColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>TAMstop</td>
+<td>string</td>
+<td>Icon for stopping the telephone answering machine.</td>
+</tr>
+<tr class="row-odd"><td>TAMstopColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>typeIncoming</td>
+<td>string</td>
+<td>Icon for incoming call.</td>
+</tr>
+<tr class="row-odd"><td>typeIncomingColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>typeMissed</td>
+<td>string</td>
+<td>Icon for missed call.</td>
+</tr>
+<tr class="row-odd"><td>typeMissedColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>typeOutgoing</td>
+<td>string</td>
+<td>Icon for outgoing call.</td>
+</tr>
+<tr class="row-odd"><td>typeOutgoingColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>typeActiveIncoming</td>
+<td>string</td>
+<td>Icon for active incoming call.</td>
+</tr>
+<tr class="row-odd"><td>typeActiveIncomingColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>typeRejectedIncoming</td>
+<td>string</td>
+<td>Icon for rejected incoming call.</td>
+</tr>
+<tr class="row-odd"><td>typeRejectedIncomingColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>typeActiveOutgoing</td>
+<td>string</td>
+<td>Icon for active outgoing call.</td>
+</tr>
+<tr class="row-odd"><td>typeActiveOutgoingColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>typeUnknown</td>
+<td>string</td>
+<td>Icon for unknown call type.</td>
+</tr>
+<tr class="row-odd"><td>typeUnknownColor</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>refresh</td>
+<td>decimal</td>
+<td>Sets the update rate for the call list in seconds</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id3">
+<img alt="../../../../_images/en_config_widgets_plugins_tr064_index_editor_attributes.png" src="../../../../_images/en_config_widgets_plugins_tr064_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+</div>
+</div>
+<div class="section" id="allowed-child-elements-und-their-attributes">
+<h3>Allowed child-elements und their attributes<a class="headerlink" href="#allowed-child-elements-und-their-attributes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<dt>calllist</dt>
+<dd><ul class="first last simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>decimal</td>
+<td>Amount of coloumns this widget sould be wide.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a small screen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>decimal</td>
+<td>Amount of rows this widget should be high.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>string</td>
+<td>Reserved for future use.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>string</td>
+<td>Width for the widget for 2D pages.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>calllist</dt>
+<dd><ul class="first simple">
+<li>label</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li>icon</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">name</abbr></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>string</td>
+<td>Selection of a display variant. See also <span class="xref std std-ref">flavour</span>.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>string</td>
+<td>Change the color of the dispayed value depending on its value. See also <span class="xref std std-ref">styling</span></td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>string</td>
+<td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>calllist</dt>
+<dd><ul class="first simple">
+<li>label</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li>#text</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</td>
+<td>&nbsp;</td>
+<td>string</td>
+<td>Text to display a label for the widget.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
+<dt>calllist</dt>
+<dd><ul class="first last simple">
+<li>address</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">transform</abbr></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>variant</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>format-pos</td>
+<td>decimal</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>calllist</dt>
+<dd><ul class="first simple">
+<li>address</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li>#text</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</td>
+<td>&nbsp;</td>
+<td>string</td>
+<td>The GA (like: 12/0/7) for KNX-backends or the item name for openHAB-backend</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id4">
+<img alt="../../../../_images/en_config_widgets_plugins_tr064_index_editor_elements.png" src="../../../../_images/en_config_widgets_plugins_tr064_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elemente im Editor</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="xml-syntax">
+<h2>XML syntax<a class="headerlink" href="#xml-syntax" title="Permalink to this headline">¶</a></h2>
+<p>Alternatively it is possible to manually add the tr064 plugin entry to the
+<span class="xref doc">visu_config.xml</span>.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">In the config only the UTF-8 charset is allowed. So an editor that is
+set to UTF-8 mode must be used.</p>
+</div>
+<p>The minimale example code for the calllist widget to create the shown
+screenshot is:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;tr064&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+<span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;TR-064&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;calllist</span> <span class="na">device=</span><span class="s">&quot;fritzbox&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label&gt;</span>calllist<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/calllist&gt;</span>
+<span class="nt">&lt;/page&gt;</span>
+</pre></div>
+</div>
+<div class="figure" id="id5">
+<img alt="calllist, einfaches Beispiel" src="../../../../_images/calllist_simple.png" />
+<p class="caption"><span class="caption-text">calllist, einfaches Beispiel</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;tr064&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;calllist</span> <span class="na">device=</span><span class="s">&quot;fritzbox&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label&gt;</span>calllist<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/calllist&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="prequesites-setup-of-the-server">
+<h2>Prequesites / setup of the server<a class="headerlink" href="#prequesites-setup-of-the-server" title="Permalink to this headline">¶</a></h2>
+<p>To be able to use the plugin the server must support PHP with the extension
+of the SoapClient package.</p>
+<p>On debian based systems it means that the <code class="docutils literal"><span class="pre">php-soap</span></code> package must be
+installed.</p>
+</div>
+<div class="section" id="setup-of-the-fritz-box">
+<h2>Setup of the Fritz!Box<a class="headerlink" href="#setup-of-the-fritz-box" title="Permalink to this headline">¶</a></h2>
+<p>To get access to the call list of the Fritz!Box a user with according permissons
+must be created (or an existing user account must be used). This is possible
+on the user page:</p>
+<div class="figure">
+<img alt="../../../../_images/fritzbox_overview.png" src="../../../../_images/fritzbox_overview.png" />
+</div>
+<p>The user itself needs the rights to access the call list:</p>
+<div class="figure">
+<img alt="../../../../_images/fritzbox_user.png" src="../../../../_images/fritzbox_user.png" />
+</div>
+<p>That the plugin can access this user account the credentials must be given.
+This can be done in the CometVisu manager in the area &#8220;hidden configuration&#8221;<a class="footnote-reference" href="#f2" id="id2">[2]</a>:</p>
+<div class="figure">
+<img alt="../../../../_images/hidden_config_en.png" src="../../../../_images/hidden_config_en.png" />
+</div>
+<p>The used name must be given in the calllist widget in the attribute <code class="docutils literal"><span class="pre">device</span></code>.</p>
+<p>Apart from the manager it is possible to edit the file <code class="docutils literal"><span class="pre">config/hidden.php</span></code>
+manually and add a line like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;?php
+// File for configuraions that shouldn&#39;t be shared with the user
+$hidden = array(
+  &#39;fritzbox&#39; =&gt; array(&#39;uri&#39; =&gt; &#39;https://192.168.0.1:49443/&#39;, &#39;user&#39; =&gt; &#39;CometVisuTestUser&#39;, &#39;pass&#39; =&gt; &#39;pa3bvNM4j9z4&#39;)
+);
+?&gt;
+</pre></div>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In the simple view some things might be not visible. The expert view
+will show all entries.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><p class="first">The &#8220;hidden configuration&#8221; are configuraion datas that are not
+transmitted to the client any stay on the server. So there information
+is &#8220;hidden&#8221; to the user. On the server it is still readable in clear
+text. This is also true for the manager.</p>
+<p class="last">This by itself doesn&#8217;t create a secure environment, but it supports
+building one. There at least the manager must be inaccessable to the
+user.</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../timeout/index.html" class="btn btn-neutral" title="The timeout plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2010-2018 Christian Mayer and the CometVisu contributers.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.11.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../../0.10.0/manual/index.html">0.10.0</a></dd>
+        
+          <dd><a href="../../../../../../0.10.2/manual/index.html">0.10.2</a></dd>
+        
+          <dd><a href="../../../../../../0.11.0-dev/manual/index.html">0.11.0-dev</a></dd>
+        
+          <dd><a href="../../../../../../latest/manual/index.html">latest</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

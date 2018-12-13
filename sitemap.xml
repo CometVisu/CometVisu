@@ -406,6 +406,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/config/widgets/plugins/tr064/index.html</loc>
+    <lastmod>2018-12-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/config/widgets/plugins/rss/index.html</loc>
     <lastmod>2018-12-13</lastmod>
     <priority>0.5</priority>
@@ -452,6 +457,21 @@
   </url>
   <url>
     <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/config/widgets/slide/index.html</loc>
+    <lastmod>2018-12-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/install/index.html</loc>
+    <lastmod>2018-12-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/install/generic.html</loc>
+    <lastmod>2018-12-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/install/docker.html</loc>
     <lastmod>2018-12-13</lastmod>
     <priority>0.5</priority>
   </url>
