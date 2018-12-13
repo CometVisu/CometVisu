@@ -8,6 +8,12 @@ It can access the KNX-Bus directly (via eibd/knxd) or use
 `OpenHAB <http://www.openhab.org/>`__ as a backend. The current version
 can be found on `Github <http://github.com/CometVisu/CometVisu>`__.
 
+.. toctree::
+    :hidden:
+    :glob:
+
+    install/index
+
 Widgets
 -------
 
