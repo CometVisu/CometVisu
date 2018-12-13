@@ -5,12 +5,20 @@
 Konfiguration der CometVisu
 ***************************
 
+.. toctree::
+    :hidden:
+
+    manager
+
 Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
 Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis "./config"
 der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor oder
 mit dem integrierten grafischen Editor erfolgen. Die Verwendung des grafischen Editors
 setzt jedoch voraus, dass die CometVisu von einem PHP-fähigen Webserver (z.B Apache oder
 Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibbar ist.
+
+Am einfachsten greift man auf die verschiedenen Konfigurationsdateien über den
+:doc:`Manager <manager>` zu.
 
 Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
@@ -55,6 +63,7 @@ durch Anhängen von check_config.php an den URL erzwingen.
 .. toctree::
     :hidden:
 
+    hidden-config
     url-params
 
 Genaue Beschreibungen zu den verfügbaren URL-Parameter sind unter :doc:`URL-Parameter <url-params>` zu finden.

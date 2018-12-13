@@ -48,8 +48,8 @@ if os.path.exists(redirect_file):
 
 def process_references(app, doctree, fromdocname):
     for ref_info in doctree.traverse(target):
-        anchor = ref_info['refid']
-        if default_ref.match(anchor):
+        anchor = ref_info['refid'] if 'refid' in ref_info else None
+        if anchor is None or default_ref.match(anchor):
             # skip the default ones like index-0...
             continue
         link = app.builder.get_relative_uri('index', fromdocname)

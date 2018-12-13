@@ -337,7 +337,8 @@
         "build-files",
         "build-libs",
         "build-append-plugin-libs",
-        "build-paths"
+        "build-paths",
+        "build-append-icon-config"
       ]
     },
 
@@ -359,6 +360,13 @@
       "shell" :
       {
         "command" : "./cv build -bp"
+      }
+    },
+
+    "build-append-icon-config" : {
+      "shell" :
+      {
+        "command" : "mkdir -p build/class/cv && cp source/class/cv/IconConfig.js build/class/cv/"
       }
     },
 

@@ -22,7 +22,7 @@ Aufbau
 Die versteckten Konfigurationen werden in der Datei ``config/hidden.php`` abgelegt. Diese Datei kann sowohl
 über einen normalen Text-Editor als auch über den :ref:`Manager <manager>` editiert werden.
 
-Der Inhalt besteht aus mehreren Einträgen die einen `Name` mit mehreren `Schlüssel` und `Wert` Paaren enthalten.
+Der Inhalt besteht aus mehreren Einträgen die einen *Name* mit mehreren *Schlüssel* und *Wert* Paaren enthalten.
 In der Datei selbst werden diese Informationen als PHP Array abgelegt:
 
 .. code-block:: php
