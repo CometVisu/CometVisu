@@ -14,6 +14,11 @@ can be found on `Github <http://github.com/CometVisu/CometVisu>`__.
 
     install/index
 
+Installation
+------------
+
+The installation is described in the :doc:`install <install/index>` chapter.
+
 Widgets
 -------
 
