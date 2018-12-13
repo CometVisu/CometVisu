@@ -216,6 +216,21 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/0.11.0-dev/manual/install/index.html</loc>
+    <lastmod>2018-12-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/0.11.0-dev/manual/install/generic.html</loc>
+    <lastmod>2018-12-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/0.11.0-dev/manual/install/docker.html</loc>
+    <lastmod>2018-12-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/en/0.11.0-dev/manual/parts/header.html</loc>
     <lastmod>2018-12-13</lastmod>
     <priority>0.5</priority>

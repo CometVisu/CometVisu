@@ -15,7 +15,8 @@ Diese sind
 
 -  ein Backend für den Zugriff auf den KNX-Bus
 -  [optional] rrdtool für die Graphenerstellung
--  ein Webserver
+-  [optional] InfluxDB für die Graphenerstellung
+-  ein Webserver, mit (optional aber empfohlen) PHP Unterstützung
 -  das CometVisu-Softwarepaket
 
 Backend - knxd/eibd oder OpenHAB
