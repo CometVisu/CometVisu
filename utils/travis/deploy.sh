@@ -69,9 +69,9 @@ ${CV} doc --from-source
 ${CV} doc --process-versions
 
 echo "generating english manual, including screenshot generation for all languages"
-${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build
+${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION}
 echo "generating german manual again with existing screenshots"
-${CV} doc --doc-type manual -f -l de
+${CV} doc --doc-type manual -f -l de --target-version=${VERSION}
 
 if [[ "$NO_API" -eq 0 ]]; then
     echo "generate API screenshots"
