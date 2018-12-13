@@ -156,6 +156,10 @@ module.exports = function(grunt) {
         plugins: [
           {
             convertTransform: false
+          }, {
+            removeViewBox: false
+          }, {
+            removeDimensions: true
           }
         ]
       },
