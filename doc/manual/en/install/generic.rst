@@ -1,43 +1,31 @@
-.. replaces:: CometVisu/Installation/de
+.. _generic:
 
-Voraussetzungen für die Installation
-====================================
+Prerequisites for the installation
+==================================
 
-Wenn WireGate 1.1 oder später eingesetzt wird, ist CometVisu 0.8.5
-bereits vorinstalliert und kann ohne Weiteres genutzt werden. Um die
-alte CometVisu auf einem WireGate zu installieren, gibt es hier
-:doc:`weitere Informationen <wiregate>`.
+To be able to use the CometVisu the system needs to fulfill a few prerequisites.
 
-Um die CometVisu nutzen zu können, muss das System gewisse
-Voraussetzungen erfüllen.
+These are
 
-Diese sind
+-  a backend to connect the KNX bus
+-  [optional] rrdtool for diagrams
+-  [optional] InfluxDB for diagrams
+-  a web server with (optional but recommended) PHP support
+-  the CometVisu software package
 
--  ein Backend für den Zugriff auf den KNX-Bus
--  [optional] rrdtool für die Graphenerstellung
--  [optional] InfluxDB für die Graphenerstellung
--  ein Webserver, mit (optional aber empfohlen) PHP Unterstützung
--  das CometVisu-Softwarepaket
-
-Backend - knxd/eibd oder OpenHAB
+Backend - knxd/eibd or OpenHAB
 --------------------------------
 
-Die Installation des Backends wird unter :doc:`backends/install-eibd` beschrieben.
+As a backend an instance of *eibd* or its successor
+`knxd <https://github.com/knxd/knxd>`__ can be used as well an
+`OpenHAB <https://www.openhab.org/>`__ installation.
 
-Graphentool - RRDtool
----------------------
+Web server
+----------
 
-Eine optionale, aber dringend empfohlene Komponente ist rrdtool, um die
-Daten für die Erstellung von Graphen bereitzustellen. Es gibt viele
-Möglichkeiten, Daten an rrds zu übergeben und der Einsatz von rrdtool
-ist in der Breite dokumentiert. Die Installation von rrdtool für
-CometVisu wird unter :doc:`RRDtool <install-rrd>` beschrieben.
-
-Webserver
----------
-
-Der notwendigen Dateien unter ``/usr/lib/cgi-bin/`` müssen für das Konto,
-unter dem der Webserver läuft, ausführbar sein:
+The relevant files to connect via eibd/knxd are CGI programms, usually
+located at ``/usr/lib/cgi-bin/``. They must be executable for the account
+of the web server. This could be enforced by:
 
 .. code-block:: bash
 
@@ -46,22 +34,21 @@ unter dem der Webserver läuft, ausführbar sein:
     chmod +x /usr/lib/cgi-bin/w
     chmod +x /usr/lib/cgi-bin/rrdfetch
 
-Wenn diese Dateien symbolische Links sind, müssen entsprechend die
-verlinkten Dateien ausführbar gemacht werden, z.B. in /usr/local/bin
-oder /usr/share/knxd/examples/bin.
+When these files are symbolic links also the link targets (located e.g. at
+``/usr/local/bin`` or ``/usr/share/knxd/examples/bin``) must be executable
+as well.
 
-Um zusätzliche Komponenten wie z.B. den eingebauten Editor nutzen zu
-können, muss der Webserver die Nutzung von PHP unterstützen.
+To be able to use additional components like the editor the web server must
+support PHP.
 
 lighttpd
 ~~~~~~~~
 
-Für lighttpd wird hier eine Beispielkonfiguration bereit gestellt. Die
-Konfiguration hier ist allerdings nur als Referenz gedacht; die
-tatsächlich notwendigen Konfigurationsoptionen können sich je nach
-Bedürfnis ändern.
+For the lighttpd web server an example configuration is given. (Other web
+servers are also possible, of course). Please make sure that you are
+changing the example parameters to fit your need.
 
-Um unter Debian/Ubuntu lighttpd zu installieren:
+To install lighttpd on a Debian or Ubuntu system:
 
 .. code-block:: bash
 
@@ -136,21 +123,19 @@ Um unter Debian/Ubuntu lighttpd zu installieren:
     alias.url += ( "/cgi-bin/" => "/usr/lib/cgi-bin/" )
     compress.filetype += ("application/javascript", "application/xml", "application/octet-stream")
 
-CometVisu installieren
-----------------------
+Installing CometVisu
+--------------------
 
-CometVisu kann unter https://github.com/CometVisu/CometVisu
-heruntergeladen werden und sollte z.B. im Verzeichnis /var/www/visu/
-entpackt werden. Die veröffentlichten Pakete sind dort unter
-https://github.com/CometVisu/CometVisu/releases zu finden.
+The CometVisu can be downloaded at https://github.com/CometVisu/CometVisu and
+unpacked at the web root, most likely in it's own directory (e.g.
+``/var/www/visu/``).
 
-Die Installation auf dem `Raspberry
-Pi <http://de.wikipedia.org/wiki/Raspberry_Pi>`__ wird unter :doc:`CometVisu auf Raspberry Pi <raspberry>`
-beschrieben.
+The released versions of the CometVisu are located at
+https://github.com/CometVisu/CometVisu/releases.
 
-CometVisu testen
-----------------
+Testing the installed CometVisu
+-------------------------------
 
-http://MyServer/visu/ im Browser öffnen
+Just open http://MyServer/visu/ in the browser.
 
-Viel Spaß!
+Have fun!
