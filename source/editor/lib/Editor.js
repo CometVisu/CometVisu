@@ -899,22 +899,22 @@ var EditorConfigurationElement = function (parent, element) {
                 
         if (schemaElement != undefined) {
           var schemaAttribute = schemaElement.allowedAttributes[key];
-                    
+
           if (typeof schemaAttribute == 'undefined') {
-            throw 'unknown attribute ' + key + ' for element ' + schemaElement.name; 
+            console.warn('unknown attribute ' + key + ' for element ' + schemaElement.name);
+          } else {
+            isOptional = schemaAttribute.isOptional;
+
+            var properties = schemaAttribute.getAppinfo();
+            isExpert = properties.indexOf('level:expert') != -1;
+            delete properties;
+
+            var documentation = schemaAttribute.getDocumentation();
+            if (documentation.length > 0) {
+              attributeDocumentation = documentation[0];
+            }
+            delete documentation;
           }
-                    
-          isOptional = schemaAttribute.isOptional;
-                    
-          var properties = schemaAttribute.getAppinfo();
-          isExpert = properties.indexOf('level:expert') != -1;
-          delete properties;
-                    
-          var documentation = schemaAttribute.getDocumentation();
-          if (documentation.length > 0) {
-            attributeDocumentation = documentation[0];
-          }
-          delete documentation;
         }
                 
         var $attribute = $('<li />').addClass('attribute');
@@ -1682,6 +1682,9 @@ var EditorConfigurationElement = function (parent, element) {
           case 'attribute_missing':
             // mark the attribute invalid
             Attributes.markAttributeInvalid(listenerEvent.params.item);
+            break;
+          case 'attribute_disallowed':
+            alert('Invalid attribute "' + listenerEvent.params.item + '" - trying to continue');
             break;
           default:
             // @TODO: find some generic feedback, and implement!
