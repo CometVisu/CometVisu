@@ -377,6 +377,8 @@ ul#config,
     position: fixed;
     left: 620px;
     top: 63px;
+    max-height: calc(100% - 90px);
+    overflow-y: auto;
 }
 
 #config .element ul.attributes.visible.collapsed {
