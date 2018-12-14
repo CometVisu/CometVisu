@@ -55,11 +55,13 @@
 ul#config {
     width: 590px;
     height: 800px;
+    height: calc(100vh - 92px);
     overflow-x: auto;
     overflow-y: auto;
     border: 1px solid #d3d3d3;
     border-radius: 4px;
     padding: 5px;
+    margin-top: 18px;
 }
 
 ul#config,
@@ -342,7 +344,6 @@ ul#config,
     clear: both;
     font-size: 90%;
     color: #464646;
-    min-height: 22px;
     background-color: #d3d3d3;
     border-style: solid;
     border-color: #464646;
