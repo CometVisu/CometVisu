@@ -1150,15 +1150,15 @@ var EditorConfigurationElement = function (parent, element) {
       if ($('ul.attributes:visible').not($attributes).length > 0) {
         // some other attributes are visible, we need to hide them first
         $('ul.attributes:visible').not($attributes)
-                    .slideToggle('fast', function () {
+                    .fadeToggle('fast', function () {
                       if (typeof $attributes != 'undefined') {
-                        $attributes.slideToggle('fast');
+                        $attributes.fadeToggle(100);
                       }
                     });
       } else {
         // no other attributes are currently visible
         if (typeof $attributes != 'undefined') {
-          $attributes.slideToggle('fast');
+          $attributes.fadeToggle(100);
         }
       }
             
