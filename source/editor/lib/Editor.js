@@ -520,7 +520,7 @@ var EditorConfigurationElement = function (parent, element) {
     toggleSubMenu: function () {
       // hide all other submenus
       $('.submenu:visible').not(UIElements.cache.$submenu).hide();
-      UIElements.cache.$submenu.slideToggle();
+      UIElements.cache.$submenu.fadeToggle(100);
     },
 
     /**
