@@ -53,6 +53,7 @@ VERSION=`${CV} doc --get-version`
 utils/update_version.py
 echo "generating api version $VERSION"
 source temp-python/bin/activate
+./generate.py api -sI --macro=CV_VERSION:$VERSION
 {
   ./generate.py api -sI --macro=CV_VERSION:$VERSION &&
   echo "API successfully generated"
