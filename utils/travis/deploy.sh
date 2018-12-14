@@ -58,7 +58,7 @@ python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); 
 python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);'
 python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); print(flags&os.O_NONBLOCK);'
 {
-  ${DOCKER_RUN} ./generate.py api -sI --macro=CV_VERSION:$VERSION &&
+  ${DOCKER_RUN} ./generate.py api -qsI --macro=CV_VERSION:$VERSION &&
   echo "API successfully generated"
 } || {
   echo "API generation failed"
