@@ -49,7 +49,7 @@
       </styling>
     </stylings>
     <statusbar>
-      <status type="html">&lt;img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="http://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
+      <status type="html">&lt;img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="https://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
           - &lt;a href="manager.php"&gt;Config-Manager&lt;/a&gt;
           - &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt;</status>
       <status type="html" condition="!edit" hrefextend="config">- &lt;a href="editor/"&gt;Edit&lt;/a&gt;</status>
@@ -132,7 +132,7 @@
           <layout colspan="1.3"/>
           <address transform="DPT:16" mode="read" variant="setValue">12/7/95</address>
         </gauge>
-        <switch mapping="Text_Scroll" styling="- not set - (undefined)" on_value="CometVisu Geil" off_value="AUS" bind_click_to_widget="true">
+        <switch mapping="Text_Scroll" on_value="CometVisu Geil" off_value="AUS" bind_click_to_widget="true">
           <layout colspan="2.3"/>
           <address transform="DPT:16" mode="readwrite">12/7/95</address>
         </switch>

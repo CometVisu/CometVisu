@@ -263,13 +263,13 @@
 				<break/>
 						<group name="Wetterlage" align="center">
 							<layout colspan="2.5"/>
-							<image src="http://www.dwd.de/wundk/wetter/de/Suedwest.jpg" refresh="60">
+							<image src="https://www.dwd.de/wundk/wetter/de/Suedwest.jpg" refresh="60">
 								<layout colspan="2.5"/>
 							</image>
 						</group>
 						<group name="Radarbild" align="center">
 							<layout colspan="2.5"/>
-							<image src="http://www.dwd.de/wundk/radar/Webradar_Suedwest.jpg" refresh="60">
+							<image src="https://www.dwd.de/wundk/radar/Webradar_Suedwest.jpg" refresh="60">
 								<layout colspan="2.5"/>
 							</image>
 						</group>
@@ -691,7 +691,7 @@
 				</group>
 		</page>
 		<page name="Wetter" visible="false">
-			<image src="http://www.yr.no/place/Germany/Rhineland-Palatinate/He%C3%9Fheim~6555243/meteogram.png" refresh="60">
+			<image src="https://www.yr.no/place/Germany/Rhineland-Palatinate/He%C3%9Fheim~6555243/meteogram.png" refresh="60">
 				<layout colspan="12"/>
 			</image>
 		</page>	
