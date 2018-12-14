@@ -102,7 +102,7 @@ if [ "$TRAVIS_BRANCH" != "master" ]; then
     echo "checking diff"
     if [ `git diff --shortstat | wc -l` -eq 0 ]; then
        echo "No changes to the output on this push; exiting."
-       exit 0Dito
+       exit 0
     fi
 fi
 
