@@ -662,7 +662,7 @@ var EditorConfigurationElement = function (parent, element) {
         var $dropzone = $('<li />').addClass('dropzone');
         $dropzone.click(UIElements.clickHandler);
 
-        // add dropzones arround my siblings (not arround myself!)
+        // add dropzones around my siblings (not around myself!)
         $siblings.before($dropzone.clone(true));
         $parent.append($dropzone.clone(true));
                 

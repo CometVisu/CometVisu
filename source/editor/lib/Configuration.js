@@ -758,13 +758,21 @@ var ConfigurationElement = function (node, parent) {
    * @param   position    integer the array-index at which to insert the child
    */
   _element.addChildAtPosition = function (child, position) {
-    if (position > _element.children.length) {
-      // if the position is way behind what we have, we simply add it as last item
-      position = _element.children.length;
+    // the position is ignoring comments, so calculate the real position
+    var finalPosition = 0;
+    while (position>=0) {
+      finalPosition++;
+      if (finalPosition === _element.children.length) {
+        // if the position is way behind what we have, we simply add it as last item
+        break;
+      }
+      if ('#comment' !== _element.children[finalPosition].nodeName) {
+        position--;
+      }
     }
         
     // add the child
-    _element.children.splice(position, 0, child);
+    _element.children.splice(finalPosition, 0, child);
         
     // we need to sort it afterwards, maybe the arbitrary position was too arbitrary :)
     sortChildNodes();
