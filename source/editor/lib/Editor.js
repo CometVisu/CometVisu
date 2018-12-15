@@ -1750,7 +1750,12 @@ var EditorConfigurationElement = function (parent, element) {
         
     // create this elements markup, divided into outer shell (container, tree) and inner part (text, buttons, ...)
     _html = $('<li />').addClass('element').addClass("treeType_"+element.name);
-    _html.append($('<span />').addClass('tree').append(UIElements.getButtonOfType('children')));
+    var childrenButton = UIElements.getButtonOfType('children');
+    if( childrenVisible )
+    {
+      childrenButton.addClass('active');
+    }
+    _html.append($('<span />').addClass('tree').append(childrenButton));
         
     // check if we are sortable
     if (true === _element.getSchemaElement().isSortable()) {
@@ -1846,7 +1851,7 @@ var EditorConfigurationElement = function (parent, element) {
       var element;
             
       var nodeUID = node.getUID();
-      if (typeof _childrenCache[nodeUID] != 'undefined') {
+      if (typeof _childrenCache[nodeUID] !== 'undefined') {
         // use the cached element
         element = _childrenCache[nodeUID];
       } else {
