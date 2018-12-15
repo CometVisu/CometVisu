@@ -1853,7 +1853,12 @@ var EditorConfigurationElement = function (parent, element) {
     var newChildrenCache = {};
 
     $.each(_element.getChildren(), function (i, node) {
-            
+
+      if ('#comment' === node.nodeName) {
+        // skip comments
+        return;
+      }
+
       var element;
             
       var nodeUID = node.getUID();

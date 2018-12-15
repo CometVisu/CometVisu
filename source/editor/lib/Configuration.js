@@ -367,8 +367,8 @@ var ConfigurationElement = function (node, parent) {
         }
                 
         if (this.nodeType == 8) {
-          // comment-nodes are being dropped!
-          return;
+          // just keep comments as they are so that they are not forgotten
+          children.push(this);
         }
       }
 
@@ -424,6 +424,11 @@ var ConfigurationElement = function (node, parent) {
 
       // go over all of our children, and set their SchemaElement
       $.each(_element.children, function (i, child) {
+        if( '#comment' === child.nodeName ) {
+          // skip over comments
+          return;
+        }
+
         var childName = child.name;
         // find the SchemaElement for this child
         var childSchemaElement = schemaElement.getSchemaElementForElementName(childName);
@@ -498,7 +503,11 @@ var ConfigurationElement = function (node, parent) {
     var childrenString = '';
     for( var i = 0, len = _element.children.length; i < len; i++ ) {
       var child = _element.children[i];
-      if (child.name == '#text') {
+      if ('#comment' === child.nodeName) {
+        // this is a comment
+        continue;
+      }
+      if (child.name === '#text') {
         // this is a text
         if (false === _schemaElement.isMixed && false === _schemaElement.isTextContentAllowed()) {
           informListeners('invalid', {type: 'text_not_allowed'});
@@ -518,7 +527,7 @@ var ConfigurationElement = function (node, parent) {
       }
     };
         
-    if (false == regExp.test(childrenString)) {
+    if (false === regExp.test(childrenString)) {
       // the children of this element do not match what the regex says is valid
       informListeners('invalid', {type: 'regex_not_matched', regex: regexString, children: childrenString});
       return false;
@@ -1070,7 +1079,11 @@ var ConfigurationElement = function (node, parent) {
         
     // also parse children
     $.each(_element.children, function (i, child) {
-      data.children.push(child.getAsSerializable());
+      if ('#comment' === child.nodeName) {
+        data.children.push({nodeName: '#comment', attributes: {}, nodeValue: child.textContent, children: []});
+      } else {
+        data.children.push(child.getAsSerializable());
+      }
     });
         
     return data;
