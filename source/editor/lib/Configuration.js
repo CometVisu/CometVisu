@@ -411,7 +411,7 @@ var ConfigurationElement = function (node, parent) {
     if (schemaElement.isMixed == false) {
       // clean up #text-nodes, they are not needed in a non-mixed node!
       $.each(_element.children, function (i, child) {
-        if (child.name == '#text') {
+        if (child !== undefined && child.name === '#text') {
           child.remove();
         }
       });
@@ -639,7 +639,9 @@ var ConfigurationElement = function (node, parent) {
     _element.children.push(childNode);
         
     // set the parent of the new child!
-    childNode.setParentNode(_element);
+    if ('#comment' !== childNode.nodeName) {
+      childNode.setParentNode(_element);
+    }
         
     // sort the child-nodes
     sortChildNodes();
@@ -1049,9 +1051,14 @@ var ConfigurationElement = function (node, parent) {
         
     // go over our children
     $.each(_element.children, function (childName, childNode) {
+
+      var duplicateChild = childNode;
+
       // duplicate children
-      var duplicateChild = childNode.getDuplicateForParent(duplicate);
-            
+      if ('#comment' !== childNode.nodeName) {
+        duplicateChild = childNode.getDuplicateForParent(duplicate);
+      }
+
       // and append them to ourselves
       duplicate.appendChildNode(duplicateChild);
     });
