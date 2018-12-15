@@ -608,9 +608,9 @@ qx.Class.define("cv.Application",
       } else {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
           this.debug('unregistering existing service workers');
-          for(let registration of registrations) {
+          registrations.forEach(function (registration) {
             registration.unregister();
-          }
+          });
         }.bind(this));
       }
     }
