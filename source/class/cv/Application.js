@@ -590,7 +590,8 @@ qx.Class.define("cv.Application",
           var configMessage = {
             "command": "configure",
             "message": {
-              forceReload: cv.Config.forceReload
+              forceReload: cv.Config.forceReload,
+              debug: qx.core.Environment.get('qx.debug')
             }
           };
 
@@ -603,6 +604,13 @@ qx.Class.define("cv.Application",
           }
         }.bind(this)).catch(function(err) {
           this.error("Error registering service-worker: ", err);
+        }.bind(this));
+      } else {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          this.debug('unregistering existing service workers');
+          for(let registration of registrations) {
+            registration.unregister();
+          }
         }.bind(this));
       }
     }
