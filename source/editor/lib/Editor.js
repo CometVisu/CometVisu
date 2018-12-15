@@ -1385,6 +1385,12 @@ var EditorConfigurationElement = function (parent, element) {
         return;
       }
 
+      // handle complex user input:
+      // Assume: balanced '<' with '>' are on intention, any excess is bad
+      // user input where a '&lt' was intended instead:
+      inputValue = inputValue.replace( /(<)(?![^<]*?>)/gm, '&lt;'); // replace '<'
+      inputValue = inputValue.replace( /(?<!<[^>]*?)(>)/gm, '&gt;'); // replace '>'
+
       // set the value to the display-element
       $value.html(inputValue);
 
