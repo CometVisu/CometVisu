@@ -36,7 +36,7 @@
  * @param   config  object  Configuration-object
  */
 var Editor = function (config) {
-  if (config == undefined || config == '' || !config.rootNodes) {
+  if (config === undefined || config === '' || !config.rootNodes) {
     throw 'no, empty or invalid Configuration given, can not instantiate without one';
   }
     
@@ -70,7 +70,7 @@ var Editor = function (config) {
    */
   var isExpert = false;
     
-  if ($.cookie('editor_complex') == true || $.cookie('editor_complex') == 'true') {
+  if ($.cookie('editor_complex') == true || $.cookie('editor_complex') === 'true') {
     // read the expert-cookie
     isExpert = true;
   }
@@ -92,10 +92,11 @@ var Editor = function (config) {
         
     if ($button.is('.preview')) {
       // preview configuration
-            
-      if ($('iframe#preview').length > 0) {
+
+      var $iframe_preview = $('iframe#preview');
+      if ($iframe_preview.length > 0) {
         // there already is a preview - so toggle back and return to editing
-        $('iframe#preview').remove();
+        $iframe_preview.remove();
         $('ul#config').show();
         $('.menu .button.preview').removeClass('active');
         return;
@@ -178,11 +179,11 @@ var Editor = function (config) {
     $('ul#config').hide();
         
     // create, and render the preview
-    var $preview = $('<iframe />')
+    var $preview = $('<iframe />');
     $preview.attr({id: 'preview', src: 'index.html?config=' + _previewSuffix});
         
-        
-    var height = $(window).height() - $('#editor .menu').height() - $('#editor .menu').position().top;
+    var $editor_menu = $('#editor .menu');
+    var height = $(window).height() - $editor_menu.height() - $editor_menu.position().top;
         
     $preview.css({width: '100%', height: height + 'px', border: 'none'});
         
@@ -231,7 +232,7 @@ var Editor = function (config) {
                     .attr('title', Messages.editor.ui.expert.tooltip)
                     .click(clickHandler);
     $menu.append($expert);
-    if (isExpert == true) {
+    if (isExpert === true) {
       // add the active-class even at startup, it might be pre-set
       $expert.addClass('active');
     }
@@ -280,7 +281,7 @@ var Editor = function (config) {
   _editor.rememberElement = function (element, options) {
     rememberedElement.element = element;
     rememberedElement.options = options;
-  }
+  };
     
     
   /**
@@ -405,7 +406,7 @@ var EditorConfigurationElement = function (parent, element) {
      * @return  jquery-object       the default top buttons for an element
      */
     getSubMenuHTML: function (settings) {
-      if (UIElements.cache.$submenu != undefined) {
+      if (UIElements.cache.$submenu !== undefined) {
         return UIElements.cache.$submenu;
       }
             
@@ -478,9 +479,9 @@ var EditorConfigurationElement = function (parent, element) {
       $paste.addClass('disabled');
 
       var rememberedOptions = _parent.getRememberedElementOptions();
-      if (undefined != rememberedOptions) {
-        if (rememberedOptions.type == 'copy' || rememberedOptions.type == 'cut') {
-          if (undefined != rememberedOptions && name == rememberedOptions.nodeType) {
+      if (undefined !== rememberedOptions) {
+        if (rememberedOptions.type === 'copy' || rememberedOptions.type === 'cut') {
+          if (undefined !== rememberedOptions && name === rememberedOptions.nodeType) {
             // if the remembered element matches a compatible element, remove the disabled-flag
             if ($paste.is('.paste_allows_' + rememberedOptions.nodeType)) {
               $paste.removeClass('disabled');
@@ -555,7 +556,7 @@ var EditorConfigurationElement = function (parent, element) {
         // then we add that node
         var $selector = AddChild.getAsHTML();
                 
-        if ($selector == undefined) {
+        if ($selector === undefined) {
           alert(Messages.validity.noMoreChildrenAllowed);
           return;
         }
@@ -623,7 +624,7 @@ var EditorConfigurationElement = function (parent, element) {
         var originalEditorElement = _parent.getRememberedElement();
         var options = _parent.getRememberedElementOptions();
                 
-        if (originalEditorElement == undefined || options == undefined) {
+        if (originalEditorElement === undefined || options === undefined) {
           return;
         }
                 
@@ -635,7 +636,7 @@ var EditorConfigurationElement = function (parent, element) {
                 
         _self.redrawHTML();
                 
-        if (options.type == 'cut') {
+        if (options.type === 'cut') {
           // remove the original element if type was cut
           originalEditorElement.remove();
         }
@@ -716,7 +717,7 @@ var EditorConfigurationElement = function (parent, element) {
     cancelCut: function () {
       var oldEditorElement = _parent.getRememberedElement();
 
-      if (oldEditorElement != undefined) {
+      if (oldEditorElement !== undefined) {
         // we had another element remembered
         // remove any 'cut'-markings from it, if there are any
         oldEditorElement.getAsHTML().removeClass('cutout');
@@ -744,14 +745,14 @@ var EditorConfigurationElement = function (parent, element) {
             
       var validElements = _element.getAllowedElements();
             
-      if (validElements == undefined) {
+      if (validElements === undefined) {
         throw 'no list of allowed elements available, programmer: no schemaElement?';
       }
             
       var $select = $('<select />');
       var $defaultOption = $('<option />');
       $defaultOption.attr('value', AddChild.settings.valueDefault);
-      $defaultOption.html(AddChild.settings.textDefault)
+      $defaultOption.html(AddChild.settings.textDefault);
       $select.append($defaultOption);
       delete $defaultOption;
             
@@ -767,7 +768,7 @@ var EditorConfigurationElement = function (parent, element) {
         }
       });
             
-      if ($select.children().length == 1) {
+      if ($select.children().length === 1) {
         // there is nothing we could add ...
         // user-feedback. there is nothing we could add ... (MS2)
         return undefined;
@@ -777,8 +778,8 @@ var EditorConfigurationElement = function (parent, element) {
       var $options = $select.find('option');
             
       $options.sort(function (a, b) {
-        if (a.text > b.text) return 1;
-        if (a.text < b.text) return -1;
+        if (a.text > b.text) { return 1;  }
+        if (a.text < b.text) { return -1; }
         return 0;
       });
             
@@ -818,7 +819,7 @@ var EditorConfigurationElement = function (parent, element) {
       // get the name for the new element
       var name = $select.val();
             
-      if (name == AddChild.settings.valueDefault) {
+      if (name === AddChild.settings.valueDefault) {
         // nothing added, nothing to be done
         return;
       }
@@ -887,7 +888,7 @@ var EditorConfigurationElement = function (parent, element) {
       var allAttributes = $.extend({}, _element.attributes);
 
       var schemaElement = _element.getSchemaElement();
-      if (schemaElement != undefined) {
+      if (schemaElement !== undefined) {
         allAttributes = $.extend({}, schemaElement.allowedAttributes, _element.attributes);
       }
 
@@ -897,16 +898,16 @@ var EditorConfigurationElement = function (parent, element) {
         var isExpert = false;
         var attributeDocumentation = '';
                 
-        if (schemaElement != undefined) {
+        if (schemaElement !== undefined) {
           var schemaAttribute = schemaElement.allowedAttributes[key];
 
-          if (typeof schemaAttribute == 'undefined') {
+          if (typeof schemaAttribute === 'undefined') {
             console.warn('unknown attribute ' + key + ' for element ' + schemaElement.name);
           } else {
             isOptional = schemaAttribute.isOptional;
 
             var properties = schemaAttribute.getAppinfo();
-            isExpert = properties.indexOf('level:expert') != -1;
+            isExpert = properties.indexOf('level:expert') !== -1;
             delete properties;
 
             var documentation = schemaAttribute.getDocumentation();
@@ -922,7 +923,7 @@ var EditorConfigurationElement = function (parent, element) {
                 
         if (true === isExpert) {
           $attribute.addClass('expert');
-          if (_parent.areExpertAttributesVisible() == false) {
+          if (_parent.areExpertAttributesVisible() === false) {
             $attribute.hide();
           }
         }
@@ -940,7 +941,7 @@ var EditorConfigurationElement = function (parent, element) {
 
         // value of the attribute
         var $value;
-        if (typeof value == 'string' && value.trim() != '') {
+        if (typeof value === 'string' && value.trim() !== '') {
           $value = $('<span />').addClass('value').html(value);
         } else {
           // not set
@@ -951,11 +952,11 @@ var EditorConfigurationElement = function (parent, element) {
         $attribute.append($value);
                 
         // if we have documentation for this attribute, append it
-        if (attributeDocumentation != '') {
+        if (attributeDocumentation !== '') {
           var $attributeDocumentation = $('<span />');
           $attributeDocumentation.addClass('documentation');
           $attributeDocumentation.html(attributeDocumentation);
-          $attribute.append($attributeDocumentation)
+          $attribute.append($attributeDocumentation);
           delete $attributeDocumentation;
         }
                 
@@ -1002,10 +1003,10 @@ var EditorConfigurationElement = function (parent, element) {
       // @TODO: type hinting or some kind of input-help? (no MS yet)
             
       // get the dataProvider for this element
-      if (elementEnumeration == undefined || elementEnumeration.length == 0) {
+      if (elementEnumeration === undefined || elementEnumeration.length == 0) {
         // only do this, if the XSD did not give us an enumeration!
         var dataProvider = DataProviderManager.getProvider(_element.name, attributeName);
-        if (undefined != dataProvider) {
+        if (undefined !== dataProvider) {
           elementEnumeration = dataProvider.getEnumeration(_element);
           isUserInputAllowed = dataProvider.isUserInputAllowed();
         }
@@ -1035,12 +1036,12 @@ var EditorConfigurationElement = function (parent, element) {
      * @var event   jQuery-event
      */
     keypressHandler: function (event) {
-      if (event.which == KEYCODE_ENTER) {
+      if (event.which === KEYCODE_ENTER) {
         // enter pressed. save.
         $(this).triggerHandler('blur');
       }
 
-      if (event.keyCode == KEYCODE_ESCAPE) {
+      if (event.keyCode === KEYCODE_ESCAPE) {
         // escape-key was pressed. cancel.
         $(this).triggerHandler('cancel');
       }
@@ -1111,7 +1112,7 @@ var EditorConfigurationElement = function (parent, element) {
       }
             
       // if no value is set, it has to be displayed differently
-      if ($.trim(inputValue) == '') {
+      if ($.trim(inputValue) === '') {
         $attributeValue.addClass('notset');
       } else {
         $attributeValue.removeClass('notset');
@@ -1129,10 +1130,10 @@ var EditorConfigurationElement = function (parent, element) {
       var $attributes = Attributes.$attributes;
 
 
-      if (typeof $attributes == 'undefined') {
+      if (typeof $attributes === 'undefined') {
         // inject the actual HTML
         $attributes = Attributes.getAsHTML();
-        if (typeof $attributes != 'undefined') {
+        if (typeof $attributes !== 'undefined') {
           Attributes.$htmlPlaceholder.replaceWith($attributes);
         }
         Attributes.$htmlPlaceholder = undefined;
@@ -1145,24 +1146,23 @@ var EditorConfigurationElement = function (parent, element) {
     toggleDisplay: function () {
       Attributes.renderHTML();
       var $attributes = Attributes.$attributes;
+      var $ul_attributes_visible = $('ul.attributes:visible');
             
       // first hide
-      if ($('ul.attributes:visible').not($attributes).length > 0) {
+      if ($ul_attributes_visible.not($attributes).length > 0) {
         // some other attributes are visible, we need to hide them first
-        $('ul.attributes:visible').not($attributes)
+        $ul_attributes_visible.not($attributes)
                     .fadeToggle('fast', function () {
-                      if (typeof $attributes != 'undefined') {
+                      if (typeof $attributes !== 'undefined') {
                         $attributes.fadeToggle(100);
                       }
                     });
       } else {
         // no other attributes are currently visible
-        if (typeof $attributes != 'undefined') {
+        if (typeof $attributes !== 'undefined') {
           $attributes.fadeToggle(100);
         }
       }
-            
-      return;
     },
         
     /**
@@ -1216,7 +1216,7 @@ var EditorConfigurationElement = function (parent, element) {
             
       // go over all parents, and check if the still need to have the 'invalid attributes'-class
       $attributes.parents('li.element').each(function () {
-        if (0 == $(this).find('li.attribute.invalid').length) {
+        if (0 === $(this).find('li.attribute.invalid').length) {
           $(this).removeClass('invalidChildAttribute').removeClass('invalidAttribute');
         }
       });
@@ -1232,14 +1232,14 @@ var EditorConfigurationElement = function (parent, element) {
      */
     updateHintedAttributes: function (changedAttributeName, changedAttributeValue) {
       var dataProvider = DataProviderManager.getProvider(_element.name, changedAttributeName);
-      if (undefined == dataProvider) {
+      if (undefined === dataProvider) {
         // no dataProvider = nothing to hint
         return;
       }
             
       var hints = dataProvider.getHintsForValue(changedAttributeValue);
             
-      if (undefined == hints) {
+      if (undefined === hints) {
         // no hints = no hints :)
         return;
       }
@@ -1265,7 +1265,7 @@ var EditorConfigurationElement = function (parent, element) {
 
       var $textContent = $('<span />').addClass('content');
       var $value = $('<span />').addClass('value').html(text);
-      if ($.trim(text) == '') {
+      if ($.trim(text) === '') {
         $value.addClass('notset');
       }
       $value.attr('title', Messages.editor.ui.clickToEdit.tooltip);
@@ -1302,10 +1302,10 @@ var EditorConfigurationElement = function (parent, element) {
       }
 
       // get the dataProvider for this element
-      if (elementEnumeration == undefined || elementEnumeration.length == 0) {
+      if (elementEnumeration === undefined || elementEnumeration.length === 0) {
         // only do this, if the XSD did not give us an enumeration!
         var dataProvider = DataProviderManager.getProvider(_element.name, '_nodeValue');
-        if (undefined != dataProvider) {
+        if (undefined !== dataProvider) {
           elementEnumeration = dataProvider.getEnumeration();
           isUserInputAllowed = dataProvider.isUserInputAllowed();
         }
@@ -1335,12 +1335,12 @@ var EditorConfigurationElement = function (parent, element) {
      * @var event   jQuery-event
      */
     keypressHandler: function (event) {
-      if (event.which == KEYCODE_ENTER) {
+      if (event.which === KEYCODE_ENTER) {
         // enter pressed. save.
         $(this).triggerHandler('blur');
       }
 
-      if (event.keyCode == KEYCODE_ESCAPE) {
+      if (event.keyCode === KEYCODE_ESCAPE) {
         // escape-key was pressed. cancel.
         $(this).triggerHandler('cancel');
       }
@@ -1389,7 +1389,7 @@ var EditorConfigurationElement = function (parent, element) {
       $value.html(inputValue);
 
       // if no value is set, it has to be displayed differently
-      if ($.trim(inputValue) == '') {
+      if ($.trim(inputValue) === '') {
         $value.addClass('notset');
       } else {
         $value.removeClass('notset');
@@ -1411,14 +1411,14 @@ var EditorConfigurationElement = function (parent, element) {
       var changedElementName = _element.name;
             
       var dataProvider = DataProviderManager.getProvider(changedElementName, '_nodeValue');
-      if (undefined == dataProvider) {
+      if (undefined === dataProvider) {
         // no dataProvider = nothing to hint
         return;
       }
             
       var hints = dataProvider.getHintsForValue(changedElementValue);
             
-      if (undefined == hints) {
+      if (undefined === hints) {
         // no hints = no hints :)
         return;
       }
@@ -1443,7 +1443,7 @@ var EditorConfigurationElement = function (parent, element) {
   var getInputForValueAndEnumeration = function (value, enumeration, userinput, isOptional) {
     // build the input-element to be displayed.
     var $input;
-    if (typeof enumeration == 'undefined' || enumeration == undefined || enumeration.length == 0) {
+    if (typeof enumeration === 'undefined' || enumeration === undefined || enumeration.length === 0) {
       // there is no enumeration for this element
       // simply present an input-field and pre-set its value.
 
@@ -1500,12 +1500,12 @@ var EditorConfigurationElement = function (parent, element) {
       var enumLabel;
       var enumValue;
 
-      if (typeof enumEntry == 'string') {
+      if (typeof enumEntry === 'string') {
         enumLabel = enumValue = enumEntry;
       } else {
         // dataproviders will give us an object of data instead of a string, use that
         // this was provided by a dataProvider
-        if (typeof enumEntry.group != 'undefined') {
+        if (typeof enumEntry.group !== 'undefined') {
           // we have a group
           // groups will need to be broken down, and do create optgroups
           $.each(enumEntry.group, function (i, groupsEntry) {
@@ -1530,7 +1530,7 @@ var EditorConfigurationElement = function (parent, element) {
                     
           if (enumValue != enumLabel && !enumEntry.forceOnlyLabel) {
             // if label and value differ, we append the value to the label
-            enumLabel += ' (' + enumEntry.value + ')'
+            enumLabel += ' (' + enumEntry.value + ')';
           }
         }
                 
@@ -1617,7 +1617,7 @@ var EditorConfigurationElement = function (parent, element) {
    */
   _self.areExpertAttributesVisible = function () {
     return _parent.areExpertAttributesVisible();
-  }
+  };
     
     
   /**
@@ -1692,10 +1692,10 @@ var EditorConfigurationElement = function (parent, element) {
         }
         break;
       case 'attributeChangedValue':
-        if (listenerEvent.params.item == 'name') {
+        if (listenerEvent.params.item === 'name') {
           // we need info when the name-attribute changed its value
           var $nameValue = _html.find('.name').first().find('.nameValue');
-          if (listenerEvent.params.newValue.trim() != '') {
+          if (listenerEvent.params.newValue.trim() !== '') {
             $nameValue.addClass('set');
           } else {
             $nameValue.removeClass('set');
@@ -1735,15 +1735,15 @@ var EditorConfigurationElement = function (parent, element) {
    * @return  jquery-object           the HTML to display for this node and its children
    */
   _self.getAsHTML = function (allowCache, childrenVisible) {
-    if (typeof allowCache == 'undefined' || allowCache == undefined) {
+    if (typeof allowCache === 'undefined' || allowCache === undefined) {
       allowCache = true;
     }
         
-    if (typeof childrenVisible == 'undefined' || childrenVisible == undefined) {
+    if (typeof childrenVisible === 'undefined' || childrenVisible === undefined) {
       childrenVisible = false;
     }
         
-    if (true === allowCache && _html != undefined) {
+    if (true === allowCache && _html !== undefined) {
       // caching is allowed, so use it!
       return _html;
     }
@@ -1774,16 +1774,16 @@ var EditorConfigurationElement = function (parent, element) {
     });
     delete properties;
 
-    if (descriptor == '#text') {
+    if (descriptor === '#text') {
       // we need to get the text-content as descriptor. do not abuse this, or you might get punched
       // in the face by adding markup to the editor at places you did not expect
-      if (_element.value != undefined && _element.value.trim() != '') {
+      if (_element.value !== undefined && _element.value.trim() !== '') {
         $nameValue.text(_element.value);
         $nameValue.addClass('set');
       }
     } else {
       // its an attribute
-      if (typeof _element.attributes[descriptor] != 'undefined' && _element.attributes[descriptor].trim() != '') {
+      if (typeof _element.attributes[descriptor] != 'undefined' && _element.attributes[descriptor].trim() !== '') {
         $nameValue.text(_element.attributes[descriptor]);
         $nameValue.addClass('set');
       }
@@ -1829,7 +1829,7 @@ var EditorConfigurationElement = function (parent, element) {
       $innerHTML.append(TextContent.getAsHTML());
     }
         
-    if ($attributes != undefined && $attributes.length > 0) {
+    if ($attributes !== undefined && $attributes.length > 0) {
       // only append attributes if we have some
       $innerHTML.append($attributes);
     }
@@ -1889,4 +1889,4 @@ var EditorConfigurationElement = function (parent, element) {
    * attach ourselves as an event-listener to our ConfigurationElement
    */
   _element.attachListener(_self);
-}
+};
