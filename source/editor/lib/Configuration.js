@@ -759,18 +759,14 @@ var ConfigurationElement = function (node, parent) {
    */
   _element.addChildAtPosition = function (child, position) {
     // the position is ignoring comments, so calculate the real position
-    var finalPosition = 0;
-    while (position>=0) {
-      finalPosition++;
-      if (finalPosition === _element.children.length) {
-        // if the position is way behind what we have, we simply add it as last item
-        break;
-      }
-      if ('#comment' !== _element.children[finalPosition].nodeName) {
-        position--;
+    var finalPosition = position;
+    for (var i = 0; i < finalPosition && finalPosition <= _element.children.length; i++ )
+    {
+      if ('#comment' === _element.children[i].nodeName) {
+        finalPosition++;
       }
     }
-        
+
     // add the child
     _element.children.splice(finalPosition, 0, child);
         
