@@ -37,9 +37,12 @@
  * @since       2012-10-17
  */
 
-define('FILE_GA', "/etc/wiregate/eibga.conf");
-define('FILE_HG', "/etc/wiregate/eibga_hg.conf");
-define('FILE_MG', "/etc/wiregate/eibga_mg.conf");
+define('FILE_GA0', "../../resource/config/media/eibga.conf");
+define('FILE_GA1', "/etc/wiregate/eibga.conf");
+define('FILE_HG0', "../../resource/config/media/eibga_hg.conf");
+define('FILE_HG1', "/etc/wiregate/eibga_hg.conf");
+define('FILE_MG0', "../../resource/config/media/eibga_mg.conf");
+define('FILE_MG1', "/etc/wiregate/eibga_mg.conf");
 
 require_once("parse_ini.inc.php");
 
@@ -48,17 +51,26 @@ $arrGA = array();
 $arrHG = array();
 $arrMG = array();
 
-if (true === file_exists(FILE_GA) && filesize(FILE_GA) > 0) {
+if (true === file_exists(FILE_GA0) && filesize(FILE_GA0) > 0) {
     // read list of known group addresses
-    $arrGA = parse_ini(FILE_GA);
+    $arrGA = parse_ini(FILE_GA0);
+} elseif (true === file_exists(FILE_GA1) && filesize(FILE_GA1) > 0) {
+  // read list of known group addresses
+  $arrGA = parse_ini(FILE_GA1);
 }
-if (true === file_exists(FILE_HG) && filesize(FILE_HG) > 0) {
+if (true === file_exists(FILE_HG0) && filesize(FILE_HG0) > 0) {
     // read list of known main groups
-    $arrHG = parse_ini(FILE_HG);
+    $arrHG = parse_ini(FILE_HG0);
+} elseif (true === file_exists(FILE_HG1) && filesize(FILE_HG1) > 0) {
+  // read list of known main groups
+  $arrHG = parse_ini(FILE_HG1);
 }
-if (true === file_exists(FILE_MG) && filesize(FILE_MG) > 0) {
+if (true === file_exists(FILE_MG0) && filesize(FILE_MG0) > 0) {
     // read list of known middle groups
-    $arrMG = parse_ini(FILE_MG);
+    $arrMG = parse_ini(FILE_MG0);
+} elseif (true === file_exists(FILE_MG1) && filesize(FILE_MG1) > 0) {
+  // read list of known middle groups
+  $arrMG = parse_ini(FILE_MG1);
 }
 
 

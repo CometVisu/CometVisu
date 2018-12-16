@@ -367,8 +367,8 @@ var ConfigurationElement = function (node, parent) {
         }
                 
         if (this.nodeType == 8) {
-          // comment-nodes are being dropped!
-          return;
+          // just keep comments as they are so that they are not forgotten
+          children.push(this);
         }
       }
 
@@ -411,7 +411,7 @@ var ConfigurationElement = function (node, parent) {
     if (schemaElement.isMixed == false) {
       // clean up #text-nodes, they are not needed in a non-mixed node!
       $.each(_element.children, function (i, child) {
-        if (child.name == '#text') {
+        if (child !== undefined && child.name === '#text') {
           child.remove();
         }
       });
@@ -424,6 +424,11 @@ var ConfigurationElement = function (node, parent) {
 
       // go over all of our children, and set their SchemaElement
       $.each(_element.children, function (i, child) {
+        if( '#comment' === child.nodeName ) {
+          // skip over comments
+          return;
+        }
+
         var childName = child.name;
         // find the SchemaElement for this child
         var childSchemaElement = schemaElement.getSchemaElementForElementName(childName);
@@ -498,7 +503,11 @@ var ConfigurationElement = function (node, parent) {
     var childrenString = '';
     for( var i = 0, len = _element.children.length; i < len; i++ ) {
       var child = _element.children[i];
-      if (child.name == '#text') {
+      if ('#comment' === child.nodeName) {
+        // this is a comment
+        continue;
+      }
+      if (child.name === '#text') {
         // this is a text
         if (false === _schemaElement.isMixed && false === _schemaElement.isTextContentAllowed()) {
           informListeners('invalid', {type: 'text_not_allowed'});
@@ -518,7 +527,7 @@ var ConfigurationElement = function (node, parent) {
       }
     };
         
-    if (false == regExp.test(childrenString)) {
+    if (false === regExp.test(childrenString)) {
       // the children of this element do not match what the regex says is valid
       informListeners('invalid', {type: 'regex_not_matched', regex: regexString, children: childrenString});
       return false;
@@ -630,7 +639,9 @@ var ConfigurationElement = function (node, parent) {
     _element.children.push(childNode);
         
     // set the parent of the new child!
-    childNode.setParentNode(_element);
+    if ('#comment' !== childNode.nodeName) {
+      childNode.setParentNode(_element);
+    }
         
     // sort the child-nodes
     sortChildNodes();
@@ -747,13 +758,17 @@ var ConfigurationElement = function (node, parent) {
    * @param   position    integer the array-index at which to insert the child
    */
   _element.addChildAtPosition = function (child, position) {
-    if (position > _element.children.length) {
-      // if the position is way behind what we have, we simply add it as last item
-      position = _element.children.length;
+    // the position is ignoring comments, so calculate the real position
+    var finalPosition = position;
+    for (var i = 0; i < finalPosition && finalPosition <= _element.children.length; i++ )
+    {
+      if ('#comment' === _element.children[i].nodeName) {
+        finalPosition++;
+      }
     }
-        
+
     // add the child
-    _element.children.splice(position, 0, child);
+    _element.children.splice(finalPosition, 0, child);
         
     // we need to sort it afterwards, maybe the arbitrary position was too arbitrary :)
     sortChildNodes();
@@ -1040,9 +1055,14 @@ var ConfigurationElement = function (node, parent) {
         
     // go over our children
     $.each(_element.children, function (childName, childNode) {
+
+      var duplicateChild = childNode;
+
       // duplicate children
-      var duplicateChild = childNode.getDuplicateForParent(duplicate);
-            
+      if ('#comment' !== childNode.nodeName) {
+        duplicateChild = childNode.getDuplicateForParent(duplicate);
+      }
+
       // and append them to ourselves
       duplicate.appendChildNode(duplicateChild);
     });
@@ -1070,7 +1090,11 @@ var ConfigurationElement = function (node, parent) {
         
     // also parse children
     $.each(_element.children, function (i, child) {
-      data.children.push(child.getAsSerializable());
+      if ('#comment' === child.nodeName) {
+        data.children.push({nodeName: '#comment', attributes: {}, nodeValue: child.textContent, children: []});
+      } else {
+        data.children.push(child.getAsSerializable());
+      }
     });
         
     return data;
