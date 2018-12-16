@@ -118,7 +118,7 @@
     </stylings>
     <statusbar>
       <status type="html"><![CDATA[
-          <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
           - <a href="manager.php">Config-Manager</a>
           - <a href=".?config=demo&forceReload=true">Reload</a>
           - <a href=".">Default Config</a>
@@ -325,7 +325,7 @@
       <label>Image</label>
     </image>
     <page name="Image: Erweitert..." align="center">
-      <image src="http://www.reliablecounter.com/count.php?page=cometvisu.org&amp;digit=style/plain/1/&amp;reloads=0" refresh="10">
+      <image src="https://www.reliablecounter.com/count.php?page=cometvisu.org&amp;digit=style/plain/1/&amp;reloads=0" refresh="10">
         <label>Image: Update alle 10s</label>
       </image>
       <image src="icon/comet_128_ff8000.png" width="500px" height="46px">
@@ -350,7 +350,7 @@
       <layout colspan="12"/>
     </line>
     <page name="web Test" align="center">
-      <web src="http://www.cometvisu.org/" width="500px" height="500px"/>
+      <web src="https://www.cometvisu.org/" width="500px" height="500px"/>
     </page>
     <page name="Flavour Test" align="center">
       <text>

@@ -121,7 +121,7 @@
       <plugin name="rsslog"/>
     </plugins>
     <statusbar>
-      <status type="html">&lt;img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="http://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt; 
+      <status type="html">&lt;img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="https://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt; 
 &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt; - &lt;a href="?config=demo"&gt;Widget 
 Demo&lt;/a&gt;</status>
       <status type="html" hrefextend="config">- &lt;a href="check_config.php"&gt;Check 
@@ -782,11 +782,11 @@ Config&lt;/a&gt;</status>
         <layout colspan="6"/>
         <group nowidget="true" flavour="lithium">
           <layout colspan="12"/>
-          <urltrigger url="http://ip_dreambox/web/powerstate?newstate=4" value="1" mapping="- not set - (undefined)" styling="- not set - (undefined)">
+          <urltrigger url="http://ip_dreambox/web/powerstate?newstate=4" value="1">
             <label>On/Off</label>
           </urltrigger>
-          <urltrigger url="http://ip_dreambox/web/powerstate?newstate=5" value="0" mapping="- not set - (undefined)" styling="- not set - (undefined)"/>
-          <urltrigger value="+" mapping="- not set - (undefined)" url="http://ip_dreambox/web/vol?set=up">
+          <urltrigger url="http://ip_dreambox/web/powerstate?newstate=5" value="0"/>
+          <urltrigger value="+" url="http://ip_dreambox/web/vol?set=up">
             <label>Lautstärke</label>
           </urltrigger>
           <urltrigger value="-" url="http://ip_dreambox/web/vol?set=down"/>
@@ -822,10 +822,10 @@ Config&lt;/a&gt;</status>
       </group>
     </page>
     <group name="Wetter Wetzikon">
-      <image src="http://www.yr.no/place/Switzerland/Z%C3%BCrich/Wetzikon_%28ZH%29/meteogram.png" refresh="30" height="250px"/>
+      <image src="https://www.yr.no/place/Switzerland/Z%C3%BCrich/Wetzikon_%28ZH%29/meteogram.png" refresh="30" height="250px"/>
     </group>
     <group name="Wetter Stäfa">
-      <image src="http://www.yr.no/place/Switzerland/Z%C3%BCrich/St%C3%A4fa~2658518/meteogram.png&#10;" refresh="30" height="250px"/>
+      <image src="https://www.yr.no/place/Switzerland/Z%C3%BCrich/St%C3%A4fa~2658518/meteogram.png&#10;" refresh="30" height="250px"/>
     </group>
     <page name="Alarmanlage" visible="false" shownavbar-left="false" ga="12/3/0">
       <group name="Letzte Türzustände">

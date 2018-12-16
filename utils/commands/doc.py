@@ -157,7 +157,7 @@ class DocGenerator(Command):
                 self._source_version = data['version']
         return self._source_version
 
-    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source"):
+    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source", target_version=None):
 
         sphinx_build = sh.Command("sphinx-build")
 
@@ -170,7 +170,7 @@ class DocGenerator(Command):
             target_dir = os.path.join(self.root_dir, self.config.get(section, "target"))
         else:
             target_dir = os.path.join(self.root_dir, target_dir)
-        target_dir = target_dir.replace("<version>", self._get_doc_version())
+        target_dir = target_dir.replace("<version>", self._get_doc_version() if target_version is None else target_version)
         print("generating doc to %s" % target_dir)
 
         if not os.path.exists(source_dir):
@@ -520,6 +520,7 @@ class DocGenerator(Command):
         parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/current docs and weite version files")
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
+        parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
 
         options = parser.parse_args(args)
 
@@ -562,7 +563,8 @@ class DocGenerator(Command):
 
         elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force,
-                      skip_screenshots=not options.complete, screenshot_build=options.screenshot_build)
+                      skip_screenshots=not options.complete, screenshot_build=options.screenshot_build,
+                      target_version=options.target_version)
             sys.exit(0)
 
         elif options.doc == "source":
