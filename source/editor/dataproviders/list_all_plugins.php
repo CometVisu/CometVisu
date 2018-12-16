@@ -34,6 +34,9 @@ define('DESIGNS_PATTERN', '*');
 foreach (glob(DESIGNS_DIRECTORY . DESIGNS_PATTERN) as $strFilename) {
     $strFileBasename = explode(".", basename($strFilename))[0];
 
+    if( '__init__' == $strFileBasename )
+      continue;
+
     $arrData[] = array(
                                         'value' => utf8_encode($strFileBasename),
                                         'label' => utf8_encode($strFileBasename),
