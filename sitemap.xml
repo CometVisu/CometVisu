@@ -1806,6 +1806,61 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/index.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/editor/editor.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/editor/text/index.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/resource/qx/static/blank.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/resource/icon/iconlist.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/resource/designs/design_preview.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/resource/plugins/gauge/dep/demoExtras.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/resource/plugins/colorchooser/farbtastic/README.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/resource/plugins/colorchooser/farbtastic/CHANGELOG.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/resource/plugins/colorchooser/farbtastic/demo1.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/demo/resource/plugins/colorchooser/farbtastic/demo2.html</loc>
+    <lastmod>2018-12-17</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/de/0.10.2/manual/genindex.html</loc>
     <lastmod>2018-12-17</lastmod>
     <priority>0.5</priority>
