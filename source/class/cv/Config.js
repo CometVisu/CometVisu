@@ -175,6 +175,11 @@ qx.Class.define('cv.Config', {
     configServer: null,
 
     /**
+     * In testMode the visu can be filled with some demo data
+     */
+    initialDemoData: null,
+
+    /**
      * Get the structure that is related to this design
      * @param design {String?} name of the design
      * @return {String} name of the structure
@@ -261,8 +266,17 @@ qx.Class.define('cv.Config', {
       cv.Config.startpage = req.queryKey.startpage;
     }
 
-    if (qx.core.Environment.get('cv.testMode') === "true") {
+    if (qx.core.Environment.get('cv.testMode') !== false) {
       cv.Config.testMode = true;
+      if (qx.core.Environment.get('cv.testMode') !== "true") {
+        // load the demo data to fill the visu with some values
+        var r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
+        r.addListener('success', function (e) {
+          var data = e.getTarget().getResponse();
+          cv.Config.initialDemoData = data;
+        });
+        r.send();
+      }
     } else if (req.queryKey.testMode) {
       cv.Config.testMode = req.queryKey.testMode === "true";
     }
