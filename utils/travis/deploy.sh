@@ -92,7 +92,7 @@ ${CV} sitemap
 
 echo "generating test mode build"
 source temp-python/bin/activate
-./generate.py source --macro=CV_TESTMODE:true
+./generate.py build --macro=CV_TESTMODE:true
 mkdir -p build out/de/$VERSION
 mv build out/de/$VERSION/demo
 deactivate
