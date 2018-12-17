@@ -261,7 +261,9 @@ qx.Class.define('cv.Config', {
       cv.Config.startpage = req.queryKey.startpage;
     }
 
-    if (req.queryKey.testMode) {
+    if (qx.core.Environment.get('cv.testMode') === "true") {
+      cv.Config.testMode = true;
+    } else if (req.queryKey.testMode) {
       cv.Config.testMode = req.queryKey.testMode === "true";
     }
 

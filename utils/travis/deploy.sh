@@ -90,6 +90,13 @@ ${CV} doc --generate-features
 echo "generating sitemap.xml for documentation"
 ${CV} sitemap
 
+echo "generating test mode build"
+source temp-python/bin/activate
+./generate.py source --macro=CV_TESTMODE:true
+mkdirs -p build out/de/$VERSION
+mv build out/de/$VERSION/demo
+deactivate
+
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
 cd out
