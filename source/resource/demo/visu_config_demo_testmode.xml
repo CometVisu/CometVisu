@@ -75,18 +75,19 @@
 ]]></status>
     </statusbar>
   </meta>
-  <page name="Übersicht" flavour="transparent-background" showtopnavigation="false" shownavbar-left="false" shownavbar-right="true" type="2d" backdrop="demo/media/demo_flat_floorplan.png" align="center" size="contained" backdropalign="25% 0">
+  <page name="Übersicht" flavour="transparent-background" showtopnavigation="false" type="2d" backdrop="demo/media/demo_flat_floorplan.png" align="center" size="contained" backdropalign="25% 0">
     <navbar position="top">
       <pagejump target="Übersicht">
         <layout colspan="0"/>
         <label><icon name="control_home"/>Übersicht</label>
       </pagejump>
-      <line>
+      <text class="vertical">
         <layout colspan="0"/>
-      </line>
-      <pagejump path="Übersicht/KNX" target="Wohnzimmer" active_scope="path">
+        <label>EG</label>
+      </text>
+      <pagejump path="Übersicht/Erdgeschoss" target="Wohnzimmer" active_scope="path">
         <layout colspan="0"/>
-        <label><icon name="control_all_on_off"/>KNX</label>
+        <label><icon name="it_television"/>Wohnen</label>
         <widgetinfo>
           <info format="%d">
           <layout colspan="0" />
@@ -94,24 +95,67 @@
           </info>
         </widgetinfo>
       </pagejump>
-      <pagejump target="Video">
+      <pagejump path="Übersicht/Schlafzimmer" target="Schlafzimmer" active_scope="path">
         <layout colspan="0"/>
-        <label><icon name="it_television"/>Video</label>
+        <label><icon name="scene_sleeping"/>Schlafen</label>
+        <widgetinfo>
+          <info format="%d">
+            <layout colspan="0" />
+            <address transform="DPT:9.001" variant="">13/1/28</address>
+          </info>
+        </widgetinfo>
       </pagejump>
+      <pagejump path="Übersicht/Bad" target="Bad" active_scope="path">
+        <layout colspan="0"/>
+        <label><icon name="temp_temperature"/>Bad</label>
+        <widgetinfo>
+          <info format="%d">
+            <layout colspan="0" />
+            <address transform="DPT:9.001" variant="">13/1/28</address>
+          </info>
+        </widgetinfo>
+      </pagejump>
+      <text class="vertical">
+        <layout colspan="0"/>
+        <label>1. Stock</label>
+      </text>
+      <pagejump path="Übersicht/OG" target="Büro" active_scope="path">
+        <layout colspan="0"/>
+        <label><icon name="it_television"/>Büro</label>
+        <widgetinfo>
+          <info format="%d">
+            <layout colspan="0" />
+            <address transform="DPT:9.001" variant="">13/1/28</address>
+          </info>
+        </widgetinfo>
+      </pagejump>
+      <pagejump path="Übersicht/OG" target="Kinderzimmer" active_scope="path">
+        <layout colspan="0"/>
+        <label><icon name="scene_sleeping"/>Kinder</label>
+        <widgetinfo>
+          <info format="%d">
+            <layout colspan="0" />
+            <address transform="DPT:9.001" variant="">13/1/28</address>
+          </info>
+        </widgetinfo>
+      </pagejump>
+      <pagejump path="Übersicht/Flur" target="Flur" active_scope="path">
+        <layout colspan="0"/>
+        <label><icon name="temp_temperature"/>Flur</label>
+        <widgetinfo>
+          <info format="%d">
+            <layout colspan="0" />
+            <address transform="DPT:9.001" variant="">13/1/28</address>
+          </info>
+        </widgetinfo>
+      </pagejump>
+      <text class="vertical">
+        <layout colspan="0"/>
+        <label>Sonstiges</label>
+      </text>
       <pagejump target="Audio">
         <layout colspan="0"/>
         <label><icon name="audio_audio"/>Audio</label>
-      </pagejump>
-      <pagejump target="Web">
-        <layout colspan="0"/>
-        <label><icon name="it_internet"/>Web</label>
-      </pagejump>
-      <line>
-        <layout colspan="0"/>
-      </line>
-      <pagejump target="Flavour">
-        <layout colspan="0"/>
-        <label><icon name="weather_sun"/>Flavour</label>
       </pagejump>
       <refresh value="Refresh">
         <layout colspan="0"/>
@@ -192,86 +236,8 @@
       <layout x="480px" y="750px"/>
       <address transform="DPT:1.001">12/7/50</address>
     </switch>
-    <page name="Flavour" visible="false">
-      <layout colspan="12"/>
-      <group name="Group with flavoured items">
-        <slide min="0" max="100" format="%d%%">
-          <label>Default Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-        <slide min="0" max="100" format="%d%%" flavour="sodium">
-          <label>Sodium Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-        <slide min="0" max="100" format="%d%%" flavour="potassium">
-          <label>Potassium Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-        <slide min="0" max="100" format="%d%%" flavour="lithium">
-          <label>Lithium Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-        <slide min="0" max="100" format="%d%%" flavour="boron">
-          <label>Boron Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-        <slide min="0" max="100" format="%d%%" flavour="antimony">
-          <label>Antimony Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-        <slide min="0" max="100" format="%d%%" flavour="white">
-          <label>White Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-        <slide min="0" max="100" format="%d%%" flavour="black">
-          <label>Black Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-      </group>
-      <group name="Sodium flavoured Group" flavour="sodium">
-        <slide min="0" max="100" format="%d%%">
-          <label>Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-      </group>
-      <group name="Potassium flavoured Group" flavour="potassium">
-        <slide min="0" max="100" format="%d%%">
-          <label>Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-      </group>
-      <group name="Lithium flavoured Group" flavour="lithium">
-        <slide min="0" max="100" format="%d%%">
-          <label>Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-      </group>
-      <group name="Boron flavoured Group" flavour="boron">
-        <slide min="0" max="100" format="%d%%">
-          <label>Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-      </group>
-      <group name="Antimony flavoured Group" flavour="antimony">
-        <slide min="0" max="100" format="%d%%">
-          <label>Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-      </group>
-      <group name="White flavoured Group" flavour="white">
-        <slide min="0" max="100" format="%d%%">
-          <label>Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-      </group>
-      <group name="Black flavoured Group" flavour="black">
-        <slide min="0" max="100" format="%d%%">
-          <label>Slider</label>
-          <address transform="DPT:5.001" variant="">13/0/38</address>
-        </slide>
-      </group>
-    </page>
-    <page name="KNX" shownavbar-left="true" visible="false">
+
+    <page name="Erdgeschoss" shownavbar-left="true" visible="false">
       <navbar position="left" dynamic="true" width="200px">
         <group name="Räume">
           <pagejump target="Wohnzimmer" name="Wohnen">
@@ -292,7 +258,7 @@
           </pagejump>
         </group>
         <group name="Sonstiges">
-          <pagejump target="Temperaturen" name="Temperatur">
+          <pagejump target="Bad" name="Bad">
             <label>
               <icon name="temp_temperature"/>
             </label>
@@ -511,7 +477,7 @@
           </switch>
         </group>
       </page>
-      <page name="Temperaturen">
+      <page name="Bad">
         <layout colspan="3"/>
         <info format="%.1f °C">
           <label><icon name="temp_outside"/>Aussen</label>
@@ -527,11 +493,7 @@
         </info>
       </page>
     </page>
-    <page name="Video" visible="false">
-      <text>
-        <label>Video Page</label>
-      </text>
-    </page>
+
     <page name="Audio" shownavbar-left="true" visible="false">
       <navbar position="left" dynamic="true" width="200px">
         <group name="Sonstiges">
@@ -559,11 +521,6 @@
           <address transform="DPT:1.001" variant="">14/1/3</address>
         </switch>
       </group>
-    </page>
-    <page name="Web" visible="false">
-      <text>
-        <label>Web Page</label>
-      </text>
     </page>
   </page>
 </pages>

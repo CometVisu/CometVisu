@@ -50,3 +50,26 @@
 .page.type_2d .widget.custom_embedded, .page.type_2d .widget.embedded {
     transform: skew(-10deg, 4deg);
 }
+
+#navbarTop .navbar .widget.text.custom_vertical {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    min-width: unset;
+    min-height: unset;
+    line-height: normal;
+    font-size: 14px;
+    width: 20px;
+    height: 75px;
+    background-color: rgba(129, 102, 75, 0.8);
+    color: rgb(226, 212, 198);
+}
+#navbarTop .navbar .widget.text.custom_vertical div {
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+}
