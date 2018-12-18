@@ -29,6 +29,9 @@ qx.Class.define("cv.parser.MetaParser", {
   members: {
 
     parse: function(xml) {
+      // parse external files
+      this.parseFiles(xml);
+
       // parse the icons
       qx.bom.Selector.query('meta > icons icon-definition', xml).forEach(this.parseIcons, this);
 
@@ -42,6 +45,35 @@ qx.Class.define("cv.parser.MetaParser", {
       qx.bom.Selector.query('meta > statusbar status', xml).forEach(this.parseStatusBar, this);
 
       this.parseStateNotifications(xml);
+    },
+
+    parseFiles: function (xml) {
+      var files = {
+        css: [],
+        js: []
+      };
+      qx.bom.Selector.query('meta > files file', xml).forEach(function (elem) {
+        var type = qx.bom.element.Attribute.get(elem, 'type');
+        switch (type) {
+          case 'css':
+            files.css.push(qx.bom.element.Attribute.get(elem, 'text'));
+            break;
+
+          case 'js':
+            files.js.push(qx.bom.element.Attribute.get(elem, 'text'));
+            break;
+
+          default:
+            this.warn('ignoring unknown file type', type);
+            break;
+        }
+      }, this);
+      if (files.css.length > 0) {
+        cv.util.ScriptLoader.getInstance().addStyles(files.css);
+      }
+      if (files.js.length > 0) {
+        cv.util.ScriptLoader.getInstance().addScripts(files.js);
+      }
     },
 
     parseIcons: function(elem) {

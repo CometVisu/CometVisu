@@ -455,7 +455,29 @@
       <xsd:element name="stylings" type="stylings" />
       <xsd:element name="statusbar" type="statusbar" />
       <xsd:element name="notifications" type="notifications" />
+      <xsd:element name="files" type="files" />
     </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="files">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="file" type="file" />
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="file">
+    <xsd:attribute name="type" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">The type of the file to load</xsd:documentation>
+        <xsd:documentation xml:lang="de">Der Dateityp der zu ladenden Datei</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="css" />
+          <xsd:enumeration value="js" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="plugins">
