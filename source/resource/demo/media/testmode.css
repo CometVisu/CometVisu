@@ -1,0 +1,52 @@
+.page.type_2d.flavour_transparent-background > div.clearfix > img {
+    opacity: 0.4;
+}
+
+.page.type_2d .widget.custom_bubble {
+    border: 4px solid #CCC;
+    border-radius: 60px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #222;
+}
+
+.page.type_2d .widget.custom_bubble.embedded {
+    border-width: 0;
+    box-shadow: 2px 4px 4px 0px rgba(135, 135, 135, 0.5);
+}
+
+.page.type_2d .widget.custom_bubble .switchPressed, .page.type_2d .widget.custom_bubble .switchUnpressed {
+    background: none;
+    border: none
+}
+
+.page.type_2d .widget.custom_bubble .switchPressed div, .page.type_2d .widget.custom_bubble .switchUnpressed div {
+    padding: 0;
+}
+
+.page.type_2d .widget.custom_bubble .actor, .page.type_2d .widget.custom_bubble .value {
+    text-align: center;
+    height: 100%;
+    line-height: 60px;
+}
+
+.page.type_2d .widget.custom_bubble .value .icon {
+    margin: 0 !important;
+    height: 40px;
+    width: 40px;
+    padding: 10px;
+}
+
+.page.type_2d .widget_container .widget.custom_bubble > div {
+    margin: 0;
+}
+
+.page.type_2d .widget.custom_text-2d {
+    border: none;
+    color: #888888;
+}
+
+.page.type_2d .widget.custom_embedded, .page.type_2d .widget.embedded {
+    transform: skew(-10deg, 4deg);
+}
