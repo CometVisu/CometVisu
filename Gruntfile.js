@@ -521,13 +521,16 @@ module.exports = function(grunt) {
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
-    var filename = 'build/resource/demo/visu_config_demo.xml';
-    var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
-    filename = 'build/resource/demo/visu_config_2d3d.xml';
-    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
-    filename = 'build/index.html';
+    [
+      'build/resource/demo/visu_config_demo.xml',
+      'build/resource/demo/visu_config_2d3d.xml',
+      'build/resource/demo/visu_config_demo_testmode.xml'
+    ].forEach(function (filename) {
+      var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+      grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
+    });
+
+    var filename = 'build/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
