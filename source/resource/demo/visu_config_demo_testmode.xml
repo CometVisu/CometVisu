@@ -65,8 +65,10 @@
     <statusbar>
       <status type="html"><![CDATA[
       <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a> -
-      <a href=".?forceReload=true">Reload</a> -
-      Dies
+      <a href=".?forceReload=true">Reload</a>
+]]></status>
+      <status type="html" condition="testMode" hrefextend="config"><![CDATA[
+      - Im Testmodus steht nicht die volle Funktionialität der CometVisu zur Verfügung!
 ]]></status>
       <status type="html" hrefextend="config"><![CDATA[
       <div style="float:right;padding-right:0.5em">Version: Git</div>

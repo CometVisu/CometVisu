@@ -185,6 +185,13 @@ qx.Class.define("cv.parser.MetaParser", {
         return;
       }
 
+      if (cv.Config.testMode && '!testMode' === condition) {
+        return;
+      }
+      if (!cv.Config.testMode && 'testMode' === condition) {
+        return;
+      }
+
       var text = qx.dom.Node.getText(elem);
       var search;
       switch (extend) {
