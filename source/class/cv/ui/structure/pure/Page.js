@@ -189,8 +189,13 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * @param ev {Event}
      */
     _onChangeVisible: function(ev) {
-      if (ev.getData() && this.__colspanClass !== cv.ui.layout.Manager.COLSPAN_CLASS) {
-        this.applyColumnWidths();
+      if (ev.getData()) {
+        if (this.__colspanClass !== cv.ui.layout.Manager.COLSPAN_CLASS) {
+          this.applyColumnWidths();
+        }
+        if (this.getBackdrop()) {
+          cv.ui.layout.ResizeHandler.invalidateBackdrop();
+        }
       }
     },
 
