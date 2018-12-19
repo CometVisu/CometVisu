@@ -5,6 +5,9 @@
       <file type="css">resource/demo/media/testmode.css</file>
       <file type="js">resource/demo/media/testmode.js</file>
     </files>
+    <plugins>
+      <plugin name="colorchooser"/>
+    </plugins>
     <mappings>
       <mapping name="OpenClose">
         <entry value="0">
@@ -28,10 +31,10 @@
       </mapping>
       <mapping name="OnOff_Licht">
         <entry value="0">
-          <icon name="light_light" flavour="white"/>
+          <icon name="light_light" color="white"/>
         </entry>
         <entry value="1">
-          <icon name="light_light" flavour="sodium"/>
+          <icon name="light_light" color="orange"/>
         </entry>
       </mapping>
       <mapping name="AudioMute">
@@ -68,7 +71,7 @@
       <a href=".?forceReload=true">Reload</a>
 ]]></status>
       <status type="html" condition="testMode" hrefextend="config"><![CDATA[
-      - Im Testmodus steht nicht die volle Funktionialität der CometVisu zur Verfügung!
+      - <span style="color: #FF8000;">Im Testmodus steht nicht die volle Funktionalität der CometVisu zur Verfügung!</span>
 ]]></status>
       <status type="html" hrefextend="config"><![CDATA[
       <div style="float:right;padding-right:0.5em">Version: Git</div>
@@ -479,18 +482,40 @@
       </page>
       <page name="Bad">
         <layout colspan="3"/>
-        <info format="%.1f °C">
-          <label><icon name="temp_outside"/>Aussen</label>
-          <address transform="DPT:9.001" variant="">13/6/1</address>
-        </info>
-        <info format="%.1f °C">
-          <label><icon name="temp_frost"/>Kühlbox</label>
-          <address transform="DPT:9.001" variant="">13/5/4</address>
-        </info>
-        <info format="%.1f °C">
-          <label><icon name="temp_inside"/>Innen</label>
-          <address transform="DPT:9.001" variant="">14/1/6</address>
-        </info>
+        <group name="Heizung">
+          <layout colspan="6"></layout>
+          <group nowidget="true">
+            <layout colspan="3" rowspan="3"></layout>
+            <info format="%.1f °C">
+              <layout colspan="3"></layout>
+              <label><icon name="temp_temperature"/>
+                Ist
+              </label>
+              <address transform="DPT:9.001" variant="">13/0/14</address>
+            </info>
+            <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" class="small-label" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+              <layout colspan="3"></layout>
+              <label><icon name="temp_control"/>
+                Soll
+              </label>
+              <address transform="DPT:9.001" variant="">13/0/39</address>
+            </infotrigger>
+          </group>
+          <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Stand by" button3value="standby" button4label="Economy" button4value="economy" showstatus="true" mapping="KonnexHVAC">
+            <layout colspan="3" rowspan="3"></layout>
+            <address transform="DPT:20.102" mode="readwrite">12/7/13</address>
+          </multitrigger>
+        </group>
+
+        <group name="Licht">
+          <layout colspan="6"></layout>
+          <colorchooser>
+            <label><icon name="light_led_stripe_rgb"/>Ambiente</label>
+            <address transform="DPT:5.001" variant="r" mode="readwrite">12/7/17</address>
+            <address transform="DPT:5.001" variant="g" mode="readwrite">12/7/18</address>
+            <address transform="DPT:5.001" variant="b" mode="readwrite">12/7/19</address>
+          </colorchooser>
+        </group>
       </page>
     </page>
 
@@ -521,6 +546,20 @@
           <address transform="DPT:1.001" variant="">14/1/3</address>
         </switch>
       </group>
+    </page>
+    <page name="Temperaturen" visible="false">
+      <info format="%.1f °C">
+        <label><icon name="temp_outside"/>Aussen</label>
+        <address transform="DPT:9.001" variant="">13/6/1</address>
+      </info>
+      <info format="%.1f °C">
+        <label><icon name="temp_frost"/>Kühlbox</label>
+        <address transform="DPT:9.001" variant="">13/5/4</address>
+      </info>
+      <info format="%.1f °C">
+        <label><icon name="temp_inside"/>Innen</label>
+        <address transform="DPT:9.001" variant="">14/1/6</address>
+      </info>
     </page>
   </page>
 </pages>

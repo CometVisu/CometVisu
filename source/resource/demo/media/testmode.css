@@ -73,3 +73,41 @@
     transform: rotate(-90deg);
     white-space: nowrap;
 }
+
+.infotrigger.custom_small-label .label {
+    width: 30%;
+}
+
+/* Use flex layout for multitrigger */
+
+html .page .widget.multitrigger, html .page .widget.multitrigger .actor_container {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    width: calc(100% - 0.6em);
+}
+
+html .page .widget.multitrigger .actor_container {
+    justify-content: space-evenly;
+}
+
+.widget.multitrigger > .label {
+    flex-basis: 50%;
+    align-self: stretch;
+}
+
+.widget.multitrigger .actor_container {
+    flex-basis: auto;
+}
+
+.widget.multitrigger .actor {
+    flex-basis: calc(50% - 4px - 2em);
+    margin: 2px 1em;
+}
+
+.widget.multitrigger .actor .value {
+    text-align: center;
+    float: none;
+}
