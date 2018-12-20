@@ -76,9 +76,12 @@ body br
   text-decoration:none;
 }
 
-.footer, .footer * {
-  color: #555;
+.footer, .footer {
   font-size: 0.9em;
+}
+
+.footer, .footer * {
+    color: #555;
 }
 
 .footer img {
