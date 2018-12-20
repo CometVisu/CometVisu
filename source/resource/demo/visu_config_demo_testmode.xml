@@ -67,14 +67,15 @@
     </stylings>
     <statusbar>
       <status type="html"><![CDATA[
-      <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a> -
-      <a href=".?forceReload=true">Reload</a>
+      <div style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center;">
+          <div style="flex: auto"><a href="https://www.cometvisu.org/"><img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /></a></div>
 ]]></status>
-      <status type="html" condition="testMode" hrefextend="config"><![CDATA[
-      - <span style="color: #FF8000;">Im Testmodus steht nicht die volle Funktionalität der CometVisu zur Verfügung!</span>
+      <status type="html" condition="testMode"><![CDATA[
+      <div style="flex: auto;"><span style="color: #FF8000;">Bitte beachten: Im Testmodus steht nicht die volle Funktionalität der CometVisu zur Verfügung!</span></div>
 ]]></status>
-      <status type="html" hrefextend="config"><![CDATA[
-      <div style="float:right;padding-right:0.5em">Version: Git</div>
+      <status type="html"><![CDATA[
+      <div style="padding-right:0.5em">Version: Git</div>
+      </div>
 ]]></status>
     </statusbar>
   </meta>

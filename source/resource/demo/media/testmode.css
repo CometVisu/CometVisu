@@ -78,19 +78,20 @@
     width: 30%;
 }
 
-/* Use flex layout for multitrigger */
+/* Use flex layout for widgets */
 
 html .page .widget.multitrigger, html .page .widget.multitrigger .actor_container {
     display: inline-flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: flex-start;
-    align-content: center;
+    align-content: space-evenly;
     width: calc(100% - 0.6em);
 }
 
 html .page .widget.multitrigger .actor_container {
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-basis: auto;
 }
 
 .widget.multitrigger > .label {
@@ -98,13 +99,18 @@ html .page .widget.multitrigger .actor_container {
     align-self: stretch;
 }
 
-.widget.multitrigger .actor_container {
-    flex-basis: auto;
+.widget.multitrigger .actor:not(:first-child) {
+    /*flex-basis: calc(50% - 4px - 2em);*/
+    margin-left: 4px;
 }
 
-.widget.multitrigger .actor {
-    flex-basis: calc(50% - 4px - 2em);
-    margin: 2px 1em;
+.widget.multitrigger .actor_container br {
+    display: none;
+}
+
+html .page .widget.multitrigger .actor_container::after {
+    content: "";
+    flex: auto;
 }
 
 .widget.multitrigger .actor .value {
