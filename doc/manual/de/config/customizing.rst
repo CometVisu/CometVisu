@@ -69,6 +69,7 @@ Hier wurden vorher die Icons in einem eigenen Unterverzeichnis abgelegt.
         </text>
     </pages>
 
+.. _custom_css:
 
 Einzelne Widgets durch CSS-Klassen verändern
 --------------------------------------------
@@ -121,6 +122,8 @@ Ein CometVisu Design besteht mindestens aus folgenden Dateien:
     Diese erhält man in dem man das Git-Repository klont, `./generate source` ausführt (einmalig nach klonen und jedesmal,
     wenn eine neue Datei für das Design hinzugefügt wird).
 
+
+.. _custom_plugins:
 
 Eigene Widgets schreiben über Plugins
 -------------------------------------

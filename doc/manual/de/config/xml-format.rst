@@ -43,6 +43,30 @@ einzuhalten!
 
 Nachstehend wird werden der Reihe nach ein Überblick über die Optionen im meta-tag gegeben.
 
+.. _xml-format_files:
+
+Zusätzliche Dateien einbinden
+-----------------------------
+
+===========================  ============================================   =================================  ===============
+Option                       Beschreibung                                   Werte                              Zwingend
+===========================  ============================================   =================================  ===============
+``<file type=" "></file>``   Mit dieser Option können zusätzliche Dateien   Pfad zur Datei                     NEIN
+                             (CSS oder Javascript) geladen werden
+===========================  ============================================   =================================  ===============
+
+.. code-block:: xml
+
+    <meta>
+        <files>
+            <file type="css">resource/style.css</file>
+            <file type="js" content="plugin">resource/MyCustomWidget.js</file>
+        </plugins>
+        ...
+    </meta>
+
+Siehe auch :ref:`custom_css` und :ref:`custom_plugins`.
+
 .. _xml-format_plugins:
 
 Plugins
