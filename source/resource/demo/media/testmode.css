@@ -9,6 +9,7 @@
     height: 60px;
     line-height: 60px;
     background-color: #222;
+    margin: 0;
 }
 
 .page.type_2d .widget.custom_bubble.embedded {
@@ -36,6 +37,14 @@
     height: 40px;
     width: 40px;
     padding: 10px;
+}
+
+.page.type_2d .widget_container .widget.group > div {
+    margin: 0;
+}
+
+.page.type_2d .widget_container .widget {
+    margin: 0;
 }
 
 .page.type_2d .widget_container .widget.custom_bubble > div {
