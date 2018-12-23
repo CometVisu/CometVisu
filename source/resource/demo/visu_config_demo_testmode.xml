@@ -8,6 +8,7 @@
     <plugins>
       <plugin name="colorchooser"/>
       <plugin name="diagram"/>
+      <plugin name="rsslog"/>
     </plugins>
     <mappings>
       <mapping name="OpenClose">
@@ -217,6 +218,12 @@
         <label>Fenster offen</label>
         <address transform="DPT:9.001">17/17/17</address>
       </info>
+    </group>
+    <group name="Anrufe">
+      <layout x="calc(100% - 310px)" y="calc(355px + 20px)" width="300px"/>
+      <rsslog src="resource/plugin/rsslog.php">
+        <layout rowspan="2"/>
+      </rsslog>
     </group>
     <info mapping="OpenClose" styling="RedGreen" class="bubble">
       <layout x="554px" y="8px"/>

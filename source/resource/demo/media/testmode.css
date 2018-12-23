@@ -116,3 +116,9 @@ html .page .widget.multitrigger.custom_one-line .actor_container {
     text-align: center;
     float: none;
 }
+
+/* override some metal rules */
+#pages .page.type_2d .widget_container > .widget.innerrowspan {
+    position: relative;
+    height: 100%;
+}
