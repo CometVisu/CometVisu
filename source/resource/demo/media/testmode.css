@@ -78,8 +78,6 @@
     width: 30%;
 }
 
-/* Use flex layout for widgets */
-
 html .page .widget.multitrigger .actor_container {
     display: inline-grid;
     grid-template-columns: 50% 50%;
@@ -97,11 +95,6 @@ html .page .widget.multitrigger.custom_one-line .actor_container {
     grid-template-rows: auto;
     width: 100%;
 }
-
-/*.widget.multitrigger > .label {*/
-    /*flex-basis: 50%;*/
-    /*align-self: stretch;*/
-/*}*/
 
 .widget.multitrigger .actor_container br {
     display: none;

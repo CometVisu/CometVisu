@@ -7,6 +7,7 @@
     </files>
     <plugins>
       <plugin name="colorchooser"/>
+      <plugin name="diagram"/>
     </plugins>
     <mappings>
       <mapping name="OpenClose">
@@ -497,6 +498,16 @@
             <address transform="DPT:5.001" variant="g" mode="readwrite">12/7/18</address>
             <address transform="DPT:5.001" variant="b" mode="readwrite">12/7/19</address>
           </colorchooser>
+        </group>
+        <line><layout colspan="12"/></line>
+        <group nowidget="true">
+          <text><label>Temperaturverlauf Bad</label></text>
+          <diagram series="day" refresh="300" legend="both" popup="false" previewlabels="true" >
+            <layout colspan="12" rowspan="8"/>
+            <axis unit="°C"/>
+            <rrd>13/0/14</rrd>
+            <!--address transform="OH:number" variant="">Temperature_SF_Bed</address-->
+          </diagram>
         </group>
       </page>
     </page>
