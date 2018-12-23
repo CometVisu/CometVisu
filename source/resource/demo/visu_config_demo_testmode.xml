@@ -78,6 +78,24 @@
       </div>
 ]]></status>
     </statusbar>
+    <templates>
+      <template name="Heizung">
+        <group name="Heizung">
+          <slide min="0" max="100" format="%d%%" flavour="sodium">
+            <label><icon name="sani_heating"/>Heizung</label>
+            <address transform="DPT:5.001" variant="">{{ valve_control_address }}</address>
+          </slide>
+          <info format="%.1f °C">
+            <label><icon name="temp_temperature"/>Ist</label>
+            <address transform="DPT:9.001" variant="">{{ current_temp_address }}</address>
+          </info>
+          <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+            <label><icon name="temp_control"/>Soll</label>
+            <address transform="DPT:9.001" variant="">{{ target_temp_address }}</address>
+          </infotrigger>
+        </group>
+      </template>
+    </templates>
   </meta>
   <page name="Übersicht" flavour="transparent-background" showtopnavigation="false" type="2d" backdrop="demo/media/demo_flat_floorplan.png" align="center" size="contained" backdropalign="25% 0">
     <navbar position="top">
@@ -89,7 +107,7 @@
         <layout colspan="0"/>
         <label>EG</label>
       </text>
-      <pagejump path="Übersicht/Erdgeschoss" target="Wohnzimmer" active_scope="path">
+      <pagejump target="Wohnzimmer">
         <layout colspan="0"/>
         <label><icon name="it_television"/>Wohnen</label>
         <widgetinfo>
@@ -99,7 +117,7 @@
           </info>
         </widgetinfo>
       </pagejump>
-      <pagejump path="Übersicht/Schlafzimmer" target="Schlafzimmer" active_scope="path">
+      <pagejump target="Schlafzimmer">
         <layout colspan="0"/>
         <label><icon name="scene_sleeping"/>Schlafen</label>
         <widgetinfo>
@@ -109,7 +127,7 @@
           </info>
         </widgetinfo>
       </pagejump>
-      <pagejump path="Übersicht/Bad" target="Bad" active_scope="path">
+      <pagejump target="Bad">
         <layout colspan="0"/>
         <label><icon name="temp_temperature"/>Bad</label>
         <widgetinfo>
@@ -359,26 +377,11 @@
             <address transform="DPT:1.001" variant="">13/0/13</address>
           </switch>
         </group>
-        <group name="Heizung">
-          <slide min="0" max="100" format="%d%%" flavour="sodium">
-            <label><icon name="sani_heating"/>
-              Heizung
-            </label>
-            <address transform="DPT:5.001" variant="">13/0/38</address>
-          </slide>
-          <info format="%.1f °C">
-            <label><icon name="temp_temperature"/>
-              Ist
-            </label>
-            <address transform="DPT:9.001" variant="">13/0/14</address>
-          </info>
-          <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
-            <label><icon name="temp_control"/>
-              Soll
-            </label>
-            <address transform="DPT:9.001" variant="">13/0/39</address>
-          </infotrigger>
-        </group>
+        <template name="Heizung">
+          <value name="valve_control_address">13/0/38</value>
+          <value name="current_temp_address">13/0/14</value>
+          <value name="target_temp_address">13/0/39</value>
+        </template>
         <group name="Sonstiges">
           <info mapping="OpenClose">
             <layout colspan="3"/>
@@ -448,20 +451,11 @@
             <address transform="DPT:1.001" variant="">13/1/17</address>
           </info>
         </group>
-        <group align="center" name="Heizung">
-          <slide min="0" max="100" flavour="lithium">
-            <label><icon name="sani_heating"/>Heizung</label>
-            <address transform="DPT:5.001" variant="">13/1/27</address>
-          </slide>
-          <info format="%.1f °C">
-            <label><icon name="temp_temperature"/>Ist</label>
-            <address transform="DPT:9.001" variant="">13/1/12</address>
-          </info>
-          <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
-            <label><icon name="temp_control"/>Soll</label>
-            <address transform="DPT:9.001" variant="">13/1/28</address>
-          </infotrigger>
-        </group>
+        <template name="Heizung">
+          <value name="valve_control_address">13/1/27</value>
+          <value name="current_temp_address">13/1/12</value>
+          <value name="target_temp_address">13/1/28</value>
+        </template>
         <group align="center" name="Verbraucher">
           <switch mapping="AudioMute" styling="GreyGreen">
             <label>Lautsprecher</label>
