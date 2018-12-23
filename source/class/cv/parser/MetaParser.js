@@ -302,6 +302,68 @@ qx.Class.define("cv.parser.MetaParser", {
         });
       });
       cv.core.notifications.Router.getInstance().registerStateUpdateHandler(stateConfig);
+    },
+
+    /**
+     * Parses meta template definitions and add them to the WidgetParser
+     * @param xml {HTMLElement}
+     */
+    parseTemplates: function (xml, done) {
+      var __loadQueue = new qx.data.Array();
+
+      var check = function () {
+        if (__loadQueue.length === 0 && done) {
+          done();
+        }
+      };
+      var templates = qx.bom.Selector.query('meta > templates template', xml);
+      if (templates.length === 0) {
+        done();
+      } else {
+        templates.forEach(function (elem) {
+          var ref = qx.bom.element.Attribute.get(elem, 'ref');
+          if (ref) {
+            // load template fom external file
+            var areq = new qx.io.request.Xhr(ref);
+            __loadQueue.push(ref);
+            qx.log.Logger.debug(this, 'loading template from file:', ref);
+            areq.set({
+              accept: "text/plain",
+              cache: !cv.Config.forceReload
+            });
+            var templateName = qx.bom.element.Attribute.get(elem, 'name');
+            areq.addListenerOnce("success", function (e) {
+              var req = e.getTarget();
+              cv.parser.WidgetParser.addTemplate(
+                templateName,
+                // templates can only have one single root element, so we wrap it here
+                '<root>' + req.getResponseText() + '</root>'
+              );
+              __loadQueue.remove(areq.getUrl());
+              qx.log.Logger.debug(this, 'DONE loading template from file:', ref);
+              check();
+            }, this);
+            areq.addListener("statusError", function () {
+              var message = {
+                topic: "cv.config.error",
+                title: qx.locale.Manager.tr("Template loading error"),
+                severity: "urgent",
+                deletable: true,
+                message: qx.locale.Manager.tr("Template '%1' could not be loaded from '%2'.", templateName, ref)
+              };
+              cv.core.notifications.Router.dispatchMessage(message.topic, message);
+            }, this);
+            areq.send();
+          } else {
+            cv.parser.WidgetParser.addTemplate(
+              qx.bom.element.Attribute.get(elem, 'name'),
+              // templates can only have one single root element, so we wrap it here
+              '<root>' + qx.bom.element.Attribute.get(elem, 'html') + '</root>'
+            );
+            check();
+          }
+        }, this);
+      }
     }
   }
 });
