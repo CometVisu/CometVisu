@@ -42,6 +42,8 @@ qx.Class.define("cv.parser.MetaParser", {
       qx.bom.Selector.query('meta > statusbar status', xml).forEach(this.parseStatusBar, this);
 
       this.parseStateNotifications(xml);
+
+      this.parseTemplates(xml);
     },
 
     parseIcons: function(elem) {
@@ -257,6 +259,20 @@ qx.Class.define("cv.parser.MetaParser", {
         });
       });
       cv.core.notifications.Router.getInstance().registerStateUpdateHandler(stateConfig);
+    },
+
+    /**
+     * Parses meta template definitions and add them to the WidgetParser
+     * @param xml {HTMLElement}
+     */
+    parseTemplates: function (xml) {
+      qx.bom.Selector.query('meta > templates template', xml).forEach(function (elem) {
+        cv.parser.WidgetParser.addTemplate(
+          qx.bom.element.Attribute.get(elem, 'name'),
+          // templates can only have one single root element, so we wrap it here
+          '<root>' + qx.bom.element.Attribute.get(elem, 'html') + '</root>'
+        );
+      }, this);
     }
   }
 });

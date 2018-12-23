@@ -538,7 +538,7 @@ qx.Class.define('cv.TemplateEngine', {
      * @param type {String} page type (text, 2d, 3d)
      */
     createPages: function (page, path, flavour, type) {
-
+      cv.parser.WidgetParser.renderTemplates(page);
       var parsedData = cv.parser.WidgetParser.parse(page, path, flavour, type);
       if (!Array.isArray(parsedData)) {
         parsedData = [parsedData];

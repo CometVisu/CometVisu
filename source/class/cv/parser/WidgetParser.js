@@ -32,6 +32,11 @@ qx.Class.define('cv.parser.WidgetParser', {
     lookupM : [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
     lookupS : [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],
     model: cv.data.Model.getInstance(),
+    __templates: {},
+
+    addTemplate: function(name, templateData) {
+      this.__templates[name] = templateData;
+    },
 
     addHandler: function (tagName, handler) {
       this.__handlers[tagName.toLowerCase()] = handler;
@@ -39,6 +44,35 @@ qx.Class.define('cv.parser.WidgetParser', {
 
     getHandler: function (tagName) {
       return this.__handlers[tagName.toLowerCase()] || this.__handlers.unknown;
+    },
+
+    /**
+     * Renders templates into the config file, if they are used
+     * @param rootPage
+     */
+    renderTemplates: function (rootPage) {
+      qx.bom.Selector.query('template', rootPage).forEach(function (elem) {
+        var templateName = qx.bom.element.Attribute.get(elem, 'name');
+        var variables = {};
+        qx.dom.Hierarchy.getChildElements(elem).forEach(function (variable) {
+          variables[qx.bom.element.Attribute.get(variable, 'name')] = qx.bom.element.Attribute.get(variable, 'html');
+        }, this);
+        console.log(variables);
+        if (this.__templates.hasOwnProperty(templateName)) {
+          var renderedNode = qx.bom.Template.renderToNode(this.__templates[templateName], variables);
+          var firstChild = null;
+          qx.dom.Hierarchy.getChildElements(renderedNode).forEach(function (child, index) {
+            // replace the first child, append the others
+            if (index === 0) {
+              qx.dom.Element.replaceChild(child, elem);
+              firstChild = child;
+            } else {
+              qx.dom.Element.insertAfter(child, firstChild);
+            }
+          }, this);
+
+        }
+      }, this);
     },
 
     /**
