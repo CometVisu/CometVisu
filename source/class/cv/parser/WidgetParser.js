@@ -57,7 +57,7 @@ qx.Class.define('cv.parser.WidgetParser', {
         qx.dom.Hierarchy.getChildElements(elem).forEach(function (variable) {
           variables[qx.bom.element.Attribute.get(variable, 'name')] = qx.bom.element.Attribute.get(variable, 'html');
         }, this);
-        console.log(variables);
+
         if (this.__templates.hasOwnProperty(templateName)) {
           var renderedNode = qx.bom.Template.renderToNode(this.__templates[templateName], variables);
           var firstChild = null;

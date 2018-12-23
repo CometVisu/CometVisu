@@ -663,7 +663,18 @@
             <xsd:group ref="Widgets"/>
             <xsd:group ref="AvailablePlugins"/>
           </xsd:choice>
-          <xsd:attribute name="name" type="xsd:string" use="required"/>
+          <xsd:attribute name="name" type="xsd:string" use="required">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Name of the template definition</xsd:documentation>
+              <xsd:documentation xml:lang="de">Name der Template-Definition</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="ref" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Load template from this location</xsd:documentation>
+              <xsd:documentation xml:lang="de">Template von diesem Link laden</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
@@ -700,7 +711,12 @@
                 </xsd:complexType>
               </xsd:element>
             </xsd:sequence>
-            <xsd:attribute name="name" type="xsd:string" use="required"/>
+            <xsd:attribute name="name" type="xsd:string" use="required">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Name of the template definition to be used</xsd:documentation>
+                <xsd:documentation xml:lang="de">Name der Template-Definition die hier benutzt werden soll</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
