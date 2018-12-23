@@ -278,6 +278,8 @@ qx.Class.define("cv.parser.MetaParser", {
         done();
       } else {
         templates.forEach(function (elem) {
+          var templateName = qx.bom.element.Attribute.get(elem, 'name');
+          qx.log.Logger.debug(this, 'loading template:', templateName);
           var ref = qx.bom.element.Attribute.get(elem, 'ref');
           if (ref) {
             // load template fom external file
@@ -288,7 +290,7 @@ qx.Class.define("cv.parser.MetaParser", {
               accept: "text/plain",
               cache: !cv.Config.forceReload
             });
-            var templateName = qx.bom.element.Attribute.get(elem, 'name');
+
             areq.addListenerOnce("success", function (e) {
               var req = e.getTarget();
               cv.parser.WidgetParser.addTemplate(
@@ -313,7 +315,7 @@ qx.Class.define("cv.parser.MetaParser", {
             areq.send();
           } else {
             cv.parser.WidgetParser.addTemplate(
-              qx.bom.element.Attribute.get(elem, 'name'),
+              templateName,
               // templates can only have one single root element, so we wrap it here
               '<root>' + qx.bom.element.Attribute.get(elem, 'html') + '</root>'
             );

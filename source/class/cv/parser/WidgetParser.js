@@ -59,18 +59,9 @@ qx.Class.define('cv.parser.WidgetParser', {
         }, this);
 
         if (this.__templates.hasOwnProperty(templateName)) {
-          var renderedNode = qx.bom.Template.renderToNode(this.__templates[templateName], variables);
-          var firstChild = null;
-          qx.dom.Hierarchy.getChildElements(renderedNode).forEach(function (child, index) {
-            // replace the first child, append the others
-            if (index === 0) {
-              qx.dom.Element.replaceChild(child, elem);
-              firstChild = child;
-            } else {
-              qx.dom.Element.insertAfter(child, firstChild);
-            }
-          }, this);
-
+          var renderedString = qx.bom.Template.render(this.__templates[templateName], variables);
+          // replace existing element with the rendered template (without <root> </root>)
+          elem.outerHTML = renderedString.substring(6, renderedString.length - 7);
         }
       }, this);
     },
