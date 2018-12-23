@@ -81,6 +81,7 @@
     <templates>
       <template name="Heizung">
         <group name="Heizung">
+          {{{ layout }}}
           <slide min="0" max="100" format="%d%%" flavour="sodium">
             <label><icon name="sani_heating"/>Heizung</label>
             <address transform="DPT:5.001" variant="">{{ valve_control_address }}</address>
@@ -93,6 +94,7 @@
             <label><icon name="temp_control"/>Soll</label>
             <address transform="DPT:9.001" variant="">{{ target_temp_address }}</address>
           </infotrigger>
+          {{{ additional_content }}}
         </group>
       </template>
     </templates>
@@ -477,33 +479,18 @@
       </page>
       <page name="Bad">
         <layout colspan="3"/>
-        <group name="Heizung">
-          <layout colspan="6"></layout>
-          <group nowidget="true">
-            <layout colspan="3" rowspan="3"></layout>
-            <info format="%.1f °C">
-              <layout colspan="3"></layout>
-              <label><icon name="temp_temperature"/>
-                Ist
-              </label>
-              <address transform="DPT:9.001" variant="">13/0/14</address>
-            </info>
-            <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" class="small-label" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
-              <layout colspan="3"></layout>
-              <label><icon name="temp_control"/>
-                Soll
-              </label>
-              <address transform="DPT:9.001" variant="">13/0/39</address>
-            </infotrigger>
-          </group>
-          <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Stand by" button3value="standby" button4label="Economy" button4value="economy" showstatus="true" mapping="KonnexHVAC">
-            <layout colspan="3" rowspan="3"></layout>
-            <address transform="DPT:20.102" mode="readwrite">12/7/13</address>
-          </multitrigger>
-        </group>
-
+        <template name="Heizung">
+          <value name="valve_control_address">13/0/38</value>
+          <value name="current_temp_address">13/0/14</value>
+          <value name="target_temp_address">13/0/39</value>
+          <value name="additional_content">
+            <multitrigger class="one-line" button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Stand by" button3value="standby" button4label="Economy" button4value="economy" showstatus="true" mapping="KonnexHVAC">
+              <address transform="DPT:20.102" mode="readwrite">12/7/13</address>
+            </multitrigger>
+          </value>
+        </template>
         <group name="Licht">
-          <layout colspan="6"></layout>
+          <layout colspan="6"/>
           <colorchooser>
             <label><icon name="light_led_stripe_rgb"/>Ambiente</label>
             <address transform="DPT:5.001" variant="r" mode="readwrite">12/7/17</address>

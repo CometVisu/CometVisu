@@ -80,39 +80,36 @@
 
 /* Use flex layout for widgets */
 
-html .page .widget.multitrigger, html .page .widget.multitrigger .actor_container {
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-content: space-evenly;
-    width: calc(100% - 0.6em);
-}
-
 html .page .widget.multitrigger .actor_container {
-    flex-wrap: wrap;
-    justify-content: space-around;
-    flex-basis: auto;
+    display: inline-grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+    grid-gap: 0.5em;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 100%;
 }
 
-.widget.multitrigger > .label {
-    flex-basis: 50%;
-    align-self: stretch;
+html .page .widget.multitrigger.custom_one-line .actor_container {
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: auto;
+    width: 100%;
 }
 
-.widget.multitrigger .actor:not(:first-child) {
-    /*flex-basis: calc(50% - 4px - 2em);*/
-    margin-left: 4px;
-}
+/*.widget.multitrigger > .label {*/
+    /*flex-basis: 50%;*/
+    /*align-self: stretch;*/
+/*}*/
 
 .widget.multitrigger .actor_container br {
     display: none;
 }
 
-html .page .widget.multitrigger .actor_container::after {
-    content: "";
-    flex: auto;
+.widget.multitrigger .actor {
+    float: none;
 }
-
 .widget.multitrigger .actor .value {
     text-align: center;
     float: none;
