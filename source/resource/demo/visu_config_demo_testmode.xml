@@ -500,8 +500,7 @@
           </colorchooser>
         </group>
         <line><layout colspan="12"/></line>
-        <group nowidget="true">
-          <text><label>Temperaturverlauf Bad</label></text>
+        <group name="Temperaturverlauf Bad">
           <diagram series="day" refresh="300" legend="both" popup="false" previewlabels="true" >
             <layout colspan="12" rowspan="8"/>
             <axis unit="°C"/>
