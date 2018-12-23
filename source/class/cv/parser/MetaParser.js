@@ -28,7 +28,7 @@ qx.Class.define("cv.parser.MetaParser", {
   */
   members: {
 
-    parse: function(xml) {
+    parse: function(xml, done) {
       // parse external files
       this.parseFiles(xml);
 
@@ -45,6 +45,8 @@ qx.Class.define("cv.parser.MetaParser", {
       this.parseStatusBar(xml);
 
       this.parseStateNotifications(xml);
+
+      this.parseTemplates(xml, done);
     },
 
     parseFiles: function (xml) {
@@ -219,7 +221,6 @@ qx.Class.define("cv.parser.MetaParser", {
         code += text;
       }, this);
       var footerElement = qx.bom.Selector.query(".footer")[0];
-      console.log(code);
       footerElement.innerHTML += code;
     },
 

@@ -168,6 +168,149 @@ Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt das zB. Abzeig
         </statusbar>
     </meta>
 
+.. _xml-format_templates:
+
+Templates
+---------
+
+Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte erstellt werden. In der Regel möchte z.B.
+seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B: einem
+Slider zur Darstellung und Bedienung der Ventilstellung, einem Info-Widget zur Anzeige der aktuellen Ist-Temperatur
+und einem InfoTrigger-Widget für die aktuelle Soll-Temperatur. Diese Struktur ist in jedem Raum gleich, lediglich
+die benutzen Addresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
+jedem Raum wiederverwenden.
+
+In der Template-Definition werden Platzhalter für Variablen verwendet, welche dann beim benutzen des Templates durch
+die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ein Template definiert und benutzt.
+
+.. code-block:: xml
+    :caption: Beispiel eines Templates für eine Heizung und dessen Verwendung in verschiedenen Räumen
+
+    <pages...>
+        <meta>
+            <template name="Heizung">
+                <group name="Heizung">
+                  {{{ additional_content }}}
+                  <slide min="0" max="100" format="%d%%">
+                    <label>
+                      <icon name="sani_heating" />
+                      Heizung
+                    </label>
+                    <address transform="OH:dimmer" variant="">{{ control_address }}</address>
+                  </slide>
+                  <info format="%.1f °C">
+                    <label>
+                      <icon name="temp_temperature" />
+                      Ist
+                    </label>
+                    <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
+                  </info>
+                  <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+                               downvalue="-0.5" styling="BluePurpleRedTemp"
+                               infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+                    <label>
+                      <icon name="temp_control" />
+                      Soll
+                    </label>
+                    <address transform="OH:number" variant="">{{ targettemp_address }}</address>
+                  </infotrigger>
+                </group>
+            </template>
+        </meta>
+        <pages...>
+            <page name=="Wohnzimmer"...>
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Living</value>
+                  <value name="currenttemp_address">Temperature_FF_Living</value>
+                  <value name="targettemp_address">Temperature_FF_Living_Target</value>
+                </template>
+                ...
+            </page>
+            <page name=="Küche"...>
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Kitchen</value>
+                  <value name="currenttemp_address">Temperature_FF_Kitchen</value>
+                  <value name="targettemp_address">Temperature_FF_Kitchen_Target</value>
+                  <value name="additional_content">
+                    <text><label>Heizung Küche</label></text>
+                  </value>
+                </template>
+                ...
+            </page>
+        </pages>
+    </pages>
+
+.. HINT::
+    Für die Templates wird `mustache.js <https://github.com/janl/mustache.js>`_ benutzt. Für weitere Informationen
+    kann die mustache.js Dokumentation zu Rate gezogen werden.
+
+Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine externe Datei ausgelagert werden.
+
+.. code-block:: xml
+    :caption: Beispiel einer Template-Definition aus einer externen Datei
+
+
+    <pages...>
+        <meta>
+            <template name="Heizung" ref="resource/config/heizung.template.xml"/>
+        </meta>
+        <pages...>
+            <page name=="Wohnzimmer"...>
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Living</value>
+                  <value name="currenttemp_address">Temperature_FF_Living</value>
+                  <value name="targettemp_address">Temperature_FF_Living_Target</value>
+                </template>
+                ...
+            </page>
+            <page name=="Küche"...>
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Kitchen</value>
+                  <value name="currenttemp_address">Temperature_FF_Kitchen</value>
+                  <value name="targettemp_address">Temperature_FF_Kitchen_Target</value>
+                  <value name="additional_content">
+                    <text><label>Heizung Küche</label></text>
+                  </value>
+                </template>
+                ...
+            </page>
+        </pages>
+    </pages>
+
+.. code-block:: xml
+    :caption: Inhalt der externen Datei ``resource/config/heizung.template.xml``
+
+    <group name="Heizung">
+      {{{ additional_content }}}
+      <slide min="0" max="100" format="%d%%">
+        <label>
+          <icon name="sani_heating" />
+          Heizung
+        </label>
+        <address transform="OH:dimmer" variant="">{{ control_address }}</address>
+      </slide>
+      <info format="%.1f °C">
+        <label>
+          <icon name="temp_temperature" />
+          Ist
+        </label>
+        <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
+      </info>
+      <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+                               downvalue="-0.5" styling="BluePurpleRedTemp"
+                               infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <label>
+          <icon name="temp_control" />
+          Soll
+        </label>
+        <address transform="OH:number" variant="">{{ targettemp_address }}</address>
+      </infotrigger>
+    </group>
+
 .. _xml-format_pages:
 
 Aufbau der Visu-Seiten
