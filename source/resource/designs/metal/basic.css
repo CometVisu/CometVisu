@@ -990,7 +990,8 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 .infoaction { padding: 1px 0 0 0; }
 .navbar .infoaction { padding: 0.3em; }
 .infoaction > .label { padding: 0.3em; }
-.infoaction .widget_container.widgetaction .widget { padding-left:0; border: none; }
+.infoaction .widget_container.widgetaction .widget { padding:0.1em; border: none; }
+.infoaction .widget_container.widgetaction .widget .actor { margin:0.2em; }
 .infoaction .widget_container.widgetinfo .widget {
 	background-color: #666;
 	color: #999;
