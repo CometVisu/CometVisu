@@ -39,6 +39,14 @@
           <icon name="light_light" color="orange"/>
         </entry>
       </mapping>
+      <mapping name="Light">
+        <entry value="0">
+          <icon name="light_light"/>
+        </entry>
+        <entry value="1">
+          <icon name="light_light"/>
+        </entry>
+      </mapping>
       <mapping name="AudioMute">
         <entry value="0">
           <icon name="audio_mute"/>
@@ -52,6 +60,10 @@
       <styling name="GreyGreen">
         <entry value="0">grey</entry>
         <entry value="1">green</entry>
+      </styling>
+      <styling name="Light">
+        <entry value="0">light-off</entry>
+        <entry value="1">light-on</entry>
       </styling>
       <styling name="RedGreen">
         <entry value="0">red</entry>
@@ -261,17 +273,17 @@
       <layout x="440px" y="680px"/>
       <address transform="DPT:5.010">12/7/42</address>
     </info>
-    <switch class="bubble embedded" mapping="OnOff_Licht" styling="GreyGreen">
+    <switch class="bubble embedded" mapping="Light" styling="Light">
       <layout x="190px" y="670px"/>
       <address transform="DPT:1.001">12/7/50</address>
     </switch>
 
-    <switch class="bubble embedded" mapping="OnOff_Licht" styling="GreyGreen">
+    <switch class="bubble embedded" mapping="Light" styling="Light">
       <layout x="270px" y="160px"/>
       <address transform="DPT:1.001">12/7/51</address>
     </switch>
 
-    <switch class="bubble embedded" mapping="OnOff_Licht" styling="GreyGreen">
+    <switch class="bubble embedded" mapping="Light" styling="Light">
       <layout x="480px" y="750px"/>
       <address transform="DPT:1.001">12/7/50</address>
     </switch>
