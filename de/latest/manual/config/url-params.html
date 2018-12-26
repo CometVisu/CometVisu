@@ -265,13 +265,15 @@ getrennt.</p>
 <h3><em>startpage</em> - Startseite<a class="headerlink" href="#startpage-startseite" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Durch den Parameter <code class="docutils literal"><span class="pre">startpage</span></code> kann die Unter-Seite festgelegt werden,
 die nach dem Laden der Visu als erstes angezeigt wird.</p>
-<p>Der Wert für diesen Parameter lässt sich leicht herausfinden, in dem man
-in einem Browser auf dem PC mit der Maus über den Link zur Unter-Seite
-fährt und den Inhalt des Links in der Browser-Statuszeile ansieht.
-Dieser lautet ähnlich wie <code class="docutils literal"><span class="pre">javascript:templateEngine.scrollToPage('id_0_33')</span></code>.
-Hier wäre nun das <code class="docutils literal"><span class="pre">id_0_33</span></code> der Wert für den Parameter <em>startpage</em>,
-d.h. zusammengesetzt müsste an die URL angehängt werden:
-<code class="docutils literal"><span class="pre">startpage=id_0_33</span></code></p>
+<p>Die einfachste Weise direkt eine bestimmte Startseite zu laden, ist es
+indem man zu der gewünschten Seite navigiert und sich den Link, den der
+Browser dann anzeigt speichert. Dieser enthält immer die ID der gerade
+angezeigten Seite als <em>anchor</em>-Teil der URL (z.B.
+<code class="docutils literal"><span class="pre">http://&lt;server&gt;/cometvisu/?config=home#id_6_</span></code>, zeigt die Seite mit der ID <code class="docutils literal"><span class="pre">id_6_</span></code>).
+Hierfür wird der <em>startpage</em>-Parameter gar nicht benötigt.</p>
+<p>Zusätzlich ist es noch möglich über den <em>startpage</em>-Parameter den Namen
+der Startseite anzugeben. Wenn man also eine Unterseite mit dem Namen <em>Bad</em>
+als Startseite nutzen möchte so lautet die URL <code class="docutils literal"><span class="pre">http://&lt;server&gt;/cometvisu/?config=home&amp;startpage=Bad</span></code></p>
 <p>Gerade wenn man Visus an mehreren Orten im Haus verteilt hat, kann es
 Sinn machen bei einer gesammten Config-Datei je nach Visu-Standort die
 Unter-Seite als erstes anzuzeigen, die dem Raum entspricht.</p>
