@@ -29,7 +29,7 @@
 
 #config, #config input, #config select, #config textarea {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 14pt;
+    font-size: 14px;
     color: #3E3E3E;
 }
 
@@ -55,11 +55,13 @@
 ul#config {
     width: 590px;
     height: 800px;
+    height: calc(100vh - 92px);
     overflow-x: auto;
     overflow-y: auto;
     border: 1px solid #d3d3d3;
     border-radius: 4px;
     padding: 5px;
+    margin-top: 18px;
 }
 
 ul#config,
@@ -76,7 +78,7 @@ ul#config,
 
 #config li.element {
     clear: both;
-    margin-bottom: 9px;
+    margin-bottom: 0px;
     display: block;
     position: relative;
 }
@@ -122,7 +124,7 @@ ul#config,
     margin-right: 0;
     float: left;
     cursor: pointer;
-    padding: 4px;
+    padding: 0px;
 }
 
 #config li.element > .element {
@@ -342,7 +344,6 @@ ul#config,
     clear: both;
     font-size: 90%;
     color: #464646;
-    min-height: 22px;
     background-color: #d3d3d3;
     border-style: solid;
     border-color: #464646;
@@ -377,6 +378,8 @@ ul#config,
     position: fixed;
     left: 620px;
     top: 63px;
+    max-height: calc(100% - 90px);
+    overflow-y: auto;
 }
 
 #config .element ul.attributes.visible.collapsed {
@@ -395,7 +398,7 @@ ul#config,
 
 #config .element > .attributes > .attribute {
     clear: both;
-    font-size: 90%;
+    font-size: 100%;
     color: #464646;
     background-color: #C0C0C0;
     margin: 1px;
@@ -474,7 +477,7 @@ ul#config,
 #config .element > ul.children {
     clear: both;
     display: block;
-    padding-top: 9px;
+    padding-top: 0px;
 }
 
 #config .element > .children > .element {

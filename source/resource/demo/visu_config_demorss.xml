@@ -15,7 +15,7 @@
     </stylings>
     <statusbar>
       <status type="html"><![CDATA[
-          <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
           - <a href="manager.php">Config-Manager</a>
           - <a href=".?forceReload=true">Reload</a>
           - <a href="?config=demo">Widget Demo</a>
@@ -130,7 +130,7 @@
       <layout colspan="12"/>
     </line>
     <page name="Externeal feeds">
-      <rss src="http://www.tagesschau.de/xml/rss2" refresh="3600" header="true"/>
+      <rss src="https://www.tagesschau.de/xml/rss2" refresh="3600" header="true"/>
     </page>
   </page>
 </pages>

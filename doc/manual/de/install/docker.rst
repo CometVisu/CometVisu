@@ -28,7 +28,7 @@ Einrichtung
 Umgebungsvariablen (environment)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Der Contianer wird über Umgebungsvariablen grundsätzlich konfiguriert.
+Der Container wird über Umgebungsvariablen grundsätzlich konfiguriert.
 Zur Verfügung stehen:
 
 +--------------------+-------------------------+-----------------------------------------------------------------------+
@@ -68,7 +68,7 @@ entnommen werden.
 OpenHAB
 .......
 
-Beispiel-Konfiguration für das openHAB Backend (wenn es auf einem Server mit
+Beispiel-Konfiguration für das OpenHAB Backend (wenn es auf einem Server mit
 der Addresse ``192.168.0.10`` läuft):
 
 .. code-block:: bash

@@ -179,7 +179,13 @@ function createDOMFromData($objMasterDOM, $arrConfig) {
     if (false === isset($arrConfig['nodeName'])) {
         throw new InvalidArgumentException('node has no name, ' . var_export($arrConfig, true));
     }
-    
+
+    if ($arrConfig['nodeName'] == '#comment') {
+      // this is a masqueraded comment node
+      $objXMLElement = $objMasterDOM->createComment($arrConfig['nodeValue']);
+      return $objXMLElement;
+    }
+
     if ($arrConfig['nodeName'] == '#text') {
         // this is a masqueraded text-only node
         $objXMLElement = $objMasterDOM->createTextNode($arrConfig['nodeValue']);

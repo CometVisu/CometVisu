@@ -53,8 +53,10 @@ VERSION=`${CV} doc --get-version`
 utils/update_version.py
 echo "generating api version $VERSION"
 source temp-python/bin/activate
+# Turn off O_NONBLOCK (breaks large stdout writes)
+python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);'
 {
-  ./generate.py api -sI --macro=CV_VERSION:$VERSION &&
+  ${DOCKER_RUN} ./generate.py api -qsI --macro=CV_VERSION:$VERSION &&
   echo "API successfully generated"
 } || {
   echo "API generation failed"
@@ -69,9 +71,9 @@ ${CV} doc --from-source
 ${CV} doc --process-versions
 
 echo "generating english manual, including screenshot generation for all languages"
-${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build
+${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION}
 echo "generating german manual again with existing screenshots"
-${CV} doc --doc-type manual -f -l de
+${CV} doc --doc-type manual -f -l de --target-version=${VERSION}
 
 if [[ "$NO_API" -eq 0 ]]; then
     echo "generate API screenshots"
@@ -88,6 +90,13 @@ ${CV} doc --generate-features
 echo "generating sitemap.xml for documentation"
 ${CV} sitemap
 
+echo "generating test mode build"
+source temp-python/bin/activate
+./generate.py build --macro=CV_TESTMODE:resource/demo/media/metal-data.json
+rm -rf out/de/$VERSION/demo
+mv build out/de/$VERSION/demo
+deactivate
+
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
 cd out
@@ -100,7 +109,7 @@ if [ "$TRAVIS_BRANCH" != "master" ]; then
     echo "checking diff"
     if [ `git diff --shortstat | wc -l` -eq 0 ]; then
        echo "No changes to the output on this push; exiting."
-       exit 0Dito
+       exit 0
     fi
 fi
 

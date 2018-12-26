@@ -85,13 +85,17 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
     __updateButtons: function(buttons, pressed) {
       if (pressed) {
         buttons.forEach(function(button) {
-          qx.bom.element.Class.add(button, 'switchPressed');
-          qx.bom.element.Class.remove(button, 'switchUnpressed');
+          if (button) {
+            qx.bom.element.Class.add(button, 'switchPressed');
+            qx.bom.element.Class.remove(button, 'switchUnpressed');
+          }
         });
       } else {
         buttons.forEach(function(button) {
-          qx.bom.element.Class.add(button, 'switchUnpressed');
-          qx.bom.element.Class.remove(button, 'switchPressed');
+          if (button) {
+            qx.bom.element.Class.add(button, 'switchUnpressed');
+            qx.bom.element.Class.remove(button, 'switchPressed');
+          }
         });
       }
     },
@@ -108,8 +112,12 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
       var actor = this.__downTarget;
       var buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
       this.__updateButtons(buttons, false);
-      qx.event.Registration.removeListenerById(actor, this.__olid);
-      qx.event.Registration.removeListenerById(actor, this.__ilid);
+      if (this.__olid) {
+        qx.event.Registration.removeListenerById(actor, this.__olid);
+      }
+      if (this.__ilid) {
+        qx.event.Registration.removeListenerById(actor, this.__ilid);
+      }
       this.__olid = null;
       this.__ilid = null;
       this.__downTarget = null;
