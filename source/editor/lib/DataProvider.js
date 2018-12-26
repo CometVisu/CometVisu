@@ -171,20 +171,34 @@ var DataProvider = function (config) {
   _provider.getEnumeration = function ( element ) {
     // get the data, and create an enumeration from it
     var data = getData( element );
-        
-    var enumeration = [];
-        
-    if (typeof _providerConfig.grouped == 'boolean' && _providerConfig.grouped == true) {
-      var groupEnumerations = [];
-      $.each(data, function (name, groupData) {
-        groupEnumerations.push({label: name, elements: getEnumerationForData(groupData)});
-      });
-      enumeration.push({group: groupEnumerations});
-    } else {
-      enumeration = getEnumerationForData(data);
+
+    function createEnumeration( thisData ) {
+      var enumeration = [];
+
+      if (typeof _providerConfig.grouped === 'boolean' && _providerConfig.grouped === true) {
+        var groupEnumerations = [];
+        $.each(thisData, function (name, groupData) {
+          groupEnumerations.push({label: name, elements: getEnumerationForData(groupData)});
+        });
+        enumeration.push({group: groupEnumerations});
+      } else {
+        enumeration = getEnumerationForData(thisData);
+      }
+      return enumeration;
     }
-        
-    return enumeration;
+
+    if( typeof data === 'function' ) {
+      // data was not ready yet -> create callback chain
+      return function (callback) {
+        // the caller of _provider.getEnumeration called this function and
+        // wants `callback` be called as soon as the data is available.
+        data( function ( newData ) {
+          callback( createEnumeration( newData ) );
+        } );
+      };
+    } else {
+      return createEnumeration();
+    }
   };
     
   /**
@@ -194,16 +208,16 @@ var DataProvider = function (config) {
    * @return  mixed           either undefined, or an object of hints
    */
   _provider.getHintsForValue = function (value) {
-    if (undefined == dataCache) {
+    if (undefined === dataCache) {
       // no hinting without cache!
       return undefined;
     }
         
-    if (undefined == hintsCache) {
+    if (undefined === hintsCache) {
       hintsCache = getAllHints();
     }
         
-    if (typeof hintsCache[value] == 'undefined') {
+    if (typeof hintsCache[value] === 'undefined') {
       // no hint for this value
       return undefined;
     }
@@ -264,7 +278,7 @@ var DataProvider = function (config) {
   var getEnumerationForData = function (data) {
     var enumeration = [];
         
-    if (typeof data == 'undefined') {
+    if (typeof data === 'undefined') {
       return undefined;
     }
         
@@ -281,7 +295,6 @@ var DataProvider = function (config) {
       enumeration.push(enumerationEntry);
     });
 
-        
     return enumeration;
   };
     
@@ -291,7 +304,7 @@ var DataProvider = function (config) {
    * will check if caching is enabled, and do nothing if not
    */
   _provider.preloadData = function () {
-    var doCaching = typeof _providerConfig.cache != 'undefined' ? _providerConfig.cache : true;
+    var doCaching = typeof _providerConfig.cache !== 'undefined' ? _providerConfig.cache : true;
         
     if (false === doCaching) {
       // no caching = nothing to do for us
@@ -315,18 +328,18 @@ var DataProvider = function (config) {
         
         
     // is caching enabled?
-    var doCaching = typeof _providerConfig.cache != 'undefined' ? _providerConfig.cache : true;
+    var doCaching = typeof _providerConfig.cache !== 'undefined' ? _providerConfig.cache : true;
 
     var data = [];
-    if (typeof _providerConfig.live == 'function') {
+    if (typeof _providerConfig.live === 'function') {
       data = _providerConfig.live( element );
             
-      if (true == doCaching) {
+      if (true === doCaching) {
         dataCache = data;
       }
     }
         
-    if (typeof _providerConfig.url == 'string') {
+    if (typeof _providerConfig.url === 'string') {
       // load the data from the server
             
       $.ajax(_providerConfig.url,
@@ -355,7 +368,21 @@ var DataProvider = function (config) {
             data[index] = _providerConfig.map(entry);
           });
     }
-        
+
+    // #####
+    var callbacks = [];
+    var isDataAvailable = false;
+    setTimeout( function () {
+      isDataAvailable = true;
+      callbacks.forEach( function( callback ){ callback( data ); } );
+    }, 2000);
+    return function ( callback ) {
+      if( isDataAvailable )
+        callback( data );
+      else
+        callbacks.push( callback );
+    };
+    // #####
     return data;
         
   };

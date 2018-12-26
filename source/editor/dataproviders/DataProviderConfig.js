@@ -33,7 +33,7 @@ var DataProviderConfig = {
   'address': {
     '_nodeValue':  {
       url: 'editor/dataproviders/list_all_addresses.php',
-      cache: true,
+      cache: false,
       userInputAllowed: true,
       grouped: true,
     },
@@ -102,7 +102,7 @@ var DataProviderConfig = {
     },
     'ga':  {
       url: 'editor/dataproviders/list_all_addresses.php',
-      cache: true,
+      cache: false,
       userInputAllowed: true,
       grouped: true,
     },
