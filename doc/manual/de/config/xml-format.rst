@@ -254,7 +254,7 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
 
     <pages...>
         <meta>
-            <template name="Heizung" ref="resource/config/heizung.template.xml"/>
+            <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
         </meta>
         <pages...>
             <page name=="Wohnzimmer"...>
@@ -282,7 +282,7 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
     </pages>
 
 .. code-block:: xml
-    :caption: Inhalt der externen Datei ``resource/config/heizung.template.xml``
+    :caption: Inhalt der externen Datei ``resource/config/media/heizung.template.xml``
 
     <group name="Heizung">
       {{{ additional_content }}}
