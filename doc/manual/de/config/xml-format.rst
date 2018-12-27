@@ -59,8 +59,8 @@ Option                       Beschreibung                                   Wert
 
     <meta>
         <files>
-            <file type="css">resource/style.css</file>
-            <file type="js" content="plugin">resource/MyCustomWidget.js</file>
+            <file type="css">resource/config/media/style.css</file>
+            <file type="js" content="plugin">resource/config/media/MyCustomWidget.js</file>
         </plugins>
         ...
     </meta>

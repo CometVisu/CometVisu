@@ -9,12 +9,12 @@ werden die verschiedenen Möglichkeiten - sortiert nach Komplexitätsgrad - im D
 ===   =============================    ================    ===================================================
 \     Anpassung                        Veränderung          Beschreibung
 ===   =============================    ================    ===================================================
-1.    Eigene CSS-Regeln                Optisch             Überschreiben der vorhandenen CSS-Regeln eines Designs durch das Laden von zusätzlichen CSS-Dateien
-2.    Eigene Icons einbinden           Optisch             Neben den mitgelieferten Icons können eigenen Icons über die Konfigurationsdatei hinzugefügt werden
-3.    Widgets durch ``class``          Optisch             Viele Widgets können individualisiert werden durch Hinzufügen des ``class`` Attributs und dazu passenden CSS-Regeln
-4.    Eigenes Design schreiben         Optisch             Sollten zusätzliche CSS-Regeln nicht ausreichen, kann ein neuen Design erstellt werden
+1.    Eigene CSS-Regeln                Optisch             Überschreiben der vorhandenen CSS-Regeln eines Designs durch das Laden von zusätzlichen CSS-Dateien.
+2.    Eigene Icons einbinden           Optisch             Neben den mitgelieferten Icons können eigene Icons über die Konfigurationsdatei hinzugefügt werden.
+3.    Widgets durch ``class``          Optisch             Viele Widgets können individualisiert werden durch Hinzufügen des ``class`` Attributs und dazu passenden CSS-Regeln.
+4.    Eigenes Design schreiben         Optisch             Sollten zusätzliche CSS-Regeln nicht ausreichen, kann ein neuen Design erstellt werden.
 5.    Eigene Widgets schreiben         Inhaltlich          Hinzufügen neuer Widgets durch Plugins.
-6.    Eigene Struktur schreiben        Inhaltlich          Die Umwandlung der Konfigurationsdateien in HTML-Code, kann durch erstellen einer neuen Struktur komplett verändert werden
+6.    Eigene Struktur schreiben        Inhaltlich          Die Umwandlung der Konfigurationsdateien in HTML-Code, kann durch erstellen einer neuen Struktur komplett verändert werden.
 ===   =============================    ================    ===================================================
 
 Vorhandenes Design verändern
@@ -41,15 +41,16 @@ können dazu Pfade zu CSS-Dateien angegben werden, die zusätzlich zu den CSS-Da
 .. HINT::
     In früheren CometVisu-Versionen (<= 0.10.x) mussten die CSS-Regeln in die ``custom.css`` Datei des jeweiligen
     Designs eingetragen werden. Auch wenn dies weiterhin funktioniert, wird empfohlen diese Regeln in eine neue Datei zu kopieren
-    und über den hier beschriebenen Weg einzubinden.
+    und über den hier beschriebenen Weg einzubinden. Der alte Weg wird nur aus kompabilitätsgründen aufrecht erhalten und
+    in zukünftigen Versionen entfernt werden.
 
 
 Eigene Icons einbinden
 ----------------------
 
-Mit dieser Option wird der Name des Icons definiert, welches sich unter dem in uri angegebenen Verzeichnis befindet.
+Mit dieser Option wird der Name des Icons definiert, welches sich unter dem in ``uri`` angegebenen Verzeichnis befindet.
 Auf die so definierten Icons kann dann im weiteren Verlauf über den einfacher zu merkenden Namen zugegriffen werden.
-Die Verzeichnisangabe ist im Beispiel relativ zur CV installation.
+Die Verzeichnisangabe ist im Beispiel relativ zur CV Installation.
 Hier wurden vorher die Icons in einem eigenen Unterverzeichnis abgelegt.
 
 .. code-block:: xml
@@ -59,7 +60,7 @@ Hier wurden vorher die Icons in einem eigenen Unterverzeichnis abgelegt.
         <meta>
             ...
             <icons>
-                <icon-definition name="Icon1" uri="./icon/unterverzeichnis/icon1.png"/>
+                <icon-definition name="Icon1" uri="./resource/config/media/icon1.png"/>
             </icons>
             ...
         </meta>
@@ -88,7 +89,7 @@ CSS-Regeln benutzt werden kann. Hierdurch hat man die Möglichkeit etwas gezielt
     <pages... design="metal">
         <meta>
             <files>
-                <file type="css">resource/my-custom-style.css</file>
+                <file type="css">resource/config/media/my-custom-style.css</file>
             </files>
             ...
         </meta>
@@ -98,7 +99,7 @@ CSS-Regeln benutzt werden kann. Hierdurch hat man die Möglichkeit etwas gezielt
     </pages>
 
 .. code-block:: css
-    :caption: CSS-Regeln für das Switch-Widget in der `resource/my-custom-style.css` Datei
+    :caption: CSS-Regeln für das Switch-Widget in der `resource/config/media/my-custom-style.css` Datei
 
     .switch.custom_fancy {
         color: pink;
@@ -114,7 +115,7 @@ komplett neues Design zu schreiben.
 Ein CometVisu Design besteht mindestens aus folgenden Dateien:
 
 * *basic.css*: Haupt CSS Datei mit allen Regeln, die für das Design benötigt werden
-* *mobile.css*: CSS-Regeln für Mobilgeräte mit kleinem Bildschirm
+* *mobile.css*: CSS-Regeln für Mobilgeräte mit kleinem Bildschirm (kann leer sein)
 * *design_setup.js*: Optionale Javascript Datei, die Anpassungen vornehmen kann die über CSS nicht möglich sind (kann leer sein)
 
 .. HINT::
@@ -130,7 +131,7 @@ Eigene Widgets schreiben über Plugins
 
 Neue Widgets können über Plugins hinzugefügt werden. Dies ist ein guter Einstiegspunkt in die CometVisu Entwicklung,
 da man die Möglichkeiten des Systems kennen lernt. Als Dokumentation der Möglichkeiten eines eigenen Widgets kann der
-Source-Code der vorhandenen Plugins. In diesem Kapitel soll es eher darum gehen, auf welche Wege man ein solches Plugin
+Source-Code der vorhandenen Plugins dienen. In diesem Kapitel soll es eher darum gehen, auf welche Wege man ein solches Plugin
 in die CometVisu einbinden kann.
 
 Hier wird zwischen zwei Wegen unterschieden, wie Plugins in die CometVisu eingebunden werden.
@@ -170,9 +171,9 @@ Aufbau eines Widgets
 Um ein neues Widget hinzuzufügen werden drei Dinge benötigt:
 
 1. Ein *Parser*, der die Widgetdefinition aus der XML-Konfigurationsdatei auslesen kann
-2. Eine *Widgetklasse*, die die Daten von Parser erhält und daraus HTML-Code erzeugt, der in die GUI eingebunden wird.
+2. Eine *Widgetklasse*, die die Daten vom Parser erhält und daraus HTML-Code erzeugt, der in die GUI eingebunden wird.
    Außerdem wird in der Klasse alles behandelt, was das Widget benötigt. Dazu gehört z.B. das Erkennen von Benutzerinteraktionen
-   und daraus resultierenden Statusupdates, die zum Backend gesendet werden, oder aber auch das darstellen von Statusupdates, die
+   und daraus resultierenden Statusupdates, die zum Backend gesendet werden, oder aber auch das Darstellen von Statusupdates, die
    vom Backend empfangen werden.
 3. Eine *XSD-Schema* Definition, die die Struktur des Widgets in der XML-Konfigurationsdatei beschreibt (bei Eigenständigen Plugins nicht erforderlich)
 
@@ -230,10 +231,10 @@ Ein einfaches Beispiel, für ein neuen Widget, welches per Plugin eingebunden we
 
 Diese Datei stellt ein Widget zur Verfügung, welches der GUI ein Überschriftelement mit beliebigem Text hinzufügt.
 Es kann in der Konfigurationsdatei als ``<headline>...</headline>`` benutzt werden. Wichtig ist hier, dass das
-Widget in der Konfigurationsdatei immer in ein ``<custom>`` Element eingebettet wird. Da für dieses Eigenständige
+Widget in der Konfigurationsdatei immer in ein ``<custom>`` Element eingebettet wird. Da für dieses eigenständige
 Plugin keine Schema-Definition existiert, ist dieser zusätzliche Schritt nötig, damit die Konfigurationsdatei von
 einem Schema-Validator nicht als ungültig markiert wird.
-Um dieses Plugin benutzen zu können sind, muss die Datei geladen werden.
+Um dieses Plugin benutzen zu können, muss die Datei geladen werden.
 
 .. code-block:: xml
 
@@ -264,7 +265,7 @@ Bisher existiert nur die ``pure``-Struktur in der CometVisu unter dem Pfad ``cv.
 alle Widgetklassen zu finden, die die CometVisu zur Verfügung stellt. Diese sind dafür verantwortlich aus einer
 von den *Parsern* ausgelesenen Konfigurationsdatei HTML-Code zu generieren.
 
-Durch eine neue Struktur der erzeugte HTML-Code ändern, muss man zusätzlich auch immer ein neues Design für diese
+Durch eine neue Struktur ändert sich der erzeugte HTML-Code, daher muss man zusätzlich auch immer ein neues Design für diese
 Struktur schreiben.
 
 .. HINT::
