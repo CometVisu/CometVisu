@@ -12,7 +12,7 @@ werden die verschiedenen Möglichkeiten - sortiert nach Komplexitätsgrad - im D
 1.    Eigene CSS-Regeln                Optisch             Überschreiben der vorhandenen CSS-Regeln eines Designs durch das Laden von zusätzlichen CSS-Dateien.
 2.    Eigene Icons einbinden           Optisch             Neben den mitgelieferten Icons können eigene Icons über die Konfigurationsdatei hinzugefügt werden.
 3.    Widgets durch ``class``          Optisch             Viele Widgets können individualisiert werden durch Hinzufügen des ``class`` Attributs und dazu passenden CSS-Regeln.
-4.    Eigenes Design schreiben         Optisch             Sollten zusätzliche CSS-Regeln nicht ausreichen, kann ein neuen Design erstellt werden.
+4.    Eigenes Design schreiben         Optisch             Sollten zusätzliche CSS-Regeln nicht ausreichen, kann ein neues Design erstellt werden.
 5.    Eigene Widgets schreiben         Inhaltlich          Hinzufügen neuer Widgets durch Plugins.
 6.    Eigene Struktur schreiben        Inhaltlich          Die Umwandlung der Konfigurationsdateien in HTML-Code, kann durch erstellen einer neuen Struktur komplett verändert werden.
 ===   =============================    ================    ===================================================
@@ -29,8 +29,8 @@ können dazu Pfade zu CSS-Dateien angegben werden, die zusätzlich zu den CSS-Da
     <pages... design="metal">
         <meta>
             <files>
-                <file type="css">resource/my-custom-style.css</file>
-                <file type="css">resource/my-other-custom-style.css</file>
+                <file type="css">resource/config/media/my-custom-style.css</file>
+                <file type="css">resource/config/media/my-other-custom-style.css</file>
                 ...
             </files>
             ...
