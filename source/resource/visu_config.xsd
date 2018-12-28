@@ -1037,7 +1037,7 @@
 
   <!-- more fun part - all widgets - if you add a new widget, you need to define it here -->
 
-  <xsd:complexType name="custom">
+  <xsd:complexType name="custom" mixed="true">
     <xsd:sequence>
       <xsd:any processContents="lax"/>
     </xsd:sequence>

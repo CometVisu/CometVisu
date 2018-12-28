@@ -808,6 +808,10 @@ var SchemaElement = function (node, schema) {
         case 'group':
           allowedContent._grouping = new SchemaGroup(tmpDOMGrouping, _schema);
           break;
+        case 'xsd:any':
+        case 'any':
+          allowedContent._grouping = new SchemaAny(tmpDOMGrouping, _schema)
+          break;
       }
             
       delete tmpDOMGrouping;
