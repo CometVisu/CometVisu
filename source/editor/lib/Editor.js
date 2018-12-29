@@ -1389,7 +1389,10 @@ var EditorConfigurationElement = function (parent, element) {
       // Assume: balanced '<' with '>' are on intention, any excess is bad
       // user input where a '&lt' was intended instead:
       inputValue = inputValue.replace( /(<)(?![^<]*?>)/gm, '&lt;'); // replace '<'
-      inputValue = inputValue.replace( /(?<!<[^>]*?)(>)/gm, '&gt;'); // replace '>'
+      // ECMA2018 solution:
+      // inputValue = inputValue.replace( /(?<!<[^>]*?)(>)/gm, '&gt;'); // replace '>'
+      // Compatibility version: (TODO: change back to ECMA2018 solution when all the browsers support it)
+      inputValue = inputValue.split('>').reduceRight(function(prev,part){return part+(part.indexOf('<')===-1?'&gt;':'>')+prev;});
 
       // set the value to the display-element
       $value.html(inputValue);
