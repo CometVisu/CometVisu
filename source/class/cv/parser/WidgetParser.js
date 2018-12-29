@@ -52,12 +52,18 @@ qx.Class.define('cv.parser.WidgetParser', {
      * @return {Map} widget data
      */
     parse: function (xml, path, flavour, pageType) {
-      var parser = this.getHandler(xml.nodeName);
+      var tag = xml.nodeName.toLowerCase();
+      if (tag === 'custom') {
+        // use the child of the custom element
+        xml = xml.children[0];
+        tag = xml.nodeName.toLowerCase();
+      }
+      var parser = this.getHandler(tag);
       var result = null;
       if (parser) {
         result = parser.parse(xml, path, flavour, pageType);
       } else {
-        qx.log.Logger.debug(this, "no parse handler registered for type: "+ xml.nodeName.toLowerCase());
+        qx.log.Logger.debug(this, "no parse handler registered for type: "+ tag.toLowerCase());
       }
       return result;
     },
