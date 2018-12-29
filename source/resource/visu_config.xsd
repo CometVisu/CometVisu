@@ -694,6 +694,34 @@
     </xsd:attribute>
   </xsd:complexType>
 
+  <xsd:complexType name="templates">
+    <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+      <xsd:element name="template">
+        <xsd:complexType>
+          <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="page" type="page" />
+            <xsd:element name="group" type="group" />
+            <xsd:element name="navbar" type="navbar" />
+            <xsd:group ref="Widgets"/>
+            <xsd:group ref="AvailablePlugins"/>
+          </xsd:choice>
+          <xsd:attribute name="name" type="xsd:string" use="required">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Name of the template definition</xsd:documentation>
+              <xsd:documentation xml:lang="de">Name der Template-Definition</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="ref" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Load template from this location</xsd:documentation>
+              <xsd:documentation xml:lang="de">Template von diesem Link laden</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
   <xsd:complexType name="addresses">
     <xsd:sequence minOccurs="1" maxOccurs="unbounded">
       <xsd:element name="address" type="address" />
@@ -1036,10 +1064,17 @@
       <xsd:element name="wgplugin_info" type="wgplugin_info"/>
       <xsd:element name="mobilemenu" type="mobilemenu"/>
       <xsd:element name="notificationcenterbadge" type="notificationcenterbadge"/>
+      <xsd:element name="custom" type="custom"/>
     </xsd:choice>
   </xsd:group>
 
   <!-- more fun part - all widgets - if you add a new widget, you need to define it here -->
+
+  <xsd:complexType name="custom" mixed="true">
+    <xsd:sequence>
+      <xsd:any processContents="lax"/>
+    </xsd:sequence>
+  </xsd:complexType>
 
   <xsd:complexType name="text">
     <xsd:sequence>
