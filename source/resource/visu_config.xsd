@@ -465,36 +465,40 @@
     </xsd:choice>
   </xsd:complexType>
 
-  <xsd:complexType name="file" mixed="true">
-    <xsd:attribute name="type" use="required">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">The type of the file to load</xsd:documentation>
-        <xsd:documentation xml:lang="de">Der Dateityp der zu ladenden Datei</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="css" />
-          <xsd:enumeration value="js" />
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
-    <xsd:attribute name="content" use="optional">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Describes the content provided by the file to load. Important to determine the loading order of Javascript files</xsd:documentation>
-        <xsd:documentation xml:lang="de">Beschreibt den Inhalt der zu ladenden Datei. Dies ist wichtig für die Ladereihenfolge der Dateien</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="plugin">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Contains a new Widget.</xsd:documentation>
-              <xsd:documentation xml:lang="de">Enthält ein neues Widget</xsd:documentation>
-            </xsd:annotation>
-          </xsd:enumeration>
-          <xsd:enumeration value="js" />
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
+  <xsd:complexType name="file">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="type" use="required">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The type of the file to load</xsd:documentation>
+            <xsd:documentation xml:lang="de">Der Dateityp der zu ladenden Datei</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="css" />
+              <xsd:enumeration value="js" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="content" use="optional">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Describes the content provided by the file to load. Important to determine the loading order of Javascript files</xsd:documentation>
+          <xsd:documentation xml:lang="de">Beschreibt den Inhalt der zu ladenden Datei. Dies ist wichtig für die Ladereihenfolge der Dateien</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="plugin">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Contains a new Widget.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Enthält ein neues Widget</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="js" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
   </xsd:complexType>
 
   <xsd:complexType name="plugins">
