@@ -740,6 +740,26 @@
         <xsd:element name="navbar" type="navbar" />
         <xsd:group ref="Widgets"/>
         <xsd:group ref="AvailablePlugins"/>
+        <xsd:element name="template">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="value">
+                <xsd:complexType mixed="true">
+                  <xsd:sequence>
+                    <xsd:any processContents="lax"/>
+                  </xsd:sequence>
+                  <xsd:attribute name="name" type="xsd:string" use="required"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string" use="required">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Name of the template definition to be used</xsd:documentation>
+                <xsd:documentation xml:lang="de">Name der Template-Definition die hier benutzt werden soll</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
+          </xsd:complexType>
+        </xsd:element>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="required">
