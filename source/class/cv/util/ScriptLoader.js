@@ -31,6 +31,7 @@ qx.Class.define('cv.util.ScriptLoader', {
     this.base(arguments);
     this.__scriptQueue = new qx.data.Array();
     this.__loaders = new qx.data.Array();
+    this.__delayedScriptQueue = new qx.data.Array();
   },
 
   /*
@@ -179,10 +180,15 @@ qx.Class.define('cv.util.ScriptLoader', {
         } else if (!this.__listener) {
           this.debug("script loader waiting for all scripts beeing queued");
 
-          this.__listener = this.addListenerOnce("changeAllQueued", function() {
-            this.debug("script loader finished");
-            this.fireEvent("finished");
-            this.__listener = null;
+          this.__listener = this.addListener("changeAllQueued", function(ev) {
+            if (ev.getData() === true) {
+              if (this.__scriptQueue.length === 0) {
+                this.debug("script loader finished");
+                this.fireEvent("finished");
+              }
+              this.removeListenerById(this.__listener);
+              this.__listener = null;
+            }
           }, this);
         }
       } else {

@@ -808,6 +808,10 @@ var SchemaElement = function (node, schema) {
         case 'group':
           allowedContent._grouping = new SchemaGroup(tmpDOMGrouping, _schema);
           break;
+        case 'xsd:any':
+        case 'any':
+          allowedContent._grouping = new SchemaAny(tmpDOMGrouping, _schema)
+          break;
       }
             
       delete tmpDOMGrouping;
@@ -2062,6 +2066,11 @@ var SchemaSequence = function (node, schema) {
           subObject = new SchemaGroup(this, _schema)
           subGroupings.push(subObject);
           break;
+        case 'xsd:any':
+        case 'any':
+          subObject = new SchemaAny(this, _schema)
+          subGroupings.push(subObject);
+          break;
       }
             
       sortedContent.push(subObject);
@@ -2403,6 +2412,207 @@ var SchemaSequence = function (node, schema) {
 }
 
 
+/**
+ * any content.
+ *
+ * @param   node    DOMNode the group-node
+ * @param   schema  Schema  the corresponding schema
+ */
+var SchemaAny = function (node, schema) {
+  /**
+   * us
+   * @var object
+   */
+  var _group = this;
+
+  /**
+   * type of this object
+   * @var string
+   */
+  _group.type = 'any';
+
+
+
+  /**
+   * there are no elements in a group...
+   * @var boolean
+   */
+  _group.elementsHaveOrder = undefined;
+
+  /**
+   * parse a list of elements in this group.
+   * Group is allowed (all|choice|sequence)? as per the definition.
+   * We do all of those (except for 'all')
+   */
+  var parse = function () {
+    bounds = {
+      min: $n.attr('minOccurs') != undefined ? $n.attr('minOccurs') : 1, // default is 1
+      max: $n.attr('maxOccurs') != undefined ? $n.attr('maxOccurs') : 1, // default is 1
+    };
+
+    var $group = $n;
+    if ($group.is('[ref]')) {
+      // if this is a reference, unravel it.
+      $group = _schema.getReferencedNode('group', $group.attr('ref'));
+    }
+
+    // we are allowed choice and sequence, but only ONE AT ALL is allowed
+    $.each($group.find(fixNamespace('> xsd\\:choice')), function (i, grouping) {
+      subGroupings.push(new SchemaChoice(grouping, _schema));
+    });
+
+    // sequences
+    $.each($group.find(fixNamespace('> xsd\\:sequence')), function (i, grouping) {
+      subGroupings.push(new SchemaSequence(grouping, _schema));
+    });
+
+    // there may be only one, so we simply us the first we found
+    if (subGroupings.length > 0) {
+      subGroupings = [subGroupings[0]];
+    }
+  }
+
+  /**
+   * is an element (specified by its name) allowed in this group?
+   * Goes recursive.
+   * Does NOT check bounds! Does NOT check dependencies!
+   *
+   * @param   element string  the element we check for
+   * @return  boolean         is it allowed?
+   */
+  _group.isElementAllowed = function (element) {
+     return true;
+  }
+
+  /**
+   * get the SchemaElement-object for a certain element-name.
+   * May return undefined if no element is found, so you might be interested in checking isElementAllowed beforehand.
+   *
+   * @param   elementName string  name of the element to find the SchemaElement for
+   * @return  object              SchemaElement-object, or undefined if none is found
+   */
+  _group.getSchemaElementForElementName = function (elementName) {
+    // can not find any reason why elementName is allowed with us...
+    return undefined;
+  }
+
+
+  /**
+   * get a list of required elements.
+   * if an element is required multiple times, it is listed multiple times
+   *
+   * @return  array   list of required elements
+   */
+  _group.getRequiredElements = function () {
+    return [];
+  };
+
+  /**
+   * get the elements allowed for this group
+   *
+   * @return  object      list of allowed elements, key is the name
+   */
+  _group.getAllowedElements = function () {
+    return [];
+  }
+
+  /**
+   * get the sorting of the allowed elements.
+   * For a group, all elements have the same sorting, so they will all have the
+   * same sortnumber
+   *
+   * Warning: this only works if any element can have only ONE position in the parent.
+   *
+   * @param   sortnumber  integer the sortnumber of a parent (only used when recursive)
+   * @return  object              list of allowed elements, with their sort-number as value
+   */
+  _group.getAllowedElementsSorting = function (sortnumber) {
+    return {};
+  }
+
+  /**
+   * cache for getRegex
+   * @var string
+   */
+  var regexCache = undefined;
+
+  /**
+   * get a regex (string) describing this choice
+   *
+   * @param   separator   string  the string used to separate different elements, e.g. ';'
+   * @param   nocapture   bool    when set to true non capturing groups are used
+   * @return  string  regex
+   */
+  _group.getRegex = function (separator, nocapture) {
+    return '.*';
+  };
+
+
+  /**
+   * find out if this Grouping has multi-level-bounds, i.e. sub-groupings with bounds.
+   * This makes it more or less impossible to know in advance which elements might be needed
+   *
+   * @return  boolean does it?
+   */
+  _group.hasMultiLevelBounds = function () {
+    return true;
+  };
+
+
+  /**
+   * get the bounds of this very grouping
+   *
+   * @return  object  like {min: x, max: y}
+   */
+  _group.getBounds = function () {
+    return bounds;
+  }
+
+
+  /**
+   * get bounds for a specific element.
+   * Take into account the bounds of the element and/or our own bounds
+   *
+   * @param   childName   string  name of the child-to-be
+   * @return  object              {max: x, min: y}, or undefined if none found
+   */
+  _group.getBoundsForElementName = function (childName) {
+    return bounds;
+  };
+
+  /**
+   * our node
+   * @var object
+   */
+  var $n = $(node);
+
+  /**
+   * the schema we belong to
+   * @var object
+   */
+  var _schema = schema;
+  if (_schema == undefined) {
+    throw 'programming error, schema is not defined';
+  }
+
+  /**
+   * array of sub-choices, -sequences, -groups that are defined
+   * @var array
+   */
+  var subGroupings = [];
+
+  /**
+   * bounds for this choice
+   * @var object
+   */
+  var bounds = {
+    min: undefined,
+    max: undefined
+  };
+
+  // fill ourselves with data
+  parse();
+}
 
 
 /**

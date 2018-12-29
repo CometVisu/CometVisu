@@ -432,8 +432,12 @@ var ConfigurationElement = function (node, parent) {
         var childName = child.name;
         // find the SchemaElement for this child
         var childSchemaElement = schemaElement.getSchemaElementForElementName(childName);
-                
-        if (childSchemaElement == undefined) {
+        if (childSchemaElement === undefined && schemaElement.name==='custom') {
+          // custom element allows any content so we just re-use the schemeElement here
+          childSchemaElement = schemaElement;
+        }
+
+        if (childSchemaElement === undefined) {
           // the xsd does not match, we are invalid
           throw 'xsd does not match this configuration, or configuration is not valid for ' + childName;
         }
