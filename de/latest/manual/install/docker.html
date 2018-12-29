@@ -211,14 +211,14 @@ mit dem neu erstellten Container überschrieben.</p>
 <div class="section" id="einrichtung">
 <h2>Einrichtung<a class="headerlink" href="#einrichtung" title="Link zu dieser Überschrift">¶</a></h2>
 <div class="section" id="umgebungsvariablen-environment">
-<h3>Umgebungsvariablen (environment)<a class="headerlink" href="#umgebungsvariablen-environment" title="Link zu dieser Überschrift">¶</a></h3>
+<span id="dockerenvironment"></span><h3>Umgebungsvariablen (environment)<a class="headerlink" href="#umgebungsvariablen-environment" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Der Container wird über Umgebungsvariablen grundsätzlich konfiguriert.
 Zur Verfügung stehen:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="22%" />
-<col width="61%" />
+<col width="18%" />
+<col width="26%" />
+<col width="56%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Parameter</th>
@@ -228,32 +228,32 @@ Zur Verfügung stehen:</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>KNX_INTERFACE</td>
-<td>iptn:172.17.0.1:3700</td>
-<td>knxd-URL für die KNX Schnittstelle. Wenn leer, so wird der <code class="docutils literal"><span class="pre">knxd</span></code>
-nicht geladen.</td>
+<td><code class="docutils literal"><span class="pre">iptn:172.17.0.1:3700</span></code></td>
+<td>knxd-URL für die KNX Schnittstelle. Wenn leer, so wird der
+<code class="docutils literal"><span class="pre">knxd</span></code> nicht geladen.</td>
 </tr>
 <tr class="row-odd"><td>KNX_PA</td>
-<td>1.1.238</td>
+<td><code class="docutils literal"><span class="pre">1.1.238</span></code></td>
 <td>Physikalische Schnittstelle (PA) für den <code class="docutils literal"><span class="pre">knxd</span></code>.</td>
 </tr>
 <tr class="row-even"><td>KNXD_PARAMETERS</td>
-<td>-u -d/var/log/eibd.log -c</td>
+<td><code class="docutils literal"><span class="pre">-u</span> <span class="pre">-d/var/log/eibd.log</span> <span class="pre">-c</span></code></td>
 <td>Weitere Aufruf-Parameter für den <code class="docutils literal"><span class="pre">knxd</span></code>.</td>
 </tr>
 <tr class="row-odd"><td>CGI_URL_PATH</td>
-<td>/cgi-bin/</td>
+<td><code class="docutils literal"><span class="pre">/cgi-bin/</span></code></td>
 <td>URL-Prefix um die <code class="docutils literal"><span class="pre">cgi-bin</span></code> Ressourcen zu lokalisieren.</td>
 </tr>
 <tr class="row-even"><td>BACKEND_PROXY_SOURCE</td>
 <td>&nbsp;</td>
-<td>Proxy-Pfade beginnen mit diesem Wert, z.B. <code class="docutils literal"><span class="pre">/rest</span></code> für das openHAB
-Backend.</td>
+<td>Proxy-Pfade beginnen mit diesem Wert, z.B. <code class="docutils literal"><span class="pre">/rest</span></code> für das
+openHAB Backend.</td>
 </tr>
 <tr class="row-odd"><td>BACKEND_PROXY_TARGET</td>
 <td>&nbsp;</td>
 <td>Ziel-URL für die Proxy-Anfragen an <code class="docutils literal"><span class="pre">BACKEND_PROXY_SOURCE</span></code>,
-z.B. <code class="docutils literal"><span class="pre">http://&lt;openhab-server-ip-address&gt;:8080/rest</span></code> für das openHAB
-Backend.</td>
+z.B. <code class="docutils literal"><span class="pre">http://&lt;openhab-server-ip-address&gt;:8080/rest</span></code> für das
+openHAB Backend.</td>
 </tr>
 </tbody>
 </table>

@@ -39,7 +39,7 @@
         <link rel="search" title="Suche" href="../search.html"/>
     <link rel="top" title="CometVisu" href="../index.html"/>
         <link rel="next" title="Die RST-Syntax" href="doc/rst.html"/>
-        <link rel="prev" title="Anleitung zum Erstellen eines Animierten Hydraulikplans" href="../config/hydraulik.html"/> 
+        <link rel="prev" title="Anpassungen vornehmen" href="../config/customizing.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -114,6 +114,7 @@
 <li class="toctree-l3"><a class="reference internal" href="doc/rst.html">Die RST-Syntax</a></li>
 <li class="toctree-l3"><a class="reference internal" href="doc/rst.html#eigene-direktiven">Eigene Direktiven</a></li>
 <li class="toctree-l3"><a class="reference internal" href="todos.html">TODO&#8217;s</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lokales-erzeugen-der-html-doku">Lokales Erzeugen der HTML-Doku</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dokumentation-schreiben-mit-visualstudio-code">Dokumentation schreiben mit VisualStudio Code</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="howto-vm.html">Einrichten einer VM mit Visual Studio Code</a></li>
 </ul>
@@ -420,11 +421,24 @@ Mit dem Wissen dieses Abschnitts sollte es möglich sein, eigene Beiträge für 
 </div>
 <div class="toctree-wrapper compound">
 </div>
+<div class="section" id="lokales-erzeugen-der-html-doku">
+<h3>Lokales Erzeugen der HTML-Doku<a class="headerlink" href="#lokales-erzeugen-der-html-doku" title="Link zu dieser Überschrift">¶</a></h3>
 <div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Zu tun</p>
 <ul class="last simple">
 <li>Lokales Erzeugen der HTML-Doku, inkl. Screenshots</li>
 </ul>
+</div>
+<p>Über den Befehl <code class="docutils literal"><span class="pre">./cv</span> <span class="pre">doc</span></code> wird die deutsche Dokumentation aus den RST nach
+HTML übersetzt. Für die englische Version muss <code class="docutils literal"><span class="pre">./cv</span> <span class="pre">doc</span> <span class="pre">-l</span> <span class="pre">en</span></code> aufgerufen
+werden.</p>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">Sollte das Projekt richtig eingerichtet sein, die Dokumentationserzeugung
+dennoch aufgrund unerfüllter Abhängigkeiten fehlschlagen, so ist zu prüfen,
+ob die gleichen Python Versionen (insb. Python 2 vs. Python 3) verwendet
+werden.</p>
+</div>
 </div>
 <div class="section" id="dokumentation-schreiben-mit-visualstudio-code">
 <h3>Dokumentation schreiben mit VisualStudio Code<a class="headerlink" href="#dokumentation-schreiben-mit-visualstudio-code" title="Link zu dieser Überschrift">¶</a></h3>
@@ -538,7 +552,7 @@ CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil des Logs sind.
         <a href="doc/rst.html" class="btn btn-neutral float-right" title="Die RST-Syntax" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../config/hydraulik.html" class="btn btn-neutral" title="Anleitung zum Erstellen eines Animierten Hydraulikplans" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../config/customizing.html" class="btn btn-neutral" title="Anpassungen vornehmen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

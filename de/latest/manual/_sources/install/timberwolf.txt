@@ -72,7 +72,17 @@ Unter *Containers* → *Add Container*
     - ``container``: ``/var/www/html/resource/config`` ⭢ ``volume``: ``CometVisuConfig`` *(ab Version 0.11)*
     - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional, wenn RRD genutzt werden soll)*
 
-  - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``
+  - Env: Environment variables
+
+    - ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``
+    - Je nach lokaler Umgebung sind gegebenenfalls weitere Anpassungen
+      notwendig, die im Abschnitt des
+      :ref:`Docker Containers <dockerenvironment>` angegeben wurden.
+
+      So kann es notwendig sein für ``KNX_PA`` einen anderen Wert als das
+      Default ``1.1.238`` zu setzen, wenn diese physikalische Addresse bereits
+      belegt ist oder eine andere Linie als ``1.1`` verwendet werden soll.
+
   - Restart policy: ``Unless stopped``
 
 .. figure:: _static/portainer_container_add.png

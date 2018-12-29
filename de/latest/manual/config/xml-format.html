@@ -217,6 +217,42 @@ Plugins, Mappings, Stylings, Icons und die Statusleiste. Die richtige Reihenfolg
 einzuhalten!</p>
 <p>Nachstehend wird werden der Reihe nach ein Überblick über die Optionen im meta-tag gegeben.</p>
 </div>
+<div class="section" id="zusatzliche-dateien-einbinden">
+<span id="xml-format-files"></span><h2>Zusätzliche Dateien einbinden<a class="headerlink" href="#zusatzliche-dateien-einbinden" title="Link zu dieser Überschrift">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="37%" />
+<col width="28%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Beschreibung</th>
+<th class="head">Werte</th>
+<th class="head">Zwingend</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;file</span> <span class="pre">type=&quot;</span> <span class="pre">&quot;&gt;&lt;/file&gt;</span></code></td>
+<td>Mit dieser Option können zusätzliche Dateien
+(CSS oder Javascript) geladen werden</td>
+<td>Pfad zur Datei</td>
+<td>NEIN</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;files&gt;</span>
+        <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/style.css<span class="nt">&lt;/file&gt;</span>
+        <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;js&quot;</span> <span class="na">content=</span><span class="s">&quot;plugin&quot;</span><span class="nt">&gt;</span>resource/config/media/MyCustomWidget.js<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+    ...
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
+<p>Siehe auch <a class="reference internal" href="customizing.html#custom-css"><span class="std std-ref">Einzelne Widgets durch CSS-Klassen verändern</span></a> und <a class="reference internal" href="customizing.html#custom-plugins"><span class="std std-ref">Eigene Widgets schreiben über Plugins</span></a>.</p>
+</div>
 <div class="section" id="plugins">
 <span id="xml-format-plugins"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Link zu dieser Überschrift">¶</a></h2>
 <table border="1" class="docutils">
