@@ -228,9 +228,23 @@ Mit dem Wissen dieses Abschnitts sollte es möglich sein, eigene Beiträge für 
 
     todos
 
+Lokales Erzeugen der HTML-Doku
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. TODO::
 
     * Lokales Erzeugen der HTML-Doku, inkl. Screenshots
+
+Über den Befehl ``./cv doc`` wird die deutsche Dokumentation aus den RST nach
+HTML übersetzt. Für die englische Version muss ``./cv doc -l en`` aufgerufen
+werden.
+
+.. IMPORTANT::
+
+    Sollte das Projekt richtig eingerichtet sein, die Dokumentationserzeugung
+    dennoch aufgrund unerfüllter Abhängigkeiten fehlschlagen, so ist zu prüfen,
+    ob die gleichen Python Versionen (insb. Python 2 vs. Python 3) verwendet
+    werden.
 
 Dokumentation schreiben mit VisualStudio Code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -455,8 +455,51 @@
       <xsd:element name="stylings" type="stylings" />
       <xsd:element name="statusbar" type="statusbar" />
       <xsd:element name="notifications" type="notifications" />
+      <xsd:element name="files" type="files" />
       <xsd:element name="templates" type="templates" />
     </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="files">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="file" type="file" />
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="file">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="type" use="required">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The type of the file to load</xsd:documentation>
+            <xsd:documentation xml:lang="de">Der Dateityp der zu ladenden Datei</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="css" />
+              <xsd:enumeration value="js" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="content" use="optional">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Describes the content provided by the file to load. Important to determine the loading order of Javascript files</xsd:documentation>
+          <xsd:documentation xml:lang="de">Beschreibt den Inhalt der zu ladenden Datei. Dies ist wichtig für die Ladereihenfolge der Dateien</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="plugin">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Contains a new Widget.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Enthält ein neues Widget</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="js" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
   </xsd:complexType>
 
   <xsd:complexType name="plugins">
@@ -651,36 +694,6 @@
     </xsd:attribute>
   </xsd:complexType>
 
-
-  <xsd:complexType name="templates">
-    <xsd:sequence minOccurs="1" maxOccurs="unbounded">
-      <xsd:element name="template">
-        <xsd:complexType>
-          <xsd:choice minOccurs="0" maxOccurs="unbounded">
-            <xsd:element name="page" type="page" />
-            <xsd:element name="group" type="group" />
-            <xsd:element name="navbar" type="navbar" />
-            <xsd:group ref="Widgets"/>
-            <xsd:group ref="AvailablePlugins"/>
-          </xsd:choice>
-          <xsd:attribute name="name" type="xsd:string" use="required">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Name of the template definition</xsd:documentation>
-              <xsd:documentation xml:lang="de">Name der Template-Definition</xsd:documentation>
-            </xsd:annotation>
-          </xsd:attribute>
-          <xsd:attribute name="ref" type="xsd:string">
-            <xsd:annotation>
-              <xsd:documentation xml:lang="en">Load template from this location</xsd:documentation>
-              <xsd:documentation xml:lang="de">Template von diesem Link laden</xsd:documentation>
-            </xsd:annotation>
-          </xsd:attribute>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-
   <xsd:complexType name="addresses">
     <xsd:sequence minOccurs="1" maxOccurs="unbounded">
       <xsd:element name="address" type="address" />
@@ -699,26 +712,6 @@
         <xsd:element name="navbar" type="navbar" />
         <xsd:group ref="Widgets"/>
         <xsd:group ref="AvailablePlugins"/>
-        <xsd:element name="template">
-          <xsd:complexType>
-            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-              <xsd:element name="value">
-                <xsd:complexType>
-                  <xsd:sequence>
-                    <xsd:any processContents="lax"/>
-                  </xsd:sequence>
-                  <xsd:attribute name="name" type="xsd:string" use="required"/>
-                </xsd:complexType>
-              </xsd:element>
-            </xsd:sequence>
-            <xsd:attribute name="name" type="xsd:string" use="required">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Name of the template definition to be used</xsd:documentation>
-                <xsd:documentation xml:lang="de">Name der Template-Definition die hier benutzt werden soll</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
-          </xsd:complexType>
-        </xsd:element>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="required">

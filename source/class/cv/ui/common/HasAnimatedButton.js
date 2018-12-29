@@ -112,8 +112,12 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
       var actor = this.__downTarget;
       var buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
       this.__updateButtons(buttons, false);
-      qx.event.Registration.removeListenerById(actor, this.__olid);
-      qx.event.Registration.removeListenerById(actor, this.__ilid);
+      if (this.__olid) {
+        qx.event.Registration.removeListenerById(actor, this.__olid);
+      }
+      if (this.__ilid) {
+        qx.event.Registration.removeListenerById(actor, this.__ilid);
+      }
       this.__olid = null;
       this.__ilid = null;
       this.__downTarget = null;

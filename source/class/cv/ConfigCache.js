@@ -46,6 +46,7 @@ qx.Class.define('cv.ConfigCache', {
       this.save(this._cacheKey, {
         hash: this.toHash(xml),
         VERSION: cv.Version.VERSION,
+        REV: cv.Version.REV,
         data: model.getWidgetDataModel(),
         addresses: model.getAddressList(),
         configSettings: config
@@ -102,9 +103,9 @@ qx.Class.define('cv.ConfigCache', {
       }
       if (localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey) !== null) {
         // compare versions
-        var cacheVersion = this.getData("VERSION");
-        qx.log.Logger.debug(this, "Cached version: "+cacheVersion+", CV-Version: "+cv.Version.VERSION);
-        return (cacheVersion === cv.Version.VERSION);
+        var cacheVersion = this.getData("VERSION") + '|' + this.getData('REV');
+        qx.log.Logger.debug(this, "Cached version: "+cacheVersion+", CV-Version: "+cv.Version.VERSION + '|' + cv.Version.REV);
+        return (cacheVersion === cv.Version.VERSION + '|' + cv.Version.REV);
       } else {
         return false;
       }
