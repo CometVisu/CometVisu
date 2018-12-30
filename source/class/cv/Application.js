@@ -466,19 +466,20 @@ qx.Class.define("cv.Application",
       if (!cv.Config.cacheUsed) {
         this.debug("starting");
         this.__detectInitialPage();
-        engine.parseXML(xml);
-        this.loadPlugins();
-        this.loadStyles();
-        this.loadScripts();
-        this.loadIcons();
-        this.debug("done");
+        engine.parseXML(xml, function () {
+          this.loadPlugins();
+          this.loadStyles();
+          this.loadScripts();
+          this.loadIcons();
+          this.debug("done");
 
-        if (cv.Config.enableCache) {
-          // cache dom + data when everything is ready
-          qx.event.message.Bus.subscribe("setup.dom.finished", function() {
-            cv.ConfigCache.dump(xml);
-          }, this);
-        }
+          if (cv.Config.enableCache) {
+            // cache dom + data when everything is ready
+            qx.event.message.Bus.subscribe("setup.dom.finished", function() {
+              cv.ConfigCache.dump(xml);
+            }, this);
+          }
+        }.bind(this));
       }
     },
 
