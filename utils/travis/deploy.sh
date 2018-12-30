@@ -97,7 +97,7 @@ rm -rf out/de/$VERSION/demo
 mv build out/de/$VERSION/demo
 
 # Copy demo-mode to default config
-cp out/de/$VERSION/demo/resource/demo/visu_config_demo_testmode.xnl out/de/$VERSION/demo/config/visu_config.xml
+cp out/de/$VERSION/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo/config/visu_config.xml
 deactivate
 
 echo "starting deployment..."
