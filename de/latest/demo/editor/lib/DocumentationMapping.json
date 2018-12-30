@@ -72,5 +72,6 @@
   "xml-format-pages": "/latest/manual/config/xml-format.html#xml-format-pages", 
   "xml-format-plugins": "/latest/manual/config/xml-format.html#xml-format-plugins", 
   "xml-format-statusbar": "/latest/manual/config/xml-format.html#xml-format-statusbar", 
-  "xml-format-stylings": "/latest/manual/config/xml-format.html#xml-format-stylings"
+  "xml-format-stylings": "/latest/manual/config/xml-format.html#xml-format-stylings", 
+  "xml-format-templates": "/latest/manual/config/xml-format.html#xml-format-templates"
 }

@@ -8,7 +8,7 @@
       <xsd:documentation xml:lang="de">Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends oder der Item-Name beim openHAB-Backend.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:string">
-      <xsd:pattern value="([0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|[A-Za-z][A-Za-z0-9_\-\.:]*)" />
+      <xsd:pattern value="([0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:]*)\s*\}{0,3}" />
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -456,6 +456,7 @@
       <xsd:element name="statusbar" type="statusbar" />
       <xsd:element name="notifications" type="notifications" />
       <xsd:element name="files" type="files" />
+      <xsd:element name="templates" type="templates" />
     </xsd:choice>
   </xsd:complexType>
 
@@ -693,6 +694,34 @@
     </xsd:attribute>
   </xsd:complexType>
 
+  <xsd:complexType name="templates">
+    <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+      <xsd:element name="template">
+        <xsd:complexType>
+          <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="page" type="page" />
+            <xsd:element name="group" type="group" />
+            <xsd:element name="navbar" type="navbar" />
+            <xsd:group ref="Widgets"/>
+            <xsd:group ref="AvailablePlugins"/>
+          </xsd:choice>
+          <xsd:attribute name="name" type="xsd:string" use="required">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Name of the template definition</xsd:documentation>
+              <xsd:documentation xml:lang="de">Name der Template-Definition</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="ref" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Load template from this location</xsd:documentation>
+              <xsd:documentation xml:lang="de">Template von diesem Link laden</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
   <xsd:complexType name="addresses">
     <xsd:sequence minOccurs="1" maxOccurs="unbounded">
       <xsd:element name="address" type="address" />
@@ -711,6 +740,26 @@
         <xsd:element name="navbar" type="navbar" />
         <xsd:group ref="Widgets"/>
         <xsd:group ref="AvailablePlugins"/>
+        <xsd:element name="template">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="value">
+                <xsd:complexType mixed="true">
+                  <xsd:sequence>
+                    <xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                  <xsd:attribute name="name" type="xsd:string" use="required"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string" use="required">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Name of the template definition to be used</xsd:documentation>
+                <xsd:documentation xml:lang="de">Name der Template-Definition die hier benutzt werden soll</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
+          </xsd:complexType>
+        </xsd:element>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="required">

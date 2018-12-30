@@ -430,17 +430,158 @@ einzuhalten!</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="templates">
+<span id="xml-format-templates"></span><h2>Templates<a class="headerlink" href="#templates" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte erstellt werden. In der Regel möchte man z.B.
+seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B. einem
+Slider zur Darstellung und Bedienung der Ventilstellung, einem Info-Widget zur Anzeige der aktuellen Ist-Temperatur
+und einem InfoTrigger-Widget für die aktuelle Soll-Temperatur. Diese Struktur ist in jedem Raum gleich, lediglich
+die benutzen Addresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
+jedem Raum wiederverwenden.</p>
+<p>In der Template-Definition werden Platzhalter für Variablen verwendet, welche dann beim benutzen des Templates durch
+die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ein Template definiert und benutzt.</p>
+<div class="literal-block-wrapper container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Beispiel eines Templates für eine Heizung und dessen Verwendung in verschiedenen Räumen</span><a class="headerlink" href="#id1" title="Link zu diesem Quellcode">¶</a></div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span>&lt;pages...&gt;
+    &lt;meta&gt;
+        &lt;template name=&quot;Heizung&quot;&gt;
+            &lt;group name=&quot;Heizung&quot;&gt;
+              {{{ additional_content }}}
+              &lt;slide min=&quot;0&quot; max=&quot;100&quot; format=&quot;%d%%&quot;&gt;
+                &lt;label&gt;
+                  &lt;icon name=&quot;sani_heating&quot; /&gt;
+                  Heizung
+                &lt;/label&gt;
+                &lt;address transform=&quot;OH:dimmer&quot; variant=&quot;&quot;&gt;{{ control_address }}&lt;/address&gt;
+              &lt;/slide&gt;
+              &lt;info format=&quot;%.1f °C&quot;&gt;
+                &lt;label&gt;
+                  &lt;icon name=&quot;temp_temperature&quot; /&gt;
+                  Ist
+                &lt;/label&gt;
+                &lt;address transform=&quot;OH:number&quot; variant=&quot;&quot;&gt;{{ currenttemp_address }}&lt;/address&gt;
+              &lt;/info&gt;
+              &lt;infotrigger uplabel=&quot;+&quot; upvalue=&quot;0.5&quot; downlabel=&quot;-&quot;
+                           downvalue=&quot;-0.5&quot; styling=&quot;BluePurpleRedTemp&quot;
+                           infoposition=&quot;middle&quot; format=&quot;%.1f °C&quot; change=&quot;absolute&quot; min=&quot;15&quot; max=&quot;25&quot;&gt;
+                &lt;label&gt;
+                  &lt;icon name=&quot;temp_control&quot; /&gt;
+                  Soll
+                &lt;/label&gt;
+                &lt;address transform=&quot;OH:number&quot; variant=&quot;&quot;&gt;{{ targettemp_address }}&lt;/address&gt;
+              &lt;/infotrigger&gt;
+            &lt;/group&gt;
+        &lt;/template&gt;
+    &lt;/meta&gt;
+    &lt;pages...&gt;
+        &lt;page name=&quot;Wohnzimmer&quot;...&gt;
+            ...
+            &lt;template name=&quot;Heizung&quot;&gt;
+              &lt;value name=&quot;control_address&quot;&gt;Heating_FF_Living&lt;/value&gt;
+              &lt;value name=&quot;currenttemp_address&quot;&gt;Temperature_FF_Living&lt;/value&gt;
+              &lt;value name=&quot;targettemp_address&quot;&gt;Temperature_FF_Living_Target&lt;/value&gt;
+            &lt;/template&gt;
+            ...
+        &lt;/page&gt;
+        &lt;page name=&quot;Küche&quot;...&gt;
+            ...
+            &lt;template name=&quot;Heizung&quot;&gt;
+              &lt;value name=&quot;control_address&quot;&gt;Heating_FF_Kitchen&lt;/value&gt;
+              &lt;value name=&quot;currenttemp_address&quot;&gt;Temperature_FF_Kitchen&lt;/value&gt;
+              &lt;value name=&quot;targettemp_address&quot;&gt;Temperature_FF_Kitchen_Target&lt;/value&gt;
+              &lt;value name=&quot;additional_content&quot;&gt;
+                &lt;text&gt;&lt;label&gt;Heizung Küche&lt;/label&gt;&lt;/text&gt;
+              &lt;/value&gt;
+            &lt;/template&gt;
+            ...
+        &lt;/page&gt;
+    &lt;/pages&gt;
+&lt;/pages&gt;
+</pre></div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Für die Templates wird <a class="reference external" href="https://github.com/janl/mustache.js">mustache.js</a> benutzt. Für weitere Informationen
+kann die mustache.js Dokumentation zu Rate gezogen werden.</p>
+</div>
+<p>Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine externe Datei ausgelagert werden.</p>
+<div class="literal-block-wrapper container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Beispiel einer Template-Definition aus einer externen Datei</span><a class="headerlink" href="#id2" title="Link zu diesem Quellcode">¶</a></div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span>&lt;pages...&gt;
+    &lt;meta&gt;
+        &lt;template name=&quot;Heizung&quot; ref=&quot;resource/config/media/heizung.template.xml&quot;/&gt;
+    &lt;/meta&gt;
+    &lt;pages...&gt;
+        &lt;page name=&quot;Wohnzimmer&quot;...&gt;
+            ...
+            &lt;template name=&quot;Heizung&quot;&gt;
+              &lt;value name=&quot;control_address&quot;&gt;Heating_FF_Living&lt;/value&gt;
+              &lt;value name=&quot;currenttemp_address&quot;&gt;Temperature_FF_Living&lt;/value&gt;
+              &lt;value name=&quot;targettemp_address&quot;&gt;Temperature_FF_Living_Target&lt;/value&gt;
+            &lt;/template&gt;
+            ...
+        &lt;/page&gt;
+        &lt;page name=&quot;Küche&quot;...&gt;
+            ...
+            &lt;template name=&quot;Heizung&quot;&gt;
+              &lt;value name=&quot;control_address&quot;&gt;Heating_FF_Kitchen&lt;/value&gt;
+              &lt;value name=&quot;currenttemp_address&quot;&gt;Temperature_FF_Kitchen&lt;/value&gt;
+              &lt;value name=&quot;targettemp_address&quot;&gt;Temperature_FF_Kitchen_Target&lt;/value&gt;
+              &lt;value name=&quot;additional_content&quot;&gt;
+                &lt;text&gt;&lt;label&gt;Heizung Küche&lt;/label&gt;&lt;/text&gt;
+              &lt;/value&gt;
+            &lt;/template&gt;
+            ...
+        &lt;/page&gt;
+    &lt;/pages&gt;
+&lt;/pages&gt;
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Inhalt der externen Datei <code class="docutils literal"><span class="pre">resource/config/media/heizung.template.xml</span></code></span><a class="headerlink" href="#id3" title="Link zu diesem Quellcode">¶</a></div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+  {{{ additional_content }}}
+  <span class="nt">&lt;slide</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;100&quot;</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label&gt;</span>
+      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;sani_heating&quot;</span> <span class="nt">/&gt;</span>
+      Heizung
+    <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:dimmer&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ control_address }}<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;/slide&gt;</span>
+  <span class="nt">&lt;info</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label&gt;</span>
+      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_temperature&quot;</span> <span class="nt">/&gt;</span>
+      Ist
+    <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ currenttemp_address }}<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;/info&gt;</span>
+  <span class="nt">&lt;infotrigger</span> <span class="na">uplabel=</span><span class="s">&quot;+&quot;</span> <span class="na">upvalue=</span><span class="s">&quot;0.5&quot;</span> <span class="na">downlabel=</span><span class="s">&quot;-&quot;</span>
+                           <span class="na">downvalue=</span><span class="s">&quot;-0.5&quot;</span> <span class="na">styling=</span><span class="s">&quot;BluePurpleRedTemp&quot;</span>
+                           <span class="na">infoposition=</span><span class="s">&quot;middle&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span> <span class="na">change=</span><span class="s">&quot;absolute&quot;</span> <span class="na">min=</span><span class="s">&quot;15&quot;</span> <span class="na">max=</span><span class="s">&quot;25&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label&gt;</span>
+      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_control&quot;</span> <span class="nt">/&gt;</span>
+      Soll
+    <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ targettemp_address }}<span class="nt">&lt;/address&gt;</span>
+  <span class="nt">&lt;/infotrigger&gt;</span>
+<span class="nt">&lt;/group&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="aufbau-der-visu-seiten">
 <span id="xml-format-pages"></span><h2>Aufbau der Visu-Seiten<a class="headerlink" href="#aufbau-der-visu-seiten" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Als erstes muss eine Seite als Startseite angelegt werden. Dies
 geschieht mit dem obersten Container. Alle weiteren Widgets und Seiten
 befinden sich innerhalb dieser Hauptseite. Die Position der Elemente
 wird von oben nach unten verarbeitet. Das sieht schematisch so aus:</p>
-<div class="figure" id="id1">
+<div class="figure" id="id4">
 <img alt="Startseite mit Link zur Unterseite" src="../_images/structure_main_page.png" />
 <p class="caption"><span class="caption-text">Startseite mit Link zur Unterseite</span></p>
 </div>
-<div class="figure" id="id2">
+<div class="figure" id="id5">
 <img alt="Unterseite" src="../_images/structure_sub_page.png" />
 <p class="caption"><span class="caption-text">Unterseite</span></p>
 </div>
