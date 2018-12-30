@@ -746,7 +746,7 @@
               <xsd:element name="value">
                 <xsd:complexType mixed="true">
                   <xsd:sequence>
-                    <xsd:any processContents="lax"/>
+                    <xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
                   </xsd:sequence>
                   <xsd:attribute name="name" type="xsd:string" use="required"/>
                 </xsd:complexType>
