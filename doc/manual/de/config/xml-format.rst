@@ -43,6 +43,30 @@ einzuhalten!
 
 Nachstehend wird werden der Reihe nach ein Überblick über die Optionen im meta-tag gegeben.
 
+.. _xml-format_files:
+
+Zusätzliche Dateien einbinden
+-----------------------------
+
+===========================  ============================================   =================================  ===============
+Option                       Beschreibung                                   Werte                              Zwingend
+===========================  ============================================   =================================  ===============
+``<file type=" "></file>``   Mit dieser Option können zusätzliche Dateien   Pfad zur Datei                     NEIN
+                             (CSS oder Javascript) geladen werden
+===========================  ============================================   =================================  ===============
+
+.. code-block:: xml
+
+    <meta>
+        <files>
+            <file type="css">resource/config/media/style.css</file>
+            <file type="js" content="plugin">resource/config/media/MyCustomWidget.js</file>
+        </plugins>
+        ...
+    </meta>
+
+Siehe auch :ref:`custom_css` und :ref:`custom_plugins`.
+
 .. _xml-format_plugins:
 
 Plugins
@@ -173,8 +197,8 @@ Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt das zB. Abzeig
 Templates
 ---------
 
-Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte erstellt werden. In der Regel möchte z.B.
-seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B: einem
+Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte erstellt werden. In der Regel möchte man z.B.
+seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B. einem
 Slider zur Darstellung und Bedienung der Ventilstellung, einem Info-Widget zur Anzeige der aktuellen Ist-Temperatur
 und einem InfoTrigger-Widget für die aktuelle Soll-Temperatur. Diese Struktur ist in jedem Raum gleich, lediglich
 die benutzen Addresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
@@ -218,7 +242,7 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
             </template>
         </meta>
         <pages...>
-            <page name=="Wohnzimmer"...>
+            <page name="Wohnzimmer"...>
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Living</value>
@@ -227,7 +251,7 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
                 </template>
                 ...
             </page>
-            <page name=="Küche"...>
+            <page name="Küche"...>
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Kitchen</value>
@@ -254,10 +278,10 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
 
     <pages...>
         <meta>
-            <template name="Heizung" ref="resource/config/heizung.template.xml"/>
+            <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
         </meta>
         <pages...>
-            <page name=="Wohnzimmer"...>
+            <page name="Wohnzimmer"...>
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Living</value>
@@ -266,7 +290,7 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
                 </template>
                 ...
             </page>
-            <page name=="Küche"...>
+            <page name="Küche"...>
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Kitchen</value>
@@ -282,7 +306,7 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
     </pages>
 
 .. code-block:: xml
-    :caption: Inhalt der externen Datei ``resource/config/heizung.template.xml``
+    :caption: Inhalt der externen Datei ``resource/config/media/heizung.template.xml``
 
     <group name="Heizung">
       {{{ additional_content }}}

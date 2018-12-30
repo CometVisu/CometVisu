@@ -83,44 +83,52 @@ describe("testing the meta parser", function() {
           <div style="float:right;padding-right:0.5em">Version: Git</div>
         ]]></status>
       </statusbar>
+      <templates>
+        <template name="test"><text><label>Test template</label></text></template>
+      </templates>
     </meta>
     */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].trim();
     var xml = qx.xml.Document.fromString(source);
     var parser = new cv.parser.MetaParser();
-    parser.parse(xml);
+    parser.parse(xml, function () {
 
-    // check mappings
-    expect(cv.Config.hasMapping('Off_On')).toBeTruthy();
-    expect(cv.Config.hasMapping('Sign')).toBeTruthy();
-    expect(cv.Config.hasMapping('KonnexHVAC')).toBeTruthy();
-    expect(cv.Config.hasMapping('One1000th')).toBeTruthy();
-    expect(cv.Config.hasMapping('Motion_name')).toBeTruthy();
+      // check mappings
+      expect(cv.Config.hasMapping('Off_On')).toBeTruthy();
+      expect(cv.Config.hasMapping('Sign')).toBeTruthy();
+      expect(cv.Config.hasMapping('KonnexHVAC')).toBeTruthy();
+      expect(cv.Config.hasMapping('One1000th')).toBeTruthy();
+      expect(cv.Config.hasMapping('Motion_name')).toBeTruthy();
 
-    // check stylings
-    expect(cv.Config.hasStyling('Red_Green')).toBeTruthy();
-    expect(cv.Config.hasStyling('Blue_Purple_Red')).toBeTruthy();
+      // check stylings
+      expect(cv.Config.hasStyling('Red_Green')).toBeTruthy();
+      expect(cv.Config.hasStyling('Blue_Purple_Red')).toBeTruthy();
 
-    // test plugins
-    var plugins = parser.parsePlugins(xml);
-    expect(plugins).toContain("plugin-colorchooser");
-    expect(plugins).toContain("plugin-diagram");
-    expect(plugins).toContain("plugin-strftime");
+      // test plugins
+      var plugins = parser.parsePlugins(xml);
+      expect(plugins).toContain("plugin-colorchooser");
+      expect(plugins).toContain("plugin-diagram");
+      expect(plugins).toContain("plugin-strftime");
 
-    // test notifications
-    var router = cv.core.notifications.Router.getInstance();
-    var config = router.__stateMessageConfig;
+      // test notifications
+      var router = cv.core.notifications.Router.getInstance();
+      var config = router.__stateMessageConfig;
 
-    expect(config.hasOwnProperty("Motion_FF_Dining")).toBeTruthy();
-    expect(config.hasOwnProperty("Motion_FF_Corridor")).toBeTruthy();
-    expect(config.hasOwnProperty("Motion_FF_Kitchen")).toBeTruthy();
+      expect(config.hasOwnProperty("Motion_FF_Dining")).toBeTruthy();
+      expect(config.hasOwnProperty("Motion_FF_Corridor")).toBeTruthy();
+      expect(config.hasOwnProperty("Motion_FF_Kitchen")).toBeTruthy();
 
-    // state listeners must be set
-    var model = cv.data.Model.getInstance();
-    ["Motion_FF_Dining", "Motion_FF_Corridor", "Motion_FF_Kitchen"].forEach(function(address) {
-      expect(model.__stateListeners.hasOwnProperty(address)).toBeTruthy();
-      expect(model.__stateListeners[address].length).toEqual(1);
+      // state listeners must be set
+      var model = cv.data.Model.getInstance();
+      ["Motion_FF_Dining", "Motion_FF_Corridor", "Motion_FF_Kitchen"].forEach(function(address) {
+        expect(model.__stateListeners.hasOwnProperty(address)).toBeTruthy();
+        expect(model.__stateListeners[address].length).toEqual(1);
+      });
+
+      // template
+      expect(cv.parser.WidgetParser.__templates.hasOwnProperty('test')).toBeTruthy();
+      expect(cv.parser.WidgetParser.__templates.test.trim()).toEqual('<root><text><label>Test template</label></text></root>');
+
+      qx.dom.Element.remove(footer);
     });
-
-    qx.dom.Element.remove(footer);
   });
 });

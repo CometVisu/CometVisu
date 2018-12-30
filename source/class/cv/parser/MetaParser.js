@@ -56,13 +56,18 @@ qx.Class.define("cv.parser.MetaParser", {
       };
       qx.bom.Selector.query('meta > files file', xml).forEach(function (elem) {
         var type = qx.bom.element.Attribute.get(elem, 'type');
+        var content = qx.bom.element.Attribute.get(elem, 'content');
         switch (type) {
           case 'css':
             files.css.push(qx.bom.element.Attribute.get(elem, 'text'));
             break;
 
           case 'js':
-            files.js.push(qx.bom.element.Attribute.get(elem, 'text'));
+            if (content === 'plugin') {
+              cv.Config.configSettings.pluginsToLoad.push(qx.bom.element.Attribute.get(elem, 'text'));
+            } else {
+              files.js.push(qx.bom.element.Attribute.get(elem, 'text'));
+            }
             break;
 
           default:
@@ -362,6 +367,8 @@ qx.Class.define("cv.parser.MetaParser", {
               // templates can only have one single root element, so we wrap it here
               '<root>' + qx.bom.element.Attribute.get(elem, 'html') + '</root>'
             );
+            __loadQueue.remove(areq.getUrl());
+            qx.log.Logger.debug(this, 'DONE loading template from file:', ref);
             check();
           }
         }, this);

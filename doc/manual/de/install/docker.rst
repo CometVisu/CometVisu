@@ -25,31 +25,33 @@ mit dem neu erstellten Container überschrieben.
 Einrichtung
 -----------
 
+.. _dockerenvironment:
+
 Umgebungsvariablen (environment)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Der Container wird über Umgebungsvariablen grundsätzlich konfiguriert.
 Zur Verfügung stehen:
 
-+--------------------+-------------------------+-----------------------------------------------------------------------+
-|Parameter           |Default                  |Beschreibung                                                           |
-+====================+=========================+=======================================================================+
-|KNX_INTERFACE       |iptn:172.17.0.1:3700     |knxd-URL für die KNX Schnittstelle. Wenn leer, so wird der ``knxd``    |
-|                    |                         |nicht geladen.                                                         |
-+--------------------+-------------------------+-----------------------------------------------------------------------+
-|KNX_PA              |1.1.238                  |Physikalische Schnittstelle (PA) für den ``knxd``.                     |
-+--------------------+-------------------------+-----------------------------------------------------------------------+
-|KNXD_PARAMETERS     |-u -d/var/log/eibd.log -c|Weitere Aufruf-Parameter für den ``knxd``.                             |
-+--------------------+-------------------------+-----------------------------------------------------------------------+
-|CGI_URL_PATH        |/cgi-bin/                |URL-Prefix um die ``cgi-bin`` Ressourcen zu lokalisieren.              |
-+--------------------+-------------------------+-----------------------------------------------------------------------+
-|BACKEND_PROXY_SOURCE|                         |Proxy-Pfade beginnen mit diesem Wert, z.B. ``/rest`` für das openHAB   |
-|                    |                         |Backend.                                                               |
-+--------------------+-------------------------+-----------------------------------------------------------------------+
-|BACKEND_PROXY_TARGET|                         |Ziel-URL für die Proxy-Anfragen an ``BACKEND_PROXY_SOURCE``,           |
-|                    |                         |z.B. ``http://<openhab-server-ip-address>:8080/rest`` für das openHAB  |
-|                    |                         |Backend.                                                               |
-+--------------------+-------------------------+-----------------------------------------------------------------------+
++---------------------+------------------------------+-----------------------------------------------------------------+
+|Parameter            |Default                       |Beschreibung                                                     |
++=====================+==============================+=================================================================+
+|KNX_INTERFACE        |``iptn:172.17.0.1:3700``      |knxd-URL für die KNX Schnittstelle. Wenn leer, so wird der       |
+|                     |                              |``knxd`` nicht geladen.                                          |
++---------------------+------------------------------+-----------------------------------------------------------------+
+|KNX_PA               |``1.1.238``                   |Physikalische Schnittstelle (PA) für den ``knxd``.               |
++---------------------+------------------------------+-----------------------------------------------------------------+
+|KNXD_PARAMETERS      |``-u -d/var/log/eibd.log -c`` |Weitere Aufruf-Parameter für den ``knxd``.                       |
++---------------------+------------------------------+-----------------------------------------------------------------+
+|CGI_URL_PATH         |``/cgi-bin/``                 |URL-Prefix um die ``cgi-bin`` Ressourcen zu lokalisieren.        |
++---------------------+------------------------------+-----------------------------------------------------------------+
+|BACKEND_PROXY_SOURCE |                              |Proxy-Pfade beginnen mit diesem Wert, z.B. ``/rest`` für das     |
+|                     |                              |openHAB Backend.                                                 |
++---------------------+------------------------------+-----------------------------------------------------------------+
+|BACKEND_PROXY_TARGET |                              |Ziel-URL für die Proxy-Anfragen an ``BACKEND_PROXY_SOURCE``,     |
+|                     |                              |z.B. ``http://<openhab-server-ip-address>:8080/rest`` für das    |
+|                     |                              |openHAB Backend.                                                 |
++---------------------+------------------------------+-----------------------------------------------------------------+
 
 Klassisch (``knxd`` mit ``eibread-cgi``/``eibwrite-cgi``)
 .........................................................

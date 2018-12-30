@@ -144,6 +144,9 @@ qx.Class.define('cv.TemplateEngine', {
           if (states[idx] === "complete") {
             this.__partQueue.remove(part);
             this.debug("successfully loaded part "+part);
+            if (part.startsWith('structure-')) {
+              qx.core.Init.getApplication().setStructureLoaded(true);
+            }
           } else {
             this.error("error loading part "+part);
           }
