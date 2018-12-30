@@ -694,7 +694,6 @@
     </xsd:attribute>
   </xsd:complexType>
 
-
   <xsd:complexType name="templates">
     <xsd:sequence minOccurs="1" maxOccurs="unbounded">
       <xsd:element name="template">
@@ -722,7 +721,6 @@
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
-
 
   <xsd:complexType name="addresses">
     <xsd:sequence minOccurs="1" maxOccurs="unbounded">
