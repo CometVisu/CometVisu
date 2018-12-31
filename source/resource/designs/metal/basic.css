@@ -289,7 +289,7 @@ body br
 #pages  > .page
 {
   float:left;
-  overflow: auto;
+  overflow: hidden auto;
   position: relative;
   padding-left: 1px;
 }
