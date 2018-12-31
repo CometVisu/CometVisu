@@ -7,7 +7,7 @@ FROM cometvisu/cometvisuabstractbase:latest
 # Not required but makes the debugging work a bit more easy (might be removed in future):
 RUN { \
     echo "export LS_OPTIONS='--color=auto'"; \
-    echo "eval \"`dircolors`\""; \
+    echo "eval \"\`dircolors -b\`\""; \
     echo "alias ls='ls \$LS_OPTIONS'"; \
     echo "alias ll='ls \$LS_OPTIONS -l'"; \
     echo "alias l='ls \$LS_OPTIONS -lA'"; \
