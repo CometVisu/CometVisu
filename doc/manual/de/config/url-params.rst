@@ -196,6 +196,8 @@ des Problems erheblich.
     Konfiguration befinden, sollte eine Kopie der Konfiguration ohne solch sensible Daten erstellt werden
     und das Log mit dieser Konfiguration aufgezeichnet werden.
 
+    Daten aus der :ref:`verstecken Konfiguration <hidden-config>` werden nicht mit übertragen.
+
 Um diese Log-Dateien aufzuzeichnen, muss man die CometVisu mit `reporting=true` laden.
 Nachdem man den fehlerhaften Zustand erreicht hat, kann man die Log-Datei herunterladen indem man in der
 Browser-Console (öffnen mit F12) ``downloadLog()`` ein gibt und mit *enter* bestätigt.
