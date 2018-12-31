@@ -138,7 +138,7 @@ body br
 }
 /* in nowidget groups disable the inner borders and enable a border around the group */
 .group:not(.widget) {
-    border: 1px solid #666; margin: -1px 0 0 -1px;
+    border: 1px solid #666; margin: -1px -1px 0 -1px;
 }
 .group:not(.widget) > div > .widget_container > .widget:not(.group) { border: none; margin: 0; }
 .group:not(.widget) > div > h2 { border-radius: 0;}
@@ -392,20 +392,10 @@ body br
 .group > div > h2 {
 	font-size: 0.8em;
 	padding: 0 1em;
-	margin: 0;
+	margin: 0 -1px 0 0;
 	border: none;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-  	-webkit-border-radius: 3px;
-  	
-	border-bottom-left-radius: 0;
-	-moz-border-bottom-left-radius: 0;
-  	-webkit-border-bottom-left-radius: 0;
-  	
-	border-bottom-right-radius: 0;
-	-moz-border-bottom-right-radius: 0;
-	-webkit-border-bottom-right-radius: 0;
-	
+	border-radius: 0;
+
 	color: #FFF;
 	font-weight: bold;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#999), to(#666)); /* Saf4+, Chrome */

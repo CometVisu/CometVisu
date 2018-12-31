@@ -136,6 +136,8 @@ html .page .widget.multitrigger.custom_one-line .actor_container {
     grid-template-columns: 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33%;
     grid-auto-rows: max-content;
     align-items: flex-start;
+    margin-right: -1px;
+    margin-bottom: -1px;
 }
 
 .page.type_text > .clearfix > .widget_container[data-type="navbar"] {
