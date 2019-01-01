@@ -1028,7 +1028,6 @@ var EditorConfigurationElement = function (parent, element) {
         $input.width(width);
         $input.height(height);
 
-
         // bind event handlers.
         $input.bind('cancel', Attributes.cancelHandler);
         $input.bind('blur', Attributes.saveHandler);
@@ -1329,7 +1328,7 @@ var EditorConfigurationElement = function (parent, element) {
       }
 
       var $loadingText;
-      function buildInputElement( thisElementEnumeration) {
+      function buildInputElement( thisElementEnumeration ) {
         // get the DOM for an input..
         var $input = getInputForValueAndEnumeration(nodeValue, thisElementEnumeration, isUserInputAllowed);
         // insert input-field into the DOM
