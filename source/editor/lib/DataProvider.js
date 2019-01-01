@@ -42,19 +42,19 @@ var DataProviderManager = {
    * @return  object                  DataProvider for that attribute, or undefined if none
    */
   getProvider: function (elementName, attributeName) {
-    if (typeof DataProviderManager._providers == 'undefined') {
+    if (typeof DataProviderManager._providers === 'undefined') {
       DataProviderManager.initialize();
     }
         
-    if (typeof DataProviderManager._providers[elementName] == 'undefined') {
+    if (typeof DataProviderManager._providers[elementName] === 'undefined') {
       // no element-specific providers exist
             
-      if (typeof DataProviderManager._providers['*'] == 'undefined') {
+      if (typeof DataProviderManager._providers['*'] === 'undefined') {
         // no wildcard-providers exist
         return undefined;
       }
             
-      if (typeof DataProviderManager._providers['*'][attributeName] != 'undefined') {
+      if (typeof DataProviderManager._providers['*'][attributeName] !== 'undefined') {
         // we have a provider for the wildcard-provider and this attribute
         return DataProviderManager._providers['*'][attributeName];
       }
@@ -65,7 +65,7 @@ var DataProviderManager = {
     }
         
         
-    if (typeof DataProviderManager._providers[elementName][attributeName] != 'undefined') {
+    if (typeof DataProviderManager._providers[elementName][attributeName] !== 'undefined') {
       // we have a provider for this very combination of element and attribute
       return DataProviderManager._providers[elementName][attributeName];
     }
@@ -80,7 +80,7 @@ var DataProviderManager = {
    */
   initialize: function () {
 
-    if (typeof DataProviderConfig == 'undefined') {
+    if (typeof DataProviderConfig === 'undefined') {
       throw 'programming error: no DataProviderConfig loaded';
     }
         
@@ -98,7 +98,7 @@ var DataProviderManager = {
         // preload Data, if possible (that method decides for itself!)
         provider.preloadData();
                 
-        if (typeof DataProviderManager._providers[elementName] == 'undefined') {
+        if (typeof DataProviderManager._providers[elementName] === 'undefined') {
           // create a clean structure
           DataProviderManager._providers[elementName] = {};
         }
@@ -236,7 +236,7 @@ var DataProvider = function (config) {
         
     var data = dataCache;
         
-    if (typeof _providerConfig.grouped == 'boolean' && _providerConfig.grouped == true) {
+    if (typeof _providerConfig.grouped === 'boolean' && _providerConfig.grouped === true) {
       // if data is grouped, we need to un-group it first.
       data = [];
       $.each(dataCache, function (name, entries) {
@@ -249,7 +249,7 @@ var DataProvider = function (config) {
     $.each(data, function (i, dataEntry) {
       var value = dataEntry.value;
 
-      if (typeof dataEntry.hints == undefined) {
+      if (typeof dataEntry.hints === 'undefined') {
         // no hints = nothing to do
         return;
       }
@@ -325,8 +325,7 @@ var DataProvider = function (config) {
     if (dataCache !== undefined) {
       return dataCache;
     }
-        
-        
+
     // is caching enabled?
     var doCaching = typeof _providerConfig.cache !== 'undefined' ? _providerConfig.cache : true;
 
@@ -351,7 +350,7 @@ var DataProvider = function (config) {
                     // what we get from the server is exactly what we need (hopefully ...)
                     data = result;
                         
-                    if (doCaching == true) {
+                    if (doCaching === true) {
                       // if caching is allowed, we store the data also in the cache.
                       dataCache = result;
                     }
@@ -363,7 +362,7 @@ var DataProvider = function (config) {
                 }
             );
     }
-    if (typeof _providerConfig.map == 'function') {
+    if (typeof _providerConfig.map === 'function') {
       $.each(data, function(index, entry) {
             data[index] = _providerConfig.map(entry);
           });
