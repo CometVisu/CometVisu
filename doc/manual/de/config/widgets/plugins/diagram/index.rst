@@ -55,20 +55,24 @@ Erlaubte Kind-Elemente und deren Attribute
 
 .. elements-information:: diagram
 
+.. _diagram_influx:
+
 Im ``<influx>`` Element kann über das ``authentication`` Attribut auf einen entsprechenden Eintrag aus der
 :ref:`versteckten Konfiguration <hidden-config>` verwiesen werden (als Default wird als Name `influx` angenommen).
 
 Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:
 
-+---------+---------------------------------------------------+---------------------------+
-|Schlüssel|Wert                                               |Beispiel                   |
-+=========+===================================================+===========================+
-|uri      |Die URI für den Zugriff auf die InfluxDB (optional)|http://localhost:8086/query|
-+---------+---------------------------------------------------+---------------------------+
-|user     |Der Benutzername für die InfluxDB                  |InfluxDBTestUser           |
-+---------+---------------------------------------------------+---------------------------+
-|pass     |Das Passwort für die InfluxDB                      |`Xsdwfw324SEs`             |
-+---------+---------------------------------------------------+---------------------------+
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|Schlüssel  |Wert                                                                         |Beispiel                    |
++===========+=============================================================================+============================+
+|uri        |Die URI für den Zugriff auf die InfluxDB (optional)                          |http://localhost:8086/query |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|user       |Der Benutzername für die InfluxDB                                            |InfluxDBTestUser            |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|pass       |Das Passwort für die InfluxDB                                                |``Xsdwfw324SEs``            |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|selfsigned |Erlaube selbst signierte HTTPS Verbindung zum Server, wenn Wert ``true`` ist |``false``                   |
++-----------+-----------------------------------------------------------------------------+----------------------------+
 
 Im ``<influx>`` Element können über ``<add>``, ``<or>`` und ``<tag>`` Elemente
 die anzuzeigenden Daten gefiltert werden.
