@@ -23,14 +23,38 @@
 * Custom changes could go here and look e.g. like
 *
 ***************************************
-qx.Class.define('cv.ui.structure.pure.Line', {
+qx.Class.define('cv.ui.structure.pure.Headline', {
   extend: cv.ui.structure.AbstractWidget,
 
-  members: {
-    // overridden
-    getDomString: function () {
-      return '<hr ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '/>';
+  statics: {
+    // parse element from visu_config*.xml
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      data.content = xml.textContent;
+      return data;
     }
+  },
+
+  properties: {
+    content: {
+      check: 'String',
+        init: ''
+    }
+  },
+
+  members: {
+    // generate the DOM string to be added to the GUI
+    getDomString: function () {
+      return '<h1 ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '>' + this.getContent() + '</h1>';
+    }
+  },
+
+  // this function is executed when this file is loaded
+  defer: function(statics) {
+    // register the parser
+    cv.parser.WidgetParser.addHandler("headline", cv.ui.structure.pure.Headline);
+    // register the widget
+    cv.ui.structure.WidgetFactory.registerClass("headline", statics);
   }
 });
 ****************************************

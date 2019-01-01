@@ -28,23 +28,48 @@
  * @since       2013-03-18
  */
 
-define('DESIGNS_DIRECTORY', '../../class/cv/plugins/');
-define('DESIGNS_PATTERN', '*');
+define('SCRIPTS_DIRECTORY', '../../script/');
+define('PLUGINS_DIRECTORY', '../../resource/plugins/');
+define('PLUGINS_PATTERN', '*');
 
-foreach (glob(DESIGNS_DIRECTORY . DESIGNS_PATTERN) as $strFilename) {
+$arrData = array();
+$script = "";
+// check the generated script for part definitions that start with plugin-
+if (file_exists(SCRIPTS_DIRECTORY . 'cv-webkit.js')) {
+  // this file exists in build
+  $script = file_get_contents(SCRIPTS_DIRECTORY . 'cv-webkit.js');
+} else if (file_exists(SCRIPTS_DIRECTORY . 'cv.js')) {
+  // this file exists in source
+  $script = file_get_contents(SCRIPTS_DIRECTORY . 'cv.js');
+}
+if (strlen($script) > 0) {
+  if (preg_match('/parts : ({[^}]+})/m', $script, $matches)) {
+    $data = json_decode($matches[1]);
+    foreach($data as $name=>$entries) {
+      if (strpos($name, 'plugin-') === 0) {
+        $pluginName = substr($name, 7);
+        $arrData[$pluginName] = array(
+          'value' => utf8_encode($pluginName),
+          'label' => utf8_encode($pluginName),
+        );
+      }
+    }
+
+  }
+}
+
+
+foreach (glob(PLUGINS_DIRECTORY . PLUGINS_PATTERN) as $strFilename) {
     $strFileBasename = explode(".", basename($strFilename))[0];
 
-    if( '__init__' == $strFileBasename )
-      continue;
-
-    $arrData[] = array(
+    $arrData[$strFileBasename] = array(
                                         'value' => utf8_encode($strFileBasename),
                                         'label' => utf8_encode($strFileBasename),
                                         );
 }
 
 Header("Content-type: application/json");
-print json_encode($arrData);
+print json_encode(array_values($arrData));
 exit;
 
 

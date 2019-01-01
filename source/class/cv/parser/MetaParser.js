@@ -28,7 +28,10 @@ qx.Class.define("cv.parser.MetaParser", {
   */
   members: {
 
-    parse: function(xml) {
+    parse: function(xml, done) {
+      // parse external files
+      this.parseFiles(xml);
+
       // parse the icons
       qx.bom.Selector.query('meta > icons icon-definition', xml).forEach(this.parseIcons, this);
 
@@ -42,6 +45,42 @@ qx.Class.define("cv.parser.MetaParser", {
       qx.bom.Selector.query('meta > statusbar status', xml).forEach(this.parseStatusBar, this);
 
       this.parseStateNotifications(xml);
+
+      this.parseTemplates(xml, done);
+    },
+
+    parseFiles: function (xml) {
+      var files = {
+        css: [],
+        js: []
+      };
+      qx.bom.Selector.query('meta > files file', xml).forEach(function (elem) {
+        var type = qx.bom.element.Attribute.get(elem, 'type');
+        var content = qx.bom.element.Attribute.get(elem, 'content');
+        switch (type) {
+          case 'css':
+            files.css.push(qx.bom.element.Attribute.get(elem, 'text'));
+            break;
+
+          case 'js':
+            if (content === 'plugin') {
+              cv.Config.configSettings.pluginsToLoad.push(qx.bom.element.Attribute.get(elem, 'text'));
+            } else {
+              files.js.push(qx.bom.element.Attribute.get(elem, 'text'));
+            }
+            break;
+
+          default:
+            this.warn('ignoring unknown file type', type);
+            break;
+        }
+      }, this);
+      if (files.css.length > 0) {
+        cv.util.ScriptLoader.getInstance().addStyles(files.css);
+      }
+      if (files.js.length > 0) {
+        cv.util.ScriptLoader.getInstance().addScripts(files.js);
+      }
     },
 
     parseIcons: function(elem) {
@@ -257,6 +296,70 @@ qx.Class.define("cv.parser.MetaParser", {
         });
       });
       cv.core.notifications.Router.getInstance().registerStateUpdateHandler(stateConfig);
+    },
+
+    /**
+     * Parses meta template definitions and add them to the WidgetParser
+     * @param xml {HTMLElement}
+     */
+    parseTemplates: function (xml, done) {
+      var __loadQueue = new qx.data.Array();
+
+      var check = function () {
+        if (__loadQueue.length === 0 && done) {
+          done();
+        }
+      };
+      var templates = qx.bom.Selector.query('meta > templates template', xml);
+      if (templates.length === 0) {
+        done();
+      } else {
+        templates.forEach(function (elem) {
+          var templateName = qx.bom.element.Attribute.get(elem, 'name');
+          qx.log.Logger.debug(this, 'loading template:', templateName);
+          var ref = qx.bom.element.Attribute.get(elem, 'ref');
+          if (ref) {
+            // load template fom external file
+            var areq = new qx.io.request.Xhr(ref);
+            __loadQueue.push(ref);
+            qx.log.Logger.debug(this, 'loading template from file:', ref);
+            areq.set({
+              accept: "text/plain",
+              cache: !cv.Config.forceReload
+            });
+
+            areq.addListenerOnce("success", function (e) {
+              var req = e.getTarget();
+              cv.parser.WidgetParser.addTemplate(
+                templateName,
+                // templates can only have one single root element, so we wrap it here
+                '<root>' + req.getResponseText() + '</root>'
+              );
+              __loadQueue.remove(areq.getUrl());
+              qx.log.Logger.debug(this, 'DONE loading template from file:', ref);
+              check();
+            }, this);
+            areq.addListener("statusError", function () {
+              var message = {
+                topic: "cv.config.error",
+                title: qx.locale.Manager.tr("Template loading error"),
+                severity: "urgent",
+                deletable: true,
+                message: qx.locale.Manager.tr("Template '%1' could not be loaded from '%2'.", templateName, ref)
+              };
+              cv.core.notifications.Router.dispatchMessage(message.topic, message);
+            }, this);
+            areq.send();
+          } else {
+            cv.parser.WidgetParser.addTemplate(
+              templateName,
+              // templates can only have one single root element, so we wrap it here
+              '<root>' + qx.bom.element.Attribute.get(elem, 'html') + '</root>'
+            );
+            check();
+          }
+        }, this);
+      }
     }
   }
 });

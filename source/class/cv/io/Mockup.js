@@ -82,6 +82,13 @@ qx.Class.define('cv.io.Mockup', {
     login: function (loginOnly, callback, context) {
       if (callback) {
         callback.call(context);
+        if (cv.Config.initialDemoData) {
+          this.receive({
+            i: new Date().getTime(),
+            d: cv.Config.initialDemoData
+          });
+          cv.Config.initialDemoData = null;
+        }
       }
     },
 

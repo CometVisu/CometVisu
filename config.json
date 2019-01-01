@@ -49,7 +49,8 @@
     "LOCALES"      : [ "en", "de" ],
     "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",
     "ROOT"         : ".",
-    "CV_VERSION"   : "dev"
+    "CV_VERSION"   : "dev",
+    "CV_TESTMODE"  : false
   },
 
   "config-warnings" :
@@ -108,7 +109,8 @@
         "qx.application" : "${APPLICATION}.Application",
         "qx.promise"     : false,
         "cv.version"     : "${CV_VERSION}",
-        "cv.xhr"         : "qx"
+        "cv.xhr"         : "qx",
+        "cv.testMode"    : "${CV_TESTMODE}"
       },
 
       "add-script" : [

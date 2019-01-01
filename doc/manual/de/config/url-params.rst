@@ -61,14 +61,16 @@ Dies kann nach einem Anpassen der Config-Datei wichtig sein.
 Durch den Parameter ``startpage`` kann die Unter-Seite festgelegt werden,
 die nach dem Laden der Visu als erstes angezeigt wird.
 
-Der Wert für diesen Parameter lässt sich leicht herausfinden, in dem man
-in einem Browser auf dem PC mit der Maus über den Link zur Unter-Seite
-fährt und den Inhalt des Links in der Browser-Statuszeile ansieht.
-Dieser lautet ähnlich wie ``javascript:templateEngine.scrollToPage('id_0_33')``.
-Hier wäre nun das ``id_0_33`` der Wert für den Parameter *startpage*,
-d.h. zusammengesetzt müsste an die URL angehängt werden:
-``startpage=id_0_33``
+Die einfachste Weise direkt eine bestimmte Startseite zu laden, ist es
+indem man zu der gewünschten Seite navigiert und sich den Link, den der
+Browser dann anzeigt speichert. Dieser enthält immer die ID der gerade
+angezeigten Seite als *anchor*-Teil der URL (z.B.
+``http://<server>/cometvisu/?config=home#id_6_``, zeigt die Seite mit der ID ``id_6_``).
+Hierfür wird der *startpage*-Parameter gar nicht benötigt.
 
+Zusätzlich ist es noch möglich über den *startpage*-Parameter den Namen
+der Startseite anzugeben. Wenn man also eine Unterseite mit dem Namen *Bad*
+als Startseite nutzen möchte so lautet die URL ``http://<server>/cometvisu/?config=home&startpage=Bad``
 
 Gerade wenn man Visus an mehreren Orten im Haus verteilt hat, kann es
 Sinn machen bei einer gesammten Config-Datei je nach Visu-Standort die
@@ -193,6 +195,8 @@ des Problems erheblich.
     In den Log-Dateien wird die komplette Konfigurationsdatei abgespeichert. Sollten sich Zugangsdaten in dieser
     Konfiguration befinden, sollte eine Kopie der Konfiguration ohne solch sensible Daten erstellt werden
     und das Log mit dieser Konfiguration aufgezeichnet werden.
+
+    Daten aus der :ref:`verstecken Konfiguration <hidden-config>` werden nicht mit übertragen.
 
 Um diese Log-Dateien aufzuzeichnen, muss man die CometVisu mit `reporting=true` laden.
 Nachdem man den fehlerhaften Zustand erreicht hat, kann man die Log-Datei herunterladen indem man in der
