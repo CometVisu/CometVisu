@@ -8,6 +8,7 @@
   "customizing": "/latest/manual/config/customizing.html#customizing", 
   "designtoggle": "/latest/manual/config/widgets/designtoggle/index.html#designtoggle", 
   "diagram": "/latest/manual/config/widgets/plugins/diagram/index.html#diagram", 
+  "diagram-influx": "/latest/manual/config/widgets/plugins/diagram/index.html#diagram-influx", 
   "diagram-info": "/latest/manual/config/widgets/plugins/diagram_info/index.html#diagram-info", 
   "docker": "/latest/manual/install/docker.html#docker", 
   "dockerenvironment": "/latest/manual/install/docker.html#dockerenvironment", 

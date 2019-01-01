@@ -729,14 +729,14 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tr>
 </tbody>
 </table>
-<p>Im <code class="docutils literal"><span class="pre">&lt;influx&gt;</span></code> Element kann über das <code class="docutils literal"><span class="pre">authentication</span></code> Attribut auf einen entsprechenden Eintrag aus der
+<p id="diagram-influx">Im <code class="docutils literal"><span class="pre">&lt;influx&gt;</span></code> Element kann über das <code class="docutils literal"><span class="pre">authentication</span></code> Attribut auf einen entsprechenden Eintrag aus der
 <a class="reference internal" href="../../../hidden-config.html#hidden-config"><span class="std std-ref">versteckten Konfiguration</span></a> verwiesen werden (als Default wird als Name <cite>influx</cite> angenommen).</p>
 <p>Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="10%" />
-<col width="59%" />
-<col width="31%" />
+<col width="9%" />
+<col width="66%" />
+<col width="24%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Schlüssel</th>
@@ -755,7 +755,11 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tr>
 <tr class="row-even"><td>pass</td>
 <td>Das Passwort für die InfluxDB</td>
-<td><cite>Xsdwfw324SEs</cite></td>
+<td><code class="docutils literal"><span class="pre">Xsdwfw324SEs</span></code></td>
+</tr>
+<tr class="row-odd"><td>selfsigned</td>
+<td>Erlaube selbst signierte HTTPS Verbindung zum Server, wenn Wert <code class="docutils literal"><span class="pre">true</span></code> ist</td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -830,7 +834,7 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2018 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2019 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
