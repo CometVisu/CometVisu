@@ -278,7 +278,7 @@ qx.Class.define('cv.Config', {
         r.send();
       }
     } else if (req.queryKey.testMode) {
-      cv.Config.testMode = req.queryKey.testMode === "true";
+      cv.Config.testMode = req.queryKey.testMode === "true" || req.queryKey.testMode === "1";
     }
 
     // propagate to the client
