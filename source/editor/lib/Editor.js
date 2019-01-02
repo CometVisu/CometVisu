@@ -1469,7 +1469,6 @@ var EditorConfigurationElement = function (parent, element) {
         return;
       }
 
-      var $attributes = Attributes.get$attributes();
       $.each(hints, function (attributeName, attributeValue) {
         Attributes.saveValue(attributeName, attributeValue);
       });

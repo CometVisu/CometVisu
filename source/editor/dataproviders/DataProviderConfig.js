@@ -33,7 +33,7 @@ var DataProviderConfig = {
   'address': {
     '_nodeValue':  {
       url: 'editor/dataproviders/list_all_addresses.php',
-      cache: false,
+      cache: true,
       userInputAllowed: true,
       grouped: true,
     },
@@ -102,7 +102,7 @@ var DataProviderConfig = {
     },
     'ga':  {
       url: 'editor/dataproviders/list_all_addresses.php',
-      cache: false,
+      cache: true,
       userInputAllowed: true,
       grouped: true,
     },
@@ -164,95 +164,145 @@ function getInfluxMeasurements( element ) {
   if( !(auth in influxCache) )
     influxCache[ auth ] = {};
 
-  if( !('' in influxCache[ auth ]) ) {
-    $.ajax('editor/dataproviders/list_all_influxdbs.php' + (auth ? '?auth=' + auth : ''),
-      {
-        dataType: 'json',
-        async: false, // at this point, we can no longer async!
-        success: function (result) {
-          influxCache[auth][''] = result;
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
-          $(document).trigger('dataprovider_loading_error', [result]);
-          influxCache[auth][''] = [];
-        }
-      }
-    );
+  if( '' in influxCache[ auth ] ) {
+    return influxCache[auth][''];
   }
-  return influxCache[ auth ][''];
+
+  if( !('#callback' in influxCache[auth]) ) {
+    influxCache[auth]['#callback'] = [];
+  }
+
+  $.ajax('editor/dataproviders/list_all_influxdbs.php' + (auth ? '?auth=' + auth : ''),
+    {
+      dataType: 'json',
+      async: true,
+      success: function (result) {
+        influxCache[auth][''] = result;
+        influxCache[auth]['#callback'].forEach( function( callback ){ callback( result ); } );
+        influxCache[auth]['#callback'].length = 0; // clear array
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
+        $(document).trigger('dataprovider_loading_error', [result]);
+        influxCache[auth][''] = [];
+      }
+    }
+  );
+
+  return function ( callback ) {
+    influxCache[auth]['#callback'].push( callback );
+  };
 }
 // get the InfluxDB tag and values for the measurement source of the parent influx element.
 // also cache it as it is relevant for each tag element below this influx element and it won't change between the
 // different measurements
 // Return tag key/value data for given measurement. When not available yet put it in the cache first.
 function retrieveInfluxCache( measurement, type, auth ) {
-  if( undefined === auth )
+  if( undefined === auth ) {
     auth = '';
-
-  if( !(auth in influxCache) )
-    influxCache[ auth ] = {};
-
-  if( !(measurement in influxCache[ auth ] ) )
-    influxCache[ auth ][ measurement ] = {};
-
-  if( !(type in influxCache[ auth ][ measurement ]) ) {
-    var uri = type === 'tags'
-      ? 'editor/dataproviders/list_relevant_influxdb_tags.php?measurement='
-      : 'editor/dataproviders/list_relevant_influxdb_fields.php?measurement=';
-    $.ajax( uri + measurement + (auth?'&auth='+auth:''),
-      {
-        dataType: 'json',
-        async: false, // at this point, we can no longer async!
-        success: function (result) {
-          influxCache[ auth ][ measurement ][ type ] = result;
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
-          $(document).trigger('dataprovider_loading_error', [result]);
-          influxCache[ auth ][ measurement ][ type ] = [];
-        }
-      }
-    );
   }
 
-  return influxCache[ auth ][ measurement ][ type ];
+  if( !(auth in influxCache) ) {
+    influxCache[ auth ] = {};
+  }
+
+  if( !(measurement in influxCache[ auth ] ) ) {
+    influxCache[ auth ][ measurement ] = {};
+  }
+
+  if( type in influxCache[ auth ][ measurement ] ) {
+    return influxCache[ auth ][ measurement ][ type ];
+  }
+
+  if( !((type+'#callback') in influxCache[auth][ measurement ]) ) {
+    influxCache[auth][ measurement ][ type + '#callback' ] = [];
+  }
+
+  var uri = type === 'tags'
+    ? 'editor/dataproviders/list_relevant_influxdb_tags.php?measurement='
+    : 'editor/dataproviders/list_relevant_influxdb_fields.php?measurement=';
+  $.ajax( uri + measurement + (auth?'&auth='+auth:''),
+    {
+      dataType: 'json',
+      async: true,
+      success: function (result) {
+        influxCache[ auth ][ measurement ][ type ] = result;
+        influxCache[ auth ][ measurement ][ type + '#callback' ].forEach( function( callback ){ callback( result ); } );
+        influxCache[ auth ][ measurement ][ type + '#callback' ].length = 0;
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
+        $(document).trigger('dataprovider_loading_error', [result]);
+        influxCache[ auth ][ measurement ][ type ] = [];
+      }
+    }
+  );
+
+  return function ( callback ) {
+    influxCache[auth][ measurement ][ type + '#callback' ].push( callback );
+  };
 }
 // Return the known tag keys for the measurement of the element
 function getInfluxTags( element ) {
   var influx = element;
   // walk the tree to get the selected data source in the influx element
-  while( 'influx' != influx.name )
+  while( 'influx' !== influx.name )
   {
     influx = influx.getParentElement();
     if( undefined === influx )
       return []; // this safety measure can not happen without a bug somewhere!
   }
+
+  function handleData( thisData ) {
+    if( thisData ) {
+      return Object.keys(thisData).map(function (x) {
+        return {value: x, label: x};
+      });
+    } else {
+      return [];
+    }
+  }
+
   var data = retrieveInfluxCache( influx.attributes.measurement, 'tags', influx.attributes.authentication  );
-  return Object.keys(data).map( function(x){ return { value:x, label: x }; } );
+  if( typeof data === 'function' ) {
+    return function( callback ) { data( function( result ){ callback( handleData( result ) ); } ); };
+  } else {
+    return handleData( data );
+  }
 }
 // Return the known tag values for the key of the tag of the measurement of the element
 function getInfluxTagValues( element ) {
   var influx = element;
   // walk the tree to get the selected data source in the influx element
-  while( 'influx' != influx.name )
+  while( 'influx' !== influx.name )
   {
     influx = influx.getParentElement();
     if( undefined === influx )
       return []; // this safety measure can not happen without a bug somewhere!
   }
+
+  function handleData( thisData ) {
+    if (thisData === null || !(element.attributes.key in thisData)) {
+      return [];
+    }
+
+    return thisData[element.attributes.key].map(function (x) {
+      return {value: x, label: x};
+    });
+  }
+
   var data = retrieveInfluxCache(influx.attributes.measurement, 'tags', influx.attributes.authentication );
-
-  if( !(element.attributes.key in data) )
-    return [];
-
-  return data[element.attributes.key].map( function(x){ return { value:x, label: x }; } );
+  if( typeof data === 'function' ) {
+    return function( callback ) { data( function( result ){ callback( handleData( result ) ); } ); };
+  } else {
+    return handleData( data );
+  }
 }
 // Return the known fields for the measurement of the element
 function getInfluxFields( element ) {
   var influx = element;
   // walk the tree to get the selected data source in the influx element
-  while( 'influx' != influx.name )
+  while( 'influx' !== influx.name )
   {
     influx = influx.getParentElement();
     if( undefined === influx )

@@ -125,6 +125,20 @@ var DataProvider = function (config) {
   var _provider = this;
 
   /**
+   * Array of all callback funtions waiting for the data to be loaded
+   * @type {Array}
+   */
+  var getDataCallbacks = [];
+
+  /**
+   * An AJAX request for the data was started but is not finished yet. So no need
+   * to start an other one, just wait for the data from the first one when the
+   * data is requested (again).
+   * @type {boolean}
+   */
+  var getDataRunning = false;
+
+  /**
    * the cache for this providers data; will be empty if caching is disabled
    * @var array
    */
@@ -245,7 +259,7 @@ var DataProvider = function (config) {
         });
       });
     }
-        
+
     $.each(data, function (i, dataEntry) {
       var value = dataEntry.value;
 
@@ -305,7 +319,7 @@ var DataProvider = function (config) {
    */
   _provider.preloadData = function () {
     var doCaching = typeof _providerConfig.cache !== 'undefined' ? _providerConfig.cache : true;
-        
+
     if (false === doCaching) {
       // no caching = nothing to do for us
       return;
@@ -332,20 +346,22 @@ var DataProvider = function (config) {
     var data = [];
     if (typeof _providerConfig.live === 'function') {
       data = _providerConfig.live( element );
-            
-      if (true === doCaching) {
+
+      if (typeof data !== 'function' && true === doCaching) {
         dataCache = data;
       }
     }
         
     if (typeof _providerConfig.url === 'string') {
       // load the data from the server
-            
-      $.ajax(_providerConfig.url,
+
+      if( !getDataRunning ) {
+        getDataRunning = true;
+        $.ajax(_providerConfig.url,
                 {
                   dataType: 'json',
                   cache: doCaching,
-                  async: false, // at this point, we can no longer async!
+                  async: true,
                   success: function (result) {
                     // what we get from the server is exactly what we need (hopefully ...)
                     data = result;
@@ -354,6 +370,10 @@ var DataProvider = function (config) {
                       // if caching is allowed, we store the data also in the cache.
                       dataCache = result;
                     }
+
+                    getDataCallbacks.forEach( function( callback ){ callback( data ); } );
+                    getDataCallbacks.length = 0; // clear array
+                    getDataRunning = false;
                   },
                   error: function (jqXHR, textStatus, errorThrown) {
                     var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
@@ -361,6 +381,11 @@ var DataProvider = function (config) {
                   }
                 }
             );
+      }
+
+      return function ( callback ) {
+        getDataCallbacks.push( callback );
+      };
     }
     if (typeof _providerConfig.map === 'function') {
       $.each(data, function(index, entry) {
@@ -368,22 +393,7 @@ var DataProvider = function (config) {
           });
     }
 
-    // #####
-    var callbacks = [];
-    var isDataAvailable = false;
-    setTimeout( function () {
-      isDataAvailable = true;
-      callbacks.forEach( function( callback ){ callback( data ); } );
-    }, 2000);
-    return function ( callback ) {
-      if( isDataAvailable )
-        callback( data );
-      else
-        callbacks.push( callback );
-    };
-    // #####
     return data;
-        
   };
     
 };
