@@ -79,7 +79,7 @@ qx.Class.define('cv.ui.Popup', {
      * @return {Element} Popup as DOM Element
      */
     create: function (attributes) {
-      cv.ui.BodyBlocker.getInstance().block();
+      cv.ui.BodyBlocker.getInstance().block(attributes.unique);
       var closable = !attributes.hasOwnProperty("closable") || attributes.closable;
       var body = qx.bom.Selector.query('body')[0];
       var ret_val;

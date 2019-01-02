@@ -43,9 +43,13 @@ qx.Class.define('cv.ui.BodyBlocker', {
     __body: null,
     __counter: 0,
 
-    block: function() {
+    block: function(noCount) {
       this.base(arguments, this.__getBody());
-      this.__counter++;
+      if (!noCount) {
+        this.__counter++;
+      } else {
+        this.__counter = 1;
+      }
 
       qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
         qx.bom.element.Class.add(elem, "blurred");
