@@ -30,6 +30,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
   */
   construct: function () {
     this.base(arguments);
+    this.__counters = {};
     this.setBlockerOpacity(0.5);
     this.setBlockerColor("#000000");
   },
@@ -41,29 +42,47 @@ qx.Class.define('cv.ui.BodyBlocker', {
   */
   members: {
     __body: null,
-    __counter: 0,
+    __counters: null,
+    __uniques: [],
 
-    block: function(noCount) {
+    /**
+     * @param topic {String} topic of the message related to this blocker
+     * @param unique {Boolean} true if it is a unique message
+     */
+    block: function(topic, unique) {
       this.base(arguments, this.__getBody());
-      if (!noCount) {
-        this.__counter++;
-      } else {
-        this.__counter = 1;
+      if (!this.__counters.hasOwnProperty(topic)) {
+        this.__counters[topic] = 1;
+      } else if (!unique) {
+        this.__counters[topic]++;
       }
-
       qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
         qx.bom.element.Class.add(elem, "blurred");
       });
     },
 
-    unblock: function() {
-      this.__counter--;
-      if (this.__counter <= 0) {
+    unblock: function(topic) {
+      if (topic) {
+        if (this.__counters.hasOwnProperty(topic)) {
+          this.__counters[topic]--;
+          if (this.__counters[topic] === 0) {
+            delete this.__counters[topic];
+            if (Object.keys(this.__counters).length === 0) {
+              this.base(arguments);
+              qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
+                qx.bom.element.Class.remove(elem, "blurred");
+              });
+            }
+          }
+        }
+      } else {
+        // not topic given unblock all
+        this.__counters = {};
         this.base(arguments);
+        qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
+          qx.bom.element.Class.remove(elem, "blurred");
+        });
       }
-      qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
-        qx.bom.element.Class.remove(elem, "blurred");
-      });
     },
 
     __getBody: function() {
