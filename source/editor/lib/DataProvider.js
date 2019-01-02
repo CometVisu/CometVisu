@@ -197,7 +197,7 @@ var DataProvider = function (config) {
         } );
       };
     } else {
-      return createEnumeration();
+      return createEnumeration( data );
     }
   };
     

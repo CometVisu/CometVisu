@@ -868,7 +868,7 @@ var EditorConfigurationElement = function (parent, element) {
      * @return  jquery-object   the HTML-placeholder
      */
     getPlaceholderAsHTML: function () {
-      if (typeof Attributes.$attributes != 'undefined') {
+      if (typeof Attributes.$attributes !== 'undefined') {
         // use the actual HTML if we have it already
         return Attributes.$attributes;
       }
@@ -1110,7 +1110,7 @@ var EditorConfigurationElement = function (parent, element) {
      * @return  boolean                 success
      */
     saveValue: function (attributeName, inputValue) {
-      var $attributes = Attributes.$attributes;
+      var $attributes = Attributes.get$attributes();
       var $attributeValue = $attributes.find('li.attribute.attributeType_' + attributeName).find('.value');
             
       if ($attributeValue.length == 0) {
@@ -1140,7 +1140,7 @@ var EditorConfigurationElement = function (parent, element) {
     },
         
     /**
-     * actually insert the attributs-HTML into the DOM
+     * actually insert the attributes-HTML into the DOM
      */
     renderHTML: function () {
       var $attributes = Attributes.$attributes;
@@ -1155,13 +1155,20 @@ var EditorConfigurationElement = function (parent, element) {
         Attributes.$htmlPlaceholder = undefined;
       }
     },
-        
+
+    /**
+     * Get the $attributes - and make sure it is existing
+     */
+    get$attributes: function () {
+      Attributes.renderHTML();
+      return Attributes.$attributes;
+    },
+
     /**
      * toggle show
      */
     toggleDisplay: function () {
-      Attributes.renderHTML();
-      var $attributes = Attributes.$attributes;
+      var $attributes = Attributes.get$attributes();
       var $ul_attributes_visible = $('ul.attributes:visible');
             
       // first hide
@@ -1194,9 +1201,8 @@ var EditorConfigurationElement = function (parent, element) {
      * @param   attributeName   string  name of the attribute
      */
     markAttributeInvalid: function (attributeName) {
-      Attributes.renderHTML();
-      var $attributes = Attributes.$attributes;
-            
+      var $attributes = Attributes.get$attributes();
+
       var $invalidAttribute = $attributes.find('span.name:contains(' + attributeName + ')').closest('li.attribute');
             
       $attributes.parents('li.element').addClass('invalidChildAttribute');
@@ -1214,7 +1220,7 @@ var EditorConfigurationElement = function (parent, element) {
      * Will be called from jQuery via event-handlers
      */
     markValueChanged: function (attributeName) {
-      var $attributes = Attributes.$attributes;
+      var $attributes = Attributes.get$attributes();
       var $changedAttribute = $attributes.find('span.name:contains(' + attributeName + ')').closest('li.attribute');
             
       if (false === $changedAttribute.is('.invalid')) {
@@ -1463,11 +1469,7 @@ var EditorConfigurationElement = function (parent, element) {
         return;
       }
 
-      // FIXME temp lösung
-      return;
-            
-            
-      var $attributes = Attributes.$attributes;
+      var $attributes = Attributes.get$attributes();
       $.each(hints, function (attributeName, attributeValue) {
         Attributes.saveValue(attributeName, attributeValue);
       });
