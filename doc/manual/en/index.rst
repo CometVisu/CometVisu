@@ -14,9 +14,9 @@ System Requirements
 -------------------
 
 Operation by the user takes place via a web browser. The
-Most current browsers are supported.
+Most of the current browsers are supported.
 
-By specifying :doc:`URL Parameter <config/url-params>` can
+By setting :doc:`URL Parameter <config/url-params>` can
 you additionally affect the CometVisu, for example by loading other configs
 or designs, as well forcing rendering for mobile devices such as mobile
 devices (e.g. smartphones).
@@ -30,10 +30,6 @@ different links:
 
 -   "**CometVisu.org**" link to the projects homepage
 -   "**Reload**" to reload the current page
-
-    .. caution::
-        At editing mode all unsaved changes will be lost without warning!
-
 -   "**Widget Demo**" shows different widgets and there usage
 -   "**Edit**" opens up the editor.
 -   "**Check Config**" This tool will check the config file against

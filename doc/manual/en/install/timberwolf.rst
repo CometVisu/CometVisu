@@ -73,7 +73,7 @@ Under: *Containers* → *Add Container*
 
   - Env: Environment variables
 
-    - ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``
+    - ``name``: ``CGI_URL_PATH`` with ``value``: ``/proxy/visu/cgi-bin/``
     - Depending on the local environment, additional customizations may
       be required, as specified in the section of the
       :ref:`Docker Container <dockerenvironment>`.
@@ -106,11 +106,11 @@ Under: *Containers* → *Add Container*
 
 Then create the container by pressing *Deploy the container*.
 
-Proxy einrichten
-~~~~~~~~~~~~~~~~
+Proxy setup
+~~~~~~~~~~~
 
 At the Timberwolf Frontend:
-*Einstellungen* → *Remotezugriff* → *Reverse Proxy*
+*Settings* → *Remote Access* → *Reverse Proxy*
 
 - URL: ``visu``, Target ``http://127.0.0.1:18080/``
 
@@ -134,13 +134,13 @@ to invoked the menu for refreshing the container.
 
 Here's to make sure *Always pull the image* is active.
 
-Under * Advanced container settings * → * Labels * the labels should
+Under *Advanced container settings* → *Labels* the labels should
 be deleted in order to be able to recognize later which CometVisu
 container version is installed.
 
 If you want to change from version 0.10.2 to a version from the 0.11
 series, then under *Volumes* the config path from
-``/var/www/html/config`` to ``/var/www/html/resource/ config``.
+``/var/www/html/config`` to ``/var/www/html/resource/config``.
 
 *Actions* → *Deploy the Container*  will now replace the container
 with the latest version.

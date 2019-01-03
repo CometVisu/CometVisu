@@ -17,7 +17,7 @@ name as well as ``latest`` for the most current release.
 The current development versions can be found by the tag ``testing-<date>`` as
 well as ``testing`` alone for the most current one. When during the development
 process a new pull request get's merged a new ``testing`` container will be
-automatically builtand filed under the current date. If a tag does not exist
+automatically built and filed under the current date. If a tag does not exist
 for this date, it will be created, and if the tag already exists,
 it will be overwritten with the newly created container.
 

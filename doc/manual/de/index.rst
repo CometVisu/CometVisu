@@ -38,11 +38,6 @@ aus verschiedenen Links:
 
 -  "**CometVisu.org**" Link auf die Homepage des Projekts CometVisu
 -  "**Reload**" um die aktuelle Seite neu aufzurufen.
-
-        .. caution::
-
-            Im Editormodus gehen ohne Nachfrage alle nicht abgespeicherten Änderungen verloren!
-
 -  "**Widget Demo**": Zeigt die verschiedenen Bedienelemente und ihre
    Verwendungsmöglichkeiten auf.
 -  "**Edit**:" Wechselt in den Editor.
