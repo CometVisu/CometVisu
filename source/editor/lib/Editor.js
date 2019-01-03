@@ -868,7 +868,7 @@ var EditorConfigurationElement = function (parent, element) {
      * @return  jquery-object   the HTML-placeholder
      */
     getPlaceholderAsHTML: function () {
-      if (typeof Attributes.$attributes != 'undefined') {
+      if (typeof Attributes.$attributes !== 'undefined') {
         // use the actual HTML if we have it already
         return Attributes.$attributes;
       }
@@ -1012,22 +1012,38 @@ var EditorConfigurationElement = function (parent, element) {
         }
       }
 
-      // build the input-element to be displayed.
-      var $input = getInputForValueAndEnumeration(attributeValue, elementEnumeration, isUserInputAllowed, isOptional);
-      // insert input-field into the DOM
-      $value.before($input);
-            
-      $input.width(width);
-      $input.height(height);
-            
+      var $loadingText;
 
-      // bind event handlers.
-      $input.bind('cancel', Attributes.cancelHandler);
-      $input.bind('blur', Attributes.saveHandler);
-      $input.bind('keyup', Attributes.keypressHandler);
+      function buildInputElement( thisElementEnumeration ) {
+        // build the input-element to be displayed.
+        var $input = getInputForValueAndEnumeration(attributeValue, thisElementEnumeration, isUserInputAllowed, isOptional);
+        // insert input-field into the DOM
+        if( $loadingText !== undefined ) {
+          $loadingText.replaceWith($input);
+          $loadingText = undefined;
+        } else {
+          $value.before($input);
+        }
 
-      // put the focus into this element
-      $input.get(0).focus();
+        $input.width(width);
+        $input.height(height);
+
+        // bind event handlers.
+        $input.bind('cancel', Attributes.cancelHandler);
+        $input.bind('blur', Attributes.saveHandler);
+        $input.bind('keyup', Attributes.keypressHandler);
+
+        // put the focus into this element
+        $input.get(0).focus();
+      }
+
+      if( typeof elementEnumeration === 'function' ) {
+        $loadingText = $('<span class="loadingEnumeration">loading...</span>');
+        $value.before($loadingText);
+        elementEnumeration( buildInputElement );
+      } else {
+        buildInputElement( elementEnumeration );
+      }
     },
 
     /**
@@ -1094,7 +1110,7 @@ var EditorConfigurationElement = function (parent, element) {
      * @return  boolean                 success
      */
     saveValue: function (attributeName, inputValue) {
-      var $attributes = Attributes.$attributes;
+      var $attributes = Attributes.get$attributes();
       var $attributeValue = $attributes.find('li.attribute.attributeType_' + attributeName).find('.value');
             
       if ($attributeValue.length == 0) {
@@ -1124,7 +1140,7 @@ var EditorConfigurationElement = function (parent, element) {
     },
         
     /**
-     * actually insert the attributs-HTML into the DOM
+     * actually insert the attributes-HTML into the DOM
      */
     renderHTML: function () {
       var $attributes = Attributes.$attributes;
@@ -1139,13 +1155,20 @@ var EditorConfigurationElement = function (parent, element) {
         Attributes.$htmlPlaceholder = undefined;
       }
     },
-        
+
+    /**
+     * Get the $attributes - and make sure it is existing
+     */
+    get$attributes: function () {
+      Attributes.renderHTML();
+      return Attributes.$attributes;
+    },
+
     /**
      * toggle show
      */
     toggleDisplay: function () {
-      Attributes.renderHTML();
-      var $attributes = Attributes.$attributes;
+      var $attributes = Attributes.get$attributes();
       var $ul_attributes_visible = $('ul.attributes:visible');
             
       // first hide
@@ -1178,9 +1201,8 @@ var EditorConfigurationElement = function (parent, element) {
      * @param   attributeName   string  name of the attribute
      */
     markAttributeInvalid: function (attributeName) {
-      Attributes.renderHTML();
-      var $attributes = Attributes.$attributes;
-            
+      var $attributes = Attributes.get$attributes();
+
       var $invalidAttribute = $attributes.find('span.name:contains(' + attributeName + ')').closest('li.attribute');
             
       $attributes.parents('li.element').addClass('invalidChildAttribute');
@@ -1198,7 +1220,7 @@ var EditorConfigurationElement = function (parent, element) {
      * Will be called from jQuery via event-handlers
      */
     markValueChanged: function (attributeName) {
-      var $attributes = Attributes.$attributes;
+      var $attributes = Attributes.get$attributes();
       var $changedAttribute = $attributes.find('span.name:contains(' + attributeName + ')').closest('li.attribute');
             
       if (false === $changedAttribute.is('.invalid')) {
@@ -1311,23 +1333,38 @@ var EditorConfigurationElement = function (parent, element) {
         }
       }
 
-      // get the DOM for an input..
-      var $input = getInputForValueAndEnumeration(nodeValue, elementEnumeration, isUserInputAllowed);
-      // insert input-field into the DOM
-      $value.after($input);
-            
-      // adjust the size of the input
-      $input.width(width);
-      $input.height(height);
+      var $loadingText;
+      function buildInputElement( thisElementEnumeration ) {
+        // get the DOM for an input..
+        var $input = getInputForValueAndEnumeration(nodeValue, thisElementEnumeration, isUserInputAllowed);
+        // insert input-field into the DOM
+        if( $loadingText !== undefined ) {
+          $loadingText.replaceWith($input);
+          $loadingText = undefined;
+        } else {
+          $value.after($input);
+        }
 
-      // bind event handlers.
-      $input.bind('cancel', TextContent.cancelHandler);
-      $input.bind('blur', TextContent.saveHandler);
-      $input.bind('keyup', TextContent.keypressHandler);
+        // adjust the size of the input
+        $input.width(width);
+        $input.height(height);
 
-      // put the focus into this element
-      $input.get(0).focus();
-    },    
+        // bind event handlers.
+        $input.bind('cancel', TextContent.cancelHandler);
+        $input.bind('blur', TextContent.saveHandler);
+        $input.bind('keyup', TextContent.keypressHandler);
+
+        // put the focus into this element
+        $input.get(0).focus();
+      }
+      if( typeof elementEnumeration === 'function' ) {
+        $loadingText = $('<span class="loadingEnumeration">loading...</span>');
+        $value.after($loadingText);
+        elementEnumeration( buildInputElement );
+      } else {
+        buildInputElement( elementEnumeration );
+      }
+    },
 
     /**
      * listen to keypresses for an attribute
@@ -1431,9 +1468,7 @@ var EditorConfigurationElement = function (parent, element) {
         // no hints = no hints :)
         return;
       }
-            
-            
-      var $attributes = Attributes.$attributes;
+
       $.each(hints, function (attributeName, attributeValue) {
         Attributes.saveValue(attributeName, attributeValue);
       });
