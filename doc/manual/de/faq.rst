@@ -52,7 +52,7 @@ und deshalb nicht freigegeben!
 Können mehrere Designs gleichzeitig auf verschiedenen Geräten genutzt werden?
 -----------------------------------------------------------------------------
 
-JA. Dass ist problemlos möglich, da die Darstellung der Visualisierung
+JA. Das ist problemlos möglich, da die Darstellung der Visualisierung
 vom Client-Browser übernommen wird. Deshalb kann es auch geringfügige
 Differenzen in der Darstellung des gleichen Designs in verschiedenen
 Browsern geben. Es muss nur für jedes Design eine eigene Konfig-Datei
