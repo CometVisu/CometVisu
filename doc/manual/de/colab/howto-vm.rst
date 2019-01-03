@@ -30,8 +30,8 @@ Vorbereitung der Virtual Machine
 
 5. Ubuntu in der VM starten: => Play Virtual Machine.
 
-6. Hinweise auf die VMware-tools ignorieren bzw. manuell installieren auswählen. Die vm-tools werden später als Paket installiert.
-
+6. Hinweise auf die VMware-tools ignorieren bzw. manuell installieren auswählen.
+   Die vm-tools werden später als Paket installiert.
 
 Für eine detailliertere Beschreibung zur Installation der VMware siehe zB. 
 `<https://www.pcwelt.de/ratgeber/Tutorial_-_Mit_Vmware_Player_virtuelle_PCs_einrichten-Schritt_fuer_Schritt-8915132.html>`__
@@ -42,7 +42,6 @@ Grundkonfiguration von Ubuntu
 
 Die nächsten Schritte werden im Terminal-Fenster ausgeführt. Dieses kann mit Ctrl-Alt-T geöffnet werden. 
 Mittels Rechtsklick kann das Terminal mit "Lock to Launcher" am linken Toolbar fix angeheftet werden.
-
 
 1. Mit ``sudo dpkg-reconfigure keyboard-configuration`` das Tastaturlayout auf Deutsch umstellen. 
    Im Untermenü Generic 105-key keyboard auswählen, dann mit den Cursor-Tasten auf OK navigieren/bestätigen und 
@@ -57,9 +56,10 @@ Mittels Rechtsklick kann das Terminal mit "Lock to Launcher" am linken Toolbar f
    Dialogfester die Option "Open with Software install (default)" wählen. Nach dem Download erscheint das Ubuntu Software
    Center, wo noch die Schaltfläche "Install" gedrückt weden muss.   
 
+   .. hint ::
 
-Sollte wie in meinem Fall die Installation auf diesem Weg nicht funktionieren, das Paket mit der Option "Speichern" 
-herunterladen und mit folgendem Befehl ``sudo dpkg -i code_1.17.1-1507645403_amd64.deb`` installieren.
+        Sollte wie in meinem Fall die Installation auf diesem Weg nicht funktionieren, das Paket mit der Option "Speichern" 
+        herunterladen und mit folgendem Befehl ``sudo dpkg -i code_1.17.1-1507645403_amd64.deb`` installieren.
 
 
 4. Als nächstes git mit ``sudo apt-get install git-all`` installieren und User/E-Mail richtig konfigurieren. Die 
@@ -75,10 +75,19 @@ herunterladen und mit folgendem Befehl ``sudo dpkg -i code_1.17.1-1507645403_amd
    der Dokumentation beachten. 
 
 7. Im VS Code Editor die Extension ``restructuredtext`` installieren. Dazu über den Menüpunkt Anzeigen -> Extensions 
-   suchen -> "restructuredtext" eingeben und dann "install" wählen. Danach den Editor am besten schließen!
+   suchen -> "restructuredtext" eingeben und dann "install" wählen. 
+   Zusätzlich wird noch eine Spell checking Extension empfohlen.
 
-Auf die Installation von Python wird hier nicht näher eingegangen, da Python auf Ubuntu (und den meisten anderen
-Linux Distributionen) bereits vorinstalliert ist. 
+   .. figure:: doc/_static/visual_studio_install_ext.png
+
+        Install extensions
+
+   Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
+
+    .. hint ::
+
+        Auf die Installation von Python wird hier nicht näher eingegangen, da Python auf Ubuntu (und den meisten anderen
+        Linux Distributionen) bereits vorinstalliert ist. 
 
 
 8. Python pip installieren, da damit weitere Python Tools für die Entwicklungsumgebung installiert werden müssen. 
