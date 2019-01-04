@@ -65,10 +65,10 @@ The basic syntax of links contains a title and the link itself
 in the following structure: ```Title of the link <URL of the link>```.
 Of course you can also refer to other documents within the documentation:
 ``:doc: `title <relative/path/to/document>```. Please note that you have
-to omit the `.rst` file extension.
+to omit the ``.rst`` file extension.
 
 If you want to link a document named *dok.rst* in the subdirectory *test*,
-it looks like this: ``:doc: `test/dok```. The title of the link is optional,
+it looks like this: ``:doc:`test/dok```. The title of the link is optional,
 it is omitted, the page title of the linked document used as the title
 (i.e. the top-level heading within the document).
 

@@ -66,13 +66,6 @@ develop their own widgets. The file *structure\_custom.js*
 is available for this purpose. This file will not be overwritten
 by future updates. The widgets are programmed in JavaScript.
 
-Is it also possible to create later parent pages?
--------------------------------------------------
-
-Yes and no. If in the CometVisu a parent page to an existing
-Visus-Page should be created (move), that can currently be done
-only by hand in the config.xml. This is not possible at the
-moment with the built-in editor.
 
 Can I participate in the development of CometVisu?
 --------------------------------------------------

@@ -67,7 +67,7 @@ structure of a test looks like this:
 
 .. code-block:: javascript
 
-  describe("Meine Testsuite", function() {
+  describe("My testsuite", function() {
     it("should add two numbers", function() {
     expect(add(4, 5).toBe(9);
     });
@@ -84,7 +84,7 @@ you will create the new file
 It is important that the name of the test file ends with ``-spec``,
 otherwise it will not be found by the testrunner.
 
-Der Test für diese Datei sollte nun folgendermaßen aussehen:
+The test for this file should now look like this:
 
 .. code-block:: javascript
 

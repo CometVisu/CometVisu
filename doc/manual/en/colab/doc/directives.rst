@@ -100,7 +100,7 @@ basically consists of 3 areas:
    plugins, defining mappings, styling, etc.)
 #. **All other** Anything that is not inside a *<settings>* or *<meta>*
    element is interpreted as a sample code. Everything that is allowed
-   within a * <page> * element of the configuration file (such as widgets,
+   within a *<page>* element of the configuration file (such as widgets,
    groups, etc.) is allowed here.
 
 The areas 1 and 2 are optional and may be omitted, so if e.g. only

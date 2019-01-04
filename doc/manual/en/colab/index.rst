@@ -312,7 +312,7 @@ allows you to view a live preview of the written documentation.
       therefore currently not available in Visual Studio Code on Windows. For
       Windows users, therefore, Visual Studio Code in a virtual machine with
       Linux (Ubuntu, Mint, ...) is recommended.
-      see :doc:`VM Einrichten <howto-vm>` for detailed information.
+      see :doc:`Set up VM <howto-vm>` for detailed information.
 
 After installing the editor, the extension ``restructuredtext``
 (via Shft + Ctrl + X or View ->  Extensions ) must be installed. Search
@@ -397,13 +397,13 @@ are formulated
 
     With uncertainties regarding the error can first in
     `KNX-User-Forum <https://knx-user-forum.de/forum/supportforen/cometvisu>`__
-    or at `Gitter <https://gitter.im/CometVisu/CometVisu_DE>`__ ask for help.
+    or at `Gitter <https://gitter.im/CometVisu/CometVisu>`__ ask for help.
 
 
 Bug reports with log files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As of version 0.11.0, there is an additional way to make
+Beginning with version 0.11.0, there is an additional way to make
 troubleshooting easier for developers and to improve the bug reports.
 Users can record the behavior of the CometVisu and provide a so-called
 log file (preferably attached to the issue as an attachment).
@@ -423,7 +423,7 @@ Therefore, the user must agree to publish this data. It may therefore be
 advisable to create bugs with a modified configuration file, e.g. none
 contains sensitive data.
 The big advantage of these log files, however, is that the developers
-are faithful to the original when playing these logs. See replica of
+can see a mock up of the original setup when playing these logs. See replica of
 the user system and thus usually see the error directly, fix it and
 directly can test whether the error correction also works.
 

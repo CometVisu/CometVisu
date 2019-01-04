@@ -74,13 +74,6 @@ Datei *structure\_custom.js* zur Verfügung. Diese Datei wird von
 zukünftigen Updates nicht überschrieben. Die Widgets werden in
 JavaScript programmiert.
 
-Lassen sich auch nachträglich übergeordnete Seiten anlegen?
------------------------------------------------------------
-
-JA und NEIN. Wenn in der CometVisu eine übergeordnete Seite zu einer
-bestehenden Visuseite angelegt werden soll (verschieben), lässt sich
-dass momentan nur von Hand in der config.xml machen. Mit dem eingebauten
-Editor ist das momentan noch nicht möglich.
 
 Kann ich mich an der Entwicklung der CometVisu beteiligen?
 ----------------------------------------------------------
