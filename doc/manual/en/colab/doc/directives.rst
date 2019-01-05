@@ -66,7 +66,7 @@ generates this entry in the documentation:
 
         <settings>
             <screenshot name="switch_complete">
-                <caption>Switch mit mapping + styling</caption>
+                <caption>Switch with mapping + styling</caption>
                 <data address="1/4/0">1</data>
             </screenshot>
         </settings>
@@ -243,3 +243,5 @@ used to automatically create redirects.
         CometVisu/Widget/switch/de
         CometVisu/switch
         CometVisu/switch_(Deutsch)
+
+        
