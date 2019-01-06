@@ -231,7 +231,7 @@ enabled via this URL parameter.
     Options: true  (reportErrors=true), false (reportErrors=false)
 
 To activate the error reports, the CometVisu must be loaded with
-`reportErrors = true`. CometVisu's error dialogs offer the option of reloading
+`reportErrors=true`. CometVisu's error dialogs offer the option of reloading
 CometVisu with this parameter, if that has not happened yet. Then the user
 can try to reproduce the error again and then send an error report with
 further explanations to sentry.io.

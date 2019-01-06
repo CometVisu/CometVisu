@@ -116,7 +116,7 @@ Complex example with mapping
     </meta>
 
 This example shows a notification when one of the motion detectors
-provides a movement with high priority (``severity = "high"``,
+provides a movement with high priority (``severity="high"``,
 turns orange).
 
 To bring the somewhat cryptic address name into a readable

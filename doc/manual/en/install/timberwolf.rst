@@ -199,7 +199,7 @@ the testing version should be installed with these parameters:
 
     - Volumes: Volume mapping
 
-      - ``container``: ``/var/www/html/config`` ⭢ ``volume``: ``CometVisuTestConfig``
+      - ``container``: ``/var/www/html/resource/config`` ⭢ ``volume``: ``CometVisuTestConfig``
       - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional)*
 
     - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``

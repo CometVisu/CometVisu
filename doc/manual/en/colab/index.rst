@@ -26,7 +26,7 @@ the official Github repository of the CometVisu project:
 `<https://github.com/CometVisu/CometVisu>`__
 
 In order to work together you need a free account at Github. If
-this is created, one must *forken* the CometVisu project.
+this is created, one must *fork* the CometVisu project.
 To do this, follow these steps:
 
 #. login on github.com
@@ -38,8 +38,9 @@ in which you can make your own changes. Of course it is easier
 if you have the files on your local machine to edit them there.
 You have to clone your private copy of the CometVisu repository.
 To work locally with the files you need a *git client*.
-This one is e.g. for the command line but also in various
-graphical versions. Since the procedures and terms are similar
+In this description we are using the version for the command line, but
+there are also versions available that use a graphical user interface.
+Since the procedures and terms are similar
 for all clients, the command line client will be used as reference
 in the further course. To 'clone' the repository, follow these steps:
 
@@ -58,10 +59,10 @@ General approach
 ----------------
 
 If you want to make a change, you should follow the procedure
-described here. Even if you seem unnecessarily complicated at
-first glance, especially if you just want to change trifles. The
+described here. Even if it seems unnecessarily complicated at
+first glance, especially if you just want to do minor changes. The
 experience shows that you have less problems in the long run, if you
-always stick to this workflow and he is thus becoming a habit. And
+always stick to this workflow and it is thus becoming a habit. And
 this is how the workflow looks, first as an overview without details:
 
 1. create new *branch*
@@ -77,13 +78,13 @@ And now again the same steps in detail:
 
 1. Switch to the directory with the local repository on the command line
    ``git checkout -b new-branches`` (The name of the new branch can be chosen
-   freely, it can only be nonexistent)
+   freely, as long as it is not existing yet)
 2. Edit and save the desired files with an editor of your choice
 3. ``git commit -a -m "Short description of the change"`` (Formulate the
    description in English if possible).
-   With ``git status``you can first check which changes are all *commited*
-4. Steps 2. + 3. can be repeated as many times as you think you
-   have made all the changes
+   With ``git status`` you can first check which changes are all *commited*
+4. Steps 2. + 3. can be repeated as many times as many times as you
+   want until you have made all intended changes
 5. ``git push``
 6. Go to the github page of the private repository and click on
    *new pull request*. On the following page *Comparing changes*
@@ -98,11 +99,11 @@ And now again the same steps in detail:
    This creates the pull request
 
 Now you have to wait until one of the maintainers of the CometVisu project
-pull-request *reviewed*. In addition, some automated checks are performed
+reviewed the pull request. In addition, some automated checks are performed
 on the pull request to detect potential problems. If everything is alright,
-the pull request is gemerged * by the maintainer * and so the changes are
-part of the CometVisu project. If the maintainer has suggestions for
-improvement, he will do so through comments in the pull request. If
+the pull request is gemerged *by one of the the maintainers* and so the changes
+are becoming part of the CometVisu project. If the maintainer has suggestions
+for improvement, he will do so through comments in the pull request. If
 this is the case, the advantage of the extra branch created in step 1
 will now come into play. You just have to execute steps 2, 3 and 5 to
 execute the correction requests of the maintainer. Thus, the changes are
@@ -255,8 +256,8 @@ generated. The documentation is therefore written in the reStructuredText
 format (RST for short). This is a simplified markup language that is easy
 to read in plain text form and has the advantage of being simple
 to be converted to other formats [RST-Wiki]_.
-Zum tieferen Einstieg in die Syntax des RST-Formats sind folgende
-Links geeignet:
+For more detailed information about the syntax of the RST format
+please consult those links:
 
 * `Cheat sheet <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`__
 * `Sphinx Documentation <http://www.sphinx-doc.org/en/stable/rest.html>`__
@@ -296,7 +297,7 @@ After completing the build process, there should be a new docu under
 .. IMPORTANT::
 
     If the project is set up correctly, but the documentation generation still
-    fails due to unproven dependencies, it must be checked whether the same
+    fails due to not fulfilled dependencies, it must be checked whether the same
     Python versions (in particular Python 2 vs. Python 3) are used.
 
 

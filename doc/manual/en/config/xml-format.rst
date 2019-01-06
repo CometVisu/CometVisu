@@ -1,7 +1,7 @@
 .. _xml-format:
 
-XML-Structur
-============
+XML-Structure
+=============
 
 An XML file consists of various "elements" that together represent
 a tree. An element can include other elements. Via "Attributes" an

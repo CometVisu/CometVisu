@@ -15,7 +15,7 @@ degree of complexity - are described in detail.
 3.    Widgets with ``class``    Look        Many widgets can be customized by adding the ``class`` attribute and matching CSS rules.
 4.    Write own Design          Look        If additional CSS rules are not enough, a new design can be created.
 5.    Write own Widgets         Content     Add new widgets through plugins.
-6.    Write own Struktur        Content     The conversion of the configuration files into HTML code can be completely changed by creating a new structure.
+6.    Write own Structur        Content     The conversion of the configuration files into HTML code can be completely changed by creating a new structure.
 ===   ======================    =========   ===================================================
 
 Change existing design
@@ -82,13 +82,12 @@ Change individual widgets through CSS classes
 
 With many widgets it is possible to specify a ``class`` attribute in the
 configuration file, which can then be used for own CSS rules. This gives
-you the opportunity to visually change slightly more targeted
-individual widgets.
+you the opportunity to visually change individual widgets.
 
 .. HINT::
     The value of the ``class`` attribute specified in the configuration
-    file is given a ``custom_`` prefix. So from ``<switch class = "fancy"..``
-    the HTML code ``<div class ="switch custom_fancy"...``
+    file is given a ``custom_`` prefix. So from ``<switch class = "fancy"...``
+    the HTML code ``<div class="switch custom_fancy"...``
 
 
 .. code-block:: xml
@@ -117,7 +116,7 @@ individual widgets.
 Write your own design
 ---------------------
 
-In addition to the already described possibilities of optical
+In addition to the already described possibilities for optical
 adjustments, there is a further possibility to write a completely new design.
 
 A CometVisu design consists of at least the following files:

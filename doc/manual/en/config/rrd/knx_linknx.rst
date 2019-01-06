@@ -1,5 +1,5 @@
 
-Temperaturr from KNX with linknx
+Temperature from KNX with linknx
 --------------------------------
 
 linknx has the option of marking KNX objects as "persistent".
