@@ -7,16 +7,16 @@ The CometVisu can be customized in many different ways to your own
 needs. In the following, the different possibilities - sorted by
 degree of complexity - are described in detail.
 
-===   ======================    =========   ===================================================
-\     Adjustment                Changes     Descrition
-===   ======================    =========   ===================================================
-1.    Own CSS-Regeln            Look        Override the existing CSS rules of a theme by loading additional CSS files.
-2.    Use own Icons             Look        In addition to the included icons, custom icons can be added via the configuration file.
-3.    Widgets with ``class``    Look        Many widgets can be customized by adding the ``class`` attribute and matching CSS rules.
-4.    Write own Design          Look        If additional CSS rules are not enough, a new design can be created.
-5.    Write own Widgets         Content     Add new widgets through plugins.
-6.    Write own Structur        Content     The conversion of the configuration files into HTML code can be completely changed by creating a new structure.
-===   ======================    =========   ===================================================
+===   ======================    ===========    ===================================================
+\     Adjustment                Changes        Descrition
+===   ======================    ===========    ===================================================
+1.    Own CSS-Regeln            Appearance     Override the existing CSS rules of a theme by loading additional CSS files.
+2.    Use own Icons             Appearance     In addition to the included icons, custom icons can be added via the configuration file.
+3.    Widgets with ``class``    Appearance     Many widgets can be customized by adding the ``class`` attribute and matching CSS rules.
+4.    Write own Design          Appearance     If additional CSS rules are not enough, a new design can be created.
+5.    Write own Widgets         Content        Add new widgets through plugins.
+6.    Write own Structur        Content        The conversion of the configuration files into HTML code can be completely changed by creating a new structure.
+===   ======================    ===========    ===================================================
 
 Change existing design
 ----------------------
