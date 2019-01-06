@@ -42,7 +42,7 @@ qx.Class.define('cv.plugins.Clock', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
@@ -143,7 +143,7 @@ qx.Class.define('cv.plugins.Clock', {
       var address = this.getAddress();
       for (var addr in address) {
         if (address[addr][1] === true) { continue; } // skip read only
-        cv.TemplateEngine.getInstane().visu.write(addr, cv.Transform.encode(address[addr][0], this.getValue()));
+        cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr][0], this.getValue()));
       }
     }
   },
@@ -151,5 +151,7 @@ qx.Class.define('cv.plugins.Clock', {
   defer: function(statics) {
     cv.parser.WidgetParser.addHandler("clock", cv.plugins.Clock);
     cv.ui.structure.WidgetFactory.registerClass("clock", statics);
+    var loader = cv.util.ScriptLoader.getInstance();
+    loader.addScripts(['resource/libs/jquery-ui.js', 'resource/libs/jquery.svg.min.js'], [0]);
   }
 });
