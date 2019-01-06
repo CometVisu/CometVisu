@@ -43,6 +43,10 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
         this.__options[key] = props[key];
       }
     }, this);
+    qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+      // init once
+      this._refreshAction();
+    }, this);
   },
 
   /*
@@ -151,7 +155,6 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       this._timer = new qx.event.Timer(this.getRefresh());
       this._timer.addListener('interval', this._refreshAction, this);
       this._timer.start();
-      this._refreshAction();
     },
 
     _refreshAction: function() {
