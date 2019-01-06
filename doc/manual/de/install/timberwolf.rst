@@ -197,7 +197,7 @@ Empfehlung die Testing Version mit diesen Parametern zu installieren:
 
     - Volumes: Volume mapping
 
-      - ``container``: ``/var/www/html/config`` ⭢ ``volume``: ``CometVisuTestConfig``
+      - ``container``: ``/var/www/html/resource/config`` ⭢ ``volume``: ``CometVisuTestConfig``
       - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional)*
 
     - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``
