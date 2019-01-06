@@ -87,7 +87,7 @@ qx.Class.define('cv.plugins.UpnpController', {
     },
     playerIp: {
       check: "String",
-      init: ""
+      nullable: true
     },
     playerPort: {
       check: "Number",

@@ -86,43 +86,43 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
   properties: {
     cssClass: {
       check: "String",
-      init: ""
+      nullable: true
     },
     lang: {
       check: "String",
-      init: ""
+      nullable: true
     },
     q: {
       check: "String",
-      init: ""
+      nullable: true
     },
     lat: {
       check: "String",
-      init: ""
+      nullable: true
     },
     lon: {
       check: "String",
-      init: ""
+      nullable: true
     },
     units: {
       check: "String",
-      init: ""
+      nullable: true
     },
     type: {
       check: "String",
-      init: ""
+      nullable: true
     },
     forecastItems: {
       check: "String",
-      init: ""
+      nullable: true
     },
     detailItems: {
       check: "String",
-      init: ""
+      nullable: true
     },
     appid: {
       check: "String",
-      init: ""
+      nullable: true
     }
   },
 
@@ -144,7 +144,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
 
     _refreshAction: function() {
       var elem = $(this.getDomElement());
-      elem.openweathermap(this.options);
+      elem.openweathermap(this.__options);
       return false;
     }
   },
