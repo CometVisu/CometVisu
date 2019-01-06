@@ -37,7 +37,12 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
   construct: function(props) {
     props.refresh = props.refresh * 60;
     this.base(arguments, props);
-    this.__options = props;
+    this.__options = {};
+    Object.keys(props).forEach(function (key) {
+      if (props[key]) {
+        this.__options[key] = props[key];
+      }
+    }, this);
   },
 
   /*
@@ -140,6 +145,13 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
         classes+=" "+this.getCssClass();
       }
       return '<div class="'+classes+'"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
+    },
+
+    _setupRefreshAction: function() {
+      this._timer = new qx.event.Timer(this.getRefresh());
+      this._timer.addListener('interval', this._refreshAction, this);
+      this._timer.start();
+      this._refreshAction();
     },
 
     _refreshAction: function() {
