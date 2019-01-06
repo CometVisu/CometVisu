@@ -18,7 +18,7 @@ var jOWM = jOWM || {};
     // Set plugin defaults.
     var defaults = {
       // Base URL to service.
-      baseURL: 'http://api.openweathermap.org/data/2.5/',
+      baseURL: 'https://api.openweathermap.org/data/2.5/',
       // Number of items to show detailed data for (0..4).
       detailItems: 4,
       // Number of items in forecast (0..16).
