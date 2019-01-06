@@ -103,13 +103,16 @@ qx.Class.define('cv.plugins.CalendarList', {
             return value ? "height:" + value + ";" : "";
           }
         },
-        'maxquantity': {},
-        'days': {
+        'maxquantity': {
           transform: function (value) {
             return value ? parseInt(value) : null;
           }
         },
-        'refresh': {}
+        'days': {
+          transform: function (value) {
+            return value ? parseInt(value) : null;
+          }
+        }
       };
     }
   },
