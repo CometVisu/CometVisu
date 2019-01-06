@@ -48,8 +48,12 @@ qx.Class.define('cv.plugins.CalendarList', {
       init: "plugins/calendarlist/calendarlist.php"
     },
     days: {
-      check: "String",
-      init: ''
+      check: "Number",
+      nullable: true
+    },
+    maxquantity: {
+      check: "Number",
+      nullable: true
     }
   },
 
@@ -59,7 +63,7 @@ qx.Class.define('cv.plugins.CalendarList', {
   ******************************************************
   */
   statics: {
-    calendars: null,
+    calendars: {},
 
     /**
      * Parses the widgets XML configuration and extracts the given information
@@ -74,7 +78,7 @@ qx.Class.define('cv.plugins.CalendarList', {
     parse: function (xml, path, flavour, pageType) {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseRefresh(xml, path);
-      this.calendars = [];
+      this.calendars[path] = [];
       qx.bom.Selector.query('calendar', xml).forEach(function (cal) {
         var calData = {
           type: cal.getAttribute('type'),
@@ -82,7 +86,7 @@ qx.Class.define('cv.plugins.CalendarList', {
           magiccookie: cal.hasAttribute('magiccookie') ? cal.getAttribute('magiccookie') : '',
           days: cal.hasAttribute('days') ? cal.getAttribute('days') : data.days
         };
-        this.calendars.push(calData);
+        this.calendars[path].push(calData);
       }, this);
       return data;
     },
@@ -100,7 +104,11 @@ qx.Class.define('cv.plugins.CalendarList', {
           }
         },
         'maxquantity': {},
-        'days': {},
+        'days': {
+          transform: function (value) {
+            return value ? parseInt(value) : null;
+          }
+        },
         'refresh': {}
       };
     }
@@ -123,12 +131,18 @@ qx.Class.define('cv.plugins.CalendarList', {
       this.refreshAction();
     },
 
+    _setupRefreshAction: function() {
+      this._timer = new qx.event.Timer(this.getRefresh());
+      this._timer.addListener('interval', this._refreshAction, this);
+      this._timer.start();
+    },
+
     _refreshAction: function () {
       var calendarList = this.getActor();
 
       var src = this.getSrc();
       var maxquantity = this.getMaxquantity();
-      var calendars = this.getCalendars();
+      var calendars = cv.plugins.CalendarList.calendars[this.getPath()];
 
       // TODO: replace jQuery
       $(function () {
