@@ -91,7 +91,9 @@ foreach ($calcData as $thisData) {
         $xml .= '},';
     }
 }
-$xml = substr($xml, 0, -1);
+if ($row > 0) {
+    $xml = substr($xml, 0, -1);
+}
 $xml .= ']}}';
 echo $xml;
 ?> 
