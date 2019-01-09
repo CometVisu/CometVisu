@@ -91,7 +91,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
         case 'right':
           qx.bom.element.Style.set(qx.bom.Selector.query('#centerContainer')[0], "padding-right", cssSize);
-          qx.bom.element.Style.setStyles(qx.bom.Selector.query('#navbarLeft')[0], {
+          qx.bom.element.Style.setStyles(qx.bom.Selector.query('#navbarRight')[0], {
             width: cssSize,
             'margin-right': '-' + cssSize
           });
