@@ -58,7 +58,7 @@ Known ``Name`` Entries
 ----------------------
 
 Even if the choice for the ``name`` is basically free, there are
-usual entries for it, which offer to follow this scheme. Thus, some
+usual entries for it, which are recommended to be used. Thus, some
 widgets or plug-ins without an explicit configuration can look in the usual
 name for entries, which can reduce the configuration effort.
 

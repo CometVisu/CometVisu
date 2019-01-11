@@ -149,7 +149,7 @@ options for the user:
 Furthermore, various functionalities are implemented which result in navigation
 without user intervention:
 
--  The KNX group address can be jumped to an underside if the attribute
+-  A KNX group address can be used to jump to a subpage when the attribute
    ``ga=x/y/z`` is entered in the corresponding :ref:`Page Definition <page>`.
 -  The options ``screensave_time`` and ``screensave_page``. This will call a
    specified page after a defined time has elapsed.

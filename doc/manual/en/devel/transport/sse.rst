@@ -13,13 +13,13 @@ changed values.
 .. HINT::
         The browser automatically takes care of the restoration of the
         connection in case of abortions.
-        Therefore, the internal * Watchdog * is usually not used in SSE.
+        Therefore, the internal *Watchdog* is usually not used in SSE.
 
 However, the browser must support this technology. An overview of the
 supported browsers is provided by `Caniuse <http://caniuse.com/eventsource/embed/>`__.
 
 Writing inquiries
-********************
+*****************
 
 When a new value is to be sent to the backend (because, for example,
 the user has serviced a widget), a new request that is completely

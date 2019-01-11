@@ -48,10 +48,10 @@ The next steps will be executed in the terminal window. This can be opened
 with Ctrl-Alt-T. With a right click the terminal can be fixed with "Lock to
 Launcher" on the left toolbar.
 
-1. Use ``sudo dpkg-reconfigure keyboard-configuration`` to change the
-   keyboard layout to German. In the Generic 105-key keyboard submenu,
-   then navigate to OK using the cursor keys and then select the german
-   language on the next page.
+1. Use ``sudo dpkg-reconfigure keyboard-configuration`` to change layout
+   to the layout for your keyboard to german. In the Generic 
+   105-key keyboard submenu, then navigate to OK using the cursor keys
+   and then select the german language on the next page.
 
 2. Install VMware tools with `` sudo apt-get install open-vm-tools``.
    The VMware tools are necessary to eg. Adjust screen size to window
@@ -83,7 +83,7 @@ Launcher" on the left toolbar.
    Then the link to your own fork on Github must be inserted. Confirm
    the default directory and confirm "Open Repository" after downloading.
    For the topic github (create user, create fork, etc.) please refer
-   to the section: doc: `General preparations <index>` in the documentation.
+   to the section :doc:`General preparations <index>` in the documentation.
 
 7. Install the extension `restructuredtext` in the VS Code Editor. To
    do this, go to the menu item "View -> Extensions -> restructuredtext" and
