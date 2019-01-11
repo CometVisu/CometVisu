@@ -56,6 +56,14 @@ function query( $q, $db = '', $auth )
         'header' => "Authorization: Basic " . base64_encode( $hidden[$influxKey]['user'] . ':' . $hidden[$influxKey]['pass'] )
       )
     );
+    if( array_key_exists( 'selfsigned', $hidden[$influxKey] ) &&
+      'true' == $hidden[$influxKey]['selfsigned']  ) {
+      $opts['ssl'] = [
+        'verify_peer' => false,
+        'allow_self_signed' => true,
+        'verify_peer_name' => false
+      ];
+    }
 
     $context = stream_context_create( $opts );
   }
@@ -110,7 +118,10 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
 
   if( $filter )
   {
-    $filter = 'AND ' . str_replace( "\\'", "'", $filter );
+    if( '()' == $filter )
+      $filter = '';
+    else
+      $filter = 'AND ' . str_replace( "\\'", "'", $filter );
   }
 
   if( '' != $res )
