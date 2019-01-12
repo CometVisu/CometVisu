@@ -576,7 +576,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
 
       if (!isPopup && !this.getPreviewlabels()) {
-        qx.lang.Object.mergeWith(options, {xaxes: [ {ticks: 0} ]});
+        qx.lang.Object.mergeWith(options, {xaxes: [ {ticks: 0, mode: options.xaxes[0].mode } ]});
         options.yaxes.forEach(function(val) {
           qx.lang.Object.mergeWith(val, {ticks:0, axisLabel: null});
         }, this);
