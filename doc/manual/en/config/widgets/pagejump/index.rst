@@ -58,7 +58,6 @@ Allowed child-elements und their attributes
     <pagejump>
         <layout colspan="4" />
         <label>PageJump</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </pagejump>
 
 Examples

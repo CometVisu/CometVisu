@@ -28,6 +28,12 @@ more difficult for **Experts** only
 -  :doc:`any other Linux-Systems <linux>`
 -  :doc:`any NAS-Systems <nas>`
 
+.. toctree::
+    :hidden:
+
+    linux
+    nas
+
 There is also a possibility to install the current development version, but
 this one should **NEVER** be used in a productive environment.
 

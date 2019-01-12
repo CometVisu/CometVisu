@@ -40,6 +40,7 @@ Allowed attributes in the Slide-element
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <slide>
         <layout colspan="4" />
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </slide>
 
 
