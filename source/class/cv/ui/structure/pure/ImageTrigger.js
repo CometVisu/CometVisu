@@ -25,13 +25,12 @@
  *
  * <ul>
  *  <li><code>type="show"</code>: Hides the image when incoming data === 0</li>
- *  <li><code>type="select"</code>: Changes the image by appending the incoming data to the initial configured image source,
- *   or hide it when incoming data === 0</li>
+ *  <li><code>type="select"</code>: Changes the image by appending the incoming data to the initial configured image source, or hide it when incoming data === 0</li>
  * </ul>
  * Example:
  * <pre class="sunlight-highlight-xml">
- * &lt;imagetrigger src="icon/comet" suffix="svg" sendValue="clicked" type="select"&gt;
- *  &lt;address transform="DPT:16.001" mode="readwrite"&gt;0/0/0&lt;/address&gt;
+ * &lt;imagetrigger src="resource/icon/comet" suffix="svg" sendValue="clicked" type="select"&gt;
+ *    &lt;address transform="DPT:16.001" mode="readwrite"&gt;0/0/0&lt;/address&gt;
  * &lt;/imagetrigger&gt;
  * </pre>
  *
@@ -48,22 +47,22 @@
  *     <caption>Image changed by incoming data 'grey'</caption>
  *     <data address="0/0/0">grey</data>
  *   </screenshot>
- * </settings>
- * <imagetrigger src="icon/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
- *   <layout colspan="1" />
- *   <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
- * </imagetrigger>
+ *  </settings>
+ *  <imagetrigger src="resource/icon/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
+ *    <layout colspan="1" />
+ *    <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
+ *  </imagetrigger>
  *
  * @widgetexample <settings>
  *   <caption>Disable layout width by settings it to '0', to have widget with === image width</caption>
  *   <screenshot name="image_trigger_colspan0">
  *     <data address="0/0/0">1</data>
  *   </screenshot>
- * </settings>
- * <imagetrigger src="icon/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
- *   <layout colspan="0" />
- *   <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
- * </imagetrigger>
+ *  </settings>
+ *  <imagetrigger src="resource/icon/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
+ *    <layout colspan="0" />
+ *    <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
+ *  </imagetrigger>
  *
  *
  * @author Christian Mayer

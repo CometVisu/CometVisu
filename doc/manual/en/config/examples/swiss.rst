@@ -31,7 +31,7 @@ The highlights at a glance
 ---------------------------
 
 Time display in the Navbar
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. figure:: _static/Example_Metal_swiss_02.jpg
     :alt: Screenshot Zeit/Datum
