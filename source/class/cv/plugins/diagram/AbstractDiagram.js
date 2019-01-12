@@ -236,7 +236,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     lookupTsCache: function(ts, start, end, res, refresh, force, callback, callbackParameter ) {
       var
         url = (( 'influx' === ts.tsType )
-            ? 'http://wiregate/CometVisuGit/source/resource/plugins/diagram/influxfetch.php?ts=' + ts.src
+            ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src
             : cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+'?rrd=' + encodeURIComponent(ts.src) + '.rrd')
           + '&ds='    + encodeURIComponent(ts.cFunc)
           // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text

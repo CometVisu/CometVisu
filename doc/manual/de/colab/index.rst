@@ -237,7 +237,18 @@ Lokales Erzeugen der HTML-Doku
 
 Über den Befehl ``./cv doc`` wird die deutsche Dokumentation aus den RST nach
 HTML übersetzt. Für die englische Version muss ``./cv doc -l en`` aufgerufen
-werden.
+werden. Zum ausführen der Befehle muss man sich im Hauptverzeichnis der
+CometVisu befinden.
+
+Wenn alles gut funktioniert, sollte das script wie folgt starten.
+
+.. figure:: doc/_static/start_docu_build.png
+
+    Start building
+
+Nach dem Build Prozess sollte die neue Dokumentation unter 
+``doc/manual/de/_build/html/`` und/oder ``doc/manual/en/_build/html/``
+zu finden sein.
 
 .. IMPORTANT::
 
@@ -259,15 +270,35 @@ Live Preview der geschriebenen Dokumentation anzeigen lassen kann.
       Virtual Machine mit Linux (Ubuntu, Mint, ...) empfohlen. 
       Siehe :doc:`VM Einrichten <howto-vm>` für eine detaillierte Vorgehensweise.
 
-Nach Installation des Editors muss darin die Extension ``restructuredtext`` (über den Menüpunkt Anzeigen -> Extensions 
-suchen nach rst) installiert werden. Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
+Nach Installation des Editors muss darin die Extension ``restructuredtext`` (über Shft + Ctrl + X
+oder den Menüpunkt Anzeigen -> Extensions) installiert werden. Suche nach
+*restructuredtext* innerhalb der extensions. Zusätzlich wird noch eine Spell checking
+Extension empfohlen.
 
+.. figure:: doc/_static/visual_studio_install_ext.png
+
+    Install extensions
+Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
 
 Damit die Live Preview funktioniert muss Python installiert sein.
 Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
 `Install Sphinx <https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md>`__. 
 Um die erforderlichen Tools zu installieren, den Befehl ``sudo -H pip install -r utils/requirements.txt`` im 
 CometVisu Verzeichnis ausführen. 
+
+Wenn Sphinx korrekt arbeitet, so bekommt man in der Fußzeile eine Auswahl
+der Configs angezeigt
+
+.. figure:: doc/_static/visual_studio_sphinx_select1.png
+
+Durch Klicken auf die Fußzeile kann zwischen *de* oder *en* config 
+für die Vorschau gewählt werden. Wenn Sie also an der deutschen Dokumentation
+arbeiten, stellen Sie dies sicher das *de* ist ausgewählt, andernfalls wird die
+korrekte Vorschau nicht angezeigt.
+
+.. figure:: doc/_static/visual_studio_sphinx_select2.png
+
+    Select a Sphinx config
 
 
 Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit ``Strg+Shift r`` das Live-Preview Fenster öffnen.

@@ -67,8 +67,6 @@ Allowed child-elements und their attributes
     </meta>
     <strftime>
         <layout colspan="4" />
-        <label>strftime</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </strftime>
 
 Examples

@@ -3,7 +3,12 @@
 Prerequisites for the installation
 ==================================
 
-To be able to use the CometVisu the system needs to fulfill a few prerequisites.
+If WireGate 1.1 or later is used, CometVisu 0.8.5 is already
+preinstalled and can be easily used. To install the old
+CometVisu on a WireGate, there are :doc: `further information <wiregate>`.
+
+To be able to use the CometVisu the system needs to
+fulfill a few prerequisites.
 
 These are
 
@@ -19,6 +24,28 @@ Backend - knxd/eibd or OpenHAB
 As a backend an instance of *eibd* or its successor
 `knxd <https://github.com/knxd/knxd>`__ can be used as well an
 `OpenHAB <https://www.openhab.org/>`__ installation.
+
+The installation of the backend is described under
+:doc:`backends/install-eibd` .
+
+.. toctree::
+    :hidden:
+
+    backends/install-eibd
+
+Graphentool - RRDtool
+---------------------
+
+An optional but much-recommended component is rrdtool to
+provide the data for creating graphs. There are many ways
+to pass data to rrds and the use of rrdtool is documented
+in depth. The installation of rrdtool for CometVisu is
+described under :doc:`RRDtool <install-rrd>`.
+
+.. toctree::
+    :hidden:
+
+    install-rrd
 
 Web server
 ----------
@@ -132,6 +159,10 @@ unpacked at the web root, most likely in it's own directory (e.g.
 
 The released versions of the CometVisu are located at
 https://github.com/CometVisu/CometVisu/releases.
+
+A documentation of an install procedure for the  `Raspberry
+Pi <http://de.wikipedia.org/wiki/Raspberry_Pi>`__ is
+avilable under :doc:`CometVisu auf Raspberry Pi <raspberry>`.
 
 Testing the installed CometVisu
 -------------------------------

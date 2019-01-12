@@ -42,6 +42,7 @@ Allowed attributes in the MultiTrigger-element
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <multitrigger>
         <layout colspan="4" />
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </multitrigger>
 
 
