@@ -2,7 +2,7 @@ Eigene Direktiven
 =================
 
 Neben den vorhandenen Sphinx/Docutils Direktiven werden in der CometVisu Dokumentation auch einige
-Eigentwicklungen genutzt, die dabei helfen, die Dokumentation einfacher auf einem aktuellen Stand zu halten.
+Direktiven genutzt, die dabei helfen, die Dokumentation einfacher auf einem aktuellen Stand zu halten.
 Folgende Direktiven werden zur Zeit unterstützt:
 
 +-----------------------+-----------------------------------------------------------------------------------------------+
@@ -16,7 +16,7 @@ Folgende Direktiven werden zur Zeit unterstützt:
 +-----------------------+-----------------------------------------------------------------------------------------------+
 | api-doc               | Bindet Informationen aus der Source-Code Dokumentation ein (@author und @since)               |
 +-----------------------+-----------------------------------------------------------------------------------------------+
-| replaces              | Hiermit läst sich festlegen, welche Seiten des alten Wikis diese Seite ersetzt                |
+| replaces              | Hiermit lässt sich festlegen, welche Seiten des alten Wikis diese Seite ersetzt               |
 +-----------------------+-----------------------------------------------------------------------------------------------+
 
 Die *widget-example* Direktive
@@ -106,7 +106,7 @@ Screenshots beinflusst werden können
 
 #. `linenos`: Wenn angegeben, wird der Beispielcode mit Zeilennummern angegeben
 #. `lineno-start`: Zahl bei der die Zeilennummern starten sollen (Default: 1)
-#. `scale`: Prozentangabe mit der der Screenhost verkleinert werden kann (Default: 100)
+#. `scale`: Prozentangabe mit der der Screenshot verkleinert werden kann (Default: 100)
 #. `hide-source`: *true* oder *false*. (Default: *false*), zeigt den Beispielcode nicht an wenn *true*
 #. `editor`: *attributes* oder *elements*. Macht einen Screenshot vom Beispielcode im Editor und nicht vom Widget selbst
 #. `align`: *left*, *center* oder *right*. Definiert die Position des Screenshots (Default: *left*)

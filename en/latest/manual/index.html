@@ -96,12 +96,10 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="install/index.html">Installation of the CometVisu</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="config/widgets/index.html">Operatable widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="config/widgets/index.html#informative-widgets">Informative widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="config/widgets/index.html#other-widgets">Other widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="config/widgets/index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/index.html">Configuration of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 
             
@@ -176,21 +174,65 @@ by an online translation service.</p>
 It can access the KNX-Bus directly (via eibd/knxd) or use
 <a class="reference external" href="http://www.openhab.org/">OpenHAB</a> as a backend. The current version
 can be found on <a class="reference external" href="http://github.com/CometVisu/CometVisu">Github</a>.</p>
-<div class="toctree-wrapper compound">
+<div class="section" id="system-requirements">
+<span id="id1"></span><h2>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h2>
+<p>Operation by the user takes place via a web browser. The
+Most of the current browsers are supported.</p>
+<p>By setting <a class="reference internal" href="config/url-params.html"><span class="doc">URL Parameter</span></a> can
+you additionally affect the CometVisu, for example by loading other configs
+or designs, as well forcing rendering for mobile devices such as mobile
+devices (e.g. smartphones).</p>
 </div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>The installation is described in the <a class="reference internal" href="install/index.html"><span class="doc">install</span></a> chapter.</p>
-</div>
-<div class="section" id="widgets">
-<h2>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
+<div class="section" id="operating-cometvisu">
+<h2>Operating CometVisu<a class="headerlink" href="#operating-cometvisu" title="Permalink to this headline">¶</a></h2>
+<p>The main menu is in the footer and normally contains
+different links:</p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="config/widgets/index.html">Operatable widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="config/widgets/index.html#informative-widgets">Informative widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="config/widgets/index.html#other-widgets">Other widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="config/widgets/index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a></li>
+<li><p class="first">&#8220;<strong>CometVisu.org</strong>&#8221; link to the projects homepage</p>
+</li>
+<li><p class="first">&#8220;<strong>Reload</strong>&#8221; to reload the current page</p>
+</li>
+<li><p class="first">&#8220;<strong>Widget Demo</strong>&#8221; shows different widgets and there usage</p>
+</li>
+<li><p class="first">&#8220;<strong>Edit</strong>&#8221; opens up the editor.</p>
+</li>
+<li><p class="first">&#8220;<strong>Check Config</strong>&#8221; This tool will check the config file against
+syntax errors. <em>config visu_config is valid XML</em> signals
+a valid config file. The File will be display beneath. In
+case of errors, they will be highlighted.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">The content of the footer can be customized by the config XML-File.</p>
+</div>
+</li>
 </ul>
+</div>
+<div class="section" id="update-the-cometvisu">
+<h2>Update the CometVisu<a class="headerlink" href="#update-the-cometvisu" title="Permalink to this headline">¶</a></h2>
+<p>If a version 0.8 was already installed, the installation
+be updated directly on the <a class="reference internal" href="install/update-wiregate.html"><span class="doc">WireGate</span></a> or
+<a class="reference internal" href="install/update-other.html"><span class="doc">other installations</span></a></p>
+</div>
+<div class="section" id="cometvisu-designs">
+<h2>CometVisu-Designs<a class="headerlink" href="#cometvisu-designs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><span class="xref doc">Metal</span> -&gt; the most popular design</li>
+<li><span class="xref doc">Pure</span></li>
+<li><span class="xref doc">Diskreet</span></li>
+<li><span class="xref doc">Discreet Sand</span></li>
+<li><span class="xref doc">Discreet Slim</span></li>
+<li><span class="xref doc">Alaska</span></li>
+<li><span class="xref doc">Alaska Slim</span></li>
+</ul>
+<p>It is also possible to implement customized designs.</p>
+</div>
+<div class="section" id="colors-inside-cometvisu">
+<h2>Colors inside CometVisu<a class="headerlink" href="#colors-inside-cometvisu" title="Permalink to this headline">¶</a></h2>
+<p>Colors will always be used in hexadezimal format <a class="reference external" href="http://de.wikipedia.org/wiki/Hexadezimale_Farbdefinition">0xRGB
+format</a></p>
+<p>Further help, examples and color-codes can be found <a class="reference external" href="http://www.z1-web.de/Webmaster-Tools-HTML-HEX_Farbcodes_Tools">here</a>
+or <a class="reference external" href="http://de.selfhtml.org/helferlein/farben.htm">here</a></p>
+<div class="toctree-wrapper compound">
 </div>
 </div>
 </div>

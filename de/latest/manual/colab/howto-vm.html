@@ -211,7 +211,8 @@ weiteren Schritten folgen.</li>
 zuweisen. Je nach Anzahl von CPUs zumindest die Hälfte der physischen CPU Kerne zuweisen (nicht mit der Anzahl an
 virtuellen CPUs verwechseln).</li>
 <li>Ubuntu in der VM starten: =&gt; Play Virtual Machine.</li>
-<li>Hinweise auf die VMware-tools ignorieren bzw. manuell installieren auswählen. Die vm-tools werden später als Paket installiert.</li>
+<li>Hinweise auf die VMware-tools ignorieren bzw. manuell installieren auswählen.
+Die vm-tools werden später als Paket installiert.</li>
 </ol>
 <p>Für eine detailliertere Beschreibung zur Installation der VMware siehe zB.
 <a class="reference external" href="https://www.pcwelt.de/ratgeber/Tutorial_-_Mit_Vmware_Player_virtuelle_PCs_einrichten-Schritt_fuer_Schritt-8915132.html">https://www.pcwelt.de/ratgeber/Tutorial_-_Mit_Vmware_Player_virtuelle_PCs_einrichten-Schritt_fuer_Schritt-8915132.html</a></p>
@@ -220,43 +221,63 @@ virtuellen CPUs verwechseln).</li>
 <h2>Grundkonfiguration von Ubuntu<a class="headerlink" href="#grundkonfiguration-von-ubuntu" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die nächsten Schritte werden im Terminal-Fenster ausgeführt. Dieses kann mit Ctrl-Alt-T geöffnet werden.
 Mittels Rechtsklick kann das Terminal mit &#8220;Lock to Launcher&#8221; am linken Toolbar fix angeheftet werden.</p>
-<ol class="arabic simple">
-<li>Mit <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">dpkg-reconfigure</span> <span class="pre">keyboard-configuration</span></code> das Tastaturlayout auf Deutsch umstellen.
+<ol class="arabic">
+<li><p class="first">Mit <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">dpkg-reconfigure</span> <span class="pre">keyboard-configuration</span></code> das Tastaturlayout auf Deutsch umstellen.
 Im Untermenü Generic 105-key keyboard auswählen, dann mit den Cursor-Tasten auf OK navigieren/bestätigen und
-dann auf der nächsten Seite die Sprache Deutsch auswählen.</li>
-<li>VMware tools mit <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">open-vm-tools</span></code> installieren. Die VMware tools sind notwendig um
+dann auf der nächsten Seite die Sprache Deutsch auswählen.</p>
+</li>
+<li><p class="first">VMware tools mit <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">open-vm-tools</span></code> installieren. Die VMware tools sind notwendig um
 zB. Anpassung der Bildschirmgröße an die Fenstergröße, Copy-Paste zwischen Host und VM etc. zu aktivieren.
-Nachdem das Paket installiert ist, die VM herunterfahren und neu starten.</li>
-<li>Visual Studio Code installieren. Dazu Firefox vom linken Toolbar aus öffnen und auf
+Nachdem das Paket installiert ist, die VM herunterfahren und neu starten.</p>
+</li>
+<li><p class="first">Visual Studio Code installieren. Dazu Firefox vom linken Toolbar aus öffnen und auf
 <a class="reference external" href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a> wechseln. Mit der Schaltfläche .deb das Paket auswählen und im
 Dialogfester die Option &#8220;Open with Software install (default)&#8221; wählen. Nach dem Download erscheint das Ubuntu Software
-Center, wo noch die Schaltfläche &#8220;Install&#8221; gedrückt weden muss.</li>
-</ol>
-<p>Sollte wie in meinem Fall die Installation auf diesem Weg nicht funktionieren, das Paket mit der Option &#8220;Speichern&#8221;
+Center, wo noch die Schaltfläche &#8220;Install&#8221; gedrückt weden muss.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Sollte wie in meinem Fall die Installation auf diesem Weg nicht funktionieren, das Paket mit der Option &#8220;Speichern&#8221;
 herunterladen und mit folgendem Befehl <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">dpkg</span> <span class="pre">-i</span> <span class="pre">code_1.17.1-1507645403_amd64.deb</span></code> installieren.</p>
-<ol class="arabic simple" start="4">
-<li>Als nächstes git mit <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">git-all</span></code> installieren und User/E-Mail richtig konfigurieren. Die
+</div>
+</li>
+<li><p class="first">Als nächstes git mit <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">git-all</span></code> installieren und User/E-Mail richtig konfigurieren. Die
 Befehle dazu sind <code class="docutils literal"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.name=&quot;Max</span> <span class="pre">Mustermann&quot;</span></code> bzw.
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.email=&quot;Max.Mustermann&#64;abc.com&quot;</span></code>.</li>
-<li>Visual Studio Code öffnen. Dazu am einfachsten VSCode in der Suche eingeben, &#8220;Visual Studio Code&#8221; auswählen und für
-die Zukunft am Launcher hinzufügen.</li>
-<li>Am &#8220;Welcome&#8221; Bildschirm von VS Code &#8220;Clone Git Repository&#8221; auswählen. Danach muss der Link auf den eigenen Fork auf Github
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.email=&quot;Max.Mustermann&#64;abc.com&quot;</span></code>.</p>
+</li>
+<li><p class="first">Visual Studio Code öffnen. Dazu am einfachsten VSCode in der Suche eingeben, &#8220;Visual Studio Code&#8221; auswählen und für
+die Zukunft am Launcher hinzufügen.</p>
+</li>
+<li><p class="first">Am &#8220;Welcome&#8221; Bildschirm von VS Code &#8220;Clone Git Repository&#8221; auswählen. Danach muss der Link auf den eigenen Fork auf Github
 eingefügt werden. Das default Verzeichnis bestätigen und nach dem Herunterladen &#8220;Open Repository&#8221; bestätigen.
 Zum Thema github (user anlegen, Fork erstellen, etc. ) bitte den Abschnitt <a class="reference internal" href="index.html"><span class="doc">Allgemeine Vorbereitungen</span></a> in
-der Dokumentation beachten.</li>
-<li>Im VS Code Editor die Extension <code class="docutils literal"><span class="pre">restructuredtext</span></code> installieren. Dazu über den Menüpunkt Anzeigen -&gt; Extensions
-suchen -&gt; &#8220;restructuredtext&#8221; eingeben und dann &#8220;install&#8221; wählen. Danach den Editor am besten schließen!</li>
-</ol>
-<p>Auf die Installation von Python wird hier nicht näher eingegangen, da Python auf Ubuntu (und den meisten anderen
+der Dokumentation beachten.</p>
+</li>
+<li><p class="first">Im VS Code Editor die Extension <code class="docutils literal"><span class="pre">restructuredtext</span></code> installieren. Dazu über den Menüpunkt Anzeigen -&gt; Extensions
+suchen -&gt; &#8220;restructuredtext&#8221; eingeben und dann &#8220;install&#8221; wählen.
+Zusätzlich wird noch eine Spell checking Extension empfohlen.</p>
+<div class="figure" id="id1">
+<img alt="../_images/visual_studio_install_ext.png" src="../_images/visual_studio_install_ext.png" />
+<p class="caption"><span class="caption-text">Install extensions</span></p>
+</div>
+<p>Nach einmaligem Neuladen des Editors steht diese zur Verfügung.</p>
+<blockquote>
+<div><div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Auf die Installation von Python wird hier nicht näher eingegangen, da Python auf Ubuntu (und den meisten anderen
 Linux Distributionen) bereits vorinstalliert ist.</p>
-<ol class="arabic simple" start="8">
-<li>Python pip installieren, da damit weitere Python Tools für die Entwicklungsumgebung installiert werden müssen.
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Python pip installieren, da damit weitere Python Tools für die Entwicklungsumgebung installiert werden müssen.
 Dazu im Terminal-Fenster zuerst <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">-y</span> <span class="pre">upgrade</span></code> ausführen, um alle installierten
-Pakete auf Letztstand zu bringen. Dies kann bis zu 30min dauern. Danach <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-pip</span></code> ausführen.</li>
-<li>Im Cometvisu Ordner (in das git das repository gespeichert hat) <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">-H</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">utils/requirements.txt</span></code> ausführen.
-Damit werden alle erforderlichen Pakete installiert.</li>
-<li>Visual Studio Code wieder öffnen. Falls das CometVisu-Projekt nicht mehr geöffnet ist, mit &#8220;File -&gt; Open Recent&#8221; wieder
-öffnen.</li>
+Pakete auf Letztstand zu bringen. Dies kann bis zu 30min dauern. Danach <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-pip</span></code> ausführen.</p>
+</li>
+<li><p class="first">Im Cometvisu Ordner (in das git das repository gespeichert hat) <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">-H</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">utils/requirements.txt</span></code> ausführen.
+Damit werden alle erforderlichen Pakete installiert.</p>
+</li>
+<li><p class="first">Visual Studio Code wieder öffnen. Falls das CometVisu-Projekt nicht mehr geöffnet ist, mit &#8220;File -&gt; Open Recent&#8221; wieder
+öffnen.</p>
+</li>
 </ol>
 <p>Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit <code class="docutils literal"><span class="pre">Strg+Shift</span> <span class="pre">r</span></code> das Live-Preview
 Fenster öffnen. Änderungen an der RST-Datei, sollten dann mit kurzer Verzögerung automatisch in Preview Fenster zu sehen sein.</p>
@@ -275,7 +296,7 @@ Speichern der aktuellen Datei und erneutem Aufrufen des Previews aktualisiert:</
 <p>Dazu die beiden Parameter in der Datei settings.json im Cometvisu Projekt (Verzeichnis .vscode) einfügen.
 Danach die Datei speichern und Visual Studio Code neu starten.</p>
 <p>So sollte am Ende Visual Studio Code mit dem Live Preview eines rst-Files aussehen:</p>
-<div class="figure" id="id1">
+<div class="figure" id="id2">
 <img alt="../_images/visual_studio_live_preview.png" src="../_images/visual_studio_live_preview.png" />
 <p class="caption"><span class="caption-text">Ansicht des Editors mit Live-Preview</span></p>
 </div>

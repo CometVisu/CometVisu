@@ -230,6 +230,26 @@ oder ein <a class="reference external" href="CometVisu/rrdtool">RRDtool mit Patc
 </ul>
 <p>(beides ist auf dem wiregate und auf dem Raspberry Pi image
 standardmässig verfügbar)</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd# cat /etc/crontab
+<span class="c1"># /etc/crontab: system-wide crontab</span>
+<span class="c1"># Unlike any other crontab you don&#39;t have to run the &#39;crontab&#39;</span>
+<span class="c1"># command to install the new version when you edit this file</span>
+<span class="c1"># and files in /etc/cron.d. These files also have username fields,</span>
+<span class="c1"># that none of the other crontabs do.</span>
+
+<span class="nv">SHELL</span><span class="o">=</span>/bin/sh
+<span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+<span class="c1"># m h dom mon dow user  command</span>
+
+<span class="c1"># etliche Zeilen entfernt, bitte NICHT diese Datei per copy&amp;paste nutzen sondern die RRD-Crons unten an die bestehende Datei anhängen!!!``</span>
+
+*/5 *   * * *   root    /var/www/rrd/cputemp
+*/5 *   * * *   root    /var/www/rrd/processes
+*/5 *   * * *   root    /var/www/rrd/cpuload
+*/5 *   * * *   root    /var/www/rrd/cpuload15
+</pre></div>
+</div>
 <p><code class="docutils literal"><span class="pre">*/5</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code> bedeutet hierbei das der Job jederzeit alle 5 Minuten
 ausgeführt wird. Der kleinste Zeitabstand der mit der crontab
 realisierbar ist ist <code class="docutils literal"><span class="pre">*/1</span></code>, also jede Minute.</p>

@@ -15,12 +15,12 @@ neuesten Releases unter ihrem Release-Namen zur Verfügung, so wie unter dem
 Tag ``latest`` das jeweils aktuellste Release.
 
 Die aktuellen Entwicklungsversionen können unter ``testing-<Datum>`` bezogen
-werden, so wie ``testing`` alleine, dass auf die jeweils aktuellste Entwicklungsversion
-zeigt. Wenn im Entwicklungsprozess ein neuer Pull-Request gemergt wird, so wird
-im Anschluss automatisch ein neuer Docker-Container gebaut und unter dem
-aktuellen Datum abgelegt. Wenn ein Tag für dieses Datum noch nicht existiert,
-wird dieses angelegt, und wenn das Tag bereits existiert, so wird dieses
-mit dem neu erstellten Container überschrieben.
+werden, so wie ``testing`` alleine, dass auf die jeweils aktuellste
+Entwicklungsversion zeigt. Wenn im Entwicklungsprozess ein neuer Pull-Request
+gemergt wird, so wird im Anschluss automatisch ein neuer Docker-Container
+gebaut und unter dem aktuellen Datum abgelegt. Wenn ein Tag für dieses Datum
+noch nicht existiert, wird dieses angelegt, und wenn das Tag bereits existiert,
+so wird dieses mit dem neu erstellten Container überschrieben.
 
 Einrichtung
 -----------

@@ -39,7 +39,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="CometVisu" href="../index.html"/>
         <link rel="up" title="Installation of the CometVisu" href="index.html"/>
-        <link rel="next" title="Installation of the Docker container" href="docker.html"/>
+        <link rel="next" title="Installation on WireGate" href="wiregate.html"/>
         <link rel="prev" title="Installation of the CometVisu" href="index.html"/> 
 
   
@@ -100,6 +100,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation of the CometVisu</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Prerequisites for the installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#backend-knxd-eibd-or-openhab">Backend - knxd/eibd or OpenHAB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#graphentool-rrdtool">Graphentool - RRDtool</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#web-server">Web server</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#lighttpd">lighttpd</a></li>
 </ul>
@@ -108,15 +109,19 @@
 <li class="toctree-l3"><a class="reference internal" href="#testing-the-installed-cometvisu">Testing the installed CometVisu</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation on WireGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation on Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Developer version on the Wiregate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation on a Debian System with openHAB2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Installation of the Docker container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation on the Timberwolf with Portainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
 </ul>
 </li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../config/widgets/index.html">Operatable widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../config/widgets/index.html#informative-widgets">Informative widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../config/widgets/index.html#other-widgets">Other widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../config/widgets/index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Configuration of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 
             
@@ -189,7 +194,11 @@ by an online translation service.</p>
 </div>
 <div class="section" id="prerequisites-for-the-installation">
 <span id="generic"></span><h1>Prerequisites for the installation<a class="headerlink" href="#prerequisites-for-the-installation" title="Permalink to this headline">¶</a></h1>
-<p>To be able to use the CometVisu the system needs to fulfill a few prerequisites.</p>
+<p>If WireGate 1.1 or later is used, CometVisu 0.8.5 is already
+preinstalled and can be easily used. To install the old
+CometVisu on a WireGate, there are :doc: <cite>further information &lt;wiregate&gt;</cite>.</p>
+<p>To be able to use the CometVisu the system needs to
+fulfill a few prerequisites.</p>
 <p>These are</p>
 <ul class="simple">
 <li>a backend to connect the KNX bus</li>
@@ -203,6 +212,16 @@ by an online translation service.</p>
 <p>As a backend an instance of <em>eibd</em> or its successor
 <a class="reference external" href="https://github.com/knxd/knxd">knxd</a> can be used as well an
 <a class="reference external" href="https://www.openhab.org/">OpenHAB</a> installation.</p>
+<p>The installation of the backend is described under
+<a class="reference internal" href="backends/install-eibd.html"><span class="doc">Install eibd</span></a> .</p>
+</div>
+<div class="section" id="graphentool-rrdtool">
+<h2>Graphentool - RRDtool<a class="headerlink" href="#graphentool-rrdtool" title="Permalink to this headline">¶</a></h2>
+<p>An optional but much-recommended component is rrdtool to
+provide the data for creating graphs. There are many ways
+to pass data to rrds and the use of rrdtool is documented
+in depth. The installation of rrdtool for CometVisu is
+described under <a class="reference internal" href="install-rrd.html"><span class="doc">RRDtool</span></a>.</p>
 </div>
 <div class="section" id="web-server">
 <h2>Web server<a class="headerlink" href="#web-server" title="Permalink to this headline">¶</a></h2>
@@ -300,6 +319,9 @@ unpacked at the web root, most likely in it&#8217;s own directory (e.g.
 <code class="docutils literal"><span class="pre">/var/www/visu/</span></code>).</p>
 <p>The released versions of the CometVisu are located at
 <a class="reference external" href="https://github.com/CometVisu/CometVisu/releases">https://github.com/CometVisu/CometVisu/releases</a>.</p>
+<p>A documentation of an install procedure for the  <a class="reference external" href="http://de.wikipedia.org/wiki/Raspberry_Pi">Raspberry
+Pi</a> is
+avilable under <a class="reference internal" href="raspberry.html"><span class="doc">CometVisu auf Raspberry Pi</span></a>.</p>
 </div>
 <div class="section" id="testing-the-installed-cometvisu">
 <h2>Testing the installed CometVisu<a class="headerlink" href="#testing-the-installed-cometvisu" title="Permalink to this headline">¶</a></h2>
@@ -318,7 +340,7 @@ unpacked at the web root, most likely in it&#8217;s own directory (e.g.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="docker.html" class="btn btn-neutral float-right" title="Installation of the Docker container" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="wiregate.html" class="btn btn-neutral float-right" title="Installation on WireGate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Installation of the CometVisu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

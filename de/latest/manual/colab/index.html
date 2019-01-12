@@ -431,7 +431,16 @@ Mit dem Wissen dieses Abschnitts sollte es möglich sein, eigene Beiträge für 
 </div>
 <p>Über den Befehl <code class="docutils literal"><span class="pre">./cv</span> <span class="pre">doc</span></code> wird die deutsche Dokumentation aus den RST nach
 HTML übersetzt. Für die englische Version muss <code class="docutils literal"><span class="pre">./cv</span> <span class="pre">doc</span> <span class="pre">-l</span> <span class="pre">en</span></code> aufgerufen
-werden.</p>
+werden. Zum ausführen der Befehle muss man sich im Hauptverzeichnis der
+CometVisu befinden.</p>
+<p>Wenn alles gut funktioniert, sollte das script wie folgt starten.</p>
+<div class="figure" id="id7">
+<img alt="../_images/start_docu_build.png" src="../_images/start_docu_build.png" />
+<p class="caption"><span class="caption-text">Start building</span></p>
+</div>
+<p>Nach dem Build Prozess sollte die neue Dokumentation unter
+<code class="docutils literal"><span class="pre">doc/manual/de/_build/html/</span></code> und/oder <code class="docutils literal"><span class="pre">doc/manual/en/_build/html/</span></code>
+zu finden sein.</p>
 <div class="admonition important">
 <p class="first admonition-title">Wichtig</p>
 <p class="last">Sollte das Projekt richtig eingerichtet sein, die Dokumentationserzeugung
@@ -451,16 +460,36 @@ Code unter Windows derzeit nicht zur Verfügung. Für Windows Anwender wird dahe
 Virtual Machine mit Linux (Ubuntu, Mint, ...) empfohlen.
 Siehe <a class="reference internal" href="howto-vm.html"><span class="doc">VM Einrichten</span></a> für eine detaillierte Vorgehensweise.</p>
 </div>
-<p>Nach Installation des Editors muss darin die Extension <code class="docutils literal"><span class="pre">restructuredtext</span></code> (über den Menüpunkt Anzeigen -&gt; Extensions
-suchen nach rst) installiert werden. Nach einmaligem Neuladen des Editors steht diese zur Verfügung.</p>
+<p>Nach Installation des Editors muss darin die Extension <code class="docutils literal"><span class="pre">restructuredtext</span></code> (über Shft + Ctrl + X
+oder den Menüpunkt Anzeigen -&gt; Extensions) installiert werden. Suche nach
+<em>restructuredtext</em> innerhalb der extensions. Zusätzlich wird noch eine Spell checking
+Extension empfohlen.</p>
+<div class="figure" id="id8">
+<img alt="../_images/visual_studio_install_ext.png" src="../_images/visual_studio_install_ext.png" />
+<p class="caption"><span class="caption-text">Install extensions</span></p>
+</div>
+<p>Nach einmaligem Neuladen des Editors steht diese zur Verfügung.</p>
 <p>Damit die Live Preview funktioniert muss Python installiert sein.
 Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
 <a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md">Install Sphinx</a>.
 Um die erforderlichen Tools zu installieren, den Befehl <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">-H</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">utils/requirements.txt</span></code> im
 CometVisu Verzeichnis ausführen.</p>
+<p>Wenn Sphinx korrekt arbeitet, so bekommt man in der Fußzeile eine Auswahl
+der Configs angezeigt</p>
+<div class="figure">
+<img alt="../_images/visual_studio_sphinx_select1.png" src="../_images/visual_studio_sphinx_select1.png" />
+</div>
+<p>Durch Klicken auf die Fußzeile kann zwischen <em>de</em> oder <em>en</em> config
+für die Vorschau gewählt werden. Wenn Sie also an der deutschen Dokumentation
+arbeiten, stellen Sie dies sicher das <em>de</em> ist ausgewählt, andernfalls wird die
+korrekte Vorschau nicht angezeigt.</p>
+<div class="figure" id="id9">
+<img alt="../_images/visual_studio_sphinx_select2.png" src="../_images/visual_studio_sphinx_select2.png" />
+<p class="caption"><span class="caption-text">Select a Sphinx config</span></p>
+</div>
 <p>Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit <code class="docutils literal"><span class="pre">Strg+Shift</span> <span class="pre">r</span></code> das Live-Preview Fenster öffnen.
 Änderungen an der RST-Datei, sollten dann mit kurzer Verzögerung automatisch in Preview Fenster zu sehen sein.</p>
-<div class="figure" id="id7">
+<div class="figure" id="id10">
 <img alt="../_images/visual_studio_live_preview.png" src="../_images/visual_studio_live_preview.png" />
 <p class="caption"><span class="caption-text">Ansicht des Editors mit Live-Preview</span></p>
 </div>

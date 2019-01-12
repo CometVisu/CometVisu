@@ -50,7 +50,7 @@ formatieren indem man in mit zwei Sternchen umfasst (`**fetter Text**`), weitere
 Listen
 ^^^^^^
 
-Für unnummerierte Listen wird jede Zeile mit ``*`` gestartet, bei nummerierten mit ``#.``. Mit ensprechender
+Für unnummerierte Listen wird jede Zeile mit ``*`` gestartet, bei nummerierten mit ``#.``. Mit entsprechender
 Einrückung der Zeilen sind auch verschachtelte Listen möglich.
 
 Links und Referenzen

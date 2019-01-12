@@ -39,8 +39,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="CometVisu" href="../index.html"/>
         <link rel="up" title="Installation of the CometVisu" href="index.html"/>
-        <link rel="next" title="Operatable widgets" href="../config/widgets/index.html"/>
-        <link rel="prev" title="Prerequisites for the installation" href="generic.html"/> 
+        <link rel="next" title="Installation on the Timberwolf with Portainer" href="timberwolf.html"/>
+        <link rel="prev" title="Installation on a Debian System with openHAB2" href="openhab2.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -99,6 +99,10 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation of the CometVisu</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="generic.html">Prerequisites for the installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation on WireGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation on Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Developer version on the Wiregate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation on a Debian System with openHAB2</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installation of the Docker container</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#versions">Versions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setup">Setup</a><ul>
@@ -109,14 +113,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation on the Timberwolf with Portainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
 </ul>
 </li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../config/widgets/index.html">Operatable widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../config/widgets/index.html#informative-widgets">Informative widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../config/widgets/index.html#other-widgets">Other widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../config/widgets/index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Configuration of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 
             
@@ -200,7 +204,9 @@ name as well as <code class="docutils literal"><span class="pre">latest</span></
 <p>The current development versions can be found by the tag <code class="docutils literal"><span class="pre">testing-&lt;date&gt;</span></code> as
 well as <code class="docutils literal"><span class="pre">testing</span></code> alone for the most current one. When during the development
 process a new pull request get&#8217;s merged a new <code class="docutils literal"><span class="pre">testing</span></code> container will be
-automatically built.</p>
+automatically built and filed under the current date. If a tag does not exist
+for this date, it will be created, and if the tag already exists,
+it will be overwritten with the newly created container.</p>
 </div>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
@@ -307,10 +313,10 @@ same time.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../config/widgets/index.html" class="btn btn-neutral float-right" title="Operatable widgets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="timberwolf.html" class="btn btn-neutral float-right" title="Installation on the Timberwolf with Portainer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="generic.html" class="btn btn-neutral" title="Prerequisites for the installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="openhab2.html" class="btn btn-neutral" title="Installation on a Debian System with openHAB2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -228,7 +228,7 @@ Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibba
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:</p>
 <ul class="simple">
 <li>Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Vezeichnisbaum &#8220;/var/www/visu…&#8221; des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.</li>
-<li>Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem texbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) &#8220;umlenken“.</li>
+<li>Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem textbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) &#8220;umlenken“.</li>
 <li>Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in &#8220;/usr/share/openhab/webapps/visu…&#8221; installiert.</li>
 <li>Wurde openHAB manuell z.B. in &#8220;/opt/openHAB&#8221; installiert, wird die CometVisu manuell in &#8220;/opt/openhab/www/visu...&#8221; installiert.</li>
 </ul>

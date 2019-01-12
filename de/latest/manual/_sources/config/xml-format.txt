@@ -167,7 +167,7 @@ Icons
 Statusbar
 ---------
 
-Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt das zB. Abzeigen von externen Links (über URL). 
+Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt z.B. das Anzeigen von externen Links (über URL). 
 
 .. code-block:: xml
 
