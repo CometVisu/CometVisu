@@ -68,7 +68,6 @@ Allowed child-elements und their attributes
     <openweathermap>
         <layout colspan="4" />
         <label>openweathermap</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </openweathermap>
 
 Examples

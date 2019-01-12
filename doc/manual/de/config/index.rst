@@ -112,6 +112,12 @@ Tags umschlossen aufgenommen werden:
 -  :ref:`Statusbar <xml-format_statusbar>`
 -  :ref:`Aufbau der Visu-Seiten <xml-format_pages>`
 
+.. toctree::
+    :hidden:
+
+    xml-format
+
+
 Navigationselemente in der CometVisu
 ------------------------------------
 
@@ -130,7 +136,7 @@ Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten für die Naviga
     
    Übersicht der wichtigsten Navigationselemente.
 
-Weiters sind verschiedene Funtionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:
+Ebenso sind verschiedene Funktionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:
 
 -  Per KNX Gruppenadresse kann auf eine Unterseite gesprungen werden, wenn das Attribut ``ga=x/y/z`` in der zugehörigen 
    :ref:`Page Definition <page>` eingetragen ist.

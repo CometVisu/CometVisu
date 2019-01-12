@@ -125,6 +125,11 @@ nested and enclosed by tags:
 -  :ref:`Statusbar <xml-format_statusbar>`
 -  :ref:`Format of the Visu-Pages <xml-format_pages>`
 
+.. toctree::
+    :hidden:
+
+    xml-format
+
 Navigation elements in the CometVisu
 ------------------------------------
 
