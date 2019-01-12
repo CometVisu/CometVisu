@@ -10,7 +10,7 @@ degree of complexity - are described in detail.
 ===   ======================    ===========    ===================================================
 \     Adjustment                Changes        Descrition
 ===   ======================    ===========    ===================================================
-1.    Own CSS-Regeln            Appearance     Override the existing CSS rules of a theme by loading additional CSS files.
+1.    Own CSS-Rules             Appearance     Override the existing CSS rules of a theme by loading additional CSS files.
 2.    Use own Icons             Appearance     In addition to the included icons, custom icons can be added via the configuration file.
 3.    Widgets with ``class``    Appearance     Many widgets can be customized by adding the ``class`` attribute and matching CSS rules.
 4.    Write own Design          Appearance     If additional CSS rules are not enough, a new design can be created.
