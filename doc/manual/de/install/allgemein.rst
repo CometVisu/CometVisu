@@ -22,7 +22,8 @@ Diese sind
 Backend - knxd/eibd oder OpenHAB
 --------------------------------
 
-Die Installation des Backends wird unter :doc:`backends/install-eibd` beschrieben.
+Die Installation des Backends wird unter
+:doc:`backends/install-eibd` beschrieben.
 
 Graphentool - RRDtool
 ---------------------

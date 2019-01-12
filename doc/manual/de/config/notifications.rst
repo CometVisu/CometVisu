@@ -81,7 +81,7 @@ Komplexes Beispiel mit Mapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: xml
-    :caption: Komplexes Beispiel mit Benachrichtungen für Bewegungen inkl. Mapping
+    :caption: Komplexes Beispiel mit Benachrichtigungen für Bewegungen inkl. Mapping
 
     <meta>
         <mappings>
