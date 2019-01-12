@@ -25,6 +25,11 @@ Backend - knxd/eibd oder OpenHAB
 Die Installation des Backends wird unter
 :doc:`backends/install-eibd` beschrieben.
 
+.. toctree::
+    :hidden:
+
+    backends/install-eibd
+
 Graphentool - RRDtool
 ---------------------
 
@@ -33,6 +38,11 @@ Daten für die Erstellung von Graphen bereitzustellen. Es gibt viele
 Möglichkeiten, Daten an rrds zu übergeben und der Einsatz von rrdtool
 ist in der Breite dokumentiert. Die Installation von rrdtool für
 CometVisu wird unter :doc:`RRDtool <install-rrd>` beschrieben.
+
+.. toctree::
+    :hidden:
+
+    install-rrd
 
 Webserver
 ---------

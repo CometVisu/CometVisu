@@ -28,6 +28,11 @@ As a backend an instance of *eibd* or its successor
 The installation of the backend is described under
 :doc:`backends/install-eibd` .
 
+.. toctree::
+    :hidden:
+
+    backends/install-eibd
+
 Graphentool - RRDtool
 ---------------------
 
@@ -36,6 +41,11 @@ provide the data for creating graphs. There are many ways
 to pass data to rrds and the use of rrdtool is documented
 in depth. The installation of rrdtool for CometVisu is
 described under :doc:`RRDtool <install-rrd>`.
+
+.. toctree::
+    :hidden:
+
+    install-rrd
 
 Web server
 ----------

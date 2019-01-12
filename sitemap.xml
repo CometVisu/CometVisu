@@ -421,11 +421,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/colab/internal.html</loc>
-    <lastmod>2019-01-12</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/colab/todos.html</loc>
     <lastmod>2019-01-12</lastmod>
     <priority>0.5</priority>
@@ -1982,11 +1977,6 @@
   </url>
   <url>
     <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/install/backends/install-eibd.html</loc>
-    <lastmod>2019-01-12</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/colab/internal.html</loc>
     <lastmod>2019-01-12</lastmod>
     <priority>0.5</priority>
   </url>

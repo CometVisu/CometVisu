@@ -41,6 +41,7 @@ Allowed attributes in the Info-element
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <info>
         <layout colspan="4" />
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </info>
 
 

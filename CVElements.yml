@@ -107,11 +107,12 @@
   "screenshot": "/de/latest/manual/_images/audio_simple.png"
 - "description":
     "de": "Das NotificationCenterBadge Widget zeigt die aktuelle Anzahl der Nachrichten in der Benachrichtungszentrale an und öffnet diese, wenn es angeklickt wird."
+    "en": "The NotificationCenterBadge Widget shows the current number of messages in the notification center and opens the center when you click on it."
   "manual":
     "de": "/de/latest/manual/config/widgets/notificationcenterbadge/index.html"
+    "en": "/en/latest/manual/config/widgets/notificationcenterbadge/index.html"
   "name": "Badge"
-  "screenshot":
-    "de": "/de/latest/manual/_images/notificationcenterbadge_center.png"
+  "screenshot": "/de/latest/manual/_images/notificationcenterbadge_center.png"
 - "description":
     "de": "Fügt der Visu einen Zeilenumbruch hinzu."
     "en": "Adds a line break to the visu."
