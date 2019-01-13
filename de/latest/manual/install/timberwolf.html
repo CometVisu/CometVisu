@@ -109,6 +109,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#volumes-anlegen">Volumes anlegen</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#anlegen-des-containers">Anlegen des Containers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#proxy-einrichten">Proxy einrichten</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#influxdb-zugriff">InfluxDB Zugriff</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#aktualisieren">Aktualisieren</a><ul>
@@ -308,6 +309,38 @@ belegt ist oder eine andere Linie als <code class="docutils literal"><span class
 </div>
 <p>Die CometVisu ist nun über <code class="docutils literal"><span class="pre">https://&lt;mein</span> <span class="pre">timberwolf&gt;/proxy/visu/</span></code> aufrufbar.</p>
 </div>
+<div class="section" id="influxdb-zugriff">
+<h3>InfluxDB Zugriff<a class="headerlink" href="#influxdb-zugriff" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Für den Zugriff auf die Zeitreihen der InfluxDB müssen die Credentials in der
+<a class="reference internal" href="../config/hidden-config.html#hidden-config"><span class="std std-ref">Versteckten Konfiguration</span></a> über den
+<a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Manager</span></a> eingetragen werden. Hierzu muss auf dem Timberwolf
+Server unter <em>Portainer</em> bei <em>&#8220;Wie Sie aus dem Docker Container auf die
+Zeitreihen-Datenbank zugreifen können&#8221;</em> auf das <code class="docutils literal"><span class="pre">i</span></code> geklickt werden um
+den Benutzernamen und das Passwort für die lokale Installation in Erfahrung
+zu bringen.</p>
+<div class="figure" id="id9">
+<a class="reference internal image-reference" href="../_images/timberwolf_influx.png"><img alt="../_images/timberwolf_influx.png" src="../_images/timberwolf_influx.png" style="width: 1070.0px; height: 337.0px;" /></a>
+<p class="caption"><span class="caption-text">Timberwolf InfluxDB Credentials</span></p>
+</div>
+<p>In der <a class="reference internal" href="../config/hidden-config.html#hidden-config"><span class="std std-ref">Versteckten Konfiguration</span></a> des <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Managers</span></a>
+ist nun ein Eintrag mit diesen Eigenschaften anzulegen:</p>
+<ul class="simple">
+<li>Name: <code class="docutils literal"><span class="pre">influx</span></code></li>
+<li>Schlüssel und Wert:<ul>
+<li><code class="docutils literal"><span class="pre">uri</span></code>: <code class="docutils literal"><span class="pre">https://172.17.0.1/proxy/ts/query</span></code> (Sollte entgegen dieser
+Anleitung das Netzwerk des Contianers angepasst worden sein, so muss
+gegebenenfalls hier die IP-Addresse entsprechend angepasst werden)</li>
+<li><code class="docutils literal"><span class="pre">user</span></code>: Benutzername aus den Credentials</li>
+<li><code class="docutils literal"><span class="pre">pass</span></code>: Passwort aus den Credentials</li>
+<li><code class="docutils literal"><span class="pre">selfsigned</span></code>: <code class="docutils literal"><span class="pre">true</span></code></li>
+</ul>
+</li>
+</ul>
+<div class="figure" id="id10">
+<a class="reference internal image-reference" href="../_images/timberwolf_influx_manager.png"><img alt="../_images/timberwolf_influx_manager.png" src="../_images/timberwolf_influx_manager.png" style="width: 575.0px; height: 305.0px;" /></a>
+<p class="caption"><span class="caption-text">Timberwolf InfluxDB Credentials im Manager</span></p>
+</div>
+</div>
 </div>
 <div class="section" id="aktualisieren">
 <h2>Aktualisieren<a class="headerlink" href="#aktualisieren" title="Link zu dieser Überschrift">¶</a></h2>
@@ -324,12 +357,12 @@ werden soll, so ist noch unter <em>Volumes</em> der Config-Pfad von
 <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> auf <code class="docutils literal"><span class="pre">/var/www/html/resource/config</span></code> anzupassen.</p>
 <p>Mit <em>Actions</em> → <em>Deploy the Container</em> wird der Container nun durch die
 neueste Version ersetzt.</p>
-<div class="figure" id="id9">
+<div class="figure" id="id11">
 <a class="reference internal image-reference" href="../_images/portainer_container_replace.png"><img alt="../_images/portainer_container_replace.png" src="../_images/portainer_container_replace.png" style="width: 836.0px; height: 863.0px;" /></a>
 <p class="caption"><span class="caption-text">Container im Portainer durch eine neue Version ersetzen</span></p>
 </div>
 <p>Anschließend muss die Sicherheitsabfrage bestätigt werden.</p>
-<div class="figure" id="id10">
+<div class="figure" id="id12">
 <img alt="../_images/portainer_container_replace_confirm.png" src="../_images/portainer_container_replace_confirm.png" />
 <p class="caption"><span class="caption-text">Bestätigung um den Container im Portainer durch eine neue Version zu ersetzen</span></p>
 </div>
@@ -341,7 +374,7 @@ neueste Version ersetzt.</p>
 <em>Images</em> löschen.</p>
 <p>Durch markieren des zu löschenden Images (zu erkennen am Label <em>Unused</em> und
 dem entsprechenden Tag) kann über <em>Remove</em> das Image entfernt werden.</p>
-<div class="figure" id="id11">
+<div class="figure" id="id13">
 <a class="reference internal image-reference" href="../_images/portainer_image_remove.png"><img alt="../_images/portainer_image_remove.png" src="../_images/portainer_image_remove.png" style="width: 1349.0px; height: 601.0px;" /></a>
 <p class="caption"><span class="caption-text">Portainer Dialog um ein Image zu löschen</span></p>
 </div>

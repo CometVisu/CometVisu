@@ -109,6 +109,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#create-volumes">Create Volumes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#creating-a-container">Creating a Container</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#proxy-setup">Proxy setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#influxdb-access">InfluxDB access</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#updates">Updates</a><ul>
@@ -309,6 +310,36 @@ or if another line is to be used as <code class="docutils literal"><span class="
 </div>
 <p>CometVisu is now available: <code class="docutils literal"><span class="pre">https://&lt;mein</span> <span class="pre">timberwolf&gt;/proxy/visu/</span></code></p>
 </div>
+<div class="section" id="influxdb-access">
+<h3>InfluxDB access<a class="headerlink" href="#influxdb-access" title="Permalink to this headline">¶</a></h3>
+<p>To access the time series in the InfluxDB its credentials must be added to the
+<a class="reference internal" href="../config/hidden-config.html#hidden-config"><span class="std std-ref">hidden configuration</span></a> of the <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">manager</span></a>.
+To get them you must click at the Timberwolf server in the <em>Portainer</em>
+menu on the <code class="docutils literal"><span class="pre">i</span></code> after the line <em>&#8220;How to access the time series database from
+within a Docker container&#8221;</em> and note the Username and Password.</p>
+<div class="figure" id="id8">
+<a class="reference internal image-reference" href="../_images/timberwolf_influx.png"><img alt="../_images/timberwolf_influx.png" src="../_images/timberwolf_influx.png" style="width: 1070.0px; height: 332.0px;" /></a>
+<p class="caption"><span class="caption-text">Timberwolf InfluxDB credentials</span></p>
+</div>
+<p>In the <a class="reference internal" href="../config/hidden-config.html#hidden-config"><span class="std std-ref">hidden configuration</span></a> of the
+<a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">manager</span></a> you must create an entry with the properties:</p>
+<ul class="simple">
+<li>Name: <code class="docutils literal"><span class="pre">influx</span></code></li>
+<li>Key and value:<ul>
+<li><code class="docutils literal"><span class="pre">uri</span></code>: <code class="docutils literal"><span class="pre">https://172.17.0.1/proxy/ts/query</span></code> (Should you have not followed
+this manual and used a different network setting you might need to change
+here the IP address accordingly)</li>
+<li><code class="docutils literal"><span class="pre">user</span></code>: Username from the credentials</li>
+<li><code class="docutils literal"><span class="pre">pass</span></code>: Password from the credentials</li>
+<li><code class="docutils literal"><span class="pre">selfsigned</span></code>: <code class="docutils literal"><span class="pre">true</span></code></li>
+</ul>
+</li>
+</ul>
+<div class="figure" id="id9">
+<a class="reference internal image-reference" href="../_images/timberwolf_influx_manager.png"><img alt="../_images/timberwolf_influx_manager.png" src="../_images/timberwolf_influx_manager.png" style="width: 573.0px; height: 307.0px;" /></a>
+<p class="caption"><span class="caption-text">Timberwolf InfluxDB credentials in the manager</span></p>
+</div>
+</div>
 </div>
 <div class="section" id="updates">
 <h2>Updates<a class="headerlink" href="#updates" title="Permalink to this headline">¶</a></h2>
@@ -325,12 +356,12 @@ series, then under <em>Volumes</em> the config path from
 <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> to <code class="docutils literal"><span class="pre">/var/www/html/resource/config</span></code>.</p>
 <p><em>Actions</em> → <em>Deploy the Container</em>  will now replace the container
 with the latest version.</p>
-<div class="figure" id="id8">
+<div class="figure" id="id10">
 <a class="reference internal image-reference" href="../_images/portainer_container_replace.png"><img alt="../_images/portainer_container_replace.png" src="../_images/portainer_container_replace.png" style="width: 836.0px; height: 863.0px;" /></a>
 <p class="caption"><span class="caption-text">Replace Container at Portainer with a new version</span></p>
 </div>
 <p>Afterwards the security question has to be confirmed.</p>
-<div class="figure" id="id9">
+<div class="figure" id="id11">
 <img alt="../_images/portainer_container_replace_confirm.png" src="../_images/portainer_container_replace_confirm.png" />
 <p class="caption"><span class="caption-text">Confirmation to replace the container at portainer with a new version</span></p>
 </div>
@@ -342,7 +373,7 @@ with the latest version.</p>
 be deleted under <em>Images</em>.</p>
 <p>By marking the image to be deleted (recognizable by the label
 <em>Unused</em> and the corresponding tag) the image can be removed with <em>Remove</em>.</p>
-<div class="figure" id="id10">
+<div class="figure" id="id12">
 <a class="reference internal image-reference" href="../_images/portainer_image_remove.png"><img alt="../_images/portainer_image_remove.png" src="../_images/portainer_image_remove.png" style="width: 1349.0px; height: 601.0px;" /></a>
 <p class="caption"><span class="caption-text">Portainer Dialog to remove an image</span></p>
 </div>
