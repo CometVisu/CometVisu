@@ -155,9 +155,7 @@ the editor. Basis is the line framed as a group
    id="<unique id>"
    class="pipe_group show_flow flow_control"
    data-cometvisu-active="1/0/3">
-   <path
-   ....
-   ..../>
+   <path />
    </g>
 
 .. figure:: _static/XML4.png
