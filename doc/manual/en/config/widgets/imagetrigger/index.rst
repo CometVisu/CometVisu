@@ -58,7 +58,7 @@ Allowed attributes in the ImageTrigger-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <imagetrigger src="icon/CometVisu_" suffix="png">
+    <imagetrigger src="resource/icon/CometVisu_" suffix="png">
         <layout colspan="4" />
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </imagetrigger>
@@ -75,7 +75,7 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <imagetrigger src="icon/CometVisu_" suffix="png">
+    <imagetrigger src="resource/icon/CometVisu_" suffix="png">
         <layout colspan="4" />
         <label>ImageTrigger</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
