@@ -186,9 +186,9 @@ class DocGenerator(Command):
             os.makedirs(target_dir)
 
         # first run generates the widget-example configs
-        print '================================================================================'
-        print 'sphinx_build: first run'
-        print '================================================================================'
+        print ('================================================================================')
+        print ('sphinx_build: first run')
+        print ('================================================================================')
         sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
 
         if not skip_screenshots:
@@ -198,9 +198,9 @@ class DocGenerator(Command):
                   "--target=%s" % screenshot_build, _out=self.process_output, _err=self.process_output)
 
             # 2dn run with access to the generated screenshots
-            print '================================================================================'
-            print 'sphinx_build: second run'
-            print '================================================================================'
+            print ('================================================================================')
+            print ('sphinx_build: second run')
+            print ('================================================================================')
             sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
 
     def from_source(self, path, plugin=False):
