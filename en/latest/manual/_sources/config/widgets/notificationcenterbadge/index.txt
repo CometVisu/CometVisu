@@ -29,7 +29,7 @@ The screenshots show, how both can be edited in the :ref:`editor <editor>`.
 Attributes underlined by ..... are mandatory, all the others are optional and can be omitted.
 
 Allowed attributes in the NotificationCenterBadge-element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: notificationcenterbadge
 

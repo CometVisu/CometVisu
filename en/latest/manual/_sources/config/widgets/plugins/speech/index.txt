@@ -82,7 +82,7 @@ Allowed attributes in the speech-element
         </plugins>
     </meta>
     <speech>
-        <layout colspan="4" />
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </speech>
 
 
@@ -103,8 +103,6 @@ Allowed child-elements und their attributes
         </plugins>
     </meta>
     <speech>
-        <layout colspan="4" />
-        <label>speech</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </speech>
 

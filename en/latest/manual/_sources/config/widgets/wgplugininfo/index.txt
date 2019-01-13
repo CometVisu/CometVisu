@@ -42,9 +42,10 @@ Allowed attributes in the WgPluginInfo-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <wgplugininfo>
+    <wgplugin_info>
         <layout colspan="4" />
-    </wgplugininfo>
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+    </wgplugin_info>
 
 
 Allowed child-elements und their attributes
@@ -58,11 +59,11 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <wgplugininfo>
+    <wgplugin_info>
         <layout colspan="4" />
         <label>WgPluginInfo</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-    </wgplugininfo>
+    </wgplugin_info>
 
 Examples
 --------

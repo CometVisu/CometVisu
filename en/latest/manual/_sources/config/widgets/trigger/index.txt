@@ -41,7 +41,7 @@ Allowed attributes in the Trigger-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <trigger>
+    <trigger value="1">
         <layout colspan="4" />
     </trigger>
 
@@ -57,7 +57,7 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <trigger>
+    <trigger value="1">
         <layout colspan="4" />
         <label>Trigger</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>

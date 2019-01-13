@@ -38,7 +38,7 @@ Allowed attributes in the UrlTrigger-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <urltrigger>
+    <urltrigger url="https://example.com/rest/activate">
         <layout colspan="4" />
     </urltrigger>
 
@@ -54,10 +54,9 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <urltrigger>
+    <urltrigger url="https://example.com/rest/activate">
         <layout colspan="4" />
         <label>UrlTrigger</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </urltrigger>
 
 Examples

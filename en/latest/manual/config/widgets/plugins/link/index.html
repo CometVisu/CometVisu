@@ -227,9 +227,110 @@ The screenshots show, how both can be edited in the <span class="xref std std-re
 <p>Attributes underlined by ..... are mandatory, all the others are optional and be omitted.</p>
 <div class="section" id="allowed-attributes-in-the-link-element">
 <h3>Allowed attributes in the link-element<a class="headerlink" href="#allowed-attributes-in-the-link-element" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">&nbsp;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="3">link</td>
+<td>class</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>text</td>
+<td>string</td>
+<td>The link text.</td>
+</tr>
+<tr class="row-odd"><td>href</td>
+<td>string</td>
+<td>URL of the link.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id2">
+<img alt="../../../../_images/en_config_widgets_plugins_link_index_editor_attributes.png" src="../../../../_images/en_config_widgets_plugins_link_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+</div>
 </div>
 <div class="section" id="allowed-child-elements-und-their-attributes">
 <h3>Allowed child-elements und their attributes<a class="headerlink" href="#allowed-child-elements-und-their-attributes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<dt>link</dt>
+<dd><ul class="first last simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>decimal</td>
+<td>Amount of coloumns this widget sould be wide.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a small screen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>decimal</td>
+<td>Amount of rows this widget should be high.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>string</td>
+<td>Reserved for future use.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>string</td>
+<td>Width for the widget for 2D pages.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id3">
+<img alt="../../../../_images/en_config_widgets_plugins_link_index_editor_elements.png" src="../../../../_images/en_config_widgets_plugins_link_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elements in the editor</span></p>
+</div>
 </div>
 </div>
 <div class="section" id="examples">
@@ -245,7 +346,7 @@ XML-editor to UTF-8 mode!</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
 </tbody>
 </table>
 </div>
