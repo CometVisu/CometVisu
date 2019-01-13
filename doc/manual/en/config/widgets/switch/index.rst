@@ -30,9 +30,9 @@ The switch widget shows two states (e.g. ON and OFF) and can toggle between them
             </screenshot>
         </settings>
         <switch on_value="1" off_value="0">
-          <label>Channel 1</label>
-          <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-          <address transform="DPT:1.001" mode="read">1/4/0</address>
+            <label>Channel 1</label>
+            <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+            <address transform="DPT:1.001" mode="read">1/4/0</address>
         </switch>
 
 With a :ref:`mapping <mapping>` it is possible to replace the 0/1 in the
@@ -58,9 +58,9 @@ usecases. Further information can be found at the :ref:`mapping documentation <m
             </mappings>
         </meta>
         <switch on_value="1" off_value="0" mapping="OnOff">
-          <label>Kanal 1</label>
-          <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-          <address transform="DPT:1.001" mode="read">1/4/0</address>
+            <label>Kanal 1</label>
+            <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+            <address transform="DPT:1.001" mode="read">1/4/0</address>
         </switch>
 
 and / or by the use of a :ref:`styling <styling>` it is possible to set
@@ -83,9 +83,9 @@ colors (e.g. On in red and Off in green)
             </stylings>
         </meta>
         <switch on_value="1" off_value="0" styling="RedGreen">
-          <label>Kanal 1</label>
-          <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-          <address transform="DPT:1.001" mode="read">1/4/0</address>
+            <label>Kanal 1</label>
+            <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+            <address transform="DPT:1.001" mode="read">1/4/0</address>
         </switch>
 
 Of course it is possible to combine both at the same time:
@@ -182,18 +182,18 @@ for the Switch widget.
 
     ...
     <meta>
-     <mappings>
-       <mapping name="OnOff">
-         <entry value="0">O</entry>
-         <entry value="1">I</entry>
-       </mapping>
-     </mappings>
-     <stylings>
-       <styling name="GreyGreen">
-         <entry value="0">grey</entry>
-         <entry value="1">green</entry>
-       </styling>
-     </stylings>
+      <mappings>
+        <mapping name="OnOff">
+          <entry value="0">O</entry>
+          <entry value="1">I</entry>
+        </mapping>
+      </mappings>
+      <stylings>
+        <styling name="GreyGreen">
+          <entry value="0">grey</entry>
+          <entry value="1">green</entry>
+        </styling>
+      </stylings>
     </meta>
     ...
     <switch mapping="OnOff" styling="GreyGreen">
