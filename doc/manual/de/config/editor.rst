@@ -18,7 +18,7 @@ Der Editor besteht aus drei Teilen:
 Oben ist eine Menü-Leiste, links wird die Struktur der Konfiguration dargestellt
 und rechts können die Attribute für ein Element angepasst werden.
 
-Die Optinen der Menüleiste sind:
+Die Optionen der Menüleiste sind:
 
 save
   Speichert den aktuellen Stand der Konfiguration.
