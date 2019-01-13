@@ -24,6 +24,8 @@ it will be overwritten with the newly created container.
 Setup
 -----
 
+.. _dockerenvironment:
+
 Environment parameters
 ~~~~~~~~~~~~~~~~~~~~~~
 

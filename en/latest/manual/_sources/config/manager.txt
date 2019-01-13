@@ -8,7 +8,7 @@ edit, replace, delete) various configuration files.
 In addition you can manage the :ref:`hidden configurations <hidden-config>`
 as well as media files (for example backdrops).
 
-.. figure:: _static/manager.de.png
+.. figure:: _static/manager.en.png
 
 Available CometVisu Configurations
 ----------------------------------

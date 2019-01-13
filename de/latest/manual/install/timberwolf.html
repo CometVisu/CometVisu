@@ -218,7 +218,7 @@ die CometVisu über HTTPS zugreifbar macht.</p>
 und diese über Neustarts und Aktualisierungen des Containers hinweg
 beizubehalten.</p>
 <p>Die notwendigen Schritte sind: <em>Volumes</em> → <em>Add Volume</em> → Name: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> → <em>Create the Volume</em></p>
-<div class="figure" id="id4">
+<div class="figure" id="id3">
 <a class="reference internal image-reference" href="../_images/portainer_volume_add.png"><img alt="../_images/portainer_volume_add.png" src="../_images/portainer_volume_add.png" style="width: 1362.0px; height: 615.0px;" /></a>
 <p class="caption"><span class="caption-text">Volume im Portainer anlegen</span></p>
 </div>
@@ -237,7 +237,7 @@ gewählt.</p>
 Container, der diesen RRD-Container gleichzeitig mit einbindet.</p>
 <p><strong>Wichtig:</strong> Das interne Format der RRD Dateien ist Architektur spezifisch.
 So können die RRD-Dateien vom WireGate (32 Bit Architektur) nicht direkt auf
-dem Timberwolf (64 Bit Architektur) verwendet werden <a class="footnote-reference" href="#id3" id="id2">[1]</a>.</p>
+dem Timberwolf (64 Bit Architektur) verwendet werden <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
 </div>
 </div>
 <div class="section" id="anlegen-des-containers">
@@ -277,19 +277,19 @@ belegt ist oder eine andere Linie als <code class="docutils literal"><span class
 </ul>
 </li>
 </ul>
-<div class="figure" id="id5">
+<div class="figure" id="id4">
 <a class="reference internal image-reference" href="../_images/portainer_container_add.png"><img alt="../_images/portainer_container_add.png" src="../_images/portainer_container_add.png" style="width: 1346.0px; height: 755.0px;" /></a>
 <p class="caption"><span class="caption-text">Container im Portainer anlegen</span></p>
 </div>
-<div class="figure" id="id6">
+<div class="figure" id="id5">
 <a class="reference internal image-reference" href="../_images/portainer_container_volumes_add.png"><img alt="../_images/portainer_container_volumes_add.png" src="../_images/portainer_container_volumes_add.png" style="width: 1082.0px; height: 369.0px;" /></a>
 <p class="caption"><span class="caption-text">Container <em>Volumes</em> im Portainer konfigurieren</span></p>
 </div>
-<div class="figure" id="id7">
+<div class="figure" id="id6">
 <a class="reference internal image-reference" href="../_images/portainer_container_env_add.png"><img alt="../_images/portainer_container_env_add.png" src="../_images/portainer_container_env_add.png" style="width: 1081.0px; height: 259.0px;" /></a>
 <p class="caption"><span class="caption-text">Container <em>Env</em> im Portainer konfigurieren</span></p>
 </div>
-<div class="figure" id="id8">
+<div class="figure" id="id7">
 <a class="reference internal image-reference" href="../_images/portainer_container_restart_add.png"><img alt="../_images/portainer_container_restart_add.png" src="../_images/portainer_container_restart_add.png" style="width: 763.0px; height: 217.0px;" /></a>
 <p class="caption"><span class="caption-text">Container <em>Restart policy</em> im Portainer konfigurieren</span></p>
 </div>
@@ -302,7 +302,7 @@ belegt ist oder eine andere Linie als <code class="docutils literal"><span class
 <li>URL: <code class="docutils literal"><span class="pre">visu</span></code>, Target <code class="docutils literal"><span class="pre">http://127.0.0.1:18080/</span></code></li>
 </ul>
 <p>Über <em>Add</em> bestätigen.</p>
-<div class="figure" id="id9">
+<div class="figure" id="id8">
 <a class="reference internal image-reference" href="../_images/timberwolf_proxy_add.png"><img alt="../_images/timberwolf_proxy_add.png" src="../_images/timberwolf_proxy_add.png" style="width: 673.0px; height: 128.0px;" /></a>
 <p class="caption"><span class="caption-text">Timberwolf Proxy-Eintrag hinzufügen</span></p>
 </div>
@@ -324,12 +324,12 @@ werden soll, so ist noch unter <em>Volumes</em> der Config-Pfad von
 <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> auf <code class="docutils literal"><span class="pre">/var/www/html/resource/config</span></code> anzupassen.</p>
 <p>Mit <em>Actions</em> → <em>Deploy the Container</em> wird der Container nun durch die
 neueste Version ersetzt.</p>
-<div class="figure" id="id10">
+<div class="figure" id="id9">
 <a class="reference internal image-reference" href="../_images/portainer_container_replace.png"><img alt="../_images/portainer_container_replace.png" src="../_images/portainer_container_replace.png" style="width: 836.0px; height: 863.0px;" /></a>
 <p class="caption"><span class="caption-text">Container im Portainer durch eine neue Version ersetzen</span></p>
 </div>
 <p>Anschließend muss die Sicherheitsabfrage bestätigt werden.</p>
-<div class="figure" id="id11">
+<div class="figure" id="id10">
 <img alt="../_images/portainer_container_replace_confirm.png" src="../_images/portainer_container_replace_confirm.png" />
 <p class="caption"><span class="caption-text">Bestätigung um den Container im Portainer durch eine neue Version zu ersetzen</span></p>
 </div>
@@ -341,7 +341,7 @@ neueste Version ersetzt.</p>
 <em>Images</em> löschen.</p>
 <p>Durch markieren des zu löschenden Images (zu erkennen am Label <em>Unused</em> und
 dem entsprechenden Tag) kann über <em>Remove</em> das Image entfernt werden.</p>
-<div class="figure" id="id12">
+<div class="figure" id="id11">
 <a class="reference internal image-reference" href="../_images/portainer_image_remove.png"><img alt="../_images/portainer_image_remove.png" src="../_images/portainer_image_remove.png" style="width: 1349.0px; height: 601.0px;" /></a>
 <p class="caption"><span class="caption-text">Portainer Dialog um ein Image zu löschen</span></p>
 </div>
@@ -382,10 +382,10 @@ Empfehlung die Testing Version mit diesen Parametern zu installieren:</p>
 </li>
 </ul>
 <hr class="docutils" />
-<table class="docutils footnote" frame="void" id="id3" rules="none">
+<table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><p class="first">Um den Inhalt einer RRD Datei <code class="docutils literal"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><p class="first">Um den Inhalt einer RRD Datei <code class="docutils literal"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine
 andere zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der
 Befehl</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool dump /var/www/rrd/RRD_Name.rrd &gt; RRD_Name.xml

@@ -1,9 +1,11 @@
+.. _mapping:
+
 =======
 Mapping
 =======
 
 Meaning
----------
+-------
 
 With the element "Mapping" different values that are sent on the bus
 can get different names for the visualization. As a simplest example,

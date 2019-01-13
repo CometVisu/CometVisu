@@ -278,6 +278,7 @@ Extension empfohlen.
 .. figure:: doc/_static/visual_studio_install_ext.png
 
     Install extensions
+
 Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
 
 Damit die Live Preview funktioniert muss Python installiert sein.
