@@ -3,9 +3,9 @@
 Installation auf dem Timberwolf mittels Portainer
 =================================================
 
-Um die CometVisu auf dem `Timberwolf <https://wiregate.de/>`_-Server zu
+Um die CometVisu auf dem `Timberwolf <https://wiregate.de/>`__-Server zu
 installieren wird die dort verwendete Administrationsoberfläche
-`Portainer <https://portainer.io/>`_ verwendet.
+`Portainer <https://portainer.io/>`__ verwendet.
 
 Installation
 ------------

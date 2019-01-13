@@ -89,7 +89,7 @@ XML syntax
 ----------
 
 Alternatively it is possible to manually add the tr064 plugin entry to the
-:doc:`visu_config.xml <../../../xml-format>`.
+:ref:`visu_config.xml <xml-format>`.
 
 .. CAUTION::
     In the config only the UTF-8 charset is allowed. So an editor that is
