@@ -207,7 +207,7 @@ shows how to define and use a template.
 .. code-block:: xml
     :caption: Example of a template for a heater and its use in different rooms
 
-    <pages...>
+    <pages>
         <meta>
             <template name="Heating">
                 <group name="Heating">
@@ -238,8 +238,8 @@ shows how to define and use a template.
                 </group>
             </template>
         </meta>
-        <pages...>
-            <page name="Living room"...>
+        <page>
+            <page name="Living room">
                 ...
                 <template name="Heating">
                   <value name="control_address">Heating_FF_Living</value>
@@ -248,7 +248,7 @@ shows how to define and use a template.
                 </template>
                 ...
             </page>
-            <page name="Kitchen"...>
+            <page name="Kitchen">
                 ...
                 <template name="Heating">
                   <value name="control_address">Heating_FF_Kitchen</value>
@@ -260,7 +260,7 @@ shows how to define and use a template.
                 </template>
                 ...
             </page>
-        </pages>
+        </page>
     </pages>
 
 .. HINT::
@@ -274,12 +274,12 @@ also be swapped out to an external file.
     :caption: Example of a template definition from an external file
 
 
-    <pages...>
+    <pages>
         <meta>
             <template name="Heizung" ref="resource/config/media/heating.template.xml"/>
         </meta>
-        <pages...>
-            <page name="Living room"...>
+        <page>
+            <page name="Living room">
                 ...
                 <template name="Heating">
                   <value name="control_address">Heating_FF_Living</value>
@@ -288,7 +288,7 @@ also be swapped out to an external file.
                 </template>
                 ...
             </page>
-            <page name="Kitchen"...>
+            <page name="Kitchen">
                 ...
                 <template name="Heating">
                   <value name="control_address">Heating_FF_Kitchen</value>
@@ -300,7 +300,7 @@ also be swapped out to an external file.
                 </template>
                 ...
             </page>
-        </pages>
+        </page>
     </pages>
 
 .. code-block:: xml
