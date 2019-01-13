@@ -235,7 +235,7 @@ class BaseXsdDirective(BaseDirective):
                     name = sub_element.get("name")
                     mandatory = sub_element.get("minOccurs") is not None and int(sub_element.get("minOccurs")) > 0
                     if parent is not None:
-                        sub_parent = "%s\n * %s" % (parent, element_name)
+                        sub_parent = "%s\n  * %s" % (parent, element_name)
                     else:
                         sub_parent = element_name
                     #no recursions
@@ -246,9 +246,9 @@ class BaseXsdDirective(BaseDirective):
                 else:
                     (sub_element, atype, doc) = sub_element
                     indent = 2 if parent is not None else 1
-                    element_title = "%s\n%s* %s" % (element_name, " " * indent, sub_element)
+                    element_title = "%s\n\n%s* %s" % (element_name, "  " * indent, sub_element)
                     if parent:
-                        element_title = "%s\n * %s" % (parent, element_title)
+                        element_title = "%s\n  * %s" % (parent, element_title)
 
                     row = [ self.get_cell_data(element_title), self.get_cell_data(""), self.get_cell_data(self.normalize_type(atype)), self.get_cell_data(doc)]
                     table_body.append(row)

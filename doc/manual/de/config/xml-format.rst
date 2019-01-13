@@ -210,7 +210,7 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
 .. code-block:: xml
     :caption: Beispiel eines Templates für eine Heizung und dessen Verwendung in verschiedenen Räumen
 
-    <pages...>
+    <pages>
         <meta>
             <template name="Heizung">
                 <group name="Heizung">
@@ -241,8 +241,8 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
                 </group>
             </template>
         </meta>
-        <pages...>
-            <page name="Wohnzimmer"...>
+        <page>
+            <page name="Wohnzimmer">
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Living</value>
@@ -251,7 +251,7 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
                 </template>
                 ...
             </page>
-            <page name="Küche"...>
+            <page name="Küche">
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Kitchen</value>
@@ -263,7 +263,7 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
                 </template>
                 ...
             </page>
-        </pages>
+        </page>
     </pages>
 
 .. HINT::
@@ -276,12 +276,12 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
     :caption: Beispiel einer Template-Definition aus einer externen Datei
 
 
-    <pages...>
+    <pages>
         <meta>
             <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
         </meta>
-        <pages...>
-            <page name="Wohnzimmer"...>
+        <page>
+            <page name="Wohnzimmer">
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Living</value>
@@ -290,7 +290,7 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
                 </template>
                 ...
             </page>
-            <page name="Küche"...>
+            <page name="Küche">
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Kitchen</value>
@@ -302,7 +302,7 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
                 </template>
                 ...
             </page>
-        </pages>
+        </page>
     </pages>
 
 .. code-block:: xml

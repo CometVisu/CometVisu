@@ -64,13 +64,13 @@ Installationen <install/update-other>`
 CometVisu-Designs
 -----------------
 
--  :doc:`Metal <config/designs/metal>` -> das wohl beliebteste Design
--  :doc:`Pure <config/designs/pure>`
--  :doc:`Diskreet <config/designs/diskreet>`
--  :doc:`Discreet Sand <config/designs/diskreet-sand>`
--  :doc:`Discreet Slim <config/designs/diskreet-slim>`
--  :doc:`Alaska <config/designs/alaska>`
--  :doc:`Alaska Slim <config/designs/alaska_slim>`
+-  Metal -> das wohl beliebteste Design
+-  Pure
+-  Diskreet
+-  Discreet Sand
+-  Discreet Slim
+-  Alaska
+-  Alaska Slim
 
 Es ist auch möglich eigene Design zu implementieren.
 
