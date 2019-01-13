@@ -81,6 +81,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/config/editor.html</loc>
+    <lastmod>2019-01-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/config/hydraulik.html</loc>
     <lastmod>2019-01-13</lastmod>
     <priority>0.5</priority>
@@ -447,11 +452,6 @@
   </url>
   <url>
     <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/colab/dev/test.html</loc>
-    <lastmod>2019-01-13</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.cometvisu.org/CometVisu/en/latest/manual/parts/header.html</loc>
     <lastmod>2019-01-13</lastmod>
     <priority>0.5</priority>
   </url>
@@ -1641,6 +1641,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/editor.html</loc>
+    <lastmod>2019-01-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/hydraulik.html</loc>
     <lastmod>2019-01-13</lastmod>
     <priority>0.5</priority>
@@ -2007,11 +2012,6 @@
   </url>
   <url>
     <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/colab/dev/test.html</loc>
-    <lastmod>2019-01-13</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/parts/header.html</loc>
     <lastmod>2019-01-13</lastmod>
     <priority>0.5</priority>
   </url>

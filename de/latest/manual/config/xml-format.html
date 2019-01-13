@@ -100,6 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">Grafischer Editor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Versteckte Konfigurationen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a><ul class="current">
@@ -467,61 +468,61 @@ jedem Raum wiederverwenden.</p>
 die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ein Template definiert und benutzt.</p>
 <div class="literal-block-wrapper container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Beispiel eines Templates für eine Heizung und dessen Verwendung in verschiedenen Räumen</span><a class="headerlink" href="#id1" title="Link zu diesem Quellcode">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>&lt;pages...&gt;
-    &lt;meta&gt;
-        &lt;template name=&quot;Heizung&quot;&gt;
-            &lt;group name=&quot;Heizung&quot;&gt;
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
+    <span class="nt">&lt;meta&gt;</span>
+        <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
               {{{ additional_content }}}
-              &lt;slide min=&quot;0&quot; max=&quot;100&quot; format=&quot;%d%%&quot;&gt;
-                &lt;label&gt;
-                  &lt;icon name=&quot;sani_heating&quot; /&gt;
+              <span class="nt">&lt;slide</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;100&quot;</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label&gt;</span>
+                  <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;sani_heating&quot;</span> <span class="nt">/&gt;</span>
                   Heizung
-                &lt;/label&gt;
-                &lt;address transform=&quot;OH:dimmer&quot; variant=&quot;&quot;&gt;{{ control_address }}&lt;/address&gt;
-              &lt;/slide&gt;
-              &lt;info format=&quot;%.1f °C&quot;&gt;
-                &lt;label&gt;
-                  &lt;icon name=&quot;temp_temperature&quot; /&gt;
+                <span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:dimmer&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ control_address }}<span class="nt">&lt;/address&gt;</span>
+              <span class="nt">&lt;/slide&gt;</span>
+              <span class="nt">&lt;info</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label&gt;</span>
+                  <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_temperature&quot;</span> <span class="nt">/&gt;</span>
                   Ist
-                &lt;/label&gt;
-                &lt;address transform=&quot;OH:number&quot; variant=&quot;&quot;&gt;{{ currenttemp_address }}&lt;/address&gt;
-              &lt;/info&gt;
-              &lt;infotrigger uplabel=&quot;+&quot; upvalue=&quot;0.5&quot; downlabel=&quot;-&quot;
-                           downvalue=&quot;-0.5&quot; styling=&quot;BluePurpleRedTemp&quot;
-                           infoposition=&quot;middle&quot; format=&quot;%.1f °C&quot; change=&quot;absolute&quot; min=&quot;15&quot; max=&quot;25&quot;&gt;
-                &lt;label&gt;
-                  &lt;icon name=&quot;temp_control&quot; /&gt;
+                <span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ currenttemp_address }}<span class="nt">&lt;/address&gt;</span>
+              <span class="nt">&lt;/info&gt;</span>
+              <span class="nt">&lt;infotrigger</span> <span class="na">uplabel=</span><span class="s">&quot;+&quot;</span> <span class="na">upvalue=</span><span class="s">&quot;0.5&quot;</span> <span class="na">downlabel=</span><span class="s">&quot;-&quot;</span>
+                           <span class="na">downvalue=</span><span class="s">&quot;-0.5&quot;</span> <span class="na">styling=</span><span class="s">&quot;BluePurpleRedTemp&quot;</span>
+                           <span class="na">infoposition=</span><span class="s">&quot;middle&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span> <span class="na">change=</span><span class="s">&quot;absolute&quot;</span> <span class="na">min=</span><span class="s">&quot;15&quot;</span> <span class="na">max=</span><span class="s">&quot;25&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label&gt;</span>
+                  <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_control&quot;</span> <span class="nt">/&gt;</span>
                   Soll
-                &lt;/label&gt;
-                &lt;address transform=&quot;OH:number&quot; variant=&quot;&quot;&gt;{{ targettemp_address }}&lt;/address&gt;
-              &lt;/infotrigger&gt;
-            &lt;/group&gt;
-        &lt;/template&gt;
-    &lt;/meta&gt;
-    &lt;pages...&gt;
-        &lt;page name=&quot;Wohnzimmer&quot;...&gt;
+                <span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ targettemp_address }}<span class="nt">&lt;/address&gt;</span>
+              <span class="nt">&lt;/infotrigger&gt;</span>
+            <span class="nt">&lt;/group&gt;</span>
+        <span class="nt">&lt;/template&gt;</span>
+    <span class="nt">&lt;/meta&gt;</span>
+    <span class="nt">&lt;page&gt;</span>
+        <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="nt">&gt;</span>
             ...
-            &lt;template name=&quot;Heizung&quot;&gt;
-              &lt;value name=&quot;control_address&quot;&gt;Heating_FF_Living&lt;/value&gt;
-              &lt;value name=&quot;currenttemp_address&quot;&gt;Temperature_FF_Living&lt;/value&gt;
-              &lt;value name=&quot;targettemp_address&quot;&gt;Temperature_FF_Living_Target&lt;/value&gt;
-            &lt;/template&gt;
+            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Living<span class="nt">&lt;/value&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living<span class="nt">&lt;/value&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living_Target<span class="nt">&lt;/value&gt;</span>
+            <span class="nt">&lt;/template&gt;</span>
             ...
-        &lt;/page&gt;
-        &lt;page name=&quot;Küche&quot;...&gt;
+        <span class="nt">&lt;/page&gt;</span>
+        <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Küche&quot;</span><span class="nt">&gt;</span>
             ...
-            &lt;template name=&quot;Heizung&quot;&gt;
-              &lt;value name=&quot;control_address&quot;&gt;Heating_FF_Kitchen&lt;/value&gt;
-              &lt;value name=&quot;currenttemp_address&quot;&gt;Temperature_FF_Kitchen&lt;/value&gt;
-              &lt;value name=&quot;targettemp_address&quot;&gt;Temperature_FF_Kitchen_Target&lt;/value&gt;
-              &lt;value name=&quot;additional_content&quot;&gt;
-                &lt;text&gt;&lt;label&gt;Heizung Küche&lt;/label&gt;&lt;/text&gt;
-              &lt;/value&gt;
-            &lt;/template&gt;
+            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen_Target<span class="nt">&lt;/value&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;additional_content&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;text&gt;&lt;label&gt;</span>Heizung Küche<span class="nt">&lt;/label&gt;&lt;/text&gt;</span>
+              <span class="nt">&lt;/value&gt;</span>
+            <span class="nt">&lt;/template&gt;</span>
             ...
-        &lt;/page&gt;
-    &lt;/pages&gt;
-&lt;/pages&gt;
+        <span class="nt">&lt;/page&gt;</span>
+    <span class="nt">&lt;/page&gt;</span>
+<span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -533,34 +534,34 @@ kann die mustache.js Dokumentation zu Rate gezogen werden.</p>
 <p>Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine externe Datei ausgelagert werden.</p>
 <div class="literal-block-wrapper container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Beispiel einer Template-Definition aus einer externen Datei</span><a class="headerlink" href="#id2" title="Link zu diesem Quellcode">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>&lt;pages...&gt;
-    &lt;meta&gt;
-        &lt;template name=&quot;Heizung&quot; ref=&quot;resource/config/media/heizung.template.xml&quot;/&gt;
-    &lt;/meta&gt;
-    &lt;pages...&gt;
-        &lt;page name=&quot;Wohnzimmer&quot;...&gt;
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
+    <span class="nt">&lt;meta&gt;</span>
+        <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span> <span class="na">ref=</span><span class="s">&quot;resource/config/media/heizung.template.xml&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/meta&gt;</span>
+    <span class="nt">&lt;page&gt;</span>
+        <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="nt">&gt;</span>
             ...
-            &lt;template name=&quot;Heizung&quot;&gt;
-              &lt;value name=&quot;control_address&quot;&gt;Heating_FF_Living&lt;/value&gt;
-              &lt;value name=&quot;currenttemp_address&quot;&gt;Temperature_FF_Living&lt;/value&gt;
-              &lt;value name=&quot;targettemp_address&quot;&gt;Temperature_FF_Living_Target&lt;/value&gt;
-            &lt;/template&gt;
+            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Living<span class="nt">&lt;/value&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living<span class="nt">&lt;/value&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living_Target<span class="nt">&lt;/value&gt;</span>
+            <span class="nt">&lt;/template&gt;</span>
             ...
-        &lt;/page&gt;
-        &lt;page name=&quot;Küche&quot;...&gt;
+        <span class="nt">&lt;/page&gt;</span>
+        <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Küche&quot;</span><span class="nt">&gt;</span>
             ...
-            &lt;template name=&quot;Heizung&quot;&gt;
-              &lt;value name=&quot;control_address&quot;&gt;Heating_FF_Kitchen&lt;/value&gt;
-              &lt;value name=&quot;currenttemp_address&quot;&gt;Temperature_FF_Kitchen&lt;/value&gt;
-              &lt;value name=&quot;targettemp_address&quot;&gt;Temperature_FF_Kitchen_Target&lt;/value&gt;
-              &lt;value name=&quot;additional_content&quot;&gt;
-                &lt;text&gt;&lt;label&gt;Heizung Küche&lt;/label&gt;&lt;/text&gt;
-              &lt;/value&gt;
-            &lt;/template&gt;
+            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen_Target<span class="nt">&lt;/value&gt;</span>
+              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;additional_content&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;text&gt;&lt;label&gt;</span>Heizung Küche<span class="nt">&lt;/label&gt;&lt;/text&gt;</span>
+              <span class="nt">&lt;/value&gt;</span>
+            <span class="nt">&lt;/template&gt;</span>
             ...
-        &lt;/page&gt;
-    &lt;/pages&gt;
-&lt;/pages&gt;
+        <span class="nt">&lt;/page&gt;</span>
+    <span class="nt">&lt;/page&gt;</span>
+<span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
 </div>

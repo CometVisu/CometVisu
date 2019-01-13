@@ -39,7 +39,7 @@
         <link rel="search" title="Suche" href="../search.html"/>
     <link rel="top" title="CometVisu" href="../index.html"/>
         <link rel="up" title="Konfiguration der CometVisu" href="index.html"/>
-        <link rel="next" title="Versteckte Konfigurationen" href="hidden-config.html"/>
+        <link rel="next" title="Grafischer Editor" href="editor.html"/>
         <link rel="prev" title="Konfiguration der CometVisu" href="index.html"/> 
 
   
@@ -99,7 +99,13 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Der CometVisu Manager</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Der CometVisu Manager</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#verfugbare-cometvisu-konfigurationen">Verfügbare CometVisu Konfigurationen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verfugbare-mediendateien">Verfügbare Mediendateien</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#versteckte-konfigurationen">Versteckte Konfigurationen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="editor.html">Grafischer Editor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Versteckte Konfigurationen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
@@ -190,6 +196,45 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 Konfigurationsdateien verwalten (anlegen, bearbeiten, ersetzen, löschen).
 Außerdem können die die <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">versteckten Konfigurationen</span></a> so wie
 Medien-Datien (z.B. Hintergrundbilder) verwaltet werden.</p>
+<div class="figure">
+<img alt="../_images/manager.de.png" src="../_images/manager.de.png" />
+</div>
+<div class="section" id="verfugbare-cometvisu-konfigurationen">
+<h2>Verfügbare CometVisu Konfigurationen<a class="headerlink" href="#verfugbare-cometvisu-konfigurationen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In der Tabelle werden alle verfügbaren Konfigurationen aufgelistet. Namen mit
+<code class="docutils literal"><span class="pre">*)</span></code> am Ende sind Demo Konfigurationen die geöffnet aber nicht geändert
+werden können.</p>
+<dl class="docutils">
+<dt>Öffnen</dt>
+<dd>Öffnet die Konfiguration und zeigt diese im Browser an.</dd>
+<dt>Überprüfen</dt>
+<dd>Überprüft die Validität der Konfiguration, also ob die Syntax der
+<a class="reference internal" href="xml-format.html#xml-format"><span class="std std-ref">XML-Datei</span></a> gültig ist.</dd>
+<dt>Editieren</dt>
+<dd>Öffnet die Konfiguration im <a class="reference internal" href="editor.html#editor"><span class="std std-ref">grafischen Editor</span></a>.</dd>
+<dt>Text editieren</dt>
+<dd>Öffnet die Konfiguration in einem Text-Editor im Browser.</dd>
+<dt>Herunterladen</dt>
+<dd>Lädt die Konfiguration herunter, so dass diese lokal gesichert oder bearbeitet
+werden kann.</dd>
+<dt>Ersetzen</dt>
+<dd>Lädt eine Konfiguration hoch und ersetzt die bestehende.</dd>
+<dt>Löschen</dt>
+<dd>Löscht die Konfiguration</dd>
+</dl>
+</div>
+<div class="section" id="verfugbare-mediendateien">
+<h2>Verfügbare Mediendateien<a class="headerlink" href="#verfugbare-mediendateien" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die eigene Konfiguration lässt sich durch Dateien erweitern. Typische Beispiele
+sind Hintergrundbilder oder eigene CSS Regeln um ein Design nach persönlichen
+Vorlieben abzuändern.</p>
+</div>
+<div class="section" id="versteckte-konfigurationen">
+<h2>Versteckte Konfigurationen<a class="headerlink" href="#versteckte-konfigurationen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Manche Plugins benötigen Konfigurationseinstellungen die nicht an den Browser
+übertragen werden sollen. Dies wird im Handbuch unter
+<a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">Versteckte Konfigurationen</span></a> genauer beschrieben.</p>
+</div>
 </div>
 
 
@@ -202,7 +247,7 @@ Medien-Datien (z.B. Hintergrundbilder) verwaltet werden.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="hidden-config.html" class="btn btn-neutral float-right" title="Versteckte Konfigurationen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="editor.html" class="btn btn-neutral float-right" title="Grafischer Editor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Konfiguration der CometVisu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

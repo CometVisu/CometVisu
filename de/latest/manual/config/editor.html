@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Grafischer Editor &mdash; CometVisu</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Stichwortverzeichnis"
+              href="../genindex.html"/>
+        <link rel="search" title="Suche" href="../search.html"/>
+    <link rel="top" title="CometVisu" href="../index.html"/>
+        <link rel="up" title="Konfiguration der CometVisu" href="index.html"/>
+        <link rel="next" title="Versteckte Konfigurationen" href="hidden-config.html"/>
+        <link rel="prev" title="Der CometVisu Manager" href="manager.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CometVisu
+          
+
+          
+            
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.11.0-dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Grafischer Editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#aufbau">Aufbau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bedienung">Bedienung</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
+        
+      <li>Grafischer Editor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="grafischer-editor">
+<span id="editor"></span><h1>Grafischer Editor<a class="headerlink" href="#grafischer-editor" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Der grafische Editor wird über den <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> aufgerufen, wo es
+alternativ auch einen Text-Editor gibt. Im Editor lässt sich eine Konfiguration
+anpassen ohne dass man sich mit den Regeln der <a class="reference internal" href="xml-format.html#xml-format"><span class="std std-ref">XML Syntax</span></a>
+auseinander setzen muss.</p>
+<div class="section" id="aufbau">
+<h2>Aufbau<a class="headerlink" href="#aufbau" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Der Editor besteht aus drei Teilen:</p>
+<div class="figure">
+<img alt="../_images/editor.png" src="../_images/editor.png" />
+</div>
+<p>Oben ist eine Menü-Leiste, links wird die Struktur der Konfiguration dargestellt
+und rechts können die Attribute für ein Element angepasst werden.</p>
+<p>Die Optionen der Menüleiste sind:</p>
+<dl class="docutils">
+<dt>save</dt>
+<dd>Speichert den aktuellen Stand der Konfiguration.</dd>
+<dt>complex</dt>
+<dd>Schaltet erweiterte Konfigurationsmöglichkeiten frei.</dd>
+<dt>preview</dt>
+<dd>Zeigt eine Vorschau des aktuellen Stands der Konfiguration an ohne die
+bestehende Version zu überschreiben.</dd>
+<dt>manager</dt>
+<dd>Kehrt zum <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> zurück.</dd>
+</dl>
+</div>
+<div class="section" id="bedienung">
+<h2>Bedienung<a class="headerlink" href="#bedienung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wenn links ein Element angeklickt wird, so erscheint rechts eine Tabelle mit den
+dazugehörigen Attributen, wenn für diesen Element-Typen verfügbar.</p>
+<p>Um weitere Elemente hinzuzufügen, muss man das zukünftige Eltern-Element mit
+der rechten Maustaste anklicken.</p>
+<div class="figure">
+<img alt="../_images/editor_node_right_click.png" src="../_images/editor_node_right_click.png" />
+</div>
+<p>In dem dann erscheinenden Kontext-Menü gibt es Optionen für:</p>
+<dl class="docutils">
+<dt>add child</dt>
+<dd>Ein Kind-Element hinzufügen.</dd>
+<dt>remove</dt>
+<dd>Element löschen.</dd>
+<dt>cut</dt>
+<dd>Element ausschneiden.</dd>
+<dt>copy</dt>
+<dd>Element kopieren.</dd>
+<dt>paste</dt>
+<dd>Ausgeschnittenes oder kopiertes Element einfügen.</dd>
+<dt>sort</dt>
+<dd>Elemente umsortieren (wenn an dieser Stelle möglich).</dd>
+</dl>
+<div class="figure">
+<img alt="../_images/editor_sort.png" src="../_images/editor_sort.png" />
+</div>
+<p>Um Elemente zu sortieren wird bei einem im Kontext-Menü &#8220;sort&#8221; ausgewählt. In
+der dann erscheinenden Darstellung kann durch Klicken auf einen der gelben
+Platzhalter dieses Element dorthin verschoben werden.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hidden-config.html" class="btn btn-neutral float-right" title="Versteckte Konfigurationen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="manager.html" class="btn btn-neutral" title="Der CometVisu Manager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2010-2019 Christian Mayer and the CometVisu contributers.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.11.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../0.10.0/manual/index.html">0.10.0</a></dd>
+        
+          <dd><a href="../../../0.10.2/manual/index.html">0.10.2</a></dd>
+        
+          <dd><a href="../../../latest/manual/index.html">latest</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -50,13 +50,13 @@ be updated directly on the :doc:`WireGate <install/update-wiregate>` or
 CometVisu-Designs
 -----------------
 
--  :doc:`Metal <config/designs/metal>` -> the most popular design
--  :doc:`Pure <config/designs/pure>`
--  :doc:`Diskreet <config/designs/diskreet>`
--  :doc:`Discreet Sand <config/designs/diskreet-sand>`
--  :doc:`Discreet Slim <config/designs/diskreet-slim>`
--  :doc:`Alaska <config/designs/alaska>`
--  :doc:`Alaska Slim <config/designs/alaska_slim>`
+-  Metal -> the most popular design
+-  Pure
+-  Diskreet
+-  Discreet Sand
+-  Discreet Slim
+-  Alaska
+-  Alaska Slim
 
 It is also possible to implement customized designs.
 
