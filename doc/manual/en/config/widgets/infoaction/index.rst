@@ -122,19 +122,19 @@ for the InfoAction widget.
     </stylings>
    </meta>
    <infoaction>
-    <layout colspan="4"/>
-    <label>Lights</label>
-    <widgetinfo>
-      <info>
-       <address transform="DPT:9.001">0/0/0</address>
-      </info>
-    </widgetinfo>
-    <widgetaction>
-     <switch mapping="OnOff" styling="GreyGreen">
-      <layout colspan="3" />
-      <address transform="DPT:1.001" mode="readwrite">0/0/1</address>
-     </switch>
-    </widgetaction>
+     <layout colspan="4"/>
+     <label>Lights</label>
+     <widgetinfo>
+       <info>
+         <address transform="DPT:9.001">0/0/0</address>
+       </info>
+     </widgetinfo>
+     <widgetaction>
+       <switch mapping="OnOff" styling="GreyGreen">
+         <layout colspan="3" />
+         <address transform="DPT:1.001" mode="readwrite">0/0/1</address>
+       </switch>
+     </widgetaction>
    </infoaction>
     
 
