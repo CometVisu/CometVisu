@@ -68,6 +68,7 @@ qx.Class.define('cv.io.Mockup', {
   */
   members: {
     addresses: null,
+    __xhr: null,
 
     /**
      * This function gets called once the communication is established and session information is available
@@ -85,8 +86,38 @@ qx.Class.define('cv.io.Mockup', {
         if (cv.Config.initialDemoData) {
           this.receive({
             i: new Date().getTime(),
-            d: cv.Config.initialDemoData
+            d: cv.Config.initialDemoData.states
           });
+          if (qx.core.Environment.get('cv.testMode') && cv.Config.initialDemoData.xhr) {
+            this.__xhr = cv.Config.initialDemoData.xhr;
+            // configure server
+            var server = qx.dev.FakeServer.getInstance().getFakeServer();
+            server.respondWith(function (request) {
+              var url = cv.report.Record.normalizeUrl(request.url);
+              if (url.indexOf("nocache=") >= 0) {
+                url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+              }
+              if (!this.__xhr[url] || this.__xhr[url].length === 0) {
+                qx.log.Logger.error(this, "404: no logged responses for URI "+url+" found");
+              } else {
+                qx.log.Logger.debug(this, "faking response for "+url);
+                var response = "";
+                if (this.__xhr[url].length === 1) {
+                  response = this.__xhr[url][0];
+                } else {
+                  // multiple responses recorded use them as LIFO stack
+                  response = this.__xhr[url].shift();
+                }
+
+                if (request.readyState === 4 && request.status === 404) {
+                  // This is a hack, sometimes the request has a 404 status and send readystate
+                  // the respond would fail if we do not override it here
+                  request.readyState = 1;
+                }
+                request.respond(response.status, response.headers, qx.lang.Json.stringify(response.body));
+              }
+            }.bind(this));
+          }
           cv.Config.initialDemoData = null;
         }
       }

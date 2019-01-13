@@ -92,9 +92,12 @@ ${CV} sitemap
 
 echo "generating test mode build"
 source temp-python/bin/activate
-./generate.py build --macro=CV_TESTMODE:resource/demo/media/metal-data.json
+./generate.py build --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
 rm -rf out/de/$VERSION/demo
 mv build out/de/$VERSION/demo
+
+# Copy demo-mode to default config
+cp out/de/$VERSION/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo/config/visu_config.xml
 deactivate
 
 echo "starting deployment..."
