@@ -146,7 +146,7 @@ ist nun ein Eintrag mit diesen Eigenschaften anzulegen:
 - Schlüssel und Wert:
 
   - ``uri``: ``https://172.17.0.1/proxy/ts/query`` (Sollte entgegen dieser
-    Anleitung das Netzwerk des Contianers angepasst worden sein, so muss
+    Anleitung das Netzwerk des Containers angepasst worden sein, so muss
     gegebenenfalls hier die IP-Addresse entsprechend angepasst werden)
   - ``user``: Benutzername aus den Credentials
   - ``pass``: Passwort aus den Credentials
