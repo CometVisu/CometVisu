@@ -19,7 +19,7 @@ todo_include_todos = True
 templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
-exclude_patterns = []
+exclude_patterns = ['parts/*']
 add_function_parentheses = True
 #add_module_names = True
 # A list of ignored prefixes for module index sorting.

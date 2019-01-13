@@ -7,6 +7,7 @@ Configuration of the CometVisu
     :hidden:
 
     manager
+    editor
 
 CometVisu is configured by editing the XML-formatted configuration
 file "visu_config.xml" in the respective subdirectory "./config" of
