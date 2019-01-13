@@ -38,8 +38,9 @@ Allowed attributes in the Audio-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <audio>
+    <audio src="sound.mp3" id="example">
         <layout colspan="4" />
+        <label>Audio</label>
     </audio>
 
 
@@ -54,7 +55,7 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <audio>
+    <audio src="sound.mp3" id="example">
         <layout colspan="4" />
         <label>Audio</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>

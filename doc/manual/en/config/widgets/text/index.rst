@@ -40,6 +40,7 @@ Allowed attributes in the Text-element
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <text>
         <layout colspan="4" />
+        <label>Text</label>
     </text>
 
 
@@ -57,7 +58,6 @@ Allowed child-elements und their attributes
     <text>
         <layout colspan="4" />
         <label>Text</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </text>
 
 Examples

@@ -38,7 +38,7 @@ Allowed attributes in the Video-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <video>
+    <video src="video.mpg">
         <layout colspan="4" />
     </video>
 
@@ -54,10 +54,9 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <video>
+    <video src="video.mpg">
         <layout colspan="4" />
         <label>Video</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </video>
 
 Examples

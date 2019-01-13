@@ -65,10 +65,8 @@ Allowed child-elements und their attributes
             <plugin name="link" />
         </plugins>
     </meta>
-    <link>
+    <link text="Link" href="https://www.cometvisu.org">
         <layout colspan="4" />
-        <label>link</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </link>
 
 Examples

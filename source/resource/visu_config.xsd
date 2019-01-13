@@ -531,6 +531,7 @@
       <xsd:element name="timeout" type="timeout" />
       <xsd:element name="calllist" type="calllist" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
+      <xsd:element name="link" type="link" />
     </xsd:choice>
   </xsd:group>
 
@@ -1947,6 +1948,25 @@
     <xsd:attribute name="player_port" type="xsd:string" use="optional" />
     <xsd:attribute name="refresh" type="xsd:string" use="required" />
     <xsd:attribute name="debug" type="xsd:boolean" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="link">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="class" type="xsd:string"/>
+    <xsd:attribute name="text" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">The link text.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Der Link Text.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="href" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">URL of the link.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Die URL des Links.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="timeout">

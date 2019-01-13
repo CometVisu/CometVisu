@@ -338,6 +338,11 @@ class DocGenerator(Command):
                             if section == "WIDGET-EXAMPLES" or example:
                                 indent = "    "
                             else:
+                                line_content = line_content.replace("<code>", "``")
+                                line_content = line_content.replace("</code>", "``")
+                                line_content = line_content.replace("<li>", "* ")
+                                line_content = line_content.replace("</li>", "")
+
                                 if line_content.strip() in ["```", "<pre class=\"sunlight-highlight-xml\">", "</pre>"]:
                                     if not code_block:
                                         if line_content.strip() == "<pre class=\"sunlight-highlight-xml\">":
