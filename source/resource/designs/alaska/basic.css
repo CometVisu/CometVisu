@@ -366,7 +366,7 @@ div#loading
 
 #diagramTooltip, #flotTip
 {
-  z-index: 1000;
+  z-index: 100002;
   border-style: solid; 
   border-width: 1px;
   padding: 2px;
