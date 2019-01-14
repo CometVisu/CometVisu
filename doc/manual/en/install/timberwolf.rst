@@ -19,10 +19,10 @@ in detail, as there usually no proxy is available, which makes
 the CometVisu accessible via HTTPS.
 
 Create Volumes
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 Volume for Config Files
-.......................
+"""""""""""""""""""""""
 
 First, create a volume to store the configuration files and
 keep them while rebooting and updating the container.
@@ -39,7 +39,7 @@ This volume can be filled from the outside with the config
 files or best by using the :ref:`Config-Manager <manager>`.
 
 Volume for RRD
-..............
+""""""""""""""
 
 This step is optional and only necessary if you want to use the
 :ref:`Diagram Plugin <diagram>` with RRD files. When using the
@@ -56,7 +56,7 @@ Thus, the RRG files from WireGate (32 bit architecture) can not be
 used directly on the Timberwolf (64 bit architecture) [1].
 
 Creating a Container
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 Under: *Containers* → *Add Container*
 
@@ -107,7 +107,7 @@ Under: *Containers* → *Add Container*
 Then create the container by pressing *Deploy the container*.
 
 Proxy setup
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 At the Timberwolf Frontend:
 *Settings* → *Remote Access* → *Reverse Proxy*
@@ -123,11 +123,43 @@ Accept with *Add*
 
 CometVisu is now available: ``https://<mein timberwolf>/proxy/visu/``
 
+InfluxDB access
+^^^^^^^^^^^^^^^
+
+To access the time series in the InfluxDB its credentials must be added to the
+:ref:`hidden configuration <hidden-config>` of the :ref:`manager <manager>`.
+To get them you must click at the Timberwolf server in the *Portainer*
+menu on the ``i`` after the line *"How to access the time series database from
+within a Docker container"* and note the Username and Password.
+
+.. figure:: _static/timberwolf_influx.png
+   :scale: 50 %
+
+   Timberwolf InfluxDB credentials
+
+In the :ref:`hidden configuration <hidden-config>` of the
+:ref:`manager <manager>` you must create an entry with the properties:
+
+- Name: ``influx``
+- Key and value:
+
+  - ``uri``: ``https://172.17.0.1/proxy/ts/query`` (Should you have not followed
+    this manual and used a different network setting you might need to change
+    here the IP address accordingly)
+  - ``user``: Username from the credentials
+  - ``pass``: Password from the credentials
+  - ``selfsigned``: ``true``
+
+.. figure:: _static/timberwolf_influx_manager.png
+   :scale: 50 %
+
+   Timberwolf InfluxDB credentials in the manager
+
 Updates
 -------
 
 Replace Container
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 Under *Containers* → ``CometVisu`` pressing the button *Duplicate / Edit*
 to invoked the menu for refreshing the container.
@@ -157,7 +189,7 @@ Afterwards the security question has to be confirmed.
    Confirmation to replace the container at portainer with a new version
 
 Cleanup
-~~~~~~~~~
+^^^^^^^
 
 When a container is replaced with a new one, the old one remains as
 *Unused* in the system and continues to occupy space. This can

@@ -19,10 +19,10 @@ angepasst werden, da dort üblicherweise keine Proxy zur Verfügung steht, der
 die CometVisu über HTTPS zugreifbar macht.
 
 Volumes anlegen
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 Volume für Konfigurationsdateien
-................................
+""""""""""""""""""""""""""""""""
 
 Zuerst ist ein Volume anzulegen um dort die Konfigurationsdateien abzulegen
 und diese über Neustarts und Aktualisierungen des Containers hinweg
@@ -39,7 +39,7 @@ Dieses Volume kann von außen mit den Config-Dateien befüllt werden - oder
 am besten über den :ref:`Manager <manager>`.
 
 Volume für RRD
-..............
+""""""""""""""
 
 Dieser Schritt ist optional und nur notwendig, wenn das :ref:`Diagram Plugin <diagram>`
 mit RRD Dateien genutzt werden sollen. Bei der reinen Verwendung der InfluxDB
@@ -57,7 +57,7 @@ So können die RRD-Dateien vom WireGate (32 Bit Architektur) nicht direkt auf
 dem Timberwolf (64 Bit Architektur) verwendet werden [1]_.
 
 Anlegen des Containers
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 Unter *Containers* → *Add Container*
 
@@ -108,7 +108,7 @@ Unter *Containers* → *Add Container*
 Dann über *Deploy the container* diesen erzeugen.
 
 Proxy einrichten
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 In der Timberwolf Oberfläche: *Einstellungen* → *Remotezugriff* → *Reverse Proxy*
 
@@ -123,11 +123,45 @@ In der Timberwolf Oberfläche: *Einstellungen* → *Remotezugriff* → *Reverse 
 
 Die CometVisu ist nun über ``https://<mein timberwolf>/proxy/visu/`` aufrufbar.
 
+InfluxDB Zugriff
+^^^^^^^^^^^^^^^^
+
+Für den Zugriff auf die Zeitreihen der InfluxDB müssen die Credentials in der
+:ref:`Versteckten Konfiguration <hidden-config>` über den
+:ref:`Manager <manager>` eingetragen werden. Hierzu muss auf dem Timberwolf
+Server unter *Portainer* bei *"Wie Sie aus dem Docker Container auf die
+Zeitreihen-Datenbank zugreifen können"* auf das ``i`` geklickt werden um
+den Benutzernamen und das Passwort für die lokale Installation in Erfahrung
+zu bringen.
+
+.. figure:: _static/timberwolf_influx.png
+   :scale: 50 %
+
+   Timberwolf InfluxDB Credentials
+
+In der :ref:`Versteckten Konfiguration <hidden-config>` des :ref:`Managers <manager>`
+ist nun ein Eintrag mit diesen Eigenschaften anzulegen:
+
+- Name: ``influx``
+- Schlüssel und Wert:
+
+  - ``uri``: ``https://172.17.0.1/proxy/ts/query`` (Sollte entgegen dieser
+    Anleitung das Netzwerk des Contianers angepasst worden sein, so muss
+    gegebenenfalls hier die IP-Addresse entsprechend angepasst werden)
+  - ``user``: Benutzername aus den Credentials
+  - ``pass``: Passwort aus den Credentials
+  - ``selfsigned``: ``true``
+
+.. figure:: _static/timberwolf_influx_manager.png
+   :scale: 50 %
+
+   Timberwolf InfluxDB Credentials im Manager
+
 Aktualisieren
 -------------
 
 Container ersetzen
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 Unter *Containers* → ``CometVisu`` wird über den Button *Duplicate/Edit* das
 Menü aufgerufen um den Container zu aktualisieren.
@@ -157,7 +191,7 @@ Anschließend muss die Sicherheitsabfrage bestätigt werden.
    Bestätigung um den Container im Portainer durch eine neue Version zu ersetzen
 
 Aufräumen
-~~~~~~~~~
+^^^^^^^^^
 
 Wenn ein Container durch einen neuen ersetzt wird, so bleibt der alte als
 *Unused* im System zurück und belegt weiterhin Platz. Dieser lässt sich unter
