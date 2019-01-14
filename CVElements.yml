@@ -104,7 +104,9 @@
     "de": "/de/latest/manual/config/widgets/audio/index.html"
     "en": "/en/latest/manual/config/widgets/audio/index.html"
   "name": "Audio"
-  "screenshot": "/de/latest/manual/_images/audio_simple.png"
+  "screenshot":
+    "de": "/de/latest/manual/_images/audio_simple.png"
+    "en": "/en/latest/manual/_images/audio_example.png"
 - "description":
     "de": "Das NotificationCenterBadge Widget zeigt die aktuelle Anzahl der Nachrichten in der Benachrichtungszentrale an und öffnet diese, wenn es angeklickt wird."
     "en": "The NotificationCenterBadge Widget shows the current number of messages in the notification center and opens the center when you click on it."
@@ -134,7 +136,9 @@
     "de": "/de/latest/manual/config/widgets/group/index.html"
     "en": "/en/latest/manual/config/widgets/group/index.html"
   "name": "Group"
-  "screenshot": "/de/latest/manual/_images/group_simple.png"
+  "screenshot":
+    "de": "/de/latest/manual/_images/group_simple.png"
+    "en": "/en/latest/manual/_images/group_with_border.png"
 - "description":
     "de": "Fügt der Visu ein statisches Bild oder ein Kamerabild hinzu."
     "en": "Adds a static image or a live camera image to the visu."
@@ -164,7 +168,9 @@
     "de": "/de/latest/manual/config/widgets/info/index.html"
     "en": "/en/latest/manual/config/widgets/info/index.html"
   "name": "Info"
-  "screenshot": "/de/latest/manual/_images/info_simple.png"
+  "screenshot":
+    "de": "/de/latest/manual/_images/info_simple.png"
+    "en": "/en/latest/manual/_images/info_temp.png"
 - "description":
     "de": "Ermöglich die Kombination eines darstellenden und bedienbaren Widgets."
     "en": "Enables the combination of an illustrative and usable widgets."
@@ -172,7 +178,9 @@
     "de": "/de/latest/manual/config/widgets/infoaction/index.html"
     "en": "/en/latest/manual/config/widgets/infoaction/index.html"
   "name": "InfoAction"
-  "screenshot": "/de/latest/manual/_images/infoaction_lights.png"
+  "screenshot":
+    "de": "/de/latest/manual/_images/infoaction_lights.png"
+    "en": "/en/latest/manual/_images/infoaction_lights.png"
 - "description":
     "de": "Fügt der Visu ein Element hinzu, dass zwei Schaltflächen und eine Wertanzeige für Rückmeldungen vom BUS enthält. Z.B. für Multimediasteuerungen."
     "en": "Adds an element to the visu that contains two buttons and a value indication for feedback from the BUS. (E.g. for multimedia control."
@@ -265,7 +273,9 @@
     "de": "/de/latest/manual/config/widgets/switch/index.html"
     "en": "/en/latest/manual/config/widgets/switch/index.html"
   "name": "Switch"
-  "screenshot": "/de/latest/manual/_images/switch.png"
+  "screenshot":
+    "de": "/de/latest/manual/_images/switch.png"
+    "en": "/en/latest/manual/_images/switch_example_on.png"
 - "description":
     "de": "Fügt der Visu ein statisches Textfeld hinzu."
     "en": "Adds a static text field to the visu."
@@ -273,7 +283,9 @@
     "de": "/de/latest/manual/config/widgets/text/index.html"
     "en": "/en/latest/manual/config/widgets/text/index.html"
   "name": "Text"
-  "screenshot": "/de/latest/manual/_images/text_simple.png"
+  "screenshot":
+    "de": "/de/latest/manual/_images/text_simple.png"
+    "en": "/en/latest/manual/_images/text_example.png"
 - "description":
     "de": "Das toggle Widget ist ähnlich wie der Switch, kann aber mehr als zwei Zustände annehmen - dies kann z.B. für die Umschaltung von Betriebsarten der Heizung genutzt werden. Bei jedem Druck nimmt der Toggle den nächsten möglichen Zustand an."
     "en": "The toggle widget is similar to the switch, but it can take more than two states. Can be used to change the operating modes of the heating system. Each time the toggle is pressed, the toggle takes the next possible state."

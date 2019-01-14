@@ -73,6 +73,10 @@ for the Audio widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
+.. figure:: _static/audio_example.png
+
+    Default example for defining an audio widget in the configuration
+
 .. code-block:: xml
 
     
