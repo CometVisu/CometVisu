@@ -64,6 +64,16 @@ python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); 
 }
 deactivate
 
+# API screenshots are used by the "doc --from-source" run so we generate them here
+if [[ "$NO_API" -eq 0 ]]; then
+    echo "generate API screenshots"
+    ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
+
+    # move the apiviewer to the correct version subfolder, including screenshots
+    rm -r out/en/$VERSION/api
+    ${CV} doc --move-apiviewer
+fi
+
 echo "updating english manual from source code doc comments"
 ${CV} doc --from-source
 
@@ -74,15 +84,6 @@ echo "generating english manual, including screenshot generation for all languag
 ${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION}
 echo "generating german manual again with existing screenshots"
 ${CV} doc --doc-type manual -f -l de --target-version=${VERSION}
-
-if [[ "$NO_API" -eq 0 ]]; then
-    echo "generate API screenshots"
-    ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
-
-    # move the apiviewer to the correct version subfolder, including screenshots
-    rm -r out/en/$VERSION/api
-    ${CV} doc --move-apiviewer
-fi
 
 echo "generating feature yml file for homepage"
 ${CV} doc --generate-features
