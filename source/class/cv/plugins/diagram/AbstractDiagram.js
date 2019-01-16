@@ -62,6 +62,16 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   type: "abstract",
 
   /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (props) {
+    this.base(arguments, props);
+    this._debouncedLoadDiagramData = qx.util.Function.debounce(this.loadDiagramData.bind(this), 200);
+  },
+
+  /*
   ******************************************************
     STATICS
   ******************************************************
@@ -600,11 +610,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       this.plotted = true;
 
       var that = this;
-      diagram.bind("plotpan", function(event, plot, args) {
-        // TODO and FIXME: args.dragEnded doesn't exist, so data isn't reloaded after pan end!
-        if (args.dragEnded) {
-          that.loadDiagramData( plot, isPopup, false );
-        }
+      diagram.bind("plotpan", function(event, plot) {
+        that._debouncedLoadDiagramData( plot, isPopup, false );
       }).bind("plotzoom", function() {
         that.loadDiagramData( plot, isPopup, false );
       }).bind("touchended", function() {
