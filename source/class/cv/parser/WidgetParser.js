@@ -411,7 +411,7 @@ qx.Class.define('cv.parser.WidgetParser', {
           mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
 
         if ((!src) || (!transform)) {// fix broken address-entries in config
-          this.error("Either address or transform is missing in address element %1", element.outerHTML);
+          qx.log.Logger.error(this, "Either address or transform is missing in address element %1", element.outerHTML);
           return;
         }
         switch (qx.bom.element.Attribute.get(elem, 'mode')) {
