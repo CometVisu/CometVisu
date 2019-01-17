@@ -103,7 +103,6 @@ body br
 .page.type_2d .widget_container .widget {
 	padding: 0;
 }
-.page.type_2d .widget_container .widget > div { margin: 0.3em; }
 
 .page.type_2d .widget_container .group:not(.widget) { border-width:0; }
 .page.type_2d .widget_container .group:not(.widget) .widget {
@@ -162,7 +161,7 @@ body br
 .widget > .label
 {
   float:left; 
-  width:50%;
+  width: calc(50% - 0.2em);
   text-align:left;
   padding-left: 0.2em;
   line-height: 2em;
@@ -452,7 +451,7 @@ body br
 }
 .widget .ui-slider
 {
-  width: 45%;
+  width: calc(50% - 2.25rem);
   float: left;
   margin-top: 0.5em;
   border-color:  #010101 #282828 #282828 #010101;

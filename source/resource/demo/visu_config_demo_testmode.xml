@@ -11,6 +11,14 @@
       <plugin name="rsslog"/>
     </plugins>
     <mappings>
+      <mapping name="Shutter">
+        <entry value="0">&#8593;</entry>
+        <entry value="STOP">o</entry>
+        <entry value="1">&#8595;</entry>
+      </mapping>
+      <mapping name="ShutterStop">
+        <entry value="1">o</entry>
+      </mapping>
       <mapping name="OpenClose">
         <entry value="0">
           <icon color="red" name="fts_window_1w_open"/>
@@ -108,11 +116,32 @@
             <label><icon name="temp_temperature"/>Ist</label>
             <address transform="DPT:9.001" variant="">{{ current_temp_address }}</address>
           </info>
-          <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+          <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" align="left" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
             <label><icon name="temp_control"/>Soll</label>
             <address transform="DPT:9.001" variant="">{{ target_temp_address }}</address>
           </infotrigger>
           {{{ additional_content }}}
+        </group>
+      </template>
+      <template name="Jalousien">
+        <group nowidget="true">
+          <layout colspan="6"/>
+          <text>
+            <layout colspan="3"/>
+            <label><icon name="fts_shutter"/>{{ name }}</label>
+          </text>
+          <trigger value="0" mapping="Shutter" align="center">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" variant="">{{upDownAddress}}</address>
+          </trigger>
+          <trigger value="1" mapping="ShutterStop" align="center">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" variant="">{{stopAddress}}</address>
+          </trigger>
+          <trigger value="1" mapping="Shutter" align="center">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" variant="">{{upDownAddress}}</address>
+          </trigger>
         </group>
       </template>
     </templates>
@@ -161,7 +190,7 @@
         <layout colspan="0"/>
         <label>1. Stock</label>
       </text>
-      <pagejump path="Übersicht/OG" target="Büro" active_scope="path">
+      <pagejump target="Büro">
         <layout colspan="0"/>
         <label><icon name="it_television"/>Büro</label>
         <widgetinfo>
@@ -199,10 +228,10 @@
         <layout colspan="0"/>
         <label><icon name="audio_audio"/>Audio</label>
       </pagejump>
-      <refresh value="Refresh">
+      <pagejump target="Heizung">
         <layout colspan="0"/>
-      	<label><icon name="audio_repeat"/></label>
-      </refresh>
+        <label><icon name="sani_heating"/>Heizung</label>
+      </pagejump>
     </navbar>
     <group name="Status">
       <layout x="calc(100% - 310px)" y="10px" width="300px"/>
@@ -344,44 +373,25 @@
             </switch>
           </group>
         </group>
-        <group name="Licht mit Icons">
-          <layout colspan="12"/>
-          <group nowidget="true" flavour="lithium">
-            <layout colspan="12"/>
-            <switch mapping="OnOff_Licht" styling="GreyGrey">
-              <layout colspan="3"/>
-              <label>Strahler</label>
-              <address transform="DPT:1.001" variant="">13/0/0</address>
-            </switch>
-            <switch mapping="OnOff_Licht" styling="GreyGrey">
-              <layout colspan="3"/>
-              <label>Spot</label>
-              <address transform="DPT:1.001" variant="">13/0/1</address>
-            </switch>
-            <switch mapping="OnOff_Licht" styling="GreyGrey">
-              <layout colspan="3"/>
-              <label>Schrank</label>
-              <address transform="DPT:1.001" variant="">13/0/2</address>
-            </switch>
-            <switch mapping="OnOff_Licht" styling="GreyGrey">
-              <layout colspan="3"/>
-              <label>Stehlampe</label>
-              <address transform="DPT:1.001" variant="">13/0/24</address>
-            </switch>
-          </group>
-        </group>
+
         <group name="Jalousien">
           <layout colspan="12"/>
-          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
-            <label><icon name="fts_shutter"/>Fenster</label>
-            <address transform="DPT:1.001" variant="">13/0/3</address>
-          </multitrigger>
-          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
-            <label><icon name="fts_shutter"/>
-              Tür
-            </label>
-            <address transform="DPT:1.001" variant="">13/0/4</address>
-          </multitrigger>
+          <template name="Jalousien">
+            <value name="name">Fenster</value>
+            <value name="upDownAddress">13/0/3</value>
+            <value name="stopAddress">13/0/97</value>
+          </template>
+          <template name="Jalousien">
+            <value name="name">Tür</value>
+            <value name="upDownAddress">13/0/4</value>
+            <value name="stopAddress">13/0/98</value>
+          </template>
+          <slide min="0" max="100" format="%d%%">
+            <address transform="DPT:5.001" variant="readwrite">13/0/99</address>
+          </slide>
+          <slide min="0" max="100" format="%d%%">
+            <address transform="DPT:5.001" variant="readwrite">13/0/100</address>
+          </slide>
         </group>
         <group name="Steckdosen">
           <layout colspan="12"/>
@@ -565,19 +575,40 @@
         </switch>
       </group>
     </page>
-    <page name="Temperaturen" visible="false">
-      <info format="%.1f °C">
-        <label><icon name="temp_outside"/>Aussen</label>
-        <address transform="DPT:9.001" variant="">13/6/1</address>
-      </info>
-      <info format="%.1f °C">
-        <label><icon name="temp_frost"/>Kühlbox</label>
-        <address transform="DPT:9.001" variant="">13/5/4</address>
-      </info>
-      <info format="%.1f °C">
-        <label><icon name="temp_inside"/>Innen</label>
-        <address transform="DPT:9.001" variant="">14/1/6</address>
-      </info>
+    <page name="Büro" visible="false">
+      <group name="Licht mit Icons">
+        <layout colspan="12"/>
+        <group nowidget="true">
+          <layout colspan="12"/>
+          <switch mapping="OnOff_Licht" styling="GreyGrey">
+            <layout colspan="3"/>
+            <label>Strahler</label>
+            <address transform="DPT:1.001" variant="">13/0/0</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey">
+            <layout colspan="3"/>
+            <label>Spot</label>
+            <address transform="DPT:1.001" variant="">13/0/1</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey">
+            <layout colspan="3"/>
+            <label>Schrank</label>
+            <address transform="DPT:1.001" variant="">13/0/2</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey">
+            <layout colspan="3"/>
+            <label>Stehlampe</label>
+            <address transform="DPT:1.001" variant="">13/0/24</address>
+          </switch>
+        </group>
+      </group>
+    </page>
+    <page name="Heizung" type="2d" backdrop="demo/media/demo_2d_backdrop_red_pot.svg" visible="false">
+      <slide format="%.0f" class="noborder">
+        <layout x="150px" y="270px" width="500px"/>
+        <label>Level</label>
+        <address transform="DPT:5.001">12/7/52</address>
+      </slide>
     </page>
   </page>
 </pages>
