@@ -10,6 +10,8 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
+.. ###END-WIDGET-DESCRIPTION###
+
 The switch widget shows two states (e.g. ON and OFF) and can toggle between them.
 
 .. uml::
@@ -117,8 +119,6 @@ Of course it is possible to combine both at the same time:
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
         <address transform="DPT:1.001" mode="read">1/4/0</address>
     </switch>
-
-.. ###END-WIDGET-DESCRIPTION###
 
 Settings
 --------

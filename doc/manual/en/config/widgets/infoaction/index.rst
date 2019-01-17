@@ -10,14 +10,14 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
+.. ###END-WIDGET-DESCRIPTION###
+
 The infoaction widget is a combination of an info/text widget and an "action"-widget, e.g. switch or trigger.
 
 Use case: if you have a group of lights, you can show the number of lights currently switched on
 and control the whole group in one widget.
 
 .. figure:: _static/infoaction_lights.png
-
-.. ###END-WIDGET-DESCRIPTION###
 
 Settings
 --------
@@ -97,46 +97,6 @@ for the InfoAction widget.
     XML-editor to UTF-8 mode!
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
-
-.. widget-example::
-
-   <settings>
-     <caption>InfoAction example</caption>
-     <screenshot name="infoaction_lights">
-       <data address="0/0/0">4</data>
-       <data address="0/0/1">1</data>
-     </screenshot>
-   </settings>
-   <meta>
-    <mappings>
-      <mapping name="OnOff">
-        <entry value="0">Off</entry>
-        <entry value="1">On</entry>
-      </mapping>
-    </mappings>
-    <stylings>
-      <styling name="GreyGreen">
-        <entry value="0">grey</entry>
-        <entry value="1">green</entry>
-      </styling>
-    </stylings>
-   </meta>
-   <infoaction>
-     <layout colspan="4"/>
-     <label>Lights</label>
-     <widgetinfo>
-       <info>
-         <address transform="DPT:9.001">0/0/0</address>
-       </info>
-     </widgetinfo>
-     <widgetaction>
-       <switch mapping="OnOff" styling="GreyGreen">
-         <layout colspan="3" />
-         <address transform="DPT:1.001" mode="readwrite">0/0/1</address>
-       </switch>
-     </widgetaction>
-   </infoaction>
-    
 
 .. ###END-WIDGET-EXAMPLES###
 
