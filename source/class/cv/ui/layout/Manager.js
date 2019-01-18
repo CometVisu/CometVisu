@@ -255,20 +255,24 @@ qx.Class.define('cv.ui.layout.Manager', {
     },
 
     __applyWidthClass: function (elem, widthClassSuffix) {
-      switch (this.LAYOUT_MODE) {
-        case 'GRID':
-          // remove all old width related classes
-          elem.classList.forEach(function (cssClass) {
-            if (cssClass.startsWith('width-')) {
-              elem.classList.remove(cssClass);
-            }
-          }, this);
-          qx.bom.element.Class.add(elem, 'width-' + parseInt(widthClassSuffix));
-          break;
+      if (widthClassSuffix === 'auto') {
+        qx.bom.element.Style.set(elem, 'width', widthClassSuffix);
+      } else {
+        switch (this.LAYOUT_MODE) {
+          case 'GRID':
+            // remove all old width related classes
+            elem.classList.forEach(function (cssClass) {
+              if (cssClass.startsWith('width-')) {
+                elem.classList.remove(cssClass);
+              }
+            }, this);
+            qx.bom.element.Class.add(elem, 'width-' + parseInt(widthClassSuffix));
+            break;
 
-        default:
-          qx.bom.element.Style.set(elem, 'width', widthClassSuffix);
-          break;
+          default:
+            qx.bom.element.Style.set(elem, 'width', widthClassSuffix);
+            break;
+        }
       }
     }
   }
