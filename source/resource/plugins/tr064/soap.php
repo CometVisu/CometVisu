@@ -24,6 +24,12 @@
 
 include '../../config/hidden.php';
 
+if( !class_exists('SoapClient') )
+{
+  header("HTTP/1.0 501 Not Implemented");
+  echo 'PHP class "SoapClient" does not exists - please check server setup.';
+  die();
+}
 $TR064device = $hidden[$_GET['device']];
 if( !$TR064device )
 {
