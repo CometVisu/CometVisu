@@ -310,11 +310,13 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
         return msg.id === index;
       });
       if (message && message.deletable === true) {
-        this._messages.removeAt(index);
+        this._messages.remove(message);
         if (message.severity === this.getGlobalSeverity()) {
           this._updateHighestSeverity();
         }
+        return true;
       }
+      return false;
     },
 
     performAction: function(messageId, ev) {
