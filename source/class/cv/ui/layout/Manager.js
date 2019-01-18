@@ -178,6 +178,16 @@ qx.Class.define('cv.ui.layout.Manager', {
       return 0;
     },
 
+    getLayoutSuffix: function (width) {
+      var suffix = '';
+      if (width <= cv.Config.maxScreenWidthColspanS) {
+        suffix = '-s';
+      } else if (width <= cv.Config.maxScreenWidthColspanM) {
+        suffix = '-m';
+      }
+      return suffix;
+    },
+
     /**
      * applies the correct width to the widgets corresponding to the given colspan setting
      *

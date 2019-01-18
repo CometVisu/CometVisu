@@ -161,12 +161,11 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         qx.bom.Selector.query('.widget_container', page.getDomElement()).forEach(function (widgetContainer) {
           var widget = cv.ui.structure.WidgetFactory.getInstanceById(widgetContainer.id);
           var value;
-          if (widget.getLayout()) {
-            var
-              layout = widget.getLayout(),
-              // this assumes that a .widget_container has only one child and this
-              // is the .widget itself
-              style = widgetContainer.children[0].style;
+          var layout = widget.getResponsiveLayout();
+          if (layout) {
+            // this assumes that a .widget_container has only one child and this
+            // is the .widget itself
+            var style = widgetContainer.children[0].style;
 
             if ('x' in layout) {
               value = layout.x.match(cssPosRegEx);

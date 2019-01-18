@@ -62,10 +62,34 @@
         <xsd:documentation xml:lang="de">Horizontale Position des Widgets auf 2D Seiten.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="x-s" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Horizontal position of the widget for 2D pages on a small screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x-m" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Horizontal position of the widget for 2D pages on a medium screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="y" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Vertical position of the widget for 2D pages.</xsd:documentation>
         <xsd:documentation xml:lang="de">Vertikale Position des Widgets auf 2D Seiten.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="y-s" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Vertical position of the widget for 2D pages on a small screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="y-m" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Vertical position of the widget for 2D pages on a medium screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="z" type="xsd:string" use="optional">
@@ -78,6 +102,18 @@
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Width for the widget for 2D pages.</xsd:documentation>
         <xsd:documentation xml:lang="de">Breite des Widgets auf 2D Seiten.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="width-s" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width for the widget for 2D pages on a small screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="width-m" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width for the widget for 2D pages on a medium screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
