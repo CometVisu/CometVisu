@@ -367,9 +367,9 @@ qx.Class.define("cv.parser.MetaParser", {
               // templates can only have one single root element, so we wrap it here
               '<root>' + qx.bom.element.Attribute.get(elem, 'html') + '</root>'
             );
-            check();
           }
         }, this);
+        check();
       }
     }
   }
