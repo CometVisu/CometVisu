@@ -306,8 +306,10 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
         ev.stopPropagation();
         ev.preventDefault();
       }
-      var message = this._messages.getItem(index);
-      if (message.deletable === true) {
+      var message = this._messages.toArray().find(function (msg) {
+        return msg.id === index;
+      });
+      if (message && message.deletable === true) {
         this._messages.removeAt(index);
         if (message.severity === this.getGlobalSeverity()) {
           this._updateHighestSeverity();
