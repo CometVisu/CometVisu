@@ -107,7 +107,6 @@
     <templates>
       <template name="Heizung">
         <group name="Heizung">
-          {{{ layout }}}
           <slide min="0" max="100" format="%d%%" flavour="sodium">
             <label><icon name="sani_heating"/>Heizung</label>
             <address transform="DPT:5.001" variant="">{{ valve_control_address }}</address>
@@ -120,7 +119,11 @@
             <label><icon name="temp_control"/>Soll</label>
             <address transform="DPT:9.001" variant="">{{ target_temp_address }}</address>
           </infotrigger>
-          {{{ additional_content }}}
+          <!-- {{#modus_address}}-->
+          <multitrigger class="one-line" button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Stand by" button3value="standby" button4label="Economy" button4value="economy" showstatus="true" mapping="KonnexHVAC">
+            <address transform="DPT:20.102" mode="readwrite">{{ modus_address }}</address>
+          </multitrigger>
+          <!-- {{/modus_address}}-->
         </group>
       </template>
       <template name="Jalousien">
@@ -520,11 +523,7 @@
           <value name="valve_control_address">13/0/38</value>
           <value name="current_temp_address">13/0/14</value>
           <value name="target_temp_address">13/0/39</value>
-          <value name="additional_content">
-            <multitrigger class="one-line" button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Stand by" button3value="standby" button4label="Economy" button4value="economy" showstatus="true" mapping="KonnexHVAC">
-              <address transform="DPT:20.102" mode="readwrite">12/7/13</address>
-            </multitrigger>
-          </value>
+          <value name="modus_address">12/7/13</value>
         </template>
         <group name="Licht">
           <layout colspan="6"/>
