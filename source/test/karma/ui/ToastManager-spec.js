@@ -86,14 +86,16 @@ describe('test the NotificationCenter', function () {
     expect(center.getMessages().getLength()).toBe(5);
     expect(center.getMessages().getItem(0).title).toBe(5);
 
-    // delete a message by index
-    center.deleteMessage(0);
+    message = center.getMessages().getItem(0);
+    // delete a message by id
+    center.deleteMessage(message.id);
     expect(center.getMessages().getLength()).toBe(4);
     expect(center.getMessages().getItem(0).title).toBe(6);
 
     // delete a message by index which is not deletable
-    center.getMessages().getItem(0).deletable = false;
-    center.deleteMessage(0);
+    message = center.getMessages().getItem(0);
+    message.deletable = false;
+    center.deleteMessage(message.id);
     expect(center.getMessages().getLength()).toBe(4);
     expect(center.getMessages().getItem(0).title).toBe(6);
   });
