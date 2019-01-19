@@ -275,7 +275,7 @@
   "name": "Switch"
   "screenshot":
     "de": "/de/latest/manual/_images/switch.png"
-    "en": "/en/latest/manual/_images/switch_example_on.png"
+    "en": "/en/latest/manual/_images/switch.png"
 - "description":
     "de": "Fügt der Visu ein statisches Textfeld hinzu."
     "en": "Adds a static text field to the visu."

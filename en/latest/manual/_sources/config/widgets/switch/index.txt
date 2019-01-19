@@ -15,6 +15,112 @@ The switch widget shows two states (e.g. ON and OFF) and can toggle between them
 
 .. ###END-WIDGET-DESCRIPTION###
 
+.. uml::
+    :align: center
+
+    title Switch
+    state On
+    state Off
+    On --> Off : send off_value at click
+    Off --> On : send on_value at click
+
+.. widget-example::
+    :hide-source: true
+
+        <settings>
+            <screenshot name="switch">
+                <data address="1/4/0">0</data>
+            </screenshot>
+        </settings>
+        <switch on_value="1" off_value="0">
+            <label>Channel 1</label>
+            <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+            <address transform="DPT:1.001" mode="read">1/4/0</address>
+        </switch>
+
+With a :ref:`mapping <mapping>` it is possible to replace the 0/1 in the
+switch with custom texts or icons (e.g. On/Off instead of 0/1 or icons
+for window contacs, alarms, lights, etc.).
+The CometVisu comes with an extensive collecton of icons for many different
+usecases. Further information can be found at the :ref:`mapping documentation <mapping>`.
+
+.. widget-example::
+    :hide-source: true
+
+        <settings>
+            <screenshot name="switch_mapping">
+                <data address="1/4/0">0</data>
+            </screenshot>
+        </settings>
+        <meta>
+            <mappings>
+                <mapping name="OnOff">
+                    <entry value="0">Off</entry>
+                    <entry value="1">On</entry>
+                </mapping>
+            </mappings>
+        </meta>
+        <switch on_value="1" off_value="0" mapping="OnOff">
+            <label>Kanal 1</label>
+            <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+            <address transform="DPT:1.001" mode="read">1/4/0</address>
+        </switch>
+
+and / or by the use of a :ref:`styling <styling>` it is possible to set
+colors (e.g. On in red and Off in green)
+
+.. widget-example::
+    :hide-source: true
+
+        <settings>
+            <screenshot name="switch_styling">
+                <data address="1/4/0">0</data>
+            </screenshot>
+        </settings>
+        <meta>
+            <stylings>
+                <styling name="RedGreen">
+                    <entry value="1">red</entry>
+                    <entry value="0">green</entry>
+                </styling>
+            </stylings>
+        </meta>
+        <switch on_value="1" off_value="0" styling="RedGreen">
+            <label>Kanal 1</label>
+            <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+            <address transform="DPT:1.001" mode="read">1/4/0</address>
+        </switch>
+
+Of course it is possible to combine both at the same time:
+
+.. widget-example::
+    :hide-source: true
+
+    <settings>
+        <screenshot name="switch_mapping_styling">
+            <data address="1/4/0">0</data>
+        </screenshot>
+    </settings>
+    <meta>
+        <mappings>
+            <mapping name="OnOff">
+                <entry value="0">Off</entry>
+                <entry value="1">On</entry>
+            </mapping>
+        </mappings>
+        <stylings>
+            <styling name="RedGreen">
+                <entry value="1">red</entry>
+                <entry value="0">green</entry>
+            </styling>
+        </stylings>
+    </meta>
+    <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen">
+        <label>Kanal 1</label>
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+        <address transform="DPT:1.001" mode="read">1/4/0</address>
+    </switch>
+
 Settings
 --------
 

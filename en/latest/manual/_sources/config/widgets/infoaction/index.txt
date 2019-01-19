@@ -18,6 +18,8 @@ and control the whole group in one widget.
 
 .. ###END-WIDGET-DESCRIPTION###
 
+.. figure:: _static/infoaction_lights.png
+
 Settings
 --------
 
