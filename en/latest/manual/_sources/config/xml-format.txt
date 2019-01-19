@@ -155,6 +155,13 @@ Icons
         ...
     </meta>
 
+.. HINT::
+
+    If the icons have been uploaded with the :doc:`Manager <manager>` they are stored in the path
+    ``resource/config/media/``. An uploaded icon with the filename ``logo.svg`` kan be included with the following
+    line: ``<icon-definition name="Logo" uri="resource/config/media/logo.svg"`.
+    The path ``resource/config/media/`` is valid for CometVisu versions >=0.11.x. For versions <=0.10.x the path
+    ``config/media/`` is valid.
 
 .. _xml-format_statusbar:
 
