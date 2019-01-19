@@ -24,6 +24,7 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
+/* istanbul ignore next */
 qx.Class.define('cv.io.Mockup', {
   extend: qx.core.Object,
 
