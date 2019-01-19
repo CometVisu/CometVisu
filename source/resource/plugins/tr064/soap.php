@@ -78,10 +78,9 @@ if( $TR064device['selfsigned'] == 'true' )
 {
   $options['stream_context'] = stream_context_create( array (
     'ssl' => [
-      'peer_name'=> $TR064_uri,
       'verify_peer' => false,
-      'verify_peer_name' => false,
-      'allow_self_signed' => true
+      'allow_self_signed' => true,
+      'verify_peer_name' => false
     ]
   ) );
 }
