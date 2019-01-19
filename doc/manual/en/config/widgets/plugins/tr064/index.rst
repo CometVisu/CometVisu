@@ -129,7 +129,7 @@ screenshot is:
         <label>calllist</label>
     </calllist>
 
-Prequesites / setup of the server
+Perquisites / setup of the server
 ---------------------------------
 
 To be able to use the plugin the server must support PHP with the extension
@@ -151,18 +151,33 @@ The user itself needs the rights to access the call list:
 
 .. figure:: _static/fritzbox_user.png
 
-That the plugin can access this user account the credentials must be given.
-This can be done in the CometVisu manager in the area "hidden configuration"[#f2]_:
+For the plugin to be able to use this user its credentials must be given. This
+uses the :ref:`"hidden configuration" <hidden-config>` infrastructure.
+This can be done in the CometVisu manager in the area "hidden configuration"[#f2]_.
 
 .. figure:: _static/hidden_config_en.png
 
 The used name must be given in the calllist widget in the attribute ``device``.
 
-Apart from the manager it is possible to edit the file ``config/hidden.php`` 
+The key and value pairs of the hidden configuration" are:
+
++-----------+-----------------------------------------------------+-------------------------------+
+|Key        |Value                                                |Example                        |
++===========+=====================================================+===============================+
+|uri        |The URI to access the TR-064 interface               |``https://192.168.0.1:49443/`` |
++-----------+-----------------------------------------------------+-------------------------------+
+|user       |The username for the TR-064 access                   |``CometVisuTestUser``          |
++-----------+-----------------------------------------------------+-------------------------------+
+|pass       |The password for the TR-64 access                    |``pa3bvNM4j9z4``               |
++-----------+-----------------------------------------------------+-------------------------------+
+|selfsigned |Allow self signed certificates when ``true``         |``false``                      |
++-----------+-----------------------------------------------------+-------------------------------+
+
+Apart from the manager it is possible to edit the file ``config/hidden.php``
 manually and add a line like::
 
     <?php
-    // File for configuraions that shouldn't be shared with the user
+    // File for configurations that shouldn't be shared with the user
     $hidden = array(
       'fritzbox' => array('uri' => 'https://192.168.0.1:49443/', 'user' => 'CometVisuTestUser', 'pass' => 'pa3bvNM4j9z4')
     );
@@ -173,11 +188,11 @@ manually and add a line like::
 .. [#f1] In the simple view some things might be not visible. The expert view
          will show all entries.
 
-.. [#f2] The "hidden configuration" are configuraion datas that are not 
+.. [#f2] The "hidden configuration" is configuration data that are not
          transmitted to the client any stay on the server. So there information
          is "hidden" to the user. On the server it is still readable in clear
          text. This is also true for the manager.
          
          This by itself doesn't create a secure environment, but it supports
-         building one. There at least the manager must be inaccessable to the
+         building one. There at least the manager must be inaccessible to the
          user.

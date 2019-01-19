@@ -18,7 +18,7 @@
 
 /**
  * This PHP does the SOAP request required for the TR-064 protocol.
- * To hide the necessary credentials from the user they are fetched throug
+ * To hide the necessary credentials from the user they are fetched through
  * a PHP based config file.
  */
 
@@ -59,9 +59,10 @@ if( !$TR064_pass )
   die();
 }
 
-header('Content-type: application/json');
-
 $debug = $_GET['debug']=='true';
+
+if( !$debug )
+  header('Content-type: application/json');
 
 $options = array(
   'exceptions'    => 0,
@@ -72,6 +73,18 @@ $options = array(
   'authentication'=> SOAP_AUTHENTICATION_DIGEST,
   'uri'           => $_GET['uri']
 );
+
+if( $TR064device['selfsigned'] == 'true' )
+{
+  $options['stream_context'] = stream_context_create( array (
+    'ssl' => [
+      'peer_name'=> $TR064_uri,
+      'verify_peer' => false,
+      'verify_peer_name' => false,
+      'allow_self_signed' => true
+    ]
+  ) );
+}
 
 $client = new SoapClient( null, $options );
 
@@ -92,12 +105,13 @@ echo json_encode($result);
 
 if( $debug )
 {
-  echo "\n\n";
+  echo "\n<pre>\n";
   var_dump( $result );
   echo "Request header:\n*****\n"  . $client->__getLastRequestHeaders()  . "\n*****\n\n";
   echo "Request:\n*****\n"         . $client->__getLastRequest()         . "\n*****\n\n";
   echo "Response header:\n*****\n" . $client->__getLastResponseHeaders() . "\n*****\n\n";
   echo "Response:\n*****\n"        . $client->__getLastResponse()        . "\n*****\n";
+  echo "</pre>\n";
 }
 
 ?>
