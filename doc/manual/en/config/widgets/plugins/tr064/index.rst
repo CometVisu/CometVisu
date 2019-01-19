@@ -151,7 +151,7 @@ The user itself needs the rights to access the call list:
 
 .. figure:: _static/fritzbox_user.png
 
-The plugins needs to know the credentials to be able to use this user. This
+The plugin needs to know the credentials to be able to use this user. This
 uses the :ref:`"hidden configuration" <hidden-config>` infrastructure which
 can be accessed by the :ref:`CometVisu manager <manager>` [#f2]_.
 
