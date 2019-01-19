@@ -161,6 +161,13 @@ Icons
         ...
     </meta>
 
+.. HINT::
+
+    Wenn die Icons über den :doc:`Manager <manager>` hochgeladen wurden, befinden sie sich im Pfad
+    ``resource/config/media/``. Ein hochgeladenes Icon mit dem Dateiname ``logo.svg`` kann demnach mit folgender
+    Zeile eingebunden werden: ``<icon-definition name="Logo" uri="resource/config/media/logo.svg"`.
+    Der Pfad ``resource/config/media/`` gilt für CometVisu Versionen >=0.11.x. Für Versionen <=0.10.x gilt der Pfad
+    ``config/media/``.
 
 .. _xml-format_statusbar:
 
