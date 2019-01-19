@@ -129,8 +129,8 @@ screenshot is:
         <label>calllist</label>
     </calllist>
 
-Perquisites / setup of the server
----------------------------------
+Prerequisites / setup of the server
+-----------------------------------
 
 To be able to use the plugin the server must support PHP with the extension
 of the SoapClient package.
@@ -151,9 +151,9 @@ The user itself needs the rights to access the call list:
 
 .. figure:: _static/fritzbox_user.png
 
-For the plugin to be able to use this user its credentials must be given. This
-uses the :ref:`"hidden configuration" <hidden-config>` infrastructure.
-This can be done in the CometVisu manager in the area "hidden configuration"[#f2]_.
+The plugins needs to know the credentials to be able to use this user. This
+uses the :ref:`"hidden configuration" <hidden-config>` infrastructure which
+can be accessed by the :ref:`CometVisu manager <manager>` [#f2]_.
 
 .. figure:: _static/hidden_config_en.png
 
@@ -188,7 +188,7 @@ manually and add a line like::
 .. [#f1] In the simple view some things might be not visible. The expert view
          will show all entries.
 
-.. [#f2] The "hidden configuration" is configuration data that are not
+.. [#f2] The "hidden configuration" contains configuration data that is not
          transmitted to the client any stay on the server. So there information
          is "hidden" to the user. On the server it is still readable in clear
          text. This is also true for the manager.
