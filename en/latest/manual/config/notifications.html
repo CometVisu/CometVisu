@@ -223,7 +223,7 @@ background.</p>
         <span class="nt">&lt;state-notification</span> <span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
             <span class="nt">&lt;title-template&gt;</span>Light Livingroom<span class="nt">&lt;/title-template&gt;</span>
             <span class="nt">&lt;message-template&gt;</span>switched on at {{ time }} o&#39;Clock<span class="nt">&lt;/message-template&gt;</span>
-            <span class="nt">&lt;condition&gt;</span>ON<span class="nt">&lt;/condition&gt;</span>
+            <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
             <span class="nt">&lt;addresses&gt;</span>
                 <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Light_FF_Living<span class="nt">&lt;/address&gt;</span>
             <span class="nt">&lt;/addresses&gt;</span>
@@ -233,6 +233,12 @@ background.</p>
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">The <code class="docutils literal"><span class="pre">&lt;address&gt;</span></code> elements used here are exactly the same, as they are used in the widgets.
+In the examples on this page addresses for the openHAB backend are used. An equivalent example for the default
+backend would be: <code class="docutils literal"><span class="pre">&lt;address</span> <span class="pre">transform=&quot;DPT:1.001&quot;&gt;12/0/3&lt;/address&gt;</span></code></p>
 </div>
 <p><strong>Explanation:</strong></p>
 <p>Via the <code class="docutils literal"><span class="pre">address</span></code> element (several are possible) it is specified
@@ -355,7 +361,7 @@ turned on, when it is turned off, the message is automatically deleted.</p>
         <span class="nt">&lt;state-notification</span> <span class="na">name=</span><span class="s">&quot;motion&quot;</span> <span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span> <span class="na">severity=</span><span class="s">&quot;high&quot;</span><span class="nt">&gt;</span>
             <span class="nt">&lt;title-template&gt;</span>motion alarm<span class="nt">&lt;/title-template&gt;</span>
             <span class="nt">&lt;message-template&gt;</span>motion detected: {{ address }}, {{ time }}<span class="nt">&lt;/message-template&gt;</span>
-            <span class="nt">&lt;condition&gt;</span>ON<span class="nt">&lt;/condition&gt;</span>
+            <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
             <span class="nt">&lt;addresses</span> <span class="na">address-mapping=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
                 <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Dining<span class="nt">&lt;/address&gt;</span>
                 <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Corridor<span class="nt">&lt;/address&gt;</span>
@@ -396,7 +402,7 @@ the message would have the following content:</p>
         <span class="nt">&lt;notifications&gt;</span>
             <span class="nt">&lt;state-notification</span> <span class="na">name=</span><span class="s">&quot;motion&quot;</span> <span class="na">target=</span><span class="s">&quot;speech&quot;</span><span class="nt">&gt;</span>
                 <span class="nt">&lt;message-template&gt;</span>Motion at {{ address }}<span class="nt">&lt;/message-template&gt;</span>
-                <span class="nt">&lt;condition&gt;</span>ON<span class="nt">&lt;/condition&gt;</span>
+                <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
                 <span class="nt">&lt;addresses</span> <span class="na">address-mapping=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
                     <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Dining<span class="nt">&lt;/address&gt;</span>
                     <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Corridor<span class="nt">&lt;/address&gt;</span>

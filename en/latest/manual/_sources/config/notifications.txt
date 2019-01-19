@@ -28,7 +28,7 @@ background.
             <state-notification target="notificationCenter" unique="true">
                 <title-template>Light Livingroom</title-template>
                 <message-template>switched on at {{ time }} o'Clock</message-template>
-                <condition>ON</condition>
+                <condition>1</condition>
                 <addresses>
                     <address transform="OH:switch">Light_FF_Living</address>
                 </addresses>
@@ -36,6 +36,12 @@ background.
         </notifications>
         ...
     </meta>
+
+.. HINT::
+
+    The ``<address>`` elements used here are exactly the same, as they are used in the widgets.
+    In the examples on this page addresses for the openHAB backend are used. An equivalent example for the default
+    backend would be: ``<address transform="DPT:1.001">12/0/3</address>``
 
 **Explanation:**
 
@@ -105,7 +111,7 @@ Complex example with mapping
             <state-notification name="motion" target="notificationCenter" unique="true" severity="high">
                 <title-template>motion alarm</title-template>
                 <message-template>motion detected: {{ address }}, {{ time }}</message-template>
-                <condition>ON</condition>
+                <condition>1</condition>
                 <addresses address-mapping="Motion_name">
                     <address transform="OH:switch">Motion_FF_Dining</address>
                     <address transform="OH:switch">Motion_FF_Corridor</address>
@@ -148,7 +154,7 @@ Speech
             <notifications>
                 <state-notification name="motion" target="speech">
                     <message-template>Motion at {{ address }}</message-template>
-                    <condition>ON</condition>
+                    <condition>1</condition>
                     <addresses address-mapping="Motion_name">
                         <address transform="OH:switch">Motion_FF_Dining</address>
                         <address transform="OH:switch">Motion_FF_Corridor</address>

@@ -218,7 +218,7 @@ sein, wird dies durch farbigen Hintergrund gekennzeichnet.</p>
         <span class="nt">&lt;state-notification</span> <span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
             <span class="nt">&lt;title-template&gt;</span>Wohnzimmerlicht<span class="nt">&lt;/title-template&gt;</span>
             <span class="nt">&lt;message-template&gt;</span>eingeschaltet um {{ time }} Uhr<span class="nt">&lt;/message-template&gt;</span>
-            <span class="nt">&lt;condition&gt;</span>ON<span class="nt">&lt;/condition&gt;</span>
+            <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
             <span class="nt">&lt;addresses&gt;</span>
                 <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Light_FF_Living<span class="nt">&lt;/address&gt;</span>
             <span class="nt">&lt;/addresses&gt;</span>
@@ -228,6 +228,12 @@ sein, wird dies durch farbigen Hintergrund gekennzeichnet.</p>
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Die <code class="docutils literal"><span class="pre">&lt;address&gt;</span></code> Einträge in den Notifications sind die gleichen, wie sich innerhalb der Widgets benutzt werden.
+In den Beispielen werden openHAB-Adressen benutzt. Ein entprechendes Beispiel für das Default-Backend wäre:
+<code class="docutils literal"><span class="pre">&lt;address</span> <span class="pre">transform=&quot;DPT:1.001&quot;&gt;12/0/3&lt;/address&gt;</span></code></p>
 </div>
 <p><strong>Erklärung:</strong></p>
 <p>Über dass <code class="docutils literal"><span class="pre">address</span></code> Element (mehrere sind möglich) wird festgelegt, dass bei eingehenden Status-Updates für diese
@@ -346,7 +352,7 @@ wenn die Lampe eingeschaltet ist, wenn sie ausgeschaltet wird, wird die Nachrich
         <span class="nt">&lt;state-notification</span> <span class="na">name=</span><span class="s">&quot;motion&quot;</span> <span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span> <span class="na">severity=</span><span class="s">&quot;high&quot;</span><span class="nt">&gt;</span>
             <span class="nt">&lt;title-template&gt;</span>Bewegungsalarm<span class="nt">&lt;/title-template&gt;</span>
             <span class="nt">&lt;message-template&gt;</span>Bewegung erkannt: {{ address }}, {{ time }}<span class="nt">&lt;/message-template&gt;</span>
-            <span class="nt">&lt;condition&gt;</span>ON<span class="nt">&lt;/condition&gt;</span>
+            <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
             <span class="nt">&lt;addresses</span> <span class="na">address-mapping=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
                 <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Dining<span class="nt">&lt;/address&gt;</span>
                 <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Corridor<span class="nt">&lt;/address&gt;</span>
@@ -385,7 +391,7 @@ folgenden Inhalt haben:</p>
         <span class="nt">&lt;notifications&gt;</span>
             <span class="nt">&lt;state-notification</span> <span class="na">name=</span><span class="s">&quot;motion&quot;</span> <span class="na">target=</span><span class="s">&quot;speech&quot;</span><span class="nt">&gt;</span>
                 <span class="nt">&lt;message-template&gt;</span>Bewegung im {{ address }}<span class="nt">&lt;/message-template&gt;</span>
-                <span class="nt">&lt;condition&gt;</span>ON<span class="nt">&lt;/condition&gt;</span>
+                <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
                 <span class="nt">&lt;addresses</span> <span class="na">address-mapping=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
                     <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Dining<span class="nt">&lt;/address&gt;</span>
                     <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Corridor<span class="nt">&lt;/address&gt;</span>
