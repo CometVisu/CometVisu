@@ -204,16 +204,6 @@
           </info>
         </widgetinfo>
       </pagejump>
-      <pagejump path="Übersicht/OG" target="Kinderzimmer" active_scope="path">
-        <layout colspan="0"/>
-        <label><icon name="scene_sleeping"/>Kinder</label>
-        <widgetinfo>
-          <info format="%d°">
-            <layout colspan="0" />
-            <address transform="DPT:9.001">14/1/1</address>
-          </info>
-        </widgetinfo>
-      </pagejump>
       <text class="vertical">
         <layout colspan="0"/>
         <label>Sonstiges</label>
