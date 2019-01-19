@@ -144,6 +144,9 @@ qx.Class.define('cv.TemplateEngine', {
           if (states[idx] === "complete") {
             this.__partQueue.remove(part);
             this.debug("successfully loaded part "+part);
+            if (part.startsWith('structure-')) {
+              qx.core.Init.getApplication().setStructureLoaded(true);
+            }
           } else {
             this.error("error loading part "+part);
           }
@@ -242,6 +245,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (cv.Config.reporting) {
         this.visu.record = qx.lang.Function.curry(cv.report.Record.getInstance().record, cv.report.Record.BACKEND).bind(cv.report.Record.getInstance());
       }
+      this.visu.showError = this._handleClientError.bind(this);
       this.visu.user = 'demo_user'; // example for setting a user
 
       // show connection state in NotificationCenter
@@ -266,6 +270,46 @@ qx.Class.define('cv.TemplateEngine', {
       }, this);
     },
 
+    _handleClientError: function (errorCode, varargs) {
+      varargs = qx.lang.Array.fromArguments(arguments, 1);
+      var notification;
+      var message = '';
+      switch (errorCode) {
+        case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
+          notification = {
+            topic: "cv.error",
+            title: qx.locale.Manager.tr('CometVisu protocol error'),
+            message:  qx.locale.Manager.tr('The backend did send an invalid response to the %1Login%2 request: missing protocol version.',
+              '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+              '</a>') + '<br/>' +
+              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
+            '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) +'</pre></div>',
+            severity: "urgent",
+            unique: true,
+            deletable: false
+          };
+          break;
+
+        case cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I:
+          notification = {
+            topic: "cv.error",
+            title: qx.locale.Manager.tr('CometVisu protocol error'),
+            message:  qx.locale.Manager.tr('The backend did send an invalid response to a %1read%2 request: Missing "i" value.',
+              '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+              '</a>') + '<br/>' +
+              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
+              '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) +'</pre></div>',
+            severity: "urgent",
+            unique: true,
+            deletable: false
+          };
+          break;
+      }
+      if (notification) {
+        cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+      }
+    },
+
     /**
      * Reset some values related to the current page
      */
@@ -279,8 +323,9 @@ qx.Class.define('cv.TemplateEngine', {
     /**
      * Read basic settings and meta-section from config document
      * @param loaded_xml {Document} XML-configuration document
+     * @param done {Function} callback that is called when the parsing has finished
      */
-    parseXML: function (loaded_xml) {
+    parseXML: function (loaded_xml, done) {
       /*
        * First, we try to get a design by url. Secondly, we try to get a predefined
        */
@@ -291,7 +336,7 @@ qx.Class.define('cv.TemplateEngine', {
       var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
       // design by url
       // design by config file
-      if (!settings.clientDesign) {
+      if (!cv.Config.clientDesign && !settings.clientDesign) {
         if (predefinedDesign) {
           settings.clientDesign = predefinedDesign;
         }
@@ -334,6 +379,11 @@ qx.Class.define('cv.TemplateEngine', {
         settings.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
       }
 
+      var globalClass = qx.bom.element.Attribute.get(pagesNode, 'class');
+      if (globalClass !== null) {
+        qx.bom.element.Class.add(qx.bom.Selector.query('body')[0], globalClass);
+      }
+
       settings.scriptsToLoad = [];
       settings.stylesToLoad = [];
       var design = cv.Config.getDesign();
@@ -365,7 +415,7 @@ qx.Class.define('cv.TemplateEngine', {
       // start with the plugins
       settings.pluginsToLoad = qx.lang.Array.append(settings.pluginsToLoad, metaParser.parsePlugins(loaded_xml));
       // and then the rest
-      metaParser.parse(loaded_xml);
+      metaParser.parse(loaded_xml, done);
       this.debug("parsed");
     },
 
@@ -492,7 +542,7 @@ qx.Class.define('cv.TemplateEngine', {
      * @param type {String} page type (text, 2d, 3d)
      */
     createPages: function (page, path, flavour, type) {
-
+      cv.parser.WidgetParser.renderTemplates(page);
       var parsedData = cv.parser.WidgetParser.parse(page, path, flavour, type);
       if (!Array.isArray(parsedData)) {
         parsedData = [parsedData];
@@ -649,7 +699,7 @@ qx.Class.define('cv.TemplateEngine', {
         speed = cv.Config.configSettings.scrollSpeed;
       }
 
-      if (cv.Config.rememberLastPage) {
+      if (cv.Config.rememberLastPage && qx.core.Environment.get("html.storage.local")) {
         localStorage.lastpage = page_id;
       }
 
@@ -672,7 +722,7 @@ qx.Class.define('cv.TemplateEngine', {
       var body = qx.bom.Selector.query("body")[0];
 
       qx.bom.Selector.query('body > *').forEach(function(elem) {
-        qx.bom.element.Style(elem, 'display', 'none');
+        qx.bom.element.Style.set(elem, 'display', 'none');
       }, this);
       qx.bom.element.Style.set(body, 'backgroundColor', "black");
 
@@ -689,7 +739,7 @@ qx.Class.define('cv.TemplateEngine', {
 
       body.appendChild(div);
 
-      var store = new qx.data.store.Json("./designs/get_designs.php");
+      var store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php"));
 
       store.addListener("loaded", function () {
         var html = "<h1>Please select design</h1>";
@@ -709,8 +759,8 @@ qx.Class.define('cv.TemplateEngine', {
           });
 
           myDiv.innerHTML = "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>";
-          myDiv.innerHTML += "<iframe src=\"designs/design_preview.html?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
-          myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\"./demo/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
+          myDiv.innerHTML += "<iframe src=\""+qx.util.ResourceManager.getInstance().toUri("designs/design_preview.html")+"?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
+          myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\""+qx.util.ResourceManager.getInstance().toUri("demo/media/arrow.png")+"\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
 
           qx.dom.Element.insertEnd(myDiv, div);
 
@@ -738,10 +788,14 @@ qx.Class.define('cv.TemplateEngine', {
           }, this);
 
           qx.event.Registration.addListener(myDiv, 'tap', function() {
+            var href = document.location.href;
+            if (document.location.hash) {
+              href = href.split('#')[0];
+            }
             if (document.location.search === "") {
-              document.location.href = document.location.href + "?design=" + element;
+              document.location.href = href + "?design=" + element;
             } else {
-              document.location.href = document.location.href + "&design=" + element;
+              document.location.href = href + "&design=" + element;
             }
           });
         });

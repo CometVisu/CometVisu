@@ -120,10 +120,14 @@ class BuildHelper(Command):
         except Exception as e:
             print(str(e))
 
-        # create config media dir
+        # create config media + backup dir
         media = os.path.join("build", "resource", "config", "media")
         if not os.path.exists(media):
             os.mkdir(media)
+
+        backup = os.path.join("build", "resource", "config", "backup")
+        if not os.path.exists(backup):
+            os.mkdir(backup)
 
     def run(self, args):
         parser = ArgumentParser(usage="%(prog)s - CometVisu build helper scrips")

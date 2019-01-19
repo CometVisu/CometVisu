@@ -3,7 +3,7 @@
 Das Speech Plugin
 =================
 
-.. api-doc:: speech
+.. api-doc:: cv.plugins.Speech
 
 Beschreibung
 ------------
@@ -75,7 +75,7 @@ XML Syntax
 ----------
 
 Alternativ kann man für das speech Plugin auch von Hand einen Eintrag in
-der :doc:`visu_config.xml <../../../xml-format>` hinzufügen.
+der :ref:`visu_config.xml <xml-format>` hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet

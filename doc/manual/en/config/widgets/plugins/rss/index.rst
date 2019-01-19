@@ -56,7 +56,7 @@ Allowed attributes in the rss-element
             <plugin name="rss" />
         </plugins>
     </meta>
-    <rss>
+    <rss src="rss.xml" header="true">
         <layout colspan="4" />
     </rss>
 
@@ -77,16 +77,15 @@ Allowed child-elements und their attributes
             <plugin name="rss" />
         </plugins>
     </meta>
-    <rss>
+    <rss src="rss.xml" header="true">
         <layout colspan="4" />
         <label>rss</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </rss>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the rss plugin.
 
 .. CAUTION::

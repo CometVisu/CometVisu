@@ -3,7 +3,8 @@
 The Include element
 ===================
 
-.. api-doc:: Include
+| **Available since version**: 0.8.0 (2012)
+| **Author**: Christian Mayer
 
 Description
 -----------
@@ -13,7 +14,7 @@ Description
 Includes other configuration snippets. Note that this is no widget shown in your visualization it just gives
 you the opportunity to split you configuration into multiple files. If you have a large configuration file
 splitting it up might help to keep track of your configuration.
-The path to the included files must be relative to the root folder (the one with the index.html).
+The path to the included files must be relative to the ``resource`` folder.
 
 **Example**
 
@@ -63,7 +64,7 @@ None.
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Include widget.
 
 .. CAUTION::

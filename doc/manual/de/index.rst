@@ -36,20 +36,16 @@ Bedienung der CometVisu
 Das Hauptmenü befindet sich in der Fußzeile und besteht normalerweise
 aus verschiedenen Links:
 
--  Link auf die Homepage des Projekts CometVisu
+-  "**CometVisu.org**" Link auf die Homepage des Projekts CometVisu
 -  "**Reload**" um die aktuelle Seite neu aufzurufen.
-
-        .. caution::
-
-            Im Editormodus gehen ohne Nachfrage alle nicht abgespeicherten Änderungen verloren!
-
 -  "**Widget Demo**": Zeigt die verschiedenen Bedienelemente und ihre
    Verwendungsmöglichkeiten auf.
 -  "**Edit**:" Wechselt in den Editor.
 -  "**Check Config**": Tool, um die Konfigurationsdatei auf syntaktische
    Fehler zu überprüfen. "config visu\_config is valid XML" bedeutet,
    dass die Konfigurationsdatei formal in Ordnung ist, darunter wird dir
-   aktuelle Konfigurationsdatei angezeigt..
+   aktuelle Konfigurationsdatei angezeigt. Sollten Fehler in der Datei
+   vorliegen, so werden diese in der Darstellung hervorgehoben.
 
 
 .. hint::
@@ -68,13 +64,13 @@ Installationen <install/update-other>`
 CometVisu-Designs
 -----------------
 
--  :doc:`Metal <config/designs/metal>` das wohl beliebteste Design
--  :doc:`Pure <config/designs/pure>`
--  :doc:`Diskreet <config/designs/diskreet>`
--  :doc:`Discreet Sand <config/designs/diskreet-sand>`
--  :doc:`Discreet Slim <config/designs/diskreet-slim>`
--  :doc:`Alaska <config/designs/alaska>`
--  :doc:`Alaska Slim <config/designs/alaska_slim>`
+-  Metal -> das wohl beliebteste Design
+-  Pure
+-  Diskreet
+-  Discreet Sand
+-  Discreet Slim
+-  Alaska
+-  Alaska Slim
 
 Es ist auch möglich eigene Design zu implementieren.
 

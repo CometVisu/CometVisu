@@ -6,7 +6,7 @@
 Das Diagram Plugin
 ==================
 
-.. api-doc:: diagram
+.. api-doc:: cv.plugins.diagram.AbstractDiagram
 
 .. TODO::
 
@@ -55,12 +55,53 @@ Erlaubte Kind-Elemente und deren Attribute
 
 .. elements-information:: diagram
 
+.. _diagram_influx:
+
+Im ``<influx>`` Element kann über das ``authentication`` Attribut auf einen entsprechenden Eintrag aus der
+:ref:`versteckten Konfiguration <hidden-config>` verwiesen werden (als Default wird als Name `influx` angenommen).
+
+Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:
+
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|Schlüssel  |Wert                                                                         |Beispiel                    |
++===========+=============================================================================+============================+
+|uri        |Die URI für den Zugriff auf die InfluxDB (optional)                          |http://localhost:8086/query |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|user       |Der Benutzername für die InfluxDB                                            |InfluxDBTestUser            |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|pass       |Das Passwort für die InfluxDB                                                |``Xsdwfw324SEs``            |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|selfsigned |Erlaube selbst signierte HTTPS Verbindung zum Server, wenn Wert ``true`` ist |``false``                   |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+
+Im ``<influx>`` Element können über ``<add>``, ``<or>`` und ``<tag>`` Elemente
+die anzuzeigenden Daten gefiltert werden.
+
+
+.. code-block:: xml
+
+    <diagram width="600" height="300" series="fullday" period="8">
+      <influx field="Val" fillMissing="linear" style="lines" fill="true" measurement="timeseries_db/KNX_LINE1" authentication="influx">
+        <and>
+          <tag key="PA" operator="=" value="1.2.3"/>
+          <or>
+            <tag key="GA" operator="=" value="4/2/0"/>
+            <tag key="GA" operator="=" value="4/2/1"/>
+          </or>
+        </and>
+      </influx>
+      <rrd datasourceIndex="0" consolidationFunction="AVERAGE" fill="true">26.F25EE7000000_hum</rrd>
+    </diagram>
+
+.. figure:: _static/Diagram_influx_editor.png
+
+   Beispiel Influx-Datenquelle mit Filtern
 
 XML Syntax minimal
 ------------------
 
 Alternativ kann man für das Diagram-Widget auch von Hand einen Eintrag in
-der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
+der :ref:`visu_config.xml <xml-format>` hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet

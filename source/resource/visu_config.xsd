@@ -8,7 +8,7 @@
       <xsd:documentation xml:lang="de">Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends oder der Item-Name beim openHAB-Backend.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:string">
-      <xsd:pattern value="([0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|[A-Za-z][A-Za-z0-9_\-\.:]*)" />
+      <xsd:pattern value="([0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:]*)\s*\}{0,3}" />
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -248,17 +248,6 @@
     </xsd:annotation>
   </xsd:attribute>
 
-  <xsd:attribute name="consolidationFunction">
-      <xsd:simpleType>
-          <xsd:restriction base="xsd:string">
-              <xsd:enumeration value="AVERAGE" />
-              <xsd:enumeration value="LAST" />
-              <xsd:enumeration value="MIN" />
-              <xsd:enumeration value="MAX" />
-          </xsd:restriction>
-      </xsd:simpleType>
-  </xsd:attribute>
-  
   <xsd:attribute name="align">
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
@@ -448,6 +437,13 @@
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
+      <xsd:attribute name="class" type="xsd:string" use="optional">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">CSS class that will be added to the document body.</xsd:documentation>
+          <xsd:documentation xml:lang="de">CSS Klasse, die dem body-Element des Dokuments hinzugefügt wird. </xsd:documentation>
+          <xsd:appinfo>level:expert</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:attribute>
     </xsd:complexType>
   </xsd:element>
 
@@ -459,7 +455,51 @@
       <xsd:element name="stylings" type="stylings" />
       <xsd:element name="statusbar" type="statusbar" />
       <xsd:element name="notifications" type="notifications" />
+      <xsd:element name="files" type="files" />
+      <xsd:element name="templates" type="templates" />
     </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="files">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="file" type="file" />
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="file">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="type" use="required">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The type of the file to load</xsd:documentation>
+            <xsd:documentation xml:lang="de">Der Dateityp der zu ladenden Datei</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="css" />
+              <xsd:enumeration value="js" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="content" use="optional">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Describes the content provided by the file to load. Important to determine the loading order of Javascript files</xsd:documentation>
+          <xsd:documentation xml:lang="de">Beschreibt den Inhalt der zu ladenden Datei. Dies ist wichtig für die Ladereihenfolge der Dateien</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="plugin">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Contains a new Widget.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Enthält ein neues Widget</xsd:documentation>
+              </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="js" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
   </xsd:complexType>
 
   <xsd:complexType name="plugins">
@@ -474,22 +514,24 @@
 
   <xsd:group name="AvailablePlugins">
     <xsd:choice>
+      <xsd:element name="calendarlist" type="calendarlist" />
       <xsd:element name="clock" type="clock" />
       <xsd:element name="colorchooser" type="colorchooser" />
-      <xsd:element name="diagram_info" type="diagram_info" />
       <xsd:element name="diagram" type="diagram" />
+      <xsd:element name="diagram_info" type="diagram_info" />
+      <xsd:element name="gauge" type="gauge" />
+      <xsd:element name="infoaction" type="infoaction" />
       <xsd:element name="openweathermap" type="openweathermap" />
       <xsd:element name="powerspectrum" type="powerspectrum" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
+      <xsd:element name="speech" type="speech" />
       <xsd:element name="strftime" type="strftime" />
       <xsd:element name="svg" type="svg" />
-      <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="timeout" type="timeout" />
-      <xsd:element name="gauge" type="gauge" />
-      <xsd:element name="calendarlist" type="calendarlist" />
-      <xsd:element name="infoaction" type="infoaction" />
-      <xsd:element name="speech" type="speech" />
+      <xsd:element name="calllist" type="calllist" />
+      <xsd:element name="upnpcontroller" type="upnpcontroller" />
+      <xsd:element name="link" type="link" />
     </xsd:choice>
   </xsd:group>
 
@@ -653,6 +695,34 @@
     </xsd:attribute>
   </xsd:complexType>
 
+  <xsd:complexType name="templates">
+    <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+      <xsd:element name="template">
+        <xsd:complexType>
+          <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="page" type="page" />
+            <xsd:element name="group" type="group" />
+            <xsd:element name="navbar" type="navbar" />
+            <xsd:group ref="Widgets"/>
+            <xsd:group ref="AvailablePlugins"/>
+          </xsd:choice>
+          <xsd:attribute name="name" type="xsd:string" use="required">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Name of the template definition</xsd:documentation>
+              <xsd:documentation xml:lang="de">Name der Template-Definition</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="ref" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Load template from this location</xsd:documentation>
+              <xsd:documentation xml:lang="de">Template von diesem Link laden</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
   <xsd:complexType name="addresses">
     <xsd:sequence minOccurs="1" maxOccurs="unbounded">
       <xsd:element name="address" type="address" />
@@ -671,6 +741,26 @@
         <xsd:element name="navbar" type="navbar" />
         <xsd:group ref="Widgets"/>
         <xsd:group ref="AvailablePlugins"/>
+        <xsd:element name="template">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="value">
+                <xsd:complexType mixed="true">
+                  <xsd:sequence>
+                    <xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                  <xsd:attribute name="name" type="xsd:string" use="required"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string" use="required">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Name of the template definition to be used</xsd:documentation>
+                <xsd:documentation xml:lang="de">Name der Template-Definition die hier benutzt werden soll</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
+          </xsd:complexType>
+        </xsd:element>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="required">
@@ -995,10 +1085,17 @@
       <xsd:element name="wgplugin_info" type="wgplugin_info"/>
       <xsd:element name="mobilemenu" type="mobilemenu"/>
       <xsd:element name="notificationcenterbadge" type="notificationcenterbadge"/>
+      <xsd:element name="custom" type="custom"/>
     </xsd:choice>
   </xsd:group>
 
   <!-- more fun part - all widgets - if you add a new widget, you need to define it here -->
+
+  <xsd:complexType name="custom" mixed="true">
+    <xsd:sequence>
+      <xsd:any processContents="lax"/>
+    </xsd:sequence>
+  </xsd:complexType>
 
   <xsd:complexType name="text">
     <xsd:sequence>
@@ -1547,6 +1644,7 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="axis" type="axis" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="influx" type="influx" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute name="width" type="dimension" use="optional" />
     <xsd:attribute name="height" type="dimension" use="optional" />
@@ -1639,6 +1737,7 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="axis" type="axis" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="influx" type="influx" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute ref="format" use="optional" />
@@ -1851,6 +1950,25 @@
     <xsd:attribute name="debug" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
+  <xsd:complexType name="link">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="class" type="xsd:string"/>
+    <xsd:attribute name="text" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">The link text.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Der Link Text.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="href" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">URL of the link.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Die URL des Links.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
   <xsd:complexType name="timeout">
     <xsd:attribute name="time" type="xsd:string" use="optional" >
       <xsd:annotation>
@@ -1860,6 +1978,117 @@
     </xsd:attribute>
     <xsd:attribute ref="target" use="required" />
     <xsd:attribute name="debug" type="xsd:boolean" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="calllist">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="device" type="xsd:string" use="required" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID/Name of the device as used in the hidden configuration.</xsd:documentation>
+        <xsd:documentation xml:lang="de">ID/Name für das Gerät aus der versteckten Konfiguration.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="max" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximum numer of entries to fetch from the router.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximale Anzahl der vom Router zu ladenden Einträge.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="columns" type="xsd:string" use="optional">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">By semicolon separated list of column types
+            (allowed types: caller, date, name, nameOrCaller, tam, type)</xsd:documentation>
+          <xsd:documentation xml:lang="de">Durch Strichpunkt getrennte Liste mit Spaltentypen
+            (mögliche Spalten: caller, date, name, nameOrCaller, tam, type)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+    <xsd:attribute name="TAM" type="xsd:string" use="optional">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Icon for telephone answering machine.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Icon für Anrufbeantworter.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+    <xsd:attribute name="TAMColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="TAMwait" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for waiting for telephone answering machine.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für Warten auf Anrufbeantworter.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="TAMwaitColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="TAMplay" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for playing the telephone answering machine.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für Anrufbeantworter abspielen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="TAMplayColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="TAMstop" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for stopping the telephone answering machine.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für Anrufbeantworter Stopp.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="TAMstopColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeIncoming" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for incoming call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für eingehenden Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeIncomingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeMissed" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for missed call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für verpassten Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeMissedColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeOutgoing" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for outgoing call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für abgehenden Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeOutgoingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeActiveIncoming" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for active incoming call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für aktiven, eingehenden Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeActiveIncomingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeRejectedIncoming" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for rejected incoming call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für abgelehnten, eingehenden Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeRejectedIncomingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeActiveOutgoing" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for active outgoing call.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für aktiven, abgehenden Anruf.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeActiveOutgoingColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="typeUnknown" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon for unknown call type.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon für unbekannten Anruftyp.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="typeUnknownColor" type="xsd:string" use="optional" />
+    <xsd:attribute name="refresh" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Sets the update rate for the call list in seconds</xsd:documentation>
+        <xsd:documentation xml:lang="de">Definiert die Aktualisierungsrate der Anrufliste in Sekunden</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="break" />
@@ -1979,11 +2208,19 @@
             <xsd:documentation xml:lang="de">Im Falle mehrerer Datenquellen in einer RRD-Datei kann hier der Index der Datenquelle angegeben werden, die angezeigt werden soll. Um den richtigen Index herauszufinden, kann "rrdtool info" verwendet werden.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
-        <xsd:attribute ref="consolidationFunction" use="optional" default="AVERAGE" >
+        <xsd:attribute name="consolidationFunction" use="optional" default="AVERAGE" >
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Choose one of the consolidation functions of the RRDTool (see http://rrdtool.org).</xsd:documentation>
             <xsd:documentation xml:lang="de">Auswählen einer der verfügbaren Consolidation Functions des RRDTools (http://rrdtool.org).</xsd:documentation>
           </xsd:annotation>
+          <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="AVERAGE" />
+                  <xsd:enumeration value="LAST" />
+                  <xsd:enumeration value="MIN" />
+                  <xsd:enumeration value="MAX" />
+              </xsd:restriction>
+          </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute name="resolution" type="xsd:integer" use="optional">
           <xsd:annotation>
@@ -2000,7 +2237,140 @@
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
-  
+
+  <xsd:complexType name="tagInflux">
+    <xsd:attribute name="key" type="xsd:string" />
+    <xsd:attribute name="operator">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="=" />
+          <xsd:enumeration value="!=" />
+          <xsd:enumeration value="&lt;" />
+          <xsd:enumeration value="&lt;=" />
+          <xsd:enumeration value="&gt;" />
+          <xsd:enumeration value="&gt;=" />
+          <xsd:enumeration value="=~" />
+          <xsd:enumeration value="!~" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="value" type="xsd:string" />
+  </xsd:complexType>
+
+  <xsd:complexType name="tagAndOrInflux">
+    <xsd:choice maxOccurs="unbounded">
+      <xsd:element name="tag" type="tagInflux" maxOccurs="unbounded"/>
+      <xsd:element name="and" type="tagAndOrInflux" maxOccurs="unbounded"/>
+      <xsd:element name="or" type="tagAndOrInflux" maxOccurs="unbounded"/>
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="influx">
+    <xsd:choice minOccurs="0" maxOccurs="1">
+      <xsd:element name="tag" type="tagInflux" />
+      <xsd:element name="and" type="tagAndOrInflux" />
+      <xsd:element name="or" type="tagAndOrInflux" />
+    </xsd:choice>
+    <xsd:attribute name="measurement" type="xsd:string" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Selection of the database and measurement (example: timeseries_db/KNX_LINE1)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Auswahl der Datenbank und des Measurement (Beispiel: timeseries_db/KNX_LINE1)</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="yaxis" type="xsd:string" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Assigns the InfluxDB-data to a y-axis</xsd:documentation>
+        <xsd:documentation xml:lang="de">Weist die InfluxDB-Daten einer y-Achse zu</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="color" type="xsd:string" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the color of the data-line in the graph</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Farbe der Diagrammlinie fest</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="label" type="xsd:string" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the label of the data-series in the legend</xsd:documentation>
+        <xsd:documentation xml:lang="de">Defininiert den Namen der Datenreihe in der Legende</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="scaling" type="xsd:decimal" />
+    <xsd:attribute name="steps" type="xsd:boolean" />
+    <xsd:attribute name="fill" type="xsd:boolean" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Fill the space below the data-series or bar</xsd:documentation>
+        <xsd:documentation xml:lang="de">Füllt den Bereich unterhalb der Datenreihe bzw. Säule</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="style" use="optional" >
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="lines" />
+          <xsd:enumeration value="bars" />
+          <xsd:enumeration value="points" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="barWidth" type="xsd:integer" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width of the bars in units of the x axis, contrary to most other measures that are specified in pixels. For instance, for time series the unit is milliseconds so 24 * 60 * 60 * 1000 produces bars with the width of a day.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="align" use="optional" />
+    <xsd:attribute name="authentication" type="xsd:string" use="optional" default="influx" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">When the InfluxDB requires authentication the credentials in the hidden config with this key will be used.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wenn die InfluxDB Authentifizierung benötigt, dann werden die Anmeldeinformationen aus der Hidden-Konfiguration mit diesem Schlüssel verwendet.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="field" type="xsd:string" use="optional" default="*" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">If there are multiple fields in the InfluxDB series this field defines which one to show. (When not set a default of "*" will be used.)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Im Falle mehrerer Felder (Spalten) in einer InfluxDB-Zeitreihe kann hier der Name des Feldes angegeben werden, die angezeigt werden soll. (Wenn nicht explizit angegeben wird "*" verwendet.)</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="resolution" type="xsd:integer" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">The temporal resolution for the InfluxDB data can be set to a fixed interval (value in seconds).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Die zeitliche Auflösung für die Daten aus der InfluxDB kann auf eine eigenes Intervall (Wert in Sekunden) festgesetzt werden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="consolidationFunction" use="optional" default="MEDIAN" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Choose one of the available data aggregation functions - required when the "resolution" attribute is set.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Auswählen einer der verfügbaren Daten Aggregierungs Funktionen - notwendig, wenn das Attribut "resolution" gesetzt ist.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="COUNT" />
+          <xsd:enumeration value="INTEGRAL" />
+          <xsd:enumeration value="MAX" />
+          <xsd:enumeration value="MEAN" />
+          <xsd:enumeration value="MEDIAN" />
+          <xsd:enumeration value="MIN" />
+          <xsd:enumeration value="MODE" />
+          <xsd:enumeration value="SPREAD" />
+          <xsd:enumeration value="STDDEV" />
+          <xsd:enumeration value="SUM" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="fillMissing" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Optional when attribute "resolution" is set: fill the time steps where data is missing by this value or one of "linear", "none", "null" or "previous".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Option wenn Attribut "resolution" gesetzt ist: fülle Zeitpunkte für die keine Daten vorhanden sind mit diesem Wert oder einem aus "linear", "none", "null" oder "previous".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="offset" type="xsd:integer" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">An offset in seconds to modify the displayed timestamps of the retrieved data from the InfluxDB.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Offset in Sekunden, um die angezeigten Zeitstempel der Daten aus der InfluxDB zu modifizieren.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
   <xsd:complexType name="infoaction">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>

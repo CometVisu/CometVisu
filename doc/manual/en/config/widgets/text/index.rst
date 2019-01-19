@@ -40,6 +40,7 @@ Allowed attributes in the Text-element
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <text>
         <layout colspan="4" />
+        <label>Text</label>
     </text>
 
 
@@ -57,13 +58,12 @@ Allowed child-elements und their attributes
     <text>
         <layout colspan="4" />
         <label>Text</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </text>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Text widget.
 
 .. CAUTION::

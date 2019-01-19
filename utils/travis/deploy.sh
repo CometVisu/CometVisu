@@ -4,6 +4,8 @@ set -e # Exit with nonzero exit code if anything fails
 SOURCE_BRANCH="develop"
 TARGET_BRANCH="gh-pages"
 REPO_SLUG="CometVisu/CometVisu"
+CV="./cv"
+DOCKER_RUN="./bin/docker-run"
 
 if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
     echo "Skipping deploy in cron build"
@@ -30,6 +32,7 @@ fi
 REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
+NO_API=0
 
 # Clone the existing gh-pages for this repo into out/
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
@@ -44,38 +47,59 @@ cd ..
 
 # Run our creation script
 echo "generating german manual to extract screenshot examples"
-./cv doc --doc-type manual -f -l de
+$CV doc --doc-type manual -f -l de
 
-VERSION=`./cv doc --get-version`
+VERSION=`${CV} doc --get-version`
 utils/update_version.py
 echo "generating api version $VERSION"
 source temp-python/bin/activate
-./generate.py api -sI --macro=CV_VERSION:$VERSION
+# Turn off O_NONBLOCK (breaks large stdout writes)
+python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);'
+{
+  ${DOCKER_RUN} ./generate.py api -qsI --macro=CV_VERSION:$VERSION &&
+  echo "API successfully generated"
+} || {
+  echo "API generation failed"
+  NO_API=1
+}
 deactivate
 
+# API screenshots are used by the "doc --from-source" run so we generate them here
+if [[ "$NO_API" -eq 0 ]]; then
+    echo "generate API screenshots"
+    ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
+
+    # move the apiviewer to the correct version subfolder, including screenshots
+    rm -r out/en/$VERSION/api
+    ${CV} doc --move-apiviewer
+fi
+
 echo "updating english manual from source code doc comments"
-./cv doc --from-source
+${CV} doc --from-source
 
 # update symlinks and write version files
-./cv doc --process-versions
+${CV} doc --process-versions
 
 echo "generating english manual, including screenshot generation for all languages"
-./docker-run ./cv doc --doc-type manual -c -f -l en -t build
+${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION}
 echo "generating german manual again with existing screenshots"
-./cv doc --doc-type manual -f -l de
-
-echo "generate API screenshots"
-./docker-run grunt screenshots --subDir=source --browserName=chrome --target=build --force
-
-# move the apiviewer to the correct version subfolder, including screenshots
-rm -r out/en/$VERSION/api
-./cv doc --move-apiviewer
+${CV} doc --doc-type manual -f -l de --target-version=${VERSION}
 
 echo "generating feature yml file for homepage"
-./cv doc --generate-features
+${CV} doc --generate-features
 
 echo "generating sitemap.xml for documentation"
-./cv sitemap
+${CV} sitemap
+
+echo "generating test mode build"
+source temp-python/bin/activate
+./generate.py build --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
+rm -rf out/de/$VERSION/demo
+mv build out/de/$VERSION/demo
+
+# Copy demo-mode to default config
+cp out/de/$VERSION/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo/resource/config/visu_config.xml
+deactivate
 
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
@@ -89,7 +113,7 @@ if [ "$TRAVIS_BRANCH" != "master" ]; then
     echo "checking diff"
     if [ `git diff --shortstat | wc -l` -eq 0 ]; then
        echo "No changes to the output on this push; exiting."
-       exit 0Dito
+       exit 0
     fi
 fi
 

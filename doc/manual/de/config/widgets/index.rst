@@ -114,7 +114,7 @@ Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht mö
     text/index
     video/index
     web/index
-    wgplugininfo/index
+    wgplugin_info/index
 
 
 Sonstige Widgets
@@ -186,6 +186,8 @@ also z.B.:
 | :doc:`SVG <plugins/svg/index>`                           | Demo Plugin zur Anzeige einer interaktiv animierten SVG Datei       |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Timeout <plugins/timeout/index>`                   | Wechselt nach gewisser Zeit der Inaktivität auf eine andere Seite   |
++----------------------------------------------------------+---------------------------------------------------------------------+
+| :doc:`tr064 <plugins/tr064/index>`                       | Router Informationen, wie Anruflisten der Fritz!Box, über TR-064.   |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`UPNPController <plugins/upnpcontroller/index>`     | UPNP-Controller                                                     |
 +----------------------------------------------------------+---------------------------------------------------------------------+

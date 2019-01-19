@@ -24,7 +24,7 @@ sein, wird dies durch farbigen Hintergrund gekennzeichnet.
             <state-notification target="notificationCenter" unique="true">
                 <title-template>Wohnzimmerlicht</title-template>
                 <message-template>eingeschaltet um {{ time }} Uhr</message-template>
-                <condition>ON</condition>
+                <condition>1</condition>
                 <addresses>
                     <address transform="OH:switch">Light_FF_Living</address>
                 </addresses>
@@ -32,6 +32,12 @@ sein, wird dies durch farbigen Hintergrund gekennzeichnet.
         </notifications>
         ...
     </meta>
+
+.. HINT::
+
+    Die ``<address>`` Einträge in den Notifications sind die gleichen, wie sich innerhalb der Widgets benutzt werden.
+    In den Beispielen werden openHAB-Adressen benutzt. Ein entprechendes Beispiel für das Default-Backend wäre:
+    ``<address transform="DPT:1.001">12/0/3</address>``
 
 **Erklärung:**
 
@@ -81,7 +87,7 @@ Komplexes Beispiel mit Mapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: xml
-    :caption: Komplexes Beispiel mit Benachrichtungen für Bewegungen inkl. Mapping
+    :caption: Komplexes Beispiel mit Benachrichtigungen für Bewegungen inkl. Mapping
 
     <meta>
         <mappings>
@@ -97,7 +103,7 @@ Komplexes Beispiel mit Mapping
             <state-notification name="motion" target="notificationCenter" unique="true" severity="high">
                 <title-template>Bewegungsalarm</title-template>
                 <message-template>Bewegung erkannt: {{ address }}, {{ time }}</message-template>
-                <condition>ON</condition>
+                <condition>1</condition>
                 <addresses address-mapping="Motion_name">
                     <address transform="OH:switch">Motion_FF_Dining</address>
                     <address transform="OH:switch">Motion_FF_Corridor</address>
@@ -138,7 +144,7 @@ Sprachausgabe
             <notifications>
                 <state-notification name="motion" target="speech">
                     <message-template>Bewegung im {{ address }}</message-template>
-                    <condition>ON</condition>
+                    <condition>1</condition>
                     <addresses address-mapping="Motion_name">
                         <address transform="OH:switch">Motion_FF_Dining</address>
                         <address transform="OH:switch">Motion_FF_Corridor</address>

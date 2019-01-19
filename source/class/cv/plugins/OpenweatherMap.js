@@ -37,7 +37,16 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
   construct: function(props) {
     props.refresh = props.refresh * 60;
     this.base(arguments, props);
-    this.__options = props;
+    this.__options = {};
+    Object.keys(props).forEach(function (key) {
+      if (props[key]) {
+        this.__options[key] = props[key];
+      }
+    }, this);
+    qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+      // init once
+      this._refreshAction();
+    }, this);
   },
 
   /*
@@ -86,43 +95,43 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
   properties: {
     cssClass: {
       check: "String",
-      init: ""
+      nullable: true
     },
     lang: {
       check: "String",
-      init: ""
+      nullable: true
     },
     q: {
       check: "String",
-      init: ""
+      nullable: true
     },
     lat: {
       check: "String",
-      init: ""
+      nullable: true
     },
     lon: {
       check: "String",
-      init: ""
+      nullable: true
     },
     units: {
       check: "String",
-      init: ""
+      nullable: true
     },
     type: {
       check: "String",
-      init: ""
+      nullable: true
     },
     forecastItems: {
       check: "String",
-      init: ""
+      nullable: true
     },
     detailItems: {
       check: "String",
-      init: ""
+      nullable: true
     },
     appid: {
       check: "String",
-      init: ""
+      nullable: true
     }
   },
 
@@ -142,9 +151,15 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       return '<div class="'+classes+'"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
     },
 
+    _setupRefreshAction: function() {
+      this._timer = new qx.event.Timer(this.getRefresh());
+      this._timer.addListener('interval', this._refreshAction, this);
+      this._timer.start();
+    },
+
     _refreshAction: function() {
       var elem = $(this.getDomElement());
-      elem.openweathermap(this.options);
+      elem.openweathermap(this.__options);
       return false;
     }
   },

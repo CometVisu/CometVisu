@@ -175,6 +175,11 @@ qx.Class.define('cv.Config', {
     configServer: null,
 
     /**
+     * In testMode the visu can be filled with some demo data
+     */
+    initialDemoData: null,
+
+    /**
      * Get the structure that is related to this design
      * @param design {String?} name of the design
      * @return {String} name of the structure
@@ -261,8 +266,19 @@ qx.Class.define('cv.Config', {
       cv.Config.startpage = req.queryKey.startpage;
     }
 
-    if (req.queryKey.testMode) {
-      cv.Config.testMode = req.queryKey.testMode === "true";
+    if (qx.core.Environment.get('cv.testMode') !== false) {
+      cv.Config.testMode = true;
+      if (qx.core.Environment.get('cv.testMode') !== "true") {
+        // load the demo data to fill the visu with some values
+        var r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
+        r.addListener('success', function (e) {
+          var data = e.getTarget().getResponse();
+          cv.Config.initialDemoData = data;
+        });
+        r.send();
+      }
+    } else if (req.queryKey.testMode) {
+      cv.Config.testMode = req.queryKey.testMode === "true" || req.queryKey.testMode === "1";
     }
 
     // propagate to the client
@@ -280,11 +296,17 @@ qx.Class.define('cv.Config', {
       cv.Config.reporting = req.queryKey.reporting === 'true';
     }
 
-    if (req.queryKey.enableCache === "invalid") {
-      cv.ConfigCache.clear(cv.Config.configSuffix);
-      cv.Config.enableCache = true;
+    // caching is only possible when localStorage is available
+    if (qx.core.Environment.get("html.storage.local") === false) {
+      cv.Config.enableCache = false;
+      console.warn('localStorage is not available in your browser. Some advanced features, like caching will not work!');
     } else {
-      cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : !qx.core.Environment.get("qx.debug");
+      if (req.queryKey.enableCache === "invalid") {
+        cv.ConfigCache.clear(cv.Config.configSuffix);
+        cv.Config.enableCache = true;
+      } else {
+        cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : !qx.core.Environment.get("qx.debug");
+      }
     }
 
     cv.Config.enableLogging = qx.core.Environment.get("html.console");

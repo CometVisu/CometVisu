@@ -184,6 +184,8 @@ qx.Mixin.define("cv.ui.common.Refresh", {
         imgReloadRestore = function(){
           elements.forEach(function(elem){
             qx.bom.element.Attribute.set(elem, "src", src); 
+            elem.removeAttribute('width');
+            elem.removeAttribute('height');
           });
           canvases.forEach(function(elem){
             elem.parentNode.removeChild(elem);

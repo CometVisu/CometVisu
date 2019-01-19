@@ -39,7 +39,7 @@ Allowed attributes in the Reload-element
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <reload>
-        <layout colspan="4" />
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </reload>
 
 
@@ -55,15 +55,13 @@ Allowed child-elements und their attributes
 
     <caption>Elements in the editor</caption>
     <reload>
-        <layout colspan="4" />
-        <label>Reload</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </reload>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Reload widget.
 
 .. CAUTION::

@@ -12,7 +12,7 @@ Das InfoAction Widget kombiniert ein darstellendes :ref:`Info <info>`/:ref:`Text
 einem bedienbaren Widget (z.B. :ref:`Switch <switch>` oder :ref:`Trigger <trigger>`).
 
 Anwendungsfall: Wenn man eine Gruppe von Lichtern hat, kann man mit diesem Widget diese Gruppe schalten
-und gkeichzeitig die Anzahl der eingeschalteten Lampen anzeigen.
+und gleichzeitig die Anzahl der eingeschalteten Lampen anzeigen.
 
 .. figure:: _static/infoaction_lights.png
 

@@ -128,7 +128,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
      * @see cv.ui.NotificationCenter#deleteMessage
      */
     deleteMessage: function(index, ev) {
-      this.getInstance().deleteMessage(index, ev);
+      return this.getInstance().deleteMessage(index, ev);
     },
 
     /**
@@ -248,6 +248,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
       // connect badge content
       this._messages.addListener("changeLength", this.__updateBadge, this);
+      this.__updateBadge();
 
       // update dimensions
       new qx.util.DeferredCall(this._onResize, this).schedule();
@@ -255,15 +256,25 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     __updateBadge: function() {
       var currentContent = parseInt(qx.bom.element.Attribute.get(this.__badge, "html"));
+      if (isNaN(currentContent)) {
+        currentContent = 0;
+      }
       var messages = this.getMessages().getLength();
-      if (this.getMessages().length === 0) {
-        // close center if empty
-        qx.event.Timer.once(function() {
-          // still empty
-          if (messages === 0) {
-            this.hide();
-          }
-        }, this, 1000);
+
+      var update = function() {
+        // still empty
+        if (this.getMessages().getLength() === 0) {
+          this.hide();
+        } else {
+          qx.bom.element.Style.reset(this.__element, "visibility");
+          this._onSeverityChange();
+        }
+      }.bind(this);
+      // close center if empty
+      if (cv.ui.NotificationCenter.BLINK.duration > 0) {
+        qx.event.Timer.once(update, this, cv.ui.NotificationCenter.BLINK.duration);
+      } else {
+        update();
       }
       if (currentContent < messages) {
         // blink to get the users attention for the new message
@@ -278,16 +289,17 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     },
 
-    _onSeverityChange: function(ev) {
+    _onSeverityChange: function() {
+      var severity = this.getGlobalSeverity();
       if (this.__badge) {
         qx.bom.element.Class.removeClasses(this.__badge, this._severities);
-        qx.bom.element.Class.add(this.__badge, ev.getData());
+        qx.bom.element.Class.add(this.__badge, severity);
       }
 
       if (this.__favico) {
         // update favicon badge
         this.__favico.badge(this.getMessages().getLength(), {
-          bgColor: this.getSeverityColor(ev.getData())
+          bgColor: this.getSeverityColor(severity)
         });
       }
     },
@@ -301,10 +313,14 @@ qx.Class.define("cv.ui.NotificationCenter", {
         this.__blocker.block();
         qx.bom.element.Style.reset(this.__element, "visibility");
         qx.event.Registration.addListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
-        var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
-        anim.on("end", function () {
+        if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
+          var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
+          anim.on("end", function () {
+            qx.bom.element.Transform.translate(this.__element, "-300px");
+          }, this);
+        } else {
           qx.bom.element.Transform.translate(this.__element, "-300px");
-        }, this);
+        }
       }
     },
 
@@ -326,11 +342,16 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (this.__visible) {
         this.__visible = false;
         qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
-        var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
-        anim.on("end", function () {
+        if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
+          var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
+          anim.on("end", function () {
+            qx.bom.element.Transform.translate(this.__element, "-0px");
+            this.__blocker.unblock();
+          }, this);
+        } else {
           qx.bom.element.Transform.translate(this.__element, "-0px");
           this.__blocker.unblock();
-        }, this);
+        }
       }
     }
   },

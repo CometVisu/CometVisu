@@ -113,10 +113,12 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         // set initial value
         slider.setValue(parseFloat(this.getValue()));
 
-        slider.on("changeValue", qx.util.Function.throttle(this._onChangeValue, 250), this);
+        slider.on("changeValue", qx.util.Function.throttle(this._onChangeValue, 250, {trailing: false}), this);
 
         this.addListener("changeValue", function (ev) {
+          this.__skipUpdatesFromSlider = true;
           slider.setValue(parseFloat(ev.getData()));
+          this.__skipUpdatesFromSlider = false;
         }, this);
 
         // add CSS classes for compability with old sliders
@@ -186,11 +188,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     _onChangeValue: function(value) {
       if (!this.__initialized || this.__skipUpdatesFromSlider === true) { return; }
       if (this.isSendOnFinish() === false || this.__slider.isInPointerMove()) {
-        var currentValue = this.getValue();
-        this.sendToBackend(value, function(addr) {
-          var newValue = cv.Transform.encode(addr[0], value);
-          return (newValue !== cv.Transform.encode(addr[0], currentValue));
-        });
+        this._lastBusValue = this.sendToBackend(value, false, this._lastBusValue );
       }
       this.setValue(value);
     },

@@ -10,7 +10,7 @@
 Das ColorChooser Plugin
 =======================
 
-.. api-doc:: colorchooser
+.. api-doc:: cv.plugins.ColorChooser
 
 Beschreibung
 ------------
@@ -86,7 +86,7 @@ XML Syntax
 ----------
 
 Alternativ kann man für das ColorChooser Plugin auch von Hand einen Eintrag in
-der :doc:`visu_config.xml <../../../xml-format>` hinzufügen.
+der :ref:`visu_config.xml <xml-format>` hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet

@@ -221,7 +221,9 @@ qx.Class.define('cv.plugins.RssLog', {
       var popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
       var parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
       qx.bom.element.Style.setStyles(parent, {height: "90%", width: "90%", margin: "auto"}); // define parent as 100%!
-      this._timer.stop();
+      if (this._timer) {
+        this._timer.stop();
+      }
       qx.event.Registration.addListener(brss, "tap", function(event) {
         // don't let the popup know about the click, or it will close on touch-displays
         event.stopPropagation();

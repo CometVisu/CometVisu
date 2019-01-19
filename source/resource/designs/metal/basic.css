@@ -76,12 +76,16 @@ body br
   text-decoration:none;
 }
 
-.footer,
-.footer *
-{
-  color: #555;
+.footer {
   font-size: 0.9em;
-  vertical-align: middle;
+}
+
+.footer, .footer * {
+    color: #555;
+}
+
+.footer img {
+    vertical-align: middle;
 }
 
 .colspandefault { /* in units of 1/12 screen width */
@@ -121,20 +125,21 @@ body br
   border-width: 1px;
   min-height: 2.1em;
   text-shadow: 0 1px 1px #111;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#2d2d2d)); /* Saf4+, Chrome */
-  background-image: -webkit-linear-gradient(#444444, #2d2d2d); /* Chrome 10+, Saf5.1+ */
-  background-image:    -moz-linear-gradient(#444444, #2d2d2d); /* FF3.6 */
-  background-image:     -ms-linear-gradient(#444444, #2d2d2d); /* IE10 */
-  background-image:      -o-linear-gradient(#444444, #2d2d2d); /* Opera 11.10+ */
-  background-image:         linear-gradient(#444444, #2d2d2d);
 }
+
+.icon {
+    height: 1.9em;
+}
+
 .widget.web
 {
   border: none;
   background-image: none;
 }
 /* in nowidget groups disable the inner borders and enable a border around the group */
-.group:not(.widget) { border: 1px solid #666; margin: -1px 0 0 -1px; }
+.group:not(.widget) {
+    border: 1px solid #666; margin: -1px -1px 0 -1px;
+}
 .group:not(.widget) > div > .widget_container > .widget:not(.group) { border: none; margin: 0; }
 .group:not(.widget) > div > h2 { border-radius: 0;}
 
@@ -214,29 +219,29 @@ body br
 	padding-left: 2.5em;
 }
 .green.switchPressed div, .green.switchUnpressed div {
-   	background: transparent url(images/dot_green.png) no-repeat center center;
+    background-image: radial-gradient(rgba(88, 181, 0, 0.45), transparent 80%);
 	color: white !important;
-	text-shadow: 0;
+	text-shadow: none;
 }
 .red.switchPressed div, .red.switchUnpressed div {
-    background: transparent url(images/dot_red.png) no-repeat center center;
+    background-image: radial-gradient(rgb(123, 64, 62), transparent 80%);
     color: grey !important;
 }
 .grey.switchPressed div, .grey.switchUnpressed div {
-    background: transparent url(images/dot_grey.png) no-repeat center center;
+    background-image: radial-gradient(rgba(123, 123, 123, 0.5), transparent 80%);
     color: grey !important;
 }
 .green_bg.actor div {
-	background: transparent url(images/dot_green.png) no-repeat center center;
+    background-image: radial-gradient(rgb(62, 123, 62), transparent 80%);
 	color: white !important;
-	text-shadow: 0;
+	text-shadow: none;
 }
 .red_bg.actor div {
-	background: transparent url(images/dot_red.png) no-repeat center center;
+    background-image: radial-gradient(rgb(123, 64, 62), transparent 80%);
     color: red !important;
 }
 .grey_bg.actor div {
-	background: transparent url(images/dot_grey.png) no-repeat center center;
+    background-image: radial-gradient(rgb(123, 123, 123), transparent 80%);
     color: grey !important;
 }
 /* revert color + background setting for diagram_info widgets 
@@ -284,15 +289,14 @@ body br
 #pages  > .page
 {
   float:left;
-  overflow: auto;
+  overflow: hidden auto;
   position: relative;
   padding-left: 1px;
 }
 
 .switchPressed, .switchUnpressed {
   border-style:  solid;
-  -moz-border-radius: 12px;
-  -webkit-border-radius: 12px;
+  border-width: 1px;
   border-radius: 12px;
   padding: 1px;
   background:none;
@@ -300,12 +304,15 @@ body br
 
 .switchUnpressed
 {
-  border-width:  1px 2px 2px 1px;
   border-color: #282828 #010101 #010101 #282828;
-  margin-top: 0px;
   background-color: #3A3A3A;
-  background-position: center +2px;
 }
+
+.switchPressed
+{
+    border-color: #010101 #282828 #282828 #010101;
+}
+
 .switchUnpressed div, .switchPressed div
 {
   padding: 5px;
@@ -326,8 +333,7 @@ body br
 	margin-right: 0;
 	float: left;
 }
-.group  
-.pagejump  .switchUnpressed div, .group .pagejump  .switchPressed div {
+.group .pagejump .switchUnpressed div, .group .pagejump  .switchPressed div {
 	width: auto;
 	text-align: left;
 	margin-left: 0.3em;
@@ -335,11 +341,10 @@ body br
 }
 
 .group.widget {
-	border: 1px solid #B3B3B3;
-	border-radius: 1em;
-	-moz-border-radius: 1em;
-  	-webkit-border-radius: 1em;
-  	-o-border-radius: 1em;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+  	-webkit-border-radius: 3px;
+  	-o-border-radius: 3px;
 	overflow: hidden;
 	margin: 0.2em 0.5em;
 	padding: 0;
@@ -351,23 +356,23 @@ body br
 	-moz-border-radius: 0;
   	-webkit-border-radius: 0;
   	
-	border-top-right-radius: 1em;
-	-moz-border-top-right-radius: 1em;
-  	-webkit-border-top-right-radius: 1em;
+	border-top-right-radius: 3px;
+	-moz-border-top-right-radius: 3px;
+  	-webkit-border-top-right-radius: 3px;
 	
-	border-bottom-right-radius: 1em;
-	-moz-border-bottom-right-radius: 1em;
-  	-webkit-border-bottom-right-radius: 1em;
+	border-bottom-right-radius: 3px;
+	-moz-border-bottom-right-radius: 3px;
+  	-webkit-border-bottom-right-radius: 3px;
   	
 	border-left: none;
     z-index: 10;
 }
 .navbar > .widget_container:first-child .group .widget_container:last-child, .navbar > .widget_container:first-child .group div.widget_container:last-child .widget {
 	border-width: 1px 0 0 0;
-	border-bottom-right-radius: 1em;
+	border-bottom-right-radius: 3px;
 }
 .navbar .group .widget_container:last-child,.navbar .group .widget_container:last-child .widget {
-	border-bottom-right-radius: 1em;
+	border-bottom-right-radius: 3px;
 }
 .navbar .pagejump > .actor, .navbar .refresh > .actor {
 	position: absolute;
@@ -387,20 +392,10 @@ body br
 .group > div > h2 {
 	font-size: 0.8em;
 	padding: 0 1em;
-	margin: 0;
+	margin: 0 -1px 0 0;
 	border: none;
-	border-radius: 1em;
-	-moz-border-radius: 1em;
-  	-webkit-border-radius: 1em;
-  	
-	border-bottom-left-radius: 0;
-	-moz-border-bottom-left-radius: 0;
-  	-webkit-border-bottom-left-radius: 0;
-  	
-	border-bottom-right-radius: 0;
-	-moz-border-bottom-right-radius: 0;
-	-webkit-border-bottom-right-radius: 0;
-	
+	border-radius: 0;
+
 	color: #FFF;
 	font-weight: bold;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#999), to(#666)); /* Saf4+, Chrome */
@@ -414,9 +409,9 @@ body br
 	border-radius: 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
-	border-top-right-radius: 1em;
-	-moz-border-top-right-radius: 1em;
-	-webkit-border-top-right-radius: 1em;
+	border-top-right-radius: 3px;
+	-moz-border-top-right-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
 	text-shadow: none;
 	background-color: #eeeeee;
 	color: #3E3E3E;
@@ -426,32 +421,6 @@ body br
 	background-image:     -ms-linear-gradient(#f0f0f0, #ddd); /* IE10 */
 	background-image:      -o-linear-gradient(#f0f0f0, #ddd); /* Opera 11.10+ */
 	background-image:         linear-gradient(#f0f0f0, #ddd);
-}
-/*.pagejump {
-	background: #333333;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(   #444444), to(   #2D2D2D));
-	background-image: -webkit-linear-gradient(  #444444 ,   #2D2D2D; 
-	background-image:    -moz-linear-gradient(   #444444,   #2D2D2D);
-	background-image:     -ms-linear-gradient(   #444444,   #2D2D2D);
-	background-image:      -o-linear-gradient(   #444444,   #2D2D2D);
-	background-image:         linear-gradient(   #444444,   #2D2D2D);
-	margin: 0;
-}*/
-
-.switchPressed
-{
-  border-width:  2px 1px 1px 2px;
-  border-color: #010101 #282828 #282828 #010101;
-  margin-top: 1px;
-  background-position: center -2px;
-}
-
-.switchUnpressed div {
-    margin-left: -1px;
-}
-
-.switchPressed div {
-    margin-top: -1px;
 }
 
 /* add some space between the buttons and the info field of the infotrigger */
@@ -586,7 +555,7 @@ div#loading {
 }
 
 #diagramTooltip, #flotTip {
-	z-index: 1000;
+	z-index: 100002;
 	color: black;
 	border: 1px solid #fdd;
 	padding: 2px;
@@ -705,7 +674,7 @@ background-color: #000;
 	padding: 0;
 	color: inherit;
 }
-.rowspan { overflow:none; }
+.rowspan { overflow: hidden; }
 .strftime { font-family: Helvetica, Arial, sans-serif; font-size: 5mm; }
 
 /* START: alignment of widgets */
@@ -787,7 +756,7 @@ background-color: #000;
 .widget .green.switchUnpressed div,
 .widget .red.switchPressed div, 
 .widget .red.switchUnpressed div {
-	background-position: -30px center;
+	background-position: left center;
 }
 
 /* END: alignment of widgets */
@@ -1011,7 +980,8 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 .infoaction { padding: 1px 0 0 0; }
 .navbar .infoaction { padding: 0.3em; }
 .infoaction > .label { padding: 0.3em; }
-.infoaction .widget_container.widgetaction .widget { padding-left:0; border: none; }
+.infoaction .widget_container.widgetaction .widget { padding:0.1em; border: none; }
+.infoaction .widget_container.widgetaction .widget .actor { margin:0.2em; }
 .infoaction .widget_container.widgetinfo .widget {
 	background-color: #666;
 	color: #999;
@@ -1088,4 +1058,12 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 
 .widget_container.float-right {
     float: right;
+}
+
+/*
+   Design options: Configured via <pages ... class="" ..> attributes value
+*/
+
+body.backgradient .widget {
+    background-image: linear-gradient(#444444, #2d2d2d);
 }

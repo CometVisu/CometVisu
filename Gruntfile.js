@@ -8,22 +8,27 @@ function captureMock() {
   return function (req, res, next) {
 
     // match on POST requests starting with /mock
-    if (req.method === 'POST' && req.url.indexOf('/mock') === 0) {
-
+    if (req.url.indexOf('/mock') === 0) {
       // everything after /mock is the path that we need to mock
       var path = req.url.substring(5);
+      if (req.method === 'POST') {
+        var body = '';
+        req.on('data', function (data) {
+          body += data;
+        });
+        req.on('end', function () {
 
-      var body = '';
-      req.on('data', function (data) {
-        body += data;
-      });
-      req.on('end', function () {
+          mocks[path] = body;
 
-        mocks[path] = body;
-
+          res.writeHead(200);
+          res.end();
+        });
+        if (mocks.hasOwnProperty(path)) {
+          delete mocks[path];
+        }
         res.writeHead(200);
         res.end();
-      });
+      }
     } else {
       next();
     }
@@ -38,8 +43,18 @@ function mock() {
       url = url.replace(found[1],"");
     }
     var mockedResponse = mocks[url];
+    if (!mockedResponse && (url.includes('?') || url.includes('#'))) {
+      // try to find mocked url without querystring
+      url = url.split('#')[0];
+      url = url.split('?')[0];
+      mockedResponse = mocks[url];
+    }
     if (mockedResponse) {
-      res.writeHead(200, {'Content-Type': 'application/xml'});
+      if (req.url.endsWith('.xml')) {
+        res.writeHead(200, {'Content-Type': 'application/xml'});
+      } else if (req.url.endsWith('.json')) {
+        res.writeHead(200, {'Content-Type': 'application/json'});
+      }
       res.write(mockedResponse);
       res.end();
     } else if (url === "/designs/get_designs.php") {
@@ -70,7 +85,7 @@ module.exports = function(grunt) {
       expand: true,
       cwd: '.',
       src: [
-        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md',
+        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md', 'update.py',
         'release/**'
       ],
       dest: 'cometvisu/',
@@ -141,6 +156,10 @@ module.exports = function(grunt) {
         plugins: [
           {
             convertTransform: false
+          }, {
+            removeViewBox: false
+          }, {
+            removeDimensions: true
           }
         ]
       },
@@ -171,29 +190,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // check coding-style: https://github.com/CometVisu/CometVisu/wiki/Coding-style
-    jscs: {
-      main: {
-        options: {
-          excludeFiles: [ "**/lib/**", "**/dep/**"],
-          //preset: "jquery",
-          validateIndentation: 2,
-          validateLineBreaks: "LF",
-          fix: false
-          //maximumLineLength : {
-          //  value: 120,
-          //  allExcept: [
-          //    "comments",
-          //    "functionSignature"
-          //  ]
-          //}
-        },
-        files: {
-          src: sourceFiles
-        }
-      }
-    },
-
     // make a zipfile
     compress: {
       tar: {
@@ -202,7 +198,7 @@ module.exports = function(grunt) {
           level: 9,
           archive: function() {
             var name = "CometVisu-"+pkg.version;
-            if (process.env.TRAVIS_EVENT_TYPE === "cron") {
+            if (process.env.DEPLOY_NIGHTLY) {
               // nightly build with date
               var now = new Date();
               name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
@@ -218,7 +214,7 @@ module.exports = function(grunt) {
           level: 9,
           archive: function() {
             var name = "CometVisu-"+pkg.version;
-            if (process.env.TRAVIS_EVENT_TYPE === "cron") {
+            if (process.env.DEPLOY_NIGHTLY) {
               // nightly build with date
               var now = new Date();
               name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
@@ -342,11 +338,11 @@ module.exports = function(grunt) {
     // karma unit testing
     karma: {
       unit: {
-        configFile: 'karma.conf.js'
+        configFile: 'source/test/karma/karma.conf.js'
       },
       //continuous integration mode: run tests once in PhantomJS browser.
       travis: {
-        configFile: 'karma.conf.js',
+        configFile: 'source/test/karma/karma.conf.js',
         singleRun: true,
         browsers: [grunt.option('browser') || 'Chrome'],
         coverageReporter : {
@@ -359,10 +355,10 @@ module.exports = function(grunt) {
         }
       },
       debug: {
-        configFile: 'karma.conf.js',
+        configFile: 'source/test/karma/karma.conf.js',
         singleRun: !grunt.option('no-single'),
         browsers: [grunt.option('browser') || 'Chrome'],
-        reporters: ['progress']
+        reporters: ['spec']
       }
     },
 
@@ -469,7 +465,7 @@ module.exports = function(grunt) {
       buildClient: {
         command: [
           'cd client',
-          './generate.py build',
+          './generate.py build -sI',
           'cd ..'
         ].join('&&')
       },
@@ -483,7 +479,7 @@ module.exports = function(grunt) {
         command: './generate.py lint'
       },
       build: {
-        command: './generate.py build'
+        command: './generate.py build -sI'
       }
     },
 
@@ -525,13 +521,16 @@ module.exports = function(grunt) {
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
-    var filename = 'build/resource/demo/visu_config_demo.xml';
-    var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
-    filename = 'build/resource/demo/visu_config_2d3d.xml';
-    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
-    filename = 'build/index.html';
+    [
+      'build/resource/demo/visu_config_demo.xml',
+      'build/resource/demo/visu_config_2d3d.xml',
+      'build/resource/demo/visu_config_demo_testmode.xml'
+    ].forEach(function (filename) {
+      var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+      grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
+    });
+
+    var filename = 'build/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
@@ -586,7 +585,6 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin tasks
-  grunt.loadNpmTasks("grunt-jscs");
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-github-releaser');

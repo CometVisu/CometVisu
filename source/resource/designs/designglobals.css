@@ -110,7 +110,7 @@ body
   -webkit-transform: translateZ(0);
   -webkit-overflow-scrolling:touch;
 }
-.page > .clearfix { position:relative; height: 100%; }
+.page > .clearfix:not(.navbar) { position:relative; height: 100%; }
 input, textarea, select, button { font: inherit; }
 /* 
  * colspans, each design needs to define a colspan0
@@ -445,18 +445,23 @@ button.ui-slider-handle {
 
 .popup div {
   margin: 4px;
+  max-height: 80vh;
 }
 
 .popup div.head {
   border-bottom: 1px solid;
 }
 
-.popup .main .icon:not(.spinner, .rsslogRow) {
+.popup .main {
+  overflow-y: auto;
+}
+
+.popup .main .icon:not(.spinner):not(.rsslogRow) {
   float: left;
-  margin: -1em 1em 0 0;
-  vertical-align: middle;
+  margin: 0 1em 0 0;
+  vertical-align: top;
   width: 64px;
-  height: 100%;
+  height: 64px;
 }
 
 .popup .main .icon.spinner {
@@ -480,6 +485,7 @@ button.ui-slider-handle {
 
 .popup .main pre {
   overflow: auto;
+  white-space: pre-wrap;
   font-size: 0.8em;
 }
 

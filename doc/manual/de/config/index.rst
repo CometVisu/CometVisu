@@ -5,6 +5,12 @@
 Konfiguration der CometVisu
 ***************************
 
+.. toctree::
+    :hidden:
+
+    manager
+    editor
+
 Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
 Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis "./config"
 der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor oder
@@ -12,12 +18,15 @@ mit dem integrierten grafischen Editor erfolgen. Die Verwendung des grafischen E
 setzt jedoch voraus, dass die CometVisu von einem PHP-fähigen Webserver (z.B Apache oder
 Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibbar ist.
 
+Am einfachsten greift man auf die verschiedenen Konfigurationsdateien über den
+:doc:`Manager <manager>` zu.
+
 Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
 
 - Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Vezeichnisbaum "/var/www/visu…" des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.
 
-- Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem texbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) "umlenken“.
+- Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem textbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) "umlenken“.
 
 - Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in "/usr/share/openhab/webapps/visu…" installiert.
 
@@ -37,6 +46,12 @@ Allgemeine Informationen über das CometVisu XML Format findet man
 :doc:`hier <xml-format>`, Informationen zu den einzelnen
 Widgets in den jeweiligen Unterseiten.
 
+Manche Widgets und Plugins benötigen noch zusätzliche Informationen, die nicht in der Config-Datei enthalten sein
+sollen, da diese frei lesbar an den Web-Browser übertragen wird (je nach installierter Umgebung kann der Transport
+verschlüsselt mit HTTPS erfolgen, jedoch ist der Inhalt durch den Benutzer am Browser mit entsprechenden Tricks
+lesbar). Durch die Verwendung der :doc:`Versteckten Konfigurationen <hidden-config>` können diese Informationen auf dem besser
+geschützten Server verbleiben.
+
 Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
 sollte man die Seite neu laden und den Browser-Cache löschen.
 
@@ -49,6 +64,7 @@ durch Anhängen von check_config.php an den URL erzwingen.
 .. toctree::
     :hidden:
 
+    hidden-config
     url-params
 
 Genaue Beschreibungen zu den verfügbaren URL-Parameter sind unter :doc:`URL-Parameter <url-params>` zu finden.
@@ -97,6 +113,12 @@ Tags umschlossen aufgenommen werden:
 -  :ref:`Statusbar <xml-format_statusbar>`
 -  :ref:`Aufbau der Visu-Seiten <xml-format_pages>`
 
+.. toctree::
+    :hidden:
+
+    xml-format
+
+
 Navigationselemente in der CometVisu
 ------------------------------------
 
@@ -115,7 +137,7 @@ Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten für die Naviga
     
    Übersicht der wichtigsten Navigationselemente.
 
-Weiters sind verschiedene Funtionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:
+Ebenso sind verschiedene Funktionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:
 
 -  Per KNX Gruppenadresse kann auf eine Unterseite gesprungen werden, wenn das Attribut ``ga=x/y/z`` in der zugehörigen 
    :ref:`Page Definition <page>` eingetragen ist.
@@ -223,3 +245,4 @@ sonstiges
     notifications
     rrd_examples
     hydraulik
+    customizing

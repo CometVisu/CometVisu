@@ -56,20 +56,20 @@ qx.Mixin.define("cv.ui.common.HasStyling", {
         return false;
       }
       if (styling[value]) { // fixed value
-        qx.bom.element.Class.add(element, styling[value]);
+        qx.bom.element.Class.addClasses(element, styling[value].split(' '));
         return true;
       }
       else {
         var range = styling.range;
         if (findExact && range[value]) {
-          qx.bom.element.Class.add(element, range[value][1]);
+          qx.bom.element.Class.addClasses(element, range[value][1].split(' '));
           return true;
         }
         var valueFloat = parseFloat(value);
         for (var min in range) {
           if (min > valueFloat) { continue; }
           if (range[min][0] < valueFloat) { continue; }// check max
-          qx.bom.element.Class.add(element, range[min][1]);
+          qx.bom.element.Class.addClasses(element, range[min][1].split(' '));
           return true;
         }
       }

@@ -48,6 +48,11 @@ qx.Class.define('cv.ui.PopupHandler', {
         'cv.error': {
           type: "error",
           icon: "message_attention"
+        },
+        'cv.client.connection': {
+          type: "error",
+          icon: "message_attention",
+          deletable: true
         }
       });
     },
@@ -56,7 +61,7 @@ qx.Class.define('cv.ui.PopupHandler', {
       var popupConfig = {
         title: message.title,
         content: message.message,
-        closable: message.deletable,
+        closable: config.deletable || message.deletable,
         icon: message.icon || config.icon,
         iconClasses: message.iconClasses,
         actions: message.actions,

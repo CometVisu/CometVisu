@@ -49,7 +49,8 @@
     "LOCALES"      : [ "en", "de" ],
     "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",
     "ROOT"         : ".",
-    "CV_VERSION"   : "dev"
+    "CV_VERSION"   : "dev",
+    "CV_TESTMODE"  : false
   },
 
   "config-warnings" :
@@ -97,7 +98,8 @@
           "replayLog",
           "svg4everybody",
           "EVENT_RECORDER",
-          "Favico"
+          "Favico",
+          "Sentry"
         ]
       },
 
@@ -107,7 +109,8 @@
         "qx.application" : "${APPLICATION}.Application",
         "qx.promise"     : false,
         "cv.version"     : "${CV_VERSION}",
-        "cv.xhr"         : "qx"
+        "cv.xhr"         : "qx",
+        "cv.testMode"    : "${CV_TESTMODE}"
       },
 
       "add-script" : [
@@ -143,6 +146,7 @@
           "resource/libs/svg4everybody.js",
           "resource/libs/strftime.js",
           "resource/libs/favico.js",
+          "resource/sentry/bundle.min.js",
           "editor",
           "upgrade",
           "check_config.php",
@@ -173,7 +177,8 @@
           "replayLog",
           "svg4everybody",
           "EVENT_RECORDER",
-          "Favico"
+          "Favico",
+          "Sentry"
         ]
       }
     },
@@ -255,6 +260,10 @@
           {
             "include" : [ "${APPLICATION}.plugins.Timeout" ]
           },
+          "plugin-tr064" :
+          {
+            "include" : [ "${APPLICATION}.plugins.tr064.*" ]
+          },
           "plugin-svg" :
           {
             "include" : [ "${APPLICATION}.plugins.Svg" ]
@@ -281,6 +290,7 @@
       "environment" :
       {
         "cv.build": "source",
+        "cv.sentry": false,
         "qx.globalErrorHandling": false
       },
       "run" :
@@ -295,6 +305,7 @@
       "environment" :
       {
         "cv.build": "source",
+        "cv.sentry": true,
         "qx.globalErrorHandling": true
       }
     },
@@ -317,6 +328,7 @@
       "environment" :
       {
         "cv.build": "build",
+        "cv.sentry": true,
         "qx.globalErrorHandling": true
       },
       "run" :
@@ -327,7 +339,8 @@
         "build-files",
         "build-libs",
         "build-append-plugin-libs",
-        "build-paths"
+        "build-paths",
+        "build-append-icon-config"
       ]
     },
 
@@ -349,6 +362,13 @@
       "shell" :
       {
         "command" : "./cv build -bp"
+      }
+    },
+
+    "build-append-icon-config" : {
+      "shell" :
+      {
+        "command" : "mkdir -p build/class/cv && cp source/class/cv/IconConfig.js build/class/cv/"
       }
     },
 

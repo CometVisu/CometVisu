@@ -150,6 +150,7 @@ var ActiveInput = function () {
         
     if (value.trim() == '') {
       // no input = show everything
+      $list.show();
       $list.find('.option, .group, .headline').show();
       return;
     }

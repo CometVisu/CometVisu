@@ -62,7 +62,13 @@ qx.Class.define('cv.parser.widgets.InfoTrigger', {
         },
         'min': {transform: parseFloat, "default": 0},
         'max': {transform: parseFloat, "default": 255},
-        'infoposition': {target: 'infoPosition', "default": 'left'}
+        'infoposition': {
+          target: 'infoPosition',
+          "default": 'left',
+          transform: function (value) {
+            return ['middle', 'right'].includes(value) ? value : 'left';
+          }
+        }
       };
     },
 

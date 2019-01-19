@@ -31,6 +31,7 @@ qx.Class.define('cv.util.ScriptLoader', {
     this.base(arguments);
     this.__scriptQueue = new qx.data.Array();
     this.__loaders = new qx.data.Array();
+    this.__delayedScriptQueue = new qx.data.Array();
   },
 
   /*
@@ -69,8 +70,9 @@ qx.Class.define('cv.util.ScriptLoader', {
 
     addStyles: function(styleArr) {
       var queue = (qx.lang.Type.isString(styleArr) ? [ styleArr ] : qx.lang.Array.clone(styleArr));
+      var suffix = (cv.Config.forceReload === true) ? '?'+Date.now() : '';
       queue.forEach(function(style) {
-        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(style));
+        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
       }, this);
     },
 
@@ -84,8 +86,9 @@ qx.Class.define('cv.util.ScriptLoader', {
           // in source load all scripts
           realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
         } else {
-          // in build do not load plugin scripts as they are included in the plugin script
-          if (queue[i].indexOf("plugins/") === -1) {
+          // in build do not load plugin dependency scripts as they are included in the plugin script
+          // unknown plugins should be loaded although
+          if (queue[i].indexOf("plugins/") === -1 || /resource\/plugins\/[^/]+\/index.js/.test(queue[i])) {
             realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
           }
         }
@@ -144,10 +147,26 @@ qx.Class.define('cv.util.ScriptLoader', {
     _onFailed: function(ev) {
       var data = ev.getData();
       this.__scriptQueue.remove(data.script);
-      this.error(data.script+" failed");
       if (data.script.startsWith("design")) {
         var failedDesign = data.script.split("/")[1];
         this.fireDataEvent("designError", failedDesign);
+      } else if (data.script.includes("/plugins/")) {
+        var match = /.+\/plugins\/([\w]+)\/index\.js.*/.exec(data.script);
+        if (match) {
+          cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
+            title: qx.locale.Manager.tr('Error loading plugin "%1"', match[1]),
+            message: qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
+            severity: "high",
+            deletable: true
+          });
+        }
+      } else {
+        cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
+          title: qx.locale.Manager.tr('File loading error'),
+          message:  qx.locale.Manager.tr('File %1 could not be loaded.', data.script),
+          severity: "high",
+          deletable: true
+        });
       }
       this._checkQueue();
     },
@@ -161,10 +180,15 @@ qx.Class.define('cv.util.ScriptLoader', {
         } else if (!this.__listener) {
           this.debug("script loader waiting for all scripts beeing queued");
 
-          this.__listener = this.addListenerOnce("changeAllQueued", function() {
-            this.debug("script loader finished");
-            this.fireEvent("finished");
-            this.__listener = null;
+          this.__listener = this.addListener("changeAllQueued", function(ev) {
+            if (ev.getData() === true) {
+              if (this.__scriptQueue.length === 0) {
+                this.debug("script loader finished");
+                this.fireEvent("finished");
+              }
+              this.removeListenerById(this.__listener);
+              this.__listener = null;
+            }
           }, this);
         }
       } else {

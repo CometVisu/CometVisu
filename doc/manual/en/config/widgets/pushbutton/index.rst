@@ -40,7 +40,7 @@ Allowed attributes in the PushButton-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <pushbutton>
+    <pushbutton downValue="1" upValue="0">
         <layout colspan="4" />
     </pushbutton>
 
@@ -56,7 +56,7 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <pushbutton>
+    <pushbutton downValue="1" upValue="0">
         <layout colspan="4" />
         <label>PushButton</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
@@ -65,7 +65,7 @@ Allowed child-elements und their attributes
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the PushButton widget.
 
 .. CAUTION::

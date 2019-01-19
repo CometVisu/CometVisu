@@ -9,6 +9,8 @@ Einfache Installation:
 -  :doc:`auf Raspberry Pi <raspberry>`
 -  auf einem Debian System mit openHAB1 (`OpenHAB-WIKI <https://github.com/openhab/openhab1-addons/wiki/CometVisu>`__)
 -  :doc:`auf einem Debian System mit openHAB2 <openhab2>`
+-  :doc:`Über Docker <docker>`
+-  :doc:`Auf dem Timberwolf / mittels Portainer <timberwolf>`
 
 .. toctree::
     :hidden:
@@ -18,16 +20,24 @@ Einfache Installation:
     raspberry
     install-dev
     openhab2
+    docker
+    timberwolf
 
-Schwieriger, nur für Fortgeschrittene:
+Schwieriger, nur für **Fortgeschrittene**:
 
 -  :doc:`auf beliebigen anderen Linux-Systemen <linux>`
 -  :doc:`auf NAS-Systemen <nas>`
 
+.. toctree::
+    :hidden:
+
+    linux
+    nas
+
 Man kann auch die aktuelle Entwickler-Version installieren, diese sollte
 jedoch **NIE** produktiv eingesetzt werden.
 
--  :doc:`Infos zur Installation Development-Version <install-dev>` - auf eigene Gefahr!!!
+-   :doc:`Infos zur Installation Development-Version <install-dev>` auf eigene Gefahr!!!
 
 Update der CometVisu
 --------------------
