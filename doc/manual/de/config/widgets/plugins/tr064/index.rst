@@ -163,6 +163,12 @@ Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:
 |selfsigned |Erlaube selbstsignierte Zertifikate wenn ``true``    |``false``                      |
 +-----------+-----------------------------------------------------+-------------------------------+
 
+.. hint::
+
+    Wenn eine SSL gesicherte Verbindung zum Router aufgebaut werden soll (d.h. die URI mit
+    ``https`` beginnt), so ist meist ``selfsigned`` auf ``true`` zu setzen, da ein Router
+    im Heimnetz üblicher Weise mit einem selbst signierten Zertifikat arbeitet.
+
 .. rubric:: Fußnoten
 
 .. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

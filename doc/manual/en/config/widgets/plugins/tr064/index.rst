@@ -183,6 +183,12 @@ manually and add a line like::
     );
     ?>
 
+.. hint::
+
+    When the connection to the router is secured by SSL (i.e. the URI starts with
+    ``https``) it is usual that ``selfsigned`` must be set to ``true`` as a
+    router in the home network will work usually with a self signed certificate.
+
 .. rubric:: Footnotes
 
 .. [#f1] In the simple view some things might be not visible. The expert view
