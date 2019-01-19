@@ -129,8 +129,8 @@ screenshot is:
         <label>calllist</label>
     </calllist>
 
-Prequesites / setup of the server
----------------------------------
+Prerequisites / setup of the server
+-----------------------------------
 
 To be able to use the plugin the server must support PHP with the extension
 of the SoapClient package.
@@ -151,33 +151,54 @@ The user itself needs the rights to access the call list:
 
 .. figure:: _static/fritzbox_user.png
 
-That the plugin can access this user account the credentials must be given.
-This can be done in the CometVisu manager in the area "hidden configuration"[#f2]_:
+The plugin needs to know the credentials to be able to use this user. This
+uses the :ref:`"hidden configuration" <hidden-config>` infrastructure which
+can be accessed by the :ref:`CometVisu manager <manager>` [#f2]_.
 
 .. figure:: _static/hidden_config_en.png
 
 The used name must be given in the calllist widget in the attribute ``device``.
 
-Apart from the manager it is possible to edit the file ``config/hidden.php`` 
+The key and value pairs of the hidden configuration" are:
+
++-----------+-----------------------------------------------------+-------------------------------+
+|Key        |Value                                                |Example                        |
++===========+=====================================================+===============================+
+|uri        |The URI to access the TR-064 interface               |``https://192.168.0.1:49443/`` |
++-----------+-----------------------------------------------------+-------------------------------+
+|user       |The username for the TR-064 access                   |``CometVisuTestUser``          |
++-----------+-----------------------------------------------------+-------------------------------+
+|pass       |The password for the TR-64 access                    |``pa3bvNM4j9z4``               |
++-----------+-----------------------------------------------------+-------------------------------+
+|selfsigned |Allow self signed certificates when ``true``         |``false``                      |
++-----------+-----------------------------------------------------+-------------------------------+
+
+Apart from the manager it is possible to edit the file ``config/hidden.php``
 manually and add a line like::
 
     <?php
-    // File for configuraions that shouldn't be shared with the user
+    // File for configurations that shouldn't be shared with the user
     $hidden = array(
       'fritzbox' => array('uri' => 'https://192.168.0.1:49443/', 'user' => 'CometVisuTestUser', 'pass' => 'pa3bvNM4j9z4')
     );
     ?>
+
+.. hint::
+
+    When the connection to the router is secured by SSL (i.e. the URI starts with
+    ``https``) it is usual that ``selfsigned`` must be set to ``true`` as a
+    router in the home network will work usually with a self signed certificate.
 
 .. rubric:: Footnotes
 
 .. [#f1] In the simple view some things might be not visible. The expert view
          will show all entries.
 
-.. [#f2] The "hidden configuration" are configuraion datas that are not 
+.. [#f2] The "hidden configuration" contains configuration data that is not
          transmitted to the client any stay on the server. So there information
          is "hidden" to the user. On the server it is still readable in clear
          text. This is also true for the manager.
          
          This by itself doesn't create a secure environment, but it supports
-         building one. There at least the manager must be inaccessable to the
+         building one. There at least the manager must be inaccessible to the
          user.
