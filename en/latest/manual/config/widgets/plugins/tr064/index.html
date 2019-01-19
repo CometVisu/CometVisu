@@ -598,8 +598,8 @@ screenshot is:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="prequesites-setup-of-the-server">
-<h2>Prequesites / setup of the server<a class="headerlink" href="#prequesites-setup-of-the-server" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="prerequisites-setup-of-the-server">
+<h2>Prerequisites / setup of the server<a class="headerlink" href="#prerequisites-setup-of-the-server" title="Permalink to this headline">¶</a></h2>
 <p>To be able to use the plugin the server must support PHP with the extension
 of the SoapClient package.</p>
 <p>On debian based systems it means that the <code class="docutils literal"><span class="pre">php-soap</span></code> package must be
@@ -617,21 +617,60 @@ on the user page:</p>
 <div class="figure">
 <img alt="../../../../_images/fritzbox_user.png" src="../../../../_images/fritzbox_user.png" />
 </div>
-<p>That the plugin can access this user account the credentials must be given.
-This can be done in the CometVisu manager in the area &#8220;hidden configuration&#8221;<a class="footnote-reference" href="#f2" id="id2">[2]</a>:</p>
+<p>The plugin needs to know the credentials to be able to use this user. This
+uses the <a class="reference internal" href="../../../hidden-config.html#hidden-config"><span class="std std-ref">&#8220;hidden configuration&#8221;</span></a> infrastructure which
+can be accessed by the <a class="reference internal" href="../../../manager.html#manager"><span class="std std-ref">CometVisu manager</span></a> <a class="footnote-reference" href="#f2" id="id2">[2]</a>.</p>
 <div class="figure">
 <img alt="../../../../_images/hidden_config_en.png" src="../../../../_images/hidden_config_en.png" />
 </div>
 <p>The used name must be given in the calllist widget in the attribute <code class="docutils literal"><span class="pre">device</span></code>.</p>
+<p>The key and value pairs of the hidden configuration&#8221; are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="56%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Value</th>
+<th class="head">Example</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>uri</td>
+<td>The URI to access the TR-064 interface</td>
+<td><code class="docutils literal"><span class="pre">https://192.168.0.1:49443/</span></code></td>
+</tr>
+<tr class="row-odd"><td>user</td>
+<td>The username for the TR-064 access</td>
+<td><code class="docutils literal"><span class="pre">CometVisuTestUser</span></code></td>
+</tr>
+<tr class="row-even"><td>pass</td>
+<td>The password for the TR-64 access</td>
+<td><code class="docutils literal"><span class="pre">pa3bvNM4j9z4</span></code></td>
+</tr>
+<tr class="row-odd"><td>selfsigned</td>
+<td>Allow self signed certificates when <code class="docutils literal"><span class="pre">true</span></code></td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
+</tr>
+</tbody>
+</table>
 <p>Apart from the manager it is possible to edit the file <code class="docutils literal"><span class="pre">config/hidden.php</span></code>
 manually and add a line like:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&lt;?php
-// File for configuraions that shouldn&#39;t be shared with the user
+// File for configurations that shouldn&#39;t be shared with the user
 $hidden = array(
   &#39;fritzbox&#39; =&gt; array(&#39;uri&#39; =&gt; &#39;https://192.168.0.1:49443/&#39;, &#39;user&#39; =&gt; &#39;CometVisuTestUser&#39;, &#39;pass&#39; =&gt; &#39;pa3bvNM4j9z4&#39;)
 );
 ?&gt;
 </pre></div>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">When the connection to the router is secured by SSL (i.e. the URI starts with
+<code class="docutils literal"><span class="pre">https</span></code>) it is usual that <code class="docutils literal"><span class="pre">selfsigned</span></code> must be set to <code class="docutils literal"><span class="pre">true</span></code> as a
+router in the home network will work usually with a self signed certificate.</p>
 </div>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
@@ -644,12 +683,12 @@ will show all entries.</td></tr>
 <table class="docutils footnote" frame="void" id="f2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><p class="first">The &#8220;hidden configuration&#8221; are configuraion datas that are not
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><p class="first">The &#8220;hidden configuration&#8221; contains configuration data that is not
 transmitted to the client any stay on the server. So there information
 is &#8220;hidden&#8221; to the user. On the server it is still readable in clear
 text. This is also true for the manager.</p>
 <p class="last">This by itself doesn&#8217;t create a secure environment, but it supports
-building one. There at least the manager must be inaccessable to the
+building one. There at least the manager must be inaccessible to the
 user.</p>
 </td></tr>
 </tbody>

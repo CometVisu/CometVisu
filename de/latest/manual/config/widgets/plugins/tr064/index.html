@@ -609,9 +609,9 @@ angelegter Benutzer verwendet werden). Dies geht über die Benutzer-Verwaltung:<
 <p>Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="10%" />
-<col width="60%" />
-<col width="30%" />
+<col width="12%" />
+<col width="56%" />
+<col width="33%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Schlüssel</th>
@@ -622,18 +622,28 @@ angelegter Benutzer verwendet werden). Dies geht über die Benutzer-Verwaltung:<
 <tbody valign="top">
 <tr class="row-even"><td>uri</td>
 <td>Die URI für den Zugriff auf die TR-064 Schnittstelle</td>
-<td><a class="reference external" href="https://192.168.0.1:49443/">https://192.168.0.1:49443/</a></td>
+<td><code class="docutils literal"><span class="pre">https://192.168.0.1:49443/</span></code></td>
 </tr>
 <tr class="row-odd"><td>user</td>
 <td>Der Benutzername für den TR-064 Zugang</td>
-<td>CometVisuTestUser</td>
+<td><code class="docutils literal"><span class="pre">CometVisuTestUser</span></code></td>
 </tr>
 <tr class="row-even"><td>pass</td>
 <td>Das Passwort für den TR-64 Zugang</td>
-<td><cite>pa3bvNM4j9z4</cite></td>
+<td><code class="docutils literal"><span class="pre">pa3bvNM4j9z4</span></code></td>
+</tr>
+<tr class="row-odd"><td>selfsigned</td>
+<td>Erlaube selbstsignierte Zertifikate wenn <code class="docutils literal"><span class="pre">true</span></code></td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Wenn eine SSL gesicherte Verbindung zum Router aufgebaut werden soll (d.h. die URI mit
+<code class="docutils literal"><span class="pre">https</span></code> beginnt), so ist meist <code class="docutils literal"><span class="pre">selfsigned</span></code> auf <code class="docutils literal"><span class="pre">true</span></code> zu setzen, da ein Router
+im Heimnetz üblicher Weise mit einem selbst signierten Zertifikat arbeitet.</p>
+</div>
 <p class="rubric">Fußnoten</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
