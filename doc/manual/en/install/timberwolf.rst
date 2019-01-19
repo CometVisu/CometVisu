@@ -126,6 +126,10 @@ CometVisu is now available: ``https://<mein timberwolf>/proxy/visu/``
 InfluxDB access
 ^^^^^^^^^^^^^^^
 
+.. HINT::
+  The InfluxDB access as well as the hidden config was introduced with
+  version 0.11.0 and isn't available in earlier versions.
+
 To access the time series in the InfluxDB its credentials must be added to the
 :ref:`hidden configuration <hidden-config>` of the :ref:`manager <manager>`.
 To get them you must click at the Timberwolf server in the *Portainer*

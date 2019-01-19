@@ -126,6 +126,10 @@ Die CometVisu ist nun über ``https://<mein timberwolf>/proxy/visu/`` aufrufbar.
 InfluxDB Zugriff
 ^^^^^^^^^^^^^^^^
 
+.. HINT::
+  The InfluxDB access as well as the hidden config was introduced with
+  version 0.11.0 and isn't available in earlier versions.
+
 Für den Zugriff auf die Zeitreihen der InfluxDB müssen die Credentials in der
 :ref:`Versteckten Konfiguration <hidden-config>` über den
 :ref:`Manager <manager>` eingetragen werden. Hierzu muss auf dem Timberwolf
@@ -146,7 +150,7 @@ ist nun ein Eintrag mit diesen Eigenschaften anzulegen:
 - Schlüssel und Wert:
 
   - ``uri``: ``https://172.17.0.1/proxy/ts/query`` (Sollte entgegen dieser
-    Anleitung das Netzwerk des Contianers angepasst worden sein, so muss
+    Anleitung das Netzwerk des Containers angepasst worden sein, so muss
     gegebenenfalls hier die IP-Addresse entsprechend angepasst werden)
   - ``user``: Benutzername aus den Credentials
   - ``pass``: Passwort aus den Credentials
