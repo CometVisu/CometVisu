@@ -132,7 +132,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       var suffix = cv.ui.layout.Manager.getLayoutSuffix(width);
       if (suffix) {
         var l = {};
-        ['x', 'y', 'width'].forEach(function (prop) {
+        ['x', 'y', 'width', 'scale'].forEach(function (prop) {
           if (layout[prop]) {
             // use default value
             l[prop] = layout[prop];

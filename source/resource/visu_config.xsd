@@ -116,6 +116,24 @@
         <xsd:documentation xml:lang="de">Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="scale" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="scale-s" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="scale-m" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="address">

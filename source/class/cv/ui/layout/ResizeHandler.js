@@ -162,15 +162,19 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
           var widget = cv.ui.structure.WidgetFactory.getInstanceById(widgetContainer.id);
           var value;
           var layout = widget.getResponsiveLayout();
+          var scale = backdropScale;
           if (layout) {
             // this assumes that a .widget_container has only one child and this
             // is the .widget itself
             var style = widgetContainer.children[0].style;
+            if (layout.scale === 'false') {
+              scale = 1.0;
+            }
 
             if ('x' in layout) {
               value = layout.x.match(cssPosRegEx);
               if ('px' === value[2]) {
-                style.left = (backdropLeft + value[1] * backdropScale) + 'px';
+                style.left = (backdropLeft + value[1] * scale) + 'px';
               } else {
                 style.left = layout.x;
               }
@@ -179,7 +183,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
             if ('y' in layout) {
               value = layout.y.match(cssPosRegEx);
               if ('px' === value[2]) {
-                style.top = (backdropTop + value[1] * backdropScale) + 'px';
+                style.top = (backdropTop + value[1] * scale) + 'px';
               } else {
                 style.top = layout.y;
               }
