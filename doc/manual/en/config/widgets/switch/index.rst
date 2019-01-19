@@ -10,9 +10,10 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-.. ###END-WIDGET-DESCRIPTION###
-
 The switch widget shows two states (e.g. ON and OFF) and can toggle between them.
+
+
+.. ###END-WIDGET-DESCRIPTION###
 
 .. uml::
     :align: center
@@ -182,18 +183,18 @@ for the Switch widget.
 
     ...
     <meta>
-      <mappings>
-        <mapping name="OnOff">
-          <entry value="0">O</entry>
-          <entry value="1">I</entry>
-        </mapping>
-      </mappings>
-      <stylings>
-        <styling name="GreyGreen">
-          <entry value="0">grey</entry>
-          <entry value="1">green</entry>
-        </styling>
-      </stylings>
+     <mappings>
+       <mapping name="OnOff">
+         <entry value="0">O</entry>
+         <entry value="1">I</entry>
+       </mapping>
+     </mappings>
+     <stylings>
+       <styling name="GreyGreen">
+         <entry value="0">grey</entry>
+         <entry value="1">green</entry>
+       </styling>
+     </stylings>
     </meta>
     ...
     <switch mapping="OnOff" styling="GreyGreen">
