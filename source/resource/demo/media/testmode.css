@@ -77,6 +77,13 @@
     background-color: rgba(129, 102, 75, 0.8);
     color: rgb(226, 212, 198);
 }
+
+@media only screen and (max-width: 480px) {
+    #navbarTop .navbar .widget.text.custom_vertical {
+        display: table;
+    }
+}
+
 #navbarTop .navbar .widget.text.custom_vertical div {
     position: absolute;
     left: 0;
@@ -85,6 +92,11 @@
     text-align: center;
     transform: rotate(-90deg);
     white-space: nowrap;
+}
+
+.custom_center-gauge .gauge .actor {
+    text-align: center;
+    padding: 10px 0;
 }
 
 /* stylings */
@@ -140,6 +152,17 @@ html .page .widget.multitrigger.custom_one-line .actor_container {
 
 #pages .page.type_text .group.widget {
     margin: 0.2em;
+}
+
+/* custom flavours */
+.flavour_red:not(.group) .ui-slider .ui-slider-range {
+    background-color: #FF0000;
+}
+.flavour_green:not(.group) .ui-slider .ui-slider-range {
+    background-color: #00FF00;
+}
+.flavour_blue:not(.group) .ui-slider .ui-slider-range {
+    background-color: #0000FF;
 }
 
 /* grid layout test */
