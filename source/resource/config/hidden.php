@@ -1,5 +1,5 @@
 <?php
-// File for configuraions that shouldn't be shared with the user
+// File for configurations that shouldn't be shared with the user
 $hidden = array(
 );
 ?>
