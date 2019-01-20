@@ -89,9 +89,7 @@ In der config.xml sieht dieser Abschnitt wie folgt aus:
               </group>
             </group>
 
-Für die Formatierung (Farbe, Schriftgrösse und Schriftart) muss im Visu
-Verzeichnis unter **/designs/metal/custom.css** noch folgender
-Abschnitt eingefügt werden:
+Für die Formatierung (Farbe, Schriftgrösse und Schriftart) müssen folgende CSS-Regeln eingefügt werden:
 
 .. code-block:: css
 
@@ -120,3 +118,5 @@ Abschnitt eingefügt werden:
     .custom_timedate > div.strftime_value {
             text-align: center;
     }
+
+Das Einbinden von eigenen CSS-Regeln wird :ref:`hier <custom_cssrules>` beschrieben.

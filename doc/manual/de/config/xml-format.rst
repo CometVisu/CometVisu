@@ -48,6 +48,8 @@ Nachstehend wird werden der Reihe nach ein Überblick über die Optionen im meta
 Zusätzliche Dateien einbinden
 -----------------------------
 
+| **Verfügbar seit Version**: 0.11.0
+
 ===========================  ============================================   =================================  ===============
 Option                       Beschreibung                                   Werte                              Zwingend
 ===========================  ============================================   =================================  ===============
@@ -203,6 +205,8 @@ Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt z.B. das Anzei
 
 Templates
 ---------
+
+| **Verfügbar seit Version**: 0.11.0
 
 Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte erstellt werden. In der Regel möchte man z.B.
 seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B. einem
