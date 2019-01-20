@@ -119,4 +119,4 @@ Für die Formatierung (Farbe, Schriftgrösse und Schriftart) müssen folgende CS
             text-align: center;
     }
 
-Das Einbinden von eigenen CSS-Regeln wird :ref:`hier <custom_cssrules>` beschrieben.
+Das Einbinden von eigenen CSS-Regeln wird im Kapitel :ref:`Anpassungen vornehmen <custom_cssrules>` beschrieben.

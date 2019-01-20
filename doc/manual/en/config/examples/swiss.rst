@@ -120,4 +120,4 @@ For formatting (color, font size and font) the following css rules must be added
             text-align: center;
     }
 
-Howto include custom css rules is described :ref:`here <custom_cssrules>`.
+Howto include custom css rules is described in chapter :ref:`Customize Cometvisu <custom_cssrules>`.
