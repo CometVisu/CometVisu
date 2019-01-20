@@ -10,6 +10,9 @@ var
 client.update = function(json ) // overload the handler
 {
   var h = cv.Transform.decode(thisTransform, json[thisGA] );
+  if (h === undefined) {
+    return;
+  }
   var filling = qx.bom.Selector.query('#rect3855', document)[0];
   filling.y.baseVal.value=200.57388 + (100-h)*2;
   filling.height.baseVal.value = h*2;

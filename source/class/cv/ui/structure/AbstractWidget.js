@@ -94,7 +94,8 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       init: false,
       event: "changeVisible",
       apply: "_applyVisible"
-    }
+    },
+    responsive        : { check: "Boolean", init: false }
   },
 
   /*
@@ -118,6 +119,32 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
 
     // property apply
     _applyVisible: function(value, old) {
+    },
+
+    getResponsiveLayout: function (width) {
+      if (!this.isResponsive()) {
+        return this.getLayout();
+      }
+      if (!width) {
+        width = cv.ui.layout.Manager.getAvailableWidth();
+      }
+      var layout = this.getLayout();
+      var suffix = cv.ui.layout.Manager.getLayoutSuffix(width);
+      if (suffix) {
+        var l = {};
+        ['x', 'y', 'width', 'scale'].forEach(function (prop) {
+          if (layout[prop]) {
+            // use default value
+            l[prop] = layout[prop];
+          }
+          if (layout[prop + suffix]) {
+            // override default value
+            l[prop] = layout[prop + suffix];
+          }
+        });
+        return l;
+      }
+      return layout;
     },
 
     /**
