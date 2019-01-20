@@ -71,6 +71,7 @@ qx.Class.define('cv.ui.website.Slider', {
     __positionKnob: null,
     __invalidPageSizeListener: null,
     __sizeStates: null,
+    __dragMode: null,
 
     init: function() {
       this.base(arguments);
@@ -154,10 +155,23 @@ qx.Class.define('cv.ui.website.Slider', {
       this.base(arguments, e);
     },
 
+    _onPointerDown : function(e) {
+      // this can happen if the user releases the button while dragging outside
+      // of the browser viewport
+      if (this.__dragMode) {
+        return;
+      }
+
+      this.base(arguments, e);
+      this.__dragMode = true;
+    },
+
+
     //overridden
     _onDocPointerUp: function(e) {
       this.__pointerMoveEvent = false;
       this.base(arguments, e);
+      this.__dragMode = false;
     },
 
     isInPointerMove: function() {
