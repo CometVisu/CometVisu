@@ -71,7 +71,6 @@ qx.Class.define('cv.ui.website.Slider', {
     __positionKnob: null,
     __invalidPageSizeListener: null,
     __sizeStates: null,
-    __dragMode: null,
 
     init: function() {
       this.base(arguments);
