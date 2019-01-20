@@ -43,6 +43,7 @@ Include additional files
 ------------------------
 
 | **Available since version**: 0.11.0
+|
 
 ===========================  ============================================   =================================  ===============
 Option                       Description                                    Values                             Necessary
@@ -201,6 +202,7 @@ Templates
 ---------
 
 | **Available since version**: 0.11.0
+|
 
 In the meta area, templates for frequently used configuration sections
 can be created. In general, one would like to show e.g. his heating in every
