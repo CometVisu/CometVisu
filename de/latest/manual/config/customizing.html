@@ -269,9 +269,11 @@ werden die verschiedenen Möglichkeiten - sortiert nach Komplexitätsgrad - im D
 </tbody>
 </table>
 <div class="section" id="vorhandenes-design-verandern">
-<h2>Vorhandenes Design verändern<a class="headerlink" href="#vorhandenes-design-verandern" title="Link zu dieser Überschrift">¶</a></h2>
+<span id="custom-cssrules"></span><h2>Vorhandenes Design verändern<a class="headerlink" href="#vorhandenes-design-verandern" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die vorhandenen Designs können durch eigene CSS-Regeln angepasst werden. Im Meta-Bereich der Konfigurationsdatei
 können dazu Pfade zu CSS-Dateien angegben werden, die zusätzlich zu den CSS-Dateien des CometVisu-Designs geladen werden.</p>
+<p>Die entsprechende CSS-Dateien können über den <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> hochgeladen werden,
+sofern man keinen Zugriff auf den Server hat auf dem die CometVisu liegt.</p>
 <div class="literal-block-wrapper container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Auszug einer Konfigurationsdatei, die 2 zusätzliche CSS-Dateien lädt:</span><a class="headerlink" href="#id1" title="Link zu diesem Quellcode">¶</a></div>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>

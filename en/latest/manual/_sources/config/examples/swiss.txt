@@ -90,8 +90,7 @@ In config.xml, this section looks like this:
               </group>
             </group>
 
-For formatting (color, font size and font) the following section
-must be added in the Visu directory under **/designs/metal/custom.css**:
+For formatting (color, font size and font) the following css rules must be added to the visu:
 
 .. code-block:: css
 
@@ -120,3 +119,5 @@ must be added in the Visu directory under **/designs/metal/custom.css**:
     .custom_timedate > div.strftime_value {
             text-align: center;
     }
+
+Howto include custom css rules is described in chapter :ref:`Customize Cometvisu <custom_cssrules>`.

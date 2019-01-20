@@ -264,17 +264,19 @@ degree of complexity - are described in detail.</p>
 <li></li>
 </ol>
 </td>
-<td>Write own Structur</td>
+<td>Write own Structure</td>
 <td>Content</td>
 <td>The conversion of the configuration files into HTML code can be completely changed by creating a new structure.</td>
 </tr>
 </tbody>
 </table>
 <div class="section" id="change-existing-design">
-<h2>Change existing design<a class="headerlink" href="#change-existing-design" title="Permalink to this headline">¶</a></h2>
+<span id="custom-cssrules"></span><h2>Change existing design<a class="headerlink" href="#change-existing-design" title="Permalink to this headline">¶</a></h2>
 <p>The existing designs can be adapted by own CSS rules. In the metafile of the
 configuration file, paths to CSS files can be specified, which are loaded
 in addition to the CSS files of the CometVisu design.</p>
+<p>The CSS-files can be uploaded with the <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a>,
+if it is not possible to access the servers filesystem directly.</p>
 <div class="literal-block-wrapper container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Extracting a configuration file that loads 2 additional CSS files:</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
