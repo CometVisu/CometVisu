@@ -15,8 +15,11 @@ degree of complexity - are described in detail.
 3.    Widgets with ``class``    Appearance     Many widgets can be customized by adding the ``class`` attribute and matching CSS rules.
 4.    Write own Design          Appearance     If additional CSS rules are not enough, a new design can be created.
 5.    Write own Widgets         Content        Add new widgets through plugins.
-6.    Write own Structur        Content        The conversion of the configuration files into HTML code can be completely changed by creating a new structure.
+6.    Write own Structure       Content        The conversion of the configuration files into HTML code can be completely changed by creating a new structure.
 ===   ======================    ===========    ===================================================
+
+
+.. _custom_cssrules:
 
 Change existing design
 ----------------------
@@ -24,6 +27,10 @@ Change existing design
 The existing designs can be adapted by own CSS rules. In the metafile of the
 configuration file, paths to CSS files can be specified, which are loaded
 in addition to the CSS files of the CometVisu design.
+
+The CSS-files can be uploaded with the :ref:`Manager <manager>`,
+if it is not possible to access the servers filesystem directly.
+
 
 .. code-block:: xml
     :caption: Extracting a configuration file that loads 2 additional CSS files:
