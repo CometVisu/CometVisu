@@ -607,20 +607,20 @@
 
   <xsd:complexType name="state-notification">
     <xsd:sequence>
-      <xsd:element name="title-template" minOccurs="0">
+      <xsd:element name="title-template" minOccurs="0" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Template for message title</xsd:documentation>
           <xsd:documentation xml:lang="de">Vorlage für Nachrichtentitel</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="addresses" type="addresses" />
-      <xsd:element name="message-template">
+      <xsd:element name="message-template" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Template for message content</xsd:documentation>
           <xsd:documentation xml:lang="de">Vorlage für Nachrichteninhalt</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
-      <xsd:element name="condition" minOccurs="0">
+      <xsd:element name="condition" minOccurs="0" type="xsd:string">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Show message only when incoming data equals the condition</xsd:documentation>
           <xsd:documentation xml:lang="de">Nachricht nur anzeigen, wenn Wert diesem gleicht</xsd:documentation>
