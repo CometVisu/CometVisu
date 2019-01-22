@@ -99,6 +99,16 @@ mv build out/de/$VERSION/demo
 
 # Copy demo-mode to default config
 cp out/de/$VERSION/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo/resource/config/visu_config.xml
+
+echo "generating test mode source version"
+./generate.py source-hybrid --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
+rm -rf out/de/$VERSION/demo-source
+mkdir -p out/de/$VERSION/demo-source/client/source/class/cv/
+mkdir -p out/de/$VERSION/demo-source/source/
+# copy files
+cp -r client/source/class/cv out/de/$VERSION/demo-source/client/source/class/
+cp -r source/class source/resource source/loader source/script source/index.html source/manifest.json out/de/$VERSION/demo-source/source/
+cp out/de/$VERSION/demo-source/source/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo-source/source/resource/config/visu_config.xml
 deactivate
 
 echo "starting deployment..."
