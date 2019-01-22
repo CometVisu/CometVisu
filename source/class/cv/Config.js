@@ -131,14 +131,14 @@ qx.Class.define('cv.Config', {
        * @type {Map} of rowspan-value as key and true as value
        */
       usedRowspans: {},
-      pluginsToLoad: []
-    },
+      pluginsToLoad: [],
 
-    /**
-     * Array with alls icons defined in the current config file
-     * @type {Array}
-     */
-    iconsFromConfig: [],
+      /**
+       * Array with alls icons defined in the current config file
+       * @type {Array}
+       */
+      iconsFromConfig: []
+    },
 
     /**
      * Store last visited page in LocalStorage
