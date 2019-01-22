@@ -470,7 +470,6 @@ qx.Class.define("cv.Application",
           this.loadPlugins();
           this.loadStyles();
           this.loadScripts();
-          this.loadIcons();
           this.debug("done");
 
           if (cv.Config.enableCache) {
@@ -487,7 +486,7 @@ qx.Class.define("cv.Application",
      * Adds icons which were defined in the current configuration to the {@link cv.IconHandler}
      */
     loadIcons: function() {
-      cv.Config.iconsFromConfig.forEach(function(icon) {
+      cv.Config.configSettings.iconsFromConfig.forEach(function(icon) {
         cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic);
       }, this);
     },
