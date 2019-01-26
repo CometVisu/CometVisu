@@ -408,6 +408,7 @@ button.ui-slider-handle {
   left: 50%;
   width: auto;
   height: auto;
+  max-width: calc(100vw - 60px);
 }
 
 .popup {

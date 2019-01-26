@@ -64,6 +64,16 @@ python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); 
 }
 deactivate
 
+# API screenshots are used by the "doc --from-source" run so we generate them here
+if [[ "$NO_API" -eq 0 ]]; then
+    echo "generate API screenshots"
+    ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
+
+    # move the apiviewer to the correct version subfolder, including screenshots
+    rm -r out/en/$VERSION/api
+    ${CV} doc --move-apiviewer
+fi
+
 echo "updating english manual from source code doc comments"
 ${CV} doc --from-source
 
@@ -75,15 +85,6 @@ ${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=
 echo "generating german manual again with existing screenshots"
 ${CV} doc --doc-type manual -f -l de --target-version=${VERSION}
 
-if [[ "$NO_API" -eq 0 ]]; then
-    echo "generate API screenshots"
-    ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
-
-    # move the apiviewer to the correct version subfolder, including screenshots
-    rm -r out/en/$VERSION/api
-    ${CV} doc --move-apiviewer
-fi
-
 echo "generating feature yml file for homepage"
 ${CV} doc --generate-features
 
@@ -92,9 +93,22 @@ ${CV} sitemap
 
 echo "generating test mode build"
 source temp-python/bin/activate
-./generate.py build --macro=CV_TESTMODE:resource/demo/media/metal-data.json
+./generate.py build --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
 rm -rf out/de/$VERSION/demo
 mv build out/de/$VERSION/demo
+
+# Copy demo-mode to default config
+cp out/de/$VERSION/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo/resource/config/visu_config.xml
+
+echo "generating test mode source version"
+./generate.py source-hybrid --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
+rm -rf out/de/$VERSION/demo-source
+mkdir -p out/de/$VERSION/demo-source/client/source/class/cv/
+mkdir -p out/de/$VERSION/demo-source/source/
+# copy files
+cp -r client/source/class/cv out/de/$VERSION/demo-source/client/source/class/
+cp -r source/class source/resource source/loader source/script source/index.html source/manifest.json out/de/$VERSION/demo-source/source/
+cp out/de/$VERSION/demo-source/source/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo-source/source/resource/config/visu_config.xml
 deactivate
 
 echo "starting deployment..."

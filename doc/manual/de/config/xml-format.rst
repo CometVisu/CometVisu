@@ -48,6 +48,9 @@ Nachstehend wird werden der Reihe nach ein Überblick über die Optionen im meta
 Zusätzliche Dateien einbinden
 -----------------------------
 
+| **Verfügbar seit Version**: 0.11.0
+
+
 ===========================  ============================================   =================================  ===============
 Option                       Beschreibung                                   Werte                              Zwingend
 ===========================  ============================================   =================================  ===============
@@ -161,13 +164,20 @@ Icons
         ...
     </meta>
 
+.. HINT::
+
+    Wenn die Icons über den :doc:`Manager <manager>` hochgeladen wurden, befinden sie sich im Pfad
+    ``resource/config/media/``. Ein hochgeladenes Icon mit dem Dateiname ``logo.svg`` kann demnach mit folgender
+    Zeile eingebunden werden: ``<icon-definition name="Logo" uri="resource/config/media/logo.svg"`.
+    Der Pfad ``resource/config/media/`` gilt für CometVisu Versionen >=0.11.x. Für Versionen <=0.10.x gilt der Pfad
+    ``config/media/``.
 
 .. _xml-format_statusbar:
 
 Statusbar
 ---------
 
-Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt das zB. Abzeigen von externen Links (über URL). 
+Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt z.B. das Anzeigen von externen Links (über URL). 
 
 .. code-block:: xml
 
@@ -197,6 +207,9 @@ Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt das zB. Abzeig
 Templates
 ---------
 
+| **Verfügbar seit Version**: 0.11.0
+|
+
 Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte erstellt werden. In der Regel möchte man z.B.
 seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B. einem
 Slider zur Darstellung und Bedienung der Ventilstellung, einem Info-Widget zur Anzeige der aktuellen Ist-Temperatur
@@ -210,7 +223,7 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
 .. code-block:: xml
     :caption: Beispiel eines Templates für eine Heizung und dessen Verwendung in verschiedenen Räumen
 
-    <pages...>
+    <pages>
         <meta>
             <template name="Heizung">
                 <group name="Heizung">
@@ -241,8 +254,8 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
                 </group>
             </template>
         </meta>
-        <pages...>
-            <page name="Wohnzimmer"...>
+        <page>
+            <page name="Wohnzimmer">
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Living</value>
@@ -251,7 +264,7 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
                 </template>
                 ...
             </page>
-            <page name="Küche"...>
+            <page name="Küche">
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Kitchen</value>
@@ -263,7 +276,7 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
                 </template>
                 ...
             </page>
-        </pages>
+        </page>
     </pages>
 
 .. HINT::
@@ -276,12 +289,12 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
     :caption: Beispiel einer Template-Definition aus einer externen Datei
 
 
-    <pages...>
+    <pages>
         <meta>
             <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
         </meta>
-        <pages...>
-            <page name="Wohnzimmer"...>
+        <page>
+            <page name="Wohnzimmer">
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Living</value>
@@ -290,7 +303,7 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
                 </template>
                 ...
             </page>
-            <page name="Küche"...>
+            <page name="Küche">
                 ...
                 <template name="Heizung">
                   <value name="control_address">Heating_FF_Kitchen</value>
@@ -302,7 +315,7 @@ Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine exter
                 </template>
                 ...
             </page>
-        </pages>
+        </page>
     </pages>
 
 .. code-block:: xml

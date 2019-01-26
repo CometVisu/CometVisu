@@ -17,11 +17,18 @@ werden die verschiedenen Möglichkeiten - sortiert nach Komplexitätsgrad - im D
 6.    Eigene Struktur schreiben        Inhaltlich          Die Umwandlung der Konfigurationsdateien in HTML-Code, kann durch erstellen einer neuen Struktur komplett verändert werden.
 ===   =============================    ================    ===================================================
 
+
+.. _custom_cssrules:
+
 Vorhandenes Design verändern
 ----------------------------
 
 Die vorhandenen Designs können durch eigene CSS-Regeln angepasst werden. Im Meta-Bereich der Konfigurationsdatei
 können dazu Pfade zu CSS-Dateien angegben werden, die zusätzlich zu den CSS-Dateien des CometVisu-Designs geladen werden.
+
+Die entsprechende CSS-Dateien können über den :ref:`Manager <manager>` hochgeladen werden,
+sofern man keinen Zugriff auf den Server hat auf dem die CometVisu liegt.
+
 
 .. code-block:: xml
     :caption: Auszug einer Konfigurationsdatei, die 2 zusätzliche CSS-Dateien lädt:

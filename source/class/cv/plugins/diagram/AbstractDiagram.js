@@ -62,6 +62,16 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   type: "abstract",
 
   /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (props) {
+    this.base(arguments, props);
+    this._debouncedLoadDiagramData = qx.util.Function.debounce(this.loadDiagramData.bind(this), 200);
+  },
+
+  /*
   ******************************************************
     STATICS
   ******************************************************
@@ -236,7 +246,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     lookupTsCache: function(ts, start, end, res, refresh, force, callback, callbackParameter ) {
       var
         url = (( 'influx' === ts.tsType )
-            ? 'http://wiregate/CometVisuGit/source/resource/plugins/diagram/influxfetch.php?ts=' + ts.src
+            ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src
             : cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+'?rrd=' + encodeURIComponent(ts.src) + '.rrd')
           + '&ds='    + encodeURIComponent(ts.cFunc)
           // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
@@ -576,7 +586,10 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
 
       if (!isPopup && !this.getPreviewlabels()) {
-        qx.lang.Object.mergeWith(options, {xaxes: [ {ticks: 0} ]});
+        qx.lang.Object.mergeWith(options, {xaxes: [ {ticks: 0, mode: options.xaxes[0].mode } ]});
+        if( 0 === options.yaxes.length ) {
+          options.yaxes[0] = {};
+        }
         options.yaxes.forEach(function(val) {
           qx.lang.Object.mergeWith(val, {ticks:0, axisLabel: null});
         }, this);
@@ -597,11 +610,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       this.plotted = true;
 
       var that = this;
-      diagram.bind("plotpan", function(event, plot, args) {
-        // TODO and FIXME: args.dragEnded doesn't exist, so data isn't reloaded after pan end!
-        if (args.dragEnded) {
-          that.loadDiagramData( plot, isPopup, false );
-        }
+      diagram.bind("plotpan", function(event, plot) {
+        that._debouncedLoadDiagramData( plot, isPopup, false );
       }).bind("plotzoom", function() {
         that.loadDiagramData( plot, isPopup, false );
       }).bind("touchended", function() {

@@ -91,7 +91,7 @@ qx.Class.define('cv.plugins.Gauge', {
     parse: function (xml, path, flavour, pageType) {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path);
+      cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
     },
 
@@ -162,6 +162,7 @@ qx.Class.define('cv.plugins.Gauge', {
   */
   members: {
     __gaugeElement: null,
+    __updateQueue: null,
 
     _getInnerDomString: function() {
       return '<div class="actor' + (this.getPagejumpTarget() ? 'clickable' : '') + '"><canvas id="gauge_' + this.getPath() + '"></canvas></div>';
@@ -169,22 +170,23 @@ qx.Class.define('cv.plugins.Gauge', {
 
     // overridden
     _onDomReady: function() {
-      this.base(arguments);
-      // TODO: retrieve those values directly from the properties???
-      var data = cv.data.Model.getInstance().getWidgetData(this.getPath());
       var additional = {
-        gaugeType: data.subType ? steelseries.GaugeType[data.subType] : undefined,
-        frameDesign: data.frameDesign ? steelseries.FrameDesign[data.frameDesign] : undefined,
-        backgroundColor: data.backgroundColor ? steelseries.BackgroundColor[data.backgroundColor] : undefined,
-        valueColor: data.valueColor ? steelseries.ColorDef[data.valueColor] : steelseries.ColorDef.RED,
+        gaugeType: this.getSubtype() ? steelseries.GaugeType[this.getSubtype()] : undefined,
+        frameDesign: this.getFrameDesign() ? steelseries.FrameDesign[this.getFrameDesign()] : undefined,
+        backgroundColor: this.getBackgroundColor() ? steelseries.BackgroundColor[this.getBackgroundColor()] : undefined,
+        valueColor: this.getValueColor() ? steelseries.ColorDef[this.getValueColor()] : steelseries.ColorDef.RED,
         foregroundType: steelseries.ForegroundType.TYPE1,
         pointerType: steelseries.PointerType.TYPE1,
         pointerColor: steelseries.ColorDef.RED,
         lcdColor: steelseries.LcdColor.STANDARD,
         ledColor: steelseries.LedColor.RED_LED
       };
-      var params = qx.lang.Object.mergeWith(qx.lang.Object.clone(data), additional);
+      var params = qx.lang.Object.mergeWith(
+        qx.lang.Object.clone(cv.data.Model.getInstance().getWidgetData(this.getPath())),
+        additional
+      );
       this.__gaugeElement = new steelseries[this.getGType()]("gauge_"+this.getPath(), params);
+      this.base(arguments);
     },
 
     // overridden

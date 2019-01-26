@@ -131,14 +131,14 @@ qx.Class.define('cv.Config', {
        * @type {Map} of rowspan-value as key and true as value
        */
       usedRowspans: {},
-      pluginsToLoad: []
-    },
+      pluginsToLoad: [],
 
-    /**
-     * Array with alls icons defined in the current config file
-     * @type {Array}
-     */
-    iconsFromConfig: [],
+      /**
+       * Array with alls icons defined in the current config file
+       * @type {Array}
+       */
+      iconsFromConfig: []
+    },
 
     /**
      * Store last visited page in LocalStorage
@@ -278,7 +278,7 @@ qx.Class.define('cv.Config', {
         r.send();
       }
     } else if (req.queryKey.testMode) {
-      cv.Config.testMode = req.queryKey.testMode === "true";
+      cv.Config.testMode = req.queryKey.testMode === "true" || req.queryKey.testMode === "1";
     }
 
     // propagate to the client

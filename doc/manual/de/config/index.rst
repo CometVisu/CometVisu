@@ -9,6 +9,7 @@ Konfiguration der CometVisu
     :hidden:
 
     manager
+    editor
 
 Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
 Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis "./config"
@@ -25,7 +26,7 @@ sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
 
 - Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Vezeichnisbaum "/var/www/visu…" des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.
 
-- Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem texbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) "umlenken“.
+- Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem textbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) "umlenken“.
 
 - Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in "/usr/share/openhab/webapps/visu…" installiert.
 
@@ -112,6 +113,12 @@ Tags umschlossen aufgenommen werden:
 -  :ref:`Statusbar <xml-format_statusbar>`
 -  :ref:`Aufbau der Visu-Seiten <xml-format_pages>`
 
+.. toctree::
+    :hidden:
+
+    xml-format
+
+
 Navigationselemente in der CometVisu
 ------------------------------------
 
@@ -130,7 +137,7 @@ Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten für die Naviga
     
    Übersicht der wichtigsten Navigationselemente.
 
-Weiters sind verschiedene Funtionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:
+Ebenso sind verschiedene Funktionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:
 
 -  Per KNX Gruppenadresse kann auf eine Unterseite gesprungen werden, wenn das Attribut ``ga=x/y/z`` in der zugehörigen 
    :ref:`Page Definition <page>` eingetragen ist.

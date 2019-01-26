@@ -38,7 +38,7 @@ Allowed attributes in the Refresh-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <refresh>
+    <refresh value="1">
         <layout colspan="4" />
     </refresh>
 
@@ -54,16 +54,15 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <refresh>
+    <refresh value="1">
         <layout colspan="4" />
         <label>Refresh</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </refresh>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Refresh widget.
 
 .. CAUTION::

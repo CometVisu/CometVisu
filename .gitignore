@@ -26,3 +26,5 @@ settings/keys/deploy_key
 /coverage
 /out
 *.pyc
+/doc/manual/*/_build/**
+**/.vscode/**

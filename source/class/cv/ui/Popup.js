@@ -79,7 +79,7 @@ qx.Class.define('cv.ui.Popup', {
      * @return {Element} Popup as DOM Element
      */
     create: function (attributes) {
-      cv.ui.BodyBlocker.getInstance().block();
+      cv.ui.BodyBlocker.getInstance().block(attributes.unique, attributes.topic);
       var closable = !attributes.hasOwnProperty("closable") || attributes.closable;
       var body = qx.bom.Selector.query('body')[0];
       var ret_val;
@@ -112,6 +112,8 @@ qx.Class.define('cv.ui.Popup', {
           this.destroyElement("close");
         }
       }
+
+      this.__domElement.$$topic = attributes.topic;
 
       if (attributes.title) {
         if (!this.__elementMap.title) {
@@ -292,11 +294,13 @@ qx.Class.define('cv.ui.Popup', {
      * Closes this popup
      */
     close: function () {
-      cv.ui.BodyBlocker.getInstance().unblock();
       if (this.__domElement) {
+        cv.ui.BodyBlocker.getInstance().unblock(this.__domElement.$$topic);
         qx.dom.Element.remove(this.__domElement);
         this.__domElement = null;
         this.__elementMap = {};
+      } else {
+        cv.ui.BodyBlocker.getInstance().unblock();
       }
     },
 

@@ -101,7 +101,7 @@ XML Syntax minimal
 ------------------
 
 Alternativ kann man für das Diagram-Widget auch von Hand einen Eintrag in
-der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
+der :ref:`visu_config.xml <xml-format>` hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet

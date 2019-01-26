@@ -38,7 +38,7 @@ Allowed attributes in the Web-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <web>
+    <web src="https://www.cometvisu.org">
         <layout colspan="4" />
     </web>
 
@@ -54,16 +54,15 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <web>
+    <web src="https://www.cometvisu.org">
         <layout colspan="4" />
         <label>Web</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </web>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Web widget.
 
 .. CAUTION::

@@ -62,10 +62,34 @@
         <xsd:documentation xml:lang="de">Horizontale Position des Widgets auf 2D Seiten.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="x-s" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Horizontal position of the widget for 2D pages on a small screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x-m" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Horizontal position of the widget for 2D pages on a medium screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="y" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Vertical position of the widget for 2D pages.</xsd:documentation>
         <xsd:documentation xml:lang="de">Vertikale Position des Widgets auf 2D Seiten.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="y-s" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Vertical position of the widget for 2D pages on a small screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="y-m" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Vertical position of the widget for 2D pages on a medium screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="z" type="xsd:string" use="optional">
@@ -78,6 +102,36 @@
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Width for the widget for 2D pages.</xsd:documentation>
         <xsd:documentation xml:lang="de">Breite des Widgets auf 2D Seiten.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="width-s" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width for the widget for 2D pages on a small screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="width-m" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width for the widget for 2D pages on a medium screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="scale" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="scale-s" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="scale-m" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -531,6 +585,7 @@
       <xsd:element name="timeout" type="timeout" />
       <xsd:element name="calllist" type="calllist" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
+      <xsd:element name="link" type="link" />
     </xsd:choice>
   </xsd:group>
 
@@ -606,25 +661,27 @@
 
   <xsd:complexType name="state-notification">
     <xsd:sequence>
-      <xsd:element name="title-template" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Template for message title</xsd:documentation>
-          <xsd:documentation xml:lang="de">Vorlage für Nachrichtentitel</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="addresses" type="addresses" />
-      <xsd:element name="message-template">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Template for message content</xsd:documentation>
-          <xsd:documentation xml:lang="de">Vorlage für Nachrichteninhalt</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="condition" minOccurs="0">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Show message only when incoming data equals the condition</xsd:documentation>
-          <xsd:documentation xml:lang="de">Nachricht nur anzeigen, wenn Wert diesem gleicht</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="title-template" minOccurs="0" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Template for message title</xsd:documentation>
+            <xsd:documentation xml:lang="de">Vorlage für Nachrichtentitel</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="addresses" type="addresses" />
+        <xsd:element name="message-template" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Template for message content</xsd:documentation>
+            <xsd:documentation xml:lang="de">Vorlage für Nachrichteninhalt</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="condition" minOccurs="0" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Show message only when incoming data equals the condition</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nachricht nur anzeigen, wenn Wert diesem gleicht</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
@@ -730,6 +787,25 @@
     <xsd:attribute name="address-mapping" type="xsd:string" />
   </xsd:complexType>
 
+  <xsd:complexType name="template">
+      <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="value">
+          <xsd:complexType mixed="true">
+            <xsd:sequence>
+              <xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string" use="required"/>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+      <xsd:attribute name="name" type="xsd:string" use="required">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Name of the template definition to be used</xsd:documentation>
+          <xsd:documentation xml:lang="de">Name der Template-Definition die hier benutzt werden soll</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+  </xsd:complexType>
+
   <!-- define a page -->
   <xsd:complexType name="page">
     <xsd:sequence>
@@ -740,26 +816,7 @@
         <xsd:element name="navbar" type="navbar" />
         <xsd:group ref="Widgets"/>
         <xsd:group ref="AvailablePlugins"/>
-        <xsd:element name="template">
-          <xsd:complexType>
-            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-              <xsd:element name="value">
-                <xsd:complexType mixed="true">
-                  <xsd:sequence>
-                    <xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
-                  </xsd:sequence>
-                  <xsd:attribute name="name" type="xsd:string" use="required"/>
-                </xsd:complexType>
-              </xsd:element>
-            </xsd:sequence>
-            <xsd:attribute name="name" type="xsd:string" use="required">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Name of the template definition to be used</xsd:documentation>
-                <xsd:documentation xml:lang="de">Name der Template-Definition die hier benutzt werden soll</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
-          </xsd:complexType>
-        </xsd:element>
+        <xsd:element name="template" type="template"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="required">
@@ -862,6 +919,7 @@
         <xsd:element name="group" type="group" />
         <xsd:group ref="Widgets"/>
         <xsd:group ref="AvailablePlugins"/>
+        <xsd:element name="template" type="template"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="optional">
@@ -888,6 +946,7 @@
       <xsd:element name="group" type="group" />
       <xsd:group ref="Widgets"/>
       <xsd:group ref="AvailablePlugins"/>
+      <xsd:element name="template" type="template"/>
     </xsd:choice>
     <xsd:attribute name="name" type="xsd:string" use="optional">
     	<xsd:annotation>
@@ -1947,6 +2006,25 @@
     <xsd:attribute name="player_port" type="xsd:string" use="optional" />
     <xsd:attribute name="refresh" type="xsd:string" use="required" />
     <xsd:attribute name="debug" type="xsd:boolean" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="link">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="class" type="xsd:string"/>
+    <xsd:attribute name="text" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">The link text.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Der Link Text.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="href" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">URL of the link.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Die URL des Links.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="timeout">

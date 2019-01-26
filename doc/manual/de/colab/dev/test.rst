@@ -47,7 +47,7 @@ Prozent des Sourcecodes durch Tests abgedeckt wurde, die Ausgabe sieht so aus:
 
 
 Einen ausführlicheren Coverage Report findet man unter ``./coverage/<browser-name>/index.html``. Wobei
-der Browser Name dem des den ausführenden Browsers entspeicht. Zur Zeit ist dies der für Headless-Testing
+der Browser Name dem des den ausführenden Browsers entspeist. Zur Zeit ist dies der für Headless-Testing
 entwickelte (auf Chrome basierende) PhantomJS. Theoretisch sind hier aber alle auf dem lokalen System
 installierten Browser möglich. In dem ausführlichen Coverage Report, kann man bis hinunter in einzelne
 Sourcecode Dateien navigieren und dort sehen, welche Zeilen noch nicht getestet wurde. Das ist sehr 

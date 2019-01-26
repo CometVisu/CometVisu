@@ -306,13 +306,17 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
         ev.stopPropagation();
         ev.preventDefault();
       }
-      var message = this._messages.getItem(index);
-      if (message.deletable === true) {
-        this._messages.removeAt(index);
+      var message = this._messages.toArray().find(function (msg) {
+        return msg.id === index;
+      });
+      if (message && message.deletable === true) {
+        this._messages.remove(message);
         if (message.severity === this.getGlobalSeverity()) {
           this._updateHighestSeverity();
         }
+        return true;
       }
+      return false;
     },
 
     performAction: function(messageId, ev) {
