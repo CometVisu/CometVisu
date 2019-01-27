@@ -321,7 +321,7 @@ qx.Class.define('cv.Config', {
     // but
     // it helps to avoid the problems on the client, e.g. when the config file
     // has changed but the browser doesn't even ask the server about it...
-    cv.Config.forceReload = true;
+    cv.Config.forceReload = false;
 
     if (req.queryKey.forceDevice) {
       cv.Config.forceMobile = req.queryKey.forceDevice === 'mobile';
