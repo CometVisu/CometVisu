@@ -238,7 +238,7 @@ the testing version should be installed with these parameters:
       - ``container``: ``/var/www/html/resource/config`` ⭢ ``volume``: ``CometVisuTestConfig``
       - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional)*
 
-    - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``
+    - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visutest/cgi-bin/``
 
 - Proxy:
 

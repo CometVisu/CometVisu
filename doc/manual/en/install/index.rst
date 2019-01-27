@@ -51,3 +51,15 @@ currently installed version with the new files at
 
     update-wiregate
     update-other 
+
+Installation on mobile devices
+------------------------------
+
+To be able to use the CometVisu comfortably on mobile devices it can be added
+to the device similarly like an app out of the app store.
+This is described at :doc:`CometVisu as app <app>`.
+
+.. toctree::
+    :hidden:
+
+    app
