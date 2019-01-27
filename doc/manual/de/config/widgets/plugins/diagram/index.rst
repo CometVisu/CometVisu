@@ -118,16 +118,16 @@ wird nach dem in der InfluxDB abgelegten Tags gefiltert in dem der Schlüssel
 ``key`` mit dem Wert ``value`` über den Operator ``operator`` verglichen wird.
 Mögliche Operatoren sind:
 
-====== ===========================
+====== ==================================
 ``=``  Gleich
 ``!=`` Ungleich
 ``<``  Kleiner
 ``<=`` Kleiner gleich
 ``>``  Größer
 ``>=`` Größer gleich
-``=~`` Gleich regulärem Ausdruck
-``!~`` Ungleich regulärem Ausdruck
-====== ===========================
+``=~`` Match des regulären Ausdrucks
+``!~`` Kein Match des regulären Ausdrucks
+====== ==================================
 
 .. code-block:: xml
 
