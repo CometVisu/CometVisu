@@ -82,6 +82,16 @@ Under: *Containers* → *Add Container*
       default ``1.1.238`` if this physical address is already occupied
       or if another line is to be used as ``1.1``.
 
+      It is also important that the port of the KNX interface is correct. At the
+      Timberwolf it can be looked up at *Settings* → *KNX* → *Interfaced*:
+
+      .. figure:: _static/timberwolf_knx_port.png
+          :scale: 50 %
+
+      Should it be different to the default of ``3700`` then the environment
+      variable ``KNX_INTERFACE`` should be changed accordingly, in this
+      example to ``iptn:172.17.0.1:3674``.
+
   - Restart policy: ``Unless stopped``
 
 .. figure:: _static/portainer_container_add.png

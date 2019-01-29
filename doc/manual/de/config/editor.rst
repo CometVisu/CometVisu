@@ -77,8 +77,8 @@ Der Editor versucht den Anwender zu unterstützen in dem manche Daten als
 Drop-Down-Liste vorbefüllt werden. Die meisten Daten kann der Editor
 selbständig ableiten, manche benötigen aber eine Unterstützung durch den Anwender.
 
-Adressen `(cgi-bin Backend für eibd/knxd)`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Adressen *(cgi-bin Backend für eibd/knxd)*
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Die KNX Gruppen-Adressen für die ``<address>`` Elemente können auf dem
 WireGate der dort vorhandenen Datenbank entnommen werden. Auf anderen Systemen,
