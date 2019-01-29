@@ -25,7 +25,7 @@ As a first step the CometVisu must be opened in the browser:
 Browser menu
 ------------
 
-When the desired configuration and page is shown then in the browser menu (⋮) the
+When the desired configuration and page is shown in the browser menu (⋮) the
 entry "Add to Home screen" must be selected:
 
 .. figure:: _static/app_android_browser_menu.png
@@ -53,7 +53,7 @@ With "OK" the final confirmation is done:
 Home screen
 -----------
 
-When successful the Home screen shows the App for the access to the CometVisu:
+When successful the Home screen shows the App to access the CometVisu:
 
 .. figure:: _static/app_android_homescreen.png
 
@@ -88,7 +88,7 @@ As a first step the CometVisu must be opened in the browser:
 Browser menu
 ------------
 
-When the desired configuration and page is shown then in the browser menu the
+When the desired configuration and page is shown in the browser menu the
 entry "Add to Home Screen" must be selected:
 
 .. figure:: _static/app_ios_browser_menu.png
@@ -107,7 +107,7 @@ The name of the App on the Home Screen can then be given in the dialog window:
 Home Screen
 -----------
 
-When successful the Home Screen shows the App for the access to the CometVisu:
+When successful the Home Screen shows the App to access the CometVisu:
 
 .. figure:: _static/app_ios_homescreen.png
 

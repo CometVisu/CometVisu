@@ -12,7 +12,7 @@ Android
 =======
 
 Um auf einem Android basiertem System die CometVisu dem Startbildschirm hinzufügen
-zu können sind ein paar einfache Schritte nötig:
+zu können, sind ein paar einfache Schritte nötig:
 
 CometVisu öffnen
 ----------------
@@ -77,7 +77,7 @@ Apple iOS Geräte
 ================
 
 Um auf einem iOS basiertem System wie dem iPhone oder dem iPad die CometVisu dem
-Startbildschirm hinzufügen zu können sind ein paar einfache Schritte nötig:
+Startbildschirm hinzufügen zu können, sind ein paar einfache Schritte nötig:
 
 CometVisu öffnen
 ----------------
