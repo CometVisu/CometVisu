@@ -73,10 +73,10 @@ qx.Class.define('cv.plugins.Link', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'class': {target: 'cssClass', default: ''},
-        'text': {default: ''},
-        'href': {default: ''},
-        'newWindow': {default: false, transform: function(value) {
+        'class': {target: 'cssClass', 'default': ''},
+        'text': {'default': ''},
+        'href': {'default': ''},
+        'newWindow': {'default': false, transform: function(value) {
             return value === "true";
           }}
       };
