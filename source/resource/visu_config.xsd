@@ -2025,6 +2025,12 @@
         <xsd:documentation xml:lang="de">Die URL des Links.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="newWindow" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Opens the link in a new window if set to true..</xsd:documentation>
+        <xsd:documentation xml:lang="de">Öffnet den Link in einem neuen Fenster, wenn der Wert auf "true" gesetzt ist.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="timeout">
