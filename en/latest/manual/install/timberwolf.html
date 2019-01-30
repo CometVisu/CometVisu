@@ -123,6 +123,7 @@
 <li class="toctree-l2"><a class="reference internal" href="linux.html">Installation on a generic Linux system</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nas.html">Installation on a NAS system</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation-on-mobile-devices">Installation on mobile devices</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../config/index.html">Configuration of the CometVisu</a></li>
@@ -270,6 +271,14 @@ be required, as specified in the section of the
 <p>So it may be necessary to set a value for <code class="docutils literal"><span class="pre">KNX_PA</span></code> other than the
 default <code class="docutils literal"><span class="pre">1.1.238</span></code> if this physical address is already occupied
 or if another line is to be used as <code class="docutils literal"><span class="pre">1.1</span></code>.</p>
+<p>It is also important that the port of the KNX interface is correct. At the
+Timberwolf it can be looked up at <em>Settings</em> → <em>KNX</em> → <em>Interfaced</em>:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/timberwolf_knx_port.png"><img alt="../_images/timberwolf_knx_port.png" src="../_images/timberwolf_knx_port.png" style="width: 964.0px; height: 337.0px;" /></a>
+</div>
+<p>Should it be different to the default of <code class="docutils literal"><span class="pre">3700</span></code> then the environment
+variable <code class="docutils literal"><span class="pre">KNX_INTERFACE</span></code> should be changed accordingly, in this
+example to <code class="docutils literal"><span class="pre">iptn:172.17.0.1:3674</span></code>.</p>
 </li>
 </ul>
 </li>
@@ -409,7 +418,7 @@ the testing version should be installed with these parameters:</p>
 <li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/rrd</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">RRD</span></code> <em>(Optional)</em></li>
 </ul>
 </li>
-<li>Env: Environment variables <code class="docutils literal"><span class="pre">name</span></code>: <code class="docutils literal"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal"><span class="pre">value</span></code>: <code class="docutils literal"><span class="pre">/proxy/visu/cgi-bin/</span></code></li>
+<li>Env: Environment variables <code class="docutils literal"><span class="pre">name</span></code>: <code class="docutils literal"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal"><span class="pre">value</span></code>: <code class="docutils literal"><span class="pre">/proxy/visutest/cgi-bin/</span></code></li>
 </ul>
 </li>
 </ul>

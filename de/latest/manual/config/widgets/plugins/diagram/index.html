@@ -756,7 +756,9 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tr>
 </tbody>
 </table>
-<p id="diagram-influx">Im <code class="docutils literal"><span class="pre">&lt;influx&gt;</span></code> Element kann über das <code class="docutils literal"><span class="pre">authentication</span></code> Attribut auf einen entsprechenden Eintrag aus der
+<div class="section" id="authentication-attribut">
+<span id="diagram-influx"></span><h4><code class="docutils literal"><span class="pre">authentication</span></code> Attribut<a class="headerlink" href="#authentication-attribut" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Im <code class="docutils literal"><span class="pre">&lt;influx&gt;</span></code> Element kann über das <code class="docutils literal"><span class="pre">authentication</span></code> Attribut auf einen entsprechenden Eintrag aus der
 <a class="reference internal" href="../../../hidden-config.html#hidden-config"><span class="std std-ref">versteckten Konfiguration</span></a> verwiesen werden (als Default wird als Name <cite>influx</cite> angenommen).</p>
 <p>Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:</p>
 <table border="1" class="docutils">
@@ -790,8 +792,114 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="consolidationfunction-attribut">
+<h4><code class="docutils literal"><span class="pre">consolidationFunction</span></code> Attribut<a class="headerlink" href="#consolidationfunction-attribut" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Wenn für einen Zeitraum nur ein Wert angezeigt werden soll, so wird dieser über
+eine <code class="docutils literal"><span class="pre">consolidationFunction</span></code> gebildet. Möglich ist:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">COUNT</span></code></td>
+<td>Anzahl der Werte</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">INTEGRAL</span></code></td>
+<td>Integral der Werte</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">MAX</span></code></td>
+<td>Maximum</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">MEAN</span></code></td>
+<td>Mittelwert</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">MEDIAN</span></code></td>
+<td>Median</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">MIN</span></code></td>
+<td>Minimum</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">MODE</span></code></td>
+<td>Der häufigste Wert</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">SPREAD</span></code></td>
+<td>Differenz zwischen Maximum und Minimum</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">STDDEV</span></code></td>
+<td>Standardabweichung</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">SUM</span></code></td>
+<td>Summe</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fillmissing-attribut">
+<h4><code class="docutils literal"><span class="pre">fillMissing</span></code> Attribut<a class="headerlink" href="#fillmissing-attribut" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Über <code class="docutils literal"><span class="pre">fillMissing</span></code> lassen sich Lücken in den Daten schließen. Möglich ist:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">linear</span></code></td>
+<td>Lineare Interpolation</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">none</span></code></td>
+<td>Keine Auffüllung</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">null</span></code></td>
+<td>Kein Wert</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">previous</span></code></td>
+<td>Übername des letzten Wertes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="elemente-innerhalb-influx">
+<h4>Elemente innerhalb <code class="docutils literal"><span class="pre">&lt;influx&gt;</span></code><a class="headerlink" href="#elemente-innerhalb-influx" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Im <code class="docutils literal"><span class="pre">&lt;influx&gt;</span></code> Element können über <code class="docutils literal"><span class="pre">&lt;add&gt;</span></code>, <code class="docutils literal"><span class="pre">&lt;or&gt;</span></code> und <code class="docutils literal"><span class="pre">&lt;tag&gt;</span></code> Elemente
-die anzuzeigenden Daten gefiltert werden.</p>
+die anzuzeigenden Daten gefiltert werden. Über <code class="docutils literal"><span class="pre">&lt;add&gt;</span></code> und <code class="docutils literal"><span class="pre">&lt;or&gt;</span></code> werden
+die (auch verschachtelten) Kind-Elemente UND bzw. ODER verknüpft. Im <code class="docutils literal"><span class="pre">&lt;tag&gt;</span></code>
+wird nach dem in der InfluxDB abgelegten Tags gefiltert in dem der Schlüssel
+<code class="docutils literal"><span class="pre">key</span></code> mit dem Wert <code class="docutils literal"><span class="pre">value</span></code> über den Operator <code class="docutils literal"><span class="pre">operator</span></code> verglichen wird.
+Mögliche Operatoren sind:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">=</span></code></td>
+<td>Gleich</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">!=</span></code></td>
+<td>Ungleich</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">&lt;</span></code></td>
+<td>Kleiner</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;=</span></code></td>
+<td>Kleiner gleich</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">&gt;</span></code></td>
+<td>Größer</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">&gt;=</span></code></td>
+<td>Größer gleich</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">=~</span></code></td>
+<td>Match des regulären Ausdrucks</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">!~</span></code></td>
+<td>Kein Match des regulären Ausdrucks</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram</span> <span class="na">width=</span><span class="s">&quot;600&quot;</span> <span class="na">height=</span><span class="s">&quot;300&quot;</span> <span class="na">series=</span><span class="s">&quot;fullday&quot;</span> <span class="na">period=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;influx</span> <span class="na">field=</span><span class="s">&quot;Val&quot;</span> <span class="na">fillMissing=</span><span class="s">&quot;linear&quot;</span> <span class="na">style=</span><span class="s">&quot;lines&quot;</span> <span class="na">fill=</span><span class="s">&quot;true&quot;</span> <span class="na">measurement=</span><span class="s">&quot;timeseries_db/KNX_LINE1&quot;</span> <span class="na">authentication=</span><span class="s">&quot;influx&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;and&gt;</span>
@@ -809,6 +917,7 @@ die anzuzeigenden Daten gefiltert werden.</p>
 <div class="figure" id="id3">
 <img alt="../../../../_images/Diagram_influx_editor.png" src="../../../../_images/Diagram_influx_editor.png" />
 <p class="caption"><span class="caption-text">Beispiel Influx-Datenquelle mit Filtern</span></p>
+</div>
 </div>
 </div>
 </div>

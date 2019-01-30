@@ -158,7 +158,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
     
     _getInnerDomString: function () {
       this.refreshCalllist('initial');
-      return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading...</td></tr></table></div>';
+      return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading TR-064...</td></tr></table></div>';
     },
     _setupRefreshAction: function() {
       this._timer = new qx.event.Timer(this.getRefresh());
