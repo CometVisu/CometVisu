@@ -1,4 +1,0 @@
-qx.$$packageData['262144']={"locales":{},"resources":{},"translations":{"de":{},"en":{}}};
-qx.Part.$$notifyLoad("262144", function() {
-(function(){var a='"',b=' href="',c='cssClass',d='</a>',e='cv.plugins.Link',f='',g=" ",h="link",i="String",j='<a class="',k='>';qx.Class.define(e,{extend:cv.ui.structure.AbstractBasicWidget,properties:{cssClass:{check:i,init:f},text:{check:i,init:f},href:{check:i,init:f}},statics:{parse:function(l,o,n,m){return cv.parser.WidgetParser.parseElement(this,l,o,n,m,this.getAttributeToPropertyMappings());},getAttributeToPropertyMappings:function(){return {'class':{target:c},'text':{},'href':{}};}},members:{getDomString:function(){var q=h;if(this.getCssClass()){q+=g+this.getCssClass();};var p=this.getHref()?b+this.getHref()+a:f;return j+q+a+p+k+this.getText()+d;}},defer:function(r){cv.parser.WidgetParser.addHandler(h,cv.plugins.Link);cv.ui.structure.WidgetFactory.registerClass(h,r);}});})();
-});

@@ -28,6 +28,7 @@
   "install-no-pakets": "/latest/manual/install/install-dev.html#install-no-pakets", 
   "layout": "/latest/manual/config/layout.html#layout", 
   "line": "/latest/manual/config/widgets/line/index.html#line", 
+  "link": "/latest/manual/config/widgets/plugins/link/index.html#link", 
   "linux": "/latest/manual/install/linux.html#linux", 
   "log": "/latest/manual/config/url-params.html#log", 
   "long-polling": "/latest/manual/devel/transport/long-polling.html#long-polling", 

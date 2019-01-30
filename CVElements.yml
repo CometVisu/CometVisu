@@ -36,6 +36,14 @@
   "name": "Gauge"
   "screenshot": "/de/latest/manual/_images/gauge_simple.png"
 - "description":
+    "de": "Fügt der Visu einen einfachen anklickbaren Link hinzu"
+    "en": "Add a simple clickable link that opens another website."
+  "manual":
+    "de": "/de/latest/manual/config/widgets/plugins/link/index.html"
+    "en": "/en/latest/manual/config/widgets/plugins/link/index.html"
+  "name": "Link"
+  "screenshot": "/de/latest/manual/_images/link.png"
+- "description":
     "de": "Darstellung des Strom-Spektrums"
     "en": "Graph of the spectrum of a power source."
   "manual":
