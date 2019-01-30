@@ -50,3 +50,15 @@ auf dem :doc:`WireGate <update-wiregate>` oder :doc:`anderen Installationen <upd
 
     update-wiregate
     update-other
+
+Installation auf mobilen Geräten
+--------------------------------
+
+Um die CometVisu komfortabel mit mobilen Geräten nutzen zu können, kann diese
+vergleichbar mit Apps aus dem App-Store auf dem Gerät hinzugefügt werden.
+Dies wird unter :doc:`Die CometVisu als App <app>` beschrieben.
+
+.. toctree::
+    :hidden:
+
+    app
