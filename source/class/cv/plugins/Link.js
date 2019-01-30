@@ -25,7 +25,7 @@
  * @since 2015
  */
 qx.Class.define('cv.plugins.Link', {
-  extend: cv.ui.structure.AbstractBasicWidget,
+  extend: cv.ui.structure.AbstractWidget,
 
   /*
   ******************************************************
@@ -89,7 +89,7 @@ qx.Class.define('cv.plugins.Link', {
   ******************************************************
   */
   members: {
-    getDomString: function () {
+    _getInnerDomString: function () {
       var classes = "link";
       if (this.getCssClass()) {
         classes += " "+this.getCssClass();
