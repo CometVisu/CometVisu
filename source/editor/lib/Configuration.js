@@ -34,9 +34,10 @@
  * loader
  * 
  * @param   filename    string  full name of the configuration file
+ * @param   isDemo      bool    true when consig is a demo config
  */
 var Configuration = function (filename, isDemo) {
-  if (filename == undefined || filename == '' || !filename.match(/\.xml$/)) {
+  if (filename === undefined || filename === '' || !filename.match(/\.xml$/)) {
     throw Messages.loader.filenameInvalid;
   }
     
@@ -106,7 +107,7 @@ var Configuration = function (filename, isDemo) {
       return;
     }
         
-    if (filename == undefined) {
+    if (filename === undefined) {
       // if no filename is given, use the one that we had for loading the file
       filename = _filename;
     }
@@ -122,7 +123,7 @@ var Configuration = function (filename, isDemo) {
                   type: 'POST',
                   cache: false,
                   success: function (data) {
-                    if (data == undefined || typeof data.success == 'undefined') {
+                    if (data === undefined || typeof data.success === 'undefined') {
                       // some weird generic error
                       var result = new Result(false, Messages.configuration.savingErrorUnknown);
                       $(document).trigger('configuration_saving_error', [result]);
@@ -130,11 +131,11 @@ var Configuration = function (filename, isDemo) {
                       return;
                     }
                     
-                    if (data.success == false) {
+                    if (data.success === false) {
                       // we have an error.
                       var message;
                         
-                      if (typeof data.message != 'undefined') {
+                      if (typeof data.message !== 'undefined') {
                         message = data.message;
                       }
                         
@@ -154,7 +155,7 @@ var Configuration = function (filename, isDemo) {
                   },
                 }
             );
-  }
+  };
     
   /**
    * get the filename of the schema/xsd associated with this Configuration
@@ -165,14 +166,14 @@ var Configuration = function (filename, isDemo) {
     // extract schema-name
     var schemaName = $xml.children().attr('xsi:noNamespaceSchemaLocation');
         
-    if (schemaName == undefined || schemaName == '') {
+    if (schemaName === undefined || schemaName === '') {
       throw Messages.configuration.schemaNotFound;
     }
         
     // path is the same as the one from the configuration, so let's throw out the filename, and voila, path.
     // might not have a path component (aka no /), then throw out everything
     var schemaPath = '';
-    if (-1 != _filename.lastIndexOf('/')) {
+    if (-1 !== _filename.lastIndexOf('/')) {
       schemaPath = _filename.substring(0, _filename.lastIndexOf('/') + 1);
     }
         
@@ -186,7 +187,7 @@ var Configuration = function (filename, isDemo) {
    * @param   schema  object  Schema-object
    */
   _config.setSchema = function (schema) {
-    if (schema == undefined || typeof schema != 'object') {
+    if (schema === undefined || typeof schema !== 'object') {
       throw 'internal problem: improper usage of Configuration (not an object)';
     }
         
@@ -247,7 +248,7 @@ var Configuration = function (filename, isDemo) {
     });
         
     return data;
-  }    
+  };
 
 
   /**
@@ -273,7 +274,7 @@ var Configuration = function (filename, isDemo) {
    * @param   params  object  list of additional params, optional
    */
   _config.informGlobalListeners = function (event, params) {
-    if (listeners.length == 0) {
+    if (listeners.length === 0) {
       // no listeners means nothing to do.
       return;
     }
@@ -302,7 +303,7 @@ var Configuration = function (filename, isDemo) {
   _config.load();
     
   var listeners = [];
-}
+};
 
 
 /**
@@ -322,7 +323,7 @@ var ConfigurationElement = function (node, parent) {
   var getAttributes = function () {
     var attributes = {};
         
-    if ($n[0].nodeType != 1) {
+    if ($n[0].nodeType !== 1) {
       // this is a text-only node!
       return attributes;
     }
@@ -331,7 +332,7 @@ var ConfigurationElement = function (node, parent) {
     // there is jQuery-equivalent to this (as of 2012-10-10, that is)
     var node = $n.get(0);
         
-    if (typeof node.attributes != 'undefined') {
+    if (typeof node.attributes !== 'undefined') {
       $.each(node.attributes, function (index, e) {
         // attributes with a colon are ignored, we expect them to be of xsd-nature.
         if (!e.name.match(/:/)) {
@@ -354,19 +355,19 @@ var ConfigurationElement = function (node, parent) {
   var getChildren = function () {
     var children = [];
 
-    if ($n[0].nodeType != 1) {
+    if ($n[0].nodeType !== 1) {
       // this is a text-only node!
       return children;
     }
 
     $n.contents().each(function () {
-      if (this.nodeType != 1) {
-        if (this.nodeValue.trim() == '') {
+      if (this.nodeType !== 1) {
+        if (this.nodeValue.trim() === '') {
           // empty text elements are not interesting
           return;
         }
                 
-        if (this.nodeType == 8) {
+        if (this.nodeType === 8) {
           // just keep comments as they are so that they are not forgotten
           children.push(this);
         }
@@ -408,7 +409,7 @@ var ConfigurationElement = function (node, parent) {
     // set our own schemaElement
     _schemaElement = schemaElement;
 
-    if (schemaElement.isMixed == false) {
+    if (schemaElement.isMixed === false) {
       // clean up #text-nodes, they are not needed in a non-mixed node!
       $.each(_element.children, function (i, child) {
         if (child !== undefined && child.name === '#text') {
@@ -469,7 +470,7 @@ var ConfigurationElement = function (node, parent) {
     // first, check if our attributes are good
     $.each(_element.attributes, function (name, value) {
       // check if this attribute is allowed, at all
-      if (typeof _schemaElement.allowedAttributes[name] == 'undefined') {
+      if (typeof _schemaElement.allowedAttributes[name] === 'undefined') {
         informListeners('invalid', {type: 'attribute_disallowed', item: name});
         isValid = false;
         return;
@@ -486,8 +487,8 @@ var ConfigurationElement = function (node, parent) {
         
     // check for missing required attributes
     $.each(_schemaElement.allowedAttributes, function (name, attribute) {
-      if (false == attribute.isOptional) {
-        if (typeof _element.attributes[name] == 'undefined' || _element.attributes[name] == undefined) {
+      if (false === attribute.isOptional) {
+        if (typeof _element.attributes[name] === 'undefined' || _element.attributes[name] === undefined) {
           // missing required attribute ... too bad ...
           informListeners('invalid', {type: 'attribute_missing', item: name});
           isValid = false;
@@ -529,7 +530,7 @@ var ConfigurationElement = function (node, parent) {
         isValid = false;
         return;
       }
-    };
+    }
         
     if (false === regExp.test(childrenString)) {
       // the children of this element do not match what the regex says is valid
@@ -537,19 +538,19 @@ var ConfigurationElement = function (node, parent) {
       return false;
     }
         
-    if (_element.children.length == 0 || _schemaElement.isMixed) {
+    if (_element.children.length === 0 || _schemaElement.isMixed) {
       // if this element has no children, it appears to be a text-node
       // also, if it may be of mixed value
       // alas: check for validity
             
       var value = getValue();
             
-      if (value.trim() != '') {
+      if (value.trim() !== '') {
         // only inspect elements with actual content. Empty nodes are deemed valid.
         // @TODO: check if there might be nodes this does not apply for. sometime. MS5 or after bugreport.
         isValid = isValid && _schemaElement.isValueValid(value);
                 
-        if (isValid == false) {
+        if (isValid === false) {
           informListeners('invalid', {type: 'value_invalid'});
         }
       }
@@ -567,8 +568,13 @@ var ConfigurationElement = function (node, parent) {
    */
   _element.setAttributeValue = function (name, value) {
     var isValid = _schemaElement.allowedAttributes[name].isValueValid(value);
+
+    if( _schemaElement.allowedAttributes[name].isOptional && value === undefined ) {
+      // overrule isValid when the value is "unset" and it is optional
+      isValid = true;
+    }
         
-    if (false == isValid) {
+    if (false === isValid) {
       // this value is not valid, so we do not accept it, and say so!
       var typeDescription = _schemaElement.allowedAttributes[name].getTypeString();
       return new Result(false, Messages.validity.valueInvalidForType, [typeDescription]);
@@ -593,7 +599,7 @@ var ConfigurationElement = function (node, parent) {
         
     var isValid = _schemaElement.isValueValid(value);
         
-    if (false == isValid) {
+    if (false === isValid) {
       // this value is not valid, so we do not accept it, and say so!
       return new Result(false, Messages.validity.valueInvalid);
     }
@@ -613,7 +619,7 @@ var ConfigurationElement = function (node, parent) {
   _element.removeChildNode = function (child) {
     var index = $.inArray(child, _element.children);
         
-    if (index != -1) {
+    if (index !== -1) {
       // remove the child ...
       _element.children.splice(index, 1);
     }
@@ -623,7 +629,7 @@ var ConfigurationElement = function (node, parent) {
    * remove this node for good.
    */
   _element.remove = function () {
-    if (typeof _parentElement.isMaster != 'undefined' && _parentElement.isMaster == true) {
+    if (typeof _parentElement.isMaster !== 'undefined' && _parentElement.isMaster === true) {
       // do not work on the Master
       return;
     }
@@ -636,7 +642,7 @@ var ConfigurationElement = function (node, parent) {
    * @param   childNode   object  new ConfigurationElement to be added at the end of the list
    */
   _element.appendChildNode = function (childNode) {
-    if (_element == childNode) {
+    if (_element === childNode) {
       throw 'programming error: self and new-node are identical';
     }
         
@@ -665,7 +671,7 @@ var ConfigurationElement = function (node, parent) {
     var tmpChildren = $.extend([], _element.children);
         
     // get the sortValues once
-    if (childSortValues == undefined) {
+    if (childSortValues === undefined) {
       childSortValues = _schemaElement.getAllowedElementsSorting();
     }
         
@@ -687,12 +693,12 @@ var ConfigurationElement = function (node, parent) {
     var aSortvalue = childSortValues[a.name];
     var bSortvalue = childSortValues[b.name];
         
-    if (aSortvalue == undefined || bSortvalue == undefined) {
+    if (aSortvalue === undefined || bSortvalue === undefined) {
       // undefined means: no sorting available
       return 0;
     }
         
-    if (aSortvalue == bSortvalue) {
+    if (aSortvalue === bSortvalue) {
       // identical means 'no sorting necessary'
       return 0;
     }
@@ -701,10 +707,10 @@ var ConfigurationElement = function (node, parent) {
     // to find the first one that distinguishes a from b
 
     // first, typecast to string!
-    if (typeof aSortvalue != 'string') {
+    if (typeof aSortvalue !== 'string') {
       aSortvalue = aSortvalue.toString();
     }
-    if (typeof bSortvalue != 'string') {
+    if (typeof bSortvalue !== 'string') {
       bSortvalue = bSortvalue.toString();
     }
         
@@ -731,7 +737,7 @@ var ConfigurationElement = function (node, parent) {
    */
   _element.setParentNode = function (parentNode) {
     _parentElement = parentNode;
-  }
+  };
     
   /**
    * get the children of this element.
@@ -743,7 +749,7 @@ var ConfigurationElement = function (node, parent) {
   _element.getChildren = function () {
         
     return _element.children;
-  }
+  };
     
   /**
    * set all child-nodes at once.
@@ -776,7 +782,7 @@ var ConfigurationElement = function (node, parent) {
         
     // we need to sort it afterwards, maybe the arbitrary position was too arbitrary :)
     sortChildNodes();
-  }
+  };
     
   /**
    * create a new child, append it to this element
@@ -794,7 +800,7 @@ var ConfigurationElement = function (node, parent) {
     // create a pseudo-node to use with "new ConfigurationElement()"-call
     var $pseudoNode;
         
-    if (childName == '#text') {
+    if (childName === '#text') {
       // text-nodes are not actual nodes, they are strings, so we will work with a text-node.
       $pseudoNode = document.createTextNode('');
     } else {
@@ -806,7 +812,7 @@ var ConfigurationElement = function (node, parent) {
     var childNode = new ConfigurationElement($pseudoNode, _element);
         
     // give the element its schemaElement
-    childNode.setSchemaElement(_schemaElement.getSchemaElementForElementName(childName))
+    childNode.setSchemaElement(_schemaElement.getSchemaElementForElementName(childName));
         
     // auto-populate the new child
     childNode.initFromScratch();
@@ -837,12 +843,12 @@ var ConfigurationElement = function (node, parent) {
     var childCount = 0;
         
     $.each(_element.children, function (i, child) {
-      if (child.name == childName) {
+      if (child.name === childName) {
         ++childCount;
       }
     });
 
-    if (myChildBounds != undefined && myChildBounds.max <= childCount) {
+    if (myChildBounds !== undefined && myChildBounds.max <= childCount) {
       // no more children are allowed.
       // sorry, you can not enter
       return false;
@@ -861,13 +867,13 @@ var ConfigurationElement = function (node, parent) {
   _element.initFromScratch = function () {
         
     // set the default-value, if one is given
-    if (_schemaElement.defaultValue != undefined) {
+    if (_schemaElement.defaultValue !== undefined) {
       _element.setTextValue(_schemaElement.defaultValue);
     }
         
     // set the default-value to the attributes, if given
     $.each(_schemaElement.allowedAttributes, function (attributeName, attributeSchema) {
-      if (attributeSchema.defaultValue != undefined) {
+      if (attributeSchema.defaultValue !== undefined) {
         _element.setAttributeValue(attributeName, attributeSchema.defaultValue);
       }
     });
@@ -890,7 +896,7 @@ var ConfigurationElement = function (node, parent) {
    * @return  object  all allowed elements
    */
   _element.getAllowedElements = function () {
-    if (_schemaElement == undefined) {
+    if (_schemaElement === undefined) {
       return undefined;
     }
         
@@ -903,7 +909,7 @@ var ConfigurationElement = function (node, parent) {
    * @return  boolean can it be removed?
    */
   _element.isRemovable = function () {
-    if (_parentElement == undefined || (typeof _parentElement.isMaster != 'undefined' && _parentElement.isMaster == true)) {
+    if (_parentElement === undefined || (typeof _parentElement.isMaster !== 'undefined' && _parentElement.isMaster === true)) {
       // we have no parent. do not remove us!
       return false;
     }
@@ -916,8 +922,8 @@ var ConfigurationElement = function (node, parent) {
     var minBound = 1;
         
     // check bounds of parents choice
-    if (parentBounds != undefined) {
-      minBound = parentBounds.min
+    if (parentBounds !== undefined) {
+      minBound = parentBounds.min;
     }
         
     // we need at least as many elements as parent times element requires
@@ -926,7 +932,7 @@ var ConfigurationElement = function (node, parent) {
     // count the number of elements of this type our parent has
     var count = 0;
     $.each(siblingsAndSelf, function (i, item) {
-      if (item.name == _element.name) {
+      if (item.name === _element.name) {
         ++count;
       }
     });
@@ -984,7 +990,7 @@ var ConfigurationElement = function (node, parent) {
     // inform global listeners, if there are any ...
     _parentElement.informGlobalListeners(event, params);
 
-    if (listeners.length == 0) {
+    if (listeners.length === 0) {
       // no listeners means nothing to do.
       return;
     }
@@ -1035,7 +1041,7 @@ var ConfigurationElement = function (node, parent) {
     // create a pseudo-node to use with "new ConfigurationElement()"-call
     var $pseudoNode;
         
-    if (_element.name == '#text') {
+    if (_element.name === '#text') {
       // text-nodes are not actual nodes, they are strings, so we will work with a text-node.
       $pseudoNode = document.createTextNode('');
     } else {
@@ -1085,7 +1091,7 @@ var ConfigurationElement = function (node, parent) {
     data.nodeName = _element.name;
     data.attributes = $.extend({}, _element.attributes, _element.systemAttributes);
         
-    if (_element.children.length == 0) {
+    if (_element.children.length === 0) {
       // append the nodeValue ONLY if this element has no children!
       data.nodeValue = _element.value.trim();
     }
@@ -1102,7 +1108,7 @@ var ConfigurationElement = function (node, parent) {
     });
         
     return data;
-  }
+  };
     
   /**
    * the Configuration-object this element belongs to
@@ -1128,7 +1134,7 @@ var ConfigurationElement = function (node, parent) {
    */
   _element.name = $n.get(0).nodeName;
     
-  if ($n.get(0).nodeType != 1) {
+  if ($n.get(0).nodeType !== 1) {
     // if this is not an element node, it must be a text-node!
     _element.name = '#text';
   }
@@ -1176,9 +1182,9 @@ var ConfigurationElement = function (node, parent) {
  * source: http://arguments.callee.info/2008/10/31/generating-unique-ids-with-javascript/
  * no license mentioned.
  */
-var uniqueID = function() {
+var uniqueID = (function() {
   var id = 1; // initial value
   return function() {
     return id++;
   }; // NOTE: return value is a function reference
-}(); // execute immediately
+})(); // execute immediately
