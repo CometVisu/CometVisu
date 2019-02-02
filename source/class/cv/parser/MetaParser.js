@@ -275,6 +275,14 @@ qx.Class.define("cv.parser.MetaParser", {
         if (name) {
           config.topic = "cv.state."+name;
         }
+        var icon = qx.bom.element.Attribute.get(elem, 'icon');
+        if (icon) {
+          config.icon = icon;
+          var iconClasses = qx.bom.element.Attribute.get(elem, 'icon-classes');
+          if (iconClasses) {
+            config.iconClasses = iconClasses;
+          }
+        }
 
         // templates
         var titleElem = qx.bom.Selector.query('title-template', elem)[0];
