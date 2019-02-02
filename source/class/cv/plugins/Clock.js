@@ -26,6 +26,16 @@ qx.Class.define('cv.plugins.Clock', {
   include: [cv.ui.common.Update],
 
   /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (props) {
+    props.value = new Date();
+    this.base(arguments, props);
+  },
+
+  /*
   ******************************************************
     STATICS
   ******************************************************
@@ -56,7 +66,7 @@ qx.Class.define('cv.plugins.Clock', {
   */
   members: {
     _getInnerDomString: function () {
-      return '<div class="actor" style="width:200px;"></div>';
+      return '<div class="actor" style="width:200px; height: 200px"></div>';
     },
 
     _onDomReady: function () {
@@ -66,12 +76,12 @@ qx.Class.define('cv.plugins.Clock', {
         onLoad: function (svg) {
           $(svg.getElementById('HotSpotHour'))
             .draggable()
-            .bind('drag', {type: 'hour', actor: $actor}, this.dragHelper)
-            .bind('dragstop', {actor: $actor}, this.dragAction);
+            .bind('drag', {type: 'hour', actor: $actor}, this.dragHelper.bind(this))
+            .bind('dragstop', {actor: $actor}, this.dragAction.bind(this));
           $(svg.getElementById('HotSpotMinute'))
             .draggable()
-            .bind('drag', {type: 'minute', actor: $actor}, this.dragHelper)
-            .bind('dragstop', {actor: $actor}, this.dragAction);
+            .bind('drag', {type: 'minute', actor: $actor}, this.dragHelper.bind(this))
+            .bind('dragstop', {actor: $actor}, this.dragAction.bind(this));
         }.bind(this)
       });
     },
@@ -95,7 +105,7 @@ qx.Class.define('cv.plugins.Clock', {
       var x = event.originalEvent.pageX - $svg.offset().left - 50;
       var y = 50 - (event.originalEvent.pageY - $svg.offset().top);
       var angle = (Math.atan2(x, y) * 180 / Math.PI + 360) % 360;
-      var time = this.getCalue();
+      var time = this.getValue();
       var minutes;
       if (event.data.type === 'hour') {
         var oldHours = time.getHours();
@@ -152,6 +162,11 @@ qx.Class.define('cv.plugins.Clock', {
     cv.parser.WidgetParser.addHandler("clock", cv.plugins.Clock);
     cv.ui.structure.WidgetFactory.registerClass("clock", statics);
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addScripts(['resource/libs/jquery-ui.js', 'resource/libs/jquery.svg.min.js'], [0]);
+
+    if (qx.core.Environment.get('qx.debug')) {
+      loader.addScripts(['resource/libs/jquery-ui.js', 'resource/libs/jquery.svg.js'], [0], true);
+    } else {
+      loader.addScripts(['resource/libs/jquery-ui.min.js', 'resource/libs/jquery.svg.min.js'], [0]);
+    }
   }
 });
