@@ -70,6 +70,7 @@ qx.Class.define('cv.plugins.Clock', {
     },
 
     _onDomReady: function () {
+      this.base(arguments);
       var $actor = $(this.getActor());
       $actor.svg({
         loadURL: qx.util.ResourceManager.getInstance().toUri('plugins/clock/clock_pure.svg'),
@@ -82,15 +83,25 @@ qx.Class.define('cv.plugins.Clock', {
             .draggable()
             .bind('drag', {type: 'minute', actor: $actor}, this.dragHelper.bind(this))
             .bind('dragstop', {actor: $actor}, this.dragAction.bind(this));
+          Object.getOwnPropertyNames(this.getAddress())
+            .filter(function (address) {
+              return cv.data.Model.isReadAddress(this.getAddress()[address]);
+            }.bind(this))
+            .forEach(function(address) {
+              this._update(address, this.getValue().getHours() + ':' + this.getValue().getMinutes() + ':00');
+          }, this);
         }.bind(this)
       });
     },
+
+    // overridden
+    initListeners: function () {},
 
     // overidden
     _update: function (address, data) {
       var element = this.getDomElement();
       var value = this.defaultValueHandling(address, data);
-      var svg = qx.bom.Selector.query('svg', element);
+      var svg = qx.bom.Selector.query('svg', element)[0];
       var time = value.split(':');
       var hourElem = qx.bom.Selector.query('#Hour', svg)[0];
       var minuteElem = qx.bom.Selector.query('#Minute', svg)[0];
