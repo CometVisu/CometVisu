@@ -166,7 +166,7 @@ die gerenderte HTML-Struktur inkl. aller weiterer benötigter Daten lokal im Bro
 (im LocalStore). Bei jedem weiteren Laden der Config werden die Daten also aus dem Cache gelesen, was
 das Laden der Visu auf leistungsschwachen Geräten wie z.B. Smartphones beschleunigt.
 
-Der Cache kann über diesen Parameter aktiviert (=true), deaktivert (=false) oder gelöscht werden (=invalid).
+Der Cache kann über diesen Parameter aktiviert (=true), deaktiviert (=false) oder gelöscht werden (=invalid).
 Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu angelegt werden.
 
 .. code::

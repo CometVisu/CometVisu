@@ -37,6 +37,8 @@ qx.Class.define('cv.ui.layout.Manager', {
     currentPageNavbarVisibility: null,
     oldWidth: -1,
 
+    LAYOUT_MODE: 'DEFAULT',
+
     COLSPAN_CLASS: null,
 
     getCurrentPageNavbarVisibility: function () {
@@ -176,6 +178,16 @@ qx.Class.define('cv.ui.layout.Manager', {
       return 0;
     },
 
+    getLayoutSuffix: function (width) {
+      var suffix = '';
+      if (width <= cv.Config.maxScreenWidthColspanS) {
+        suffix = '-s';
+      } else if (width <= cv.Config.maxScreenWidthColspanM) {
+        suffix = '-m';
+      }
+      return suffix;
+    },
+
     /**
      * applies the correct width to the widgets corresponding to the given colspan setting
      *
@@ -209,7 +221,7 @@ qx.Class.define('cv.ui.layout.Manager', {
             if (ourColspan > 0) {
               w = Math.min(100, ourColspan / areaColspan * 100) + '%';
             }
-            qx.bom.element.Style.set(child, 'width', w);
+            this.__applyWidthClass(child, w);
           }, this);
 
         }
@@ -237,9 +249,31 @@ qx.Class.define('cv.ui.layout.Manager', {
             }
             w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
           }
-          qx.bom.element.Style.set(e, 'width', w);
+          this.__applyWidthClass(e, w);
         }, this);
       }, this);
+    },
+
+    __applyWidthClass: function (elem, widthClassSuffix) {
+      if (widthClassSuffix === 'auto') {
+        qx.bom.element.Style.set(elem, 'width', widthClassSuffix);
+      } else {
+        switch (this.LAYOUT_MODE) {
+          case 'GRID':
+            // remove all old width related classes
+            elem.classList.forEach(function (cssClass) {
+              if (cssClass.startsWith('width-')) {
+                elem.classList.remove(cssClass);
+              }
+            }, this);
+            qx.bom.element.Class.add(elem, 'width-' + parseInt(widthClassSuffix));
+            break;
+
+          default:
+            qx.bom.element.Style.set(elem, 'width', widthClassSuffix);
+            break;
+        }
+      }
     }
   }
 });

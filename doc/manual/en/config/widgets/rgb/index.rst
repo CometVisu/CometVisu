@@ -40,6 +40,9 @@ Allowed attributes in the Rgb-element
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <rgb>
         <layout colspan="4" />
+        <address transform="DPT:5.001" mode="readwrite" variant="r">1/1/0</address>
+        <address transform="DPT:5.001" mode="readwrite" variant="g">1/1/1</address>
+        <address transform="DPT:5.001" mode="readwrite" variant="b">1/1/2</address>
     </rgb>
 
 
@@ -57,13 +60,15 @@ Allowed child-elements und their attributes
     <rgb>
         <layout colspan="4" />
         <label>Rgb</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+        <address transform="DPT:5.001" mode="readwrite" variant="r">1/1/0</address>
+        <address transform="DPT:5.001" mode="readwrite" variant="g">1/1/1</address>
+        <address transform="DPT:5.001" mode="readwrite" variant="b">1/1/2</address>
     </rgb>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Rgb widget.
 
 .. CAUTION::

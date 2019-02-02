@@ -58,13 +58,12 @@ Allowed child-elements und their attributes
     <pagejump>
         <layout colspan="4" />
         <label>PageJump</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </pagejump>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the PageJump widget.
 
 .. CAUTION::

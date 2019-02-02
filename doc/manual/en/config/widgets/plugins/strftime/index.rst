@@ -67,14 +67,12 @@ Allowed child-elements und their attributes
     </meta>
     <strftime>
         <layout colspan="4" />
-        <label>strftime</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </strftime>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the strftime plugin.
 
 .. CAUTION::

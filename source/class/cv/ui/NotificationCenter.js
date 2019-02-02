@@ -128,7 +128,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
      * @see cv.ui.NotificationCenter#deleteMessage
      */
     deleteMessage: function(index, ev) {
-      this.getInstance().deleteMessage(index, ev);
+      return this.getInstance().deleteMessage(index, ev);
     },
 
     /**

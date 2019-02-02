@@ -29,7 +29,7 @@ body, body hr, #pages hr  {
   opacity: 0.80;
   border: 1px solid #fdd;
   padding: 2px;
-  z-index: 1000;
+  z-index: 100002;
 }
 
 div#top, .widget, .popup_background {

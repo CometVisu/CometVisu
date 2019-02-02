@@ -114,7 +114,7 @@ Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht mö
     text/index
     video/index
     web/index
-    wgplugininfo/index
+    wgplugin_info/index
 
 
 Sonstige Widgets
@@ -195,6 +195,9 @@ also z.B.:
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`openHAB <plugins/openhab/index>`                   | Verbesserte Integration mit dem openHAB2 Backend                    |
 +----------------------------------------------------------+---------------------------------------------------------------------+
+| :doc:`Link <plugins/link/index>`                         | Fügt der Visu einen einfachen anklickbaren Link hinzu               |
++----------------------------------------------------------+---------------------------------------------------------------------+
+
 
 .. toctree::
     :titlesonly:

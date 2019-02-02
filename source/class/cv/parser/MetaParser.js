@@ -42,7 +42,7 @@ qx.Class.define("cv.parser.MetaParser", {
       qx.bom.Selector.query('meta > stylings styling', xml).forEach(this.parseStylings, this);
 
       // then the status bar
-      qx.bom.Selector.query('meta > statusbar status', xml).forEach(this.parseStatusBar, this);
+      this.parseStatusBar(xml);
 
       this.parseStateNotifications(xml);
 
@@ -84,7 +84,8 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseIcons: function(elem) {
-      cv.Config.iconsFromConfig.push(this.__parseIconDefinition(elem));
+      cv.Config.configSettings.iconsFromConfig.push(this.__parseIconDefinition(elem));
+      qx.core.Init.getApplication().loadIcons();
     },
 
     parseMappings: function(elem) {
@@ -173,49 +174,60 @@ qx.Class.define("cv.parser.MetaParser", {
       cv.Config.addStyling(name, styling);
     },
 
-    parseStatusBar: function(elem) {
-      var condition = qx.bom.element.Attribute.get(elem,'condition');
-      var extend = qx.bom.element.Attribute.get(elem,'hrefextend');
-      var sPath = window.location.pathname;
-      var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+    parseStatusBar: function(xml) {
+      var code = '';
+      qx.bom.Selector.query('meta > statusbar status', xml).forEach(function (elem) {
+        var condition = qx.bom.element.Attribute.get(elem,'condition');
+        var extend = qx.bom.element.Attribute.get(elem,'hrefextend');
+        var sPath = window.location.pathname;
+        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 
-      // @TODO: make this match once the new editor is finished-ish.
-      var editMode = 'edit_config.html' === sPage;
+        // @TODO: make this match once the new editor is finished-ish.
+        var editMode = 'edit_config.html' === sPage;
 
-      // skip this element if it's edit-only and we are non-edit, or the other
-      // way
-      // round
-      if (editMode && '!edit' === condition) {
-        return;
-      }
-      if (!editMode && 'edit' === condition) {
-        return;
-      }
+        // skip this element if it's edit-only and we are non-edit, or the other
+        // way
+        // round
+        if (editMode && '!edit' === condition) {
+          return;
+        }
+        if (!editMode && 'edit' === condition) {
+          return;
+        }
 
-      var text = qx.dom.Node.getText(elem);
-      var search;
-      switch (extend) {
-        case 'all': // append all parameters
-          search = window.location.search.replace(/\$/g, '$$$$');
-          text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
-          break;
-        case 'config': // append config file info
-          search = window.location.search.replace(/\$/g, '$$$$');
-          search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
+        if (cv.Config.testMode && '!testMode' === condition) {
+          return;
+        }
+        if (!cv.Config.testMode && 'testMode' === condition) {
+          return;
+        }
 
-          var middle = text.replace(/.*href="([^"]*)".*/g, '{$1}');
-          if (0 < middle.indexOf('?')) {
-            search = '&' + search;
-          }
-          else {
-            search = '?' + search;
-          }
+        var text = qx.dom.Node.getText(elem);
+        var search;
+        switch (extend) {
+          case 'all': // append all parameters
+            search = window.location.search.replace(/\$/g, '$$$$');
+            text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+            break;
+          case 'config': // append config file info
+            search = window.location.search.replace(/\$/g, '$$$$');
+            search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
 
-          text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
-          break;
-      }
+            var middle = text.replace(/.*href="([^"]*)".*/g, '{$1}');
+            if (0 < middle.indexOf('?')) {
+              search = '&' + search;
+            }
+            else {
+              search = '?' + search;
+            }
+
+            text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+            break;
+        }
+        code += text;
+      }, this);
       var footerElement = qx.bom.Selector.query(".footer")[0];
-      footerElement.innerHTML += text;
+      footerElement.innerHTML += code;
     },
 
     parsePlugins: function(xml) {
@@ -356,9 +368,9 @@ qx.Class.define("cv.parser.MetaParser", {
               // templates can only have one single root element, so we wrap it here
               '<root>' + qx.bom.element.Attribute.get(elem, 'html') + '</root>'
             );
-            check();
           }
         }, this);
+        check();
       }
     }
   }

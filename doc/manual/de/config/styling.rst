@@ -103,7 +103,7 @@ Mit diesem styling wird 0 (oft AUS) in grün und 1 (oft AN) in rot dargestellt.
         <entry value="1">red</entry>
      </styling>
 
-Um ein Element mit den entgegengestzten Farben darzustellen, muss der
+Um ein Element mit den entgegengesezten Farben darzustellen, muss der
 folgende style tag erstellt werden. Jetzt hat das Element bei einem Wert
 von 0 die Farbe rot.
 

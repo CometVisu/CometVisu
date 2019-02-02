@@ -33,6 +33,20 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
   ],
 
   /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (props) {
+    if (!props.name) {
+      // when there is no name the widget has no actor as clickable subelement, so we need
+      // to bind the click events to the whole widget
+      props.bindClickToWidget = true;
+    }
+    this.base(arguments, props);
+  },
+
+  /*
   ******************************************************
     PROPERTIES
   ******************************************************

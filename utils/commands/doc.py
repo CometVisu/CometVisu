@@ -186,6 +186,9 @@ class DocGenerator(Command):
             os.makedirs(target_dir)
 
         # first run generates the widget-example configs
+        print ('================================================================================')
+        print ('sphinx_build: first run')
+        print ('================================================================================')
         sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
 
         if not skip_screenshots:
@@ -195,6 +198,9 @@ class DocGenerator(Command):
                   "--target=%s" % screenshot_build, _out=self.process_output, _err=self.process_output)
 
             # 2dn run with access to the generated screenshots
+            print ('================================================================================')
+            print ('sphinx_build: second run')
+            print ('================================================================================')
             sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
 
     def from_source(self, path, plugin=False):
@@ -229,7 +235,7 @@ class DocGenerator(Command):
 
         for name, file in source_files:
             parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
-            api_screenshot_dir = os.path.join(self.config.get("api", "target").replace("<version>", self._get_doc_version()), "examples")
+            api_screenshot_dir = os.path.join(self.config.get("api", "target").replace("<version>", self._get_doc_version()), "resource", "apiviewer", "examples")
 
             with open(file) as f:
                 content = {
@@ -338,6 +344,11 @@ class DocGenerator(Command):
                             if section == "WIDGET-EXAMPLES" or example:
                                 indent = "    "
                             else:
+                                line_content = line_content.replace("<code>", "``")
+                                line_content = line_content.replace("</code>", "``")
+                                line_content = line_content.replace("<li>", "* ")
+                                line_content = line_content.replace("</li>", "")
+
                                 if line_content.strip() in ["```", "<pre class=\"sunlight-highlight-xml\">", "</pre>"]:
                                     if not code_block:
                                         if line_content.strip() == "<pre class=\"sunlight-highlight-xml\">":

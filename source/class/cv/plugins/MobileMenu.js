@@ -45,7 +45,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
     },

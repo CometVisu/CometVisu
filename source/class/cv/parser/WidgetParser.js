@@ -211,6 +211,9 @@ qx.Class.define('cv.parser.WidgetParser', {
       data.label = label || '';
       data.classes = classes || '';
       data.style = style || '';
+      data.responsive = !!Object.keys(layout).find(function (prop) {
+        return prop.endsWith('-m') || prop.endsWith('-s');
+      });
 
       return this.model.setWidgetData( path, data);
     },
@@ -233,35 +236,21 @@ qx.Class.define('cv.parser.WidgetParser', {
       if( undefined === defaultValues ) {
         defaultValues = {};
       }
-      if( layout.getAttribute('x'     ) ) {
-        ret_val.x = layout.getAttribute('x');
-      }
-      else if( defaultValues.x          ) {
-        ret_val.x = defaultValues.x;
-      }
-
-      if( layout.getAttribute('y'     ) ) {
-        ret_val.y = layout.getAttribute('y');
-      }
-      else if( defaultValues.y          ) {
-        ret_val.y = defaultValues.y;
-      }
-
-      if( layout.getAttribute('width' ) ) {
-        ret_val.width = layout.getAttribute('width');
-      }
-      else if( defaultValues.width      ) {
-        ret_val.width = defaultValues.width;
-      }
-
-      if( layout.getAttribute('height') ) {
-        ret_val.height = layout.getAttribute('height');
-      }
-      else if( defaultValues.height     ) {
-        ret_val.height = defaultValues.height;
-      }
-
+      ['x', 'y', 'width', 'height', 'scale'].forEach(function (prop) {
+        this.__extractLayoutAttribute(ret_val, prop, layout, defaultValues);
+        this.__extractLayoutAttribute(ret_val, prop + '-m', layout, defaultValues);
+        this.__extractLayoutAttribute(ret_val, prop + '-s', layout, defaultValues);
+      }, this);
       return ret_val;
+    },
+
+    __extractLayoutAttribute: function (ret_val, property, layout, defaultValues) {
+      if( layout.getAttribute(property) ) {
+        ret_val[property] = layout.getAttribute(property);
+      }
+      else if( defaultValues[property]     ) {
+        ret_val[property] = defaultValues[property];
+      }
     },
 
     extractLayout: function( layout, pageType )
@@ -411,7 +400,7 @@ qx.Class.define('cv.parser.WidgetParser', {
           mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
 
         if ((!src) || (!transform)) {// fix broken address-entries in config
-          this.error("Either address or transform is missing in address element %1", element.outerHTML);
+          qx.log.Logger.error(this, "Either address or transform is missing in address element %1", element.outerHTML);
           return;
         }
         switch (qx.bom.element.Attribute.get(elem, 'mode')) {

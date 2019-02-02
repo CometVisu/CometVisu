@@ -14,6 +14,13 @@ A break tag is used to start in new line for a grouped and thereby tidy display 
 elements on one page.
 
 
+.. code-block:: xml
+
+    <break/>
+
+
+
+
 .. ###END-WIDGET-DESCRIPTION###
 
 Settings

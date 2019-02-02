@@ -349,7 +349,7 @@ div#loading
 
 #diagramTooltip, #flotTip
 {
-  z-index: 1000;
+  z-index: 100002;
   border: solid 1px;
 	padding: 2px;
 	opacity: 0.80;
