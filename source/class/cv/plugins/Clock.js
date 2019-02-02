@@ -164,7 +164,7 @@ qx.Class.define('cv.plugins.Clock', {
     var loader = cv.util.ScriptLoader.getInstance();
 
     if (qx.core.Environment.get('qx.debug')) {
-      loader.addScripts(['resource/libs/jquery-ui.js', 'resource/libs/jquery.svg.js'], [0], true);
+      loader.addScripts(['resource/libs/jquery-ui.js', 'resource/libs/jquery.svg.js'], [0]);
     } else {
       loader.addScripts(['resource/libs/jquery-ui.min.js', 'resource/libs/jquery.svg.min.js'], [0]);
     }
