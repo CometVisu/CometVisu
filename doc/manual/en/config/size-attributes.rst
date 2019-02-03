@@ -12,7 +12,7 @@ In the following widgets are next to the child element ``layout``
 -  :doc:`Video <widgets/video/index>`
 -  :doc:`Web <widgets/web/index>`
 -  :doc:`Diagram <widgets/plugins/diagram/index>`
--  :doc:`RSSlog <widgets/plugins/rsslog/index>`
+-  RSSlog
 -  :doc:`RSS <widgets/plugins/rss/index>`
 -  :doc:`Gauge <widgets/plugins/gauge/index>`
 
