@@ -75,11 +75,11 @@ qx.Class.define('cv.plugins.Clock', {
       $actor.svg({
         loadURL: qx.util.ResourceManager.getInstance().toUri('plugins/clock/clock_pure.svg'),
         onLoad: function (svg) {
-          $(svg.getElementById('HotSpotHour'))
+          $(svg.root().getElementById('HotSpotHour'))
             .draggable()
             .bind('drag', {type: 'hour', actor: $actor}, this.dragHelper.bind(this))
             .bind('dragstop', {actor: $actor}, this.dragAction.bind(this));
-          $(svg.getElementById('HotSpotMinute'))
+          $(svg.root().getElementById('HotSpotMinute'))
             .draggable()
             .bind('drag', {type: 'minute', actor: $actor}, this.dragHelper.bind(this))
             .bind('dragstop', {actor: $actor}, this.dragAction.bind(this));
