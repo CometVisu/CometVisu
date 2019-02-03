@@ -11,8 +11,8 @@ Attribute wie zB. ``width`` und ``height`` zur Beeinflussung des Inhaltes zur Ve
 -  :doc:`Video <widgets/video/index>`
 -  :doc:`Web <widgets/web/index>`
 -  :doc:`Diagram <widgets/plugins/diagram/index>`
--  :doc:`RSSlog <widgets/plugins/rsslog/index>`  
--  :doc:`RSS <widgets/plugins/rss/index>`
+-  RSSlog
+-  RSS
 -  :doc:`Gauge <widgets/plugins/gauge/index>`
 
 Grundsätzlich wird empfohlen, zu Beginn ohne diese Attribute zu beginnen, da in den meisten Fällen die Größe des 

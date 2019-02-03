@@ -94,7 +94,7 @@ class ApiDocDirective(Directive):
             widget_path = os.path.join(config.get("manual-en", "plugins-path"), "%s.js" % widget_name)
 
         if not os.path.exists(widget_path):
-            print("No widget or plugin named '%s' found" % widget_name)
+            print("No widget or plugin named '%s' found at '%s'" % (widget_name, widget_path))
             return []
         else:
             print("using source from: %s" % widget_path)
