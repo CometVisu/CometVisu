@@ -134,6 +134,7 @@ describe('generation screenshots from jsdoc examples', function () {
             mockupConfig.push(mockedConfigData);
 
             it('should create a screenshot', function () {
+              console.log(">>> processing "+filePath+"...");
               if (settings.editor) {
                 if (settings.complex) {
                   var complexButton = element(by.css(".button.expert"));
@@ -170,13 +171,12 @@ describe('generation screenshots from jsdoc examples', function () {
               }
 
               // wait for everything to be rendered
-              browser.sleep(settings.sleep || 300);
+              browser.sleep(settings.sleep || 1000);
 
               var widget = element(by.css(selectorPrefix+settings.selector));
               browser.wait(function() {
                 return widget.isDisplayed();
-              }, 1000).then(function() {
-                console.log(">>> processing "+filePath+"...");
+              }, 2000).then(function() {
                 settings.screenshots.forEach(function(setting) {
                   if (setting.data && Array.isArray(setting.data)) {
                     setting.data.forEach(function (data) {

@@ -30,17 +30,7 @@ Attributes underlined by ..... are mandatory, all the others are optional and be
 Allowed attributes in the Reload-element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. parameter-information:: reload
-
-.. widget-example::
-    :editor: attributes
-    :scale: 75
-    :align: center
-
-    <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <reload>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-    </reload>
+None.
 
 
 Allowed child-elements und their attributes
