@@ -3,7 +3,7 @@
 Das Navbar Widget
 ===================
 
-.. api-doc:: Navbar
+.. api-doc:: NavBar
 
 Beschreibung
 ------------

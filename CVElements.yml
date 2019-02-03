@@ -1,19 +1,11 @@
 "plugins":
 - "description":
-    "de": "externen Kalendar einbinden"
-    "en": "External calendar."
-  "name": "CalendarList"
-- "description":
-    "de": "Plugin zum Darstellen der Uhrzeit von einer Adresse."
-    "en": "Widget to display the time of an address."
-  "name": "Clock"
-- "description":
     "de": "Farb-Auswahl-Rad für RGB-Beleuchtung"
-    "en": "Color selection wheel for RGB illumination."
   "manual":
     "de": "/de/latest/manual/config/widgets/plugins/colorchooser/index.html"
   "name": "ColorChooser"
-  "screenshot": "/de/latest/manual/_images/colorchooser_simple.png"
+  "screenshot":
+    "de": "/de/latest/manual/_images/colorchooser_simple.png"
 - "description":
     "de": "RRD-basierte Diagramme"
     "en": "RRD based graphs."
@@ -23,10 +15,10 @@
   "name": "Diagram"
 - "description":
     "de": "Informations-Anzeige, die beim Klick ein Diagramm öffnet"
-    "en": "Information display that opens a graph when you click on it."
   "manual":
     "de": "/de/latest/manual/config/widgets/plugins/diagram_info/index.html"
   "name": "Diagram_Info"
+  "screenshot": {}
 - "description":
     "de": "Zeigerinstrument"
     "en": "Pointer instrument."
@@ -52,19 +44,10 @@
   "name": "PowerSpectrum"
   "screenshot": "/de/latest/manual/_images/powerspectrum.png"
 - "description":
-    "de": "RSS"
     "en": "Display of RSS feed."
   "manual":
     "en": "/en/latest/manual/config/widgets/plugins/rss/index.html"
   "name": "RSS"
-- "description":
-    "de": "RSS"
-    "en": "Display of RSS feed."
-  "name": "RSSlog"
-- "description":
-    "de": "Demo Plugin zur Anzeige einer interaktiv animierten SVG Datei"
-    "en": "Demo plugin to show the integration of an interactive scalable vector graphic."
-  "name": "SVG"
 - "description":
     "de": "Sprachausgabe (Text-to-speech)"
     "en": "Uses the browsers built in text-to-speech engine to speak text."
@@ -87,10 +70,6 @@
     "de": "/de/latest/manual/config/widgets/plugins/timeout/index.html"
     "en": "/en/latest/manual/config/widgets/plugins/timeout/index.html"
   "name": "Timeout"
-- "description":
-    "de": "UPNP-Controller"
-    "en": "UPNP Controller."
-  "name": "UPNPController"
 - "description":
     "de": "Verbesserte Integration mit dem openHAB2 Backend"
   "manual":
