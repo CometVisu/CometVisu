@@ -18,6 +18,10 @@
 .jowm .forecast li {
   float: left;
 }
+.jowm .forecastDaily li {
+  float: left;
+}
+
 .jowm .weather-forecast {
   margin: 0 .5rem;
 }
