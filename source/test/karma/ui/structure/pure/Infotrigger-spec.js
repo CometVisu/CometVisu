@@ -193,7 +193,7 @@ describe("testing a infotrigger widget", function() {
 
   it('should test the shortpress', function(done) {
     var res = this.createTestElement("infotrigger", {
-      shorttime: "100",
+      shorttime: "500",
       'change': 'absolute', 'upvalue': '1', 'downvalue': '-1', 'shortupvalue': '2', 'shortdownvalue': '-2'
     }, '<label>Test</label>', ['1/0/0', '1/0/1'], [
       {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'button'},
