@@ -28,3 +28,6 @@ settings/keys/deploy_key
 *.pyc
 /doc/manual/*/_build/**
 **/.vscode/**
+/source/resource/config/tmpfile
+/source/resource/config/tmpjson.json
+*nbproject/**
