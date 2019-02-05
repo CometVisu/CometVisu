@@ -115,6 +115,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
   members: {
     $$domReady: null,
     __pointerDownElement: null,
+    __pointerDownTime: null,
     _skipNextEvent: null,
 
     // property apply
@@ -241,6 +242,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     _onPointerDown: function(ev) {
       // listen to pointerup globally
       this.__pointerDownElement = ev.getCurrentTarget();
+      this.__pointerDownTime = Date.now();
       qx.event.Registration.addListener(document, "pointerup", this._onPointerUp, this);
     },
 
@@ -256,9 +258,18 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       if (upElement && upElement === this.__pointerDownElement) {
         // both events happened on the same element
         ev.setCurrentTarget(upElement);
-        this.action(ev);
+        if (this._onLongTap &&
+          qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) &&
+          this.getShortThreshold() > 0 &&
+          (Date.now() - this.__pointerDownTime) >= this.getShortThreshold()) {
+          // this is a longpress
+          this._onLongTap(ev);
+        } else {
+          this.action(ev);
+        }
         this._skipNextEvent = "tap";
       }
+      this.__pointerDownTime = null;
     },
 
     /**

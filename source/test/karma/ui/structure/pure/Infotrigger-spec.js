@@ -24,6 +24,37 @@
  */
 describe("testing a infotrigger widget", function() {
 
+  var simulateEvent = function (actor, type) {
+    var eventData = {
+      "bubbles": true,
+      "button": -1,
+      "clientX": 1241,
+      "clientY": 360,
+      "currentTarget": actor,
+      "pageX": 1241,
+      "pageY": 360,
+      "returnValue": true,
+      "screenX": 1241,
+      "screenY": 490,
+      "detail": 0,
+      "view": window,
+      "type": type,
+      "x": 1241,
+      "y": 360,
+      "pointerId": 1,
+      "width": 1,
+      "height": 1,
+      "pressure": 0,
+      "tiltX": 0,
+      "tiltY": 0,
+      "pointerType": "mouse",
+      "isPrimary": true
+    };
+    // down
+    var nativeEvent = new window.PointerEvent(type, eventData);
+    qx.event.Registration.fireEvent(actor, type, qx.event.type.Pointer, [nativeEvent, actor, actor, true, true]);
+  };
+  //
   it("should test the infotrigger creator", function() {
 
     var obj = this.createTestElement("infotrigger", {}, "<label>Test</label>");
@@ -79,7 +110,13 @@ describe("testing a infotrigger widget", function() {
 
   it('should trigger the infotrigger action', function() {
 
-    var creator = this.createTestElement('infotrigger', {'change': 'absolute', 'upvalue': '1', 'downvalue': '-1'});
+    var creator = this.createTestElement('infotrigger', {
+      change: 'absolute',
+      upvalue: '1',
+      downvalue: '-1',
+      shortdownvalue: '-2',
+      shortupvalue: '2'
+    });
     spyOn(creator, "sendToBackend");
 
     var downActor = creator.getDownActor();
@@ -88,32 +125,101 @@ describe("testing a infotrigger widget", function() {
     expect(upActor).not.toBe(null);
 
     this.initWidget(creator);
-    var Reg = qx.event.Registration;
 
-    Reg.fireEvent(upActor, "tap", qx.event.type.Event, []);
-    expect(creator.sendToBackend).toHaveBeenCalledWith(1, jasmine.any(Function));
+    creator.update('12/7/37', 0);
+    simulateEvent(upActor, "pointerdown");
+    simulateEvent(upActor, "pointerup");
+    expect(creator.sendToBackend).toHaveBeenCalledWith(2, jasmine.any(Function));
 
     creator.update('12/7/37', 1);
-    Reg.fireEvent(upActor, "tap", qx.event.type.Event, []);
-    expect(creator.sendToBackend).toHaveBeenCalledWith(2, jasmine.any(Function));
+    simulateEvent(upActor, "pointerdown");
+    simulateEvent(upActor, "pointerup");
+    expect(creator.sendToBackend).toHaveBeenCalledWith(3, jasmine.any(Function));
     creator.update('12/7/37', 2);
 
-    Reg.fireEvent(downActor, "tap", qx.event.type.Event, []);
-    expect(creator.sendToBackend).toHaveBeenCalledWith(1, jasmine.any(Function));
+    simulateEvent(downActor, "pointerdown");
+    simulateEvent(downActor, "pointerup");
+    expect(creator.sendToBackend).toHaveBeenCalledWith(0, jasmine.any(Function));
 
     // test lower border
     creator.update('12/7/37', 0);
-    Reg.fireEvent(downActor, "tap", qx.event.type.Event, []);
+    simulateEvent(downActor, "pointerdown");
+    simulateEvent(downActor, "pointerup");
     expect(creator.sendToBackend).toHaveBeenCalledWith(0, jasmine.any(Function));
 
     // test upper border
     creator.update('12/7/37', 255);
-    Reg.fireEvent(upActor, "tap", qx.event.type.Event, []);
+    simulateEvent(upActor, "pointerdown");
+    simulateEvent(upActor, "pointerup");
     expect(creator.sendToBackend).toHaveBeenCalledWith(255, jasmine.any(Function));
   });
 
   it("should default all unknown infoposition values to left", function() {
     var creator = this.createTestElement('infotrigger', {infoposition: 1});
     expect(creator.getInfoPosition()).toBe('left');
+  });
+
+  it('should test the longpress', function(done) {
+    var res = this.createTestElement("infotrigger", {
+      shorttime: "100",
+      'change': 'absolute', 'upvalue': '1', 'downvalue': '-1', 'shortupvalue': '2', 'shortdownvalue': '-2'
+    }, '<label>Test</label>', ['1/0/0', '1/0/1'], [
+      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'button'},
+      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'short'}
+    ]);
+
+    this.initWidget(res);
+    var spy = spyOn(cv.TemplateEngine.getInstance().visu, "write");
+    var actor = res.getUpActor();
+    expect(actor).not.toBe(null);
+
+    simulateEvent(actor, "pointerdown");
+    expect(actor).toHaveClass("switchPressed");
+    expect(actor).not.toHaveClass("switchUnpressed");
+
+    setTimeout(function () {
+      // up
+      simulateEvent(actor, "pointerup");
+      expect(actor).not.toHaveClass("switchPressed");
+      expect(actor).toHaveClass("switchUnpressed");
+      qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
+
+      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
+      expect(spy.calls.count()).toEqual(1);
+      done();
+    }, 150);
+
+  });
+
+  it('should test the shortpress', function(done) {
+    var res = this.createTestElement("infotrigger", {
+      shorttime: "100",
+      'change': 'absolute', 'upvalue': '1', 'downvalue': '-1', 'shortupvalue': '2', 'shortdownvalue': '-2'
+    }, '<label>Test</label>', ['1/0/0', '1/0/1'], [
+      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'button'},
+      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'short'}
+    ]);
+
+    this.initWidget(res);
+    var spy = spyOn(cv.TemplateEngine.getInstance().visu, "write");
+    var actor = res.getUpActor();
+    expect(actor).not.toBe(null);
+
+    simulateEvent(actor, "pointerdown");
+    expect(actor).toHaveClass("switchPressed");
+    expect(actor).not.toHaveClass("switchUnpressed");
+
+    setTimeout(function () {
+      // up
+      simulateEvent(actor, "pointerup");
+      expect(actor).not.toHaveClass("switchPressed");
+      expect(actor).toHaveClass("switchUnpressed");
+      qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
+
+      expect(spy).toHaveBeenCalledWith('1/0/1', '82');
+      expect(spy.calls.count()).toEqual(1);
+      done();
+    }, 50);
+
   });
 });

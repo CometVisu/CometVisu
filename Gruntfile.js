@@ -357,7 +357,7 @@ module.exports = function(grunt) {
       debug: {
         configFile: 'source/test/karma/karma.conf.js',
         singleRun: !grunt.option('no-single'),
-        browsers: [grunt.option('browser') || 'Chrome'],
+        browsers: [grunt.option('browser') || 'Chrome_travis'],
         reporters: ['spec']
       }
     },

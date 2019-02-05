@@ -50,7 +50,7 @@ qx.Class.define('cv.parser.widgets.Trigger', {
       return {
         'value'      : { target: 'sendValue' , "default": "0" },
         'shorttime'  : { target: 'shortThreshold', "default": -1, transform: parseFloat},
-        'shortValue' : { target: 'shortValue', "default": "0" }
+        'shortvalue' : { target: 'shortValue', "default": "0" }
       };
     },
 
