@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+    <meta>
+        <files>
+            <!--<file type="css">resource/config/jowm.css</file>-->
+            <file type="css">resource/config/media/custom_mw_style.css</file>
+        </files>
+        <plugins>
+            <plugin name="tr064"/>
+            <plugin name="openweathermap"/>
+        </plugins>
+        <statusbar>
+            <status type="html">&lt;img src="resource/icon/comet_64_ff8000.png" 		alt="CometVisu" /&gt; by &lt;a href="http://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt; 
+                - &lt;a href="manager.php"&gt;Config-Manager&lt;/a&gt; - &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt; 
+                - &lt;a href="?config=demo"&gt;Widget Demo&lt;/a&gt;</status>
+            <status type="html" hrefextend="config">- &lt;a href="check_config.php"&gt;Check                 Config&lt;/a&gt;</status>
+        </statusbar>
+    </meta>
+    <page name="Start">
+        <group nowidget="true" class="group container-wrapper">
+            <group name="Wetter" class="container weather-forecast element">
+                <layout colspan="5"/>
+                <openweathermap detailItems="1" forecastItems="40" lang="de" lat="48.78" lon="9.18" refresh="3600" appid="d3c50bedaad1a085f4d6627ff4be3bbc"/>
+            </group>
+        </group>
+        
+    </page>
+</pages>
+

@@ -1,0 +1,88 @@
+@import "ow_weathericon.css";
+
+
+@font-face{
+    font-family: 'weathericon';
+    src:    url('fonts/weathericons-regular-webfont.eot');
+    src:    url('fonts/weathericons-regular-webfont.woff') format('woff'),
+            url('fonts/weathericons-regular-webfont.tff') format('truetype'),
+            url('fonts/weathericons-regular-webfont.svg#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+
+.widget { 
+    border-style: none
+}
+
+.switchPressed{
+
+    border-width: 3px 1px 1px 3px;
+    border-color: #1f1f1f #666666 #666666 #1f1f1f;
+    background-image: url("alu_brushed_black_5.png");
+
+}
+.switchUnpressed{
+
+    border-width: 1px 3px 3px 1px;
+    border-color: #1f1f1f #666666 #666666 #1f1f1f;
+    background-image: url("alu_brushed_black_4.png");
+}
+
+#navbarLeft .pagejump.active {
+
+    background-image: url("silverdark_5.png");
+
+}
+
+.navbar .pagejump{
+
+    border-style: solid;
+
+}
+
+
+body{
+    background-image: url("silverdark_11.png");
+
+}
+
+.group{
+
+    border: 1px solid #3e3e3e;
+}
+
+.group:not(.widget) {
+
+    border: 1px solid #3e3e3e;
+    margin: 0px -1px -1px -1px;
+
+}
+
+.custom_timebig {
+    padding: 0;
+    margin: 0;
+    color: #c6c6c6;;
+    min-height: 0mm;
+    line-height: 8mm;
+    font: bold 9mm "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+.custom_timebig > div.strftime_value {
+    text-align: center;
+    line-height: 9mm;
+}
+
+.custom_timedate {
+    padding: 0;
+    margin: 0;
+    min-height: 0mm;
+    line-height: 8mm;
+    font: bold 3mm "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+.custom_timedate > div.strftime_value {
+    text-align: center;
+}
