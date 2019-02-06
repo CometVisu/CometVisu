@@ -82,7 +82,8 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
         'type':   { },
         'forecastItems':   { },
         'detailItems':   { },
-        'appid':   { }
+        'appid':   { },
+        'descrition':   {},
       };
     }
   },
@@ -130,6 +131,10 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       nullable: true
     },
     appid: {
+      check: "String",
+      nullable: true
+    },
+    descrition: {
       check: "String",
       nullable: true
     }

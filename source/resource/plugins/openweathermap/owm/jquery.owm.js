@@ -32,7 +32,9 @@ var jOWM = jOWM || {};
             // Refresh interval in minutes.
             refresh: 30,
             // App-ID needed to access the service.
-            appid: ''
+            appid: '',
+            // Description text for the widget 
+            descrition: 'Description'
         };
 
         var options = $.extend(defaults, options);
@@ -104,6 +106,13 @@ var jOWM = jOWM || {};
                     .addClass('clearfix')
                     .appendTo($(e));
         }
+
+        // Description text
+        if (options.descrition !== '') {
+            $('div.openweathermap_value').append("<p>" + options.descrition + "</p>");
+        }
+
+
         // Load location data.
         $.getJSON(options.baseURL + 'weather?' + paramsDefault.join('&'), function (data) {
             if (data.cod == 200) {
@@ -111,11 +120,13 @@ var jOWM = jOWM || {};
                 options.sunrise = data.sys.sunrise;
                 options.sunset = data.sys.sunset;
 
+
+
                 // Fetch data for detailed items.
                 _processDataDetailed(e, currentURL, options);
-                // Fetch data for forecast items.
+                // Fetch data for 24h forecast items.
                 _processDataForecast(e, forecastURL, options);
-
+                // Fetch data for the daily forecast of the next days
                 _processDataDaily(e, forecastURL, options);
 
             } else {
@@ -380,7 +391,7 @@ var jOWM = jOWM || {};
      * 
      */
     jOWM.theme.prototype.weatherForecastDailyItem = function (data, options) {
-        
+
         var weather = data.weather[0];
 
         var output = '<div class="weather-forecast weather-' + weather.id + ' clearfix">';
