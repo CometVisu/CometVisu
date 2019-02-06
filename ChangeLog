@@ -3,7 +3,9 @@
 0.11.0
 ======
 
-### 0.11.0-RC1 (2019/02/03 20:10 +00:00)
+### 0.11.0-RC1 (2019/02/06 22:08 +00:00)
+- [#855](https://github.com/CometVisu/CometVisu/pull/855) fix triggers (@peuter)
+- [#854](https://github.com/CometVisu/CometVisu/pull/854) Prepare 0.11.0 release (@ChristianMayer)
 - [#853](https://github.com/CometVisu/CometVisu/pull/853) fix some screenshot errors: (@peuter)
 - [#848](https://github.com/CometVisu/CometVisu/pull/848) Fix clock plugin (@peuter)
 - [#852](https://github.com/CometVisu/CometVisu/pull/852) Fix nearly all of the remaining doc errors (@ChristianMayer)
