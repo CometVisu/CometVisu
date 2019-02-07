@@ -117,6 +117,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     __pointerDownElement: null,
     __pointerDownTime: null,
     _skipNextEvent: null,
+    __longPressTimer: null,
 
     // property apply
     _applyVisible: function(value, old) {
@@ -243,11 +244,51 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       // listen to pointerup globally
       this.__pointerDownElement = ev.getCurrentTarget();
       this.__pointerDownTime = Date.now();
+      if (this.__longPressTimer) {
+        this.__longPressTimer.stop();
+        this.__longPressTimer = null;
+      }
       qx.event.Registration.addListener(document, "pointerup", this._onPointerUp, this);
+      if (this._onLongTap &&
+        qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) &&
+        !this.isSendLongOnRelease() &&
+        this.getShortThreshold() > 0) {
+        this.__longPressTimer = qx.event.Timer.once(function () {
+          this._onLongTap(ev);
+          qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
+          this._skipNextEvent = "tap";
+          this.__pointerDownTime = null;
+        }, this, this.getShortThreshold());
+
+        // also listen to move events to detect if the pointer is moved away from the widget
+        qx.event.Registration.addListener(document, "pointermove", this._onPointerMove, this);
+      }
+    },
+
+    _onPointerMove: function(ev) {
+      var upElement = ev.getTarget();
+      while (upElement && upElement !== this.__pointerDownElement) {
+        upElement = upElement.parentNode;
+        if (upElement === this.getDomElement()) {
+          break;
+        }
+      }
+      if (!upElement || upElement !== this.__pointerDownElement) {
+        if (this.__longPressTimer) {
+          this.__longPressTimer.stop();
+          this.__longPressTimer = null;
+        }
+        qx.event.Registration.removeListener(document, "pointermove", this._onPointerMove, this);
+      }
     },
 
     _onPointerUp: function(ev) {
+      if (this.__longPressTimer) {
+        this.__longPressTimer.stop();
+        this.__longPressTimer = null;
+      }
       qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
+      qx.event.Registration.removeListener(document, "pointermove", this._onPointerMove, this);
       var upElement = ev.getTarget();
       while (upElement && upElement !== this.__pointerDownElement) {
         upElement = upElement.parentNode;

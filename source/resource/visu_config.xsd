@@ -384,6 +384,13 @@
       <xsd:documentation xml:lang="de">Beim Aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
+
+  <xsd:attribute name="send-long-on-release" type="xsd:boolean">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Fire the long press event after the button is released (=true) or immediately after the threshold is exceeded (=false).</xsd:documentation>
+      <xsd:documentation xml:lang="de">Senden den Wert für den langen Tastendruck erst nachdem der Button losgelassen wurde (=true), oder sofort nachdem der Schwellwert für den kurzen Tastendruck überschritten wurde (=false).</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
   
 
   <xsd:attribute name="lang">
@@ -1249,6 +1256,7 @@
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
     <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute ref="send-long-on-release" use="optional"/>
   </xsd:complexType>
 
   <xsd:complexType name="refresh">
@@ -1385,6 +1393,7 @@
     </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute ref="send-long-on-release" use="optional"/>
   </xsd:complexType>
   
   <xsd:complexType name="rgb">
