@@ -34,7 +34,7 @@ var jOWM = jOWM || {};
             // App-ID needed to access the service.
             appid: '',
             // Description text for the widget 
-            descrition: 'Description'
+            description: 'Description'
         };
 
         var options = $.extend(defaults, options);
@@ -100,18 +100,20 @@ var jOWM = jOWM || {};
                     .addClass('clearfix')
                     .appendTo($(e));
         }
+
         if ($('ul.forecastDaily', $(e)).length === 0) {
             $('<ul>')
                     .addClass('forecastDaily')
                     .addClass('clearfix')
+                    .append('<div class="separationLine clearfix">')
                     .appendTo($(e));
         }
 
-        // Description text
-        if (options.descrition !== '') {
-            $('div.openweathermap_value').append("<p>" + options.descrition + "</p>");
-        }
 
+        // Description text
+        if (options.description !== '') {
+            $('div.openweathermap_value').append("<p>" + options.description + "</p>");
+        }
 
         // Load location data.
         $.getJSON(options.baseURL + 'weather?' + paramsDefault.join('&'), function (data) {
@@ -232,11 +234,6 @@ var jOWM = jOWM || {};
             if (data.cod == 200) {
                 var dataItems = data.list;
 
-
-//                if (!options.forecastToday) {
-//                    // Remove first item from list.
-//                    dataItems.shift();
-//                }
                 $.each(dataItems, function (index, elem) {
                     $item = $('<li>');
                     if (index === 0) {
@@ -277,12 +274,21 @@ var jOWM = jOWM || {};
             if (data.cod == 200) {
                 var dataItems = data.list;
 
+                //create Daily Data out of json
                 var daily = generateDaily(dataItems, options);
 
-//                if (!options.forecastToday) {
-//                    // Remove first item from list.
-//                    dataItems.shift();
-//                }
+                //create legend
+                var output = '<li><div class="weather-forecast weather-thermo clearfix">';
+                output += ' <div class="day">-</div>';
+                output += ' <div class="weather-icon" data-weather-text="xxx" data-weather-code="xxx"></div>';
+                output += ' <div class="temperature high">' + "max" + '</div>';
+                output += ' <div class="temperature low">' + "min" + '</div>';
+                output += '</div></li>';
+                $item = $('<li>');
+                $item.append(output);
+                $item.appendTo($('ul.forecastDaily', $(e)));
+                
+                //create daily weather
                 $.each(daily, function (index, elem) {
                     $item = $('<li>');
                     if (index === 0) {
@@ -325,6 +331,9 @@ var jOWM = jOWM || {};
         }
         if (options.hasOwnProperty('appid')) {
             items.push('appid=' + options.appid);
+        }
+        if (options.hasOwnProperty('description')) {
+            items.push('description=' + options.description);
         }
         return items;
     }

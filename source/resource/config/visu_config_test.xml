@@ -19,7 +19,7 @@
     <page name="Start">
         <group nowidget="true" class="group container-wrapper">
             <group name="Wetter" class="container weather-forecast element">
-                <openweathermap detailItems="1" forecastItems="40" lang="de" lat="48.78" lon="9.18" refresh="3600" appid="d3c50bedaad1a085f4d6627ff4be3bbc" descrition="Stuttgart, DE"/>
+                <openweathermap detailItems="1" forecastItems="40" lang="de" lat="48.78" lon="9.18" refresh="3600" appid="d3c50bedaad1a085f4d6627ff4be3bbc" description="Stuttgart, DE"/>
             </group>
         </group>
         

@@ -15,6 +15,14 @@
     padding: 0.5rem 0 0 0;
     text-align: center;
 }
+
+.jowm .separationLine{
+
+    width: auto;
+    height: 3px;
+    background-color: aqua;
+}
+
 /**
  
     name="wi_day_sunny"> f00d; 
@@ -668,6 +676,13 @@
     content: "\f022";
 }
 
+.jowm .weather-thermo .weather-icon:before {
+    /* symbol Thermometer */
+    content: "\f055";
+}
+.jowm .weather-thermo .day{
+    visibility: hidden;
+}
 .navbar .jowm {
     background: transparent;
     float: right;
