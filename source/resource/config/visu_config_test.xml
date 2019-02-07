@@ -17,9 +17,12 @@
         </statusbar>
     </meta>
     <page name="Start">
+        <layout colspan="12"/>
         <group nowidget="true" class="group container-wrapper">
+             <layout colspan="12"/>  
             <group name="Wetter" class="container weather-forecast element">
-                <openweathermap detailItems="1" forecastItems="40" lang="de" lat="48.78" lon="9.18" refresh="3600" appid="d3c50bedaad1a085f4d6627ff4be3bbc" description="Stuttgart, DE"/>
+                <layout colspan="12"/>
+                <openweathermap detailItems="1" forecastItems="40" lang="de" description="Stuttgart, DE" lat="48.78" lon="9.18" refresh="3600" appid="d3c50bedaad1a085f4d6627ff4be3bbc"/>
             </group>
         </group>
         

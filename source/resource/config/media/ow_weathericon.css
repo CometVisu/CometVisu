@@ -2,7 +2,6 @@
  * Custom styles for openweathermap widget.
  */
 .jowm {
-    font-family: 'Gotham SSm A', 'Gotham SSm B';
     padding: .5rem 1rem;
 }
 .jowm .weather-icon {
@@ -16,12 +15,7 @@
     text-align: center;
 }
 
-.jowm .separationLine{
 
-    width: auto;
-    height: 3px;
-    background-color: aqua;
-}
 
 /**
  

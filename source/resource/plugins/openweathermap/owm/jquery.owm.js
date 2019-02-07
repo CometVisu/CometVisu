@@ -69,7 +69,6 @@ var jOWM = jOWM || {};
             if (!$element.hasClass('jowm')) {
                 $element.addClass('jowm');
             }
-
             // Process element.
             _process(e, options);
 
@@ -105,7 +104,6 @@ var jOWM = jOWM || {};
             $('<ul>')
                     .addClass('forecastDaily')
                     .addClass('clearfix')
-                    .append('<div class="separationLine clearfix">')
                     .appendTo($(e));
         }
 
@@ -226,6 +224,8 @@ var jOWM = jOWM || {};
     var _processDataForecast = function (e, url, options) {
         // Clear old markup.
         $('ul.forecast', $(e)).html('');
+        // Insert line
+        $('ul.forecast', $(e)).append('<div class="separationLine clearfix">');
         if (options.forecastItems === 0) {
             // Forecast is disabled.
             return;
@@ -265,7 +265,9 @@ var jOWM = jOWM || {};
      */
     var _processDataDaily = function (e, url, options) {
         // Clear old markup.
-        $('ul.forecast', $(e)).html('');
+        $('ul.forecastDaily', $(e)).html('');
+        // Insert Line
+        $('ul.forecastDaily', $(e)).append('<div class="separationLine clearfix">');
         if (options.forecastItems === 0) {
             // Forecast is disabled.
             return;
@@ -280,14 +282,14 @@ var jOWM = jOWM || {};
                 //create legend
                 var output = '<li><div class="weather-forecast weather-thermo clearfix">';
                 output += ' <div class="day">-</div>';
-                output += ' <div class="weather-icon" data-weather-text="xxx" data-weather-code="xxx"></div>';
+                output += ' <div class="weather-icon legend" data-weather-text="xxx" data-weather-code="xxx"></div>';
                 output += ' <div class="temperature high">' + "max" + '</div>';
                 output += ' <div class="temperature low">' + "min" + '</div>';
                 output += '</div></li>';
                 $item = $('<li>');
                 $item.append(output);
                 $item.appendTo($('ul.forecastDaily', $(e)));
-                
+
                 //create daily weather
                 $.each(daily, function (index, elem) {
                     $item = $('<li>');
@@ -390,7 +392,6 @@ var jOWM = jOWM || {};
         output += ' <div class="day">' + d.strftime('%H:%M') + '</div>';
         output += ' <div class="weather-icon" data-weather-text="' + weather.description + '" data-weather-code="' + weather.id + '"></div>';
         output += ' <div class="temperature high">' + jOWM.theme('weatherTemperature', temperature.temp_max, 0, ' °C') + '</div>';
-        output += ' <div class="temperature low">' + jOWM.theme('weatherTemperature', temperature.temp_min, 0, ' °C') + '</div>';
         output += '</div>';
         return output;
     };
