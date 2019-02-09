@@ -21,6 +21,10 @@
 .jowm .forecastDaily li {
     float: left;
 }
+.jowm li.sunrise-sunset {
+    float: left;
+}
+
 
 .jowm .weather-forecast {
     margin: 0 .5rem;
@@ -29,13 +33,14 @@
     margin-right: 0;
 }
 
-.jowm .weather-forecast .temperature {
+.jowm .weather-forecast .temperature{
     font-size: 1rem;
     line-height: 1.5rem;
     text-align: center;
 }
 
-.jowm ul.forecast .weather-forecast .day{
+.jowm ul.forecast .weather-forecast .day,
+.jowm .weather-forecast .sunrise-sunset{
     font-size: 1rem;
     line-height: 1.5rem;
     text-align: center;
@@ -52,10 +57,20 @@
     line-height: 2.5rem;
     text-align: center;
 }
+.jowm .weather-sunrise .weather-icon,
+.jowm .weather-sunset .weather-icon{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    text-align: center;
+    
+}
+
 
 .jowm ul.forecastDaily .weather-forecast .legend{
+    
+    margin-left: 2rem;
     font-size: 1.2rem;
-    line-height: 2.5rem;
+    line-height: 3rem;
     text-align: center;
 }
 .jowm .weather-forecast .day {
@@ -64,6 +79,8 @@
 .jowm .weather-forecast .temperature.low {
     color: #a7a7a7;
 }
+
+
 .jowm .weather-icon {
 }
 .jowm .forecast .weather-icon {
@@ -75,7 +92,7 @@
 
 .jowm .forecastDaily .weather-icon {
     font-size: 2.5rem;
-    line-height: 2.5rem;
+    line-height: 3rem;
     margin: 5px;
     padding: 2px;
 }
@@ -89,9 +106,9 @@
     font-size: 1rem;
 }
 .jowm .weather-detailed .temperature {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     line-height: 5rem;
-    margin: 0 0 0 0.5rem;
+    margin: 0.5rem 0 0 1.2rem;
     text-align: right;
 }
 

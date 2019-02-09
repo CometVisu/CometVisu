@@ -166,7 +166,23 @@ var jOWM = jOWM || {};
             } else {
                 $(e).after('<!-- Failed to fetch detailed weather data. -->');
             }
+
         });
+
+        var d = new Date(options.sunrise * 1000);
+
+        var output = '<li class="sunrise-sunset"><div class="weather-forecast weather-sunrise clearfix" style="float: left;">'
+        output += '<div class="weather-icon" </div>'
+        output += '<div class="sunrise-sunset">' + d.strftime('%H:%M') + '</div> </div>'
+        d = new Date(options.sunset * 1000);
+        output += '<div class="weather-forecast weather-sunset clearfix" style="float: left;">'
+        output += '<div class="weather-icon" </div>'
+        output += '<div class="sunrise-sunset">' + d.strftime('%H:%M') + '</div> </div></li>'
+
+        $('ul.detailed').append(output);
+
+
+
     }
 
     /**
@@ -236,6 +252,11 @@ var jOWM = jOWM || {};
 
                 $.each(dataItems, function (index, elem) {
                     $item = $('<li>');
+                    
+                    // use night icon 
+                    if (elem.dt < options.sunrise || elem.dt > options.sunset) {
+                        $item.addClass('night');
+                    }
                     if (index === 0) {
                         $item.addClass('first');
                     }
@@ -282,7 +303,7 @@ var jOWM = jOWM || {};
                 //create legend
                 var output = '<li><div class="weather-forecast weather-thermo clearfix">';
                 output += ' <div class="day">-</div>';
-                output += ' <div class="weather-icon legend" data-weather-text="xxx" data-weather-code="xxx"></div>';
+                output += ' <div class="weather-icon legend" ></div>';
                 output += ' <div class="temperature high">' + "max" + '</div>';
                 output += ' <div class="temperature low">' + "min" + '</div>';
                 output += '</div></li>';
