@@ -173,9 +173,6 @@ class DocGenerator(Command):
         target_dir = target_dir.replace("<version>", self._get_doc_version() if target_version is None else target_version)
         print("generating doc to %s" % target_dir)
 
-        with open(os.path.join(target_dir, "..", "version"), "w+") as f:
-            f.write(self._get_source_version())
-
         if not os.path.exists(source_dir):
             self.log.error("no sources found for manual (%s) in language '%s'" % (source_dir, language))
             sys.exit(1)
@@ -205,6 +202,9 @@ class DocGenerator(Command):
             print ('sphinx_build: second run')
             print ('================================================================================')
             sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
+
+        with open(os.path.join(target_dir, "..", "version"), "w+") as f:
+            f.write(self._get_source_version())
 
     def from_source(self, path, plugin=False):
         """
