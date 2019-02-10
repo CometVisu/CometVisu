@@ -1,5 +1,10 @@
 /**
  * Custom styles for openweathermap widget.
+ *
+ * - usage of the weather-icon set (https://erikflowers.github.io/weather-icons/)
+ * - 
+ * 
+ * @Author: Matthias
  */
 .jowm {
     padding: .5rem 1rem;
@@ -389,7 +394,9 @@
     padding: 0;
 }
 
-/**
+/******************************************************************
+ all other Icon of the weather-icon set
+*******************************************************************
  
     name="wi_day_sunny"> f00d; 
     name="wi_day_cloudy"> f002; 

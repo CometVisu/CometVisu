@@ -10,7 +10,6 @@
  **/
 
 var jOWM = jOWM || {};
-
 (function ($) {
 
     $.fn.openweathermap = function (options, fn) {
@@ -19,10 +18,14 @@ var jOWM = jOWM || {};
         var defaults = {
             // Base URL to service.
             baseURL: 'https://api.openweathermap.org/data/2.5/',
-            // Number of items to show detailed data for (0..4).
-            detailItems: 4,
-            // Number of items in forecast (0..16).
-            forecastItems: 5,
+            // Number of items to show detailed data for (0...1).
+            detailItems: 1,
+            // Number of items in 24h forecast (0..8).
+            forecast24hItems: 8,
+            // Number of items in Daily forecast (0..4).
+            forecastDailyItems: 4,
+            // show sunrise/sunsset
+            showSunrise: "true",
             // Include today in forecast?
             forecastToday: true,
             // Default units.
@@ -34,25 +37,33 @@ var jOWM = jOWM || {};
             // App-ID needed to access the service.
             appid: '',
             // Description text for the widget 
-            description: 'Description'
+            description: ''
         };
-
         var options = $.extend(defaults, options);
-
         // Sanitize options.
         options.detailItems = parseInt(options.detailItems, 10);
         if (options.detailItems < 0) {
             options.detailItems = 0;
         }
-        if (options.detailItems > 4) {
-            options.detailItems = 4;
+        if (options.detailItems > 1) {
+            options.detailItems = 1;
         }
-        options.forecastItems = parseInt(options.forecastItems, 10);
-        if (options.forecastItems < 0) {
-            options.forecastItems = 0;
+        options.forecast24hItems = parseInt(options.forecast24hItems, 10);
+        if (options.forecast24hItems < 0) {
+            options.forecast24hItems = 0;
         }
-        if (options.forecastItems > 39) {
-            options.forecastItems = 39;
+        if (options.forecast24hItems > 8) {
+            options.forecast24hItems = 8;
+        }
+        options.forecastDailyItems = parseInt(options.forecastDailyItems, 10);
+        if (options.forecastDailyItems < 0) {
+            options.forecastDailyItems = 0;
+        }
+        if (options.forecastDailyItems > 4) {
+            options.forecastDailyItems = 4;
+        }
+        if (options.showSunrise !== "false") {
+            options.showSunrise = "true";
         }
 
         // extend locales by German and French
@@ -62,82 +73,93 @@ var jOWM = jOWM || {};
             b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
             B: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
         };
-
         return this.each(function (i, e) {
             $element = $(e);
-
             if (!$element.hasClass('jowm')) {
                 $element.addClass('jowm');
             }
             // Process element.
             _process(e, options);
-
         });
-
     };
-
+    /**
+     * Mainfunction which build the whole Widget
+     * 
+     * @param {type} e
+     * @param {type} options
+     * @returns {undefined}
+     */
     var _process = function (e, options) {
         var html = '';
         var paramsDefault = _parametersFromOptions(options);
-        var currentURL = options.baseURL + 'forecast?' + paramsDefault.join('&');
-        var forecastItems = paramsDefault;
-        // Limit results to specified number of days.
-        forecastItems.push('cnt=' + options.forecastItems);
-//    var forecastURL = options.baseURL + 'forecast/daily?' + forecastItems.join('&');
-        var forecastURL = options.baseURL + 'forecast/?' + forecastItems.join('&');
-
-
+        var currentURL = options.baseURL + 'weather?' + paramsDefault.join('&');
+        var forecastURL = options.baseURL + 'forecast/?' + paramsDefault.join('&') + '&cnt=8';
+        var forecastDailyURL = options.baseURL + 'forecast/?' + paramsDefault.join('&') + '&cnt=39';
+        //detailed current weather 
         if ($('ul.detailed', $(e)).length === 0) {
             $('<ul>')
                     .addClass('detailed')
                     .addClass('clearfix')
                     .appendTo($(e));
         }
-        if ($('ul.forecast', $(e)).length === 0) {
-            $('<ul>')
-                    .addClass('forecast')
-                    .addClass('clearfix')
-                    .appendTo($(e));
+
+        if (options.forecast24hItems > 0) {
+            //forecast for the next 24h
+            if ($('ul.forecast', $(e)).length === 0) {
+                $('<ul>')
+                        .addClass('forecast')
+                        .addClass('clearfix')
+                        .appendTo($(e));
+            }
+        }
+        if (options.forecastDailyItems > 0) {
+            //forecast for the next days
+            if ($('ul.forecastDaily', $(e)).length === 0) {
+                $('<ul>')
+                        .addClass('forecastDaily')
+                        .addClass('clearfix')
+                        .appendTo($(e));
+            }
         }
 
-        if ($('ul.forecastDaily', $(e)).length === 0) {
-            $('<ul>')
-                    .addClass('forecastDaily')
-                    .addClass('clearfix')
-                    .appendTo($(e));
-        }
-
-
-        // Description text
-        if (options.description !== '') {
-            $('div.openweathermap_value').append("<p>" + options.description + "</p>");
-        }
 
         // Load location data.
         $.getJSON(options.baseURL + 'weather?' + paramsDefault.join('&'), function (data) {
             if (data.cod == 200) {
-                // Load sunrise/sunset.
+                // Load sunrise/sunset/cityname
                 options.sunrise = data.sys.sunrise;
                 options.sunset = data.sys.sunset;
-
-
-
+                options.cityname = data.name;
+                options.id = data.id;
+                // Description text
+                if (options.description === '') {
+                    $('div.openweathermap_value').append("<p>" + options.cityname + "</p>");
+                } else if (options.description === 'false') {
+                    // no text
+                    $('div.openweathermap_value').parent().css('display', 'none');
+                } else {
+                    $('div.openweathermap_value').append("<p>" + options.description + "</p>");
+                }
                 // Fetch data for detailed items.
                 _processDataDetailed(e, currentURL, options);
                 // Fetch data for 24h forecast items.
-                _processDataForecast(e, forecastURL, options);
+                if (options.forecast24hItems > 0) {
+                    _processDataForecast(e, forecastURL, options);
+                }
+
                 // Fetch data for the daily forecast of the next days
-                _processDataDaily(e, forecastURL, options);
+                if (options.forecastDailyItems > 0) {
+                    _processDataDaily(e, forecastDailyURL, options);
+                }
 
             } else {
                 $(e).after('<!-- Failed to fetch detailed weather data. -->');
             }
         });
-
-    }
-
+    };
     /**
      * Process detailed weather data and generate output.
+     * 
      */
     var _processDataDetailed = function (e, url, options) {
         // Clear old markup.
@@ -148,92 +170,26 @@ var jOWM = jOWM || {};
         }
         $.getJSON(url, function (data) {
             if (data.cod == 200) {
-                var dataItems = data.list.slice(0, options.detailItems);
-                $.each(dataItems, function (index, elem) {
-                    $item = $('<li>');
-                    if (elem.dt < options.sunrise || elem.dt > options.sunset) {
-                        $item.addClass('night');
-                    }
-                    if (index === 0) {
-                        $item.addClass('first');
-                    }
-                    if (index === (dataItems.length - 1)) {
-                        $item.addClass('last');
-                    }
-                    $item.html(jOWM.theme('weatherDetailItem', elem, options));
-                    $item.appendTo($('ul.detailed', $(e)));
-                });
+
+                $item = $('<li>');
+                if (data.dt < options.sunrise || data.dt > options.sunset) {
+                    $item.addClass('night');
+                }
+                $item.addClass('first');
+                $item.addClass('last');
+                $item.html(jOWM.theme('weatherDetailItem', data, options));
+                $item.appendTo($('ul.detailed', $(e)));
             } else {
                 $(e).after('<!-- Failed to fetch detailed weather data. -->');
             }
-
         });
-
-        var d = new Date(options.sunrise * 1000);
-
-        var output = '<li class="sunrise-sunset"><div class="weather-forecast weather-sunrise clearfix" style="float: left;">'
-        output += '<div class="weather-icon" </div>'
-        output += '<div class="sunrise-sunset">' + d.strftime('%H:%M') + '</div> </div>'
-        d = new Date(options.sunset * 1000);
-        output += '<div class="weather-forecast weather-sunset clearfix" style="float: left;">'
-        output += '<div class="weather-icon" </div>'
-        output += '<div class="sunrise-sunset">' + d.strftime('%H:%M') + '</div> </div></li>'
-
-        $('ul.detailed').append(output);
-
-
-
-    }
-
-    /**
-     * Create a Daily Dataset out of the Data (every 3h)
-     * 
-     * @param {dataItems} Weather Data from the json File  
-     * @param {options} Optionen 
-     * 
-     */
-    var generateDaily = function (dataItems, options) {
-
-        var arrTmp = new Array();
-        var minTemp, maxTemp;
-        var newDay = false;
-        var weather;
-
-        //For every data Item, collect the min/max Values
-        $.each(dataItems, function (index, elem) {
-
-            var d = new Date(dataItems[index].dt * 1000);
-            d.locale = options.lang;
-
-            if (d.getHours() === 1) {
-                minTemp = dataItems[index].main.temp_min;
-                maxTemp = dataItems[index].main.temp_max;
-                newDay = true;
-            } else if (newDay) {
-                if (minTemp > dataItems[index].main.temp_min) {
-                    minTemp = dataItems[index].main.temp_min;
-                }
-
-                if (maxTemp < dataItems[index].main.temp_max) {
-                    maxTemp = dataItems[index].main.temp_max;
-                }
-
-                if (d.getHours() === 13) {
-                    weather = dataItems[index].weather;
-                }
-
-                if (d.getHours() === 22) {
-                    arrTmp.push({day: d.strftime('%a'), min_temp: minTemp, max_temp: maxTemp, weather: weather});
-                    newDay = false;
-                }
-            }
-        });
-
-        return arrTmp;
+        if (options.showSunrise === "true") {
+            //greate sunrise/sunset html
+            $('ul.detailed').append(_proccessSunrise(options));
+        }
     };
-
     /**
-     * Process forecast weather data for the next hours
+     * Process forecast weather data for the next 24 hours
      * and generate output.
      * 
      */
@@ -249,36 +205,29 @@ var jOWM = jOWM || {};
         $.getJSON(url, function (data) {
             if (data.cod == 200) {
                 var dataItems = data.list;
-
                 $.each(dataItems, function (index, elem) {
-                    $item = $('<li>');
-                    
-                    // use night icon 
-                    if (elem.dt < options.sunrise || elem.dt > options.sunset) {
-                        $item.addClass('night');
-                    }
-                    if (index === 0) {
-                        $item.addClass('first');
-                    }
-                    if (index === (dataItems.length - 1)) {
-                        $item.addClass('last');
-                    }
-                    $item.html(jOWM.theme('weatherForecastItem', elem, options));
-                    $item.appendTo($('ul.forecast', $(e)));
+                    if (index < (options.forecast24hItems)) {
+                        $item = $('<li>');
+                        // use night icon 
+                        if (elem.dt < options.sunrise || elem.dt > options.sunset) {
+                            $item.addClass('night');
+                        }
+                        if (index === 0) {
+                            $item.addClass('first');
+                        }
+                        if (index === (options.forecast24hItems - 1)) {
+                            $item.addClass('last');
+                        }
+                        $item.html(jOWM.theme('weatherForecastItem', elem, options));
+                        $item.appendTo($('ul.forecast', $(e)));
 
-                    //Show Only next 24h
-                    if (index > 6) {
-                        return false;
                     }
-                    ;
-
                 });
             } else {
                 $(e).after('<!-- Failed to fetch forecast weather data. -->');
             }
         });
     };
-
     /**
      * Process forecast weather data for the next Days
      * and generate output.
@@ -296,10 +245,8 @@ var jOWM = jOWM || {};
         $.getJSON(url, function (data) {
             if (data.cod == 200) {
                 var dataItems = data.list;
-
                 //create Daily Data out of json
-                var daily = generateDaily(dataItems, options);
-
+                var daily = _generateDaily(dataItems, options);
                 //create legend
                 var output = '<li><div class="weather-forecast weather-thermo clearfix">';
                 output += ' <div class="day">-</div>';
@@ -310,24 +257,89 @@ var jOWM = jOWM || {};
                 $item = $('<li>');
                 $item.append(output);
                 $item.appendTo($('ul.forecastDaily', $(e)));
-
                 //create daily weather
                 $.each(daily, function (index, elem) {
-                    $item = $('<li>');
-                    if (index === 0) {
-                        $item.addClass('first');
+                    if (index < (options.forecastDailyItems)) {
+                        $item = $('<li>');
+                        if (index === 0) {
+                            $item.addClass('first');
+                        }
+                        if (index === (options.forecastDailyItems - 1)) {
+                            $item.addClass('last');
+                        }
+                        $item.html(jOWM.theme('weatherForecastDailyItem', elem, options));
+                        $item.appendTo($('ul.forecastDaily', $(e)));
                     }
-                    if (index === (dataItems.length - 1)) {
-                        $item.addClass('last');
-                    }
-                    $item.html(jOWM.theme('weatherForecastDailyItem', elem, options));
-                    $item.appendTo($('ul.forecastDaily', $(e)));
                 });
             } else {
                 $(e).after('<!-- Failed to fetch forecast weather data. -->');
             }
         });
     };
+    /**
+     * Dislpay the sunrise/sunset time inside the plugin
+     *  
+     * @param {object} options
+     * @returns {string} html code
+     */
+    function _proccessSunrise(options) {
+
+        //time sunrise
+        var d = new Date(options.sunrise * 1000);
+        var output = '<li class="sunrise-sunset"><div class="weather-forecast weather-sunrise clearfix" style="float: left;">';
+        output += '<div class="weather-icon" </div>';
+        output += '<div class="sunrise-sunset">' + d.strftime('%H:%M') + '</div> </div>';
+        //time sunset
+        d = new Date(options.sunset * 1000);
+        output += '<div class="weather-forecast weather-sunset clearfix" style="float: left;">';
+        output += '<div class="weather-icon" </div>';
+        output += '<div class="sunrise-sunset">' + d.strftime('%H:%M') + '</div> </div></li>';
+        return output;
+    }
+
+    /**
+     * Create a Daily Dataset out of the hourly (every 3h) dataset
+     * 
+     * @param {dataItems} dataItems Weather Data from the json File  
+     * @param {object} options Optionen 
+     * @returns {Array} Weather Data fo each day
+     */
+    function _generateDaily(dataItems, options) {
+
+        var arrDailyWeather = new Array();
+        var minTemp, maxTemp;
+        var newDay = false;
+        var weather;
+        //For every data Item, collect the min/max Values
+        $.each(dataItems, function (index, elem) {
+
+            var d = new Date(dataItems[index].dt * 1000);
+            d.locale = options.lang;
+            if (d.getHours() === 1) {
+                minTemp = dataItems[index].main.temp_min;
+                maxTemp = dataItems[index].main.temp_max;
+                newDay = true;
+            } else if (newDay) {
+                if (minTemp > dataItems[index].main.temp_min) {
+                    minTemp = dataItems[index].main.temp_min;
+                }
+
+                if (maxTemp < dataItems[index].main.temp_max) {
+                    maxTemp = dataItems[index].main.temp_max;
+                }
+                //use icon from midday
+                if (d.getHours() === 13) {
+                    weather = dataItems[index].weather;
+                }
+                //at the end of the day do your calulations
+                if (d.getHours() === 22) {
+                    arrDailyWeather.push({day: d.strftime('%a'), min_temp: minTemp, max_temp: maxTemp, weather: weather});
+                    newDay = false;
+                }
+            }
+        });
+        return arrDailyWeather;
+    }
 
     /**
      * Helper function to create URL parameters from options.
@@ -340,7 +352,9 @@ var jOWM = jOWM || {};
         if (options.hasOwnProperty('lang')) {
             items.push('lang=' + options.lang);
         }
-        if (options.hasOwnProperty('q')) {
+        if (options.hasOwnProperty('owID')) {
+            items.push('id=' + options.owID);
+        } else if (options.hasOwnProperty('q')) {
             items.push('q=' + options.q);
         } else if (options.hasOwnProperty('lat') && options.hasOwnProperty('lon')) {
             items.push('lat=' + options.lat);
@@ -355,9 +369,6 @@ var jOWM = jOWM || {};
         if (options.hasOwnProperty('appid')) {
             items.push('appid=' + options.appid);
         }
-        if (options.hasOwnProperty('description')) {
-            items.push('description=' + options.description);
-        }
         return items;
     }
 
@@ -366,10 +377,8 @@ var jOWM = jOWM || {};
      */
     jOWM.theme = function (func) {
         var args = Array.prototype.slice.apply(arguments, [1]);
-
         return (jOWM.theme[func] || jOWM.theme.prototype[func]).apply(this, args);
     };
-
     /**
      * Default theme function for weather temperature.
      */
@@ -389,7 +398,6 @@ var jOWM = jOWM || {};
         //Datum umwandeln
         var d = new Date(data.dt * 1000); // We need ms, not s!
         d.locale = options.lang;
-
         var output = '<div class="weather-detailed weather-' + weather.id + ' clearfix">';
         output += ' <div class="weather">';
         output += '  <span class="weather-icon" data-weather-text="' + weather.description + '" data-weather-code="' + weather.id + '"></span>';
@@ -398,7 +406,6 @@ var jOWM = jOWM || {};
         output += '</div>';
         return output;
     };
-
     /**
      * Default theme function for forecast the hourly weather item.
      * 
@@ -408,7 +415,6 @@ var jOWM = jOWM || {};
         var temperature = data.main;
         var d = new Date(data.dt * 1000); // We need ms, not s!
         d.locale = options.lang;
-
         var output = '<div class="weather-forecast weather-' + weather.id + ' clearfix">';
         output += ' <div class="day">' + d.strftime('%H:%M') + '</div>';
         output += ' <div class="weather-icon" data-weather-text="' + weather.description + '" data-weather-code="' + weather.id + '"></div>';
@@ -416,7 +422,6 @@ var jOWM = jOWM || {};
         output += '</div>';
         return output;
     };
-
     /**
      * Default theme function for forecast the Daily weather item.
      * 
@@ -424,7 +429,6 @@ var jOWM = jOWM || {};
     jOWM.theme.prototype.weatherForecastDailyItem = function (data, options) {
 
         var weather = data.weather[0];
-
         var output = '<div class="weather-forecast weather-' + weather.id + ' clearfix">';
         output += ' <div class="day">' + data.day + '</div>';
         output += ' <div class="weather-icon" data-weather-text="' + weather.description + '" data-weather-code="' + weather.id + '"></div>';

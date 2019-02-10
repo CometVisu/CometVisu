@@ -75,15 +75,18 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       return {
         'class': { target: 'cssClass' },
         'lang':   { },
+        'owID':  { },
         'q':   { },
         'lat':   { },
         'lon':   { },
         'units':   { },
         'type':   { },
-        'forecastItems':   { },
+        'forecast24hItems':   { },
+        'forecastDailyItems':   { },
         'detailItems':   { },
+        'showSunrise': { },
         'appid':   { },
-        'description':   {},
+        'description':   { },
       };
     }
   },
@@ -99,6 +102,10 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       nullable: true
     },
     lang: {
+      check: "String",
+      nullable: true
+    },
+    owID: {
       check: "String",
       nullable: true
     },
@@ -122,7 +129,15 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       check: "String",
       nullable: true
     },
-    forecastItems: {
+    forecast24hItems: {
+      check: "String",
+      nullable: true
+    },
+    forecastDailyhItems: {
+      check: "String",
+      nullable: true
+    },
+    showSunrise: {
       check: "String",
       nullable: true
     },
