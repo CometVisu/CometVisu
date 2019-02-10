@@ -173,6 +173,9 @@ class DocGenerator(Command):
         target_dir = target_dir.replace("<version>", self._get_doc_version() if target_version is None else target_version)
         print("generating doc to %s" % target_dir)
 
+        with open(os.path.join(target_dir, "..", "version"), "w") as f:
+            f.write(self._get_source_version())
+
         if not os.path.exists(source_dir):
             self.log.error("no sources found for manual (%s) in language '%s'" % (source_dir, language))
             sys.exit(1)
@@ -471,30 +474,35 @@ class DocGenerator(Command):
                 versions = []
                 special_versions = []
                 for version_dir in dirs:
+                    version = version_dir
+                    if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")):
+                        with open(os.path.join(path, lang_dir, version_dir, "version")) as f:
+                            version = f.read()
                     if os.path.islink(os.path.join(root, version_dir)):
                         symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
-                    elif len(version_dir.split(".")) == 3:
-                        versions.append(version_dir)
+                    elif re.match("^[0-9]+.[0-9]+.[0-9]+$", version) is not None:
+                        versions.append(version)
                     else:
-                        special_versions.append(version_dir)
+                        special_versions.append(version)
 
                 # max_version = max_ver(versions)
                 versions.sort(compare)
-                max_version = versions[-1:][0]
-                print("versions found: %s" % versions)
+                max_version = versions[-1:][0] if len(versions) > 0 else None
+                print("versions found: %s (%s)" % (versions, special_versions))
 
-                # checking current symlink to max version
-                if 'current' not in symlinks or symlinks['current'] != max_version:
-                    print("setting 'current' symlink to '%s'" % max_version)
-                    cwd = os.getcwd()
-                    os.chdir(root)
-                    try:
-                        os.remove('current')
-                    except Exception:
-                        pass
-                    os.symlink(max_version, 'current')
-                    symlinks['current'] = max_version
-                    os.chdir(cwd)
+                if max_version is not None:
+                    # checking current symlink to max version
+                    if 'current' not in symlinks or symlinks['current'] != max_version:
+                        print("setting 'current' symlink to '%s'" % max_version)
+                        cwd = os.getcwd()
+                        os.chdir(root)
+                        try:
+                            os.remove('current')
+                        except Exception:
+                            pass
+                        os.symlink(max_version, 'current')
+                        symlinks['current'] = max_version
+                        os.chdir(cwd)
 
                 # saving versions to json file
                 try:
@@ -567,7 +575,7 @@ class DocGenerator(Command):
         elif options.move_apiviewer:
             # move to the correct dir
             target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
-            target_dir = target_dir.replace("<version>", self._get_doc_version())
+            target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
             # remove api suffix from target
             target_dir = os.path.sep.join(target_dir.split(os.path.sep)[0:-1])
             shutil.move(self.config.get("api", "generator_target"), target_dir)

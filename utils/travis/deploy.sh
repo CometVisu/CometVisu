@@ -13,7 +13,7 @@ if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
 fi
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [ "$TRAVIS_BRANCH" != "master" ] ); then
+if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [ "$TRAVIS_BRANCH" != "master" ]  && [[ ! "$TRAVIS_BRANCH" =~ release-[0-9\.]+ ]]); then
     echo "Skipping deploy;"
     exit 0
 fi
@@ -45,11 +45,13 @@ cd ..
 #rm -rf out/de || exit 0
 #rm -rf out/en || exit 0
 
+VERSION=`${CV} doc --get-version`
+VERSION_PATH=`echo $VERSION | sed s/-RC[0-9]$//g`
+
 # Run our creation script
 echo "generating german manual to extract screenshot examples"
-$CV doc --doc-type manual -f -l de
+$CV doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 
-VERSION=`${CV} doc --get-version`
 utils/update_version.py
 echo "generating api version $VERSION"
 source temp-python/bin/activate
@@ -70,8 +72,8 @@ if [[ "$NO_API" -eq 0 ]]; then
     ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
 
     # move the apiviewer to the correct version subfolder, including screenshots
-    rm -r out/en/$VERSION/api
-    ${CV} doc --move-apiviewer
+    rm -r out/en/$VERSION_PATH/api
+    ${CV} doc --move-apiviewer --target-version=${VERSION_PATH}
 fi
 
 echo "updating english manual from source code doc comments"
@@ -81,9 +83,9 @@ ${CV} doc --from-source
 ${CV} doc --process-versions
 
 echo "generating english manual, including screenshot generation for all languages"
-${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION}
+${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION_PATH}
 echo "generating german manual again with existing screenshots"
-${CV} doc --doc-type manual -f -l de --target-version=${VERSION}
+${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 
 echo "generating feature yml file for homepage"
 ${CV} doc --generate-features
@@ -94,21 +96,21 @@ ${CV} sitemap
 echo "generating test mode build"
 source temp-python/bin/activate
 ./generate.py build --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
-rm -rf out/de/$VERSION/demo
-mv build out/de/$VERSION/demo
+rm -rf out/de/$VERSION_PATH/demo
+mv build out/de/$VERSION_PATH/demo
 
 # Copy demo-mode to default config
-cp out/de/$VERSION/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo/resource/config/visu_config.xml
+cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
 
 echo "generating test mode source version"
 ./generate.py source-hybrid --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
-rm -rf out/de/$VERSION/demo-source
-mkdir -p out/de/$VERSION/demo-source/client/source/class/cv/
-mkdir -p out/de/$VERSION/demo-source/source/
+rm -rf out/de/$VERSION_PATH/demo-source
+mkdir -p out/de/$VERSION_PATH/demo-source/client/source/class/cv/
+mkdir -p out/de/$VERSION_PATH/demo-source/source/
 # copy files
-cp -r client/source/class/cv out/de/$VERSION/demo-source/client/source/class/
-cp -r source/class source/resource source/loader source/script source/index.html source/manifest.json out/de/$VERSION/demo-source/source/
-cp out/de/$VERSION/demo-source/source/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo-source/source/resource/config/visu_config.xml
+cp -r client/source/class/cv out/de/$VERSION_PATH/demo-source/client/source/class/
+cp -r source/class source/resource source/loader source/script source/index.html source/manifest.json out/de/$VERSION_PATH/demo-source/source/
+cp out/de/$VERSION_PATH/demo-source/source/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo-source/source/resource/config/visu_config.xml
 deactivate
 
 echo "starting deployment..."
