@@ -230,7 +230,7 @@ module.exports = function(grunt) {
       options: {
         repository: 'cometvisu/cometvisu',
         release: {
-          tag_name: pkg.version,
+          tag_name: 'v' + pkg.version,
           name: pkg.version,
           body: pkg.description
         }
@@ -321,7 +321,7 @@ module.exports = function(grunt) {
           // Owner and Repository options are mandatory
           owner : 'CometVisu',
           repository : 'CometVisu',
-          tagName: pkg.version,
+          tagName: 'v' + pkg.version,
           auth: true,
           token: '', // this will be replaces by the prompt task with the user input
           branch: 'develop',
