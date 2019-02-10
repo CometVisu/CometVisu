@@ -173,7 +173,7 @@ class DocGenerator(Command):
         target_dir = target_dir.replace("<version>", self._get_doc_version() if target_version is None else target_version)
         print("generating doc to %s" % target_dir)
 
-        with open(os.path.join(target_dir, "..", "version"), "w") as f:
+        with open(os.path.join(target_dir, "..", "version"), "w+") as f:
             f.write(self._get_source_version())
 
         if not os.path.exists(source_dir):
