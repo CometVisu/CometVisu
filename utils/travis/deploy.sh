@@ -131,7 +131,7 @@ fi
 
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
-echo "adding all changes to gti changeset"
+echo "adding all changes to git changeset"
 git add --all .
 echo "committing changeset"
 git commit -q -m "Deploy to GitHub Pages: ${SHA}"
