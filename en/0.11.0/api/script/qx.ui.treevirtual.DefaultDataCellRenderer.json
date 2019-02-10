@@ -1,0 +1,1 @@
+{"attributes": {"fullName": "qx.ui.treevirtual.DefaultDataCellRenderer", "packageName": "qx.ui.treevirtual", "type": "class", "name": "DefaultDataCellRenderer", "superClass": "qx.ui.table.cellrenderer.Default"}, "type": "class", "children": [{"attributes": {"text": "<p>The default data cell renderer for a virtual tree (columns other than the\ntree column)</p>"}, "type": "desc"}]}

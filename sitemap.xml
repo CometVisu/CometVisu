@@ -1031,6 +1031,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/0.11.0/api/index.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/0.11.0/api/resource/qx/static/blank.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/en/0.11.0/manual/genindex.html</loc>
     <lastmod>2019-02-10</lastmod>
     <priority>0.5</priority>
@@ -3442,6 +3452,101 @@
   </url>
   <url>
     <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/manual/devel/transport/long-polling.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/index.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/editor/editor.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/editor/text/index.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/resource/qx/static/blank.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/resource/icon/iconlist.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/resource/designs/design_preview.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/resource/plugins/gauge/dep/demoExtras.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/resource/plugins/colorchooser/farbtastic/README.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/resource/plugins/colorchooser/farbtastic/CHANGELOG.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/resource/plugins/colorchooser/farbtastic/demo1.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo/resource/plugins/colorchooser/farbtastic/demo2.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo-source/source/index.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo-source/source/resource/icon/iconlist.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo-source/source/resource/designs/design_preview.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo-source/source/resource/plugins/gauge/dep/demoExtras.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo-source/source/resource/plugins/colorchooser/farbtastic/README.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo-source/source/resource/plugins/colorchooser/farbtastic/CHANGELOG.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo-source/source/resource/plugins/colorchooser/farbtastic/demo1.html</loc>
+    <lastmod>2019-02-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11.0/demo-source/source/resource/plugins/colorchooser/farbtastic/demo2.html</loc>
     <lastmod>2019-02-10</lastmod>
     <priority>0.5</priority>
   </url>
