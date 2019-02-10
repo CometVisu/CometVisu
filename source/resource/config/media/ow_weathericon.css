@@ -2,13 +2,25 @@
  * Custom styles for openweathermap widget.
  *
  * - usage of the weather-icon set (https://erikflowers.github.io/weather-icons/)
- * - 
  * 
- * @Author: Matthias
+ * @author: matthias-mw
  */
+
+/* webfont weather-icon */
+@font-face{
+    font-family: 'weathericon';
+    src:    url('fonts/weathericons-regular-webfont.eot');
+    src:    url('fonts/weathericons-regular-webfont.woff') format('woff'),
+            url('fonts/weathericons-regular-webfont.tff') format('truetype'),
+            url('fonts/weathericons-regular-webfont.svg#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .jowm {
     padding: .5rem 1rem;
 }
+
 .jowm .weather-icon {
     color: #ffffff;
     display: block;
@@ -311,9 +323,6 @@
     content: "\f04a";
 }
 
-
-
-
 /*  name="wi_owm_day_800"> f00d; 
     name="wi_owm_day_801"> f000; 
     name="wi_owm_day_802"> f000; 
@@ -353,11 +362,6 @@
     /* overcast cloudy */
     content: "\f086";
 }
-
-
-
-
-
 .jowm .weather-thermo .weather-icon:before {
     /* symbol Thermometer */
     content: "\f055";
@@ -365,7 +369,6 @@
 .jowm .weather-thermo .day{
     visibility: hidden;
 }
-
 .jowm .weather-sunrise .weather-icon:before {
     /* sunrise */
     content: "\f051";
@@ -373,25 +376,6 @@
 .jowm .weather-sunset .weather-icon:before {
     /* sunrise */
     content: "\f052";
-}
-
-
-.navbar .jowm {
-    background: transparent;
-    float: right;
-    padding: 0;
-}
-.navbar .jowm .weather-icon {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    margin: 0 .5rem 0 0;
-    padding: 0;
-}
-.navbar .jowm .weather-detailed .temperature {
-    font-size: .8rem;
-    line-height: 1.5rem;
-    margin: 0;
-    padding: 0;
 }
 
 /******************************************************************
@@ -853,7 +837,6 @@
     name="wi_owm_905"> f021; 
     name="wi_owm_906"> f015; 
     name="wi_owm_957"> f050; 
-   
 
     name="wi_owm_day_900"> f056; 
     name="wi_owm_day_901"> f00e; 
@@ -864,8 +847,6 @@
     name="wi_owm_day_906"> f004; 
     name="wi_owm_day_957"> f050; 
     
-
-
     name="wi_owm_night_900"> f056; 
     name="wi_owm_night_901"> f03a; 
     name="wi_owm_night_902"> f073; 
