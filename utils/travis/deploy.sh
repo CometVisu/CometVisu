@@ -72,7 +72,7 @@ if [[ "$NO_API" -eq 0 ]]; then
     ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
 
     # move the apiviewer to the correct version subfolder, including screenshots
-    rm -r out/en/$VERSION_PATH/api
+    rm -rf out/en/$VERSION_PATH/api
     ${CV} doc --move-apiviewer --target-version=${VERSION_PATH}
 fi
 
