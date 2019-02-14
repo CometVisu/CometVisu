@@ -117,7 +117,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#enablecache-caching-aktivieren"><em>enableCache</em> - Caching aktivieren</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reporting-session-aufzeichnen"><em>reporting</em> - Session aufzeichnen</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reporterrors-fehlermeldungen-automatisch-an-sentry-io-senden"><em>reportErrors</em> - Fehlermeldungen automatisch an sentry.io senden</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#log-logging-in-der-browserconsole-an-abschalten"><em>log</em> - Logging in der Browserconsole an-/abschalten</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#log-debug-meldungen-in-der-browserconsole-an-abschalten"><em>log</em> - Debug-Meldungen in der Browserconsole an-/abschalten</a></li>
 </ul>
 </li>
 </ul>
@@ -354,9 +354,9 @@ Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu ang
 <div class="section" id="reporting-session-aufzeichnen">
 <span id="reporting"></span><h3><em>reporting</em> - Session aufzeichnen<a class="headerlink" href="#reporting-session-aufzeichnen" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Zur Unterstützung einer Fehlermeldung, kann die Interaktion mit der CometVisu aufgezeichnet und
-den Entwicklern als Log-Datei zu Verfügung gestellt werden. Diese können damit genau sehen, welche Daten
+den Entwicklern als Replay-Datei zu Verfügung gestellt werden. Diese können damit genau sehen, welche Daten
 zwischen der CometVisu und dem Backend geflossen sind und welche Aktionen der Benutzer vorgenommen hat.
-Idealerweise lässt sich ein Fehler mit diesen Log-Dateien zuverlässig reproduzieren und erleichern so die Behebung
+Idealerweise lässt sich ein Fehler mit diesen Dateien zuverlässig reproduzieren und erleichtert so die Behebung
 des Problems erheblich.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">true</span>  <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">false</span> <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
@@ -364,20 +364,20 @@ des Problems erheblich.</p>
 </div>
 <div class="admonition attention">
 <p class="first admonition-title">Achtung</p>
-<p>In den Log-Dateien wird die komplette Konfigurationsdatei abgespeichert. Sollten sich Zugangsdaten in dieser
+<p>In den replay-Dateien wird die komplette Konfigurationsdatei abgespeichert. Sollten sich Zugangsdaten in dieser
 Konfiguration befinden, sollte eine Kopie der Konfiguration ohne solch sensible Daten erstellt werden
-und das Log mit dieser Konfiguration aufgezeichnet werden.</p>
+und die Session mit dieser Konfiguration aufgezeichnet werden.</p>
 <p class="last">Daten aus der <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">verstecken Konfiguration</span></a> werden nicht mit übertragen.</p>
 </div>
-<p>Um diese Log-Dateien aufzuzeichnen, muss man die CometVisu mit <cite>reporting=true</cite> laden.
-Nachdem man den fehlerhaften Zustand erreicht hat, kann man die Log-Datei herunterladen indem man in der
+<p>Um diese Replay-Dateien aufzuzeichnen, muss man die CometVisu mit dem URL-Parameter <cite>reporting=true</cite> im Querystring laden.
+Nachdem man den fehlerhaften Zustand erreicht hat, kann man die Replay-Datei herunterladen indem man in der
 Browser-Console (öffnen mit F12) <code class="docutils literal"><span class="pre">downloadLog()</span></code> ein gibt und mit <em>enter</em> bestätigt.
-Neben dem automatischen Download der Logdatei, wird der Inhalt des Logs ebenfalls auf der Konsole
-ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.</p>
+Neben dem automatischen Download der Datei, wird der Inhalt ebenfalls auf der Konsole
+ausgegeben. So kann man kontrollieren, welche Daten enthalten sind.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
-<p class="last">Da die Log-Dateien in Echtzeit abgespielt werden, empfiehlt es sich die Laufzeit möglichst kurz zu halten.
-Eine Log-Datei die 30 Minuten oder mehr läuft bis das Problem zu sehen ist, wird die Fehlerbehebung
+<p class="last">Da die Replay-Dateien in Echtzeit abgespielt werden, empfiehlt es sich die Laufzeit möglichst kurz zu halten.
+Eine Replay-Datei die 30 Minuten oder mehr läuft bis das Problem zu sehen ist, wird die Fehlerbehebung
 erschweren, da der Entwickler diese ggf. sehr oft abspielen muss während der Fehleranalyse und -behebung.</p>
 </div>
 </div>
@@ -397,9 +397,9 @@ der CometVisu bieten dazu die Option, die CometVisu mit diesem Parameter neu zu 
 Dann kann der Benutzer versuchen, den Fehler erneut zu reproduzieren und dann einen Fehlerbericht mit weiteren
 Erklärungen an sentry.io schicken.</p>
 </div>
-<div class="section" id="log-logging-in-der-browserconsole-an-abschalten">
-<span id="log"></span><h3><em>log</em> - Logging in der Browserconsole an-/abschalten<a class="headerlink" href="#log-logging-in-der-browserconsole-an-abschalten" title="Link zu dieser Überschrift">¶</a></h3>
-<p>Mit diesem Parameter können die Debug-Logausgaben auf der Browserkonsole ein- und ausgeschaltet werden.
+<div class="section" id="log-debug-meldungen-in-der-browserconsole-an-abschalten">
+<span id="log"></span><h3><em>log</em> - Debug-Meldungen in der Browserconsole an-/abschalten<a class="headerlink" href="#log-debug-meldungen-in-der-browserconsole-an-abschalten" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Mit diesem Parameter können die Debug-Meldungen auf der Browserkonsole ein- und ausgeschaltet werden.
 In der Entwicklerversion sind diese standardmäßig eingeschaltet in einem Release aus.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="n">im</span> <span class="n">Release</span><span class="p">,</span> <span class="n">true</span> <span class="ow">in</span> <span class="n">Entwicklerversion</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">true</span>  <span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">false</span> <span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>

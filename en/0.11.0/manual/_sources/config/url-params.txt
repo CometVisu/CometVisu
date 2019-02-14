@@ -178,9 +178,9 @@ Deleting causes all values to be deleted from the cache and recreated.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To support an error message, the interaction with the CometVisu can be
-recorded and made available to the developers as a log file. They can thus
-see exactly what data flowed between the CometVisu and the backend and what
-actions the user has taken. Ideally, an error can be faithfully reproduced
+recorded and made available to the developers as a replay file. They can thus
+see exactly which data has been exchanged between the CometVisu and the backend and which
+actions the user has executed. Ideally, an error can be faithfully reproduced
 with these log files, making it much easier to fix the problem.
 
 .. code::
@@ -190,24 +190,24 @@ with these log files, making it much easier to fix the problem.
 
 .. ATTENTION::
 
-    The complete configuration file is saved in the log files. If
+    The complete configuration file is saved in the replay files. If
     credentials are in this configuration, make a copy of the configuration
-    without such sensitive data and log the log with this configuration.
+    without such sensitive data and record the session with this configuration.
 
     Data from the :ref:`hidden config <hidden-config>` is not transferred with.
 
-To record these log files, you have to load the CometVisu with
+To record these replay files, you have to load the CometVisu with
 ``reporting=true``. After reaching the faulty state, you can download the
-log file by entering ``downloadLog()`` in the browser console (open with F12)
+replay file by entering ``downloadLog()`` in the browser console (open with F12)
 and confirming with *enter*. In addition to the automatic download of
-the log file, the contents of the log is also output to the console.
-So you can control which data is contained in the log.
+the replay file, its content is also shown in the console.
+So you can control which data is contained in the file.
 
 .. HINT::
 
-    Since the log files are played in real time, it is advisable to keep the
-    runtime as short as possible. A log file that runs for 30 minutes or
-    more until the problem is seen will make troubleshooting more difficult,
+    Since the replay files are played in real time, it is advisable to keep the
+    runtime as short as possible. A replay file that runs for 30 minutes or
+    more until the problem occurs will make troubleshooting more difficult,
     as the developer may need to play it very often during error analysis and
     resolution.
 
@@ -238,10 +238,10 @@ further explanations to sentry.io.
 
 .. _log:
 
-*log* - Logging in the Browser console
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*log* - Debug-messages in the browser console
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use this parameter to turn debug log output on and off in the browser
+Use this parameter to turn debug messages output on and off in the browser
 console. In the developer version, these are turned on by default.
 
 .. code::

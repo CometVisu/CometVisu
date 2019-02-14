@@ -126,7 +126,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#fehlerbericht-erstellen">Fehlerbericht erstellen</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#fehlerberichte-mit-log-dateien">Fehlerberichte mit Log-Dateien</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fehlerberichte-mit-replay-dateien">Fehlerberichte mit Replay-Dateien</a></li>
 </ul>
 </li>
 </ul>
@@ -529,29 +529,29 @@ ausformuliert sind.</p>
 <p class="last">Bei Unsicherheiten bzgl. des Fehlers kann zunächst im <a class="reference external" href="https://knx-user-forum.de/forum/supportforen/cometvisu">KNX-User-Forum</a>
 oder auf <a class="reference external" href="https://gitter.im/CometVisu/CometVisu_DE">Gitter</a> um Rat gefragt werden.</p>
 </div>
-<div class="section" id="fehlerberichte-mit-log-dateien">
-<h3>Fehlerberichte mit Log-Dateien<a class="headerlink" href="#fehlerberichte-mit-log-dateien" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="section" id="fehlerberichte-mit-replay-dateien">
+<h3>Fehlerberichte mit Replay-Dateien<a class="headerlink" href="#fehlerberichte-mit-replay-dateien" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Ab Version 0.11.0 steht eine zusätzliche Möglichkeit zur Verfügung, den Entwicklern die Fehlersuche zu erleichtern
 und die Fehlerberichte zu verbessern. Benutzer können das Verhalten der CometVisu aufzeichnen und eine sogenannte
-Log-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).</p>
+Replay-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
-<p class="last">Sie Aufzeichnung der Log-Dateien kann mit dem URL-Parameter <code class="docutils literal"><span class="pre">reporting=true</span></code> aktiviert werden
-(siehe: <a class="reference internal" href="../config/url-params.html#reporting"><span class="std std-ref">URL-Parameter</span></a>). Sobald man den Fehler nachgestellt hat, kann die Logdatei durch Eingabe
+<p class="last">Sie Aufzeichnung der Replay-Dateien kann mit dem URL-Parameter <code class="docutils literal"><span class="pre">reporting=true</span></code> aktiviert werden
+(siehe: <a class="reference internal" href="../config/url-params.html#reporting"><span class="std std-ref">URL-Parameter</span></a>). Sobald man den Fehler nachgestellt hat, kann die Replay-Datei durch Eingabe
 des Befehls <code class="docutils literal"><span class="pre">downloadLog()</span></code> in der Browserkonsole (öffnen mit F12-Taste) heruntergeladen werden.
-Neben dem automatischen Download der Logdatei, wird der Inhalt des Logs ebenfalls auf der Konsole
-ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.</p>
+Neben dem automatischen Download der Datei, wird der Inhalt ebenfalls auf der Konsole
+ausgegeben. So kann man kontrollieren, welche Daten enthalten sind.</p>
 </div>
-<p>Die Log-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
-( z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
+<p>Die Replay-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
+(z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
 Eventuell ist es daher ratsam, denn Fehler mit einer abgewandelten Konfigurationsdatei zu erstellen, die z.B. keine
 sensiblen Daten enthält.
-Der große Vorteil dieser Log-Dateien ist aber, dass die Entwickler beim Abspielen dieser Logs eine originalgetreue
-Nachbildung des Benutzersystems sehen und somit in der Regel auch direkt den Fehler sehen, diesen beheben und direkt
-testen können ob die Fehlerkorrektur auch wirkt.</p>
-<p>Natürlich gibt es auch Einschränkungen, denn nicht alles kann durch die Log-Dateien aufgezeichnet werden.
+Der große Vorteil dieser replay-Dateien ist aber, dass die Entwickler beim Abspielen eine originalgetreue
+Nachbildung des Benutzersystems haben und somit in der Regel auch direkt den Fehler sehen, diesen beheben und direkt
+testen können, ob die Fehlerkorrektur auch wirkt.</p>
+<p>Natürlich gibt es auch Einschränkungen, denn nicht alles kann durch die Replay-Dateien aufgezeichnet werden.
 Wenn ein Nutzer z.B. die vorhandenen Designs angepasst hat, eigene Icons/Bilder benutzt, die nicht Teil der
-CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil des Logs sind.</p>
+CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil der Aufzeichnung sind.</p>
 <table class="docutils citation" frame="void" id="rst-wiki" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
