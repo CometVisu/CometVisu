@@ -86,7 +86,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
         'detailItems':   { },
         'showSunrise': { },
         'appid':   { },
-        'description':   { },
+        'description':   { }
       };
     }
   },

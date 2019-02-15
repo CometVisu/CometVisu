@@ -185,7 +185,10 @@ var jOWM = jOWM || {};
         });
         if (options.showSunrise === "true") {
             //greate sunrise/sunset html
-            $('ul.detailed').append(_proccessSunrise(options));
+            var html = _proccessSunrise(options);
+            $item = $(html);
+            $item.appendTo($('ul.detailed', $(e)));
+          
         }
     };
     /**
