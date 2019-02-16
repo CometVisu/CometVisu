@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.11.0-dev
+                0.11.0-RC1
               </div>
             
           
@@ -117,7 +117,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#enablecache-activate-caching"><em>enableCache</em> - Activate Caching</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reporting-record-session"><em>reporting</em> - Record Session</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reporterrors-automatically-send-error-messages-to-sentry-io"><em>reportErrors</em> - Automatically send error messages to sentry.io</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#log-logging-in-the-browser-console"><em>log</em> - Logging in the Browser console</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#log-debug-messages-in-the-browser-console"><em>log</em> - Debug-messages in the browser console</a></li>
 </ul>
 </li>
 </ul>
@@ -198,14 +198,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p>This is the documentation for the current development branch of the CometVisu.
-It is possible that some of the described features are not yet available in the current release.</p>
-<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
-by an online translation service.</p>
-</div>
-<div class="section" id="url-parameter">
+  <div class="section" id="url-parameter">
 <h1>URL-Parameter<a class="headerlink" href="#url-parameter" title="Permalink to this headline">¶</a></h1>
 <p>The behavior of CometVisu can be partially adjusted by URL parameters.
 Since these parameters can also be saved in the favorites of the browser,
@@ -359,9 +352,9 @@ or deleted (=invalid).</p>
 <div class="section" id="reporting-record-session">
 <span id="reporting"></span><h3><em>reporting</em> - Record Session<a class="headerlink" href="#reporting-record-session" title="Permalink to this headline">¶</a></h3>
 <p>To support an error message, the interaction with the CometVisu can be
-recorded and made available to the developers as a log file. They can thus
-see exactly what data flowed between the CometVisu and the backend and what
-actions the user has taken. Ideally, an error can be faithfully reproduced
+recorded and made available to the developers as a replay file. They can thus
+see exactly which data has been exchanged between the CometVisu and the backend and which
+actions the user has executed. Ideally, an error can be faithfully reproduced
 with these log files, making it much easier to fix the problem.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">true</span>  <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">false</span> <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
@@ -369,22 +362,22 @@ with these log files, making it much easier to fix the problem.</p>
 </div>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
-<p>The complete configuration file is saved in the log files. If
+<p>The complete configuration file is saved in the replay files. If
 credentials are in this configuration, make a copy of the configuration
-without such sensitive data and log the log with this configuration.</p>
+without such sensitive data and record the session with this configuration.</p>
 <p class="last">Data from the <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">hidden config</span></a> is not transferred with.</p>
 </div>
-<p>To record these log files, you have to load the CometVisu with
+<p>To record these replay files, you have to load the CometVisu with
 <code class="docutils literal"><span class="pre">reporting=true</span></code>. After reaching the faulty state, you can download the
-log file by entering <code class="docutils literal"><span class="pre">downloadLog()</span></code> in the browser console (open with F12)
+replay file by entering <code class="docutils literal"><span class="pre">downloadLog()</span></code> in the browser console (open with F12)
 and confirming with <em>enter</em>. In addition to the automatic download of
-the log file, the contents of the log is also output to the console.
-So you can control which data is contained in the log.</p>
+the replay file, its content is also shown in the console.
+So you can control which data is contained in the file.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">Since the log files are played in real time, it is advisable to keep the
-runtime as short as possible. A log file that runs for 30 minutes or
-more until the problem is seen will make troubleshooting more difficult,
+<p class="last">Since the replay files are played in real time, it is advisable to keep the
+runtime as short as possible. A replay file that runs for 30 minutes or
+more until the problem occurs will make troubleshooting more difficult,
 as the developer may need to play it very often during error analysis and
 resolution.</p>
 </div>
@@ -408,9 +401,9 @@ CometVisu with this parameter, if that has not happened yet. Then the user
 can try to reproduce the error again and then send an error report with
 further explanations to sentry.io.</p>
 </div>
-<div class="section" id="log-logging-in-the-browser-console">
-<span id="log"></span><h3><em>log</em> - Logging in the Browser console<a class="headerlink" href="#log-logging-in-the-browser-console" title="Permalink to this headline">¶</a></h3>
-<p>Use this parameter to turn debug log output on and off in the browser
+<div class="section" id="log-debug-messages-in-the-browser-console">
+<span id="log"></span><h3><em>log</em> - Debug-messages in the browser console<a class="headerlink" href="#log-debug-messages-in-the-browser-console" title="Permalink to this headline">¶</a></h3>
+<p>Use this parameter to turn debug messages output on and off in the browser
 console. In the developer version, these are turned on by default.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="k">for</span> <span class="n">Release</span><span class="p">,</span> <span class="n">true</span> <span class="k">for</span> <span class="n">develop</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">true</span>  <span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">false</span> <span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
@@ -460,7 +453,7 @@ console. In the developer version, these are turned on by default.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.11.0-dev
+      v: 0.11.0-RC1
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -472,6 +465,8 @@ console. In the developer version, these are turned on by default.</p>
           <dd><a href="../../../0.10.2/manual/index.html">0.10.2</a></dd>
         
           <dd><a href="../../../latest/manual/index.html">latest</a></dd>
+        
+          <dd><a href="../../../0.11.0-RC1/manual/index.html">0.11.0-RC1</a></dd>
         
       </dl>
       
