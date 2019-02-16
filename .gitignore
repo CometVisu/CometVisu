@@ -31,3 +31,5 @@ settings/keys/deploy_key
 /source/resource/config/tmpfile
 /source/resource/config/tmpjson.json
 *nbproject/**
+*.gitignore
+*upload*.sh
