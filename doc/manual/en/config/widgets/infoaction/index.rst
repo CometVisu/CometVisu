@@ -35,29 +35,7 @@ Attributes underlined by ..... are mandatory, all the others are optional and be
 Allowed attributes in the InfoAction-element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. parameter-information:: infoaction
-
-.. widget-example::
-    :editor: attributes
-    :scale: 75
-    :align: center
-
-    <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <infoaction>
-      <layout colspan="4" />
-      <label>InfoAction</label>
-      <widgetinfo>
-        <info>
-          <address transform="DPT:9.001">0/0/0</address>
-        </info>
-      </widgetinfo>
-      <widgetaction>
-        <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan="3"/>
-          <address transform="DPT:1.001" mode="readwrite">0/0/1</address>
-        </switch>
-      </widgetaction>
-    </infoaction>
+None.
 
 
 Allowed child-elements und their attributes

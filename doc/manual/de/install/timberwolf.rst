@@ -83,6 +83,17 @@ Unter *Containers* → *Add Container*
       Default ``1.1.238`` zu setzen, wenn diese physikalische Addresse bereits
       belegt ist oder eine andere Linie als ``1.1`` verwendet werden soll.
 
+      Es ist auch wichtig, dass der Port der KNX Schnittstelle korrekt ist. Im
+      Timberwolf ist unter *Einstellungen* → *KNX* → *Schnittstellen* der
+      verwendete Port ersichtlich:
+
+      .. figure:: _static/timberwolf_knx_port.png
+          :scale: 50 %
+
+      Sollte der Port von ``3700`` abweichen, so ist die Umgebungsvariable
+      ``KNX_INTERFACE`` entsprechend anzupassen, in diesem Beispiel auf den
+      Wert ``iptn:172.17.0.1:3674``.
+
   - Restart policy: ``Unless stopped``
 
 .. figure:: _static/portainer_container_add.png
@@ -238,7 +249,7 @@ Empfehlung die Testing Version mit diesen Parametern zu installieren:
       - ``container``: ``/var/www/html/resource/config`` ⭢ ``volume``: ``CometVisuTestConfig``
       - ``container``: ``/var/www/rrd`` ⭢ ``volume``: ``RRD`` *(Optional)*
 
-    - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visu/cgi-bin/``
+    - Env: Environment variables ``name``: ``CGI_URL_PATH`` mit ``value``: ``/proxy/visutest/cgi-bin/``
 
 - Proxy:
 

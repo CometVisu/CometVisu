@@ -14,9 +14,10 @@ Das Diagramm_Info Plugin
 Beschreibung
 ------------
 
-Das Diagram-Plugin biete die Möglichkeit als Widget einen aktuellen Wert anzuzeigen, der beim Anklicken
+Das Diagram-Plugin bietet die Möglichkeit als Widget einen aktuellen Wert anzuzeigen, der beim Anklicken
 ein Popup-Diagramm öffnet, dass den zeitlichen Verlauf des Wertes visualisiert. Die Datenquelle 
-muss im rrd-Format vorliegen. Genaueres dazu im Abschnitt :ref:`RRD-Einführung & Beispiele <rrd_introduction>`.
+muss im rrd-Format oder in einer Influx-Datenbank vorliegen. Genaueres dazu im
+Abschnitt :ref:`RRD-Einführung & Beispiele <rrd_introduction>`.
 
 Soll das Diagramm selbst als Widget angezeigt werdeb, muss das ``diagram``-Plugin verwendet werden.
 Genauere Informationen dazu unter :ref:`diagram`.

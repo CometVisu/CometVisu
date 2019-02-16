@@ -1091,7 +1091,11 @@ var EditorConfigurationElement = function (parent, element) {
       var $input = $(this);
       var $value = $input.siblings('span.value');
 
-      var inputValue = $input.find('input, textarea, select').andSelf().filter('input, textarea, select').val();
+      var $inputElement = $input.find('input, textarea, select').andSelf().filter('input, textarea, select');
+      var inputValue = $inputElement.val();
+      if( 0 === $inputElement[0].selectedIndex && '- not set - (undefined)' === inputValue ) {
+        inputValue = undefined;
+      }
       var attributeName = $input.siblings('span.name').text();
 
       if (false === Attributes.saveValue(attributeName, inputValue)) {
@@ -1113,7 +1117,7 @@ var EditorConfigurationElement = function (parent, element) {
       var $attributes = Attributes.get$attributes();
       var $attributeValue = $attributes.find('li.attribute.attributeType_' + attributeName).find('.value');
             
-      if ($attributeValue.length == 0) {
+      if ($attributeValue.length === 0) {
         // we have not attribute of that name
         return false;
       }
@@ -1133,7 +1137,10 @@ var EditorConfigurationElement = function (parent, element) {
       } else {
         $attributeValue.removeClass('notset');
       }
-            
+
+      if( undefined === inputValue ) {
+        inputValue = '';
+      }
       $attributeValue.html(inputValue);
             
       return true;

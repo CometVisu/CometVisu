@@ -94,7 +94,8 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       init: false,
       event: "changeVisible",
       apply: "_applyVisible"
-    }
+    },
+    responsive        : { check: "Boolean", init: false }
   },
 
   /*
@@ -114,10 +115,37 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
   members: {
     $$domReady: null,
     __pointerDownElement: null,
+    __pointerDownTime: null,
     _skipNextEvent: null,
 
     // property apply
     _applyVisible: function(value, old) {
+    },
+
+    getResponsiveLayout: function (width) {
+      if (!this.isResponsive()) {
+        return this.getLayout();
+      }
+      if (!width) {
+        width = cv.ui.layout.Manager.getAvailableWidth();
+      }
+      var layout = this.getLayout();
+      var suffix = cv.ui.layout.Manager.getLayoutSuffix(width);
+      if (suffix) {
+        var l = {};
+        ['x', 'y', 'width', 'scale'].forEach(function (prop) {
+          if (layout[prop]) {
+            // use default value
+            l[prop] = layout[prop];
+          }
+          if (layout[prop + suffix]) {
+            // override default value
+            l[prop] = layout[prop + suffix];
+          }
+        });
+        return l;
+      }
+      return layout;
     },
 
     /**
@@ -214,6 +242,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     _onPointerDown: function(ev) {
       // listen to pointerup globally
       this.__pointerDownElement = ev.getCurrentTarget();
+      this.__pointerDownTime = Date.now();
       qx.event.Registration.addListener(document, "pointerup", this._onPointerUp, this);
     },
 
@@ -229,9 +258,18 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       if (upElement && upElement === this.__pointerDownElement) {
         // both events happened on the same element
         ev.setCurrentTarget(upElement);
-        this.action(ev);
+        if (this._onLongTap &&
+          qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) &&
+          this.getShortThreshold() > 0 &&
+          (Date.now() - this.__pointerDownTime) >= this.getShortThreshold()) {
+          // this is a longpress
+          this._onLongTap(ev);
+        } else {
+          this.action(ev);
+        }
         this._skipNextEvent = "tap";
       }
+      this.__pointerDownTime = null;
     },
 
     /**

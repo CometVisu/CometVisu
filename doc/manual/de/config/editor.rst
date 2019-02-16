@@ -69,3 +69,87 @@ sort
 Um Elemente zu sortieren wird bei einem im Kontext-Menü "sort" ausgewählt. In
 der dann erscheinenden Darstellung kann durch Klicken auf einen der gelben
 Platzhalter dieses Element dorthin verschoben werden.
+
+Erweitertes Setup
+-----------------
+
+Der Editor versucht den Anwender zu unterstützen in dem manche Daten als
+Drop-Down-Liste vorbefüllt werden. Die meisten Daten kann der Editor
+selbständig ableiten, manche benötigen aber eine Unterstützung durch den Anwender.
+
+Adressen *(cgi-bin Backend für eibd/knxd)*
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Die KNX Gruppen-Adressen für die ``<address>`` Elemente können auf dem
+WireGate der dort vorhandenen Datenbank entnommen werden. Auf anderen Systemen,
+die das cgi-bin Backend verwenden,
+können damit kompatible Dateien über den :doc:`Manager <manager>` unter den
+Medien-Dateien hochgeladen werden. Hierzu sind diese drei Dateien nötig:
+
+eibga.conf
+""""""""""
+
+Diese Datei enthält eine Liste aller Gruppenadressen mit Beschreibung und
+Datenpunkt:
+
+.. code-block:: ini
+
+    [1/0/42]
+    short = Wohnzimmer
+    DPTSubId = 1.001
+    ga = 1/0/42
+    name = Wohnzimmer - Indirekte Beleuchtung - EinAus
+    DPTId = 1
+    DPT_SubTypeName = DPT_Switch
+
+    [1/3/42]
+    short = Wohnzimmer
+    DPTSubId = 5.001
+    ga = 1/3/42
+    name = Wohnzimmer - Indirekte Beleuchtung - Rückmeldung Wert
+    DPTId = 5
+    DPT_SubTypeName = DPT_Scaling
+
+    [1/5/42]
+    short = Wohnzimmer
+    DPTSubId = 5.001
+    ga = 1/5/42
+    name = Wohnzimmer - Indirekte Beleuchtung - Wert
+    DPTId = 5
+    DPT_SubTypeName = DPT_Scaling
+
+    ...
+
+eibga_hg.conf
+"""""""""""""
+
+Diese Datei enthält die Liste der Hauptgruppen:
+
+.. code-block:: ini
+
+    [0]
+
+    name = Zentral
+
+    [1]
+
+    name = Beleuchtung
+
+    ...
+
+eibga_mg.conf
+"""""""""""""
+
+Diese Datei enthält die Liste der Mittelgruppen:
+
+.. code-block:: ini
+
+    [0]
+
+    name = Kontakt
+
+    [1]
+
+    name = Rückmeldung
+
+    ...

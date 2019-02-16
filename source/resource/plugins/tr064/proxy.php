@@ -54,13 +54,23 @@ if( !$TR064_uri )
   die();
 }
 
-$uri = $_GET['uri'];
-if( strncmp( $TR064_uri, $uri, strlen($TR064_uri) ) != 0 )
-{
-  $uri = $TR064_uri . ltrim( $uri, '/' );
+$context = NULL;
+if( array_key_exists( 'selfsigned', $TR064device ) &&
+  'true' == $TR064device['selfsigned']  ) {
+
+  $context = stream_context_create( array(
+    'ssl' => [
+      'verify_peer' => false,
+      'allow_self_signed' => true,
+      'verify_peer_name' => false
+    ]
+  ) );
 }
 
-if( $stream = @fopen($uri, 'r') )
+$uri = $_GET['uri'];
+$uri = preg_replace( '#^(https?://[^/]*/)? */*#', $TR064_uri, $uri );
+
+if( $stream = @fopen($uri, 'r', false, $context) )
 {
   $content = stream_get_contents($stream);
   $meta = stream_get_meta_data($stream);

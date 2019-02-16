@@ -59,14 +59,6 @@ qx.Class.define('cv.ui.structure.pure.Trigger', {
     },
 
     // overridden
-    initListeners: function() {
-      this.base(arguments);
-      if (this.getShortThreshold() > 0) {
-        this.addElementListener("longtap", this._onLongTap, this);
-      }
-    },
-
-    // overridden
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },

@@ -25,7 +25,7 @@
  * @since 2015
  */
 qx.Class.define('cv.plugins.Link', {
-  extend: cv.ui.structure.AbstractBasicWidget,
+  extend: cv.ui.structure.AbstractWidget,
 
   /*
   ******************************************************
@@ -44,6 +44,10 @@ qx.Class.define('cv.plugins.Link', {
     href: {
       check: "String",
       init: ''
+    },
+    newWindow: {
+      check: "Boolean",
+      init: false
     }
   },
 
@@ -69,9 +73,12 @@ qx.Class.define('cv.plugins.Link', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'class': {target: 'cssClass'},
-        'text': {},
-        'href': {}
+        'class': {target: 'cssClass', 'default': ''},
+        'text': {'default': ''},
+        'href': {'default': ''},
+        'newWindow': {'default': false, transform: function(value) {
+            return value === "true";
+          }}
       };
     }
   },
@@ -82,13 +89,17 @@ qx.Class.define('cv.plugins.Link', {
   ******************************************************
   */
   members: {
-    getDomString: function () {
+    _getInnerDomString: function () {
       var classes = "link";
       if (this.getCssClass()) {
         classes += " "+this.getCssClass();
       }
       var href = this.getHref() ? ' href="'+this.getHref()+'"' : '';
-      return '<a class="'+classes+'"'+href+'>' + this.getText() + '</a>';
+      var attributes = '';
+      if (this.isNewWindow()) {
+        attributes += ' target="_blank"';
+      }
+      return '<a class="'+classes+'"' + href + attributes + '>' + this.getText() + '</a>';
     }
   },
 
