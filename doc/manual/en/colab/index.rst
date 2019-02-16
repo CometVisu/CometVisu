@@ -401,36 +401,35 @@ are formulated
     or at `Gitter <https://gitter.im/CometVisu/CometVisu>`__ ask for help.
 
 
-Bug reports with log files
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Bug reports with replay files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Beginning with version 0.11.0, there is an additional way to make
 troubleshooting easier for developers and to improve the bug reports.
 Users can record the behavior of the CometVisu and provide a so-called
-log file (preferably attached to the issue as an attachment).
+replay file (preferably attached to the issue as an attachment).
 
 .. HINT::
 
-    The recording of the log files can be activated with the URL parameter ``reporting = true``
+    The recording of the replay files can be activated with the URL parameter ``reporting = true``
     (see: :ref:`URL-Parameter <reporting>`). Once the error has been corrected,
-    the log file can be downloaded by entering the ``downloadLog()`` command
+    the log replay can be downloaded by entering the ``downloadLog()`` command
     in the browser console (open with F12 key). In addition to the automatic
-    download of the log file, the contents of the log is also output to the console.
-    So you can control which data is contained in the log.
+    download of the file, its content is also shown in the console.
+    So you can control which data is contained in the file.
 
-The log files contain the configuration file, all communication with the
+The replay files contain the configuration file, all communication with the
 backend and the user interactions (for example, clicks on widgets, etc.).
 Therefore, the user must agree to publish this data. It may therefore be
-advisable to create bugs with a modified configuration file, e.g. none
-contains sensitive data.
-The big advantage of these log files, however, is that the developers
-can see a mock up of the original setup when playing these logs. See replica of
-the user system and thus usually see the error directly, fix it and
-directly can test whether the error correction also works.
+advisable to create bugs with a modified configuration file, e.g. not
+containing sensitive data.
+The big advantage of these replay files, however, is that the developers
+can see a mock up of the original setup when playing these files. This allows the developer
+to see the error directly, fix it and test is the bug-fix works.
 
 Of course, there are also limitations, because not everything can be
-recorded by the log files. If a user e.g. has adapted the existing designs,
-uses their own icons/images that are not part of the CometVisu are so
-they are missing when playing because they are not part of the log.
+recorded by the replay files. If a user e.g. has adapted the existing designs and/or
+uses own icons/images, that are not part of the CometVisu, those files will not be
+part of the replay file and are missing when the file gets replayed.
 
 .. [RST-Wiki] https://de.wikipedia.org/wiki/ReStructuredText
