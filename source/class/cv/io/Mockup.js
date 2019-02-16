@@ -59,6 +59,11 @@ qx.Class.define('cv.io.Mockup', {
     server: {
       check: "String",
       init: "Mockup"
+    },
+    connected: {
+      check: "Boolean",
+      init: true,
+      event: "changeConnected"
     }
   },
 

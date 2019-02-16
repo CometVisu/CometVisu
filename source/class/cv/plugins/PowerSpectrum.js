@@ -97,7 +97,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     parse: function (xml, path, flavour, pageType) {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path);
+      cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
     },
 
@@ -246,6 +246,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     },
     
     _onDomReady: function() {
+      this.base(arguments);
       var colors = [ this.getLimitColor(), this.getColor1(), this.getColor2(), this.getColor3() ];
         
       var

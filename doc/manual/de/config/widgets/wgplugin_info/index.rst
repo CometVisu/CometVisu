@@ -3,7 +3,7 @@
 Das WG_Plugin_Info Widget
 =========================
 
-.. api-doc:: wgplugin_info
+.. api-doc:: WgPluginInfo
 
 Beschreibung
 ------------

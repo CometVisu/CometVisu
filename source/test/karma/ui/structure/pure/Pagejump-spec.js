@@ -76,9 +76,8 @@ describe("testing a pagejump widget", function() {
       'target': 'test'
     });
     this.initWidget(creator);
-    var actor = creator.getActor();
-    qx.event.Registration.fireEvent(actor, "pointerdown", qx.event.type.Event, []);
-    expect(actor).toHaveClass("switchPressed");
+    qx.event.Registration.fireEvent(creator.getInteractionElement(), "pointerdown", qx.event.type.Event, []);
+    expect(creator.getActor()).toHaveClass("switchPressed");
 
   });
 
@@ -89,10 +88,9 @@ describe("testing a pagejump widget", function() {
       'target': 'test'
     });
     this.initWidget(widget);
-    var actor = widget.getActor();
-    expect(actor).toHaveClass("switchUnpressed");
+    expect(widget.getActor()).toHaveClass("switchUnpressed");
 
-    qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
+    qx.event.Registration.fireEvent(widget.getInteractionElement(), "tap", qx.event.type.Event, []);
     expect(templateEngine.scrollToPage).toHaveBeenCalledWith('test');
   });
 
@@ -105,11 +103,10 @@ describe("testing a pagejump widget", function() {
       'path': 'path'
     });
     this.initWidget(creator);
-    var actor = creator.getActor();
 
-    expect(actor).toHaveClass("switchUnpressed");
+    expect(creator.getActor()).toHaveClass("switchUnpressed");
 
-    qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
+    qx.event.Registration.fireEvent(creator.getInteractionElement(), "tap", qx.event.type.Event, []);
     expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_1');
   });
 
