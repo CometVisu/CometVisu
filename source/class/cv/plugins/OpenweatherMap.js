@@ -22,6 +22,7 @@
  * This plugins integrates OpenWeatherMap data.
  *
  * @author Stefan Borchert (stefan@borchert.cc)
+ * @author Matthias
  * @since 0.9.0
  * @asset(plugins/openweathermap/owm/jquery.owm.js,plugins/openweathermap/openweathermap.css)
  */

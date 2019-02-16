@@ -3,9 +3,10 @@
  *
  * jQuery plugin to display data from OpenWeatherMap.
  *
- * Version: 0.0.1
+ * Version: 0.0.2
  * Copyright (c) 2015, Stefan Borchert
- *
+ * Updated 2019 by Matthias
+ * 
  * Licensed under the GPLv3 license.
  **/
 

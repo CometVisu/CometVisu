@@ -1,18 +1,21 @@
 /**
- * Custom styles for openweathermap widget.
- *
- * - usage of the weather-icon set (https://erikflowers.github.io/weather-icons/)
+ * Custom styles for openweathermap plugin.
  * 
- * @author: matthias-mw
+ * @author: matthias-mw 01/2019
+ * 
+ * - usage of the weather-icon set (https://erikflowers.github.io/weather-icons/)
+ * - Weather Icons licensed under SIL OFL 1.1
+ *
+ *
  */
 
 /* webfont weather-icon */
 @font-face{
     font-family: 'weathericon';
-    src:    url('fonts/weathericons-regular-webfont.eot');
-    src:    url('fonts/weathericons-regular-webfont.woff') format('woff'),
-            url('fonts/weathericons-regular-webfont.tff') format('truetype'),
-            url('fonts/weathericons-regular-webfont.svg#fontawesomeregular') format('svg');
+    src:    url('weathericons-regular-webfont.eot');
+    src:    url('weathericons-regular-webfont.woff') format('woff'),
+            url('weathericons-regular-webfont.tff') format('truetype'),
+            url('weathericons-regular-webfont.svg#fontawesomeregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
