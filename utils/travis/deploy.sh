@@ -46,7 +46,7 @@ cd ..
 #rm -rf out/en || exit 0
 
 VERSION=`${CV} doc --get-version`
-VERSION_PATH=`echo $VERSION | sed s/-RC[0-9]$//g`
+VERSION_PATH=`${CV} doc --get-target-version`
 
 # Run our creation script
 echo "generating german manual to extract screenshot examples"
