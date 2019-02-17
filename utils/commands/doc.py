@@ -484,12 +484,12 @@ class DocGenerator(Command):
                 special_versions = []
                 for version_dir in dirs:
                     version = version_dir
-                    if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")) and re.match("^[0-9]+.[0-9]+.[0-9]+$", version) is not None:
+                    if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")) and re.match("^[0-9]+.[0-9]+.?[0-9]*$", version) is not None:
                         with open(os.path.join(path, lang_dir, version_dir, "version")) as f:
                             version = "%s|%s" % (f.read(), version_dir)
                     if os.path.islink(os.path.join(root, version_dir)):
                         symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
-                    elif re.match("^[0-9]+.[0-9]+.[0-9]+$", version) is not None:
+                    elif re.match("^[0-9]+.[0-9]+.?[0-9]*$", version) is not None:
                         versions.append(version)
                     else:
                         special_versions.append(version)
