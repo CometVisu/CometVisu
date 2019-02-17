@@ -89,14 +89,17 @@ function ThemeNav () {
             });
             link.prepend(expand);
         });
+        var link = window.location.pathname.replace(/\/[^\/]+\/manual/, '/###VERSION###/manual');
+        // relative path to versions file
+        var versionsPath = link.substr(0, link.indexOf('###VERSION###')) + 'versions.json';
 
         // generate the version links
         $.ajax({
-            url:'../../../versions.json',
+            url: versionsPath,
             success: function (data) {
                 if (data && data.versions) {
                     var html = $('.rst-other-versions > dl > dt')[0].outerHTML;
-                    var link = window.location.pathname.replace(/\/[^\/]+\/manual/, '/###VERSION###/manual');
+
 
                     data.versions.forEach(function (ver) {
                         var parts = ver.split("|");
