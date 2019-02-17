@@ -43,13 +43,13 @@ if os.path.exists(versions_file):
         for ver in data['versions']:
             parts = ver.split("|")
             if len(parts) == 2:
-                version = parts[0]
+                v = parts[0]
                 path = parts[1]
             else:
-                version = ver
+                v = ver
                 path = ver
 
-            versions.append((version, '../../%s/manual' % path))
+            versions.append((v, '../../%s/manual' % path))
 
 releaselevel = 'dev' if version[-4:] == '-dev' else 'release'
 release = ''
