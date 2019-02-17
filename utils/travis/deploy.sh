@@ -126,7 +126,7 @@ git config user.email "$COMMIT_AUTHOR_EMAIL"
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail out.
 # as the changesets on new versions are too big we skip this check to prevent timeouts
-if [ "$NEW_VERSION" -eq 1 ]; then
+if [ "$NEW_VERSION" -eq 0 ]; then
     echo "checking diff"
     if [ `git diff --shortstat | wc -l` -eq 0 ]; then
        echo "No changes to the output on this push; exiting."
