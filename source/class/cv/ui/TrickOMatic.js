@@ -31,7 +31,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
   ******************************************************
   */
   statics: {
-    __id: 0,
+    id: 0,
 
     run: function () {
       var svg = this.getSVGDocument();
@@ -108,10 +108,10 @@ qx.Class.define('cv.ui.TrickOMatic', {
           var activeValues = qx.bom.element.Attribute.get(pipe_group, 'data-cometvisu-active');
           if (activeValues) {
             activeValues.split(' ').forEach(function (address) {
-              var id = "flow_"+this.__id++;
+              var id = "flow_"+cv.ui.TrickOMatic.id++;
               model.addAddress(address, id);
-              model.addUpdateListener(address, function (data) {
-                if (data === '01' || data === 'ON') {
+              model.addUpdateListener(address, function (address, data) {
+                if (parseInt(data) === 1 || data === 'ON') {
                   qx.bom.element.Class.toggle(pipe_group, "flow_active", true);
                 } else {
                   qx.bom.element.Class.toggle(pipe_group, "flow_active", false);
