@@ -472,6 +472,16 @@ class DocGenerator(Command):
 
         return None
 
+    def _sort_versions(self, a, b):
+        va = a.split("|")[0]
+        vb = b.split("|")[0]
+        if va == "latest":
+            return 1
+        elif vb == "latest":
+            return -1
+        else:
+            return compare(va, vb)
+
     def process_versions(self, path):
         root, dirs, files = os.walk(path).next()
         for lang_dir in dirs:
@@ -486,31 +496,45 @@ class DocGenerator(Command):
                     version = version_dir
                     if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")) and re.match("^[0-9]+.[0-9]+.?[0-9]*$", version) is not None:
                         with open(os.path.join(path, lang_dir, version_dir, "version")) as f:
-                            version = "%s|%s" % (f.read(), version_dir)
+                            version = f.read()
+                    print(version)
                     if os.path.islink(os.path.join(root, version_dir)):
                         symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
-                    elif re.match("^[0-9]+.[0-9]+.?[0-9]*$", version) is not None:
-                        versions.append(version)
+                    elif re.match("^[0-9]+.[0-9]+.*$", version) is not None:
+                        versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
                     else:
-                        special_versions.append(version)
+                        special_versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
 
                 # max_version = max_ver(versions)
-                versions.sort(compare)
-                max_version = versions[-1:][0] if len(versions) > 0 else None
+                versions.sort(self._sort_versions)
+                max_version = None
+                max_version_path = None
+                found_max = False
+                if len(versions) > 0:
+                    for version in versions[::-1]:
+                        max_version = version
+                        if "|" in max_version:
+                            max_version, max_version_path = max_version.split("|")
+                        else:
+                            max_version_path = max_version
+                        if re.match(".+-RC[0-9]+$", max_version) is None:
+                            found_max = True
+                            break
+
                 print("versions found: %s (%s)" % (versions, special_versions))
 
-                if max_version is not None:
+                if found_max is True and max_version_path is not None:
                     # checking current symlink to max version
-                    if 'current' not in symlinks or symlinks['current'] != max_version:
-                        print("setting 'current' symlink to '%s'" % max_version)
+                    if 'current' not in symlinks or symlinks['current'] != max_version_path:
+                        print("setting 'current' symlink to '%s'" % max_version_path)
                         cwd = os.getcwd()
                         os.chdir(root)
                         try:
                             os.remove('current')
                         except Exception:
                             pass
-                        os.symlink(max_version, 'current')
-                        symlinks['current'] = max_version
+                        os.symlink(max_version_path, 'current')
+                        symlinks['current'] = max_version_path
                         os.chdir(cwd)
 
                 # saving versions to json file
