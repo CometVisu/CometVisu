@@ -31,7 +31,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
   ******************************************************
   */
   statics: {
-    __id: 0,
+    id: 0,
 
     run: function () {
       var svg = this.getSVGDocument();
@@ -108,15 +108,13 @@ qx.Class.define('cv.ui.TrickOMatic', {
           var activeValues = qx.bom.element.Attribute.get(pipe_group, 'data-cometvisu-active');
           if (activeValues) {
             activeValues.split(' ').forEach(function (address) {
-              var id = "flow_"+this.__id++;
+              var id = "flow_"+cv.ui.TrickOMatic.id++;
               model.addAddress(address, id);
-              model.addUpdateListener(address, function (data) {
-                if (data === '01' || data === 'ON') {
-                  qx.bom.element.Class.toggle(pipe_group, "flow_active", true);
-                } else {
-                  qx.bom.element.Class.toggle(pipe_group, "flow_active", false);
-                }
+              model.addUpdateListener(address, function (address, data) {
+                cv.ui.TrickOMatic.updateActive(pipe_group, data);
               });
+              // init
+              cv.ui.TrickOMatic.updateActive(pipe_group, cv.data.Model.getInstance().getState(address));
             });
           }
         });
@@ -151,6 +149,14 @@ qx.Class.define('cv.ui.TrickOMatic', {
       s.setAttribute('type', 'text/css');
       s.textContent = keyframes;
       qx.dom.Element.insertBegin(s, qx.bom.Selector.query('svg', svg)[0]);
+    },
+
+    updateActive: function (pipe_group, data) {
+      if (parseInt(data) === 1 || data === 'ON') {
+        qx.bom.element.Class.toggle(pipe_group, "flow_active", true);
+      } else {
+        qx.bom.element.Class.toggle(pipe_group, "flow_active", false);
+      }
     }
   }
 });
