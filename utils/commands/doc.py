@@ -157,6 +157,15 @@ class DocGenerator(Command):
                 self._source_version = data['version']
         return self._source_version
 
+    def _get_doc_target_path(self):
+        """ returns the target sub directory where the documentation should be stored."""
+        ver = self._get_doc_version()
+        match = re.match("([0-9]+.[0-9]+).[0-9]+.*", ver)
+        if match:
+            return match.group(1)
+        else:
+            return ver
+
     def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source", target_version=None):
 
         sphinx_build = sh.Command("sphinx-build")
@@ -170,7 +179,7 @@ class DocGenerator(Command):
             target_dir = os.path.join(self.root_dir, self.config.get(section, "target"))
         else:
             target_dir = os.path.join(self.root_dir, target_dir)
-        target_dir = target_dir.replace("<version>", self._get_doc_version() if target_version is None else target_version)
+        target_dir = target_dir.replace("<version>", self._get_doc_target_path() if target_version is None else target_version)
         print("generating doc to %s" % target_dir)
 
         if not os.path.exists(source_dir):
@@ -477,7 +486,7 @@ class DocGenerator(Command):
                     version = version_dir
                     if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")):
                         with open(os.path.join(path, lang_dir, version_dir, "version")) as f:
-                            version = f.read()
+                            version = "%s|%s" % (f.read(), version_dir)
                     if os.path.islink(os.path.join(root, version_dir)):
                         symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
                     elif re.match("^[0-9]+.[0-9]+.[0-9]+$", version) is not None:
@@ -540,6 +549,7 @@ class DocGenerator(Command):
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
+        parser.add_argument("--get-target-version", dest="get_target_version", action="store_true", help="returns version target subdir")
 
         options = parser.parse_args(args)
 
@@ -564,6 +574,9 @@ class DocGenerator(Command):
 
         elif options.get_version:
             print(self._get_doc_version())
+
+        elif options.get_target_version:
+            print(self._get_doc_target_path())
 
         elif options.process_versions:
             self.process_versions(self.config.get("DEFAULT", "doc-dir"))

@@ -46,7 +46,7 @@ cd ..
 #rm -rf out/en || exit 0
 
 VERSION=`${CV} doc --get-version`
-VERSION_PATH=`echo $VERSION | sed s/-RC[0-9]$//g`
+VERSION_PATH=`${CV} doc --get-target-version`
 
 # Run our creation script
 echo "generating german manual to extract screenshot examples"
@@ -78,6 +78,9 @@ fi
 
 echo "updating english manual from source code doc comments"
 ${CV} doc --from-source
+
+# extra en generation run to have the new version available for the next step
+${CV} doc --doc-type manual -l en --target-version=${VERSION_PATH}
 
 # update symlinks and write version files
 ${CV} doc --process-versions

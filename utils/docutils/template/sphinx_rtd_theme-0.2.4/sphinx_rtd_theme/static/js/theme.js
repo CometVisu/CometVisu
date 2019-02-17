@@ -89,6 +89,26 @@ function ThemeNav () {
             });
             link.prepend(expand);
         });
+
+        // generate the version links
+        $.ajax({
+            url:'../../../versions.json',
+            success: function (data) {
+                if (data && data.versions) {
+                    var html = $('.rst-other-versions > dl > dt')[0].outerHTML;
+                    var link = window.location.pathname.replace(/\/[^\/]+\/manual/, '/###VERSION###/manual');
+
+                    data.versions.forEach(function (ver) {
+                        var parts = ver.split("|");
+                        var version = parts.shift();
+                        var path = (parts.length > 0) ? parts.shift() : version;
+                        html += '<dd><a href="' + link.replace('###VERSION###', path) + '">' + version + '</a>';
+                    });
+                    $('.rst-other-versions > dl').html(html);
+                }
+            },
+            dataType: 'json'
+        });
     };
 
     nav.reset = function () {
