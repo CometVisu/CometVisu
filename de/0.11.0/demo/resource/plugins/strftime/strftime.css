@@ -1,8 +1,0 @@
-.strftime { 
-  white-space: nowrap;
-}
-
-.text .strftime_value {
-  width: 100%;
-  text-align:right;
-}
