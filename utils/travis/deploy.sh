@@ -79,6 +79,9 @@ fi
 echo "updating english manual from source code doc comments"
 ${CV} doc --from-source
 
+# extra en generation run to have the new version available for the next step
+${CV} doc --doc-type manual -l en --target-version=${VERSION_PATH}
+
 # update symlinks and write version files
 ${CV} doc --process-versions
 
