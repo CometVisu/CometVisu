@@ -42,14 +42,19 @@ if (is_dir('/etc/wiregate/rss'))  // Default for Wiregate
   $dbfile = '/etc/wiregate/rss/rsslog.db';
 elseif (is_dir('/etc/cometvisu')) // Central option for non-Wiregate systems
   $dbfile = '/etc/cometvisu/rsslog.db';
+elseif (is_dir('../../config/media')) // Central option for Docker based systems and a good generic choice anyway
+  $dbfile = '../../config/media/rsslog.db';
 else                              // if not found use local plugin directory
-    $dbfile = 'rsslog.db';
+  $dbfile = getcwd() . '/rsslog.db';
 
 //check if the DIRECTORY is writeable by the webserver
 $dbfile_dir = dirname($dbfile);
 if (! is_writable($dbfile_dir))
-    die ("Database $dbfile not writeable! make sure the file AND " .
-        "the directory are writeable by the webserver!"); 
+{
+  header("HTTP/1.0 403 Forbidden");
+  die ( "Database '$dbfile' not writeable! make sure the file AND " .
+    "the directory '$dbfile_dir' are writeable by the webserver!" );
+}
 
 $dbh = openDb( $dbfile );
 
