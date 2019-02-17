@@ -187,8 +187,9 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('plugins/openweathermap/openweathermap.css');
-    loader.addScripts('plugins/openweathermap/owm/jquery.owm.js');
+    loader.addStyles('resource/plugins/openweathermap/owm_basic_style.css');
+    loader.addStyles('resource/plugins/openweathermap/owm_weathericon.css');
+    loader.addScripts('resource/plugins/openweathermap/owm_core.js');
     // register the parser
     cv.parser.WidgetParser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
     cv.ui.structure.WidgetFactory.registerClass("openweathermap", statics);

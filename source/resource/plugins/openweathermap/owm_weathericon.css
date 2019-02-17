@@ -12,10 +12,10 @@
 /* webfont weather-icon */
 @font-face{
     font-family: 'weathericon';
-    src:    url('weathericons-regular-webfont.eot');
-    src:    url('weathericons-regular-webfont.woff') format('woff'),
-            url('weathericons-regular-webfont.tff') format('truetype'),
-            url('weathericons-regular-webfont.svg#fontawesomeregular') format('svg');
+    src:    url('font/weathericons-regular-webfont.eot');
+    src:    url('font/weathericons-regular-webfont.woff') format('woff'),
+            url('font/weathericons-regular-webfont.tff') format('truetype'),
+            url('font/weathericons-regular-webfont.svg#fontawesomeregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
