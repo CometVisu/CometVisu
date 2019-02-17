@@ -472,7 +472,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         style: 'height: 90%'
       });
       this._init = true;
-      var popup = cv.ui.PopupHandler.showPopup("diagram", {title: this.getLabel(), content: popupDiagram});
+      var popup = cv.ui.PopupHandler.showPopup("diagram", {title: this.getLabel(), content: popupDiagram, page: this.getParentPage().getPath()});
 
       // this will be called when the popup is being closed.
       // NOTE: this will be called twice, one time for the foreground and one
