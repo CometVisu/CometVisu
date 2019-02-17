@@ -477,7 +477,7 @@ class DocGenerator(Command):
                     version = version_dir
                     if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")):
                         with open(os.path.join(path, lang_dir, version_dir, "version")) as f:
-                            version = f.read()
+                            version = "%s|%s" % (f.read(), version_dir)
                     if os.path.islink(os.path.join(root, version_dir)):
                         symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
                     elif re.match("^[0-9]+.[0-9]+.[0-9]+$", version) is not None:
