@@ -135,7 +135,10 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
           backdropTop = backdropTopRaw[2] === '%' ? (this.height > backdropHeight ? ((this.height - backdropHeight) * (+backdropTopRaw[1] ) / 100) : 0) : +backdropTopRaw[1],
           uagent = navigator.userAgent.toLowerCase();
 
-        if (backdrop.complete === false || (page.getBackdropType() === 'embed' && backdropSVG === null)) {
+        if (backdrop.complete === false ||
+          (page.getBackdropType() === 'embed' && backdropSVG === null) ||
+          (backdropBBox.width === 0 && backdropBBox.height === 0)
+        ) {
           // backdrop not available yet - reload
           qx.event.Timer.once(this.invalidateBackdrop, this, 100);
           return;
