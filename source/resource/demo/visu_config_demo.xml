@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd" max_mobile_screen_width="480">
   <meta>
-    <files>
-      <file type="js" content="plugin">class/cv/plugins/OpenweatherMap.js</file> 
-    </files>
     <plugins>
       <plugin name="colorchooser"/>
       <plugin name="diagram"/>
       <plugin name="strftime"/>
+      <plugin name="openweathermap"/>
     </plugins>
     <mappings>
       <mapping name="Close_Open">
