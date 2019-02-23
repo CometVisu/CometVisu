@@ -34,11 +34,16 @@
         <entry range_min="0" range_max="1e99">Positiv</entry>
       </mapping>
       <mapping name="KonnexHVAC">
-        <entry value="auto"><icon name="status_automatic"/>Auto</entry>
-        <entry value="comfort"><icon name="status_comfort"/>Komfort</entry>
-        <entry value="standby"><icon name="status_standby"/>Stand By</entry>
-        <entry value="economy"><icon name="status_night"/>Economy</entry>
-        <entry value="building_protection"><icon name="status_frost"/>Haus-Schutz</entry>
+        <entry value="auto">
+          <icon name="status_automatic"/>Auto</entry>
+        <entry value="comfort">
+          <icon name="status_comfort"/>Komfort</entry>
+        <entry value="standby">
+          <icon name="status_standby"/>Stand By</entry>
+        <entry value="economy">
+          <icon name="status_night"/>Economy</entry>
+        <entry value="building_protection">
+          <icon name="status_frost"/>Haus-Schutz</entry>
       </mapping>
       <mapping name="AudioSource">
         <entry value="0">UKW</entry>
@@ -52,7 +57,8 @@
         <formula>y = x/1000;</formula>
       </mapping>
       <mapping name="audio_mute">
-        <entry value="0"><icon name="audio_mute"/> Aus</entry>
+        <entry value="0">
+          <icon name="audio_mute"/> Aus</entry>
         <entry value="1">
           <icon name="audio_audio"/>
         </entry>
@@ -128,7 +134,7 @@
         ]]></status>
       <status type="html" hrefextend="config"><![CDATA[
           - <a href="check_config.php">Check Config</a>
-          <div style="float:right;padding-right:0.5em">Version: 0.11.0-RC2</div>
+          <div style="float:right;padding-right:0.5em">Version: 0.12.0-dev</div>
         ]]></status>
     </statusbar>
   </meta>
@@ -147,13 +153,13 @@
         <label>Flavour</label>
         <widgetinfo>
           <info format="%d">
-          <layout colspan="0" />
+            <layout colspan="0" />
             <address transform="DPT:9.001" variant="">12/7/9</address>
           </info>
         </widgetinfo>
       </pagejump>
       <pagejump path="Flavour Test/Flavour: Boron" target="Subpage" name="Subpage">
-      <label>Flavour: Boron</label>
+        <label>Flavour: Boron</label>
       </pagejump>
       <pagejump target="2D fixed Bitmap" name="2D">
         <!--
@@ -226,7 +232,8 @@
       <address transform="DPT:5.010" mode="readwrite">12/7/5</address>
     </multitrigger>
     <switch mapping="audio_mute">
-      <label><icon name="audio_sound"/> Switch Icon</label>
+      <label>
+        <icon name="audio_sound"/> Switch Icon</label>
       <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </switch>
     <break/>
@@ -355,9 +362,9 @@
     <page name="Flavour Test" align="center">
       <text>
         <label>
-        Die Flavour (englisch für Geschmacksrichtung) definieren eine, vom
-        Design abhängige, Variation des Aussehens einzelner Sub-Seiten. 
-      </label>
+          Die Flavour (englisch für Geschmacksrichtung) definieren eine, vom
+          Design abhängige, Variation des Aussehens einzelner Sub-Seiten. 
+        </label>
       </text>
       <line>
         <layout colspan="12"/>
@@ -367,9 +374,9 @@
       </text>
       <text>
         <label>
-        Das Design "Pure" ist inspiriert von den Farben, in denen ein Komet
-        scheinen würde, wenn er aus dem jeweiligen Element bestehen würde.
-      </label>
+          Das Design "Pure" ist inspiriert von den Farben, in denen ein Komet
+          scheinen würde, wenn er aus dem jeweiligen Element bestehen würde.
+        </label>
       </text>
       <break/>
       <page name="Flavour: Antimony" align="center" flavour="antimony">
@@ -388,7 +395,8 @@
           </line>
         </page>
         <text>
-          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+          <label>
+            <icon name="CometVisu" type="64"/>Text with Icon</label>
         </text>
       </page>
       <page name="Flavour: Boron" align="center" flavour="boron">
@@ -407,7 +415,8 @@
           </line>
         </page>
         <text>
-          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+          <label>
+            <icon name="CometVisu" type="64"/>Text with Icon</label>
         </text>
       </page>
       <page name="Flavour: Lithium" align="center" flavour="lithium">
@@ -426,7 +435,8 @@
           </line>
         </page>
         <text>
-          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+          <label>
+            <icon name="CometVisu" type="64"/>Text with Icon</label>
         </text>
       </page>
       <page name="Flavour: Potassium" align="center" flavour="potassium">
@@ -445,7 +455,8 @@
           </line>
         </page>
         <text>
-          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+          <label>
+            <icon name="CometVisu" type="64"/>Text with Icon</label>
         </text>
       </page>
       <page name="Flavour: Sodium" align="center" flavour="sodium">
@@ -464,7 +475,8 @@
           </line>
         </page>
         <text>
-          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+          <label>
+            <icon name="CometVisu" type="64"/>Text with Icon</label>
         </text>
       </page>
       <line>
@@ -486,7 +498,8 @@
           </line>
         </page>
         <text>
-          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+          <label>
+            <icon name="CometVisu" type="64"/>Text with Icon</label>
         </text>
       </page>
       <page name="Flavour: white" align="center" flavour="white">
@@ -505,16 +518,17 @@
           </line>
         </page>
         <text>
-          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+          <label>
+            <icon name="CometVisu" type="64"/>Text with Icon</label>
         </text>
       </page>
     </page>
     <page name="Format Test" align="center">
       <text>
         <label>
-        Über das Format-Attribut kann die Anzeige von Werten variiert werden.
-        Dazu wird die Synatx des vom "printf" bekannten Formatstrings benutzt.
-      </label>
+          Über das Format-Attribut kann die Anzeige von Werten variiert werden.
+          Dazu wird die Synatx des vom "printf" bekannten Formatstrings benutzt.
+        </label>
       </text>
       <break/>
       <slide min="-100" max="101">
@@ -697,7 +711,8 @@
     </page>
     <page name="Icon Test" align="center">
       <text>
-        <label><icon name="CometVisu" type="64"/> Icon links vom Text</label>
+        <label>
+          <icon name="CometVisu" type="64"/> Icon links vom Text</label>
       </text>
       <text>
         <label>Icon <icon name="CometVisu" type="64"/> mitten im Text</label>
@@ -706,78 +721,99 @@
         <label>Icon rechts vom Text <icon name="CometVisu" type="64"/></label>
       </text>
       <text>
-        <label><icon name="CometVisu" type="64"/> Mehrere Icons <icon name="CometVisu" type="64"/></label>
+        <label>
+          <icon name="CometVisu" type="64"/> Mehrere Icons <icon name="CometVisu" type="64"/>
+        </label>
       </text>
       <line>
         <layout colspan="12"/>
       </line>
       <text>
-        <label><icon name="CometVisu" type="16"/> Icon mit type="16"</label>
+        <label>
+          <icon name="CometVisu" type="16"/> Icon mit type="16"</label>
       </text>
       <text>
-        <label><icon name="CometVisu" type="32"/> Icon mit type="32"</label>
+        <label>
+          <icon name="CometVisu" type="32"/> Icon mit type="32"</label>
       </text>
       <text>
-        <label><icon name="CometVisu" type="64"/> Icon mit type="64"</label>
+        <label>
+          <icon name="CometVisu" type="64"/> Icon mit type="64"</label>
       </text>
       <text>
-        <label><icon name="CometVisu" type="128"/> Icon mit type="128"</label>
-      </text>
-      <line>
-        <layout colspan="12"/>
-      </line>
-      <text>
-        <label><icon name="CometVisu" type="16" styling="height:auto"/> Icon mit type="16" und styling</label>
-      </text>
-      <text>
-        <label><icon name="CometVisu" type="32" styling="height:auto"/> Icon mit type="32" und styling</label>
-      </text>
-      <text>
-        <label><icon name="CometVisu" type="64" styling="height:auto"/> Icon mit type="64" und styling</label>
-      </text>
-      <text>
-        <label><icon name="CometVisu" type="128" styling="height:auto"/> Icon mit type="128" und styling</label>
+        <label>
+          <icon name="CometVisu" type="128"/> Icon mit type="128"</label>
       </text>
       <line>
         <layout colspan="12"/>
       </line>
       <text>
-        <label><icon name="light_light_dim_100" color="#ff0000"/> Icon mit color #ff0000</label>
+        <label>
+          <icon name="CometVisu" type="16" styling="height:auto"/> Icon mit type="16" und styling</label>
       </text>
       <text>
-        <label><icon name="light_light_dim_100" color="#00ff00"/> Icon mit color #00ff00</label>
+        <label>
+          <icon name="CometVisu" type="32" styling="height:auto"/> Icon mit type="32" und styling</label>
       </text>
       <text>
-        <label><icon name="light_light_dim_100" color="#0000ff"/> Icon mit color #0000ff</label>
+        <label>
+          <icon name="CometVisu" type="64" styling="height:auto"/> Icon mit type="64" und styling</label>
       </text>
       <text>
-        <label><icon name="light_light_dim_100" color="#00ffff"/> Icon mit color #00ffff</label>
+        <label>
+          <icon name="CometVisu" type="128" styling="height:auto"/> Icon mit type="128" und styling</label>
+      </text>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <text>
+        <label>
+          <icon name="light_light_dim_100" color="#ff0000"/> Icon mit color #ff0000</label>
       </text>
       <text>
-        <label><icon name="light_light_dim_100" color="#ff00ff"/> Icon mit color #ff00ff</label>
+        <label>
+          <icon name="light_light_dim_100" color="#00ff00"/> Icon mit color #00ff00</label>
       </text>
       <text>
-        <label><icon name="light_light_dim_100" color="#ffff00"/> Icon mit color #ffff00</label>
+        <label>
+          <icon name="light_light_dim_100" color="#0000ff"/> Icon mit color #0000ff</label>
       </text>
       <text>
-        <label><icon name="light_light_dim_100" color="#ffffff"/> Icon mit color #ffffff</label>
+        <label>
+          <icon name="light_light_dim_100" color="#00ffff"/> Icon mit color #00ffff</label>
       </text>
       <text>
-        <label><icon name="light_light_dim_100" color="#ff8000"/> Icon mit color #ff8000</label>
+        <label>
+          <icon name="light_light_dim_100" color="#ff00ff"/> Icon mit color #ff00ff</label>
+      </text>
+      <text>
+        <label>
+          <icon name="light_light_dim_100" color="#ffff00"/> Icon mit color #ffff00</label>
+      </text>
+      <text>
+        <label>
+          <icon name="light_light_dim_100" color="#ffffff"/> Icon mit color #ffffff</label>
+      </text>
+      <text>
+        <label>
+          <icon name="light_light_dim_100" color="#ff8000"/> Icon mit color #ff8000</label>
       </text>
       <line>
         <layout colspan="12"/>
       </line>
       <page name="Subpage mit Flavour" flavour="lithium" align="center">
         <text>
-          <label><icon name="CometVisu" type="64"/> Icon links vom Text</label>
+          <label>
+            <icon name="CometVisu" type="64"/> Icon links vom Text</label>
         </text>
         <text>
-          <label><icon name="CometVisu" type="64" flavour="antimony"/> Icon mit flavour links vom Text</label>
+          <label>
+            <icon name="CometVisu" type="64" flavour="antimony"/> Icon mit flavour links vom Text</label>
         </text>
         <page name="Subpage mit anderem Flavour" flavour="antimony" align="center">
           <text>
-            <label><icon name="CometVisu" type="64"/> Icon links vom Text</label>
+            <label>
+              <icon name="CometVisu" type="64"/> Icon links vom Text</label>
           </text>
         </page>
       </page>
@@ -1216,8 +1252,8 @@
     </text>
     <text>
       <label>Diese Widgets sind Plugins und stehen dann zur Verfügung, wenn sie in
-      der Config-Datei aktiviert werden.
-    </label>
+        der Config-Datei aktiviert werden.
+      </label>
     </text>
     <break/>
     <colorchooser>
@@ -1283,8 +1319,8 @@
     <page name="Erweiterte Widgets">
       <text>
         <label>Auf dieser Seite sind Widgets zu finden, die noch in Entwicklung
-        sind und daher im Allgemeinen noch nicht verwendet werden sollten.
-      </label>
+          sind und daher im Allgemeinen noch nicht verwendet werden sollten.
+        </label>
       </text>
       <line>
         <layout colspan="12"/>

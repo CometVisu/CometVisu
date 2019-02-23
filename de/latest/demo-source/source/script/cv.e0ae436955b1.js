@@ -1,4 +1,4 @@
-qx.$$packageData['1048575']={"locales":{"C":{"alternateQuotationEnd":"’","alternateQuotationStart":"‘","cldr_am":"AM","cldr_date_format_full":"EEEE, MMMM d, y","cldr_date_format_long":"MMMM d, y","cldr_date_format_medium":"MMM d, y","cldr_date_format_short":"M/d/yy","cldr_date_time_format_E":"ccc","cldr_date_time_format_EHm":"E HH:mm","cldr_date_time_format_EHms":"E HH:mm:ss","cldr_date_time_format_Ed":"d E","cldr_date_time_format_Ehm":"E h:mm a","cldr_date_time_format_Ehms":"E h:mm:ss a","cldr_date_time_format_Gy":"y G","cldr_date_time_format_GyMMM":"MMM y G","cldr_date_time_format_GyMMMEd":"E, MMM d, y G","cldr_date_time_format_GyMMMd":"MMM d, y G","cldr_date_time_format_H":"HH","cldr_date_time_format_Hm":"HH:mm","cldr_date_time_format_Hms":"HH:mm:ss","cldr_date_time_format_Hmsv":"HH:mm:ss v","cldr_date_time_format_Hmv":"HH:mm v","cldr_date_time_format_M":"L","cldr_date_time_format_MEd":"E, M/d","cldr_date_time_format_MMM":"LLL","cldr_date_time_format_MMMEd":"E, MMM d","cldr_date_time_format_MMMMW":"'week' W 'of' MMMM","cldr_date_time_format_MMMMd":"MMMM d","cldr_date_time_format_MMMd":"MMM d","cldr_date_time_format_Md":"M/d","cldr_date_time_format_d":"d","cldr_date_time_format_h":"h a","cldr_date_time_format_hm":"h:mm a","cldr_date_time_format_hms":"h:mm:ss a","cldr_date_time_format_hmsv":"h:mm:ss a v","cldr_date_time_format_hmv":"h:mm a v","cldr_date_time_format_ms":"mm:ss","cldr_date_time_format_y":"y","cldr_date_time_format_yM":"M/y","cldr_date_time_format_yMEd":"E, M/d/y","cldr_date_time_format_yMMM":"MMM y","cldr_date_time_format_yMMMEd":"E, MMM d, y","cldr_date_time_format_yMMMM":"MMMM y","cldr_date_time_format_yMMMd":"MMM d, y","cldr_date_time_format_yMd":"M/d/y","cldr_date_time_format_yQQQ":"QQQ y","cldr_date_time_format_yQQQQ":"QQQQ y","cldr_date_time_format_yw":"'week' w 'of' y","cldr_day_format_abbreviated_fri":"Fri","cldr_day_format_abbreviated_mon":"Mon","cldr_day_format_abbreviated_sat":"Sat","cldr_day_format_abbreviated_sun":"Sun","cldr_day_format_abbreviated_thu":"Thu","cldr_day_format_abbreviated_tue":"Tue","cldr_day_format_abbreviated_wed":"Wed","cldr_day_format_short_fri":"Fr","cldr_day_format_short_mon":"Mo","cldr_day_format_short_sat":"Sa","cldr_day_format_short_sun":"Su","cldr_day_format_short_thu":"Th","cldr_day_format_short_tue":"Tu","cldr_day_format_short_wed":"We","cldr_day_format_wide_fri":"Friday","cldr_day_format_wide_mon":"Monday","cldr_day_format_wide_sat":"Saturday","cldr_day_format_wide_sun":"Sunday","cldr_day_format_wide_thu":"Thursday","cldr_day_format_wide_tue":"Tuesday","cldr_day_format_wide_wed":"Wednesday","cldr_day_stand-alone_narrow_fri":"F","cldr_day_stand-alone_narrow_mon":"M","cldr_day_stand-alone_narrow_sat":"S","cldr_day_stand-alone_narrow_sun":"S","cldr_day_stand-alone_narrow_thu":"T","cldr_day_stand-alone_narrow_tue":"T","cldr_day_stand-alone_narrow_wed":"W","cldr_month_format_abbreviated_1":"Jan","cldr_month_format_abbreviated_10":"Oct","cldr_month_format_abbreviated_11":"Nov","cldr_month_format_abbreviated_12":"Dec","cldr_month_format_abbreviated_2":"Feb","cldr_month_format_abbreviated_3":"Mar","cldr_month_format_abbreviated_4":"Apr","cldr_month_format_abbreviated_5":"May","cldr_month_format_abbreviated_6":"Jun","cldr_month_format_abbreviated_7":"Jul","cldr_month_format_abbreviated_8":"Aug","cldr_month_format_abbreviated_9":"Sep","cldr_month_format_wide_1":"January","cldr_month_format_wide_10":"October","cldr_month_format_wide_11":"November","cldr_month_format_wide_12":"December","cldr_month_format_wide_2":"February","cldr_month_format_wide_3":"March","cldr_month_format_wide_4":"April","cldr_month_format_wide_5":"May","cldr_month_format_wide_6":"June","cldr_month_format_wide_7":"July","cldr_month_format_wide_8":"August","cldr_month_format_wide_9":"September","cldr_month_stand-alone_narrow_1":"J","cldr_month_stand-alone_narrow_10":"O","cldr_month_stand-alone_narrow_11":"N","cldr_month_stand-alone_narrow_12":"D","cldr_month_stand-alone_narrow_2":"F","cldr_month_stand-alone_narrow_3":"M","cldr_month_stand-alone_narrow_4":"A","cldr_month_stand-alone_narrow_5":"M","cldr_month_stand-alone_narrow_6":"J","cldr_month_stand-alone_narrow_7":"J","cldr_month_stand-alone_narrow_8":"A","cldr_month_stand-alone_narrow_9":"S","cldr_number_decimal_separator":".","cldr_number_group_separator":",","cldr_number_percent_format":"#,##0%","cldr_pm":"PM","cldr_time_format_full":"h:mm:ss a zzzz","cldr_time_format_long":"h:mm:ss a z","cldr_time_format_medium":"h:mm:ss a","cldr_time_format_short":"h:mm a","quotationEnd":"”","quotationStart":"“"},"de":{"alternateQuotationEnd":"‘","alternateQuotationStart":"‚","cldr_am":"vorm.","cldr_date_format_full":"EEEE, d. MMMM y","cldr_date_format_long":"d. MMMM y","cldr_date_format_medium":"dd.MM.y","cldr_date_format_short":"dd.MM.yy","cldr_date_time_format_E":"ccc","cldr_date_time_format_EHm":"E, HH:mm","cldr_date_time_format_EHms":"E, HH:mm:ss","cldr_date_time_format_Ed":"E, d.","cldr_date_time_format_Ehm":"E h:mm a","cldr_date_time_format_Ehms":"E, h:mm:ss a","cldr_date_time_format_Gy":"y G","cldr_date_time_format_GyMMM":"MMM y G","cldr_date_time_format_GyMMMEd":"E, d. MMM y G","cldr_date_time_format_GyMMMd":"d. MMM y G","cldr_date_time_format_H":"HH 'Uhr'","cldr_date_time_format_Hm":"HH:mm","cldr_date_time_format_Hms":"HH:mm:ss","cldr_date_time_format_Hmsv":"HH:mm:ss v","cldr_date_time_format_Hmv":"HH:mm v","cldr_date_time_format_M":"L","cldr_date_time_format_MEd":"E, d.M.","cldr_date_time_format_MMM":"LLL","cldr_date_time_format_MMMEd":"E, d. MMM","cldr_date_time_format_MMMMEd":"E, d. MMMM","cldr_date_time_format_MMMMW":"'Woche' W 'im' MMM","cldr_date_time_format_MMMMd":"d. MMMM","cldr_date_time_format_MMMd":"d. MMM","cldr_date_time_format_MMd":"d.MM.","cldr_date_time_format_MMdd":"dd.MM.","cldr_date_time_format_Md":"d.M.","cldr_date_time_format_d":"d","cldr_date_time_format_h":"h 'Uhr' a","cldr_date_time_format_hm":"h:mm a","cldr_date_time_format_hms":"h:mm:ss a","cldr_date_time_format_hmsv":"h:mm:ss a v","cldr_date_time_format_hmv":"h:mm a v","cldr_date_time_format_ms":"mm:ss","cldr_date_time_format_y":"y","cldr_date_time_format_yM":"M.y","cldr_date_time_format_yMEd":"E, d.M.y","cldr_date_time_format_yMM":"MM.y","cldr_date_time_format_yMMM":"MMM y","cldr_date_time_format_yMMMEd":"E, d. MMM y","cldr_date_time_format_yMMMM":"MMMM y","cldr_date_time_format_yMMMd":"d. MMM y","cldr_date_time_format_yMMdd":"dd.MM.y","cldr_date_time_format_yMd":"d.M.y","cldr_date_time_format_yQQQ":"QQQ y","cldr_date_time_format_yQQQQ":"QQQQ y","cldr_date_time_format_yw":"'Woche' w 'des' 'Jahres' y","cldr_day_format_abbreviated_fri":"Fr.","cldr_day_format_abbreviated_mon":"Mo.","cldr_day_format_abbreviated_sat":"Sa.","cldr_day_format_abbreviated_sun":"So.","cldr_day_format_abbreviated_thu":"Do.","cldr_day_format_abbreviated_tue":"Di.","cldr_day_format_abbreviated_wed":"Mi.","cldr_day_format_narrow_fri":"F","cldr_day_format_narrow_mon":"M","cldr_day_format_narrow_sat":"S","cldr_day_format_narrow_sun":"S","cldr_day_format_narrow_thu":"D","cldr_day_format_narrow_tue":"D","cldr_day_format_narrow_wed":"M","cldr_day_format_short_fri":"Fr.","cldr_day_format_short_mon":"Mo.","cldr_day_format_short_sat":"Sa.","cldr_day_format_short_sun":"So.","cldr_day_format_short_thu":"Do.","cldr_day_format_short_tue":"Di.","cldr_day_format_short_wed":"Mi.","cldr_day_format_wide_fri":"Freitag","cldr_day_format_wide_mon":"Montag","cldr_day_format_wide_sat":"Samstag","cldr_day_format_wide_sun":"Sonntag","cldr_day_format_wide_thu":"Donnerstag","cldr_day_format_wide_tue":"Dienstag","cldr_day_format_wide_wed":"Mittwoch","cldr_day_stand-alone_abbreviated_fri":"Fr","cldr_day_stand-alone_abbreviated_mon":"Mo","cldr_day_stand-alone_abbreviated_sat":"Sa","cldr_day_stand-alone_abbreviated_sun":"So","cldr_day_stand-alone_abbreviated_thu":"Do","cldr_day_stand-alone_abbreviated_tue":"Di","cldr_day_stand-alone_abbreviated_wed":"Mi","cldr_day_stand-alone_narrow_fri":"F","cldr_day_stand-alone_narrow_mon":"M","cldr_day_stand-alone_narrow_sat":"S","cldr_day_stand-alone_narrow_sun":"S","cldr_day_stand-alone_narrow_thu":"D","cldr_day_stand-alone_narrow_tue":"D","cldr_day_stand-alone_narrow_wed":"M","cldr_day_stand-alone_short_fri":"Fr.","cldr_day_stand-alone_short_mon":"Mo.","cldr_day_stand-alone_short_sat":"Sa.","cldr_day_stand-alone_short_sun":"So.","cldr_day_stand-alone_short_thu":"Do.","cldr_day_stand-alone_short_tue":"Di.","cldr_day_stand-alone_short_wed":"Mi.","cldr_day_stand-alone_wide_fri":"Freitag","cldr_day_stand-alone_wide_mon":"Montag","cldr_day_stand-alone_wide_sat":"Samstag","cldr_day_stand-alone_wide_sun":"Sonntag","cldr_day_stand-alone_wide_thu":"Donnerstag","cldr_day_stand-alone_wide_tue":"Dienstag","cldr_day_stand-alone_wide_wed":"Mittwoch","cldr_month_format_abbreviated_1":"Jan.","cldr_month_format_abbreviated_10":"Okt.","cldr_month_format_abbreviated_11":"Nov.","cldr_month_format_abbreviated_12":"Dez.","cldr_month_format_abbreviated_2":"Feb.","cldr_month_format_abbreviated_3":"März","cldr_month_format_abbreviated_4":"Apr.","cldr_month_format_abbreviated_5":"Mai","cldr_month_format_abbreviated_6":"Juni","cldr_month_format_abbreviated_7":"Juli","cldr_month_format_abbreviated_8":"Aug.","cldr_month_format_abbreviated_9":"Sep.","cldr_month_format_narrow_1":"J","cldr_month_format_narrow_10":"O","cldr_month_format_narrow_11":"N","cldr_month_format_narrow_12":"D","cldr_month_format_narrow_2":"F","cldr_month_format_narrow_3":"M","cldr_month_format_narrow_4":"A","cldr_month_format_narrow_5":"M","cldr_month_format_narrow_6":"J","cldr_month_format_narrow_7":"J","cldr_month_format_narrow_8":"A","cldr_month_format_narrow_9":"S","cldr_month_format_wide_1":"Januar","cldr_month_format_wide_10":"Oktober","cldr_month_format_wide_11":"November","cldr_month_format_wide_12":"Dezember","cldr_month_format_wide_2":"Februar","cldr_month_format_wide_3":"März","cldr_month_format_wide_4":"April","cldr_month_format_wide_5":"Mai","cldr_month_format_wide_6":"Juni","cldr_month_format_wide_7":"Juli","cldr_month_format_wide_8":"August","cldr_month_format_wide_9":"September","cldr_month_stand-alone_abbreviated_1":"Jan","cldr_month_stand-alone_abbreviated_10":"Okt","cldr_month_stand-alone_abbreviated_11":"Nov","cldr_month_stand-alone_abbreviated_12":"Dez","cldr_month_stand-alone_abbreviated_2":"Feb","cldr_month_stand-alone_abbreviated_3":"Mär","cldr_month_stand-alone_abbreviated_4":"Apr","cldr_month_stand-alone_abbreviated_5":"Mai","cldr_month_stand-alone_abbreviated_6":"Jun","cldr_month_stand-alone_abbreviated_7":"Jul","cldr_month_stand-alone_abbreviated_8":"Aug","cldr_month_stand-alone_abbreviated_9":"Sep","cldr_month_stand-alone_narrow_1":"J","cldr_month_stand-alone_narrow_10":"O","cldr_month_stand-alone_narrow_11":"N","cldr_month_stand-alone_narrow_12":"D","cldr_month_stand-alone_narrow_2":"F","cldr_month_stand-alone_narrow_3":"M","cldr_month_stand-alone_narrow_4":"A","cldr_month_stand-alone_narrow_5":"M","cldr_month_stand-alone_narrow_6":"J","cldr_month_stand-alone_narrow_7":"J","cldr_month_stand-alone_narrow_8":"A","cldr_month_stand-alone_narrow_9":"S","cldr_month_stand-alone_wide_1":"Januar","cldr_month_stand-alone_wide_10":"Oktober","cldr_month_stand-alone_wide_11":"November","cldr_month_stand-alone_wide_12":"Dezember","cldr_month_stand-alone_wide_2":"Februar","cldr_month_stand-alone_wide_3":"März","cldr_month_stand-alone_wide_4":"April","cldr_month_stand-alone_wide_5":"Mai","cldr_month_stand-alone_wide_6":"Juni","cldr_month_stand-alone_wide_7":"Juli","cldr_month_stand-alone_wide_8":"August","cldr_month_stand-alone_wide_9":"September","cldr_number_decimal_separator":",","cldr_number_group_separator":".","cldr_number_percent_format":"#,##0 %","cldr_pm":"nachm.","cldr_time_format_full":"HH:mm:ss zzzz","cldr_time_format_long":"HH:mm:ss z","cldr_time_format_medium":"HH:mm:ss","cldr_time_format_short":"HH:mm","quotationEnd":"“","quotationStart":"„"},"en":{"alternateQuotationEnd":"’","alternateQuotationStart":"‘","cldr_am":"AM","cldr_date_format_full":"EEEE, MMMM d, y","cldr_date_format_long":"MMMM d, y","cldr_date_format_medium":"MMM d, y","cldr_date_format_short":"M/d/yy","cldr_date_time_format_E":"ccc","cldr_date_time_format_EHm":"E HH:mm","cldr_date_time_format_EHms":"E HH:mm:ss","cldr_date_time_format_Ed":"d E","cldr_date_time_format_Ehm":"E h:mm a","cldr_date_time_format_Ehms":"E h:mm:ss a","cldr_date_time_format_Gy":"y G","cldr_date_time_format_GyMMM":"MMM y G","cldr_date_time_format_GyMMMEd":"E, MMM d, y G","cldr_date_time_format_GyMMMd":"MMM d, y G","cldr_date_time_format_H":"HH","cldr_date_time_format_Hm":"HH:mm","cldr_date_time_format_Hms":"HH:mm:ss","cldr_date_time_format_Hmsv":"HH:mm:ss v","cldr_date_time_format_Hmv":"HH:mm v","cldr_date_time_format_M":"L","cldr_date_time_format_MEd":"E, M/d","cldr_date_time_format_MMM":"LLL","cldr_date_time_format_MMMEd":"E, MMM d","cldr_date_time_format_MMMMW":"'week' W 'of' MMMM","cldr_date_time_format_MMMMd":"MMMM d","cldr_date_time_format_MMMd":"MMM d","cldr_date_time_format_Md":"M/d","cldr_date_time_format_d":"d","cldr_date_time_format_h":"h a","cldr_date_time_format_hm":"h:mm a","cldr_date_time_format_hms":"h:mm:ss a","cldr_date_time_format_hmsv":"h:mm:ss a v","cldr_date_time_format_hmv":"h:mm a v","cldr_date_time_format_ms":"mm:ss","cldr_date_time_format_y":"y","cldr_date_time_format_yM":"M/y","cldr_date_time_format_yMEd":"E, M/d/y","cldr_date_time_format_yMMM":"MMM y","cldr_date_time_format_yMMMEd":"E, MMM d, y","cldr_date_time_format_yMMMM":"MMMM y","cldr_date_time_format_yMMMd":"MMM d, y","cldr_date_time_format_yMd":"M/d/y","cldr_date_time_format_yQQQ":"QQQ y","cldr_date_time_format_yQQQQ":"QQQQ y","cldr_date_time_format_yw":"'week' w 'of' y","cldr_day_format_abbreviated_fri":"Fri","cldr_day_format_abbreviated_mon":"Mon","cldr_day_format_abbreviated_sat":"Sat","cldr_day_format_abbreviated_sun":"Sun","cldr_day_format_abbreviated_thu":"Thu","cldr_day_format_abbreviated_tue":"Tue","cldr_day_format_abbreviated_wed":"Wed","cldr_day_format_short_fri":"Fr","cldr_day_format_short_mon":"Mo","cldr_day_format_short_sat":"Sa","cldr_day_format_short_sun":"Su","cldr_day_format_short_thu":"Th","cldr_day_format_short_tue":"Tu","cldr_day_format_short_wed":"We","cldr_day_format_wide_fri":"Friday","cldr_day_format_wide_mon":"Monday","cldr_day_format_wide_sat":"Saturday","cldr_day_format_wide_sun":"Sunday","cldr_day_format_wide_thu":"Thursday","cldr_day_format_wide_tue":"Tuesday","cldr_day_format_wide_wed":"Wednesday","cldr_day_stand-alone_narrow_fri":"F","cldr_day_stand-alone_narrow_mon":"M","cldr_day_stand-alone_narrow_sat":"S","cldr_day_stand-alone_narrow_sun":"S","cldr_day_stand-alone_narrow_thu":"T","cldr_day_stand-alone_narrow_tue":"T","cldr_day_stand-alone_narrow_wed":"W","cldr_month_format_abbreviated_1":"Jan","cldr_month_format_abbreviated_10":"Oct","cldr_month_format_abbreviated_11":"Nov","cldr_month_format_abbreviated_12":"Dec","cldr_month_format_abbreviated_2":"Feb","cldr_month_format_abbreviated_3":"Mar","cldr_month_format_abbreviated_4":"Apr","cldr_month_format_abbreviated_5":"May","cldr_month_format_abbreviated_6":"Jun","cldr_month_format_abbreviated_7":"Jul","cldr_month_format_abbreviated_8":"Aug","cldr_month_format_abbreviated_9":"Sep","cldr_month_format_wide_1":"January","cldr_month_format_wide_10":"October","cldr_month_format_wide_11":"November","cldr_month_format_wide_12":"December","cldr_month_format_wide_2":"February","cldr_month_format_wide_3":"March","cldr_month_format_wide_4":"April","cldr_month_format_wide_5":"May","cldr_month_format_wide_6":"June","cldr_month_format_wide_7":"July","cldr_month_format_wide_8":"August","cldr_month_format_wide_9":"September","cldr_month_stand-alone_narrow_1":"J","cldr_month_stand-alone_narrow_10":"O","cldr_month_stand-alone_narrow_11":"N","cldr_month_stand-alone_narrow_12":"D","cldr_month_stand-alone_narrow_2":"F","cldr_month_stand-alone_narrow_3":"M","cldr_month_stand-alone_narrow_4":"A","cldr_month_stand-alone_narrow_5":"M","cldr_month_stand-alone_narrow_6":"J","cldr_month_stand-alone_narrow_7":"J","cldr_month_stand-alone_narrow_8":"A","cldr_month_stand-alone_narrow_9":"S","cldr_number_decimal_separator":".","cldr_number_group_separator":",","cldr_number_percent_format":"#,##0%","cldr_pm":"PM","cldr_time_format_full":"h:mm:ss a zzzz","cldr_time_format_long":"h:mm:ss a z","cldr_time_format_medium":"h:mm:ss a","cldr_time_format_short":"h:mm a","quotationEnd":"”","quotationStart":"“"}},"resources":{"config/.htaccess":"cv","config/hidden.php":"cv","config/structure_custom.js":"cv","config/visu_config.xml":"cv","demo/floorplan_demo.xml":"cv","demo/media/arrow.png":[100,50,"png","cv"],"demo/media/demo_2d_backdrop_floorplan.png":[994,633,"png","cv"],"demo/media/demo_2d_backdrop_floorplan_inkscape.svg":[994,633,"svg","cv"],"demo/media/demo_2d_backdrop_floorplan_viewbox.svg":[-1,-1,"svg","cv"],"demo/media/demo_2d_backdrop_nikolaushaus.png":[337,498,"png","cv"],"demo/media/demo_2d_backdrop_nikolaushaus.svg":[523,773,"svg","cv"],"demo/media/demo_2d_backdrop_red_pot.js":"cv","demo/media/demo_2d_backdrop_red_pot.png":[750,500,"png","cv"],"demo/media/demo_2d_backdrop_red_pot.svg":[750,500,"svg","cv"],"demo/media/demo_flat_circuit.svg":[679,380,"svg","cv"],"demo/media/demo_flat_floorplan.png":[727,1000,"png","cv"],"demo/media/demo_flat_floorplan.svg":[589,811,"svg","cv"],"demo/media/demo_testmode_data.json":"cv","demo/media/rollo.svg":[48,48,"svg","cv"],"demo/media/testmode.css":"cv","demo/media/testmode.js":"cv","demo/visu_config_2d3d.xml":"cv","demo/visu_config_demo.xml":"cv","demo/visu_config_demo_flat.xml":"cv","demo/visu_config_demo_testmode.xml":"cv","demo/visu_config_demorss.xml":"cv","demo/visu_config_empty.xml":"cv","demo/visu_config_gauge.xml":"cv","demo/visu_config_metal.xml":"cv","demo/visu_config_responsive.xml":"cv","designs/alaska/basic.css":"cv","designs/alaska/colors.css":"cv","designs/alaska/custom.css":"cv","designs/alaska/design_setup.js":"cv","designs/alaska/fonts/LICENSE.txt":"cv","designs/alaska/fonts/Tuffy.ttf":"cv","designs/alaska/fonts/Tuffy_Bold.ttf":"cv","designs/alaska/mobile.css":"cv","designs/alaska_slim/basic.css":"cv","designs/alaska_slim/colors.css":"cv","designs/alaska_slim/custom.css":"cv","designs/alaska_slim/design_setup.js":"cv","designs/alaska_slim/mobile.css":"cv","designs/design_preview.html":"cv","designs/designglobals.css":"cv","designs/discreet/basic.css":"cv","designs/discreet/custom.css":"cv","designs/discreet/design_setup.js":"cv","designs/discreet/fonts/AUTHORS":"cv","designs/discreet/fonts/COPYING":"cv","designs/discreet/fonts/ChangeLog":"cv","designs/discreet/fonts/License.txt":"cv","designs/discreet/fonts/README":"cv","designs/discreet/fonts/TODO":"cv","designs/discreet/fonts/liberationsans-bold.ttf":"cv","designs/discreet/fonts/liberationsans-regular.ttf":"cv","designs/discreet/images/button_bg.png":[9,36,"png","cv"],"designs/discreet/images/dot_green.png":[117,40,"png","cv"],"designs/discreet/images/dot_red.png":[117,40,"png","cv"],"designs/discreet/images/gradient.png":[147,16,"png","cv"],"designs/discreet/images/head_bg.png":[64,58,"png","cv"],"designs/discreet/images/hr_bg.png":[14,8,"png","cv"],"designs/discreet/mobile.css":"cv","designs/discreet_sand/basic.css":"cv","designs/discreet_sand/custom.css":"cv","designs/discreet_sand/design_setup.js":"cv","designs/discreet_sand/fonts/AUTHORS":"cv","designs/discreet_sand/fonts/COPYING":"cv","designs/discreet_sand/fonts/ChangeLog":"cv","designs/discreet_sand/fonts/License.txt":"cv","designs/discreet_sand/fonts/README":"cv","designs/discreet_sand/fonts/TODO":"cv","designs/discreet_sand/fonts/liberationsans-bold.ttf":"cv","designs/discreet_sand/fonts/liberationsans-regular.ttf":"cv","designs/discreet_sand/images/button_bg.png":[9,36,"png","cv"],"designs/discreet_sand/images/dot_green.png":[117,40,"png","cv"],"designs/discreet_sand/images/dot_red.png":[117,40,"png","cv"],"designs/discreet_sand/images/gradient.png":[147,16,"png","cv"],"designs/discreet_sand/images/hr_bg.png":[14,8,"png","cv"],"designs/discreet_sand/images/nav_bg.png":[64,6,"png","cv"],"designs/discreet_sand/mobile.css":"cv","designs/discreet_slim/basic.css":"cv","designs/discreet_slim/custom.css":"cv","designs/discreet_slim/design_setup.js":"cv","designs/discreet_slim/fonts/AUTHORS":"cv","designs/discreet_slim/fonts/COPYING":"cv","designs/discreet_slim/fonts/ChangeLog":"cv","designs/discreet_slim/fonts/License.txt":"cv","designs/discreet_slim/fonts/README":"cv","designs/discreet_slim/fonts/TODO":"cv","designs/discreet_slim/fonts/liberationsans-bold.ttf":"cv","designs/discreet_slim/fonts/liberationsans-regular.ttf":"cv","designs/discreet_slim/images/button_bg.png":[9,36,"png","cv"],"designs/discreet_slim/images/dot_green.png":[117,40,"png","cv"],"designs/discreet_slim/images/dot_red.png":[117,40,"png","cv"],"designs/discreet_slim/images/gradient.png":[147,16,"png","cv"],"designs/discreet_slim/images/head_bg.png":[64,58,"png","cv"],"designs/discreet_slim/images/hr_bg.png":[14,8,"png","cv"],"designs/discreet_slim/mobile.css":"cv","designs/get_designs.php":"cv","designs/metal/basic.css":"cv","designs/metal/custom.css":"cv","designs/metal/design_setup.js":"cv","designs/metal/fonts/Dosis-Medium.ttf":"cv","designs/metal/fonts/FONTLOG.txt":"cv","designs/metal/fonts/OFL.txt":"cv","designs/metal/images/active_page.png":[40,40,"png","cv"],"designs/metal/images/active_page24.png":[24,24,"png","cv"],"designs/metal/images/audio_play.png":[128,128,"png","cv"],"designs/metal/images/button_bg.png":[9,36,"png","cv"],"designs/metal/images/dot_green.png":[117,40,"png","cv"],"designs/metal/images/dot_grey.png":[117,40,"png","cv"],"designs/metal/images/dot_orange.png":[117,40,"png","cv"],"designs/metal/images/dot_red.png":[117,40,"png","cv"],"designs/metal/images/dot_white.png":[117,40,"png","cv"],"designs/metal/images/gradient.png":[147,16,"png","cv"],"designs/metal/images/head_bg.png":[64,58,"png","cv"],"designs/metal/images/hr_bg.png":[14,8,"png","cv"],"designs/metal/mobile.css":"cv","designs/pitchblack/README":"cv","designs/pitchblack/basic.css":"cv","designs/pitchblack/custom.css":"cv","designs/pitchblack/design_setup.js":"cv","designs/pitchblack/images/fenster_einfach_auf.png":[40,40,"png","cv"],"designs/pitchblack/images/fenster_einfach_zu.png":[40,40,"png","cv"],"designs/pitchblack/images/fenster_zweifach_auf.png":[80,40,"png","cv"],"designs/pitchblack/images/fenster_zweifach_linksauf.png":[80,40,"png","cv"],"designs/pitchblack/images/fenster_zweifach_rechtsauf.png":[80,40,"png","cv"],"designs/pitchblack/images/fenster_zweifach_zu.png":[80,40,"png","cv"],"designs/pitchblack/images/jal_down.png":[80,40,"png","cv"],"designs/pitchblack/images/jal_stop.png":[80,40,"png","cv"],"designs/pitchblack/images/jal_up.png":[80,40,"png","cv"],"designs/pitchblack/images/licht-an.png":[400,400,"png","cv"],"designs/pitchblack/images/licht-aus.png":[400,400,"png","cv"],"designs/pitchblack/mobile.css":"cv","designs/planet/basic.css":"cv","designs/planet/custom.css":"cv","designs/planet/design_setup.js":"cv","designs/planet/fonts/OSP/OSP-DIN.ttf":"cv","designs/planet/fonts/ubuntu-font-family/UbuntuMono-B.ttf":"cv","designs/planet/fonts/ubuntu-font-family/UbuntuMono-R.ttf":"cv","designs/planet/mobile.css":"cv","designs/pure/basic.css":"cv","designs/pure/custom.css":"cv","designs/pure/design_setup.js":"cv","designs/pure/mobile.css":"cv","icon/COPYING":"cv","icon/CometVisu_blue.png":[45,35,"png","cv"],"icon/CometVisu_grey.png":[45,35,"png","cv"],"icon/CometVisu_orange.png":[45,35,"png","cv"],"icon/LICENCE.knx-uf-iconset":"cv","icon/comet_112_ff8000.png":[112,40,"png","cv"],"icon/comet_128_000000.png":[128,46,"png","cv"],"icon/comet_128_00ddff.png":[128,46,"png","cv"],"icon/comet_128_00ff11.png":[128,46,"png","cv"],"icon/comet_128_d00055.png":[128,46,"png","cv"],"icon/comet_128_ff0000.png":[128,46,"png","cv"],"icon/comet_128_ff8000.png":[128,46,"png","cv"],"icon/comet_128_ffffff.png":[128,46,"png","cv"],"icon/comet_16_000000.png":[16,6,"png","cv"],"icon/comet_16_00ddff.png":[16,6,"png","cv"],"icon/comet_16_00ff11.png":[16,6,"png","cv"],"icon/comet_16_d00055.png":[16,6,"png","cv"],"icon/comet_16_ff0000.png":[16,6,"png","cv"],"icon/comet_16_ff8000.png":[16,6,"png","cv"],"icon/comet_16_ffffff.png":[16,6,"png","cv"],"icon/comet_16x16_000000.png":[16,16,"png","cv"],"icon/comet_16x16_ff0000.png":[16,16,"png","cv"],"icon/comet_16x16_ff8000.png":[16,16,"png","cv"],"icon/comet_32_000000.png":[32,11,"png","cv"],"icon/comet_32_00ddff.png":[32,11,"png","cv"],"icon/comet_32_00ff11.png":[32,11,"png","cv"],"icon/comet_32_d00055.png":[32,11,"png","cv"],"icon/comet_32_ff0000.png":[32,11,"png","cv"],"icon/comet_32_ff8000.png":[32,11,"png","cv"],"icon/comet_32_ffffff.png":[32,11,"png","cv"],"icon/comet_50_ff8000.png":[50,18,"png","cv"],"icon/comet_50x50_ff8000.jpg":[50,50,"jpeg","cv"],"icon/comet_50x50_ff8000.png":[50,50,"png","cv"],"icon/comet_512_ff8000.jpg.png":[50,18,"png","cv"],"icon/comet_512_ff8000.png":[512,183,"png","cv"],"icon/comet_64_000000.png":[64,23,"png","cv"],"icon/comet_64_00ddff.png":[64,23,"png","cv"],"icon/comet_64_00ff11.png":[64,23,"png","cv"],"icon/comet_64_d00055.png":[64,23,"png","cv"],"icon/comet_64_ff0000.png":[64,23,"png","cv"],"icon/comet_64_ff8000.png":[64,23,"png","cv"],"icon/comet_64_ffffff.png":[64,23,"png","cv"],"icon/comet_chrome_app_icon_128x128.png":[128,128,"png","cv"],"icon/comet_icon_128x128_ff8000.png":[128,128,"png","cv"],"icon/comet_icon_256x256_ff8000.png":[256,256,"png","cv"],"icon/comet_icon_512_ff8000.png":[444,512,"png","cv"],"icon/comet_icon_512x512_ff8000.png":[512,512,"png","cv"],"icon/comet_opt.svg":[595,842,"svg","cv"],"icon/comet_opt_icon.svg":[450,450,"svg","cv"],"icon/comet_webapp_icon.png":[72,72,"png","cv"],"icon/comet_webapp_icon_114.png":[114,114,"png","cv"],"icon/comet_webapp_icon_120.png":[120,120,"png","cv"],"icon/comet_webapp_icon_144.png":[144,144,"png","cv"],"icon/comet_webapp_icon_152.png":[152,152,"png","cv"],"icon/comet_webapp_icon_167.png":[167,167,"png","cv"],"icon/comet_webapp_icon_180.png":[180,180,"png","cv"],"icon/comet_webapp_icon_76.png":[76,76,"png","cv"],"icon/comet_webapp_icon_android_114.png":[114,114,"png","cv"],"icon/comet_webapp_icon_android_120.png":[120,120,"png","cv"],"icon/comet_webapp_icon_android_128.png":[128,128,"png","cv"],"icon/comet_webapp_icon_android_144.png":[144,144,"png","cv"],"icon/comet_webapp_icon_android_152.png":[152,152,"png","cv"],"icon/comet_webapp_icon_android_16.png":[16,16,"png","cv"],"icon/comet_webapp_icon_android_192.png":[192,192,"png","cv"],"icon/comet_webapp_icon_android_32.png":[32,32,"png","cv"],"icon/comet_webapp_icon_android_36.png":[36,36,"png","cv"],"icon/comet_webapp_icon_android_48.png":[48,48,"png","cv"],"icon/comet_webapp_icon_android_512.png":[512,512,"png","cv"],"icon/comet_webapp_icon_android_57.png":[57,57,"png","cv"],"icon/comet_webapp_icon_android_72.png":[72,72,"png","cv"],"icon/comet_webapp_icon_android_78.png":[78,78,"png","cv"],"icon/comet_webapp_icon_android_96.png":[96,96,"png","cv"],"icon/cometvisu_icon_opt.svg":[488,561,"svg","cv"],"icon/cometvisu_icon_raw.svg":[567,567,"svg","cv"],"icon/iconlist.html":"cv","icon/knx-uf-iconset.svg":[-1,-1,"svg","cv"],"plugins/calendarlist/calendarlist.php":"cv","plugins/clock/clock_pure.svg":[100,100,"svg","cv"],"plugins/colorchooser/farbtastic/CHANGELOG.html":"cv","plugins/colorchooser/farbtastic/LICENSE.txt":"cv","plugins/colorchooser/farbtastic/README.html":"cv","plugins/colorchooser/farbtastic/README.md":"cv","plugins/colorchooser/farbtastic/demo1.html":"cv","plugins/colorchooser/farbtastic/demo2.html":"cv","plugins/colorchooser/farbtastic/farbtastic.css":"cv","plugins/colorchooser/farbtastic/farbtastic.js":"cv","plugins/colorchooser/farbtastic/marker.png":[17,17,"png","cv"],"plugins/colorchooser/farbtastic/mask.png":[101,101,"png","cv"],"plugins/colorchooser/farbtastic/wheel.png":[195,195,"png","cv"],"plugins/diagram/dep/flot/API.md":"cv","plugins/diagram/dep/flot/CONTRIBUTING.md":"cv","plugins/diagram/dep/flot/FAQ.md":"cv","plugins/diagram/dep/flot/LICENSE.txt":"cv","plugins/diagram/dep/flot/Makefile":"cv","plugins/diagram/dep/flot/NEWS.md":"cv","plugins/diagram/dep/flot/PLUGINS.md":"cv","plugins/diagram/dep/flot/README.md":"cv","plugins/diagram/dep/flot/excanvas.js":"cv","plugins/diagram/dep/flot/excanvas.min.js":"cv","plugins/diagram/dep/flot/jquery.colorhelpers.js":"cv","plugins/diagram/dep/flot/jquery.colorhelpers.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.axislabels.js":"cv","plugins/diagram/dep/flot/jquery.flot.canvas.js":"cv","plugins/diagram/dep/flot/jquery.flot.canvas.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.categories.js":"cv","plugins/diagram/dep/flot/jquery.flot.categories.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.crosshair.js":"cv","plugins/diagram/dep/flot/jquery.flot.crosshair.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.errorbars.js":"cv","plugins/diagram/dep/flot/jquery.flot.errorbars.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.fillbetween.js":"cv","plugins/diagram/dep/flot/jquery.flot.fillbetween.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.image.js":"cv","plugins/diagram/dep/flot/jquery.flot.image.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.js":"cv","plugins/diagram/dep/flot/jquery.flot.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.navigate.js":"cv","plugins/diagram/dep/flot/jquery.flot.navigate.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.pie.js":"cv","plugins/diagram/dep/flot/jquery.flot.pie.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.resize.js":"cv","plugins/diagram/dep/flot/jquery.flot.resize.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.selection.js":"cv","plugins/diagram/dep/flot/jquery.flot.selection.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.stack.js":"cv","plugins/diagram/dep/flot/jquery.flot.stack.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.symbol.js":"cv","plugins/diagram/dep/flot/jquery.flot.symbol.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.threshold.js":"cv","plugins/diagram/dep/flot/jquery.flot.threshold.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.time.js":"cv","plugins/diagram/dep/flot/jquery.flot.time.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.tooltip.js":"cv","plugins/diagram/dep/flot/jquery.flot.tooltip.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.touch.js":"cv","plugins/diagram/dep/flot/jquery.flot.touch.min.js":"cv","plugins/diagram/influxfetch.php":"cv","plugins/gauge/dep/ChangeLog.txt":"cv","plugins/gauge/dep/README.md":"cv","plugins/gauge/dep/demoExtras.html":"cv","plugins/gauge/dep/steelseries-min.js":"cv","plugins/gauge/dep/steelseries-min.js.map":"cv","plugins/gauge/dep/steelseries.js":"cv","plugins/gauge/dep/tween-min.js":"cv","plugins/gauge/dep/tween.js":"cv","plugins/gauge/gauge.css":"cv","plugins/mobilemenu/mobilemenu.css":"cv","plugins/openweathermap/openweathermap.css":"cv","plugins/openweathermap/owm/jquery.owm.js":"cv","plugins/rss/dep/zrssfeed/jquery.vticker.js":"cv","plugins/rss/dep/zrssfeed/jquery.zrssfeed.css":"cv","plugins/rss/dep/zrssfeed/jquery.zrssfeed.js":"cv","plugins/rss/dep/zrssfeed/jquery.zrssfeed.min.js":"cv","plugins/rsslog/rsslog.css":"cv","plugins/rsslog/rsslog.php":"cv","plugins/rsslog/rsslog_correct.pl":"cv","plugins/rsslog/rsslog_mysql.php":"cv","plugins/strftime/strftime.css":"cv","plugins/svg/rollo.svg":[48,48,"svg","cv"],"plugins/tr064/proxy.php":"cv","plugins/tr064/soap.php":"cv","plugins/tr064/tr064.css":"cv","plugins/upnpcontroller/mute.php":"cv","plugins/upnpcontroller/next.php":"cv","plugins/upnpcontroller/pause.php":"cv","plugins/upnpcontroller/play.php":"cv","plugins/upnpcontroller/playlists.php":"cv","plugins/upnpcontroller/prev.php":"cv","plugins/upnpcontroller/status.php":"cv","plugins/upnpcontroller/upnpcontroller.css":"cv","plugins/upnpcontroller/upnpctrl_util.php":"cv","plugins/upnpcontroller/volume.php":"cv","qx/static/blank.gif":[1,1,"gif","qx"],"qx/static/blank.html":"qx","visu_config.xsd":"cv"},"translations":{"C":{},"de":{"404: Config file not found. Neither as normal config (%1) nor as demo config (%2).":"404: Konfigurations-Datei nicht gefunden. Weder als normale Konfiguration (%1) noch als Demo-Konfiguration (%2)","Action recording":"Benutzerinteraktionen aufzeichnen","An error occured":"Ein Fehler ist aufgetreten","Backend-Response:":"Antwort des Backends:","CometVisu protocol error":"CometVisu Protokollfehler","Config file has wrong library version!":"Konfigurations-Datei hat die falsche 'library' Version","Config-File Error!":"Fehler in Konfigurations-Datei!","Connection error":"Verbindungsfehler","Connection to backend is lost.":"Verbindung zum Backend verloren.","Delete all":"Alle löschen","Enable on reload:":"Aktivieren beim neu Laden:","Error loading plugin \"%1\"":"Plugin \"%1\" konnte nicht geladen werden","Error reporting (on sentry.io)":"Absturzberichte senden (an sentry.io)","Error requesting %1: %2 - %3.":"Fehler beim Laden von %1: %2 - %3.","File %1 could not be loaded.":"Date %1 konnte nicht geladen werden","File loading error":"Datei-Ladefehler","Invalid config file!":"Ungültige Konfigurations-Datei!","Message center":"Nachrichtenzentrale","Or you can start without upgrading %1with possible configuration problems%2":"Oder Sie starten ohne Upgrade %1mit möglichen Konfigurations-Problemen%2","Please check!":"Bitte prüfen!","Please describe what you have done until the error occured?":"Bitte beschreiben, was Sie gemacht haben bis der Fehler aufgetreten ist.","Please do not forget to attach the downloaded Logfile to this ticket.":"Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Ticket zu hängen.","Please try to fix the problem in the backend.":"Bitte versuchen Sie das Problem im Backend zu lösen.","Reload":"Neu laden","Send error to sentry.io":"Fehlerbericht an sentry.io schicken","The backend did send an invalid response to the %1Login%2 request: missing protocol version.":"Das Backend hat eine ungültige Antwort auf die %1Login%2-Anfrage geschickt: Fehlende Protokollversion.","This can cause problems with your configuration":"Das kann Probleme in Ihrer Konfiguration verursachen","Unhandled error of type \"%1\"":"Unbekannter Fehler vom Typ \"%1\"","You can run the %1Configuration Upgrader%2.":"Sie können den %1Konfigurations-Upgrader%2 laufen lassen.","key_full_Alt":"Alt","key_full_Apps":"Kontextmenü","key_full_Backspace":"Rücktaste","key_full_CapsLock":"Feststelltaste","key_full_Control":"Steuerung","key_full_Delete":"Entfernen","key_full_Down":"Pfeil runter","key_full_End":"Ende","key_full_Enter":"Enter","key_full_Escape":"Escape","key_full_Home":"Position 1","key_full_Insert":"Einfügen","key_full_Left":"Pfeil links","key_full_Meta":"Meta","key_full_NumLock":"NumLock","key_full_PageDown":"Bild runter","key_full_PageUp":"Bild hoch","key_full_Pause":"Pause","key_full_PrintScreen":"Drucken","key_full_Right":"Pfeil rechts","key_full_Scroll":"Rollen","key_full_Shift":"Umschalttaste","key_full_Space":"Leertaste","key_full_Tab":"Tabulator","key_full_Up":"Pfeil hoch","key_full_Win":"Windowstaste","key_short_Alt":"Alt","key_short_Apps":"Kontext","key_short_Backspace":"Rück","key_short_CapsLock":"Feststell","key_short_Control":"Strg","key_short_Delete":"Entf","key_short_Down":"Runter","key_short_End":"Ende","key_short_Enter":"Enter","key_short_Escape":"Esc","key_short_Home":"Pos1","key_short_Insert":"Einfg","key_short_Left":"Links","key_short_Meta":"Meta","key_short_NumLock":"Num","key_short_PageDown":"Bild runter","key_short_PageUp":"Bild hoch","key_short_Pause":"Pause","key_short_PrintScreen":"Druck","key_short_Right":"Rechts","key_short_Scroll":"Rollen","key_short_Shift":"Umschalt","key_short_Space":"Leer","key_short_Tab":"Tab","key_short_Up":"Hoch","key_short_Win":"Win"},"en":{}}};
+qx.$$packageData['1048575']={"locales":{"C":{"alternateQuotationEnd":"’","alternateQuotationStart":"‘","cldr_am":"AM","cldr_date_format_full":"EEEE, MMMM d, y","cldr_date_format_long":"MMMM d, y","cldr_date_format_medium":"MMM d, y","cldr_date_format_short":"M/d/yy","cldr_date_time_format_E":"ccc","cldr_date_time_format_EHm":"E HH:mm","cldr_date_time_format_EHms":"E HH:mm:ss","cldr_date_time_format_Ed":"d E","cldr_date_time_format_Ehm":"E h:mm a","cldr_date_time_format_Ehms":"E h:mm:ss a","cldr_date_time_format_Gy":"y G","cldr_date_time_format_GyMMM":"MMM y G","cldr_date_time_format_GyMMMEd":"E, MMM d, y G","cldr_date_time_format_GyMMMd":"MMM d, y G","cldr_date_time_format_H":"HH","cldr_date_time_format_Hm":"HH:mm","cldr_date_time_format_Hms":"HH:mm:ss","cldr_date_time_format_Hmsv":"HH:mm:ss v","cldr_date_time_format_Hmv":"HH:mm v","cldr_date_time_format_M":"L","cldr_date_time_format_MEd":"E, M/d","cldr_date_time_format_MMM":"LLL","cldr_date_time_format_MMMEd":"E, MMM d","cldr_date_time_format_MMMMW":"'week' W 'of' MMMM","cldr_date_time_format_MMMMd":"MMMM d","cldr_date_time_format_MMMd":"MMM d","cldr_date_time_format_Md":"M/d","cldr_date_time_format_d":"d","cldr_date_time_format_h":"h a","cldr_date_time_format_hm":"h:mm a","cldr_date_time_format_hms":"h:mm:ss a","cldr_date_time_format_hmsv":"h:mm:ss a v","cldr_date_time_format_hmv":"h:mm a v","cldr_date_time_format_ms":"mm:ss","cldr_date_time_format_y":"y","cldr_date_time_format_yM":"M/y","cldr_date_time_format_yMEd":"E, M/d/y","cldr_date_time_format_yMMM":"MMM y","cldr_date_time_format_yMMMEd":"E, MMM d, y","cldr_date_time_format_yMMMM":"MMMM y","cldr_date_time_format_yMMMd":"MMM d, y","cldr_date_time_format_yMd":"M/d/y","cldr_date_time_format_yQQQ":"QQQ y","cldr_date_time_format_yQQQQ":"QQQQ y","cldr_date_time_format_yw":"'week' w 'of' y","cldr_day_format_abbreviated_fri":"Fri","cldr_day_format_abbreviated_mon":"Mon","cldr_day_format_abbreviated_sat":"Sat","cldr_day_format_abbreviated_sun":"Sun","cldr_day_format_abbreviated_thu":"Thu","cldr_day_format_abbreviated_tue":"Tue","cldr_day_format_abbreviated_wed":"Wed","cldr_day_format_short_fri":"Fr","cldr_day_format_short_mon":"Mo","cldr_day_format_short_sat":"Sa","cldr_day_format_short_sun":"Su","cldr_day_format_short_thu":"Th","cldr_day_format_short_tue":"Tu","cldr_day_format_short_wed":"We","cldr_day_format_wide_fri":"Friday","cldr_day_format_wide_mon":"Monday","cldr_day_format_wide_sat":"Saturday","cldr_day_format_wide_sun":"Sunday","cldr_day_format_wide_thu":"Thursday","cldr_day_format_wide_tue":"Tuesday","cldr_day_format_wide_wed":"Wednesday","cldr_day_stand-alone_narrow_fri":"F","cldr_day_stand-alone_narrow_mon":"M","cldr_day_stand-alone_narrow_sat":"S","cldr_day_stand-alone_narrow_sun":"S","cldr_day_stand-alone_narrow_thu":"T","cldr_day_stand-alone_narrow_tue":"T","cldr_day_stand-alone_narrow_wed":"W","cldr_month_format_abbreviated_1":"Jan","cldr_month_format_abbreviated_10":"Oct","cldr_month_format_abbreviated_11":"Nov","cldr_month_format_abbreviated_12":"Dec","cldr_month_format_abbreviated_2":"Feb","cldr_month_format_abbreviated_3":"Mar","cldr_month_format_abbreviated_4":"Apr","cldr_month_format_abbreviated_5":"May","cldr_month_format_abbreviated_6":"Jun","cldr_month_format_abbreviated_7":"Jul","cldr_month_format_abbreviated_8":"Aug","cldr_month_format_abbreviated_9":"Sep","cldr_month_format_wide_1":"January","cldr_month_format_wide_10":"October","cldr_month_format_wide_11":"November","cldr_month_format_wide_12":"December","cldr_month_format_wide_2":"February","cldr_month_format_wide_3":"March","cldr_month_format_wide_4":"April","cldr_month_format_wide_5":"May","cldr_month_format_wide_6":"June","cldr_month_format_wide_7":"July","cldr_month_format_wide_8":"August","cldr_month_format_wide_9":"September","cldr_month_stand-alone_narrow_1":"J","cldr_month_stand-alone_narrow_10":"O","cldr_month_stand-alone_narrow_11":"N","cldr_month_stand-alone_narrow_12":"D","cldr_month_stand-alone_narrow_2":"F","cldr_month_stand-alone_narrow_3":"M","cldr_month_stand-alone_narrow_4":"A","cldr_month_stand-alone_narrow_5":"M","cldr_month_stand-alone_narrow_6":"J","cldr_month_stand-alone_narrow_7":"J","cldr_month_stand-alone_narrow_8":"A","cldr_month_stand-alone_narrow_9":"S","cldr_number_decimal_separator":".","cldr_number_group_separator":",","cldr_number_percent_format":"#,##0%","cldr_pm":"PM","cldr_time_format_full":"h:mm:ss a zzzz","cldr_time_format_long":"h:mm:ss a z","cldr_time_format_medium":"h:mm:ss a","cldr_time_format_short":"h:mm a","quotationEnd":"”","quotationStart":"“"},"de":{"alternateQuotationEnd":"‘","alternateQuotationStart":"‚","cldr_am":"vorm.","cldr_date_format_full":"EEEE, d. MMMM y","cldr_date_format_long":"d. MMMM y","cldr_date_format_medium":"dd.MM.y","cldr_date_format_short":"dd.MM.yy","cldr_date_time_format_E":"ccc","cldr_date_time_format_EHm":"E, HH:mm","cldr_date_time_format_EHms":"E, HH:mm:ss","cldr_date_time_format_Ed":"E, d.","cldr_date_time_format_Ehm":"E h:mm a","cldr_date_time_format_Ehms":"E, h:mm:ss a","cldr_date_time_format_Gy":"y G","cldr_date_time_format_GyMMM":"MMM y G","cldr_date_time_format_GyMMMEd":"E, d. MMM y G","cldr_date_time_format_GyMMMd":"d. MMM y G","cldr_date_time_format_H":"HH 'Uhr'","cldr_date_time_format_Hm":"HH:mm","cldr_date_time_format_Hms":"HH:mm:ss","cldr_date_time_format_Hmsv":"HH:mm:ss v","cldr_date_time_format_Hmv":"HH:mm v","cldr_date_time_format_M":"L","cldr_date_time_format_MEd":"E, d.M.","cldr_date_time_format_MMM":"LLL","cldr_date_time_format_MMMEd":"E, d. MMM","cldr_date_time_format_MMMMEd":"E, d. MMMM","cldr_date_time_format_MMMMW":"'Woche' W 'im' MMM","cldr_date_time_format_MMMMd":"d. MMMM","cldr_date_time_format_MMMd":"d. MMM","cldr_date_time_format_MMd":"d.MM.","cldr_date_time_format_MMdd":"dd.MM.","cldr_date_time_format_Md":"d.M.","cldr_date_time_format_d":"d","cldr_date_time_format_h":"h 'Uhr' a","cldr_date_time_format_hm":"h:mm a","cldr_date_time_format_hms":"h:mm:ss a","cldr_date_time_format_hmsv":"h:mm:ss a v","cldr_date_time_format_hmv":"h:mm a v","cldr_date_time_format_ms":"mm:ss","cldr_date_time_format_y":"y","cldr_date_time_format_yM":"M.y","cldr_date_time_format_yMEd":"E, d.M.y","cldr_date_time_format_yMM":"MM.y","cldr_date_time_format_yMMM":"MMM y","cldr_date_time_format_yMMMEd":"E, d. MMM y","cldr_date_time_format_yMMMM":"MMMM y","cldr_date_time_format_yMMMd":"d. MMM y","cldr_date_time_format_yMMdd":"dd.MM.y","cldr_date_time_format_yMd":"d.M.y","cldr_date_time_format_yQQQ":"QQQ y","cldr_date_time_format_yQQQQ":"QQQQ y","cldr_date_time_format_yw":"'Woche' w 'des' 'Jahres' y","cldr_day_format_abbreviated_fri":"Fr.","cldr_day_format_abbreviated_mon":"Mo.","cldr_day_format_abbreviated_sat":"Sa.","cldr_day_format_abbreviated_sun":"So.","cldr_day_format_abbreviated_thu":"Do.","cldr_day_format_abbreviated_tue":"Di.","cldr_day_format_abbreviated_wed":"Mi.","cldr_day_format_narrow_fri":"F","cldr_day_format_narrow_mon":"M","cldr_day_format_narrow_sat":"S","cldr_day_format_narrow_sun":"S","cldr_day_format_narrow_thu":"D","cldr_day_format_narrow_tue":"D","cldr_day_format_narrow_wed":"M","cldr_day_format_short_fri":"Fr.","cldr_day_format_short_mon":"Mo.","cldr_day_format_short_sat":"Sa.","cldr_day_format_short_sun":"So.","cldr_day_format_short_thu":"Do.","cldr_day_format_short_tue":"Di.","cldr_day_format_short_wed":"Mi.","cldr_day_format_wide_fri":"Freitag","cldr_day_format_wide_mon":"Montag","cldr_day_format_wide_sat":"Samstag","cldr_day_format_wide_sun":"Sonntag","cldr_day_format_wide_thu":"Donnerstag","cldr_day_format_wide_tue":"Dienstag","cldr_day_format_wide_wed":"Mittwoch","cldr_day_stand-alone_abbreviated_fri":"Fr","cldr_day_stand-alone_abbreviated_mon":"Mo","cldr_day_stand-alone_abbreviated_sat":"Sa","cldr_day_stand-alone_abbreviated_sun":"So","cldr_day_stand-alone_abbreviated_thu":"Do","cldr_day_stand-alone_abbreviated_tue":"Di","cldr_day_stand-alone_abbreviated_wed":"Mi","cldr_day_stand-alone_narrow_fri":"F","cldr_day_stand-alone_narrow_mon":"M","cldr_day_stand-alone_narrow_sat":"S","cldr_day_stand-alone_narrow_sun":"S","cldr_day_stand-alone_narrow_thu":"D","cldr_day_stand-alone_narrow_tue":"D","cldr_day_stand-alone_narrow_wed":"M","cldr_day_stand-alone_short_fri":"Fr.","cldr_day_stand-alone_short_mon":"Mo.","cldr_day_stand-alone_short_sat":"Sa.","cldr_day_stand-alone_short_sun":"So.","cldr_day_stand-alone_short_thu":"Do.","cldr_day_stand-alone_short_tue":"Di.","cldr_day_stand-alone_short_wed":"Mi.","cldr_day_stand-alone_wide_fri":"Freitag","cldr_day_stand-alone_wide_mon":"Montag","cldr_day_stand-alone_wide_sat":"Samstag","cldr_day_stand-alone_wide_sun":"Sonntag","cldr_day_stand-alone_wide_thu":"Donnerstag","cldr_day_stand-alone_wide_tue":"Dienstag","cldr_day_stand-alone_wide_wed":"Mittwoch","cldr_month_format_abbreviated_1":"Jan.","cldr_month_format_abbreviated_10":"Okt.","cldr_month_format_abbreviated_11":"Nov.","cldr_month_format_abbreviated_12":"Dez.","cldr_month_format_abbreviated_2":"Feb.","cldr_month_format_abbreviated_3":"März","cldr_month_format_abbreviated_4":"Apr.","cldr_month_format_abbreviated_5":"Mai","cldr_month_format_abbreviated_6":"Juni","cldr_month_format_abbreviated_7":"Juli","cldr_month_format_abbreviated_8":"Aug.","cldr_month_format_abbreviated_9":"Sep.","cldr_month_format_narrow_1":"J","cldr_month_format_narrow_10":"O","cldr_month_format_narrow_11":"N","cldr_month_format_narrow_12":"D","cldr_month_format_narrow_2":"F","cldr_month_format_narrow_3":"M","cldr_month_format_narrow_4":"A","cldr_month_format_narrow_5":"M","cldr_month_format_narrow_6":"J","cldr_month_format_narrow_7":"J","cldr_month_format_narrow_8":"A","cldr_month_format_narrow_9":"S","cldr_month_format_wide_1":"Januar","cldr_month_format_wide_10":"Oktober","cldr_month_format_wide_11":"November","cldr_month_format_wide_12":"Dezember","cldr_month_format_wide_2":"Februar","cldr_month_format_wide_3":"März","cldr_month_format_wide_4":"April","cldr_month_format_wide_5":"Mai","cldr_month_format_wide_6":"Juni","cldr_month_format_wide_7":"Juli","cldr_month_format_wide_8":"August","cldr_month_format_wide_9":"September","cldr_month_stand-alone_abbreviated_1":"Jan","cldr_month_stand-alone_abbreviated_10":"Okt","cldr_month_stand-alone_abbreviated_11":"Nov","cldr_month_stand-alone_abbreviated_12":"Dez","cldr_month_stand-alone_abbreviated_2":"Feb","cldr_month_stand-alone_abbreviated_3":"Mär","cldr_month_stand-alone_abbreviated_4":"Apr","cldr_month_stand-alone_abbreviated_5":"Mai","cldr_month_stand-alone_abbreviated_6":"Jun","cldr_month_stand-alone_abbreviated_7":"Jul","cldr_month_stand-alone_abbreviated_8":"Aug","cldr_month_stand-alone_abbreviated_9":"Sep","cldr_month_stand-alone_narrow_1":"J","cldr_month_stand-alone_narrow_10":"O","cldr_month_stand-alone_narrow_11":"N","cldr_month_stand-alone_narrow_12":"D","cldr_month_stand-alone_narrow_2":"F","cldr_month_stand-alone_narrow_3":"M","cldr_month_stand-alone_narrow_4":"A","cldr_month_stand-alone_narrow_5":"M","cldr_month_stand-alone_narrow_6":"J","cldr_month_stand-alone_narrow_7":"J","cldr_month_stand-alone_narrow_8":"A","cldr_month_stand-alone_narrow_9":"S","cldr_month_stand-alone_wide_1":"Januar","cldr_month_stand-alone_wide_10":"Oktober","cldr_month_stand-alone_wide_11":"November","cldr_month_stand-alone_wide_12":"Dezember","cldr_month_stand-alone_wide_2":"Februar","cldr_month_stand-alone_wide_3":"März","cldr_month_stand-alone_wide_4":"April","cldr_month_stand-alone_wide_5":"Mai","cldr_month_stand-alone_wide_6":"Juni","cldr_month_stand-alone_wide_7":"Juli","cldr_month_stand-alone_wide_8":"August","cldr_month_stand-alone_wide_9":"September","cldr_number_decimal_separator":",","cldr_number_group_separator":".","cldr_number_percent_format":"#,##0 %","cldr_pm":"nachm.","cldr_time_format_full":"HH:mm:ss zzzz","cldr_time_format_long":"HH:mm:ss z","cldr_time_format_medium":"HH:mm:ss","cldr_time_format_short":"HH:mm","quotationEnd":"“","quotationStart":"„"},"en":{"alternateQuotationEnd":"’","alternateQuotationStart":"‘","cldr_am":"AM","cldr_date_format_full":"EEEE, MMMM d, y","cldr_date_format_long":"MMMM d, y","cldr_date_format_medium":"MMM d, y","cldr_date_format_short":"M/d/yy","cldr_date_time_format_E":"ccc","cldr_date_time_format_EHm":"E HH:mm","cldr_date_time_format_EHms":"E HH:mm:ss","cldr_date_time_format_Ed":"d E","cldr_date_time_format_Ehm":"E h:mm a","cldr_date_time_format_Ehms":"E h:mm:ss a","cldr_date_time_format_Gy":"y G","cldr_date_time_format_GyMMM":"MMM y G","cldr_date_time_format_GyMMMEd":"E, MMM d, y G","cldr_date_time_format_GyMMMd":"MMM d, y G","cldr_date_time_format_H":"HH","cldr_date_time_format_Hm":"HH:mm","cldr_date_time_format_Hms":"HH:mm:ss","cldr_date_time_format_Hmsv":"HH:mm:ss v","cldr_date_time_format_Hmv":"HH:mm v","cldr_date_time_format_M":"L","cldr_date_time_format_MEd":"E, M/d","cldr_date_time_format_MMM":"LLL","cldr_date_time_format_MMMEd":"E, MMM d","cldr_date_time_format_MMMMW":"'week' W 'of' MMMM","cldr_date_time_format_MMMMd":"MMMM d","cldr_date_time_format_MMMd":"MMM d","cldr_date_time_format_Md":"M/d","cldr_date_time_format_d":"d","cldr_date_time_format_h":"h a","cldr_date_time_format_hm":"h:mm a","cldr_date_time_format_hms":"h:mm:ss a","cldr_date_time_format_hmsv":"h:mm:ss a v","cldr_date_time_format_hmv":"h:mm a v","cldr_date_time_format_ms":"mm:ss","cldr_date_time_format_y":"y","cldr_date_time_format_yM":"M/y","cldr_date_time_format_yMEd":"E, M/d/y","cldr_date_time_format_yMMM":"MMM y","cldr_date_time_format_yMMMEd":"E, MMM d, y","cldr_date_time_format_yMMMM":"MMMM y","cldr_date_time_format_yMMMd":"MMM d, y","cldr_date_time_format_yMd":"M/d/y","cldr_date_time_format_yQQQ":"QQQ y","cldr_date_time_format_yQQQQ":"QQQQ y","cldr_date_time_format_yw":"'week' w 'of' y","cldr_day_format_abbreviated_fri":"Fri","cldr_day_format_abbreviated_mon":"Mon","cldr_day_format_abbreviated_sat":"Sat","cldr_day_format_abbreviated_sun":"Sun","cldr_day_format_abbreviated_thu":"Thu","cldr_day_format_abbreviated_tue":"Tue","cldr_day_format_abbreviated_wed":"Wed","cldr_day_format_short_fri":"Fr","cldr_day_format_short_mon":"Mo","cldr_day_format_short_sat":"Sa","cldr_day_format_short_sun":"Su","cldr_day_format_short_thu":"Th","cldr_day_format_short_tue":"Tu","cldr_day_format_short_wed":"We","cldr_day_format_wide_fri":"Friday","cldr_day_format_wide_mon":"Monday","cldr_day_format_wide_sat":"Saturday","cldr_day_format_wide_sun":"Sunday","cldr_day_format_wide_thu":"Thursday","cldr_day_format_wide_tue":"Tuesday","cldr_day_format_wide_wed":"Wednesday","cldr_day_stand-alone_narrow_fri":"F","cldr_day_stand-alone_narrow_mon":"M","cldr_day_stand-alone_narrow_sat":"S","cldr_day_stand-alone_narrow_sun":"S","cldr_day_stand-alone_narrow_thu":"T","cldr_day_stand-alone_narrow_tue":"T","cldr_day_stand-alone_narrow_wed":"W","cldr_month_format_abbreviated_1":"Jan","cldr_month_format_abbreviated_10":"Oct","cldr_month_format_abbreviated_11":"Nov","cldr_month_format_abbreviated_12":"Dec","cldr_month_format_abbreviated_2":"Feb","cldr_month_format_abbreviated_3":"Mar","cldr_month_format_abbreviated_4":"Apr","cldr_month_format_abbreviated_5":"May","cldr_month_format_abbreviated_6":"Jun","cldr_month_format_abbreviated_7":"Jul","cldr_month_format_abbreviated_8":"Aug","cldr_month_format_abbreviated_9":"Sep","cldr_month_format_wide_1":"January","cldr_month_format_wide_10":"October","cldr_month_format_wide_11":"November","cldr_month_format_wide_12":"December","cldr_month_format_wide_2":"February","cldr_month_format_wide_3":"March","cldr_month_format_wide_4":"April","cldr_month_format_wide_5":"May","cldr_month_format_wide_6":"June","cldr_month_format_wide_7":"July","cldr_month_format_wide_8":"August","cldr_month_format_wide_9":"September","cldr_month_stand-alone_narrow_1":"J","cldr_month_stand-alone_narrow_10":"O","cldr_month_stand-alone_narrow_11":"N","cldr_month_stand-alone_narrow_12":"D","cldr_month_stand-alone_narrow_2":"F","cldr_month_stand-alone_narrow_3":"M","cldr_month_stand-alone_narrow_4":"A","cldr_month_stand-alone_narrow_5":"M","cldr_month_stand-alone_narrow_6":"J","cldr_month_stand-alone_narrow_7":"J","cldr_month_stand-alone_narrow_8":"A","cldr_month_stand-alone_narrow_9":"S","cldr_number_decimal_separator":".","cldr_number_group_separator":",","cldr_number_percent_format":"#,##0%","cldr_pm":"PM","cldr_time_format_full":"h:mm:ss a zzzz","cldr_time_format_long":"h:mm:ss a z","cldr_time_format_medium":"h:mm:ss a","cldr_time_format_short":"h:mm a","quotationEnd":"”","quotationStart":"“"}},"resources":{"config/.htaccess":"cv","config/hidden.php":"cv","config/structure_custom.js":"cv","config/visu_config.xml":"cv","demo/floorplan_demo.xml":"cv","demo/media/arrow.png":[100,50,"png","cv"],"demo/media/demo_2d_backdrop_floorplan.png":[994,633,"png","cv"],"demo/media/demo_2d_backdrop_floorplan_inkscape.svg":[994,633,"svg","cv"],"demo/media/demo_2d_backdrop_floorplan_viewbox.svg":[-1,-1,"svg","cv"],"demo/media/demo_2d_backdrop_nikolaushaus.png":[337,498,"png","cv"],"demo/media/demo_2d_backdrop_nikolaushaus.svg":[523,773,"svg","cv"],"demo/media/demo_2d_backdrop_red_pot.js":"cv","demo/media/demo_2d_backdrop_red_pot.png":[750,500,"png","cv"],"demo/media/demo_2d_backdrop_red_pot.svg":[750,500,"svg","cv"],"demo/media/demo_flat_circuit.svg":[679,380,"svg","cv"],"demo/media/demo_flat_floorplan.png":[727,1000,"png","cv"],"demo/media/demo_flat_floorplan.svg":[589,811,"svg","cv"],"demo/media/demo_testmode_data.json":"cv","demo/media/rollo.svg":[48,48,"svg","cv"],"demo/media/testmode.css":"cv","demo/media/testmode.js":"cv","demo/visu_config_2d3d.xml":"cv","demo/visu_config_demo.xml":"cv","demo/visu_config_demo_flat.xml":"cv","demo/visu_config_demo_testmode.xml":"cv","demo/visu_config_demorss.xml":"cv","demo/visu_config_empty.xml":"cv","demo/visu_config_gauge.xml":"cv","demo/visu_config_metal.xml":"cv","demo/visu_config_responsive.xml":"cv","designs/alaska/basic.css":"cv","designs/alaska/colors.css":"cv","designs/alaska/custom.css":"cv","designs/alaska/design_setup.js":"cv","designs/alaska/fonts/LICENSE.txt":"cv","designs/alaska/fonts/Tuffy.ttf":"cv","designs/alaska/fonts/Tuffy_Bold.ttf":"cv","designs/alaska/mobile.css":"cv","designs/alaska_slim/basic.css":"cv","designs/alaska_slim/colors.css":"cv","designs/alaska_slim/custom.css":"cv","designs/alaska_slim/design_setup.js":"cv","designs/alaska_slim/mobile.css":"cv","designs/design_preview.html":"cv","designs/designglobals.css":"cv","designs/discreet/basic.css":"cv","designs/discreet/custom.css":"cv","designs/discreet/design_setup.js":"cv","designs/discreet/fonts/AUTHORS":"cv","designs/discreet/fonts/COPYING":"cv","designs/discreet/fonts/ChangeLog":"cv","designs/discreet/fonts/License.txt":"cv","designs/discreet/fonts/README":"cv","designs/discreet/fonts/TODO":"cv","designs/discreet/fonts/liberationsans-bold.ttf":"cv","designs/discreet/fonts/liberationsans-regular.ttf":"cv","designs/discreet/images/button_bg.png":[9,36,"png","cv"],"designs/discreet/images/dot_green.png":[117,40,"png","cv"],"designs/discreet/images/dot_red.png":[117,40,"png","cv"],"designs/discreet/images/gradient.png":[147,16,"png","cv"],"designs/discreet/images/head_bg.png":[64,58,"png","cv"],"designs/discreet/images/hr_bg.png":[14,8,"png","cv"],"designs/discreet/mobile.css":"cv","designs/discreet_sand/basic.css":"cv","designs/discreet_sand/custom.css":"cv","designs/discreet_sand/design_setup.js":"cv","designs/discreet_sand/fonts/AUTHORS":"cv","designs/discreet_sand/fonts/COPYING":"cv","designs/discreet_sand/fonts/ChangeLog":"cv","designs/discreet_sand/fonts/License.txt":"cv","designs/discreet_sand/fonts/README":"cv","designs/discreet_sand/fonts/TODO":"cv","designs/discreet_sand/fonts/liberationsans-bold.ttf":"cv","designs/discreet_sand/fonts/liberationsans-regular.ttf":"cv","designs/discreet_sand/images/button_bg.png":[9,36,"png","cv"],"designs/discreet_sand/images/dot_green.png":[117,40,"png","cv"],"designs/discreet_sand/images/dot_red.png":[117,40,"png","cv"],"designs/discreet_sand/images/gradient.png":[147,16,"png","cv"],"designs/discreet_sand/images/hr_bg.png":[14,8,"png","cv"],"designs/discreet_sand/images/nav_bg.png":[64,6,"png","cv"],"designs/discreet_sand/mobile.css":"cv","designs/discreet_slim/basic.css":"cv","designs/discreet_slim/custom.css":"cv","designs/discreet_slim/design_setup.js":"cv","designs/discreet_slim/fonts/AUTHORS":"cv","designs/discreet_slim/fonts/COPYING":"cv","designs/discreet_slim/fonts/ChangeLog":"cv","designs/discreet_slim/fonts/License.txt":"cv","designs/discreet_slim/fonts/README":"cv","designs/discreet_slim/fonts/TODO":"cv","designs/discreet_slim/fonts/liberationsans-bold.ttf":"cv","designs/discreet_slim/fonts/liberationsans-regular.ttf":"cv","designs/discreet_slim/images/button_bg.png":[9,36,"png","cv"],"designs/discreet_slim/images/dot_green.png":[117,40,"png","cv"],"designs/discreet_slim/images/dot_red.png":[117,40,"png","cv"],"designs/discreet_slim/images/gradient.png":[147,16,"png","cv"],"designs/discreet_slim/images/head_bg.png":[64,58,"png","cv"],"designs/discreet_slim/images/hr_bg.png":[14,8,"png","cv"],"designs/discreet_slim/mobile.css":"cv","designs/get_designs.php":"cv","designs/metal/basic.css":"cv","designs/metal/custom.css":"cv","designs/metal/design_setup.js":"cv","designs/metal/fonts/Dosis-Medium.ttf":"cv","designs/metal/fonts/FONTLOG.txt":"cv","designs/metal/fonts/OFL.txt":"cv","designs/metal/images/active_page.png":[40,40,"png","cv"],"designs/metal/images/active_page24.png":[24,24,"png","cv"],"designs/metal/images/audio_play.png":[128,128,"png","cv"],"designs/metal/images/button_bg.png":[9,36,"png","cv"],"designs/metal/images/dot_green.png":[117,40,"png","cv"],"designs/metal/images/dot_grey.png":[117,40,"png","cv"],"designs/metal/images/dot_orange.png":[117,40,"png","cv"],"designs/metal/images/dot_red.png":[117,40,"png","cv"],"designs/metal/images/dot_white.png":[117,40,"png","cv"],"designs/metal/images/gradient.png":[147,16,"png","cv"],"designs/metal/images/head_bg.png":[64,58,"png","cv"],"designs/metal/images/hr_bg.png":[14,8,"png","cv"],"designs/metal/mobile.css":"cv","designs/pitchblack/README":"cv","designs/pitchblack/basic.css":"cv","designs/pitchblack/custom.css":"cv","designs/pitchblack/design_setup.js":"cv","designs/pitchblack/images/fenster_einfach_auf.png":[40,40,"png","cv"],"designs/pitchblack/images/fenster_einfach_zu.png":[40,40,"png","cv"],"designs/pitchblack/images/fenster_zweifach_auf.png":[80,40,"png","cv"],"designs/pitchblack/images/fenster_zweifach_linksauf.png":[80,40,"png","cv"],"designs/pitchblack/images/fenster_zweifach_rechtsauf.png":[80,40,"png","cv"],"designs/pitchblack/images/fenster_zweifach_zu.png":[80,40,"png","cv"],"designs/pitchblack/images/jal_down.png":[80,40,"png","cv"],"designs/pitchblack/images/jal_stop.png":[80,40,"png","cv"],"designs/pitchblack/images/jal_up.png":[80,40,"png","cv"],"designs/pitchblack/images/licht-an.png":[400,400,"png","cv"],"designs/pitchblack/images/licht-aus.png":[400,400,"png","cv"],"designs/pitchblack/mobile.css":"cv","designs/planet/basic.css":"cv","designs/planet/custom.css":"cv","designs/planet/design_setup.js":"cv","designs/planet/fonts/OSP/OSP-DIN.ttf":"cv","designs/planet/fonts/ubuntu-font-family/UbuntuMono-B.ttf":"cv","designs/planet/fonts/ubuntu-font-family/UbuntuMono-R.ttf":"cv","designs/planet/mobile.css":"cv","designs/pure/basic.css":"cv","designs/pure/custom.css":"cv","designs/pure/design_setup.js":"cv","designs/pure/mobile.css":"cv","icon/COPYING":"cv","icon/CometVisu_blue.png":[45,35,"png","cv"],"icon/CometVisu_grey.png":[45,35,"png","cv"],"icon/CometVisu_orange.png":[45,35,"png","cv"],"icon/LICENCE.knx-uf-iconset":"cv","icon/comet_112_ff8000.png":[112,40,"png","cv"],"icon/comet_128_000000.png":[128,46,"png","cv"],"icon/comet_128_00ddff.png":[128,46,"png","cv"],"icon/comet_128_00ff11.png":[128,46,"png","cv"],"icon/comet_128_d00055.png":[128,46,"png","cv"],"icon/comet_128_ff0000.png":[128,46,"png","cv"],"icon/comet_128_ff8000.png":[128,46,"png","cv"],"icon/comet_128_ffffff.png":[128,46,"png","cv"],"icon/comet_16_000000.png":[16,6,"png","cv"],"icon/comet_16_00ddff.png":[16,6,"png","cv"],"icon/comet_16_00ff11.png":[16,6,"png","cv"],"icon/comet_16_d00055.png":[16,6,"png","cv"],"icon/comet_16_ff0000.png":[16,6,"png","cv"],"icon/comet_16_ff8000.png":[16,6,"png","cv"],"icon/comet_16_ffffff.png":[16,6,"png","cv"],"icon/comet_16x16_000000.png":[16,16,"png","cv"],"icon/comet_16x16_ff0000.png":[16,16,"png","cv"],"icon/comet_16x16_ff8000.png":[16,16,"png","cv"],"icon/comet_32_000000.png":[32,11,"png","cv"],"icon/comet_32_00ddff.png":[32,11,"png","cv"],"icon/comet_32_00ff11.png":[32,11,"png","cv"],"icon/comet_32_d00055.png":[32,11,"png","cv"],"icon/comet_32_ff0000.png":[32,11,"png","cv"],"icon/comet_32_ff8000.png":[32,11,"png","cv"],"icon/comet_32_ffffff.png":[32,11,"png","cv"],"icon/comet_50_ff8000.png":[50,18,"png","cv"],"icon/comet_50x50_ff8000.jpg":[50,50,"jpeg","cv"],"icon/comet_50x50_ff8000.png":[50,50,"png","cv"],"icon/comet_512_ff8000.jpg.png":[50,18,"png","cv"],"icon/comet_512_ff8000.png":[512,183,"png","cv"],"icon/comet_64_000000.png":[64,23,"png","cv"],"icon/comet_64_00ddff.png":[64,23,"png","cv"],"icon/comet_64_00ff11.png":[64,23,"png","cv"],"icon/comet_64_d00055.png":[64,23,"png","cv"],"icon/comet_64_ff0000.png":[64,23,"png","cv"],"icon/comet_64_ff8000.png":[64,23,"png","cv"],"icon/comet_64_ffffff.png":[64,23,"png","cv"],"icon/comet_chrome_app_icon_128x128.png":[128,128,"png","cv"],"icon/comet_icon_128x128_ff8000.png":[128,128,"png","cv"],"icon/comet_icon_256x256_ff8000.png":[256,256,"png","cv"],"icon/comet_icon_512_ff8000.png":[444,512,"png","cv"],"icon/comet_icon_512x512_ff8000.png":[512,512,"png","cv"],"icon/comet_opt.svg":[595,842,"svg","cv"],"icon/comet_opt_icon.svg":[450,450,"svg","cv"],"icon/comet_webapp_icon.png":[72,72,"png","cv"],"icon/comet_webapp_icon_114.png":[114,114,"png","cv"],"icon/comet_webapp_icon_120.png":[120,120,"png","cv"],"icon/comet_webapp_icon_144.png":[144,144,"png","cv"],"icon/comet_webapp_icon_152.png":[152,152,"png","cv"],"icon/comet_webapp_icon_167.png":[167,167,"png","cv"],"icon/comet_webapp_icon_180.png":[180,180,"png","cv"],"icon/comet_webapp_icon_76.png":[76,76,"png","cv"],"icon/comet_webapp_icon_android_114.png":[114,114,"png","cv"],"icon/comet_webapp_icon_android_120.png":[120,120,"png","cv"],"icon/comet_webapp_icon_android_128.png":[128,128,"png","cv"],"icon/comet_webapp_icon_android_144.png":[144,144,"png","cv"],"icon/comet_webapp_icon_android_152.png":[152,152,"png","cv"],"icon/comet_webapp_icon_android_16.png":[16,16,"png","cv"],"icon/comet_webapp_icon_android_192.png":[192,192,"png","cv"],"icon/comet_webapp_icon_android_32.png":[32,32,"png","cv"],"icon/comet_webapp_icon_android_36.png":[36,36,"png","cv"],"icon/comet_webapp_icon_android_48.png":[48,48,"png","cv"],"icon/comet_webapp_icon_android_512.png":[512,512,"png","cv"],"icon/comet_webapp_icon_android_57.png":[57,57,"png","cv"],"icon/comet_webapp_icon_android_72.png":[72,72,"png","cv"],"icon/comet_webapp_icon_android_78.png":[78,78,"png","cv"],"icon/comet_webapp_icon_android_96.png":[96,96,"png","cv"],"icon/cometvisu_icon_opt.svg":[488,561,"svg","cv"],"icon/cometvisu_icon_raw.svg":[567,567,"svg","cv"],"icon/iconlist.html":"cv","icon/knx-uf-iconset.svg":[-1,-1,"svg","cv"],"plugins/calendarlist/calendarlist.php":"cv","plugins/clock/clock_pure.svg":[100,100,"svg","cv"],"plugins/colorchooser/farbtastic/CHANGELOG.html":"cv","plugins/colorchooser/farbtastic/LICENSE.txt":"cv","plugins/colorchooser/farbtastic/README.html":"cv","plugins/colorchooser/farbtastic/README.md":"cv","plugins/colorchooser/farbtastic/demo1.html":"cv","plugins/colorchooser/farbtastic/demo2.html":"cv","plugins/colorchooser/farbtastic/farbtastic.css":"cv","plugins/colorchooser/farbtastic/farbtastic.js":"cv","plugins/colorchooser/farbtastic/marker.png":[17,17,"png","cv"],"plugins/colorchooser/farbtastic/mask.png":[101,101,"png","cv"],"plugins/colorchooser/farbtastic/wheel.png":[195,195,"png","cv"],"plugins/diagram/dep/flot/API.md":"cv","plugins/diagram/dep/flot/CONTRIBUTING.md":"cv","plugins/diagram/dep/flot/FAQ.md":"cv","plugins/diagram/dep/flot/LICENSE.txt":"cv","plugins/diagram/dep/flot/Makefile":"cv","plugins/diagram/dep/flot/NEWS.md":"cv","plugins/diagram/dep/flot/PLUGINS.md":"cv","plugins/diagram/dep/flot/README.md":"cv","plugins/diagram/dep/flot/excanvas.js":"cv","plugins/diagram/dep/flot/excanvas.min.js":"cv","plugins/diagram/dep/flot/jquery.colorhelpers.js":"cv","plugins/diagram/dep/flot/jquery.colorhelpers.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.axislabels.js":"cv","plugins/diagram/dep/flot/jquery.flot.canvas.js":"cv","plugins/diagram/dep/flot/jquery.flot.canvas.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.categories.js":"cv","plugins/diagram/dep/flot/jquery.flot.categories.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.crosshair.js":"cv","plugins/diagram/dep/flot/jquery.flot.crosshair.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.errorbars.js":"cv","plugins/diagram/dep/flot/jquery.flot.errorbars.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.fillbetween.js":"cv","plugins/diagram/dep/flot/jquery.flot.fillbetween.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.image.js":"cv","plugins/diagram/dep/flot/jquery.flot.image.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.js":"cv","plugins/diagram/dep/flot/jquery.flot.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.navigate.js":"cv","plugins/diagram/dep/flot/jquery.flot.navigate.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.pie.js":"cv","plugins/diagram/dep/flot/jquery.flot.pie.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.resize.js":"cv","plugins/diagram/dep/flot/jquery.flot.resize.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.selection.js":"cv","plugins/diagram/dep/flot/jquery.flot.selection.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.stack.js":"cv","plugins/diagram/dep/flot/jquery.flot.stack.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.symbol.js":"cv","plugins/diagram/dep/flot/jquery.flot.symbol.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.threshold.js":"cv","plugins/diagram/dep/flot/jquery.flot.threshold.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.time.js":"cv","plugins/diagram/dep/flot/jquery.flot.time.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.tooltip.js":"cv","plugins/diagram/dep/flot/jquery.flot.tooltip.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.touch.js":"cv","plugins/diagram/dep/flot/jquery.flot.touch.min.js":"cv","plugins/diagram/influxfetch.php":"cv","plugins/gauge/dep/ChangeLog.txt":"cv","plugins/gauge/dep/README.md":"cv","plugins/gauge/dep/demoExtras.html":"cv","plugins/gauge/dep/steelseries-min.js":"cv","plugins/gauge/dep/steelseries-min.js.map":"cv","plugins/gauge/dep/steelseries.js":"cv","plugins/gauge/dep/tween-min.js":"cv","plugins/gauge/dep/tween.js":"cv","plugins/gauge/gauge.css":"cv","plugins/mobilemenu/mobilemenu.css":"cv","plugins/openweathermap/font/COPYING":"cv","plugins/openweathermap/font/weathericons-regular-webfont.eot":"cv","plugins/openweathermap/font/weathericons-regular-webfont.svg":[-1,-1,"svg","cv"],"plugins/openweathermap/font/weathericons-regular-webfont.ttf":"cv","plugins/openweathermap/font/weathericons-regular-webfont.woff":"cv","plugins/openweathermap/font/weathericons-regular-webfont.woff2":"cv","plugins/openweathermap/owm_basic_style.css":"cv","plugins/openweathermap/owm_core.js":"cv","plugins/openweathermap/owm_weathericon.css":"cv","plugins/rss/dep/zrssfeed/jquery.vticker.js":"cv","plugins/rss/dep/zrssfeed/jquery.zrssfeed.css":"cv","plugins/rss/dep/zrssfeed/jquery.zrssfeed.js":"cv","plugins/rss/dep/zrssfeed/jquery.zrssfeed.min.js":"cv","plugins/rsslog/rsslog.css":"cv","plugins/rsslog/rsslog.php":"cv","plugins/rsslog/rsslog_correct.pl":"cv","plugins/rsslog/rsslog_mysql.php":"cv","plugins/strftime/strftime.css":"cv","plugins/svg/rollo.svg":[48,48,"svg","cv"],"plugins/tr064/proxy.php":"cv","plugins/tr064/soap.php":"cv","plugins/tr064/tr064.css":"cv","plugins/upnpcontroller/mute.php":"cv","plugins/upnpcontroller/next.php":"cv","plugins/upnpcontroller/pause.php":"cv","plugins/upnpcontroller/play.php":"cv","plugins/upnpcontroller/playlists.php":"cv","plugins/upnpcontroller/prev.php":"cv","plugins/upnpcontroller/status.php":"cv","plugins/upnpcontroller/upnpcontroller.css":"cv","plugins/upnpcontroller/upnpctrl_util.php":"cv","plugins/upnpcontroller/volume.php":"cv","qx/static/blank.gif":[1,1,"gif","qx"],"qx/static/blank.html":"qx","visu_config.xsd":"cv"},"translations":{"C":{},"de":{"404: Config file not found. Neither as normal config (%1) nor as demo config (%2).":"404: Konfigurations-Datei nicht gefunden. Weder als normale Konfiguration (%1) noch als Demo-Konfiguration (%2)","Action recording":"Benutzerinteraktionen aufzeichnen","An error occured":"Ein Fehler ist aufgetreten","Backend-Response:":"Antwort des Backends:","CometVisu protocol error":"CometVisu Protokollfehler","Config file has wrong library version!":"Konfigurations-Datei hat die falsche 'library' Version","Config-File Error!":"Fehler in Konfigurations-Datei!","Connection error":"Verbindungsfehler","Connection to backend is lost.":"Verbindung zum Backend verloren.","Delete all":"Alle löschen","Enable on reload:":"Aktivieren beim neu Laden:","Error loading plugin \"%1\"":"Plugin \"%1\" konnte nicht geladen werden","Error reporting (on sentry.io)":"Absturzberichte senden (an sentry.io)","Error requesting %1: %2 - %3.":"Fehler beim Laden von %1: %2 - %3.","File %1 could not be loaded.":"Date %1 konnte nicht geladen werden","File loading error":"Datei-Ladefehler","Invalid config file!":"Ungültige Konfigurations-Datei!","Message center":"Nachrichtenzentrale","Or you can start without upgrading %1with possible configuration problems%2":"Oder Sie starten ohne Upgrade %1mit möglichen Konfigurations-Problemen%2","Please check!":"Bitte prüfen!","Please describe what you have done until the error occured?":"Bitte beschreiben, was Sie gemacht haben bis der Fehler aufgetreten ist.","Please do not forget to attach the downloaded Logfile to this ticket.":"Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Ticket zu hängen.","Please try to fix the problem in the backend.":"Bitte versuchen Sie das Problem im Backend zu lösen.","Reload":"Neu laden","Send error to sentry.io":"Fehlerbericht an sentry.io schicken","The backend did send an invalid response to the %1Login%2 request: missing protocol version.":"Das Backend hat eine ungültige Antwort auf die %1Login%2-Anfrage geschickt: Fehlende Protokollversion.","This can cause problems with your configuration":"Das kann Probleme in Ihrer Konfiguration verursachen","Unhandled error of type \"%1\"":"Unbekannter Fehler vom Typ \"%1\"","You can run the %1Configuration Upgrader%2.":"Sie können den %1Konfigurations-Upgrader%2 laufen lassen.","key_full_Alt":"Alt","key_full_Apps":"Kontextmenü","key_full_Backspace":"Rücktaste","key_full_CapsLock":"Feststelltaste","key_full_Control":"Steuerung","key_full_Delete":"Entfernen","key_full_Down":"Pfeil runter","key_full_End":"Ende","key_full_Enter":"Enter","key_full_Escape":"Escape","key_full_Home":"Position 1","key_full_Insert":"Einfügen","key_full_Left":"Pfeil links","key_full_Meta":"Meta","key_full_NumLock":"NumLock","key_full_PageDown":"Bild runter","key_full_PageUp":"Bild hoch","key_full_Pause":"Pause","key_full_PrintScreen":"Drucken","key_full_Right":"Pfeil rechts","key_full_Scroll":"Rollen","key_full_Shift":"Umschalttaste","key_full_Space":"Leertaste","key_full_Tab":"Tabulator","key_full_Up":"Pfeil hoch","key_full_Win":"Windowstaste","key_short_Alt":"Alt","key_short_Apps":"Kontext","key_short_Backspace":"Rück","key_short_CapsLock":"Feststell","key_short_Control":"Strg","key_short_Delete":"Entf","key_short_Down":"Runter","key_short_End":"Ende","key_short_Enter":"Enter","key_short_Escape":"Esc","key_short_Home":"Pos1","key_short_Insert":"Einfg","key_short_Left":"Links","key_short_Meta":"Meta","key_short_NumLock":"Num","key_short_PageDown":"Bild runter","key_short_PageUp":"Bild hoch","key_short_Pause":"Pause","key_short_PrintScreen":"Druck","key_short_Right":"Rechts","key_short_Scroll":"Rollen","key_short_Shift":"Umschalt","key_short_Space":"Leer","key_short_Tab":"Tab","key_short_Up":"Hoch","key_short_Win":"Win"},"en":{}}};
 /* ************************************************************************
 
    qooxdoo - the new era of web development
@@ -20465,7 +20465,7 @@ qx.Mixin.define("qx.core.MEvent",
    http://qooxdoo.org
 
    Copyright:
-     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de
 
    License:
      MIT: https://opensource.org/licenses/MIT
@@ -20477,72 +20477,42 @@ qx.Mixin.define("qx.core.MEvent",
 ************************************************************************ */
 
 /**
- * Event handler Interface.
- *
- * All custom event handler like mouse or keyboard event handler must implement
- * this interface.
+ * All event dispatchers must implement this interface. Event dispatchers must
+ * register themselves at the event Manager using
+ * {@link qx.event.Registration#addDispatcher}.
  */
-qx.Interface.define("qx.event.IEventHandler",
+qx.Interface.define("qx.event.IEventDispatcher",
 {
-  statics :
-  {
-    /** @type {Integer} The event target must be a dom node */
-    TARGET_DOMNODE: 1,
-
-    /** @type {Integer} The event target must be a window object */
-    TARGET_WINDOW : 2,
-
-    /** @type {Integer} The event target must be a qooxdoo object */
-    TARGET_OBJECT: 4,
-
-    /** @type {Integer} The event target must be a document node */
-    TARGET_DOCUMENT: 8
-  },
-
-
-  members :
+  members:
   {
     /**
-     * Whether the event handler can handle events of the given type. If the
-     * event handler class has a static variable called <code>IGNORE_CAN_HANDLE</code>
-     * with the value <code>true</code> this function is not called. Whether the
-     * handler can handle the event is them only determined by the static variables
-     * <code>SUPPORTED_TYPES</code> and <code>TARGET_CHECK</code>.
+     * Whether the dispatcher is responsible for the this event.
      *
-     * @param target {var} The target to, which the event handler should
-     *     be attached
-     * @param type {String} event type
-     * @return {Boolean} Whether the event handler can handle events of the
-     *     given type.
+     * @param target {Element|Event} The event dispatch target
+     * @param event {qx.event.type.Event} The event object
+     * @param type {String} the event type
+     * @return {Boolean} Whether the event dispatcher is responsible for the this event
      */
-    canHandleEvent : function(target, type) {},
+    canDispatchEvent : function(target, event, type)
+    {
+      this.assertInstance(event, qx.event.type.Event);
+      this.assertString(type);
+    },
 
 
     /**
-     * This method is called each time an event listener, for one of the
-     * supported events, is added using {@link qx.event.Manager#addListener}.
+     * This function dispatches the event to the event listeners.
      *
-     * @param target {var} The target to, which the event handler should
-     *     be attached
-     * @param type {String} event type
-     * @param capture {Boolean} Whether to attach the event to the
-     *         capturing phase or the bubbling phase of the event.
+     * @param target {Element|Event} The event dispatch target
+     * @param event {qx.event.type.Event} event object to dispatch
+     * @param type {String} the event type
+     * @return {qx.Promise?} a promise, if one or more of the event handlers returned a promise
      */
-    registerEvent : function(target, type, capture) {},
-
-
-    /**
-     * This method is called each time an event listener, for one of the
-     * supported events, is removed by using {@link qx.event.Manager#removeListener}
-     * and no other event listener is listening on this type.
-     *
-     * @param target {var} The target from, which the event handler should
-     *     be removed
-     * @param type {String} event type
-     * @param capture {Boolean} Whether to attach the event to the
-     *         capturing phase or the bubbling phase of the event.
-     */
-    unregisterEvent : function(target, type, capture) {}
+    dispatchEvent : function(target, event, type)
+    {
+      this.assertInstance(event, qx.event.type.Event);
+      this.assertString(type);
+    }
   }
 });
 /* ************************************************************************
@@ -22280,166 +22250,6 @@ qx.Class.define("qx.util.DisposeUtil",
       }
 
       return false;
-    }
-  }
-});
-/* ************************************************************************
-
-   qooxdoo - the new era of web development
-
-   http://qooxdoo.org
-
-   Copyright:
-     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de
-
-   License:
-     MIT: https://opensource.org/licenses/MIT
-     See the LICENSE file in the project's top-level directory for details.
-
-   Authors:
-     * Fabian Jakobs (fjakobs)
-     * Sebastian Werner (wpbasti)
-
-************************************************************************ */
-
-/**
- * This class provides qooxdoo object event support.
- */
-qx.Class.define("qx.event.handler.Object",
-{
-  extend : qx.core.Object,
-  implement : qx.event.IEventHandler,
-
-
-
-
-
-  /*
-  *****************************************************************************
-     STATICS
-  *****************************************************************************
-  */
-
-  statics :
-  {
-    /** @type {Integer} Priority of this handler */
-    PRIORITY : qx.event.Registration.PRIORITY_LAST,
-
-    /** @type {Map} Supported event types */
-    SUPPORTED_TYPES : null,
-
-    /** @type {Integer} Which target check to use */
-    TARGET_CHECK : qx.event.IEventHandler.TARGET_OBJECT,
-
-    /** @type {Integer} Whether the method "canHandleEvent" must be called */
-    IGNORE_CAN_HANDLE : false
-  },
-
-
-
-
-
-  /*
-  *****************************************************************************
-     MEMBERS
-  *****************************************************************************
-  */
-
-  members :
-  {
-    /*
-    ---------------------------------------------------------------------------
-      EVENT HANDLER INTERFACE
-    ---------------------------------------------------------------------------
-    */
-
-    // interface implementation
-    canHandleEvent : function(target, type) {
-      return qx.Class.supportsEvent(target.constructor, type);
-    },
-
-
-    // interface implementation
-    registerEvent : function(target, type, capture) {
-      // Nothing needs to be done here
-    },
-
-
-    // interface implementation
-    unregisterEvent : function(target, type, capture) {
-      // Nothing needs to be done here
-    }
-  },
-
-
-
-
-
-
-  /*
-  *****************************************************************************
-     DEFER
-  *****************************************************************************
-  */
-
-  defer : function(statics) {
-    qx.event.Registration.addHandler(statics);
-  }
-});
-/* ************************************************************************
-
-   qooxdoo - the new era of web development
-
-   http://qooxdoo.org
-
-   Copyright:
-     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de
-
-   License:
-     MIT: https://opensource.org/licenses/MIT
-     See the LICENSE file in the project's top-level directory for details.
-
-   Authors:
-     * Fabian Jakobs (fjakobs)
-
-************************************************************************ */
-
-/**
- * All event dispatchers must implement this interface. Event dispatchers must
- * register themselves at the event Manager using
- * {@link qx.event.Registration#addDispatcher}.
- */
-qx.Interface.define("qx.event.IEventDispatcher",
-{
-  members:
-  {
-    /**
-     * Whether the dispatcher is responsible for the this event.
-     *
-     * @param target {Element|Event} The event dispatch target
-     * @param event {qx.event.type.Event} The event object
-     * @param type {String} the event type
-     * @return {Boolean} Whether the event dispatcher is responsible for the this event
-     */
-    canDispatchEvent : function(target, event, type)
-    {
-      this.assertInstance(event, qx.event.type.Event);
-      this.assertString(type);
-    },
-
-
-    /**
-     * This function dispatches the event to the event listeners.
-     *
-     * @param target {Element|Event} The event dispatch target
-     * @param event {qx.event.type.Event} event object to dispatch
-     * @param type {String} the event type
-     * @return {qx.Promise?} a promise, if one or more of the event handlers returned a promise
-     */
-    dispatchEvent : function(target, event, type)
-    {
-      this.assertInstance(event, qx.event.type.Event);
-      this.assertString(type);
     }
   }
 });
@@ -31635,6 +31445,196 @@ qx.Class.define("qx.event.Utils", {
         }
       }
     })
+  }
+});
+/* ************************************************************************
+
+   qooxdoo - the new era of web development
+
+   http://qooxdoo.org
+
+   Copyright:
+     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+
+   License:
+     MIT: https://opensource.org/licenses/MIT
+     See the LICENSE file in the project's top-level directory for details.
+
+   Authors:
+     * Fabian Jakobs (fjakobs)
+
+************************************************************************ */
+
+/**
+ * Event handler Interface.
+ *
+ * All custom event handler like mouse or keyboard event handler must implement
+ * this interface.
+ */
+qx.Interface.define("qx.event.IEventHandler",
+{
+  statics :
+  {
+    /** @type {Integer} The event target must be a dom node */
+    TARGET_DOMNODE: 1,
+
+    /** @type {Integer} The event target must be a window object */
+    TARGET_WINDOW : 2,
+
+    /** @type {Integer} The event target must be a qooxdoo object */
+    TARGET_OBJECT: 4,
+
+    /** @type {Integer} The event target must be a document node */
+    TARGET_DOCUMENT: 8
+  },
+
+
+  members :
+  {
+    /**
+     * Whether the event handler can handle events of the given type. If the
+     * event handler class has a static variable called <code>IGNORE_CAN_HANDLE</code>
+     * with the value <code>true</code> this function is not called. Whether the
+     * handler can handle the event is them only determined by the static variables
+     * <code>SUPPORTED_TYPES</code> and <code>TARGET_CHECK</code>.
+     *
+     * @param target {var} The target to, which the event handler should
+     *     be attached
+     * @param type {String} event type
+     * @return {Boolean} Whether the event handler can handle events of the
+     *     given type.
+     */
+    canHandleEvent : function(target, type) {},
+
+
+    /**
+     * This method is called each time an event listener, for one of the
+     * supported events, is added using {@link qx.event.Manager#addListener}.
+     *
+     * @param target {var} The target to, which the event handler should
+     *     be attached
+     * @param type {String} event type
+     * @param capture {Boolean} Whether to attach the event to the
+     *         capturing phase or the bubbling phase of the event.
+     */
+    registerEvent : function(target, type, capture) {},
+
+
+    /**
+     * This method is called each time an event listener, for one of the
+     * supported events, is removed by using {@link qx.event.Manager#removeListener}
+     * and no other event listener is listening on this type.
+     *
+     * @param target {var} The target from, which the event handler should
+     *     be removed
+     * @param type {String} event type
+     * @param capture {Boolean} Whether to attach the event to the
+     *         capturing phase or the bubbling phase of the event.
+     */
+    unregisterEvent : function(target, type, capture) {}
+  }
+});
+/* ************************************************************************
+
+   qooxdoo - the new era of web development
+
+   http://qooxdoo.org
+
+   Copyright:
+     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de
+
+   License:
+     MIT: https://opensource.org/licenses/MIT
+     See the LICENSE file in the project's top-level directory for details.
+
+   Authors:
+     * Fabian Jakobs (fjakobs)
+     * Sebastian Werner (wpbasti)
+
+************************************************************************ */
+
+/**
+ * This class provides qooxdoo object event support.
+ */
+qx.Class.define("qx.event.handler.Object",
+{
+  extend : qx.core.Object,
+  implement : qx.event.IEventHandler,
+
+
+
+
+
+  /*
+  *****************************************************************************
+     STATICS
+  *****************************************************************************
+  */
+
+  statics :
+  {
+    /** @type {Integer} Priority of this handler */
+    PRIORITY : qx.event.Registration.PRIORITY_LAST,
+
+    /** @type {Map} Supported event types */
+    SUPPORTED_TYPES : null,
+
+    /** @type {Integer} Which target check to use */
+    TARGET_CHECK : qx.event.IEventHandler.TARGET_OBJECT,
+
+    /** @type {Integer} Whether the method "canHandleEvent" must be called */
+    IGNORE_CAN_HANDLE : false
+  },
+
+
+
+
+
+  /*
+  *****************************************************************************
+     MEMBERS
+  *****************************************************************************
+  */
+
+  members :
+  {
+    /*
+    ---------------------------------------------------------------------------
+      EVENT HANDLER INTERFACE
+    ---------------------------------------------------------------------------
+    */
+
+    // interface implementation
+    canHandleEvent : function(target, type) {
+      return qx.Class.supportsEvent(target.constructor, type);
+    },
+
+
+    // interface implementation
+    registerEvent : function(target, type, capture) {
+      // Nothing needs to be done here
+    },
+
+
+    // interface implementation
+    unregisterEvent : function(target, type, capture) {
+      // Nothing needs to be done here
+    }
+  },
+
+
+
+
+
+
+  /*
+  *****************************************************************************
+     DEFER
+  *****************************************************************************
+  */
+
+  defer : function(statics) {
+    qx.event.Registration.addHandler(statics);
   }
 });
 /* ************************************************************************
