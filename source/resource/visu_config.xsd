@@ -2544,7 +2544,7 @@
       </xsd:simpleType>
     </xsd:attribute>
     <xsd:attribute name="appid" type="xsd:string" use="required" />
-    <xsd:attribute name="description" type="xsd:string" use="required" />
+    <xsd:attribute name="description" type="xsd:string" use="optional" />
     <xsd:attribute name="detailItems" type="xsd:integer" use="optional" />
     <xsd:attribute name="forecast24hItems" type="xsd:integer" use="optional" />
     <xsd:attribute name="forecastDailyItems" type="xsd:integer" use="optional" />

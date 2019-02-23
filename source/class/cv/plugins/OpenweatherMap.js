@@ -24,7 +24,9 @@
  * @author Stefan Borchert (stefan@borchert.cc)
  * @author Matthias
  * @since 0.9.0
- * @asset(plugins/openweathermap/owm/jquery.owm.js,plugins/openweathermap/openweathermap.css)
+ * @asset(plugins/openweathermap/owm_core.js,
+ *        plugins/openweathermap/owm_basic_style.css, 
+ *        plugins/openweathermap/owm_weather_icon.css)
  */
 qx.Class.define('cv.plugins.OpenweatherMap', {
   extend: cv.ui.structure.AbstractBasicWidget,
@@ -187,9 +189,9 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('resource/plugins/openweathermap/owm_basic_style.css');
-    loader.addStyles('resource/plugins/openweathermap/owm_weathericon.css');
-    loader.addScripts('resource/plugins/openweathermap/owm_core.js');
+    loader.addStyles('plugins/openweathermap/owm_basic_style.css');
+    loader.addStyles('plugins/openweathermap/owm_weathericon.css');
+    loader.addScripts('plugins/openweathermap/owm_core.js');
     // register the parser
     cv.parser.WidgetParser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
     cv.ui.structure.WidgetFactory.registerClass("openweathermap", statics);
