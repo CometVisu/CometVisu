@@ -5,7 +5,6 @@
       <plugin name="colorchooser"/>
       <plugin name="diagram"/>
       <plugin name="strftime"/>
-      <plugin name="openweathermap"/>
     </plugins>
     <mappings>
       <mapping name="Close_Open">
@@ -1356,17 +1355,6 @@
       <strftime lang="de" format="%A, %d. %B %Y %H:%M:%S">
         <layout colspan="0"/>
       </strftime>
-    </page>
-    <page name="Wetter PlugIN">
-      <text>
-        <label>Openweather - PlugIn</label>
-      </text>
-      <line>
-        <layout colspan="12"/>
-      </line>
-      <group name="Wettervorhersage" class="container weather-forecast element">
-        <openweathermap detailItems="1" forecast24hItems="8" forecastDailyItems="4" showSunrise="true" description="" lang="de" q="Stuttgart,de" refresh="360" appid="d3c50bedaad1a085f4d6627ff4be3bbc"/>
-      </group>
     </page>
   </page>
 </pages>

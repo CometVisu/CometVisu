@@ -1877,22 +1877,29 @@
     </xsd:attribute>
   </xsd:complexType>
 
+  <!-- OWM PlugIn -->
   <xsd:complexType name="openweathermap">
-    <xsd:sequence>
-      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
-    </xsd:sequence>
-    <xsd:attribute ref="class" use="optional" />
-    <xsd:attribute name="lang" type="xsd:string" use="optional" />
+    <xsd:attribute name="lang" use="optional">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="en" />
+          <xsd:enumeration value="de" />
+          <xsd:enumeration value="fr" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="appid" type="xsd:string" use="required" />
+    <xsd:attribute name="description" type="xsd:string" use="optional" />
+    <xsd:attribute name="detailItems" type="xsd:integer" use="optional" />
+    <xsd:attribute name="forecast24hItems" type="xsd:integer" use="optional" />
+    <xsd:attribute name="forecastDailyItems" type="xsd:integer" use="optional" />
+    <xsd:attribute name="showSunrise" type="xsd:string" use="optional" />
+    <xsd:attribute name="owID" type="xsd:string" use="optional" />
     <xsd:attribute name="q" type="xsd:string" use="optional" />
     <xsd:attribute name="lat" type="xsd:string" use="optional" />
     <xsd:attribute name="lon" type="xsd:string" use="optional" />
-    <xsd:attribute name="units" type="xsd:string" use="optional" />
-    <xsd:attribute name="type" type="xsd:string" use="optional" />
-    <xsd:attribute name="forecastItems" type="xsd:string" use="optional" />
-    <xsd:attribute name="detailItems" type="xsd:string" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
-    <xsd:attribute name="appid" type="xsd:string" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="powerspectrum">

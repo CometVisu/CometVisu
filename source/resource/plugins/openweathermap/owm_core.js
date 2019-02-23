@@ -125,7 +125,7 @@ var jOWM = jOWM || {};
 
 
         // Load location data.
-        $.getJSON(options.baseURL + 'weather?' + paramsDefault.join('&'), function (data) {
+        _request(options.baseURL + 'weather?' + paramsDefault.join('&'), function (data) {
             if (data.cod == 200) {
                 // Load sunrise/sunset/cityname
                 options.sunrise = data.sys.sunrise;
@@ -169,7 +169,7 @@ var jOWM = jOWM || {};
             // Detailed items are disabled.
             return;
         }
-        $.getJSON(url, function (data) {
+        _request(url, function (data) {
             if (data.cod == 200) {
 
                 $item = $('<li>');
@@ -206,7 +206,7 @@ var jOWM = jOWM || {};
             // Forecast is disabled.
             return;
         }
-        $.getJSON(url, function (data) {
+        _request(url, function (data) {
             if (data.cod == 200) {
                 var dataItems = data.list;
                 $.each(dataItems, function (index, elem) {
@@ -246,7 +246,7 @@ var jOWM = jOWM || {};
             // Forecast is disabled.
             return;
         }
-        $.getJSON(url, function (data) {
+        _request(url, function (data) {
             if (data.cod == 200) {
                 var dataItems = data.list;
                 //create Daily Data out of json
@@ -374,7 +374,24 @@ var jOWM = jOWM || {};
             items.push('appid=' + options.appid);
         }
         return items;
-    }
+    };
+
+    var _request = function (url, callback) {
+       var req = new qx.io.request.Xhr(url);
+       req.setAccept("application/json");
+       req.addListener("success", function (ev) {
+           var req = ev.getTarget();
+           var data = req.getResponse();
+           if (qx.lang.Type.isString(data)) {
+               data = qx.lang.Json.parse(data);
+           }
+           callback(data);
+       }, this);
+       req.addListener("error", function (ev) {
+           console.log('error requesting', url, ev.getData());
+       }, this);
+       req.send();
+    };
 
     /**
      * Generic theme function.
@@ -433,7 +450,7 @@ var jOWM = jOWM || {};
     jOWM.theme.prototype.weatherForecastDailyItem = function (data, options) {
 
         var weather = data.weather[0];
-        var output = '<div class="weather-forecast weather-' + weather.id + ' clearfix">';
+        var output = '<div class="weather-forecast weather-' + weather.id + ' ">';
         output += ' <div class="day">' + data.day + '</div>';
         output += ' <div class="weather-icon" data-weather-text="' + weather.description + '" data-weather-code="' + weather.id + '"></div>';
         output += ' <div class="temperature high">' + jOWM.theme('weatherTemperature', data.max_temp, 0, ' °C') + '</div>';

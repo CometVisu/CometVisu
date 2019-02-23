@@ -623,7 +623,6 @@
           </switch>
         </group>
       </group>
-
     </page>
     <page name="Heizung" type="2d" backdrop="demo/media/demo_2d_backdrop_red_pot.svg" visible="false">
       <slide format="%.0f" class="noborder">
@@ -632,10 +631,10 @@
         <address transform="DPT:5.001">12/7/52</address>
       </slide>
     </page>
-    <page name="Wetter" type="2d" visible="false">
+    <page name="Wetter" visible="false">
       <group name="Wettervorhersage" class="container weather-forecast element">
-        <layout colspan="8"/>
-        <openweathermap detailItems="1" forecast24hItems="8" forecastDailyItems="4" showSunrise="true" description="" lang="de" q="Stuttgart,de" refresh="360" appid="d3c50bedaad1a085f4d6627ff4be3bbc"/>
+        <layout colspan="6"/>
+        <openweathermap detailItems="1" forecast24hItems="8" forecastDailyItems="4" showSunrise="true" lang="de" q="Stuttgart,de" refresh="360" appid="fake-app-id"/>
       </group>
     </page>
   </page>
