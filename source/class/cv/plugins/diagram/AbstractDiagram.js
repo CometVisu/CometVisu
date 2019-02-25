@@ -582,7 +582,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         });
       }
       if (this.getTooltip()) {
-        qx.lang.Object.mergeWith(options, {grid: {hoverable: true, clickable: true}});
+        options.grid.hoverable = true;
+        options.grid.clickable = true;
       }
 
       if (!isPopup && !this.getPreviewlabels()) {
