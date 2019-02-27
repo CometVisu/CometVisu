@@ -295,11 +295,11 @@ module.exports = function(grunt) {
         createTag: true,
         tagName: 'v%VERSION%',
         tagMessage: 'Version %VERSION%',
-        push: true,
+        push: 'tag',
         pushTo: 'upstream',
         gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
         globalReplace: false,
-        prereleaseName: "rc",
+        prereleaseName: "RC",
         metadata: '',
         regExp: false
       }
@@ -531,6 +531,21 @@ module.exports = function(grunt) {
     });
 
     var filename = 'build/index.html';
+    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+    grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
+  });
+
+  grunt.registerTask('update-demo-config-source', function() {
+    [
+      'source/resource/demo/visu_config_demo.xml',
+      'source/resource/demo/visu_config_2d3d.xml',
+      'source/resource/demo/visu_config_demo_testmode.xml'
+    ].forEach(function (filename) {
+      var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+      grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
+    });
+
+    var filename = 'source/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });

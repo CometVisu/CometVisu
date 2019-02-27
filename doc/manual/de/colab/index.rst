@@ -350,31 +350,31 @@ ausformuliert sind.
     oder auf `Gitter <https://gitter.im/CometVisu/CometVisu_DE>`__ um Rat gefragt werden.
 
 
-Fehlerberichte mit Log-Dateien
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Fehlerberichte mit Replay-Dateien
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Ab Version 0.11.0 steht eine zusätzliche Möglichkeit zur Verfügung, den Entwicklern die Fehlersuche zu erleichtern
 und die Fehlerberichte zu verbessern. Benutzer können das Verhalten der CometVisu aufzeichnen und eine sogenannte
-Log-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).
+Replay-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).
 
 .. HINT::
 
-    Sie Aufzeichnung der Log-Dateien kann mit dem URL-Parameter ``reporting=true`` aktiviert werden
-    (siehe: :ref:`URL-Parameter <reporting>`). Sobald man den Fehler nachgestellt hat, kann die Logdatei durch Eingabe
+    Sie Aufzeichnung der Replay-Dateien kann mit dem URL-Parameter ``reporting=true`` aktiviert werden
+    (siehe: :ref:`URL-Parameter <reporting>`). Sobald man den Fehler nachgestellt hat, kann die Replay-Datei durch Eingabe
     des Befehls ``downloadLog()`` in der Browserkonsole (öffnen mit F12-Taste) heruntergeladen werden.
-    Neben dem automatischen Download der Logdatei, wird der Inhalt des Logs ebenfalls auf der Konsole
-    ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.
+    Neben dem automatischen Download der Datei, wird der Inhalt ebenfalls auf der Konsole
+    ausgegeben. So kann man kontrollieren, welche Daten enthalten sind.
 
-Die Log-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
-( z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
+Die Replay-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
+(z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
 Eventuell ist es daher ratsam, denn Fehler mit einer abgewandelten Konfigurationsdatei zu erstellen, die z.B. keine
 sensiblen Daten enthält.
-Der große Vorteil dieser Log-Dateien ist aber, dass die Entwickler beim Abspielen dieser Logs eine originalgetreue
-Nachbildung des Benutzersystems sehen und somit in der Regel auch direkt den Fehler sehen, diesen beheben und direkt
-testen können ob die Fehlerkorrektur auch wirkt.
+Der große Vorteil dieser replay-Dateien ist aber, dass die Entwickler beim Abspielen eine originalgetreue
+Nachbildung des Benutzersystems haben und somit in der Regel auch direkt den Fehler sehen, diesen beheben und direkt
+testen können, ob die Fehlerkorrektur auch wirkt.
 
-Natürlich gibt es auch Einschränkungen, denn nicht alles kann durch die Log-Dateien aufgezeichnet werden.
+Natürlich gibt es auch Einschränkungen, denn nicht alles kann durch die Replay-Dateien aufgezeichnet werden.
 Wenn ein Nutzer z.B. die vorhandenen Designs angepasst hat, eigene Icons/Bilder benutzt, die nicht Teil der
-CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil des Logs sind.
+CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil der Aufzeichnung sind.
 
 .. [RST-Wiki] https://de.wikipedia.org/wiki/ReStructuredText
