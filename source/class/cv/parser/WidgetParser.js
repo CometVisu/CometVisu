@@ -59,9 +59,9 @@ qx.Class.define('cv.parser.WidgetParser', {
         }, this);
 
         if (this.__templates.hasOwnProperty(templateName)) {
-          var renderedString = qx.bom.Template.render(this.__templates[templateName], variables);
+          var renderedString = qx.bom.Template.render(this.__templates[templateName], variables).replace('\n', '').trim();
           var div = document.createElement('div');
-          div.innerHTML = renderedString.substring(6, renderedString.length - 7);
+          qx.bom.element.Attribute.set(div, 'html', renderedString.substring(6, renderedString.length - 7).trim());
           // replace existing element with the rendered template (without <root> </root>)
           elem.parentNode.replaceChild(div.firstChild, elem);
         }
