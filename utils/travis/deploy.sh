@@ -101,6 +101,7 @@ ${CV} sitemap
 echo "generating test mode build"
 source temp-python/bin/activate
 ./generate.py build --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
+grunt update-demo-config
 rm -rf out/de/$VERSION_PATH/demo
 mv build out/de/$VERSION_PATH/demo
 
@@ -108,7 +109,10 @@ mv build out/de/$VERSION_PATH/demo
 cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
 
 echo "generating test mode source version"
+
 ./generate.py source-hybrid-error --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
+grunt update-demo-config-source
+
 rm -rf out/de/$VERSION_PATH/demo-source
 mkdir -p out/de/$VERSION_PATH/demo-source/client/source/class/cv/
 mkdir -p out/de/$VERSION_PATH/demo-source/source/

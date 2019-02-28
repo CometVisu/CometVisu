@@ -3,6 +3,23 @@
 0.11.0
 ======
 
+### v0.11.0-RC3 (2019/02/18 21:22 +00:00)
+- [#873](https://github.com/CometVisu/CometVisu/pull/873) Merge current state of release 0.11 code back to develop (@ChristianMayer)
+- [#872](https://github.com/CometVisu/CometVisu/pull/872) update version hints in demo mode (@peuter)
+- [#871](https://github.com/CometVisu/CometVisu/pull/871) update version hints in demo mode (@peuter)
+- [#870](https://github.com/CometVisu/CometVisu/pull/870) Place RSSLOG database file in the config/media directory (@ChristianMayer)
+- [#869](https://github.com/CometVisu/CometVisu/pull/869) init active state on load (@peuter)
+- [#867](https://github.com/CometVisu/CometVisu/pull/867) fix doc version path links if they differ from the real version name (@peuter)
+- [#868](https://github.com/CometVisu/CometVisu/pull/868) Feature close popups (@peuter)
+- [#866](https://github.com/CometVisu/CometVisu/pull/866) fix the listener id generation and the update listeners callback para… (@peuter)
+- [#865](https://github.com/CometVisu/CometVisu/pull/865) close popups when the corresponding page is left. (@peuter)
+- [#863](https://github.com/CometVisu/CometVisu/pull/863) Fix demo flat (@ChristianMayer)
+- [#861](https://github.com/CometVisu/CometVisu/pull/861) Sync Develop with Release 0.11.0-RC1 (@peuter, @ChristianMayer)
+
+### v0.11.0-RC2 (2019/02/16 18:19 +00:00)
+- [#859](https://github.com/CometVisu/CometVisu/pull/859) fix address regex (@peuter)
+- [#860](https://github.com/CometVisu/CometVisu/pull/860) make sure that record logs are not confused with console debug log messages (@peuter)
+
 ### 0.11.0-RC1 (2019/02/07 06:47 +00:00)
 - [#858](https://github.com/CometVisu/CometVisu/pull/858) Better handling of version tags (@ChristianMayer)
 - [#856](https://github.com/CometVisu/CometVisu/pull/856) Prepare 0.11.0 release: change log and icons (@ChristianMayer)
