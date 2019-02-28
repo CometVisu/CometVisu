@@ -112,8 +112,8 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
       var markPageJumps = function(parentName, elem) {
         var data = model.getWidgetDataByElement(elem);
         if (parentName === data.target || (data.activeScope === "path" && (
-            data.path && data.path.match(parentName + "$") ||
-          data.targetPath && data.targetPath.match(parentName + "$"))
+            qx.lang.Type.isString(data.path) && data.path.match(parentName + "$") ||
+            qx.lang.Type.isString(data.targetPath) && data.targetPath.match(parentName + "$"))
         )) {
           qx.bom.element.Class.add(elem, 'active_ancestor');
         }
