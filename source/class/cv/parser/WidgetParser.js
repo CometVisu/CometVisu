@@ -60,8 +60,10 @@ qx.Class.define('cv.parser.WidgetParser', {
 
         if (this.__templates.hasOwnProperty(templateName)) {
           var renderedString = qx.bom.Template.render(this.__templates[templateName], variables);
+          var div = document.createElement('div');
+          div.innerHTML = renderedString.substring(6, renderedString.length - 7);
           // replace existing element with the rendered template (without <root> </root>)
-          elem.outerHTML = renderedString.substring(6, renderedString.length - 7);
+          elem.parentNode.replaceChild(div.firstChild, elem);
         }
       }, this);
     },
