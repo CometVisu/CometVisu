@@ -25,6 +25,7 @@
     "source",
     "source-all",
     "source-hybrid",
+    "source-hybrid-error",
     "source-server",
     "source-error",
     "source-server-reload",
@@ -313,6 +314,17 @@
     "source-hybrid" :
     {
       "extend" : [ "parts-config" ]
+    },
+
+    "source-hybrid-error" :
+    {
+      "extend" : [ "source-hybrid" ],
+      "environment" :
+      {
+        "cv.build": "source",
+        "cv.sentry": true,
+        "qx.globalErrorHandling": true
+      }
     },
 
     "update-version": {
