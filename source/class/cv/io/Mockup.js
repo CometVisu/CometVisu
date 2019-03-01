@@ -103,6 +103,9 @@ qx.Class.define('cv.io.Mockup', {
             if (cv.Config.initialDemoData.xhr) {
               this.__xhr = cv.Config.initialDemoData.xhr;
               // configure server
+              qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
+                return url.startsWith('https://sentry.io');
+              }, this);
               var server = qx.dev.FakeServer.getInstance().getFakeServer();
               server.respondWith(function (request) {
                 var url = cv.report.Record.normalizeUrl(request.url);
