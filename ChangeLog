@@ -3,7 +3,8 @@
 0.11.0
 ======
 
-### v0.11.0-RC4 (2019/03/02 12:55 +00:00)
+### v0.11.0-RC4 (2019/03/02 14:12 +00:00)
+- [#886](https://github.com/CometVisu/CometVisu/pull/886) disable caching for schema and config files in text editor. Fixes pro… (@peuter)
 - [#884](https://github.com/CometVisu/CometVisu/pull/884) include inobounce script from https://github.com/lazd/iNoBounce to di… (@peuter)
 - [#883](https://github.com/CometVisu/CometVisu/pull/883) delay backdrop validation when this.width === this.height === 0. Fixe… (@peuter)
 - [#882](https://github.com/CometVisu/CometVisu/pull/882) fix wrong overflow declaration (which broke the scrolling behaviour o… (@peuter)
