@@ -1,0 +1,1 @@
+{"attributes": {"fullName": "qx.event.type.Tap", "packageName": "qx.event.type", "type": "class", "name": "Tap", "superClass": "qx.event.type.Pointer"}, "type": "class", "children": [{"attributes": {"text": "<p>Tap is a single pointer gesture fired when one pointer goes down and up on\nthe same location.</p>"}, "type": "desc"}]}
