@@ -135,6 +135,9 @@
         },
         {
           "uri" : "resource/libs/favico.js"
+        },
+        {
+          "uri" : "resource/libs/inobounce.min.js"
         }
       ],
       "copy-files" :
