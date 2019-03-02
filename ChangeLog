@@ -3,8 +3,18 @@
 0.11.0
 ======
 
-### v0.11.0-RC3 (2019/02/18 21:22 +00:00)
-- [#873](https://github.com/CometVisu/CometVisu/pull/873) Merge current state of release 0.11 code back to develop (@ChristianMayer)
+### v0.11.0-RC4 (2019/03/02 12:55 +00:00)
+- [#884](https://github.com/CometVisu/CometVisu/pull/884) include inobounce script from https://github.com/lazd/iNoBounce to di… (@peuter)
+- [#883](https://github.com/CometVisu/CometVisu/pull/883) delay backdrop validation when this.width === this.height === 0. Fixe… (@peuter)
+- [#882](https://github.com/CometVisu/CometVisu/pull/882) fix wrong overflow declaration (which broke the scrolling behaviour o… (@peuter)
+- [#879](https://github.com/CometVisu/CometVisu/pull/879) no undefined checks because the values might be null, fixes error whe… (@peuter)
+- [#881](https://github.com/CometVisu/CometVisu/pull/881) add filter to allow sentry.io XHR requests in mockup mode. (@peuter)
+- [#878](https://github.com/CometVisu/CometVisu/pull/878) Fix template parser (@peuter)
+- [#880](https://github.com/CometVisu/CometVisu/pull/880) enable sentry reports in demo-source (@ChristianMayer, @peuter)
+- [#877](https://github.com/CometVisu/CometVisu/pull/877) do not override grid settings when tooltip is enabled (@peuter)
+
+### v0.11.0-RC3 (2019/02/18 21:29 +00:00)
+- [#875](https://github.com/CometVisu/CometVisu/pull/875) Make sure elements are correctly positioned after page switch (@ChristianMayer)
 - [#872](https://github.com/CometVisu/CometVisu/pull/872) update version hints in demo mode (@peuter)
 - [#871](https://github.com/CometVisu/CometVisu/pull/871) update version hints in demo mode (@peuter)
 - [#870](https://github.com/CometVisu/CometVisu/pull/870) Place RSSLOG database file in the config/media directory (@ChristianMayer)
