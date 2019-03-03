@@ -159,18 +159,21 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }, this);
 
       qx.bom.Selector.query("influx,rrd", xmlElement).forEach(function(elem) {
-        var src = elem.tagName === 'rrd' ? qx.dom.Node.getText(elem) : elem.getAttribute('measurement');
+        var
+          src = elem.tagName === 'rrd' ? qx.dom.Node.getText(elem) : elem.getAttribute('measurement'),
+          steps = (elem.getAttribute("steps") || "false") === "true",
+          fillMissing = elem.getAttribute('fillMissing');
         retVal.ts[retVal.tsnum] = {
           tsType    : elem.tagName,
           src       : src,
           color     : elem.getAttribute('color'),
           label     : elem.getAttribute('label') || src,
           axisIndex : axesNameIndex[elem.getAttribute('yaxis')] || 1,
-          steps     : (elem.getAttribute("steps") || "false") === "true",
+          steps     : steps,
           fill      : (elem.getAttribute("fill") || "false") === "true",
           scaling   : parseFloat(elem.getAttribute('scaling')) || 1.0,
           cFunc     : elem.getAttribute('consolidationFunction') || (elem.tagName === 'rrd' ? 'AVERAGE' : 'MEAN'),
-          fillTs    : elem.getAttribute('fillMissing') || '',
+          fillTs    : (fillMissing === null) ? (steps ? 'previous' : 'linear') : fillMissing,
           resol     : parseInt(elem.getAttribute('resolution')),
           offset    : parseInt(elem.getAttribute('offset')),
           style     : elem.getAttribute('style') || "lines",
