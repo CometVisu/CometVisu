@@ -163,7 +163,6 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           src = elem.tagName === 'rrd' ? qx.dom.Node.getText(elem) : elem.getAttribute('measurement'),
           steps = (elem.getAttribute("steps") || "false") === "true",
           fillMissing = elem.getAttribute('fillMissing');
-        console.log('fillMissing', elem.getAttribute('fillMissing'));
         retVal.ts[retVal.tsnum] = {
           tsType    : elem.tagName,
           src       : src,
