@@ -305,6 +305,15 @@
       ]
     },
 
+    "source-script": {
+      "compile-options" :
+      {
+        "paths" :
+        {
+          "loader-template": "${SOURCE_PATH}/loader/loader.tmpl.js"}
+      }
+    },
+
     "source-error": {
       "extend" : [ "source" ],
       "environment" :
@@ -317,7 +326,13 @@
 
     "source-hybrid" :
     {
-      "extend" : [ "parts-config" ]
+      "extend" : [ "parts-config" ],
+      "compile-options" :
+      {
+        "paths" :
+        {
+          "loader-template": "${SOURCE_PATH}/loader/loader.tmpl.js"}
+      }
     },
 
     "source-hybrid-error" :
@@ -413,7 +428,8 @@
       {
         "paths" :
         {
-          "file" : "${BUILD_PATH}/script/${APPLICATION}-{engine.name}.js"
+          "file" : "${BUILD_PATH}/script/${APPLICATION}-{engine.name}.js",
+          "loader-template": "${SOURCE_PATH}/loader/loader.tmpl.js"
         }
       }
     },
