@@ -45,6 +45,8 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     height: 0,
     __initial: true,
 
+    __backdropRetries: 0,
+
     validationQueue: [],
 
     reset: function() {
@@ -120,84 +122,99 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       if ('2d' === page.getPageType()) {
         var
           cssPosRegEx = /(\d*)(.*)/,
-          backdrop = qx.bom.Selector.query("div > "+page.getBackdropType(), page.getDomElement())[0],
-          backdropSVG = page.getBackdropType() === 'embed' ? backdrop.getSVGDocument() : null,
-          backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {},
-          backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.width,
-          backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.height,
-          backdropScale = Math.min(this.width / backdropNWidth, this.height / backdropNHeight),
-          backdropWidth = backdropNWidth * backdropScale,
-          backdropHeight = backdropNHeight * backdropScale,
-          backdropPos = page.getBackdropAlign().split(' '),
-          backdropLeftRaw = backdropPos[0].match(cssPosRegEx),
-          backdropTopRaw = backdropPos[1].match(cssPosRegEx),
-          backdropLeft = backdropLeftRaw[2] === '%' ? (this.width > backdropWidth ? ((this.width - backdropWidth ) * (+backdropLeftRaw[1]) / 100) : 0) : +backdropLeftRaw[1],
-          backdropTop = backdropTopRaw[2] === '%' ? (this.height > backdropHeight ? ((this.height - backdropHeight) * (+backdropTopRaw[1] ) / 100) : 0) : +backdropTopRaw[1],
-          uagent = navigator.userAgent.toLowerCase();
+          backdrop = qx.bom.Selector.query("div > "+page.getBackdropType(), page.getDomElement())[0];
+        try {
+          var backdropSVG = page.getBackdropType() === 'embed' ? backdrop.getSVGDocument() : null;
+          var backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {},
+            backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.width,
+            backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.height,
+            backdropScale = Math.min(this.width / backdropNWidth, this.height / backdropNHeight),
+            backdropWidth = backdropNWidth * backdropScale,
+            backdropHeight = backdropNHeight * backdropScale,
+            backdropPos = page.getBackdropAlign().split(' '),
+            backdropLeftRaw = backdropPos[0].match(cssPosRegEx),
+            backdropTopRaw = backdropPos[1].match(cssPosRegEx),
+            backdropLeft = backdropLeftRaw[2] === '%' ? (this.width > backdropWidth ? ((this.width - backdropWidth ) * (+backdropLeftRaw[1]) / 100) : 0) : +backdropLeftRaw[1],
+            backdropTop = backdropTopRaw[2] === '%' ? (this.height > backdropHeight ? ((this.height - backdropHeight) * (+backdropTopRaw[1] ) / 100) : 0) : +backdropTopRaw[1],
+            uagent = navigator.userAgent.toLowerCase();
 
-        if (backdrop.complete === false || (page.getBackdropType() === 'embed' && backdropSVG === null)) {
-          // backdrop not available yet - reload
-          qx.event.Timer.once(this.invalidateBackdrop, this, 100);
-          return;
-        }
+          if (backdrop.complete === false ||
+            (page.getBackdropType() === 'embed' && backdropSVG === null) ||
+            (backdropBBox.width === 0 && backdropBBox.height === 0) ||
+            (this.width === 0 && this.height === 0)
+          ) {
+            // backdrop not available yet - reload
+            qx.event.Timer.once(this.invalidateBackdrop, this, 100);
+            return;
+          }
 
-        // Note 1: this here is a work around for older browsers that can't use
-        // the object-fit property yet.
-        // Currently (26.05.16) only Safari is known to not support
-        // object-position although object-fit itself does work
-        // Note 2: The embed element allways needs it
-        if (
-          page.getBackdropType() === 'embed' ||
-          ( uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1 )
-        ) {
-          qx.bom.element.Style.setStyles(backdrop, {
-            width: backdropWidth + 'px',
-            height: backdropHeight + 'px',
-            left: backdropLeft + 'px',
-            top: backdropTop + 'px'
-          });
-        }
+          // Note 1: this here is a work around for older browsers that can't use
+          // the object-fit property yet.
+          // Currently (26.05.16) only Safari is known to not support
+          // object-position although object-fit itself does work
+          // Note 2: The embed element allways needs it
+          if (
+            page.getBackdropType() === 'embed' ||
+            ( uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1 )
+          ) {
+            qx.bom.element.Style.setStyles(backdrop, {
+              width: backdropWidth + 'px',
+              height: backdropHeight + 'px',
+              left: backdropLeft + 'px',
+              top: backdropTop + 'px'
+            });
+          }
 
-        qx.bom.Selector.query('.widget_container', page.getDomElement()).forEach(function (widgetContainer) {
-          var widget = cv.ui.structure.WidgetFactory.getInstanceById(widgetContainer.id);
-          var value;
-          var layout = widget.getResponsiveLayout();
-          var scale = backdropScale;
-          if (layout) {
-            // this assumes that a .widget_container has only one child and this
-            // is the .widget itself
-            var style = widgetContainer.children[0].style;
-            if (layout.scale === 'false') {
-              scale = 1.0;
-            }
+          qx.bom.Selector.query('.widget_container', page.getDomElement()).forEach(function (widgetContainer) {
+            var widget = cv.ui.structure.WidgetFactory.getInstanceById(widgetContainer.id);
+            var value;
+            var layout = widget.getResponsiveLayout();
+            var scale = backdropScale;
+            if (layout) {
+              // this assumes that a .widget_container has only one child and this
+              // is the .widget itself
+              var style = widgetContainer.children[0].style;
+              if (layout.scale === 'false') {
+                scale = 1.0;
+              }
 
-            if ('x' in layout) {
-              value = layout.x.match(cssPosRegEx);
-              if ('px' === value[2]) {
-                style.left = (backdropLeft + value[1] * scale) + 'px';
-              } else {
-                style.left = layout.x;
+              if ('x' in layout) {
+                value = layout.x.match(cssPosRegEx);
+                if ('px' === value[2]) {
+                  style.left = (backdropLeft + value[1] * scale) + 'px';
+                } else {
+                  style.left = layout.x;
+                }
+              }
+
+              if ('y' in layout) {
+                value = layout.y.match(cssPosRegEx);
+                if ('px' === value[2]) {
+                  style.top = (backdropTop + value[1] * scale) + 'px';
+                } else {
+                  style.top = layout.y;
+                }
+              }
+
+              if ('width' in layout) {
+                style.width = layout.width;
+              }
+
+              if ('height' in layout) {
+                style.height = layout.height;
               }
             }
-
-            if ('y' in layout) {
-              value = layout.y.match(cssPosRegEx);
-              if ('px' === value[2]) {
-                style.top = (backdropTop + value[1] * scale) + 'px';
-              } else {
-                style.top = layout.y;
-              }
-            }
-
-            if ('width' in layout) {
-              style.width = layout.width;
-            }
-
-            if ('height' in layout) {
-              style.height = layout.height;
+          }, this);
+          this.__backdropRetries = 0;
+        } catch (e) {
+          if (e.name === 'NotSupportedError') {
+            if (this.__backdropRetries <= 5) {
+              qx.bom.AnimationFrame.request(this.__makeBackdropValid, this);
+              this.__backdropRetries++;
             }
           }
-        }, this);
+          qx.log.Logger.error(this, e);
+        }
       }
 
       this.states.setBackdropInvalid(false);

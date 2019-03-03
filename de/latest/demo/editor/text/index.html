@@ -85,10 +85,11 @@
           configSuffix = "_"+parts[1];
         }
       });
+      var noCacheSuffix = '?' + Date.now();
 
       require([
-        'xml!*../../resource/visu_config.xsd',
-        'xml!*../../resource/config/visu_config'+configSuffix+'.xml',
+        'xml!*../../resource/visu_config.xsd' + noCacheSuffix,
+        'xml!*../../resource/config/visu_config'+configSuffix+'.xml' + noCacheSuffix,
         'vs/editor/editor.main'], function(schema, code) {
 
         worker.postMessage(["openFile", {

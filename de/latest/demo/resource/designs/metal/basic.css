@@ -288,7 +288,8 @@ body br
 #pages  > .page
 {
   float:left;
-  overflow: hidden auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   padding-left: 1px;
 }
