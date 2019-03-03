@@ -3,6 +3,10 @@
 0.11.0
 ======
 
+### v0.11.0-RC5 (2019/03/03 21:17 +00:00)
+- [#893](https://github.com/CometVisu/CometVisu/pull/893) Optimize Influx data handling when not all dates are set (@ChristianMayer)
+- [#891](https://github.com/CometVisu/CometVisu/pull/891) Fix iPad scroll during turning (@ChristianMayer)
+
 ### v0.11.0-RC4 (2019/03/02 14:12 +00:00)
 - [#886](https://github.com/CometVisu/CometVisu/pull/886) disable caching for schema and config files in text editor. Fixes pro… (@peuter)
 - [#884](https://github.com/CometVisu/CometVisu/pull/884) include inobounce script from https://github.com/lazd/iNoBounce to di… (@peuter)
