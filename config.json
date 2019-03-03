@@ -155,6 +155,7 @@
           "resource/libs/strftime.js",
           "resource/libs/favico.js",
           "resource/sentry/bundle.min.js",
+          "resource/libs/inobounce.min.js",
           "editor",
           "upgrade",
           "check_config.php",
