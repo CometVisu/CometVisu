@@ -22,11 +22,8 @@
  * This plugins integrates OpenWeatherMap data.
  *
  * @author Stefan Borchert (stefan@borchert.cc)
- * @author Matthias
  * @since 0.9.0
- * @asset(plugins/openweathermap/owm_core.js,
- *        plugins/openweathermap/owm_basic_style.css, 
- *        plugins/openweathermap/owm_weathericon.css)
+ * @asset(plugins/openweathermap/owm/jquery.owm.js,plugins/openweathermap/openweathermap.css)
  */
 qx.Class.define('cv.plugins.OpenweatherMap', {
   extend: cv.ui.structure.AbstractBasicWidget,
@@ -78,18 +75,14 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       return {
         'class': { target: 'cssClass' },
         'lang':   { },
-        'owID':  { },
         'q':   { },
         'lat':   { },
         'lon':   { },
         'units':   { },
         'type':   { },
-        'forecast24hItems':   { },
-        'forecastDailyItems':   { },
+        'forecastItems':   { },
         'detailItems':   { },
-        'showSunrise': { },
-        'appid':   { },
-        'description':   { }
+        'appid':   { }
       };
     }
   },
@@ -105,10 +98,6 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       nullable: true
     },
     lang: {
-      check: "String",
-      nullable: true
-    },
-    owID: {
       check: "String",
       nullable: true
     },
@@ -132,15 +121,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       check: "String",
       nullable: true
     },
-    forecast24hItems: {
-      check: "String",
-      nullable: true
-    },
-    forecastDailyhItems: {
-      check: "String",
-      nullable: true
-    },
-    showSunrise: {
+    forecastItems: {
       check: "String",
       nullable: true
     },
@@ -149,10 +130,6 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       nullable: true
     },
     appid: {
-      check: "String",
-      nullable: true
-    },
-    description: {
       check: "String",
       nullable: true
     }
@@ -189,9 +166,8 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('plugins/openweathermap/owm_basic_style.css');
-    loader.addStyles('plugins/openweathermap/owm_weathericon.css');
-    loader.addScripts('plugins/openweathermap/owm_core.js');
+    loader.addStyles('plugins/openweathermap/openweathermap.css');
+    loader.addScripts('plugins/openweathermap/owm/jquery.owm.js');
     // register the parser
     cv.parser.WidgetParser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
     cv.ui.structure.WidgetFactory.registerClass("openweathermap", statics);

@@ -175,29 +175,17 @@ html .page .widget.multitrigger.custom_one-line .actor_container {
     margin-bottom: -1px;
 }
 
-.page.type_text .clearfix.weather-forecast .clearfix {
-    display: block !important;
-}
-
-.page.type_text .clearfix.weather-forecast .clearfix .widget_container.jowm .weather-forecast {
-    margin: 0 .5rem;
-}
-
 .page.type_text > .clearfix > .widget_container[data-type="navbar"] {
     display: none;
 }
 
-.page.type_text > .clearfix .widget_container:not(.jowm) {
+.page.type_text > .clearfix .widget_container {
     float: none;
     width: auto !important;
 }
 
 .page.type_text > .clearfix .widget_container.width-100 {
     grid-column-end: span 12;
-}
-
-.page.type_text > .clearfix .widget_container.width-75 {
-    grid-column-end: span 9;
 }
 
 .page.type_text > .clearfix .widget_container.width-50 {
