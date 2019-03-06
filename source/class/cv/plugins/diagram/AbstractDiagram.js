@@ -505,7 +505,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       this.initDiagram( true );
 
-      this._startRefresh(this._timerPopup);
+      this._startRefresh(this._timerPopup, true);
     },
 
     initDiagram: function( isPopup ) {
