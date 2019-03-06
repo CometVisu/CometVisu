@@ -107,7 +107,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
             this.initDiagram(false);
           }
           // start refreshing when page is entered
-          this._startRefresh(this._timer);
+          this._startRefresh(this._timer, true);
         }, this);
 
         // initialize the diagram but don't make the initialization process wait for it
