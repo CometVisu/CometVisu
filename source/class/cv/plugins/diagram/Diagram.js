@@ -101,7 +101,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
           }
         }, this);
 
-        broker.subscribe("path." + pageId + ".appear", function () {
+        broker.subscribe("page." + pageId + ".appear", function () {
           // create diagram when it's not already existing
           if (this._init) {
             this.initDiagram(false);
