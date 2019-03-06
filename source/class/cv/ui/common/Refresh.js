@@ -36,7 +36,8 @@ qx.Mixin.define("cv.ui.common.Refresh", {
 
     // Stop the while invisible
     this.addListener("changeVisible", function(ev) {
-      if (this._timer && ev.getData() !== ev.getOldData()) {
+      if (this._timer && ev.getData() !== ev.getOldData() && this.__ownTimerId === this._timer.toHashCode()) {
+        console.log('timer', this.getPath());
         if (ev.getData()) {
           this._timer.start();
         } else {
@@ -70,6 +71,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
   members: {
     _timer: null,
     __setup: false,
+    __ownTimerId: null,
 
     setupRefreshAction: function () {
       if (this.getRefresh() && this.getRefresh() > 0) {
@@ -92,6 +94,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
             this.refreshAction(target, src);
           }, this);
           this._timer.start();
+          this.__ownTimerId = this._timer.toHashCode();
         }
       }
     },
