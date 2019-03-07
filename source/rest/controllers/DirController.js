@@ -1,16 +1,18 @@
 const path = require('path')
 const fs = require('fs')
 const config = require('../config')
+const AbstractHandler = require('../lib/AbstractHandler')
 
-class DirController {
+class DirController extends AbstractHandler {
   constructor() {
+    super()
     this.basePath = config.configDir
   }
 
   ls(context) {
     const folder = this.__getFolder(context)
-    const res = []
     if (fs.existsSync(folder)) {
+      const res = []
       fs.readdirSync(folder).forEach(file => {
         if (!file.startsWith('.')) {
           const stats = fs.statSync(path.join(folder, file))
@@ -20,8 +22,10 @@ class DirController {
           }, stats))
         }
       })
+      return res
+    } else {
+      this.respondMessage(context,404, 'Folder not found')
     }
-    return res
   }
 
   __getFolder(context) {

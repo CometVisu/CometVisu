@@ -1,19 +1,18 @@
 const fs = require('fs')
 const path = require('path')
 const config = require('../config')
+const AbstractHandler = require('./AbstractHandler')
 
-class FileHandler {
+class FileHandler extends AbstractHandler {
   constructor() {
+    super()
     this.trashFolder = config.trashFolderName
     this.useTrash = true;
   }
 
   sendFile(context, file) {
     if (file === null) {
-      context.res
-        .setStatus(404)
-        .set('content-type', 'application/json')
-        .setBody({message: 'File not found'});
+      this.respondMessage(context,404, 'File not found')
     } else {
       context.res
         .setStatus(200)
@@ -30,20 +29,14 @@ class FileHandler {
    */
   createFile(context, file, content) {
     if (fs.existsSync(file)) {
-      context.res
-        .setStatus(406)
-        .set('content-type', 'application/json')
-        .setBody({message: 'File already exists'});
+      this.respondMessage(context,406, 'File already exists')
     } else {
       try {
         fs.writeFileSync(file, content)
         this.ok(context)
       } catch (err) {
         console.error(err)
-        context.res
-          .setStatus(405)
-          .set('content-type', 'application/json')
-          .setBody({message: err.toString()});
+        this.respondMessage(context,405, err.toString())
       }
     }
   }
@@ -56,10 +49,7 @@ class FileHandler {
    */
   updateFile(context, file, content) {
     if (!fs.existsSync(file)) {
-      context.res
-        .setStatus(404)
-        .set('content-type', 'application/json')
-        .setBody({message: 'File not found'});
+      this.respondMessage(context,404, 'File not found')
     } else {
       try {
         const dirname = path.dirname(file)
@@ -71,10 +61,7 @@ class FileHandler {
         this.ok(context)
       } catch (err) {
         console.error(err)
-        context.res
-          .setStatus(405)
-          .set('content-type', 'application/json')
-          .setBody({message: err.toString()});
+        this.respondMessage(context,405, err.toString())
       }
     }
   }
@@ -111,19 +98,11 @@ class FileHandler {
       this.ok(context)
     } catch (err) {
       console.error(err)
-      context.res
-        .setStatus(405)
-        .set('content-type', 'application/json')
-        .setBody({message: err.toString()});
+      this.respondMessage(context,405, err.toString())
     }
   }
 
-  ok(context) {
-    context.res
-      .setStatus(200)
-      .set('content-type', 'application/json')
-      .setBody({message: 'Ok'});
-  }
+
 }
 
 module.exports = FileHandler
