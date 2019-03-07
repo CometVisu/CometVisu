@@ -8,6 +8,8 @@ tags:
     description: Config file handling
   - name: media
     description: 'Media file handling (e.g. CSS, Images, Javascript)'
+  - name: fs
+    description: Directory listings
 paths:
   '/fs/config/{name}':
     post:
@@ -106,6 +108,29 @@ paths:
           description: Deletion not possible
         '404':
           description: Config not found
+  '/fs/ls/{folder}':
+    get:
+      tags:
+        - fs
+      summary: Return directory listing
+      description: Returns a list of files/directories
+      operationId: ls
+      x-exegesis-controller: DirController
+      parameters:
+        - name: folder
+          in: path
+          description: Folder to read, relative to the resource/config folder
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Folder not found
 components:
   schemas:
     Config:
