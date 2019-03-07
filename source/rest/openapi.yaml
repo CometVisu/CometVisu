@@ -1,0 +1,115 @@
+openapi: 3.0.1
+info:
+  description: ''
+  version: 1.0.0
+  title: CometVisu PHP backend
+tags:
+  - name: config
+    description: Config file handling
+  - name: media
+    description: 'Media file handling (e.g. CSS, Images, Javascript)'
+paths:
+  '/fs/config/{name}':
+    post:
+      tags:
+        - config
+      summary: Create a new config file on the host
+      description: ''
+      operationId: addConfig
+      x-exegesis-controller: ConfigController
+      parameters:
+        - name: name
+          in: path
+          description: Config name (suffix)
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Content of the config file
+        required: true
+        content:
+          text/xml:
+            schema:
+              type: string
+      responses:
+        '406':
+          description: File exists
+    put:
+      tags:
+        - config
+      summary: Update an existing configuration
+      description: ''
+      operationId: updateConfig
+      x-exegesis-controller: ConfigController
+      parameters:
+        - name: name
+          in: path
+          description: Config name (suffix)
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Content of the config file
+        required: true
+        content:
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Config'
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Config not found
+        '405':
+          description: Validation exception
+    get:
+      tags:
+        - config
+      summary: Return config file
+      description: Returns a single config file
+      operationId: getConfig
+      x-exegesis-controller: ConfigController
+      parameters:
+        - name: name
+          in: path
+          description: Config name (suffix)
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Config'
+        '400':
+          description: Invalid config name supplied
+        '404':
+          description: Config not found
+    delete:
+      tags:
+        - config
+      summary: Deletes a config file
+      description: ''
+      operationId: deleteConfig
+      x-exegesis-controller: ConfigController
+      parameters:
+        - name: name
+          in: path
+          description: Config name to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Deletion not possible
+        '404':
+          description: Config not found
+components:
+  schemas:
+    Config:
+      type: string
+externalDocs:
+  description: Find out more about CometVisu
+  url: 'https://www.cometvisu.org'
