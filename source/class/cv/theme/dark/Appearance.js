@@ -20,7 +20,7 @@
 
 
 qx.Theme.define("cv.theme.dark.Appearance", {
-  extend : qx.theme.simple.Appearance,
+  extend : osparc.theme.osparcdark.Appearance,
 
   appearances : {
 

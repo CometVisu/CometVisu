@@ -157,6 +157,13 @@ qx.Class.define("cv.Application",
 
       console.log(info);
 
+      // add command to load and open the manager
+      var manCommand = new qx.ui.command.Command('Ctrl+M');
+      manCommand.addListener('execute', this.showManager, this);
+      if (cv.Config.request.queryKey.manager) {
+        this.showManager();
+      }
+
       if (qx.core.Environment.get("qx.aspects")) {
         qx.dev.Profile.stop();
         qx.dev.Profile.start();
@@ -188,6 +195,12 @@ qx.Class.define("cv.Application",
       qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
 
       this.__init();
+    },
+
+    showManager: function () {
+      qx.io.PartLoader.require(['manager'], function (states) {
+        cv.ui.manager.Main.getInstance();
+      }, this);
     },
 
     __globalErrorHandler: function(ex) {

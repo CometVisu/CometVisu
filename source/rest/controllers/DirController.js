@@ -16,9 +16,16 @@ class DirController extends AbstractHandler {
       fs.readdirSync(folder).forEach(file => {
         if (!file.startsWith('.')) {
           const stats = fs.statSync(path.join(folder, file))
+          let relFolder = folder.substring(this.basePath.length + 1)
+          if (relFolder.length > 0) {
+            relFolder += '/'
+          }
           res.push(Object.assign({
             name: file,
-            type: stats.isDirectory() ? 'dir' : (stats.isFile() ? 'file' : null)
+            type: stats.isDirectory() ? 'dir' : (stats.isFile() ? 'file' : null),
+            path: stats.isDirectory() ? relFolder + file : null,
+            folder: folder,
+            hasChildren: stats.isDirectory() ? fs.readdirSync(path.join(folder, file)).length > 0 : false
           }, stats))
         }
       })
@@ -29,13 +36,16 @@ class DirController extends AbstractHandler {
   }
 
   __getFolder(context) {
-    const folder = this.__sanitize(context.params.path.folder)
+    const folder = this.__sanitize(context.params.query.folder)
     return path.join(this.basePath, folder)
   }
 
   __sanitize(folder) {
     while (folder.startsWith('../')) {
       folder = folder.substring(3)
+    }
+    if (folder.startsWith('/')) {
+      folder = folder.substring(1);
     }
     return folder
   }

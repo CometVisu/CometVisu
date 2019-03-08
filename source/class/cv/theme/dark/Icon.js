@@ -19,5 +19,5 @@
 
 
 qx.Theme.define("cv.theme.dark.Icon", {
-
+  extend: qx.theme.icon.Tango
 });

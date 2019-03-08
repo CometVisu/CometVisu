@@ -12,6 +12,13 @@ tags:
     description: Directory listings
 paths:
   '/fs/config/{name}':
+    parameters:
+      - name: name
+        in: query
+        description: Config name (suffix)
+        required: true
+        schema:
+          type: string
     post:
       tags:
         - config
@@ -19,13 +26,6 @@ paths:
       description: ''
       operationId: addConfig
       x-exegesis-controller: ConfigController
-      parameters:
-        - name: name
-          in: path
-          description: Config name (suffix)
-          required: true
-          schema:
-            type: string
       requestBody:
         description: Content of the config file
         required: true
@@ -43,13 +43,6 @@ paths:
       description: ''
       operationId: updateConfig
       x-exegesis-controller: ConfigController
-      parameters:
-        - name: name
-          in: path
-          description: Config name (suffix)
-          required: true
-          schema:
-            type: string
       requestBody:
         description: Content of the config file
         required: true
@@ -71,13 +64,6 @@ paths:
       description: Returns a single config file
       operationId: getConfig
       x-exegesis-controller: ConfigController
-      parameters:
-        - name: name
-          in: path
-          description: Config name (suffix)
-          required: true
-          schema:
-            type: string
       responses:
         '200':
           description: successful operation
@@ -96,19 +82,12 @@ paths:
       description: ''
       operationId: deleteConfig
       x-exegesis-controller: ConfigController
-      parameters:
-        - name: name
-          in: path
-          description: Config name to delete
-          required: true
-          schema:
-            type: string
       responses:
         '405':
           description: Deletion not possible
         '404':
           description: Config not found
-  '/fs/ls/{folder}':
+  '/fs/ls':
     get:
       tags:
         - fs
@@ -118,7 +97,7 @@ paths:
       x-exegesis-controller: DirController
       parameters:
         - name: folder
-          in: path
+          in: query
           description: Folder to read, relative to the resource/config folder
           required: true
           schema:

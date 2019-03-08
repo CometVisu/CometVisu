@@ -70,7 +70,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
       'cv.*': {}
     });
-    this._openCommand = new qx.ui.command.Command("Ctrl+M");
+    this._openCommand = new qx.ui.command.Command("Ctrl+N");
     this._openCommand.addListener("execute", this.toggleVisibility, this);
     cv.TemplateEngine.getInstance().getCommands().add("open-notificationcenter", this._openCommand);
 

@@ -47,6 +47,7 @@
     "EVENT_RECORDER": true,
     "DOMWindow": false,
     "Favico": false,
-    "Sentry": true
+    "Sentry": true,
+    "osparc": true
   }
 }

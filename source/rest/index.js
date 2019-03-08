@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const exegesisExpress = require('exegesis-express');
 const http = require('http');
 const path = require('path');
@@ -33,6 +34,9 @@ async function createServer() {
   );
 
   const app = express();
+
+  // enable CORS
+  app.use(cors());
 
   // If you have any body parsers, this should go before them.
   app.use(exegesisMiddleware);

@@ -36,7 +36,8 @@
     "validate-config",
     "validate-manifest",
     "watch",
-    "profile"
+    "profile",
+    "make-font-map"
   ],
 
   "default-job" : "source-hybrid",
@@ -172,7 +173,15 @@
     {
       "library" :
       [
-        { "manifest" : "client/Manifest.json" }
+        { "manifest" : "client/Manifest.json" },
+        {
+          "manifest" : "external/qx-iconfont-material/Manifest.json",
+          "uri"      : "../external/qx-iconfont-material"
+        },
+        {
+          "manifest" :  "external/qx-osparc-theme/Manifest.json",
+          "uri"      : "../external/qx-osparc-theme"
+        }
       ]
     },
 
@@ -211,6 +220,10 @@
           },
           "structure-pure" : {
             "include": [ "${APPLICATION}.ui.structure.pure.*" ]
+          },
+
+          "manager": {
+            "include": [ "${APPLICATION}.ui.manager.Main" ]
           },
 
           "plugin-diagram" :
@@ -283,7 +296,7 @@
           },
           "plugin-openhab" :
           {
-            "include" : [ "${APPLICATION}.plugins.openhab.*", "${QXTHEME}" ]
+            "include" : [ "${APPLICATION}.plugins.openhab.*" ]
           }
         }
       }
@@ -503,6 +516,30 @@
       "environment" :
       {
         "qx.aspects" : true
+      }
+    },
+
+    "make-font-map" :
+    {
+      "desc" : "Build a font mapping from glyphname to unicode id",
+
+      "let" :
+      {
+        "RESPATH" : "./external/qx-iconfont-material/source/resource",
+        "QXRESPATH" : "${QOOXDOO_PATH}/framework/source/resource"
+      },
+
+      "font-map" :
+      {
+        "fonts" :
+        {
+          "${RESPATH}/iconfont/material/MaterialIcons-Regular.ttf" :
+          {
+            "prefix": [ "${RESPATH}" ],
+            "alias" : "MaterialIcons",
+            "size" : 32
+          }
+        }
       }
     }
   }
