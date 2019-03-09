@@ -5,7 +5,7 @@ if (!window.qx) window.qx = {};
 qx.$$start = new Date();
 
 if (!qx.$$environment) qx.$$environment = {};
-var envinfo = {"qx.application":"apiviewer.Application","qx.aspects":false,"qx.debug":false,"qx.nativeScrollBars":true,"qx.optimization.basecalls":true,"qx.optimization.privates":true,"qx.optimization.strings":true,"qx.optimization.variables":true,"qx.optimization.variants":true,"qx.optimization.whitespace":true,"qx.revision":"","qx.theme":"apiviewer.Theme","qx.version":null,"versionLabel.name":"CometVisu","versionLabel.version":"0.11.0-RC5"};
+var envinfo = {"qx.application":"apiviewer.Application","qx.aspects":false,"qx.debug":false,"qx.nativeScrollBars":true,"qx.optimization.basecalls":true,"qx.optimization.privates":true,"qx.optimization.strings":true,"qx.optimization.variables":true,"qx.optimization.variants":true,"qx.optimization.whitespace":true,"qx.revision":"","qx.theme":"apiviewer.Theme","qx.version":null,"versionLabel.name":"CometVisu","versionLabel.version":"0.11.0-RC6"};
 for (var k in envinfo) qx.$$environment[k] = envinfo[k];
 
 if (!qx.$$libraries) qx.$$libraries = {};
@@ -20,7 +20,7 @@ qx.$$g = {}
 
 qx.$$loader = {
   parts : {"boot":[0]},
-  packages : {"0":{"uris":["__out__:apiviewer.d9d4a312908b.js"]}},
+  packages : {"0":{"uris":["__out__:apiviewer.0f7ddfba92cb.js"]}},
   urisBefore : ["resource/apiviewer/lib/sunlight-min.js","resource/apiviewer/lib/sunlight.xml-min.js","resource/apiviewer/lib/sunlight.javascript-min.js"],
   cssBefore : [],
   boot : "boot",
@@ -15771,11 +15771,11 @@ else if(j){j.renderLayout(x,l,s,k);}
 ;return {minWidth:H,width:I,maxWidth:B,minHeight:E,height:G,maxHeight:F};}
 }});}
 )();
-(function(){var a="qxc.ui.versionlabel.VersionLabel",b="versionLabel.name",c="qooxdoo",d="",e="versionLabel.version",f='',g='CometVisu',h=" ",i='0.11.0-RC5';qx.Class.define(a,{extend:qx.ui.basic.Label,construct:function(k,j){if(k==undefined){k=g;}
-;if(j==undefined){j=i;if(j==null){j=f;if(j==d){j=null;}
+(function(){var a="qxc.ui.versionlabel.VersionLabel",b="versionLabel.name",c="qooxdoo",d="",e="versionLabel.version",f='0.11.0-RC6',g='',h='CometVisu',i=" ";qx.Class.define(a,{extend:qx.ui.basic.Label,construct:function(k,j){if(k==undefined){k=h;}
+;if(j==undefined){j=f;if(j==null){j=g;if(j==d){j=null;}
 ;}
 ;}
-;qx.ui.basic.Label.call(this,k+h+j);}
+;qx.ui.basic.Label.call(this,k+i+j);}
 ,defer:function(){qx.core.Environment.add(b,c);qx.core.Environment.add(e,null);}
 });}
 )();
