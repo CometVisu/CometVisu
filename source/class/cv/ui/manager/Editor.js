@@ -121,7 +121,7 @@ qx.Class.define('cv.ui.manager.Editor', {
           theme: 'vs-dark'
         });
         if (this.getFile()) {
-          this._loadFile();
+          this._loadFile(this.getFile());
         }
         this._editor.onDidChangeModelContent(this._onContentChanged.bind(this));
       }
@@ -209,6 +209,9 @@ qx.Class.define('cv.ui.manager.Editor', {
       this._client.removeListener('getSuccess', this._onModelValueChange, this);
       this._client = null;
     }
-    this._editor && this._editor.dispose();
+    if (this._editor) {
+      this._editor.dispose();
+      this._editor = null;
+    }
   }
 });

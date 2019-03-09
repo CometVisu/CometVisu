@@ -37,6 +37,14 @@ qx.Class.define('cv.ui.manager.Main', {
       if (sel.length > 0) {
         var node = sel.getItem(0);
         if (node.getType() === 'file') {
+          if (!this._editor) {
+            this._editor = new cv.ui.manager.Editor();
+            this._menuBar.addListener('save', this._editor.save, this._editor);
+            this._editor.bind('saveable', this._menuBar.getChildControl('save-button'), 'enabled');
+            this._stack.add(this._editor);
+          } else {
+            this._stack.setSelection([this._editor]);
+          }
           this._editor.setFile(node);
         }
       }
@@ -111,14 +119,9 @@ qx.Class.define('cv.ui.manager.Main', {
       this._stack = new qx.ui.container.Stack();
       this._pane.add(this._stack, 1);
 
-      this._editor = new cv.ui.manager.Editor();
-      this._stack.add(this._editor);
-
       // menu on top
       this._menuBar = new cv.ui.manager.MenuBar();
       main.add(this._menuBar, {edge: 'north'});
-      this._menuBar.addListener('save', this._editor.save, this._editor);
-      this._editor.bind('saveable', this._menuBar.getChildControl('save-button'), 'enabled');
     }
   },
 
