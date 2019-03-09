@@ -27,7 +27,7 @@ qx.Class.define('cv.ui.manager.Editor', {
   */
   statics: {
     COUNTER: 0,
-    SUPPORTED_FILES: ['xml', 'php', 'css', 'js'],
+    SUPPORTED_FILES: ['xml', 'php', 'css', 'js', 'svg'],
 
     load: function (callback, context) {
       var version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
@@ -40,13 +40,15 @@ qx.Class.define('cv.ui.manager.Editor', {
         window.require.config({
           paths: {
             'vs': '../../node_modules/monaco-editor/' + version + '/vs'
-          },
-          'vs/nls' : {
-            availableLanguages: {
-              '*': qx.locale.Manager.getInstance().getLanguage() !== 'en' ? qx.locale.Manager.getInstance().getLanguage() : ''
-            }
           }
         });
+        // window.require.config({
+        //   'vs/nls' : {
+        //     availableLanguages: {
+        //       '*': qx.locale.Manager.getInstance().getLanguage() !== 'en' ? qx.locale.Manager.getInstance().getLanguage() : ''
+        //     }
+        //   }
+        // });
         window.require([
           'xml!*./resource/visu_config.xsd' + noCacheSuffix,
           'vs/editor/editor.main'], function (schema) {
@@ -164,6 +166,8 @@ qx.Class.define('cv.ui.manager.Editor', {
     __getLanguage: function (file) {
       var type = file.getName().split('.').pop();
       switch (type) {
+        case 'svg':
+          return 'xml';
         case 'js':
           return 'javascript';
         default:
@@ -181,7 +185,9 @@ qx.Class.define('cv.ui.manager.Editor', {
       var language = this.__getLanguage(this.getFile());
       if (!model || model.getLanguageIdentifier().language !== language) {
         // dispose old model
-        model.dispose();
+        if (model) {
+          model.dispose();
+        }
         model = window.monaco.editor.createModel(data, language);
         this._editor.setModel(model);
       } else {
@@ -199,8 +205,10 @@ qx.Class.define('cv.ui.manager.Editor', {
   ***********************************************
   */
   destruct: function () {
-    this._client.removeListener('getSuccess', this._onModelValueChange, this);
-    this._client = null;
+    if (this._client) {
+      this._client.removeListener('getSuccess', this._onModelValueChange, this);
+      this._client = null;
+    }
     this._editor && this._editor.dispose();
   }
 });

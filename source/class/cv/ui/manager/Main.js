@@ -14,6 +14,7 @@ qx.Class.define('cv.ui.manager.Main', {
   */
   construct: function () {
     this.base(arguments);
+    this.__initCommands();
     this._draw();
   },
 
@@ -29,6 +30,7 @@ qx.Class.define('cv.ui.manager.Main', {
     _stack: null,
     _editor: null,
     _menuBar: null,
+    _oldCommandGroup: null,
 
     _onChangeSelection: function () {
       var sel = this._tree.getSelection();
@@ -50,6 +52,23 @@ qx.Class.define('cv.ui.manager.Main', {
         qx.theme.manager.Meta.getInstance().setTheme(cv.theme.Dark);
       }
       return this.__root;
+    },
+
+    __initCommands: function () {
+      var group = new qx.ui.command.Group();
+      group.add('save', new qx.ui.command.Command('Ctrl+S'));
+      group.add('save-as', new qx.ui.command.Command('Ctrl+Shift+S'));
+      group.add('close', new qx.ui.command.Command('Ctrl+X'));
+      group.add('new-file', new qx.ui.command.Command('Ctrl+N'));
+      group.add('new-folder', new qx.ui.command.Command('Ctrl+Shift+N'));
+      group.add('quit', new qx.ui.command.Command('Ctrl+Q'));
+
+      var manager = qx.core.Init.getApplication().getCommandManager();
+      this._oldCommandGroup = manager.getActive();
+      manager.add(group);
+      manager.setActive(group);
+
+      group.get('quit').addListener('execute', this.dispose, this);
     },
 
     // overridden
@@ -110,9 +129,21 @@ qx.Class.define('cv.ui.manager.Main', {
   */
   destruct: function () {
     this._disposeObjects(
-      '__root', '_pane', '_tree', '_stack', 'editor', '_menuBar'
+      '_pane', '_tree', '_stack', 'editor', '_menuBar'
     );
-    qx.core.Init.getApplication().resetRoot();
+    // restore former command group
+    var application = qx.core.Init.getApplication();
+    var manager = application.getCommandManager();
+    manager.setActive(this._oldCommandGroup);
+    this._oldCommandGroup = null;
+
+    // defer the reset to let the dispose queue to be emptied before removing the root
+    new qx.util.DeferredCall(function () {
+      application.resetRoot();
+    }).schedule();
+
+    document.body.removeChild(this.__root);
+    this.__root = null;
   },
 
   defer: function(statics) {

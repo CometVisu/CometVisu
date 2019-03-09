@@ -11,6 +11,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
   */
   construct: function () {
     this.base(arguments);
+    this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
     this._draw();
   },
 
@@ -30,6 +31,8 @@ qx.Class.define('cv.ui.manager.MenuBar', {
   ***********************************************
   */
   members: {
+    _commandGroup: null,
+
     _draw: function () {
       this._createChildControl('file');
     },
@@ -53,7 +56,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
            break;
 
          case 'new-file-button':
-           control = new qx.ui.menu.Button(this.tr('New file'));
+           control = new qx.ui.menu.Button(this.tr('New file'), null, this._commandGroup.get('new-file'));
            // Todo open dialog to request file name
            control.addListener('execute', function () {
              this.fireDataEvent('new', 'file');
@@ -61,7 +64,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
            break;
 
          case 'new-folder-button':
-           control = new qx.ui.menu.Button(this.tr('New folder'));
+           control = new qx.ui.menu.Button(this.tr('New folder'), null, this._commandGroup.get('new-folder'));
            // Todo open dialog to request folder name
            control.addListener('execute', function () {
              this.fireDataEvent('new', 'folder');
@@ -69,7 +72,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
            break;
 
          case 'save-button':
-           control = new qx.ui.menu.Button(this.tr('Save'));
+           control = new qx.ui.menu.Button(this.tr('Save'), null, this._commandGroup.get('save'));
            control.setEnabled(false);
            control.addListener('execute', function () {
              this.fireEvent('save');
@@ -79,5 +82,14 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
        return control || this.base(arguments, id);
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this._commandGroup = null;
   }
 });

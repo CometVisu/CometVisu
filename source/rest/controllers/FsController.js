@@ -49,27 +49,34 @@ class FsController extends FileHandler {
     if (fs.existsSync(fsPath)) {
       try {
         const stats = fs.statSync(fsPath)
-        if (stats.isDirectory()) {
-          if (folderCallback) {
-            return folderCallback(fsPath)
-          }
+        if (!FileHandler.checkAccess(fsPath)) {
+          this.respondMessage(context,403, 'Forbidden')
         } else {
-          if (fileCallback) {
-            return fileCallback(fsPath);
+          if (stats.isDirectory()) {
+            if (folderCallback) {
+              return folderCallback(fsPath)
+            }
+          } else {
+            if (fileCallback) {
+              return fileCallback(fsPath);
+            }
           }
         }
       } catch (err) {
+        console.error(err)
         // no read access to path
         this.respondMessage(context,403, 'Forbidden')
       }
     } else {
-      this.respondMessage(context,404, 'Folder not found')
+      this.respondMessage(context,404, 'Not found')
     }
   }
 
   __folderListing(fsPath) {
     const res = []
-    fs.readdirSync(fsPath).forEach(file => {
+    fs.readdirSync(fsPath).filter(file => {
+      return FileHandler.checkAccess(fsPath, file)
+    }).forEach(file => {
       if (!file.startsWith('.')) {
         try {
           const stats = fs.statSync(path.join(fsPath, file))

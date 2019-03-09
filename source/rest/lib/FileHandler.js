@@ -146,6 +146,23 @@ class FileHandler extends AbstractHandler {
       this.respondMessage(context,405, err.toString())
     }
   }
+
+
+  /**
+   * Returns false if accessing the filesystem item is not allowed (no read, update, delete, create).
+   * The main purpose of this method is to prevent access to hidden files.
+   *
+   * @param fsPath {String} path
+   * @param item {String} file name
+   * @returns {boolean} true if access is allowed
+   */
+  static checkAccess(fsPath, item) {
+    if (!item) {
+      item = path.basename(fsPath)
+      fsPath = path.dirname(fsPath)
+    }
+    return !(item.startsWith('.') || (item === 'hidden.php' && fsPath === config.configDir));
+  }
 }
 
 module.exports = FileHandler
