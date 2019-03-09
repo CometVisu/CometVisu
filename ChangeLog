@@ -3,6 +3,9 @@
 0.11.0
 ======
 
+### v0.11.0-RC6 (2019/03/09 10:17 +00:00)
+- [#896](https://github.com/CometVisu/CometVisu/pull/896) Fix refresh behaviour (@peuter)
+
 ### v0.11.0-RC5 (2019/03/03 21:17 +00:00)
 - [#893](https://github.com/CometVisu/CometVisu/pull/893) Optimize Influx data handling when not all dates are set (@ChristianMayer)
 - [#891](https://github.com/CometVisu/CometVisu/pull/891) Fix iPad scroll during turning (@ChristianMayer)
