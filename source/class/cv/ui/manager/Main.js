@@ -28,6 +28,17 @@ qx.Class.define('cv.ui.manager.Main', {
     _tree: null,
     _stack: null,
     _editor: null,
+    _menuBar: null,
+
+    _onChangeSelection: function () {
+      var sel = this._tree.getSelection();
+      if (sel.length > 0) {
+        var node = sel.getItem(0);
+        if (node.getType() === 'file') {
+          this._editor.setFile(node);
+        }
+      }
+    },
 
     __getRoot: function () {
       if (!this.__root) {
@@ -45,18 +56,24 @@ qx.Class.define('cv.ui.manager.Main', {
     _draw: function () {
 
       var root = new qx.ui.root.Inline(this.__getRoot(), true, true);
-      root.setLayout(new qx.ui.layout.Dock());
+      qx.core.Init.getApplication().setRoot(root);
+      root.setLayout(new qx.ui.layout.Canvas());
+
+      var main = new qx.ui.container.Composite(new qx.ui.layout.Dock());
+      root.add(main, {edge: 0});
 
       this._pane = new qx.ui.splitpane.Pane();
-      root.add(this._pane, {edge: 'center'});
+      main.add(this._pane, {edge: 'center'});
 
-      var rootFolder = new cv.ui.manager.model.FileItem('config', '.');
+      var rootFolder = new cv.ui.manager.model.FileItem('.');
       this._tree = new qx.ui.tree.VirtualTree(rootFolder, 'name', 'children');
-      rootFolder.load();
+      rootFolder.load(function () {
+        this._tree.setHideRoot(true);
+      }, this);
       this._tree.set({
         selectionMode: 'one',
-        hideRoot: false,
-        minWidth: 300
+        minWidth: 300,
+        openMode: 'tap'
       });
       this._tree.setDelegate({
         // Bind properties from the item to the tree-widget and vice versa
@@ -64,20 +81,25 @@ qx.Class.define('cv.ui.manager.Main', {
           controller.bindDefaultProperties(item, index);
           controller.bindPropertyReverse("open", "open", null, item, index);
           controller.bindProperty("open", "open", null, item, index);
+          controller.bindProperty("readable", "enabled", null, item, index);
           controller.bindProperty("icon", "icon", null, item, index);
         }
       });
       this._pane.add(this._tree, 0);
       this._tree.openNode(rootFolder);
-      console.log(this._tree);
+      this._tree.getSelection().addListener("change", this._onChangeSelection, this);
 
       this._stack = new qx.ui.container.Stack();
       this._pane.add(this._stack, 1);
 
-      this._editor = new qx.ui.core.Widget();
-      this._editor._setLayout(new qx.ui.layout.Grow());
-      this._editor._add(new qx.ui.basic.Label('Hello world'));
+      this._editor = new cv.ui.manager.Editor();
       this._stack.add(this._editor);
+
+      // menu on top
+      this._menuBar = new cv.ui.manager.MenuBar();
+      main.add(this._menuBar, {edge: 'north'});
+      this._menuBar.addListener('save', this._editor.save, this._editor);
+      this._editor.bind('saveable', this._menuBar.getChildControl('save-button'), 'enabled');
     }
   },
 
@@ -87,7 +109,10 @@ qx.Class.define('cv.ui.manager.Main', {
   ***********************************************
   */
   destruct: function () {
-    this._disposeObjects('__root', '_pane', '_tree', '_stack', 'editor');
+    this._disposeObjects(
+      '__root', '_pane', '_tree', '_stack', 'editor', '_menuBar'
+    );
+    qx.core.Init.getApplication().resetRoot();
   },
 
   defer: function(statics) {

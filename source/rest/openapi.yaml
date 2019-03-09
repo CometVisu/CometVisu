@@ -2,118 +2,124 @@ openapi: 3.0.1
 info:
   description: ''
   version: 1.0.0
-  title: CometVisu PHP backend
+  title: CometVisu Manager backend
 tags:
-  - name: config
-    description: Config file handling
-  - name: media
-    description: 'Media file handling (e.g. CSS, Images, Javascript)'
   - name: fs
-    description: Directory listings
+    description: Filesystem handling
 paths:
-  '/fs/config/{name}':
+  '/fs':
     parameters:
-      - name: name
+      - name: path
         in: query
-        description: Config name (suffix)
+        description: Relative path inside the config folder
         required: true
         schema:
           type: string
-    post:
-      tags:
-        - config
-      summary: Create a new config file on the host
-      description: ''
-      operationId: addConfig
-      x-exegesis-controller: ConfigController
-      requestBody:
-        description: Content of the config file
-        required: true
-        content:
-          text/xml:
-            schema:
-              type: string
-      responses:
-        '406':
-          description: File exists
-    put:
-      tags:
-        - config
-      summary: Update an existing configuration
-      description: ''
-      operationId: updateConfig
-      x-exegesis-controller: ConfigController
-      requestBody:
-        description: Content of the config file
-        required: true
-        content:
-          text/xml:
-            schema:
-              $ref: '#/components/schemas/Config'
-      responses:
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Config not found
-        '405':
-          description: Validation exception
-    get:
-      tags:
-        - config
-      summary: Return config file
-      description: Returns a single config file
-      operationId: getConfig
-      x-exegesis-controller: ConfigController
-      responses:
-        '200':
-          description: successful operation
-          content:
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/Config'
-        '400':
-          description: Invalid config name supplied
-        '404':
-          description: Config not found
-    delete:
-      tags:
-        - config
-      summary: Deletes a config file
-      description: ''
-      operationId: deleteConfig
-      x-exegesis-controller: ConfigController
-      responses:
-        '405':
-          description: Deletion not possible
-        '404':
-          description: Config not found
-  '/fs/ls':
     get:
       tags:
         - fs
-      summary: Return directory listing
-      description: Returns a list of files/directories
-      operationId: ls
-      x-exegesis-controller: DirController
-      parameters:
-        - name: folder
-          in: query
-          description: Folder to read, relative to the resource/config folder
-          required: true
-          schema:
-            type: string
+      summary: Return directory listing or file content
+      description: Returns a list of files/directories if the requested path pointed to a directory or the content of the file otherwise
+      operationId: read
+      x-exegesis-controller: FsController
       responses:
         '200':
           description: successful operation
           content:
             application/json:
-              schema: {}
+              schema:
+                $ref: '#/components/schemas/ReadResponse'
+            text/*:
+              schema:
+                type: string
+        '403':
+          description: Not allowed
         '404':
-          description: Folder not found
+          description: Path not found
+    post:
+      tags:
+        - fs
+      summary: Create a new file or folder on the host
+      description: ''
+      operationId: create
+      x-exegesis-controller: FsController
+      requestBody:
+        description: Content of the file (empty when creating folder)
+        content:
+          text/*:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: successful operation
+        '403':
+          description: Not allowed
+        '406':
+          description: File exists
+    put:
+      tags:
+        - fs
+      summary: Update an existing file
+      description: ''
+      operationId: update
+      x-exegesis-controller: FsController
+      requestBody:
+        description: Content of the file
+        required: true
+        content:
+          text/*:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: successful operation
+        '403':
+          description: Not allowed
+        '406':
+          description: File does not exist
+    delete:
+      tags:
+        - fs
+      summary: Deletes a file/folder
+      description: ''
+      operationId: delete
+      x-exegesis-controller: FsController
+      responses:
+        '200':
+          description: successful operation
+        '403':
+          description: Not allowed
+        '404':
+          description: File/Folder not found
+        '406':
+          description: Folder not empty
 components:
   schemas:
-    Config:
-      type: string
+    ReadResponse:
+      oneOf:
+        - $ref: '#/components/schemas/DirContent'
+    DirContent:
+      type: array
+      items:
+        $ref: '#/components/schemas/FsEntry'
+    FsEntry:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: ['dir', 'file']
+        parentFolder:
+          type: string
+        hasChildren:
+          type: boolean
+        readable:
+          type: boolean
+          default: false
+        writeable:
+          type: boolean
+          default: false
 externalDocs:
   description: Find out more about CometVisu
   url: 'https://www.cometvisu.org'

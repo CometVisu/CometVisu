@@ -43,7 +43,7 @@ async function createServer() {
 
   // Return a 404
   app.use((req, res) => {
-    res.status(404).json({message: `Not found`});
+    res.status(404).json({message: `No handler found`});
   });
 
   // Handle any unexpected errors

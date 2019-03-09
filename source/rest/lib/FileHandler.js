@@ -6,7 +6,7 @@ const AbstractHandler = require('./AbstractHandler')
 class FileHandler extends AbstractHandler {
   constructor() {
     super()
-    this.trashFolder = config.trashFolderName
+    this.trashFolder = path.join(config.configDir, config.trashFolderName)
     this.useTrash = true;
   }
 
@@ -33,6 +33,20 @@ class FileHandler extends AbstractHandler {
     } else {
       try {
         fs.writeFileSync(file, content)
+        this.ok(context)
+      } catch (err) {
+        console.error(err)
+        this.respondMessage(context,405, err.toString())
+      }
+    }
+  }
+
+  createFolder(context, folder) {
+    if (fs.existsSync(folder)) {
+      this.respondMessage(context,406, 'Folder already exists')
+    } else {
+      try {
+        fs.mkdirSync(folder, {recursive: true})
         this.ok(context)
       } catch (err) {
         console.error(err)
@@ -79,13 +93,12 @@ class FileHandler extends AbstractHandler {
     }
     try {
       if (this.useTrash === true) {
-        const dirname = path.dirname(file)
+        const relDir = path.dirname(file).substring(config.configDir.length)
         const filename = path.basename(file)
-        const absTrashFolder = path.join(dirname, this.trashFolder)
-        if (!fs.existsSync(absTrashFolder)) {
-          fs.mkdirSync(absTrashFolder)
+        if (!fs.existsSync(this.trashFolder)) {
+          fs.mkdirSync(this.trashFolder)
         }
-        const baseTrashFile = path.join(absTrashFolder, filename)
+        const baseTrashFile = path.join(absTrashFolder, relDir, filename)
         let trashFile = baseTrashFile
         let index = 1
         while (fs.existsSync(trashFile)) {
@@ -102,7 +115,37 @@ class FileHandler extends AbstractHandler {
     }
   }
 
-
+  deleteFolder(context, folder, force) {
+    if (!fs.existsSync(folder)) {
+      // nothing to do
+      return this.ok(context)
+    }
+    try {
+      if (this.useTrash === true) {
+        const relDir = folder.substring(config.configDir.length)
+        if (!fs.existsSync(this.trashFolder)) {
+          fs.mkdirSync(this.trashFolder)
+        }
+        const baseTrashFile = path.join(this.trashFolder, relDir)
+        let trashFile = baseTrashFile
+        let index = 1
+        while (fs.existsSync(trashFile)) {
+          trashFile = baseTrashFile + '-' + index++
+        }
+        fs.rename(folder, trashFile)
+      } else {
+        if (!force || fs.readdirSync(folder).length === 0) {
+          fs.rmdirSync(folder)
+        } else {
+          this.respondMessage(context,406, 'Folder not empty')
+        }
+      }
+      this.ok(context)
+    } catch (err) {
+      console.error(err)
+      this.respondMessage(context,405, err.toString())
+    }
+  }
 }
 
 module.exports = FileHandler

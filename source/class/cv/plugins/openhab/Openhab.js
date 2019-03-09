@@ -74,11 +74,11 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
         html: cv.util.IconTools.svgKUF("edit_settings")(null, 'width: 22px; height: 22px;'),
         style: "float: left;"
       });
-      this._openSettings = new qx.ui.command.Command("Ctrl+S");
-      this._openSettings.addListener("execute", function() {
-        cv.ui.NotificationCenter.getInstance().show();
-        this.__settings.show();
-      }, this);
+      // this._openSettings = new qx.ui.command.Command("Ctrl+S");
+      // this._openSettings.addListener("execute", function() {
+      //   cv.ui.NotificationCenter.getInstance().show();
+      //   this.__settings.show();
+      // }, this);
       cv.TemplateEngine.getInstance().getCommands().add("open-settings", this._openSettings);
       qx.dom.Element.insertBegin(button, qx.bom.Selector.query("#notification-center footer")[0]);
       qx.event.Registration.addListener(button, "tap", function() {

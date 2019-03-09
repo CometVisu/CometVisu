@@ -48,13 +48,6 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       init : false
     },
 
-    hasChildren : {
-      check : "Boolean",
-      event : "changeHasChildren",
-      apply : "_applyHasChildren",
-      init : false
-    },
-
     parent : {
       event : "changeParent",
       init : null
@@ -65,6 +58,21 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       event : "changeChildren",
       apply: "_applyEventPropagation",
       deferredInit : true
+    },
+
+    icon: {
+      check: 'String',
+      nullable: true,
+      event: 'changeIcon'
+    },
+
+    // Backend properties
+
+    hasChildren : {
+      check : "Boolean",
+      event : "changeHasChildren",
+      apply : "_applyHasChildren",
+      init : false
     },
 
     name : {
@@ -79,14 +87,21 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       apply: '_maintainIcon'
     },
 
-    icon: {
+    parentFolder: {
       check: 'String',
-      nullable: true,
-      event: 'changeIcon'
+      nullable: true
     },
 
-    rawData: {
-      check: 'Object'
+    readable: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeReadable'
+    },
+
+    writeable: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeWriteable'
     }
   },
 
@@ -137,18 +152,29 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     
     _applyLoaded: function(value) {
       if (value) {
-        cv.io.rest.Client.getDirClient().removeListener('getSuccess', this._onGet, this);
+        this.__removeListeners();
       }
+    },
+
+    __addListeners: function () {
+      var client = cv.io.rest.Client.getFsClient();
+      client.addListener('readSuccess', this._onGet, this);
+      client.addListener('readError', this._onError, this);
+    },
+
+    __removeListeners: function () {
+      var client = cv.io.rest.Client.getFsClient();
+      client.removeListener('readSuccess', this._onGet, this);
+      client.removeListener('readError', this._onError, this);
     },
 
     _onGet: function (ev) {
       var data = ev.getData();
-      var children = new qx.data.Array();
+      var children = this.getChildren();
+      children.removeAll();
       data.forEach(function (node) {
-        var child = new cv.ui.manager.model.FileItem(node.name, node.path, this);
-        child.setType(node.type);
-        child.setHasChildren(node.hasChildren && !!node.path);
-        child.setRawData(node);
+        var child = new cv.ui.manager.model.FileItem(null, this);
+        child.set(node);
         children.push(child);
       });
       this.setChildren(children);
@@ -160,8 +186,22 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.setLoading(false);
     },
 
+    _onError: function (ev) {
+      console.error(ev.getData());
+      this.getChildren().removeAll();
+      this.setLoaded(true);
+      if (this.__onLoadCallback) {
+        this.__onLoadCallback();
+      }
+      this.setLoading(false);
+    },
+
     load: function(callback, context) {
       // If currently loading, delay ready
+      if (this.getType() === 'file') {
+        // nothing to load
+        this.setLoaded(true);
+      }
       if (this.isLoading()) {
         if (callback) {
           this.addListenerOnce("changeLoading", callback, context);
@@ -173,13 +213,22 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
       else {
         this.setLoading(true);
-        var client = cv.io.rest.Client.getDirClient();
-        client.addListener('getSuccess', this._onGet, this);
+        this.__addListeners();
         if (callback) {
           this.__onLoadCallback = callback.bind(context || this);
         }
-        cv.io.rest.Client.getDirClient().get({path: this.__path});
+        cv.io.rest.Client.getFsClient().read({path: this.getFullPath()});
       }
+    },
+
+    getFullPath: function () {
+      var parentFolder = this.getParentFolder();
+      if (!parentFolder) {
+        parentFolder = '';
+      } else {
+        parentFolder += '/';
+      }
+      return parentFolder + this.getName();
     },
 
     /**
@@ -209,6 +258,6 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
   ***********************************************
   */
   destruct: function () {
-    cv.io.rest.Client.getDirClient().removeListener('getSuccess', this._onGet, this);
+    this.__removeListeners();
   } 
 });
