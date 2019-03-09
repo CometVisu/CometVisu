@@ -33,7 +33,7 @@ qx.Class.define('cv.ui.manager.Editor', {
       var version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
       var loader = new qx.util.DynamicScriptLoader([
         '../../node_modules/monaco-editor/' + version + '/vs/loader.js',
-        './editor/text/xml.js'
+        'manager/xml.js'
       ]);
       var noCacheSuffix = '?' + Date.now();
       loader.addListener('ready', function () {

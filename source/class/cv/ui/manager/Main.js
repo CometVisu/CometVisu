@@ -2,6 +2,8 @@
  * Main class of the CometVisu file manager.
  * @author Tobias Bräutigam
  * @since 0.12.0
+ *
+ * @asset(manager/*)
  */
 qx.Class.define('cv.ui.manager.Main', {
   extend: qx.core.Object,
@@ -14,8 +16,21 @@ qx.Class.define('cv.ui.manager.Main', {
   */
   construct: function () {
     this.base(arguments);
+    this.initOpenFiles(new qx.data.Array());
     this.__initCommands();
     this._draw();
+  },
+
+  /*
+  ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    openFiles: {
+      check: 'qx.data.Array',
+      deferredInit: true
+    }
   },
 
   /*
@@ -24,6 +39,7 @@ qx.Class.define('cv.ui.manager.Main', {
   ***********************************************
   */
   members: {
+    __previewFileIndex: null,
     __root: null,
     _pane: null,
     _tree: null,
@@ -31,9 +47,37 @@ qx.Class.define('cv.ui.manager.Main', {
     _editor: null,
     _menuBar: null,
     _oldCommandGroup: null,
+    _mainContent: null,
+    _openFilesController: null,
 
-    _onChangeSelection: function () {
+    /**
+     * open selected file in preview mode
+     * @private
+     */
+    _onChangeTreeSelection: function () {
+     this.__openSelectedFile(true);
+    },
+
+    /**
+     * Permanantly open file
+     * @private
+     */
+    _onDblTapTreeSelection: function () {
+      this.__openSelectedFile(false);
+    },
+
+    __openSelectedFile: function (preview) {
       var sel = this._tree.getSelection();
+      if (sel.length > 0) {
+        var node = sel.getItem(0);
+        if (node.getType() === 'file') {
+          this.openFile(node, preview);
+        }
+      }
+    },
+
+    _onChangeFileSelection: function () {
+      var sel = this._openFilesController.getSelection();
       if (sel.length > 0) {
         var node = sel.getItem(0);
         if (node.getType() === 'file') {
@@ -47,6 +91,32 @@ qx.Class.define('cv.ui.manager.Main', {
           }
           this._editor.setFile(node);
         }
+      }
+    },
+
+    openFile: function (file, preview) {
+      var openFiles = this.getOpenFiles();
+      if (preview === true) {
+        if (this.__previewFileIndex !== null) {
+          openFiles.setItem(this.__previewFileIndex, file);
+        } else {
+          var length = openFiles.push(file);
+          this.__previewFileIndex = length - 1;
+        }
+      } else {
+        if (this.__previewFileIndex === null || openFiles.indexOf(file) !== this.__previewFileIndex) {
+          openFiles.push(file);
+        }
+        this.__previewFileIndex = null;
+      }
+      this._openFilesController.getTarget().setModelSelection([file]);
+    },
+
+    _onCloseFile: function (ev) {
+      var file = ev.getTarget().getLayoutParent().getModel();
+      this.getOpenFiles().remove(file);
+      if (this.getOpenFiles().length === 0) {
+        this._editor.resetFile();
       }
     },
 
@@ -103,6 +173,12 @@ qx.Class.define('cv.ui.manager.Main', {
         openMode: 'tap'
       });
       this._tree.setDelegate({
+        createItem: function () {
+          var item = new qx.ui.tree.VirtualTreeItem();
+          item.addListener('dbltap', this._onDblTapTreeSelection, this);
+          return item;
+        }.bind(this),
+
         // Bind properties from the item to the tree-widget and vice versa
         bindItem : function(controller, item, index) {
           controller.bindDefaultProperties(item, index);
@@ -114,10 +190,39 @@ qx.Class.define('cv.ui.manager.Main', {
       });
       this._pane.add(this._tree, 0);
       this._tree.openNode(rootFolder);
-      this._tree.getSelection().addListener("change", this._onChangeSelection, this);
+      this._tree.getSelection().addListener("change", this._onChangeTreeSelection, this);
+
+      this._mainContent = new qx.ui.container.Composite(new qx.ui.layout.VBox());
+
+      // tab list
+      var list = new qx.ui.form.List(true);
+      // list.setAppearance('open-files-tabs');
+      list.set({
+        decorator: null,
+        minHeight: 30,
+        height: 30,
+        padding: 0
+      });
+      this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, "name");
+      this._openFilesController.setDelegate({
+        createItem: function () {
+          var item = new qx.ui.form.ListItem();
+          var icon = item.getChildControl('icon');
+          icon.setAnonymous(false);
+          icon.addListener('tap', this._onCloseFile, this);
+          return item;
+        }.bind(this),
+
+        configureItem: function (item) {
+          item.setAppearance('open-file-item');
+        }
+      });
+      list.addListener('changeSelection', this._onChangeFileSelection, this);
+      this._mainContent.add(list);
 
       this._stack = new qx.ui.container.Stack();
-      this._pane.add(this._stack, 1);
+      this._mainContent.add(this._stack, {flex: 1});
+      this._pane.add(this._mainContent, 1);
 
       // menu on top
       this._menuBar = new cv.ui.manager.MenuBar();
@@ -132,7 +237,7 @@ qx.Class.define('cv.ui.manager.Main', {
   */
   destruct: function () {
     this._disposeObjects(
-      '_pane', '_tree', '_stack', 'editor', '_menuBar'
+      '_pane', '_tree', '_stack', 'editor', '_menuBar', '_mainContent', '_openFilesController'
     );
     // restore former command group
     var application = qx.core.Init.getApplication();

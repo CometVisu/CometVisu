@@ -23,6 +23,30 @@ qx.Theme.define("cv.theme.dark.Appearance", {
   extend : osparc.theme.osparcdark.Appearance,
 
   appearances : {
+    'open-file-item': {
+      include: 'listitem',
+      alias: 'listitem',
 
+      style: function () {
+        return {
+          iconPosition: 'right',
+          gap: 10,
+          height: 25,
+          padding: [0, 10],
+          margin: 0,
+          icon: osparc.theme.osparcdark.Image.URLS['tabview-close']
+        };
+      }
+    },
+
+    'open-file-item/icon': {
+      include: 'listitem/icon',
+
+      style: function () {
+        return {
+          cursor: 'pointer'
+        };
+      }
+    }
   }
 });
