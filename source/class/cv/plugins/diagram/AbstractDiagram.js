@@ -460,11 +460,17 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      * Start the refresh timer
      *
      * @param timer {qx.event.Timer} start this timer
+     * @param runImmediately {Boolean} fire the timers 'interval' event immediately to trigger an refresh right now
      * @protected
      */
-    _startRefresh: function(timer) {
-      if (timer && !timer.isEnabled()) {
-        timer.start();
+    _startRefresh: function(timer, runImmediately) {
+      if (timer) {
+        if (!timer.isEnabled()) {
+          timer.start();
+        }
+        if (runImmediately === true) {
+          timer.fireEvent('interval');
+        }
       }
     },
 
@@ -499,7 +505,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       this.initDiagram( true );
 
-      this._startRefresh(this._timerPopup);
+      this._startRefresh(this._timerPopup, true);
     },
 
     initDiagram: function( isPopup ) {
