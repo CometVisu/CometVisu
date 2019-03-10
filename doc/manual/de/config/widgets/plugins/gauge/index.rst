@@ -5,7 +5,7 @@
 Das Gauge Plugin
 ================
 
-.. api-doc:: gauge
+.. api-doc:: cv.plugins.Gauge
 
 Beschreibung
 ------------
@@ -18,6 +18,11 @@ die verschiedenen Elemente liefert. Geladen werden kann sie über folgenden Link
 ``http://<url-zur-cometvisu>/?config=gauge&testMode=1``
 
 über die Slider kann man dann verschiedenen Werte einstellen und sehen, wie diese angezeigt werden.
+
+.. figure:: _static/DisplayElements_GaugePlugin.png
+
+    Beispiele für Anzeigeelemente des Gauge-Plugins
+
 
 Einstellungen
 -------------
@@ -80,7 +85,7 @@ XML Syntax
 ----------
 
 Alternativ kann man für das Gauge Plugin auch von Hand einen Eintrag in
-der :doc:`visu_config.xml <../../../xml-format>` hinzufügen.
+der :ref:`visu_config.xml <xml-format>` hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet

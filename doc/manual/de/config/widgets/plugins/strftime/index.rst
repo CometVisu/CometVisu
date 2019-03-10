@@ -8,7 +8,7 @@
 Das Strftime Plugin
 ===================
 
-.. api-doc:: strftime
+.. api-doc:: cv.plugins.Strftime
 
 Beschreibung
 ------------
@@ -52,6 +52,10 @@ Erlaubte Attribute im strftime-Element
         <layout colspan="6"/>
     </strftime>
 
+.. HINT::
+   
+   Das Attribut ``class`` wird im Editor nur angezeigt, wenn der complex-Modus aktiviert wurde.
+
 Mögliche Formatierungsoptionen findet man `hier <http://hacks.bluesmoon.info/strftime/format_specifiers.html>`__.
 Ohne Angabe wird das Standardformat der jeweiligen Sprache verwendet.
 
@@ -79,7 +83,7 @@ XML Syntax
 ----------
 
 Alternativ kann man für das strftime Plugin auch von Hand einen Eintrag in
-der :doc:`visu_config.xml <../../../xml-format>` hinzufügen.
+der :ref:`visu_config.xml <xml-format>` hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
@@ -106,16 +110,15 @@ Hier der minimale Beispielcode der das strftime Plugin aus dem folgenden Screens
 Beispiele
 ---------
 
-Zeitanzeige in der Navbar
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Zeitanzeige in der linken Navbar
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. HINT::
+In der linken Navbar reicht die Breite typischerweise nicht für die Anzeige von Datum- und Uhrzeit in
+einer Zeile. Aus diesem Grund wird im nachstehenden Beispiel eine Möglichkeit beschrieben, Datum und Uhrzeit 
+übereinander anzuordnen und zusätzlich ansprechend mittels ``class``-Element zu formatieren.  
 
-    Zur Zeitanzeige wird das strftime Plugin verwendet. Es muss zum aktivieren im Meta-Bereich der config
-    unter Plugins hinzugefügt werden. Das Attribut class wird im Editor nur angezeigt, wenn der complex-Modus
-    aktiviert wurde.
+.. figure:: _static/Example_Metal_swiss_02.jpg
 
-Die Zeitanzeige wurde folgendermassen eingebaut.
 
 In der Navbar wurde an der obersten Stelle ein Group Widget eingefügt mit dem Namen "Aktuelle Zeit".
 Innerhalb dieser Group befindet sich ein weiteres Group Widget mit dem Attribut ``nowidget="true"``.

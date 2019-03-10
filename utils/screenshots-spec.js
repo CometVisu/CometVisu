@@ -7,118 +7,45 @@
 var fs = require('fs'),
   path = require('path'),
   easyimg = require('easyimage');
-var cvMockup = require('../test/protractor/pages/Mock');
-var editorMockup = require('../test/protractor/pages/EditorMock');
+var CometVisuMockup = require('../source/test/protractor/pages/Mock');
+var cvMockup = new CometVisuMockup(browser.target || 'source');
+var CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
+var editorMockup = new CometVisuEditorMockup(browser.target || 'source');
 
 var errorHandler = function(err) {
-  if (err) throw err;
-};
-
-var getCropArgs = function(options) {
-
-    options.cropheight = options.cropheight || options.cropwidth;
-    options.gravity = options.gravity || 'Center';
-    options.x = options.x || 0;
-    options.y = options.y || 0;
-
-    var args = [options.src];
-
-    args.push('-auto-orient');
-    args.push('-gravity');
-    args.push(options.gravity);
-    args.push('-strip');
-    args.push('-crop');
-    args.push(options.cropwidth + 'x'+ options.cropheight + '+' + options.x + '+' + options.y);
-    if (options.quality) {
-      args.push('-quality');
-      args.push(options.quality)
-    }
-    if (options.background) {
-      args.push('-background');
-      args.push(options.background)
-    }
-    args.push(options.dst);
-    return args;
-};
-
-var getResizeArgs = function(options) {
-
-  options.height = options.height || options.width;
-
-  var args = [options.src];
-
-  if (options.flatten) {
-    args.push('-flatten');
-    if (options.background) {
-      args.push('-background');
-      args.push(options.background);
-    }
+  if (err) {
+    throw err;
   }
-  else {
-    if (options.background) {
-      args.push('-background');
-      args.push(options.background);
-      args.push('-flatten');
-    }
-  }
-
-  args.push('-auto-orient');
-  args.push('-strip');
-  args.push('-resize');
-  args.push(options.width + 'x' + options.height);
-  if (options.ignoreAspectRatio) {
-    args[args.length-1] += '!';
-  }
-  if (options.quality) {
-    args.push('-quality');
-    args.push(options.quality);
-  }
-  if (options.background) {
-    args.push('-background');
-    args.push(options.background);
-  }
-  args.push(options.dst);
-  return args;
 };
 
 var cropInFile = function(size, location, srcFile, width, height) {
-  if (width && height) {
-    var args = getCropArgs({
-      src: srcFile,
-      dst: srcFile,
-      cropwidth: size.width,
-      cropheight: size.height,
-      x: location.x,
-      y: location.y,
-      gravity: 'North-West'
-    });
-    args.unshift('convert');
-    easyimg.exec(args.join(" ")).then(function(image) {
-      var resizeArgs = getResizeArgs({
+  var args = {
+    src: srcFile,
+    dst: srcFile,
+    cropwidth: size.width,
+    cropheight: size.height,
+    x: location.x,
+    y: location.y,
+    gravity: 'North-West'
+  };
+  easyimg.crop(args).then(function() {
+    if (width && height) {
+      // scale image to the requested size
+      args = {
         src: srcFile,
         dst: srcFile,
         width: width,
         height: height
-      });
-      resizeArgs.unshift('convert');
-      easyimg.exec(resizeArgs.join(" ")).then(function (img) { }, errorHandler);
-    }, errorHandler);
-  } else {
-    var args = getCropArgs({
-      src: srcFile,
-      dst: srcFile,
-      cropwidth: size.width,
-      cropheight: size.height,
-      x: location.x,
-      y: location.y,
-      gravity: 'North-West'
-    });
-    args.unshift('convert');
-    easyimg.exec(args.join(" ")).then(function(img) { }, errorHandler);
-  }
+      };
+      easyimg.resize(args).then(function () { }, errorHandler);
+    }
+  }, errorHandler);
 };
 
 var createDir = function(dir) {
+  if (dir.substring(dir.length-1) === "/") {
+    dir = dir.substring(0,dir.length-1);
+  }
   try {
     fs.statSync(dir);
   } catch(e) {
@@ -147,18 +74,25 @@ var createDir = function(dir) {
 describe('generation screenshots from jsdoc examples', function () {
   'use strict';
   var mockupConfig = [];
+  var mockedFixtures = [];
+  var mockup = null;
 
   beforeEach(function () {
     var mockedConfigData = mockupConfig.shift();
-    if (mockedConfigData.mode == "cv") {
-      cvMockup.mockupConfig(mockedConfigData.data);
-      cvMockup.to();
-      cvMockup.at();
+    mockup = (mockedConfigData.mode === "cv") ? cvMockup : editorMockup;
+    if (mockedConfigData.hasOwnProperty('fixtures')) {
+      mockedFixtures = mockedConfigData.fixtures;
+      mockedConfigData.fixtures.forEach(fix => mockup.mockupFixture(fix));
     } else {
-      editorMockup.mockupConfig(mockedConfigData.data);
-      editorMockup.to();
-      editorMockup.at();
+      mockedFixtures = [];
     }
+    mockup.mockupConfig(mockedConfigData.data);
+    mockup.to();
+    mockup.at();
+  });
+
+  afterEach(function () {
+    mockedFixtures.forEach(fix => mockup.resetMockupFixture(fix));
   });
 
   var examplesDir = path.join("cache", "widget_examples");
@@ -166,7 +100,7 @@ describe('generation screenshots from jsdoc examples', function () {
 
   fs.readdirSync(examplesDir).forEach(function(fileName) {
     var subDir = path.join(examplesDir, fileName);
-    if (browser.onlySubDir && browser.onlySubDir!=fileName) {
+    if (browser.onlySubDir && browser.onlySubDir !== fileName) {
       return;
     }
     if (fs.statSync(subDir).isDirectory()) {
@@ -179,14 +113,15 @@ describe('generation screenshots from jsdoc examples', function () {
         var stat = fs.statSync(filePath);
         if (stat.isFile()) {
           var example = fs.readFileSync(filePath, "utf-8").split("\n");
-          if (example[0].substr(0,1) == "{") {
+          if (example[0].substr(0,1) === "{") {
             var settings = JSON.parse(example.shift());
             createDir(settings.screenshotDir);
 
             var selectorPrefix = ".activePage ";
             var mockedConfigData = {
               mode: "cv",
-              data: example.join("\n")
+              data: example.join("\n"),
+              fixtures: settings.fixtures
             };
 
             if (settings.editor) {
@@ -199,6 +134,7 @@ describe('generation screenshots from jsdoc examples', function () {
             mockupConfig.push(mockedConfigData);
 
             it('should create a screenshot', function () {
+              console.log(">>> processing "+filePath+"...");
               if (settings.editor) {
                 if (settings.complex) {
                   var complexButton = element(by.css(".button.expert"));
@@ -235,14 +171,13 @@ describe('generation screenshots from jsdoc examples', function () {
               }
 
               // wait for everything to be rendered
-              browser.sleep(settings.sleep || 300);
+              browser.sleep(settings.sleep || 1000);
 
               var widget = element(by.css(selectorPrefix+settings.selector));
               browser.wait(function() {
                 return widget.isDisplayed();
-              }, 1000).then(function() {
+              }, 2000).then(function() {
                 settings.screenshots.forEach(function(setting) {
-
                   if (setting.data && Array.isArray(setting.data)) {
                     setting.data.forEach(function (data) {
                       var value = data.value;
@@ -277,6 +212,7 @@ describe('generation screenshots from jsdoc examples', function () {
                       if (setting.sleep) {
                         browser.sleep(setting.sleep);
                       }
+                      console.log("  - creating screenshot '"+setting.name+"'");
                       browser.takeScreenshot().then(function (data) {
                         var base64Data = data.replace(/^data:image\/png;base64,/, "");
                         var imgFile = path.join(settings.screenshotDir, setting.name + ".png");
@@ -294,7 +230,7 @@ describe('generation screenshots from jsdoc examples', function () {
                             } else {
                               cropInFile(size, location, imgFile);
                             }
-                            console.log("generated screenshot "+setting.name);
+                            console.log("  -> OK");
                           }
                         });
                       });

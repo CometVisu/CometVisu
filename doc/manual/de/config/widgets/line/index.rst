@@ -10,8 +10,11 @@ Das Line Widget
 Beschreibung
 ------------
 
-Das Line Widget fügt der Visualisierung eine horizontale Linie hinzu. Hiermit kann man die Visu grafisch strukturieren.
-Farben und Stile werden durch das gewählte Design bestimmt und lassen sich nicht ändern.
+Das Line Widget fügt der Visualisierung eine dicke horizontale Linie hinzu. Hiermit kann man die Visu grafisch strukturieren.
+Farben und Stile werden durch das gewählte Design bestimmt und lassen sich nicht ändern. 
+
+Das Line Widget kann auch in den Navbars verwendet werden. In der Top- bzw. Bottom-Navbar werden damit dünne senkrechte Trennlinien erzeugt, 
+in den seitlichen Navbars dünne waagerechte Linien.
 
 
 Einstellungen

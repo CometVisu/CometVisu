@@ -19,7 +19,7 @@
 import os
 import sys
 import gettext
-import ConfigParser
+import configparser
 
 kwargs = {}
 if sys.version_info[0] < 3:
@@ -31,7 +31,7 @@ gettext.install('messages', **kwargs)
 class Command(object):
 
     def __init__(self):
-        self.config = ConfigParser.ConfigParser()
+        self.config = configparser.ConfigParser()
         self.root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..'))
         self.config.read(os.path.join(self.root_dir, 'utils', 'config.ini'))
 

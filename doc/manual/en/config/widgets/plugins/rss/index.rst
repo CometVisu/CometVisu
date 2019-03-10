@@ -3,7 +3,7 @@
 The rss plugin
 ==============
 
-.. api-doc:: rss
+.. api-doc:: Rss
 
 Description
 -----------
@@ -11,15 +11,19 @@ Description
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
 This plugins integrates zrssfeed to display RSS-Feeds via Google-API 
-*and* a parser for local feeds using jQuery 1.5+ into CometVisu.
+and a parser for local feeds using jQuery 1.5+ into CometVisu.
 rssfeedlocal is derived from simplerss and zrssfeed
 rssfeedlocal is mainly meant to be used with rsslog.php and plugins
+
 
 .. code-block:: xml
 
       <rss src="/visu/plugins/rss/rsslog.php" refresh="300" link="false" title="false"></rss>
       <rss src="http://www.tagesschau.de/xml/rss2" refresh="300">Test API</rss>
       <rss src="/visu/plugins/rss/tagesschau-rss2.xml" refresh="300" header="true" date="true"></rss>
+
+
+
 
 .. ###END-WIDGET-DESCRIPTION###
 
@@ -52,7 +56,7 @@ Allowed attributes in the rss-element
             <plugin name="rss" />
         </plugins>
     </meta>
-    <rss>
+    <rss src="rss.xml" header="true">
         <layout colspan="4" />
     </rss>
 
@@ -73,16 +77,15 @@ Allowed child-elements und their attributes
             <plugin name="rss" />
         </plugins>
     </meta>
-    <rss>
+    <rss src="rss.xml" header="true">
         <layout colspan="4" />
         <label>rss</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </rss>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the rss plugin.
 
 .. CAUTION::

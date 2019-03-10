@@ -1,5 +1,7 @@
 .. replaces:: CometVisu/0.8.x/etc/rrd/de/
 
+.. _rrd_introduction:
+
 RRD Einführung & Beispiele
 ==========================
 
@@ -40,7 +42,7 @@ Zum Anzeigen eines Diagramms in der CometVisu ist nötig:
 (beides ist auf dem wiregate und auf dem Raspberry Pi image
 standardmässig verfügbar)
 
-.. code-block: bash
+.. code-block:: bash
 
     root@Traumhaus:/var/www/rrd# cat /etc/crontab
     # /etc/crontab: system-wide crontab
@@ -54,7 +56,7 @@ standardmässig verfügbar)
 
     # m h dom mon dow user  command
 
-    # etliche Zeilen entfernt, bitte NICHT diese Datei per copy&paste nutzen sondern die RRD-Crons unten an die bestehende Dstei anhängen!!!``
+    # etliche Zeilen entfernt, bitte NICHT diese Datei per copy&paste nutzen sondern die RRD-Crons unten an die bestehende Datei anhängen!!!``
 
     */5 *   * * *   root    /var/www/rrd/cputemp
     */5 *   * * *   root    /var/www/rrd/processes

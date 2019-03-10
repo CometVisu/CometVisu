@@ -1,6 +1,8 @@
 .. replaces:: CometVisu/XML-Elemente
     XML-Elemente
 
+.. _xml-format:
+
 XML-Struktur
 ============
 
@@ -9,8 +11,10 @@ einen Baum darstellen. Ein Element kann weitere Elemente einschließen.
 Über "Attribute" kann ein Element Werte annehmen. Einige dieser
 Attribute müssen zwingend vergeben werden.
 
-Die visu_config.xml (Header)
-----------------------------
+.. _xml-format_header:
+
+Der Header der visu_config.xml
+------------------------------
 
 Die Konfigurationsdatei beginnt immer mit folgenden beiden Zeilen:
 
@@ -19,65 +23,54 @@ Die Konfigurationsdatei beginnt immer mit folgenden beiden Zeilen:
     <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="visu_config.xsd">
 
-In der zweiten Zeile ist folgende Einstellung relevant:
+In der zweiten Zeile sind folgende Einstellungen relevant:
 
-+---------------------+-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
-| Option              | Beschreibung                                                                                                | Werte                                                                      | Zwingend   |
-+=====================+=============================================================================================================+============================================================================+============+
-| ``design="pure"``   | Mit dieser Option wird das Standard-Design festgelegt, dass auf die Visualisierung angewendet werden soll   | pure, metal, discreet, discreet_sand, discreet_slim, alaska, alaska_slim   | JA         |
-+---------------------+-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| Option                     | Beschreibung                                                                                                 | Werte                                                                      | Zwingend   |
++============================+==============================================================================================================+============================================================================+============+
+| ``design="pure"``          | Mit dieser Option wird das Standard-Design festgelegt, dass auf die Visualisierung angewendet werden soll    | pure, metal, discreet, discreet_sand, discreet_slim, alaska, alaska_slim   | JA         |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``screensave_time="60"``   | Mit dieser Option kann festgelegt werden, nach welcher Zeit auf eine bestimmte Seite zurückgekehrt wird      | beliebige Angabe in Sekunden                                               | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
+| ``screensave_page="main"`` | Mit dieser Option kann festgelegt werden, auf welche Seite nach Ablauf von ``sceensave_time`` angezeigt wird | Angabe der Seite-ID zB. "id_1" bzw. Seitenname zB. "Main"                  | NEIN       |
++----------------------------+--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+------------+
 
 
+Als nächstes kommen in der visu_config.xml innerhalb des meta-tags alle Definitionen für
+Plugins, Mappings, Stylings, Icons und die Statusleiste. Die richtige Reihenfolge ist dabei
+einzuhalten!
 
-Als nächstes kommen in der visu_config.xml alle Definitionen für
-Plugins, Mappings, Stylings, Icons und die Statusleiste. Die Reihenfolge
-ist wie folgt:
+
+Nachstehend wird werden der Reihe nach ein Überblick über die Optionen im meta-tag gegeben.
+
+.. _xml-format_files:
+
+Zusätzliche Dateien einbinden
+-----------------------------
+
+| **Verfügbar seit Version**: 0.11.0
+
+
+===========================  ============================================   =================================  ===============
+Option                       Beschreibung                                   Werte                              Zwingend
+===========================  ============================================   =================================  ===============
+``<file type=" "></file>``   Mit dieser Option können zusätzliche Dateien   Pfad zur Datei                     NEIN
+                             (CSS oder Javascript) geladen werden
+===========================  ============================================   =================================  ===============
 
 .. code-block:: xml
 
     <meta>
-       <plugins>
-          <plugin name="colorchooser"/>
-       </plugins>
+        <files>
+            <file type="css">resource/config/media/style.css</file>
+            <file type="js" content="plugin">resource/config/media/MyCustomWidget.js</file>
+        </plugins>
+        ...
+    </meta>
 
-       <mappings>
-          <mapping name="Start/Stop">
-             <entry value="0">Stop</entry>
-             <entry value="1">Start</entry>
-          </mapping>
-       </mappings>
+Siehe auch :ref:`custom_css` und :ref:`custom_plugins`.
 
-       <stylings>
-          <styling name="RedGreen">
-             <entry value="0">red</entry>
-             <entry value="1">green</entry>
-          </styling>
-       </stylings>
-
-       <icons>
-          <icon-definition name="Icon1" uri="./icon/unterverzeichnis/icon1.png"/>
-       </icons>
-
-       <statusbar>
-           <status type="html"><![CDATA[
-               <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
-               - <a href=".?forceReload=true">Reload</a>
-               - <a href="?config=demo">Widget Demo</a>
-             ]]></status>
-           <status type="html" condition="!edit" hrefextend="config"><![CDATA[
-               - <a href="edit_config.html">Edit</a>
-             ]]></status>
-           <status type="html" condition="edit" hrefextend="all"><![CDATA[
-               - <a href=".">normal Mode</a>
-             ]]></status>
-           <status type="html"><![CDATA[
-               - <a href="check_config.php">Check Config</a>
-               <div style="float:right;padding-right:0.5em">Version: SVN</div>
-             ]]></status>
-         </statusbar>
-      </meta>
-
-Die Optionen von oben nach unten im Überblick:
+.. _xml-format_plugins:
 
 Plugins
 -------
@@ -87,6 +80,18 @@ Plugins
 +==========================+======================================================================================================================================================+==================================+============+
 | ``<plugin name=" "/>``   | Mit dieser Option werden die Plugins eingebunden. Hier wird der Name des Plugins eingetragen. Pro Plugin muss ein solcher Eintrag angelegt werden.   | z.B. colorchooser oder diagram   | NEIN       |
 +--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+------------+
+
+.. code-block:: xml
+
+    <meta>
+        <plugins>
+            <plugin name="colorchooser"/>
+        </plugins>
+        ...
+    </meta>
+
+
+.. _xml-format_mappings:
 
 Mappings
 --------
@@ -99,6 +104,21 @@ Mappings
 | ``<entry value="WERT">NAME</entry>``       | Mit dieser Option wird einem Wert ein Namen zugewiesen. Für jeden möglichen Wert muss ein solcher Eintrag angelegt werden.     | z.B. Stop   | JA         |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+-------------+------------+
 
+.. code-block:: xml
+
+    <meta>
+        ...
+        <mappings>
+            <mapping name="Start/Stop">
+                <entry value="0">Stop</entry>
+                <entry value="1">Start</entry>
+            </mapping>
+        </mappings>
+        ...
+    </meta>
+
+.. _xml-format_stylings:
+
 Stylings
 --------
 
@@ -110,6 +130,21 @@ Stylings
 | ``<entry value="WERT">FARBE</entry>``       | Mit dieser Option wird einem Wert eine Farbe zugewiesen.                                                                       | z.B. red   | JA         |
 +---------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+------------+------------+
 
+.. code-block:: xml
+
+    <meta>
+        ...
+        <stylings>
+            <styling name="RedGreen">
+                <entry value="0">red</entry>
+                <entry value="1">green</entry>
+            </styling>
+        </stylings>
+        ...
+    </meta>
+
+.. _xml-format_icons:
+
 Icons
 -----
 
@@ -119,12 +154,201 @@ Icons
 | ``<icon-definition name=" " uri="WERT">``     | Mit dieser Option wird der Name des Icons definiert, welches sich unter dem in uri angegebenen Verzeichnis befindet. Auf die so definierten Icons kann dann im weiteren Verlauf über den einfacher zu merkenden Namen zugegriffen werden. Die Verzeichnisangabe ist im Beispiel relativ zur CV installation. Hier wurden vorher die Icons in einem eigenen Unterverzeichnis abgelegt.   | z.B.    | NEIN       |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+------------+
 
+.. code-block:: xml
+
+    <meta>
+        ...
+        <icons>
+            <icon-definition name="Icon1" uri="./icon/unterverzeichnis/icon1.png"/>
+        </icons>
+        ...
+    </meta>
+
+.. HINT::
+
+    Wenn die Icons über den :doc:`Manager <manager>` hochgeladen wurden, befinden sie sich im Pfad
+    ``resource/config/media/``. Ein hochgeladenes Icon mit dem Dateiname ``logo.svg`` kann demnach mit folgender
+    Zeile eingebunden werden: ``<icon-definition name="Logo" uri="resource/config/media/logo.svg"`.
+    Der Pfad ``resource/config/media/`` gilt für CometVisu Versionen >=0.11.x. Für Versionen <=0.10.x gilt der Pfad
+    ``config/media/``.
+
+.. _xml-format_statusbar:
+
 Statusbar
 ---------
 
-.. TODO::
+Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt z.B. das Anzeigen von externen Links (über URL). 
 
-    Statusbar beschreiben
+.. code-block:: xml
+
+    <meta>
+        ...
+        <statusbar>
+            <status type="html"><![CDATA[
+                <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+                - <a href=".?forceReload=true">Reload</a>
+                - <a href="?config=demo">Widget Demo</a>
+                ]]></status>
+            <status type="html" condition="!edit" hrefextend="config"><![CDATA[
+                - <a href="edit_config.html">Edit</a>
+                ]]></status>
+            <status type="html" condition="edit" hrefextend="all"><![CDATA[
+                - <a href=".">normal Mode</a>
+                ]]></status>
+            <status type="html"><![CDATA[
+                - <a href="check_config.php">Check Config</a>
+                <div style="float:right;padding-right:0.5em">Version: SVN</div>
+                ]]></status>
+        </statusbar>
+    </meta>
+
+.. _xml-format_templates:
+
+Templates
+---------
+
+| **Verfügbar seit Version**: 0.11.0
+|
+
+Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte erstellt werden. In der Regel möchte man z.B.
+seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B. einem
+Slider zur Darstellung und Bedienung der Ventilstellung, einem Info-Widget zur Anzeige der aktuellen Ist-Temperatur
+und einem InfoTrigger-Widget für die aktuelle Soll-Temperatur. Diese Struktur ist in jedem Raum gleich, lediglich
+die benutzen Addresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
+jedem Raum wiederverwenden.
+
+In der Template-Definition werden Platzhalter für Variablen verwendet, welche dann beim benutzen des Templates durch
+die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ein Template definiert und benutzt.
+
+.. code-block:: xml
+    :caption: Beispiel eines Templates für eine Heizung und dessen Verwendung in verschiedenen Räumen
+
+    <pages>
+        <meta>
+            <template name="Heizung">
+                <group name="Heizung">
+                  {{{ additional_content }}}
+                  <slide min="0" max="100" format="%d%%">
+                    <label>
+                      <icon name="sani_heating" />
+                      Heizung
+                    </label>
+                    <address transform="OH:dimmer" variant="">{{ control_address }}</address>
+                  </slide>
+                  <info format="%.1f °C">
+                    <label>
+                      <icon name="temp_temperature" />
+                      Ist
+                    </label>
+                    <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
+                  </info>
+                  <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+                               downvalue="-0.5" styling="BluePurpleRedTemp"
+                               infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+                    <label>
+                      <icon name="temp_control" />
+                      Soll
+                    </label>
+                    <address transform="OH:number" variant="">{{ targettemp_address }}</address>
+                  </infotrigger>
+                </group>
+            </template>
+        </meta>
+        <page>
+            <page name="Wohnzimmer">
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Living</value>
+                  <value name="currenttemp_address">Temperature_FF_Living</value>
+                  <value name="targettemp_address">Temperature_FF_Living_Target</value>
+                </template>
+                ...
+            </page>
+            <page name="Küche">
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Kitchen</value>
+                  <value name="currenttemp_address">Temperature_FF_Kitchen</value>
+                  <value name="targettemp_address">Temperature_FF_Kitchen_Target</value>
+                  <value name="additional_content">
+                    <text><label>Heizung Küche</label></text>
+                  </value>
+                </template>
+                ...
+            </page>
+        </page>
+    </pages>
+
+.. HINT::
+    Für die Templates wird `mustache.js <https://github.com/janl/mustache.js>`_ benutzt. Für weitere Informationen
+    kann die mustache.js Dokumentation zu Rate gezogen werden.
+
+Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine externe Datei ausgelagert werden.
+
+.. code-block:: xml
+    :caption: Beispiel einer Template-Definition aus einer externen Datei
+
+
+    <pages>
+        <meta>
+            <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
+        </meta>
+        <page>
+            <page name="Wohnzimmer">
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Living</value>
+                  <value name="currenttemp_address">Temperature_FF_Living</value>
+                  <value name="targettemp_address">Temperature_FF_Living_Target</value>
+                </template>
+                ...
+            </page>
+            <page name="Küche">
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Kitchen</value>
+                  <value name="currenttemp_address">Temperature_FF_Kitchen</value>
+                  <value name="targettemp_address">Temperature_FF_Kitchen_Target</value>
+                  <value name="additional_content">
+                    <text><label>Heizung Küche</label></text>
+                  </value>
+                </template>
+                ...
+            </page>
+        </page>
+    </pages>
+
+.. code-block:: xml
+    :caption: Inhalt der externen Datei ``resource/config/media/heizung.template.xml``
+
+    <group name="Heizung">
+      {{{ additional_content }}}
+      <slide min="0" max="100" format="%d%%">
+        <label>
+          <icon name="sani_heating" />
+          Heizung
+        </label>
+        <address transform="OH:dimmer" variant="">{{ control_address }}</address>
+      </slide>
+      <info format="%.1f °C">
+        <label>
+          <icon name="temp_temperature" />
+          Ist
+        </label>
+        <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
+      </info>
+      <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+                               downvalue="-0.5" styling="BluePurpleRedTemp"
+                               infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <label>
+          <icon name="temp_control" />
+          Soll
+        </label>
+        <address transform="OH:number" variant="">{{ targettemp_address }}</address>
+      </infotrigger>
+    </group>
+
+.. _xml-format_pages:
 
 Aufbau der Visu-Seiten
 ----------------------

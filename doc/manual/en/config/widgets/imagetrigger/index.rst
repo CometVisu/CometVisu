@@ -10,25 +10,26 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-Adds an image like the {@link structure/pure/Image} widget, but additionally the image can be changed by incoming
+Adds an image like the {@link cv.ui.structure.pure.Image} widget, but additionally the image can be changed by incoming
 data and can send data to the backend by clicking on it.
-There modes to react on incoming data:
+There are two modes to react on incoming data:
 
-* type="show": Hides the image when incoming data == 0
-* type="select": Changes the image by appending the incoming data to the initial configured image source,
-  or hide it when incoming data == 0
+
+ * ``type="show"``: Hides the image when incoming data === 0
+ * ``type="select"``: Changes the image by appending the incoming data to the initial configured image source, or hide it when incoming data === 0
 
 Example:
 
 .. code-block:: xml
 
-    <imagetrigger src="icon/comet" suffix="svg" sendValue="clicked" type="select">
-     <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
+    <imagetrigger src="resource/icon/comet" suffix="svg" sendValue="clicked" type="select">
+       <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
     </imagetrigger>
 
 
-initially shows nothing. When the CometVisu receives the string '_icon' in address `0/0/0`,
-the image `icon/comet_opt_icon.svg` is shown. When the CometVisu receives '0' on address `0/0/0`,
+
+initially shows nothing. When the CometVisu receives the string ``_icon`` in address ``0/0/0``,
+the image ``icon/comet_opt_icon.svg`` is shown. When the CometVisu receives '0' on address ``0/0/0``,
 this image is hidden.
 
 
@@ -57,8 +58,9 @@ Allowed attributes in the ImageTrigger-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <imagetrigger>
+    <imagetrigger src="resource/icon/CometVisu_" suffix="png">
         <layout colspan="4" />
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </imagetrigger>
 
 
@@ -73,7 +75,7 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <imagetrigger>
+    <imagetrigger src="resource/icon/CometVisu_" suffix="png">
         <layout colspan="4" />
         <label>ImageTrigger</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
@@ -82,7 +84,7 @@ Allowed child-elements und their attributes
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the ImageTrigger widget.
 
 .. CAUTION::
@@ -91,31 +93,23 @@ for the ImageTrigger widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. figure:: _static/image_trigger.png
-
-    Image changed by incoming data 'blue'
-
-.. figure:: _static/image_trigger_changes.png
-
-    Image changed by incoming data 'grey'
-
 .. code-block:: xml
 
     
-    <imagetrigger src="icon/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
-      <layout colspan="1"/>
-      <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
-    </imagetrigger>
+    <imagetrigger src="resource/icon/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
+       <layout colspan="1"/>
+       <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
+     </imagetrigger>
         
-.. figure:: _static/image_trigger_colspan0.png
 .. code-block:: xml
 
     
-    <imagetrigger src="icon/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
-      <layout colspan="0"/>
-      <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
-    </imagetrigger>
+    <imagetrigger src="resource/icon/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
+       <layout colspan="0"/>
+       <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
+     </imagetrigger>
         
+    
 
 .. ###END-WIDGET-EXAMPLES###
 

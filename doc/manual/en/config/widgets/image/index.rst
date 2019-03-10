@@ -33,13 +33,26 @@ Allowed attributes in the Image-element
 
 .. parameter-information:: image
 
+Valid values for ``cachecontrol`` are:
+
+``full``   Standard. By extending the URL with a timestamp a refresh is
+           ensured. Server support is required though.
+``force``  Using sophisticated methods an enfocrement of the refresh is
+           attempted.
+``weak``   The URL will be extended by an anchor with timestamp. This will
+           work with most servers where ``full`` mode doesn't work. But it
+           requires the correct use of HTTP headers by the server as well
+           as a correct reaction by the web browser.
+``none``   The URL will not be modified. A working refresh can be prevented
+           by caching.
+           
 .. widget-example::
     :editor: attributes
     :scale: 75
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <image>
+    <image src="image.jpg">
         <layout colspan="4" />
     </image>
 
@@ -55,16 +68,15 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <image>
+    <image src="image.jpg">
         <layout colspan="4" />
         <label>Image</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </image>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Image widget.
 
 .. CAUTION::
@@ -76,7 +88,7 @@ for the Image widget.
 .. widget-example::
 
     
-    <image src="icon/CometVisu_orange.png" width="45px" height="32px">
+    <image src="resource/icon/CometVisu_orange.png" width="45px" height="32px">
       <layout colspan="2" />
     </image>
     

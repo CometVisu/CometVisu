@@ -22,7 +22,7 @@ The behaviour and appearance of the %%%WIDGET_NAME%%% plugins can be influenced 
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the :ref:`editor <editor>`.
 
-Attributes underlined by ..... are mandatory, all the others are optional and be omitted.
+Attributes underlined by ..... are mandatory, all the others are optional and can be omitted.
 
 Allowed attributes in the %%%WIDGET_NAME%%%-element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -70,7 +70,7 @@ Allowed child-elements und their attributes
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the %%%WIDGET_NAME%%% plugin.
 
 .. CAUTION::

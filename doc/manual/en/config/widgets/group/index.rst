@@ -51,7 +51,7 @@ All widgets and plugins are allowed in a group.
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Group widget.
 
 .. CAUTION::
@@ -59,10 +59,6 @@ for the Group widget.
     XML-editor to UTF-8 mode!
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
-
-.. figure:: _static/group_with_border.png
-
-    Group with border and name
 
 .. code-block:: xml
 
@@ -82,10 +78,6 @@ for the Group widget.
        </info>
      </group>
         
-.. figure:: _static/group_without_border.png
-
-    Hidden Group: no border no name
-
 .. code-block:: xml
 
     

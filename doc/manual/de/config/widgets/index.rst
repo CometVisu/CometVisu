@@ -54,6 +54,8 @@ kann innerhalb der Visu navigiert werden.
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`URL-trigger <urltrigger/index>`           | Das UrlTrigger Widget fügt der Visualisierung eine Schaltfläche hinzu, die im Hintergrund eine URL aufruft um dadurch Aktionen auszuführen, z.B. um ein IFTTT Rezept aufzurufen.                                                                                                                                                                                            |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :doc:`Badge <notificationcenterbadge/index>`    | Das NotificationCenterBadge Widget zeigt die aktuelle Anzahl der Nachrichten in der Benachrichtungszentrale an und öffnet diese, wenn es angeklickt wird.                                                                                                                                                                                                                   |
++-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. toctree::
     :titlesonly:
@@ -74,6 +76,7 @@ kann innerhalb der Visu navigiert werden.
     toggle/index
     trigger/index
     urltrigger/index
+    notificationcenterbadge/index
 
 Darstellende Widgets
 ====================
@@ -97,7 +100,7 @@ Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht mö
 +-------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Web <web/index>`                          | Fügt der Visu ein Fläche hinzu, in der externe Webseiten dargestellt werden können.                                                                                                                                                                                                                                                                         |
 +-------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`WG_Plugin_Info <wgplugininfo/index>`      | Fügt der Visu ein dynamisches Feld hinzu mit dem Daten aus WireGate Plugins dargestellt werden können.                                                                                                                                                                                                                                                      |
+| :doc:`WG_Plugin_Info <wgplugin_info/index>`     | Fügt der Visu ein dynamisches Feld hinzu mit dem Daten aus WireGate Plugins dargestellt werden können.                                                                                                                                                                                                                                                      |
 +-------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. toctree::
@@ -111,7 +114,7 @@ Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht mö
     text/index
     video/index
     web/index
-    wgplugininfo/index
+    wgplugin_info/index
 
 
 Sonstige Widgets
@@ -164,30 +167,37 @@ also z.B.:
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Diagram <plugins/diagram/index>`                   | RRD-basierte Diagramme                                              |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`Diagram_Info <plugins/diagramm_info/index>`        | Informations-Anzeige, die beim Klick ein Diagramm öffnet            |
+| :doc:`Diagram_Info <plugins/diagram_info/index>`         | Informations-Anzeige, die beim Klick ein Diagramm öffnet            |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`PowerSpectrum <plugins/powerspectrum/index>`       | Darstellung des Strom-Spektrums                                     |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Strftime <plugins/strftime/index>`                 | Darstellung der Uhrzeit in Textform                                 |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`RSSlog <plugins/rsslog/index>`                     | RSS                                                                 |
+| RSSlog                                                   | Interaktive Log-Meldungen basierend auf RSS-Technologie             |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`RSS <plugins/rss/index>`                           | RSS                                                                 |
+| RSS                                                      | RSS                                                                 |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Gauge <plugins/gauge/index>`                       | Zeigerinstrument                                                    |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`CalendarList <plugins/calendarlist/index>`         | externen Kalendar einbinden                                         |
+| CalendarList                                             | externen Kalendar einbinden                                         |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`Clock <plugins/clock/index>`                       | Plugin zum Darstellen der Uhrzeit von einer Adresse.                |
+| Clock                                                    | Plugin zum Darstellen der Uhrzeit von einer Adresse.                |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`SVG <plugins/svg/index>`                           | Demo Plugin zur Anzeige einer interaktiv animierten SVG Datei       |
+| SVG                                                      | Demo Plugin zur Anzeige einer interaktiv animierten SVG Datei       |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Timeout <plugins/timeout/index>`                   | Wechselt nach gewisser Zeit der Inaktivität auf eine andere Seite   |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`UPNPController <plugins/upnpcontroller/index>`     | UPNP-Controller                                                     |
+| :doc:`tr064 <plugins/tr064/index>`                       | Router Informationen, wie Anruflisten der Fritz!Box, über TR-064.   |
++----------------------------------------------------------+---------------------------------------------------------------------+
+| UPNPController                                           | UPNP-Controller                                                     |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Speech <plugins/speech/index>`                     | Sprachausgabe (Text-to-speech)                                      |
 +----------------------------------------------------------+---------------------------------------------------------------------+
+| :doc:`openHAB <plugins/openhab/index>`                   | Verbesserte Integration mit dem openHAB2 Backend                    |
++----------------------------------------------------------+---------------------------------------------------------------------+
+| :doc:`Link <plugins/link/index>`                         | Fügt der Visu einen einfachen anklickbaren Link hinzu               |
++----------------------------------------------------------+---------------------------------------------------------------------+
+
 
 .. toctree::
     :titlesonly:

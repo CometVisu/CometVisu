@@ -17,16 +17,19 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
-import sh
+try:
+    import sh
+except:
+    import pbs as sh
 import json
 import os
-import ConfigParser
+import configparser
 
 root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..', '..'))
 
 class Version:
     _source_version = None
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.read(os.path.join(root_dir, 'utils', 'config.ini'))
 
     @classmethod

@@ -41,7 +41,7 @@ Allowed child-elements und their attributes
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Line widget.
 
 .. CAUTION::
@@ -52,7 +52,7 @@ for the Line widget.
 
 .. widget-example::
 
-    <settings selector="hr">
+     <settings selector="hr">
       <caption>A line tag which uses 50% of the screen size (6 of 12 available columns)</caption>
     </settings>
     <line><layout colspan="6"/></line>

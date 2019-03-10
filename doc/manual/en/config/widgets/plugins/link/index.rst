@@ -3,7 +3,7 @@
 The link plugin
 ===============
 
-.. api-doc:: link
+.. api-doc:: Link
 
 Description
 -----------
@@ -11,6 +11,7 @@ Description
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
 This plugins integrates a simple link.
+
 
 .. ###END-WIDGET-DESCRIPTION###
 
@@ -64,16 +65,14 @@ Allowed child-elements und their attributes
             <plugin name="link" />
         </plugins>
     </meta>
-    <link>
+    <link text="Link" href="https://www.cometvisu.org">
         <layout colspan="4" />
-        <label>link</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </link>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the link plugin.
 
 .. CAUTION::

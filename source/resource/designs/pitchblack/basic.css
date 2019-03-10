@@ -1,0 +1,408 @@
+@font-face { font-family: Verdana,Helvetica,sans-serif; }
+
+/* all text-color definitions */
+
+body, .nav_path a, .link > div, .link a {
+  color: /* normaltext */ #D0D0D0;
+}
+
+.footer, .footer *, #diagramTooltip, #flotTip {
+  color: /* black */ #000000;
+}
+
+/* all background definitions */
+
+body, body hr, #pages hr  {
+  background: /* background */ #121212; 
+}
+
+.popup_background {
+  opacity: 0.98;
+}
+
+.popup_background .error {
+  background: #800000;
+}
+
+#diagramTooltip, #flotTip {
+  background: #fee;
+  opacity: 0.80;
+  border: 1px solid #fdd;
+  padding: 2px;
+  z-index: 100002;
+}
+
+div#top, .widget, .popup_background {
+  background: -moz-linear-gradient(top, #606060, #0D0D0D .3em ) transparent;
+  background: -webkit-linear-gradient(top, #606060, #0D0D0D .3em);
+}
+
+/* border definitions */
+
+div#top , .widget, .popup_background {
+  border-color: /* border */ #202020; 
+  border-style: solid;
+  border-width: 0 1px 1px 1px;
+}
+
+#pages hr, body hr {
+  border: none;
+}
+
+.popup > div.head {
+  border-bottom: 1px solid;
+}
+
+.popup_background.error {
+  border: #f00;
+}
+
+/* margins */
+
+body , body hr, #pages hr{
+  margin: 0;
+}
+
+div#top, .widget, .widget.group {
+  margin: .2em .1em 0 .1em; 
+}
+
+.widget.group .widget {
+  background: #0D0D0D;
+  border: none;
+  margin: 0;
+  padding:0;
+}
+
+.nav_path , .widget .actor, .diagram_inline {
+  margin-left: .2em;
+}
+
+.popup > div.head {
+  margin: 0.3em .2em 0 0.2em;
+}
+
+.popup > div.main {
+  margin: 1em auto 4px auto !important;
+}
+
+h2 {
+  margin: 5px 15px 5px 0;
+}
+
+.image .actor {
+  margin-top: 0.3em;
+}
+
+.lighton, .lightoff, .jalup, .jaldown, .jalstop , /* for all image buttons, top-margin=gradient-height */
+  .singlewindowopen, .singlewindowclosed, .doublewindowbothopen, .doublewindowbothclosed,
+  .doublewindowleftopen, .doublewindowrightopen  {
+  margin: 0.3em 0 0 0 !important;
+  width: 100%;
+  height: 100%;
+}
+  
+/* paddings */
+
+.lighton, .lightoff { /* image-buttons */
+  padding: 0 !important;
+  background-size: 2.6em 2.6em !important;
+}
+
+.widget, div#top {
+  padding: 0.3em;
+}
+
+.widget.group {
+  padding: 0.3em 0 0.3em 0;
+}
+
+.text >div, .rsslog .label, .popup >div.head {
+  padding-left: 0.3em;
+}
+
+.group .text>div, .group .rsslog .label {
+  padding-left: 0.6em;
+}
+
+/* 
+ * fonts 
+*/
+
+body { 
+  font-family: Verdana;
+  font-size: 5.5mm;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 1.25em;
+}
+
+.rsslogRow, .footer, .footer * {
+  font-size:80%;
+}
+
+.lighton > div, .lightoff > div, .jalup, .jaldown,  /* image-buttons */
+  .jalstop, .singlewindowopen > div, .singlewindowclosed > div, .doublewindowleftopen > div, 
+  .doublewindowrightopen >div, .doublewindowbothclosed >div, .doublewindowbothopen >div  {
+  font-size:0%;
+}
+
+/* 
+ * images 
+*/
+
+.lighton {
+  background: url(images/licht-an.png) no-repeat center center; 
+}
+
+.lightoff {
+  background: url(images/licht-aus.png) no-repeat center center;
+}
+
+.jalup {
+  background: url(images/jal_up.png) no-repeat center center;
+}
+
+.jaldown {
+  background: url(images/jal_down.png) no-repeat center center;
+}
+
+.jalstop {
+  background: url(images/jal_stop.png) no-repeat center center;
+}
+
+.singlewindowopen {
+  background: url(images/fenster_einfach_auf.png) no-repeat center center;
+}
+
+.singlewindowclosed {
+  background: url(images/fenster_einfach_zu.png) no-repeat center center;
+}
+
+.doublewindowleftopen {
+  background: url(images/fenster_zweifach_linksauf.png) no-repeat center center;
+}
+
+.doublewindowrightopen {
+  background: url(images/fenster_zweifach_rechtsauf.png) no-repeat center center;
+}
+
+.doublewindowbothopen {
+  background: url(images/fenster_zweifach_auf.png) no-repeat center center;
+}
+
+.doublewindowbothclosed {
+  background: url(images/fenster_zweifach_zu.png) no-repeat center center;
+}
+
+/* 
+ * layout definitions 
+*/
+
+body { 
+  overflow: hidden;
+}
+
+
+body hr, body br, #pages hr {
+  clear: both;
+}
+
+body hr {
+  height: 1px;
+}
+
+#pages hr {
+  height: .3em; 
+}
+
+.page h1, div#loading {    
+  display: none !important;
+}
+
+.label {
+  display: none;
+}
+
+.rsslog .label {
+  display: inline-block;
+}
+
+.rsslogRow  {
+  line-height: 1.3em;
+}
+
+.center {
+  text-align: center !important;
+}
+
+.nav_path, .widget_container, .text > div, .widget > .label, .widget .actor,
+  .widget .actor div, .page {
+  float:left;
+}
+
+.nav_path a, .link a {
+  text-decoration:none;
+}
+
+.footer, .footer * {
+  vertical-align: middle;
+}
+
+.widget_container {
+}
+
+.colspan0 {
+  width: 8.33333%;
+}
+
+.link > div, .link a , .switchPressed, .switchUnpressed, * html>body .clearfix,
+  .info > div, .actor .value , .text>div {
+  width: 100%;
+}
+
+.widget, div#top {
+  min-height: 2.4em;
+}
+
+.widget > .label, .widget .info .actor, .text > div, .link > div, .link a, 
+  div#top, .value, .popup >div.head {
+  line-height: 2.4em;
+}
+
+.text > div, .widget > .label, .widget .actor {
+  text-align:left;
+}
+
+.widget .info .actor, .link > div, .link a, .value  {
+  text-align: center;
+}
+
+.link > div, .link a, .clearfix {
+  display: inline-block;
+}
+
+.widget > .label {
+  width: 49%;
+}
+
+.widget .actor {
+  line-height: 2.0em;
+}
+.widget .actor div {
+  white-space: pre-wrap;
+}
+
+.page {
+  overflow: auto;
+  position: relative;
+}
+
+.ui-slider { position: relative; text-align: left; }
+.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: .4em; height: 1.2em; cursor: default; }
+.ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
+
+.ui-slider-horizontal { height: .8em; }
+.ui-slider-horizontal .ui-slider-handle { top: -.40em; }
+.ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
+.ui-slider-horizontal .ui-slider-range-min { left: 0; }
+.ui-slider-horizontal .ui-slider-range-max { right: 0; }
+
+.ui-widget-content { border: 1px solid #707070; background: #000000 ; color: #000000; }
+.ui-widget-content a { color: #333333; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #cccccc; background: #000 ; font-weight: bold; color: #1c94c4; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #1c94c4; text-decoration: none; }
+
+.widget .ui-slider
+{
+  width: 90%;
+  margin: 0.9em 5% 0 5%;
+  border-color:  #D0D0D0;
+  background: #121212;
+  vertical-align:middle;
+}
+
+.widget .ui-slider-handle
+{
+  border-style:  solid;
+  padding: 1px;
+  background: #121212; 
+  border-width:  3px;
+  border-color: #D0D0D0;
+}
+
+/* Clearfix */
+.clearfix:after {
+  content: ".";
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+html[xmlns] .clearfix, .clearfix:after {
+  display: block;
+}
+
+*:first-child+html .clearfix {
+  min-height: 0;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+* html>body .clearfix {
+  display: inline-block;
+}
+
+.loading {
+  display: block !important;
+}
+
+.popup, .popup_background {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  top: 5%;
+  left: 5%;
+}
+
+.popup {
+  background: transparent;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.diagram_inline {
+  width: 320px;
+  height: 180px;
+}
+
+.diagram_preview {
+  width: 240px;
+  height: 2em;
+}
+
+/* styles for the preview */
+div#demo_1, div#demo_2 {
+  width: 100%;
+  height: 44px;
+}
+
+div#demo_1 {
+  background-color: black;
+}
+
+div#demo_2 {
+  height: 2px;
+  background-color: white;
+}
+
+div#demo_3 {
+  background-color: #1d1d1d;
+}

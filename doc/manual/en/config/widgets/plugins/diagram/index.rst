@@ -3,7 +3,7 @@
 The diagram plugin
 ==================
 
-.. api-doc:: diagram
+.. api-doc:: diagram/AbstractDiagram
 
 Description
 -----------
@@ -68,13 +68,12 @@ Allowed child-elements und their attributes
     <diagram>
         <layout colspan="4" />
         <label>diagram</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </diagram>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the diagram plugin.
 
 .. CAUTION::

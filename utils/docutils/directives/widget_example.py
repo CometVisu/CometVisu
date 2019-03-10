@@ -16,24 +16,17 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
-
-import json
-import os
-from lxml import etree
 from docutils import nodes, statemachine
 from sphinx.util.nodes import set_source_info
 from sphinx.directives.code import container_wrapper
 from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
-from os import path, makedirs
-from io import open
-from settings import config, root_dir
+from os import path
+from lxml import etree
 
-counters = {}
+from helper.widget_example_parser import WidgetExampleParser
 
-xsd = etree.XMLSchema(etree.parse(os.path.join(root_dir, config.get("DEFAULT", "schema-file"))))
-parser = etree.XMLParser(schema=xsd)
-
+parser = WidgetExampleParser('manual')
 
 def align(argument):
     align_values = ('left', 'center', 'right')
@@ -58,6 +51,9 @@ class WidgetExampleDirective(Directive):
             :number-lines: 1
 
             <settings design="metal" selector=".widget_container">
+                <fixtures>
+                    <fixture source-file="/path/to/read/file/from" target-path="/target/path/to/serve/file/from"/>
+                </fixtures>
                 <screenshot name="switch_mapping_styling">
                     <data address="1/4/0">0</data>
                 </screenshot>
@@ -98,16 +94,6 @@ class WidgetExampleDirective(Directive):
     }
     has_content = True
 
-    example_dir = path.join("cache", "widget_examples", "manual")
-
-    config_parts = {
-        "start": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0">',
-        "meta": '<meta/>',
-        "content_start": '<page name="Example">',
-        "content_end": '</page>',
-        "end":   '</pages>'
-    }
-
     def add_caption(self, caption_string, node):
         cnode = nodes.Element()  # anonymous container for parsing
         sl = statemachine.StringList([caption_string], source='')
@@ -121,151 +107,158 @@ class WidgetExampleDirective(Directive):
 
     def run(self):
         config = None
-        meta_node = None
-        settings_node = None
-        global_caption = None
+        # meta_node = None
+        # settings_node = None
+        # global_caption = None
         show_source = True
         editor = self.options['editor'] if 'editor' in self.options else None
         self.assert_has_content()
         source = "\n".join(self.content)
-        source_path = self.state_machine.document.settings._source.split("doc/manual/", 1)[1]
-        screenshot_dir = path.join("doc", "manual", path.dirname(self.state_machine.document.settings._source).split("doc/manual/", 1)[1], "_static")
+        source_path = self.state_machine.document.settings._source.split("%s%s" % (path.join("doc", "manual"), path.sep), 1)[1]
+        screenshot_dir = path.join("doc", "manual", path.sep.join(source_path.split(path.sep)[0:-1]), "_static")
+        parser.set_screenshot_dir(screenshot_dir)
         name = source_path[:-4].replace("/", "_")
-        if not name in counters:
-            counters[name] = 0
-        else:
-            counters[name] += 1
-        design = "metal"
 
-        visu_config_parts = self.config_parts.copy()
-        try:
-            # we need one surrouding element to prevent parse errors
-            xml = etree.fromstring("<root>%s</root>" % source)
-            for child in xml:
-                if etree.iselement(child):
+        # visu_config_parts = self.config_parts.copy()
+        parse_result = parser.parse(source, name, editor)
+        # try:
+        #     # we need one surrouding element to prevent parse errors
+        #     xml = etree.fromstring("<root>%s</root>" % source)
+        #     for child in xml:
+        #         if etree.iselement(child):
+        #
+        #             if child.tag == "settings":
+        #                 # meta settings
+        #                 settings_node = child
+        #             elif child.tag == "meta":
+        #                 # config meta settings
+        #                 meta_node = child
+        #             elif child.tag == "caption":
+        #                 global_caption = child.text
+        #             else:
+        #                 # the config example
+        #                 config = child
+        # except Exception as e:
+        #     print("Parse error: %s" % str(e))
 
-                    if child.tag == "settings":
-                        # meta settings
-                        settings_node = child
-                    elif child.tag == "meta":
-                        # config meta settings
-                        meta_node = child
-                    elif child.tag == "caption":
-                        global_caption = child.text
-                    else:
-                        # the config example
-                        config = child
-        except Exception as e:
-            print("Parse error: %s" % str(e))
+        # example_content = etree.tostring(config, encoding='utf-8')
+        # if meta_node is not None:
+        #     example_content = b"...\n%s...\n%s" % (etree.tostring(meta_node, encoding='utf-8'), example_content)
+        #     visu_config_parts['meta'] = etree.tostring(meta_node, encoding='utf-8').decode('utf-8')
+        #
+        # settings = {
+        #     "selector": ".widget_container",
+        #     "screenshots": [],
+        #     "screenshotDir": screenshot_dir
+        # }
+        # example_content = parse_result['example_content']
+        # visu_config_parts['meta'] = parse_result['meta_content']
+        # settings = parse_result['settings']
+        # settings['screenshotDir'] = screenshot_dir
+        # global_caption = parse_result['global_caption']
 
-        example_content = etree.tostring(config, encoding='utf-8')
-        if meta_node is not None:
-            example_content = b"...\n%s...\n%s" % (etree.tostring(meta_node, encoding='utf-8'), example_content)
-            visu_config_parts['meta'] = etree.tostring(meta_node, encoding='utf-8').decode('utf-8')
-
-        settings = {
-            "selector": ".widget_container",
-            "screenshots": [],
-            "screenshotDir": screenshot_dir
-        }
         if 'scale' in self.options:
             scale = max(1, min(100, int(self.options['scale'] or 100)))
-            settings['scale'] = scale
+            parse_result['settings']['scale'] = scale
 
-        shot_index = 0
         if editor is not None:
             # change screenshot + selector
-            settings['editor'] = editor
-            settings['widget'] = config.tag
+            parse_result['settings']['editor'] = editor
+            parse_result['settings']['widget'] = parse_result['example_tag']
             if editor == "attributes":
-                settings['selector'] = ".treeType_%s ul.attributes" % config.tag
+                parse_result['settings']['selector'] = ".treeType_%s ul.attributes" % parse_result['example_tag']
             elif editor == "elements":
-                settings['selector'] = ".treeType_%s" % config.tag
-            settings['screenshots'].append({
+                parse_result['settings']['selector'] = ".treeType_%s" % parse_result['example_tag']
+            parse_result['settings']['screenshots'].append({
                 "name": "%s_editor_%s" % (name, editor),
                 "data": {}
             })
             show_source = False
 
-        elif settings_node is not None:
-            # read meta settings
-            design = settings_node.get("design", "metal")
-            settings['selector'] = settings_node.get("selector", ".widget_container")
-            if settings_node.get("sleep"):
-                settings['sleep'] = settings_node.get("sleep")
-
-            for screenshot in settings_node.iter('screenshot'):
-                shot = {
-                    "name": screenshot.get("name", name + str(counters[name] + shot_index)),
-                    "data": []
-                }
-                if screenshot.get("sleep"):
-                    shot['sleep'] = screenshot.get("sleep")
-                if screenshot.get("clickpath", None):
-                    shot['clickPath'] = screenshot.get('clickpath')
-                if screenshot.get("waitfor", None):
-                    shot['waitFor'] = screenshot.get('waitfor')
-
-                shot_index += 1
-
-                for data in screenshot.iter('data'):
-                    values = {
-                        'address': data.get("address", "0/0/0"),
-                        'value': data.text
-                    }
-                    if data.get("type"):
-                        values['type'] = data.get("type")
-
-                    shot['data'].append(values)
-
-                for caption in screenshot.iter('caption'):
-                    if 'caption' not in shot:
-                        shot['caption'] = caption.text
-                    else:
-                        shot['caption'] += caption.text
-
-                settings['screenshots'].append(shot)
-
-            for caption in settings_node.iterchildren('caption'):
-                global_caption = caption.text
-
-        # no screenshots defined, add a default one
-        if len(settings['screenshots']) == 0:
-            settings['screenshots'].append({
-                "name": name + str(shot_index)
-            })
-
-        # replace the design value in the config
-        visu_config_parts['start'] = visu_config_parts['start'].replace("%%%DESIGN%%%", design)
-        if config.tag == "page":
-            visu_config_parts['content_start'] = ""
-            visu_config_parts['content_end'] = ""
-
-        # build the real config source
-        visu_config = visu_config_parts['start'] + \
-                      visu_config_parts['meta'] + \
-                      visu_config_parts['content_start']  + \
-                      etree.tostring(config, encoding='utf-8').decode('utf-8') + \
-                      visu_config_parts['content_end'] + \
-                      visu_config_parts['end']
-
-        # validate generated config against XSD
         try:
-            etree.fromstring(visu_config, parser)
+            parser.save_screenshot_control_files(parse_result, name, editor=editor is not None)
         except etree.XMLSyntaxError as e:
             raise self.error(str(e))
 
-        if not path.exists(self.example_dir):
-            makedirs(self.example_dir)
+        # elif settings_node is not None:
+        #     # read meta settings
+        #     design = settings_node.get("design", "metal")
+        #     settings['selector'] = settings_node.get("selector", ".widget_container")
+        #     if settings_node.get("sleep"):
+        #         settings['sleep'] = settings_node.get("sleep")
+        #
+        #     for screenshot in settings_node.iter('screenshot'):
+        #         shot = {
+        #             "name": screenshot.get("name", name + str(counters[name] + shot_index)),
+        #             "data": []
+        #         }
+        #         if screenshot.get("sleep"):
+        #             shot['sleep'] = screenshot.get("sleep")
+        #         if screenshot.get("clickpath", None):
+        #             shot['clickPath'] = screenshot.get('clickpath')
+        #         if screenshot.get("waitfor", None):
+        #             shot['waitFor'] = screenshot.get('waitfor')
+        #
+        #         shot_index += 1
+        #
+        #         for data in screenshot.iter('data'):
+        #             values = {
+        #                 'address': data.get("address", "0/0/0"),
+        #                 'value': data.text
+        #             }
+        #             if data.get("type"):
+        #                 values['type'] = data.get("type")
+        #
+        #             shot['data'].append(values)
+        #
+        #         for caption in screenshot.iter('caption'):
+        #             if 'caption' not in shot:
+        #                 shot['caption'] = caption.text
+        #             else:
+        #                 shot['caption'] += caption.text
+        #
+        #         settings['screenshots'].append(shot)
+        #
+        #     for caption in settings_node.iterchildren('caption'):
+        #         global_caption = caption.text
 
-        with open("%s_%s.xml" % (path.join(self.example_dir, name), counters[name]), encoding='utf-8', mode="w") as f:
-            f.write(u"%s\n%s" % (json.dumps(settings), visu_config))
+        # # no screenshots defined, add a default one
+        # if len(settings['screenshots']) == 0:
+        #     settings['screenshots'].append({
+        #         "name": name + str(shot_index)
+        #     })
+
+        # # replace the design value in the config
+        # visu_config_parts['start'] = visu_config_parts['start'].replace("%%%DESIGN%%%", design)
+        # if config.tag == "page":
+        #     visu_config_parts['content_start'] = ""
+        #     visu_config_parts['content_end'] = ""
+        #
+        # # build the real config source
+        # visu_config = visu_config_parts['start'] + \
+        #               visu_config_parts['meta'] + \
+        #               visu_config_parts['content_start']  + \
+        #               etree.tostring(config, encoding='utf-8').decode('utf-8') + \
+        #               visu_config_parts['content_end'] + \
+        #               visu_config_parts['end']
+        #
+        # # validate generated config against XSD
+        # try:
+        #     etree.fromstring(visu_config, parser)
+        # except etree.XMLSyntaxError as e:
+        #     raise self.error(str(e))
+        #
+        # if not path.exists(self.example_dir):
+        #     makedirs(self.example_dir)
+        #
+        # with open("%s_%s.xml" % (path.join(self.example_dir, name), parser.counters[name]), encoding='utf-8', mode="w") as f:
+        #     f.write(u"%s\n%s" % (json.dumps(settings), visu_config))
 
         # create the code-block
         classes = ['code', 'xml']
         # set up lexical analyzer
         try:
-            tokens = Lexer(example_content, 'xml', self.state.document.settings.syntax_highlight)
+            tokens = Lexer(parse_result['display_content'], 'xml', self.state.document.settings.syntax_highlight)
         except LexerError as error:
             raise self.warning(error)
 
@@ -283,8 +276,7 @@ class WidgetExampleDirective(Directive):
             show_source = self.options['hide-source'] != "true"
 
         res_nodes = []
-        for shot in settings['screenshots']:
-
+        for shot in parse_result['settings']['screenshots']:
             reference = "_static/%s.png" % shot['name']
             options = dict(uri=reference)
             if 'caption' in shot:
@@ -298,13 +290,13 @@ class WidgetExampleDirective(Directive):
             if 'caption' in shot:
                 self.add_caption(shot['caption'], figure_node)
 
-            elif not show_source and global_caption and len(settings['screenshots']) == 1:
-                self.add_caption(global_caption, figure_node)
+            elif not show_source and parse_result['global_caption'] and len(parse_result['settings']['screenshots']) == 1:
+                self.add_caption(parse_result['global_caption'], figure_node)
 
             res_nodes.append(figure_node)
 
         if show_source:
-            example_content = example_content.decode('utf-8')
+            example_content = parse_result['display_content'].decode('utf-8')
             node = nodes.literal_block(example_content, example_content)
             node['language'] = 'xml'
             node['linenos'] = 'linenos' in self.options or \
@@ -313,9 +305,9 @@ class WidgetExampleDirective(Directive):
 
             set_source_info(self, node)
 
-            if global_caption:
-                self.options.setdefault('name', nodes.fully_normalize_name(global_caption))
-                node = container_wrapper(self, node, global_caption)
+            if parse_result['global_caption']:
+                self.options.setdefault('name', nodes.fully_normalize_name(parse_result['global_caption']))
+                node = container_wrapper(self, node, parse_result['global_caption'])
             self.add_name(node)
             res_nodes.append(node)
 

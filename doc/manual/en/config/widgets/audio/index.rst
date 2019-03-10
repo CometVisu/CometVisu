@@ -12,6 +12,7 @@ Description
 
 The audio widget embeds an audio file, which can be automatically played by incoming data
 
+
 .. ###END-WIDGET-DESCRIPTION###
 
 Settings
@@ -37,8 +38,9 @@ Allowed attributes in the Audio-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <audio>
+    <audio src="sound.mp3" id="example">
         <layout colspan="4" />
+        <label>Audio</label>
     </audio>
 
 
@@ -53,7 +55,7 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <audio>
+    <audio src="sound.mp3" id="example">
         <layout colspan="4" />
         <label>Audio</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
@@ -62,7 +64,7 @@ Allowed child-elements und their attributes
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Audio widget.
 
 .. CAUTION::
@@ -70,10 +72,6 @@ for the Audio widget.
     XML-editor to UTF-8 mode!
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
-
-.. figure:: _static/audio_example.png
-
-    Default example for defining an audio widget in the configuration
 
 .. code-block:: xml
 
@@ -84,6 +82,7 @@ for the Audio widget.
       <address transform="DPT:1.001" mode="read">0/0/0</address>
     </audio>
         
+    
 
 .. ###END-WIDGET-EXAMPLES###
 

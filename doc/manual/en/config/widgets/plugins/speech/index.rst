@@ -3,7 +3,7 @@
 The Speech plugin
 =================
 
-.. api-doc:: speech
+.. api-doc:: Speech
 
 Description
 -----------
@@ -14,11 +14,41 @@ Use the Web Speech API (https://developer.mozilla.org/en-US/docs/Web/API/Web_Spe
 to make text-to-speech service available. This plugin listens to a address and forwards the
 incoming data to the browser TTS engine (if the browser supports it)
 
+**Simple example**
+
 .. code-block:: xml
 
-    <speech lang="de">
+    <speech lang="en">
      <address transform="OH:string" mode="read">Speak</address>
     </speech>
+
+
+
+**Example preventing repetition within a timeout and use mapping**
+
+.. code-block:: xml
+
+    ...
+    <meta>
+     <plugins>
+       <plugin name="speech" />
+     </plugins>
+     <mappings>
+       <mapping name="speak">
+         <entry value="0">Hello, welcome home</entry>
+         <entry value="1">Please close all windows</entry>
+         <entry value="2">Please close all doors</entry>
+       </mapping>
+     </mappings>
+    </meta>
+    ...
+    <speech lang="en" repeat-timout="300" mapping="speak">
+     <address transform="DPT:5.010" mode="read">Speak</address>
+    </speech>
+
+
+
+
 
 .. ###END-WIDGET-DESCRIPTION###
 
@@ -52,7 +82,7 @@ Allowed attributes in the speech-element
         </plugins>
     </meta>
     <speech>
-        <layout colspan="4" />
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </speech>
 
 
@@ -73,15 +103,13 @@ Allowed child-elements und their attributes
         </plugins>
     </meta>
     <speech>
-        <layout colspan="4" />
-        <label>speech</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </speech>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the speech plugin.
 
 .. CAUTION::

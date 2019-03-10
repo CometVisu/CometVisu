@@ -10,9 +10,8 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-.. TODO::
-
-    add widget description
+Adds a dynamic field to the visu that can represent values from the BUS
+(e.g. 14-byte text or temperature measurements).
 
 
 .. ###END-WIDGET-DESCRIPTION###
@@ -42,6 +41,7 @@ Allowed attributes in the Info-element
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <info>
         <layout colspan="4" />
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </info>
 
 
@@ -65,7 +65,7 @@ Allowed child-elements und their attributes
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Info widget.
 
 .. CAUTION::
@@ -74,7 +74,6 @@ for the Info widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. figure:: _static/info_temp.png
 .. code-block:: xml
 
     
