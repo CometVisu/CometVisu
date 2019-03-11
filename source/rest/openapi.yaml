@@ -6,6 +6,8 @@ info:
 tags:
   - name: fs
     description: Filesystem handling
+  - name: config
+    description: Configuration and Settings
 paths:
   '/fs':
     parameters:
@@ -93,6 +95,86 @@ paths:
           description: File/Folder not found
         '406':
           description: Folder not empty
+  '/config/hidden/{section}/{key}':
+    parameters:
+      - name: section
+        in: path
+        description: Section of the config option
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: path
+        description: Key (ID) of the config option in the section
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - config
+      summary: Provides the value of a config option
+      operationId: getHiddenConfig
+      x-exegesis-controller: HiddenConfigController
+      responses:
+        '200':
+          description: successful operation
+        '403':
+          description: Not allowed
+        '404':
+          description: Config option does not exist
+    put:
+      tags:
+        - config
+      summary: Changes the value of an existing config option
+      operationId: updateHiddenConfig
+      x-exegesis-controller: HiddenConfigController
+      requestBody:
+        description: Value of the config option
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: successful operation
+        '403':
+          description: Not allowed
+        '404':
+          description: Config option does not exist
+    post:
+      tags:
+        - config
+      summary: Creates a new config option
+      operationId: createHiddenConfig
+      x-exegesis-controller: HiddenConfigController
+      requestBody:
+        description: Value of the config option
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: successful operation
+        '403':
+          description: Not allowed
+        '406':
+          description: Config option does exist
+    delete:
+      tags:
+        - config
+      summary: Delete config option
+      operationId: deleteHiddenConfig
+      x-exegesis-controller: HiddenConfigController
+      responses:
+        '200':
+          description: successful operation
+        '403':
+          description: Not allowed
+        '404':
+          description: Config option does not exist
 components:
   schemas:
     ReadResponse:

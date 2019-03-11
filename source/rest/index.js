@@ -8,22 +8,7 @@ async function createServer() {
   // See https://github.com/exegesis-js/exegesis/blob/master/docs/Options.md
   const options = {
     controllers: path.resolve(__dirname, './controllers'),
-    allowMissingControllers: false,
-    // mimeTypeParsers: {
-    //   'text/xml': {
-    //     /**
-    //      * Synchronous function which parses a string.  A BodyParser must implement
-    //      * this function to be used for parameter parsing.
-    //      *
-    //      * @param {string} encoded - The encoded value to parse.
-    //      * @returns - The decoded value.
-    //      */
-    //     parseString(encoded) {
-    //       console.log(encoded);
-    //       return encoded;
-    //     }
-    //   }
-    // }
+    allowMissingControllers: false
   };
 
   // This creates an exgesis middleware, which can be used with express,

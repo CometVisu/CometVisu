@@ -35,6 +35,9 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
     _draw: function () {
       this._createChildControl('file');
+      this.add(new qx.ui.core.Spacer(), {flex: 1});
+      this._createChildControl('title');
+      this.add(new qx.ui.core.Spacer(), {flex: 1});
     },
 
     // overridden
@@ -42,6 +45,11 @@ qx.Class.define('cv.ui.manager.MenuBar', {
        var control;
 
        switch (id) {
+         case 'title':
+           control = new qx.ui.basic.Label(this.tr('CometVisu Manager'));
+           this.add(control);
+           break;
+
          case "file":
            control = new qx.ui.menubar.Button(this.tr('File'), null, this.getChildControl('file-menu'));
            this.add(control);

@@ -39,12 +39,10 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       }
     },
 
-    'open-file-item/icon': {
-      include: 'listitem/icon',
-
+    'list': {
       style: function () {
         return {
-          cursor: 'pointer'
+          decorator: null
         };
       }
     }

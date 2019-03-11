@@ -97,16 +97,19 @@ qx.Class.define('cv.ui.manager.Main', {
     openFile: function (file, preview) {
       var openFiles = this.getOpenFiles();
       if (preview === true) {
-        if (this.__previewFileIndex !== null) {
-          openFiles.setItem(this.__previewFileIndex, file);
-        } else {
-          var length = openFiles.push(file);
-          this.__previewFileIndex = length - 1;
+        if (!file.getUserData('permanent')) {
+          if (this.__previewFileIndex !== null) {
+            openFiles.setItem(this.__previewFileIndex, file);
+          } else {
+            var length = openFiles.unshift(file);
+            this.__previewFileIndex = length - 1;
+          }
         }
       } else {
         if (this.__previewFileIndex === null || openFiles.indexOf(file) !== this.__previewFileIndex) {
           openFiles.push(file);
         }
+        file.setUserData('permanent', true);
         this.__previewFileIndex = null;
       }
       this._openFilesController.getTarget().setModelSelection([file]);
@@ -114,6 +117,7 @@ qx.Class.define('cv.ui.manager.Main', {
 
     _onCloseFile: function (ev) {
       var file = ev.getTarget().getLayoutParent().getModel();
+      file.setUserData('permanent', null);
       this.getOpenFiles().remove(file);
       if (this.getOpenFiles().length === 0) {
         this._editor.resetFile();
@@ -209,6 +213,7 @@ qx.Class.define('cv.ui.manager.Main', {
           var item = new qx.ui.form.ListItem();
           var icon = item.getChildControl('icon');
           icon.setAnonymous(false);
+          icon.setCursor('pointer');
           icon.addListener('tap', this._onCloseFile, this);
           return item;
         }.bind(this),
