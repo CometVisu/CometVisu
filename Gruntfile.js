@@ -102,7 +102,8 @@ module.exports = function(grunt) {
       'source/class/**/*.js',
       'source/resource/designs/*/design_setup.js',
       'source/resource/plugins/*/*.js'
-    ];
+    ],
+    branch = grunt.option('branch');
 
   var config = {
 
@@ -324,8 +325,8 @@ module.exports = function(grunt) {
           tagName: 'v' + pkg.version,
           auth: true,
           token: '', // this will be replaces by the prompt task with the user input
-          branch: 'develop',
-          betweenTags: 'master...develop',
+          branch: branch || 'develop',
+          betweenTags: 'master...' + (branch || 'develop'),
           onlyPulls: true,
           useCommitBody: true,
           // auth: true, // auth creates a stall for me :(
@@ -519,6 +520,29 @@ module.exports = function(grunt) {
   };
   grunt.initConfig(config);
 
+  grunt.registerTask('get-branch', function () {
+    var done = this.async();
+    if (!branch) {
+      var args = ['symbolic-ref', 'HEAD', '--short'];
+      grunt.util.spawn({
+        cmd: 'git',
+        args: args
+      }, function (error, result) {
+        if (error) {
+          grunt.log.error([error]);
+          return false;
+        }
+        branch = result.stdout;
+        console.log(branch);
+        grunt.config.set('githubChanges.dist.options.branch', branch);
+        grunt.config.set('githubChanges.dist.options.betweenTags', 'master...' + branch);
+        done();
+      });
+    } else {
+      done();
+    }
+  });
+
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
     [
@@ -634,7 +658,7 @@ module.exports = function(grunt) {
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
   grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
-  grunt.registerTask('changelog', ['prompt:githubChanges', 'githubChanges']);
+  grunt.registerTask('changelog', ['get-branch', 'prompt:githubChanges', 'githubChanges']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
