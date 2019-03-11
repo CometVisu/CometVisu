@@ -749,6 +749,18 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+    <xsd:attribute name="icon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show this icon with the message.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeigt dieses Icon zusammen mit der Nachricht.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="icon-classes" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Additional CSS-classes to customize the icon.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zusätzliche CSS-klassen mit denen das Aussehen des Icons angepasset werden kann.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="templates">

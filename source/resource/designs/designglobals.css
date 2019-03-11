@@ -379,6 +379,13 @@ button.ui-slider-handle {
   min-height: 25px;
 }
 
+#notification-center .message .icon {
+  float: left;
+  height: 3em;
+  width: 3em;
+  margin-right: 0.5em;
+}
+
 #notification-center .message.selectable, #notification-center .message .delete {
   cursor: pointer;
 }
