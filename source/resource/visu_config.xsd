@@ -388,7 +388,7 @@
   <xsd:attribute name="send-long-on-release" type="xsd:boolean">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Fire the long press event after the button is released (=true) or immediately after the threshold is exceeded (=false).</xsd:documentation>
-      <xsd:documentation xml:lang="de">Senden den Wert für den langen Tastendruck erst nachdem der Button losgelassen wurde (=true), oder sofort nachdem der Schwellwert für den kurzen Tastendruck überschritten wurde (=false).</xsd:documentation>
+      <xsd:documentation xml:lang="de">Sendet den Wert für den langen Tastendruck erst nachdem der Button losgelassen wurde (=true), oder sofort nachdem der Schwellwert für den kurzen Tastendruck überschritten wurde (=false).</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
   
