@@ -19,7 +19,7 @@ class FsController extends FileHandler {
       return this.__folderListing(fsPath);
     }, fsPath => {
       return fs.readFileSync(fsPath, 'utf8')
-    })
+    }, 'read')
   }
 
   create(context) {
@@ -27,13 +27,13 @@ class FsController extends FileHandler {
       this.createFolder(context, fsPath, context.requestBody);
     }, fsPath => {
       this.createFile(context, fsPath, context.requestBody);
-    })
+    }, 'create')
   }
 
   update(context) {
     return this.__processRequest(context, null, fsPath => {
       this.updateFile(context, fsPath, context.requestBody);
-    })
+    }, 'update')
   }
 
   delete(context) {
@@ -41,15 +41,15 @@ class FsController extends FileHandler {
       this.deleteFolder(context, fsPath);
     }, fsPath => {
       this.deleteFile(context, fsPath);
-    })
+    }, 'delete')
   }
 
-  __processRequest(context, folderCallback, fileCallback) {
+  __processRequest(context, folderCallback, fileCallback, type) {
     const fsPath = this.__getAbsolutePath(context.params.query.path)
     if (fs.existsSync(fsPath)) {
       try {
         const stats = fs.statSync(fsPath)
-        if (!FileHandler.checkAccess(fsPath)) {
+        if (!FileHandler.checkAccess(fsPath) || (fsPath.endsWith('/resource/demo') && type !== 'read')) {
           this.respondMessage(context,403, 'Forbidden')
         } else {
           if (stats.isDirectory()) {
@@ -74,13 +74,18 @@ class FsController extends FileHandler {
 
   __folderListing(fsPath) {
     const res = []
+    const inDemo = fsPath.endsWith('/resource/demo')
     fs.readdirSync(fsPath).filter(file => {
       return FileHandler.checkAccess(fsPath, file)
     }).forEach(file => {
       if (!file.startsWith('.')) {
         try {
           const stats = fs.statSync(path.join(fsPath, file))
-          let relFolder = fsPath.substring(this.basePath.length + 1)
+          if (inDemo && stats.isDirectory()) {
+            // no subdirs in demo
+            return;
+          }
+          let relFolder = inDemo ? '../demo' : fsPath.substring(this.basePath.length + 1)
           if (relFolder.length > 0) {
             relFolder += '/'
           }
@@ -98,10 +103,13 @@ class FsController extends FileHandler {
             entry.readable = true
           } catch (err) {
           }
-          try {
-            fs.accessSync(fullPath, fs.constants.W_OK)
-            entry.writeable = true
-          } catch (err) {
+          // no write access in demo folder
+          if (!inDemo) {
+            try {
+              fs.accessSync(fullPath, fs.constants.W_OK)
+              entry.writeable = true
+            } catch (err) {
+            }
           }
           res.push(entry)
         } catch (err) {
@@ -109,11 +117,25 @@ class FsController extends FileHandler {
         }
       }
     })
+    if (fsPath.endsWith('/resource/config')) {
+      // add demo folder as non writable to the list
+      res.push({
+        name: 'demo',
+        type: 'dir',
+        parentFolder: '..',
+        hasChildren: true,
+        readable: true,
+        writeable: false
+      });
+    }
     return res
   }
 
   __getAbsolutePath(fsPath) {
     fsPath = this.__sanitize(fsPath)
+    if (fsPath.startsWith('demo')) {
+      fsPath = '../' + fsPath.replace(/\.\.\//g, '');
+    }
     return path.join(this.basePath, fsPath)
   }
 
