@@ -18,16 +18,16 @@ qx.Class.define('cv.io.rest.Client', {
       if (!this.__configFile) {
         this.__configFile = new qx.io.rest.Resource({
           get: {
-            method: 'GET', url: '/fs/config/{name}'
+            method: 'GET', url: '/config/hidden/{section}/{key}'
           },
           put: {
-            method: 'PUT', url: '/fs/config/{name}'
+            method: 'PUT', url: '/config/hidden/{section}/{key}'
           },
           post: {
-            method: 'POST', url: '/fs/config/{name}'
+            method: 'POST', url: '/config/hidden/{section}/{key}'
           },
           "delete": {
-            method: 'DELETE', url: '/fs/config/{name}'
+            method: 'DELETE', url: '/config/hidden/{section}/{key}'
           }
         });
         this.__configFile.setBaseUrl(this.BASE_URL);

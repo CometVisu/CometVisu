@@ -23,6 +23,48 @@ qx.Class.define('cv.ui.manager.Main', {
 
   /*
   ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    __editors: {},
+
+    // use this one when no one else fits
+    __defaultEditor: {
+      Clazz: cv.ui.manager.editor.Source,
+      instance: null
+    },
+
+    /**
+     * Registers an editor for a specific file, that is identified by the given selector.
+     * @param selector {String} filename-/path or regular expression.
+     * @param clazz {qx.ui.core.Widget} widget class that handles those type of files
+     */
+    registerFileEditor: function (selector, clazz) {
+      if (qx.core.Environment.get('qx.debug')) {
+        qx.core.Assert.assertTrue(qx.Interface.classImplements(clazz, cv.ui.manager.editor.IEditor));
+      }
+      this.__editors[selector] = {
+        Clazz: clazz,
+        instance: null,
+        regex: selector.startsWith('/') && selector.endsWith('/') ? new RegExp(selector.substring(1, selector.length-1)) : null
+      };
+    },
+
+    getFileEditor: function (file) {
+      var found = null;
+      Object.keys(this.__editors).some(function (key) {
+        if ((key.regex && key.regex.test(file.getFullPath())) || key === file.getFullPath()) {
+          found = this.__editors[key];
+          return true;
+        }
+      }, this);
+      return found || this.__defaultEditor;
+    }
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -44,11 +86,11 @@ qx.Class.define('cv.ui.manager.Main', {
     _pane: null,
     _tree: null,
     _stack: null,
-    _editor: null,
     _menuBar: null,
     _oldCommandGroup: null,
     _mainContent: null,
     _openFilesController: null,
+    _hiddenConfigFakeFile: null,
 
     /**
      * open selected file in preview mode
@@ -81,15 +123,16 @@ qx.Class.define('cv.ui.manager.Main', {
       if (sel.length > 0) {
         var node = sel.getItem(0);
         if (node.getType() === 'file') {
-          if (!this._editor) {
-            this._editor = new cv.ui.manager.Editor();
-            this._menuBar.addListener('save', this._editor.save, this._editor);
-            this._editor.bind('saveable', this._menuBar.getChildControl('save-button'), 'enabled');
-            this._stack.add(this._editor);
+          var editorConfig = cv.ui.manager.Main.getFileEditor(node);
+          if (!editorConfig.instance) {
+            editorConfig.instance = new editorConfig.Clazz();
+            this._menuBar.addListener('save', editorConfig.instance.save, editorConfig.instance);
+            editorConfig.instance.bind('saveable', this._menuBar.getChildControl('save-button'), 'enabled');
+            this._stack.add(editorConfig.instance);
           } else {
-            this._stack.setSelection([this._editor]);
+            this._stack.setSelection([editorConfig.instance]);
           }
-          this._editor.setFile(node);
+          editorConfig.instance.setFile(node);
         }
       }
     },
@@ -115,13 +158,16 @@ qx.Class.define('cv.ui.manager.Main', {
       this._openFilesController.getTarget().setModelSelection([file]);
     },
 
-    _onCloseFile: function (ev) {
-      var file = ev.getTarget().getLayoutParent().getModel();
+    closeFile: function (file) {
       file.setUserData('permanent', null);
       this.getOpenFiles().remove(file);
       if (this.getOpenFiles().length === 0) {
-        this._editor.resetFile();
+        this._stack.getSelection()[0].resetFile();
       }
+    },
+
+    _onCloseFile: function (ev) {
+      this.closeFile(ev.getTarget().getLayoutParent().getModel());
     },
 
     __getRoot: function () {
@@ -192,9 +238,39 @@ qx.Class.define('cv.ui.manager.Main', {
           controller.bindProperty("icon", "icon", null, item, index);
         }
       });
-      this._pane.add(this._tree, 0);
       this._tree.openNode(rootFolder);
       this._tree.getSelection().addListener("change", this._onChangeTreeSelection, this);
+      var leftContent = new qx.ui.container.Composite(new qx.ui.layout.VBox());
+      leftContent.add(this._tree, {flex: 1});
+      this._pane.add(leftContent, 0);
+
+      // left-bottom bar
+      var leftToolbar = new qx.ui.toolbar.ToolBar();
+      var openHiddenConfigButton = new qx.ui.toolbar.Button(qx.locale.Manager.tr('Edit hidden config'), '@MaterialIcons/settings/30');
+      openHiddenConfigButton.set({
+        toolTipText: qx.locale.Manager.tr('Edit hidden config')
+      });
+      openHiddenConfigButton.addListener('execute', function () {
+        if (!this._hiddenConfigFakeFile) {
+          this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem('hidden.php').set({
+            hasChildren: false,
+            parentFolder: "",
+            parent: rootFolder,
+            readable: true,
+            writeable: true,
+            overrideIcon: true,
+            icon: '@MaterialIcons/settings/15',
+            type: "file"
+          });
+        }
+        if (this.getOpenFiles().includes(this._hiddenConfigFakeFile)) {
+          this.closeFile(this._hiddenConfigFakeFile);
+        } else {
+          this.openFile(this._hiddenConfigFakeFile, false);
+        }
+      }, this);
+      leftToolbar.add(openHiddenConfigButton);
+      leftContent.add(leftToolbar);
 
       this._mainContent = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
@@ -242,7 +318,8 @@ qx.Class.define('cv.ui.manager.Main', {
   */
   destruct: function () {
     this._disposeObjects(
-      '_pane', '_tree', '_stack', 'editor', '_menuBar', '_mainContent', '_openFilesController'
+      '_pane', '_tree', '_stack', '_menuBar', '_mainContent', '_openFilesController',
+      '_hiddenConfigFakeFile'
     );
     // restore former command group
     var application = qx.core.Init.getApplication();
@@ -257,10 +334,25 @@ qx.Class.define('cv.ui.manager.Main', {
 
     document.body.removeChild(this.__root);
     this.__root = null;
+
+    // cleanup editor instances
+    if (cv.ui.manager.Main.__defaultEditor.instance) {
+      cv.ui.manager.Main.__defaultEditor.instance.dispose();
+      cv.ui.manager.Main.__defaultEditor.instance = null;
+    }
+    Object.keys(cv.ui.manager.Main.__editors).forEach(function (regex) {
+      if (cv.ui.manager.Main.__editors[regex].instance) {
+        cv.ui.manager.Main.__editors[regex].instance.dispose();
+        cv.ui.manager.Main.__editors[regex].instance = null;
+      }
+    });
   },
 
   defer: function(statics) {
     // initialize on load
     statics.getInstance();
+
+    // register special file editors
+    statics.registerFileEditor("hidden.php", cv.ui.manager.editor.Config);
   }
 });

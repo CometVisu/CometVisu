@@ -45,6 +45,10 @@ $hidden = array(
   getHiddenConfig(context) {
     const section = context.params.path.section
     const key = context.params.path.key
+    if (section === '*') {
+      // return everything
+      return this._entries;
+    }
     if (this._entries.hasOwnProperty(section) && (!key || this._entries[section].hasOwnProperty(key))) {
       if (!key) {
         return this._entries[section]

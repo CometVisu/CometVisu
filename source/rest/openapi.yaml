@@ -100,7 +100,6 @@ paths:
       - name: section
         in: path
         description: Section of the config option
-        required: true
         schema:
           type: string
       - name: key
@@ -118,6 +117,13 @@ paths:
       responses:
         '200':
           description: successful operation
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/HiddenConfig'
+                  - $ref: '#/components/schemas/ConfigSection'
+                  - $ref: '#/components/schemas/ConfigOption'
         '403':
           description: Not allowed
         '404':
@@ -184,6 +190,26 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/FsEntry'
+    HiddenConfig:
+      type: array
+      items:
+        $ref: '#/components/schemas/ConfigSection'
+    ConfigSection:
+      type: object
+      properties:
+        name:
+          type: string
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfigOption'
+    ConfigOption:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
     FsEntry:
       type: object
       properties:

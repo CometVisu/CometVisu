@@ -60,6 +60,11 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       deferredInit : true
     },
 
+    overrideIcon: {
+      check: 'Boolean',
+      init: false
+    },
+
     icon: {
       check: 'String',
       nullable: true,
@@ -123,12 +128,14 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     },
 
     _maintainIcon: function () {
-      if (this.getType() === 'file') {
-        this.setIcon(osparc.theme.osparcdark.Image.URLS.file);
-      } else if (this.isOpen()) {
-        this.setIcon(osparc.theme.osparcdark.Image.URLS['folder-open']);
-      } else {
-        this.setIcon(osparc.theme.osparcdark.Image.URLS.folder);
+      if (!this.isOverrideIcon()) {
+        if (this.getType() === 'file') {
+          this.setIcon(osparc.theme.osparcdark.Image.URLS.file);
+        } else if (this.isOpen()) {
+          this.setIcon(osparc.theme.osparcdark.Image.URLS['folder-open']);
+        } else {
+          this.setIcon(osparc.theme.osparcdark.Image.URLS.folder);
+        }
       }
     },
 

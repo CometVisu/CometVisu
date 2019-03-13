@@ -1,8 +1,8 @@
 /**
  * Monaco Texteditor integration
  */
-qx.Class.define('cv.ui.manager.Editor', {
-  extend: qx.ui.core.Widget,
+qx.Class.define('cv.ui.manager.editor.Source', {
+  extend: cv.ui.manager.editor.AbstractEditor,
 
   /*
   ***********************************************
@@ -12,11 +12,8 @@ qx.Class.define('cv.ui.manager.Editor', {
   construct: function () {
     this.base(arguments);
     this.__basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/config/';
-    this.__id = 'editor#' + cv.ui.manager.Editor.COUNTER++;
+    this.__id = 'editor#' + cv.ui.manager.editor.Source.COUNTER++;
     this.getContentElement().setAttribute('id', this.__id);
-    this._client = cv.io.rest.Client.getFsClient();
-    this._client.addListener('readSuccess', this._onModelValueChange, this);
-    this._client.addListener('updateSuccess', this._onSaved, this);
     this._draw();
   },
 
@@ -65,38 +62,6 @@ qx.Class.define('cv.ui.manager.Editor', {
 
   /*
   ***********************************************
-    PROPERTIES
-  ***********************************************
-  */
-  properties: {
-    file: {
-      check: 'cv.ui.manager.model.FileItem',
-      nullable: true,
-      apply: '_loadFile'
-    },
-    modified: {
-      check: 'Boolean',
-      init: false,
-      event: 'changeModified',
-      apply: '_updateSaveable'
-    },
-    valid: {
-      check: 'Boolean',
-      init: true,
-      event: 'changeValid',
-      apply: '_updateSaveable'
-    },
-
-    // combination of modified && valid
-    saveable: {
-      check: 'Boolean',
-      init: true,
-      event: 'changeSaveable'
-    }
-  },
-
-  /*
-  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -108,7 +73,7 @@ qx.Class.define('cv.ui.manager.Editor', {
 
     _draw: function () {
       if (!window.monaco) {
-        cv.ui.manager.Editor.load(this._draw, this);
+        cv.ui.manager.editor.Source.load(this._draw, this);
       } else {
         this._editor = window.monaco.editor.create(document.getElementById(this.__id), {
           suggestOnTriggerCharacters: true,
@@ -127,6 +92,35 @@ qx.Class.define('cv.ui.manager.Editor', {
       }
     },
 
+    _loadFile: function (file) {
+      if (this._editor) {
+        if (file && file.getType() === 'file' && this.isSupported(file)) {
+          this.base(arguments, file);
+        } else {
+          this.resetContent();
+        }
+      }
+    },
+
+    _applyContent: function(value) {
+      var model = this._editor.getModel();
+      var language = this.__getLanguage(this.getFile());
+      if (!model || model.getLanguageIdentifier().language !== language) {
+        // dispose old model
+        if (model) {
+          model.dispose();
+        }
+        model = window.monaco.editor.createModel(value, language);
+        this._editor.setModel(model);
+      } else {
+        this._editor.setValue(value);
+      }
+    },
+
+    getCurrentContent: function () {
+      return this._editor.getValue();
+    },
+
     _onContentChanged: function (e) {
       console.log(e);
       this.setModified(true);
@@ -134,33 +128,7 @@ qx.Class.define('cv.ui.manager.Editor', {
 
     isSupported: function (file) {
       var fileType = file.getName().split('.').pop();
-      return cv.ui.manager.Editor.SUPPORTED_FILES.includes(fileType);
-    },
-
-    save: function () {
-      if (this.isModified()) {
-        this._client.update({
-          path: this.getFile().getFullPath()
-        }, this._editor.getValue());
-      }
-    },
-
-    _onSaved: function () {
-      this.resetModified();
-    },
-
-    _updateSaveable: function () {
-      this.setSaveable(this.isValid() && this.isModified());
-    },
-
-    _loadFile: function (file) {
-      if (this._editor) {
-        if (file && file.getType() === 'file' && this.isSupported(file)) {
-          this._client.read({path: this.getFile().getFullPath()});
-        } else {
-          this._editor.setModel(null);
-        }
-      }
+      return cv.ui.manager.editor.Source.SUPPORTED_FILES.includes(fileType);
     },
 
     __getLanguage: function (file) {
@@ -173,29 +141,6 @@ qx.Class.define('cv.ui.manager.Editor', {
         default:
           return type;
       }
-    },
-
-    _onModelValueChange: function (ev) {
-      var url = ev.getRequest().getUrl();
-      if (!this.getFile() || !url.includes('/fs?path=' + this.getFile().getFullPath())) {
-        return;
-      }
-      var data = ev.getData();
-      var model = this._editor.getModel();
-      var language = this.__getLanguage(this.getFile());
-      if (!model || model.getLanguageIdentifier().language !== language) {
-        // dispose old model
-        if (model) {
-          model.dispose();
-        }
-        model = window.monaco.editor.createModel(data, language);
-        this._editor.setModel(model);
-      } else {
-        this._editor.setValue(data);
-      }
-      this.resetValid();
-      this.resetModified();
-      this.resetSaveable();
     }
   },
 
@@ -205,10 +150,6 @@ qx.Class.define('cv.ui.manager.Editor', {
   ***********************************************
   */
   destruct: function () {
-    if (this._client) {
-      this._client.removeListener('getSuccess', this._onModelValueChange, this);
-      this._client = null;
-    }
     if (this._editor) {
       this._editor.dispose();
       this._editor = null;
