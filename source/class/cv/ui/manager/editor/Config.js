@@ -39,27 +39,19 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
     // overridden
     _applyContent: function(value) {
+      this._removeAll();
+
+      var widget;
+      Object.keys(value).forEach(function (sectionName) {
+        widget = new qx.ui.form.TextField(sectionName);
+        this._add(widget);
+      }, this);
       console.log(value);
-      this.getChildControl('label').setValue(qx.lang.Json.stringify(value));
     },
 
     // overridden
     getCurrentContent: function () {
       return this.getContent();
-    },
-
-    // overridden
-    _createChildControlImpl : function(id, hash) {
-       var control;
-
-       switch (id) {
-         case "label":
-           control = new qx.ui.basic.Label();
-           this._add(control, {flex: 1});
-           break;
-       }
-
-       return control || this.base(arguments, id);
-    },
+    }
   }
 });
