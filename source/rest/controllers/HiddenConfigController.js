@@ -45,10 +45,14 @@ $hidden = array(
   saveHiddenConfig(context) {
     this._entries = {};
     context.requestBody.forEach(section => {
-      this._entries[section.name] = section.options.reduce((map, obj) => {
-        map[obj.key] = obj.value;
-        return map;
-      }, {});
+      if (section.name) {
+        this._entries[section.name] = section.options.reduce((map, obj) => {
+          if (obj.key) {
+            map[obj.key] = obj.value;
+          }
+          return map;
+        }, {});
+      }
     })
     this.dump();
     this.respondMessage(context, 200, 'ok')
