@@ -95,6 +95,27 @@ paths:
           description: File/Folder not found
         '406':
           description: Folder not empty
+  '/config/hidden':
+    put:
+      tags:
+        - config
+      summary: Save the hidden config
+      operationId: saveHiddenConfig
+      x-exegesis-controller: HiddenConfigController
+      requestBody:
+        description: Complete config content
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HiddenConfig'
+      responses:
+        '200':
+          description: successful operation
+        '403':
+          description: Not allowed
+        '404':
+          description: Config option does not exist
   '/config/hidden/{section}/{key}':
     parameters:
       - name: section

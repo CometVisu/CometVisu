@@ -26,36 +26,26 @@
  * @asset(iconfont/material/MaterialIcons-Regular.woff2)
  * @asset(iconfont/material/MaterialIcons-Regular.json)
  */
-qx.Theme.define("cv.theme.dark.Font",
-{
+qx.Theme.define("cv.theme.dark.Font",{
   extend : osparc.theme.osparcdark.Font,
 
   fonts : {
-    // "default" :
-    // {
-    //   size : 13,
-    //   family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"]
-    // },
-    //
-    // "bold" :
-    //   {
-    //     size : 13,
-    //     family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"],
-    //     bold: true
-    //   },
-    //
-    // "subtext" :
-    // {
-    //   size : 12,
-    //   family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"]
-    // },
-    //
-    // "title" :
-    // {
-    //   size : 18,
-    //   bold : true,
-    //   family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"]
-    // }
+    "title": {
+      size: 18,
+      family: ["sans-serif"],
+      color: "text",
+      sources: [
+        {
+          family: "Roboto",
+          source: [
+            "osparc/font/roboto-v18-latin_latin-ext-regular.eot",
+            "osparc/font/roboto-v18-latin_latin-ext-regular.woff2",
+            "osparc/font/roboto-v18-latin_latin-ext-regular.woff",
+            "osparc/font/roboto-v18-latin_latin-ext-regular.ttf"
+          ]
+        }
+      ]
+    },
     "MaterialIcons": {
       size: 32,
       lineHeight: 1,

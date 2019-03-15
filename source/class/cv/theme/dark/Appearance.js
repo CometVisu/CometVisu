@@ -45,6 +45,65 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           decorator: null
         };
       }
+    },
+
+    'cv-editor-config': {
+      style: function () {
+        return {
+          padding: 10
+        };
+      }
+    },
+
+    'cv-editor-config-section': {
+      style: function () {
+        return {
+          padding: 10,
+          decorator: 'cv-editor-config-section',
+          marginBottom: 10
+        };
+      }
+    },
+
+    'cv-editor-config-option': {
+      style: function () {
+        return {
+          marginBottom: 10
+        };
+      }
+    },
+
+    'cv-config-textfield': {
+      include: 'textfield',
+      alias: 'textfield',
+
+      style: function () {
+        return {
+          minWidth: 300
+        };
+      }
+    },
+
+    'cv-editor-config-section/section-title': {
+      style: function () {
+        return {
+          font: 'title',
+          marginRight: 20
+        };
+      }
+    },
+
+    'cv-editor-config-section/options-title': 'cv-editor-config-section/section-title',
+    'cv-editor-config-section/name': 'cv-config-textfield',
+    'cv-editor-config-section/list': {
+      include: 'list',
+      alias: 'list',
+
+      style: function() {
+        return {
+          height: null
+        };
+      }
     }
   }
 });

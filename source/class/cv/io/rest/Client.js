@@ -28,10 +28,16 @@ qx.Class.define('cv.io.rest.Client', {
           },
           "delete": {
             method: 'DELETE', url: '/config/hidden/{section}/{key}'
+          },
+          save: {
+            method: 'PUT', url: '/config/hidden'
           }
         });
         this.__configFile.setBaseUrl(this.BASE_URL);
         this.__configFile.configureRequest(function (req, action) {
+          if (action === 'save') {
+            req.setRequestHeader('Content-Type', 'application/json');
+          }
           if (action === 'get') {
             req.setAccept('text/xml');
           } else {

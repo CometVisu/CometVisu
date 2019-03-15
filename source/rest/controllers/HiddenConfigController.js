@@ -42,6 +42,18 @@ $hidden = array(
     fs.writeFileSync(this.configFile, content)
   }
 
+  saveHiddenConfig(context) {
+    this._entries = {};
+    context.requestBody.forEach(section => {
+      this._entries[section.name] = section.options.reduce((map, obj) => {
+        map[obj.key] = obj.value;
+        return map;
+      }, {});
+    })
+    this.dump();
+    this.respondMessage(context, 200, 'ok')
+  }
+
   getHiddenConfig(context) {
     const section = context.params.path.section
     const key = context.params.path.key

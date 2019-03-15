@@ -11,7 +11,22 @@ qx.Class.define('cv.ui.manager.editor.Config', {
   */
   construct: function () {
     this.base(arguments);
-    this._setLayout(new qx.ui.layout.VBox());
+    this._setLayout(new qx.ui.layout.VBox(8));
+    this._createChildControl('list');
+    this._createChildControl('add-section');
+    this._createChildControl('save');
+  },
+
+  /*
+  ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    appearance: {
+      refine: true,
+      init: 'cv-editor-config'
+    }
   },
 
   /*
@@ -20,6 +35,9 @@ qx.Class.define('cv.ui.manager.editor.Config', {
   ***********************************************
   */
   members: {
+    _model: null,
+    _listController: null,
+
     _initClient: function () {
       this._client = cv.io.rest.Client.getConfigFileClient();
       this._client.addListener('getSuccess', this._onModelValueChange, this);
@@ -39,19 +57,87 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
     // overridden
     _applyContent: function(value) {
-      this._removeAll();
+      var model = this._listController.getModel();
+      model.removeAll();
 
-      var widget;
       Object.keys(value).forEach(function (sectionName) {
-        widget = new qx.ui.form.TextField(sectionName);
-        this._add(widget);
+        var section = new cv.ui.manager.model.config.Section(sectionName);
+        Object.keys(value[sectionName]).forEach(function (optionKey) {
+          section.addOption(optionKey, value[sectionName][optionKey]);
+        }, this);
+        model.push(section);
       }, this);
-      console.log(value);
     },
 
     // overridden
     getCurrentContent: function () {
       return this.getContent();
+    },
+
+    _onDeleteSection: function (ev) {
+      var section = ev.getData();
+      var model = this._listController.getModel();
+      model.remove(section);
+    },
+
+    // overridden
+    _createChildControlImpl : function(id) {
+       var control;
+
+       switch (id) {
+         case 'list':
+           control = new qx.ui.form.List();
+           control.setEnableInlineFind(false);
+           this._listController = new qx.data.controller.List(new qx.data.Array(), control);
+           this._listController.setDelegate({
+             createItem: function () {
+               return new cv.ui.manager.form.SectionListItem();
+             },
+
+             configureItem: function (item) {
+               item.addListener('delete', this._onDeleteSection, this);
+             }.bind(this),
+
+             bindItem: function (controller, item, index) {
+               controller.bindProperty('', 'model', null, item, index);
+             }
+           });
+           this._add(control, {flex: 1});
+           break;
+
+         case 'buttons':
+           control = new qx.ui.container.Composite(new qx.ui.layout.HBox(8));
+           this._add(control);
+           break;
+
+         case 'add-section':
+           control = new qx.ui.form.Button(this.tr('Add section'));
+           control.addListener('execute', function () {
+             this.getChildControl('list').getModel().push(new cv.ui.manager.model.config.Section(''));
+           }, this);
+           this.getChildControl('buttons').add(control);
+           break;
+
+         case 'save':
+           control = new qx.ui.form.Button(this.tr('Save'));
+           control.addListener('execute', function () {
+             var data = qx.util.Serializer.toNativeObject(this._listController.getModel());
+             this._client.save(null, data);
+           }, this);
+           this.getChildControl('buttons').add(control);
+           break;
+       }
+
+       return control || this.base(arguments, id);
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this._disposeObjects('_model', '_listController');
   }
 });

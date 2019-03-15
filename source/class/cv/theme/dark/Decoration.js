@@ -24,7 +24,13 @@ qx.Theme.define("cv.theme.dark.Decoration", {
 
   decorations : {
     "window-caption-active": {
+    },
 
+    'cv-editor-config-section': {
+      style: {
+        width: 1,
+        color: 'material-textfield'
+      }
     }
   }
 });
