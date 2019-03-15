@@ -162,7 +162,7 @@ qx.Class.define('cv.ui.manager.Main', {
       file.setUserData('permanent', null);
       this.getOpenFiles().remove(file);
       if (this.getOpenFiles().length === 0) {
-        this._stack.getSelection()[0].resetFile();
+        this._stack.resetSelection();
       }
     },
 
