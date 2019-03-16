@@ -85,7 +85,8 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     modified: {
       check: 'Boolean',
       init: false,
-      event: 'changeModfied'
+      event: 'changeModfied',
+      apply: '_applyModified'
     },
 
     // Backend properties
@@ -153,6 +154,13 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
         } else {
           this.setIcon(osparc.theme.osparcdark.Image.URLS.folder);
         }
+      }
+    },
+
+    _applyModified: function (value) {
+      if (value && !this.isPermanent()) {
+        // change to permanent once we have a modification
+        this.setPermanent(true);
       }
     },
 

@@ -170,7 +170,7 @@ qx.Class.define('cv.ui.manager.Main', {
       var isOpen = openFiles.includes(file);
       if (preview === true) {
         if (!file.isPermanent()) {
-          if (this.__previewFileIndex !== null) {
+          if (this.__previewFileIndex !== null && !openFiles.getItem(this.__previewFileIndex).isPermanent()) {
             openFiles.setItem(this.__previewFileIndex, file);
           } else {
             this.__previewFileIndex = openFiles.length;
