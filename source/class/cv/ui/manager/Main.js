@@ -38,6 +38,15 @@ qx.Class.define('cv.ui.manager.Main', {
       instance: null
     },
 
+    _configEditors: {
+      xml: {
+        Clazz: cv.ui.manager.editor.Xml,
+        instance: null,
+        preview: false
+      },
+      source: this.__defaultEditor
+    },
+
     /**
      * Registers an editor for a specific file, that is identified by the given selector.
      * @param selector {String} filename-/path or regular expression.
@@ -56,12 +65,17 @@ qx.Class.define('cv.ui.manager.Main', {
 
     getFileEditor: function (file) {
       var found = null;
-      Object.keys(this.__editors).some(function (key) {
-        if ((key.regex && key.regex.test(file.getFullPath())) || key === file.getFullPath()) {
-          found = this.__editors[key];
-          return true;
-        }
-      }, this);
+      if (file.isConfigFile()) {
+        found = this._configEditors[cv.ui.manager.model.Preferences.getInstance().getDefaultConfigEditor()];
+      }
+      if (!found) {
+        Object.keys(this.__editors).some(function (key) {
+          if ((key.regex && key.regex.test(file.getFullPath())) || key === file.getFullPath()) {
+            found = this.__editors[key];
+            return true;
+          }
+        }, this);
+      }
       return found || this.__defaultEditor;
     }
   },

@@ -172,6 +172,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
     },
 
+    isConfigFile: function () {
+      return /visu_config.*\.xml/.test(this.getName());
+    },
+
     _applyHasChildren: function (value) {
       if (value === true && this.getChildren().length === 0) {
         // add dummy child

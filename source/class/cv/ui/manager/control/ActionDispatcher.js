@@ -47,7 +47,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
       Object.keys(config).forEach(function (actionId) {
         button = menuBar.getButton(actionId);
         if (button) {
-          button.setEnabled(this.hasHandler(actionId));
+          button.setEnabled(config[actionId].general || this.hasHandler(actionId));
         }
       }, this);
     },

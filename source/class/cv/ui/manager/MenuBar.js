@@ -30,9 +30,12 @@ qx.Class.define('cv.ui.manager.MenuBar', {
     _draw: function () {
       this._createChildControl('file');
       this._createChildControl('edit');
+      this._createChildControl('preferences');
       this.add(new qx.ui.core.Spacer(), {flex: 1});
       this._createChildControl('title');
       this.add(new qx.ui.core.Spacer(), {flex: 1});
+
+      var editorGroup = new qx.ui.form.RadioGroup();
 
       this.__defaultButtonConfiguration = {
         'new-file': {
@@ -99,9 +102,41 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           menu: 'edit-menu',
           args: [this.tr('Hidden configuration'), '@MaterialIcons/settings/18'],
           enabled: false
+        },
+        // preferences
+        'source-editor': {
+          menu: 'preferences-menu',
+          clazz: qx.ui.menu.RadioButton,
+          args: [this.tr('Use text editor')],
+          enabled: true,
+          general: true,
+          properties: {
+            model: 'source',
+            group: editorGroup
+          }
+        },
+        'xml-editor': {
+          menu: 'preferences-menu',
+          clazz: qx.ui.menu.RadioButton,
+          args: [this.tr('Use xml editor')],
+          enabled: true,
+          general: true,
+          properties: {
+            model: 'xml',
+            group: editorGroup
+          }
         }
       };
       this.maintainButtons();
+
+      cv.ui.manager.model.Preferences.getInstance().bind('defaultConfigEditor', editorGroup, 'modelSelection', {
+        converter: function (value) {
+          return [value];
+        }
+      });
+      editorGroup.getModelSelection().addListener('change', function () {
+        cv.ui.manager.model.Preferences.getInstance().setDefaultConfigEditor(editorGroup.getModelSelection().getItem(0));
+      }, this);
     },
 
     maintainButtons: function (config) {
@@ -119,15 +154,16 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           var label = buttonConf.args[0];
           var icon = buttonConf.args[1];
           var command = buttonConf.args[2];
+          var ButtonClass = buttonConf.clazz || qx.ui.menu.Button;
           if (qx.lang.Type.isString(command) || !command) {
             // no command connected
-            button = new qx.ui.menu.Button(label, icon);
+            button = new ButtonClass(label, icon);
             if (command) {
               // just add the string as shortcut hint
               button.getChildControl('shortcut').setValue(command);
             }
           } else {
-            button = new qx.ui.menu.Button(label, icon, command);
+            button = new ButtonClass(label, icon, command);
           }
           button.addListener('execute', function () {
             qx.event.message.Bus.dispatchByName('cv.manager.action', id);
@@ -148,6 +184,9 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           button = this.__buttons[id];
         }
         button.setEnabled(buttonConf.enabled);
+        if (buttonConf.properties) {
+          button.set(buttonConf.properties);
+        }
 
       }, this);
     },
@@ -180,11 +219,20 @@ qx.Class.define('cv.ui.manager.MenuBar', {
            this.add(control);
            break;
 
+         case "preferences":
+           control = new qx.ui.menubar.Button(this.tr('Preferences'), null, this.getChildControl('preferences-menu'));
+           this.add(control);
+           break;
+
          case 'file-menu':
            control = new qx.ui.menu.Menu();
            break;
 
          case 'edit-menu':
+           control = new qx.ui.menu.Menu();
+           break;
+
+         case 'preferences-menu':
            control = new qx.ui.menu.Menu();
            break;
 

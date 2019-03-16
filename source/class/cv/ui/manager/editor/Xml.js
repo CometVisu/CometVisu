@@ -40,7 +40,7 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
       if (this._iframe) {
         this._iframe.destroy();
       }
-      var match = /.*visu_config(.*)\.xml/.exec(file.getName());
+      var match = /.*visu_config_?(.*)\.xml/.exec(file.getName());
       if (match) {
         this._iframe = new qx.ui.embed.Iframe(qx.util.Uri.appendParamsToUrl(this.__basePath, 'embed=1&config=' + match[1]));
         this._add(this._iframe);
