@@ -249,6 +249,9 @@ components:
         writeable:
           type: boolean
           default: false
+        mounted:
+          type: boolean
+          default: false
 externalDocs:
   description: Find out more about CometVisu
   url: 'https://www.cometvisu.org'

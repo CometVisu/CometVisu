@@ -285,7 +285,7 @@ qx.Class.define('cv.ui.manager.Main', {
       }, this);
       this._tree.set({
         selectionMode: 'one',
-        minWidth: 300,
+        minWidth: 250,
         openMode: 'tap'
       });
       this._tree.setDelegate({

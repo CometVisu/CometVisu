@@ -144,6 +144,7 @@ class FsController extends FileHandler {
         res.push({
           name: mount.mountPoint,
           type: 'dir',
+          mounted: true,
           parentFolder: '',
           hasChildren: true,
           readable: true,

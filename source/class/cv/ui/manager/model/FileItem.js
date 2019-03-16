@@ -125,6 +125,12 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       check: 'Boolean',
       init: false,
       event: 'changeWriteable'
+    },
+
+    mounted: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeMounted'
     }
   },
 
@@ -151,6 +157,8 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
           this.setIcon(osparc.theme.osparcdark.Image.URLS.file);
         } else if (this.isOpen()) {
           this.setIcon(osparc.theme.osparcdark.Image.URLS['folder-open']);
+        } else if (this.isMounted()) {
+          this.setIcon('@MaterialIcons/folder_special/15');
         } else {
           this.setIcon(osparc.theme.osparcdark.Image.URLS.folder);
         }
