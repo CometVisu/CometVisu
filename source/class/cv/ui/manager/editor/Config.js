@@ -11,10 +11,10 @@ qx.Class.define('cv.ui.manager.editor.Config', {
   */
   construct: function () {
     this.base(arguments);
+    this._handledActions = ['save'];
     this._setLayout(new qx.ui.layout.VBox(8));
     this._createChildControl('list');
     this._createChildControl('add-section');
-    this._createChildControl('save');
   },
 
   /*
@@ -80,6 +80,11 @@ qx.Class.define('cv.ui.manager.editor.Config', {
       model.remove(section);
     },
 
+    save: function () {
+      var data = qx.util.Serializer.toNativeObject(this._listController.getModel());
+      this._client.save(null, data);
+    },
+
     // overridden
     _createChildControlImpl : function(id) {
        var control;
@@ -114,15 +119,6 @@ qx.Class.define('cv.ui.manager.editor.Config', {
            control = new qx.ui.form.Button(this.tr('Add section'));
            control.addListener('execute', function () {
              this.getChildControl('list').getModel().push(new cv.ui.manager.model.config.Section(''));
-           }, this);
-           this.getChildControl('buttons').add(control);
-           break;
-
-         case 'save':
-           control = new qx.ui.form.Button(this.tr('Save'));
-           control.addListener('execute', function () {
-             var data = qx.util.Serializer.toNativeObject(this._listController.getModel());
-             this._client.save(null, data);
            }, this);
            this.getChildControl('buttons').add(control);
            break;

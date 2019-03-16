@@ -104,6 +104,15 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           height: null
         };
       }
-    }
+    },
+    'cv-editor-config-option/value-title': {
+      style: function () {
+        return {
+          allowGrowX: true,
+          font: 'subtitle'
+        };
+      }
+    },
+    'cv-editor-config-option/key-title': 'cv-editor-config-option/value-title'
   }
 });

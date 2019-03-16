@@ -14,6 +14,8 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
     this._setLayout(new qx.ui.layout.HBox(8));
     this._createChildControl('key');
     this._createChildControl('value');
+    this._createChildControl('key-title');
+    this._createChildControl('value-title');
     this._createChildControl('delete');
     this._createChildControl('add');
   },
@@ -31,7 +33,7 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
 
     model: {
       check: "cv.ui.manager.model.config.Option",
-      nullable: false,
+      nullable: true,
       apply: '_applyModel'
     }
   },
@@ -52,9 +54,19 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
   ***********************************************
   */
   members: {
+    // list controller with allowNull calls setLabel
+    setLabel: function (label) {
+
+    },
+
+    // list controller with allowNull calls setIcon
+    setIcon: function () {},
+
     _applyModel: function (value, old) {
       var keyField = this.getChildControl('key');
       var valueField = this.getChildControl('value');
+      var keyTitleField = this.getChildControl('key-title');
+      var valueTitleField = this.getChildControl('value-title');
       this.__unbindModel(old);
       if (value) {
         // bi-directional bind
@@ -62,6 +74,19 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
         value.bind('value', valueField, 'value');
         keyField.bind('value', value, 'key');
         valueField.bind('value', value, 'value');
+        keyField.show();
+        valueField.show();
+        keyTitleField.exclude();
+        valueTitleField.exclude();
+        this.getChildControl('delete').show();
+        this.getChildControl('add').show();
+      } else {
+        keyField.exclude();
+        valueField.exclude();
+        keyTitleField.show();
+        valueTitleField.show();
+        this.getChildControl('delete').hide();
+        this.getChildControl('add').hide();
       }
     },
 
@@ -89,7 +114,7 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
              liveUpdate: true,
              required: true
            });
-           this._add(control, {flex: 1});
+           this._add(control, {width: '40%'});
            break;
 
          case 'value':
@@ -97,7 +122,7 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
            control.set({
              liveUpdate: true
            });
-           this._add(control, {flex: 1});
+           this._add(control, {width: '40%'});
            break;
 
          case 'delete':
@@ -116,6 +141,18 @@ qx.Class.define('cv.ui.manager.form.OptionListItem', {
              this.fireEvent('add');
            }, this);
            this._add(control);
+           break;
+
+         case 'key-title':
+           control = new qx.ui.basic.Label(this.tr('Key'));
+           control.exclude();
+           this._add(control, {width: '40%'});
+           break;
+
+         case 'value-title':
+           control = new qx.ui.basic.Label(this.tr('Value'));
+           control.exclude();
+           this._add(control, {width: '40%'});
            break;
        }
 

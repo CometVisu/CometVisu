@@ -11,72 +11,80 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cv/Application.js:187
+#: cv/Application.js:226
 msgid "Please describe what you have done until the error occured?"
 msgstr ""
 
-#: cv/Application.js:254
+#: cv/Application.js:293
 msgid "An error occured"
 msgstr ""
 
-#: cv/Application.js:260
+#: cv/Application.js:299
 msgid "Enable on reload:"
 msgstr ""
 
-#: cv/Application.js:265
+#: cv/Application.js:304
 msgid "Reload"
 msgstr ""
 
-#: cv/Application.js:297
+#: cv/Application.js:336
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
 msgstr ""
 
-#: cv/Application.js:304
+#: cv/Application.js:343
 msgid "Action recording"
 msgstr ""
 
-#: cv/Application.js:315
+#: cv/Application.js:354
 msgid "Send error to sentry.io"
 msgstr ""
 
-#: cv/Application.js:329
+#: cv/Application.js:368
 msgid "Error reporting (on sentry.io)"
 msgstr ""
 
-#: cv/TemplateEngine.js:252
+#: cv/TemplateEngine.js:259
 msgid "Connection error"
 msgstr ""
 
-#: cv/TemplateEngine.js:261
+#: cv/TemplateEngine.js:268
 msgid "Error requesting %1: %2 - %3."
 msgstr ""
 
-#: cv/TemplateEngine.js:263
+#: cv/TemplateEngine.js:270
 msgid "Connection to backend is lost."
 msgstr ""
 
-#: cv/TemplateEngine.js:278 cv/TemplateEngine.js:293
+#: cv/TemplateEngine.js:285 cv/TemplateEngine.js:300
 msgid "CometVisu protocol error"
 msgstr ""
 
-#: cv/TemplateEngine.js:279
+#: cv/TemplateEngine.js:286
 msgid ""
 "The backend did send an invalid response to the %1Login%2 request: missing "
 "protocol version."
 msgstr ""
 
-#: cv/TemplateEngine.js:282 cv/TemplateEngine.js:297
+#: cv/TemplateEngine.js:289 cv/TemplateEngine.js:304
 msgid "Please try to fix the problem in the backend."
 msgstr ""
 
-#: cv/TemplateEngine.js:283 cv/TemplateEngine.js:298
+#: cv/TemplateEngine.js:290 cv/TemplateEngine.js:305
 msgid "Backend-Response:"
 msgstr ""
 
-#: cv/TemplateEngine.js:294
+#: cv/TemplateEngine.js:301
 msgid ""
 "The backend did send an invalid response to a %1read%2 request: Missing "
 "\"i\" value."
+msgstr ""
+
+#: cv/parser/MetaParser.js:357
+msgid "Template loading error"
+msgstr ""
+
+#: cv/parser/MetaParser.js:360
+msgid "Template '%1' could not be loaded from '%2'."
 msgstr ""
 
 #: cv/plugins/openhab/Settings.js:174
@@ -94,7 +102,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: cv/plugins/openhab/Settings.js:232
+#: cv/ui/manager/MenuBar.js:47 cv/plugins/openhab/Settings.js:232
 msgid "Save"
 msgstr ""
 
@@ -104,6 +112,54 @@ msgstr ""
 
 #: cv/ui/NotificationCenter.js:227
 msgid "Message center"
+msgstr ""
+
+#: cv/ui/manager/Main.js:252 cv/ui/manager/Main.js:254
+msgid "Edit hidden config"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:37
+msgid "New file"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:42
+msgid "New folder"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:94
+msgid "CometVisu Manager"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:99
+msgid "File"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js:119
+msgid "Add section"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js:130
+msgid "Delete option"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js:139
+msgid "Add option"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js:147
+msgid "Key"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js:153
+msgid "Value"
+msgstr ""
+
+#: cv/ui/manager/form/SectionListItem.js:98
+msgid "Section"
+msgstr ""
+
+#: cv/ui/manager/form/SectionListItem.js:113
+msgid "Delete section"
 msgstr ""
 
 #: cv/ui/structure/pure/Unknown.js:88
@@ -164,10 +220,13 @@ msgstr ""
 #~ msgid "Enable error reporting"
 #~ msgstr ""
 
+#~ msgid "Enable error sending on reload"
+#~ msgstr ""
+
 #~ msgid "Enable reporting on reload"
 #~ msgstr ""
 
-#~ msgid "Enable error sending on reload"
+#~ msgid "Entries"
 #~ msgstr ""
 
 #~ msgid "Report Bug"

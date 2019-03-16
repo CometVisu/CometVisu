@@ -16,7 +16,6 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
     grid.setColumnAlign(0, 'left', 'top');
     this._setLayout(grid);
     this._createChildControl('section-title');
-    this._createChildControl('options-title');
     this._createChildControl('list');
     this._createChildControl('delete');
   },
@@ -83,7 +82,14 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
 
     _onDeleteOption: function (ev) {
       var option = ev.getData();
-      this.getModel().getOptions().remove(option);
+      var options = this.getModel().getOptions();
+      if (options.length === 1) {
+        // do not delete the last option, just reset its values
+        option.resetKey();
+        option.resetValue();
+      } else {
+        this.getModel().getOptions().remove(option);
+      }
     },
 
     _onAddOption: function () {
@@ -118,15 +124,12 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
            this._add(control, {row: 0, column: 2});
            break;
 
-         case 'options-title':
-           control = new qx.ui.basic.Label(this.tr('Entries'));
-           this._add(control, {row: 1, column: 0});
-           break;
-
          case 'list':
            control = new qx.ui.form.List();
            control.setEnableInlineFind(false);
            this._listController = new qx.data.controller.List(null, control);
+           this._listController.setNullValueTitle('header');
+           this._listController.setAllowNull(true);
            this._listController.setDelegate({
              createItem: function () {
                return new cv.ui.manager.form.OptionListItem();

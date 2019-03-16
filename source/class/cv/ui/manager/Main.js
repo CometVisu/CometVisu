@@ -8,6 +8,7 @@
 qx.Class.define('cv.ui.manager.Main', {
   extend: qx.core.Object,
   type: "singleton",
+  implement: cv.ui.manager.IActionHandler,
 
   /*
   ***********************************************
@@ -17,6 +18,8 @@ qx.Class.define('cv.ui.manager.Main', {
   construct: function () {
     this.base(arguments);
     this.initOpenFiles(new qx.data.Array());
+    this.__actionDispatcher = cv.ui.manager.control.ActionDispatcher.getInstance();
+    this.__actionDispatcher.setMain(this);
     this.__initCommands();
     this._draw();
   },
@@ -91,6 +94,31 @@ qx.Class.define('cv.ui.manager.Main', {
     _mainContent: null,
     _openFilesController: null,
     _hiddenConfigFakeFile: null,
+    __actionDispatcher: null,
+
+    canHandleAction: function (actionName) {
+      return ['close', 'quit', 'hidden-config', 'new-file', 'new-folder'].includes(actionName);
+    },
+
+    handleAction: function (actionName) {
+      switch (actionName) {
+        case 'hidden-config':
+          this._onOpenHiddenConfig();
+          break;
+
+        case 'close':
+          this.closeCurrentFile();
+          break;
+
+        case 'quit':
+          this.dispose();
+          break;
+
+        default:
+          this.warn(actionName + ' handling is not implemented yet!');
+          break;
+      }
+    },
 
     /**
      * open selected file in preview mode
@@ -126,13 +154,13 @@ qx.Class.define('cv.ui.manager.Main', {
           var editorConfig = cv.ui.manager.Main.getFileEditor(node);
           if (!editorConfig.instance) {
             editorConfig.instance = new editorConfig.Clazz();
-            this._menuBar.addListener('save', editorConfig.instance.save, editorConfig.instance);
-            editorConfig.instance.bind('saveable', this._menuBar.getChildControl('save-button'), 'enabled');
+            editorConfig.instance.bind('saveable', this._menuBar.getButton('save'), 'enabled');
             this._stack.add(editorConfig.instance);
           } else {
             this._stack.setSelection([editorConfig.instance]);
           }
           editorConfig.instance.setFile(node);
+          this.__actionDispatcher.setFocusedWidget(editorConfig.instance);
         }
       }
     },
@@ -163,6 +191,14 @@ qx.Class.define('cv.ui.manager.Main', {
       this.getOpenFiles().remove(file);
       if (this.getOpenFiles().length === 0) {
         this._stack.resetSelection();
+        this.__actionDispatcher.resetFocusedWidget();
+      }
+    },
+
+    closeCurrentFile: function () {
+      var selected = this._openFilesController.getSelection().length > 0 ? this._openFilesController.getSelection().getItem(0) : null;
+      if (selected) {
+        this.closeFile(selected);
       }
     },
 
@@ -186,17 +222,42 @@ qx.Class.define('cv.ui.manager.Main', {
       var group = new qx.ui.command.Group();
       group.add('save', new qx.ui.command.Command('Ctrl+S'));
       group.add('save-as', new qx.ui.command.Command('Ctrl+Shift+S'));
-      group.add('close', new qx.ui.command.Command('Ctrl+X'));
+      // this command will close the browser window, thats not what we want
+      // group.add('close', new qx.ui.command.Command('Ctrl+W'));
       group.add('new-file', new qx.ui.command.Command('Ctrl+N'));
       group.add('new-folder', new qx.ui.command.Command('Ctrl+Shift+N'));
       group.add('quit', new qx.ui.command.Command('Ctrl+Q'));
+
+      // edit commands (adding cut/copy/paste command will deactive the native browser functions)
+      // and as we cannot simulate pasting from clipboard, we do not use them here
+      // group.add('cut', new qx.ui.command.Command('Ctrl+X'));
+      // group.add('copy', new qx.ui.command.Command('Ctrl+C'));
+      // group.add('paste', new qx.ui.command.Command('Ctrl+V'));
 
       var manager = qx.core.Init.getApplication().getCommandManager();
       this._oldCommandGroup = manager.getActive();
       manager.add(group);
       manager.setActive(group);
+    },
 
-      group.get('quit').addListener('execute', this.dispose, this);
+    _onOpenHiddenConfig: function () {
+      if (!this._hiddenConfigFakeFile) {
+        this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem('hidden.php').set({
+          hasChildren: false,
+          parentFolder: "",
+          parent: this._tree.getModel(),
+          readable: true,
+          writeable: true,
+          overrideIcon: true,
+          icon: '@MaterialIcons/settings/15',
+          type: "file"
+        });
+      }
+      if (this.getOpenFiles().includes(this._hiddenConfigFakeFile)) {
+        this.closeFile(this._hiddenConfigFakeFile);
+      } else {
+        this.openFile(this._hiddenConfigFakeFile, false);
+      }
     },
 
     // overridden
@@ -240,37 +301,7 @@ qx.Class.define('cv.ui.manager.Main', {
       });
       this._tree.openNode(rootFolder);
       this._tree.getSelection().addListener("change", this._onChangeTreeSelection, this);
-      var leftContent = new qx.ui.container.Composite(new qx.ui.layout.VBox());
-      leftContent.add(this._tree, {flex: 1});
-      this._pane.add(leftContent, 0);
-
-      // left-bottom bar
-      var leftToolbar = new qx.ui.toolbar.ToolBar();
-      var openHiddenConfigButton = new qx.ui.toolbar.Button(qx.locale.Manager.tr('Edit hidden config'), '@MaterialIcons/settings/30');
-      openHiddenConfigButton.set({
-        toolTipText: qx.locale.Manager.tr('Edit hidden config')
-      });
-      openHiddenConfigButton.addListener('execute', function () {
-        if (!this._hiddenConfigFakeFile) {
-          this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem('hidden.php').set({
-            hasChildren: false,
-            parentFolder: "",
-            parent: rootFolder,
-            readable: true,
-            writeable: true,
-            overrideIcon: true,
-            icon: '@MaterialIcons/settings/15',
-            type: "file"
-          });
-        }
-        if (this.getOpenFiles().includes(this._hiddenConfigFakeFile)) {
-          this.closeFile(this._hiddenConfigFakeFile);
-        } else {
-          this.openFile(this._hiddenConfigFakeFile, false);
-        }
-      }, this);
-      leftToolbar.add(openHiddenConfigButton);
-      leftContent.add(leftToolbar);
+      this._pane.add(this._tree, 0);
 
       this._mainContent = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
@@ -308,6 +339,10 @@ qx.Class.define('cv.ui.manager.Main', {
       // menu on top
       this._menuBar = new cv.ui.manager.MenuBar();
       main.add(this._menuBar, {edge: 'north'});
+    },
+
+    getMenuBar: function () {
+      return this._menuBar;
     }
   },
 
@@ -346,6 +381,7 @@ qx.Class.define('cv.ui.manager.Main', {
         cv.ui.manager.Main.__editors[regex].instance = null;
       }
     });
+    this.__actionDispatcher = null;
   },
 
   defer: function(statics) {

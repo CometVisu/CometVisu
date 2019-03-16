@@ -11,58 +11,58 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cv/Application.js:187
+#: cv/Application.js:226
 msgid "Please describe what you have done until the error occured?"
 msgstr ""
 "Bitte beschreiben, was Sie gemacht haben bis der Fehler aufgetreten ist."
 
-#: cv/Application.js:254
+#: cv/Application.js:293
 msgid "An error occured"
 msgstr "Ein Fehler ist aufgetreten"
 
-#: cv/Application.js:260
+#: cv/Application.js:299
 msgid "Enable on reload:"
 msgstr "Aktivieren beim neu Laden:"
 
-#: cv/Application.js:265
+#: cv/Application.js:304
 msgid "Reload"
 msgstr "Neu laden"
 
-#: cv/Application.js:297
+#: cv/Application.js:336
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
 msgstr ""
 "Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Ticket "
 "zu hängen."
 
-#: cv/Application.js:304
+#: cv/Application.js:343
 msgid "Action recording"
 msgstr "Benutzerinteraktionen aufzeichnen"
 
-#: cv/Application.js:315
+#: cv/Application.js:354
 msgid "Send error to sentry.io"
 msgstr "Fehlerbericht an sentry.io schicken"
 
-#: cv/Application.js:329
+#: cv/Application.js:368
 msgid "Error reporting (on sentry.io)"
 msgstr "Absturzberichte senden (an sentry.io)"
 
-#: cv/TemplateEngine.js:252
+#: cv/TemplateEngine.js:259
 msgid "Connection error"
 msgstr "Verbindungsfehler"
 
-#: cv/TemplateEngine.js:261
+#: cv/TemplateEngine.js:268
 msgid "Error requesting %1: %2 - %3."
 msgstr "Fehler beim Laden von %1: %2 - %3."
 
-#: cv/TemplateEngine.js:263
+#: cv/TemplateEngine.js:270
 msgid "Connection to backend is lost."
 msgstr "Verbindung zum Backend verloren."
 
-#: cv/TemplateEngine.js:278 cv/TemplateEngine.js:293
+#: cv/TemplateEngine.js:285 cv/TemplateEngine.js:300
 msgid "CometVisu protocol error"
 msgstr "CometVisu Protokollfehler"
 
-#: cv/TemplateEngine.js:279
+#: cv/TemplateEngine.js:286
 msgid ""
 "The backend did send an invalid response to the %1Login%2 request: missing "
 "protocol version."
@@ -70,19 +70,27 @@ msgstr ""
 "Das Backend hat eine ungültige Antwort auf die %1Login%2-Anfrage geschickt: "
 "Fehlende Protokollversion."
 
-#: cv/TemplateEngine.js:282 cv/TemplateEngine.js:297
+#: cv/TemplateEngine.js:289 cv/TemplateEngine.js:304
 msgid "Please try to fix the problem in the backend."
 msgstr "Bitte versuchen Sie das Problem im Backend zu lösen."
 
-#: cv/TemplateEngine.js:283 cv/TemplateEngine.js:298
+#: cv/TemplateEngine.js:290 cv/TemplateEngine.js:305
 msgid "Backend-Response:"
 msgstr "Antwort des Backends:"
 
-#: cv/TemplateEngine.js:294
+#: cv/TemplateEngine.js:301
 msgid ""
 "The backend did send an invalid response to a %1read%2 request: Missing "
 "\"i\" value."
 msgstr ""
+
+#: cv/parser/MetaParser.js:357
+msgid "Template loading error"
+msgstr "Fehler beim Laden des Templates"
+
+#: cv/parser/MetaParser.js:360
+msgid "Template '%1' could not be loaded from '%2'."
+msgstr "Template '%1' konnte nicht geladen werden von '%2'."
 
 #: cv/plugins/openhab/Settings.js:174
 msgid ""
@@ -102,7 +110,7 @@ msgstr "openHAB Backend Einstellungen"
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: cv/plugins/openhab/Settings.js:232
+#: cv/ui/manager/MenuBar.js:47 cv/plugins/openhab/Settings.js:232
 msgid "Save"
 msgstr "Speichern"
 
@@ -113,6 +121,54 @@ msgstr "Alle löschen"
 #: cv/ui/NotificationCenter.js:227
 msgid "Message center"
 msgstr "Nachrichtenzentrale"
+
+#: cv/ui/manager/Main.js:252 cv/ui/manager/Main.js:254
+msgid "Edit hidden config"
+msgstr "Versteckte Konfiguration bearbeiten"
+
+#: cv/ui/manager/MenuBar.js:37
+msgid "New file"
+msgstr "Neue Datei"
+
+#: cv/ui/manager/MenuBar.js:42
+msgid "New folder"
+msgstr "Neuer Ordner"
+
+#: cv/ui/manager/MenuBar.js:94
+msgid "CometVisu Manager"
+msgstr "CometVisu Manager"
+
+#: cv/ui/manager/MenuBar.js:99
+msgid "File"
+msgstr "Datei"
+
+#: cv/ui/manager/editor/Config.js:119
+msgid "Add section"
+msgstr "Sektion hinzufügen"
+
+#: cv/ui/manager/form/OptionListItem.js:130
+msgid "Delete option"
+msgstr "Option löschen"
+
+#: cv/ui/manager/form/OptionListItem.js:139
+msgid "Add option"
+msgstr "Option hinzufügen"
+
+#: cv/ui/manager/form/OptionListItem.js:147
+msgid "Key"
+msgstr "Schlüssel"
+
+#: cv/ui/manager/form/OptionListItem.js:153
+msgid "Value"
+msgstr "Wert"
+
+#: cv/ui/manager/form/SectionListItem.js:98
+msgid "Section"
+msgstr "Sektion"
+
+#: cv/ui/manager/form/SectionListItem.js:113
+msgid "Delete section"
+msgstr "Sektion löschen"
 
 #: cv/ui/structure/pure/Unknown.js:88
 msgid "unknown: %1"
@@ -175,11 +231,14 @@ msgstr "Datei-Ladefehler"
 #~ msgid "Enable error reporting"
 #~ msgstr ""
 
+#~ msgid "Enable error sending on reload"
+#~ msgstr "Neu laden mit aktiviertem Senden von Fehlerberichten"
+
 #~ msgid "Enable reporting on reload"
 #~ msgstr "Neu laden mit aktivierter Aufzeichnung"
 
-#~ msgid "Enable error sending on reload"
-#~ msgstr "Neu laden mit aktiviertem Senden von Fehlerberichten"
+#~ msgid "Entries"
+#~ msgstr "Einträge"
 
 #~ msgid "Report Bug"
 #~ msgstr "Fehler berichten"

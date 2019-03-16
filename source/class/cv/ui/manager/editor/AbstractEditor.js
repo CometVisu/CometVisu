@@ -3,7 +3,10 @@
  */
 qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   extend: qx.ui.core.Widget,
-  implement: cv.ui.manager.editor.IEditor,
+  implement: [
+    cv.ui.manager.editor.IEditor,
+    cv.ui.manager.IActionHandler
+  ],
   type: "abstract",
 
   /*
@@ -60,6 +63,21 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   ***********************************************
   */
   members: {
+    _handledActions: null,
+
+    canHandleAction: function (actionName) {
+      return this._handledActions && this._handledActions.includes(actionName);
+    },
+
+    handleAction: function (actionName) {
+      if (this.canHandleAction(actionName)) {
+        switch (actionName) {
+          case 'save':
+            this.save();
+            break;
+        }
+      }
+    },
 
     _initClient: function () {
       this._client = cv.io.rest.Client.getFsClient();

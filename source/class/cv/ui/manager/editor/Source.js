@@ -11,6 +11,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   */
   construct: function () {
     this.base(arguments);
+    this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
     this.__basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/config/';
     this.__id = 'editor#' + cv.ui.manager.editor.Source.COUNTER++;
     this.getContentElement().setAttribute('id', this.__id);
@@ -89,6 +90,27 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           this._loadFile(this.getFile());
         }
         this._editor.onDidChangeModelContent(this._onContentChanged.bind(this));
+      }
+    },
+
+    handleAction: function (actionName) {
+      if (this.canHandleAction(actionName)) {
+        var monacoAction;
+        switch (actionName) {
+          case 'cut':
+            monacoAction = this._editor.getAction('editor.action.clipboardCutAction');
+            break;
+          case 'copy':
+            monacoAction = this._editor.getAction('editor.action.clipboardCopyAction');
+            break;
+
+          default:
+            this.base(arguments, actionName);
+            break;
+        }
+        if (monacoAction) {
+          monacoAction.run();
+        }
       }
     },
 
