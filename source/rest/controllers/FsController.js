@@ -7,6 +7,7 @@ class FsController extends FileHandler {
   constructor() {
     super()
     this.basePath = config.configDir
+    this.mounts = config.mounts.map(mount => mount.mountPoint);
   }
 
   /**
@@ -15,8 +16,8 @@ class FsController extends FileHandler {
    * @returns {*}
    */
   read(context) {
-    return this.__processRequest(context, fsPath => {
-      return this.__folderListing(fsPath);
+    return this.__processRequest(context, (fsPath, mount) => {
+      return this.__folderListing(fsPath, mount);
     }, fsPath => {
       return fs.readFileSync(fsPath, 'utf8')
     }, 'read')
@@ -44,21 +45,37 @@ class FsController extends FileHandler {
     }, 'delete')
   }
 
+  __getMount(path) {
+    let mountKey = this.mounts.indexOf(path);
+    if (mountKey < 0) {
+      this.mounts.some((mountPoint, index) => {
+        if (path.startsWith(mountPoint)) {
+          mountKey = index;
+          return true;
+        }
+      })
+    }
+    if (mountKey >= 0) {
+      return config.mounts[mountKey];
+    }
+  }
+
   __processRequest(context, folderCallback, fileCallback, type) {
-    const fsPath = this.__getAbsolutePath(context.params.query.path)
+    const mount = this.__getMount(context.params.query.path);
+    const fsPath = this.__getAbsolutePath(context.params.query.path, mount)
     if (fs.existsSync(fsPath)) {
       try {
         const stats = fs.statSync(fsPath)
-        if (!FileHandler.checkAccess(fsPath) || (fsPath.endsWith('/resource/demo') && type !== 'read')) {
+        if (!FileHandler.checkAccess(fsPath) || (mount && mount.writeable === false && type !== 'read')) {
           this.respondMessage(context,403, 'Forbidden')
         } else {
           if (stats.isDirectory()) {
             if (folderCallback) {
-              return folderCallback(fsPath)
+              return folderCallback(fsPath, mount)
             }
           } else {
             if (fileCallback) {
-              return fileCallback(fsPath);
+              return fileCallback(fsPath, mount);
             }
           }
         }
@@ -72,20 +89,24 @@ class FsController extends FileHandler {
     }
   }
 
-  __folderListing(fsPath) {
+  __folderListing(fsPath, mount) {
     const res = []
-    const inDemo = fsPath.endsWith('/resource/demo')
     fs.readdirSync(fsPath).filter(file => {
       return FileHandler.checkAccess(fsPath, file)
     }).forEach(file => {
       if (!file.startsWith('.')) {
         try {
           const stats = fs.statSync(path.join(fsPath, file))
-          if (inDemo && stats.isDirectory()) {
-            // no subdirs in demo
+          if (mount && mount.showSubDirs === false && stats.isDirectory()) {
+            // no subdirs in mount
             return;
           }
-          let relFolder = inDemo ? '../demo' : fsPath.substring(this.basePath.length + 1)
+          let relFolder;
+          if (mount) {
+            relFolder = mount.mountPoint + fsPath.substring(mount.path.length + 1)
+          } else {
+            relFolder = fsPath.substring(this.basePath.length + 1)
+          }
           if (relFolder.length > 0) {
             relFolder += '/'
           }
@@ -104,7 +125,7 @@ class FsController extends FileHandler {
           } catch (err) {
           }
           // no write access in demo folder
-          if (!inDemo) {
+          if (!mount || mount.writeable !== false) {
             try {
               fs.accessSync(fullPath, fs.constants.W_OK)
               entry.writeable = true
@@ -118,23 +139,27 @@ class FsController extends FileHandler {
       }
     })
     if (fsPath.endsWith('/resource/config')) {
-      // add demo folder as non writable to the list
-      res.push({
-        name: 'demo',
-        type: 'dir',
-        parentFolder: '..',
-        hasChildren: true,
-        readable: true,
-        writeable: false
-      });
+      // add mounts
+      config.mounts.forEach(mount => {
+        res.push({
+          name: mount.mountPoint,
+          type: 'dir',
+          parentFolder: '',
+          hasChildren: true,
+          readable: true,
+          writeable: mount.writeable !== false
+        });
+      })
     }
     return res
   }
 
-  __getAbsolutePath(fsPath) {
+  __getAbsolutePath(fsPath, mount) {
     fsPath = this.__sanitize(fsPath)
-    if (fsPath.startsWith('demo')) {
-      fsPath = '../' + fsPath.replace(/\.\.\//g, '');
+    if (mount) {
+      // remove mountPoint from requested path
+      fsPath = fsPath.substring(mount.mountPoint.length + 1)
+      return path.join(mount.path, fsPath);
     }
     return path.join(this.basePath, fsPath)
   }

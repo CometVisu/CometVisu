@@ -249,7 +249,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       var parentFolder = this.getParentFolder();
       if (!parentFolder) {
         parentFolder = '';
-      } else {
+      } else if (!parentFolder.endsWith('/')) {
         parentFolder += '/';
       }
       return parentFolder + this.getName();
