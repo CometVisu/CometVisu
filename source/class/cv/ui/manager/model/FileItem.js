@@ -71,6 +71,23 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       event: 'changeIcon'
     },
 
+    /**
+     * The opening state: permanent false behaves like a quick preview, where
+     * the current file content is replaces by the next selected file on single click.
+     * In permanent mode a new tab will be created, which content will not be replaced.
+     */
+    permanent: {
+      check: 'Boolean',
+      init: false,
+      event: 'changePermanent'
+    },
+
+    modified: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeModfied'
+    },
+
     // Backend properties
 
     hasChildren : {

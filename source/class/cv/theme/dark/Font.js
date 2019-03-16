@@ -30,6 +30,23 @@ qx.Theme.define("cv.theme.dark.Font",{
   extend : osparc.theme.osparcdark.Font,
 
   fonts : {
+    "italic": {
+      size: 13,
+      family: ["sans-serif"],
+      color: "text",
+      italic: true,
+      sources: [
+        {
+          family: "Roboto",
+          source: [
+            "osparc/font/roboto-v18-latin_latin-ext-regular.eot",
+            "osparc/font/roboto-v18-latin_latin-ext-regular.woff2",
+            "osparc/font/roboto-v18-latin_latin-ext-regular.woff",
+            "osparc/font/roboto-v18-latin_latin-ext-regular.ttf"
+          ]
+        }
+      ]
+    },
     "title": {
       size: 18,
       family: ["sans-serif"],

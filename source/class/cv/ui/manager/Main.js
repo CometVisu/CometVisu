@@ -167,27 +167,32 @@ qx.Class.define('cv.ui.manager.Main', {
 
     openFile: function (file, preview) {
       var openFiles = this.getOpenFiles();
+      var isOpen = openFiles.includes(file);
       if (preview === true) {
-        if (!file.getUserData('permanent')) {
+        if (!file.isPermanent()) {
           if (this.__previewFileIndex !== null) {
             openFiles.setItem(this.__previewFileIndex, file);
           } else {
-            var length = openFiles.unshift(file);
-            this.__previewFileIndex = length - 1;
+            this.__previewFileIndex = openFiles.length;
+            openFiles.push(file);
           }
         }
+        // do not 'downgrade' the permanent state
+        if (!file.isPermanent()) {
+          file.setPermanent(false);
+        }
       } else {
-        if (this.__previewFileIndex === null || openFiles.indexOf(file) !== this.__previewFileIndex) {
+        if (!isOpen && (this.__previewFileIndex === null || openFiles.indexOf(file) !== this.__previewFileIndex)) {
           openFiles.push(file);
         }
-        file.setUserData('permanent', true);
+        file.setPermanent(true);
         this.__previewFileIndex = null;
       }
       this._openFilesController.getTarget().setModelSelection([file]);
     },
 
     closeFile: function (file) {
-      file.setUserData('permanent', null);
+      file.resetPermanent();
       this.getOpenFiles().remove(file);
       if (this.getOpenFiles().length === 0) {
         this._stack.resetSelection();
@@ -203,7 +208,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     _onCloseFile: function (ev) {
-      this.closeFile(ev.getTarget().getLayoutParent().getModel());
+      this.closeFile(ev.getData());
     },
 
     __getRoot: function () {
@@ -317,16 +322,15 @@ qx.Class.define('cv.ui.manager.Main', {
       this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, "name");
       this._openFilesController.setDelegate({
         createItem: function () {
-          var item = new qx.ui.form.ListItem();
-          var icon = item.getChildControl('icon');
-          icon.setAnonymous(false);
-          icon.setCursor('pointer');
-          icon.addListener('tap', this._onCloseFile, this);
+          var item = new cv.ui.manager.form.FileTabItem();
+          item.addListener('close', this._onCloseFile, this);
           return item;
         }.bind(this),
 
-        configureItem: function (item) {
-          item.setAppearance('open-file-item');
+        bindItem: function (controller, item, index) {
+          controller.bindDefaultProperties(item, index);
+          controller.bindProperty('permanent', 'permanent', null, item, index);
+          controller.bindProperty('modified', 'modified', null, item, index);
         }
       });
       list.addListener('changeSelection', this._onChangeFileSelection, this);
