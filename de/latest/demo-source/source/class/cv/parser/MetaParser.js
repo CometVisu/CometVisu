@@ -371,10 +371,11 @@ qx.Class.define("cv.parser.MetaParser", {
             }, this);
             areq.send();
           } else {
+            var cleaned = qx.bom.element.Attribute.get(elem, 'html').replace(/\n\s*/g, '').trim();
             cv.parser.WidgetParser.addTemplate(
               templateName,
               // templates can only have one single root element, so we wrap it here
-              '<root>' + qx.bom.element.Attribute.get(elem, 'html') + '</root>'
+              '<root>' + cleaned + '</root>'
             );
           }
         }, this);
