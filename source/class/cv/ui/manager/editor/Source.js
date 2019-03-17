@@ -16,6 +16,9 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     this.__id = 'editor#' + cv.ui.manager.editor.Source.COUNTER++;
     this.getContentElement().setAttribute('id', this.__id);
     this._draw();
+    this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
+    this._workerWrapper.setEditor(this);
+    this._currentDecorations = [];
   },
 
   /*
@@ -71,6 +74,8 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     __id: null,
     _editor: null,
     __basePath: null,
+    _workerWrapper: null,
+    _currentDecorations: null,
 
     _draw: function () {
       if (!window.monaco) {
@@ -114,10 +119,13 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       }
     },
 
-    _loadFile: function (file) {
+    _loadFile: function (file, old) {
+      if (old) {
+        this._workerWrapper.close(old);
+      }
       if (this._editor) {
         if (file && file.getType() === 'file' && this.isSupported(file)) {
-          this.base(arguments, file);
+          this.base(arguments, file, old);
         } else {
           this.resetContent();
         }
@@ -126,10 +134,11 @@ qx.Class.define('cv.ui.manager.editor.Source', {
 
     _applyContent: function(value) {
       var model = this._editor.getModel();
+      var file = this.getFile();
       if (!value && model) {
         this._editor.setValue('');
       } else {
-        var file = this.getFile();
+        this._workerWrapper.open(file, value);
         var language = this.__getLanguage(file);
         if (!model || model.getLanguageIdentifier().language !== language) {
           // dispose old model
@@ -149,14 +158,82 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       return this._editor.getValue();
     },
 
-    _onContentChanged: function (e) {
-      console.log(e);
-      this.setModified(true);
+    _onContentChanged: function () {
+      this._workerWrapper.contentChanged(this.getFile(), this._editor.getValue());
     },
 
     isSupported: function (file) {
       var fileType = file.getName().split('.').pop();
       return cv.ui.manager.editor.Source.SUPPORTED_FILES.includes(fileType);
+    },
+
+    showErrors: function (path, errorList) {
+      var markers = [];
+      var model = this._editor.getModel();
+      // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
+      if (errorList) {
+//            console.error(errorList);
+        var currentMessage = null;
+        // collect complete error messages
+        errorList.forEach(function (error) {
+          if (/.*\.xml:[\d]+:.+/.test(error)) {
+            if (currentMessage !== null) {
+              markers.push({
+                severity: window.monaco.MarkerSeverity.Error,
+                startLineNumber: currentMessage.line,
+                startColumn: 1,
+                endLineNumber: currentMessage.line,
+                endColumn: model.getLineContent(currentMessage.line).length,
+                message: currentMessage.message
+              });
+            }
+            // add marker for completed message
+            var parts = error.split(":");
+            var file = parts.shift();
+            var line = parseInt(parts.shift());
+
+            // in the last part there might be a more precise line number for the error
+            var match = /.+line ([\d]+) -+/.exec(parts[parts.length-1]);
+            if (match) {
+              line = parseInt(match[1]);
+            }
+            if (isNaN(line)) {
+              return;
+            }
+            // new error line
+            currentMessage = {
+              line: line,
+              message: parts.slice(-2).join(":"),
+              file: file
+            };
+          } else {
+            currentMessage.message += "\n"+error;
+          }
+        });
+        if (currentMessage !== null) {
+          // show last error too
+          markers.push({
+            severity: window.monaco.MarkerSeverity.Error,
+            startLineNumber: currentMessage.line,
+            startColumn: 1,
+            endLineNumber: currentMessage.line,
+            endColumn: model.getLineContent(currentMessage.line).length,
+            message: currentMessage.message
+          });
+        }
+      }
+      if (this.getFile().getFullPath() === path) {
+        window.monaco.editor.setModelMarkers(model, '', markers);
+      } else {
+        // TODO: save errors for later
+      }
+    },
+
+    showDecorations: function (path, decorators) {
+      if (this.getFile().getFullPath() === path) {
+        this._editor.deltaDecorations(this._currentDecorations[path], decorators);
+      }
+      this._currentDecorations[path] = decorators;
     },
 
     __getLanguage: function (file) {
@@ -178,6 +255,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   ***********************************************
   */
   destruct: function () {
+    this._workerWrapper = null;
     if (this._editor) {
       this._editor.dispose();
       this._editor = null;

@@ -24,94 +24,143 @@
  * @author Tobias Bräutigam
  */
 importScripts('xmllint.js');
+importScripts('crc32.js');
 
-var initialHash = null;
-var initialCode = null;
-var schema = null;
+let configSchema;
 
-/**
- * Calculate HashCode from string
- *
- * @see http://stackoverflow.com/q/7616461/940217
- * @return {number}
- */
-function hashCode(string) {
-  if (Array.prototype.reduce){
-    return string.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a;},0);
-  }
-  var hash = 0;
-  if (string.length === 0) {
-    return hash;
-  }
-  for (var i = 0, l = string.length; i < l; i++) {
-    var character  = string.charCodeAt(i);
-    hash  = ((hash<<5)-hash)+character;
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  return hash;
-}
 
-/**
- * Called after editor has been loaded with a config file
- * @param data {Map}
- */
-function openFile(data) {
-  initialCode = data.code.split("\n");
-  initialHash = hashCode(data.code);
-  schema = data.schema;
+class SourceFile {
+  constructor(path) {
+    this.path = path;
+    this.initialHash = null;
+    this.initialCode = null;
+    this.currentHash = null;
+    this.isConfigFile = /visu_config.*\.xml$/.test(path);
 
-  // initial syntax check
-  contentChange(data);
-}
-
-/**
- * Called after file has been saved
- * @param data {String} Complete code
- */
-function savedFile(data) {
-  initialCode = data.split("\n");
-  initialHash = hashCode(data);
-}
-
-function contentChange(data) {
-  var newHash = hashCode(data.code);
-  // check modifications
-  postMessage(["modified", (newHash !== initialHash)]);
-
-  var lint = xmllint.validateXML({
-    xml: data.code,
-    schema: schema
-  });
-  postMessage(["errors", lint.errors]);
-
-  // currently disabled as these are hard to maintain (e.g. if you delete a line the range of existing decorators change
-  // and they all need to be re-evaluated)
-  //checkModification(data.code.split("\n"), data.event.changes);
-}
-
-function checkModification(lines, changes) {
-  var decorations = [];
-
-  changes.forEach(function(change) {
-    for (var i=change.range.startLineNumber; i<=change.range.endLineNumber; i++) {
-      if (initialCode[i] !== lines[i]) {
-        decorations.push({
-          range: {
-            startLineNumber: change.range.startLineNumber+1,
-            endLineNumber: change.range.endLineNumber+1,
-            startColumn: 1,
-            endColumn: 1
-          },
-          options: {
-            isWholeLine: true,
-            linesDecorationsClassName: 'modified-line'
-          }
-        });
-        break;
+    if (this.isConfigFile && !configSchema) {
+      // load scheme file
+      try {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '../visu_config.xsd', false); // Note: synchronous
+        xhr.responseType = 'text/xml';
+        xhr.send();
+        configSchema = xhr.response;
+      } catch(e) {
+        return "XHR Error " + e.toString();
       }
     }
-  });
-  postMessage(["decorations", decorations]);
+  }
+
+  /**
+   * Called after editor has been loaded with a config file
+   * @param data {Map}
+   */
+  open(data) {
+    this.initialCode = data.code.split("\n");
+    this.initialHash = SourceFile.hashCode(data.code);
+
+    // initial syntax check
+    this.contentChange(data);
+  }
+
+  /**
+   * Called after file has been saved
+   * @param data {String} Complete code
+   */
+  saved(data) {
+    this.initialCode = data.split("\n");
+    this.initialHash = SourceFile.hashCode(data);
+  }
+
+  contentChange(data) {
+    this.currentHash = SourceFile.hashCode(data.code);
+    // check modifications
+    postMessage(["modified", {
+      modified: (this.currentHash !== this.initialHash),
+      currentHash: this.currentHash,
+      initialHash: this.initialHash
+    }, this.path]);
+
+    var lint = xmllint.validateXML({
+      xml: data.code,
+      schema: configSchema
+    });
+    postMessage(["errors", lint.errors, this.path]);
+
+    // currently disabled as these are hard to maintain (e.g. if you delete a line the range of existing decorators change
+    // and they all need to be re-evaluated)
+    //this.checkModification(data.code.split("\n"), data.event.changes);
+  }
+
+  getCurrenthash() {
+    return this.currentHash;
+  }
+
+  checkModification(lines, changes) {
+    var decorations = [];
+
+    changes.forEach(function(change) {
+      for (var i=change.range.startLineNumber; i<=change.range.endLineNumber; i++) {
+        if (this.initialCode[i] !== lines[i]) {
+          decorations.push({
+            range: {
+              startLineNumber: change.range.startLineNumber+1,
+              endLineNumber: change.range.endLineNumber+1,
+              startColumn: 1,
+              endColumn: 1
+            },
+            options: {
+              isWholeLine: true,
+              linesDecorationsClassName: 'modified-line'
+            }
+          });
+          break;
+        }
+      }
+    });
+    postMessage(["decorations", decorations, this.path]);
+  }
+
+  /**
+   * Calculate HashCode from string using the crc32 lib.
+   *
+   * @return {number}
+   */
+  static hashCode(string) {
+    return CRC32.str(string);
+  }
+}
+
+// mapping calls to SourceFile instances
+const openFiles = {};
+
+function openFile(data) { // jshint ignore:line
+  if (!openFiles.hasOwnProperty(data.path)) {
+    const source = new SourceFile(data.path);
+    source.open(data);
+    openFiles[data.path] = source;
+  }
+}
+
+function closeFile(path) { // jshint ignore:line
+  delete openFiles[path];
+}
+
+function contentChange(data) { // jshint ignore:line
+  if (openFiles.hasOwnProperty(data.path)) {
+    const source = openFiles[data.path];
+    source.contentChange(data);
+  } else {
+    console.error('no open file found for path', data.path);
+  }
+}
+
+function getContentHash(path) {
+  if (openFiles.hasOwnProperty(path)) {
+    postMessage(["hash", openFiles[path].getCurrentHash(), path]);
+  } else {
+    postMessage(["hash", false, path]);
+  }
 }
 
 /**

@@ -129,7 +129,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           height: null,
           width: 300,
-          minWidth: 300,
+          minWidth: 300
         };
       }
     },

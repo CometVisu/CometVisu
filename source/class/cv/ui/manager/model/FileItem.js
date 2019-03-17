@@ -71,6 +71,11 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       event: 'changeIcon'
     },
 
+    hash: {
+      check: 'Number',
+      nullable: true
+    },
+
     /**
      * The opening state: permanent false behaves like a quick preview, where
      * the current file content is replaces by the next selected file on single click.
@@ -87,6 +92,12 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       init: false,
       event: 'changeModfied',
       apply: '_applyModified'
+    },
+
+    valid: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeValid'
     },
 
     // Backend properties

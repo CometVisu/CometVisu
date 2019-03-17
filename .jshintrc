@@ -16,6 +16,7 @@
   "smarttabs": true,
   "multistr": true,
   "jasmine": true,
+  "worker": true,
   "globals": {
     "browser": false,
     "describe": false,
@@ -49,6 +50,8 @@
     "Favico": false,
     "Sentry": true,
     "osparc": true,
-    "monaco": true
+    "monaco": true,
+    "CRC32": true,
+    "xmllint": true
   }
 }

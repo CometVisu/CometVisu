@@ -39,7 +39,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     _listController: null,
 
     _initClient: function () {
-      this._client = cv.io.rest.Client.getConfigFileClient();
+      this._client = cv.io.rest.Client.getConfigClient();
       this._client.addListener('getSuccess', this._onModelValueChange, this);
       this._client.addListener('updateSuccess', this._onSaved, this);
     },

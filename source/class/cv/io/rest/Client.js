@@ -14,7 +14,7 @@ qx.Class.define('cv.io.rest.Client', {
     __configFile: null,
     __dirClient: null,
 
-    getConfigFileClient: function() {
+    getConfigClient: function() {
       if (!this.__configFile) {
         this.__configFile = new qx.io.rest.Resource({
           get: {
@@ -91,8 +91,32 @@ qx.Class.define('cv.io.rest.Client', {
             req.setAccept('application/json');
           }
         });
+
+        // general listeners
+        this.__dirClient.addListener('updateSuccess', this._onSaveSuccess, this);
+        this.__dirClient.addListener('createSuccess', this._onSaveSuccess, this);
+        this.__dirClient.addListener('updateError', this._onSaveError, this);
+        this.__dirClient.addListener('createError', this._onSaveError, this);
       }
       return this.__dirClient;
+    },
+
+    _onSaveSuccess: function () {
+      var msg = new cv.ui.manager.model.Message();
+      msg.set({
+        title: qx.locale.Manager.tr('File has been saved')
+      });
+      qx.event.message.Bus.dispatchByName('cv.manager.msg.snackbar', msg);
+    },
+
+    _onSaveError: function () {
+      var msg = new cv.ui.manager.model.Message();
+      msg.set({
+        title: qx.locale.Manager.tr('Error saving file'),
+        type: 'error',
+        sticky: true
+      });
+      qx.event.message.Bus.dispatchByName('cv.manager.msg.snackbar', msg);
     }
   }
 });

@@ -211,6 +211,7 @@ qx.Class.define('cv.ui.manager.Main', {
       if (this.getOpenFiles().length === 0) {
         this._stack.resetSelection();
         this.__actionDispatcher.resetFocusedWidget();
+        this.__previewFileIndex = null;
       }
     },
 
