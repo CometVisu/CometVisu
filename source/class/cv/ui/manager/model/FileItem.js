@@ -295,8 +295,13 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       return this.__fullPath;
     },
 
+    /**
+     * Returns a fake URI that can be used to identify the file.
+     * Used by monaco editor as model URI.
+     * @returns {Uri}
+     */
     getUri: function () {
-      return cv.io.rest.Client.BASE_URL + 'fs?patch=' + this.getFullPath();
+      return 'cv://' + this.getFullPath();
     },
 
     /**
