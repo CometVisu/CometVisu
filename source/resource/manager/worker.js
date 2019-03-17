@@ -45,7 +45,7 @@ class SourceFile {
         xhr.send();
         configSchema = xhr.response;
       } catch(e) {
-        return "XHR Error " + e.toString();
+        console.error("XHR Error " + e.toString());
       }
     }
   }
@@ -80,19 +80,17 @@ class SourceFile {
       initialHash: this.initialHash
     }, this.path]);
 
-    var lint = xmllint.validateXML({
-      xml: data.code,
-      schema: configSchema
-    });
-    postMessage(["errors", lint.errors, this.path]);
+    if (this.isConfigFile()) {
+      var lint = xmllint.validateXML({
+        xml: data.code,
+        schema: configSchema
+      });
+      postMessage(["errors", lint.errors, this.path]);
+    }
 
     // currently disabled as these are hard to maintain (e.g. if you delete a line the range of existing decorators change
     // and they all need to be re-evaluated)
     //this.checkModification(data.code.split("\n"), data.event.changes);
-  }
-
-  getCurrenthash() {
-    return this.currentHash;
   }
 
   checkModification(lines, changes) {
@@ -151,14 +149,6 @@ function contentChange(data) { // jshint ignore:line
     source.contentChange(data);
   } else {
     console.error('no open file found for path', data.path);
-  }
-}
-
-function getContentHash(path) {
-  if (openFiles.hasOwnProperty(path)) {
-    postMessage(["hash", openFiles[path].getCurrentHash(), path]);
-  } else {
-    postMessage(["hash", false, path]);
   }
 }
 
