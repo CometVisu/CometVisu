@@ -81,6 +81,9 @@ qx.Class.define('cv.util.ConfigLoader', {
           else {
             if (req.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
               cv.Config.backendUrl = req.getResponseHeader("X-CometVisu-Backend-LoginUrl");
+              if (!cv.Config.backendUrl.endsWith('/')) {
+                cv.Config.backendUrl += '/';
+              }
             }
             if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
               cv.Config.backend = req.getResponseHeader("X-CometVisu-Backend-Name");
