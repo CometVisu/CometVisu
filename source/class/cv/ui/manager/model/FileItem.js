@@ -112,7 +112,8 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     name : {
       check : "String",
       event : "changeName",
-      init : ""
+      init : "",
+      apply: '_applyName'
     },
 
     type: {
@@ -152,7 +153,12 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
   */
   members: {
     __path: null,
+    __fullPath: null,
     __onLoadCallback: null,
+
+    _applyName: function () {
+      this.__fullPath = null;
+    },
 
     _onOpen : function(value){
 
@@ -277,13 +283,20 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     },
 
     getFullPath: function () {
-      var parentFolder = this.getParentFolder();
-      if (!parentFolder) {
-        parentFolder = '';
-      } else if (!parentFolder.endsWith('/')) {
-        parentFolder += '/';
+      if (!this.__fullPath) {
+        var parentFolder = this.getParentFolder();
+        if (!parentFolder) {
+          parentFolder = '';
+        } else if (!parentFolder.endsWith('/')) {
+          parentFolder += '/';
+        }
+        this.__fullPath = parentFolder + this.getName();
       }
-      return parentFolder + this.getName();
+      return this.__fullPath;
+    },
+
+    getUri: function () {
+      return cv.io.rest.Client.BASE_URL + 'fs?patch=' + this.getFullPath();
     },
 
     /**
@@ -314,5 +327,6 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
   */
   destruct: function () {
     this.__removeListeners();
+    this.__fullPath = null;
   } 
 });

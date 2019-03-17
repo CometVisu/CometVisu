@@ -135,18 +135,20 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     _applyContent: function(value) {
       var model = this._editor.getModel();
       var file = this.getFile();
-      if (!value && model) {
-        this._editor.setValue('');
+      if (!value) {
+        if (model) {
+          this._editor.setValue('');
+        }
       } else {
         this._workerWrapper.open(file, value);
-        var language = this.__getLanguage(file);
-        if (!model || model.getLanguageIdentifier().language !== language) {
-          // dispose old model
-          if (model) {
-            model.dispose();
-          }
-          model = window.monaco.editor.createModel(value, language);
-          this._editor.setModel(model);
+        var newModel = window.monaco.editor.getModel(file.getUri());
+        if (!newModel) {
+          // create new model
+          newModel = window.monaco.editor.createModel(value, this.__getLanguage(file), file.getUri());
+        }
+
+        if (model !== newModel) {
+          this._editor.setModel(newModel);
         } else {
           this._editor.setValue(value);
         }

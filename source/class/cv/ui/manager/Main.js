@@ -212,6 +212,12 @@ qx.Class.define('cv.ui.manager.Main', {
         this.__actionDispatcher.resetFocusedWidget();
         this.__previewFileIndex = null;
       }
+
+      // close textmodel in monaci editor if exists
+      var oldModel = window.monaco.editor.getModel(file.getUri());
+      if (oldModel) {
+        oldModel.dispose();
+      }
     },
 
     closeCurrentFile: function () {

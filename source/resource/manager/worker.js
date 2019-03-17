@@ -80,7 +80,7 @@ class SourceFile {
       initialHash: this.initialHash
     }, this.path]);
 
-    if (this.isConfigFile()) {
+    if (this.isConfigFile) {
       var lint = xmllint.validateXML({
         xml: data.code,
         schema: configSchema
