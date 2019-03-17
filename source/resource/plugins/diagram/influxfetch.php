@@ -85,7 +85,7 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
   if( '' == $ts[0] || '' == $ts[1] )
     return 'Error: wrong ts parameter [' . $tsParameter . ']';
 
-  if( !preg_match('/^[A-Za-z0-9_\-]*$/', $ts[1]) )
+  if( !preg_match('/^[A-Za-z0-9_\-\.]*$/', $ts[1]) )
     return 'Error: invalid series [' . $ts[1] . ']';
 
   if( '' == $field || !preg_match('/^[A-Za-z0-9_\-]*$/', $field) )
