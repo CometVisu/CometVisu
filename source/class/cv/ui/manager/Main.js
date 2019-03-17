@@ -168,7 +168,6 @@ qx.Class.define('cv.ui.manager.Main', {
           var editorConfig = cv.ui.manager.Main.getFileEditor(node);
           if (!editorConfig.instance) {
             editorConfig.instance = new editorConfig.Clazz();
-            editorConfig.instance.bind('saveable', this._menuBar.getButton('save'), 'enabled');
             this._stack.add(editorConfig.instance);
           } else {
             this._stack.setSelection([editorConfig.instance]);

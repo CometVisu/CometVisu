@@ -30,25 +30,6 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       nullable: true,
       apply: '_loadFile'
     },
-    modified: {
-      check: 'Boolean',
-      init: false,
-      event: 'changeModified',
-      apply: '_updateSaveable'
-    },
-    valid: {
-      check: 'Boolean',
-      init: true,
-      event: 'changeValid',
-      apply: '_updateSaveable'
-    },
-
-    // combination of modified && valid
-    saveable: {
-      check: 'Boolean',
-      init: true,
-      event: 'changeSaveable'
-    },
 
     content: {
       nullable: true,
@@ -85,14 +66,9 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       this._client.addListener('updateSuccess', this._onSaved, this);
     },
 
-    _loadFile: function (file, old) {
-      if (old) {
-        old.removeRelatedBindings(this);
-      }
+    _loadFile: function (file) {
       if (file && file.getType() === 'file') {
         this._client.read({path: this.getFile().getFullPath()});
-        file.bind('modified', this, 'modified');
-        file.bind('valid', this, 'valid');
       } else {
         this.resetContent();
       }
@@ -110,26 +86,20 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
         return;
       }
       this.setContent(ev.getData());
-      this.resetValid();
-      this.resetModified();
-      this.resetSaveable();
     },
 
     save: function () {
-      if (this.isModified()) {
+      var file = this.getFile();
+      if (file.isModified()) {
         this._client.update({
-          path: this.getFile().getFullPath(),
-          hash: this.getFile().getHash()
+          path: file.getFullPath(),
+          hash: file.getHash()
         }, this.getCurrentContent());
       }
     },
 
     _onSaved: function () {
-      this.resetModified();
-    },
-
-    _updateSaveable: function () {
-      this.setSaveable(this.isValid() && this.isModified());
+      this.getFile().resetModified();
     }
   },
 
@@ -142,10 +112,6 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     if (this._client) {
       this._client.removeListener('getSuccess', this._onModelValueChange, this);
       this._client = null;
-    }
-    var file = this.getFile();
-    if (file) {
-      this.removeRelatedBindings(file);
     }
   }
 });

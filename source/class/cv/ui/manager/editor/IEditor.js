@@ -12,25 +12,6 @@ qx.Interface.define('cv.ui.manager.editor.IEditor', {
       check: 'cv.ui.manager.model.FileItem',
       nullable: true,
       apply: '_loadFile'
-    },
-    modified: {
-      check: 'Boolean',
-      init: false,
-      event: 'changeModified',
-      apply: '_updateSaveable'
-    },
-    valid: {
-      check: 'Boolean',
-      init: true,
-      event: 'changeValid',
-      apply: '_updateSaveable'
-    },
-
-    // combination of modified && valid
-    saveable: {
-      check: 'Boolean',
-      init: true,
-      event: 'changeSaveable'
     }
   },
 
