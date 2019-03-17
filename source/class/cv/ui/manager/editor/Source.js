@@ -36,7 +36,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         '../../node_modules/monaco-editor/' + version + '/vs/loader.js',
         'manager/xml.js'
       ]);
-      var noCacheSuffix = '?' + Date.now();
       loader.addListener('ready', function () {
         window.require.config({
           paths: {
@@ -51,10 +50,12 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         //   }
         // });
         window.require([
-          'xml!*./resource/visu_config.xsd' + noCacheSuffix,
-          'vs/editor/editor.main'], function (schema) {
+          'vs/editor/editor.main',
+          'xml!*./resource/manager/qooxdoo.d.ts' // the xml loader can load any file by adding * before the path
+        ], function (schema, qxLib) {
           this.__schema = schema;
           callback.apply(context);
+          window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
         }.bind(this));
       }, this);
       loader.addListener('failed', function (ev) {
