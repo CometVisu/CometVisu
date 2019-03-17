@@ -33,6 +33,20 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
   ],
 
   /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (props) {
+    if (!props.name) {
+      // when there is no name the widget has no actor as clickable subelement, so we need
+      // to bind the click events to the whole widget
+      props.bindClickToWidget = true;
+    }
+    this.base(arguments, props);
+  },
+
+  /*
   ******************************************************
     PROPERTIES
   ******************************************************
@@ -97,7 +111,10 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
       var pageJumps = qx.bom.Selector.query('.pagejump');
       var markPageJumps = function(parentName, elem) {
         var data = model.getWidgetDataByElement(elem);
-        if (parentName === data.target || (data.active_scope === "path" && data.path !== undefined && data.path.match(parentName + "$"))) {
+        if (parentName === data.target || (data.activeScope === "path" && (
+            qx.lang.Type.isString(data.path) && data.path.match(parentName + "$") ||
+            qx.lang.Type.isString(data.targetPath) && data.targetPath.match(parentName + "$"))
+        )) {
           qx.bom.element.Class.add(elem, 'active_ancestor');
         }
       };

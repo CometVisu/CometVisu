@@ -102,7 +102,8 @@ module.exports = function(grunt) {
       'source/class/**/*.js',
       'source/resource/designs/*/design_setup.js',
       'source/resource/plugins/*/*.js'
-    ];
+    ],
+    branch = grunt.option('branch');
 
   var config = {
 
@@ -156,6 +157,10 @@ module.exports = function(grunt) {
         plugins: [
           {
             convertTransform: false
+          }, {
+            removeViewBox: false
+          }, {
+            removeDimensions: true
           }
         ]
       },
@@ -226,7 +231,7 @@ module.exports = function(grunt) {
       options: {
         repository: 'cometvisu/cometvisu',
         release: {
-          tag_name: pkg.version,
+          tag_name: 'v' + pkg.version,
           name: pkg.version,
           body: pkg.description
         }
@@ -291,11 +296,11 @@ module.exports = function(grunt) {
         createTag: true,
         tagName: 'v%VERSION%',
         tagMessage: 'Version %VERSION%',
-        push: true,
+        push: 'tag',
         pushTo: 'upstream',
         gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
         globalReplace: false,
-        prereleaseName: "rc",
+        prereleaseName: "RC",
         metadata: '',
         regExp: false
       }
@@ -317,11 +322,11 @@ module.exports = function(grunt) {
           // Owner and Repository options are mandatory
           owner : 'CometVisu',
           repository : 'CometVisu',
-          tagName: pkg.version,
+          tagName: 'v' + pkg.version,
           auth: true,
           token: '', // this will be replaces by the prompt task with the user input
-          branch: 'develop',
-          betweenTags: 'master...develop',
+          branch: branch || 'develop',
+          betweenTags: 'master...' + (branch || 'develop'),
           onlyPulls: true,
           useCommitBody: true,
           // auth: true, // auth creates a stall for me :(
@@ -334,11 +339,11 @@ module.exports = function(grunt) {
     // karma unit testing
     karma: {
       unit: {
-        configFile: 'karma.conf.js'
+        configFile: 'source/test/karma/karma.conf.js'
       },
       //continuous integration mode: run tests once in PhantomJS browser.
       travis: {
-        configFile: 'karma.conf.js',
+        configFile: 'source/test/karma/karma.conf.js',
         singleRun: true,
         browsers: [grunt.option('browser') || 'Chrome'],
         coverageReporter : {
@@ -351,9 +356,9 @@ module.exports = function(grunt) {
         }
       },
       debug: {
-        configFile: 'karma.conf.js',
+        configFile: 'source/test/karma/karma.conf.js',
         singleRun: !grunt.option('no-single'),
-        browsers: [grunt.option('browser') || 'Chrome'],
+        browsers: [grunt.option('browser') || 'Chrome_travis'],
         reporters: ['spec']
       }
     },
@@ -515,15 +520,56 @@ module.exports = function(grunt) {
   };
   grunt.initConfig(config);
 
+  grunt.registerTask('get-branch', function () {
+    var done = this.async();
+    if (!branch) {
+      var args = ['symbolic-ref', 'HEAD', '--short'];
+      grunt.util.spawn({
+        cmd: 'git',
+        args: args
+      }, function (error, result) {
+        if (error) {
+          grunt.log.error([error]);
+          return false;
+        }
+        branch = result.stdout;
+        console.log(branch);
+        grunt.config.set('githubChanges.dist.options.branch', branch);
+        grunt.config.set('githubChanges.dist.options.betweenTags', 'master...' + branch);
+        done();
+      });
+    } else {
+      done();
+    }
+  });
+
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
-    var filename = 'build/resource/demo/visu_config_demo.xml';
-    var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
-    filename = 'build/resource/demo/visu_config_2d3d.xml';
+    [
+      'build/resource/demo/visu_config_demo.xml',
+      'build/resource/demo/visu_config_2d3d.xml',
+      'build/resource/demo/visu_config_demo_testmode.xml'
+    ].forEach(function (filename) {
+      var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+      grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
+    });
+
+    var filename = 'build/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
-    filename = 'build/index.html';
+    grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
+  });
+
+  grunt.registerTask('update-demo-config-source', function() {
+    [
+      'source/resource/demo/visu_config_demo.xml',
+      'source/resource/demo/visu_config_2d3d.xml',
+      'source/resource/demo/visu_config_demo_testmode.xml'
+    ].forEach(function (filename) {
+      var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+      grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
+    });
+
+    var filename = 'source/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
@@ -612,7 +658,7 @@ module.exports = function(grunt) {
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
   grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
-  grunt.registerTask('changelog', ['prompt:githubChanges', 'githubChanges']);
+  grunt.registerTask('changelog', ['get-branch', 'prompt:githubChanges', 'githubChanges']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);

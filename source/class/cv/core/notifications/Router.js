@@ -189,9 +189,10 @@ qx.Class.define("cv.core.notifications.Router", {
      * @param address {String} GA or openHAB item name
      * @param state {var} received State
      * @param initial {Boolean} true id this is the first state update for this address
+     * @param changed {Boolean} true if the incoming state update differs from the last one
      * @protected
      */
-    _onIncomingData: function(address, state, initial) {
+    _onIncomingData: function(address, state, initial, changed) {
       if (!this.__stateMessageConfig[address]) {
         return;
       }
@@ -201,10 +202,15 @@ qx.Class.define("cv.core.notifications.Router", {
       var formattedTime =this.__timeFormat.format(now);
 
       this.__stateMessageConfig[address].forEach(function(config) {
-        if (initial === true && config.skipInitial === true) {
+        if (initial === true && config.skipInitial === true || changed === false) {
           // do not handle the first update
           return;
         }
+
+        // process value
+        var transform = config.addressConfig[0];
+        state = cv.Transform.decode(transform, state);
+
         var templateData = {
           address: address,
           value: state,
@@ -212,8 +218,6 @@ qx.Class.define("cv.core.notifications.Router", {
           time: formattedTime
         };
 
-        // process value
-        var transform = config.addressConfig[0];
         // transform the raw value to a JavaScript type
         templateData.value =  cv.Transform.decode(transform, templateData.value);
         if (config.valueMapping) {
@@ -233,7 +237,13 @@ qx.Class.define("cv.core.notifications.Router", {
           severity: config.severity
         };
         if (config.hasOwnProperty("condition")){
-          message.condition = state === config.condition;
+          message.condition = state == config.condition; // jshint ignore:line
+        }
+        if (config.icon) {
+          message.icon = config.icon;
+          if (config.iconClasses) {
+            message.iconClasses = config.iconClasses;
+          }
         }
         this.dispatchMessage(message.topic, message, config.target);
       }, this);

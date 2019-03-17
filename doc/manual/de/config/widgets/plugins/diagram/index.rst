@@ -55,24 +55,79 @@ Erlaubte Kind-Elemente und deren Attribute
 
 .. elements-information:: diagram
 
+.. _diagram_influx:
+
+``authentication`` Attribut
+"""""""""""""""""""""""""""
+
 Im ``<influx>`` Element kann über das ``authentication`` Attribut auf einen entsprechenden Eintrag aus der
 :ref:`versteckten Konfiguration <hidden-config>` verwiesen werden (als Default wird als Name `influx` angenommen).
 
 Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:
 
-+---------+---------------------------------------------------+---------------------------+
-|Schlüssel|Wert                                               |Beispiel                   |
-+=========+===================================================+===========================+
-|uri      |Die URI für den Zugriff auf die InfluxDB (optional)|http://localhost:8086/query|
-+---------+---------------------------------------------------+---------------------------+
-|user     |Der Benutzername für die InfluxDB                  |InfluxDBTestUser           |
-+---------+---------------------------------------------------+---------------------------+
-|pass     |Das Passwort für die InfluxDB                      |`Xsdwfw324SEs`             |
-+---------+---------------------------------------------------+---------------------------+
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|Schlüssel  |Wert                                                                         |Beispiel                    |
++===========+=============================================================================+============================+
+|uri        |Die URI für den Zugriff auf die InfluxDB (optional)                          |http://localhost:8086/query |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|user       |Der Benutzername für die InfluxDB                                            |InfluxDBTestUser            |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|pass       |Das Passwort für die InfluxDB                                                |``Xsdwfw324SEs``            |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+|selfsigned |Erlaube selbst signierte HTTPS Verbindung zum Server, wenn Wert ``true`` ist |``false``                   |
++-----------+-----------------------------------------------------------------------------+----------------------------+
+
+``consolidationFunction`` Attribut
+""""""""""""""""""""""""""""""""""
+
+Wenn für einen Zeitraum nur ein Wert angezeigt werden soll, so wird dieser über
+eine ``consolidationFunction`` gebildet. Möglich ist:
+
+============  ======================================
+``COUNT``     Anzahl der Werte
+``INTEGRAL``  Integral der Werte
+``MAX``       Maximum
+``MEAN``      Mittelwert
+``MEDIAN``    Median
+``MIN``       Minimum
+``MODE``      Der häufigste Wert
+``SPREAD``    Differenz zwischen Maximum und Minimum
+``STDDEV``    Standardabweichung
+``SUM``       Summe
+============  ======================================
+
+``fillMissing`` Attribut
+""""""""""""""""""""""""
+
+Über ``fillMissing`` lassen sich Lücken in den Daten schließen. Möglich ist:
+
+============  ===========================
+``linear``    Lineare Interpolation
+``none``      Keine Auffüllung
+``null``      Kein Wert
+``previous``  Übername des letzten Wertes
+============  ===========================
+
+Elemente innerhalb ``<influx>``
+"""""""""""""""""""""""""""""""
 
 Im ``<influx>`` Element können über ``<add>``, ``<or>`` und ``<tag>`` Elemente
-die anzuzeigenden Daten gefiltert werden.
+die anzuzeigenden Daten gefiltert werden. Über ``<add>`` und ``<or>`` werden
+die (auch verschachtelten) Kind-Elemente UND bzw. ODER verknüpft. Im ``<tag>``
+wird nach dem in der InfluxDB abgelegten Tags gefiltert in dem der Schlüssel
+``key`` mit dem Wert ``value`` über den Operator ``operator`` verglichen wird.
+Mögliche Operatoren sind:
 
+====== ==================================
+``=``  Gleich
+``!=`` Ungleich
+``<``  Kleiner
+``<=`` Kleiner gleich
+``>``  Größer
+``>=`` Größer gleich
+``=~`` Match des regulären Ausdrucks
+``!~`` Kein Match des regulären Ausdrucks
+====== ==================================
 
 .. code-block:: xml
 
@@ -97,7 +152,7 @@ XML Syntax minimal
 ------------------
 
 Alternativ kann man für das Diagram-Widget auch von Hand einen Eintrag in
-der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
+der :ref:`visu_config.xml <xml-format>` hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet

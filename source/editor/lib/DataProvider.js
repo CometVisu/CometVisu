@@ -42,19 +42,19 @@ var DataProviderManager = {
    * @return  object                  DataProvider for that attribute, or undefined if none
    */
   getProvider: function (elementName, attributeName) {
-    if (typeof DataProviderManager._providers == 'undefined') {
+    if (typeof DataProviderManager._providers === 'undefined') {
       DataProviderManager.initialize();
     }
         
-    if (typeof DataProviderManager._providers[elementName] == 'undefined') {
+    if (typeof DataProviderManager._providers[elementName] === 'undefined') {
       // no element-specific providers exist
             
-      if (typeof DataProviderManager._providers['*'] == 'undefined') {
+      if (typeof DataProviderManager._providers['*'] === 'undefined') {
         // no wildcard-providers exist
         return undefined;
       }
             
-      if (typeof DataProviderManager._providers['*'][attributeName] != 'undefined') {
+      if (typeof DataProviderManager._providers['*'][attributeName] !== 'undefined') {
         // we have a provider for the wildcard-provider and this attribute
         return DataProviderManager._providers['*'][attributeName];
       }
@@ -65,7 +65,7 @@ var DataProviderManager = {
     }
         
         
-    if (typeof DataProviderManager._providers[elementName][attributeName] != 'undefined') {
+    if (typeof DataProviderManager._providers[elementName][attributeName] !== 'undefined') {
       // we have a provider for this very combination of element and attribute
       return DataProviderManager._providers[elementName][attributeName];
     }
@@ -80,7 +80,7 @@ var DataProviderManager = {
    */
   initialize: function () {
 
-    if (typeof DataProviderConfig == 'undefined') {
+    if (typeof DataProviderConfig === 'undefined') {
       throw 'programming error: no DataProviderConfig loaded';
     }
         
@@ -98,7 +98,7 @@ var DataProviderManager = {
         // preload Data, if possible (that method decides for itself!)
         provider.preloadData();
                 
-        if (typeof DataProviderManager._providers[elementName] == 'undefined') {
+        if (typeof DataProviderManager._providers[elementName] === 'undefined') {
           // create a clean structure
           DataProviderManager._providers[elementName] = {};
         }
@@ -123,6 +123,20 @@ var DataProvider = function (config) {
    * @var object
    */
   var _provider = this;
+
+  /**
+   * Array of all callback funtions waiting for the data to be loaded
+   * @type {Array}
+   */
+  var getDataCallbacks = [];
+
+  /**
+   * An AJAX request for the data was started but is not finished yet. So no need
+   * to start an other one, just wait for the data from the first one when the
+   * data is requested (again).
+   * @type {boolean}
+   */
+  var getDataRunning = false;
 
   /**
    * the cache for this providers data; will be empty if caching is disabled
@@ -171,20 +185,34 @@ var DataProvider = function (config) {
   _provider.getEnumeration = function ( element ) {
     // get the data, and create an enumeration from it
     var data = getData( element );
-        
-    var enumeration = [];
-        
-    if (typeof _providerConfig.grouped == 'boolean' && _providerConfig.grouped == true) {
-      var groupEnumerations = [];
-      $.each(data, function (name, groupData) {
-        groupEnumerations.push({label: name, elements: getEnumerationForData(groupData)});
-      });
-      enumeration.push({group: groupEnumerations});
-    } else {
-      enumeration = getEnumerationForData(data);
+
+    function createEnumeration( thisData ) {
+      var enumeration = [];
+
+      if (typeof _providerConfig.grouped === 'boolean' && _providerConfig.grouped === true) {
+        var groupEnumerations = [];
+        $.each(thisData, function (name, groupData) {
+          groupEnumerations.push({label: name, elements: getEnumerationForData(groupData)});
+        });
+        enumeration.push({group: groupEnumerations});
+      } else {
+        enumeration = getEnumerationForData(thisData);
+      }
+      return enumeration;
     }
-        
-    return enumeration;
+
+    if( typeof data === 'function' ) {
+      // data was not ready yet -> create callback chain
+      return function (callback) {
+        // the caller of _provider.getEnumeration called this function and
+        // wants `callback` be called as soon as the data is available.
+        data( function ( newData ) {
+          callback( createEnumeration( newData ) );
+        } );
+      };
+    } else {
+      return createEnumeration( data );
+    }
   };
     
   /**
@@ -194,16 +222,16 @@ var DataProvider = function (config) {
    * @return  mixed           either undefined, or an object of hints
    */
   _provider.getHintsForValue = function (value) {
-    if (undefined == dataCache) {
+    if (undefined === dataCache) {
       // no hinting without cache!
       return undefined;
     }
         
-    if (undefined == hintsCache) {
+    if (undefined === hintsCache) {
       hintsCache = getAllHints();
     }
         
-    if (typeof hintsCache[value] == 'undefined') {
+    if (typeof hintsCache[value] === 'undefined') {
       // no hint for this value
       return undefined;
     }
@@ -222,7 +250,7 @@ var DataProvider = function (config) {
         
     var data = dataCache;
         
-    if (typeof _providerConfig.grouped == 'boolean' && _providerConfig.grouped == true) {
+    if (typeof _providerConfig.grouped === 'boolean' && _providerConfig.grouped === true) {
       // if data is grouped, we need to un-group it first.
       data = [];
       $.each(dataCache, function (name, entries) {
@@ -231,11 +259,11 @@ var DataProvider = function (config) {
         });
       });
     }
-        
+
     $.each(data, function (i, dataEntry) {
       var value = dataEntry.value;
 
-      if (typeof dataEntry.hints == undefined) {
+      if (typeof dataEntry.hints === 'undefined') {
         // no hints = nothing to do
         return;
       }
@@ -264,7 +292,7 @@ var DataProvider = function (config) {
   var getEnumerationForData = function (data) {
     var enumeration = [];
         
-    if (typeof data == 'undefined') {
+    if (typeof data === 'undefined') {
       return undefined;
     }
         
@@ -281,7 +309,6 @@ var DataProvider = function (config) {
       enumeration.push(enumerationEntry);
     });
 
-        
     return enumeration;
   };
     
@@ -291,8 +318,8 @@ var DataProvider = function (config) {
    * will check if caching is enabled, and do nothing if not
    */
   _provider.preloadData = function () {
-    var doCaching = typeof _providerConfig.cache != 'undefined' ? _providerConfig.cache : true;
-        
+    var doCaching = typeof _providerConfig.cache !== 'undefined' ? _providerConfig.cache : true;
+
     if (false === doCaching) {
       // no caching = nothing to do for us
       return;
@@ -312,36 +339,41 @@ var DataProvider = function (config) {
     if (dataCache !== undefined) {
       return dataCache;
     }
-        
-        
+
     // is caching enabled?
-    var doCaching = typeof _providerConfig.cache != 'undefined' ? _providerConfig.cache : true;
+    var doCaching = typeof _providerConfig.cache !== 'undefined' ? _providerConfig.cache : true;
 
     var data = [];
-    if (typeof _providerConfig.live == 'function') {
+    if (typeof _providerConfig.live === 'function') {
       data = _providerConfig.live( element );
-            
-      if (true == doCaching) {
+
+      if (typeof data !== 'function' && true === doCaching) {
         dataCache = data;
       }
     }
         
-    if (typeof _providerConfig.url == 'string') {
+    if (typeof _providerConfig.url === 'string') {
       // load the data from the server
-            
-      $.ajax(_providerConfig.url,
+
+      if( !getDataRunning ) {
+        getDataRunning = true;
+        $.ajax(_providerConfig.url,
                 {
                   dataType: 'json',
                   cache: doCaching,
-                  async: false, // at this point, we can no longer async!
+                  async: true,
                   success: function (result) {
                     // what we get from the server is exactly what we need (hopefully ...)
                     data = result;
                         
-                    if (doCaching == true) {
+                    if (doCaching === true) {
                       // if caching is allowed, we store the data also in the cache.
                       dataCache = result;
                     }
+
+                    getDataCallbacks.forEach( function( callback ){ callback( data ); } );
+                    getDataCallbacks.length = 0; // clear array
+                    getDataRunning = false;
                   },
                   error: function (jqXHR, textStatus, errorThrown) {
                     var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
@@ -349,15 +381,19 @@ var DataProvider = function (config) {
                   }
                 }
             );
+      }
+
+      return function ( callback ) {
+        getDataCallbacks.push( callback );
+      };
     }
-    if (typeof _providerConfig.map == 'function') {
+    if (typeof _providerConfig.map === 'function') {
       $.each(data, function(index, entry) {
             data[index] = _providerConfig.map(entry);
           });
     }
-        
+
     return data;
-        
   };
     
 };

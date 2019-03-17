@@ -131,14 +131,14 @@ qx.Class.define('cv.Config', {
        * @type {Map} of rowspan-value as key and true as value
        */
       usedRowspans: {},
-      pluginsToLoad: []
-    },
+      pluginsToLoad: [],
 
-    /**
-     * Array with alls icons defined in the current config file
-     * @type {Array}
-     */
-    iconsFromConfig: [],
+      /**
+       * Array with alls icons defined in the current config file
+       * @type {Array}
+       */
+      iconsFromConfig: []
+    },
 
     /**
      * Store last visited page in LocalStorage
@@ -268,8 +268,19 @@ qx.Class.define('cv.Config', {
       cv.Config.startpage = req.queryKey.startpage;
     }
 
-    if (req.queryKey.testMode) {
-      cv.Config.testMode = req.queryKey.testMode === "true";
+    if (qx.core.Environment.get('cv.testMode') !== false) {
+      cv.Config.testMode = true;
+      if (qx.core.Environment.get('cv.testMode') !== "true") {
+        // load the demo data to fill the visu with some values
+        var r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
+        r.addListener('success', function (e) {
+          var data = e.getTarget().getResponse();
+          cv.Config.initialDemoData = data;
+        });
+        r.send();
+      }
+    } else if (req.queryKey.testMode) {
+      cv.Config.testMode = req.queryKey.testMode === "true" || req.queryKey.testMode === "1";
     }
 
     // propagate to the client

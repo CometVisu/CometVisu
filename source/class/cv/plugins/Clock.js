@@ -26,6 +26,16 @@ qx.Class.define('cv.plugins.Clock', {
   include: [cv.ui.common.Update],
 
   /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (props) {
+    props.value = new Date();
+    this.base(arguments, props);
+  },
+
+  /*
   ******************************************************
     STATICS
   ******************************************************
@@ -42,7 +52,7 @@ qx.Class.define('cv.plugins.Clock', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
@@ -56,31 +66,42 @@ qx.Class.define('cv.plugins.Clock', {
   */
   members: {
     _getInnerDomString: function () {
-      return '<div class="actor" style="width:200px;"></div>';
+      return '<div class="actor" style="width:200px; height: 200px"></div>';
     },
 
     _onDomReady: function () {
+      this.base(arguments);
       var $actor = $(this.getActor());
       $actor.svg({
         loadURL: qx.util.ResourceManager.getInstance().toUri('plugins/clock/clock_pure.svg'),
         onLoad: function (svg) {
-          $(svg.getElementById('HotSpotHour'))
+          $(svg.root().getElementById('HotSpotHour'))
             .draggable()
-            .bind('drag', {type: 'hour', actor: $actor}, this.dragHelper)
-            .bind('dragstop', {actor: $actor}, this.dragAction);
-          $(svg.getElementById('HotSpotMinute'))
+            .bind('drag', {type: 'hour', actor: $actor}, this.dragHelper.bind(this))
+            .bind('dragstop', {actor: $actor}, this.dragAction.bind(this));
+          $(svg.root().getElementById('HotSpotMinute'))
             .draggable()
-            .bind('drag', {type: 'minute', actor: $actor}, this.dragHelper)
-            .bind('dragstop', {actor: $actor}, this.dragAction);
+            .bind('drag', {type: 'minute', actor: $actor}, this.dragHelper.bind(this))
+            .bind('dragstop', {actor: $actor}, this.dragAction.bind(this));
+          Object.getOwnPropertyNames(this.getAddress())
+            .filter(function (address) {
+              return cv.data.Model.isReadAddress(this.getAddress()[address]);
+            }.bind(this))
+            .forEach(function(address) {
+              this._update(address, this.getValue().getHours() + ':' + this.getValue().getMinutes() + ':00');
+          }, this);
         }.bind(this)
       });
     },
+
+    // overridden
+    initListeners: function () {},
 
     // overidden
     _update: function (address, data) {
       var element = this.getDomElement();
       var value = this.defaultValueHandling(address, data);
-      var svg = qx.bom.Selector.query('svg', element);
+      var svg = qx.bom.Selector.query('svg', element)[0];
       var time = value.split(':');
       var hourElem = qx.bom.Selector.query('#Hour', svg)[0];
       var minuteElem = qx.bom.Selector.query('#Minute', svg)[0];
@@ -95,7 +116,7 @@ qx.Class.define('cv.plugins.Clock', {
       var x = event.originalEvent.pageX - $svg.offset().left - 50;
       var y = 50 - (event.originalEvent.pageY - $svg.offset().top);
       var angle = (Math.atan2(x, y) * 180 / Math.PI + 360) % 360;
-      var time = this.getCalue();
+      var time = this.getValue();
       var minutes;
       if (event.data.type === 'hour') {
         var oldHours = time.getHours();
@@ -143,7 +164,7 @@ qx.Class.define('cv.plugins.Clock', {
       var address = this.getAddress();
       for (var addr in address) {
         if (address[addr][1] === true) { continue; } // skip read only
-        cv.TemplateEngine.getInstane().visu.write(addr, cv.Transform.encode(address[addr][0], this.getValue()));
+        cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr][0], this.getValue()));
       }
     }
   },
@@ -151,5 +172,12 @@ qx.Class.define('cv.plugins.Clock', {
   defer: function(statics) {
     cv.parser.WidgetParser.addHandler("clock", cv.plugins.Clock);
     cv.ui.structure.WidgetFactory.registerClass("clock", statics);
+    var loader = cv.util.ScriptLoader.getInstance();
+
+    if (qx.core.Environment.get('qx.debug')) {
+      loader.addScripts(['resource/libs/jquery-ui.js', 'resource/libs/jquery.svg.js'], [0]);
+    } else {
+      loader.addScripts(['resource/libs/jquery-ui.min.js', 'resource/libs/jquery.svg.min.js'], [0]);
+    }
   }
 });

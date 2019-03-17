@@ -2,16 +2,11 @@
 #   https://github.com/CometVisu/Docker/tree/master/CometVisuBase
 # and available in the DockerHub at
 #   https://hub.docker.com/r/cometvisu/cometvisuabstractbase/
-FROM cometvisu/cometvisuabstractbase:latest
+ARG CONTAINER_FROM=cometvisu/cometvisuabstractbase:latest
+FROM $CONTAINER_FROM
 
 # Not required but makes the debugging work a bit more easy (might be removed in future):
-RUN { \
-    echo "export LS_OPTIONS='--color=auto'"; \
-    echo "eval \"`dircolors`\""; \
-    echo "alias ls='ls \$LS_OPTIONS'"; \
-    echo "alias ll='ls \$LS_OPTIONS -l'"; \
-    echo "alias l='ls \$LS_OPTIONS -lA'"; \
-    } | tee -a "/root/.bashrc"
+COPY utils/docker/container_bashrc.sh /root/.bashrc
 
 # Fill the labels to keep build information:
 ARG TRAVIS_JOB_NUMBER

@@ -144,6 +144,9 @@ qx.Class.define('cv.TemplateEngine', {
           if (states[idx] === "complete") {
             this.__partQueue.remove(part);
             this.debug("successfully loaded part "+part);
+            if (part.startsWith('structure-')) {
+              qx.core.Init.getApplication().setStructureLoaded(true);
+            }
           } else {
             this.error("error loading part "+part);
           }
@@ -320,8 +323,9 @@ qx.Class.define('cv.TemplateEngine', {
     /**
      * Read basic settings and meta-section from config document
      * @param loaded_xml {Document} XML-configuration document
+     * @param done {Function} callback that is called when the parsing has finished
      */
-    parseXML: function (loaded_xml) {
+    parseXML: function (loaded_xml, done) {
       /*
        * First, we try to get a design by url. Secondly, we try to get a predefined
        */
@@ -411,7 +415,7 @@ qx.Class.define('cv.TemplateEngine', {
       // start with the plugins
       settings.pluginsToLoad = qx.lang.Array.append(settings.pluginsToLoad, metaParser.parsePlugins(loaded_xml));
       // and then the rest
-      metaParser.parse(loaded_xml);
+      metaParser.parse(loaded_xml, done);
       this.debug("parsed");
     },
 
@@ -538,7 +542,7 @@ qx.Class.define('cv.TemplateEngine', {
      * @param type {String} page type (text, 2d, 3d)
      */
     createPages: function (page, path, flavour, type) {
-
+      cv.parser.WidgetParser.renderTemplates(page);
       var parsedData = cv.parser.WidgetParser.parse(page, path, flavour, type);
       if (!Array.isArray(parsedData)) {
         parsedData = [parsedData];

@@ -114,7 +114,7 @@ Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht mö
     text/index
     video/index
     web/index
-    wgplugininfo/index
+    wgplugin_info/index
 
 
 Sonstige Widgets
@@ -173,28 +173,31 @@ also z.B.:
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Strftime <plugins/strftime/index>`                 | Darstellung der Uhrzeit in Textform                                 |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`RSSlog <plugins/rsslog/index>`                     | RSS                                                                 |
+| RSSlog                                                   | Interaktive Log-Meldungen basierend auf RSS-Technologie             |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`RSS <plugins/rss/index>`                           | RSS                                                                 |
+| RSS                                                      | RSS                                                                 |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Gauge <plugins/gauge/index>`                       | Zeigerinstrument                                                    |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`CalendarList <plugins/calendarlist/index>`         | externen Kalendar einbinden                                         |
+| CalendarList                                             | externen Kalendar einbinden                                         |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`Clock <plugins/clock/index>`                       | Plugin zum Darstellen der Uhrzeit von einer Adresse.                |
+| Clock                                                    | Plugin zum Darstellen der Uhrzeit von einer Adresse.                |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`SVG <plugins/svg/index>`                           | Demo Plugin zur Anzeige einer interaktiv animierten SVG Datei       |
+| SVG                                                      | Demo Plugin zur Anzeige einer interaktiv animierten SVG Datei       |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Timeout <plugins/timeout/index>`                   | Wechselt nach gewisser Zeit der Inaktivität auf eine andere Seite   |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`tr064 <plugins/tr064/index>`                       | Router Informationen, wie Anruflisten der Fritz!Box, über TR-064.   |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`UPNPController <plugins/upnpcontroller/index>`     | UPNP-Controller                                                     |
+| UPNPController                                           | UPNP-Controller                                                     |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Speech <plugins/speech/index>`                     | Sprachausgabe (Text-to-speech)                                      |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`openHAB <plugins/openhab/index>`                   | Verbesserte Integration mit dem openHAB2 Backend                    |
 +----------------------------------------------------------+---------------------------------------------------------------------+
+| :doc:`Link <plugins/link/index>`                         | Fügt der Visu einen einfachen anklickbaren Link hinzu               |
++----------------------------------------------------------+---------------------------------------------------------------------+
+
 
 .. toctree::
     :titlesonly:

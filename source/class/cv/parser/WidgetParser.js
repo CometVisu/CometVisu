@@ -32,6 +32,11 @@ qx.Class.define('cv.parser.WidgetParser', {
     lookupM : [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
     lookupS : [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],
     model: cv.data.Model.getInstance(),
+    __templates: {},
+
+    addTemplate: function(name, templateData) {
+      this.__templates[name] = templateData;
+    },
 
     addHandler: function (tagName, handler) {
       this.__handlers[tagName.toLowerCase()] = handler;
@@ -39,6 +44,28 @@ qx.Class.define('cv.parser.WidgetParser', {
 
     getHandler: function (tagName) {
       return this.__handlers[tagName.toLowerCase()] || this.__handlers.unknown;
+    },
+
+    /**
+     * Renders templates into the config file, if they are used
+     * @param rootPage
+     */
+    renderTemplates: function (rootPage) {
+      qx.bom.Selector.query('template', rootPage).forEach(function (elem) {
+        var templateName = qx.bom.element.Attribute.get(elem, 'name');
+        var variables = {};
+        qx.dom.Hierarchy.getChildElements(elem).forEach(function (variable) {
+          variables[qx.bom.element.Attribute.get(variable, 'name')] = qx.bom.element.Attribute.get(variable, 'html');
+        }, this);
+
+        if (this.__templates.hasOwnProperty(templateName)) {
+          var renderedString = qx.bom.Template.render(this.__templates[templateName], variables);
+          var helperNode = elem.ownerDocument.createElement('div');
+          qx.bom.element.Attribute.set(helperNode, 'html', renderedString.substring(6, renderedString.length - 7));
+          // replace existing element with the rendered templates child
+          elem.parentNode.replaceChild(helperNode.firstChild, elem);
+        }
+      }, this);
     },
 
     /**
@@ -52,12 +79,18 @@ qx.Class.define('cv.parser.WidgetParser', {
      * @return {Map} widget data
      */
     parse: function (xml, path, flavour, pageType) {
-      var parser = this.getHandler(xml.nodeName);
+      var tag = xml.nodeName.toLowerCase();
+      if (tag === 'custom') {
+        // use the child of the custom element
+        xml = xml.children[0];
+        tag = xml.nodeName.toLowerCase();
+      }
+      var parser = this.getHandler(tag);
       var result = null;
       if (parser) {
         result = parser.parse(xml, path, flavour, pageType);
       } else {
-        qx.log.Logger.debug(this, "no parse handler registered for type: "+ xml.nodeName.toLowerCase());
+        qx.log.Logger.debug(this, "no parse handler registered for type: "+ tag.toLowerCase());
       }
       return result;
     },
@@ -180,6 +213,9 @@ qx.Class.define('cv.parser.WidgetParser', {
       data.label = label || '';
       data.classes = classes || '';
       data.style = style || '';
+      data.responsive = !!Object.keys(layout).find(function (prop) {
+        return prop.endsWith('-m') || prop.endsWith('-s');
+      });
 
       return this.model.setWidgetData( path, data);
     },
@@ -202,35 +238,21 @@ qx.Class.define('cv.parser.WidgetParser', {
       if( undefined === defaultValues ) {
         defaultValues = {};
       }
-      if( layout.getAttribute('x'     ) ) {
-        ret_val.x = layout.getAttribute('x');
-      }
-      else if( defaultValues.x          ) {
-        ret_val.x = defaultValues.x;
-      }
-
-      if( layout.getAttribute('y'     ) ) {
-        ret_val.y = layout.getAttribute('y');
-      }
-      else if( defaultValues.y          ) {
-        ret_val.y = defaultValues.y;
-      }
-
-      if( layout.getAttribute('width' ) ) {
-        ret_val.width = layout.getAttribute('width');
-      }
-      else if( defaultValues.width      ) {
-        ret_val.width = defaultValues.width;
-      }
-
-      if( layout.getAttribute('height') ) {
-        ret_val.height = layout.getAttribute('height');
-      }
-      else if( defaultValues.height     ) {
-        ret_val.height = defaultValues.height;
-      }
-
+      ['x', 'y', 'width', 'height', 'scale'].forEach(function (prop) {
+        this.__extractLayoutAttribute(ret_val, prop, layout, defaultValues);
+        this.__extractLayoutAttribute(ret_val, prop + '-m', layout, defaultValues);
+        this.__extractLayoutAttribute(ret_val, prop + '-s', layout, defaultValues);
+      }, this);
       return ret_val;
+    },
+
+    __extractLayoutAttribute: function (ret_val, property, layout, defaultValues) {
+      if( layout.getAttribute(property) ) {
+        ret_val[property] = layout.getAttribute(property);
+      }
+      else if( defaultValues[property]     ) {
+        ret_val[property] = defaultValues[property];
+      }
     },
 
     extractLayout: function( layout, pageType )
@@ -380,7 +402,7 @@ qx.Class.define('cv.parser.WidgetParser', {
           mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
 
         if ((!src) || (!transform)) {// fix broken address-entries in config
-          this.error("Either address or transform is missing in address element %1", element.outerHTML);
+          qx.log.Logger.error(this, "Either address or transform is missing in address element %1", element.outerHTML);
           return;
         }
         switch (qx.bom.element.Attribute.get(elem, 'mode')) {

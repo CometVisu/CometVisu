@@ -19,7 +19,7 @@ todo_include_todos = True
 templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
-exclude_patterns = []
+exclude_patterns = ['parts/*']
 add_function_parentheses = True
 #add_module_names = True
 # A list of ignored prefixes for module index sorting.
@@ -41,7 +41,15 @@ if os.path.exists(versions_file):
     with open(versions_file) as f:
         data = json.load(f)
         for ver in data['versions']:
-            versions.append((ver, '../../%s/manual' % ver))
+            parts = ver.split("|")
+            if len(parts) == 2:
+                v = parts[0]
+                path = parts[1]
+            else:
+                v = ver
+                path = ver
+
+            versions.append((v, '../../%s/manual' % path))
 
 releaselevel = 'dev' if version[-4:] == '-dev' else 'release'
 release = ''

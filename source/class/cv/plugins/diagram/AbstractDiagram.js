@@ -62,6 +62,16 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   type: "abstract",
 
   /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (props) {
+    this.base(arguments, props);
+    this._debouncedLoadDiagramData = qx.util.Function.debounce(this.loadDiagramData.bind(this), 200);
+  },
+
+  /*
   ******************************************************
     STATICS
   ******************************************************
@@ -149,18 +159,21 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }, this);
 
       qx.bom.Selector.query("influx,rrd", xmlElement).forEach(function(elem) {
-        var src = elem.tagName === 'rrd' ? qx.dom.Node.getText(elem) : elem.getAttribute('measurement');
+        var
+          src = elem.tagName === 'rrd' ? qx.dom.Node.getText(elem) : elem.getAttribute('measurement'),
+          steps = (elem.getAttribute("steps") || "false") === "true",
+          fillMissing = elem.getAttribute('fillMissing');
         retVal.ts[retVal.tsnum] = {
           tsType    : elem.tagName,
           src       : src,
           color     : elem.getAttribute('color'),
           label     : elem.getAttribute('label') || src,
           axisIndex : axesNameIndex[elem.getAttribute('yaxis')] || 1,
-          steps     : (elem.getAttribute("steps") || "false") === "true",
+          steps     : steps,
           fill      : (elem.getAttribute("fill") || "false") === "true",
           scaling   : parseFloat(elem.getAttribute('scaling')) || 1.0,
           cFunc     : elem.getAttribute('consolidationFunction') || (elem.tagName === 'rrd' ? 'AVERAGE' : 'MEAN'),
-          fillTs    : elem.getAttribute('fillMissing') || '',
+          fillTs    : (fillMissing === null) ? (steps ? 'previous' : 'linear') : fillMissing,
           resol     : parseInt(elem.getAttribute('resolution')),
           offset    : parseInt(elem.getAttribute('offset')),
           style     : elem.getAttribute('style') || "lines",
@@ -236,7 +249,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     lookupTsCache: function(ts, start, end, res, refresh, force, callback, callbackParameter ) {
       var
         url = (( 'influx' === ts.tsType )
-            ? 'http://wiregate/CometVisuGit/source/resource/plugins/diagram/influxfetch.php?ts=' + ts.src
+            ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src
             : cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+'?rrd=' + encodeURIComponent(ts.src) + '.rrd')
           + '&ds='    + encodeURIComponent(ts.cFunc)
           // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
@@ -447,11 +460,17 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      * Start the refresh timer
      *
      * @param timer {qx.event.Timer} start this timer
+     * @param runImmediately {Boolean} fire the timers 'interval' event immediately to trigger an refresh right now
      * @protected
      */
-    _startRefresh: function(timer) {
-      if (timer && !timer.isEnabled()) {
-        timer.start();
+    _startRefresh: function(timer, runImmediately) {
+      if (timer) {
+        if (!timer.isEnabled()) {
+          timer.start();
+        }
+        if (runImmediately === true) {
+          timer.fireEvent('interval');
+        }
       }
     },
 
@@ -462,7 +481,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         style: 'height: 90%'
       });
       this._init = true;
-      var popup = cv.ui.PopupHandler.showPopup("diagram", {title: this.getLabel(), content: popupDiagram});
+      var popup = cv.ui.PopupHandler.showPopup("diagram", {title: this.getLabel(), content: popupDiagram, page: this.getParentPage().getPath()});
 
       // this will be called when the popup is being closed.
       // NOTE: this will be called twice, one time for the foreground and one
@@ -486,7 +505,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       this.initDiagram( true );
 
-      this._startRefresh(this._timerPopup);
+      this._startRefresh(this._timerPopup, true);
     },
 
     initDiagram: function( isPopup ) {
@@ -572,11 +591,15 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         });
       }
       if (this.getTooltip()) {
-        qx.lang.Object.mergeWith(options, {grid: {hoverable: true, clickable: true}});
+        options.grid.hoverable = true;
+        options.grid.clickable = true;
       }
 
       if (!isPopup && !this.getPreviewlabels()) {
-        qx.lang.Object.mergeWith(options, {xaxes: [ {ticks: 0} ]});
+        qx.lang.Object.mergeWith(options, {xaxes: [ {ticks: 0, mode: options.xaxes[0].mode } ]});
+        if( 0 === options.yaxes.length ) {
+          options.yaxes[0] = {};
+        }
         options.yaxes.forEach(function(val) {
           qx.lang.Object.mergeWith(val, {ticks:0, axisLabel: null});
         }, this);
@@ -597,11 +620,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       this.plotted = true;
 
       var that = this;
-      diagram.bind("plotpan", function(event, plot, args) {
-        // TODO and FIXME: args.dragEnded doesn't exist, so data isn't reloaded after pan end!
-        if (args.dragEnded) {
-          that.loadDiagramData( plot, isPopup, false );
-        }
+      diagram.bind("plotpan", function(event, plot) {
+        that._debouncedLoadDiagramData( plot, isPopup, false );
       }).bind("plotzoom", function() {
         that.loadDiagramData( plot, isPopup, false );
       }).bind("touchended", function() {

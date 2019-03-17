@@ -228,9 +228,34 @@ Mit dem Wissen dieses Abschnitts sollte es möglich sein, eigene Beiträge für 
 
     todos
 
+Lokales Erzeugen der HTML-Doku
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. TODO::
 
     * Lokales Erzeugen der HTML-Doku, inkl. Screenshots
+
+Über den Befehl ``./cv doc`` wird die deutsche Dokumentation aus den RST nach
+HTML übersetzt. Für die englische Version muss ``./cv doc -l en`` aufgerufen
+werden. Zum ausführen der Befehle muss man sich im Hauptverzeichnis der
+CometVisu befinden.
+
+Wenn alles gut funktioniert, sollte das script wie folgt starten.
+
+.. figure:: doc/_static/start_docu_build.png
+
+    Start building
+
+Nach dem Build Prozess sollte die neue Dokumentation unter 
+``doc/manual/de/_build/html/`` und/oder ``doc/manual/en/_build/html/``
+zu finden sein.
+
+.. IMPORTANT::
+
+    Sollte das Projekt richtig eingerichtet sein, die Dokumentationserzeugung
+    dennoch aufgrund unerfüllter Abhängigkeiten fehlschlagen, so ist zu prüfen,
+    ob die gleichen Python Versionen (insb. Python 2 vs. Python 3) verwendet
+    werden.
 
 Dokumentation schreiben mit VisualStudio Code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -245,15 +270,36 @@ Live Preview der geschriebenen Dokumentation anzeigen lassen kann.
       Virtual Machine mit Linux (Ubuntu, Mint, ...) empfohlen. 
       Siehe :doc:`VM Einrichten <howto-vm>` für eine detaillierte Vorgehensweise.
 
-Nach Installation des Editors muss darin die Extension ``restructuredtext`` (über den Menüpunkt Anzeigen -> Extensions 
-suchen nach rst) installiert werden. Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
+Nach Installation des Editors muss darin die Extension ``restructuredtext`` (über Shft + Ctrl + X
+oder den Menüpunkt Anzeigen -> Extensions) installiert werden. Suche nach
+*restructuredtext* innerhalb der extensions. Zusätzlich wird noch eine Spell checking
+Extension empfohlen.
 
+.. figure:: doc/_static/visual_studio_install_ext.png
+
+    Install extensions
+
+Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
 
 Damit die Live Preview funktioniert muss Python installiert sein.
 Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
 `Install Sphinx <https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md>`__. 
 Um die erforderlichen Tools zu installieren, den Befehl ``sudo -H pip install -r utils/requirements.txt`` im 
 CometVisu Verzeichnis ausführen. 
+
+Wenn Sphinx korrekt arbeitet, so bekommt man in der Fußzeile eine Auswahl
+der Configs angezeigt
+
+.. figure:: doc/_static/visual_studio_sphinx_select1.png
+
+Durch Klicken auf die Fußzeile kann zwischen *de* oder *en* config 
+für die Vorschau gewählt werden. Wenn Sie also an der deutschen Dokumentation
+arbeiten, stellen Sie dies sicher das *de* ist ausgewählt, andernfalls wird die
+korrekte Vorschau nicht angezeigt.
+
+.. figure:: doc/_static/visual_studio_sphinx_select2.png
+
+    Select a Sphinx config
 
 
 Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit ``Strg+Shift r`` das Live-Preview Fenster öffnen.
@@ -304,31 +350,31 @@ ausformuliert sind.
     oder auf `Gitter <https://gitter.im/CometVisu/CometVisu_DE>`__ um Rat gefragt werden.
 
 
-Fehlerberichte mit Log-Dateien
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Fehlerberichte mit Replay-Dateien
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Ab Version 0.11.0 steht eine zusätzliche Möglichkeit zur Verfügung, den Entwicklern die Fehlersuche zu erleichtern
 und die Fehlerberichte zu verbessern. Benutzer können das Verhalten der CometVisu aufzeichnen und eine sogenannte
-Log-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).
+Replay-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).
 
 .. HINT::
 
-    Sie Aufzeichnung der Log-Dateien kann mit dem URL-Parameter ``reporting=true`` aktiviert werden
-    (siehe: :ref:`URL-Parameter <reporting>`). Sobald man den Fehler nachgestellt hat, kann die Logdatei durch Eingabe
+    Sie Aufzeichnung der Replay-Dateien kann mit dem URL-Parameter ``reporting=true`` aktiviert werden
+    (siehe: :ref:`URL-Parameter <reporting>`). Sobald man den Fehler nachgestellt hat, kann die Replay-Datei durch Eingabe
     des Befehls ``downloadLog()`` in der Browserkonsole (öffnen mit F12-Taste) heruntergeladen werden.
-    Neben dem automatischen Download der Logdatei, wird der Inhalt des Logs ebenfalls auf der Konsole
-    ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.
+    Neben dem automatischen Download der Datei, wird der Inhalt ebenfalls auf der Konsole
+    ausgegeben. So kann man kontrollieren, welche Daten enthalten sind.
 
-Die Log-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
-( z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
+Die Replay-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
+(z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
 Eventuell ist es daher ratsam, denn Fehler mit einer abgewandelten Konfigurationsdatei zu erstellen, die z.B. keine
 sensiblen Daten enthält.
-Der große Vorteil dieser Log-Dateien ist aber, dass die Entwickler beim Abspielen dieser Logs eine originalgetreue
-Nachbildung des Benutzersystems sehen und somit in der Regel auch direkt den Fehler sehen, diesen beheben und direkt
-testen können ob die Fehlerkorrektur auch wirkt.
+Der große Vorteil dieser replay-Dateien ist aber, dass die Entwickler beim Abspielen eine originalgetreue
+Nachbildung des Benutzersystems haben und somit in der Regel auch direkt den Fehler sehen, diesen beheben und direkt
+testen können, ob die Fehlerkorrektur auch wirkt.
 
-Natürlich gibt es auch Einschränkungen, denn nicht alles kann durch die Log-Dateien aufgezeichnet werden.
+Natürlich gibt es auch Einschränkungen, denn nicht alles kann durch die Replay-Dateien aufgezeichnet werden.
 Wenn ein Nutzer z.B. die vorhandenen Designs angepasst hat, eigene Icons/Bilder benutzt, die nicht Teil der
-CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil des Logs sind.
+CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil der Aufzeichnung sind.
 
 .. [RST-Wiki] https://de.wikipedia.org/wiki/ReStructuredText

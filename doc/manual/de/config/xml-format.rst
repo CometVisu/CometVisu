@@ -43,6 +43,33 @@ einzuhalten!
 
 Nachstehend wird werden der Reihe nach ein Überblick über die Optionen im meta-tag gegeben.
 
+.. _xml-format_files:
+
+Zusätzliche Dateien einbinden
+-----------------------------
+
+| **Verfügbar seit Version**: 0.11.0
+
+
+===========================  ============================================   =================================  ===============
+Option                       Beschreibung                                   Werte                              Zwingend
+===========================  ============================================   =================================  ===============
+``<file type=" "></file>``   Mit dieser Option können zusätzliche Dateien   Pfad zur Datei                     NEIN
+                             (CSS oder Javascript) geladen werden
+===========================  ============================================   =================================  ===============
+
+.. code-block:: xml
+
+    <meta>
+        <files>
+            <file type="css">resource/config/media/style.css</file>
+            <file type="js" content="plugin">resource/config/media/MyCustomWidget.js</file>
+        </plugins>
+        ...
+    </meta>
+
+Siehe auch :ref:`custom_css` und :ref:`custom_plugins`.
+
 .. _xml-format_plugins:
 
 Plugins
@@ -137,13 +164,20 @@ Icons
         ...
     </meta>
 
+.. HINT::
+
+    Wenn die Icons über den :doc:`Manager <manager>` hochgeladen wurden, befinden sie sich im Pfad
+    ``resource/config/media/``. Ein hochgeladenes Icon mit dem Dateiname ``logo.svg`` kann demnach mit folgender
+    Zeile eingebunden werden: ``<icon-definition name="Logo" uri="resource/config/media/logo.svg"`.
+    Der Pfad ``resource/config/media/`` gilt für CometVisu Versionen >=0.11.x. Für Versionen <=0.10.x gilt der Pfad
+    ``config/media/``.
 
 .. _xml-format_statusbar:
 
 Statusbar
 ---------
 
-Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt das zB. Abzeigen von externen Links (über URL). 
+Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt z.B. das Anzeigen von externen Links (über URL). 
 
 .. code-block:: xml
 
@@ -167,6 +201,152 @@ Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt das zB. Abzeig
                 ]]></status>
         </statusbar>
     </meta>
+
+.. _xml-format_templates:
+
+Templates
+---------
+
+| **Verfügbar seit Version**: 0.11.0
+|
+
+Im Metabereich können Templates für oft verwendete Konfigurationsausschnitte erstellt werden. In der Regel möchte man z.B.
+seine Heizungs in jeden Raum auf die gleiche Weise darstellen. Diese kann aber aus mehrere Widgets bestehen, z.B. einem
+Slider zur Darstellung und Bedienung der Ventilstellung, einem Info-Widget zur Anzeige der aktuellen Ist-Temperatur
+und einem InfoTrigger-Widget für die aktuelle Soll-Temperatur. Diese Struktur ist in jedem Raum gleich, lediglich
+die benutzen Addresse ändern sich. Mit einem Template muss man diese Struktur nur einmal schreiben und kann sie in
+jedem Raum wiederverwenden.
+
+In der Template-Definition werden Platzhalter für Variablen verwendet, welche dann beim benutzen des Templates durch
+die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ein Template definiert und benutzt.
+
+.. code-block:: xml
+    :caption: Beispiel eines Templates für eine Heizung und dessen Verwendung in verschiedenen Räumen
+
+    <pages>
+        <meta>
+            <template name="Heizung">
+                <group name="Heizung">
+                  {{{ additional_content }}}
+                  <slide min="0" max="100" format="%d%%">
+                    <label>
+                      <icon name="sani_heating" />
+                      Heizung
+                    </label>
+                    <address transform="OH:dimmer" variant="">{{ control_address }}</address>
+                  </slide>
+                  <info format="%.1f °C">
+                    <label>
+                      <icon name="temp_temperature" />
+                      Ist
+                    </label>
+                    <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
+                  </info>
+                  <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+                               downvalue="-0.5" styling="BluePurpleRedTemp"
+                               infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+                    <label>
+                      <icon name="temp_control" />
+                      Soll
+                    </label>
+                    <address transform="OH:number" variant="">{{ targettemp_address }}</address>
+                  </infotrigger>
+                </group>
+            </template>
+        </meta>
+        <page>
+            <page name="Wohnzimmer">
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Living</value>
+                  <value name="currenttemp_address">Temperature_FF_Living</value>
+                  <value name="targettemp_address">Temperature_FF_Living_Target</value>
+                </template>
+                ...
+            </page>
+            <page name="Küche">
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Kitchen</value>
+                  <value name="currenttemp_address">Temperature_FF_Kitchen</value>
+                  <value name="targettemp_address">Temperature_FF_Kitchen_Target</value>
+                  <value name="additional_content">
+                    <text><label>Heizung Küche</label></text>
+                  </value>
+                </template>
+                ...
+            </page>
+        </page>
+    </pages>
+
+.. HINT::
+    Für die Templates wird `mustache.js <https://github.com/janl/mustache.js>`_ benutzt. Für weitere Informationen
+    kann die mustache.js Dokumentation zu Rate gezogen werden.
+
+Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine externe Datei ausgelagert werden.
+
+.. code-block:: xml
+    :caption: Beispiel einer Template-Definition aus einer externen Datei
+
+
+    <pages>
+        <meta>
+            <template name="Heizung" ref="resource/config/media/heizung.template.xml"/>
+        </meta>
+        <page>
+            <page name="Wohnzimmer">
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Living</value>
+                  <value name="currenttemp_address">Temperature_FF_Living</value>
+                  <value name="targettemp_address">Temperature_FF_Living_Target</value>
+                </template>
+                ...
+            </page>
+            <page name="Küche">
+                ...
+                <template name="Heizung">
+                  <value name="control_address">Heating_FF_Kitchen</value>
+                  <value name="currenttemp_address">Temperature_FF_Kitchen</value>
+                  <value name="targettemp_address">Temperature_FF_Kitchen_Target</value>
+                  <value name="additional_content">
+                    <text><label>Heizung Küche</label></text>
+                  </value>
+                </template>
+                ...
+            </page>
+        </page>
+    </pages>
+
+.. code-block:: xml
+    :caption: Inhalt der externen Datei ``resource/config/media/heizung.template.xml``
+
+    <group name="Heizung">
+      {{{ additional_content }}}
+      <slide min="0" max="100" format="%d%%">
+        <label>
+          <icon name="sani_heating" />
+          Heizung
+        </label>
+        <address transform="OH:dimmer" variant="">{{ control_address }}</address>
+      </slide>
+      <info format="%.1f °C">
+        <label>
+          <icon name="temp_temperature" />
+          Ist
+        </label>
+        <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
+      </info>
+      <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+                               downvalue="-0.5" styling="BluePurpleRedTemp"
+                               infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <label>
+          <icon name="temp_control" />
+          Soll
+        </label>
+        <address transform="OH:number" variant="">{{ targettemp_address }}</address>
+      </infotrigger>
+    </group>
 
 .. _xml-format_pages:
 

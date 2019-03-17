@@ -80,10 +80,10 @@ Wir erstellen einen Puffer
 Wir erstellen Leitungen
 -----------------------
 
-Rohere werden mit dem Freihandlinien Zeichner erstellt. Es ist damit
+Rohre werden mit dem Freihandlinien Zeichner erstellt. Es ist damit
 möglich auch gerade Linien zu Zeichnen Am Startpunkt mit der Maus
 klicken. Am Zielpunk wider klicken, fertig ist die Gerade. Wenn man mit
-der neuen neuen Linie am letzten Kästchen der alte Linie beginnt werden
+der neuen Linie am letzten Kästchen der alte Linie beginnt werden
 die Linien zusammenhängen. Die Zeichenrichtung bestimmt wie später die
 Animation läuft. Von rechts nach links gezeichnet, Flüssigkeit fließt
 von rechts nach links.
@@ -127,7 +127,7 @@ von rechts nach links.
 XML-File anpassen (Inkscape)
 ----------------------------
 
-Nun kommt das Geheiniss der animierten Leitungen
+Nun kommt das Geheimnis der animierten Leitungen
 
 -  Gruppen Bilden
 
@@ -174,9 +174,7 @@ ist die Leitung als Gruppe eingefasst
    id="<eindeutige id>"
    class="pipe_group show_flow flow_control"
    data-cometvisu-active="1/0/3">
-   <path
-   ....
-   ..../>
+   <path />
    </g>
 
 .. figure:: _static/XML4.png

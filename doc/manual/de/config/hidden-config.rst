@@ -13,6 +13,11 @@ Auch im Manager sind diese Informationen im Klartext lesbar.
 Dies erzeugt für sich noch keine sichere Umgebung. Jedoch lässt sich hierdurch eine sichere Umgebung aufbauen, in
 dem der Webserver so konfiguriert sein muss, dass der Anwender keinen Zugriff auf den Manager erhält.
 
+.. IMPORTANT::
+
+    Wenn im Rahmen des Support ein :ref:`Fehler-Log <reporting>` an die Entwickler übergeben wird, so ist der Inhalt
+    der versteckten Konfiguration nicht enthalten und bleiben somit auch vor den Entwicklern versteckt.
+
 Ob und in welcher Form Widgets und Plugins Informationen aus der versteckten
 Konfiguration benötigen wird in deren jeweiligen Dokumentation beschrieben.
 
@@ -22,7 +27,7 @@ Aufbau
 Die versteckten Konfigurationen werden in der Datei ``config/hidden.php`` abgelegt. Diese Datei kann sowohl
 über einen normalen Text-Editor als auch über den :ref:`Manager <manager>` editiert werden.
 
-Der Inhalt besteht aus mehreren Einträgen die einen `Name` mit mehreren `Schlüssel` und `Wert` Paaren enthalten.
+Der Inhalt besteht aus mehreren Einträgen die einen *Name* mit mehreren *Schlüssel* und *Wert* Paaren enthalten.
 In der Datei selbst werden diese Informationen als PHP Array abgelegt:
 
 .. code-block:: php

@@ -383,7 +383,7 @@ div#loading {
 }
 
 #diagramTooltip, #flotTip {
-	z-index: 1000;
+	z-index: 100002;
 	color: black;
 	border: 1px solid #fdd;
 	padding: 2px;

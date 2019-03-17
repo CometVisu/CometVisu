@@ -355,6 +355,7 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
         $actionSuccess = true;
         fillAvailMedia();
       } else {
+        echo "\n<!-- File upload error: " . $_FILES['media_file']['error'] . "-->\n";
         if( $action === 'create' )
           $actionDone = sprintf( $_['Could not upload media file'], $media );
         else
@@ -813,7 +814,7 @@ if( $resetUrl )
     <h2><?php printf( $_['Available media files:'], '<img src="resource/icon/comet_64_ff8000.png" />') ?></h2>
     <form enctype="multipart/form-data" action="manager.php" method="post" id="media_form">
     <input type="text" name="type" value="media" style="display:none" />
-    <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+    <input type="hidden" name="MAX_FILE_SIZE" value="50000000" />
     <table>
       <?php
         echo '<tr class="head">'

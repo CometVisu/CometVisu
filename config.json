@@ -25,6 +25,7 @@
     "source",
     "source-all",
     "source-hybrid",
+    "source-hybrid-error",
     "source-server",
     "source-error",
     "source-server-reload",
@@ -49,7 +50,8 @@
     "LOCALES"      : [ "en", "de" ],
     "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",
     "ROOT"         : ".",
-    "CV_VERSION"   : "dev"
+    "CV_VERSION"   : "dev",
+    "CV_TESTMODE"  : false
   },
 
   "config-warnings" :
@@ -108,7 +110,8 @@
         "qx.application" : "${APPLICATION}.Application",
         "qx.promise"     : false,
         "cv.version"     : "${CV_VERSION}",
-        "cv.xhr"         : "qx"
+        "cv.xhr"         : "qx",
+        "cv.testMode"    : "${CV_TESTMODE}"
       },
 
       "add-script" : [
@@ -132,6 +135,9 @@
         },
         {
           "uri" : "resource/libs/favico.js"
+        },
+        {
+          "uri" : "resource/libs/inobounce.min.js"
         }
       ],
       "copy-files" :
@@ -141,10 +147,15 @@
           "resource/libs/sprintf.js",
           //"resource/libs/Three.js",
           "resource/libs/jquery.js",
+          "resource/libs/jquery-ui.js",
+          "resource/libs/jquery-ui.min.js",
+          "resource/libs/jquery.svg.js",
+          "resource/libs/jquery.svg.min.js",
           "resource/libs/svg4everybody.js",
           "resource/libs/strftime.js",
           "resource/libs/favico.js",
           "resource/sentry/bundle.min.js",
+          "resource/libs/inobounce.min.js",
           "editor",
           "upgrade",
           "check_config.php",
@@ -295,6 +306,15 @@
       ]
     },
 
+    "source-script": {
+      "compile-options" :
+      {
+        "paths" :
+        {
+          "loader-template": "${SOURCE_PATH}/loader/loader.tmpl.js"}
+      }
+    },
+
     "source-error": {
       "extend" : [ "source" ],
       "environment" :
@@ -307,7 +327,24 @@
 
     "source-hybrid" :
     {
-      "extend" : [ "parts-config" ]
+      "extend" : [ "parts-config" ],
+      "compile-options" :
+      {
+        "paths" :
+        {
+          "loader-template": "${SOURCE_PATH}/loader/loader.tmpl.js"}
+      }
+    },
+
+    "source-hybrid-error" :
+    {
+      "extend" : [ "source-hybrid" ],
+      "environment" :
+      {
+        "cv.build": "source",
+        "cv.sentry": true,
+        "qx.globalErrorHandling": true
+      }
     },
 
     "update-version": {
@@ -341,7 +378,8 @@
         "build-files",
         "build-libs",
         "build-append-plugin-libs",
-        "build-paths"
+        "build-paths",
+        "build-append-icon-config"
       ]
     },
 
@@ -363,6 +401,13 @@
       "shell" :
       {
         "command" : "./cv build -bp"
+      }
+    },
+
+    "build-append-icon-config" : {
+      "shell" :
+      {
+        "command" : "mkdir -p build/class/cv && cp source/class/cv/IconConfig.js build/class/cv/"
       }
     },
 
@@ -391,7 +436,8 @@
       {
         "paths" :
         {
-          "file" : "${BUILD_PATH}/script/${APPLICATION}-{engine.name}.js"
+          "file" : "${BUILD_PATH}/script/${APPLICATION}-{engine.name}.js",
+          "loader-template": "${SOURCE_PATH}/loader/loader.tmpl.js"
         }
       }
     },

@@ -82,6 +82,16 @@ qx.Class.define("cv.ui.NotificationCenter", {
     cv.TemplateEngine.getInstance().executeWhenDomFinished(this._init, this);
 
     this.addListener("changedGlobalSeverity", this._onSeverityChange, this);
+
+    this.setDelegate({
+      prepareMessage: function(message) {
+        // resolve icon if there is one
+        if (message.icon) {
+          var iconClasses = message.iconClasses ? " "+message.iconClasses : "";
+          message.icon = cv.util.IconTools.svgKUF(message.icon)(null, null, "icon" + iconClasses);
+        }
+      }.bind(this)
+    });
   },
 
   /*
@@ -128,7 +138,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
      * @see cv.ui.NotificationCenter#deleteMessage
      */
     deleteMessage: function(index, ev) {
-      this.getInstance().deleteMessage(index, ev);
+      return this.getInstance().deleteMessage(index, ev);
     },
 
     /**
@@ -228,10 +238,17 @@ qx.Class.define("cv.ui.NotificationCenter", {
         });
         qx.dom.Element.insertEnd(elem, body);
 
+        // create the template
+        var templateCode = '<div class="message {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="'+this.getMessageElementId()+'{{ id }}">';
+        templateCode += '{{#icon}}{{ &icon }}{{/icon}}';
+        templateCode += '{{#deletable}}<div class="action delete">x</div>{{/deletable}}';
+        templateCode += '{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}';
+        templateCode += '<div class="content">{{&message}}</div></div>';
+
         var template = qx.dom.Element.create("script", {
           id: "MessageTemplate",
           type: "text/template",
-          html: '<div class="message {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="'+this.getMessageElementId()+'{{ id }}">{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}{{#deletable}}<div class="action delete">x</div>{{/deletable}}<div class="content">{{&message}}</div></div>'
+          html: templateCode
         });
         qx.dom.Element.insertEnd(template, body);
       }

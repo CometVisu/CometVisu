@@ -84,6 +84,15 @@ qx.Class.define("cv.Application",
   properties: {
     root: {
       nullable: true
+    },
+
+    /**
+     * true when structure part has been loaded
+     */
+    structureLoaded: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeStructureLoaded'
     }
   },
 
@@ -420,8 +429,10 @@ qx.Class.define("cv.Application",
           engine.loadParts([structure], function(states) {
             if (states === "complete") {
               this.debug(structure + " has been loaded");
+              this.setStructureLoaded(true);
             } else {
               this.error(structure + " could not be loaded");
+              this.setStructureLoaded(false);
             }
           }, this);
 
@@ -457,19 +468,19 @@ qx.Class.define("cv.Application",
       if (!cv.Config.cacheUsed) {
         this.debug("starting");
         this.__detectInitialPage();
-        engine.parseXML(xml);
-        this.loadPlugins();
-        this.loadStyles();
-        this.loadScripts();
-        this.loadIcons();
-        this.debug("done");
+        engine.parseXML(xml, function () {
+          this.loadPlugins();
+          this.loadStyles();
+          this.loadScripts();
+          this.debug("done");
 
-        if (cv.Config.enableCache) {
-          // cache dom + data when everything is ready
-          qx.event.message.Bus.subscribe("setup.dom.finished", function() {
-            cv.ConfigCache.dump(xml);
-          }, this);
-        }
+          if (cv.Config.enableCache) {
+            // cache dom + data when everything is ready
+            qx.event.message.Bus.subscribe("setup.dom.finished", function() {
+              cv.ConfigCache.dump(xml);
+            }, this);
+          }
+        }.bind(this));
       }
     },
 
@@ -477,7 +488,7 @@ qx.Class.define("cv.Application",
      * Adds icons which were defined in the current configuration to the {@link cv.IconHandler}
      */
     loadIcons: function() {
-      cv.Config.iconsFromConfig.forEach(function(icon) {
+      cv.Config.configSettings.iconsFromConfig.forEach(function(icon) {
         cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic);
       }, this);
     },
@@ -514,31 +525,59 @@ qx.Class.define("cv.Application",
     loadPlugins: function() {
       var plugins = cv.Config.configSettings.pluginsToLoad;
       if (plugins.length > 0) {
+        var standalonePlugins = [];
+        var partsLoaded = false;
+        var allPluginsQueued = false;
         this.debug("loading plugins");
         var engine = cv.TemplateEngine.getInstance();
         engine.addListener("changePartsLoaded", function(ev) {
           if (ev.getData() === true) {
             this.debug("plugins loaded");
-            qx.event.Timer.once(function() {
-              cv.util.ScriptLoader.getInstance().setAllQueued(true);
-            }, this, 0);
+            partsLoaded = true;
+            if (allPluginsQueued) {
+              qx.event.Timer.once(function () {
+                cv.util.ScriptLoader.getInstance().setAllQueued(true);
+              }, this, 0);
+            }
           }
         }, this);
         var parts = qx.Part.getInstance().getParts();
         var partPlugins = [];
-        var standalonePlugins = [];
         var path = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri');
         plugins.forEach(function(plugin) {
           if (parts.hasOwnProperty(plugin)) {
             partPlugins.push(plugin);
+          } else if (!plugin.startsWith('plugin-')) {
+            // a real path
+            standalonePlugins.push(plugin);
           } else {
             standalonePlugins.push(path + "/plugins/" + plugin.replace("plugin-", "") + "/index.js");
           }
         });
         // load part plugins
         engine.loadParts(partPlugins);
-        // load script plugins
-        cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
+
+        if (standalonePlugins.length > 0) {
+          // load standalone plugins after the structure parts has been loaded
+          // because they use need the classes provided by it
+          if (this.getStructureLoaded()) {
+            cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
+          } else {
+            var lid = this.addListener('changeStructureLoaded', function (ev) {
+              if (ev.getData() === true) {
+                allPluginsQueued = true;
+                this.debug('loading standalone plugins');
+                cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
+                if (partsLoaded) {
+                  cv.util.ScriptLoader.getInstance().setAllQueued(true);
+                }
+                this.removeListenerById(lid);
+              }
+            }, this);
+          }
+        } else {
+          allPluginsQueued = true;
+        }
       } else {
         this.debug("no plugins to load => all scripts queued");
         cv.util.ScriptLoader.getInstance().setAllQueued(true);

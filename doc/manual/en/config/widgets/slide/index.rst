@@ -40,6 +40,7 @@ Allowed attributes in the Slide-element
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
     <slide>
         <layout colspan="4" />
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
     </slide>
 
 
@@ -63,7 +64,7 @@ Allowed child-elements und their attributes
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the Slide widget.
 
 .. CAUTION::

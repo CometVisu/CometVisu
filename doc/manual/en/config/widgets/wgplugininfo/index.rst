@@ -12,6 +12,10 @@ Description
 
 Adds an dynamic field to the visu that shows live information from a WireGate plugin.
 
+Note: The service helper from
+https://raw.githubusercontent.com/OpenAutomationProject/Wiregate/master/tools/wg-plugindb/wg-plugindb.php
+must be "installed" in the directory /var/www/ (i.e. the web root)
+
 
 .. ###END-WIDGET-DESCRIPTION###
 
@@ -38,9 +42,10 @@ Allowed attributes in the WgPluginInfo-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <wgplugininfo>
+    <wgplugin_info>
         <layout colspan="4" />
-    </wgplugininfo>
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+    </wgplugin_info>
 
 
 Allowed child-elements und their attributes
@@ -54,16 +59,16 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <wgplugininfo>
+    <wgplugin_info>
         <layout colspan="4" />
         <label>WgPluginInfo</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-    </wgplugininfo>
+    </wgplugin_info>
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the WgPluginInfo widget.
 
 .. CAUTION::

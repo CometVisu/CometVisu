@@ -357,25 +357,26 @@ CometVisu/CometVisu -> develop in den eigenen Fork zu
 über die GitHub Seite des eigenen Forks ``https://github.com/<Accountname>/CometVisu``
 aus.
 
-#. Man klickt auf den "Pull Request" Button:
+Man klickt auf den *Pull Request* Button:
 
 .. figure:: _static/GitHub_Pull_Request_Button.png
 
-#. Man stellt sicher, dass der *base fork* dem eigenen Fork entspricht
-   (also *<Accountname>*) und *head fork* auf ``CometVisu/CometVisu`` steht:
+Man stellt sicher, dass der *base fork* dem eigenen Fork entspricht
+(also *<Accountname>*) und *head fork* auf ``CometVisu/CometVisu`` steht:
 
 .. figure:: _static/GitHub_Comparing_Changes.png
 
-#. Man klickt auf *Create pull request* und auf der folgenden Seite (wo
-   man bei Bedarf noch einen entsprechenden Commit-Kommentar eintragen
-   kann) wieder *Create pull request*.
-#. Auf der nun folgenden Seite erscheint (hoffentlich...) ***This pull
-   request can be automatically merged.*** - hier klickt man dann auch
-   wieder *Merge pull request*:
+Man klickt auf *Create pull request* und auf der folgenden Seite (wo
+man bei Bedarf noch einen entsprechenden Commit-Kommentar eintragen
+kann) wieder *Create pull request*.
+
+Auf der nun folgenden Seite erscheint (hoffentlich...) ***This pull
+request can be automatically merged.*** - hier klickt man dann auch
+wieder *Merge pull request*:
 
 .. figure:: _static/GitHub_automatically_merged.png
 
-#. Am Schluss muss man noch auf *Configm merge* klicken:
+Am Schluss muss man noch auf *Configm merge* klicken:
 
 .. figure:: _static/GitHub_confirm_merge.png
 
@@ -401,7 +402,7 @@ Wenn die Installation wie oben durchgeführt wurde, dann sind alle
 Branches unter ``CometVisu/CometVisu`` als upstream bekannt und die
 unter ``<Accountname/CometVisu`` als origin.
 
-Dies lässt sich einfach durch den Befehlt ``git remote -v``
+Dies lässt sich einfach durch den Befehl ``git remote -v``
 überprüfen:
 
 .. code-block:: bash

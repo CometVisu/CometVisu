@@ -22,8 +22,11 @@
  * This plugins integrates OpenWeatherMap data.
  *
  * @author Stefan Borchert (stefan@borchert.cc)
+ * @author Matthias
  * @since 0.9.0
- * @asset(plugins/openweathermap/owm/jquery.owm.js,plugins/openweathermap/openweathermap.css)
+ * @asset(plugins/openweathermap/owm_core.js,
+ *        plugins/openweathermap/owm_basic_style.css, 
+ *        plugins/openweathermap/owm_weathericon.css)
  */
 qx.Class.define('cv.plugins.OpenweatherMap', {
   extend: cv.ui.structure.AbstractBasicWidget,
@@ -37,7 +40,16 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
   construct: function(props) {
     props.refresh = props.refresh * 60;
     this.base(arguments, props);
-    this.__options = props;
+    this.__options = {};
+    Object.keys(props).forEach(function (key) {
+      if (props[key]) {
+        this.__options[key] = props[key];
+      }
+    }, this);
+    qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+      // init once
+      this._refreshAction();
+    }, this);
   },
 
   /*
@@ -66,14 +78,18 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       return {
         'class': { target: 'cssClass' },
         'lang':   { },
+        'owID':  { },
         'q':   { },
         'lat':   { },
         'lon':   { },
         'units':   { },
         'type':   { },
-        'forecastItems':   { },
+        'forecast24hItems':   { },
+        'forecastDailyItems':   { },
         'detailItems':   { },
-        'appid':   { }
+        'showSunrise': { },
+        'appid':   { },
+        'description':   { }
       };
     }
   },
@@ -86,43 +102,59 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
   properties: {
     cssClass: {
       check: "String",
-      init: ""
+      nullable: true
     },
     lang: {
       check: "String",
-      init: ""
+      nullable: true
+    },
+    owID: {
+      check: "String",
+      nullable: true
     },
     q: {
       check: "String",
-      init: ""
+      nullable: true
     },
     lat: {
       check: "String",
-      init: ""
+      nullable: true
     },
     lon: {
       check: "String",
-      init: ""
+      nullable: true
     },
     units: {
       check: "String",
-      init: ""
+      nullable: true
     },
     type: {
       check: "String",
-      init: ""
+      nullable: true
     },
-    forecastItems: {
+    forecast24hItems: {
       check: "String",
-      init: ""
+      nullable: true
+    },
+    forecastDailyhItems: {
+      check: "String",
+      nullable: true
+    },
+    showSunrise: {
+      check: "String",
+      nullable: true
     },
     detailItems: {
       check: "String",
-      init: ""
+      nullable: true
     },
     appid: {
       check: "String",
-      init: ""
+      nullable: true
+    },
+    description: {
+      check: "String",
+      nullable: true
     }
   },
 
@@ -142,17 +174,24 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       return '<div class="'+classes+'"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
     },
 
+    _setupRefreshAction: function() {
+      this._timer = new qx.event.Timer(this.getRefresh());
+      this._timer.addListener('interval', this._refreshAction, this);
+      this._timer.start();
+    },
+
     _refreshAction: function() {
       var elem = $(this.getDomElement());
-      elem.openweathermap(this.options);
+      elem.openweathermap(this.__options);
       return false;
     }
   },
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('plugins/openweathermap/openweathermap.css');
-    loader.addScripts('plugins/openweathermap/owm/jquery.owm.js');
+    loader.addStyles('plugins/openweathermap/owm_basic_style.css');
+    loader.addStyles('plugins/openweathermap/owm_weathericon.css');
+    loader.addScripts('plugins/openweathermap/owm_core.js');
     // register the parser
     cv.parser.WidgetParser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
     cv.ui.structure.WidgetFactory.registerClass("openweathermap", statics);

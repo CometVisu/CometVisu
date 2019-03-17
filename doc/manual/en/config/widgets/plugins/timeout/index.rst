@@ -44,37 +44,18 @@ Allowed attributes in the timeout-element
             <plugin name="timeout" />
         </plugins>
     </meta>
-    <timeout>
-        <layout colspan="4" />
-    </timeout>
+    <timeout target="id_"/>
 
 
 Allowed child-elements und their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. elements-information:: timeout
-
-.. widget-example::
-    :editor: elements
-    :scale: 75
-    :align: center
-
-    <caption>Elements in the editor</caption>
-    <meta>
-        <plugins>
-            <plugin name="timeout" />
-        </plugins>
-    </meta>
-    <timeout>
-        <layout colspan="4" />
-        <label>timeout</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-    </timeout>
+The timeout widget has no child elements.
 
 Examples
 --------
 
-It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
+It is possible to manually edit the :ref:`visu_config.xml <xml-format>` and add an entry
 for the timeout plugin.
 
 .. CAUTION::
