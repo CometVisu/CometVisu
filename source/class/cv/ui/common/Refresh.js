@@ -34,16 +34,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
       }, this);
     }
 
-    // Stop the while invisible
-    this.addListener("changeVisible", function(ev) {
-      if (this._timer && ev.getData() !== ev.getOldData() && this.__ownTimerId === this._timer.toHashCode()) {
-        if (ev.getData()) {
-          this._timer.start();
-        } else {
-          this._timer.stop();
-        }
-      }
-    }, this);
+    this.addListener("changeVisible", this._maintainTimerState, this);
   },
 
   /*
@@ -59,6 +50,11 @@ qx.Mixin.define("cv.ui.common.Refresh", {
     cachecontrol: {
       check: 'String',
       init: 'full'
+    },
+    restartOnVisible: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyRestartOnVisible'
     }
   },
 
@@ -69,8 +65,55 @@ qx.Mixin.define("cv.ui.common.Refresh", {
    */
   members: {
     _timer: null,
+    __timerId: null,
     __setup: false,
-    __ownTimerId: null,
+    __lastRun: null,
+    __restartTimer: null,
+    __restartOnVisible: false,
+
+    _applyRestartOnVisible: function (value) {
+      if (value) {
+        this._maintainTimerState();
+      }
+    },
+
+    /**
+     * Stop the while invisible
+     */
+    _maintainTimerState: function () {
+      if (this.__restartTimer) {
+        this.debug('aborting restart timer ' + this.getPath());
+        this.__restartTimer.stop();
+        this.__restartTimer.dispose();
+        this.__restartTimer = null;
+      }
+      if (!this.isRestartOnVisible()) {
+        return;
+      }
+      if (this._timer) {
+        if (this.isVisible()) {
+          var delta = this.getRefresh() - (Date.now() - this.__lastRun);
+          if (delta <= 0) {
+            // run immediately
+            this.debug('immediate refresh because refresh time has been reached ' + this.getPath());
+            this._timer.start();
+            this._timer.fireEvent('interval');
+          } else {
+            this.debug('starting refresh ' + this.getPath() + ' in ' + delta + 'ms');
+            // start when interval is finished
+            this.__restartTimer = qx.event.Timer.once(function () {
+              this._timer.start();
+              this._timer.fireEvent('interval');
+              this.__restartTimer = null;
+            }, this, delta);
+          }
+
+        } else if (this._timer.isEnabled()) {
+          this.debug('stop refreshing ' + this.getPath());
+          this._timer.stop();
+        }
+      }
+    },
 
     setupRefreshAction: function () {
       if (this.getRefresh() && this.getRefresh() > 0) {
@@ -81,6 +124,12 @@ qx.Mixin.define("cv.ui.common.Refresh", {
         if (this._setupRefreshAction) {
           // overridden by inheriting class
           this._setupRefreshAction();
+          if (this._timer) {
+            // listen to foreign timer to get the last execution time;
+            this._timer.addListener('interval', function () {
+              this.__lastRun = Date.now();
+            }, this);
+          }
         } else if (!this._timer || !this._timer.isEnabled()) {
           var element = this.getDomElement();
           var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
@@ -93,12 +142,16 @@ qx.Mixin.define("cv.ui.common.Refresh", {
             this.refreshAction(target, src);
           }, this);
           this._timer.start();
-          this.__ownTimerId = this._timer.toHashCode();
+        }
+        if (this._timer && this._timer.isEnabled()) {
+          this.__lastRun = Date.now();
+          this.setRestartOnVisible(true);
         }
       }
     },
 
     refreshAction: function (target, src) {
+      this.__lastRun = Date.now();
       if (this._refreshAction) {
         this._refreshAction();
       } else {
@@ -254,7 +307,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
               iframe.parentNode.removeChild(iframe);
             }
           }
-        }
+        };
       }
       return null;
     }
