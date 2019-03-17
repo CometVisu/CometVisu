@@ -17,6 +17,12 @@ paths:
         required: true
         schema:
           type: string
+      - name: hash
+        in: query
+        description: CRC32 hash value of the file content
+        required: false
+        schema:
+          type: number
     get:
       tags:
         - fs
@@ -252,6 +258,9 @@ components:
         mounted:
           type: boolean
           default: false
+        hash:
+          type: number
+          description: hash value for file content (CRC32)
 externalDocs:
   description: Find out more about CometVisu
   url: 'https://www.cometvisu.org'

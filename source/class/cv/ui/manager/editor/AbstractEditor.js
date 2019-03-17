@@ -87,11 +87,12 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
     _loadFile: function (file, old) {
       if (old) {
-        this.removeRelatedBindings(old);
+        old.removeRelatedBindings(this);
       }
       if (file && file.getType() === 'file') {
         this._client.read({path: this.getFile().getFullPath()});
-        this.bind('modified', file, 'modified');
+        file.bind('modified', this, 'modified');
+        file.bind('valid', this, 'valid');
       } else {
         this.resetContent();
       }
@@ -117,7 +118,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     save: function () {
       if (this.isModified()) {
         this._client.update({
-          path: this.getFile().getFullPath()
+          path: this.getFile().getFullPath(),
+          hash: this.getFile().getHash()
         }, this.getCurrentContent());
       }
     },

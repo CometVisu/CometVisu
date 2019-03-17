@@ -42,7 +42,6 @@ class SourceFile {
       try {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '../visu_config.xsd', false); // Note: synchronous
-        xhr.responseType = 'text/xml';
         xhr.send();
         configSchema = xhr.response;
       } catch(e) {

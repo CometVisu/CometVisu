@@ -47,7 +47,7 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
     },
 
     type: {
-      check: ['alert', 'hint', 'warning'],
+      check: ['alert', 'hint', 'warning', 'error'],
       nullable: true,
       apply: '_applyType'
     }

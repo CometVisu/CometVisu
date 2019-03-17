@@ -66,6 +66,9 @@ qx.Class.define('cv.io.rest.Client', {
         });
         this.__dirClient.setBaseUrl(this.BASE_URL);
         this.__dirClient.configureRequest(function (req, action, params) {
+          if (params.hash) {
+            req.setUrl(req.getUrl() + '&hash=' + params.hash);
+          }
           if (action === 'update') {
             var parts = params.path.split('.');
             if (parts.length > 1) {

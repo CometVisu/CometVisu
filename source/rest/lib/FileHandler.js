@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const config = require('../config')
+const CRC32 = require('crc-32')
 const AbstractHandler = require('./AbstractHandler')
 
 class FileHandler extends AbstractHandler {
@@ -32,8 +33,7 @@ class FileHandler extends AbstractHandler {
       this.respondMessage(context,406, 'File already exists')
     } else {
       try {
-        fs.writeFileSync(file, content)
-        this.ok(context)
+        this.__saveFile(file, content, context);
       } catch (err) {
         console.error(err)
         this.respondMessage(context,405, err.toString())
@@ -71,12 +71,42 @@ class FileHandler extends AbstractHandler {
           // create missing dirs first
           fs.mkdirSync(dirname, {recursive: true})
         }
-        fs.writeFileSync(file, content)
-        this.ok(context)
+        this.__saveFile(file, content, context);
       } catch (err) {
         console.error(err)
         this.respondMessage(context,405, err.toString())
       }
+    }
+  }
+
+  __saveFile(file, content, context) {
+    const hash = context.params.query.hash;
+    if (hash) {
+      if (hash !== CRC32.str(content)) {
+        // data has been corrupted during transport
+        this.respondMessage(context,405, 'data has been corrupted during transport')
+        return
+      }
+      const backupSuffix = Math.random();
+      // 1. create backup of existing file
+      fs.copyFileSync(file, file + backupSuffix);
+      // 2. write new content
+      fs.writeFileSync(file, content)
+      // 3. check hash of written file
+      const writtenContent = fs.readFileSync(file, {encoding: 'utf-8'})
+      const newHash = CRC32.str(writtenContent)
+      if (newHash !== hash) {
+        // something went wrong -> restore old file content
+        fs.copyFileSync(file + backupSuffix, file);
+        this.respondMessage(context,405, 'hash mismatch on written content')
+      } else {
+        // ok delete backup file
+        this.ok(context)
+      }
+      fs.unlinkSync(file + backupSuffix);
+    } else {
+      fs.writeFileSync(file, content)
+      this.ok(context)
     }
   }
 
