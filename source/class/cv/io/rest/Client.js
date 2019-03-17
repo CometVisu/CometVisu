@@ -89,6 +89,10 @@ qx.Class.define('cv.io.rest.Client', {
                 case 'css':
                   req.setRequestHeader('Content-Type', 'text/css');
                   break;
+
+                default:
+                  req.setRequestHeader('Content-Type', 'text/plain');
+                  break;
               }
             }
             req.setAccept('application/json');

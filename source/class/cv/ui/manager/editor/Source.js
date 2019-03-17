@@ -28,13 +28,19 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   */
   statics: {
     COUNTER: 0,
-    SUPPORTED_FILES: ['xml', 'php', 'css', 'js', 'svg'],
+    SUPPORTED_FILES: ['xml', 'php', 'css', 'js', 'svg', 'json', 'md', 'yaml'],
 
     load: function (callback, context) {
       var version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
+      window.documentationMappingPrefix = "../source/editor/"; // jshint ignore:line
       var loader = new qx.util.DynamicScriptLoader([
+        '../source/editor/dependencies/jquery.min.js',
+        '../source/editor/dependencies/jquery.xpath.min.js',
+        '../source/editor/lib/Messages.js',
+        '../source/editor/lib/Schema.js',
         '../../node_modules/monaco-editor/' + version + '/vs/loader.js',
-        'manager/xml.js'
+        'manager/xml.js',
+        'manager/monaco/completion-provider.js'
       ]);
       loader.addListener('ready', function () {
         window.require.config({
@@ -42,20 +48,26 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             'vs': '../../node_modules/monaco-editor/' + version + '/vs'
           }
         });
-        // window.require.config({
-        //   'vs/nls' : {
-        //     availableLanguages: {
-        //       '*': qx.locale.Manager.getInstance().getLanguage() !== 'en' ? qx.locale.Manager.getInstance().getLanguage() : ''
-        //     }
-        //   }
-        // });
+        window.require.config({
+          'vs/nls' : {
+            availableLanguages: {
+              '*': qx.locale.Manager.getInstance().getLanguage() !== 'en' ? qx.locale.Manager.getInstance().getLanguage() : ''
+            }
+          }
+        });
+        var noCacheSuffix = '?' + Math.random();
         window.require([
-          'vs/editor/editor.main',
-          'xml!*./resource/manager/qooxdoo.d.ts' // the xml loader can load any file by adding * before the path
+          'xml!./resource/visu_config.xsd' + noCacheSuffix,
+          'xml!*./resource/manager/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
+          'vs/editor/editor.main'
         ], function (schema, qxLib) {
           this.__schema = schema;
           callback.apply(context);
           window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
+          var parsedSchema = new Schema("visu_config.xsd", schema); // jshint ignore:line
+          var completionProvider = new CompletionProvider(monaco, parsedSchema); // jshint ignore:line
+          window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
+
         }.bind(this));
       }, this);
       loader.addListener('failed', function (ev) {
@@ -246,6 +258,8 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           return 'xml';
         case 'js':
           return 'javascript';
+        case 'md':
+          return 'markdown';
         default:
           return type;
       }

@@ -16,13 +16,28 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+function stringToXml(text) {
+  var xmlDoc;
+  if (window.DOMParser) {
+    var parser = new DOMParser();
+    xmlDoc = parser.parseFromString(text, 'application/xml');
+  }
+  else {
+    xmlDoc = new ActiveXObject('Microsoft.XMLDOM');
+    xmlDoc.async = false;
+    xmlDoc.loadXML(text);
+  }
+  return xmlDoc;
+}
+
+
 /**
  * XSD-based code completion provider for the monaco text editor.
  *
  * @since 0.11.0
  * @author Tobias Bräutigam
  */
-function CompletionProvider(monaco, schemaNode) {
+function CompletionProvider(monaco, schemaNode) { // jshint ignore:line
   var __elementCache = {};
 
   function getLastOpenedTag(text) {
