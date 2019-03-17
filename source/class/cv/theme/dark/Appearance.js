@@ -113,6 +113,52 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
-    'cv-editor-config-option/key-title': 'cv-editor-config-option/value-title'
+    'cv-editor-config-option/key-title': 'cv-editor-config-option/value-title',
+
+    // snackbar components
+    'cv-snackbar': {
+      style: function () {
+        return {
+          zIndex: 1000
+        };
+      }
+    },
+
+    'cv-snackbar/list': {
+      style: function () {
+        return {
+          height: null,
+          width: 300,
+          minWidth: 300,
+        };
+      }
+    },
+
+    'cv-snackbar-msg': {
+      style: function () {
+        return {
+          marginTop: 10,
+          padding: 10,
+          textColor: 'text',
+          decorator: 'cv-snackbar-msg'
+        };
+      }
+    },
+
+    'cv-snackbar-msg/content': {
+      style: function () {
+        return {
+          allowGrowX: true
+        };
+      }
+    },
+
+    'cv-snackbar-msg/close': {
+      style: function () {
+        return {
+          cursor: 'pointer'
+        };
+      }
+    }
   }
 });

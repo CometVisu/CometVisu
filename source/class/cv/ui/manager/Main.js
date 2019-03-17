@@ -286,6 +286,23 @@ qx.Class.define('cv.ui.manager.Main', {
       qx.core.Init.getApplication().setRoot(root);
       root.setLayout(new qx.ui.layout.Canvas());
 
+      var snackbar = cv.ui.manager.snackbar.Controller.getInstance();
+      root.add(snackbar, {
+        bottom: 10,
+        left: 200
+      });
+
+      function resize() {
+        var bounds = root.getBounds();
+        snackbar.setLayoutProperties({
+          bottom: 10,
+          left: Math.round(bounds.width / 2) - 150
+        });
+        snackbar.setMaxHeight(bounds.height - 40);
+      }
+      root.addListener('resize', resize, this);
+      root.addListener('appear', resize, this);
+
       var main = new qx.ui.container.Composite(new qx.ui.layout.Dock());
       root.add(main, {edge: 0});
 
