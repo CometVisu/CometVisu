@@ -30,11 +30,20 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style: function () {
         return {
           iconPosition: 'right',
-          gap: 10,
+          gap: 0,
           height: 25,
-          padding: [0, 10],
+          padding: [0, 0, 0, 10],
           margin: 0,
           icon: osparc.theme.osparcdark.Image.URLS['tabview-close']
+        };
+      }
+    },
+    'open-file-item/icon': {
+      include: 'listitem/icon',
+
+      style: function () {
+        return {
+          padding: 10
         };
       }
     },
