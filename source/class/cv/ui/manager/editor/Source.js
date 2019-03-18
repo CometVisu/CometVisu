@@ -39,8 +39,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         '../source/editor/lib/Messages.js',
         '../source/editor/lib/Schema.js',
         '../../node_modules/monaco-editor/' + version + '/vs/loader.js',
-        'manager/xml.js',
-        'manager/monaco/completion-provider.js'
+        'manager/xml.js'
       ]);
       loader.addListener('ready', function () {
         window.require.config({
@@ -65,8 +64,10 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           callback.apply(context);
           window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
           var parsedSchema = new Schema("visu_config.xsd", schema); // jshint ignore:line
-          var completionProvider = new CompletionProvider(monaco, parsedSchema); // jshint ignore:line
+          var completionProvider = new cv.ui.manager.editor.completion.Config(monaco, parsedSchema);
+          var cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
           window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
+          window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
 
         }.bind(this));
       }, this);
