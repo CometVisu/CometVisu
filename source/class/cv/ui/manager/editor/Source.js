@@ -63,8 +63,8 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           this.__schema = schema;
           callback.apply(context);
           window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
-          var parsedSchema = new Schema("visu_config.xsd", schema); // jshint ignore:line
-          var completionProvider = new cv.ui.manager.editor.completion.Config(monaco, parsedSchema);
+          var parsedSchema = new window.Schema("visu_config.xsd", schema); // jshint ignore:line
+          var completionProvider = new cv.ui.manager.editor.completion.Config(null, parsedSchema);
           var cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
           window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
           window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
@@ -186,6 +186,9 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     showErrors: function (path, errorList) {
       var markers = [];
       var model = this._editor.getModel();
+      if (!model) {
+        return;
+      }
       // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
       if (errorList) {
 //            console.error(errorList);

@@ -89,6 +89,21 @@ qx.Class.define('cv.ui.manager.Main', {
     openFiles: {
       check: 'qx.data.Array',
       deferredInit: true
+    },
+
+    /**
+     * Current selected folder (if a file is selected its parent folder) is writeable.
+     */
+    writeableFolder: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeWriteableFolder'
+    },
+
+    currentFolder: {
+      check: 'cv.ui.manager.model.FileItem',
+      nullable: true,
+      apply: '_applyCurrentFolder'
     }
   },
 
@@ -156,7 +171,21 @@ qx.Class.define('cv.ui.manager.Main', {
         var node = sel.getItem(0);
         if (node.getType() === 'file') {
           this.openFile(node, preview);
+          this.setCurrentFolder(node.getParent());
+        } else {
+          this.setCurrentFolder(node);
         }
+      } else {
+        this.resetWriteableFolder();
+      }
+    },
+
+    _applyCurrentFolder: function (value, old) {
+      if (old) {
+        old.removeRelatedBindings(this);
+      }
+      if (value) {
+        value.bind('writeable', this, 'writeableFolder');
       }
     },
 
@@ -285,6 +314,19 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
+    _onCreateFile: function () {
+
+    },
+
+    _onCreateFolder: function () {
+      var currentFolder = this.getCurrentFolder();
+      if (!currentFolder) {
+        return;
+      }
+      var folderItem = new cv.ui.manager.model.FileItem('', currentFolder.getPath(), currentFolder);
+      currentFolder.addChild(folderItem);
+    },
+
     // overridden
     _draw: function () {
 
@@ -311,11 +353,16 @@ qx.Class.define('cv.ui.manager.Main', {
 
       var main = new qx.ui.container.Composite(new qx.ui.layout.Dock());
       root.add(main, {edge: 0});
+      // menu on top
+      this._menuBar = new cv.ui.manager.MenuBar();
+      main.add(this._menuBar, {edge: 'north'});
 
       this._pane = new qx.ui.splitpane.Pane();
       main.add(this._pane, {edge: 'center'});
 
       var rootFolder = new cv.ui.manager.model.FileItem('.');
+      // TODO: needs to be verified by the backend
+      rootFolder.setWriteable(true);
       this._tree = new qx.ui.tree.VirtualTree(rootFolder, 'name', 'children');
       rootFolder.load(function () {
         this._tree.setHideRoot(true);
@@ -339,11 +386,34 @@ qx.Class.define('cv.ui.manager.Main', {
           controller.bindProperty("open", "open", null, item, index);
           controller.bindProperty("readable", "enabled", null, item, index);
           controller.bindProperty("icon", "icon", null, item, index);
+          // TODO bind editing and use a tree item that supports an editing mode for its name
         }
       });
       this._tree.openNode(rootFolder);
       this._tree.getSelection().addListener("change", this._onChangeTreeSelection, this);
-      this._pane.add(this._tree, 0);
+
+      // left container
+      var leftContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
+
+      // left toobar
+      var leftBar = new qx.ui.toolbar.ToolBar();
+      var buttonConfig = this._menuBar.getButtonConfiguration();
+      var newFile = new qx.ui.toolbar.Button(null, buttonConfig['new-file'].args[1], buttonConfig['new-file'].args[2]);
+      newFile.addListener('execute', this._onCreateFile, this);
+
+      this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
+      var newFolder = new qx.ui.toolbar.Button(null, buttonConfig['new-folder'].args[1], buttonConfig['new-folder'].args[2]);
+      newFolder.addListener('execute', this._onCreateFolder, this);
+      this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
+
+      var createPart = new qx.ui.toolbar.Part();
+      createPart.add(newFile);
+      createPart.add(newFolder);
+      leftBar.add(createPart);
+
+      leftContainer.add(leftBar);
+      leftContainer.add(this._tree, {flex: 1});
+      this._pane.add(leftContainer, 0);
 
       this._mainContent = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
@@ -376,10 +446,6 @@ qx.Class.define('cv.ui.manager.Main', {
       this._stack = new qx.ui.container.Stack();
       this._mainContent.add(this._stack, {flex: 1});
       this._pane.add(this._mainContent, 1);
-
-      // menu on top
-      this._menuBar = new cv.ui.manager.MenuBar();
-      main.add(this._menuBar, {edge: 'north'});
     },
 
     getMenuBar: function () {

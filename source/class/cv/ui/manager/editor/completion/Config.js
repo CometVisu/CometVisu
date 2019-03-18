@@ -187,7 +187,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             documentation: childElem.getDocumentation().join("\n")
           });
         }
-      });
+      }, this);
       // return the suggestions we found
       return availableItems;
     },
@@ -209,7 +209,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             documentation: attr.getDocumentation().join("\n")
           });
         }
-      });
+      }, this);
 
       // return the elements we found
       return availableItems;

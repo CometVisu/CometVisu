@@ -76,6 +76,12 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       nullable: true
     },
 
+    editing: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeEditing'
+    },
+
     /**
      * The opening state: permanent false behaves like a quick preview, where
      * the current file content is replaces by the next selected file on single click.
@@ -160,6 +166,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.__fullPath = null;
     },
 
+    getPath: function () {
+      return this.__path;
+    },
+
     _onOpen : function(value){
 
       if(!this.isLoaded() && value) {
@@ -217,6 +227,15 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
     },
 
+    addChild: function (child) {
+      var oldParent = child.getParent();
+      if (oldParent !== this) {
+        oldParent.getChildren().remove(child);
+      }
+      child.setParent(this);
+      this.getChildren().push(child);
+    },
+
     __addListeners: function () {
       var client = cv.io.rest.Client.getFsClient();
       client.addListener('readSuccess', this._onGet, this);
@@ -234,10 +253,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       var children = this.getChildren();
       children.removeAll();
       data.forEach(function (node) {
-        var child = new cv.ui.manager.model.FileItem(null, this);
+        var child = new cv.ui.manager.model.FileItem(null, null, this);
         child.set(node);
         children.push(child);
-      });
+      }, this);
       this.setChildren(children);
       this.sortElements();
       this.setLoaded(true);
