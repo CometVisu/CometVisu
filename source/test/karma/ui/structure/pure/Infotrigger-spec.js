@@ -25,22 +25,25 @@
 describe("testing a infotrigger widget", function() {
 
   var simulateEvent = function (actor, type) {
+    var posMap = qx.bom.element.Location.getPosition(actor);
+    var x = posMap.left + 1;
+    var y = posMap.top + 1;
     var eventData = {
       "bubbles": true,
       "button": -1,
-      "clientX": 1241,
-      "clientY": 360,
+      "clientX": x,
+      "clientY": y,
       "currentTarget": actor,
-      "pageX": 1241,
-      "pageY": 360,
+      "pageX": x,
+      "pageY": y,
       "returnValue": true,
-      "screenX": 1241,
-      "screenY": 490,
+      "screenX": x,
+      "screenY": y,
       "detail": 0,
       "view": window,
       "type": type,
-      "x": 1241,
-      "y": 360,
+      "x": x,
+      "y": y,
       "pointerId": 1,
       "width": 1,
       "height": 1,
@@ -48,7 +51,8 @@ describe("testing a infotrigger widget", function() {
       "tiltX": 0,
       "tiltY": 0,
       "pointerType": "mouse",
-      "isPrimary": true
+      "isPrimary": true,
+      "target": actor
     };
     // down
     var nativeEvent = new window.PointerEvent(type, eventData);

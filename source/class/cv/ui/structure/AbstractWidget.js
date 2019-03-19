@@ -260,8 +260,9 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
         qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) &&
         !this.isSendLongOnRelease() &&
         this.getShortThreshold() > 0) {
+        var clonedEv = ev.clone();
         this.__longPressTimer = qx.event.Timer.once(function () {
-          this._onLongTap(ev);
+          this._onLongTap(clonedEv);
           this._skipNextEvent = "tap";
           this.__abort();
         }, this, this.getShortThreshold());
