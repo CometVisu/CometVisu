@@ -12,10 +12,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (monaco, schemaNode) {
+  construct: function (schemaNode) {
     this.base(arguments);
     this.__elementCache = {};
-    this._monaco = monaco;
     this._schemaNode = schemaNode;
   },
 
@@ -26,7 +25,6 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
   */
   members: {
     __elementCache: null,
-    _monaco: null,
     _schemaNode: null,
 
     getLastOpenedTag: function (text) {
@@ -165,7 +163,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       return insertText;
     },
 
-    getAvailableElements: function (monaco, element, usedItems) {
+    getAvailableElements: function (element, usedItems) {
       var availableItems = [];
       var children = element.getAllowedElements();
 
@@ -192,7 +190,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       return availableItems;
     },
 
-    getAvailableAttributes: function (monaco, element, usedChildTags) {
+    getAvailableAttributes: function (element, usedChildTags) {
       var availableItems = [];
       // get all attributes for the element
       var attrs = element.allowedAttributes;
@@ -320,7 +318,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           }
           else if (isAttributeSearch) {
             // get attributes completions
-            res = currentItem ? this.getAvailableAttributes(monaco, currentItem, usedItems) : [];
+            res = currentItem ? this.getAvailableAttributes(currentItem, usedItems) : [];
           }
           else {
             // get elements completions
@@ -330,7 +328,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                 kind: window.monaco.languages.CompletionItemKind.Field
               });
             } else {
-              res = currentItem ? this.getAvailableElements(monaco, currentItem, usedItems) : [];
+              res = currentItem ? this.getAvailableElements(currentItem, usedItems) : [];
             }
           }
           return {suggestions: res};
@@ -346,7 +344,6 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
   */
   destruct: function () {
     this.__elementCache = null;
-    this._monaco = null;
     this._schemaNode = null;
   }
 });
