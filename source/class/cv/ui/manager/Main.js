@@ -143,6 +143,14 @@ qx.Class.define('cv.ui.manager.Main', {
           this.dispose();
           break;
 
+        case 'new-file':
+          this._onCreateFile();
+          break;
+
+        case 'new-folder':
+          this._onCreateFolder();
+          break;
+
         default:
           this.warn(actionName + ' handling is not implemented yet!');
           break;
@@ -315,16 +323,38 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     _onCreateFile: function () {
-
+      this._onCreate('file');
     },
 
     _onCreateFolder: function () {
+      this._onCreate('dir');
+    },
+
+    _onCreate: function (type) {
       var currentFolder = this.getCurrentFolder();
       if (!currentFolder) {
         return;
       }
       var folderItem = new cv.ui.manager.model.FileItem('', currentFolder.getPath(), currentFolder);
+      folderItem.set({
+        type: type,
+        readable: true,
+        writeable: true,
+        loaded: true,
+        editing: true,
+        modified: true,
+        parentFolder: currentFolder.getFullPath()
+      });
+      folderItem.setUserData('new', true);
       currentFolder.addChild(folderItem);
+      currentFolder.sortElements();
+      this._tree.refresh();
+
+      folderItem.addListenerOnce('editing', function (ev) {
+        // TODO: save the changes
+        currentFolder.sortElements();
+        this._tree.refresh();
+      }, this);
     },
 
     // overridden
@@ -374,7 +404,7 @@ qx.Class.define('cv.ui.manager.Main', {
       });
       this._tree.setDelegate({
         createItem: function () {
-          var item = new qx.ui.tree.VirtualTreeItem();
+          var item = new cv.ui.manager.tree.VirtualFsItem();
           item.addListener('dbltap', this._onDblTapTreeSelection, this);
           return item;
         }.bind(this),
@@ -386,7 +416,7 @@ qx.Class.define('cv.ui.manager.Main', {
           controller.bindProperty("open", "open", null, item, index);
           controller.bindProperty("readable", "enabled", null, item, index);
           controller.bindProperty("icon", "icon", null, item, index);
-          // TODO bind editing and use a tree item that supports an editing mode for its name
+          controller.bindProperty("editing", "editing", null, item, index);
         }
       });
       this._tree.openNode(rootFolder);
@@ -398,15 +428,20 @@ qx.Class.define('cv.ui.manager.Main', {
       // left toobar
       var leftBar = new qx.ui.toolbar.ToolBar();
       var buttonConfig = this._menuBar.getButtonConfiguration();
-      var newFile = new qx.ui.toolbar.Button(null, buttonConfig['new-file'].args[1], buttonConfig['new-file'].args[2]);
-      newFile.addListener('execute', this._onCreateFile, this);
+      var newFile = new qx.ui.toolbar.Button(null, buttonConfig['new-file'].args[1].replace(/\/[0-9]+$/, '/15'), buttonConfig['new-file'].args[2]);
+      newFile.setToolTipText(buttonConfig['new-file'].args[0]);
+      // newFile.addListener('execute', this._onCreateFile, this);
 
       this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
-      var newFolder = new qx.ui.toolbar.Button(null, buttonConfig['new-folder'].args[1], buttonConfig['new-folder'].args[2]);
-      newFolder.addListener('execute', this._onCreateFolder, this);
+      var newFolder = new qx.ui.toolbar.Button(null, buttonConfig['new-folder'].args[1].replace(/\/[0-9]+$/, '/15'), buttonConfig['new-folder'].args[2]);
+      newFolder.setToolTipText(buttonConfig['new-folder'].args[0]);
+      // newFolder.addListener('execute', this._onCreateFolder, this);
       this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
 
       var createPart = new qx.ui.toolbar.Part();
+      createPart.set({
+        marginLeft: 0
+      });
       createPart.add(newFile);
       createPart.add(newFolder);
       leftBar.add(createPart);

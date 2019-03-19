@@ -24,11 +24,30 @@ class FsController extends FileHandler {
   }
 
   create(context) {
-    return this.__processRequest(context, fsPath => {
-      this.createFolder(context, fsPath, context.requestBody);
-    }, fsPath => {
-      this.createFile(context, fsPath, context.requestBody);
-    }, 'create')
+    const mount = this.__getMount(context.params.query.path);
+    const fsPath = this.__getAbsolutePath(context.params.query.path, mount)
+    const parts = fsPath.split('/')
+    parts.pop();
+    const parentPath = parts.join('/')
+    if (fs.existsSync(parentPath)) {
+      try {
+        if (!FileHandler.checkAccess(parentPath) || (mount && mount.writeable === false) || fs.existsSync(fsPath)) {
+          this.respondMessage(context,403, 'Forbidden')
+        } else {
+          if (context.params.query.type === 'dir') {
+            this.createFolder(context, fsPath);
+          } else {
+            this.createFile(context, fsPath, context.requestBody);
+          }
+        }
+      } catch (err) {
+        console.error(err)
+        // no read access to path
+        this.respondMessage(context,403, 'Forbidden')
+      }
+    } else {
+      this.respondMessage(context,404, 'Not found')
+    }
   }
 
   update(context) {

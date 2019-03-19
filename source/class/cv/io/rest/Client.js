@@ -58,10 +58,13 @@ qx.Class.define('cv.io.rest.Client', {
             method: 'PUT', url: '/fs?path={path}'
           },
           create: {
-            method: 'POST', url: '/fs?path={path}'
+            method: 'POST', url: '/fs?path={path}&type={type}'
           },
           "delete": {
             method: 'DELETE', url: '/fs?path={path}'
+          },
+          move: {
+            method: 'PUT', url: '/fs/move?src={src}&target={target}'
           }
         });
         this.__dirClient.setBaseUrl(this.BASE_URL);
@@ -69,7 +72,7 @@ qx.Class.define('cv.io.rest.Client', {
           if (params.hash) {
             req.setUrl(req.getUrl() + '&hash=' + params.hash);
           }
-          if (action === 'update') {
+          if (action === 'update' || action === 'create') {
             var parts = params.path.split('.');
             if (parts.length > 1) {
               var type = parts.pop();
@@ -94,8 +97,12 @@ qx.Class.define('cv.io.rest.Client', {
                   req.setRequestHeader('Content-Type', 'text/plain');
                   break;
               }
+            } else {
+              req.setRequestHeader('Content-Type', 'text/plain');
             }
             req.setAccept('application/json');
+          } else if (action === 'move') {
+            req.setRequestHeader('Content-Type', 'text/plain');
           }
         });
 

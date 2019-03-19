@@ -37,6 +37,12 @@ qx.Theme.define("cv.theme.dark.Decoration", {
       style: {
         backgroundColor: 'button'
       }
+    },
+
+    'cv-snackbar-msg-error': {
+      style: {
+        backgroundColor: 'material-textfield-invalid'
+      }
     }
   }
 });

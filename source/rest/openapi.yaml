@@ -15,6 +15,12 @@ paths:
         - fs
       summary: Move folder or file to a new place
       description: ''
+      requestBody:
+        description: no content just described here because its needed in a put request
+        content:
+          text/plain:
+            schema:
+              type: string
       parameters:
         - name: src
           in: query
@@ -79,6 +85,14 @@ paths:
     post:
       tags:
         - fs
+      parameters:
+        - name: type
+          in: query
+          description: type to create (file or folder)
+          required: true
+          schema:
+            type: string
+            enum: ['dir', 'file']
       summary: Create a new file or folder on the host
       description: ''
       operationId: create

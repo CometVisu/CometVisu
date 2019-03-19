@@ -162,6 +162,24 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     __fullPath: null,
     __onLoadCallback: null,
 
+    rename: function (newName) {
+      var client = cv.io.rest.Client.getFsClient();
+      var newPath = this.__path || '';
+      if (newPath.length > 0 && !newPath.endsWith('/')) {
+        newPath += '/';
+      }
+      newPath += newName;
+      if (this.getUserData('new') === true) {
+        // create new item
+        client.create({path: newPath, type: this.getType()});
+        // TODO: reset the new value after successful response
+        this.setUserData('new', null);
+      } else if (this.getFullPath() !== newPath) {
+        client.move({src: this.getFullPath(), target: newPath});
+      }
+      // TODO: handle responses
+    },
+
     _applyName: function () {
       this.__fullPath = null;
     },
