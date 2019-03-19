@@ -79,6 +79,16 @@ class FileHandler extends AbstractHandler {
     }
   }
 
+  rename(context, sourcePath, targetPath) {
+    try {
+      fs.renameSync(sourcePath, targetPath)
+      this.ok(context);
+    } catch (err) {
+    console.error(err)
+    this.respondMessage(context,405, err.toString())
+  }
+  }
+
   __saveFile(file, content, context) {
     const hash = context.params.query.hash;
     if (hash) {

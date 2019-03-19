@@ -45,6 +45,26 @@ class FsController extends FileHandler {
     }, 'delete')
   }
 
+  move(context) {
+    const mount = this.__getMount(context.params.query.path);
+    const fsPath = this.__getAbsolutePath(context.params.query.path, mount)
+    const targetMount = this.__getMount(context.params.query.target)
+    const targetPath = this.__getAbsolutePath(context.params.query.target, targetMount)
+    if (!fs.existsSync(fsPath)) {
+      this.respondMessage(context,404, 'Source not found')
+      return;
+    }
+    if (fs.existsSync(targetPath)) {
+      this.respondMessage(context,406, 'Target exists')
+      return;
+    }
+    if (!FileHandler.checkAccess(targetPath) || (mount && mount.writeable === false) || (targetMount && targetMount.writeable === false)) {
+      this.respondMessage(context, 403, 'Forbidden')
+    } else {
+      this.rename(context, fsPath, targetPath);
+    }
+  }
+
   __getMount(path) {
     let mountKey = this.mounts.indexOf(path);
     if (mountKey < 0) {

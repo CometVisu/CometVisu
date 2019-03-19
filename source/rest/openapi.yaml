@@ -9,6 +9,38 @@ tags:
   - name: config
     description: Configuration and Settings
 paths:
+  '/fs/move':
+    put:
+      tags:
+        - fs
+      summary: Move folder or file to a new place
+      description: ''
+      parameters:
+        - name: src
+          in: query
+          description: current path of the filesystem entry
+          required: true
+          schema:
+            type: string
+        - name: target
+          in: query
+          description: new path of the filesystem entry
+          required: true
+          schema:
+            type: string
+      operationId: move
+      x-exegesis-controller: FsController
+      responses:
+        '200':
+           description: successful operation
+        '403':
+           description: Not allowed
+        '404':
+          description: Source does not exist
+        '405':
+          description: Error occurred
+        '406':
+           description: Target does exist
   '/fs':
     parameters:
       - name: path
