@@ -21,6 +21,31 @@ qx.Class.define('cv.ui.manager.snackbar.Controller', {
 
   /*
   ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    info: function (message) {
+      var msg = new cv.ui.manager.model.Message();
+      msg.set({
+        title: message
+      });
+      qx.event.message.Bus.dispatchByName('cv.manager.msg.snackbar', msg);
+    },
+
+    error: function (message) {
+      var msg = new cv.ui.manager.model.Message();
+      msg.set({
+        title: message,
+        type: 'error',
+        sticky: true
+      });
+      qx.event.message.Bus.dispatchByName('cv.manager.msg.snackbar', msg);
+    }
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */

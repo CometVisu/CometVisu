@@ -392,13 +392,17 @@ qx.Class.define('cv.ui.manager.Main', {
 
       var rootFolder = new cv.ui.manager.model.FileItem('.');
       // TODO: needs to be verified by the backend
-      rootFolder.setWriteable(true);
+      rootFolder.set({
+        writeable: true,
+        readable: true,
+        open: true
+      });
       this._tree = new qx.ui.tree.VirtualTree(rootFolder, 'name', 'children');
       rootFolder.load(function () {
         this._tree.setHideRoot(true);
       }, this);
       this._tree.set({
-        selectionMode: 'one',
+        selectionMode: 'single',
         minWidth: 250,
         openMode: 'tap'
       });
@@ -419,7 +423,6 @@ qx.Class.define('cv.ui.manager.Main', {
           controller.bindProperty("editing", "editing", null, item, index);
         }
       });
-      this._tree.openNode(rootFolder);
       this._tree.getSelection().addListener("change", this._onChangeTreeSelection, this);
 
       // left container
@@ -438,6 +441,15 @@ qx.Class.define('cv.ui.manager.Main', {
       // newFolder.addListener('execute', this._onCreateFolder, this);
       this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
 
+      var reload = new qx.ui.toolbar.Button(null, '@MaterialIcons/sync/15');
+      reload.setToolTipText(qx.locale.Manager.tr('Reload'));
+      reload.addListener('execute', function () {
+        rootFolder.reload(function () {
+          rootFolder.setOpen(true);
+          this._tree.refresh();
+        }, this);
+      }, this);
+
       var createPart = new qx.ui.toolbar.Part();
       createPart.set({
         marginLeft: 0
@@ -445,6 +457,9 @@ qx.Class.define('cv.ui.manager.Main', {
       createPart.add(newFile);
       createPart.add(newFolder);
       leftBar.add(createPart);
+
+      leftBar.add(new qx.ui.core.Spacer(), {flex: 1});
+      leftBar.add(reload);
 
       leftContainer.add(leftBar);
       leftContainer.add(this._tree, {flex: 1});

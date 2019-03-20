@@ -171,13 +171,37 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       newPath += newName;
       if (this.getUserData('new') === true) {
         // create new item
-        client.create({path: newPath, type: this.getType()});
-        // TODO: reset the new value after successful response
-        this.setUserData('new', null);
+        client.createSync({path: newPath, type: this.getType()}, function (err, res) {
+          if (err) {
+            cv.ui.manager.snackbar.Controller.error(err);
+          } else {
+            cv.ui.manager.snackbar.Controller.info(this.getType() === 'file' ?
+              qx.locale.Manager.tr('File has been created') :
+              qx.locale.Manager.tr('Folder has been created')
+            );
+            this.setUserData('new', null);
+            this.resetModified();
+            this.setName(newName);
+            this.reload();
+          }
+        }, this);
       } else if (this.getFullPath() !== newPath) {
-        client.move({src: this.getFullPath(), target: newPath});
+        client.moveSync({src: this.getFullPath(), target: newPath}, function (err, res) {
+          if (err) {
+            cv.ui.manager.snackbar.Controller.error(err);
+          } else {
+            cv.ui.manager.snackbar.Controller.info(this.getType() === 'file' ?
+              qx.locale.Manager.tr('File has been renamed') :
+              qx.locale.Manager.tr('Folder has been renamed')
+            );
+            this.setUserData('new', null);
+            this.setName(newName);
+            this.resetModified();
+            this.reload();
+          }
+          this.resetEditing();
+        }, this);
       }
-      // TODO: handle responses
     },
 
     _applyName: function () {
@@ -234,9 +258,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.getChildren().removeAll();
     },
 
-    reload : function() {
+    reload : function(callback, context) {
       this.unload();
-      return this.load();
+      return this.load(callback, context);
     },
     
     _applyLoaded: function(value) {
