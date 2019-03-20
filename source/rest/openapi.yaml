@@ -14,13 +14,6 @@ paths:
       tags:
         - fs
       summary: Move folder or file to a new place
-      description: ''
-      requestBody:
-        description: no content just described here because its needed in a put request
-        content:
-          text/plain:
-            schema:
-              type: string
       parameters:
         - name: src
           in: query
