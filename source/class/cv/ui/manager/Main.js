@@ -22,6 +22,8 @@ qx.Class.define('cv.ui.manager.Main', {
     this.__actionDispatcher.setMain(this);
     this.__initCommands();
     this._draw();
+
+    qx.event.message.Bus.subscribe('cv.manager.tree.reload', this.reloadTree, this);
   },
 
   /*
@@ -104,6 +106,18 @@ qx.Class.define('cv.ui.manager.Main', {
       check: 'cv.ui.manager.model.FileItem',
       nullable: true,
       apply: '_applyCurrentFolder'
+    },
+
+    currentSelection: {
+      check: 'cv.ui.manager.model.FileItem',
+      nullable: true,
+      apply: '_applyCurrentSelection'
+    },
+
+    deleteableSelection: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeDeleteableSelection'
     }
   },
 
@@ -126,7 +140,7 @@ qx.Class.define('cv.ui.manager.Main', {
     __actionDispatcher: null,
 
     canHandleAction: function (actionName) {
-      return ['close', 'quit', 'hidden-config', 'new-file', 'new-folder'].includes(actionName);
+      return ['close', 'quit', 'hidden-config', 'new-file', 'new-folder', 'delete'].includes(actionName);
     },
 
     handleAction: function (actionName) {
@@ -149,6 +163,10 @@ qx.Class.define('cv.ui.manager.Main', {
 
         case 'new-folder':
           this._onCreateFolder();
+          break;
+
+        case 'delete':
+          this._onDelete();
           break;
 
         default:
@@ -183,8 +201,10 @@ qx.Class.define('cv.ui.manager.Main', {
         } else {
           this.setCurrentFolder(node);
         }
+        this.setCurrentSelection(node);
       } else {
-        this.resetWriteableFolder();
+        this.resetCurrentFolder();
+        this.resetCurrentSelection();
       }
     },
 
@@ -194,6 +214,19 @@ qx.Class.define('cv.ui.manager.Main', {
       }
       if (value) {
         value.bind('writeable', this, 'writeableFolder');
+      } else {
+        this.resetWriteableFolder();
+      }
+    },
+
+    _applyCurrentSelection: function (value, old) {
+      if (old) {
+        old.removeRelatedBindings(this);
+      }
+      if (value) {
+        value.bind('writeable', this, 'deleteableSelection');
+      } else {
+        this.resetDeleteableSelection();
       }
     },
 
@@ -289,6 +322,7 @@ qx.Class.define('cv.ui.manager.Main', {
       group.add('new-file', new qx.ui.command.Command('Ctrl+N'));
       group.add('new-folder', new qx.ui.command.Command('Ctrl+Shift+N'));
       group.add('quit', new qx.ui.command.Command('Ctrl+Q'));
+      group.add('delete', new qx.ui.command.Command('Del'));
 
       // edit commands (adding cut/copy/paste command will deactive the native browser functions)
       // and as we cannot simulate pasting from clipboard, we do not use them here
@@ -330,6 +364,23 @@ qx.Class.define('cv.ui.manager.Main', {
       this._onCreate('dir');
     },
 
+    _onDelete: function () {
+      var item = this.getCurrentSelection();
+      if (item) {
+        item.delete(function () {
+
+        }, this);
+      }
+    },
+
+    reloadTree: function () {
+      var root = this._tree.getModel();
+      root.reload(function () {
+        this._tree.refresh();
+        root.setOpen(true);
+      }, this);
+    },
+
     _onCreate: function (type) {
       var currentFolder = this.getCurrentFolder();
       if (!currentFolder) {
@@ -350,8 +401,7 @@ qx.Class.define('cv.ui.manager.Main', {
       currentFolder.sortElements();
       this._tree.refresh();
 
-      folderItem.addListenerOnce('editing', function (ev) {
-        // TODO: save the changes
+      folderItem.addListenerOnce('editing', function () {
         currentFolder.sortElements();
         this._tree.refresh();
       }, this);
@@ -430,25 +480,28 @@ qx.Class.define('cv.ui.manager.Main', {
 
       // left toobar
       var leftBar = new qx.ui.toolbar.ToolBar();
+      leftBar.setAppearance('cv-toolbar');
       var buttonConfig = this._menuBar.getButtonConfiguration();
-      var newFile = new qx.ui.toolbar.Button(null, buttonConfig['new-file'].args[1].replace(/\/[0-9]+$/, '/15'), buttonConfig['new-file'].args[2]);
-      newFile.setToolTipText(buttonConfig['new-file'].args[0]);
-      // newFile.addListener('execute', this._onCreateFile, this);
+
+      function createButton (name) {
+        var args = buttonConfig[name].args;
+        var button = new qx.ui.toolbar.Button(null, args[1].replace(/\/[0-9]+$/, '/15'), args[2]);
+        button.setAppearance('cv-toolbar-button');
+        button.setToolTipText(args[0]);
+        return button;
+      }
+      var newFile = createButton('new-file');
+      var newFolder = createButton('new-folder');
+      var deleteSelection = createButton('delete');
 
       this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
-      var newFolder = new qx.ui.toolbar.Button(null, buttonConfig['new-folder'].args[1].replace(/\/[0-9]+$/, '/15'), buttonConfig['new-folder'].args[2]);
-      newFolder.setToolTipText(buttonConfig['new-folder'].args[0]);
-      // newFolder.addListener('execute', this._onCreateFolder, this);
       this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
+      this.bind('deleteableSelection', buttonConfig['delete'].args[2], 'enabled');
 
       var reload = new qx.ui.toolbar.Button(null, '@MaterialIcons/sync/15');
+      reload.setAppearance('cv-toolbar-button');
       reload.setToolTipText(qx.locale.Manager.tr('Reload'));
-      reload.addListener('execute', function () {
-        rootFolder.reload(function () {
-          rootFolder.setOpen(true);
-          this._tree.refresh();
-        }, this);
-      }, this);
+      reload.addListener('execute', this.reloadTree, this);
 
       var createPart = new qx.ui.toolbar.Part();
       createPart.set({
@@ -457,6 +510,8 @@ qx.Class.define('cv.ui.manager.Main', {
       createPart.add(newFile);
       createPart.add(newFolder);
       leftBar.add(createPart);
+
+      leftBar.add(deleteSelection);
 
       leftBar.add(new qx.ui.core.Spacer(), {flex: 1});
       leftBar.add(reload);
@@ -547,5 +602,6 @@ qx.Class.define('cv.ui.manager.Main', {
 
     // register special file editors
     statics.registerFileEditor("hidden.php", cv.ui.manager.editor.Config);
+    qx.event.message.Bus.unsubscribe('cv.manager.tree.reload', this.reloadTree, this);
   }
 });

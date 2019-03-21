@@ -138,13 +138,13 @@ class FileHandler extends AbstractHandler {
         if (!fs.existsSync(this.trashFolder)) {
           fs.mkdirSync(this.trashFolder)
         }
-        const baseTrashFile = path.join(absTrashFolder, relDir, filename)
+        const baseTrashFile = path.join(this.trashFolder, relDir, filename)
         let trashFile = baseTrashFile
         let index = 1
         while (fs.existsSync(trashFile)) {
           trashFile = baseTrashFile + '.' + index++
         }
-        fs.rename(file, trashFile)
+        fs.renameSync(file, trashFile)
       } else {
         fs.unlinkSync(file)
       }
@@ -172,7 +172,7 @@ class FileHandler extends AbstractHandler {
         while (fs.existsSync(trashFile)) {
           trashFile = baseTrashFile + '-' + index++
         }
-        fs.rename(folder, trashFile)
+        fs.renameSync(folder, trashFile)
       } else {
         if (!force || fs.readdirSync(folder).length === 0) {
           fs.rmdirSync(folder)

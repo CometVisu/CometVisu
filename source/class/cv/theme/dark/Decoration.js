@@ -43,6 +43,13 @@ qx.Theme.define("cv.theme.dark.Decoration", {
       style: {
         backgroundColor: 'material-textfield-invalid'
       }
+    },
+
+    'cv-toolbar': {
+      style: {
+        width: [1, 0, 1, 0],
+        color: 'background-main'
+      }
     }
   }
 });

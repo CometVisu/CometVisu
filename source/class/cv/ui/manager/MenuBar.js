@@ -59,6 +59,12 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           args: [this.tr('Save as...'), null, this._commandGroup.get('save-as')],
           enabled: false
         },
+        'delete': {
+          menu: 'file-menu',
+          args: [this.tr('Delete'), '@MaterialIcons/delete/18', this._commandGroup.get('delete')],
+          enabled: false,
+          separator: 'before'
+        },
         'close': {
           menu: 'file-menu',
           args: [this.tr('Close file'), '@MaterialIcons/close/18', this._commandGroup.get('close')],

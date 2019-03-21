@@ -103,8 +103,6 @@ qx.Class.define('cv.io.rest.Client', {
               req.setRequestHeader('Content-Type', 'text/plain');
             }
             req.setAccept('application/json');
-          } else if (action === 'move') {
-            req.setRequestHeader('Content-Type', 'text/plain');
           }
         });
 

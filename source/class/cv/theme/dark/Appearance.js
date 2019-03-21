@@ -168,6 +168,26 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           cursor: 'pointer'
         };
       }
+    },
+    'cv-toolbar': {
+      include: 'toolbar',
+      alias: 'toolbar',
+
+      style: function () {
+        return {
+          // decorator: 'cv-toolbar'
+        };
+      }
+    },
+    'cv-toolbar-button': {
+      include: 'toolbar-button',
+      alias: 'toolbar-button',
+
+      style: function () {
+        return {
+          // margin: 1
+        };
+      }
     }
   }
 });

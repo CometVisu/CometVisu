@@ -171,7 +171,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       newPath += newName;
       if (this.getUserData('new') === true) {
         // create new item
-        client.createSync({path: newPath, type: this.getType()}, function (err, res) {
+        client.createSync({path: newPath, type: this.getType()}, function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(err);
           } else {
@@ -186,7 +186,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
           }
         }, this);
       } else if (this.getFullPath() !== newPath) {
-        client.moveSync({src: this.getFullPath(), target: newPath}, function (err, res) {
+        client.moveSync({src: this.getFullPath(), target: newPath}, function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(err);
           } else {
@@ -200,6 +200,32 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
             this.reload();
           }
           this.resetEditing();
+        }, this);
+      }
+    },
+
+    delete: function(callback, context) {
+      if (this.getUserData('new') === true) {
+        // new file, no need to call the backend
+        callback.apply(context);
+      } else {
+        var client = cv.io.rest.Client.getFsClient();
+        client.deleteSync({path: this.getFullPath()}, null, function (err) {
+          if (err) {
+            cv.ui.manager.snackbar.Controller.error(err);
+          } else {
+            cv.ui.manager.snackbar.Controller.info(this.getType() === 'file' ?
+              qx.locale.Manager.tr('File has been deleted') :
+              qx.locale.Manager.tr('Folder has been deleted')
+            );
+            callback.apply(context);
+            var parent = this.getParent();
+            if (parent) {
+              parent.getChildren().remove(this);
+              qx.event.message.Bus.dispatchByName('cv.manager.tree.reload');
+            }
+            this.dispose();
+          }
         }, this);
       }
     },
