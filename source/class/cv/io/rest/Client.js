@@ -158,7 +158,7 @@ qx.Class.define('cv.io.rest.Client', {
       }
     },
 
-    _onSaveError: function () {
+    _onSaveError: function (ev) {
       var req = ev.getRequest();
       var id = parseInt(req.toHashCode(), 10);
       // only handle this events, when there is no callback for it

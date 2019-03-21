@@ -204,7 +204,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
     },
 
-    delete: function(callback, context) {
+    'delete': function(callback, context) {
       if (this.getUserData('new') === true) {
         // new file, no need to call the backend
         callback.apply(context);
