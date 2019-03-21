@@ -90,10 +90,8 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
         var pageId = this.getParentPage().getPath();
         var broker = qx.event.message.Bus;
 
-        // stop refreshing when page is left
-        broker.subscribe("path." + pageId + ".exitingPageChange", function () {
-          this._stopRefresh(this._timer);
-        }, this);
+        // let the refresh only be active when this widget is visible
+        this.setRestartOnVisible(true);
 
         broker.subscribe("path." + pageId + ".beforePageChange", function () {
           if (!this._init) {
@@ -106,8 +104,6 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
           if (this._init) {
             this.initDiagram(false);
           }
-          // start refreshing when page is entered
-          this._startRefresh(this._timer, true);
         }, this);
 
         // initialize the diagram but don't make the initialization process wait for it
