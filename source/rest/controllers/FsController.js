@@ -65,8 +65,8 @@ class FsController extends FileHandler {
   }
 
   move(context) {
-    const mount = this.__getMount(context.params.query.path);
-    const fsPath = this.__getAbsolutePath(context.params.query.path, mount)
+    const mount = this.__getMount(context.params.query.src);
+    const fsPath = this.__getAbsolutePath(context.params.query.src, mount)
     const targetMount = this.__getMount(context.params.query.target)
     const targetPath = this.__getAbsolutePath(context.params.query.target, targetMount)
     if (!fs.existsSync(fsPath)) {

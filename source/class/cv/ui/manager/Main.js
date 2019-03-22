@@ -20,10 +20,14 @@ qx.Class.define('cv.ui.manager.Main', {
     this.initOpenFiles(new qx.data.Array());
     this.__actionDispatcher = cv.ui.manager.control.ActionDispatcher.getInstance();
     this.__actionDispatcher.setMain(this);
-    this.__initCommands();
-    this._draw();
 
-    qx.event.message.Bus.subscribe('cv.manager.tree.reload', this.reloadTree, this);
+    new qx.util.DeferredCall(function () {
+      this.__initCommands();
+      this._draw();
+      qx.event.message.Bus.subscribe('cv.manager.tree.reload', this.reloadTree, this);
+      qx.event.message.Bus.subscribe('cv.manager.tree.enable', this._onEnableTree, this);
+    }, this).schedule();
+
   },
 
   /*
@@ -188,7 +192,16 @@ qx.Class.define('cv.ui.manager.Main', {
      * @private
      */
     _onDblTapTreeSelection: function () {
-      this.__openSelectedFile(false);
+      var sel = this._tree.getSelection();
+      if (sel.length > 0) {
+        var node = sel.getItem(0);
+        if (node.getType() === 'file') {
+          this.__openSelectedFile(false);
+        } else {
+          // change to edit mode
+          node.setEditing(true);
+        }
+      }
     },
 
     __openSelectedFile: function (preview) {
@@ -381,6 +394,10 @@ qx.Class.define('cv.ui.manager.Main', {
       }, this);
     },
 
+    _onEnableTree: function (ev) {
+      this._tree.setEnabled(ev.getData());
+    },
+
     _onCreate: function (type) {
       var currentFolder = this.getCurrentFolder();
       if (!currentFolder) {
@@ -400,6 +417,7 @@ qx.Class.define('cv.ui.manager.Main', {
       currentFolder.addChild(folderItem);
       currentFolder.sortElements();
       this._tree.refresh();
+      this._tree.setSelection([folderItem]);
 
       folderItem.addListenerOnce('editing', function () {
         currentFolder.sortElements();
@@ -603,5 +621,6 @@ qx.Class.define('cv.ui.manager.Main', {
     // register special file editors
     statics.registerFileEditor("hidden.php", cv.ui.manager.editor.Config);
     qx.event.message.Bus.unsubscribe('cv.manager.tree.reload', this.reloadTree, this);
+    qx.event.message.Bus.unsubscribe('cv.manager.tree.enable', this._onEnableTree, this);
   }
 });

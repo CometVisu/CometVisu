@@ -38,8 +38,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     loaded : {
       check : "Boolean",
       event : "changeLoaded",
-      init : false,
-      apply: '_applyLoaded'
+      init : false
     },
 
     loading : {
@@ -288,12 +287,6 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.unload();
       return this.load(callback, context);
     },
-    
-    _applyLoaded: function(value) {
-      if (value) {
-        this.__removeListeners();
-      }
-    },
 
     addChild: function (child) {
       var oldParent = child.getParent();
@@ -304,20 +297,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.getChildren().push(child);
     },
 
-    __addListeners: function () {
-      var client = cv.io.rest.Client.getFsClient();
-      client.addListener('readSuccess', this._onGet, this);
-      client.addListener('readError', this._onError, this);
-    },
-
-    __removeListeners: function () {
-      var client = cv.io.rest.Client.getFsClient();
-      client.removeListener('readSuccess', this._onGet, this);
-      client.removeListener('readError', this._onError, this);
-    },
-
-    _onGet: function (ev) {
-      var data = ev.getData();
+    _onGet: function (data) {
       var children = this.getChildren();
       children.removeAll();
       data.forEach(function (node) {
@@ -334,8 +314,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.setLoading(false);
     },
 
-    _onError: function (ev) {
-      console.error(ev.getData());
+    _onError: function (err) {
+      console.error(err);
+      cv.ui.manager.snackbar.Controller.error(err);
       this.getChildren().removeAll();
       this.setLoaded(true);
       if (this.__onLoadCallback) {
@@ -361,11 +342,16 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
       else {
         this.setLoading(true);
-        this.__addListeners();
         if (callback) {
           this.__onLoadCallback = callback.bind(context || this);
         }
-        cv.io.rest.Client.getFsClient().read({path: this.getFullPath()});
+        cv.io.rest.Client.getFsClient().readSync({path: this.getFullPath()}, function (err, res) {
+          if (err) {
+            this._onError(err);
+          } else {
+            this._onGet(res);
+          }
+        }, this);
       }
     },
 
@@ -418,7 +404,6 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
   ***********************************************
   */
   destruct: function () {
-    this.__removeListeners();
     this.__fullPath = null;
   } 
 });
