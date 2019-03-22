@@ -39,8 +39,19 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
         } else {
           field.exclude();
           // save new name
-          this.getModel().rename(field.getValue());
+          if (field.getValue() !== this.getName()) {
+            this.getModel().rename(field.getValue());
+          }
         }
+      }
+    },
+
+    _onKeypress: function (ev) {
+      if (ev.getKeyIdentifier() === 'Enter') {
+        this.setEditing(false);
+      } else if (ev.getKeyIdentifier() === 'Esc') {
+        this.getChildControl('edit').setValue(this.getName());
+        this.setEditing(false);
       }
     },
 
@@ -51,6 +62,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
        switch (id) {
          case 'edit':
            control = new qx.ui.form.TextField();
+           control.addListener('keypress', this._onKeypress, this);
            control.exclude();
            control.addListener('changeVisibility', function (ev) {
               if (ev.getData() === 'visible') {
@@ -60,7 +72,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
               }
            }, this);
            control.addListener('blur', function () {
-             this.resetEditing();
+             this.setEditing(false);
            }, this);
            this._add(control);
            break;
