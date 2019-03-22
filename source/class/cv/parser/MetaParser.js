@@ -275,6 +275,14 @@ qx.Class.define("cv.parser.MetaParser", {
         if (name) {
           config.topic = "cv.state."+name;
         }
+        var icon = qx.bom.element.Attribute.get(elem, 'icon');
+        if (icon) {
+          config.icon = icon;
+          var iconClasses = qx.bom.element.Attribute.get(elem, 'icon-classes');
+          if (iconClasses) {
+            config.iconClasses = iconClasses;
+          }
+        }
 
         // templates
         var titleElem = qx.bom.Selector.query('title-template', elem)[0];
@@ -363,10 +371,11 @@ qx.Class.define("cv.parser.MetaParser", {
             }, this);
             areq.send();
           } else {
+            var cleaned = qx.bom.element.Attribute.get(elem, 'html').replace(/\n\s*/g, '').trim();
             cv.parser.WidgetParser.addTemplate(
               templateName,
               // templates can only have one single root element, so we wrap it here
-              '<root>' + qx.bom.element.Attribute.get(elem, 'html') + '</root>'
+              '<root>' + cleaned + '</root>'
             );
           }
         }, this);
