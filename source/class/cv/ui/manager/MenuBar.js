@@ -13,6 +13,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
     this.base(arguments);
     this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
     this.__buttons = {};
+
     this._draw();
   },
 
@@ -32,6 +33,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
       this._createChildControl('edit');
       this._createChildControl('preferences');
       this.add(new qx.ui.core.Spacer(), {flex: 1});
+      console.log('draw menubar');
       this._createChildControl('title');
       this.add(new qx.ui.core.Spacer(), {flex: 1});
 
@@ -40,17 +42,17 @@ qx.Class.define('cv.ui.manager.MenuBar', {
       this.__defaultButtonConfiguration = {
         'new-file': {
           menu: 'file-menu',
-          args: [this.tr('New file'), '@MaterialIcons/note_add/18', this._commandGroup.get('new-file')],
+          args: [this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file')],
           enabled: true
         },
         'new-folder': {
           menu: 'file-menu',
-          args: [this.tr('New folder'), '@MaterialIcons/create_new_folder/18', this._commandGroup.get('new-folder')],
+          args: [this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder')],
           enabled: true
         },
         'save': {
           menu: 'file-menu',
-          args: [this.tr('Save'), '@MaterialIcons/save/18', this._commandGroup.get('save')],
+          args: [this.tr('Save'), cv.theme.dark.Images.getIcon('save', 18), this._commandGroup.get('save')],
           enabled: false,
           separator: 'before'
         },
@@ -61,31 +63,31 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         },
         'delete': {
           menu: 'file-menu',
-          args: [this.tr('Delete'), '@MaterialIcons/delete/18', this._commandGroup.get('delete')],
+          args: [this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18), this._commandGroup.get('delete')],
           enabled: false,
           separator: 'before'
         },
         'close': {
           menu: 'file-menu',
-          args: [this.tr('Close file'), '@MaterialIcons/close/18', this._commandGroup.get('close')],
+          args: [this.tr('Close file'), cv.theme.dark.Images.getIcon('close', 18), this._commandGroup.get('close')],
           enabled: false,
           separator: 'before'
         },
         'quit': {
           menu: 'file-menu',
-          args: [this.tr('Quit'), '@MaterialIcons/exit_to_app/18', this._commandGroup.get('quit')],
+          args: [this.tr('Quit'), cv.theme.dark.Images.getIcon('quit', 18), this._commandGroup.get('quit')],
           enabled: true,
           separator: 'before'
         },
         // edit menu basics
         'undo': {
           menu: 'edit-menu',
-          args: [this.tr('Undo'), '@MaterialIcons/undo/18', this.tr('Ctrl+Z')],
+          args: [this.tr('Undo'), cv.theme.dark.Images.getIcon('undo', 18), this.tr('Ctrl+Z')],
           enabled: true
         },
         'redo': {
           menu: 'edit-menu',
-          args: [this.tr('Redo'), '@MaterialIcons/redo/18', this.tr('Ctrl+Y')],
+          args: [this.tr('Redo'), cv.theme.dark.Images.getIcon('redo', 18), this.tr('Ctrl+Y')],
           enabled: true
         },
         'cut': {
@@ -106,7 +108,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         },
         'hidden-config': {
           menu: 'edit-menu',
-          args: [this.tr('Hidden configuration'), '@MaterialIcons/settings/18'],
+          args: [this.tr('Hidden configuration'), cv.theme.dark.Images.getIcon('hidden-config', 18)],
           enabled: false
         },
         // preferences

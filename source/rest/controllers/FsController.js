@@ -19,7 +19,7 @@ class FsController extends FileHandler {
     return this.__processRequest(context, (fsPath, mount) => {
       return this.__folderListing(fsPath, mount);
     }, fsPath => {
-      return fs.readFileSync(fsPath, 'utf8')
+      this.sendFile(context, fsPath);
     }, 'read')
   }
 

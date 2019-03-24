@@ -21,13 +21,8 @@ qx.Class.define('cv.ui.manager.Main', {
     this.__actionDispatcher = cv.ui.manager.control.ActionDispatcher.getInstance();
     this.__actionDispatcher.setMain(this);
 
-    new qx.util.DeferredCall(function () {
-      this.__initCommands();
-      this._draw();
-      qx.event.message.Bus.subscribe('cv.manager.tree.reload', this.reloadTree, this);
-      qx.event.message.Bus.subscribe('cv.manager.tree.enable', this._onEnableTree, this);
-    }, this).schedule();
-
+    this.__initCommands();
+    this._draw();
   },
 
   /*
@@ -183,36 +178,22 @@ qx.Class.define('cv.ui.manager.Main', {
      * open selected file in preview mode
      * @private
      */
-    _onChangeTreeSelection: function () {
-     this.__openSelectedFile(true);
+    _onChangeTreeSelection: function (ev) {
+      var data = ev.getData();
+      this.__openSelectedFile(data.node, data.mode);
     },
 
-    /**
-     * Permanantly open file
-     * @private
-     */
-    _onDblTapTreeSelection: function () {
-      var sel = this._tree.getSelection();
-      if (sel.length > 0) {
-        var node = sel.getItem(0);
+    __openSelectedFile: function (node, mode) {
+      if (node) {
         if (node.getType() === 'file') {
-          this.__openSelectedFile(false);
-        } else {
-          // change to edit mode
-          node.setEditing(true);
-        }
-      }
-    },
-
-    __openSelectedFile: function (preview) {
-      var sel = this._tree.getSelection();
-      if (sel.length > 0) {
-        var node = sel.getItem(0);
-        if (node.getType() === 'file') {
-          this.openFile(node, preview);
+          this.openFile(node, mode === 'tap');
           this.setCurrentFolder(node.getParent());
         } else {
           this.setCurrentFolder(node);
+          if (mode === 'dbltap') {
+            // edit folder name on dbltap
+            node.setEditing(true);
+          }
         }
         this.setCurrentSelection(node);
       } else {
@@ -337,7 +318,9 @@ qx.Class.define('cv.ui.manager.Main', {
       group.add('quit', new qx.ui.command.Command('Ctrl+Q'));
       group.add('delete', new qx.ui.command.Command('Del'));
 
-      // edit commands (adding cut/copy/paste command will deactive the native browser functions)
+      group.add('rename', new qx.ui.command.Command('F2'));
+
+      // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
       // and as we cannot simulate pasting from clipboard, we do not use them here
       // group.add('cut', new qx.ui.command.Command('Ctrl+X'));
       // group.add('copy', new qx.ui.command.Command('Ctrl+C'));
@@ -354,11 +337,11 @@ qx.Class.define('cv.ui.manager.Main', {
         this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem('hidden.php').set({
           hasChildren: false,
           parentFolder: "",
-          parent: this._tree.getModel(),
+          parent: this._tree.getRootFolder(),
           readable: true,
           writeable: true,
           overrideIcon: true,
-          icon: '@MaterialIcons/settings/15',
+          icon: cv.theme.dark.Images.getIcon('hidden-config', 15),
           type: "file"
         });
       }
@@ -386,18 +369,6 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
-    reloadTree: function () {
-      var root = this._tree.getModel();
-      root.reload(function () {
-        this._tree.refresh();
-        root.setOpen(true);
-      }, this);
-    },
-
-    _onEnableTree: function (ev) {
-      this._tree.setEnabled(ev.getData());
-    },
-
     _onCreate: function (type) {
       var currentFolder = this.getCurrentFolder();
       if (!currentFolder) {
@@ -417,7 +388,7 @@ qx.Class.define('cv.ui.manager.Main', {
       currentFolder.addChild(folderItem);
       currentFolder.sortElements();
       this._tree.refresh();
-      this._tree.setSelection([folderItem]);
+      this._tree.setSelection(folderItem);
 
       folderItem.addListenerOnce('editing', function () {
         currentFolder.sortElements();
@@ -465,33 +436,8 @@ qx.Class.define('cv.ui.manager.Main', {
         readable: true,
         open: true
       });
-      this._tree = new qx.ui.tree.VirtualTree(rootFolder, 'name', 'children');
-      rootFolder.load(function () {
-        this._tree.setHideRoot(true);
-      }, this);
-      this._tree.set({
-        selectionMode: 'single',
-        minWidth: 250,
-        openMode: 'tap'
-      });
-      this._tree.setDelegate({
-        createItem: function () {
-          var item = new cv.ui.manager.tree.VirtualFsItem();
-          item.addListener('dbltap', this._onDblTapTreeSelection, this);
-          return item;
-        }.bind(this),
-
-        // Bind properties from the item to the tree-widget and vice versa
-        bindItem : function(controller, item, index) {
-          controller.bindDefaultProperties(item, index);
-          controller.bindPropertyReverse("open", "open", null, item, index);
-          controller.bindProperty("open", "open", null, item, index);
-          controller.bindProperty("readable", "enabled", null, item, index);
-          controller.bindProperty("icon", "icon", null, item, index);
-          controller.bindProperty("editing", "editing", null, item, index);
-        }
-      });
-      this._tree.getSelection().addListener("change", this._onChangeTreeSelection, this);
+      this._tree = new cv.ui.manager.tree.FileSystem(rootFolder);
+      this._tree.addListener("changeSelection", this._onChangeTreeSelection, this);
 
       // left container
       var leftContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
@@ -516,10 +462,10 @@ qx.Class.define('cv.ui.manager.Main', {
       this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
       this.bind('deleteableSelection', buttonConfig['delete'].args[2], 'enabled');
 
-      var reload = new qx.ui.toolbar.Button(null, '@MaterialIcons/sync/15');
+      var reload = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 15));
       reload.setAppearance('cv-toolbar-button');
       reload.setToolTipText(qx.locale.Manager.tr('Reload'));
-      reload.addListener('execute', this.reloadTree, this);
+      reload.addListener('execute', this._tree.reload, this._tree);
 
       var createPart = new qx.ui.toolbar.Part();
       createPart.set({
@@ -620,7 +566,5 @@ qx.Class.define('cv.ui.manager.Main', {
 
     // register special file editors
     statics.registerFileEditor("hidden.php", cv.ui.manager.editor.Config);
-    qx.event.message.Bus.unsubscribe('cv.manager.tree.reload', this.reloadTree, this);
-    qx.event.message.Bus.unsubscribe('cv.manager.tree.enable', this._onEnableTree, this);
   }
 });

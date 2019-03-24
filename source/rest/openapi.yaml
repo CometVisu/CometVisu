@@ -59,6 +59,13 @@ paths:
         - fs
       summary: Return directory listing or file content
       description: Returns a list of files/directories if the requested path pointed to a directory or the content of the file otherwise
+      parameters:
+        - name: download
+          in: query
+          description: should the file be downloaded?
+          required: false
+          schema:
+            type: boolean
       operationId: read
       x-exegesis-controller: FsController
       responses:

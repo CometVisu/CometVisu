@@ -116,7 +116,7 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
            break;
 
          case 'delete':
-           control = new qx.ui.form.Button(null, '@MaterialIcons/delete/22');
+           control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('delete', 22));
            control.setToolTipText(this.tr('Delete section'));
            control.addListener('execute', function() {
              this.fireDataEvent('delete', this.getModel());

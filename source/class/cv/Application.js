@@ -42,6 +42,10 @@ qx.Class.define("cv.Application",
   construct: function () {
     this.base(arguments);
     this.initCommandManager(new qx.ui.command.GroupManager());
+    var lang = qx.locale.Manager.getInstance().getLanguage();
+    if (qx.io.PartLoader.getInstance().hasPart(lang)) {
+      qx.io.PartLoader.require([lang]);
+    }
   },
 
   /*

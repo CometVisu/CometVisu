@@ -229,6 +229,17 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
     },
 
+    download: function () {
+      if (this.getType() === 'file') {
+        var element = document.createElement('a');
+        element.setAttribute('href', cv.io.rest.Client.BASE_URL + '/fs?download=true&path=' + this.getFullPath());
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+      }
+    },
+
     _applyName: function () {
       this.__fullPath = null;
     },
@@ -248,13 +259,13 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     _maintainIcon: function () {
       if (!this.isOverrideIcon()) {
         if (this.getType() === 'file') {
-          this.setIcon(osparc.theme.osparcdark.Image.URLS.file);
+          this.setIcon(cv.theme.dark.Images.getIcon('file', 15));
         } else if (this.isOpen()) {
-          this.setIcon(osparc.theme.osparcdark.Image.URLS['folder-open']);
+          this.setIcon(cv.theme.dark.Images.getIcon('folder-open', 15));
         } else if (this.isMounted()) {
-          this.setIcon('@MaterialIcons/folder_special/15');
+          this.setIcon(cv.theme.dark.Images.getIcon('mounted-folder', 15));
         } else {
-          this.setIcon(osparc.theme.osparcdark.Image.URLS.folder);
+          this.setIcon(cv.theme.dark.Images.getIcon('folder', 15));
         }
       }
     },

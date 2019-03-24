@@ -15,10 +15,37 @@ class FileHandler extends AbstractHandler {
     if (file === null) {
       this.respondMessage(context,404, 'File not found')
     } else {
-      context.res
-        .setStatus(200)
-        .set('content-type', 'text/xml')
-        .setBody(fs.readFileSync(file));
+      if (context.params.query.download) {
+        context.res.set('Content-Disposition', 'attachment; filename=' + path.basename(file));
+      }
+      this.respondWithType(context, fs.readFileSync(file), this.__getMimeTypeFromSuffix(file));
+    }
+  }
+
+  __getMimeTypeFromSuffix(fsPath) {
+    const suffix = fsPath.split('.').pop();
+    switch (suffix) {
+      case 'xml':
+        return 'text/xml';
+      case 'html':
+        return 'text/html';
+      case 'jpg':
+      case 'jpeg':
+        return 'image/jpg';
+      case 'png':
+        return 'image/png';
+      case 'gif':
+        return 'image/gif';
+      case 'js':
+        return 'text/javascript';
+      case 'php':
+        return 'application/x-httpd-php';
+      case 'css':
+        return 'text/css';
+      case 'svg':
+        return 'application/svg+xml';
+      default:
+        return 'text/plain';
     }
   }
 
