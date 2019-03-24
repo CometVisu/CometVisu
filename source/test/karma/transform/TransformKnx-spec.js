@@ -218,6 +218,8 @@ var testcases = [
   { transform: 'DPT:18.001', type: 'encode', source: 129,  target: '8080' },
   { transform: 'DPT:18.001', type: 'encode', source: 139,  target: '808a' },
   { transform: 'DPT:18.001', type: 'encode', source: 192,  target: '80bf' },
+  { transform: 'DPT:18.001', type: 'encode', source: 0,    target: '8000' },
+  { transform: 'DPT:18.001', type: 'encode', source: 255,  target: '80bf' },
   { transform: 'DPT:18.001', type: 'decode', source: '00', target: 1      },
   { transform: 'DPT:18.001', type: 'decode', source: '3f', target: 64     },
   { transform: 'DPT:18.001', type: 'decode', source: '80', target: 128+1  },
@@ -240,7 +242,21 @@ var testcases = [
   { transform: 'DPT:20.102', type: 'decode', source: '04', target: 'building_protection' },
 
   { transform: 'DPT:24.001', type: 'encode', source: 'Test string',                 target: '805465737420737472696e6700', noNumber: true },
-  { transform: 'DPT:24.001', type: 'decode', source: '5465737420737472696e67',  target: 'Test string' }
+  { transform: 'DPT:24.001', type: 'decode', source: '5465737420737472696e67',  target: 'Test string' },
+
+  { transform: 'DPT:26.001', type: 'encode', source: 1,    target: '8000' },
+  { transform: 'DPT:26.001', type: 'encode', source: 11,   target: '800a' },
+  { transform: 'DPT:26.001', type: 'encode', source: 64,   target: '803f' },
+  { transform: 'DPT:26.001', type: 'encode', source: 65,   target: '8040' },
+  { transform: 'DPT:26.001', type: 'encode', source: 75,   target: '804a' },
+  { transform: 'DPT:26.001', type: 'encode', source: 128,  target: '807f' },
+  { transform: 'DPT:26.001', type: 'encode', source: 0,    target: '8000' },
+  { transform: 'DPT:26.001', type: 'encode', source: 255,  target: '807f' },
+  { transform: 'DPT:26.001', type: 'decode', source: '00', target: 1      },
+  { transform: 'DPT:26.001', type: 'decode', source: '3f', target: 64     },
+  { transform: 'DPT:26.001', type: 'decode', source: '40', target: 64+1   },
+  { transform: 'DPT:26.001', type: 'decode', source: '7f', target: 64+64  },
+  { transform: 'DPT:26'    , type: 'encode', source: 11,   target: '800a' }
 ];
 
 describe('checking knx transforms', function() {
