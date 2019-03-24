@@ -207,6 +207,7 @@
       {
 //        "verifier-bombs-on-error" : false,
 //        "separate-loader" : true,
+        "i18n-as-parts": true,
         "parts"  :
         {
           "boot"     :

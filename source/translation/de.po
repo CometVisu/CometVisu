@@ -11,38 +11,38 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cv/Application.js:226
+#: cv/Application.js:230
 msgid "Please describe what you have done until the error occured?"
 msgstr ""
 "Bitte beschreiben, was Sie gemacht haben bis der Fehler aufgetreten ist."
 
-#: cv/Application.js:293
+#: cv/Application.js:297
 msgid "An error occured"
 msgstr "Ein Fehler ist aufgetreten"
 
-#: cv/Application.js:299
+#: cv/Application.js:303
 msgid "Enable on reload:"
 msgstr "Aktivieren beim neu Laden:"
 
-#: cv/Application.js:304
+#: cv/ui/manager/Main.js:465 cv/Application.js:308
 msgid "Reload"
 msgstr "Neu laden"
 
-#: cv/Application.js:336
+#: cv/Application.js:340
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
 msgstr ""
 "Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Ticket "
 "zu hängen."
 
-#: cv/Application.js:343
+#: cv/Application.js:347
 msgid "Action recording"
 msgstr "Benutzerinteraktionen aufzeichnen"
 
-#: cv/Application.js:354
+#: cv/Application.js:358
 msgid "Send error to sentry.io"
 msgstr "Fehlerbericht an sentry.io schicken"
 
-#: cv/Application.js:368
+#: cv/Application.js:372
 msgid "Error reporting (on sentry.io)"
 msgstr "Absturzberichte senden (an sentry.io)"
 
@@ -82,13 +82,21 @@ msgstr "Antwort des Backends:"
 msgid ""
 "The backend did send an invalid response to a %1read%2 request: Missing "
 "\"i\" value."
-msgstr ""
+msgstr "Das Backend hat eine ungültige Antwort auf eine %1read%2-Anfrage gesendet: Fehlender \"i\" Wert."
 
-#: cv/parser/MetaParser.js:357
+#: cv/io/rest/Client.js:157
+msgid "File has been saved"
+msgstr "Datei wurde gespeichert"
+
+#: cv/io/rest/Client.js:166
+msgid "Error saving file"
+msgstr "Fehler beim Speichern der Datei"
+
+#: cv/parser/MetaParser.js:365
 msgid "Template loading error"
 msgstr "Fehler beim Laden des Templates"
 
-#: cv/parser/MetaParser.js:360
+#: cv/parser/MetaParser.js:368
 msgid "Template '%1' could not be loaded from '%2'."
 msgstr "Template '%1' konnte nicht geladen werden von '%2'."
 
@@ -110,37 +118,109 @@ msgstr "openHAB Backend Einstellungen"
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: cv/ui/manager/MenuBar.js:47 cv/plugins/openhab/Settings.js:232
+#: cv/ui/manager/MenuBar.js:55 cv/plugins/openhab/Settings.js:232
 msgid "Save"
 msgstr "Speichern"
 
-#: cv/ui/NotificationCenter.js:227
+#: cv/ui/NotificationCenter.js:237
 msgid "Delete all"
 msgstr "Alle löschen"
 
-#: cv/ui/NotificationCenter.js:227
+#: cv/ui/NotificationCenter.js:237
 msgid "Message center"
 msgstr "Nachrichtenzentrale"
 
-#: cv/ui/manager/Main.js:252 cv/ui/manager/Main.js:254
-msgid "Edit hidden config"
-msgstr "Versteckte Konfiguration bearbeiten"
-
-#: cv/ui/manager/MenuBar.js:37
+#: cv/ui/manager/MenuBar.js:45
 msgid "New file"
 msgstr "Neue Datei"
 
-#: cv/ui/manager/MenuBar.js:42
+#: cv/ui/manager/MenuBar.js:50
 msgid "New folder"
 msgstr "Neuer Ordner"
 
-#: cv/ui/manager/MenuBar.js:94
+#: cv/ui/manager/MenuBar.js:61
+msgid "Save as..."
+msgstr "Speichern unter..."
+
+#: cv/ui/manager/MenuBar.js:66
+msgid "Delete"
+msgstr "Löschen"
+
+#: cv/ui/manager/MenuBar.js:72
+msgid "Close file"
+msgstr "Datei schlie0en"
+
+#: cv/ui/manager/MenuBar.js:78
+msgid "Quit"
+msgstr "Beenden"
+
+#: cv/ui/manager/MenuBar.js:85
+msgid "Ctrl+Z"
+msgstr "Strg+Z"
+
+#: cv/ui/manager/MenuBar.js:85
+msgid "Undo"
+msgstr "Rückgängig"
+
+#: cv/ui/manager/MenuBar.js:90
+msgid "Ctrl+Y"
+msgstr "Strg+Y"
+
+#: cv/ui/manager/MenuBar.js:90
+msgid "Redo"
+msgstr "Wiederholen"
+
+#: cv/ui/manager/MenuBar.js:95
+msgid "Ctrl+X"
+msgstr "Strg+X"
+
+#: cv/ui/manager/MenuBar.js:95
+msgid "Cut"
+msgstr "Ausschneiden"
+
+#: cv/ui/manager/MenuBar.js:101
+msgid "Copy"
+msgstr "Kopieren"
+
+#: cv/ui/manager/MenuBar.js:101
+msgid "Ctrl+C"
+msgstr "Strg+C"
+
+#: cv/ui/manager/MenuBar.js:106
+msgid "Ctrl+V"
+msgstr "Strg+V"
+
+#: cv/ui/manager/MenuBar.js:106
+msgid "Paste"
+msgstr "Einfügen"
+
+#: cv/ui/manager/MenuBar.js:111
+msgid "Hidden configuration"
+msgstr "Versteckte Konfiguration"
+
+#: cv/ui/manager/MenuBar.js:118
+msgid "Use text editor"
+msgstr "Texteditor benutzen"
+
+#: cv/ui/manager/MenuBar.js:129
+msgid "Use xml editor"
+msgstr "XML-Editor benutzen"
+
+#: cv/ui/manager/MenuBar.js:216
 msgid "CometVisu Manager"
 msgstr "CometVisu Manager"
 
-#: cv/ui/manager/MenuBar.js:99
+#: cv/ui/manager/MenuBar.js:221
 msgid "File"
 msgstr "Datei"
+
+#: cv/ui/manager/MenuBar.js:226
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: cv/ui/manager/MenuBar.js:231
+msgid "Preferences"
+msgstr "Einstellungen"
 
 #: cv/ui/manager/editor/Config.js:119
 msgid "Add section"
@@ -162,49 +242,73 @@ msgstr "Schlüssel"
 msgid "Value"
 msgstr "Wert"
 
-#: cv/ui/manager/form/SectionListItem.js:98
+#: cv/ui/manager/form/SectionListItem.js:105
 msgid "Section"
 msgstr "Sektion"
 
-#: cv/ui/manager/form/SectionListItem.js:113
+#: cv/ui/manager/form/SectionListItem.js:120
 msgid "Delete section"
 msgstr "Sektion löschen"
+
+#: cv/ui/manager/model/FileItem.js:178
+msgid "File has been created"
+msgstr "Datei wurde erstellt"
+
+#: cv/ui/manager/model/FileItem.js:179
+msgid "Folder has been created"
+msgstr "Verzeichnis wurde erstellt"
+
+#: cv/ui/manager/model/FileItem.js:193
+msgid "File has been renamed"
+msgstr "Datei wurde umbenannt"
+
+#: cv/ui/manager/model/FileItem.js:194
+msgid "Folder has been renamed"
+msgstr "Verzeichnis wurde umbenannt"
+
+#: cv/ui/manager/model/FileItem.js:217
+msgid "File has been deleted"
+msgstr "Datei wurde gelöscht"
+
+#: cv/ui/manager/model/FileItem.js:218
+msgid "Folder has been deleted"
+msgstr "Verzeichnis wurde gelöscht"
 
 #: cv/ui/structure/pure/Unknown.js:88
 msgid "unknown: %1"
 msgstr "Unbekannt: %1"
 
-#: cv/util/ConfigLoader.js:169
+#: cv/util/ConfigLoader.js:172
 msgid "Config-File Error!"
 msgstr "Fehler in Konfigurations-Datei!"
 
-#: cv/util/ConfigLoader.js:173
+#: cv/util/ConfigLoader.js:176
 msgid "Invalid config file!"
 msgstr "Ungültige Konfigurations-Datei!"
 
-#: cv/util/ConfigLoader.js:173
+#: cv/util/ConfigLoader.js:176
 msgid "Please check!"
 msgstr "Bitte prüfen!"
 
-#: cv/util/ConfigLoader.js:181
+#: cv/util/ConfigLoader.js:184
 msgid "Config file has wrong library version!"
 msgstr "Konfigurations-Datei hat die falsche 'library' Version"
 
-#: cv/util/ConfigLoader.js:182
+#: cv/util/ConfigLoader.js:185
 msgid "This can cause problems with your configuration"
 msgstr "Das kann Probleme in Ihrer Konfiguration verursachen"
 
-#: cv/util/ConfigLoader.js:183
+#: cv/util/ConfigLoader.js:186
 msgid "You can run the %1Configuration Upgrader%2."
 msgstr "Sie können den %1Konfigurations-Upgrader%2 laufen lassen."
 
-#: cv/util/ConfigLoader.js:184
+#: cv/util/ConfigLoader.js:187
 msgid ""
 "Or you can start without upgrading %1with possible configuration problems%2"
 msgstr ""
 "Oder Sie starten ohne Upgrade %1mit möglichen Konfigurations-Problemen%2"
 
-#: cv/util/ConfigLoader.js:187
+#: cv/util/ConfigLoader.js:190
 msgid ""
 "404: Config file not found. Neither as normal config (%1) nor as demo config"
 " (%2)."
@@ -212,7 +316,7 @@ msgstr ""
 "404: Konfigurations-Datei nicht gefunden. Weder als normale Konfiguration "
 "(%1) noch als Demo-Konfiguration (%2)"
 
-#: cv/util/ConfigLoader.js:190
+#: cv/util/ConfigLoader.js:193
 msgid "Unhandled error of type \"%1\""
 msgstr "Unbekannter Fehler vom Typ \"%1\""
 
@@ -227,6 +331,9 @@ msgstr "Date %1 konnte nicht geladen werden"
 #: cv/util/ScriptLoader.js:165
 msgid "File loading error"
 msgstr "Datei-Ladefehler"
+
+#~ msgid "Edit hidden config"
+#~ msgstr "Versteckte Konfiguration bearbeiten"
 
 #~ msgid "Enable error reporting"
 #~ msgstr ""
