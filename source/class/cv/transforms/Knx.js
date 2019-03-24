@@ -377,20 +377,19 @@ qx.Class.define('cv.transforms.Knx', {
         unit: '-'
       },
       '18.001': {
-        link: '5.004',
         name: 'DPT_SceneControl',
         lname: {
           'en': 'Scene Number',
           'de': 'Szenen Nummer'
         },
-        unit: '-'
+        unit: '-',
         range: {
           min: 1.0,
           max: 64.0+128
         },
         encode: function (phy) {
-          var val = parseInt(cv.Transform.clip(1, phy, 64+128)).toString(16);
-          return (val.length === 1 ? '800' : '80') + val - 1;
+          var val = parseInt(cv.Transform.clip(0, phy - 1, 63+128)).toString(16);
+          return (val.length === 1 ? '800' : '80') + val;
         },
         decode: function (hex) {
           return parseInt(hex, 16) + 1;
@@ -405,7 +404,35 @@ qx.Class.define('cv.transforms.Knx', {
         },
         unit: '-'
       },
-      '20.102': {
+      '26.001': {
+        name: 'DPT_SceneInfo',
+        lname: {
+          'en': 'Scene Number',
+          'de': 'Szenen Nummer'
+        },
+        unit: '-',
+        range: {
+          min: 1.0,
+          max: 64.0+64
+        },
+        encode: function (phy) {
+          var val = parseInt(cv.Transform.clip(0, phy - 1, 63+64)).toString(16);
+          return (val.length === 1 ? '800' : '80') + val;
+        },
+        decode: function (hex) {
+          return parseInt(hex, 16) + 1;
+        }
+      },
+      '26': {
+        link: '26.001',
+        name: 'DPT_SceneInfo',
+        lname: {
+          'en': 'Scene Number',
+          'de': 'Szenen Nummer'
+        },
+        unit: '-'
+      },
+       '20.102': {
         name: 'DPT_HVACMode',
         lname: {
           'de': 'KONNEX Betriebsart'
