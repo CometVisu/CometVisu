@@ -363,6 +363,11 @@ var DataProvider = function (config) {
                   cache: doCaching,
                   async: true,
                   success: function (result) {
+                    if (typeof _providerConfig.map === 'function') {
+                      $.each(result, function(index, entry) {
+                        result[index] = _providerConfig.map(entry);
+                      });
+                    }
                     // what we get from the server is exactly what we need (hopefully ...)
                     data = result;
                         
@@ -386,11 +391,6 @@ var DataProvider = function (config) {
       return function ( callback ) {
         getDataCallbacks.push( callback );
       };
-    }
-    if (typeof _providerConfig.map === 'function') {
-      $.each(data, function(index, entry) {
-            data[index] = _providerConfig.map(entry);
-          });
     }
 
     return data;
