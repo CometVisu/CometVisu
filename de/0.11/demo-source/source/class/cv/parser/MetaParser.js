@@ -93,8 +93,8 @@ qx.Class.define("cv.parser.MetaParser", {
       var mapping = {};
       var formula = qx.bom.Selector.query('formula', elem);
       if (formula.length > 0) {
-        var func = qx.lang.Function.globalEval('var func = function(x){var y;' + qx.dom.Node.getText(formula[0]) + '; return y;}; func');
-        mapping.formula = func;
+        mapping.formulaSource = qx.dom.Node.getText(formula[0]);
+        mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
       }
       var subElements = qx.bom.Selector.query('entry', elem);
       subElements.forEach(function (subElem) {
