@@ -88,10 +88,7 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
       }
     },
 
-    _loadFile: function (file, old) {
-      if (old) {
-        this._workerWrapper.close(old);
-      }
+    _loadFile: function (file) {
       if (this._editor) {
         if (file && file instanceof cv.ui.manager.model.CompareFiles && this.isSupported(file.getModifiedFile())) {
           this._client.readSync({path: file.getModifiedFile().getFullPath()}, function (err, res) {
