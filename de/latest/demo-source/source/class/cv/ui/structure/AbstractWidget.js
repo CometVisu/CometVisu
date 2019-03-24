@@ -117,6 +117,8 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     __pointerDownElement: null,
     __pointerDownTime: null,
     _skipNextEvent: null,
+    __longPressTimer: null,
+    __pointerDownPoint: null,
 
     // property apply
     _applyVisible: function(value, old) {
@@ -236,18 +238,75 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       // we need to listen to pointerdown to detect taps with
       if (this.buttonPressed) {
         this.addElementListener("pointerdown", this._onPointerDown, this);
+        this.addElementListener("contextmenu", this._cancelEvent, this);
       }
+    },
+
+    _cancelEvent: function (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
     },
 
     _onPointerDown: function(ev) {
       // listen to pointerup globally
       this.__pointerDownElement = ev.getCurrentTarget();
       this.__pointerDownTime = Date.now();
+      if (this.__longPressTimer) {
+        this.__longPressTimer.stop();
+        this.__longPressTimer = null;
+      }
       qx.event.Registration.addListener(document, "pointerup", this._onPointerUp, this);
+      if (this._onLongTap &&
+        qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) &&
+        !this.isSendLongOnRelease() &&
+        this.getShortThreshold() > 0) {
+        var clonedEv = ev.clone();
+        this.__longPressTimer = qx.event.Timer.once(function () {
+          this._onLongTap(clonedEv);
+          this._skipNextEvent = "tap";
+          this.__abort();
+        }, this, this.getShortThreshold());
+
+        this.__pointerDownPoint = {
+          x: ev.getDocumentLeft(),
+          y: ev.getDocumentTop()
+        };
+        // also listen to move events to detect if the pointer is moved away from the widget (or scrolled)
+        qx.event.Registration.addListener(document, "pointermove", this._onPointerMove, this);
+      }
+    },
+
+    __abort: function () {
+      qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
+      qx.event.Registration.removeListener(document, "pointermove", this._onPointerMove, this);
+      this.__pointerDownTime = null;
+      this.__pointerDownPoint = null;
+      if (this.__longPressTimer) {
+        this.__longPressTimer.stop();
+        this.__longPressTimer = null;
+      }
+    },
+
+    _onPointerMove: function(ev) {
+      var upElement = ev.getTarget();
+      var distance = Math.max( Math.abs(this.__pointerDownPoint.x - ev.getDocumentLeft()), Math.abs(this.__pointerDownPoint.y - ev.getDocumentTop()));
+      var abort = distance > 5;
+
+      if (!abort) {
+        while (upElement && upElement !== this.__pointerDownElement) {
+          upElement = upElement.parentNode;
+          if (upElement === this.getDomElement()) {
+            break;
+          }
+        }
+        abort = !upElement || upElement !== this.__pointerDownElement;
+      }
+      if (abort) {
+        this.__abort();
+      }
     },
 
     _onPointerUp: function(ev) {
-      qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
       var upElement = ev.getTarget();
       while (upElement && upElement !== this.__pointerDownElement) {
         upElement = upElement.parentNode;
@@ -269,7 +328,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
         }
         this._skipNextEvent = "tap";
       }
-      this.__pointerDownTime = null;
+      this.__abort();
     },
 
     /**

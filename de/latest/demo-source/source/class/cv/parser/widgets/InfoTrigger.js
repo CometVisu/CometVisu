@@ -55,6 +55,9 @@ qx.Class.define('cv.parser.widgets.InfoTrigger', {
         'shortupvalue': {target: 'shortUpValue', transform: parseFloat, "default": 0},
         'uplabel': {target: 'upLabel'},
         'shorttime': {target: 'shortThreshold', transform: parseFloat, "default": -1},
+        'send-long-on-release' : {target: 'sendLongOnRelease', transform: function (value) {
+            return value ? value === "true" : true;
+         }},
         'change': {
           target: 'isAbsolute', transform: function (value) {
             return (value || 'relative') === "absolute";
