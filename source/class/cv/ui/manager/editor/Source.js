@@ -64,7 +64,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           callback.apply(context);
           window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
           var parsedSchema = new window.Schema("visu_config.xsd", schema); // jshint ignore:line
-          var completionProvider = new cv.ui.manager.editor.completion.Config(null, parsedSchema);
+          var completionProvider = new cv.ui.manager.editor.completion.Config(parsedSchema);
           var cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
           window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
           window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
