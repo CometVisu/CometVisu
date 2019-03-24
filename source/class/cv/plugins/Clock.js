@@ -70,7 +70,8 @@ qx.Class.define('cv.plugins.Clock', {
     },
 
     _onDomReady: function () {
-      this.base(arguments);
+      //this.base(arguments);
+      var args = arguments;
       var $actor = $(this.getActor());
       $actor.svg({
         loadURL: qx.util.ResourceManager.getInstance().toUri('plugins/clock/clock_pure.svg'),
@@ -83,6 +84,10 @@ qx.Class.define('cv.plugins.Clock', {
             .draggable()
             .bind('drag', {type: 'minute', actor: $actor}, this.dragHelper.bind(this))
             .bind('dragstop', {actor: $actor}, this.dragAction.bind(this));
+
+          // call parents _onDomReady method
+          this.base(args);
+
           Object.getOwnPropertyNames(this.getAddress())
             .filter(function (address) {
               return cv.data.Model.isReadAddress(this.getAddress()[address]);
@@ -98,9 +103,9 @@ qx.Class.define('cv.plugins.Clock', {
     initListeners: function () {},
 
     // overidden
-    _update: function (address, data, isDataAlreadHandled) {
+    _update: function (address, data, isDataAlreadyHandled) {
       var element = this.getDomElement();
-      var value = isDataAlreadHandled ? data : this.defaultValueHandling(address, data);
+      var value = isDataAlreadyHandled ? data : this.defaultValueHandling(address, data);
       var svg = qx.bom.Selector.query('svg', element)[0];
       var time = value.split(':');
       var hourElem = qx.bom.Selector.query('#Hour', svg)[0];
@@ -109,8 +114,7 @@ qx.Class.define('cv.plugins.Clock', {
         qx.bom.element.Attribute.set(hourElem, "transform", 'rotate(' + ((time[0] % 12) * 360 / 12 + time[1] * 30 / 60) + ',50,50)');
         qx.bom.element.Attribute.set(minuteElem, "transform", 'rotate(' + (time[1] * 6) + ',50,50)');
       } else {
-        // do nothing - most likely DOM not ready yet.
-        // TODO: implement a timer to force the update to handle unknown problematic conditions
+        console.error('Error: trying to update unknown clock SVG elements #Hour and/or #Minute');
       }
     },
 
