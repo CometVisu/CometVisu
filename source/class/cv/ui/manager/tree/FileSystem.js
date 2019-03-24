@@ -16,6 +16,9 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     this.setRootFolder(rootFolder);
     qx.event.message.Bus.subscribe('cv.manager.tree.reload', this.reload, this);
     qx.event.message.Bus.subscribe('cv.manager.tree.enable', this._onEnableTree, this);
+
+    this._dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('medium'));
+    this._timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('medium'));
   },
 
   /*
@@ -54,6 +57,9 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     __selectionTimer: null,
     __doubleTapWaitingTime: 500,
     _commandGroup: null,
+    _dateFormat: null,
+    _timeFormat: null,
+    __ignoreSelectionChange: false,
 
     reload: function () {
       var root = this.getChildControl('tree').getModel();
@@ -78,11 +84,46 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     },
 
     _applySelectedNode: function (value, old) {
+      var tree = this.getChildControl('tree');
+      if (value) {
+        tree.setContextMenu(this.getChildControl('context-menu'));
 
+        // create compare menu
+        var compareMenu = this.getChildControl('compare-menu');
+        compareMenu.removeAll();
+        var backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(value);
+        backups.sort(function (a, b) {
+          return b.date.getTime() - a.date.getTime();
+        });
+        var group = null;
+        backups.forEach(function (backupEntry) {
+          var date = this._dateFormat.format(backupEntry.date);
+          if (group !== date) {
+            if (group !== null) {
+              compareMenu.add(new qx.ui.menu.Separator());
+            }
+            compareMenu.add(new qx.ui.menu.Button(date));
+            group = date;
+          }
+          var button = new qx.ui.menu.Button(this.tr('Backup from %1', this._timeFormat.format(backupEntry.date)));
+          button.setUserData('file', backupEntry.file);
+          button.addListener('execute', this._onCompareWith, this);
+          compareMenu.add(button);
+        }, this);
+      } else {
+        tree.resetContextMenu();
+      }
     },
 
     setSelection : function (node) {
       this.getChildControl('tree').setSelection([node]);
+    },
+
+    _onCompareWith: function (ev) {
+      var compareWith = ev.getTarget().getUserData('file');
+      qx.event.message.Bus.dispatchByName('cv.manager.compareFiles',
+        new cv.ui.manager.model.CompareFiles(compareWith, this.getSelectedNode())
+      );
     },
 
     _onDblTapTreeSelection: function () {
@@ -105,10 +146,12 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
       if (this.__selectionTimer) {
         this.__selectionTimer.stop();
       }
+      if (this.__ignoreSelectionChange === true) {
+        return;
+      }
       var tree = this.getChildControl('tree');
       var sel = tree.getSelection();
       if (sel.length > 0) {
-        tree.setContextMenu(this.getChildControl('context-menu'));
         var node = sel.getItem(0);
         this.setSelectedNode(node);
         // wait for double tap
@@ -128,7 +171,18 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
         }
       } else {
         this.resetSelectedNode();
-        tree.resetContextMenu();
+      }
+    },
+
+    _onFsItemRightClick: function (ev) {
+      var tree = this.getChildControl('tree');
+      var widget = ev.getTarget();
+      var node = widget.getModel();
+      if (node) {
+        this.__ignoreSelectionChange = true;
+        tree.getSelection().replace([node]);
+        this.setSelectedNode(node);
+        this.__ignoreSelectionChange = false;
       }
     },
 
@@ -171,6 +225,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
              createItem: function () {
                var item = new cv.ui.manager.tree.VirtualFsItem();
                item.addListener('dbltap', this._onDblTapTreeSelection, this);
+               item.addListener('contextmenu', this._onFsItemRightClick, this);
                return item;
              }.bind(this),
 
@@ -193,6 +248,8 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control.add(new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file')));
            control.add(new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder')));
            control.add(new qx.ui.menu.Separator());
+           control.add(new qx.ui.menu.Button(this.tr('Compare with...'), null, null, this.getChildControl('compare-menu')));
+           control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('rename-button'));
            control.add(new qx.ui.menu.Button(this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18), this._commandGroup.get('delete')));
            control.add(new qx.ui.menu.Separator());
@@ -207,6 +264,10 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
          case 'download-button':
            control = new qx.ui.menu.Button(this.tr('Download'), cv.theme.dark.Images.getIcon('download', 18));
            control.addListener('execute', this._onDownload, this);
+           break;
+
+         case 'compare-menu':
+           control = new qx.ui.menu.Menu();
            break;
        }
 
@@ -223,5 +284,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     qx.event.message.Bus.unsubscribe('cv.manager.tree.reload', this.reload, this);
     qx.event.message.Bus.unsubscribe('cv.manager.tree.enable', this._onEnableTree, this);
     this._commandGroup = null;
+
+    this._disposeObjects('_dateFormat', '_timeFormat');
   }
 });

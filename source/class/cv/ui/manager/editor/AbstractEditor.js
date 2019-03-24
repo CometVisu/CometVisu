@@ -26,7 +26,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
  */
   properties: {
     file: {
-      check: 'cv.ui.manager.model.FileItem',
+      check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
       nullable: true,
       apply: '_loadFile'
     },
@@ -62,13 +62,18 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
     _initClient: function () {
       this._client = cv.io.rest.Client.getFsClient();
-      this._client.addListener('readSuccess', this._onModelValueChange, this);
       this._client.addListener('updateSuccess', this._onSaved, this);
     },
 
     _loadFile: function (file) {
       if (file && file.getType() === 'file') {
-        this._client.read({path: this.getFile().getFullPath()});
+        this._client.readSync({path: this.getFile().getFullPath()}, function (err, res) {
+          if (err) {
+            cv.ui.manager.snackbar.Controller.error(err);
+          } else {
+            this.setContent(res);
+          }
+        }, this);
       } else {
         this.resetContent();
       }
@@ -79,14 +84,6 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
     // must be overridden by inheriting classes
     getCurrentContent: function () {},
-
-    _onModelValueChange: function (ev) {
-      var url = ev.getRequest().getUrl();
-      if (!this.getFile() || !url.includes('/fs?path=' + this.getFile().getFullPath())) {
-        return;
-      }
-      this.setContent(ev.getData());
-    },
 
     save: function () {
       var file = this.getFile();
@@ -110,7 +107,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   */
   destruct: function () {
     if (this._client) {
-      this._client.removeListener('getSuccess', this._onModelValueChange, this);
+      this._client.removeListener('updateSuccess', this._onSaved, this);
       this._client = null;
     }
   }

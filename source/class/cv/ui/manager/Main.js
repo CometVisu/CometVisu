@@ -23,6 +23,8 @@ qx.Class.define('cv.ui.manager.Main', {
 
     this.__initCommands();
     this._draw();
+
+    qx.event.message.Bus.subscribe('cv.manager.compareFiles', this._onCompareWith, this);
   },
 
   /*
@@ -45,7 +47,11 @@ qx.Class.define('cv.ui.manager.Main', {
         instance: null,
         preview: false
       },
-      source: this.__defaultEditor
+      source: this.__defaultEditor,
+      diff: {
+        Clazz: cv.ui.manager.editor.Diff,
+        instance: null
+      }
     },
 
     /**
@@ -66,7 +72,9 @@ qx.Class.define('cv.ui.manager.Main', {
 
     getFileEditor: function (file) {
       var found = null;
-      if (file.isConfigFile()) {
+      if (file instanceof cv.ui.manager.model.CompareFiles) {
+        found = this._configEditors.diff;
+      } else if (file.isConfigFile()) {
         found = this._configEditors[cv.ui.manager.model.Preferences.getInstance().getDefaultConfigEditor()];
       }
       if (!found) {
@@ -233,13 +241,22 @@ qx.Class.define('cv.ui.manager.Main', {
           if (!editorConfig.instance) {
             editorConfig.instance = new editorConfig.Clazz();
             this._stack.add(editorConfig.instance);
-          } else {
-            this._stack.setSelection([editorConfig.instance]);
           }
+          this._stack.setSelection([editorConfig.instance]);
           editorConfig.instance.setFile(node);
           this.__actionDispatcher.setFocusedWidget(editorConfig.instance);
         }
       }
+    },
+
+    /**
+     * Handle event on topic 'cv.manager.compareWith': opens the text editor in comparison mode.
+     * @param ev {Event}
+     * @private
+     */
+    _onCompareWith: function (ev) {
+      var compareFiles = ev.getData();
+      this.openFile(compareFiles, false);
     },
 
     openFile: function (file, preview) {
@@ -253,9 +270,7 @@ qx.Class.define('cv.ui.manager.Main', {
             this.__previewFileIndex = openFiles.length;
             openFiles.push(file);
           }
-        }
-        // do not 'downgrade' the permanent state
-        if (!file.isPermanent()) {
+          // do not 'downgrade' the permanent state
           file.setPermanent(false);
         }
       } else {
@@ -558,11 +573,16 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     });
     this.__actionDispatcher = null;
+
+    qx.event.message.Bus.unsubscribe('cv.manager.compareFiles', this._onCompareWith, this);
   },
 
   defer: function(statics) {
     // initialize on load
     statics.getInstance();
+
+    // load backupFolder
+    cv.ui.manager.model.BackupFolder.getInstance();
 
     // register special file editors
     statics.registerFileEditor("hidden.php", cv.ui.manager.editor.Config);

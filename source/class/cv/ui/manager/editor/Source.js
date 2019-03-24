@@ -12,12 +12,12 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   construct: function () {
     this.base(arguments);
     this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
-    this.__basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/config/';
-    this.__id = 'editor#' + cv.ui.manager.editor.Source.COUNTER++;
-    this.getContentElement().setAttribute('id', this.__id);
+    this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/config/';
+    this.addListenerOnce('appear', function () {
+      console.log('source editor appeared');
+    });
     this._draw();
-    this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
-    this._workerWrapper.setEditor(this);
+    this._initWorker();
     this._currentDecorations = [];
   },
 
@@ -85,30 +85,39 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   */
   members: {
     __schema: null,
-    __id: null,
     _editor: null,
-    __basePath: null,
+    _basePath: null,
     _workerWrapper: null,
     _currentDecorations: null,
+
+    _initWorker: function () {
+      this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
+      this._workerWrapper.setEditor(this);
+    },
 
     _draw: function () {
       if (!window.monaco) {
         cv.ui.manager.editor.Source.load(this._draw, this);
       } else {
-        this._editor = window.monaco.editor.create(document.getElementById(this.__id), {
-          suggestOnTriggerCharacters: true,
-          folding: true,
-          autoIndent: true,
-          automaticLayout: true,
-          minimap: {
-            enabled: true
-          },
-          theme: 'vs-dark'
-        });
-        if (this.getFile()) {
-          this._loadFile(this.getFile());
+        var domElement = this.getContentElement().getDomElement();
+        if (!domElement) {
+          this.addListenerOnce('appear', this._draw, this);
+        } else {
+          this._editor = window.monaco.editor.create(domElement, {
+            suggestOnTriggerCharacters: true,
+            folding: true,
+            autoIndent: true,
+            automaticLayout: true,
+            minimap: {
+              enabled: true
+            },
+            theme: 'vs-dark'
+          });
+          if (this.getFile()) {
+            this._loadFile(this.getFile());
+          }
+          this._editor.onDidChangeModelContent(this._onContentChanged.bind(this));
         }
-        this._editor.onDidChangeModelContent(this._onContentChanged.bind(this));
       }
     },
 
@@ -134,7 +143,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     _loadFile: function (file, old) {
-      if (old) {
+      if (old && this._workerWrapper) {
         this._workerWrapper.close(old);
       }
       if (this._editor) {
@@ -154,11 +163,13 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           this._editor.setValue('');
         }
       } else {
-        this._workerWrapper.open(file, value);
+        if (this._workerWrapper) {
+          this._workerWrapper.open(file, value);
+        }
         var newModel = window.monaco.editor.getModel(file.getUri());
         if (!newModel) {
           // create new model
-          newModel = window.monaco.editor.createModel(value, this.__getLanguage(file), file.getUri());
+          newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
         }
 
         if (model !== newModel) {
@@ -175,7 +186,9 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     _onContentChanged: function () {
-      this._workerWrapper.contentChanged(this.getFile(), this._editor.getValue());
+      if (this._workerWrapper) {
+        this._workerWrapper.contentChanged(this.getFile(), this._editor.getValue());
+      }
     },
 
     isSupported: function (file) {
@@ -255,7 +268,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       this._currentDecorations[path] = decorators;
     },
 
-    __getLanguage: function (file) {
+    _getLanguage: function (file) {
       var type = file.getName().split('.').pop();
       switch (type) {
         case 'svg':
