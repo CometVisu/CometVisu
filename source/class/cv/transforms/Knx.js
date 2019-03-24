@@ -358,6 +358,53 @@ qx.Class.define('cv.transforms.Knx', {
         },
         unit: '-'
       },
+      '17.001': {
+        link: '5.004',
+        name: 'DPT_SceneNumber',
+        lname: {
+          'en': 'Scene Number',
+          'de': 'Szenen Nummer'
+        },
+        unit: '-'
+      },
+      '17': {
+        link: '5.004',
+        name: 'DPT_SceneNumber',
+        lname: {
+          'en': 'Scene Number',
+          'de': 'Szenen Nummer'
+        },
+        unit: '-'
+      },
+      '18.001': {
+        link: '5.004',
+        name: 'DPT_SceneControl',
+        lname: {
+          'en': 'Scene Number',
+          'de': 'Szenen Nummer'
+        },
+        unit: '-'
+        range: {
+          min: 1.0,
+          max: 64.0+128
+        },
+        encode: function (phy) {
+          var val = parseInt(cv.Transform.clip(1, phy, 64+128)).toString(16);
+          return (val.length === 1 ? '800' : '80') + val - 1;
+        },
+        decode: function (hex) {
+          return parseInt(hex, 16) + 1;
+        }
+      },
+      '18': {
+        link: '18.001',
+        name: 'DPT_SceneControl',
+        lname: {
+          'en': 'Scene Number',
+          'de': 'Szenen Nummer'
+        },
+        unit: '-'
+      },
       '20.102': {
         name: 'DPT_HVACMode',
         lname: {
