@@ -124,8 +124,23 @@ class FileHandler extends AbstractHandler {
         this.respondMessage(context,405, 'data has been corrupted during transport')
         return
       }
+      let backupFilename;
       const backupSuffix = Math.random();
-      // 1. create backup of existing file
+      const backup = config.backupOnChange.some(check => {
+        return check.test(file)
+      });
+      if (backup) {
+        // store permanent backup of existing file before change
+        const parts = path.basename(file).split('.')
+        const suffix = parts.pop();
+        backupFilename = parts.join('.') + '-'
+          + new Date().toISOString().split('.')[0].replace(/[\D]/g,'')
+          + '.' + suffix
+        ;
+        const target = path.join(config.backupFolder, backupFilename);
+        fs.copyFileSync(file, target);
+      }
+      // 1. create backup of existing file (this is just a temporary backup
       fs.copyFileSync(file, file + backupSuffix);
       // 2. write new content
       fs.writeFileSync(file, content)
@@ -135,6 +150,10 @@ class FileHandler extends AbstractHandler {
       if (newHash !== hash) {
         // something went wrong -> restore old file content
         fs.copyFileSync(file + backupSuffix, file);
+        if (backupFilename) {
+          // no changes no need for backup file
+          fs.unlinkSync(backupFilename);
+        }
         this.respondMessage(context,405, 'hash mismatch on written content')
       } else {
         // ok delete backup file

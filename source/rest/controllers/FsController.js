@@ -6,7 +6,7 @@ const FileHandler = require('../lib/FileHandler')
 class FsController extends FileHandler {
   constructor() {
     super()
-    this.basePath = config.configDir
+    this.basePath = config.configDir;
     this.mounts = config.mounts.map(mount => mount.mountPoint);
   }
 
