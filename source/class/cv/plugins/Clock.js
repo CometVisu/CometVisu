@@ -88,7 +88,7 @@ qx.Class.define('cv.plugins.Clock', {
               return cv.data.Model.isReadAddress(this.getAddress()[address]);
             }.bind(this))
             .forEach(function(address) {
-              this._update(address, this.getValue().getHours() + ':' + this.getValue().getMinutes() + ':00');
+              this._update(address, this.getValue().getHours() + ':' + this.getValue().getMinutes() + ':00', true);
           }, this);
         }.bind(this)
       });
@@ -98,15 +98,20 @@ qx.Class.define('cv.plugins.Clock', {
     initListeners: function () {},
 
     // overidden
-    _update: function (address, data) {
+    _update: function (address, data, isDataAlreadHandled) {
       var element = this.getDomElement();
-      var value = this.defaultValueHandling(address, data);
+      var value = isDataAlreadHandled ? data : this.defaultValueHandling(address, data);
       var svg = qx.bom.Selector.query('svg', element)[0];
       var time = value.split(':');
       var hourElem = qx.bom.Selector.query('#Hour', svg)[0];
       var minuteElem = qx.bom.Selector.query('#Minute', svg)[0];
-      qx.bom.element.Attribute.set(hourElem, "transform", 'rotate(' + ((time[0] % 12) * 360 / 12 + time[1] * 30 / 60) + ',50,50)');
-      qx.bom.element.Attribute.set(minuteElem, "transform", 'rotate(' + (time[1] * 6) + ',50,50)');
+      if( hourElem !== undefined && minuteElem !== undefined ) {
+        qx.bom.element.Attribute.set(hourElem, "transform", 'rotate(' + ((time[0] % 12) * 360 / 12 + time[1] * 30 / 60) + ',50,50)');
+        qx.bom.element.Attribute.set(minuteElem, "transform", 'rotate(' + (time[1] * 6) + ',50,50)');
+      } else {
+        // do nothing - most likely DOM not ready yet.
+        // TODO: implement a timer to force the update to handle unknown problematic conditions
+      }
     },
 
     dragHelper: function (event) {
