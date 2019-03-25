@@ -7,7 +7,6 @@ const AbstractHandler = require('./AbstractHandler')
 class FileHandler extends AbstractHandler {
   constructor() {
     super()
-    this.trashFolder = path.join(config.configDir, config.trashFolderName)
     this.useTrash = true;
   }
 
@@ -178,13 +177,13 @@ class FileHandler extends AbstractHandler {
       return this.ok(context)
     }
     try {
-      if (this.useTrash === true) {
+      if (this.useTrash === true && !file.startsWith(config.trashFolder)) {
         const relDir = path.dirname(file).substring(config.configDir.length)
         const filename = path.basename(file)
-        if (!fs.existsSync(this.trashFolder)) {
-          fs.mkdirSync(this.trashFolder)
+        if (!fs.existsSync(config.trashFolder)) {
+          fs.mkdirSync(config.trashFolder)
         }
-        const baseTrashFile = path.join(this.trashFolder, relDir, filename)
+        const baseTrashFile = path.join(config.trashFolder, relDir, filename)
         let trashFile = baseTrashFile
         let index = 1
         while (fs.existsSync(trashFile)) {
@@ -209,10 +208,10 @@ class FileHandler extends AbstractHandler {
     try {
       if (this.useTrash === true) {
         const relDir = folder.substring(config.configDir.length)
-        if (!fs.existsSync(this.trashFolder)) {
-          fs.mkdirSync(this.trashFolder)
+        if (!fs.existsSync(config.trashFolder)) {
+          fs.mkdirSync(config.trashFolder)
         }
-        const baseTrashFile = path.join(this.trashFolder, relDir)
+        const baseTrashFile = path.join(config.trashFolder, relDir)
         let trashFile = baseTrashFile
         let index = 1
         while (fs.existsSync(trashFile)) {

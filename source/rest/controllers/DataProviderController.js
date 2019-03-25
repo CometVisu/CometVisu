@@ -18,7 +18,25 @@ class DataProviderController extends AbstractHandler {
     }).map(file => file.name);
   }
 
+  getAddresses(context) {
+    return [];
+  }
 
+  getRRDs(context) {
+    return [];
+  }
+
+  getInfluxDBs(context) {
+    return [];
+  }
+
+  getInfluxDBFields(context) {
+    return [];
+  }
+
+  getInfluxDBTags(context) {
+    return [];
+  }
 }
 
 const dataProviderController = new DataProviderController()
