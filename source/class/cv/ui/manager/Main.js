@@ -331,7 +331,7 @@ qx.Class.define('cv.ui.manager.Main', {
       group.add('new-file', new qx.ui.command.Command('Ctrl+N'));
       group.add('new-folder', new qx.ui.command.Command('Ctrl+Shift+N'));
       group.add('quit', new qx.ui.command.Command('Ctrl+Q'));
-      group.add('delete', new qx.ui.command.Command('Del'));
+      // group.add('delete', new qx.ui.command.Command('Del'));
 
       group.add('rename', new qx.ui.command.Command('F2'));
 
@@ -475,7 +475,6 @@ qx.Class.define('cv.ui.manager.Main', {
 
       this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
       this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
-      this.bind('deleteableSelection', buttonConfig['delete'].args[2], 'enabled');
 
       var reload = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 15));
       reload.setAppearance('cv-toolbar-button');

@@ -16,9 +16,8 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     this.base(arguments);
     this.__elementCache = {};
     this._schemaNode = schemaNode;
-    this._client = cv.io.rest.Client.getDataProviderClient();
-    this._client.addListener('designsSuccess', this._onUpdateDesigns, this);
-    this.getDesigns();
+    this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
+
   },
 
   /*
@@ -28,18 +27,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
   */
   members: {
     __elementCache: null,
+    __metaElementCache: null,
     _schemaNode: null,
-    __availableDesigns: null,
-
-    _onUpdateDesigns: function (ev) {
-      this.__availableDesigns = ev.getData();
-      console.log(this.__availableDesigns);
-    },
-
-    getDesigns: function () {
-      this._client.designs();
-      return this.__availableDesigns;
-    },
+    _dataProvider: null,
 
     getLastOpenedTag: function (text) {
       // get all tags inside of the content
@@ -72,7 +62,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
               if (openedTag) {
                 var attrMatch = /([\w\-_\.\d]+)="[^"]*$/.exec(text);
                 contentSearch = !!attrMatch;
-                currentAttribute = attrMatch[1];
+                currentAttribute = attrMatch ? attrMatch[1] : null;
               }
               var filteredElementSearch = /<[\w-_\d]+$/.test(text);
               return {
@@ -93,9 +83,10 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       }
     },
 
-    findElements: function (parent, elementName, maxDepth, currentDepth) {
-      if (elementName in this.__elementCache) {
-        return this.__elementCache[elementName];
+    findElements: function (parent, elementName, maxDepth, currentDepth, inMeta) {
+      var cache = inMeta === true ? this.__metaElementCache : this.__elementCache;
+      if (elementName in cache) {
+        return cache[elementName];
       }
       if (maxDepth < currentDepth) {
         return null;
@@ -114,10 +105,13 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
         return allowedElements[elementName];
       } else {
         for (var element in allowedElements) {
+          if (inMeta !== true && element === 'meta') {
+            continue;
+          }
           if (maxDepth > currentDepth) {
             var result = this.findElements(allowedElements[element], elementName, maxDepth, currentDepth + 1);
             if (result) {
-              this.__elementCache[elementName] = result;
+              cache[elementName] = result;
               // console.log("found " + elementName + " in tree level " + currentDepth);
               return result;
             }
@@ -174,7 +168,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             insertText += "\n    " + this.getElementString(elem, indent + "    ", "<") + ">";
             children++;
           }
-        });
+        }, this);
         // add closing tag
         if (children > 0) {
           insertText += "\n"+indent;
@@ -245,6 +239,37 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             endLineNumber: position.lineNumber,
             endColumn: position.column
           });
+          // parse mappings
+          var completeText = model.getValue();
+          var metaEndPos = completeText.indexOf('</meta>');
+          var textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
+          var mappingNames = [];
+          var stylingNames = [];
+          var templates = {};
+          var map, vmap;
+          var regex = /<mapping name="([^"]+)"/gm;
+          while ((map = regex.exec(textMeta)) !== null) {
+            mappingNames.push(map[1]);
+          }
+          regex = /<styling name="([^"]+)"/gm;
+          while ((map = regex.exec(textMeta)) !== null) {
+            stylingNames.push(map[1]);
+          }
+          var templatesStart = textMeta.indexOf('<templates>');
+          if (templatesStart >= 0) {
+            var templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
+            templatesString.split('</template>').forEach(function (rawTemplate) {
+              var nameMatch = /<template name="([^"]+)"/.exec(rawTemplate);
+              // search for variables
+              var variables = [];
+              var vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
+              while ((vmap = vregex.exec(rawTemplate)) !== null) {
+                variables.push(vmap[1]);
+              }
+              templates[nameMatch[1]] = variables;
+            }, this);
+          }
+
           // if we want suggestions, inside of which tag are we?
           var lastOpenedTag = this.getLastOpenedTag(textUntilPosition);
           // console.log(lastOpenedTag);
@@ -315,50 +340,71 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           // find the last opened tag in the schema to see what elements/attributes it can have
           var searchedElement = openedTags[openedTags.length-1];
           if (isContentSearch) {
+            // handle data providers if the is one relevant
             if (lastOpenedTag.tagName === 'pages' && lastOpenedTag.currentAttribute === 'design') {
-              // use dataprovider result
-              this.getDesigns().forEach(function (designName) {
-                res.push({
-                  label: designName,
-                  insertText: designName,
-                  kind: window.monaco.languages.CompletionItemKind.EnumMember
-                });
-              }, this);
-              return {suggestions: res};
+              return {suggestions: this._dataProvider.getDesigns()};
             } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === 'transform') {
-              Object.keys(cv.Transform.registry).forEach(function (key) {
-                var entry = cv.Transform.registry[key];
-                var suggestion = {
-                  label: key,
-                  insertText: key,
+              return {suggestions: this._dataProvider.getTransforms()};
+            } else if (lastOpenedTag.tagName === 'plugin' && lastOpenedTag.currentAttribute === 'name') {
+              return {suggestions: this._dataProvider.getPlugins()};
+            } else if (lastOpenedTag.tagName === 'icon' && lastOpenedTag.currentAttribute === 'name') {
+              return {suggestions: this._dataProvider.getIcons()};
+            } else if (lastOpenedTag.tagName === 'template' && lastOpenedTag.currentAttribute === 'name' && !openedTags.includes('meta')) {
+              res = Object.keys(templates).map(function (name) {
+                return {
+                  label: name,
+                  insertText: name,
                   kind: window.monaco.languages.CompletionItemKind.EnumMember
                 };
-                if (entry.lname && entry.lname.hasOwnProperty(qx.locale.Manager.getInstance().getLanguage())) {
-                  suggestion.detail = entry.lname[qx.locale.Manager.getInstance().getLanguage()];
-                }
-                res.push(suggestion);
               }, this);
               return {suggestions: res};
-            } else if (lastOpenedTag.tagName === 'plugin' && lastOpenedTag.currentAttribute === 'name') {
-              var qxParts = qx.io.PartLoader.getInstance().getParts();
-              Object.keys(qxParts).forEach(function (partName) {
-                if (partName.startsWith('plugin-')) {
-                  var pluginName = partName.substring(7);
+            } else if (lastOpenedTag.tagName === 'value' &&
+              lastOpenedTag.currentAttribute === 'name' &&
+              !openedTags.includes('meta') &&
+              openedTags.includes('template')) {
+              // TODO: find out template name
+              var templateNames = Object.keys(templates);
+              templateNames.forEach(function (name) {
+                templates[name].forEach(function (variableName) {
                   res.push({
-                    label: pluginName,
-                    insertText: pluginName,
-                    kind: window.monaco.languages.CompletionItemKind.EnumMember
+                    label: variableName,
+                    insertText: variableName,
+                    detail: qx.locale.Manager.tr('Variable from template %1', name),
+                    kind: window.monaco.languages.CompletionItemKind.Variable
                   });
-                }
+                }, this);
+              }, this);
+              return {suggestions: res};
+            } else if (lastOpenedTag.currentAttribute === 'mapping') {
+              res = mappingNames.map(function (mappingName) {
+                return {
+                  label: mappingName,
+                  insertText: mappingName,
+                  kind: window.monaco.languages.CompletionItemKind.EnumMember
+                };
+              }, this);
+              return {suggestions: res};
+            } else if (lastOpenedTag.currentAttribute === 'styling') {
+              res = stylingNames.map(function (stylingName) {
+                return {
+                  label: stylingName,
+                  insertText: stylingName,
+                  kind: window.monaco.languages.CompletionItemKind.EnumMember
+                };
               }, this);
               return {suggestions: res};
             }
-            // TODO: implement more attribute suggestions (mappings, stylings, templates, icons, rrds, influxdbs, includable media files)
+
+            // TODO: completions that have to be retrieved from the backend
+            // * rrds
+            // * Influx: dbs, tags fields
+            // * media files
+
             searchedElement = lastOpenedTag.tagName;
           } else if (!isAttributeSearch && filteredElementSearch) {
             searchedElement = openedTags[openedTags.length-2];
           }
-          var currentItem = this.findElements(this._schemaNode.allowedRootElements.pages, searchedElement, openedTags.length);
+          var currentItem = this.findElements(this._schemaNode.allowedRootElements.pages, searchedElement, openedTags.length, openedTags.includes('meta'));
 
           // return available elements/attributes if the tag exists in the schema, or an empty
           // array if it doesn't
@@ -407,5 +453,6 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
   destruct: function () {
     this.__elementCache = null;
     this._schemaNode = null;
+    this._dataProvider = null;
   }
 });

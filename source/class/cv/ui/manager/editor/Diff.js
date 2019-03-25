@@ -79,8 +79,8 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
       var modified = this.getModifiedContent();
       if (original && modified) {
         var file = this.getFile();
-        var originalModel = monaco.editor.createModel(original, this._getLanguage(file.getOriginalFile()));
-        var modifiedModel = monaco.editor.createModel(modified, this._getLanguage(file.getModifiedFile()));
+        var originalModel = window.monaco.editor.createModel(original, this._getLanguage(file.getOriginalFile()));
+        var modifiedModel = window.monaco.editor.createModel(modified, this._getLanguage(file.getModifiedFile()));
         this._editor.setModel({
           original: originalModel,
           modified: modifiedModel
