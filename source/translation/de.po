@@ -24,7 +24,7 @@ msgstr "Ein Fehler ist aufgetreten"
 msgid "Enable on reload:"
 msgstr "Aktivieren beim neu Laden:"
 
-#: cv/ui/manager/Main.js:465 cv/Application.js:308
+#: cv/ui/manager/Main.js:481 cv/Application.js:308
 msgid "Reload"
 msgstr "Neu laden"
 
@@ -82,13 +82,15 @@ msgstr "Antwort des Backends:"
 msgid ""
 "The backend did send an invalid response to a %1read%2 request: Missing "
 "\"i\" value."
-msgstr "Das Backend hat eine ungültige Antwort auf eine %1read%2-Anfrage gesendet: Fehlender \"i\" Wert."
+msgstr ""
+"Das Backend hat eine ungültige Antwort auf eine %1read%2-Anfrage gesendet: "
+"Fehlender \"i\" Wert."
 
-#: cv/io/rest/Client.js:157
+#: cv/io/rest/Client.js:171
 msgid "File has been saved"
 msgstr "Datei wurde gespeichert"
 
-#: cv/io/rest/Client.js:166
+#: cv/io/rest/Client.js:180
 msgid "Error saving file"
 msgstr "Fehler beim Speichern der Datei"
 
@@ -130,11 +132,11 @@ msgstr "Alle löschen"
 msgid "Message center"
 msgstr "Nachrichtenzentrale"
 
-#: cv/ui/manager/MenuBar.js:45
+#: cv/ui/manager/MenuBar.js:45 cv/ui/manager/tree/FileSystem.js:250
 msgid "New file"
 msgstr "Neue Datei"
 
-#: cv/ui/manager/MenuBar.js:50
+#: cv/ui/manager/MenuBar.js:50 cv/ui/manager/tree/FileSystem.js:251
 msgid "New folder"
 msgstr "Neuer Ordner"
 
@@ -142,7 +144,7 @@ msgstr "Neuer Ordner"
 msgid "Save as..."
 msgstr "Speichern unter..."
 
-#: cv/ui/manager/MenuBar.js:66
+#: cv/ui/manager/MenuBar.js:66 cv/ui/manager/tree/FileSystem.js:256
 msgid "Delete"
 msgstr "Löschen"
 
@@ -226,6 +228,10 @@ msgstr "Einstellungen"
 msgid "Add section"
 msgstr "Sektion hinzufügen"
 
+#: cv/ui/manager/editor/completion/Config.js:372
+msgid "Variable from template %1"
+msgstr "Variable aus Template %1"
+
 #: cv/ui/manager/form/OptionListItem.js:130
 msgid "Delete option"
 msgstr "Option löschen"
@@ -250,6 +256,10 @@ msgstr "Sektion"
 msgid "Delete section"
 msgstr "Sektion löschen"
 
+#: cv/ui/manager/model/CompareFiles.js:71
+msgid "Diff: %1"
+msgstr "Vergleich: %1"
+
 #: cv/ui/manager/model/FileItem.js:178
 msgid "File has been created"
 msgstr "Datei wurde erstellt"
@@ -273,6 +283,22 @@ msgstr "Datei wurde gelöscht"
 #: cv/ui/manager/model/FileItem.js:218
 msgid "Folder has been deleted"
 msgstr "Verzeichnis wurde gelöscht"
+
+#: cv/ui/manager/tree/FileSystem.js:110
+msgid "Backup from %1"
+msgstr "Sicherung vom %1"
+
+#: cv/ui/manager/tree/FileSystem.js:253
+msgid "Compare with..."
+msgstr "Vergleichen mit..."
+
+#: cv/ui/manager/tree/FileSystem.js:262
+msgid "Rename"
+msgstr "Umbenennen"
+
+#: cv/ui/manager/tree/FileSystem.js:267
+msgid "Download"
+msgstr "Herunterladen"
 
 #: cv/ui/structure/pure/Unknown.js:88
 msgid "unknown: %1"

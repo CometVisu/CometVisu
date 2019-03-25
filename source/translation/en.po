@@ -23,7 +23,7 @@ msgstr ""
 msgid "Enable on reload:"
 msgstr ""
 
-#: cv/ui/manager/Main.js:465 cv/Application.js:308
+#: cv/ui/manager/Main.js:481 cv/Application.js:308
 msgid "Reload"
 msgstr ""
 
@@ -79,11 +79,11 @@ msgid ""
 "\"i\" value."
 msgstr ""
 
-#: cv/io/rest/Client.js:157
+#: cv/io/rest/Client.js:171
 msgid "File has been saved"
 msgstr ""
 
-#: cv/io/rest/Client.js:166
+#: cv/io/rest/Client.js:180
 msgid "Error saving file"
 msgstr ""
 
@@ -122,11 +122,11 @@ msgstr ""
 msgid "Message center"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:45
+#: cv/ui/manager/MenuBar.js:45 cv/ui/manager/tree/FileSystem.js:250
 msgid "New file"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:50
+#: cv/ui/manager/MenuBar.js:50 cv/ui/manager/tree/FileSystem.js:251
 msgid "New folder"
 msgstr ""
 
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Save as..."
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:66
+#: cv/ui/manager/MenuBar.js:66 cv/ui/manager/tree/FileSystem.js:256
 msgid "Delete"
 msgstr ""
 
@@ -218,6 +218,10 @@ msgstr ""
 msgid "Add section"
 msgstr ""
 
+#: cv/ui/manager/editor/completion/Config.js:372
+msgid "Variable from template %1"
+msgstr ""
+
 #: cv/ui/manager/form/OptionListItem.js:130
 msgid "Delete option"
 msgstr ""
@@ -242,6 +246,10 @@ msgstr ""
 msgid "Delete section"
 msgstr ""
 
+#: cv/ui/manager/model/CompareFiles.js:71
+msgid "Diff: %1"
+msgstr ""
+
 #: cv/ui/manager/model/FileItem.js:178
 msgid "File has been created"
 msgstr ""
@@ -264,6 +272,22 @@ msgstr ""
 
 #: cv/ui/manager/model/FileItem.js:218
 msgid "Folder has been deleted"
+msgstr ""
+
+#: cv/ui/manager/tree/FileSystem.js:110
+msgid "Backup from %1"
+msgstr ""
+
+#: cv/ui/manager/tree/FileSystem.js:253
+msgid "Compare with..."
+msgstr ""
+
+#: cv/ui/manager/tree/FileSystem.js:262
+msgid "Rename"
+msgstr ""
+
+#: cv/ui/manager/tree/FileSystem.js:267
+msgid "Download"
 msgstr ""
 
 #: cv/ui/structure/pure/Unknown.js:88
