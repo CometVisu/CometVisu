@@ -241,7 +241,9 @@ used directly on the Timberwolf (64 bit architecture) [1].</p>
 <ul>
 <li><p class="first">Name: <code class="docutils literal"><span class="pre">CometVisu</span></code></p>
 </li>
-<li><p class="first">Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest</span></code></p>
+<li><p class="first">Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest</span></code> for the big servers
+(TWS2xxx) or <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest-arm</span></code> for the rail mounted smaller
+servers</p>
 </li>
 <li><p class="first">Port mapping: host <code class="docutils literal"><span class="pre">18080</span></code>, container <code class="docutils literal"><span class="pre">80</span></code></p>
 </li>
@@ -397,13 +399,13 @@ incompatibly due to future updates.</p>
 <p>As described under <a class="reference internal" href="docker.html#docker"><span class="std std-ref">Docker</span></a> has the newest
 Development version the day <code class="docutils literal"><span class="pre">testing</span></code>. Thus, under
 <em>Creating the container</em> as <code class="docutils literal"><span class="pre">name</span></code> <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code>
-to use.</p>
+or <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing-arm</span></code> to use.</p>
 <p>In order to have a uniform environment for error reporting, etc.
 the testing version should be installed with these parameters:</p>
 <ul class="simple">
 <li>Container:<ul>
 <li>Name: <code class="docutils literal"><span class="pre">CometVisuTest</span></code></li>
-<li>Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code></li>
+<li>Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code> or <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing-arm</span></code></li>
 <li>Port mapping: host <code class="docutils literal"><span class="pre">28080</span></code>, container <code class="docutils literal"><span class="pre">80</span></code></li>
 <li>Advanced container settings:<ul>
 <li>Volumes: Volume mapping<ul>
