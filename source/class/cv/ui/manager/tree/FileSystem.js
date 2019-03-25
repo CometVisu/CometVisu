@@ -102,7 +102,9 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
             if (group !== null) {
               compareMenu.add(new qx.ui.menu.Separator());
             }
-            compareMenu.add(new qx.ui.menu.Button(date));
+            var groupButton = new qx.ui.menu.Button(date);
+            groupButton.setEnabled(false);
+            compareMenu.add(groupButton);
             group = date;
           }
           var button = new qx.ui.menu.Button(this.tr('Backup from %1', this._timeFormat.format(backupEntry.date)));

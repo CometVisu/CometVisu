@@ -521,6 +521,7 @@ qx.Class.define('cv.ui.manager.Main', {
           controller.bindDefaultProperties(item, index);
           controller.bindProperty('permanent', 'permanent', null, item, index);
           controller.bindProperty('modified', 'modified', null, item, index);
+          controller.bindProperty('icon', 'icon', null, item, index);
         }
       });
       list.addListener('changeSelection', this._onChangeFileSelection, this);

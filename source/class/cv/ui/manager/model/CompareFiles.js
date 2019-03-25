@@ -50,6 +50,12 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
     modified: {
       check: 'Boolean',
       init: false
+    },
+
+    icon: {
+      check: 'String',
+      init: cv.theme.dark.Images.getIcon('compare', 18),
+      event: 'changeIcon'
     }
   },
 

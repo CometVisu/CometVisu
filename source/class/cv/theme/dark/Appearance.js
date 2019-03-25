@@ -24,26 +24,60 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
   appearances : {
     'open-file-item': {
-      include: 'listitem',
-      alias: 'listitem',
+      alias: "atom",
+
+      style: function (states) {
+        var padding = [3, 5, 3, 5];
+        if (states.lead) {
+          padding = [2, 4, 2, 4];
+        }
+        if (states.dragover) {
+          padding[2] -= 2;
+        }
+
+        var backgroundColor;
+        if (states.selected) {
+          backgroundColor = "background-selected";
+          if (states.disabled) {
+            backgroundColor += "-disabled";
+          }
+        }
+        return {
+          backgroundColor: backgroundColor,
+          textColor: states.selected ? "text-selected" : undefined,
+          decorator: states.lead ? "lead-item" : states.dragover ? "dragover" : undefined,
+          opacity: states.drag ? 0.5 : undefined,
+          height: 25,
+          padding: padding,
+          margin: 0
+        };
+      }
+    },
+    'open-file-item/label': {
+      include: 'listitem/label',
 
       style: function () {
         return {
-          iconPosition: 'right',
-          gap: 0,
-          height: 25,
-          padding: [0, 0, 0, 10],
-          margin: 0,
-          icon: osparc.theme.osparcdark.Image.URLS['tabview-close']
+          alignY: 'middle'
         };
       }
     },
     'open-file-item/icon': {
-      include: 'listitem/icon',
+      alias: 'listitem/icon',
+      style: function () {
+        return {
+          alignY: 'middle',
+          paddingRight: 8
+        };
+      }
+    },
+    'open-file-item/close': {
 
       style: function () {
         return {
-          padding: 10
+          padding: 8,
+          cursor: 'pointer',
+          alignY: 'middle'
         };
       }
     },
