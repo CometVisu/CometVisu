@@ -248,7 +248,8 @@ dem Timberwolf (64 Bit Architektur) verwendet werden <a class="footnote-referenc
 <ul>
 <li><p class="first">Name: <code class="docutils literal"><span class="pre">CometVisu</span></code></p>
 </li>
-<li><p class="first">Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest</span></code></p>
+<li><p class="first">Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest</span></code> für die &#8220;großen&#8221; Server
+(TSW2xxx) oder <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest-arm</span></code> für die Hutschienen-Server.</p>
 </li>
 <li><p class="first">Port mapping: host <code class="docutils literal"><span class="pre">18080</span></code>, container <code class="docutils literal"><span class="pre">80</span></code></p>
 </li>
@@ -405,13 +406,14 @@ sich durch zukünftige Updates das Format der Config-Dateien inkompatibel änder
 kann.</p>
 <p>Wie unter <a class="reference internal" href="docker.html#docker"><span class="std std-ref">Docker</span></a> beschrieben hat die neueste
 Entwicklunglungsversion den Tag <code class="docutils literal"><span class="pre">testing</span></code>. Somit ist unter <em>Anlegen des
-Containers</em> als <code class="docutils literal"><span class="pre">name</span></code> <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code> zu verwenden.</p>
+Containers</em> als <code class="docutils literal"><span class="pre">name</span></code> <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code> bzw.
+<code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing-arm</span></code> zu verwenden.</p>
 <p>Um für Fehlerberichte u.ä. eine einheitliche Umgebung zu haben, ist die
 Empfehlung die Testing Version mit diesen Parametern zu installieren:</p>
 <ul class="simple">
 <li>Container:<ul>
 <li>Name: <code class="docutils literal"><span class="pre">CometVisuTest</span></code></li>
-<li>Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code></li>
+<li>Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code> bzw. <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing-arm</span></code></li>
 <li>Port mapping: host <code class="docutils literal"><span class="pre">28080</span></code>, container <code class="docutils literal"><span class="pre">80</span></code></li>
 <li>Advanced container settings:<ul>
 <li>Volumes: Volume mapping<ul>
