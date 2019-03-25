@@ -61,7 +61,9 @@ Creating a Container
 Under: *Containers* → *Add Container*
 
 - Name: ``CometVisu``
-- Image configuration: Name: ``cometvisu/cometvisu:latest``
+- Image configuration: Name: ``cometvisu/cometvisu:latest`` for the big servers
+  (TWS2xxx) or ``cometvisu/cometvisu:latest-arm`` for the rail mounted smaller
+  servers
 - Port mapping: host ``18080``, container ``80``
 - Advanced container settings:
 
@@ -230,7 +232,7 @@ incompatibly due to future updates.
 As described under :ref:`Docker <docker>` has the newest
 Development version the day ``testing``. Thus, under
 *Creating the container* as ``name`` ``cometvisu/cometvisu:testing``
-to use.
+or ``cometvisu/cometvisu:testing-arm`` to use.
 
 
 In order to have a uniform environment for error reporting, etc.
@@ -239,7 +241,7 @@ the testing version should be installed with these parameters:
 - Container:
 
   - Name: ``CometVisuTest``
-  - Image configuration: Name: ``cometvisu/cometvisu:testing``
+  - Image configuration: Name: ``cometvisu/cometvisu:testing`` or ``cometvisu/cometvisu:testing-arm``
   - Port mapping: host ``28080``, container ``80``
   - Advanced container settings:
 
