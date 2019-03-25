@@ -13,8 +13,11 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     this.base(arguments);
     this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
     this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/config/';
-    this.addListenerOnce('appear', function () {
-      console.log('source editor appeared');
+    this.addListener('appear', function () {
+      qx.ui.core.FocusHandler.getInstance().setUseTabNavigation(false);
+    });
+    this.addListener('disappear', function () {
+      qx.ui.core.FocusHandler.getInstance().setUseTabNavigation(true);
     });
     this._draw();
     this._initWorker();
@@ -95,6 +98,14 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       this._workerWrapper.setEditor(this);
     },
 
+    _getDefaultModelOptions: function () {
+      return {
+        tabSize: 2,
+        indentSize: 2,
+        insertSpaces: true
+      };
+    },
+
     _draw: function () {
       if (!window.monaco) {
         cv.ui.manager.editor.Source.load(this._draw, this);
@@ -173,6 +184,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         }
 
         if (model !== newModel) {
+          newModel.updateOptions(this._getDefaultModelOptions());
           this._editor.setModel(newModel);
         } else {
           this._editor.setValue(value);
@@ -294,5 +306,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       this._editor.dispose();
       this._editor = null;
     }
+    qx.ui.core.FocusHandler.getInstance().setUseTabNavigation(true);
   }
 });
