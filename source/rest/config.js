@@ -1,16 +1,18 @@
 const path = require('path');
 
-const configDir = path.resolve(path.join(__dirname, '..', 'resource', 'config'));
+const resourcesDir = path.resolve(path.join(__dirname, '..', 'resource'));
 
 module.exports = {
-  configDir: configDir,
+  resourcesDir: resourcesDir,
+  configDir: path.join(resourcesDir, 'config'),
+  designsDir: path.join(resourcesDir, 'designs'),
   trashFolderName: '.trash', // relative to the deleted file,
-  backupFolder: path.resolve(path.join(configDir, 'backup')),
+  backupFolder: path.join(resourcesDir, 'backup'),
   backupOnChange: [/visu_config.*\.xml/],
   mounts: [
     {
       mountPoint: 'demo',
-      path: path.resolve(path.join(__dirname, '..', 'resource', 'demo')),
+      path: path.join(resourcesDir, 'demo'),
       showSubDirs: false,
       writeable: false
     }

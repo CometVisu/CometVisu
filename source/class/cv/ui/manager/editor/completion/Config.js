@@ -16,6 +16,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
     this.base(arguments);
     this.__elementCache = {};
     this._schemaNode = schemaNode;
+    this._client = cv.io.rest.Client.getDataProviderClient();
+    this._client.addListener('designsSuccess', this._onUpdateDesigns, this);
+    this.getDesigns();
   },
 
   /*
@@ -26,6 +29,17 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
   members: {
     __elementCache: null,
     _schemaNode: null,
+    __availableDesigns: null,
+
+    _onUpdateDesigns: function (ev) {
+      this.__availableDesigns = ev.getData();
+      console.log(this.__availableDesigns);
+    },
+
+    getDesigns: function () {
+      this._client.designs();
+      return this.__availableDesigns;
+    },
 
     getLastOpenedTag: function (text) {
       // get all tags inside of the content
@@ -53,10 +67,17 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
               text = text.substring(tagPosition);
 
               var openedTag = text.indexOf('<') > text.indexOf('>');
-              var contentSearch = openedTag && /="[^"]*$/.test(text);
+              var contentSearch = false;
+              var currentAttribute = null;
+              if (openedTag) {
+                var attrMatch = /([\w\-_\.\d]+)="[^"]*$/.exec(text);
+                contentSearch = !!attrMatch;
+                currentAttribute = attrMatch[1];
+              }
               var filteredElementSearch = /<[\w-_\d]+$/.test(text);
               return {
                 tagName: tag,
+                currentAttribute: currentAttribute,
                 filteredElementSearch: filteredElementSearch,
                 isAttributeSearch: !filteredElementSearch && openedTag && !contentSearch,
                 isContentSearch: contentSearch,
@@ -267,7 +288,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                   // should be the elements that were already used
                   var children = lastChild.children;
                   for (i = 0; i < children.length; i++) {
-                    usedItems.push(children[i].tagName);
+                    if (children[i].tagName.toLowerCase() !== 'parsererror') {
+                      usedItems.push(children[i].tagName);
+                    }
                   }
                 }
                 break;
@@ -288,15 +311,54 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
               }
             }
           }
+          var res = [];
           // find the last opened tag in the schema to see what elements/attributes it can have
           var searchedElement = openedTags[openedTags.length-1];
           if (isContentSearch) {
+            if (lastOpenedTag.tagName === 'pages' && lastOpenedTag.currentAttribute === 'design') {
+              // use dataprovider result
+              this.getDesigns().forEach(function (designName) {
+                res.push({
+                  label: designName,
+                  insertText: designName,
+                  kind: window.monaco.languages.CompletionItemKind.EnumMember
+                });
+              }, this);
+              return {suggestions: res};
+            } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === 'transform') {
+              Object.keys(cv.Transform.registry).forEach(function (key) {
+                var entry = cv.Transform.registry[key];
+                var suggestion = {
+                  label: key,
+                  insertText: key,
+                  kind: window.monaco.languages.CompletionItemKind.EnumMember
+                };
+                if (entry.lname && entry.lname.hasOwnProperty(qx.locale.Manager.getInstance().getLanguage())) {
+                  suggestion.detail = entry.lname[qx.locale.Manager.getInstance().getLanguage()];
+                }
+                res.push(suggestion);
+              }, this);
+              return {suggestions: res};
+            } else if (lastOpenedTag.tagName === 'plugin' && lastOpenedTag.currentAttribute === 'name') {
+              var qxParts = qx.io.PartLoader.getInstance().getParts();
+              Object.keys(qxParts).forEach(function (partName) {
+                if (partName.startsWith('plugin-')) {
+                  var pluginName = partName.substring(7);
+                  res.push({
+                    label: pluginName,
+                    insertText: pluginName,
+                    kind: window.monaco.languages.CompletionItemKind.EnumMember
+                  });
+                }
+              }, this);
+              return {suggestions: res};
+            }
+            // TODO: implement more attribute suggestions (mappings, stylings, templates, icons, rrds, influxdbs, includable media files)
             searchedElement = lastOpenedTag.tagName;
           } else if (!isAttributeSearch && filteredElementSearch) {
             searchedElement = openedTags[openedTags.length-2];
           }
           var currentItem = this.findElements(this._schemaNode.allowedRootElements.pages, searchedElement, openedTags.length);
-          var res = [];
 
           // return available elements/attributes if the tag exists in the schema, or an empty
           // array if it doesn't

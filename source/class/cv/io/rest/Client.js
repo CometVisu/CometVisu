@@ -13,6 +13,7 @@ qx.Class.define('cv.io.rest.Client', {
     BASE_URL: 'http://localhost:3000',
     __configFile: null,
     __dirClient: null,
+    __dpClient: null,
     __callbacks: {},
 
     getConfigClient: function() {
@@ -147,6 +148,19 @@ qx.Class.define('cv.io.rest.Client', {
         }, this);
       }
       return this.__dirClient;
+    },
+
+    getDataProviderClient: function () {
+      if (!this.__dpClient) {
+        var config = {
+          designs: {
+            method: 'GET', url: '/data/designs'
+          }
+        };
+        this.__dpClient = new qx.io.rest.Resource(config);
+        this.__dpClient.setBaseUrl(this.BASE_URL);
+      }
+      return this.__dpClient;
     },
 
     _onSaveSuccess: function (ev) {

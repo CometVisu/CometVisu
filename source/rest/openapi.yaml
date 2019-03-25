@@ -8,6 +8,8 @@ tags:
     description: Filesystem handling
   - name: config
     description: Configuration and Settings
+  - name: dataprovider
+    description: Dataproviders for config editor.
 paths:
   '/fs/move':
     put:
@@ -254,8 +256,105 @@ paths:
           description: Not allowed
         '404':
           description: Config option does not exist
+  /data/designs:
+    get:
+      tags:
+        - dataprovider
+      summary: Returns the list of available designs.
+      operationId: getDesigns
+      x-exegesis-controller: DataProviderController
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /data/addresses:
+    get:
+      tags:
+        - dataprovider
+      summary: Returns the list of available addresses.
+      operationId: getAddresses
+      x-exegesis-controller: DataProviderController
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataProviderResponse'
+  /data/rrds:
+    get:
+      tags:
+        - dataprovider
+      summary: Returns the list of available RRDs.
+      operationId: getRRDs
+      x-exegesis-controller: DataProviderController
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataProviderResponse'
+  /data/influxdbs:
+    get:
+      tags:
+        - dataprovider
+      summary: Returns the list of available influx databases.
+      operationId: getInfluxDBs
+      x-exegesis-controller: DataProviderController
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataProviderResponse'
+  /data/influxdbfields:
+    get:
+      tags:
+        - dataprovider
+      summary: Returns the list of available influx database fields.
+      operationId: getInfluxDBFields
+      x-exegesis-controller: DataProviderController
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataProviderResponse'
+  /data/influxdbtags:
+    get:
+      tags:
+        - dataprovider
+      summary: Returns the list of available influx database tags.
+      operationId: getInfluxDBTags
+      x-exegesis-controller: DataProviderController
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataProviderResponse'
 components:
   schemas:
+    DataProviderResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataProviderEntry'
+    DataProviderEntry:
+      type: object
+      properties:
+        value:
+          type: string
+        label:
+          type: string
     ReadResponse:
       oneOf:
         - $ref: '#/components/schemas/DirContent'
