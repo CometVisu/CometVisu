@@ -292,10 +292,20 @@ qx.Class.define('cv.ui.manager.Main', {
         this.__previewFileIndex = null;
       }
 
-      // close textmodel in monaci editor if exists
-      var oldModel = window.monaco.editor.getModel(file.getUri());
-      if (oldModel) {
-        oldModel.dispose();
+      if (file instanceof cv.ui.manager.model.CompareFiles) {
+        cv.ui.manager.Main.getFileEditor(file).instance.clear();
+        if (this.getOpenFiles().filter(function (file) {
+          return file instanceof cv.ui.manager.model.CompareFiles;
+        }).length === 0) {
+          cv.ui.manager.Main.getFileEditor(file).instance.destroy();
+          cv.ui.manager.Main.getFileEditor(file).instance = null;
+        }
+      } else {
+        // close textmodel in monaco editor if exists
+        var oldModel = window.monaco.editor.getModel(file.getUri());
+        if (oldModel) {
+          oldModel.dispose();
+        }
       }
     },
 

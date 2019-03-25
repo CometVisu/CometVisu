@@ -90,6 +90,11 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
       }
     },
 
+    clear: function () {
+      this._editor.getModel().original.dispose();
+      this._editor.getModel().modified.dispose();
+    },
+
     _loadFile: function (file) {
       if (this._editor) {
         if (file && file instanceof cv.ui.manager.model.CompareFiles && this.isSupported(file.getModifiedFile())) {
