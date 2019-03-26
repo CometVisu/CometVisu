@@ -3,12 +3,20 @@ const cors = require('cors');
 const exegesisExpress = require('exegesis-express');
 const http = require('http');
 const path = require('path');
+const multer = require('multer');
+const upload = multer();
+
 
 async function createServer() {
   // See https://github.com/exegesis-js/exegesis/blob/master/docs/Options.md
   const options = {
     controllers: path.resolve(__dirname, './controllers'),
-    allowMissingControllers: false
+    allowMissingControllers: false,
+    mimeTypeParsers: {
+      'multipart/form-data': {
+        parseReq: upload.single('file')
+      }
+    }
   };
 
   // This creates an exgesis middleware, which can be used with express,

@@ -25,19 +25,26 @@ class FsController extends FileHandler {
 
   create(context) {
     const mount = this.__getMount(context.params.query.path);
-    const fsPath = this.__getAbsolutePath(context.params.query.path, mount)
-    const parts = fsPath.split('/')
-    parts.pop();
-    const parentPath = parts.join('/')
+    let fsPath = this.__getAbsolutePath(context.params.query.path, mount)
+    let parentPath = fsPath;
+    let content = context.requestBody;
+    if (context.req.file) {
+      fsPath += '/' + context.req.file.originalname
+      content = context.req.file.buffer
+    } else {
+      const parts = fsPath.split('/')
+      parts.pop();
+      parentPath = parts.join('/')
+    }
     if (fs.existsSync(parentPath)) {
       try {
-        if (!FileHandler.checkAccess(parentPath) || (mount && mount.writeable === false) || fs.existsSync(fsPath)) {
-          this.respondMessage(context,403, 'Forbidden')
+        if (!FileHandler.checkAccess(parentPath) || (mount && mount.writeable === false)) {
+          this.respondMessage(context, 403, 'Forbidden')
         } else {
           if (context.params.query.type === 'dir') {
             this.createFolder(context, fsPath);
           } else {
-            this.createFile(context, fsPath, context.requestBody);
+            this.createFile(context, fsPath, content);
           }
         }
       } catch (err) {

@@ -55,7 +55,7 @@ class FileHandler extends AbstractHandler {
    * @param content
    */
   createFile(context, file, content) {
-    if (fs.existsSync(file)) {
+    if (fs.existsSync(file) && !context.params.query.force) {
       this.respondMessage(context,406, 'File already exists')
     } else {
       try {
@@ -118,7 +118,8 @@ class FileHandler extends AbstractHandler {
   __saveFile(file, content, context) {
     const hash = context.params.query.hash;
     if (hash) {
-      if (hash !== CRC32.str(content)) {
+      const contentHash = Buffer.isBuffer(content) ? CRC32.buf(content) : CRC32.str(content);
+      if (hash !== contentHash) {
         // data has been corrupted during transport
         this.respondMessage(context,405, 'data has been corrupted during transport')
         return
@@ -146,7 +147,7 @@ class FileHandler extends AbstractHandler {
       // 3. check hash of written file
       const writtenContent = fs.readFileSync(file, {encoding: 'utf-8'})
       const newHash = CRC32.str(writtenContent)
-      if (newHash !== hash) {
+      if (newHash !== contentHash) {
         // something went wrong -> restore old file content
         fs.copyFileSync(file + backupSuffix, file);
         if (backupFilename) {

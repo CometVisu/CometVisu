@@ -95,6 +95,12 @@ paths:
           schema:
             type: string
             enum: ['dir', 'file']
+        - name: force
+          in: query
+          description: replace existing files
+          required: false
+          schema:
+            type: boolean
       summary: Create a new file or folder on the host
       description: ''
       operationId: create
@@ -102,6 +108,13 @@ paths:
       requestBody:
         description: Content of the file (empty when creating folder)
         content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
           text/*:
             schema:
               type: string

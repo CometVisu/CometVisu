@@ -27,6 +27,7 @@ qx.Class.define('cv.theme.dark.Images', {
       'folder-open': '@MaterialIcons/folder_open',
       'file': '@MaterialIcons/insert_drive_file',
       'download': '@MaterialIcons/cloud_download',
+      'upload': '@MaterialIcons/cloud_upload',
       'rename': '@MaterialIcons/text_rotation_none',
       'compare': '@MaterialIcons/compare_arrows',
       'preview': '@MaterialIcons/remove_red_eye'

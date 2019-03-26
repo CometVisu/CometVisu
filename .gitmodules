@@ -14,3 +14,6 @@
 [submodule "external/qx-contrib-dialog"]
 	path = external/qx-contrib-dialog
 	url = https://github.com/cboulanger/qx-contrib-Dialog.git
+[submodule "external/qx-upload-manager"]
+	path = external/qx-upload-manager
+	url = https://github.com/johnspackman/UploadMgr.git

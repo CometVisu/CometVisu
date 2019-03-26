@@ -50,6 +50,13 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           args: [this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder')],
           enabled: true
         },
+        'upload': {
+          menu: 'file-menu',
+          clazz: com.zenesis.qx.upload.UploadMenuButton,
+          args: [this.tr('Upload file'), cv.theme.dark.Images.getIcon('upload', 18)],
+          enabled: false,
+          separator: 'before'
+        },
         'save': {
           menu: 'file-menu',
           args: [this.tr('Save'), cv.theme.dark.Images.getIcon('save', 18), this._commandGroup.get('save')],
@@ -188,6 +195,10 @@ qx.Class.define('cv.ui.manager.MenuBar', {
             menu.add(new qx.ui.menu.Separator());
           }
           this.__buttons[id] = button;
+
+          if (buttonConf.hasOwnProperty('onAfterCreate')) {
+            buttonConf.onAfterCreate(button);
+          }
         } else {
           button = this.__buttons[id];
         }

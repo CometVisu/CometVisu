@@ -48,6 +48,27 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
       }
     },
 
+    // overridden
+    _applyModel : function(value, old) {
+      this.base(arguments, value, old);
+      if (value.getType() === 'dir') {
+        this.setDroppable(true);
+        this.addListener('drop', this._onDrop, this);
+      } else {
+        this.setDroppable(false);
+        this.removeListener('drop', this._onDrop, this);
+      }
+    },
+
+    /**
+     * Handle drop events
+     * @param ev {Event}
+     * @private
+     */
+    _onDrop: function (ev) {
+      console.log(ev.getRelatedTarget());
+    },
+
     __cancelEditing: function () {
       this.getChildControl('edit').setValue(this.getName());
       this.setEditing(false);

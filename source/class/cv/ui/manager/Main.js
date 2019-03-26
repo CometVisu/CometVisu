@@ -112,7 +112,8 @@ qx.Class.define('cv.ui.manager.Main', {
     currentFolder: {
       check: 'cv.ui.manager.model.FileItem',
       nullable: true,
-      apply: '_applyCurrentFolder'
+      apply: '_applyCurrentFolder',
+      event: 'changeCurrentFolder'
     },
 
     currentSelection: {
@@ -148,7 +149,7 @@ qx.Class.define('cv.ui.manager.Main', {
     __actionDispatcher: null,
 
     canHandleAction: function (actionName) {
-      return ['close', 'quit', 'hidden-config', 'new-file', 'new-folder', 'delete'].includes(actionName);
+      return ['close', 'quit', 'hidden-config', 'new-file', 'new-folder', 'delete', 'upload'].includes(actionName);
     },
 
     handleAction: function (actionName) {
@@ -175,6 +176,10 @@ qx.Class.define('cv.ui.manager.Main', {
 
         case 'delete':
           this._onDelete();
+          break;
+
+        case 'upload':
+          this._onUpload();
           break;
 
         default:
@@ -400,6 +405,10 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
+    _onUpload: function () {
+
+    },
+
     _onChangeStackSelection: function (ev) {
       var selection = ev.getData();
       // sync tab selection with currently visible page
@@ -464,6 +473,10 @@ qx.Class.define('cv.ui.manager.Main', {
       // menu on top
       this._menuBar = new cv.ui.manager.MenuBar();
       main.add(this._menuBar, {edge: 'north'});
+
+      var uploadButton = this._menuBar.getButton('upload');
+      var uploadManager = new cv.ui.manager.upload.UploadMgr(uploadButton);
+      this.bind('currentFolder', uploadManager, 'folder');
 
       this._pane = new qx.ui.splitpane.Pane();
       main.add(this._pane, {edge: 'center'});
