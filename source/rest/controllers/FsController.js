@@ -65,9 +65,9 @@ class FsController extends FileHandler {
 
   delete(context) {
     return this.__processRequest(context, fsPath => {
-      this.deleteFolder(context, fsPath);
+      this.deleteFolder(context, fsPath, context.params.query.force);
     }, fsPath => {
-      this.deleteFile(context, fsPath);
+      this.deleteFile(context, fsPath, context.params.query.force);
     }, 'delete')
   }
 
@@ -137,51 +137,57 @@ class FsController extends FileHandler {
 
   __folderListing(fsPath, mount) {
     const res = []
+    let trashFound = false;
+    const inTrash = fsPath === config.trashFolder || fsPath.startsWith(config.trashFolder)
     fs.readdirSync(fsPath).filter(file => {
-      return FileHandler.checkAccess(fsPath, file)
+      return FileHandler.checkAccess(fsPath, file) || file === config.trashFolderName
     }).forEach(file => {
-      if (!file.startsWith('.')) {
+      try {
+        const stats = fs.statSync(path.join(fsPath, file))
+        if (mount && mount.showSubDirs === false && stats.isDirectory()) {
+          // no subdirs in mount
+          return;
+        }
+        let relFolder;
+        if (mount) {
+          relFolder = mount.mountPoint + fsPath.substring(mount.path.length + 1)
+        } else {
+          relFolder = fsPath.substring(this.basePath.length + 1)
+        }
+        if (relFolder.length > 0) {
+          relFolder += '/'
+        }
+        const fullPath = path.join(fsPath, file)
+        const isTrash = stats.isDirectory() && file === config.trashFolderName
+        const entry = {
+          name: file,
+          type: stats.isDirectory() ? 'dir' : (stats.isFile() ? 'file' : null),
+          parentFolder: relFolder,
+          hasChildren: stats.isDirectory() ? fs.readdirSync(fullPath).length > 0 : false,
+          readable: false,
+          writeable: false,
+          trash: isTrash,
+          inTrash: inTrash
+        }
+        if (isTrash && !trashFound) {
+          trashFound = true;
+        }
         try {
-          const stats = fs.statSync(path.join(fsPath, file))
-          if (mount && mount.showSubDirs === false && stats.isDirectory()) {
-            // no subdirs in mount
-            return;
-          }
-          let relFolder;
-          if (mount) {
-            relFolder = mount.mountPoint + fsPath.substring(mount.path.length + 1)
-          } else {
-            relFolder = fsPath.substring(this.basePath.length + 1)
-          }
-          if (relFolder.length > 0) {
-            relFolder += '/'
-          }
-          const fullPath = path.join(fsPath, file)
-          const entry = {
-            name: file,
-            type: stats.isDirectory() ? 'dir' : (stats.isFile() ? 'file' : null),
-            parentFolder: relFolder,
-            hasChildren: stats.isDirectory() ? fs.readdirSync(fullPath).length > 0 : false,
-            readable: false,
-            writeable: false
-          }
+          fs.accessSync(fullPath, fs.constants.R_OK)
+          entry.readable = true
+        } catch (err) {
+        }
+        // no write access in demo folder
+        if ((!mount || mount.writeable !== false) && !isTrash && !inTrash) {
           try {
-            fs.accessSync(fullPath, fs.constants.R_OK)
-            entry.readable = true
+            fs.accessSync(fullPath, fs.constants.W_OK)
+            entry.writeable = true
           } catch (err) {
           }
-          // no write access in demo folder
-          if (!mount || mount.writeable !== false) {
-            try {
-              fs.accessSync(fullPath, fs.constants.W_OK)
-              entry.writeable = true
-            } catch (err) {
-            }
-          }
-          res.push(entry)
-        } catch (err) {
-          // error accessing the entry -> do not add it to the resultset
         }
+        res.push(entry)
+      } catch (err) {
+        // error accessing the entry -> do not add it to the resultset
       }
     })
     if (fsPath.endsWith('/resource/config')) {
@@ -197,6 +203,20 @@ class FsController extends FileHandler {
           writeable: mount.writeable !== false
         });
       })
+
+      if (!trashFound) {
+        // add trash folder even if it does not exist
+        res.push({
+          name: config.trashFolderName,
+          type: 'dir',
+          mounted: false,
+          parentFolder: '',
+          hasChildren: false,
+          readable: true,
+          writeable: false,
+          trash: true
+        });
+      }
     }
     return res
   }

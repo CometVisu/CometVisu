@@ -63,7 +63,7 @@ qx.Class.define('cv.io.rest.Client', {
             method: 'POST', url: '/fs?path={path}&type={type}'
           },
           "delete": {
-            method: 'DELETE', url: '/fs?path={path}'
+            method: 'DELETE', url: '/fs?path={path}&force={force}'
           },
           move: {
             method: 'PUT', url: '/fs/move?src={src}&target={target}'

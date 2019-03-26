@@ -148,6 +148,18 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       check: 'Boolean',
       init: false,
       event: 'changeMounted'
+    },
+
+    trash: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeTrash'
+    },
+
+    inTrash: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeInTrash'
     }
   },
 
@@ -203,6 +215,47 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
     },
 
+    /**
+     * Move file to another path
+     * @param target {String} new path of the file
+     */
+    move: function (target) {
+      var client = cv.io.rest.Client.getFsClient();
+      client.moveSync({src: this.getFullPath(), target: target}, function (err) {
+        if (err) {
+          cv.ui.manager.snackbar.Controller.error(err);
+        } else {
+          cv.ui.manager.snackbar.Controller.info(this.getType() === 'file' ?
+            qx.locale.Manager.tr('File has been moved') :
+            qx.locale.Manager.tr('Folder has been moved')
+          );
+          qx.event.message.Bus.dispatchByName('cv.manager.tree.reload');
+        }
+      }, this);
+    },
+
+    /**
+     * Restore file from trash by moving it out of the trash to the old path
+     * @param target {String} new path of the file
+     */
+    restore: function () {
+      if (this.isInTrash()) {
+        var client = cv.io.rest.Client.getFsClient();
+        var target = this.getFullPath().replace('.trash/', '');
+        client.moveSync({src: this.getFullPath(), target: target}, function (err) {
+          if (err) {
+            cv.ui.manager.snackbar.Controller.error(err);
+          } else {
+            cv.ui.manager.snackbar.Controller.info(this.getType() === 'file' ?
+              qx.locale.Manager.tr('File has been restored') :
+              qx.locale.Manager.tr('Folder has been restored')
+            );
+            qx.event.message.Bus.dispatchByName('cv.manager.tree.reload');
+          }
+        }, this);
+      }
+    },
+
     'delete': function(callback, context) {
       if (this.getUserData('new') === true) {
         // new file, no need to call the backend
@@ -211,14 +264,23 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
         }
       } else {
         var client = cv.io.rest.Client.getFsClient();
-        client.deleteSync({path: this.getFullPath()}, null, function (err) {
+        client.deleteSync({path: this.getFullPath(), force: this.isTrash()}, null, function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(err);
           } else {
-            cv.ui.manager.snackbar.Controller.info(this.getType() === 'file' ?
-              qx.locale.Manager.tr('File has been deleted') :
-              qx.locale.Manager.tr('Folder has been deleted')
-            );
+            var message;
+            if (this.isTrash()) {
+              message = qx.locale.Manager.tr('Trash has been cleared');
+            } else if (this.isInTrash()) {
+              message = this.getType() === 'file' ?
+                qx.locale.Manager.tr('File has been removed from trash') :
+                qx.locale.Manager.tr('Folder has been removed from trash');
+            } else {
+              message = this.getType() === 'file' ?
+                qx.locale.Manager.tr('File has been deleted') :
+                qx.locale.Manager.tr('Folder has been deleted');
+            }
+            cv.ui.manager.snackbar.Controller.info(message);
             if (callback) {
               callback.apply(context);
             }
@@ -264,6 +326,8 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       if (!this.isOverrideIcon()) {
         if (this.getType() === 'file') {
           this.setIcon(cv.theme.dark.Images.getIcon('file', 15));
+        } else if (this.isTrash()) {
+          this.setIcon(cv.theme.dark.Images.getIcon('trash', 15));
         } else if (this.isOpen()) {
           this.setIcon(cv.theme.dark.Images.getIcon('folder-open', 15));
         } else if (this.isMounted()) {
@@ -315,13 +379,15 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     _onGet: function (data) {
       var children = this.getChildren();
       children.removeAll();
-      data.forEach(function (node) {
-        var child = new cv.ui.manager.model.FileItem(null, null, this);
-        child.set(node);
-        children.push(child);
-      }, this);
-      this.setChildren(children);
-      this.sortElements();
+      if (data) {
+        data.forEach(function (node) {
+          var child = new cv.ui.manager.model.FileItem(null, null, this);
+          child.set(node);
+          children.push(child);
+        }, this);
+        this.setChildren(children);
+        this.sortElements();
+      }
       this.setLoaded(true);
       if (this.__onLoadCallback) {
         this.__onLoadCallback();
@@ -399,6 +465,11 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       var sortF = function (a, b) {
         if (a.getType() === 'dir') {
           if (b.getType() === 'dir') {
+            if (a.isTrash()) {
+              return 1;
+            } else if (b.isTrash()) {
+              return -1;
+            }
             return a.getName().localeCompare(b.getName());
           } else {
             return -1;

@@ -30,7 +30,8 @@ qx.Class.define('cv.theme.dark.Images', {
       'upload': '@MaterialIcons/cloud_upload',
       'rename': '@MaterialIcons/text_rotation_none',
       'compare': '@MaterialIcons/compare_arrows',
-      'preview': '@MaterialIcons/remove_red_eye'
+      'preview': '@MaterialIcons/remove_red_eye',
+      'trash': '@MaterialIcons/restore_from_trash'
     },
 
     getIcon: function (name, size) {

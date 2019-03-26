@@ -127,6 +127,12 @@ qx.Class.define('cv.ui.manager.Main', {
       check: 'Boolean',
       init: false,
       event: 'changeDeleteableSelection'
+    },
+
+    renameableSelection: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeRenameableSelection'
     }
   },
 
@@ -233,6 +239,11 @@ qx.Class.define('cv.ui.manager.Main', {
       }
       if (value) {
         value.bind('writeable', this, 'deleteableSelection');
+        value.bind('inTrash', this, 'renameableSelection', {
+          converter: function (value) {
+            return !value;
+          }
+        });
       } else {
         this.resetDeleteableSelection();
       }
@@ -349,7 +360,9 @@ qx.Class.define('cv.ui.manager.Main', {
       group.add('quit', new qx.ui.command.Command('Ctrl+Q'));
       // group.add('delete', new qx.ui.command.Command('Del'));
 
-      group.add('rename', new qx.ui.command.Command('F2'));
+      var renameCommand = new qx.ui.command.Command('F2');
+      group.add('rename', renameCommand);
+      this.bind('renameableSelection', renameCommand, 'enabled');
 
       // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
       // and as we cannot simulate pasting from clipboard, we do not use them here
@@ -394,9 +407,18 @@ qx.Class.define('cv.ui.manager.Main', {
     _onDelete: function () {
       var item = this.getCurrentSelection();
       if (item) {
-        var message = item.getType() === 'file' ?
-          qx.locale.Manager.tr('Do you really want to delete this file?') :
-          qx.locale.Manager.tr('Do you really want to delete this folder?');
+        var message;
+        if (item.isTrash()) {
+          message = qx.locale.Manager.tr('Do you really want to clear the trash?');
+        } else if (item.isInTrash()) {
+          message = item.getType() === 'file' ?
+            qx.locale.Manager.tr('Do you really want to delete this file from the trash?') :
+            qx.locale.Manager.tr('Do you really want to delete this folder from the trash?');
+        } else {
+          message = item.getType() === 'file' ?
+            qx.locale.Manager.tr('Do you really want to delete this file?') :
+            qx.locale.Manager.tr('Do you really want to delete this folder?');
+        }
         dialog.Dialog.confirm(message, function (confirmed) {
           if (confirmed) {
             item.delete();

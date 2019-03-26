@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('fs-extra')
 const path = require('path')
 const config = require('../config')
 const CRC32 = require('crc-32')
@@ -184,11 +184,10 @@ class FileHandler extends AbstractHandler {
         if (!fs.existsSync(config.trashFolder)) {
           fs.mkdirSync(config.trashFolder)
         }
-        const baseTrashFile = path.join(config.trashFolder, relDir, filename)
-        let trashFile = baseTrashFile
-        let index = 1
-        while (fs.existsSync(trashFile)) {
-          trashFile = baseTrashFile + '.' + index++
+        const trashFile = path.join(config.trashFolder, relDir, filename)
+        if (fs.existsSync(trashFile)) {
+          // delete old trash file with same name
+          fs.unlinkSync(trashFile)
         }
         fs.renameSync(file, trashFile)
       } else {
@@ -207,7 +206,7 @@ class FileHandler extends AbstractHandler {
       return this.ok(context)
     }
     try {
-      if (this.useTrash === true) {
+      if (this.useTrash === true && !folder.startsWith(config.trashFolder)) {
         const relDir = folder.substring(config.configDir.length)
         if (!fs.existsSync(config.trashFolder)) {
           fs.mkdirSync(config.trashFolder)
@@ -220,8 +219,8 @@ class FileHandler extends AbstractHandler {
         }
         fs.renameSync(folder, trashFile)
       } else {
-        if (!force || fs.readdirSync(folder).length === 0) {
-          fs.rmdirSync(folder)
+        if (force === true || fs.readdirSync(folder).length === 0) {
+          fs.removeSync(folder)
         } else {
           this.respondMessage(context,406, 'Folder not empty')
         }
@@ -247,7 +246,7 @@ class FileHandler extends AbstractHandler {
       item = path.basename(fsPath)
       fsPath = path.dirname(fsPath)
     }
-    return !(item.startsWith('.') || (item === 'hidden.php' && fsPath === config.configDir));
+    return item === config.trashFolderName || !(item.startsWith('.') || (item === 'hidden.php' && fsPath === config.configDir));
   }
 }
 

@@ -51,12 +51,22 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
     // overridden
     _applyModel : function(value, old) {
       this.base(arguments, value, old);
-      if (value.getType() === 'dir') {
-        this.setDroppable(true);
-        this.addListener('drop', this._onDrop, this);
-      } else {
-        this.setDroppable(false);
-        this.removeListener('drop', this._onDrop, this);
+      if (old) {
+        old.removeRelatedBindings(this);
+      }
+      if (value) {
+        if (value.isTrash()) {
+          this.setLabel(this.tr('Trash'));
+        } else {
+          value.bind('name', this, 'label');
+        }
+        if (value.getType() === 'dir') {
+          this.setDroppable(true);
+          this.addListener('drop', this._onDrop, this);
+        } else {
+          this.setDroppable(false);
+          this.removeListener('drop', this._onDrop, this);
+        }
       }
     },
 

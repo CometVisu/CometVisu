@@ -149,6 +149,13 @@ paths:
     delete:
       tags:
         - fs
+      parameters:
+        - name: force
+          in: query
+          description: force deletion of non empty folders
+          required: false
+          schema:
+            type: boolean
       summary: Deletes a file/folder
       description: ''
       operationId: delete
@@ -415,6 +422,10 @@ components:
           default: false
         mounted:
           type: boolean
+          default: false
+        trash:
+          type: boolean
+          description: marks the trash folder
           default: false
         hash:
           type: number

@@ -4,12 +4,14 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: you@your.org\n"
 "POT-Creation-Date: 2017-04-26 18:57+0100\n"
-"PO-Revision-Date: 2017-04-26 18:57+0100\n"
+"PO-Revision-Date: 2019-03-26 19:39+0100\n"
 "Last-Translator: you <you@your.org>\n"
 "Language-Team: Team <yourteam@your.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: cv/Application.js:230
 msgid "Please describe what you have done until the error occured?"
@@ -24,7 +26,7 @@ msgstr "Ein Fehler ist aufgetreten"
 msgid "Enable on reload:"
 msgstr "Aktivieren beim neu Laden:"
 
-#: cv/ui/manager/Main.js:481 cv/Application.js:308
+#: cv/ui/manager/Main.js:553 cv/Application.js:308
 msgid "Reload"
 msgstr "Neu laden"
 
@@ -80,8 +82,8 @@ msgstr "Antwort des Backends:"
 
 #: cv/TemplateEngine.js:301
 msgid ""
-"The backend did send an invalid response to a %1read%2 request: Missing "
-"\"i\" value."
+"The backend did send an invalid response to a %1read%2 request: Missing \"i"
+"\" value."
 msgstr ""
 "Das Backend hat eine ungültige Antwort auf eine %1read%2-Anfrage gesendet: "
 "Fehlender \"i\" Wert."
@@ -105,12 +107,12 @@ msgstr "Template '%1' konnte nicht geladen werden von '%2'."
 #: cv/plugins/openhab/Settings.js:174
 msgid ""
 "The CometVisu seems to be delivered by a proxied webserver. Changing "
-"configuration values might not have the expected effect. Please proceed only"
-" if you know what you are doing."
+"configuration values might not have the expected effect. Please proceed "
+"only if you know what you are doing."
 msgstr ""
-"Die CometVisu scheint über einen Proxy ausgeliefert zu werden. Änderungen an"
-" den Einstellungen könnten deshalb nicht den gewünschten Effekt habe.Bitte "
-"führen Sie daher nur Änderungen durch, wenn Sie wissen was Sie tun."
+"Die CometVisu scheint über einen Proxy ausgeliefert zu werden. Änderungen "
+"an den Einstellungen könnten deshalb nicht den gewünschten Effekt habe."
+"Bitte führen Sie daher nur Änderungen durch, wenn Sie wissen was Sie tun."
 
 #: cv/plugins/openhab/Settings.js:212
 msgid "openHAB backend settings"
@@ -120,7 +122,7 @@ msgstr "openHAB Backend Einstellungen"
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: cv/ui/manager/MenuBar.js:55 cv/plugins/openhab/Settings.js:232
+#: cv/ui/manager/MenuBar.js:62 cv/plugins/openhab/Settings.js:232
 msgid "Save"
 msgstr "Speichern"
 
@@ -132,95 +134,128 @@ msgstr "Alle löschen"
 msgid "Message center"
 msgstr "Nachrichtenzentrale"
 
-#: cv/ui/manager/MenuBar.js:45 cv/ui/manager/tree/FileSystem.js:250
+#: cv/ui/manager/Main.js:412
+msgid "Do you really want to clear the trash?"
+msgstr "Mächten Sie den Papirtkorb wirklich leeren?"
+
+#: cv/ui/manager/Main.js:415
+msgid "Do you really want to delete this file from the trash?"
+msgstr "Möchten Sie diese Datei wirklich aus dem Papierkorb entfernen?"
+
+#: cv/ui/manager/Main.js:416
+msgid "Do you really want to delete this folder from the trash?"
+msgstr "Möchten Sie diesen Ordner wirklich aus dem Papierkorb entfernen?"
+
+#: cv/ui/manager/Main.js:419
+msgid "Do you really want to delete this file?"
+msgstr "Möchten Sie diese Datei wirklich löschen?"
+
+#: cv/ui/manager/Main.js:420
+msgid "Do you really want to delete this folder?"
+msgstr "Möchten Sie diesen Ordner wirklich löschen?"
+
+#: cv/ui/manager/Main.js:426
+msgid "Confirm deletion"
+msgstr "Löschen bestätigen"
+
+#: cv/ui/manager/Main.js:540 cv/ui/manager/tree/FileSystem.js:289
+msgid "Download"
+msgstr "Herunterladen"
+
+#: cv/ui/manager/MenuBar.js:45 cv/ui/manager/tree/FileSystem.js:264
 msgid "New file"
 msgstr "Neue Datei"
 
-#: cv/ui/manager/MenuBar.js:50 cv/ui/manager/tree/FileSystem.js:251
+#: cv/ui/manager/MenuBar.js:50 cv/ui/manager/tree/FileSystem.js:265
 msgid "New folder"
 msgstr "Neuer Ordner"
 
-#: cv/ui/manager/MenuBar.js:61
+#: cv/ui/manager/MenuBar.js:56
+msgid "Upload file"
+msgstr "Datei hochladen"
+
+#: cv/ui/manager/MenuBar.js:68
 msgid "Save as..."
 msgstr "Speichern unter..."
 
-#: cv/ui/manager/MenuBar.js:66 cv/ui/manager/tree/FileSystem.js:256
+#: cv/ui/manager/MenuBar.js:73 cv/ui/manager/tree/FileSystem.js:93
+#: cv/ui/manager/tree/FileSystem.js:121 cv/ui/manager/tree/FileSystem.js:282
 msgid "Delete"
 msgstr "Löschen"
 
-#: cv/ui/manager/MenuBar.js:72
+#: cv/ui/manager/MenuBar.js:79
 msgid "Close file"
 msgstr "Datei schlie0en"
 
-#: cv/ui/manager/MenuBar.js:78
+#: cv/ui/manager/MenuBar.js:85
 msgid "Quit"
 msgstr "Beenden"
 
-#: cv/ui/manager/MenuBar.js:85
+#: cv/ui/manager/MenuBar.js:92
 msgid "Ctrl+Z"
 msgstr "Strg+Z"
 
-#: cv/ui/manager/MenuBar.js:85
+#: cv/ui/manager/MenuBar.js:92
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: cv/ui/manager/MenuBar.js:90
+#: cv/ui/manager/MenuBar.js:97
 msgid "Ctrl+Y"
 msgstr "Strg+Y"
 
-#: cv/ui/manager/MenuBar.js:90
+#: cv/ui/manager/MenuBar.js:97
 msgid "Redo"
 msgstr "Wiederholen"
 
-#: cv/ui/manager/MenuBar.js:95
+#: cv/ui/manager/MenuBar.js:102
 msgid "Ctrl+X"
 msgstr "Strg+X"
 
-#: cv/ui/manager/MenuBar.js:95
+#: cv/ui/manager/MenuBar.js:102
 msgid "Cut"
 msgstr "Ausschneiden"
 
-#: cv/ui/manager/MenuBar.js:101
+#: cv/ui/manager/MenuBar.js:108
 msgid "Copy"
 msgstr "Kopieren"
 
-#: cv/ui/manager/MenuBar.js:101
+#: cv/ui/manager/MenuBar.js:108
 msgid "Ctrl+C"
 msgstr "Strg+C"
 
-#: cv/ui/manager/MenuBar.js:106
+#: cv/ui/manager/MenuBar.js:113
 msgid "Ctrl+V"
 msgstr "Strg+V"
 
-#: cv/ui/manager/MenuBar.js:106
+#: cv/ui/manager/MenuBar.js:113
 msgid "Paste"
 msgstr "Einfügen"
 
-#: cv/ui/manager/MenuBar.js:111
+#: cv/ui/manager/MenuBar.js:118
 msgid "Hidden configuration"
 msgstr "Versteckte Konfiguration"
 
-#: cv/ui/manager/MenuBar.js:118
+#: cv/ui/manager/MenuBar.js:125
 msgid "Use text editor"
 msgstr "Texteditor benutzen"
 
-#: cv/ui/manager/MenuBar.js:129
+#: cv/ui/manager/MenuBar.js:136
 msgid "Use xml editor"
 msgstr "XML-Editor benutzen"
 
-#: cv/ui/manager/MenuBar.js:216
+#: cv/ui/manager/MenuBar.js:227
 msgid "CometVisu Manager"
 msgstr "CometVisu Manager"
 
-#: cv/ui/manager/MenuBar.js:221
+#: cv/ui/manager/MenuBar.js:232
 msgid "File"
 msgstr "Datei"
 
-#: cv/ui/manager/MenuBar.js:226
+#: cv/ui/manager/MenuBar.js:237
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: cv/ui/manager/MenuBar.js:231
+#: cv/ui/manager/MenuBar.js:242
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -256,49 +291,105 @@ msgstr "Sektion"
 msgid "Delete section"
 msgstr "Sektion löschen"
 
-#: cv/ui/manager/model/CompareFiles.js:71
+#: cv/ui/manager/model/CompareFiles.js:77
 msgid "Diff: %1"
 msgstr "Vergleich: %1"
 
-#: cv/ui/manager/model/FileItem.js:178
+#: cv/ui/manager/model/FileItem.js:190
 msgid "File has been created"
 msgstr "Datei wurde erstellt"
 
-#: cv/ui/manager/model/FileItem.js:179
+#: cv/ui/manager/model/FileItem.js:191
 msgid "Folder has been created"
 msgstr "Verzeichnis wurde erstellt"
 
-#: cv/ui/manager/model/FileItem.js:193
+#: cv/ui/manager/model/FileItem.js:205
 msgid "File has been renamed"
 msgstr "Datei wurde umbenannt"
 
-#: cv/ui/manager/model/FileItem.js:194
+#: cv/ui/manager/model/FileItem.js:206
 msgid "Folder has been renamed"
 msgstr "Verzeichnis wurde umbenannt"
 
-#: cv/ui/manager/model/FileItem.js:217
+#: cv/ui/manager/model/FileItem.js:229
+msgid "File has been moved"
+msgstr "Datei wurde verschoben"
+
+#: cv/ui/manager/model/FileItem.js:230
+msgid "Folder has been moved"
+msgstr "Order wurde verschoben"
+
+#: cv/ui/manager/model/FileItem.js:250
+msgid "File has been restored"
+msgstr "Datei wurde wiederhergestellt"
+
+#: cv/ui/manager/model/FileItem.js:251
+msgid "Folder has been restored"
+msgstr "Ornder wurde wiederhergestellt"
+
+#: cv/ui/manager/model/FileItem.js:273
+msgid "Trash has been cleared"
+msgstr "Der Papierkorb wurde geleert"
+
+#: cv/ui/manager/model/FileItem.js:276
+msgid "File has been removed from trash"
+msgstr "Die Datei wurde aus dem Papierkorb entfernt"
+
+#: cv/ui/manager/model/FileItem.js:277
+msgid "Folder has been removed from trash"
+msgstr "Der Ordner wurde aus dem Papierkorb entfernt"
+
+#: cv/ui/manager/model/FileItem.js:280
 msgid "File has been deleted"
 msgstr "Datei wurde gelöscht"
 
-#: cv/ui/manager/model/FileItem.js:218
+#: cv/ui/manager/model/FileItem.js:281
 msgid "Folder has been deleted"
 msgstr "Verzeichnis wurde gelöscht"
 
-#: cv/ui/manager/tree/FileSystem.js:110
+#: cv/ui/manager/tree/FileSystem.js:92
+msgid "Clear"
+msgstr "Leeren"
+
+#: cv/ui/manager/tree/FileSystem.js:114
 msgid "Backup from %1"
 msgstr "Sicherung vom %1"
 
-#: cv/ui/manager/tree/FileSystem.js:253
+#: cv/ui/manager/tree/FileSystem.js:267
 msgid "Compare with..."
 msgstr "Vergleichen mit..."
 
-#: cv/ui/manager/tree/FileSystem.js:262
+#: cv/ui/manager/tree/FileSystem.js:277
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: cv/ui/manager/tree/FileSystem.js:267
-msgid "Download"
-msgstr "Herunterladen"
+#: cv/ui/manager/tree/FileSystem.js:294
+msgid "Restore"
+msgstr "Wiederherstellen"
+
+#: cv/ui/manager/tree/VirtualFsItem.js:59
+msgid "Trash"
+msgstr "Papierkorb"
+
+#: cv/ui/manager/upload/UploadMgr.js:80
+msgid "This file already exists, do you want to replace it?"
+msgstr "Diese Datei existiert bereits, möchten Sie sie überschreiben?"
+
+#: cv/ui/manager/upload/UploadMgr.js:84
+msgid "File already exists"
+msgstr "Diese Datei existiert bereits"
+
+#: cv/ui/manager/upload/UploadMgr.js:88
+msgid "Uploading this file is not allowed here."
+msgstr "Das Hochladen der Datei ist an dieser Stelle nicht erleubt."
+
+#: cv/ui/manager/upload/UploadMgr.js:98
+msgid "File upload stopped with an error: %1"
+msgstr "Das Hochladen der Datei wurde mit einem Fehler beendet: %1"
+
+#: cv/ui/manager/upload/UploadMgr.js:102
+msgid "File has been uploaded"
+msgstr "Die Datei wurde hochgeladen"
 
 #: cv/ui/structure/pure/Unknown.js:88
 msgid "unknown: %1"
@@ -336,8 +427,8 @@ msgstr ""
 
 #: cv/util/ConfigLoader.js:190
 msgid ""
-"404: Config file not found. Neither as normal config (%1) nor as demo config"
-" (%2)."
+"404: Config file not found. Neither as normal config (%1) nor as demo "
+"config (%2)."
 msgstr ""
 "404: Konfigurations-Datei nicht gefunden. Weder als normale Konfiguration "
 "(%1) noch als Demo-Konfiguration (%2)"
@@ -360,9 +451,6 @@ msgstr "Datei-Ladefehler"
 
 #~ msgid "Edit hidden config"
 #~ msgstr "Versteckte Konfiguration bearbeiten"
-
-#~ msgid "Enable error reporting"
-#~ msgstr ""
 
 #~ msgid "Enable error sending on reload"
 #~ msgstr "Neu laden mit aktiviertem Senden von Fehlerberichten"

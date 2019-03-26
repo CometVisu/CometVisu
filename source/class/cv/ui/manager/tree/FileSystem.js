@@ -88,6 +88,10 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
       if (value) {
         tree.setContextMenu(this.getChildControl('context-menu'));
 
+        this.getChildControl('delete-button').setLabel(value.isTrash() ?
+          this.tr('Clear') :
+          this.tr('Delete'));
+
         // create compare menu
         var compareMenu = this.getChildControl('compare-menu');
         compareMenu.removeAll();
@@ -114,6 +118,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
         }, this);
       } else {
         tree.resetContextMenu();
+        this.getChildControl('delete-button').setLabel(this.tr('Delete'));
       }
     },
 
@@ -157,6 +162,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
         var node = sel.getItem(0);
         this.setSelectedNode(node);
         // wait for double tap
+        this.getChildControl('restore-button').setVisibility(node.isInTrash() ? 'visible' : 'excluded');
         if (node.getType() === 'file') {
           this.__selectionTimer = qx.event.Timer.once(function () {
             this.fireDataEvent('changeSelection', {
@@ -172,6 +178,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
           });
         }
       } else {
+        this.getChildControl('restore-button').exclude();
         this.resetSelectedNode();
       }
     },
@@ -199,6 +206,13 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
       var node = this.getSelectedNode();
       if (node) {
         node.download();
+      }
+    },
+
+    _onRestore: function () {
+      var node = this.getSelectedNode();
+      if (node) {
+        node.restore();
       }
     },
 
@@ -233,7 +247,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
 
              // Bind properties from the item to the tree-widget and vice versa
              bindItem : function(controller, item, index) {
-               controller.bindDefaultProperties(item, index);
+               controller.bindProperty("", "model", null, item, index);
                controller.bindPropertyReverse("open", "open", null, item, index);
                controller.bindProperty("open", "open", null, item, index);
                controller.bindProperty("readable", "enabled", null, item, index);
@@ -253,11 +267,8 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control.add(new qx.ui.menu.Button(this.tr('Compare with...'), null, null, this.getChildControl('compare-menu')));
            control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('rename-button'));
-           var deleteButton = new qx.ui.menu.Button(this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
-           deleteButton.addListener('execute', function () {
-             qx.event.message.Bus.dispatchByName('cv.manager.action.delete', null);
-           }, this);
-           control.add(deleteButton);
+           control.add(this.getChildControl('delete-button'));
+           control.add(this.getChildControl('restore-button'));
            control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('download-button'));
            break;
@@ -267,9 +278,22 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control.addListener('execute', this._onRename, this);
            break;
 
+         case 'delete-button':
+           control = new qx.ui.menu.Button(this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
+           control.addListener('execute', function () {
+             qx.event.message.Bus.dispatchByName('cv.manager.action', 'delete');
+           }, this);
+           break;
+
          case 'download-button':
            control = new qx.ui.menu.Button(this.tr('Download'), cv.theme.dark.Images.getIcon('download', 18));
            control.addListener('execute', this._onDownload, this);
+           break;
+
+         case 'restore-button':
+           control = new qx.ui.menu.Button(this.tr('Restore'), cv.theme.dark.Images.getIcon('trash', 18));
+           control.exclude();
+           control.addListener('execute', this._onRestore, this);
            break;
 
          case 'compare-menu':

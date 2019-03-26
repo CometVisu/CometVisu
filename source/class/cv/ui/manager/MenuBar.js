@@ -33,7 +33,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
       this._createChildControl('edit');
       this._createChildControl('preferences');
       this.add(new qx.ui.core.Spacer(), {flex: 1});
-      console.log('draw menubar');
+
       this._createChildControl('title');
       this.add(new qx.ui.core.Spacer(), {flex: 1});
 
