@@ -179,7 +179,7 @@ qx.Class.define('cv.ui.manager.Main', {
           break;
 
         case 'upload':
-          this._onUpload();
+          // nothing to to, this is handled in another way
           break;
 
         default:
@@ -405,10 +405,6 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
-    _onUpload: function () {
-
-    },
-
     _onChangeStackSelection: function (ev) {
       var selection = ev.getData();
       // sync tab selection with currently visible page
@@ -488,6 +484,7 @@ qx.Class.define('cv.ui.manager.Main', {
         readable: true,
         open: true
       });
+      this.setCurrentFolder(rootFolder);
       this._tree = new cv.ui.manager.tree.FileSystem(rootFolder);
       this._tree.addListener("changeSelection", this._onChangeTreeSelection, this);
 
@@ -508,6 +505,8 @@ qx.Class.define('cv.ui.manager.Main', {
       }
       var newFile = createButton('new-file');
       var newFolder = createButton('new-folder');
+      var upload = createButton('upload');
+      uploadManager.addWidget(upload);
       var deleteSelection = createButton('delete');
       deleteSelection.addListener('execute', this._onDelete, this);
 
@@ -538,10 +537,11 @@ qx.Class.define('cv.ui.manager.Main', {
       });
       createPart.add(newFile);
       createPart.add(newFolder);
+      createPart.add(upload);
+      createPart.add(download);
       leftBar.add(createPart);
 
       leftBar.add(deleteSelection);
-      leftBar.add(download);
 
       leftBar.add(new qx.ui.core.Spacer(), {flex: 1});
       leftBar.add(reload);
