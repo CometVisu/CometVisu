@@ -325,15 +325,15 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     _maintainIcon: function () {
       if (!this.isOverrideIcon()) {
         if (this.getType() === 'file') {
-          this.setIcon(cv.theme.dark.Images.getIcon('file', 15));
+          this.setIcon(cv.theme.dark.Images.getIcon('file', 18));
         } else if (this.isTrash()) {
-          this.setIcon(cv.theme.dark.Images.getIcon('trash', 15));
+          this.setIcon(cv.theme.dark.Images.getIcon('trash', 18));
         } else if (this.isOpen()) {
-          this.setIcon(cv.theme.dark.Images.getIcon('folder-open', 15));
+          this.setIcon(cv.theme.dark.Images.getIcon('folder-open', 18));
         } else if (this.isMounted()) {
-          this.setIcon(cv.theme.dark.Images.getIcon('mounted-folder', 15));
+          this.setIcon(cv.theme.dark.Images.getIcon('mounted-folder', 18));
         } else {
-          this.setIcon(cv.theme.dark.Images.getIcon('folder', 15));
+          this.setIcon(cv.theme.dark.Images.getIcon('folder', 18));
         }
       }
     },

@@ -200,7 +200,9 @@ qx.Class.define('cv.ui.manager.Main', {
      */
     _onChangeTreeSelection: function (ev) {
       var data = ev.getData();
-      this.__openSelectedFile(data.node, data.mode);
+      if (cv.ui.manager.model.Preferences.getInstance().isQuickPreview() || data.mode === 'dbltap') {
+        this.__openSelectedFile(data.node, data.mode);
+      }
     },
 
     __openSelectedFile: function (node, mode) {

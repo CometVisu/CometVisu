@@ -140,18 +140,33 @@ qx.Class.define('cv.ui.manager.MenuBar', {
             model: 'xml',
             group: editorGroup
           }
+        },
+        'quick-preview': {
+          menu: 'preferences-menu',
+          clazz: qx.ui.menu.CheckBox,
+          args: [this.tr('Enable quick preview')],
+          enabled: true,
+          general: true,
+          separator: 'before'
         }
       };
       this.maintainButtons();
 
-      cv.ui.manager.model.Preferences.getInstance().bind('defaultConfigEditor', editorGroup, 'modelSelection', {
+      var prefs = cv.ui.manager.model.Preferences.getInstance();
+
+      prefs.bind('defaultConfigEditor', editorGroup, 'modelSelection', {
         converter: function (value) {
           return [value];
         }
       });
       editorGroup.getModelSelection().addListener('change', function () {
-        cv.ui.manager.model.Preferences.getInstance().setDefaultConfigEditor(editorGroup.getModelSelection().getItem(0));
+        prefs.setDefaultConfigEditor(editorGroup.getModelSelection().getItem(0));
       }, this);
+
+      var previewButton = this.getButton('quick-preview');
+      console.log(previewButton);
+      prefs.bind('quickPreview', previewButton, 'value');
+      previewButton.bind('value', prefs, 'quickPreview');
     },
 
     maintainButtons: function (config) {

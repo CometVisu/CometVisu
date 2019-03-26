@@ -26,6 +26,13 @@ qx.Class.define('cv.ui.manager.model.Preferences', {
       init: 'source',
       event: 'changeDefaultConfigEditor',
       apply: '_savePreferences'
+    },
+
+    quickPreview: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeQuickPreview',
+      apply: '_savePreferences'
     }
   },
 
