@@ -54,7 +54,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           menu: 'file-menu',
           clazz: com.zenesis.qx.upload.UploadMenuButton,
           args: [this.tr('Upload file'), cv.theme.dark.Images.getIcon('upload', 18)],
-          enabled: false,
+          enabled: true,
           separator: 'before'
         },
         'save': {
