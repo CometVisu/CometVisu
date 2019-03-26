@@ -27,12 +27,12 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       alias: "atom",
 
       style: function (states) {
-        var padding = [3, 5, 3, 5];
+        var padding = [2, 5, 2, 5];
         if (states.lead) {
-          padding = [2, 4, 2, 4];
+          padding = [1, 4, 1, 4];
         }
         if (states.dragover) {
-          padding[2] -= 2;
+          padding[2] -= 1;
         }
 
         var backgroundColor;
@@ -47,7 +47,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           textColor: states.selected ? "text-selected" : undefined,
           decorator: states.lead ? "lead-item" : states.dragover ? "dragover" : undefined,
           opacity: states.drag ? 0.5 : undefined,
-          height: 25,
+          height: 26,
           padding: padding,
           margin: 0
         };

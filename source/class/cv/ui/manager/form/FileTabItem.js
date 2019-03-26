@@ -158,7 +158,7 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
        }
 
        return control || this.base(arguments, id);
-    },
+    }
   },
 
   /*

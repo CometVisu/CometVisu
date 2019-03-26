@@ -253,7 +253,11 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control.add(new qx.ui.menu.Button(this.tr('Compare with...'), null, null, this.getChildControl('compare-menu')));
            control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('rename-button'));
-           control.add(new qx.ui.menu.Button(this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18), this._commandGroup.get('delete')));
+           var deleteButton = new qx.ui.menu.Button(this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
+           deleteButton.addListener('execute', function () {
+             qx.event.message.Bus.dispatchByName('cv.manager.action.delete', null);
+           }, this);
+           control.add(deleteButton);
            control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('download-button'));
            break;

@@ -181,6 +181,10 @@
         {
           "manifest" :  "external/qx-osparc-theme/Manifest.json",
           "uri"      : "../external/qx-osparc-theme"
+        },
+        {
+          "manifest" :  "external/qx-contrib-dialog/Manifest.json",
+          "uri"      : "../external/qx-contrib-dialog"
         }
       ]
     },

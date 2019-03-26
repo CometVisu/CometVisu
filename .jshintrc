@@ -52,6 +52,7 @@
     "osparc": true,
     "monaco": true,
     "CRC32": true,
-    "xmllint": true
+    "xmllint": true,
+    "dialog": true
   }
 }

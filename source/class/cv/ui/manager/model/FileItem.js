@@ -206,7 +206,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     'delete': function(callback, context) {
       if (this.getUserData('new') === true) {
         // new file, no need to call the backend
-        callback.apply(context);
+        if (callback) {
+          callback.apply(context);
+        }
       } else {
         var client = cv.io.rest.Client.getFsClient();
         client.deleteSync({path: this.getFullPath()}, null, function (err) {
@@ -217,7 +219,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
               qx.locale.Manager.tr('File has been deleted') :
               qx.locale.Manager.tr('Folder has been deleted')
             );
-            callback.apply(context);
+            if (callback) {
+              callback.apply(context);
+            }
             var parent = this.getParent();
             if (parent) {
               parent.getChildren().remove(this);

@@ -118,7 +118,8 @@ qx.Class.define('cv.ui.manager.Main', {
     currentSelection: {
       check: 'cv.ui.manager.model.FileItem',
       nullable: true,
-      apply: '_applyCurrentSelection'
+      apply: '_applyCurrentSelection',
+      event: 'changeCurrentSelection'
     },
 
     deleteableSelection: {
@@ -388,10 +389,23 @@ qx.Class.define('cv.ui.manager.Main', {
     _onDelete: function () {
       var item = this.getCurrentSelection();
       if (item) {
-        item.delete(function () {
-
-        }, this);
+        var message = item.getType() === 'file' ?
+          qx.locale.Manager.tr('Do you really want to delete this file?') :
+          qx.locale.Manager.tr('Do you really want to delete this folder?');
+        dialog.Dialog.confirm(message, function (confirmed) {
+          if (confirmed) {
+            item.delete();
+          }
+        }, this, qx.locale.Manager.tr('Confirm deletion'));
       }
+    },
+
+    _onChangeStackSelection: function (ev) {
+      var selection = ev.getData();
+      // sync tab selection with currently visible page
+      this._openFilesController.getSelection().replace(selection.map(function (page) {
+        return page.getFile();
+      }));
     },
 
     _onCreate: function (type) {
@@ -482,9 +496,23 @@ qx.Class.define('cv.ui.manager.Main', {
       var newFile = createButton('new-file');
       var newFolder = createButton('new-folder');
       var deleteSelection = createButton('delete');
+      deleteSelection.addListener('execute', this._onDelete, this);
 
       this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
       this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
+
+      var download = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('download', 15));
+      download.setAppearance('cv-toolbar-button');
+      download.setToolTipText(qx.locale.Manager.tr('Download'));
+      download.addListener('execute', function () {
+        this.getCurrentSelection().download();
+      }, this);
+      // download button is only enabled when a file is selected
+      this.bind('currentSelection', download, 'enabled', {
+        converter: function (file) {
+          return !!file && file.getType() === 'file';
+        }
+      });
 
       var reload = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 15));
       reload.setAppearance('cv-toolbar-button');
@@ -500,6 +528,7 @@ qx.Class.define('cv.ui.manager.Main', {
       leftBar.add(createPart);
 
       leftBar.add(deleteSelection);
+      leftBar.add(download);
 
       leftBar.add(new qx.ui.core.Spacer(), {flex: 1});
       leftBar.add(reload);
@@ -538,6 +567,7 @@ qx.Class.define('cv.ui.manager.Main', {
       this._mainContent.add(list);
 
       this._stack = new qx.ui.container.Stack();
+      this._stack.addListener('changeSelection', this._onChangeStackSelection, this);
       this._mainContent.add(this._stack, {flex: 1});
       this._pane.add(this._mainContent, 1);
     },
