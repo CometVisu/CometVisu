@@ -275,6 +275,8 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           // console.log(lastOpenedTag);
           // get opened tags to see what tag we should look for in the XSD schema
           var openedTags = [];
+          // attrobutes of the ancestors
+          var openedAttributes = [];
           // get the elements/attributes that are already mentioned in the element we're in
           var usedItems = [];
           var isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
@@ -297,6 +299,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             var lastFound = false;
             while (lastChild) {
               openedTags.push(lastChild.tagName);
+              openedAttributes.push(lastChild.attributes);
               // if we found our last opened tag
               if (lastChild.tagName === lastOpenedTag.tagName) {
                 lastFound = true;
@@ -349,7 +352,37 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
               return {suggestions: this._dataProvider.getPlugins()};
             } else if (lastOpenedTag.tagName === 'icon' && lastOpenedTag.currentAttribute === 'name') {
               return {suggestions: this._dataProvider.getIcons()};
-            } else if (lastOpenedTag.tagName === 'template' && lastOpenedTag.currentAttribute === 'name' && !openedTags.includes('meta')) {
+            } else if (lastOpenedTag.tagName === 'influx') {
+              if (lastOpenedTag.currentAttribute === 'measurement') {
+                return this._dataProvider.getInfluxDBs().then(function (suggestions) {
+                  return {suggestions: suggestions};
+                });
+              } else if (lastOpenedTag.currentAttribute === 'field') {
+                var match = /measurement="([^"]+)"/.exec(lastOpenedTag.text);
+                if (match) {
+                  return this._dataProvider.getInfluxDBFields(match[1]).then(function (suggestions) {
+                    return {suggestions: suggestions};
+                  });
+                }
+              }
+            } else if (lastOpenedTag.tagName === 'tag' && (lastOpenedTag.currentAttribute === 'key' || lastOpenedTag.currentAttribute === 'value') && openedTags.includes('influx')) {
+              var influxAttributes = openedAttributes[openedTags.indexOf('influx')];
+              var attr = influxAttributes.getNamedItem('measurement');
+              if (attr) {
+                if (lastOpenedTag.currentAttribute === 'key') {
+                  return this._dataProvider.getInfluxDBTags(attr.value).then(function (suggestions) {
+                    return {suggestions: suggestions};
+                  });
+                } else if (lastOpenedTag.currentAttribute === 'value') {
+                  var match = /key="([^"]+)"/.exec(lastOpenedTag.text);
+                  if (match) {
+                    return this._dataProvider.getInfluxDBValues(attr.value, match[1]).then(function (suggestions) {
+                      return {suggestions: suggestions};
+                    });
+                  }
+                }
+              }
+            } else if (lastOpenedTag.tagName === 'template' && lastOpenedTag.currentAttribute === 'name' && openedTags.includes('meta')) {
               res = Object.keys(templates).map(function (name) {
                 return {
                   label: name,
@@ -403,6 +436,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             searchedElement = lastOpenedTag.tagName;
           } else if (!isAttributeSearch && filteredElementSearch) {
             searchedElement = openedTags[openedTags.length-2];
+          }
+          if (searchedElement === 'rrd') {
+            return {suggestions: this._dataProvider.getRrds()};
           }
           var currentItem = this.findElements(this._schemaNode.allowedRootElements.pages, searchedElement, openedTags.length, openedTags.includes('meta'));
 

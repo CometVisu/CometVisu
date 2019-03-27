@@ -24,6 +24,10 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
   */
   members: {
     __designs: null,
+    __rrds: null,
+    __influxdbs: null,
+    __influxdbfields: null,
+    __influxdbtags: null,
     __transforms: null,
     __plugins: null,
     __icons: null,
@@ -45,6 +49,92 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      */
     getDesigns: function () {
       return this.__designs;
+    },
+
+    getRrds: function () {
+      return new Promise(function(resolve, reject) {
+        this._client.rrdsSync(function (err, res) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(this._parseDpResponse(res));
+          }
+        }, this);
+      }.bind(this));
+    },
+
+    getInfluxDBs: function () {
+      return new Promise(function(resolve, reject) {
+        this._client.influxdbsSync(function (err, res) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(this._parseDpResponse(res));
+          }
+        }, this);
+      }.bind(this));
+    },
+
+    getInfluxDBFields: function (measurement) {
+      return new Promise(function(resolve, reject) {
+        this._client.influxdbfieldsSync({measurement: measurement}, function (err, res) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(this._parseDpResponse(res));
+          }
+        }, this);
+      }.bind(this));
+    },
+
+    getInfluxDBTags: function (measurement) {
+      return new Promise(function(resolve, reject) {
+        this._client.influxdbtagsSync({measurement: measurement}, function (err, res) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(Object.keys(res).map(function (x) {
+              return {
+                label: x,
+                insertText: x,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              };
+            }));
+          }
+        }, this);
+      }.bind(this));
+    },
+
+    getInfluxDBValues: function (measurement, tag) {
+      return new Promise(function(resolve, reject) {
+        this._client.influxdbtagsSync({measurement: measurement}, function (err, res) {
+          if (err) {
+            reject(err);
+          } else {
+            var sug = [];
+            res[tag].forEach(function (x) {
+              sug.push({
+                label: x,
+                insertText: x,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              });
+            });
+            resolve(sug);
+          }
+        }, this);
+      }.bind(this));
+    },
+
+    _parseDpResponse: function (data) {
+      var target = [];
+      data.forEach(function (entry) {
+        target.push({
+          label: entry.label,
+          insertText: entry.value,
+          kind: window.monaco.languages.CompletionItemKind.EnumMember
+        });
+      }, this);
+      return target;
     },
 
     /**
@@ -116,5 +206,9 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     this.__designs = null;
     this.__plugins = null;
     this.__icons = null;
+
+    ['rrds', 'influxdbs', 'influxdbfields', 'influxdbtags'].forEach(function (name) {
+      this['__' + name] = null;
+    }, this);
   }
 });

@@ -88,45 +88,47 @@ qx.Class.define('cv.io.rest.Client', {
           }
         });
 
-        // install the callback calls
-        Object.keys(config).forEach(function (callName) {
-          this.__dirClient[callName + 'Sync'] = function () {
-            var args = qx.lang.Array.fromArguments(arguments);
-            var callback;
-            var context = args.pop();
-            if (qx.lang.Type.isFunction(context)) {
-              callback = context;
-              context = this;
-            } else {
-              callback = args.pop();
-            }
-            this.__callbacks[this.__dirClient[callName].apply(this.__dirClient, args)] = callback.bind(context);
-          }.bind(this);
-        }, this);
+
+        this._enableSync(this.__dirClient, config);
+        // // install the callback calls
+        // Object.keys(config).forEach(function (callName) {
+        //   this.__dirClient[callName + 'Sync'] = function () {
+        //     var args = qx.lang.Array.fromArguments(arguments);
+        //     var callback;
+        //     var context = args.pop();
+        //     if (qx.lang.Type.isFunction(context)) {
+        //       callback = context;
+        //       context = this;
+        //     } else {
+        //       callback = args.pop();
+        //     }
+        //     this.__callbacks[this.__dirClient[callName].apply(this.__dirClient, args)] = callback.bind(context);
+        //   }.bind(this);
+        // }, this);
 
         // general listeners
         this.__dirClient.addListener('updateSuccess', this._onSaveSuccess, this);
         this.__dirClient.addListener('createSuccess', this._onSaveSuccess, this);
         this.__dirClient.addListener('updateError', this._onSaveError, this);
         this.__dirClient.addListener('createError', this._onSaveError, this);
-        this.__dirClient.addListener('success', function (ev) {
-          var req = ev.getRequest();
-          var id = parseInt(req.toHashCode(), 10);
-          if (this.__callbacks.hasOwnProperty(id)) {
-            this.__callbacks[id](null, ev.getData());
-            delete this.__callbacks[id];
-          }
-        }, this);
-
-        this.__dirClient.addListener('error', function (ev) {
-          var req = ev.getRequest();
-          var id = parseInt(req.toHashCode(), 10);
-          if (this.__callbacks.hasOwnProperty(id)) {
-            qx.log.Logger.error(this, ev.getData());
-            this.__callbacks[id](ev.getData().message, null);
-            delete this.__callbacks[id];
-          }
-        }, this);
+        // this.__dirClient.addListener('success', function (ev) {
+        //   var req = ev.getRequest();
+        //   var id = parseInt(req.toHashCode(), 10);
+        //   if (this.__callbacks.hasOwnProperty(id)) {
+        //     this.__callbacks[id](null, ev.getData());
+        //     delete this.__callbacks[id];
+        //   }
+        // }, this);
+        //
+        // this.__dirClient.addListener('error', function (ev) {
+        //   var req = ev.getRequest();
+        //   var id = parseInt(req.toHashCode(), 10);
+        //   if (this.__callbacks.hasOwnProperty(id)) {
+        //     qx.log.Logger.error(this, ev.getData());
+        //     this.__callbacks[id](ev.getData().message, null);
+        //     delete this.__callbacks[id];
+        //   }
+        // }, this);
       }
       return this.__dirClient;
     },
@@ -136,12 +138,64 @@ qx.Class.define('cv.io.rest.Client', {
         var config = {
           designs: {
             method: 'GET', url: '/data/designs'
+          },
+          rrds: {
+            method: 'GET', url: '/data/rrds'
+          },
+          influxdbs: {
+            method: 'GET', url: '/data/influxdbs?auth={auth}'
+          },
+          influxdbfields: {
+            method: 'GET', url: '/data/influxdbfields?auth={auth}&measurement={measurement}'
+          },
+          influxdbtags: {
+            method: 'GET', url: '/data/influxdbtags?auth={auth}&measurement={measurement}'
           }
         };
         this.__dpClient = new qx.io.rest.Resource(config);
         this.__dpClient.setBaseUrl(this.BASE_URL);
+
+        this._enableSync(this.__dpClient, config);
       }
       return this.__dpClient;
+    },
+
+    _enableSync: function (client, config) {
+      // install the callback calls
+      Object.keys(config).forEach(function (callName) {
+        client[callName + 'Sync'] = function () {
+          var args = qx.lang.Array.fromArguments(arguments);
+          var callback;
+          var context = args.pop();
+          if (qx.lang.Type.isFunction(context)) {
+            callback = context;
+            context = this;
+          } else {
+            callback = args.pop();
+          }
+          this.__callbacks[client[callName].apply(client, args)] = callback.bind(context);
+        }.bind(this);
+      }, this);
+
+      // add the general listeners
+      client.addListener('success', function (ev) {
+        var req = ev.getRequest();
+        var id = parseInt(req.toHashCode(), 10);
+        if (this.__callbacks.hasOwnProperty(id)) {
+          this.__callbacks[id](null, ev.getData());
+          delete this.__callbacks[id];
+        }
+      }, this);
+
+      client.addListener('error', function (ev) {
+        var req = ev.getRequest();
+        var id = parseInt(req.toHashCode(), 10);
+        if (this.__callbacks.hasOwnProperty(id)) {
+          qx.log.Logger.error(this, ev.getData());
+          this.__callbacks[id](ev.getData().message, null);
+          delete this.__callbacks[id];
+        }
+      }, this);
     },
 
     _onSaveSuccess: function (ev) {
