@@ -464,10 +464,46 @@ qx.Class.define('cv.ui.manager.Main', {
       }, this);
     },
 
+    /**
+     * Finds next droppable parent of the given element. Maybe the element itself as well.
+     *
+     * Looks for the attribute <code>qxDroppable</code> with the value <code>on</code>.
+     *
+     * @param elem {Element} The element to query
+     * @return {Element} The next parent element which is droppable. May also be <code>null</code>
+     */
+    __findDroppable : function (elem) {
+      while (elem && elem.nodeType === 1) {
+        if (elem.getAttribute("qxDroppable") === "on") {
+          return elem;
+        }
+
+        elem = elem.parentNode;
+      }
+
+      return null;
+    },
+
     // overridden
     _draw: function () {
 
       var root = new qx.ui.root.Inline(this.__getRoot(), true, true);
+      root.addListenerOnce('appear', function () {
+        // disable file drop
+        var element = root.getContentElement().getDomElement();
+        element.addEventListener('drop', function (ev) {
+          var target = this.__findDroppable(ev.target);
+          if (!target) {
+            ev.preventDefault();
+          }
+        }.bind(this));
+        element.addEventListener('dragover', function (ev) {
+          var target = this.__findDroppable(ev.target);
+          if (!target) {
+            ev.preventDefault();
+          }
+        }.bind(this));
+      }, this);
       qx.core.Init.getApplication().setRoot(root);
       root.setLayout(new qx.ui.layout.Canvas());
 

@@ -9,9 +9,8 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (widget, url) {
-    this.base(arguments, widget, url);
-
+  construct: function () {
+    this.base(arguments);
     this._init();
   },
 

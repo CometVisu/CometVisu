@@ -79,27 +79,8 @@ qx.Class.define('cv.io.rest.Client', {
             var parts = params.path.split('.');
             if (parts.length > 1) {
               var type = parts.pop();
-              switch (type) {
-                case 'xml':
-                  req.setRequestHeader('Content-Type', 'text/xml');
-                  break;
-
-                case 'js':
-                  req.setRequestHeader('Content-Type', 'text/javascript');
-                  break;
-
-                case 'php':
-                  req.setRequestHeader('Content-Type', 'application/x-httpd-php');
-                  break;
-
-                case 'css':
-                  req.setRequestHeader('Content-Type', 'text/css');
-                  break;
-
-                default:
-                  req.setRequestHeader('Content-Type', 'text/plain');
-                  break;
-              }
+              var mimetype = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(type);
+              req.setRequestHeader('Content-Type', mimetype || 'text/plain');
             } else {
               req.setRequestHeader('Content-Type', 'text/plain');
             }

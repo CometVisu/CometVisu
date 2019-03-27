@@ -3,6 +3,7 @@
  */
 qx.Class.define('cv.ui.manager.tree.FileSystem', {
   extend: qx.ui.core.Widget,
+  include: [cv.ui.manager.upload.MDragUpload],
 
   /*
   ***********************************************
@@ -19,6 +20,34 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
 
     this._dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('medium'));
     this._timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('medium'));
+  },
+
+  /*
+  ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    MIMETYPES: {
+      'text/xml': 'xml',
+      'application/xml': 'xml',
+      'text/javascript': 'js',
+      'application/x-httpd-php': 'php',
+      'text/css': 'css',
+      'image/png': 'png',
+      'application/xml+svg': 'svg',
+      'text/plain': ''
+    },
+
+    getMimetypeFromSuffix: function (suffix) {
+      return Object.keys(this.MIMETYPES).find(function (mime) {
+        return this.MIMETYPES[mime] === suffix;
+      }, this);
+    },
+
+    isAccepted: function (mimetype) {
+      return this.MIMETYPES.hasOwnProperty(mimetype);
+    }
   },
 
   /*
@@ -83,7 +112,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
       }
     },
 
-    _applySelectedNode: function (value, old) {
+    _applySelectedNode: function (value) {
       var tree = this.getChildControl('tree');
       if (value) {
         tree.setContextMenu(this.getChildControl('context-menu'));
@@ -303,6 +332,10 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
          case 'compare-menu':
            control = new qx.ui.menu.Menu();
            break;
+       }
+
+       if (!control) {
+         control = this._createMDragUploadChildControlImpl(id);
        }
 
        return control || this.base(arguments, id);

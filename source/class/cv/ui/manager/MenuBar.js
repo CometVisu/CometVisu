@@ -164,7 +164,6 @@ qx.Class.define('cv.ui.manager.MenuBar', {
       }, this);
 
       var previewButton = this.getButton('quick-preview');
-      console.log(previewButton);
       prefs.bind('quickPreview', previewButton, 'value');
       previewButton.bind('value', prefs, 'quickPreview');
     },

@@ -14,7 +14,18 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     this._handledActions = ['save', 'cut', 'copy', 'paste', 'undo', 'redo'];
     this._basePath = window.location.origin + window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/config/';
     this.getContentElement().setAttribute('contentEditable', 'true');
-    this.setFocusable(true);
+    this.set({
+      droppable: false,
+      focusable: true
+    });
+    this.addListener('dragover', function (ev) {
+      ev.preventDefault();
+      ev.dataTransfer.effectAllowed = "none";
+      ev.dataTransfer.dropEffect = "none";
+    });
+    this.addListener('drop', function (ev) {
+      ev.preventDefault();
+    });
     this.addListener('appear', function () {
       qx.ui.core.FocusHandler.getInstance().setUseTabNavigation(false);
     });

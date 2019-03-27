@@ -24,6 +24,17 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
 
   /*
   ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    isConfigFile: function (path) {
+      return /visu_config.*\.xml/.test(path);
+    }
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -346,7 +357,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     },
 
     isConfigFile: function () {
-      return /visu_config.*\.xml/.test(this.getName());
+      return cv.ui.manager.model.FileItem.isConfigFile(this.getName());
     },
 
     _applyHasChildren: function (value) {
