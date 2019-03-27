@@ -324,6 +324,11 @@ paths:
     get:
       tags:
         - dataprovider
+      parameters:
+        - name: auth
+          in: query
+          schema:
+            type: string
       summary: Returns the list of available influx databases.
       operationId: getInfluxDBs
       x-exegesis-controller: DataProviderController
@@ -338,6 +343,15 @@ paths:
     get:
       tags:
         - dataprovider
+      parameters:
+        - name: auth
+          in: query
+          schema:
+            type: string
+        - name: measurement
+          in: query
+          schema:
+            type: string
       summary: Returns the list of available influx database fields.
       operationId: getInfluxDBFields
       x-exegesis-controller: DataProviderController
@@ -348,10 +362,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DataProviderResponse'
+        '406':
+          description: wrong measurement parameter
   /data/influxdbtags:
     get:
       tags:
         - dataprovider
+      parameters:
+        - name: auth
+          in: query
+          schema:
+            type: string
+        - name: measurement
+          in: query
+          schema:
+            type: string
       summary: Returns the list of available influx database tags.
       operationId: getInfluxDBTags
       x-exegesis-controller: DataProviderController
@@ -362,6 +387,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DataProviderResponse'
+        '406':
+          description: wrong measurement parameter
 components:
   schemas:
     DataProviderResponse:

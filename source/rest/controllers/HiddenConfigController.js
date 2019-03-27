@@ -42,6 +42,14 @@ $hidden = array(
     fs.writeFileSync(this.configFile, content)
   }
 
+  getSection(name) {
+    if (name === '*') {
+      // return everything
+      return this._entries;
+    }
+    return this._entries.hasOwnProperty(name) ? this._entries[name] : null;
+  }
+
   saveHiddenConfig(context) {
     this._entries = {};
     context.requestBody.forEach(section => {
@@ -59,17 +67,14 @@ $hidden = array(
   }
 
   getHiddenConfig(context) {
-    const section = context.params.path.section
+    const sectionName = context.params.path.section
     const key = context.params.path.key
-    if (section === '*') {
-      // return everything
-      return this._entries;
-    }
-    if (this._entries.hasOwnProperty(section) && (!key || this._entries[section].hasOwnProperty(key))) {
+    const section = this.getSection(sectionName)
+    if (section && (!key || section.hasOwnProperty(key))) {
       if (!key) {
-        return this._entries[section]
+        return section
       } else {
-        return this._entries[section][key]
+        return [section][key]
       }
     } else {
       this.respondMessage(context, 404, 'Config option not found')

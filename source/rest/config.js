@@ -19,5 +19,26 @@ module.exports = {
       showSubDirs: false,
       writeable: false
     }
-  ]
+  ],
+  addressFiles: {
+    addresses: [
+      path.join(configDir, 'media', 'eibga.conf'),
+      '/etc/wiregate/eibga.conf'
+    ],
+    mainGroups: [
+      path.join(configDir, 'media', 'eibga_hg.conf'),
+      '/etc/wiregate/eibga_hg.conf'
+    ],
+    middleGroups: [
+      path.join(configDir, 'media', 'eibga_mg.conf'),
+      '/etc/wiregate/eibga_mg.conf'
+    ]
+  },
+  onewire: {
+    sensors: [
+      path.join(configDir, 'media', 'owsensors.conf'),
+      '/etc/wiregate/owsensors.conf'
+    ],
+    rrdDir: '/var/www/rrd/'
+  }
 }
