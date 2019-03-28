@@ -23,7 +23,7 @@ msgstr ""
 msgid "Enable on reload:"
 msgstr ""
 
-#: cv/ui/manager/Main.js:553 cv/Application.js:308
+#: cv/ui/manager/Main.js:550 cv/Application.js:308
 msgid "Reload"
 msgstr ""
 
@@ -79,11 +79,11 @@ msgid ""
 "\"i\" value."
 msgstr ""
 
-#: cv/io/rest/Client.js:171
+#: cv/io/rest/Client.js:209
 msgid "File has been saved"
 msgstr ""
 
-#: cv/io/rest/Client.js:180
+#: cv/io/rest/Client.js:218
 msgid "Error saving file"
 msgstr ""
 
@@ -122,39 +122,43 @@ msgstr ""
 msgid "Message center"
 msgstr ""
 
-#: cv/ui/manager/Main.js:412
+#: cv/ui/manager/Main.js:238
+msgid "Cannot open file: \"%1\""
+msgstr ""
+
+#: cv/ui/manager/Main.js:373
 msgid "Do you really want to clear the trash?"
 msgstr ""
 
-#: cv/ui/manager/Main.js:415
+#: cv/ui/manager/Main.js:376
 msgid "Do you really want to delete this file from the trash?"
 msgstr ""
 
-#: cv/ui/manager/Main.js:416
+#: cv/ui/manager/Main.js:377
 msgid "Do you really want to delete this folder from the trash?"
 msgstr ""
 
-#: cv/ui/manager/Main.js:419
+#: cv/ui/manager/Main.js:380
 msgid "Do you really want to delete this file?"
 msgstr ""
 
-#: cv/ui/manager/Main.js:420
+#: cv/ui/manager/Main.js:381
 msgid "Do you really want to delete this folder?"
 msgstr ""
 
-#: cv/ui/manager/Main.js:426
+#: cv/ui/manager/Main.js:387
 msgid "Confirm deletion"
 msgstr ""
 
-#: cv/ui/manager/Main.js:540 cv/ui/manager/tree/FileSystem.js:289
+#: cv/ui/manager/Main.js:537 cv/ui/manager/tree/FileSystem.js:345
 msgid "Download"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:45 cv/ui/manager/tree/FileSystem.js:264
+#: cv/ui/manager/MenuBar.js:45 cv/ui/manager/tree/FileSystem.js:318
 msgid "New file"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:50 cv/ui/manager/tree/FileSystem.js:265
+#: cv/ui/manager/MenuBar.js:50 cv/ui/manager/tree/FileSystem.js:319
 msgid "New folder"
 msgstr ""
 
@@ -166,8 +170,8 @@ msgstr ""
 msgid "Save as..."
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:73 cv/ui/manager/tree/FileSystem.js:93
-#: cv/ui/manager/tree/FileSystem.js:121 cv/ui/manager/tree/FileSystem.js:282
+#: cv/ui/manager/MenuBar.js:73 cv/ui/manager/tree/FileSystem.js:122
+#: cv/ui/manager/tree/FileSystem.js:166 cv/ui/manager/tree/FileSystem.js:338
 msgid "Delete"
 msgstr ""
 
@@ -219,7 +223,7 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:118
+#: cv/ui/manager/MenuBar.js:118 cv/ui/manager/editor/Config.js:26
 msgid "Hidden configuration"
 msgstr ""
 
@@ -231,27 +235,43 @@ msgstr ""
 msgid "Use xml editor"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:227
+#: cv/ui/manager/MenuBar.js:147
+msgid "Enable quick preview"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:241
 msgid "CometVisu Manager"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:232
+#: cv/ui/manager/MenuBar.js:246
 msgid "File"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:237
+#: cv/ui/manager/MenuBar.js:251
 msgid "Edit"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:242
+#: cv/ui/manager/MenuBar.js:256
 msgid "Preferences"
 msgstr ""
 
-#: cv/ui/manager/editor/Config.js:119
+#: cv/ui/manager/editor/Config.js:128
 msgid "Add section"
 msgstr ""
 
-#: cv/ui/manager/editor/completion/Config.js:372
+#: cv/ui/manager/editor/Diff.js:24
+msgid "File compare"
+msgstr ""
+
+#: cv/ui/manager/editor/Source.js:46
+msgid "Texteditor"
+msgstr ""
+
+#: cv/ui/manager/editor/Xml.js:27
+msgid "Xml-editor"
+msgstr ""
+
+#: cv/ui/manager/editor/completion/Config.js:408
 msgid "Variable from template %1"
 msgstr ""
 
@@ -283,75 +303,83 @@ msgstr ""
 msgid "Diff: %1"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:190
+#: cv/ui/manager/model/FileItem.js:201
 msgid "File has been created"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:191
+#: cv/ui/manager/model/FileItem.js:202
 msgid "Folder has been created"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:205
+#: cv/ui/manager/model/FileItem.js:216
 msgid "File has been renamed"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:206
+#: cv/ui/manager/model/FileItem.js:217
 msgid "Folder has been renamed"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:229
+#: cv/ui/manager/model/FileItem.js:240
 msgid "File has been moved"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:230
+#: cv/ui/manager/model/FileItem.js:241
 msgid "Folder has been moved"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:250
+#: cv/ui/manager/model/FileItem.js:261
 msgid "File has been restored"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:251
+#: cv/ui/manager/model/FileItem.js:262
 msgid "Folder has been restored"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:273
+#: cv/ui/manager/model/FileItem.js:284
 msgid "Trash has been cleared"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:276
+#: cv/ui/manager/model/FileItem.js:287
 msgid "File has been removed from trash"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:277
+#: cv/ui/manager/model/FileItem.js:288
 msgid "Folder has been removed from trash"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:280
+#: cv/ui/manager/model/FileItem.js:291
 msgid "File has been deleted"
 msgstr ""
 
-#: cv/ui/manager/model/FileItem.js:281
+#: cv/ui/manager/model/FileItem.js:292
 msgid "Folder has been deleted"
 msgstr ""
 
-#: cv/ui/manager/tree/FileSystem.js:92
+#: cv/ui/manager/tree/FileSystem.js:121
 msgid "Clear"
 msgstr ""
 
-#: cv/ui/manager/tree/FileSystem.js:114
+#: cv/ui/manager/tree/FileSystem.js:144
 msgid "Backup from %1"
 msgstr ""
 
-#: cv/ui/manager/tree/FileSystem.js:267
+#: cv/ui/manager/tree/FileSystem.js:322
+msgid "Open with..."
+msgstr ""
+
+#: cv/ui/manager/tree/FileSystem.js:323
 msgid "Compare with..."
 msgstr ""
 
-#: cv/ui/manager/tree/FileSystem.js:277
+#: cv/ui/manager/tree/FileSystem.js:333
 msgid "Rename"
 msgstr ""
 
-#: cv/ui/manager/tree/FileSystem.js:294
+#: cv/ui/manager/tree/FileSystem.js:350
+msgid "Open"
+msgstr ""
+
+#: cv/ui/manager/tree/FileSystem.js:357
 msgid "Restore"
 msgstr ""
 
@@ -359,23 +387,23 @@ msgstr ""
 msgid "Trash"
 msgstr ""
 
-#: cv/ui/manager/upload/UploadMgr.js:80
+#: cv/ui/manager/upload/UploadMgr.js:79
 msgid "This file already exists, do you want to replace it?"
 msgstr ""
 
-#: cv/ui/manager/upload/UploadMgr.js:84
+#: cv/ui/manager/upload/UploadMgr.js:83
 msgid "File already exists"
 msgstr ""
 
-#: cv/ui/manager/upload/UploadMgr.js:88
+#: cv/ui/manager/upload/UploadMgr.js:87
 msgid "Uploading this file is not allowed here."
 msgstr ""
 
-#: cv/ui/manager/upload/UploadMgr.js:98
+#: cv/ui/manager/upload/UploadMgr.js:97
 msgid "File upload stopped with an error: %1"
 msgstr ""
 
-#: cv/ui/manager/upload/UploadMgr.js:102
+#: cv/ui/manager/upload/UploadMgr.js:101
 msgid "File has been uploaded"
 msgstr ""
 

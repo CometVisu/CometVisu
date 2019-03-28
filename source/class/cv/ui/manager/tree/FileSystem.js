@@ -35,7 +35,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
       'application/x-httpd-php': 'php',
       'text/css': 'css',
       'image/png': 'png',
-      'application/xml+svg': 'svg',
+      'image/svg+xml': 'svg',
       'text/plain': ''
     },
 
@@ -318,8 +318,9 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control.add(new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file')));
            control.add(new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder')));
            control.add(new qx.ui.menu.Separator());
-           control.add(new qx.ui.menu.Button(this.tr('Open with...'), null, null, this.getChildControl('open-with-menu')));
-           control.add(new qx.ui.menu.Button(this.tr('Compare with...'), null, null, this.getChildControl('compare-menu')));
+           control.add(this.getChildControl('open-button'));
+           control.add(new qx.ui.menu.Button(this.tr('Open with...'), cv.theme.dark.Images.getIcon('open-with', 18), null, this.getChildControl('open-with-menu')));
+           control.add(new qx.ui.menu.Button(this.tr('Compare with...'), cv.theme.dark.Images.getIcon('compare', 18), null, this.getChildControl('compare-menu')));
            control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('rename-button'));
            control.add(this.getChildControl('delete-button'));
@@ -343,6 +344,13 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
          case 'download-button':
            control = new qx.ui.menu.Button(this.tr('Download'), cv.theme.dark.Images.getIcon('download', 18));
            control.addListener('execute', this._onDownload, this);
+           break;
+
+         case 'open-button':
+           control = new qx.ui.menu.Button(this.tr('Open'), cv.theme.dark.Images.getIcon('open', 18));
+           control.addListener('execute', function () {
+             qx.event.message.Bus.dispatchByName('cv.manager.open', null);
+           }, this);
            break;
 
          case 'restore-button':

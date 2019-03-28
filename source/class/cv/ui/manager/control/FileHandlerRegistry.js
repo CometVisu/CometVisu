@@ -13,13 +13,11 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
   construct: function () {
     this.base(arguments);
     this.__registry = {};
-
-    var prefs = cv.ui.manager.model.Preferences.getInstance();
-    var defaultConfigEditor = prefs.getDefaultConfigEditor();
+    this.__defaults = [];
 
     // register the basic editors
-    this.registerFileHandler(/visu_config(_.+)?\.xml/, cv.ui.manager.editor.Source, defaultConfigEditor === 'source');
-    this.registerFileHandler(/visu_config(_.+)?\.xml/, cv.ui.manager.editor.Xml, defaultConfigEditor === 'xml', {
+    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source);
+    this.registerFileHandler(/visu_config(_.+)?\.xml/, cv.ui.manager.editor.Xml, {
       preview: false
     });
     this.registerFileHandler(cv.ui.manager.model.CompareFiles, cv.ui.manager.editor.Diff, true);
@@ -27,6 +25,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     this.registerFileHandler("hidden.php", cv.ui.manager.editor.Config, true);
 
     cv.ui.manager.model.Preferences.getInstance().addListener('changeDefaultConfigEditor', this._onChangesDefaultConfigEditor, this);
+    this._onChangesDefaultConfigEditor();
   },
 
   /*
@@ -36,24 +35,21 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
   */
   members: {
     __registry: null,
-    __defaultEditor: null,
-    _configEditors: null,
+    __defaults: null,
 
     /**
      * Registers an editor for a specific file, that is identified by the given selector.
      * @param selector {String|RegExp|Class} filename-/path or regular expression.
      * @param clazz {qx.ui.core.Widget} widget class that handles those type of files
-     * @param isDefault {Boolean} prefer this editor if there are more than one for its selector.
      * @param options {Map?} additional options to store in the registry
      */
-    registerFileHandler: function (selector, clazz, isDefault, options) {
+    registerFileHandler: function (selector, clazz, options) {
       if (qx.core.Environment.get('qx.debug')) {
         qx.core.Assert.assertTrue(qx.Interface.classImplements(clazz, cv.ui.manager.editor.IEditor));
       }
       var config = Object.assign({
         Clazz: clazz,
-        instance: null,
-        isDefault: !!isDefault
+        instance: null
       }, options || {});
       if (qx.Class.isClass(selector)) {
         config.instanceOf = selector;
@@ -76,6 +72,18 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     getFileHandler: function (file) {
       var editors = [];
+      // check if there is a default first
+      var defaultHandler;
+      Object.keys(this.__defaults).some(function (key) {
+        if (this.__defaults[key].regex.test(file.getFullPath())) {
+          defaultHandler = this.getFileHandlerById(this.__defaults[key].clazz.classname);
+          return true;
+        }
+      }, this);
+      if (defaultHandler) {
+        return defaultHandler;
+      }
+
       Object.keys(this.__registry).forEach(function (classname) {
         var config = this.__registry[classname];
         if (this.__canHandle(config, file)) {
@@ -113,27 +121,29 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     /**
      * Mark the handler with the given classname as default for the selector-id and all others with the same selector id not,
-     * @param selectorId {String}
-     * @param classname {String}
+     * @param selectorId {RegExp}
+     * @param clazz {qx.Class}
      */
-    setDefault: function (selectorId, classname) {
-      Object.keys(this.__registry).forEach(function (editorClassname) {
-        var config = this.__registry[editorClassname];
-        if (config.selectorId === selectorId) {
-          config.isDefault = (config.Clazz === classname);
-        }
-      }, this);
+    setDefault: function (selector, clazz) {
+      if (qx.core.Environment.get('qx.debug')) {
+        qx.core.Assert.assertRegExp(selector);
+        qx.core.Assert.assertTrue(qx.Class.isClass(clazz));
+      }
+      this.__defaults[selector.toString()] = {
+        regex: selector,
+        clazz: clazz
+      };
     },
 
-    _onChangesDefaultConfigEditor: function (ev) {
-      var selectorId = 'regex:/visu_config(_.+)?\\.xml/';
-      switch (ev.getData()) {
+    _onChangesDefaultConfigEditor: function () {
+      var selector = /visu_config(_.+)?\.xml/;
+      switch (cv.ui.manager.model.Preferences.getInstance().getDefaultConfigEditor()) {
         case 'source':
-          this.setDefault(selectorId, cv.ui.manager.editor.Source);
+          this.setDefault(selector, cv.ui.manager.editor.Source);
           break;
 
         case 'xml':
-          this.setDefault(selectorId, cv.ui.manager.editor.Xml);
+          this.setDefault(selector, cv.ui.manager.editor.Xml);
           break;
       }
     },

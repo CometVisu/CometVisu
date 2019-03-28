@@ -42,7 +42,7 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
     open: function (file, code, schema) {
       this._worker.postMessage(["openFile", {
         path: file.getFullPath(),
-        code: code,
+        code: qx.xml.Document.isXmlDocument(code) ? code.documentElement.outerHTML : code,
         schema: schema
       }]);
       this._files[file.getFullPath()] = file;

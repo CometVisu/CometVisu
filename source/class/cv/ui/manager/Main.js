@@ -24,8 +24,7 @@ qx.Class.define('cv.ui.manager.Main', {
     this.__initCommands();
     this._draw();
 
-    qx.event.message.Bus.subscribe('cv.manager.compareFiles', this._onCompareWith, this);
-    qx.event.message.Bus.subscribe('cv.manager.openWith', this._onOpenWith, this);
+    qx.event.message.Bus.subscribe('cv.manager.*', this._onManagerEvent, this);
   },
 
   /*
@@ -133,6 +132,22 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
+    _onManagerEvent: function (ev) {
+      switch (ev.getName()) {
+        case 'cv.manager.compareWith':
+          this.openFile(ev.getData(), false);
+          break;
+
+        case 'cv.manager.openWith':
+          this.openFile(this._tree.getSelectedNode(), false, ev.getData());
+          break;
+
+        case 'cv.manager.open':
+          this.openFile(this._tree.getSelectedNode(), false);
+          break;
+      }
+    },
+
     /**
      * open selected file in preview mode
      * @private
@@ -211,25 +226,6 @@ qx.Class.define('cv.ui.manager.Main', {
           this.__actionDispatcher.setFocusedWidget(editorConfig.instance);
         }
       }
-    },
-
-    /**
-     * Handle event on topic 'cv.manager.compareWith': opens the text editor in comparison mode.
-     * @param ev {Event}
-     * @private
-     */
-    _onCompareWith: function (ev) {
-      var compareFiles = ev.getData();
-      this.openFile(compareFiles, false);
-    },
-
-    /**
-     * Opens the currently selected file with the file handler defined the the handlerId received from the event on topic 'cv.manager.openWith'
-     * @param ev
-     * @private
-     */
-    _onOpenWith: function (ev) {
-      this.openFile(this._tree.getSelectedNode(), false, ev.getData());
     },
 
     openFile: function (file, preview, handlerId) {
@@ -638,8 +634,7 @@ qx.Class.define('cv.ui.manager.Main', {
     this.__root = null;
     this.__actionDispatcher = null;
 
-    qx.event.message.Bus.unsubscribe('cv.manager.compareFiles', this._onCompareWith, this);
-    qx.event.message.Bus.unsubscribe('cv.manager.openWith', this._onOpenWith, this);
+    qx.event.message.Bus.unsubscribe('cv.manager.*', this._onManagerEvent, this);
   },
 
   defer: function(statics) {

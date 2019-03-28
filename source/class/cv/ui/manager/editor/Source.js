@@ -45,7 +45,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   statics: {
     TITLE: qx.locale.Manager.tr('Texteditor'),
     COUNTER: 0,
-    SUPPORTED_FILES: ['xml', 'php', 'css', 'js', 'svg', 'json', 'md', 'yaml'],
+    SUPPORTED_FILES: ['xml', 'php', 'css', 'js', 'svg', 'json', 'md', 'yaml', 'conf', 'ts', 'rst', 'py'],
 
     load: function (callback, context) {
       var version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
@@ -197,6 +197,9 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         var newModel = window.monaco.editor.getModel(file.getUri());
         if (!newModel) {
           // create new model
+          if (qx.xml.Document.isXmlDocument(value)) {
+            value = value.documentElement.outerHTML;
+          }
           newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
         }
 

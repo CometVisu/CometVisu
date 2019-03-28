@@ -31,7 +31,9 @@ qx.Class.define('cv.theme.dark.Images', {
       'rename': '@MaterialIcons/text_rotation_none',
       'compare': '@MaterialIcons/compare_arrows',
       'preview': '@MaterialIcons/remove_red_eye',
-      'trash': '@MaterialIcons/delete'
+      'trash': '@MaterialIcons/delete',
+      'open': '@MaterialIcons/open_in_browser',
+      'open-with': '@MaterialIcons/open_with'
     },
 
     getIcon: function (name, size) {
