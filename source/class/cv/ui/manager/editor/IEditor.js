@@ -21,7 +21,7 @@ qx.Interface.define('cv.ui.manager.editor.IEditor', {
   ***********************************************
   */
   statics: {
-    NAME: ''
+    TITLE: ''
   },
 
   /*

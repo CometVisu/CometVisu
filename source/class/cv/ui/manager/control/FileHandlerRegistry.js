@@ -15,6 +15,9 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     this.__registry = {};
     this.__defaults = [];
 
+    // register viewers
+    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.viewer.Image);
+
     // register the basic editors
     this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source);
     this.registerFileHandler(/visu_config(_.+)?\.xml/, cv.ui.manager.editor.Xml, {

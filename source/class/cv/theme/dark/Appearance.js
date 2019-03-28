@@ -222,6 +222,27 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           // margin: 1
         };
       }
+    },
+
+    'image-viewer': {},
+    'image-viewer/image': {
+      include: 'atom',
+      alias: 'atom',
+
+      style: function () {
+        return {
+          iconPosition: 'top',
+          gap: 10,
+          center: true
+        };
+      },
+      'image-viewer/image/label': {
+        style: function () {
+          return {
+            margin: 10
+          };
+        }
+      }
     }
   }
 });
