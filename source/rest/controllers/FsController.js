@@ -17,7 +17,7 @@ class FsController extends FileHandler {
    */
   read(context) {
     return this.__processRequest(context, (fsPath, mount) => {
-      return this.__folderListing(fsPath, mount);
+      return this.__folderListing(fsPath, mount, context.params.query.recursive);
     }, fsPath => {
       this.sendFile(context, fsPath);
     }, 'read')
@@ -135,7 +135,7 @@ class FsController extends FileHandler {
     }
   }
 
-  __folderListing(fsPath, mount) {
+  __folderListing(fsPath, mount, recursive) {
     const res = []
     let trashFound = false;
     const inTrash = fsPath === config.trashFolder || fsPath.startsWith(config.trashFolder)
@@ -143,7 +143,8 @@ class FsController extends FileHandler {
       return FileHandler.checkAccess(fsPath, file) || file === config.trashFolderName
     }).forEach(file => {
       try {
-        const stats = fs.statSync(path.join(fsPath, file))
+        const entryPath = path.join(fsPath, file)
+        const stats = fs.statSync(entryPath)
         if (mount && mount.showSubDirs === false && stats.isDirectory()) {
           // no subdirs in mount
           return;
@@ -157,13 +158,12 @@ class FsController extends FileHandler {
         if (relFolder.length > 0) {
           relFolder += '/'
         }
-        const fullPath = path.join(fsPath, file)
         const isTrash = stats.isDirectory() && file === config.trashFolderName
         const entry = {
           name: file,
           type: stats.isDirectory() ? 'dir' : (stats.isFile() ? 'file' : null),
           parentFolder: relFolder,
-          hasChildren: stats.isDirectory() ? fs.readdirSync(fullPath).length > 0 : false,
+          hasChildren: stats.isDirectory() ? fs.readdirSync(entryPath).length > 0 : false,
           readable: false,
           writeable: false,
           trash: isTrash,
@@ -173,19 +173,22 @@ class FsController extends FileHandler {
           trashFound = true;
         }
         try {
-          fs.accessSync(fullPath, fs.constants.R_OK)
+          fs.accessSync(entryPath, fs.constants.R_OK)
           entry.readable = true
         } catch (err) {
         }
         // no write access in demo folder
         if ((!mount || mount.writeable !== false) && !isTrash && !inTrash) {
           try {
-            fs.accessSync(fullPath, fs.constants.W_OK)
+            fs.accessSync(entryPath, fs.constants.W_OK)
             entry.writeable = true
           } catch (err) {
           }
         }
         res.push(entry)
+        if (recursive === true) {
+          entry.children = this.__folderListing(entryPath, this.__getMount(entryPath), recursive)
+        }
       } catch (err) {
         // error accessing the entry -> do not add it to the resultset
       }

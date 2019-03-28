@@ -68,6 +68,12 @@ paths:
           required: false
           schema:
             type: boolean
+        - name: recursive
+          in: query
+          description: also include all sub-folders in the directory listing
+          required: false
+          schema:
+            type: boolean
       operationId: read
       x-exegesis-controller: FsController
       responses:
