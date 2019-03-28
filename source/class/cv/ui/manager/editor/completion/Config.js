@@ -346,7 +346,9 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           if (isContentSearch) {
             // handle data providers if the is one relevant
             if (lastOpenedTag.tagName === 'pages' && lastOpenedTag.currentAttribute === 'design') {
-              return {suggestions: this._dataProvider.getDesigns()};
+              return this._dataProvider.getDesigns().then(function (sugg) {
+                return {suggestions: sugg};
+              });
             } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === 'transform') {
               return {suggestions: this._dataProvider.getTransforms()};
             } else if (lastOpenedTag.tagName === 'plugin' && lastOpenedTag.currentAttribute === 'name') {

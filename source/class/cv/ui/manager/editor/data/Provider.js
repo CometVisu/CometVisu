@@ -12,9 +12,8 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
   */
   construct: function () {
     this.base(arguments);
+    this.__cache = {};
     this._client = cv.io.rest.Client.getDataProviderClient();
-    this._client.addListener('designsSuccess', this._onUpdateDesigns, this);
-    this._client.designs();
   },
 
   /*
@@ -23,106 +22,117 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
   ***********************************************
   */
   members: {
-    __designs: null,
-    __rrds: null,
-    __influxdbs: null,
-    __influxdbfields: null,
-    __influxdbtags: null,
-    __transforms: null,
-    __plugins: null,
-    __icons: null,
+    __cache: null,
 
-    _onUpdateDesigns: function (ev) {
-      this.__designs = [];
-      ev.getData().forEach(function (designName) {
-        this.__designs.push({
-          label: designName,
-          insertText: designName,
-          kind: window.monaco.languages.CompletionItemKind.EnumMember
+    _getFromCache: function (cacheId) {
+      return this.__cache[cacheId];
+    },
+
+    __clearFromCache: function (cacheId) {
+      if (!cacheId) {
+        this.__cache = {};
+      } else {
+        delete this.__cache[cacheId];
+      }
+    },
+
+    _addToCache: function (cacheId, data) {
+      this.__cache[cacheId] = data;
+    },
+
+    /**
+     * Returns the available design names as array of suggestions.
+     * @returns {Promise<Array>} suggestions
+     */
+    getDesigns: function () {
+      return this.__getData('designs', 'designsSync', null,[], function (res) {
+        return res.map(function (designName) {
+          return {
+            label: designName,
+            insertText: designName,
+            kind: window.monaco.languages.CompletionItemKind.EnumMember
+          };
         });
       }, this);
     },
 
     /**
-     * Returns the available design names as array.
-     * @returns {Array}
+     *
+     * @param cacheId {String}
+     * @param rpc {String|Function} rpcname to use with this._client or function to call
+     * @param rpcContext {Object} rpc context
+     * @param args {Array} rpc arguments
+     * @param converter {Function} converter that converts the response to suggestions for the text editor
+     * @param converterContext {Object} context fot the converter function
+     * @returns {Promise<any>}
+     * @private
      */
-    getDesigns: function () {
-      return this.__designs;
+    __getData: function (cacheId, rpc, rpcContext, args, converter, converterContext) {
+      var cached = this._getFromCache(cacheId);
+      if (cached) {
+        return Promise.resolve(converter.call(converterContext || this, cached));
+      } else {
+        return new Promise(function (resolve, reject) {
+          var handleResponse = function (err, res) {
+            if (err) {
+              reject(err);
+            } else {
+              // cache the raw values not the converted ones
+              this._addToCache(cacheId, res);
+              resolve(converter.call(converterContext || this, res));
+            }
+          };
+          if (!args) {
+            args = [handleResponse, this];
+          } else {
+            args.push(handleResponse);
+            args.push(this);
+          }
+          if (qx.lang.Type.isString(rpc)) {
+            this._client[rpc].apply(rpcContext || this._client, args);
+          } else if (qx.lang.Type.isFunction(rpc)) {
+            rpc.apply(rpcContext, args);
+          }
+        }.bind(this));
+      }
     },
 
     getRrds: function () {
-      return new Promise(function(resolve, reject) {
-        this._client.rrdsSync(function (err, res) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(this._parseDpResponse(res));
-          }
-        }, this);
-      }.bind(this));
+      return this.__getData('rrds', 'rrdsSync', null,[], this._parseDpResponse, this);
     },
 
     getInfluxDBs: function () {
-      return new Promise(function(resolve, reject) {
-        this._client.influxdbsSync(function (err, res) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(this._parseDpResponse(res));
-          }
-        }, this);
-      }.bind(this));
+      return this.__getData('influxdbs', 'influxdbsSync', null,[], this._parseDpResponse, this);
     },
 
     getInfluxDBFields: function (measurement) {
-      return new Promise(function(resolve, reject) {
-        this._client.influxdbfieldsSync({measurement: measurement}, function (err, res) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(this._parseDpResponse(res));
-          }
-        }, this);
-      }.bind(this));
+      return this.__getData('influxdbfields|' + measurement, 'influxdbfieldsSync', null,[{measurement: measurement}], this._parseDpResponse, this);
     },
 
     getInfluxDBTags: function (measurement) {
-      return new Promise(function(resolve, reject) {
-        this._client.influxdbtagsSync({measurement: measurement}, function (err, res) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(Object.keys(res).map(function (x) {
-              return {
-                label: x,
-                insertText: x,
-                kind: window.monaco.languages.CompletionItemKind.EnumMember
-              };
-            }));
-          }
-        }, this);
-      }.bind(this));
+      return this.__getData('influxdbtags|' + measurement, 'influxdbtagsSync', null,[{measurement: measurement}], function (res) {
+        return Object.keys(res).map(function (x) {
+          return {
+            label: x,
+            insertText: x,
+            kind: window.monaco.languages.CompletionItemKind.EnumMember
+          };
+        });
+      }, this);
     },
 
     getInfluxDBValues: function (measurement, tag) {
-      return new Promise(function(resolve, reject) {
-        this._client.influxdbtagsSync({measurement: measurement}, function (err, res) {
-          if (err) {
-            reject(err);
-          } else {
-            var sug = [];
-            res[tag].forEach(function (x) {
-              sug.push({
-                label: x,
-                insertText: x,
-                kind: window.monaco.languages.CompletionItemKind.EnumMember
-              });
-            });
-            resolve(sug);
-          }
-        }, this);
-      }.bind(this));
+      return this.__getData('influxdbtags|' + measurement, 'influxdbtagsSync', null,[{measurement: measurement}], function (res) {
+        var sug = [];
+        res[tag].forEach(function (x) {
+          sug.push({
+            label: x,
+            insertText: x,
+            kind: window.monaco.languages.CompletionItemKind.EnumMember
+          });
+        });
+        return sug;
+      }, this);
     },
 
     _parseDpResponse: function (data) {
@@ -138,24 +148,19 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
     },
 
     getMediaFiles: function (typeFilter) {
-      return new Promise(function(resolve, reject) {
-        cv.io.rest.Client.getFsClient().readSync({path: 'media', recursive: true}, function (err, res) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(res.filter(function (file) {
-              return !typeFilter || file.name.endsWith('.' + typeFilter);
-            }).map(function (file) {
-              var path = file.parentFolder + file.name;
-              return {
-                label: path,
-                insertText: path,
-                kind: window.monaco.languages.CompletionItemKind.EnumMember
-              };
-            }));
-          }
-        }, this);
-      }.bind(this));
+      var fsClient = cv.io.rest.Client.getFsClient();
+      return this.__getData('media', fsClient.readSync, fsClient,[{path: 'media', recursive: true}], function (res) {
+        return res.filter(function (file) {
+          return !typeFilter || file.name.endsWith('.' + typeFilter);
+        }).map(function (file) {
+          var path = file.parentFolder + file.name;
+          return {
+            label: path,
+            insertText: path,
+            kind: window.monaco.languages.CompletionItemKind.EnumMember
+          };
+        });
+      }, this);
     },
 
     /**
@@ -163,8 +168,12 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * @returns {Array}
      */
     getTransforms: function () {
-      if (!this.__transforms) {
-        this.__transforms = [];
+      var cacheId = 'transforms';
+      var cached = this._getFromCache(cacheId);
+      if (cached) {
+        return cached;
+      } else {
+        var transforms = [];
         Object.keys(cv.Transform.registry).forEach(function (key) {
           var entry = cv.Transform.registry[key];
           var suggestion = {
@@ -175,10 +184,11 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
           if (entry.lname && entry.lname.hasOwnProperty(qx.locale.Manager.getInstance().getLanguage())) {
             suggestion.detail = entry.lname[qx.locale.Manager.getInstance().getLanguage()];
           }
-          this.__transforms.push(suggestion);
+          transforms.push(suggestion);
         }, this);
+        this._addToCache(cacheId, transforms);
+        return transforms;
       }
-      return this.__transforms;
     },
 
     /**
@@ -186,34 +196,44 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * @returns {Array}
      */
     getPlugins: function () {
-      if (!this.__plugins) {
-        this.__plugins = [];
+      var cacheId = 'plugins';
+      var cached = this._getFromCache(cacheId);
+      if (cached) {
+        return cached;
+      } else {
+        var plugins = [];
         var qxParts = qx.io.PartLoader.getInstance().getParts();
         Object.keys(qxParts).forEach(function (partName) {
           if (partName.startsWith('plugin-')) {
             var pluginName = partName.substring(7);
-            this.__plugins.push({
+            plugins.push({
               label: pluginName,
               insertText: pluginName,
               kind: window.monaco.languages.CompletionItemKind.EnumMember
             });
           }
         }, this);
+        this._addToCache(cacheId, plugins);
+        return plugins;
       }
-      return this.__plugins;
     },
 
     getIcons: function () {
-      if (!this.__icons) {
-        this.__icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
+      var cacheId = 'icons';
+      var cached = this._getFromCache(cacheId);
+      if (cached) {
+        return cached;
+      } else {
+        var icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
           return {
             label: iconName,
             insertText: iconName,
             kind: window.monaco.languages.CompletionItemKind.EnumMember
-          }
+          };
         });
+        this._addToCache(cacheId, icons);
+        return icons;
       }
-      return this.__icons;
     }
   },
 
@@ -223,13 +243,6 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
   ***********************************************
   */
   destruct: function () {
-    this.__transforms = null;
-    this.__designs = null;
-    this.__plugins = null;
-    this.__icons = null;
-
-    ['rrds', 'influxdbs', 'influxdbfields', 'influxdbtags'].forEach(function (name) {
-      this['__' + name] = null;
-    }, this);
+    this.__cache = null;
   }
 });
