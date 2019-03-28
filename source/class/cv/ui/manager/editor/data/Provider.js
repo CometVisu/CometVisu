@@ -137,6 +137,27 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       return target;
     },
 
+    getMediaFiles: function (typeFilter) {
+      return new Promise(function(resolve, reject) {
+        cv.io.rest.Client.getFsClient().readSync({path: 'media', recursive: true}, function (err, res) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(res.filter(function (file) {
+              return !typeFilter || file.name.endsWith('.' + typeFilter);
+            }).map(function (file) {
+              var path = file.parentFolder + file.name;
+              return {
+                label: path,
+                insertText: path,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              };
+            }));
+          }
+        }, this);
+      }.bind(this));
+    },
+
     /**
      * Returns the list of available transformations as suggestion entry array.
      * @returns {Array}

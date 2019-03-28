@@ -75,6 +75,9 @@ qx.Class.define('cv.io.rest.Client', {
           if (params.hash) {
             req.setUrl(req.getUrl() + '&hash=' + params.hash);
           }
+          if (params.recursive === true && action === 'read') {
+            req.setUrl(req.getUrl() + '&recursive=true');
+          }
           if (action === 'update' || action === 'create') {
             var parts = params.path.split('.');
             if (parts.length > 1) {

@@ -340,6 +340,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             }
           }
           var res = [];
+          var match;
           // find the last opened tag in the schema to see what elements/attributes it can have
           var searchedElement = openedTags[openedTags.length-1];
           if (isContentSearch) {
@@ -358,7 +359,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                   return {suggestions: suggestions};
                 });
               } else if (lastOpenedTag.currentAttribute === 'field') {
-                var match = /measurement="([^"]+)"/.exec(lastOpenedTag.text);
+                match = /measurement="([^"]+)"/.exec(lastOpenedTag.text);
                 if (match) {
                   return this._dataProvider.getInfluxDBFields(match[1]).then(function (suggestions) {
                     return {suggestions: suggestions};
@@ -374,7 +375,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
                     return {suggestions: suggestions};
                   });
                 } else if (lastOpenedTag.currentAttribute === 'value') {
-                  var match = /key="([^"]+)"/.exec(lastOpenedTag.text);
+                  match = /key="([^"]+)"/.exec(lastOpenedTag.text);
                   if (match) {
                     return this._dataProvider.getInfluxDBValues(attr.value, match[1]).then(function (suggestions) {
                       return {suggestions: suggestions};
@@ -439,6 +440,12 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
           }
           if (searchedElement === 'rrd') {
             return {suggestions: this._dataProvider.getRrds()};
+          } else if (searchedElement === 'file' && !isAttributeSearch && !isContentSearch && openedTags.includes('files')) {
+            match = /type="([^"]+)"/.exec(lastOpenedTag.text);
+            var typeFilter = !!match ? match[1] : null;
+            return this._dataProvider.getMediaFiles(typeFilter).then(function (suggestions) {
+              return {suggestions: suggestions};
+            });
           }
           var currentItem = this.findElements(this._schemaNode.allowedRootElements.pages, searchedElement, openedTags.length, openedTags.includes('meta'));
 
