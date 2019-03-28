@@ -20,7 +20,8 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
   ***********************************************
   */
   statics: {
-    COUNTER: 0
+    COUNTER: 0,
+    TITLE: qx.locale.Manager.tr('File compare')
   },
 
   /*

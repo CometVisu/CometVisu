@@ -23,7 +23,8 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
   ***********************************************
   */
   statics: {
-    SUPPORTED_FILES: /visu_config.*\.xml/
+    SUPPORTED_FILES: /visu_config.*\.xml/,
+    TITLE: qx.locale.Manager.tr('Xml-editor')
   },
 
   /*

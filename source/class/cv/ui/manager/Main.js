@@ -25,68 +25,7 @@ qx.Class.define('cv.ui.manager.Main', {
     this._draw();
 
     qx.event.message.Bus.subscribe('cv.manager.compareFiles', this._onCompareWith, this);
-  },
-
-  /*
-  ***********************************************
-    STATICS
-  ***********************************************
-  */
-  statics: {
-    __editors: {},
-
-    // use this one when no one else fits
-    __defaultEditor: {
-      Clazz: cv.ui.manager.editor.Source,
-      instance: null
-    },
-
-    _configEditors: {
-      xml: {
-        Clazz: cv.ui.manager.editor.Xml,
-        instance: null,
-        preview: false
-      },
-      source: this.__defaultEditor,
-      diff: {
-        Clazz: cv.ui.manager.editor.Diff,
-        instance: null
-      }
-    },
-
-    /**
-     * Registers an editor for a specific file, that is identified by the given selector.
-     * @param selector {String} filename-/path or regular expression.
-     * @param clazz {qx.ui.core.Widget} widget class that handles those type of files
-     */
-    registerFileEditor: function (selector, clazz) {
-      if (qx.core.Environment.get('qx.debug')) {
-        qx.core.Assert.assertTrue(qx.Interface.classImplements(clazz, cv.ui.manager.editor.IEditor));
-      }
-      this.__editors[selector] = {
-        Clazz: clazz,
-        instance: null,
-        regex: selector.startsWith('/') && selector.endsWith('/') ? new RegExp(selector.substring(1, selector.length-1)) : null
-      };
-    },
-
-    getFileEditor: function (file) {
-      var found = null;
-      if (file instanceof cv.ui.manager.model.CompareFiles) {
-        found = this._configEditors.diff;
-      } else if (file.isConfigFile()) {
-        found = this._configEditors[cv.ui.manager.model.Preferences.getInstance().getDefaultConfigEditor()];
-      }
-      if (!found) {
-        Object.keys(this.__editors).some(function (key) {
-          if ((key.regex && key.regex.test(file.getFullPath())) || key === file.getFullPath()) {
-            found = this.__editors[key];
-            return true;
-          }
-        }, this);
-      }
-      return found || this.__defaultEditor;
-    }
+    qx.event.message.Bus.subscribe('cv.manager.openWith', this._onOpenWith, this);
   },
 
   /*
@@ -256,7 +195,13 @@ qx.Class.define('cv.ui.manager.Main', {
       if (sel.length > 0) {
         var node = sel.getItem(0);
         if (node.getType() === 'file') {
-          var editorConfig = cv.ui.manager.Main.getFileEditor(node);
+          var editorConfig;
+          var handlerId = node.getUserData('handlerId');
+          if (handlerId) {
+            editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
+          } else {
+            editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(node);
+          }
           if (!editorConfig.instance) {
             editorConfig.instance = new editorConfig.Clazz();
             this._stack.add(editorConfig.instance);
@@ -278,9 +223,26 @@ qx.Class.define('cv.ui.manager.Main', {
       this.openFile(compareFiles, false);
     },
 
-    openFile: function (file, preview) {
+    /**
+     * Opens the currently selected file with the file handler defined the the handlerId received from the event on topic 'cv.manager.openWith'
+     * @param ev
+     * @private
+     */
+    _onOpenWith: function (ev) {
+      this.openFile(this._tree.getSelectedNode(), false, ev.getData());
+    },
+
+    openFile: function (file, preview, handlerId) {
       var openFiles = this.getOpenFiles();
       var isOpen = openFiles.includes(file);
+      file.setUserData('handlerId', handlerId);
+      if (!handlerId) {
+        if (!cv.ui.manager.control.FileHandlerRegistry.getInstance().hasFileHandler(file)) {
+          // no handler
+          cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Cannot open file: "%1"', file.getName()));
+          return;
+        }
+      }
       if (preview === true) {
         if (!file.isPermanent()) {
           if (this.__previewFileIndex !== null && !openFiles.getItem(this.__previewFileIndex).isPermanent()) {
@@ -312,14 +274,15 @@ qx.Class.define('cv.ui.manager.Main', {
       }
 
       if (file instanceof cv.ui.manager.model.CompareFiles) {
-        cv.ui.manager.Main.getFileEditor(file).instance.clear();
+        var fileHandlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
+        fileHandlerConf.instance.clear();
         if (this.getOpenFiles().filter(function (file) {
           return file instanceof cv.ui.manager.model.CompareFiles;
         }).length === 0) {
-          cv.ui.manager.Main.getFileEditor(file).instance.destroy();
-          cv.ui.manager.Main.getFileEditor(file).instance = null;
+          fileHandlerConf.instance.destroy();
+          fileHandlerConf.instance = null;
         }
-      } else {
+      } else if (window.monaco) {
         // close textmodel in monaco editor if exists
         var oldModel = window.monaco.editor.getModel(file.getUri());
         if (oldModel) {
@@ -673,21 +636,10 @@ qx.Class.define('cv.ui.manager.Main', {
 
     document.body.removeChild(this.__root);
     this.__root = null;
-
-    // cleanup editor instances
-    if (cv.ui.manager.Main.__defaultEditor.instance) {
-      cv.ui.manager.Main.__defaultEditor.instance.dispose();
-      cv.ui.manager.Main.__defaultEditor.instance = null;
-    }
-    Object.keys(cv.ui.manager.Main.__editors).forEach(function (regex) {
-      if (cv.ui.manager.Main.__editors[regex].instance) {
-        cv.ui.manager.Main.__editors[regex].instance.dispose();
-        cv.ui.manager.Main.__editors[regex].instance = null;
-      }
-    });
     this.__actionDispatcher = null;
 
     qx.event.message.Bus.unsubscribe('cv.manager.compareFiles', this._onCompareWith, this);
+    qx.event.message.Bus.unsubscribe('cv.manager.openWith', this._onOpenWith, this);
   },
 
   defer: function(statics) {
@@ -696,8 +648,5 @@ qx.Class.define('cv.ui.manager.Main', {
 
     // load backupFolder
     cv.ui.manager.model.BackupFolder.getInstance();
-
-    // register special file editors
-    statics.registerFileEditor("hidden.php", cv.ui.manager.editor.Config);
   }
 });

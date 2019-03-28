@@ -125,6 +125,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
         var compareMenu = this.getChildControl('compare-menu');
         compareMenu.removeAll();
         var backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(value);
+        compareMenu.setEnabled(backups.length > 0);
         backups.sort(function (a, b) {
           return b.date.getTime() - a.date.getTime();
         });
@@ -145,6 +146,21 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
           button.addListener('execute', this._onCompareWith, this);
           compareMenu.add(button);
         }, this);
+
+        // open with menu
+        var availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(value);
+        var openWithMenu = this.getChildControl('open-with-menu');
+        openWithMenu.removeAll();
+        openWithMenu.setEnabled(availableHandlers.length > 0);
+        availableHandlers.sort(function (a, b) {
+          return a.Clazz.constructor.TITLE.toString().localeCompare(b.Clazz.constructor.TITLE.toString());
+        });
+        availableHandlers.forEach(function (handlerConf) {
+          var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE);
+          button.setUserData('handlerId', handlerConf.Clazz.classname);
+          button.addListener('execute', this._onOpenWith, this);
+          openWithMenu.add(button);
+        }, this);
       } else {
         tree.resetContextMenu();
         this.getChildControl('delete-button').setLabel(this.tr('Delete'));
@@ -160,6 +176,11 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
       qx.event.message.Bus.dispatchByName('cv.manager.compareFiles',
         new cv.ui.manager.model.CompareFiles(compareWith, this.getSelectedNode())
       );
+    },
+
+    _onOpenWith: function (ev) {
+      var handlerId = ev.getTarget().getUserData('handlerId');
+      qx.event.message.Bus.dispatchByName('cv.manager.openWith', handlerId);
     },
 
     _onDblTapTreeSelection: function () {
@@ -297,6 +318,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control.add(new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file')));
            control.add(new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder')));
            control.add(new qx.ui.menu.Separator());
+           control.add(new qx.ui.menu.Button(this.tr('Open with...'), null, null, this.getChildControl('open-with-menu')));
            control.add(new qx.ui.menu.Button(this.tr('Compare with...'), null, null, this.getChildControl('compare-menu')));
            control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('rename-button'));
@@ -330,6 +352,10 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            break;
 
          case 'compare-menu':
+           control = new qx.ui.menu.Menu();
+           break;
+
+         case 'open-with-menu':
            control = new qx.ui.menu.Menu();
            break;
        }

@@ -43,6 +43,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   ***********************************************
   */
   statics: {
+    TITLE: qx.locale.Manager.tr('Texteditor'),
     COUNTER: 0,
     SUPPORTED_FILES: ['xml', 'php', 'css', 'js', 'svg', 'json', 'md', 'yaml'],
 
