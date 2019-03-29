@@ -74,7 +74,10 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
       var editor = this.getEditor();
       switch(topic) {
         case "modified":
-          file.setModified(data.modified);
+          // new files are always modified, to not override that state
+          if (!file.isTemporary()) {
+            file.setModified(data.modified);
+          }
           file.setHash(data.currentHash);
           break;
 

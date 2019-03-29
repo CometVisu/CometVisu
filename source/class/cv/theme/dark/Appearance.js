@@ -244,6 +244,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           };
         }
       }
+    },
+
+    'fs-tree-item': {
+      include: 'virtual-tree-folder',
+      alias: 'virtual-tree-folder',
+
+      style: function (states) {
+        return {
+          font: states.temporary ? 'italic' : 'default'
+        };
+      }
     }
   }
 });

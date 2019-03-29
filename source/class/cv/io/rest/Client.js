@@ -93,45 +93,12 @@ qx.Class.define('cv.io.rest.Client', {
 
 
         this._enableSync(this.__dirClient, config);
-        // // install the callback calls
-        // Object.keys(config).forEach(function (callName) {
-        //   this.__dirClient[callName + 'Sync'] = function () {
-        //     var args = qx.lang.Array.fromArguments(arguments);
-        //     var callback;
-        //     var context = args.pop();
-        //     if (qx.lang.Type.isFunction(context)) {
-        //       callback = context;
-        //       context = this;
-        //     } else {
-        //       callback = args.pop();
-        //     }
-        //     this.__callbacks[this.__dirClient[callName].apply(this.__dirClient, args)] = callback.bind(context);
-        //   }.bind(this);
-        // }, this);
 
         // general listeners
         this.__dirClient.addListener('updateSuccess', this._onSaveSuccess, this);
         this.__dirClient.addListener('createSuccess', this._onSaveSuccess, this);
         this.__dirClient.addListener('updateError', this._onSaveError, this);
         this.__dirClient.addListener('createError', this._onSaveError, this);
-        // this.__dirClient.addListener('success', function (ev) {
-        //   var req = ev.getRequest();
-        //   var id = parseInt(req.toHashCode(), 10);
-        //   if (this.__callbacks.hasOwnProperty(id)) {
-        //     this.__callbacks[id](null, ev.getData());
-        //     delete this.__callbacks[id];
-        //   }
-        // }, this);
-        //
-        // this.__dirClient.addListener('error', function (ev) {
-        //   var req = ev.getRequest();
-        //   var id = parseInt(req.toHashCode(), 10);
-        //   if (this.__callbacks.hasOwnProperty(id)) {
-        //     qx.log.Logger.error(this, ev.getData());
-        //     this.__callbacks[id](ev.getData().message, null);
-        //     delete this.__callbacks[id];
-        //   }
-        // }, this);
       }
       return this.__dirClient;
     },
@@ -197,6 +164,10 @@ qx.Class.define('cv.io.rest.Client', {
           qx.log.Logger.error(this, ev.getData());
           this.__callbacks[id](ev.getData().message, null);
           delete this.__callbacks[id];
+        }
+        if (req.getPhase() === 'load') {
+          // error during load phase => backend not reachable
+          dialog.Dialog.error(qx.locale.Manager.tr('Backend does not respond!'));
         }
       }, this);
     },

@@ -27,7 +27,7 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
     },
     modifiedFile: {
       check: 'cv.ui.manager.model.FileItem',
-      event: 'changeModified',
+      event: 'changeModifiedFile',
       apply: '_applyModifiedFile'
     },
 

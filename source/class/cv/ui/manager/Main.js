@@ -96,7 +96,7 @@ qx.Class.define('cv.ui.manager.Main', {
     __actionDispatcher: null,
 
     canHandleAction: function (actionName) {
-      return ['close', 'quit', 'hidden-config', 'new-file', 'new-folder', 'delete', 'upload'].includes(actionName);
+      return ['close', 'quit', 'hidden-config', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload'].includes(actionName);
     },
 
     handleAction: function (actionName) {
@@ -114,11 +114,21 @@ qx.Class.define('cv.ui.manager.Main', {
           break;
 
         case 'new-file':
-          this._onCreateFile();
+          this._onCreate('file');
+          break;
+
+        case 'new-config-file':
+          cv.io.rest.Client.getFsClient().readSync({path: '.templates/visu_config.xml'}, function (err, res) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load config template'));
+            } else {
+              this._onCreate('config', res);
+            }
+          }, this);
           break;
 
         case 'new-folder':
-          this._onCreateFolder();
+          this._onCreate('dir');
           break;
 
         case 'delete':
@@ -137,16 +147,14 @@ qx.Class.define('cv.ui.manager.Main', {
 
     _handleFileEvent: function (ev) {
       var data = ev.getData();
-      switch (data.action) {
-        case 'deleted':
-          // check if file is currently opened and close it
-          var openFiles = this.getOpenFiles().copy();
-          openFiles.some(function (openFile) {
-            if (openFile.isRelated(data.path)) {
-              this.closeFile(openFile);
-            }
-          }, this);
-          break;
+      if (data.action === 'deleted') {
+        // check if file is currently opened and close it
+        var openFiles = this.getOpenFiles().copy();
+        openFiles.some(function (openFile) {
+          if (openFile.isRelated(data.path)) {
+            this.closeFile(openFile);
+          }
+        }, this);
       }
     },
 
@@ -375,16 +383,8 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
-    _onCreateFile: function () {
-      this._onCreate('file');
-    },
-
-    _onCreateFolder: function () {
-      this._onCreate('dir');
-    },
-
     _onDelete: function () {
-      var item = this.getCurrentSelection();
+      var item = this._tree.getSelectedNode();
       if (item) {
         var message;
         if (item.isTrash()) {
@@ -414,31 +414,70 @@ qx.Class.define('cv.ui.manager.Main', {
       }));
     },
 
-    _onCreate: function (type) {
+    _onCreate: function (type, content) {
       var currentFolder = this.getCurrentFolder();
       if (!currentFolder) {
         return;
       }
-      var folderItem = new cv.ui.manager.model.FileItem('', currentFolder.getPath(), currentFolder);
-      folderItem.set({
-        type: type,
-        readable: true,
-        writeable: true,
-        loaded: true,
-        editing: true,
-        modified: true,
-        parentFolder: currentFolder.getFullPath()
-      });
-      folderItem.setUserData('new', true);
-      currentFolder.addChild(folderItem);
-      currentFolder.sortElements();
-      this._tree.refresh();
-      this._tree.setSelection(folderItem);
+      var message, existsMessage;
+      if (type === 'config') {
+        message = qx.locale.Manager.tr('Please enter the name of the new configuration (without "visu_config_" at the beginning and ".xml" at the end)');
+        existsMessage = qx.locale.Manager.tr('A configuration with this name already exists.');
+      } else if (type === 'file') {
+        message = qx.locale.Manager.tr('Please enter the file name.');
+        existsMessage = qx.locale.Manager.tr('A file with this name already exists.');
+      } else {
+        message = qx.locale.Manager.tr('Please enter the folder name.');
+        existsMessage = qx.locale.Manager.tr('A folder with this name already exists.');
+      }
+      var handlePrompt = function (name) {
+        if (!name) {
+          // canceled
+          return;
+        }
+        var filename = name;
+        // add visu_config_..-xml
+        if (type === 'config') {
+          var match = /visu[_-]config[_-]([\w\d_-]+)(\.xml)?/.exec(name);
+          if (match) {
+            name = match[1];
+          }
+          filename = 'visu_config_' + name + '.xml';
+        }
+        // check if name does not exist
+        var exists = currentFolder.getChildren().some(function (child) {
+          if (child.getName() === filename) {
+            return true;
+          }
+        }, this);
 
-      folderItem.addListenerOnce('editing', function () {
-        currentFolder.sortElements();
-        this._tree.refresh();
-      }, this);
+        if (exists) {
+          cv.ui.manager.snackbar.Controller.error(existsMessage);
+          dialog.Dialog.prompt(message, handlePrompt, this, name);
+        } else {
+          var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getPath(), currentFolder);
+          item.addListener('changeModified', function (ev) {
+            console.error(ev.getData());
+          });
+          item.set({
+            type: type === 'config' ? 'file' : type,
+            readable: true,
+            writeable: true,
+            loaded: true,
+            modified: true,
+            temporary: true,
+            parentFolder: currentFolder.getFullPath(),
+            content: content || ''
+          });
+          currentFolder.addChild(item);
+          currentFolder.sortElements();
+          this._tree.refresh();
+          this._tree.setSelection(item);
+          this.openFile(item, false);
+        }
+      };
+
+      dialog.Dialog.prompt(message, handlePrompt, this);
     },
 
     /**

@@ -184,7 +184,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     },
 
     setSelection : function (node) {
-      this.getChildControl('tree').setSelection([node]);
+      this.getChildControl('tree').getSelection().replace([node]);
     },
 
     _onCompareWith: function (ev) {

@@ -11,6 +11,7 @@ qx.Class.define('cv.theme.dark.Images', {
   */
   statics: {
     ICONS: {
+      'new': '@MaterialIcons/add',
       'new-file': '@MaterialIcons/note_add',
       'new-folder': '@MaterialIcons/create_new_folder',
       'save': '@MaterialIcons/save',

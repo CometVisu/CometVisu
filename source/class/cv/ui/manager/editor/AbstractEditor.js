@@ -62,18 +62,21 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
 
     _initClient: function () {
       this._client = cv.io.rest.Client.getFsClient();
-      this._client.addListener('updateSuccess', this._onSaved, this);
     },
 
     _loadFile: function (file) {
       if (file && file.getType() === 'file') {
-        this._client.readSync({path: this.getFile().getFullPath()}, function (err, res) {
-          if (err) {
-            cv.ui.manager.snackbar.Controller.error(err);
-          } else {
-            this.setContent(res);
-          }
-        }, this);
+        if (file.getContent() !== null) {
+          this.setContent(file.getContent());
+        } else {
+          this._client.readSync({path: this.getFile().getFullPath()}, function (err, res) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(err);
+            } else {
+              this.setContent(res);
+            }
+          }, this);
+        }
       } else {
         this.resetContent();
       }
@@ -88,15 +91,39 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     save: function () {
       var file = this.getFile();
       if (file.isModified()) {
-        this._client.update({
-          path: file.getFullPath(),
-          hash: file.getHash()
-        }, this.getCurrentContent());
+        if (file.isTemporary()) {
+          this._client.createSync({
+            path: file.getFullPath(),
+            hash: file.getHash(),
+            type: 'file'
+          }, this.getCurrentContent(), function (err) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(err);
+            } else {
+              cv.ui.manager.snackbar.Controller.info(this.tr('File has been created'));
+              this._onSaved();
+            }
+          }, this);
+        } else {
+          this._client.updateSync({
+            path: file.getFullPath(),
+            hash: file.getHash()
+          }, this.getCurrentContent(), function (err) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(err);
+            } else {
+              cv.ui.manager.snackbar.Controller.info(this.tr('File has been saved'));
+              this._onSaved();
+            }
+          }, this);
+        }
       }
     },
 
     _onSaved: function () {
-      this.getFile().resetModified();
+      var file = this.getFile();
+      file.resetModified();
+      file.resetTemporary();
     }
   },
 
@@ -107,7 +134,6 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   */
   destruct: function () {
     if (this._client) {
-      this._client.removeListener('updateSuccess', this._onSaved, this);
       this._client = null;
     }
   }

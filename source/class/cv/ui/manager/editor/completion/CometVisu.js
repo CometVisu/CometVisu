@@ -38,82 +38,6 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
           insertText: '/**\n * TODO: Add documentation\n * \n * @since ' + cv.Version.VERSION.replace('-dev', '') + ' ($CURRENT_YEAR)\n */\nqx.Class.define("cv.ui.structure.pure.$0", {\n  extend: cv.ui.structure.AbstractWidget,\n\n  \n});\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }, {
-          filterText: "cvplugin",
-          label: 'CometVisu-Plugin',
-          kind: window.monaco.languages.CompletionItemKind.Class,
-          detail: "A CometVisu class for a plugin.",
-          insertText: [
-            '/**',
-            ' * TODO: Add documentation',
-            ' * ',
-            ' * @since ' + cv.Version.VERSION.replace('-dev', '')+ ' ($CURRENT_YEAR)',
-            ' */',
-            'qx.Class.define("cv.plugin.$0", {',
-            '  extend: cv.ui.structure.AbstractWidget,',
-            '',
-            '  /*',
-            '  ***********************************************',
-            '    CONSTRUCTOR',
-            '  ***********************************************',
-            '  */',
-            '  construct: function (props) {',
-            '    this.base(arguments, props);',
-            '  },',
-            '',
-            '  /*',
-            '  ***********************************************',
-            '    STATICS',
-            '  ***********************************************',
-            '  */',
-            '  statics: {',
-            '    /**',
-            '     * Parses the widgets XML configuration and extracts the given information',
-            '     * to a simple key/value map.',
-            '     *',
-            '     * @param xml {Element} XML-Element',
-            '     * @param path {String} internal path of the widget',
-            '     * @param flavour {String} Flavour of the widget',
-            '     * @param pageType {String} Page type (2d, 3d, ...)',
-            '     */',
-            '    parse: function (xml, path, flavour, pageType) {',
-            '      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);',
-            '    }',
-            '  },',
-            '',
-            ' /*',
-            '  ***********************************************',
-            '    PROPERTIES',
-            '  ***********************************************',
-            ' */',
-            '  properties: {',
-            '    ',
-            '  },',
-            '',
-            '  /*',
-            '  ***********************************************',
-            '    MEMBERS',
-            '  ***********************************************',
-            '  */',
-            '  members: {',
-            '    ',
-            '  },',
-            '',
-            '  /*',
-            '  ***********************************************',
-            '    DESTRUCTOR',
-            '  ***********************************************',
-            '  */',
-            '  destruct: function () {',
-            '    ',
-            '  },',
-            '',
-            '  defer: function (statics) {',
-            '    // register the parser, Note: element-name must be changed to the xml-elements name this plugin should parse',
-            '    cv.parser.WidgetParser.addHandler("element-name", statics);',
-            '  }',
-            '});'].join('\n'),
-          insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
-        }, {
           filterText: "cvinterface",
           label: 'CometVisu-Interface',
           kind: window.monaco.languages.CompletionItemKind.Interface,
@@ -170,24 +94,37 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
           insertText: '  /*\n  ***********************************************\n    DESTRUCTOR\n  ***********************************************\n  */\n  destruct: function () {\n    this.base(arguments);\n    $0\n  }\n',
           insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
         }];
+
+        // load plugin template from backend
+        return new Promise(function (resolve, reject) {
+          cv.io.rest.Client.getFsClient().readSync({path: '.templates/Plugin.js'}, function (err, res) {
+            if (err) {
+              reject(err);
+            } else {
+              this.TEMPLATES.push({
+                filterText: "cvplugin",
+                label: 'CometVisu-Plugin',
+                kind: window.monaco.languages.CompletionItemKind.Class,
+                detail: "A CometVisu class for a plugin.",
+                insertText: res.replace('###SINCE###', cv.Version.VERSION.replace('-dev', '')+ ' ($CURRENT_YEAR)'),
+                insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
+              });
+              resolve(this.TEMPLATES);
+            }
+          }, this);
+        }.bind(this));
       }
-      return this.TEMPLATES;
+      return Promise.resolve(this.TEMPLATES);
     },
 
     getProvider: function () {
       return {
         triggerCharacters: ['cv'],
-        provideCompletionItems: function (model, position) {
+        provideCompletionItems: function () {
           // get editor content before the pointer
-          var textUntilPosition = model.getValueInRange({
-            startLineNumber: 1,
-            startColumn: 1,
-            endLineNumber: position.lineNumber,
-            endColumn: position.column
+          return this.getTemplates().then(function (sugg) {
+            return {suggestions: sugg};
           });
-          console.log(textUntilPosition, position);
-
-          return {suggestions: this.getTemplates()};
         }.bind(this)
       };
     }

@@ -41,13 +41,19 @@ qx.Class.define('cv.ui.manager.MenuBar', {
 
       this.__defaultButtonConfiguration = {
         'new-file': {
-          menu: 'file-menu',
+          menu: 'new-menu',
           args: [this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file')],
           enabled: true
         },
         'new-folder': {
-          menu: 'file-menu',
+          menu: 'new-menu',
           args: [this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder')],
+          enabled: true,
+          separator: 'after'
+        },
+        'new-config-file': {
+          menu: 'new-menu',
+          args: [this.tr('New config file')],
           enabled: true
         },
         'upload': {
@@ -252,13 +258,22 @@ qx.Class.define('cv.ui.manager.MenuBar', {
            this.add(control);
            break;
 
+         case "new":
+           control = new qx.ui.menu.Button(this.tr('New'), null, null, this.getChildControl('new-menu'));
+           break;
+
          case "preferences":
            control = new qx.ui.menubar.Button(this.tr('Preferences'), null, this.getChildControl('preferences-menu'));
            this.add(control);
            break;
 
+         case 'new-menu':
+           control = new qx.ui.menu.Menu();
+           break;
+
          case 'file-menu':
            control = new qx.ui.menu.Menu();
+           control.add(this.getChildControl('new'));
            break;
 
          case 'edit-menu':

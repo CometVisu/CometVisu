@@ -96,6 +96,24 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     },
 
     /**
+     * Temporary file are not save in the backend yet
+     */
+    temporary: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeTemporary'
+    },
+
+    /**
+     * Temporary content to show, e.g. for new files, when there is no 'real' file with content yet to request from the backend
+     * this content should be shown
+     */
+    content: {
+      check: 'String',
+      nullable: true
+    },
+
+    /**
      * The opening state: permanent false behaves like a quick preview, where
      * the current file content is replaces by the next selected file on single click.
      * In permanent mode a new tab will be created, which content will not be replaced.
@@ -109,7 +127,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     modified: {
       check: 'Boolean',
       init: false,
-      event: 'changeModfied',
+      event: 'changeModified',
       apply: '_applyModified'
     },
 
@@ -229,7 +247,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
         newPath += '/';
       }
       newPath += newName;
-      if (this.getUserData('new') === true) {
+      if (this.isTemporary()) {
         // create new item
         client.createSync({path: newPath, type: this.getType()}, function (err) {
           if (err) {
@@ -239,7 +257,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
               qx.locale.Manager.tr('File has been created') :
               qx.locale.Manager.tr('Folder has been created')
             );
-            this.setUserData('new', null);
+            this.resetTenporary();
             this.resetModified();
             this.setName(newName);
             this.reload();
@@ -311,7 +329,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     },
 
     'delete': function(callback, context) {
-      if (this.getUserData('new') === true) {
+      if (this.isTemporary()) {
         // new file, no need to call the backend
         if (callback) {
           callback.apply(context);
@@ -471,7 +489,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
       // If not done yet, resolve the child elements of this container
       else if (this.isLoaded()) {
-        callback.apply(context);
+        if (callback) {
+          callback.apply(context);
+        }
       }
       else {
         this.setLoading(true);

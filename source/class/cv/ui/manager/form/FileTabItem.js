@@ -48,7 +48,8 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
     label: {
       check: 'String',
       nullable: true,
-      event: 'changeLabel'
+      event: 'changeLabel',
+      apply: '_applyLabel'
     },
 
     icon: {
@@ -119,10 +120,8 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
     },
 
     _applyLabel: function () {
-      var label = this.getChildControl("label", true);
-      if (label) {
-        label.setValue(this.getLabel() + (this.isModified() ? ' *' : ''));
-      }
+      var label = this.getChildControl("label");
+      label.setValue(this.getLabel() + (this.isModified() ? ' *' : ''));
     },
 
     _onClose: function () {
@@ -145,7 +144,6 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
          case 'label':
            control = new qx.ui.basic.Label();
            control.setAppearance('open-file-item/label');
-           this.bind('label', control, 'value');
            this._addAt(control, 1);
            break;
 

@@ -10,6 +10,11 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
   ***********************************************
   */
   properties: {
+    appearance: {
+      refine: true,
+      init: 'fs-tree-item'
+    },
+
     editing: {
       check: 'Boolean',
       init: false,
@@ -20,6 +25,12 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
       check: 'String',
       init: '',
       event: 'changeName'
+    },
+
+    temporary: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyTemporary'
     }
   },
 
@@ -47,6 +58,13 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
         }
       }
     },
+    _applyTemporary: function (value) {
+      if (value) {
+        this.addState('temporary');
+      } else {
+        this.removeState('temporary');
+      }
+    },
 
     // overridden
     _applyModel : function(value, old) {
@@ -60,6 +78,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
         } else {
           value.bind('name', this, 'label');
         }
+        value.bind('temporary', this, 'temporary');
         if (value.getType() === 'dir') {
           this.setDroppable(true);
           this.addListener('drop', this._onDrop, this);

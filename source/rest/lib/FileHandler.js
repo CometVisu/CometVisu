@@ -129,7 +129,8 @@ class FileHandler extends AbstractHandler {
       const backup = config.backupOnChange.some(check => {
         return check.test(file)
       });
-      if (backup) {
+      const fileExists = fs.existsSync(file);
+      if (backup && fileExists) {
         // store permanent backup of existing file before change
         const parts = path.basename(file).split('.')
         const suffix = parts.pop();
@@ -140,8 +141,10 @@ class FileHandler extends AbstractHandler {
         const target = path.join(config.backupFolder, backupFilename);
         fs.copyFileSync(file, target);
       }
-      // 1. create backup of existing file (this is just a temporary backup
-      fs.copyFileSync(file, file + backupSuffix);
+      if (fileExists) {
+        // 1. create backup of existing file (this is just a temporary backup
+        fs.copyFileSync(file, file + backupSuffix);
+      }
       // 2. write new content
       fs.writeFileSync(file, content)
       // 3. check hash of written file
@@ -149,17 +152,21 @@ class FileHandler extends AbstractHandler {
       const newHash = CRC32.str(writtenContent)
       if (newHash !== contentHash) {
         // something went wrong -> restore old file content
-        fs.copyFileSync(file + backupSuffix, file);
-        if (backupFilename) {
-          // no changes no need for backup file
-          fs.unlinkSync(backupFilename);
+        if (fileExists) {
+          fs.copyFileSync(file + backupSuffix, file);
+          if (backupFilename) {
+            // no changes no need for backup file
+            fs.unlinkSync(backupFilename);
+          }
         }
         this.respondMessage(context,405, 'hash mismatch on written content')
       } else {
         // ok delete backup file
         this.ok(context)
       }
-      fs.unlinkSync(file + backupSuffix);
+      if (fileExists) {
+        fs.unlinkSync(file + backupSuffix);
+      }
     } else {
       fs.writeFileSync(file, content)
       this.ok(context)
