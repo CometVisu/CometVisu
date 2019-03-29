@@ -3,8 +3,11 @@
  */
 qx.Class.define('cv.ui.manager.model.FileItem', {
   extend: qx.core.Object,
-  include: qx.data.marshal.MEventBubbling,
-
+  include: [
+    qx.data.marshal.MEventBubbling,
+    cv.ui.manager.control.MFileEventHandler
+  ],
+  implement: [cv.ui.manager.control.IFileEventHandler],
   /*
   ***********************************************
     CONSTRUCTOR
@@ -184,6 +187,41 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     __fullPath: null,
     __onLoadCallback: null,
 
+    isRelated: function (path) {
+      return this.getFullPath() === path;
+    },
+
+    _handleFileEvent: function (ev) {
+      var data = ev.getData();
+      switch (data.action) {
+        case 'moved':
+          this.reload();
+          break;
+
+        case 'added':
+          if (this.getType() === 'dir' && data.path.startsWith(this.getFullPath())) {
+            this.reload();
+          }
+          break;
+
+        case 'deleted':
+          if (data.path === this.getFullPath()) {
+            // this item has been deleted
+            this.dispose();
+          } else if (this.getType() === 'dir' && data.path.startsWith(this.getFullPath())) {
+            // delete child
+            var children = this.getChildren();
+            children.some(function (child) {
+              if (child.getFullPath() === data.path) {
+                children.remove(child);
+                return true;
+              }
+            }, this);
+          }
+          break;
+      }
+    },
+
     rename: function (newName) {
       var client = cv.io.rest.Client.getFsClient();
       var newPath = this.__path || '';
@@ -216,7 +254,6 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
               qx.locale.Manager.tr('File has been renamed') :
               qx.locale.Manager.tr('Folder has been renamed')
             );
-            this.setUserData('new', null);
             this.setName(newName);
             this.resetModified();
             this.reload();
@@ -240,7 +277,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
             qx.locale.Manager.tr('File has been moved') :
             qx.locale.Manager.tr('Folder has been moved')
           );
-          qx.event.message.Bus.dispatchByName('cv.manager.tree.reload');
+          qx.event.message.Bus.dispatchByName('cv.manager.file', {
+            action: 'moved',
+            path: this.getFullPath()
+          });
         }
       }, this);
     },
@@ -261,7 +301,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
               qx.locale.Manager.tr('File has been restored') :
               qx.locale.Manager.tr('Folder has been restored')
             );
-            qx.event.message.Bus.dispatchByName('cv.manager.tree.reload');
+            qx.event.message.Bus.dispatchByName('cv.manager.file', {
+              action: 'restored',
+              path: this.getFullPath()
+            });
           }
         }, this);
       }
@@ -295,12 +338,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
             if (callback) {
               callback.apply(context);
             }
-            var parent = this.getParent();
-            if (parent) {
-              parent.getChildren().remove(this);
-              qx.event.message.Bus.dispatchByName('cv.manager.tree.reload');
-            }
-            this.dispose();
+            qx.event.message.Bus.dispatchByName('cv.manager.file', {
+              action: 'deleted',
+              path: this.getFullPath()
+            });
           }
         }, this);
       }

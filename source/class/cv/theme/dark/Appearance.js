@@ -225,6 +225,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     },
 
     'image-viewer': {},
+    'image-viewer/scroll': 'scrollarea',
     'image-viewer/image': {
       include: 'atom',
       alias: 'atom',

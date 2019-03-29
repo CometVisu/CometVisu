@@ -8,7 +8,10 @@
 qx.Class.define('cv.ui.manager.Main', {
   extend: qx.core.Object,
   type: "singleton",
-  implement: cv.ui.manager.IActionHandler,
+  include: [
+    cv.ui.manager.control.MFileEventHandler
+  ],
+  implement: [cv.ui.manager.IActionHandler, cv.ui.manager.control.IFileEventHandler],
 
   /*
   ***********************************************
@@ -128,6 +131,21 @@ qx.Class.define('cv.ui.manager.Main', {
 
         default:
           this.warn(actionName + ' handling is not implemented yet!');
+          break;
+      }
+    },
+
+    _handleFileEvent: function (ev) {
+      var data = ev.getData();
+      switch (data.action) {
+        case 'deleted':
+          // check if file is currently opened and close it
+          var openFiles = this.getOpenFiles().copy();
+          openFiles.some(function (openFile) {
+            if (openFile.isRelated(data.path)) {
+              this.closeFile(openFile);
+            }
+          }, this);
           break;
       }
     },

@@ -3,7 +3,11 @@
  */
 qx.Class.define('cv.ui.manager.tree.FileSystem', {
   extend: qx.ui.core.Widget,
-  include: [cv.ui.manager.upload.MDragUpload],
+  include: [
+    cv.ui.manager.upload.MDragUpload,
+    cv.ui.manager.control.MFileEventHandler
+  ],
+  implement: [cv.ui.manager.control.IFileEventHandler],
 
   /*
   ***********************************************
@@ -15,7 +19,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
     this._setLayout(new qx.ui.layout.Grow());
     this.setRootFolder(rootFolder);
-    qx.event.message.Bus.subscribe('cv.manager.tree.reload', this.reload, this);
+
     qx.event.message.Bus.subscribe('cv.manager.tree.enable', this._onEnableTree, this);
 
     this._dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('medium'));
@@ -89,6 +93,18 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     _dateFormat: null,
     _timeFormat: null,
     __ignoreSelectionChange: false,
+
+    _handleFileEvent: function (ev) {
+      var data = ev.getData();
+      switch (data.action) {
+        case 'moved':
+        case 'added':
+        case 'deleted':
+        case 'restored':
+          this.reload();
+          break;
+      }
+    },
 
     reload: function () {
       var root = this.getChildControl('tree').getModel();
@@ -382,7 +398,6 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
   ***********************************************
   */
   destruct: function () {
-    qx.event.message.Bus.unsubscribe('cv.manager.tree.reload', this.reload, this);
     qx.event.message.Bus.unsubscribe('cv.manager.tree.enable', this._onEnableTree, this);
     this._commandGroup = null;
 

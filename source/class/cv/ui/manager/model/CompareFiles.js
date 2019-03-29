@@ -65,6 +65,10 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
   ***********************************************
   */
   members: {
+    isRelated: function (path) {
+      return this.getOriginalFile().getFullPath() === path || this.getModifiedFile().getFullPath() === path;
+    },
+
     isConfigFile: function () {
       return this.getModifiedFile().isConfigFile();
     },
