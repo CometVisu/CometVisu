@@ -28,6 +28,17 @@ importScripts('crc32.js');
 
 let configSchema;
 
+function getFileContent (path) {
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', path, false); // Note: synchronous
+    xhr.send();
+    return xhr.response;
+  } catch(e) {
+    console.error("XHR Error " + e.toString());
+    return null;
+  }
+}
 
 class SourceFile {
   constructor(path) {
@@ -39,14 +50,7 @@ class SourceFile {
 
     if (this.isConfigFile && !configSchema) {
       // load scheme file
-      try {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '../visu_config.xsd', false); // Note: synchronous
-        xhr.send();
-        configSchema = xhr.response;
-      } catch(e) {
-        console.error("XHR Error " + e.toString());
-      }
+      configSchema = getFileContent('../visu_config.xsd');
     }
   }
 
@@ -149,6 +153,20 @@ function contentChange(data) { // jshint ignore:line
     source.contentChange(data);
   } else {
     console.error('no open file found for path', data.path);
+  }
+}
+
+function validateConfig (data) {
+  var content = getFileContent('../../' + data.path);
+  if (content) {
+    if (!configSchema) {
+      configSchema = getFileContent('../visu_config.xsd');
+    }
+    var lint = xmllint.validateXML({
+      xml: content,
+      schema: configSchema
+    });
+    postMessage(["validationResult", lint.errors || true, data.path]);
   }
 }
 

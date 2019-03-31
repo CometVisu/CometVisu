@@ -177,6 +177,9 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
           button.addListener('execute', this._onOpenWith, this);
           openWithMenu.add(button);
         }, this);
+
+        // validate button
+        this.getChildControl('validate-config-button').setVisibility(value.isConfigFile() ? 'visible' : 'excluded');
       } else {
         tree.resetContextMenu();
         this.getChildControl('delete-button').setLabel(this.tr('Delete'));
@@ -196,7 +199,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
 
     _onOpenWith: function (ev) {
       var handlerId = ev.getTarget().getUserData('handlerId');
-      qx.event.message.Bus.dispatchByName('cv.manager.openWith', handlerId);
+      qx.event.message.Bus.dispatchByName('cv.manager.openWith', {handler: handlerId});
     },
 
     _onDblTapTreeSelection: function () {
@@ -282,6 +285,33 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
       }
     },
 
+    _onValidate: function () {
+      var node = this.getSelectedNode();
+      if (node) {
+        var d = dialog.Dialog.alert(this.tr('Validating %1', node.getFullPath()));
+        cv.ui.manager.editor.Worker.getInstance().validateConfig(node).then(function (res) {
+          d.close();
+          if (res === true) {
+            node.setValid(true);
+            cv.ui.manager.snackbar.Controller.info(this.tr('%1 has no errors!', node.getFullPath()));
+          } else {
+            node.setValid(false);
+            qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
+              file: node,
+              handler: 'cv.ui.manager.editor.Source'
+            });
+            cv.ui.manager.snackbar.Controller.error(this.trn(
+              '%1 error found in %2!',
+              '%1 errors found in %2!',
+              res.length,
+              res.length,
+              node.getFullPath())
+            );
+          }
+        }.bind(this));
+      }
+    },
+
     /**
      * Handle message on 'cv.manager.tree.enable' topic.
      * @param ev {Event}
@@ -343,6 +373,11 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control.add(this.getChildControl('restore-button'));
            control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('download-button'));
+           var sep = new qx.ui.menu.Separator();
+           var val = this.getChildControl('validate-config-button');
+           val.bind('visibility', sep, 'visibility');
+           control.add(sep);
+           control.add(val);
            break;
 
          case 'rename-button':
@@ -373,6 +408,12 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control = new qx.ui.menu.Button(this.tr('Restore'), cv.theme.dark.Images.getIcon('trash', 18));
            control.exclude();
            control.addListener('execute', this._onRestore, this);
+           break;
+
+         case 'validate-config-button':
+           control = new qx.ui.menu.Button(this.tr('Validate'), cv.theme.dark.Images.getIcon('validate', 18));
+           control.exclude();
+           control.addListener('execute', this._onValidate, this);
            break;
 
          case 'compare-menu':

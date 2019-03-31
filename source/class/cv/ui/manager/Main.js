@@ -159,17 +159,18 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     _onManagerEvent: function (ev) {
+      var data = ev.getData();
       switch (ev.getName()) {
         case 'cv.manager.compareWith':
-          this.openFile(ev.getData(), false);
+          this.openFile(data, false);
           break;
 
         case 'cv.manager.openWith':
-          this.openFile(this._tree.getSelectedNode(), false, ev.getData());
+          this.openFile(data.file || this.getCurrentSelection(), false, data.handler);
           break;
 
         case 'cv.manager.open':
-          this.openFile(this._tree.getSelectedNode(), false);
+          this.openFile(data || this.getCurrentSelection(), false);
           break;
       }
     },
@@ -183,24 +184,28 @@ qx.Class.define('cv.ui.manager.Main', {
       if (cv.ui.manager.model.Preferences.getInstance().isQuickPreview() || data.mode === 'dbltap') {
         this.__openSelectedFile(data.node, data.mode);
       }
+      var node = data.node;
+      if (node) {
+        if (data.node.getType() === 'file') {
+          this.setCurrentFolder(data.node.getParent());
+        } else {
+          this.setCurrentFolder(node);
+        }
+        this.setCurrentSelection(node);
+      } else {
+        this.resetCurrentFolder();
+        this.resetCurrentSelection();
+      }
     },
 
     __openSelectedFile: function (node, mode) {
       if (node) {
         if (node.getType() === 'file') {
           this.openFile(node, mode === 'tap');
-          this.setCurrentFolder(node.getParent());
-        } else {
-          this.setCurrentFolder(node);
-          if (mode === 'dbltap') {
-            // edit folder name on dbltap
-            node.setEditing(true);
-          }
+        } else if (mode === 'dbltap') {
+          // edit folder name on dbltap
+          node.setEditing(true);
         }
-        this.setCurrentSelection(node);
-      } else {
-        this.resetCurrentFolder();
-        this.resetCurrentSelection();
       }
     },
 
@@ -384,7 +389,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     _onDelete: function () {
-      var item = this._tree.getSelectedNode();
+      var item = this.getCurrentSelection();
       if (item) {
         var message;
         if (item.isTrash()) {
@@ -416,6 +421,7 @@ qx.Class.define('cv.ui.manager.Main', {
 
     _onCreate: function (type, content) {
       var currentFolder = this.getCurrentFolder();
+      console.log(currentFolder);
       if (!currentFolder) {
         return;
       }

@@ -16,6 +16,7 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
     // create WebWorker
     this._worker = new Worker(qx.util.ResourceManager.getInstance().toUri('manager/worker.js'));
     this._worker.onmessage = this._onMessage.bind(this);
+    this._validationCallbacks = {};
   },
 
   /*
@@ -38,6 +39,7 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
   members: {
     _worker: null,
     _files: null,
+    _validationCallbacks: null,
 
     open: function (file, code, schema) {
       this._worker.postMessage(["openFile", {
@@ -62,12 +64,31 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
       }]);
     },
 
+    validateConfig: function (file) {
+      if (file.isConfigFile()) {
+        return new Promise(function (resolve, reject) {
+          // check if there is already one validation request ongoing
+          var url = file.getServerPath();
+          if (!this._validationCallbacks.hasOwnProperty(url)) {
+            this._validationCallbacks[url] = [resolve];
+            this._worker.postMessage(["validateConfig", {
+              path: url
+            }]);
+          } else {
+            this._validationCallbacks[url].push(resolve);
+          }
+        }.bind(this));
+      } else {
+        qx.log.Logger.error(this, file.getFullPath() + ' is no configuration file');
+      }
+    },
+
     _onMessage: function (e) {
       var topic = e.data.shift();
       var data = e.data.shift();
       var path = e.data.shift();
       var file = this._files[path];
-      if (!file) {
+      if (!file && topic !== 'validationResult') {
         qx.log.Logger.error(this, 'no file found for path ' + path + ' ignoring worker message for topic ' + topic);
         return;
       }
@@ -91,6 +112,16 @@ qx.Class.define('cv.ui.manager.editor.Worker', {
         case "decorations":
           if (editor) {
             editor.showDecorations(path, data);
+          }
+          break;
+
+        case 'validationResult':
+          if (this._validationCallbacks.hasOwnProperty(path)) {
+            var callbacks = this._validationCallbacks[path];
+            delete this._validationCallbacks[path];
+            callbacks.forEach(function(cb) {
+              cb(data);
+            });
           }
           break;
       }

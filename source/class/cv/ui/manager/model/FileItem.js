@@ -105,6 +105,15 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     },
 
     /**
+     * Validation result for this files content (e.g. config file validation)
+     */
+    valid: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeValid'
+    },
+
+    /**
      * Temporary content to show, e.g. for new files, when there is no 'real' file with content yet to request from the backend
      * this content should be shown
      */
@@ -508,6 +517,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
     },
 
+    /**
+     * Returns the complete path needed for the REST API  to identify this file
+     * @returns {null}
+     */
     getFullPath: function () {
       if (!this.__fullPath) {
         var parentFolder = this.getParentFolder();
@@ -528,6 +541,14 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
      */
     getUri: function () {
       return 'cv://' + this.getFullPath();
+    },
+
+    /**
+     * Returns the path to this file for requests over HTTP (not the REST API)
+     * @returns {string}
+     */
+    getServerPath: function () {
+      return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/' + this.getFullPath();
     },
 
     /**

@@ -61,7 +61,7 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
     _applyFile: function (file) {
       var control = this.getChildControl('image');
       if (file) {
-        control.setIcon(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/' + file.getFullPath());
+        control.setIcon(file.getServerPath());
         control.setLabel(file.getFullPath());
       } else {
         control.resetIcon();

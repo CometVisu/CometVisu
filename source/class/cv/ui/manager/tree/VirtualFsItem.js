@@ -31,6 +31,12 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
       check: 'Boolean',
       init: false,
       apply: '_applyTemporary'
+    },
+
+    status: {
+      check: ['valid', 'error'],
+      nullable: true,
+      apply: '_applyStatus'
     }
   },
 
@@ -77,6 +83,11 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
           this.setLabel(this.tr('Trash'));
         } else {
           value.bind('name', this, 'label');
+          value.bind('valid', this, 'status', {
+            converter: function (value) {
+              return value === true ? 'valid' : 'error';
+            }
+          });
         }
         value.bind('temporary', this, 'temporary');
         if (value.getType() === 'dir') {
@@ -85,6 +96,21 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
         } else {
           this.setDroppable(false);
           this.removeListener('drop', this._onDrop, this);
+        }
+      }
+    },
+
+    _applyStatus: function (value) {
+      var control = this.getChildControl('icon');
+      if (value) {
+        switch (value) {
+          case 'valid':
+            control.removeState('error');
+            break;
+
+          case 'error':
+            control.addState('error');
+            break;
         }
       }
     },
@@ -128,7 +154,6 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
               }
            }, this);
            control.addListener('blur', function () {
-             console.log('blur', this.toHashCode());
              this.setEditing(false);
            }, this);
            this._add(control);

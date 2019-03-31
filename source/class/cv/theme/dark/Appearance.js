@@ -171,7 +171,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style: function () {
         return {
           height: null,
-          width: 300,
+          width: 400,
           minWidth: 300
         };
       }
@@ -253,6 +253,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style: function (states) {
         return {
           font: states.temporary ? 'italic' : 'default'
+        };
+      }
+    },
+
+    'fs-tree-item/icon': {
+      include: 'virtual-tree-folder/icon',
+      alias: 'virtual-tree-folder/icon',
+
+      style: function(states) {
+        return {
+          textColor: states.error ? 'invalid-color' : null
         };
       }
     }
