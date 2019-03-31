@@ -144,6 +144,7 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
          case 'label':
            control = new qx.ui.basic.Label();
            control.setAppearance('open-file-item/label');
+           control.setAnonymous(true);
            this._addAt(control, 1);
            break;
 

@@ -17,6 +17,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     // register viewers
     this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.viewer.Image);
+    this.registerFileHandler(cv.ui.manager.viewer.Config.SUPPORTED_FILES, cv.ui.manager.viewer.Config);
 
     // register the basic editors
     this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source);
@@ -57,17 +58,22 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
       if (qx.Class.isClass(selector)) {
         config.instanceOf = selector;
         config.selectorId = 'instanceOf:' + selector.classname;
+        // highest priority
+        config.priority = 0;
       } else if (qx.lang.Type.isRegExp(selector)) {
         config.regex = selector;
         config.selectorId = 'regex:' + selector.toString();
+        config.priority = 4;
       } else if (qx.lang.Type.isString(selector)) {
         // simple file matcher
         if (selector.includes('/')) {
           config.fullPath = selector;
           config.selectorId = 'fullPath:' + selector;
+          config.priority = 1;
         } else {
           config.fileName = selector;
           config.selectorId = 'fileName:' + selector;
+          config.priority = 2;
         }
       }
       this.__registry[clazz.classname] = config;
@@ -75,16 +81,18 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     getFileHandler: function (file) {
       var editors = [];
-      // check if there is a default first
-      var defaultHandler;
-      Object.keys(this.__defaults).some(function (key) {
-        if (this.__defaults[key].regex.test(file.getFullPath())) {
-          defaultHandler = this.getFileHandlerById(this.__defaults[key].clazz.classname);
-          return true;
+      if (!(file instanceof cv.ui.manager.model.CompareFiles)) {
+        // check if there is a default first
+        var defaultHandler;
+        Object.keys(this.__defaults).some(function (key) {
+          if (this.__defaults[key].regex.test(file.getFullPath())) {
+            defaultHandler = this.getFileHandlerById(this.__defaults[key].clazz.classname);
+            return true;
+          }
+        }, this);
+        if (defaultHandler) {
+          return defaultHandler;
         }
-      }, this);
-      if (defaultHandler) {
-        return defaultHandler;
       }
 
       Object.keys(this.__registry).forEach(function (classname) {
@@ -99,13 +107,10 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
       } else if (editors.length === 1) {
         return editors[0];
       } else {
-        // find default editor
-        for (var i = 0, l = editors.length; i < l; i++) {
-          if (editors[i].isDefault === true) {
-            return editors[i];
-          }
-        }
-
+        // sort by selector priority (instance, fullpath, filename, regex)
+        editors.sort(function (a, b) {
+          return a.priority - b.priority;
+        });
         // no default editor, just take the first one
         return editors[0];
       }

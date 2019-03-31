@@ -33,6 +33,14 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
   statics: {
     isConfigFile: function (path) {
       return /visu_config.*\.xml/.test(path);
+    },
+
+    getConfigName: function (filename) {
+      var match = /visu_config_?([^.]+)\.xml/.exec(filename);
+      if (match) {
+        return match[1];
+      }
+      return null;
     }
   },
 
@@ -122,28 +130,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       nullable: true
     },
 
-    /**
-     * The opening state: permanent false behaves like a quick preview, where
-     * the current file content is replaces by the next selected file on single click.
-     * In permanent mode a new tab will be created, which content will not be replaced.
-     */
-    permanent: {
-      check: 'Boolean',
-      init: false,
-      event: 'changePermanent'
-    },
-
     modified: {
       check: 'Boolean',
       init: false,
-      event: 'changeModified',
-      apply: '_applyModified'
-    },
-
-    valid: {
-      check: 'Boolean',
-      init: true,
-      event: 'changeValid'
+      event: 'changeModified'
     },
 
     // Backend properties
@@ -414,13 +404,6 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
         } else {
           this.setIcon(cv.theme.dark.Images.getIcon('folder', 18));
         }
-      }
-    },
-
-    _applyModified: function (value) {
-      if (value && !this.isPermanent()) {
-        // change to permanent once we have a modification
-        this.setPermanent(true);
       }
     },
 

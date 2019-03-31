@@ -37,7 +37,7 @@ qx.Class.define('cv.theme.dark.Images', {
       'open-with': '@MaterialIcons/open_with',
       'validate': '@MaterialIcons/spellcheck',
       'valid': '@MaterialIcons/check_circle',
-      'error': '@MaterialIcons/error',
+      'error': '@MaterialIcons/error'
     },
 
     getIcon: function (name, size) {

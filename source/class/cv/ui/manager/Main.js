@@ -151,7 +151,7 @@ qx.Class.define('cv.ui.manager.Main', {
         // check if file is currently opened and close it
         var openFiles = this.getOpenFiles().copy();
         openFiles.some(function (openFile) {
-          if (openFile.isRelated(data.path)) {
+          if (openFile.getFile().isRelated(data.path)) {
             this.closeFile(openFile);
           }
         }, this);
@@ -161,7 +161,7 @@ qx.Class.define('cv.ui.manager.Main', {
     _onManagerEvent: function (ev) {
       var data = ev.getData();
       switch (ev.getName()) {
-        case 'cv.manager.compareWith':
+        case 'cv.manager.compareFiles':
           this.openFile(data, false);
           break;
 
@@ -239,21 +239,22 @@ qx.Class.define('cv.ui.manager.Main', {
     _onChangeFileSelection: function () {
       var sel = this._openFilesController.getSelection();
       if (sel.length > 0) {
-        var node = sel.getItem(0);
-        if (node.getType() === 'file') {
+        var openFile = sel.getItem(0);
+        var file = openFile.getFile();
+        if (file.getType() === 'file') {
           var editorConfig;
-          var handlerId = node.getUserData('handlerId');
+          var handlerId = openFile.getHandlerId();
           if (handlerId) {
             editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
           } else {
-            editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(node);
+            editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
           }
           if (!editorConfig.instance) {
             editorConfig.instance = new editorConfig.Clazz();
             this._stack.add(editorConfig.instance);
           }
           this._stack.setSelection([editorConfig.instance]);
-          editorConfig.instance.setFile(node);
+          editorConfig.instance.setFile(file);
           this.__actionDispatcher.setFocusedWidget(editorConfig.instance);
         }
       }
@@ -261,39 +262,52 @@ qx.Class.define('cv.ui.manager.Main', {
 
     openFile: function (file, preview, handlerId) {
       var openFiles = this.getOpenFiles();
-      var isOpen = openFiles.includes(file);
-      file.setUserData('handlerId', handlerId);
+      var openFile;
       if (!handlerId) {
-        if (!cv.ui.manager.control.FileHandlerRegistry.getInstance().hasFileHandler(file)) {
+        var handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
+
+        if (!handlerConf) {
           // no handler
           cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Cannot open file: "%1"', file.getName()));
           return;
+        } else {
+          handlerId = handlerConf.Clazz.classname;
         }
+      }
+      var isOpen = openFiles.some(function (of) {
+        if (of.getFile() === file && handlerId === of.getHandlerId()) {
+          openFile = of;
+          return true;
+        }
+      });
+      if (!openFile) {
+        openFile = new cv.ui.manager.model.OpenFile(file, handlerId);
       }
       if (preview === true) {
-        if (!file.isPermanent()) {
+        if (!openFile.isPermanent()) {
           if (this.__previewFileIndex !== null && !openFiles.getItem(this.__previewFileIndex).isPermanent()) {
-            openFiles.setItem(this.__previewFileIndex, file);
+            openFiles.setItem(this.__previewFileIndex, openFile);
           } else {
             this.__previewFileIndex = openFiles.length;
-            openFiles.push(file);
+            openFiles.push(openFile);
           }
           // do not 'downgrade' the permanent state
-          file.setPermanent(false);
+          openFile.setPermanent(false);
         }
       } else {
-        if (!isOpen && (this.__previewFileIndex === null || openFiles.indexOf(file) !== this.__previewFileIndex)) {
-          openFiles.push(file);
+        if (!isOpen && (this.__previewFileIndex === null || openFiles.indexOf(openFile) !== this.__previewFileIndex)) {
+          openFiles.push(openFile);
         }
-        file.setPermanent(true);
+        openFile.setPermanent(true);
         this.__previewFileIndex = null;
       }
-      this._openFilesController.getTarget().setModelSelection([file]);
+      this._openFilesController.getTarget().setModelSelection([openFile]);
     },
 
-    closeFile: function (file) {
-      file.resetPermanent();
-      this.getOpenFiles().remove(file);
+    closeFile: function (openFile) {
+      var file = openFile.getFile();
+      openFile.resetPermanent();
+      this.getOpenFiles().remove(openFile);
       if (this.getOpenFiles().length === 0) {
         this._stack.resetSelection();
         this.__actionDispatcher.resetFocusedWidget();
@@ -303,13 +317,13 @@ qx.Class.define('cv.ui.manager.Main', {
       if (file instanceof cv.ui.manager.model.CompareFiles) {
         var fileHandlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
         fileHandlerConf.instance.clear();
-        if (this.getOpenFiles().filter(function (file) {
-          return file instanceof cv.ui.manager.model.CompareFiles;
+        if (this.getOpenFiles().filter(function (openFile) {
+          return openFile.getFile() instanceof cv.ui.manager.model.CompareFiles;
         }).length === 0) {
           fileHandlerConf.instance.destroy();
           fileHandlerConf.instance = null;
         }
-      } else if (window.monaco) {
+      } else if (window.monaco && openFile.getHandlerId() === 'cv.ui.manager.editor.Source') {
         // close textmodel in monaco editor if exists
         var oldModel = window.monaco.editor.getModel(file.getUri());
         if (oldModel) {
@@ -413,10 +427,18 @@ qx.Class.define('cv.ui.manager.Main', {
 
     _onChangeStackSelection: function (ev) {
       var selection = ev.getData();
+      var openFiles = [];
       // sync tab selection with currently visible page
-      this._openFilesController.getSelection().replace(selection.map(function (page) {
-        return page.getFile();
-      }));
+      selection.forEach(function(page) {
+        var openFile = this.getOpenFiles().toArray().find(function (openFile) {
+          return openFile.getFile() === page.getFile() && openFile.getHandlerId() === page.classname;
+        });
+        if (openFile) {
+          openFiles.push(openFile);
+        }
+      }, this);
+
+      this._openFilesController.getSelection().replace(openFiles);
     },
 
     _onCreate: function (type, content) {
@@ -585,8 +607,12 @@ qx.Class.define('cv.ui.manager.Main', {
         button.setToolTipText(args[0]);
         return button;
       }
-      var newFile = createButton('new-file');
-      var newFolder = createButton('new-folder');
+      var newButton = new qx.ui.toolbar.MenuButton(null,
+        cv.theme.dark.Images.getIcon('new-file', 15),
+        this._menuBar.getChildControl('new-menu')
+      );
+      // var newFile = createButton('new-file');
+      // var newFolder = createButton('new-folder');
       var upload = createButton('upload');
       uploadManager.addWidget(upload);
       var deleteSelection = createButton('delete');
@@ -617,8 +643,7 @@ qx.Class.define('cv.ui.manager.Main', {
       createPart.set({
         marginLeft: 0
       });
-      createPart.add(newFile);
-      createPart.add(newFolder);
+      createPart.add(newButton);
       createPart.add(upload);
       createPart.add(download);
       leftBar.add(createPart);
@@ -643,7 +668,7 @@ qx.Class.define('cv.ui.manager.Main', {
         height: 30,
         padding: 0
       });
-      this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, "name");
+      this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, "file.name");
       this._openFilesController.setDelegate({
         createItem: function () {
           var item = new cv.ui.manager.form.FileTabItem();
@@ -653,8 +678,8 @@ qx.Class.define('cv.ui.manager.Main', {
 
         bindItem: function (controller, item, index) {
           controller.bindDefaultProperties(item, index);
-          controller.bindProperty('permanent', 'permanent', null, item, index);
-          controller.bindProperty('modified', 'modified', null, item, index);
+          controller.bindProperty('file.permanent', 'permanent', null, item, index);
+          controller.bindProperty('file.modified', 'modified', null, item, index);
           controller.bindProperty('icon', 'icon', null, item, index);
         }
       });
