@@ -172,7 +172,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
           return a.Clazz.constructor.TITLE.toString().localeCompare(b.Clazz.constructor.TITLE.toString());
         });
         availableHandlers.forEach(function (handlerConf) {
-          var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE);
+          var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE, handlerConf.Clazz.constructor.ICON);
           button.setUserData('handlerId', handlerConf.Clazz.classname);
           button.addListener('execute', this._onOpenWith, this);
           openWithMenu.add(button);

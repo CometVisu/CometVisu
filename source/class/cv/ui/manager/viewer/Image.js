@@ -44,7 +44,8 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
   */
   statics: {
     SUPPORTED_FILES: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
-    TITLE: qx.locale.Manager.tr('Show image')
+    TITLE: qx.locale.Manager.tr('Show image'),
+    ICON: cv.theme.dark.Images.getIcon('image', 18)
   },
 
   /*

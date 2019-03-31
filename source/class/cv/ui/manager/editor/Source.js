@@ -46,6 +46,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     TITLE: qx.locale.Manager.tr('Texteditor'),
     COUNTER: 0,
     SUPPORTED_FILES: ['xml', 'php', 'css', 'js', 'svg', 'json', 'md', 'yaml', 'conf', 'ts', 'rst', 'py'],
+    ICON: cv.theme.dark.Images.getIcon('text', 18),
 
     load: function (callback, context) {
       var version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
