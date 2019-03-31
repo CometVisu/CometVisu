@@ -723,6 +723,9 @@ qx.Class.define('cv.ui.manager.Main', {
     this.__actionDispatcher = null;
 
     qx.event.message.Bus.unsubscribe('cv.manager.*', this._onManagerEvent, this);
+
+    // destroy the singleton instance
+    delete cv.ui.manager.Main.$$instance;
   },
 
   defer: function(statics) {
