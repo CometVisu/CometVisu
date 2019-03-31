@@ -64,7 +64,7 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
       if (file) {
         if (file.isConfigFile()) {
           var configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
-          var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..') + '?config=' + configName || '';
+          var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..') + '?config=' + (configName || '');
           control.setSource(url);
           control.show();
         } else {
