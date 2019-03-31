@@ -182,6 +182,13 @@ html .page .widget.multitrigger.custom_one-line .actor_container {
 .page.type_text .clearfix.weather-forecast .clearfix .widget_container.jowm .weather-forecast {
     margin: 0 .5rem;
 }
+.page.type_text .widget_container.jowm {
+    padding: 0;
+    margin-bottom: 16px;
+}
+.page.type_text .widget_container.jowm .separationLine {
+    margin: 16px 0;
+}
 
 .page.type_text > .clearfix > .widget_container[data-type="navbar"] {
     display: none;

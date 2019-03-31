@@ -148,12 +148,23 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
 
     },
 
+    __findActor: function (element) {
+      while (!qx.bom.element.Class.has(element, 'actor')) {
+        element = element.parentNode;
+        if (qx.bom.element.Class.has(element, 'widget')) {
+          // thats too far
+          return null;
+        }
+      }
+      return element;
+    },
+
     _onLongTap: function(event) {
-      this.__action(false, qx.bom.element.Class.has(event.getCurrentTarget(), 'downlabel'));
+      this.__action(false, qx.bom.element.Class.has(this.__findActor(event.getCurrentTarget()), 'downlabel'));
     },
 
     _action: function(event) {
-      this.__action(true, qx.bom.element.Class.has(event.getCurrentTarget(), 'downlabel'));
+      this.__action(true, qx.bom.element.Class.has(this.__findActor(event.getCurrentTarget()), 'downlabel'));
     },
 
     __action: function (isShort, isDown) {

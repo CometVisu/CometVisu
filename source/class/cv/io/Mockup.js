@@ -46,6 +46,9 @@ qx.Class.define('cv.io.Mockup', {
     if (qx.core.Environment.get('cv.testMode') && cv.Config.initialDemoData && cv.Config.initialDemoData.xhr) {
       this.__xhr = cv.Config.initialDemoData.xhr;
       // configure server
+      qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
+        return url.startsWith('https://sentry.io');
+      }, this);
       var server = qx.dev.FakeServer.getInstance().getFakeServer();
       server.respondWith(function (request) {
         var url = cv.report.Record.normalizeUrl(request.url);
@@ -131,6 +134,7 @@ qx.Class.define('cv.io.Mockup', {
               i: new Date().getTime(),
               d: cv.Config.initialDemoData.states
             });
+
             if (cv.Config.initialDemoData.sequence) {
               this.__sequence = cv.Config.initialDemoData.sequence;
               this._startSequence();

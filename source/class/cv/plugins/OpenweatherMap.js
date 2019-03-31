@@ -26,10 +26,10 @@
  * @since 0.9.0
  * @asset(plugins/openweathermap/owm_core.js,
  *        plugins/openweathermap/owm_basic_style.css, 
- *        plugins/openweathermap/owm_weather_icon.css)
+ *        plugins/openweathermap/owm_weathericon.css)
  */
 qx.Class.define('cv.plugins.OpenweatherMap', {
-  extend: cv.ui.structure.AbstractBasicWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.Refresh,
 
   /*
@@ -45,10 +45,6 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       if (props[key]) {
         this.__options[key] = props[key];
       }
-    }, this);
-    qx.event.message.Bus.subscribe("setup.dom.finished", function () {
-      // init once
-      this._refreshAction();
     }, this);
   },
 
@@ -178,12 +174,13 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       this._timer = new qx.event.Timer(this.getRefresh());
       this._timer.addListener('interval', this._refreshAction, this);
       this._timer.start();
+      // call once immediately
+      this._refreshAction();
     },
 
     _refreshAction: function() {
       var elem = $(this.getDomElement());
       elem.openweathermap(this.__options);
-      return false;
     }
   },
 

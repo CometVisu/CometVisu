@@ -25,22 +25,25 @@
 describe("testing a infotrigger widget", function() {
 
   var simulateEvent = function (actor, type) {
+    var posMap = qx.bom.element.Location.getPosition(actor);
+    var x = posMap.left + 1;
+    var y = posMap.top + 1;
     var eventData = {
       "bubbles": true,
       "button": -1,
-      "clientX": 1241,
-      "clientY": 360,
+      "clientX": x,
+      "clientY": y,
       "currentTarget": actor,
-      "pageX": 1241,
-      "pageY": 360,
+      "pageX": x,
+      "pageY": y,
       "returnValue": true,
-      "screenX": 1241,
-      "screenY": 490,
+      "screenX": x,
+      "screenY": y,
       "detail": 0,
       "view": window,
       "type": type,
-      "x": 1241,
-      "y": 360,
+      "x": x,
+      "y": y,
       "pointerId": 1,
       "width": 1,
       "height": 1,
@@ -48,7 +51,8 @@ describe("testing a infotrigger widget", function() {
       "tiltX": 0,
       "tiltY": 0,
       "pointerType": "mouse",
-      "isPrimary": true
+      "isPrimary": true,
+      "target": actor
     };
     // down
     var nativeEvent = new window.PointerEvent(type, eventData);
@@ -178,6 +182,43 @@ describe("testing a infotrigger widget", function() {
     expect(actor).not.toHaveClass("switchUnpressed");
 
     setTimeout(function () {
+      expect(spy.calls.count()).toEqual(0);
+      // up
+      simulateEvent(actor, "pointerup");
+      expect(actor).not.toHaveClass("switchPressed");
+      expect(actor).toHaveClass("switchUnpressed");
+      qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
+
+      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
+      expect(spy.calls.count()).toEqual(1);
+      done();
+    }, 150);
+
+  });
+
+  it('should test the longpress send immediately', function(done) {
+    var res = this.createTestElement("infotrigger", {
+      shorttime: "100",
+      'change': 'absolute', 'upvalue': '1', 'downvalue': '-1', 'shortupvalue': '2', 'shortdownvalue': '-2',
+      "send-long-on-release": "false"
+    }, '<label>Test</label>', ['1/0/0', '1/0/1'], [
+      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'button'},
+      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'short'}
+    ]);
+
+    this.initWidget(res);
+    var spy = spyOn(cv.TemplateEngine.getInstance().visu, "write");
+    var actor = res.getUpActor();
+    expect(actor).not.toBe(null);
+
+    simulateEvent(actor, "pointerdown");
+    expect(actor).toHaveClass("switchPressed");
+    expect(actor).not.toHaveClass("switchUnpressed");
+
+    setTimeout(function () {
+      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
+      expect(spy.calls.count()).toEqual(1);
+
       // up
       simulateEvent(actor, "pointerup");
       expect(actor).not.toHaveClass("switchPressed");

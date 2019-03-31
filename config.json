@@ -25,6 +25,7 @@
     "source",
     "source-all",
     "source-hybrid",
+    "source-hybrid-error",
     "source-server",
     "source-error",
     "source-server-reload",
@@ -134,6 +135,9 @@
         },
         {
           "uri" : "resource/libs/favico.js"
+        },
+        {
+          "uri" : "resource/libs/inobounce.min.js"
         }
       ],
       "copy-files" :
@@ -151,6 +155,7 @@
           "resource/libs/strftime.js",
           "resource/libs/favico.js",
           "resource/sentry/bundle.min.js",
+          "resource/libs/inobounce.min.js",
           "editor",
           "upgrade",
           "check_config.php",
@@ -300,6 +305,15 @@
       ]
     },
 
+    "source-script": {
+      "compile-options" :
+      {
+        "paths" :
+        {
+          "loader-template": "${SOURCE_PATH}/loader/loader.tmpl.js"}
+      }
+    },
+
     "source-error": {
       "extend" : [ "source" ],
       "environment" :
@@ -312,7 +326,24 @@
 
     "source-hybrid" :
     {
-      "extend" : [ "parts-config" ]
+      "extend" : [ "parts-config" ],
+      "compile-options" :
+      {
+        "paths" :
+        {
+          "loader-template": "${SOURCE_PATH}/loader/loader.tmpl.js"}
+      }
+    },
+
+    "source-hybrid-error" :
+    {
+      "extend" : [ "source-hybrid" ],
+      "environment" :
+      {
+        "cv.build": "source",
+        "cv.sentry": true,
+        "qx.globalErrorHandling": true
+      }
     },
 
     "update-version": {
@@ -397,7 +428,8 @@
       {
         "paths" :
         {
-          "file" : "${BUILD_PATH}/script/${APPLICATION}-{engine.name}.js"
+          "file" : "${BUILD_PATH}/script/${APPLICATION}-{engine.name}.js",
+          "loader-template": "${SOURCE_PATH}/loader/loader.tmpl.js"
         }
       }
     },

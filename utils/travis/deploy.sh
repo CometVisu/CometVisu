@@ -109,7 +109,7 @@ mv build out/de/$VERSION_PATH/demo
 cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
 
 echo "generating test mode source version"
-./generate.py source-hybrid --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
+./generate.py source-hybrid-error --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
 grunt update-demo-config-source
 rm -rf out/de/$VERSION_PATH/demo-source
 mkdir -p out/de/$VERSION_PATH/demo-source/client/source/class/cv/
