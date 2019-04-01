@@ -266,6 +266,9 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           textColor: states.error ? 'invalid-color' : null
         };
       }
-    }
+    },
+    'cv-filesystem': {},
+    'cv-filesystem/open-with-button': 'menu-button',
+    'cv-filesystem/compare-with-button': 'menu-button'
   }
 });

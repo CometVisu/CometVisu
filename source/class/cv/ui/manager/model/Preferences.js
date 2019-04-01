@@ -33,6 +33,16 @@ qx.Class.define('cv.ui.manager.model.Preferences', {
       init: false,
       event: 'changeQuickPreview',
       apply: '_savePreferences'
+    },
+
+    /**
+     * In export mode the manager looks and behaves like a file explorer.
+     */
+    expertMode: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeExpertMode',
+      apply: '_savePreferences'
     }
   },
 

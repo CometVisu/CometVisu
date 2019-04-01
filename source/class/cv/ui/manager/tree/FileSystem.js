@@ -69,6 +69,11 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
   ***********************************************
   */
   properties: {
+    appearance: {
+      refine: true,
+      init: 'cv-filesystem'
+    },
+
     rootFolder: {
       check: 'cv.ui.manager.model.FileItem',
       apply: '_applyRootFolder'
@@ -142,7 +147,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
         var compareMenu = this.getChildControl('compare-menu');
         compareMenu.removeAll();
         var backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(value);
-        compareMenu.setEnabled(backups.length > 0);
+        this.getChildControl('compare-with-button').setEnabled(backups.length > 0);
         backups.sort(function (a, b) {
           return b.date.getTime() - a.date.getTime();
         });
@@ -168,7 +173,8 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
         var availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(value);
         var openWithMenu = this.getChildControl('open-with-menu');
         openWithMenu.removeAll();
-        openWithMenu.setEnabled(availableHandlers.length > 0);
+        // this menu only makes sense when there is more than one option to select from
+        this.getChildControl('open-with-button').setEnabled(availableHandlers.length > 1);
         availableHandlers.sort(function (a, b) {
           return a.Clazz.constructor.TITLE.toString().localeCompare(b.Clazz.constructor.TITLE.toString());
         });
@@ -190,9 +196,16 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
         } else {
           this.getChildControl('replace-button').exclude();
         }
+        // buttons that need write access
+        ['delete-button', 'replace-button', 'rename-button'].forEach(function (controlName) {
+          this.getChildControl(controlName).setEnabled(value.isWriteable());
+        }, this);
       } else {
         tree.resetContextMenu();
-        this.getChildControl('delete-button').setLabel(this.tr('Delete'));
+        this.getChildControl('delete-button').set({
+          label: this.tr('Delete'),
+          enabled: false
+        });
         this.getChildControl('replace-button').exclude();
       }
     },
@@ -356,8 +369,8 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control.add(new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder')));
            control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('open-button'));
-           control.add(new qx.ui.menu.Button(this.tr('Open with...'), cv.theme.dark.Images.getIcon('open-with', 18), null, this.getChildControl('open-with-menu')));
-           control.add(new qx.ui.menu.Button(this.tr('Compare with...'), cv.theme.dark.Images.getIcon('compare', 18), null, this.getChildControl('compare-menu')));
+           control.add(this.getChildControl('open-with-button'));
+           control.add(this.getChildControl('compare-with-button'));
            control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('rename-button'));
            control.add(this.getChildControl('delete-button'));
@@ -422,6 +435,14 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
 
          case 'compare-menu':
            control = new qx.ui.menu.Menu();
+           break;
+
+         case 'compare-with-button':
+           control = new qx.ui.menu.Button(this.tr('Compare with...'), cv.theme.dark.Images.getIcon('compare', 18), null, this.getChildControl('compare-menu'));
+           break;
+
+         case 'open-with-button':
+           control = new qx.ui.menu.Button(this.tr('Open with...'), cv.theme.dark.Images.getIcon('open-with', 18), null, this.getChildControl('open-with-menu'));
            break;
 
          case 'open-with-menu':
