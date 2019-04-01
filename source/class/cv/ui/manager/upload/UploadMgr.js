@@ -31,10 +31,14 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
       apply: '_updateUploadUrl'
     },
 
+    filename: {
+      check: 'String',
+      nullable: true
+    },
+
     force: {
       check: 'Boolean',
-      init: false,
-      apply: '_updateUploadUrl'
+      init: false
     }
   },
 
@@ -45,15 +49,19 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
       var folder = this.getFolder();
       var path = folder ? folder.getFullPath() : '.';
       var url = cv.io.rest.Client.BASE_URL + '/fs?type=file&path=' + path;
-      if (this.isForce()) {
-        url += '&force=true';
-      }
       this.setUploadUrl(url);
     },
 
     _init: function () {
       this.addListener("addFile", function(evt) {
         var file = evt.getData();
+        var filename = this.getFilename();
+        if (filename) {
+          file.setParam('filename', filename);
+        }
+        if (this.isForce()) {
+          file.setParam('force', true);
+        }
         var progressListenerId = file.addListener("changeProgress", function (evt) {
           var file = evt.getTarget();
           var uploadedSize = evt.getData();
@@ -71,7 +79,6 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
             this.debug(file.getFilename() + " (Uploading...)");
           } else if (state === "uploaded") {
             this.debug(file.getFilename() + " (Complete)");
-            this.resetForce();
             if (file.getStatus() !== 200) {
               // something went wrong
               switch (file.getStatus()) {
@@ -134,6 +141,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
         size: file.getSize(),
         uploadWidget: file.getUploadWidget()
       });
+      newFile.setParam('force', true);
       this.getUploadHandler()._addFile(newFile);
       if (this.getAutoUpload()) {
         this.getUploadHandler().beginUploads();

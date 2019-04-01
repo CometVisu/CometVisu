@@ -59,7 +59,7 @@ qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
           field.exclude();
           // save new name
           if (field.getValue() !== this.getName()) {
-            this.getModel().rename(field.getValue());
+            cv.ui.manager.control.FileController.getInstance().rename(this.getModel(), field.getValue());
           }
         }
       }

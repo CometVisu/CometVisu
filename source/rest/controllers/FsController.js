@@ -28,9 +28,11 @@ class FsController extends FileHandler {
     let fsPath = this.__getAbsolutePath(context.params.query.path, mount)
     let parentPath = fsPath;
     let content = context.requestBody;
+    let options = {}
     if (context.req.file) {
-      fsPath += '/' + context.req.file.originalname
+      fsPath += '/' + (context.requestBody.filename ? context.requestBody.filename : context.req.file.originalname)
       content = context.req.file.buffer
+      options = context.requestBody
     } else {
       const parts = fsPath.split('/')
       parts.pop();
@@ -44,7 +46,7 @@ class FsController extends FileHandler {
           if (context.params.query.type === 'dir') {
             this.createFolder(context, fsPath);
           } else {
-            this.createFile(context, fsPath, content);
+            this.createFile(context, fsPath, content, options);
           }
         }
       } catch (err) {

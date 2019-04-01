@@ -53,9 +53,10 @@ class FileHandler extends AbstractHandler {
    * @param context {Context}
    * @param file {String} path to file
    * @param content
+   * @param options {Map}
    */
-  createFile(context, file, content) {
-    if (fs.existsSync(file) && !context.params.query.force) {
+  createFile(context, file, content, options) {
+    if (fs.existsSync(file) && (!options || !options.force)) {
       this.respondMessage(context,406, 'File already exists')
     } else {
       try {

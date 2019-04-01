@@ -25,7 +25,7 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
   statics: {
     SUPPORTED_FILES: /visu_config.*\.xml/,
     TITLE: qx.locale.Manager.tr('Xml-editor'),
-    ICON: cv.theme.dark.Images.getIcon('xml', 18),
+    ICON: cv.theme.dark.Images.getIcon('xml', 18)
   },
 
   /*

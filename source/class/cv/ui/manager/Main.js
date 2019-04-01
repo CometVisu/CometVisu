@@ -419,7 +419,7 @@ qx.Class.define('cv.ui.manager.Main', {
         }
         dialog.Dialog.confirm(message, function (confirmed) {
           if (confirmed) {
-            item.delete();
+            cv.ui.manager.control.FileController.getInstance().delete(item);
           }
         }, this, qx.locale.Manager.tr('Confirm deletion'));
       }
@@ -611,8 +611,6 @@ qx.Class.define('cv.ui.manager.Main', {
         cv.theme.dark.Images.getIcon('new-file', 15),
         this._menuBar.getChildControl('new-menu')
       );
-      // var newFile = createButton('new-file');
-      // var newFolder = createButton('new-folder');
       var upload = createButton('upload');
       uploadManager.addWidget(upload);
       var deleteSelection = createButton('delete');
@@ -625,12 +623,31 @@ qx.Class.define('cv.ui.manager.Main', {
       download.setAppearance('cv-toolbar-button');
       download.setToolTipText(qx.locale.Manager.tr('Download'));
       download.addListener('execute', function () {
-        this.getCurrentSelection().download();
+        cv.ui.manager.control.FileController.getInstance().download(this.getCurrentSelection());
       }, this);
       // download button is only enabled when a file is selected
       this.bind('currentSelection', download, 'enabled', {
         converter: function (file) {
           return !!file && file.getType() === 'file';
+        }
+      });
+      this.bind('currentSelection', deleteSelection, 'enabled', {
+        converter: function (file) {
+          return !!file && file.isWriteable();
+        }
+      });
+
+      // config check
+      var checkConfig = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('validate', 15));
+      checkConfig.setAppearance('cv-toolbar-button');
+      checkConfig.setToolTipText(qx.locale.Manager.tr('Validate'));
+      checkConfig.addListener('execute', function () {
+        cv.ui.manager.control.FileController.getInstance().validate(this.getCurrentSelection());
+      }, this);
+      // download button is only enabled when a file is selected
+      this.bind('currentSelection', checkConfig, 'enabled', {
+        converter: function (file) {
+          return !!file && file.isConfigFile();
         }
       });
 
@@ -648,6 +665,7 @@ qx.Class.define('cv.ui.manager.Main', {
       createPart.add(download);
       leftBar.add(createPart);
 
+      leftBar.add(checkConfig);
       leftBar.add(deleteSelection);
 
       leftBar.add(new qx.ui.core.Spacer(), {flex: 1});

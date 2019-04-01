@@ -93,6 +93,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     _dateFormat: null,
     _timeFormat: null,
     __ignoreSelectionChange: false,
+    _replacementManager: null,
 
     _handleFileEvent: function (ev) {
       var data = ev.getData();
@@ -180,9 +181,19 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
 
         // validate button
         this.getChildControl('validate-config-button').setVisibility(value.isConfigFile() ? 'visible' : 'excluded');
+
+        // replacement button
+        if (value.getType() === 'file') {
+          this.getChildControl('replace-button').show();
+          this._replacementManager.setFilename(value.getName());
+          this._replacementManager.setFolder(value.getParent());
+        } else {
+          this.getChildControl('replace-button').exclude();
+        }
       } else {
         tree.resetContextMenu();
         this.getChildControl('delete-button').setLabel(this.tr('Delete'));
+        this.getChildControl('replace-button').exclude();
       }
     },
 
@@ -274,41 +285,21 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     _onDownload: function () {
       var node = this.getSelectedNode();
       if (node) {
-        node.download();
+        cv.ui.manager.control.FileController.getInstance().download(node);
       }
     },
 
     _onRestore: function () {
       var node = this.getSelectedNode();
       if (node) {
-        node.restore();
+        cv.ui.manager.control.FileController.getInstance().restore(node);
       }
     },
 
     _onValidate: function () {
       var node = this.getSelectedNode();
       if (node) {
-        var d = dialog.Dialog.alert(this.tr('Validating %1', node.getFullPath()));
-        cv.ui.manager.editor.Worker.getInstance().validateConfig(node).then(function (res) {
-          d.close();
-          if (res === true) {
-            node.setValid(true);
-            cv.ui.manager.snackbar.Controller.info(this.tr('%1 has no errors!', node.getFullPath()));
-          } else {
-            node.setValid(false);
-            qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
-              file: node,
-              handler: 'cv.ui.manager.editor.Source'
-            });
-            cv.ui.manager.snackbar.Controller.error(this.trn(
-              '%1 error found in %2!',
-              '%1 errors found in %2!',
-              res.length,
-              res.length,
-              node.getFullPath())
-            );
-          }
-        }.bind(this));
+        cv.ui.manager.control.FileController.getInstance().validate(node);
       }
     },
 
@@ -374,10 +365,15 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control.add(new qx.ui.menu.Separator());
            control.add(this.getChildControl('download-button'));
            var sep = new qx.ui.menu.Separator();
-           var val = this.getChildControl('validate-config-button');
-           val.bind('visibility', sep, 'visibility');
+           var button = this.getChildControl('replace-button');
            control.add(sep);
-           control.add(val);
+           control.add(button);
+           button.bind('visibility', sep, 'visibility');
+           sep = new qx.ui.menu.Separator();
+           button = this.getChildControl('validate-config-button');
+           button.bind('visibility', sep, 'visibility');
+           control.add(sep);
+           control.add(button);
            break;
 
          case 'rename-button':
@@ -416,6 +412,14 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control.addListener('execute', this._onValidate, this);
            break;
 
+         case 'replace-button':
+           control = new com.zenesis.qx.upload.UploadMenuButton(this.tr('Replace'), cv.theme.dark.Images.getIcon('upload', 18));
+           control.exclude();
+           this._replacementManager = new cv.ui.manager.upload.UploadMgr(control);
+           this._replacementManager.setForce(true);
+           this._replacementManager.addWidget(control);
+           break;
+
          case 'compare-menu':
            control = new qx.ui.menu.Menu();
            break;
@@ -442,6 +446,6 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     qx.event.message.Bus.unsubscribe('cv.manager.tree.enable', this._onEnableTree, this);
     this._commandGroup = null;
 
-    this._disposeObjects('_dateFormat', '_timeFormat');
+    this._disposeObjects('_dateFormat', '_timeFormat', '_replacementManager');
   }
 });

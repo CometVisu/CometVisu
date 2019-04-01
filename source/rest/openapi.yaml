@@ -101,12 +101,6 @@ paths:
           schema:
             type: string
             enum: ['dir', 'file']
-        - name: force
-          in: query
-          description: replace existing files
-          required: false
-          schema:
-            type: boolean
       summary: Create a new file or folder on the host
       description: ''
       operationId: create
@@ -121,6 +115,12 @@ paths:
                 file:
                   type: string
                   format: binary
+                filename:
+                  type: string
+                  description: filename to use (if it should be another one than the original filename)
+                force:
+                  type: boolean
+                  description: replace existing file
           text/*:
             schema:
               type: string
