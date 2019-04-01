@@ -279,12 +279,18 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     _onFsItemRightClick: function (ev) {
       var tree = this.getChildControl('tree');
       var widget = ev.getTarget();
-      var node = widget.getModel();
-      if (node) {
-        this.__ignoreSelectionChange = true;
-        tree.getSelection().replace([node]);
-        this.setSelectedNode(node);
-        this.__ignoreSelectionChange = false;
+      if (widget instanceof cv.ui.manager.tree.VirtualFsItem) {
+        var node = widget.getModel();
+        if (node) {
+          this.__ignoreSelectionChange = true;
+          tree.getSelection().replace([node]);
+          this.setSelectedNode(node);
+          this.fireDataEvent('changeSelection', {
+            'node': node,
+            'mode': 'contextmenu'
+          });
+          this.__ignoreSelectionChange = false;
+        }
       }
     },
 

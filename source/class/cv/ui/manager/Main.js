@@ -181,7 +181,7 @@ qx.Class.define('cv.ui.manager.Main', {
      */
     _onChangeTreeSelection: function (ev) {
       var data = ev.getData();
-      if (cv.ui.manager.model.Preferences.getInstance().isQuickPreview() || data.mode === 'dbltap') {
+      if ((cv.ui.manager.model.Preferences.getInstance().isQuickPreview() && data.mode === 'tap') || data.mode === 'dbltap') {
         this.__openSelectedFile(data.node, data.mode);
       }
       var node = data.node;
