@@ -130,7 +130,6 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           clazz: qx.ui.menu.RadioButton,
           args: [this.tr('Use text editor')],
           enabled: true,
-          general: true,
           properties: {
             model: 'source',
             group: editorGroup
@@ -141,7 +140,6 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           clazz: qx.ui.menu.RadioButton,
           args: [this.tr('Use xml editor')],
           enabled: true,
-          general: true,
           properties: {
             model: 'xml',
             group: editorGroup
@@ -152,8 +150,13 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           clazz: qx.ui.menu.CheckBox,
           args: [this.tr('Enable quick preview')],
           enabled: true,
-          general: true,
           separator: 'before'
+        },
+        'expert-mode': {
+          menu: 'preferences-menu',
+          clazz: qx.ui.menu.CheckBox,
+          args: [this.tr('Expert mode')],
+          enabled: true
         }
       };
       this.maintainButtons();
@@ -169,9 +172,15 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         prefs.setDefaultConfigEditor(editorGroup.getModelSelection().getItem(0));
       }, this);
 
-      var previewButton = this.getButton('quick-preview');
-      prefs.bind('quickPreview', previewButton, 'value');
-      previewButton.bind('value', prefs, 'quickPreview');
+      this.__bindToPreference('quick-preview', 'quickPreview');
+      this.__bindToPreference('expert-mode', 'expertMode');
+    },
+
+    __bindToPreference: function (buttonName, preferenceName) {
+      var button = this.getButton(buttonName);
+      var prefs = cv.ui.manager.model.Preferences.getInstance()
+      prefs.bind(preferenceName, button, 'value');
+      button.bind('value', prefs, preferenceName);
     },
 
     maintainButtons: function (config) {

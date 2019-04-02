@@ -694,8 +694,8 @@ qx.Class.define('cv.ui.manager.Main', {
       // list.setAppearance('open-files-tabs');
       list.set({
         decorator: null,
-        minHeight: 30,
-        height: 30,
+        minHeight: 38,
+        height: 38,
         padding: 0
       });
       this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, "file.name");
