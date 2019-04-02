@@ -122,7 +122,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
         'hidden-config': {
           menu: 'edit-menu',
           args: [this.tr('Hidden configuration'), cv.theme.dark.Images.getIcon('hidden-config', 18)],
-          enabled: false
+          enabled: true
         },
         // preferences
         'source-editor': {
