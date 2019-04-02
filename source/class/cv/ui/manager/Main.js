@@ -307,17 +307,29 @@ qx.Class.define('cv.ui.manager.Main', {
     closeFile: function (openFile) {
       var file = openFile.getFile();
       openFile.resetPermanent();
-      this.getOpenFiles().remove(openFile);
+      var currentSelection = this._openFilesController.getSelection();
+      var selectionIndex = -1;
+      var openFiles = this.getOpenFiles();
+      if (currentSelection.length > 0 && currentSelection.getItem(0) === openFile) {
+        // we need to select another file after this one got closed
+        selectionIndex = openFiles.indexOf(openFile);
+      }
+      openFiles.remove(openFile);
       if (this.getOpenFiles().length === 0) {
         this._stack.resetSelection();
         this.__actionDispatcher.resetFocusedWidget();
         this.__previewFileIndex = null;
       }
+      if (selectionIndex > 0) {
+        this._openFilesController.getSelection().replace(openFiles.getItem(selectionIndex - 1));
+      } else if (selectionIndex === 0 && openFiles.length > 0) {
+        this._openFilesController.getSelection().replace(openFiles.getItem(0));
+      }
 
       if (file instanceof cv.ui.manager.model.CompareFiles) {
         var fileHandlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
         fileHandlerConf.instance.clear();
-        if (this.getOpenFiles().filter(function (openFile) {
+        if (openFiles.filter(function (openFile) {
           return openFile.getFile() instanceof cv.ui.manager.model.CompareFiles;
         }).length === 0) {
           fileHandlerConf.instance.destroy();
