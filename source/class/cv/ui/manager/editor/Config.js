@@ -59,9 +59,6 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
     _onModelValueChange: function (ev) {
       this.setContent(ev.getData());
-      this.resetValid();
-      this.resetModified();
-      this.resetSaveable();
     },
 
     // overridden
@@ -127,7 +124,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
          case 'add-section':
            control = new qx.ui.form.Button(this.tr('Add section'));
            control.addListener('execute', function () {
-             this.getChildControl('list').getModel().push(new cv.ui.manager.model.config.Section(''));
+             this._listController.getModel().push(new cv.ui.manager.model.config.Section(''));
            }, this);
            this.getChildControl('buttons').add(control);
            break;
