@@ -49,10 +49,14 @@ qx.Class.define('cv.parser.widgets.InfoTrigger', {
     getAttributeToPropertyMappings: function () {
       return {
         'downvalue': {target: 'downValue', transform: parseFloat, "default": 0},
-        'shortdownvalue': {target: 'shortDownValue', transform: parseFloat, "default": 0},
+        'shortdownvalue': {target: 'shortDownValue', transform: function (value) {
+            return !!value ? parseFloat(value) : null;
+          }},
         'downlabel': {target: 'downLabel'},
         'upvalue': {target: 'upValue', transform: parseFloat, "default": 0},
-        'shortupvalue': {target: 'shortUpValue', transform: parseFloat, "default": 0},
+        'shortupvalue': {target: 'shortUpValue', transform: function (value) {
+          return !!value ? parseFloat(value) : null;
+         }},
         'uplabel': {target: 'upLabel'},
         'shorttime': {target: 'shortThreshold', transform: parseFloat, "default": -1},
         'change': {
