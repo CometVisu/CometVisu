@@ -12,6 +12,7 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
   construct: function () {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.VBox(8));
+    this._debouncedOnFilter = qx.util.Function.debounce(this._onFilter, 500, false);
     this._createChildControl('filter');
   },
 
@@ -88,7 +89,7 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
              liveUpdate: true,
              margin: 8
            });
-           control.addListener('changeValue', this._onFilter, this);
+           control.addListener('changeValue', this._debouncedOnFilter, this);
            this._addAt(control, 0);
            break;
 

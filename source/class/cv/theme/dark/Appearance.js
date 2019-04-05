@@ -31,7 +31,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return  {
           iconPosition: 'top',
           font: 'small',
-          width: 100
+          width: 100,
+          height: 100
+        };
+      }
+    },
+    'cv-icon/icon': {
+      include: 'atom/icon',
+      style: function () {
+        return  {
+          width: 70,
+          height: 70
         };
       }
     },

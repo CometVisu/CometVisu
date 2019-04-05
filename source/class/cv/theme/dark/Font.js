@@ -64,7 +64,7 @@ qx.Theme.define("cv.theme.dark.Font",{
       ]
     },
     "small": {
-      size: 10,
+      size: 12,
       family: ["sans-serif"],
       color: "text",
       sources: [
