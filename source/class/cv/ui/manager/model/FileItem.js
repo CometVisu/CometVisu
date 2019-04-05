@@ -89,6 +89,15 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       nullable: true
     },
 
+    /**
+     * Fake items only exist in the client not in the backend
+     */
+    fake: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeFake'
+    },
+
     overrideIcon: {
       check: 'Boolean',
       init: false

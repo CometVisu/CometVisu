@@ -601,6 +601,7 @@ qx.Class.define('cv.ui.manager.Main', {
         readable: true,
         open: true,
         loaded: true,
+        fake: true,
         icon: cv.theme.dark.Images.getIcon('icons', 18)
       });
       // TODO: needs to be verified by the backend
@@ -650,12 +651,12 @@ qx.Class.define('cv.ui.manager.Main', {
       // download button is only enabled when a file is selected
       this.bind('currentSelection', download, 'enabled', {
         converter: function (file) {
-          return !!file && file.getType() === 'file';
+          return !!file && file.getType() === 'file' && !file.isFake();
         }
       });
       this.bind('currentSelection', deleteSelection, 'enabled', {
         converter: function (file) {
-          return !!file && file.isWriteable();
+          return !!file && file.isWriteable() && !file.isFake();
         }
       });
 

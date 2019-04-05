@@ -200,6 +200,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
         ['delete-button', 'replace-button', 'rename-button'].forEach(function (controlName) {
           this.getChildControl(controlName).setEnabled(value.isWriteable());
         }, this);
+        this.getChildControl('download-button').setEnabled(!value.isFake());
       } else {
         tree.resetContextMenu();
         this.getChildControl('delete-button').set({
@@ -207,6 +208,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
           enabled: false
         });
         this.getChildControl('replace-button').exclude();
+        this.getChildControl('download-button').setEnabled(false);
       }
     },
 

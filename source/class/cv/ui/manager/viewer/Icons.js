@@ -113,6 +113,6 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
   ***********************************************
   */
   destruct: function () {
-    this._disposeObjects('_controller')
+    this._disposeObjects('_controller');
   }
 });
