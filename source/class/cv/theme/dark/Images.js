@@ -40,7 +40,8 @@ qx.Class.define('cv.theme.dark.Images', {
       'error': '@MaterialIcons/error',
       'image': '@MaterialIcons/image',
       'text': '@MaterialIcons/format_align_left',
-      'xml': '@MaterialIcons/ballot'
+      'xml': '@MaterialIcons/ballot',
+      'icons': '@MaterialIcons/image_search'
     },
 
     getIcon: function (name, size) {

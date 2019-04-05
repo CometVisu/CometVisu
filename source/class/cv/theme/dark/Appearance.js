@@ -23,6 +23,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
   extend : osparc.theme.osparcdark.Appearance,
 
   appearances : {
+    'cv-icon': {
+      include: 'atom',
+      alias: 'atom',
+
+      style: function () {
+        return  {
+          iconPosition: 'top',
+          font: 'small',
+          width: 100
+        };
+      }
+    },
     'open-file-item': {
       alias: "atom",
 

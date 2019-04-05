@@ -13,9 +13,12 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (name, path, parent) {
+  construct: function (name, path, parent, fakeChildren) {
     this.base(arguments);
     this.initChildren(new qx.data.Array());
+    if (fakeChildren) {
+      this.setFakeChildren(fakeChildren);
+    }
     this.__path = path;
     if (name) {
       this.setName(name);
@@ -79,6 +82,11 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       event : "changeChildren",
       apply: "_applyEventPropagation",
       deferredInit : true
+    },
+
+    fakeChildren: {
+      check: "Array",
+      nullable: true
     },
 
     overrideIcon: {
@@ -311,9 +319,12 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
           child.set(node);
           children.push(child);
         }, this);
-        this.setChildren(children);
-        this.sortElements();
       }
+      if (this.getFakeChildren()) {
+        children.append(this.getFakeChildren());
+      }
+      this.sortElements();
+
       this.setLoaded(true);
       if (this.__onLoadCallback) {
         this.__onLoadCallback();

@@ -2,11 +2,7 @@
  * Show rendered configs.
  */
 qx.Class.define('cv.ui.manager.viewer.Config', {
-  extend: qx.ui.core.Widget,
-  implement: [
-    cv.ui.manager.editor.IEditor,
-    cv.ui.manager.IActionHandler
-  ],
+  extend: cv.ui.manager.viewer.AbstractViewer,
 
   /*
   ***********************************************
@@ -25,12 +21,6 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
     ***********************************************
     */
   properties: {
-    file: {
-      check: 'cv.ui.manager.model.FileItem',
-      nullable: true,
-      apply: '_applyFile'
-    },
-
     appearance: {
       refine: true,
       init: 'config-viewer'
@@ -54,10 +44,6 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
   ***********************************************
   */
   members: {
-    canHandleAction: function () {
-      return false;
-    },
-    handleAction: function () {},
 
     _applyFile: function (file) {
       var control = this.getChildControl('iframe');
@@ -75,20 +61,11 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
       }
     },
 
-    save: function () {},
-
-    getCurrentContent: function () {},
-
     // overridden
     _createChildControlImpl : function(id) {
        var control;
 
        switch (id) {
-         case 'scroll':
-           control = new qx.ui.container.Scroll();
-           this._add(control);
-           break;
-
          case 'iframe':
            control = new qx.ui.embed.Iframe();
            control.exclude();

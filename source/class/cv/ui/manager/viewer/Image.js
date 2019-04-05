@@ -2,11 +2,7 @@
  * Show images.
  */
 qx.Class.define('cv.ui.manager.viewer.Image', {
-  extend: qx.ui.core.Widget,
-  implement: [
-    cv.ui.manager.editor.IEditor,
-    cv.ui.manager.IActionHandler
-  ],
+  extend: cv.ui.manager.viewer.AbstractViewer,
 
   /*
   ***********************************************
@@ -15,7 +11,6 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
   */
   construct: function () {
     this.base(arguments);
-    this._setLayout(new qx.ui.layout.Grow());
     this.addListener('resize', this._scaleImage, this);
     this._scaleImage();
   },
@@ -26,12 +21,6 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
     ***********************************************
     */
   properties: {
-    file: {
-      check: 'cv.ui.manager.model.FileItem',
-      nullable: true,
-      apply: '_applyFile'
-    },
-
     appearance: {
       refine: true,
       init: 'image-viewer'
@@ -55,11 +44,6 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
   ***********************************************
   */
   members: {
-    canHandleAction: function () {
-      return false;
-    },
-    handleAction: function () {},
-
     _applyFile: function (file) {
       var control = this.getChildControl('image');
       if (file) {
@@ -100,30 +84,6 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
         }
 
       }
-    },
-
-    save: function () {},
-
-    getCurrentContent: function () {},
-
-    // overridden
-    _createChildControlImpl : function(id) {
-       var control;
-
-       switch (id) {
-         case 'scroll':
-           control = new qx.ui.container.Scroll();
-           this._add(control);
-           break;
-
-         case 'image':
-           control = new qx.ui.basic.Atom();
-           this.getChildControl('scroll').add(control);
-           control.getChildControl('icon').addListener('resize', this._scaleImage, this);
-           break;
-       }
-
-       return control || this.base(arguments, id);
     }
   }
 });

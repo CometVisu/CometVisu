@@ -594,11 +594,21 @@ qx.Class.define('cv.ui.manager.Main', {
       main.add(this._pane, {edge: 'center'});
 
       var rootFolder = new cv.ui.manager.model.FileItem('.');
+      var fakeIconFile = new cv.ui.manager.model.FileItem('CometVisu-Icons', '.', rootFolder).set({
+        type: 'file',
+        overrideIcon: true,
+        writeable: false,
+        readable: true,
+        open: true,
+        loaded: true,
+        icon: cv.theme.dark.Images.getIcon('icons', 18)
+      });
       // TODO: needs to be verified by the backend
       rootFolder.set({
         writeable: true,
         readable: true,
-        open: true
+        open: true,
+        fakeChildren: [fakeIconFile]
       });
       this.setCurrentFolder(rootFolder);
       this._tree = new cv.ui.manager.tree.FileSystem(rootFolder);
