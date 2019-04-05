@@ -11,6 +11,7 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
   */
   construct: function () {
     this.base(arguments);
+    this._setLayout(new qx.ui.layout.VBox(8));
     this._createChildControl('filter');
   },
 
@@ -79,10 +80,6 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
        var control;
 
        switch (id) {
-         case 'container':
-           control = new qx.ui.container.Composite(new qx.ui.layout.VBox(8));
-           this.getChildControl('scroll').add(control);
-           break;
 
          case 'filter':
            control = new qx.ui.form.TextField();
@@ -92,12 +89,17 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
              margin: 8
            });
            control.addListener('changeValue', this._onFilter, this);
-           this.getChildControl('container').add(control);
+           this._addAt(control, 0);
+           break;
+
+         case 'scroll':
+           control = new qx.ui.container.Scroll();
+           this._addAt(control, 1, {flex: 1});
            break;
 
          case 'list':
            control = new qx.ui.container.Composite(new qx.ui.layout.Flow(8, 8));
-           this.getChildControl('container').add(control);
+           this.getChildControl('scroll').add(control);
            break;
        }
 
