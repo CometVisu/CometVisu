@@ -67,6 +67,9 @@ qx.Class.define('cv.io.rest.Client', {
           },
           move: {
             method: 'PUT', url: '/fs/move?src={src}&target={target}'
+          },
+          checkEnvironment: {
+            method: 'GET', url: '/fs/check'
           }
         };
         this.__dirClient = new qx.io.rest.Resource(config);

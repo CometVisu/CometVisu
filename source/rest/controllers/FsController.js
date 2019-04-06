@@ -11,6 +11,43 @@ class FsController extends FileHandler {
   }
 
   /**
+   * Check if the required files/folders exist and are writeable
+   * @param context
+   */
+  checkEnvironment(context) {
+    const res = [];
+    // config folder must be writeable
+    ['.', 'media', 'backup'].forEach(function (folder) {
+      res.push({
+        entity: folder,
+        state: this._getState(path.join(this.basePath, folder))
+      })
+    }.bind(this));
+    return res;
+  }
+
+  _getState(folder) {
+    let state = 0;
+    if (fs.existsSync(folder)) {
+      // Bit 0: exists
+      state = 1;
+    }
+    try {
+      fs.accessSync(folder, fs.constants.R_OK)
+      // Bit 1: readable
+      state |= 1 << 1;
+    } catch (err) {
+    }
+    try {
+      fs.accessSync(folder, fs.constants.W_OK)
+      // Bit 2: writeable
+      state |= 2 << 1;
+    } catch (err) {
+    }
+    return state
+  }
+
+  /**
    * Return folder listing or file content, depending on the path type
    * @param context {Context}
    * @returns {*}

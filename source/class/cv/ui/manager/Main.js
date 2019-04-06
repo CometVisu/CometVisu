@@ -20,6 +20,7 @@ qx.Class.define('cv.ui.manager.Main', {
   */
   construct: function () {
     this.base(arguments);
+    this._checkEnvironment();
     this.initOpenFiles(new qx.data.Array());
     this.__actionDispatcher = cv.ui.manager.control.ActionDispatcher.getInstance();
     this.__actionDispatcher.setMain(this);
@@ -94,6 +95,41 @@ qx.Class.define('cv.ui.manager.Main', {
     _openFilesController: null,
     _hiddenConfigFakeFile: null,
     __actionDispatcher: null,
+
+    _checkEnvironment: function () {
+      cv.io.rest.Client.getFsClient().checkEnvironmentSync(function (err, res) {
+        if (err) {
+          cv.ui.manager.snackbar.Controller.error(err);
+        } else if (res) {
+          res.forEach(function (env) {
+            switch (env.entity) {
+              case '.':
+                // config folder must be writeable
+                if ((env.state & 1) === 0) {
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder does not exists'));
+                } else if ((env.state & 2) === 0) {
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not readable'));
+                } else if ((env.state & 4) === 0) {
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not writeable'));
+                }
+                break;
+
+              case 'backup':
+                if ((env.state & 4) === 0) {
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('backup folder is not writeable'));
+                }
+                break;
+
+              case 'media':
+                if ((env.state & 4) === 0) {
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('media folder is not writeable'));
+                }
+                break;
+            }
+          }, this);
+        }
+      }, this);
+    },
 
     canHandleAction: function (actionName) {
       return ['close', 'quit', 'hidden-config', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload'].includes(actionName);

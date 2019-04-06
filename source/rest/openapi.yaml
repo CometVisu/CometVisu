@@ -11,6 +11,20 @@ tags:
   - name: dataprovider
     description: Dataproviders for config editor.
 paths:
+  '/fs/check':
+    get:
+      tags:
+        - fs
+      summary: Check filesystem environment (access rights, etc)
+      operationId: checkEnvironment
+      x-exegesis-controller: FsController
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckResponse'
   '/fs/move':
     put:
       tags:
@@ -428,6 +442,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ConfigOption'
+    CheckResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/EnvironmentState'
+    EnvironmentState:
+      type: object
+      properties:
+        entity:
+          type: string
+        state:
+          type: number
+          description: bitmask with a list of states <writeable,readable,exists>
     ConfigOption:
       type: object
       properties:
