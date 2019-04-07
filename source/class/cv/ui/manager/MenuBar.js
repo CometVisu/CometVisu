@@ -129,6 +129,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           menu: 'preferences-menu',
           clazz: qx.ui.menu.RadioButton,
           args: [this.tr('Use text editor')],
+          general: true,
           enabled: true,
           properties: {
             model: 'source',
@@ -139,6 +140,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           menu: 'preferences-menu',
           clazz: qx.ui.menu.RadioButton,
           args: [this.tr('Use xml editor')],
+          general: true,
           enabled: true,
           properties: {
             model: 'xml',
@@ -149,6 +151,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           menu: 'preferences-menu',
           clazz: qx.ui.menu.CheckBox,
           args: [this.tr('Enable quick preview')],
+          general: true,
           enabled: true,
           separator: 'before'
         },
@@ -156,6 +159,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           menu: 'preferences-menu',
           clazz: qx.ui.menu.CheckBox,
           args: [this.tr('Expert mode')],
+          general: true,
           enabled: true
         }
       };

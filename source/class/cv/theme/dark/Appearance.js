@@ -28,6 +28,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style: function () {
         return {
           font: 'title',
+          marginTop: 20,
           marginLeft: 10
         };
       }

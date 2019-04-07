@@ -744,6 +744,11 @@ qx.Class.define('cv.ui.manager.Main', {
       leftContainer.add(leftBar);
       leftContainer.add(this._tree, {flex: 1});
       this._pane.add(leftContainer, 0);
+      cv.ui.manager.model.Preferences.getInstance().bind('expertMode', leftContainer, 'visibility', {
+        converter: function (value) {
+          return value ? 'visible' : 'excluded';
+        }
+      });
 
       this._mainContent = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
