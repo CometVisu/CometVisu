@@ -34,6 +34,8 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
   ***********************************************
   */
   statics: {
+    ROOT: null,
+
     isConfigFile: function (path) {
       return /visu_config.*\.xml/.test(path);
     },

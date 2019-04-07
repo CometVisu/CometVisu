@@ -23,6 +23,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
   extend : osparc.theme.osparcdark.Appearance,
 
   appearances : {
+    'cv-start': 'widget',
+    'cv-start/media-title': {
+      style: function () {
+        return {
+          font: 'title',
+          marginLeft: 10
+        };
+      }
+    },
+    'cv-start/configs-title': 'cv-start/media-title',
+    'cv-start/demo-configs-title': 'cv-start/media-title',
+
     'cv-file-item': {
       include: 'atom',
       alias: 'atom',
@@ -100,7 +112,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       style: function () {
         return {
           alignY: 'middle',
-          paddingRight: 8
+          padding: [0, 8]
         };
       }
     },

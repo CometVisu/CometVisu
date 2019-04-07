@@ -41,6 +41,23 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     model: {
       check: 'qx.data.Array',
       deferredInit: true
+    },
+
+    permanentFilter: {
+      check: 'Function',
+      nullable: true,
+      apply: '_onFilter'
+    },
+
+    showTextFilter: {
+      check: 'Boolean',
+      init: true,
+      apply: '_applyShowTextFilter'
+    },
+
+    labelConverter: {
+      check: 'Function',
+      nullable: true
     }
   },
 
@@ -54,13 +71,17 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     _isImageRegex: null,
 
     _getDelegate: function () {
+      var labelConverter = this.getLabelConverter();
+      var converter = labelConverter ? {
+        converter: labelConverter
+      } : null;
       return {
         configureItem: function (item) {
           item.setAppearance('cv-file-item');
         },
         bindItem: function (controller, item, index) {
           controller.bindProperty('', 'model', null, item, index);
-          controller.bindProperty('name', 'label', null, item, index);
+          controller.bindProperty('name', 'label', converter, item, index);
           controller.bindProperty('icon', 'icon', {
             converter: function (source, file) {
               if (file.getType() === 'file' && this._isImageRegex.test(file.getName())) {
@@ -103,7 +124,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       this._createModel(function (newModel) {
         model.replace(newModel);
 
-        if (this.getChildControl('filter').getValue()) {
+        if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
           this._onFilter();
         } else {
           this._controller.setModel(model);
@@ -111,12 +132,19 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       }, this);
     },
 
+    _applyShowTextFilter: function (value) {
+      this.getChildControl('filter').setVisibility(value ? 'visible' : 'excluded');
+    },
+
     _onFilter: function () {
-      var filterString = this.getChildControl('filter').getValue();
-      var filtered = this.getModel().filter(function (file) {
-        return file.getName().includes(filterString);
-      });
-      this._controller.setModel(filtered);
+      if (this._controller) {
+        var filterString = this.getChildControl('filter').getValue();
+        var filterFunction = this.getPermanentFilter();
+        var filtered = this.getModel().filter(function (file) {
+          return (!filterFunction || filterFunction(file)) && (!filterString || file.getName().includes(filterString));
+        });
+        this._controller.setModel(filtered);
+      }
     },
 
     // overridden
@@ -132,6 +160,9 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
             liveUpdate: true,
             margin: 8
           });
+          if (!this.isShowTextFilter()) {
+            control.exclude();
+          }
           control.addListener('changeValue', this._debouncedOnFilter, this);
           this._addAt(control, 0);
           break;

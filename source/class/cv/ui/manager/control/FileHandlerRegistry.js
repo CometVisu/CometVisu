@@ -20,6 +20,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     this.registerFileHandler(cv.ui.manager.viewer.Config.SUPPORTED_FILES, cv.ui.manager.viewer.Config);
     this.registerFileHandler(cv.ui.manager.viewer.Icons.SUPPORTED_FILES, cv.ui.manager.viewer.Icons);
     this.registerFileHandler(cv.ui.manager.viewer.Folder.SUPPORTED_FILES, cv.ui.manager.viewer.Folder);
+    this.registerFileHandler(null, cv.ui.manager.Start);
 
     // register the basic editors
     this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source);
@@ -45,7 +46,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     /**
      * Registers an editor for a specific file, that is identified by the given selector.
-     * @param selector {String|RegExp|Class|Function} filename-/path or regular expression.
+     * @param selector {String|RegExp|Class|Function|null} filename-/path or regular expression. If null this is a special handler that must be loaded manually (like cv.ui.manager.Start)
      * @param clazz {qx.ui.core.Widget} widget class that handles those type of files
      * @param options {Map?} additional options to store in the registry
      */
@@ -81,6 +82,9 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
           config.selectorId = 'fileName:' + selector;
           config.priority = 2;
         }
+      } else {
+        config.selectorId = 'none';
+        config.priority = 10;
       }
       this.__registry[clazz.classname] = config;
     },

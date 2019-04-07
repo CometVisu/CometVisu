@@ -33,6 +33,15 @@ qx.Class.define('cv.ui.manager.Main', {
 
   /*
   ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    ROOT: null
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -286,10 +295,12 @@ qx.Class.define('cv.ui.manager.Main', {
         }
         if (!editorConfig.instance) {
           editorConfig.instance = new editorConfig.Clazz();
+          editorConfig.instance.setFile(file);
           this._stack.add(editorConfig.instance);
+        } else {
+          editorConfig.instance.setFile(file);
         }
         this._stack.setSelection([editorConfig.instance]);
-        editorConfig.instance.setFile(file);
         this.__actionDispatcher.setFocusedWidget(editorConfig.instance);
       }
     },
@@ -627,7 +638,7 @@ qx.Class.define('cv.ui.manager.Main', {
       this._pane = new qx.ui.splitpane.Pane();
       main.add(this._pane, {edge: 'center'});
 
-      var rootFolder = new cv.ui.manager.model.FileItem('.');
+      var rootFolder = cv.ui.manager.model.FileItem.ROOT = new cv.ui.manager.model.FileItem('.');
       var fakeIconFile = new cv.ui.manager.model.FileItem('CometVisu-Icons', '.', rootFolder).set({
         type: 'file',
         overrideIcon: true,
@@ -640,10 +651,12 @@ qx.Class.define('cv.ui.manager.Main', {
       });
       // TODO: needs to be verified by the backend
       rootFolder.set({
+        overrideIcon: true,
         writeable: true,
         readable: true,
         open: true,
-        fakeChildren: [fakeIconFile]
+        fakeChildren: [fakeIconFile],
+        icon: cv.theme.dark.Images.getIcon('home', 18)
       });
       this.setCurrentFolder(rootFolder);
       this._tree = new cv.ui.manager.tree.FileSystem(rootFolder);
@@ -756,6 +769,7 @@ qx.Class.define('cv.ui.manager.Main', {
           controller.bindProperty('file.permanent', 'permanent', null, item, index);
           controller.bindProperty('file.modified', 'modified', null, item, index);
           controller.bindProperty('icon', 'icon', null, item, index);
+          controller.bindProperty('closeable', 'closeable', null, item, index);
         }
       });
       list.addListener('changeSelection', this._onChangeFileSelection, this);
@@ -765,6 +779,12 @@ qx.Class.define('cv.ui.manager.Main', {
       this._stack.addListener('changeSelection', this._onChangeStackSelection, this);
       this._mainContent.add(this._stack, {flex: 1});
       this._pane.add(this._mainContent, 1);
+
+      var startOpenFile = new cv.ui.manager.model.OpenFile(rootFolder, 'cv.ui.manager.Start');
+      startOpenFile.setCloseable(false);
+      console.log(startOpenFile);
+      this.getOpenFiles().push(startOpenFile);
+      list.setModelSelection([startOpenFile]);
     },
 
     getMenuBar: function () {

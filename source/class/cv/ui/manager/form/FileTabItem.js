@@ -14,9 +14,9 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
   construct: function () {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.HBox());
-    this._createChildControlImpl('icon');
-    this._createChildControlImpl('label');
-    this._createChildControlImpl('close');
+    this._createChildControl('icon');
+    this._createChildControl('label');
+    this._createChildControl('close');
 
     this.addListener("pointerover", this._onPointerOver, this);
     this.addListener("pointerout", this._onPointerOut, this);
@@ -48,6 +48,7 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
     label: {
       check: 'String',
       nullable: true,
+      transform: '_transformFilename',
       event: 'changeLabel',
       apply: '_applyLabel'
     },
@@ -68,6 +69,12 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
       check: 'Boolean',
       init: false,
       apply: '_applyLabel'
+    },
+
+    closeable: {
+      check: 'Boolean',
+      init: true,
+      apply: '_applyCloseable'
     }
   },
 
@@ -97,6 +104,12 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
       this.addState("hovered");
     },
 
+    _transformFilename: function(name) {
+      if (name === '.') {
+        return '';
+      }
+      return name;
+    },
 
     /**
      * Event handler for the pointer out event.
@@ -107,6 +120,10 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
 
     _applyPermanent: function (value) {
       this.setFont(value ? 'default' : 'italic');
+    },
+
+    _applyCloseable: function (value) {
+      this.getChildControl('close').setVisibility(value ? 'visible' : 'excluded');
     },
 
     _applyIcon: function (value) {
@@ -121,11 +138,19 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
 
     _applyLabel: function () {
       var label = this.getChildControl("label");
-      label.setValue(this.getLabel() + (this.isModified() ? ' *' : ''));
+      var value = this.getLabel();
+      if (value) {
+        label.setValue(this.getLabel() + (this.isModified() ? ' *' : ''));
+        label.show();
+      } else {
+        label.exclude();
+      }
     },
 
     _onClose: function () {
-      this.fireDataEvent('close', this.getModel());
+      if (this.isCloseable()) {
+        this.fireDataEvent('close', this.getModel());
+      }
     },
 
     // overridden
@@ -151,7 +176,11 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
          case 'close':
            control = new qx.ui.basic.Image('decoration/tabview/close.gif');
            control.setAppearance('open-file-item/close');
-           control.addListener('tap', this._onClose, this);
+           if (this.isCloseable()) {
+             control.addListener('tap', this._onClose, this);
+           } else {
+             control.exclude();
+           }
            this._addAt(control, 2);
            break;
        }

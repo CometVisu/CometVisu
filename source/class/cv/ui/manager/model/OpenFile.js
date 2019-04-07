@@ -56,6 +56,12 @@ qx.Class.define('cv.ui.manager.model.OpenFile', {
       check: 'String',
       init: '',
       event: 'changeIcon'
+    },
+
+    closeable: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeCloseable'
     }
   },
 
