@@ -19,6 +19,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.viewer.Image);
     this.registerFileHandler(cv.ui.manager.viewer.Config.SUPPORTED_FILES, cv.ui.manager.viewer.Config);
     this.registerFileHandler(cv.ui.manager.viewer.Icons.SUPPORTED_FILES, cv.ui.manager.viewer.Icons);
+    this.registerFileHandler(cv.ui.manager.viewer.Folder.SUPPORTED_FILES, cv.ui.manager.viewer.Folder);
 
     // register the basic editors
     this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source);
@@ -44,7 +45,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     /**
      * Registers an editor for a specific file, that is identified by the given selector.
-     * @param selector {String|RegExp|Class} filename-/path or regular expression.
+     * @param selector {String|RegExp|Class|Function} filename-/path or regular expression.
      * @param clazz {qx.ui.core.Widget} widget class that handles those type of files
      * @param options {Map?} additional options to store in the registry
      */
@@ -65,6 +66,10 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
         config.regex = selector;
         config.selectorId = 'regex:' + selector.toString();
         config.priority = 4;
+      } else if (qx.lang.Type.isFunction(selector)) {
+        config.selectorId = 'function:' + selector.name;
+        config.priority = 3;
+        config.function = selector;
       } else if (qx.lang.Type.isString(selector)) {
         // simple file matcher
         if (selector.includes('/')) {
@@ -165,6 +170,8 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
       } else if (config.regex && config.regex.test(file.getFullPath())) {
         return true;
       } else if (config.instanceOf && file instanceof config.instanceOf) {
+        return true;
+      } else if (config.function && config.function(file)) {
         return true;
       }
       return false;

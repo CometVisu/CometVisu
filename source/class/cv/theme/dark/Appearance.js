@@ -23,11 +23,11 @@ qx.Theme.define("cv.theme.dark.Appearance", {
   extend : osparc.theme.osparcdark.Appearance,
 
   appearances : {
-    'cv-icon': {
+    'cv-file-item': {
       include: 'atom',
       alias: 'atom',
 
-      style: function () {
+      style: function (states) {
         return  {
           iconPosition: 'top',
           font: 'small',
@@ -36,6 +36,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
+    'cv-file-item/icon': {
+      include: 'atom/icon',
+      style: function () {
+        return  {
+          width: 70,
+          height: 70,
+          scale: true
+        };
+      }
+    },
+    'cv-icon': 'cv-file-item',
     'cv-icon/icon': {
       include: 'atom/icon',
       style: function () {

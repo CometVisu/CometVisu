@@ -277,22 +277,20 @@ qx.Class.define('cv.ui.manager.Main', {
       if (sel.length > 0) {
         var openFile = sel.getItem(0);
         var file = openFile.getFile();
-        if (file.getType() === 'file') {
-          var editorConfig;
-          var handlerId = openFile.getHandlerId();
-          if (handlerId) {
-            editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
-          } else {
-            editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
-          }
-          if (!editorConfig.instance) {
-            editorConfig.instance = new editorConfig.Clazz();
-            this._stack.add(editorConfig.instance);
-          }
-          this._stack.setSelection([editorConfig.instance]);
-          editorConfig.instance.setFile(file);
-          this.__actionDispatcher.setFocusedWidget(editorConfig.instance);
+        var editorConfig;
+        var handlerId = openFile.getHandlerId();
+        if (handlerId) {
+          editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
+        } else {
+          editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
         }
+        if (!editorConfig.instance) {
+          editorConfig.instance = new editorConfig.Clazz();
+          this._stack.add(editorConfig.instance);
+        }
+        this._stack.setSelection([editorConfig.instance]);
+        editorConfig.instance.setFile(file);
+        this.__actionDispatcher.setFocusedWidget(editorConfig.instance);
       }
     },
 
