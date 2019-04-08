@@ -101,7 +101,7 @@ var jOWM = jOWM || {};
             $('<ul>')
                     .addClass('detailed')
                     .addClass('clearfix')
-                    .appendTo($(e));
+                    .appendTo($(e).children(":first"));
         }
 
         if (options.forecast24hItems > 0) {
@@ -110,7 +110,7 @@ var jOWM = jOWM || {};
                 $('<ul>')
                         .addClass('forecast')
                         .addClass('clearfix')
-                        .appendTo($(e));
+                        .appendTo($(e).children(":first"));
             }
         }
         if (options.forecastDailyItems > 0) {
@@ -119,7 +119,7 @@ var jOWM = jOWM || {};
                 $('<ul>')
                         .addClass('forecastDaily')
                         .addClass('clearfix')
-                        .appendTo($(e));
+                        .appendTo($(e).children(":first"));
             }
         }
 
@@ -202,7 +202,7 @@ var jOWM = jOWM || {};
         $('ul.forecast', $(e)).html('');
         // Insert line
         $('ul.forecast', $(e)).append('<div class="separationLine clearfix">');
-        if (options.forecastItems === 0) {
+        if (options.forecast24hItems === 0) {
             // Forecast is disabled.
             return;
         }
@@ -242,7 +242,7 @@ var jOWM = jOWM || {};
         $('ul.forecastDaily', $(e)).html('');
         // Insert Line
         $('ul.forecastDaily', $(e)).append('<div class="separationLine clearfix">');
-        if (options.forecastItems === 0) {
+        if (options.forecastDailyItems === 0) {
             // Forecast is disabled.
             return;
         }
@@ -319,7 +319,7 @@ var jOWM = jOWM || {};
 
             var d = new Date(dataItems[index].dt * 1000);
             d.locale = options.lang;
-            if (d.getHours() === 1) {
+            if (d.getHours() < 3) {
                 minTemp = dataItems[index].main.temp_min;
                 maxTemp = dataItems[index].main.temp_max;
                 newDay = true;
@@ -332,11 +332,11 @@ var jOWM = jOWM || {};
                     maxTemp = dataItems[index].main.temp_max;
                 }
                 //use icon from midday
-                if (d.getHours() === 13) {
+                if ((d.getHours() > 10) && (d.getHours() < 14)) {
                     weather = dataItems[index].weather;
                 }
                 //at the end of the day do your calulations
-                if (d.getHours() === 22) {
+                if (d.getHours() >= 21) {
                     arrDailyWeather.push({day: d.strftime('%a'), min_temp: minTemp, max_temp: maxTemp, weather: weather});
                     newDay = false;
                 }
