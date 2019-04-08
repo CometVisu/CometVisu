@@ -28,19 +28,25 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
       if (value && value.getType() === 'file') {
         var control = this.getChildControl('file-type');
         var type = value.getName().split('.').pop();
-        switch (type) {
-          case 'xml':
-            control.setValue('</>');
-            break;
 
-          case 'js':
-            type = qx.lang.String.firstUp(type); // jshint ignore:line
-          case 'css':
-          case 'conf':
-            control.setValue(type);
-            break;
+        // do not use file types that are longer than 4 chars (not enough space)
+        if (type.length <= 4) {
+          switch (type) {
+            case 'xml':
+              control.setValue('</>');
+              break;
+
+            case 'js':
+              type = qx.lang.String.firstUp(type); // jshint ignore:line
+            case 'css':
+            case 'conf':
+              control.setValue(type);
+              break;
+          }
+          control.show();
+        } else {
+          control.exclude();
         }
-        control.show();
       } else {
         this.getChildControl('file-type').exclude();
       }
