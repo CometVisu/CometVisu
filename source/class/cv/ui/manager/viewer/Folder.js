@@ -109,8 +109,10 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         converter: labelConverter
       } : null;
       return {
+        createItem: function () {
+          return new cv.ui.manager.form.FileListItem();
+        },
         configureItem: function (item) {
-          item.setAppearance('cv-file-item');
           item.addListener('dbltap', this._onDblTap, this);
           item.addListener('contextmenu', this._onFsItemRightClick, this);
         }.bind(this),
