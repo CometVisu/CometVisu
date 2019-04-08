@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: you@your.org\n"
 "POT-Creation-Date: 2017-04-26 18:57+0100\n"
-"PO-Revision-Date: 2019-04-02 20:11+0200\n"
+"PO-Revision-Date: 2019-04-07 21:11+0200\n"
 "Last-Translator: you <you@your.org>\n"
 "Language-Team: Team <yourteam@your.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Ein Fehler ist aufgetreten"
 msgid "Enable on reload:"
 msgstr "Aktivieren beim neu Laden:"
 
-#: cv/ui/manager/Main.js:668 cv/Application.js:308
+#: cv/ui/manager/Main.js:726 cv/Application.js:308
 msgid "Reload"
 msgstr "Neu laden"
 
@@ -83,21 +83,21 @@ msgstr "Antwort des Backends:"
 
 #: cv/TemplateEngine.js:301
 msgid ""
-"The backend did send an invalid response to a %1read%2 request: Missing "
-"\"i\" value."
+"The backend did send an invalid response to a %1read%2 request: Missing \"i"
+"\" value."
 msgstr ""
 "Das Backend hat eine ungültige Antwort auf eine %1read%2-Anfrage gesendet: "
 "Fehlender \"i\" Wert."
 
-#: cv/io/rest/Client.js:170
+#: cv/io/rest/Client.js:173
 msgid "Backend does not respond!"
 msgstr "Backend antwortet nicht!"
 
-#: cv/io/rest/Client.js:180 cv/ui/manager/editor/AbstractEditor.js:115
+#: cv/io/rest/Client.js:183 cv/ui/manager/editor/AbstractEditor.js:115
 msgid "File has been saved"
 msgstr "Datei wurde gespeichert"
 
-#: cv/io/rest/Client.js:189
+#: cv/io/rest/Client.js:192
 msgid "Error saving file"
 msgstr "Fehler beim Speichern der Datei"
 
@@ -112,12 +112,12 @@ msgstr "Template '%1' konnte nicht geladen werden von '%2'."
 #: cv/plugins/openhab/Settings.js:174
 msgid ""
 "The CometVisu seems to be delivered by a proxied webserver. Changing "
-"configuration values might not have the expected effect. Please proceed only"
-" if you know what you are doing."
+"configuration values might not have the expected effect. Please proceed "
+"only if you know what you are doing."
 msgstr ""
-"Die CometVisu scheint über einen Proxy ausgeliefert zu werden. Änderungen an"
-" den Einstellungen könnten deshalb nicht den gewünschten Effekt habe.Bitte "
-"führen Sie daher nur Änderungen durch, wenn Sie wissen was Sie tun."
+"Die CometVisu scheint über einen Proxy ausgeliefert zu werden. Änderungen "
+"an den Einstellungen könnten deshalb nicht den gewünschten Effekt habe."
+"Bitte führen Sie daher nur Änderungen durch, wenn Sie wissen was Sie tun."
 
 #: cv/plugins/openhab/Settings.js:212
 msgid "openHAB backend settings"
@@ -139,39 +139,59 @@ msgstr "Alle löschen"
 msgid "Message center"
 msgstr "Nachrichtenzentrale"
 
-#: cv/ui/manager/Main.js:123
+#: cv/ui/manager/Main.js:118
+msgid "config folder does not exists"
+msgstr "config Ordner existiert nicht"
+
+#: cv/ui/manager/Main.js:120
+msgid "config folder is not readable"
+msgstr "config Ordner kann nicht gelesen werden"
+
+#: cv/ui/manager/Main.js:122
+msgid "config folder is not writeable"
+msgstr "config Ordner ist nicht schreibbar"
+
+#: cv/ui/manager/Main.js:128
+msgid "backup folder is not writeable"
+msgstr "backup Ordner ist nicht schreibbar"
+
+#: cv/ui/manager/Main.js:134
+msgid "media folder is not writeable"
+msgstr "media Ordner ist nicht schreibbar"
+
+#: cv/ui/manager/Main.js:168
 msgid "Cannot load config template"
 msgstr "Template für Konfigurationsdatei kann nicht geladen werden"
 
-#: cv/ui/manager/Main.js:271
+#: cv/ui/manager/Main.js:316
 msgid "Cannot open file: \"%1\""
 msgstr "Datei \"%1\" kann nicht geöffnet werden"
 
-#: cv/ui/manager/Main.js:422
+#: cv/ui/manager/Main.js:467
 msgid "Do you really want to clear the trash?"
 msgstr "Mächten Sie den Papirtkorb wirklich leeren?"
 
-#: cv/ui/manager/Main.js:425
+#: cv/ui/manager/Main.js:470
 msgid "Do you really want to delete this file from the trash?"
 msgstr "Möchten Sie diese Datei wirklich aus dem Papierkorb entfernen?"
 
-#: cv/ui/manager/Main.js:426
+#: cv/ui/manager/Main.js:471
 msgid "Do you really want to delete this folder from the trash?"
 msgstr "Möchten Sie diesen Ordner wirklich aus dem Papierkorb entfernen?"
 
-#: cv/ui/manager/Main.js:429
+#: cv/ui/manager/Main.js:474
 msgid "Do you really want to delete this file?"
 msgstr "Möchten Sie diese Datei wirklich löschen?"
 
-#: cv/ui/manager/Main.js:430
+#: cv/ui/manager/Main.js:475
 msgid "Do you really want to delete this folder?"
 msgstr "Möchten Sie diesen Ordner wirklich löschen?"
 
-#: cv/ui/manager/Main.js:436
+#: cv/ui/manager/Main.js:481
 msgid "Confirm deletion"
 msgstr "Löschen bestätigen"
 
-#: cv/ui/manager/Main.js:464
+#: cv/ui/manager/Main.js:509
 msgid ""
 "Please enter the name of the new configuration (without \"visu_config_\" at "
 "the beginning and \".xml\" at the end)"
@@ -179,39 +199,39 @@ msgstr ""
 "Bitte geben Sie den Namen der neuen Konfigurationsdatei ein (ohne "
 "\"visu_config_\" am Anfang und \".xml\" am Ende)"
 
-#: cv/ui/manager/Main.js:465
+#: cv/ui/manager/Main.js:510
 msgid "A configuration with this name already exists."
 msgstr "Eine Konfigurationsdatei mit diesem Namen existiert bereits."
 
-#: cv/ui/manager/Main.js:467
+#: cv/ui/manager/Main.js:512
 msgid "Please enter the file name."
 msgstr "Bitte geben Sie den Dateinamen ein."
 
-#: cv/ui/manager/Main.js:468
+#: cv/ui/manager/Main.js:513
 msgid "A file with this name already exists."
 msgstr "Eine Datei mit diesem Namen exisitert bereits."
 
-#: cv/ui/manager/Main.js:470
+#: cv/ui/manager/Main.js:515
 msgid "Please enter the folder name."
 msgstr "Bitte geben Sie den Namen des Ordners ein."
 
-#: cv/ui/manager/Main.js:471
+#: cv/ui/manager/Main.js:516
 msgid "A folder with this name already exists."
 msgstr "Eine Ordner mit diesem Namen exisitert bereits."
 
-#: cv/ui/manager/Main.js:636 cv/ui/manager/tree/FileSystem.js:411
+#: cv/ui/manager/Main.js:694 cv/ui/manager/tree/FileSystem.js:413
 msgid "Download"
 msgstr "Herunterladen"
 
-#: cv/ui/manager/Main.js:655 cv/ui/manager/tree/FileSystem.js:429
+#: cv/ui/manager/Main.js:713 cv/ui/manager/tree/FileSystem.js:431
 msgid "Validate"
 msgstr "Prüfen"
 
-#: cv/ui/manager/MenuBar.js:45 cv/ui/manager/tree/FileSystem.js:374
+#: cv/ui/manager/MenuBar.js:45 cv/ui/manager/tree/FileSystem.js:376
 msgid "New file"
 msgstr "Neue Datei"
 
-#: cv/ui/manager/MenuBar.js:50 cv/ui/manager/tree/FileSystem.js:375
+#: cv/ui/manager/MenuBar.js:50 cv/ui/manager/tree/FileSystem.js:377
 msgid "New folder"
 msgstr "Neuer Ordner"
 
@@ -228,7 +248,7 @@ msgid "Save as..."
 msgstr "Speichern unter..."
 
 #: cv/ui/manager/MenuBar.js:79 cv/ui/manager/tree/FileSystem.js:144
-#: cv/ui/manager/tree/FileSystem.js:206 cv/ui/manager/tree/FileSystem.js:404
+#: cv/ui/manager/tree/FileSystem.js:207 cv/ui/manager/tree/FileSystem.js:406
 msgid "Delete"
 msgstr "Löschen"
 
@@ -288,37 +308,49 @@ msgstr "Versteckte Konfiguration"
 msgid "Use text editor"
 msgstr "Texteditor benutzen"
 
-#: cv/ui/manager/MenuBar.js:141
+#: cv/ui/manager/MenuBar.js:142
 msgid "Use xml editor"
 msgstr "XML-Editor benutzen"
 
-#: cv/ui/manager/MenuBar.js:151
+#: cv/ui/manager/MenuBar.js:153
 msgid "Enable quick preview"
 msgstr "Schnellvorschau aktivieren"
 
-#: cv/ui/manager/MenuBar.js:158
+#: cv/ui/manager/MenuBar.js:161
 msgid "Expert mode"
 msgstr "Expertenansicht"
 
-#: cv/ui/manager/MenuBar.js:256
+#: cv/ui/manager/MenuBar.js:260
 msgid "CometVisu Manager"
 msgstr "CometVisu Manager"
 
-#: cv/ui/manager/MenuBar.js:261
+#: cv/ui/manager/MenuBar.js:265
 msgid "File"
 msgstr "Datei"
 
-#: cv/ui/manager/MenuBar.js:266
+#: cv/ui/manager/MenuBar.js:270
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: cv/ui/manager/MenuBar.js:271
+#: cv/ui/manager/MenuBar.js:275
 msgid "New"
 msgstr "Neu"
 
-#: cv/ui/manager/MenuBar.js:275
+#: cv/ui/manager/MenuBar.js:279
 msgid "Preferences"
 msgstr "Einstellungen"
+
+#: cv/ui/manager/Start.js:78
+msgid "Configurations"
+msgstr "Konfigurationen"
+
+#: cv/ui/manager/Start.js:100
+msgid "Demo configurations"
+msgstr "Demo Konfigurationen"
+
+#: cv/ui/manager/Start.js:120
+msgid "Media files"
+msgstr "Mediendateien"
 
 #: cv/ui/manager/editor/AbstractEditor.js:103
 #: cv/ui/manager/control/FileController.js:39
@@ -443,27 +475,27 @@ msgstr "Leeren"
 msgid "Backup from %1"
 msgstr "Sicherung vom %1"
 
-#: cv/ui/manager/tree/FileSystem.js:399
+#: cv/ui/manager/tree/FileSystem.js:401
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: cv/ui/manager/tree/FileSystem.js:416
+#: cv/ui/manager/tree/FileSystem.js:418
 msgid "Open"
 msgstr "Öffnen"
 
-#: cv/ui/manager/tree/FileSystem.js:423
+#: cv/ui/manager/tree/FileSystem.js:425
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: cv/ui/manager/tree/FileSystem.js:435
+#: cv/ui/manager/tree/FileSystem.js:437
 msgid "Replace"
 msgstr "Ersetzen"
 
-#: cv/ui/manager/tree/FileSystem.js:447
+#: cv/ui/manager/tree/FileSystem.js:449
 msgid "Compare with..."
 msgstr "Vergleichen mit..."
 
-#: cv/ui/manager/tree/FileSystem.js:451
+#: cv/ui/manager/tree/FileSystem.js:453
 msgid "Open with..."
 msgstr "Öffnen mit..."
 
@@ -491,15 +523,27 @@ msgstr "Das Hochladen der Datei wurde mit einem Fehler beendet: %1"
 msgid "File has been uploaded"
 msgstr "Die Datei wurde hochgeladen"
 
-#: cv/ui/manager/viewer/Config.js:47
+#: cv/ui/manager/viewer/Config.js:37
 msgid "Config viewer"
 msgstr "Konfiguration anzeigen"
 
-#: cv/ui/manager/viewer/Config.js:71
+#: cv/ui/manager/viewer/Config.js:57
 msgid "%1 is no configuration file"
 msgstr "%1 ist keine Konfigurationsdatei"
 
-#: cv/ui/manager/viewer/Image.js:48
+#: cv/ui/manager/viewer/Folder.js:31
+msgid "Show folder"
+msgstr "Ordner anzeigen"
+
+#: cv/ui/manager/viewer/Folder.js:159
+msgid "Filter by name..."
+msgstr "Nach Namen filtern..."
+
+#: cv/ui/manager/viewer/Icons.js:14
+msgid "Show icons"
+msgstr "Icons anzeigen"
+
+#: cv/ui/manager/viewer/Image.js:37
 msgid "Show image"
 msgstr "Bild anzeigen"
 
@@ -539,8 +583,8 @@ msgstr ""
 
 #: cv/util/ConfigLoader.js:190
 msgid ""
-"404: Config file not found. Neither as normal config (%1) nor as demo config"
-" (%2)."
+"404: Config file not found. Neither as normal config (%1) nor as demo "
+"config (%2)."
 msgstr ""
 "404: Konfigurations-Datei nicht gefunden. Weder als normale Konfiguration "
 "(%1) noch als Demo-Konfiguration (%2)"

@@ -13,7 +13,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
   */
   construct: function () {
     this.base(arguments);
-    qx.event.message.Bus.subscribe('cv.manager.action', this._onAction, this);
+    qx.event.message.Bus.subscribe('cv.manager.action.*', this._onAction, this);
   },
 
   /*
@@ -71,10 +71,11 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
     },
 
     _onAction: function (ev) {
-      var actionName = ev.getData();
+      var topic = ev.getName();
+      var actionName = topic.split('.').pop();
       var handler = this._getHandler(actionName);
       if (handler) {
-        handler.handleAction(actionName);
+        handler.handleAction(actionName, ev.getData());
       } else {
         this.warn('no action handler found for action: ' + actionName);
       }
@@ -87,6 +88,6 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
   ***********************************************
   */
   destruct: function () {
-    qx.event.message.Bus.subscribe('cv.manager.action', this._onAction, this);
+    qx.event.message.Bus.subscribe('cv.manager.action.*', this._onAction, this);
   }
 });

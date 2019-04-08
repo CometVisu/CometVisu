@@ -214,7 +214,7 @@ qx.Class.define('cv.ui.manager.MenuBar', {
             button = new ButtonClass(label, icon, command);
           }
           button.addListener('execute', function () {
-            qx.event.message.Bus.dispatchByName('cv.manager.action', id);
+            qx.event.message.Bus.dispatchByName('cv.manager.action.' + id);
           }, this);
           var menu = this.getChildControl(buttonConf.menu);
           if (!menu) {

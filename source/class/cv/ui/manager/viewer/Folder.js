@@ -3,6 +3,15 @@
  */
 qx.Class.define('cv.ui.manager.viewer.Folder', {
   extend: cv.ui.manager.viewer.AbstractViewer,
+  implement: [
+    qx.ui.core.IMultiSelection,
+    qx.ui.form.IModelSelection
+  ],
+  include: [
+    qx.ui.core.MMultiSelectionHandling,
+    qx.ui.core.MRemoteChildrenHandling,
+    qx.ui.form.MModelSelection
+  ],
 
   /*
  ***********************************************
@@ -30,6 +39,27 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     },
     TITLE: qx.locale.Manager.tr('Show folder'),
     ICON: cv.theme.dark.Images.getIcon('folder', 18)
+  },
+
+  /*
+  ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    /**
+     * This event is fired after a list item was added to the list. The
+     * {@link qx.event.type.Data#getData} method of the event returns the
+     * added item.
+     */
+    addItem : "qx.event.type.Data",
+
+    /**
+     * This event is fired after a list item has been removed from the list.
+     * The {@link qx.event.type.Data#getData} method of the event returns the
+     * removed item.
+     */
+    removeItem : "qx.event.type.Data"
   },
 
   /*
@@ -70,6 +100,9 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     _controller: null,
     _isImageRegex: null,
 
+    /** @type {Class} Pointer to the selection manager to use */
+    SELECTION_MANAGER : qx.ui.core.selection.ScrollArea,
+
     _getDelegate: function () {
       var labelConverter = this.getLabelConverter();
       var converter = labelConverter ? {
@@ -78,7 +111,9 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       return {
         configureItem: function (item) {
           item.setAppearance('cv-file-item');
-        },
+          item.addListener('dbltap', this._onDblTap, this);
+          item.addListener('contextmenu', this._onFsItemRightClick, this);
+        }.bind(this),
         bindItem: function (controller, item, index) {
           controller.bindProperty('', 'model', null, item, index);
           controller.bindProperty('name', 'label', converter, item, index);
@@ -101,6 +136,21 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       };
     },
 
+    _onChangeSelection: function (ev) {
+      console.log(ev.getData());
+    },
+
+    _onFsItemRightClick: function (ev) {
+      var file = ev.getTarget().getModel();
+      var menu = cv.ui.manager.contextmenu.FileItem.getInstance();
+      menu.configure(file);
+      ev.getTarget().setContextMenu(menu);
+    },
+
+    _onDblTap: function (ev) {
+      qx.event.message.Bus.dispatchByName('cv.manager.open', ev.getTarget().getModel());
+    },
+
     /**
      *
      * @param callback {Function} callback that is called after the model is ready (only one parameter: the model)
@@ -120,6 +170,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       if (!this._controller) {
         this._controller = new qx.data.controller.List(null, container);
         this._controller.setDelegate(this._getDelegate());
+        this._controller.addListener('changeSelection', this._onChangeSelection, this);
       }
       this._createModel(function (newModel) {
         model.replace(newModel);
@@ -145,6 +196,28 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         });
         this._controller.setModel(filtered);
       }
+    },
+
+    getChildrenContainer: function () {
+      return this.getChildControl('list');
+    },
+
+    /**
+     * Handle child widget adds on the content pane
+     *
+     * @param e {qx.event.type.Data} the event instance
+     */
+    _onAddChild : function(e) {
+      this.fireDataEvent("addItem", e.getData());
+    },
+
+    /**
+     * Handle child widget removes on the content pane
+     *
+     * @param e {qx.event.type.Data} the event instance
+     */
+    _onRemoveChild : function(e) {
+      this.fireDataEvent("removeItem", e.getData());
     },
 
     // overridden
@@ -174,6 +247,10 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
 
         case 'list':
           control = new qx.ui.container.Composite(new qx.ui.layout.Flow(8, 8));
+
+          // Used to fire item add/remove events
+          control.addListener("addChildWidget", this._onAddChild, this);
+          control.addListener("removeChildWidget", this._onRemoveChild, this);
           this.getChildControl('scroll').add(control);
           break;
       }

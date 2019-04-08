@@ -33,6 +33,12 @@ qx.Class.define('cv.ui.manager.Start', {
     appearance: {
       refine: true,
       init: 'cv-start'
+    },
+
+    selectedItem: {
+      check: 'cv.ui.manager.model.FileItem',
+      nullable: true,
+      apply: '_applySelectedItem'
     }
   },
 
@@ -43,6 +49,7 @@ qx.Class.define('cv.ui.manager.Start', {
   */
   members: {
     _configRegex: null,
+    _ignoreSelectionChanges: false,
 
     save: function () {},
     getCurrentContent: function () {},
@@ -69,6 +76,30 @@ qx.Class.define('cv.ui.manager.Start', {
       }, this);
     },
 
+    _onChangeSelection: function (ev) {
+      if (this._ignoreSelectionChanges === false) {
+        var list = ev.getTarget();
+        var selection = ev.getData();
+        this._ignoreSelectionChanges = true;
+
+        // unselect the other lists
+        ['configs', 'demo-configs', 'media'].forEach(function (name) {
+          var control = this.getChildControl(name);
+          if (control !== list) {
+            control.resetSelection();
+          }
+        }, this);
+        this._ignoreSelectionChanges = false;
+        if (selection.length > 0) {
+          this.setSelectedItem(selection[0].getModel());
+        }
+      }
+    },
+
+    _applySelectedItem: function (value) {
+
+    },
+
     // overridden
     _createChildControlImpl : function(id) {
        var control;
@@ -93,6 +124,7 @@ qx.Class.define('cv.ui.manager.Start', {
              },
              file: cv.ui.manager.model.FileItem.ROOT
            });
+           control.addListener('changeSelection', this._onChangeSelection, this);
            this._add(control);
            break;
 
@@ -113,6 +145,7 @@ qx.Class.define('cv.ui.manager.Start', {
                return configName ? qx.lang.String.firstUp(configName) : '<Default>';
              }
            });
+           control.addListener('changeSelection', this._onChangeSelection, this);
            this._add(control);
            break;
 
@@ -126,6 +159,7 @@ qx.Class.define('cv.ui.manager.Start', {
            control.set({
              showTextFilter: false
            });
+           control.addListener('changeSelection', this._onChangeSelection, this);
            this._add(control, {flex: 1});
        }
 

@@ -1,0 +1,254 @@
+/**
+ *
+ */
+qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
+  extend: qx.ui.menu.Menu,
+  type: 'singleton',
+
+  /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function () {
+    this.base(arguments);
+    this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
+    this._init();
+    this._dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('medium'));
+    this._timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('medium'));
+  },
+
+  /*
+  ***********************************************
+    MEMBERS
+  ***********************************************
+  */
+  members: {
+    _commandGroup: null,
+    _selectedNode: null,
+    _dateFormat: null,
+    _timeFormat: null,
+
+
+    configure: function (file) {
+      this._selectedNode = file;
+      if (file) {
+        this.getChildControl('delete-button').setLabel(file.isTrash() ?
+          this.tr('Clear') :
+          this.tr('Delete'));
+
+        // create compare menu
+        var compareMenu = this.getChildControl('compare-menu');
+        compareMenu.removeAll();
+        var backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(file);
+        this.getChildControl('compare-with-button').setEnabled(backups.length > 0);
+        backups.sort(function (a, b) {
+          return b.date.getTime() - a.date.getTime();
+        });
+        var group = null;
+        backups.forEach(function (backupEntry) {
+          var date = this._dateFormat.format(backupEntry.date);
+          if (group !== date) {
+            if (group !== null) {
+              compareMenu.add(new qx.ui.menu.Separator());
+            }
+            var groupButton = new qx.ui.menu.Button(date);
+            groupButton.setEnabled(false);
+            compareMenu.add(groupButton);
+            group = date;
+          }
+          var button = new qx.ui.menu.Button(this.tr('Backup from %1', this._timeFormat.format(backupEntry.date)));
+          button.setUserData('file', backupEntry.file);
+          button.addListener('execute', this._onCompareWith, this);
+          compareMenu.add(button);
+        }, this);
+
+        // open with menu
+        var availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(file);
+        var openWithMenu = this.getChildControl('open-with-menu');
+        openWithMenu.removeAll();
+        // this menu only makes sense when there is more than one option to select from
+        this.getChildControl('open-with-button').setEnabled(availableHandlers.length > 1);
+        availableHandlers.sort(function (a, b) {
+          return a.Clazz.constructor.TITLE.toString().localeCompare(b.Clazz.constructor.TITLE.toString());
+        });
+        availableHandlers.forEach(function (handlerConf) {
+          var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE, handlerConf.Clazz.constructor.ICON);
+          button.setUserData('handlerId', handlerConf.Clazz.classname);
+          button.addListener('execute', this._onOpenWith, this);
+          openWithMenu.add(button);
+        }, this);
+
+        // validate button
+        this.getChildControl('validate-config-button').setVisibility(file.isConfigFile() ? 'visible' : 'excluded');
+
+        // replacement button
+        if (file.getType() === 'file') {
+          this.getChildControl('replace-button').show();
+          this._replacementManager.setFilename(file.getName());
+          this._replacementManager.setFolder(file.getParent());
+        } else {
+          this.getChildControl('replace-button').exclude();
+        }
+        // buttons that need write access
+        ['delete-button', 'replace-button', 'rename-button'].forEach(function (controlName) {
+          this.getChildControl(controlName).setEnabled(file.isWriteable());
+        }, this);
+        this.getChildControl('download-button').setEnabled(!file.isFake());
+
+        this.getChildControl('restore-button').setVisibility(file.isInTrash() ? 'visible' : 'excluded');
+      } else {
+        this.getChildControl('delete-button').set({
+          label: this.tr('Delete'),
+          enabled: false
+        });
+        this.getChildControl('replace-button').exclude();
+        this.getChildControl('download-button').setEnabled(false);
+        this.getChildControl('restore-button').exclude();
+      }
+    },
+
+    _init: function () {
+      this.add(new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file')));
+      this.add(new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder')));
+      this.add(new qx.ui.menu.Separator());
+      this.add(this.getChildControl('open-button'));
+      this.add(this.getChildControl('open-with-button'));
+      this.add(this.getChildControl('compare-with-button'));
+      this.add(new qx.ui.menu.Separator());
+      this.add(this.getChildControl('rename-button'));
+      this.add(this.getChildControl('delete-button'));
+      this.add(this.getChildControl('restore-button'));
+      this.add(new qx.ui.menu.Separator());
+      this.add(this.getChildControl('download-button'));
+      var sep = new qx.ui.menu.Separator();
+      var button = this.getChildControl('replace-button');
+      this.add(sep);
+      this.add(button);
+      button.bind('visibility', sep, 'visibility');
+      sep = new qx.ui.menu.Separator();
+      button = this.getChildControl('validate-config-button');
+      button.bind('visibility', sep, 'visibility');
+      this.add(sep);
+      this.add(button);
+    },
+
+    _onCompareWith: function (ev) {
+      var compareWith = ev.getTarget().getUserData('file');
+      qx.event.message.Bus.dispatchByName('cv.manager.compareFiles',
+        new cv.ui.manager.model.CompareFiles(compareWith, this.getSelectedNode())
+      );
+    },
+
+    _onOpenWith: function (ev) {
+      var handlerId = ev.getTarget().getUserData('handlerId');
+      qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
+        file: this._selectedNode,
+        handler: handlerId
+      });
+    },
+
+    _onRename: function () {
+      if (this._selectedNode) {
+        this._selectedNode.setEditing(true);
+      }
+    },
+
+    _onDownload: function () {
+      if (this._selectedNode) {
+        cv.ui.manager.control.FileController.getInstance().download(this._selectedNode);
+      }
+    },
+
+    _onRestore: function () {
+      if (this._selectedNode) {
+        cv.ui.manager.control.FileController.getInstance().restore(this._selectedNode);
+      }
+    },
+
+    _onValidate: function () {
+      if (this._selectedNode) {
+        cv.ui.manager.control.FileController.getInstance().validate(this._selectedNode);
+      }
+    },
+
+    // overridden
+    _createChildControlImpl : function(id) {
+       var control;
+
+       switch (id) {
+         case 'rename-button':
+           control = new qx.ui.menu.Button(this.tr('Rename'), cv.theme.dark.Images.getIcon('rename', 18), this._commandGroup.get('rename'));
+           control.addListener('execute', this._onRename, this);
+           break;
+
+         case 'delete-button':
+           control = new qx.ui.menu.Button(this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
+           control.addListener('execute', function () {
+             qx.event.message.Bus.dispatchByName('cv.manager.action.delete', this._selectedNode);
+           }, this);
+           break;
+
+         case 'download-button':
+           control = new qx.ui.menu.Button(this.tr('Download'), cv.theme.dark.Images.getIcon('download', 18));
+           control.addListener('execute', this._onDownload, this);
+           break;
+
+         case 'open-button':
+           control = new qx.ui.menu.Button(this.tr('Open'), cv.theme.dark.Images.getIcon('open', 18));
+           control.addListener('execute', function () {
+             qx.event.message.Bus.dispatchByName('cv.manager.open', this._selectedNode);
+           }, this);
+           break;
+
+         case 'restore-button':
+           control = new qx.ui.menu.Button(this.tr('Restore'), cv.theme.dark.Images.getIcon('trash', 18));
+           control.exclude();
+           control.addListener('execute', this._onRestore, this);
+           break;
+
+         case 'validate-config-button':
+           control = new qx.ui.menu.Button(this.tr('Validate'), cv.theme.dark.Images.getIcon('validate', 18));
+           control.exclude();
+           control.addListener('execute', this._onValidate, this);
+           break;
+
+         case 'replace-button':
+           control = new com.zenesis.qx.upload.UploadMenuButton(this.tr('Replace'), cv.theme.dark.Images.getIcon('upload', 18));
+           control.exclude();
+           this._replacementManager = new cv.ui.manager.upload.UploadMgr(control);
+           this._replacementManager.setForce(true);
+           this._replacementManager.addWidget(control);
+           break;
+
+         case 'compare-menu':
+           control = new qx.ui.menu.Menu();
+           break;
+
+         case 'compare-with-button':
+           control = new qx.ui.menu.Button(this.tr('Compare with...'), cv.theme.dark.Images.getIcon('compare', 18), null, this.getChildControl('compare-menu'));
+           break;
+
+         case 'open-with-button':
+           control = new qx.ui.menu.Button(this.tr('Open with...'), cv.theme.dark.Images.getIcon('open-with', 18), null, this.getChildControl('open-with-menu'));
+           break;
+
+         case 'open-with-menu':
+           control = new qx.ui.menu.Menu();
+           break;
+       }
+
+       return control || this.base(arguments, id);
+    }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this._commandGroup = null;
+    this._disposeObjects('_dateFormat', '_timeFormat');
+  }
+});

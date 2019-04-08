@@ -17,7 +17,8 @@ qx.Interface.define('cv.ui.manager.IActionHandler', {
     /**
      * Executes the action handling.
      * @param actionName {String} action name
+     * @param data {var} action payload
      */
-    handleAction: function (actionName) {}
+    handleAction: function (actionName, data) {}
   }
 });

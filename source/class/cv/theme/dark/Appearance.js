@@ -37,8 +37,8 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     'cv-start/demo-configs-title': 'cv-start/media-title',
 
     'cv-file-item': {
-      include: 'atom',
-      alias: 'atom',
+      include: 'listitem',
+      alias: 'listitem',
 
       style: function (states) {
         return  {

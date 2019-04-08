@@ -144,7 +144,7 @@ qx.Class.define('cv.ui.manager.Main', {
       return ['close', 'quit', 'hidden-config', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload'].includes(actionName);
     },
 
-    handleAction: function (actionName) {
+    handleAction: function (actionName, data) {
       switch (actionName) {
         case 'hidden-config':
           this._onOpenHiddenConfig();
@@ -177,7 +177,7 @@ qx.Class.define('cv.ui.manager.Main', {
           break;
 
         case 'delete':
-          this._onDelete();
+          this._onDelete(data);
           break;
 
         case 'upload':
@@ -459,8 +459,8 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
-    _onDelete: function () {
-      var item = this.getCurrentSelection();
+    _onDelete: function (file) {
+      var item = file || this.getCurrentSelection();
       if (item) {
         var message;
         if (item.isTrash()) {
