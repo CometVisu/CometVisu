@@ -74,6 +74,7 @@ or `here <http://de.selfhtml.org/helferlein/farben.htm>`__
     :glob:
 
     install/index
+    tutorial/index
     config/index
     colab/index
     devel/index

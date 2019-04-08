@@ -10,7 +10,7 @@ Video
 .. raw:: html
 
     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; margin-bottom: 24px;">
-        <iframe src="https://youtu.be/ONFb_gxTaPk" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+      <iframe src="https://www.youtube-nocookie.com/embed/ONFb_gxTaPk" style="position:absolute;width:100%;height:100%" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
 Einzelschritte
@@ -37,7 +37,7 @@ Soll      3/3/30 DPT:9.001
 Erste Visu - in unter einer halben Minute
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Im :doc:`Manager <manager>` wird von der Default-Konfig "Editieren" ausgewählt:
+Im :ref:`Manager <manager>` wird von der Default-Konfig "Editieren" ausgewählt:
 
 .. figure:: _static/first_steps01.png
    :scale: 50 %
@@ -65,7 +65,6 @@ In diesem Menü wird das :ref:`info-Widget <info>` ausgewählt...
 
 .. figure:: _static/first_steps05.png
    :scale: 50 %
-
 
 ... und über "+" wird das Info-Widget als Kind-Element der Seite
 (:ref:`page <page>`) "Start" hinzugefügt:
