@@ -16,6 +16,7 @@
   "editor": "/latest/manual/config/editor.html#editor", 
   "enablecache": "/latest/manual/config/url-params.html#enablecache", 
   "flavour": "/latest/manual/config/flavour.html#flavour", 
+  "format": "/latest/manual/config/format.html#format", 
   "gauge": "/latest/manual/config/widgets/plugins/gauge/index.html#gauge", 
   "group": "/latest/manual/config/widgets/group/index.html#group", 
   "hidden-config": "/latest/manual/config/hidden-config.html#hidden-config", 
