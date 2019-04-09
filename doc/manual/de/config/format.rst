@@ -1,5 +1,7 @@
 .. replaces:: CometVisu/0.8.x/format/de
 
+.. _format:
+
 Format
 ======
 
