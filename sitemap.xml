@@ -1516,6 +1516,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/0.11/manual/tutorial/first_steps.html</loc>
+    <lastmod>2019-04-09</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/en/0.11/manual/tutorial/index.html</loc>
+    <lastmod>2019-04-09</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/en/0.11/resource/qx/static/blank.html</loc>
     <lastmod>2019-04-09</lastmod>
     <priority>0.5</priority>
@@ -2922,6 +2932,16 @@
   </url>
   <url>
     <loc>http://www.cometvisu.org/CometVisu/de/0.11/manual/devel/transport/long-polling.html</loc>
+    <lastmod>2019-04-09</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11/manual/tutorial/first_steps.html</loc>
+    <lastmod>2019-04-09</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/0.11/manual/tutorial/index.html</loc>
     <lastmod>2019-04-09</lastmod>
     <priority>0.5</priority>
   </url>
