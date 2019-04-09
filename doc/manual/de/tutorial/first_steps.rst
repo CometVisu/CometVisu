@@ -31,7 +31,7 @@ Soll      3/3/30 DPT:9.001
 .. IMPORTANT::
 
   Es ist ziemlich unwahrscheinlich, dass die eigene Installation
-  die gleichen Adressen für diees Werte verwendet. Daher bitte prüfen und die
+  die gleichen Adressen für diese Werte verwendet. Daher bitte prüfen und die
   Werte beim Nachstellen dieses Tutorials entsprechend anpassen!
 
 Erste Visu - in unter einer halben Minute
