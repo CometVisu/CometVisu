@@ -31,9 +31,11 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
 
         // do not use file types that are longer than 4 chars (not enough space)
         if (type.length <= 4) {
+          var handled = false;
           switch (type) {
             case 'xml':
               control.setValue('</>');
+              handled = true;
               break;
 
             case 'js':
@@ -41,15 +43,52 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
             case 'css':
             case 'conf':
               control.setValue(type);
+              handled = true;
               break;
           }
-          control.show();
+          if (handled) {
+            control.show();
+          } else {
+            control.exclude();
+          }
         } else {
           control.exclude();
         }
       } else {
         this.getChildControl('file-type').exclude();
       }
+    },
+
+    _applyIcon: function (value, old) {
+      this.base(arguments, value, old);
+      if (value && !value.startsWith('@')) {
+        var control = this.getChildControl('icon');
+        if (!cv.ui.manager.viewer.Image.getImageData(value)) {
+          // wait for image to be loaded
+          control.addListenerOnce('loaded', this.__scaleWithAspect, this);
+        } else {
+          this.__scaleWithAspect();
+        }
+      }
+    },
+
+    __scaleWithAspect: function () {
+      var data = cv.ui.manager.viewer.Image.getImageData(this.getIcon());
+      var control = this.getChildControl('icon');
+      var sizeHint = control.getSizeHint();
+      var width = sizeHint.width;
+      var height = Math.round(1 / data.aspectRatio * width);
+      var padding = [0, 0, 0, 0];
+      if (height > sizeHint.height) {
+        height = sizeHint.height;
+        width = Math.round(data.aspectRatio * height);
+        padding[1] = Math.round((sizeHint.width - width) / 2);
+        padding[3] = padding[1];
+      } else {
+        padding[0] = Math.round((sizeHint.height - height) / 2);
+        padding[2] = padding[0];
+      }
+      control.setPadding(padding);
     },
 
     _maintainFileTypePosition: function () {

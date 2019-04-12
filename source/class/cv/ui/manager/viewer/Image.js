@@ -12,7 +12,6 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
   construct: function () {
     this.base(arguments);
     this.addListener('resize', this._scaleImage, this);
-    this._scaleImage();
   },
 
   /*
@@ -35,7 +34,31 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
   statics: {
     SUPPORTED_FILES: ['jpg', 'jpeg', 'png', 'gif', 'svg'],
     TITLE: qx.locale.Manager.tr('Show image'),
-    ICON: cv.theme.dark.Images.getIcon('image', 18)
+    ICON: cv.theme.dark.Images.getIcon('image', 18),
+
+    /**
+     * Returns size information for images
+     * @param source {String} path to image
+     * @returns {{width: *, aspectRatio: number, height: *}|any | ({aspectRatio: number} & Map)}
+     */
+    getImageData: function (source) {
+      var data = qx.util.ResourceManager.getInstance().getData(source);
+      if (data) {
+        return {
+          width: data[0],
+          height: data[1],
+          aspectRatio: data[0] / data[1]
+        };
+      } else {
+        data = qx.io.ImageLoader.getSize(source);
+        if (data && data.width && data.height) {
+          return Object.assign({
+            aspectRatio: data.width / data.height
+          }, data);
+        }
+      }
+      return null;
+    }
   },
 
   /*
@@ -49,7 +72,11 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
       if (file) {
         control.setIcon(file.getServerPath());
         control.setLabel(file.getFullPath());
-        new qx.util.DeferredCall(this._scaleImage, this).schedule();
+        if (!cv.ui.manager.viewer.Image.getImageData(file.getServerPath())) {
+          control.getChildControl('icon').addListenerOnce('loaded', this._scaleImage, this);
+        } else {
+          this._scaleImage();
+        }
       } else {
         control.resetIcon();
         control.resetLabel();
@@ -58,32 +85,27 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
 
     _scaleImage: function () {
       var bounds = this.getBounds();
+      if (!bounds) {
+        this.addListenerOnce('appear', this._scaleImage, this);
+        return;
+      }
       var icon = this.getChildControl('image').getChildControl('icon');
-      var iconBounds = icon.getBounds();
+      var data = cv.ui.manager.viewer.Image.getImageData(this.getFile().getServerPath());
       var paddingX = 10;
       var paddingY = 20;
-      if (bounds && iconBounds && iconBounds.width && iconBounds.height) {
-        // calculate new max sizes is necessary
-        var availableHeight = bounds.height - paddingY * 2;
-        var availableWidth = bounds.width - paddingX * 2;
-        var diffX = iconBounds.width - availableWidth;
-        var diffY = iconBounds.height - availableHeight;
-        if (diffX > 0 || diffY > 0) {
-          var aspectRatio = iconBounds.width / iconBounds.height;
-          var newHeight = availableHeight;
-          var newWidth = availableHeight * aspectRatio;
-          if (newWidth > availableWidth) {
-            newWidth = availableWidth;
-            newHeight = availableWidth / aspectRatio;
-          }
-          this.getChildControl('image').getChildControl('icon').set({
-            maxWidth: Math.floor(newWidth),
-            maxHeight: Math.floor(newHeight),
-            scale: true
-          });
-        }
-
+      var availableHeight = bounds.height - paddingY * 2;
+      var availableWidth = bounds.width - paddingX * 2;
+      var width = availableWidth;
+      var height = Math.round(1 / data.aspectRatio * width);
+      if (height > availableHeight) {
+        height = availableHeight;
+        width = Math.round(data.aspectRatio * availableHeight);
       }
+      icon.set({
+        width: width,
+        height: height,
+        scale: true
+      });
     }
   }
 });

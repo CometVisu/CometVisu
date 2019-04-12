@@ -313,8 +313,8 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
-    'cv-filesystem': {},
-    'cv-filesystem/open-with-button': 'menu-button',
-    'cv-filesystem/compare-with-button': 'menu-button'
+    'cv-file-contextmenu': 'menu',
+    'cv-file-contextmenu/open-with-button': 'menu-button',
+    'cv-file-contextmenu/compare-with-button': 'menu-button'
   }
 });

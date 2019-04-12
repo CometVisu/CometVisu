@@ -20,6 +20,18 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
   /*
   ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    appearance: {
+      refine: true,
+      init: 'cv-file-contextmenu'
+    }
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -136,7 +148,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     _onCompareWith: function (ev) {
       var compareWith = ev.getTarget().getUserData('file');
       qx.event.message.Bus.dispatchByName('cv.manager.compareFiles',
-        new cv.ui.manager.model.CompareFiles(compareWith, this.getSelectedNode())
+        new cv.ui.manager.model.CompareFiles(compareWith, this._selectedNode)
       );
     },
 
