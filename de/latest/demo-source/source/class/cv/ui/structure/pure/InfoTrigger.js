@@ -46,7 +46,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
     'shortDownValue': {
       check: "Number",
-      init: 0
+      nullable: true
     },
     'downLabel': {
       check: "String",
@@ -58,7 +58,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
     'shortUpValue': {
       check: "Number",
-      init: 0
+      nullable: true
     },
     'upLabel': {
       check: "String",
@@ -169,7 +169,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
 
     __action: function (isShort, isDown) {
       var value;
-      if (isShort) {
+      if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
         value = isDown ? this.getShortDownValue() : this.getShortUpValue();
       } else {
         value = isDown ? this.getDownValue() : this.getUpValue();

@@ -50,7 +50,7 @@ Iconset <http://knx-user-forum.de/knx-uf-iconset/>`__
 
 An overview of the available icons can be found most easily on
 the computer on which the CometVisu is running
-``http://<IP>/visu/icon/knx-uf-iconset/showicons.php``
+``http://<IP>/visu/resource/icon/iconlist.html``
 
 You can use mapping to display icons instead of values
 (for example, 0 or 1).

@@ -113,7 +113,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         // set initial value
         slider.setValue(parseFloat(this.getValue()));
 
-        slider.on("changeValue", qx.util.Function.throttle(this._onChangeValue, 250, {trailing: false}), this);
+        slider.on("changeValue", qx.util.Function.throttle(this._onChangeValue, 250, {trailing: true}), this);
 
         this.addListener("changeValue", function (ev) {
           this.__skipUpdatesFromSlider = true;
