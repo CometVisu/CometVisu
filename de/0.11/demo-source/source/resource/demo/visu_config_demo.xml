@@ -128,7 +128,7 @@
         ]]></status>
       <status type="html" hrefextend="config"><![CDATA[
           - <a href="check_config.php">Check Config</a>
-          <div style="float:right;padding-right:0.5em">Version: 0.11.0</div>
+          <div style="float:right;padding-right:0.5em">Version: 0.11.1</div>
         ]]></status>
     </statusbar>
   </meta>
