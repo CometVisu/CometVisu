@@ -213,7 +213,6 @@ describe("testing a trigger", function() {
         type: "pointerup"
       }));
       Reg.fireEvent(actor, "pointerup", qx.event.type.Pointer, [nativeEvent, actor, actor, true, true]);
-      qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 

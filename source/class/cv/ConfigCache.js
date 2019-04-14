@@ -59,6 +59,15 @@ qx.Class.define('cv.ConfigCache', {
       var model = cv.data.Model.getInstance();
       var cache = this.getData();
       cv.Config.configSettings = cache.configSettings;
+      // restore formulas
+      if (cv.Config.configSettings.mappings) {
+        Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
+          var mapping = cv.Config.configSettings.mappings[name];
+          if (mapping && mapping.formulaSource) {
+            mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
+          }
+        }, this);
+      }
       model.setWidgetDataModel(cache.data);
       model.setAddressList(cache.addresses);
       qx.bom.element.Attribute.set(body, "html", cv.ConfigCache.getBody());
