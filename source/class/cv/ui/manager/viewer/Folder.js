@@ -115,6 +115,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         configureItem: function (item) {
           item.addListener('dbltap', this._onDblTap, this);
           item.addListener('contextmenu', this._onFsItemRightClick, this);
+          item.setShowFileActions(true);
         }.bind(this),
         bindItem: function (controller, item, index) {
           controller.bindProperty('', 'model', null, item, index);

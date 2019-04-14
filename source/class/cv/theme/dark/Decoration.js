@@ -50,6 +50,13 @@ qx.Theme.define("cv.theme.dark.Decoration", {
         width: [1, 0, 1, 0],
         color: 'background-main'
       }
+    },
+
+    'file-action-button': {
+      style: {
+        width: 1,
+        color: 'text'
+      }
     }
   }
 });

@@ -16,20 +16,21 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     this.__defaults = [];
 
     // register viewers
-    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.viewer.Image);
-    this.registerFileHandler(cv.ui.manager.viewer.Config.SUPPORTED_FILES, cv.ui.manager.viewer.Config);
-    this.registerFileHandler(cv.ui.manager.viewer.Icons.SUPPORTED_FILES, cv.ui.manager.viewer.Icons);
-    this.registerFileHandler(cv.ui.manager.viewer.Folder.SUPPORTED_FILES, cv.ui.manager.viewer.Folder);
-    this.registerFileHandler(null, cv.ui.manager.Start);
+    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.viewer.Image, {type: 'view'});
+    this.registerFileHandler(cv.ui.manager.viewer.Config.SUPPORTED_FILES, cv.ui.manager.viewer.Config, {type: 'view'});
+    this.registerFileHandler(cv.ui.manager.viewer.Icons.SUPPORTED_FILES, cv.ui.manager.viewer.Icons, {type: 'view'});
+    this.registerFileHandler(cv.ui.manager.viewer.Folder.SUPPORTED_FILES, cv.ui.manager.viewer.Folder, {type: 'view'});
+    this.registerFileHandler(null, cv.ui.manager.Start, {type: 'view'});
 
     // register the basic editors
-    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source);
+    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source, {type: 'edit'});
     this.registerFileHandler(/visu_config(_.+)?\.xml/, cv.ui.manager.editor.Xml, {
-      preview: false
+      preview: false,
+      type: 'edit'
     });
-    this.registerFileHandler(cv.ui.manager.model.CompareFiles, cv.ui.manager.editor.Diff, true);
+    this.registerFileHandler(cv.ui.manager.model.CompareFiles, cv.ui.manager.editor.Diff, {type: 'view'});
 
-    this.registerFileHandler("hidden.php", cv.ui.manager.editor.Config, true);
+    this.registerFileHandler("hidden.php", cv.ui.manager.editor.Config, {type: 'edit'});
 
     cv.ui.manager.model.Preferences.getInstance().addListener('changeDefaultConfigEditor', this._onChangesDefaultConfigEditor, this);
     this._onChangesDefaultConfigEditor();
@@ -89,13 +90,13 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
       this.__registry[clazz.classname] = config;
     },
 
-    getFileHandler: function (file) {
-      var editors = [];
+    getFileHandler: function (file, type) {
+      var handlers = [];
       if (!(file instanceof cv.ui.manager.model.CompareFiles)) {
         // check if there is a default first
         var defaultHandler;
         Object.keys(this.__defaults).some(function (key) {
-          if (this.__defaults[key].regex.test(file.getFullPath())) {
+          if (this.__defaults[key].regex.test(file.getFullPath()) && (!type || this.__defaults[key].type === type)) {
             defaultHandler = this.getFileHandlerById(this.__defaults[key].clazz.classname);
             return true;
           }
@@ -107,22 +108,22 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
       Object.keys(this.__registry).forEach(function (classname) {
         var config = this.__registry[classname];
-        if (this.__canHandle(config, file)) {
-          editors.push(config);
+        if (this.__canHandle(config, file) && (!type || config.type === type)) {
+          handlers.push(config);
         }
       }, this);
-      if (editors.length === 0) {
+      if (handlers.length === 0) {
         // no editors found
         return null;
-      } else if (editors.length === 1) {
-        return editors[0];
+      } else if (handlers.length === 1) {
+        return handlers[0];
       } else {
         // sort by selector priority (instance, fullpath, filename, regex)
-        editors.sort(function (a, b) {
+        handlers.sort(function (a, b) {
           return a.priority - b.priority;
         });
-        // no default editor, just take the first one
-        return editors[0];
+        // no default handler, just take the first one
+        return handlers[0];
       }
     },
 
@@ -130,10 +131,10 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
       return this.__registry[handlerId];
     },
 
-    hasFileHandler: function (file) {
+    hasFileHandler: function (file, type) {
       return Object.keys(this.__registry).some(function (classname) {
         var config = this.__registry[classname];
-        return this.__canHandle(config, file);
+        return this.__canHandle(config, file) && (!type || config.type === type);
       }, this);
     },
 
@@ -181,12 +182,12 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
       return false;
     },
 
-    getAllFileHandlers: function (file) {
+    getAllFileHandlers: function (file, type) {
       if (qx.core.Environment.get('qx.debug')) {
         qx.core.Assert.assertInstance(file, cv.ui.manager.model.FileItem);
       }
       return  Object.keys(this.__registry).filter(function (key) {
-        return this.__canHandle(this.__registry[key], file);
+        return this.__canHandle(this.__registry[key], file) && (!type || this.__registry[key].type === type);
       }, this).map(function (key) {
         return this.__registry[key];
       }, this);
@@ -199,11 +200,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
   ***********************************************
   */
   destruct: function () {
-    // cleanup editor instances
-    if (this.__defaultEditor.instance) {
-      this.__defaultEditor.instance.dispose();
-      this.__defaultEditor.instance = null;
-    }
+    // cleanup handler instances
     Object.keys(this.__registry).forEach(function (regex) {
       if (this.__registry[regex].instance) {
         this.__registry[regex].instance.dispose();

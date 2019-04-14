@@ -40,16 +40,15 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       include: 'listitem',
       alias: 'listitem',
 
-      style: function (states) {
+      style: function () {
         return  {
           iconPosition: 'top',
           font: 'small',
-          width: 100,
-          height: 100
+          width: 130
         };
       }
     },
-    'cv-file-item/icon': {
+    'cv-file-item/atom/icon': {
       include: 'atom/icon',
       style: function () {
         return  {
@@ -59,6 +58,20 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
+    'cv-file-item/open-menu': 'menu',
+    'cv-file-item/download-button': {
+      include: 'button',
+      alias: 'button',
+
+      style: function () {
+        return {
+          height: 30,
+          show: 'icon'
+        };
+      }
+    },
+    'cv-file-item/open-button': 'cv-file-item/download-button',
+    'cv-file-item/delete-button': 'cv-file-item/download-button',
     'cv-icon': 'cv-file-item',
     'cv-icon/icon': {
       include: 'atom/icon',
@@ -124,6 +137,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
           padding: 8,
           cursor: 'pointer',
           alignY: 'middle'
+        };
+      }
+    },
+
+    'open-with-button': {
+      include: 'menu-button',
+      alias: 'menu-button',
+
+      style: function (states) {
+        return {
+          font: states.default ? 'bold' : 'default'
         };
       }
     },

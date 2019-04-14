@@ -45,6 +45,10 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     configure: function (file) {
       this._selectedNode = file;
       if (file) {
+        var folder = file.getType() === 'folder' ? file : file.getParent();
+        console.log(folder);
+        this.getChildControl('new-file-button').setEnabled(folder ? folder.isWriteable() : false);
+        this.getChildControl('new-folder-button').setEnabled(folder ? folder.isWriteable() : false);
         this.getChildControl('delete-button').setLabel(file.isTrash() ?
           this.tr('Clear') :
           this.tr('Delete'));
@@ -121,8 +125,8 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     },
 
     _init: function () {
-      this.add(new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file')));
-      this.add(new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder')));
+      this.add(this.getChildControl('new-file-button'));
+      this.add(this.getChildControl('new-folder-button'));
       this.add(new qx.ui.menu.Separator());
       this.add(this.getChildControl('open-button'));
       this.add(this.getChildControl('open-with-button'));
@@ -189,6 +193,14 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
        var control;
 
        switch (id) {
+         case 'new-file-button':
+           control = new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file'));
+           break;
+
+         case 'new-folder-button':
+           control = new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder'));
+           break;
+
          case 'rename-button':
            control = new qx.ui.menu.Button(this.tr('Rename'), cv.theme.dark.Images.getIcon('rename', 18), this._commandGroup.get('rename'));
            control.addListener('execute', this._onRename, this);
