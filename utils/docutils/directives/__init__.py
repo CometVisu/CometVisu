@@ -22,6 +22,7 @@ try:
 except:
     import pbs as sh
 import json
+import re
 import os
 import configparser
 
@@ -51,3 +52,13 @@ class Version:
                 data = json.load(data_file)
                 cls._source_version = data['version']
         return cls._source_version
+
+    @classmethod
+    def get_doc_target_path(cls):
+        """ returns the target sub directory where the documentation should be stored."""
+        ver = cls.get_doc_version()
+        match = re.match("([0-9]+.[0-9]+).[0-9]+.*", ver)
+        if match:
+            return match.group(1)
+        else:
+            return ver
