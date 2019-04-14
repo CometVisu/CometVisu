@@ -75,7 +75,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         var noCacheSuffix = '?' + Math.random();
         window.require([
           'xml!./resource/visu_config.xsd' + noCacheSuffix,
-          'xml!*./resource/manager/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
+          'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
           'vs/editor/editor.main'
         ], function (schema, qxLib) {
           this.__schema = schema;
