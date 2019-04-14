@@ -55,7 +55,6 @@ releaselevel = 'dev' if version[-4:] == '-dev' else 'release'
 release = ''
 
 versionpath = version
-root_dir = os.path.abspath(os.path.join('..', '..', '..'))
 match = re.match("([0-9]+.[0-9]+).[0-9]+.*", version)
 if match:
     versionpath = match.group(1)
