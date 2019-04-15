@@ -354,6 +354,9 @@ qx.Class.define('cv.ui.manager.Main', {
 
     closeFile: function (openFile) {
       var file = openFile.getFile();
+      if (!openFile.isCloseable()) {
+        return;
+      }
       openFile.resetPermanent();
       var currentSelection = this._openFilesController.getSelection();
       var selectionIndex = -1;
