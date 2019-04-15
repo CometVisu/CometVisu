@@ -23,7 +23,7 @@ msgstr ""
 msgid "Enable on reload:"
 msgstr ""
 
-#: cv/ui/manager/Main.js:726 cv/Application.js:308
+#: cv/ui/manager/Main.js:706 cv/Application.js:308
 msgid "Reload"
 msgstr ""
 
@@ -154,69 +154,69 @@ msgstr ""
 msgid "Cannot open file: \"%1\""
 msgstr ""
 
-#: cv/ui/manager/Main.js:467
+#: cv/ui/manager/Main.js:456
 msgid "Do you really want to clear the trash?"
 msgstr ""
 
-#: cv/ui/manager/Main.js:470
+#: cv/ui/manager/Main.js:459
 msgid "Do you really want to delete this file from the trash?"
 msgstr ""
 
-#: cv/ui/manager/Main.js:471
+#: cv/ui/manager/Main.js:460
 msgid "Do you really want to delete this folder from the trash?"
 msgstr ""
 
-#: cv/ui/manager/Main.js:474
+#: cv/ui/manager/Main.js:463
 msgid "Do you really want to delete this file?"
 msgstr ""
 
-#: cv/ui/manager/Main.js:475
+#: cv/ui/manager/Main.js:464
 msgid "Do you really want to delete this folder?"
 msgstr ""
 
-#: cv/ui/manager/Main.js:481
+#: cv/ui/manager/Main.js:470
 msgid "Confirm deletion"
 msgstr ""
 
-#: cv/ui/manager/Main.js:509
+#: cv/ui/manager/Main.js:498
 msgid ""
 "Please enter the name of the new configuration (without \"visu_config_\" at "
 "the beginning and \".xml\" at the end)"
 msgstr ""
 
-#: cv/ui/manager/Main.js:510
+#: cv/ui/manager/Main.js:499
 msgid "A configuration with this name already exists."
 msgstr ""
 
-#: cv/ui/manager/Main.js:512
+#: cv/ui/manager/Main.js:501
 msgid "Please enter the file name."
 msgstr ""
 
-#: cv/ui/manager/Main.js:513
+#: cv/ui/manager/Main.js:502
 msgid "A file with this name already exists."
 msgstr ""
 
-#: cv/ui/manager/Main.js:515
+#: cv/ui/manager/Main.js:504
 msgid "Please enter the folder name."
 msgstr ""
 
-#: cv/ui/manager/Main.js:516
+#: cv/ui/manager/Main.js:505
 msgid "A folder with this name already exists."
 msgstr ""
 
-#: cv/ui/manager/Main.js:694 cv/ui/manager/tree/FileSystem.js:413
+#: cv/ui/manager/contextmenu/FileItem.js:225 cv/ui/manager/Main.js:674
 msgid "Download"
 msgstr ""
 
-#: cv/ui/manager/Main.js:713 cv/ui/manager/tree/FileSystem.js:431
+#: cv/ui/manager/contextmenu/FileItem.js:243 cv/ui/manager/Main.js:693
 msgid "Validate"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:45 cv/ui/manager/tree/FileSystem.js:376
+#: cv/ui/manager/contextmenu/FileItem.js:205 cv/ui/manager/MenuBar.js:45
 msgid "New file"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:50 cv/ui/manager/tree/FileSystem.js:377
+#: cv/ui/manager/contextmenu/FileItem.js:209 cv/ui/manager/MenuBar.js:50
 msgid "New folder"
 msgstr ""
 
@@ -232,8 +232,9 @@ msgstr ""
 msgid "Save as..."
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:79 cv/ui/manager/tree/FileSystem.js:144
-#: cv/ui/manager/tree/FileSystem.js:207 cv/ui/manager/tree/FileSystem.js:406
+#: cv/ui/manager/contextmenu/FileItem.js:56
+#: cv/ui/manager/contextmenu/FileItem.js:126
+#: cv/ui/manager/contextmenu/FileItem.js:218 cv/ui/manager/MenuBar.js:79
 msgid "Delete"
 msgstr ""
 
@@ -285,7 +286,8 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js:124 cv/ui/manager/editor/Config.js:26
+#: cv/ui/manager/MenuBar.js:124 cv/ui/manager/model/FileItem.js:81
+#: cv/ui/manager/editor/Config.js:26
 msgid "Hidden configuration"
 msgstr ""
 
@@ -325,16 +327,52 @@ msgstr ""
 msgid "Preferences"
 msgstr ""
 
-#: cv/ui/manager/Start.js:78
+#: cv/ui/manager/Start.js:124
 msgid "Configurations"
 msgstr ""
 
-#: cv/ui/manager/Start.js:100
+#: cv/ui/manager/Start.js:149
 msgid "Demo configurations"
 msgstr ""
 
-#: cv/ui/manager/Start.js:120
+#: cv/ui/manager/Start.js:173
 msgid "Media files"
+msgstr ""
+
+#: cv/ui/manager/Start.js:189
+msgid "Miscellaneous"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:55
+msgid "Clear"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:78
+msgid "Backup from %1"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:213
+msgid "Rename"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:230
+msgid "Open"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:237
+msgid "Restore"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:249
+msgid "Replace"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:261
+msgid "Compare with..."
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:265
+msgid "Open with..."
 msgstr ""
 
 #: cv/ui/manager/editor/AbstractEditor.js:103
@@ -452,38 +490,6 @@ msgstr ""
 msgid "Diff: %1"
 msgstr ""
 
-#: cv/ui/manager/tree/FileSystem.js:143
-msgid "Clear"
-msgstr ""
-
-#: cv/ui/manager/tree/FileSystem.js:166
-msgid "Backup from %1"
-msgstr ""
-
-#: cv/ui/manager/tree/FileSystem.js:401
-msgid "Rename"
-msgstr ""
-
-#: cv/ui/manager/tree/FileSystem.js:418
-msgid "Open"
-msgstr ""
-
-#: cv/ui/manager/tree/FileSystem.js:425
-msgid "Restore"
-msgstr ""
-
-#: cv/ui/manager/tree/FileSystem.js:437
-msgid "Replace"
-msgstr ""
-
-#: cv/ui/manager/tree/FileSystem.js:449
-msgid "Compare with..."
-msgstr ""
-
-#: cv/ui/manager/tree/FileSystem.js:453
-msgid "Open with..."
-msgstr ""
-
 #: cv/ui/manager/tree/VirtualFsItem.js:83
 msgid "Trash"
 msgstr ""
@@ -516,11 +522,11 @@ msgstr ""
 msgid "%1 is no configuration file"
 msgstr ""
 
-#: cv/ui/manager/viewer/Folder.js:31
+#: cv/ui/manager/viewer/Folder.js:40
 msgid "Show folder"
 msgstr ""
 
-#: cv/ui/manager/viewer/Folder.js:159
+#: cv/ui/manager/viewer/Folder.js:235
 msgid "Filter by name..."
 msgstr ""
 
@@ -528,7 +534,7 @@ msgstr ""
 msgid "Show icons"
 msgstr ""
 
-#: cv/ui/manager/viewer/Image.js:37
+#: cv/ui/manager/viewer/Image.js:36
 msgid "Show image"
 msgstr ""
 
