@@ -208,12 +208,85 @@ describe("testing a trigger", function() {
     expect(actor).not.toHaveClass("switchUnpressed");
 
     setTimeout(function () {
+      expect(spy.calls.count()).toEqual(0);
+
       // up
       nativeEvent = new window.PointerEvent("pointerup", Object.assign(eventData, {
         type: "pointerup"
       }));
       Reg.fireEvent(actor, "pointerup", qx.event.type.Pointer, [nativeEvent, actor, actor, true, true]);
       qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
+      expect(actor).not.toHaveClass("switchPressed");
+      expect(actor).toHaveClass("switchUnpressed");
+
+      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
+      expect(spy.calls.count()).toEqual(1);
+      done();
+    }, 150);
+
+  });
+
+  it('should test the longpress send immediately', function(done) {
+    var res = this.createTestElement("trigger", {
+      value: "1",
+      shortvalue: "2",
+      shorttime: "100",
+      flavour: "potassium",
+      "send-long-on-release": "false"
+    }, '<label>Test</label>', ['1/0/0', '1/0/1'], [
+      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'button'},
+      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'short'}
+    ]);
+
+    this.initWidget(res);
+    var spy = spyOn(cv.TemplateEngine.getInstance().visu, "write");
+    var actor = res.getInteractionElement();
+    expect(actor).not.toBe(null);
+
+    var Reg = qx.event.Registration;
+
+    var eventData = {
+      "bubbles": true,
+      "button": -1,
+      "clientX": 1241,
+      "clientY": 360,
+      "currentTarget": actor,
+      "pageX": 1241,
+      "pageY": 360,
+      "returnValue": true,
+      "screenX": 1241,
+      "screenY": 490,
+      "detail": 0,
+      "view": window,
+      "type": "pointerdown",
+      "x": 1241,
+      "y": 360,
+      "pointerId": 1,
+      "width": 1,
+      "height": 1,
+      "pressure": 0,
+      "tiltX": 0,
+      "tiltY": 0,
+      "pointerType": "mouse",
+      "isPrimary": true
+    };
+    // down
+    var nativeEvent = new window.PointerEvent("pointerdown", Object.assign(eventData, {
+      type: "pointerup"
+    }));
+    Reg.fireEvent(actor, "pointerdown", qx.event.type.Pointer, [nativeEvent, actor, actor, true, true]);
+    expect(actor).toHaveClass("switchPressed");
+    expect(actor).not.toHaveClass("switchUnpressed");
+
+    setTimeout(function () {
+      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
+      expect(spy.calls.count()).toEqual(1);
+
+      // up
+      nativeEvent = new window.PointerEvent("pointerup", Object.assign(eventData, {
+        type: "pointerup"
+      }));
+      Reg.fireEvent(actor, "pointerup", qx.event.type.Pointer, [nativeEvent, actor, actor, true, true]);
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 
