@@ -77,6 +77,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
           overrideIcon: true,
           icon: cv.theme.dark.Images.getIcon('hidden-config', 15),
           type: "file",
+          fake: true,
           displayName: qx.locale.Manager.tr('Hidden configuration')
         });
       }

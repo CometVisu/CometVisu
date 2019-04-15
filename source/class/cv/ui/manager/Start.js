@@ -182,7 +182,7 @@ qx.Class.define('cv.ui.manager.Start', {
              showTextFilter: false
            });
            control.addListener('changeSelection', this._onChangeSelection, this);
-           this._add(control, {flex: 1});
+           this._add(control);
            break;
 
          case 'misc-title':

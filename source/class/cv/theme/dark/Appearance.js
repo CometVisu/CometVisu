@@ -29,9 +29,11 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         return {
           iconPosition: 'right',
           font: 'title',
-          marginTop: 20,
-          marginLeft: 10,
-          cursor: 'pointer'
+          margin: [20, 10, 0, 10],
+          paddingTop: 5,
+          cursor: 'pointer',
+          allowGrowX: true,
+          decorator: 'cv-start-section-title'
         };
       }
     },

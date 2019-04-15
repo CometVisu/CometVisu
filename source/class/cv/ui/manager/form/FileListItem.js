@@ -230,7 +230,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
     _maintainFileActions: function () {
       var file = this.getModel();
       if (this.isShowFileActions() && file) {
-        this.getChildControl('download-button');
+        this.getChildControl('download-button').setEnabled(!file.isFake());
         var editorConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, 'edit');
         var viewerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, 'view');
         var openButton = this.getChildControl('open-button');

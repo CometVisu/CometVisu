@@ -57,6 +57,13 @@ qx.Theme.define("cv.theme.dark.Decoration", {
         width: 1,
         color: 'text'
       }
+    },
+
+    'cv-start-section-title': {
+      style: {
+        width: [1, 0, 0, 0],
+        color: 'text-placeholder'
+      }
     }
   }
 });
