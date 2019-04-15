@@ -3,19 +3,22 @@
  */
 qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
   extend: qx.ui.menu.Menu,
-  type: 'singleton',
 
   /*
   ***********************************************
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
+  construct: function (file) {
     this.base(arguments);
     this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
     this._init();
     this._dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('medium'));
     this._timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('medium'));
+
+    if (file) {
+      this.configure(file);
+    }
   },
 
   /*
@@ -46,7 +49,6 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
       this._selectedNode = file;
       if (file) {
         var folder = file.getType() === 'folder' ? file : file.getParent();
-        console.log(folder);
         this.getChildControl('new-file-button').setEnabled(folder ? folder.isWriteable() : false);
         this.getChildControl('new-folder-button').setEnabled(folder ? folder.isWriteable() : false);
         this.getChildControl('delete-button').setLabel(file.isTrash() ?
@@ -79,6 +81,8 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
           compareMenu.add(button);
         }, this);
 
+        var defaultHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
+
         // open with menu
         var availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(file);
         var openWithMenu = this.getChildControl('open-with-menu');
@@ -90,6 +94,10 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         });
         availableHandlers.forEach(function (handlerConf) {
           var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE, handlerConf.Clazz.constructor.ICON);
+          button.setAppearance('open-with-button');
+          if (defaultHandler.Clazz.classname === handlerConf.Clazz.classname) {
+            button.addState('default');
+          }
           button.setUserData('handlerId', handlerConf.Clazz.classname);
           button.addListener('execute', this._onOpenWith, this);
           openWithMenu.add(button);

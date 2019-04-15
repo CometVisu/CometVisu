@@ -145,7 +145,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
 
     _onFsItemRightClick: function (ev) {
       var file = ev.getTarget().getModel();
-      var menu = cv.ui.manager.contextmenu.FileItem.getInstance();
+      var menu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
       menu.configure(file);
       ev.getTarget().setContextMenu(menu);
     },

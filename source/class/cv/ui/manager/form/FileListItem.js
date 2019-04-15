@@ -12,7 +12,9 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
   */
   construct: function (label, icon, model) {
     this.base(arguments, label, icon);
-    this._setLayout(new qx.ui.layout.Canvas());
+    var layout = new qx.ui.layout.Canvas();
+    layout.setDesktop(true);
+    this._setLayout(layout);
 
     if (model) {
       this.setModel(model);
@@ -20,6 +22,8 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
     }
     this.addListener('pointerover', this._onPointerOver, this);
     this.addListener('pointerout', this._onPointerOut, this);
+
+    cv.ui.manager.model.Preferences.getInstance().addListener('changeDefaultConfigEditor', this._maintainFileActions, this);
   },
 
   /*
@@ -194,36 +198,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
         } else {
           control.exclude();
         }
-
-        // fill the open menu
-        // Viewers first
-        var openMenu = this.getChildControl('open-menu');
-        openMenu.removeAll();
-        var registry = cv.ui.manager.control.FileHandlerRegistry.getInstance();
-        var defaultHandler = registry.getFileHandler(value);
-        var availableViewers = registry.getAllFileHandlers(value, 'view');
-        availableViewers.forEach(function (handlerConf) {
-          var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE, handlerConf.Clazz.constructor.ICON);
-          button.setAppearance('open-with-button');
-          button.setUserData('handlerId', handlerConf.Clazz.classname);
-          button.addListener('execute', this._onOpenWith, this);
-          openMenu.add(button);
-          if (defaultHandler.Clazz.classname === handlerConf.Clazz.classname) {
-            button.addState('default');
-          }
-        }, this);
-
-        var availableEditors = registry.getAllFileHandlers(value, 'edit');
-        availableEditors.forEach(function (handlerConf) {
-          var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE, handlerConf.Clazz.constructor.ICON);
-          button.setAppearance('open-with-button');
-          button.setUserData('handlerId', handlerConf.Clazz.classname);
-          button.addListener('execute', this._onOpenWith, this);
-          openMenu.add(button);
-          if (defaultHandler.Clazz.classname === handlerConf.Clazz.classname) {
-            button.addState('default');
-          }
-        }, this);
+        this.getChildControl('action-menu').configure(value);
 
       } else {
         this.getChildControl('file-type').exclude();
@@ -256,8 +231,28 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
       var file = this.getModel();
       if (this.isShowFileActions() && file) {
         this.getChildControl('download-button');
+        var editorConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, 'edit');
+        var viewerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, 'view');
+        var openButton = this.getChildControl('open-button');
+        if (file.isWriteable() && editorConf) {
+          openButton.setUserData('handlerId', editorConf.Clazz.classname);
+          openButton.set({
+            icon: editorConf.Clazz.ICON || cv.theme.dark.Images.getIcon('edit', 18),
+            enabled: true,
+            toolTipText: editorConf.Clazz.TITLE
+          });
+        } else if(viewerConf) {
+          openButton.setUserData('handlerId', viewerConf.Clazz.classname);
+          openButton.set({
+            icon: viewerConf.Clazz.ICON || cv.theme.dark.Images.getIcon('preview', 18),
+            enabled: true,
+            toolTipText: viewerConf.Clazz.TITLE
+          });
+        } else {
+          openButton.setEnabled(false);
+        }
         this.getChildControl('open-button');
-        this.getChildControl('delete-button').setEnabled(file.isWriteable());
+        this.getChildControl('action-button');
         this.getChildControl('bottom-bar').show();
       } else {
         this.getChildControl('bottom-bar').exclude();
@@ -311,17 +306,17 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
         case 'file-type':
           control = new qx.ui.basic.Label();
           control.set({
-            zIndex: 11,
+            zIndex: 100,
             anonymous: true,
             font: 'title',
             textAlign: 'center',
-            textColor: 'background-main'
+            textColor: 'background-main',
+            minWidth: 70
           });
           var icon = this.getChildControl('atom').getChildControl('icon');
           icon.bind('visibility', control, 'visibility');
           icon.addListener('resize', this._maintainFileTypePosition, this);
-          control.exclude();
-          this._add(control);
+          this._add(control, {width: '100%'});
           break;
 
         case 'bottom-bar':
@@ -338,39 +333,25 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
           this.getChildControl('bottom-bar').add(control);
           break;
 
+        case 'action-menu':
+          control = new cv.ui.manager.contextmenu.FileItem();
+          break;
+
+        case 'action-button':
+          control = new qx.ui.form.MenuButton(null, cv.theme.dark.Images.getIcon('menu', 18), this.getChildControl('action-menu'));
+          this.getChildControl('bottom-bar').add(control);
+          break;
+
         case 'open-button':
-          control = new qx.ui.form.MenuButton(null, cv.theme.dark.Images.getIcon('open-with', 18), this.getChildControl('open-menu'));
-          this.getChildControl('bottom-bar').add(control);
-          break;
-
-        case 'open-menu':
-          control = new qx.ui.menu.Menu();
-          break;
-
-        case 'delete-button':
-          control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('delete', 18));
+          control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('preview', 18));
           control.addListener('execute', function () {
-            qx.event.message.Bus.dispatchByName('cv.manager.action.delete', this.getModel());
+            qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
+              file: this.getModel(),
+              handler: control.getUserData('handlerId')
+            });
           }, this);
           this.getChildControl('bottom-bar').add(control);
           break;
-
-        case 'validate-button':
-          control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('validate', 18));
-          control.addListener('execute', function () {
-            cv.ui.manager.control.FileController.getInstance().validate(this.getModel());
-          }, this);
-          this.getChildControl('bottom-bar').add(control);
-          break;
-
-        case 'replace-button':
-          control = new com.zenesis.qx.upload.UploadButton(null, cv.theme.dark.Images.getIcon('upload', 18));
-          this._replacementManager = new cv.ui.manager.upload.UploadMgr(control);
-          this._replacementManager.setForce(true);
-          this._replacementManager.addWidget(control);
-          this.getChildControl('bottom-bar').add(control);
-          break;
-
       }
 
       return control || this.base(arguments, id);
@@ -387,5 +368,6 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
     this.removeListener('pointerout', this._onPointerOut, this);
 
     this._disposeObjects('_replacementManager');
+    cv.ui.manager.model.Preferences.getInstance().removeListener('changeDefaultConfigEditor', this._maintainFileActions, this);
   }
 });

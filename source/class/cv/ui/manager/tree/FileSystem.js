@@ -129,7 +129,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
 
     _applySelectedNode: function (value) {
       var tree = this.getChildControl('tree');
-      var contextMenu = cv.ui.manager.contextmenu.FileItem.getInstance();
+      var contextMenu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
       contextMenu.configure(value);
       if (value) {
         tree.setContextMenu(contextMenu);

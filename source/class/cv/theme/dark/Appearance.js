@@ -58,7 +58,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
-    'cv-file-item/open-menu': 'menu',
+    'cv-file-item/action-menu': 'menu',
     'cv-file-item/download-button': {
       include: 'button',
       alias: 'button',
@@ -70,8 +70,8 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
+    'cv-file-item/action-button': 'cv-file-item/download-button',
     'cv-file-item/open-button': 'cv-file-item/download-button',
-    'cv-file-item/delete-button': 'cv-file-item/download-button',
     'cv-icon': 'cv-file-item',
     'cv-icon/icon': {
       include: 'atom/icon',

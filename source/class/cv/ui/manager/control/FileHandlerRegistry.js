@@ -96,9 +96,16 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
         // check if there is a default first
         var defaultHandler;
         Object.keys(this.__defaults).some(function (key) {
-          if (this.__defaults[key].regex.test(file.getFullPath()) && (!type || this.__defaults[key].type === type)) {
-            defaultHandler = this.getFileHandlerById(this.__defaults[key].clazz.classname);
-            return true;
+          if (this.__defaults[key].regex.test(file.getFullPath())) {
+            if (type) {
+              var config = this.getFileHandlerById(this.__defaults[key].clazz.classname);
+              if (config.type === type) {
+                defaultHandler = config;
+              }
+            } else {
+              defaultHandler = this.getFileHandlerById(this.__defaults[key].clazz.classname);
+            }
+            return !!defaultHandler;
           }
         }, this);
         if (defaultHandler) {
