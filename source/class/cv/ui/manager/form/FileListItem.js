@@ -300,6 +300,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
             this.bind(prop, control, prop);
           }, this);
           control.setAnonymous(true);
+          control.setToolTipText(this.tr('Double click to open'));
           this._add(control, {top: 0, left: 0, right: 0, bottom: 34});
           break;
 
@@ -327,6 +328,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
 
         case 'download-button':
           control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('download', 18));
+          control.setToolTipText(this.tr('Download file'));
           control.addListener('execute', function () {
             cv.ui.manager.control.FileController.getInstance().download(this.getModel());
           }, this);
@@ -339,6 +341,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
 
         case 'action-button':
           control = new qx.ui.form.MenuButton(null, cv.theme.dark.Images.getIcon('menu', 18), this.getChildControl('action-menu'));
+          control.setToolTipText(this.tr('Other file actions'));
           this.getChildControl('bottom-bar').add(control);
           break;
 

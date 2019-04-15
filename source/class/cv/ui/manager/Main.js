@@ -29,6 +29,9 @@ qx.Class.define('cv.ui.manager.Main', {
     this._draw();
 
     qx.event.message.Bus.subscribe('cv.manager.*', this._onManagerEvent, this);
+
+    // Initialize tooltip manager
+    qx.ui.tooltip.Manager.getInstance();
   },
 
   /*
