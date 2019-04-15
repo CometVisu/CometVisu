@@ -17,7 +17,11 @@ qx.Class.define('cv.ui.manager.Start', {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.VBox(8));
     this._configRegex = /^visu_config_?([^.]+)?\.xml$/;
-    ['configs-title', 'configs', 'demo-configs-title', 'demo-configs', 'media-title', 'media'].forEach(this._createChildControl, this);
+    [ 'configs-title', 'configs',
+      'demo-configs-title', 'demo-configs',
+      'media-title', 'media',
+      'misc-title', 'misc'
+    ].forEach(this._createChildControl, this);
   },
 
   /*
@@ -100,13 +104,26 @@ qx.Class.define('cv.ui.manager.Start', {
 
     },
 
+    _onToggleExpand: function (ev) {
+      var control = this.getChildControl(ev.getTarget().getUserData('control'));
+      if (control.getVisibility() === 'visible') {
+        control.exclude();
+        ev.getTarget().setIcon(cv.theme.dark.Images.getIcon('drop-down', 18));
+      } else {
+        control.show();
+        ev.getTarget().setIcon(cv.theme.dark.Images.getIcon('drop-up', 18));
+      }
+    },
+
     // overridden
     _createChildControlImpl : function(id) {
        var control;
 
        switch (id) {
          case 'configs-title':
-           control = new qx.ui.basic.Label(this.tr('Configurations'));
+           control = new qx.ui.basic.Atom(this.tr('Configurations'), cv.theme.dark.Images.getIcon('drop-up', 18));
+           control.setUserData('control', 'configs');
+           control.addListener('tap', this._onToggleExpand, this);
            this._add(control);
            break;
 
@@ -129,7 +146,9 @@ qx.Class.define('cv.ui.manager.Start', {
            break;
 
          case 'demo-configs-title':
-           control = new qx.ui.basic.Label(this.tr('Demo configurations'));
+           control = new qx.ui.basic.Atom(this.tr('Demo configurations'), cv.theme.dark.Images.getIcon('drop-down', 18));
+           control.setUserData('control', 'demo-configs');
+           control.addListener('tap', this._onToggleExpand, this);
            this._add(control);
            break;
 
@@ -145,12 +164,15 @@ qx.Class.define('cv.ui.manager.Start', {
                return configName ? qx.lang.String.firstUp(configName) : '<Default>';
              }
            });
+           control.exclude();
            control.addListener('changeSelection', this._onChangeSelection, this);
            this._add(control);
            break;
 
          case 'media-title':
-           control = new qx.ui.basic.Label(this.tr('Media files'));
+           control = new qx.ui.basic.Atom(this.tr('Media files'), cv.theme.dark.Images.getIcon('drop-up', 18));
+           control.setUserData('control', 'media');
+           control.addListener('tap', this._onToggleExpand, this);
            this._add(control);
            break;
 
@@ -161,6 +183,33 @@ qx.Class.define('cv.ui.manager.Start', {
            });
            control.addListener('changeSelection', this._onChangeSelection, this);
            this._add(control, {flex: 1});
+           break;
+
+         case 'misc-title':
+           control = new qx.ui.basic.Atom(this.tr('Miscellaneous'), cv.theme.dark.Images.getIcon('drop-up', 18));
+           control.setUserData('control', 'misc');
+           control.addListener('tap', this._onToggleExpand, this);
+           this._add(control);
+           break;
+
+         case 'misc':
+           control = new cv.ui.manager.viewer.Folder();
+           control.set({
+             showTextFilter: false
+           });
+           var fakeFolder = new cv.ui.manager.model.FileItem('fake', 'fake', cv.ui.manager.model.FileItem.ROOT).set({
+             fake: true,
+             type: 'dir',
+             loaded: true
+           });
+           fakeFolder.getChildren().replace([
+             cv.ui.manager.model.FileItem.getHiddenConfigFile(),
+             cv.ui.manager.model.FileItem.getIconFile()
+           ]);
+           control.setFile(fakeFolder);
+           control.addListener('changeSelection', this._onChangeSelection, this);
+           this._add(control, {flex: 1});
+           break;
        }
 
        return control || this.base(arguments, id);

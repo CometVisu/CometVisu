@@ -27,14 +27,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     'cv-start/media-title': {
       style: function () {
         return {
+          iconPosition: 'right',
           font: 'title',
           marginTop: 20,
-          marginLeft: 10
+          marginLeft: 10,
+          cursor: 'pointer'
         };
       }
     },
     'cv-start/configs-title': 'cv-start/media-title',
     'cv-start/demo-configs-title': 'cv-start/media-title',
+    'cv-start/misc-title': 'cv-start/media-title',
 
     'cv-file-item': {
       include: 'listitem',

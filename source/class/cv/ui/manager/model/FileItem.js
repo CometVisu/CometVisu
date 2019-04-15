@@ -35,6 +35,8 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
   */
   statics: {
     ROOT: null,
+    _fakeIconFile: null,
+    _hiddenConfigFakeFile: null,
 
     isConfigFile: function (path) {
       return /visu_config.*\.xml/.test(path);
@@ -46,6 +48,39 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
         return match[1];
       }
       return null;
+    },
+
+    getIconFile: function () {
+      if (!this._fakeIconFile) {
+        this._fakeIconFile = new cv.ui.manager.model.FileItem('CometVisu-Icons', '.', cv.ui.manager.model.FileItem.ROOT).set({
+          type: 'file',
+          overrideIcon: true,
+          writeable: false,
+          readable: true,
+          open: true,
+          loaded: true,
+          hasChildren: false,
+          fake: true,
+          icon: cv.theme.dark.Images.getIcon('icons', 18)
+        });
+      }
+      return this._fakeIconFile;
+    },
+
+    getHiddenConfigFile: function () {
+      if (!this._hiddenConfigFakeFile) {
+        this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem('hidden.php', '.', cv.ui.manager.model.FileItem.ROOT).set({
+          hasChildren: false,
+          loaded: true,
+          readable: true,
+          writeable: true,
+          overrideIcon: true,
+          icon: cv.theme.dark.Images.getIcon('hidden-config', 15),
+          type: "file",
+          displayName: qx.locale.Manager.tr('Hidden configuration')
+        });
+      }
+      return this._hiddenConfigFakeFile;
     }
   },
 
@@ -89,6 +124,12 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     fakeChildren: {
       check: "Array",
       nullable: true
+    },
+
+    displayName: {
+      check: 'String',
+      nullable: true,
+      event: 'changeDisplayName'
     },
 
     /**
@@ -258,8 +299,12 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
     },
 
-    _applyName: function () {
+    _applyName: function (value, old) {
       this.__fullPath = null;
+      if (value && (this.getDisplayName() === null || this.getDisplayName() === old)) {
+        // use name as default display name
+        this.setDisplayName(value);
+      }
     },
 
     getPath: function () {

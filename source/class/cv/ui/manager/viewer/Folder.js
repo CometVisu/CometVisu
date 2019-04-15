@@ -119,7 +119,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         }.bind(this),
         bindItem: function (controller, item, index) {
           controller.bindProperty('', 'model', null, item, index);
-          controller.bindProperty('name', 'label', converter, item, index);
+          controller.bindProperty('displayName', 'label', converter, item, index);
           controller.bindProperty('icon', 'icon', {
             converter: function (source, file) {
               if (file.getType() === 'file' && this._isImageRegex.test(file.getName())) {

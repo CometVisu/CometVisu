@@ -440,22 +440,11 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     _onOpenHiddenConfig: function () {
-      if (!this._hiddenConfigFakeFile) {
-        this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem('hidden.php').set({
-          hasChildren: false,
-          parentFolder: "",
-          parent: this._tree.getRootFolder(),
-          readable: true,
-          writeable: true,
-          overrideIcon: true,
-          icon: cv.theme.dark.Images.getIcon('hidden-config', 15),
-          type: "file"
-        });
-      }
-      if (this.getOpenFiles().includes(this._hiddenConfigFakeFile)) {
-        this.closeFile(this._hiddenConfigFakeFile);
+      var fakeFile = new cv.ui.manager.model.FileItem.getHiddenConfigFile();
+      if (this.getOpenFiles().includes(fakeFile)) {
+        this.closeFile(fakeFile);
       } else {
-        this.openFile(this._hiddenConfigFakeFile, false);
+        this.openFile(fakeFile, false);
       }
     },
 
@@ -639,16 +628,7 @@ qx.Class.define('cv.ui.manager.Main', {
       main.add(this._pane, {edge: 'center'});
 
       var rootFolder = cv.ui.manager.model.FileItem.ROOT = new cv.ui.manager.model.FileItem('.');
-      var fakeIconFile = new cv.ui.manager.model.FileItem('CometVisu-Icons', '.', rootFolder).set({
-        type: 'file',
-        overrideIcon: true,
-        writeable: false,
-        readable: true,
-        open: true,
-        loaded: true,
-        fake: true,
-        icon: cv.theme.dark.Images.getIcon('icons', 18)
-      });
+      var fakeIconFile = cv.ui.manager.model.FileItem.getIconFile();
       // TODO: needs to be verified by the backend
       rootFolder.set({
         overrideIcon: true,
@@ -804,8 +784,7 @@ qx.Class.define('cv.ui.manager.Main', {
   */
   destruct: function () {
     this._disposeObjects(
-      '_pane', '_tree', '_stack', '_menuBar', '_mainContent', '_openFilesController',
-      '_hiddenConfigFakeFile'
+      '_pane', '_tree', '_stack', '_menuBar', '_mainContent', '_openFilesController'
     );
     // restore former command group
     var application = qx.core.Init.getApplication();
