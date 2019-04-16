@@ -50,6 +50,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
       if (file) {
         var folder = file.getType() === 'folder' ? file : file.getParent();
         this.getChildControl('new-file-button').setEnabled(folder ? folder.isWriteable() : false);
+        this.getChildControl('clone-file-button').setVisibility(file.isConfigFile() ? 'visible' : 'excluded');
         this.getChildControl('new-folder-button').setEnabled(folder ? folder.isWriteable() : false);
         this.getChildControl('delete-button').setLabel(file.isTrash() ?
           this.tr('Clear') :
@@ -134,6 +135,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
     _init: function () {
       this.add(this.getChildControl('new-file-button'));
+      this.add(this.getChildControl('clone-file-button'));
       this.add(this.getChildControl('new-folder-button'));
       this.add(new qx.ui.menu.Separator());
       this.add(this.getChildControl('open-button'));
@@ -196,6 +198,14 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
       }
     },
 
+    _onClone: function () {
+      if (this._selectedNode) {
+        qx.event.message.Bus.dispatchByName('cv.manager.action.clone', {
+          file: this._selectedNode
+        });
+      }
+    },
+
     // overridden
     _createChildControlImpl : function(id) {
        var control;
@@ -203,6 +213,12 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
        switch (id) {
          case 'new-file-button':
            control = new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file'));
+           break;
+
+         case 'clone-file-button':
+           control = new qx.ui.menu.Button(this.tr('Clone file'), cv.theme.dark.Images.getIcon('clone-file', 18));
+           control.exclude();
+           control.addListener('execute', this._onClone, this);
            break;
 
          case 'new-folder-button':

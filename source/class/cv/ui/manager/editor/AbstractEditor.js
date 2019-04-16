@@ -102,6 +102,12 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
             } else {
               cv.ui.manager.snackbar.Controller.info(this.tr('File has been created'));
               this._onSaved();
+              qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
+                type: 'created',
+                file: file,
+                data: this.getCurrentContent(),
+                source: this
+              });
             }
           }, this);
         } else {
@@ -114,6 +120,11 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
             } else {
               cv.ui.manager.snackbar.Controller.info(this.tr('File has been saved'));
               this._onSaved();
+              qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
+                type: 'contentChanged',
+                data: this.getCurrentContent(),
+                source: this
+              });
             }
           }, this);
         }

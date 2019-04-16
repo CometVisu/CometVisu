@@ -57,10 +57,10 @@ qx.Class.define('cv.ui.manager.Start', {
 
     save: function () {},
     getCurrentContent: function () {},
-    canHandleAction: function(actionName) {
+    canHandleAction: function () {
       return false;
     },
-    handleAction: function (actionName) {},
+    handleAction: function () {},
 
     _loadRoot: function (value) {
       this.getChildControl('configs').setFile(value);
@@ -100,8 +100,7 @@ qx.Class.define('cv.ui.manager.Start', {
       }
     },
 
-    _applySelectedItem: function (value) {
-
+    _applySelectedItem: function () {
     },
 
     _onToggleExpand: function (ev) {

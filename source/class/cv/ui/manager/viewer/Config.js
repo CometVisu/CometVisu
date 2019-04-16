@@ -45,19 +45,30 @@ qx.Class.define('cv.ui.manager.viewer.Config', {
   */
   members: {
 
-    _applyFile: function (file) {
+    _applyFile: function (file, old) {
       var control = this.getChildControl('iframe');
+      if (old && old.isConfigFile()) {
+        qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
+      }
       if (file) {
         if (file.isConfigFile()) {
           var configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
-          var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..') + '?config=' + (configName || '');
+          var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..') + '?config=' + (configName || '') + '&preview=1';
           control.setSource(url);
           control.show();
+          qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
         } else {
           cv.ui.manager.snackbar.Controller.error(this.tr('%1 is no configuration file', file.getFullPath()));
         }
       } else {
         control.exclude();
+      }
+    },
+
+    _onChange: function (ev) {
+      var data = ev.getData();
+      if (data.type === 'contentChanged') {
+        this.getChildControl('iframe').reload();
       }
     },
 

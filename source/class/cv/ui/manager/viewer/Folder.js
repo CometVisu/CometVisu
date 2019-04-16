@@ -139,10 +139,6 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       };
     },
 
-    _onChangeSelection: function (ev) {
-      console.log(ev.getData());
-    },
-
     _onFsItemRightClick: function (ev) {
       var file = ev.getTarget().getModel();
       var menu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
@@ -173,7 +169,6 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       if (!this._controller) {
         this._controller = new qx.data.controller.List(null, container);
         this._controller.setDelegate(this._getDelegate());
-        this._controller.addListener('changeSelection', this._onChangeSelection, this);
       }
       this._createModel(function (newModel) {
         model.replace(newModel);

@@ -46,7 +46,8 @@ qx.Class.define('cv.theme.dark.Images', {
       'edit': '@MaterialIcons/edit',
       'menu': '@MaterialIcons/menu',
       'drop-down': '@MaterialIcons/arrow_drop_down',
-      'drop-up': '@MaterialIcons/arrow_drop_up'
+      'drop-up': '@MaterialIcons/arrow_drop_up',
+      'clone-file': '@MaterialIcons/file_copy'
     },
 
     getIcon: function (name, size) {

@@ -144,7 +144,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     canHandleAction: function (actionName) {
-      return ['close', 'quit', 'hidden-config', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload'].includes(actionName);
+      return ['close', 'quit', 'hidden-config', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone'].includes(actionName);
     },
 
     handleAction: function (actionName, data) {
@@ -171,6 +171,21 @@ qx.Class.define('cv.ui.manager.Main', {
               cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load config template'));
             } else {
               this._onCreate('config', res);
+            }
+          }, this);
+          break;
+
+        case 'clone':
+          cv.io.rest.Client.getFsClient().readSync({path: data.file.getFullPath()}, function (err, res) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load file content'));
+            } else {
+              if (data.file.isConfigFile()) {
+                // config files need to be cloned in the root folder
+                this._onCreate('config', res, cv.ui.manager.model.FileItem.ROOT);
+              } else {
+                this._onCreate('file', res);
+              }
             }
           }, this);
           break;
@@ -352,9 +367,24 @@ qx.Class.define('cv.ui.manager.Main', {
       this._openFilesController.getTarget().setModelSelection([openFile]);
     },
 
-    closeFile: function (openFile) {
+    closeFile: function (openFile, force) {
       var file = openFile.getFile();
       if (!openFile.isCloseable()) {
+        return;
+      }
+
+      // check if this file is modified
+      if (file.isModified() && !force) {
+        // check if temporary
+        var message = qx.locale.Manager.tr('This file has unsaved changes that will be lost when you close it. Do you really want to close the file?');
+        if (file.isTemporary()) {
+          message = qx.locale.Manager.tr('This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?');
+        }
+        dialog.Dialog.confirm(message, function (confirmed) {
+          if (confirmed) {
+            this.closeFile(openFile, true);
+          }
+        }, this, qx.locale.Manager.tr('Unsaved changes'));
         return;
       }
       openFile.resetPermanent();
@@ -493,9 +523,8 @@ qx.Class.define('cv.ui.manager.Main', {
       this._openFilesController.getSelection().replace(openFiles);
     },
 
-    _onCreate: function (type, content) {
-      var currentFolder = this.getCurrentFolder();
-      console.log(currentFolder);
+    _onCreate: function (type, content, folder) {
+      var currentFolder = folder || this.getCurrentFolder();
       if (!currentFolder) {
         return;
       }
@@ -536,9 +565,6 @@ qx.Class.define('cv.ui.manager.Main', {
           dialog.Dialog.prompt(message, handlePrompt, this, name);
         } else {
           var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getPath(), currentFolder);
-          item.addListener('changeModified', function (ev) {
-            console.error(ev.getData());
-          });
           item.set({
             type: type === 'config' ? 'file' : type,
             readable: true,

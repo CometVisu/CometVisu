@@ -449,6 +449,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       return this.__fullPath;
     },
 
+    getBusTopic: function () {
+      return this.getFullPath().replace(/\//g, '.');
+    },
+
     /**
      * Returns a fake URI that can be used to identify the file.
      * Used by monaco editor as model URI.
