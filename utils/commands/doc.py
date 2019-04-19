@@ -225,22 +225,15 @@ class DocGenerator(Command):
             # handle develop builds:
             print('detected development build')
             symlinkname = self.config.get("DEFAULT", "develop-version-mapping")
-        else:
+        elif branch == "master":
             # handle releases:
-            # TODO: this is assuming we are always building the documentation of
-            # the most recent version - which is usually true.
-            # When for some strange reasons an older version is being built but
-            # a newer is also available it will overwrite the symlink to the
-            # newer version.
-            # Simple work around: just retrigger a build of the newer version
-            # afterwards manually.
-            print('detected build of most recent version')
+            print('detected build of most recent version of master branch')
             symlinkname = self.config.get("DEFAULT", "most-recent-version-mapping")
 
         if '' != symlinkname:
             print("setting symlink '%s' to '%s'" % (symlinkname, target_dir))
             cwd = os.getcwd()
-            os.chdir(root)
+            os.chdir(os.path.join(target_dir, ".."))
             try:
                 os.remove(symlinkname)
             except Exception:
@@ -554,20 +547,6 @@ class DocGenerator(Command):
                             break
 
                 print("versions found: %s (%s)" % (versions, special_versions))
-
-                # if found_max is True and max_version_path is not None:
-                #     # checking latest symlink to max version
-                #     if 'latest' not in symlinks or symlinks['latest'] != max_version_path:
-                #         print("setting 'latest' symlink to '%s'" % max_version_path)
-                #         cwd = os.getcwd()
-                #         os.chdir(root)
-                #         try:
-                #             os.remove('latest')
-                #         except Exception:
-                #             pass
-                #         os.symlink(max_version_path, 'latest')
-                #         symlinks['latest'] = max_version_path
-                #         os.chdir(cwd)
 
                 # saving versions to json file
                 try:
