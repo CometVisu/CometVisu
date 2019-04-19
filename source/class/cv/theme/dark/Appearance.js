@@ -344,6 +344,17 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     },
     'cv-file-contextmenu': 'menu',
     'cv-file-contextmenu/open-with-button': 'menu-button',
-    'cv-file-contextmenu/compare-with-button': 'menu-button'
+    'cv-file-contextmenu/compare-with-button': 'menu-button',
+    'open-files-tabs': {
+      style: function () {
+        return {
+          minHeight: 38,
+          height: 38,
+          padding: 0,
+          marginBottom: 5,
+          decorator: 'open-file-tabs'
+        };
+      }
+    }
   }
 });

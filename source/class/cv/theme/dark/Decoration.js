@@ -64,6 +64,15 @@ qx.Theme.define("cv.theme.dark.Decoration", {
         width: [1, 0, 0, 0],
         color: 'text-placeholder'
       }
+    },
+    'open-file-tabs': {
+      style: {
+        shadowSpreadRadius: 0,
+        shadowBlurRadius: 4,
+        shadowHorizontalLength: 1,
+        shadowVerticalLength: 1,
+        shadowColor: 'rgba(255, 255, 255, 0.1)'
+      }
     }
   }
 });
