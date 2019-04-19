@@ -4,7 +4,6 @@
 qx.Class.define('cv.ui.manager.form.FileTabItem', {
   extend: qx.ui.core.Widget,
   implement : [qx.ui.form.IModel],
-  include : [qx.ui.form.MModelProperty],
 
   /*
   ***********************************************
@@ -43,6 +42,13 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
     appearance: {
       refine: true,
       init: 'open-file-item'
+    },
+
+    model: {
+      nullable: true,
+      event: 'changeModel',
+      apply: '_applyModel',
+      dereference: true
     },
 
     label: {
@@ -126,6 +132,12 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
       this.getChildControl('close').setVisibility(value ? 'visible' : 'excluded');
     },
 
+    _applyModel: function (value) {
+      if (value) {
+        this.getChildControl('contextmenu').configure(value.getFile());
+      }
+    },
+
     _applyIcon: function (value) {
       var control = this.getChildControl('icon');
       control.setSource(value);
@@ -172,6 +184,12 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
            control.setAnonymous(true);
            this._addAt(control, 1);
            break;
+
+         case 'contextmenu':
+           control = new cv.ui.manager.contextmenu.FileItem();
+           this.setContextMenu(control);
+           break;
+
 
          case 'close':
            control = new qx.ui.basic.Image('decoration/tabview/close.gif');
