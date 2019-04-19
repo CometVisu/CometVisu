@@ -180,9 +180,9 @@ Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu ang
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Zur Unterstützung einer Fehlermeldung, kann die Interaktion mit der CometVisu aufgezeichnet und
-den Entwicklern als Log-Datei zu Verfügung gestellt werden. Diese können damit genau sehen, welche Daten
+den Entwicklern als Replay-Datei zu Verfügung gestellt werden. Diese können damit genau sehen, welche Daten
 zwischen der CometVisu und dem Backend geflossen sind und welche Aktionen der Benutzer vorgenommen hat.
-Idealerweise lässt sich ein Fehler mit diesen Log-Dateien zuverlässig reproduzieren und erleichern so die Behebung
+Idealerweise lässt sich ein Fehler mit diesen Dateien zuverlässig reproduzieren und erleichtert so die Behebung
 des Problems erheblich.
 
 .. code::
@@ -192,22 +192,22 @@ des Problems erheblich.
 
 .. ATTENTION::
 
-    In den Log-Dateien wird die komplette Konfigurationsdatei abgespeichert. Sollten sich Zugangsdaten in dieser
+    In den replay-Dateien wird die komplette Konfigurationsdatei abgespeichert. Sollten sich Zugangsdaten in dieser
     Konfiguration befinden, sollte eine Kopie der Konfiguration ohne solch sensible Daten erstellt werden
-    und das Log mit dieser Konfiguration aufgezeichnet werden.
+    und die Session mit dieser Konfiguration aufgezeichnet werden.
 
     Daten aus der :ref:`verstecken Konfiguration <hidden-config>` werden nicht mit übertragen.
 
-Um diese Log-Dateien aufzuzeichnen, muss man die CometVisu mit `reporting=true` laden.
-Nachdem man den fehlerhaften Zustand erreicht hat, kann man die Log-Datei herunterladen indem man in der
+Um diese Replay-Dateien aufzuzeichnen, muss man die CometVisu mit dem URL-Parameter `reporting=true` im Querystring laden.
+Nachdem man den fehlerhaften Zustand erreicht hat, kann man die Replay-Datei herunterladen indem man in der
 Browser-Console (öffnen mit F12) ``downloadLog()`` ein gibt und mit *enter* bestätigt.
-Neben dem automatischen Download der Logdatei, wird der Inhalt des Logs ebenfalls auf der Konsole
-ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.
+Neben dem automatischen Download der Datei, wird der Inhalt ebenfalls auf der Konsole
+ausgegeben. So kann man kontrollieren, welche Daten enthalten sind.
 
 .. HINT::
 
-    Da die Log-Dateien in Echtzeit abgespielt werden, empfiehlt es sich die Laufzeit möglichst kurz zu halten.
-    Eine Log-Datei die 30 Minuten oder mehr läuft bis das Problem zu sehen ist, wird die Fehlerbehebung
+    Da die Replay-Dateien in Echtzeit abgespielt werden, empfiehlt es sich die Laufzeit möglichst kurz zu halten.
+    Eine Replay-Datei die 30 Minuten oder mehr läuft bis das Problem zu sehen ist, wird die Fehlerbehebung
     erschweren, da der Entwickler diese ggf. sehr oft abspielen muss während der Fehleranalyse und -behebung.
 
 .. _reportErrors:
@@ -234,10 +234,10 @@ Erklärungen an sentry.io schicken.
 
 .. _log:
 
-*log* - Logging in der Browserconsole an-/abschalten
+*log* - Debug-Meldungen in der Browserconsole an-/abschalten
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Mit diesem Parameter können die Debug-Logausgaben auf der Browserkonsole ein- und ausgeschaltet werden.
+Mit diesem Parameter können die Debug-Meldungen auf der Browserkonsole ein- und ausgeschaltet werden.
 In der Entwicklerversion sind diese standardmäßig eingeschaltet in einem Release aus.
 
 .. code::

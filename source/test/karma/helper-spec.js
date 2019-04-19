@@ -49,7 +49,7 @@ var createTestWidgetString = function (name, attributes, content) {
     qx.dom.Element.insertEnd(elem, page);
     data = cv.parser.WidgetParser.parse(page, 'id', null, "text");
     cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
-    data = cv.data.Model.getInstance().getWidgetData(data['children'][0]);
+    data = cv.data.Model.getInstance().getWidgetData(data.children[0]);
   } else {
     data = cv.parser.WidgetParser.parse(elem, 'id_0', null, "text");
   }
@@ -316,6 +316,12 @@ beforeEach(function () {
   this.createTestWidgetString = createTestWidgetString;
   this.findChild = findChild;
   this.initWidget = function(widget) {
+    if (widget.getVisibilityParent) {
+      var parent = widget.getVisibilityParent();
+      if (parent) {
+        parent.setVisible(true);
+      }
+    }
     widget.setVisible && widget.setVisible(true);
     qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
     qx.event.message.Bus.dispatchByName("setup.dom.finished");

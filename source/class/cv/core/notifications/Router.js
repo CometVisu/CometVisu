@@ -239,6 +239,12 @@ qx.Class.define("cv.core.notifications.Router", {
         if (config.hasOwnProperty("condition")){
           message.condition = state == config.condition; // jshint ignore:line
         }
+        if (config.icon) {
+          message.icon = config.icon;
+          if (config.iconClasses) {
+            message.iconClasses = config.iconClasses;
+          }
+        }
         this.dispatchMessage(message.topic, message, config.target);
       }, this);
 

@@ -36,6 +36,8 @@ describe("testing a image widget", function() {
       spyOn(spiedTimer, "start");
       return spiedTimer;
     });
+
+    qx.event.Timer.once = Con.once;
   });
 
   afterEach(function () {
@@ -95,7 +97,7 @@ describe("testing the refresh caching of the image widget", function() {
       refresh: 1,
       cachecontrol: 'full'
     });
-    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    this.initWidget(widget);
     var domElement = widget.getDomElement();
     expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toBe('/source/resource/icon/comet_64_ff8000.png');
 
@@ -116,9 +118,10 @@ describe("testing the refresh caching of the image widget", function() {
       refresh: 1,
       cachecontrol: 'weak'
     });
-    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    this.initWidget(widget);
     var domElement = widget.getDomElement();
     expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+    widget.setVisible(true);
 
     qx.event.Timer.once(function() {
       expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toMatch(/^\/source\/resource\/icon\/comet_64_ff8000.png#/);

@@ -186,6 +186,7 @@ qx.Class.define('cv.ui.PageHandler', {
       qx.bom.element.Class.removeClasses(oldPageWidget.getDomElement(), ['pageActive', 'activePage']);
       qx.bom.element.Style.set(oldPageWidget.getDomElement(), "overflow", null);
       qx.event.message.Bus.dispatchByName("path." + oldPageWidget.getPath() + ".afterPageChange", oldPageWidget.getPath());
+      qx.event.message.Bus.dispatchByName("path.pageLeft", oldPageWidget.getPath());
       oldPageWidget.setVisible(false);
     },
 
@@ -210,7 +211,7 @@ qx.Class.define('cv.ui.PageHandler', {
       qx.event.message.Bus.dispatchByName("page." + target + ".appear", target);
       qx.event.message.Bus.dispatchByName("path.pageChanged", target);
       // show scrollbar after animation
-      var styles =  {"overflow": null, "display": null}
+      var styles =  {"overflow": null, "display": null};
       if (oldPos) {
         styles.position = oldPos;
       }

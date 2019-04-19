@@ -13,7 +13,7 @@ if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
 fi
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [ "$TRAVIS_BRANCH" != "master" ] ); then
+if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [[ ! "$TRAVIS_BRANCH" =~ release-[0-9\.]+ ]]); then
     echo "Skipping deploy;"
     exit 0
 fi
@@ -21,10 +21,6 @@ fi
 if [ "$TRAVIS_REPO_SLUG" != "$REPO_SLUG" ]; then
     echo "Not in main repository => skipping deploy;"
     exit 0
-fi
-
-if [ "$TRAVIS_BRANCH" != "master" ]; then
-    echo "ATTENTION! Deploying docs from non master branch. Please change this!!!"
 fi
 
 
@@ -45,11 +41,19 @@ cd ..
 #rm -rf out/de || exit 0
 #rm -rf out/en || exit 0
 
+VERSION=`${CV} doc --get-version`
+VERSION_PATH=`${CV} doc --get-target-version`
+
+# check if this version is new (we only check the "de" dir)
+NEW_VERSION=0
+if [ ! -d "out/de/$VERSION_PATH" ]; then
+    NEW_VERSION=1
+fi;
+
 # Run our creation script
 echo "generating german manual to extract screenshot examples"
-$CV doc --doc-type manual -f -l de
+$CV doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 
-VERSION=`${CV} doc --get-version`
 utils/update_version.py
 echo "generating api version $VERSION"
 source temp-python/bin/activate
@@ -70,20 +74,23 @@ if [[ "$NO_API" -eq 0 ]]; then
     ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
 
     # move the apiviewer to the correct version subfolder, including screenshots
-    rm -r out/en/$VERSION/api
-    ${CV} doc --move-apiviewer
+    rm -rf out/en/$VERSION_PATH/api
+    ${CV} doc --move-apiviewer --target-version=${VERSION_PATH}
 fi
 
 echo "updating english manual from source code doc comments"
 ${CV} doc --from-source
 
+# extra en generation run to have the new version available for the next step
+${CV} doc --doc-type manual -l en --target-version=${VERSION_PATH}
+
 # update symlinks and write version files
 ${CV} doc --process-versions
 
 echo "generating english manual, including screenshot generation for all languages"
-${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION}
+${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION_PATH}
 echo "generating german manual again with existing screenshots"
-${CV} doc --doc-type manual -f -l de --target-version=${VERSION}
+${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 
 echo "generating feature yml file for homepage"
 ${CV} doc --generate-features
@@ -94,21 +101,23 @@ ${CV} sitemap
 echo "generating test mode build"
 source temp-python/bin/activate
 ./generate.py build --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
-rm -rf out/de/$VERSION/demo
-mv build out/de/$VERSION/demo
+grunt update-demo-config
+rm -rf out/de/$VERSION_PATH/demo
+mv build out/de/$VERSION_PATH/demo
 
 # Copy demo-mode to default config
-cp out/de/$VERSION/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo/resource/config/visu_config.xml
+cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
 
 echo "generating test mode source version"
-./generate.py source-hybrid --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
-rm -rf out/de/$VERSION/demo-source
-mkdir -p out/de/$VERSION/demo-source/client/source/class/cv/
-mkdir -p out/de/$VERSION/demo-source/source/
+./generate.py source-hybrid-error --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
+grunt update-demo-config-source
+rm -rf out/de/$VERSION_PATH/demo-source
+mkdir -p out/de/$VERSION_PATH/demo-source/client/source/class/cv/
+mkdir -p out/de/$VERSION_PATH/demo-source/source/
 # copy files
-cp -r client/source/class/cv out/de/$VERSION/demo-source/client/source/class/
-cp -r source/class source/resource source/loader source/script source/index.html source/manifest.json out/de/$VERSION/demo-source/source/
-cp out/de/$VERSION/demo-source/source/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION/demo-source/source/resource/config/visu_config.xml
+cp -r client/source/class/cv out/de/$VERSION_PATH/demo-source/client/source/class/
+cp -r source/class source/resource source/loader source/script source/index.html source/manifest.json out/de/$VERSION_PATH/demo-source/source/
+cp out/de/$VERSION_PATH/demo-source/source/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo-source/source/resource/config/visu_config.xml
 deactivate
 
 echo "starting deployment..."
@@ -117,9 +126,9 @@ cd out
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
-# If there are no changes to the compiled out (e.g. this is a README update) then just bail.
-# as the changesets on master are too big we skip this check to prevent timeouts
-if [ "$TRAVIS_BRANCH" != "master" ]; then
+# If there are no changes to the compiled out (e.g. this is a README update) then just bail out.
+# as the changesets on new versions are too big we skip this check to prevent timeouts
+if [ "$NEW_VERSION" -eq 0 ]; then
     echo "checking diff"
     if [ `git diff --shortstat | wc -l` -eq 0 ]; then
        echo "No changes to the output on this push; exiting."
@@ -129,8 +138,10 @@ fi
 
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
+echo "adding all changes to git changeset"
 git add --all .
-git commit -m "Deploy to GitHub Pages: ${SHA}"
+echo "committing changeset"
+git commit -q -m "Deploy to GitHub Pages: ${SHA}"
 
 # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
 ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
@@ -143,4 +154,5 @@ eval `ssh-agent -s`
 ssh-add deploy_key
 
 # Now that we're all set up, we can push.
+echo "pushing changes to remote repository"
 git push $SSH_REPO $TARGET_BRANCH

@@ -46,7 +46,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
     'shortDownValue': {
       check: "Number",
-      init: 0
+      nullable: true
     },
     'downLabel': {
       check: "String",
@@ -58,7 +58,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
     'shortUpValue': {
       check: "Number",
-      init: 0
+      nullable: true
     },
     'upLabel': {
       check: "String",
@@ -148,17 +148,28 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
 
     },
 
+    __findActor: function (element) {
+      while (!qx.bom.element.Class.has(element, 'actor')) {
+        element = element.parentNode;
+        if (qx.bom.element.Class.has(element, 'widget')) {
+          // thats too far
+          return null;
+        }
+      }
+      return element;
+    },
+
     _onLongTap: function(event) {
-      this.__action(false, qx.bom.element.Class.has(event.getCurrentTarget(), 'downlabel'));
+      this.__action(false, qx.bom.element.Class.has(this.__findActor(event.getCurrentTarget()), 'downlabel'));
     },
 
     _action: function(event) {
-      this.__action(true, qx.bom.element.Class.has(event.getCurrentTarget(), 'downlabel'));
+      this.__action(true, qx.bom.element.Class.has(this.__findActor(event.getCurrentTarget()), 'downlabel'));
     },
 
     __action: function (isShort, isDown) {
       var value;
-      if (isShort) {
+      if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
         value = isDown ? this.getShortDownValue() : this.getShortUpValue();
       } else {
         value = isDown ? this.getDownValue() : this.getUpValue();

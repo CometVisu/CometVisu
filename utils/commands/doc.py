@@ -157,6 +157,15 @@ class DocGenerator(Command):
                 self._source_version = data['version']
         return self._source_version
 
+    def _get_doc_target_path(self):
+        """ returns the target sub directory where the documentation should be stored."""
+        ver = self._get_doc_version()
+        match = re.match("([0-9]+.[0-9]+).[0-9]+.*", ver)
+        if match:
+            return match.group(1)
+        else:
+            return ver
+
     def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source", target_version=None):
 
         sphinx_build = sh.Command("sphinx-build")
@@ -170,7 +179,7 @@ class DocGenerator(Command):
             target_dir = os.path.join(self.root_dir, self.config.get(section, "target"))
         else:
             target_dir = os.path.join(self.root_dir, target_dir)
-        target_dir = target_dir.replace("<version>", self._get_doc_version() if target_version is None else target_version)
+        target_dir = target_dir.replace("<version>", self._get_doc_target_path() if target_version is None else target_version)
         print("generating doc to %s" % target_dir)
 
         if not os.path.exists(source_dir):
@@ -202,6 +211,9 @@ class DocGenerator(Command):
             print ('sphinx_build: second run')
             print ('================================================================================')
             sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
+
+        with open(os.path.join(target_dir, "..", "version"), "w+") as f:
+            f.write(self._get_source_version())
 
     def from_source(self, path, plugin=False):
         """
@@ -460,6 +472,16 @@ class DocGenerator(Command):
 
         return None
 
+    def _sort_versions(self, a, b):
+        va = a.split("|")[0]
+        vb = b.split("|")[0]
+        if va == "latest":
+            return 1
+        elif vb == "latest":
+            return -1
+        else:
+            return compare(va, vb)
+
     def process_versions(self, path):
         root, dirs, files = os.walk(path).next()
         for lang_dir in dirs:
@@ -471,30 +493,48 @@ class DocGenerator(Command):
                 versions = []
                 special_versions = []
                 for version_dir in dirs:
+                    version = version_dir
+                    if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")) and re.match("^[0-9]+.[0-9]+.?[0-9]*$", version) is not None:
+                        with open(os.path.join(path, lang_dir, version_dir, "version")) as f:
+                            version = f.read()
                     if os.path.islink(os.path.join(root, version_dir)):
                         symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
-                    elif len(version_dir.split(".")) == 3:
-                        versions.append(version_dir)
+                    elif re.match("^[0-9]+.[0-9]+.*$", version) is not None:
+                        versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
                     else:
-                        special_versions.append(version_dir)
+                        special_versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
 
                 # max_version = max_ver(versions)
-                versions.sort(compare)
-                max_version = versions[-1:][0]
-                print("versions found: %s" % versions)
+                versions.sort(self._sort_versions)
+                max_version = None
+                max_version_path = None
+                found_max = False
+                if len(versions) > 0:
+                    for version in versions[::-1]:
+                        max_version = version
+                        if "|" in max_version:
+                            max_version, max_version_path = max_version.split("|")
+                        else:
+                            max_version_path = max_version
+                        if re.match(".+-RC[0-9]+$", max_version) is None:
+                            found_max = True
+                            break
 
-                # checking current symlink to max version
-                if 'current' not in symlinks or symlinks['current'] != max_version:
-                    print("setting 'current' symlink to '%s'" % max_version)
-                    cwd = os.getcwd()
-                    os.chdir(root)
-                    try:
-                        os.remove('current')
-                    except Exception:
-                        pass
-                    os.symlink(max_version, 'current')
-                    symlinks['current'] = max_version
-                    os.chdir(cwd)
+                print("versions found: %s (%s)" % (versions, special_versions))
+
+                if found_max is True and max_version_path is not None:
+                    # checking current symlink to max version
+                    if 'current' not in symlinks or symlinks['current'] != max_version_path:
+                        print("setting 'current' symlink to '%s'" % max_version_path)
+                        cwd = os.getcwd()
+                        os.chdir(root)
+                        try:
+                            os.remove('current')
+                        except Exception:
+                            pass
+                        os.symlink(max_version_path, 'current')
+                        symlinks['current'] = max_version_path
+                        os.chdir(cwd)
 
                 # saving versions to json file
                 try:
@@ -532,6 +572,7 @@ class DocGenerator(Command):
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
+        parser.add_argument("--get-target-version", dest="get_target_version", action="store_true", help="returns version target subdir")
 
         options = parser.parse_args(args)
 
@@ -557,6 +598,9 @@ class DocGenerator(Command):
         elif options.get_version:
             print(self._get_doc_version())
 
+        elif options.get_target_version:
+            print(self._get_doc_target_path())
+
         elif options.process_versions:
             self.process_versions(self.config.get("DEFAULT", "doc-dir"))
 
@@ -567,7 +611,7 @@ class DocGenerator(Command):
         elif options.move_apiviewer:
             # move to the correct dir
             target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
-            target_dir = target_dir.replace("<version>", self._get_doc_version())
+            target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
             # remove api suffix from target
             target_dir = os.path.sep.join(target_dir.split(os.path.sep)[0:-1])
             shutil.move(self.config.get("api", "generator_target"), target_dir)

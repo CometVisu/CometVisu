@@ -93,8 +93,8 @@ qx.Class.define("cv.parser.MetaParser", {
       var mapping = {};
       var formula = qx.bom.Selector.query('formula', elem);
       if (formula.length > 0) {
-        var func = qx.lang.Function.globalEval('var func = function(x){var y;' + qx.dom.Node.getText(formula[0]) + '; return y;}; func');
-        mapping.formula = func;
+        mapping.formulaSource = qx.dom.Node.getText(formula[0]);
+        mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
       }
       var subElements = qx.bom.Selector.query('entry', elem);
       subElements.forEach(function (subElem) {
@@ -275,6 +275,14 @@ qx.Class.define("cv.parser.MetaParser", {
         if (name) {
           config.topic = "cv.state."+name;
         }
+        var icon = qx.bom.element.Attribute.get(elem, 'icon');
+        if (icon) {
+          config.icon = icon;
+          var iconClasses = qx.bom.element.Attribute.get(elem, 'icon-classes');
+          if (iconClasses) {
+            config.iconClasses = iconClasses;
+          }
+        }
 
         // templates
         var titleElem = qx.bom.Selector.query('title-template', elem)[0];
@@ -363,10 +371,11 @@ qx.Class.define("cv.parser.MetaParser", {
             }, this);
             areq.send();
           } else {
+            var cleaned = qx.bom.element.Attribute.get(elem, 'html').replace(/\n\s*/g, '').trim();
             cv.parser.WidgetParser.addTemplate(
               templateName,
               // templates can only have one single root element, so we wrap it here
-              '<root>' + qx.bom.element.Attribute.get(elem, 'html') + '</root>'
+              '<root>' + cleaned + '</root>'
             );
           }
         }, this);

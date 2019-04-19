@@ -55,6 +55,23 @@ qx.Class.define('cv.ui.PopupHandler', {
           deletable: true
         }
       });
+      qx.event.message.Bus.subscribe("path.pageLeft", this._onPageChanged, this);
+    },
+
+    /**
+     * close all popups (except errors) for the page that has been left just now.
+     * @param ev {Event}
+     */
+    _onPageChanged: function (ev) {
+      Object.keys(this.popups).filter(function (type) {
+        if (type !== 'error') {
+          var popup = this.popups[type];
+          var domElement = popup.getCurrentDomElement();
+          if (domElement && domElement.$$page === ev.getData()) {
+            this.removePopup(popup);
+          }
+        }
+      }, this);
     },
 
     handleMessage: function(message, config) {

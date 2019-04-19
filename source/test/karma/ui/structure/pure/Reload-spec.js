@@ -30,11 +30,11 @@ describe("testing a reload widget", function() {
   });
 
   it("should test the reload action", function() {
-    var widgetInstance = this.createTestElement("reload");
+    var widgetInstance = this.createTestElement("reload", null, null, '1/0/0');
     spyOn(cv.util.Location, "reload");
-    widgetInstance.handleUpdate(0);
+    widgetInstance._update('1/0/0', 0);
     expect(cv.util.Location.reload).not.toHaveBeenCalled();
-    widgetInstance.handleUpdate(1);
+    widgetInstance._update('1/0/0', 1);
     expect(cv.util.Location.reload).toHaveBeenCalledWith(true);
   });
 });

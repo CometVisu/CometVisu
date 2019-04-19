@@ -114,6 +114,7 @@ qx.Class.define('cv.ui.Popup', {
       }
 
       this.__domElement.$$topic = attributes.topic;
+      this.__domElement.$$page = attributes.page;
 
       if (attributes.title) {
         if (!this.__elementMap.title) {
