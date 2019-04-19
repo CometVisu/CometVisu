@@ -63,7 +63,14 @@ qx.Class.define('cv.parser.WidgetParser', {
           var helperNode = elem.ownerDocument.createElement('template');
           qx.bom.element.Attribute.set(helperNode, 'html', renderedString.substring(6, renderedString.length - 7).trim());
           // replace existing element with the rendered templates child
-          elem.parentNode.replaceChild(helperNode.firstElementChild, elem);
+          var replacement = helperNode.firstElementChild;
+          var next = elem.nextElementSibling;
+          var parent = elem.parentNode;
+          parent.replaceChild(replacement, elem);
+          while (helperNode.children.length > 0) {
+            // append the rest
+            parent.insertBefore(helperNode.children[0], next);
+          }
         }
       }, this);
     },
