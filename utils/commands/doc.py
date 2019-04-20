@@ -36,6 +36,7 @@ import json
 import sys
 import re
 from lxml import etree
+from distutils.version import LooseVersion
 from argparse import ArgumentParser
 from . import Command
 from scaffolding import Scaffolder
@@ -498,14 +499,7 @@ class DocGenerator(Command):
         return None
 
     def _sort_versions(self, a, b):
-        va = a.split("|")[0]
-        vb = b.split("|")[0]
-        if va == "latest":
-            return 1
-        elif vb == "latest":
-            return -1
-        else:
-            return compare(va, vb)
+        return cmp(LooseVersion(a.split("|")[0]), LooseVersion(b.split("|")[0]))
 
     def process_versions(self, path):
         root, dirs, files = os.walk(path).next()
@@ -524,7 +518,7 @@ class DocGenerator(Command):
                             version = f.read().rstrip('\n')
                     if os.path.islink(os.path.join(root, version_dir)):
                         symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
-                    elif re.match("^[0-9]+\.[0-9]+\.*$", version) is not None:
+                    elif re.match("^[0-9]+\.[0-9]+.*$", version) is not None:
                         versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
                     else:
                         special_versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
