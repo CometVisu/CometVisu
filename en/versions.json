@@ -1,1 +1,2 @@
-{"symlinks": {"current": "0.11"}, "versions": ["0.10.2\n|0.10", "0.11.1|0.11", "latest"]}
+{"symlinks": {"latest": "0.11", "develop": "0.12"}, "versions": ["0.10.2\n|0.10", "0.11.1|0.11", "0.12-dev|0.12"]}
+
