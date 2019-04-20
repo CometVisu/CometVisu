@@ -231,14 +231,15 @@ class DocGenerator(Command):
             symlinkname = self.config.get("DEFAULT", "most-recent-version-mapping")
 
         if '' != symlinkname:
-            print("setting symlink '%s' to '%s'" % (symlinkname, target_dir))
+            symlinktarget = os.path.join(target_dir, "..")
+            print("setting symlink '%s' to '%s'" % (symlinkname, symlinktarget))
             cwd = os.getcwd()
-            os.chdir(os.path.join(target_dir, ".."))
+            os.chdir(os.path.join(symlinktarget, ".."))
             try:
                 os.remove(symlinkname)
             except Exception:
                 pass
-            os.symlink(target_dir, symlinkname)
+            os.symlink(os.path.relpath(symlinktarget), symlinkname)
             os.chdir(cwd)
 
     def from_source(self, path, plugin=False):
