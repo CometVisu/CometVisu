@@ -143,11 +143,7 @@ class DocGenerator(Command):
             branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
                 else os.environ.get('TRAVIS_BRANCH')
 
-            if branch == "develop":
-                self._doc_version = self.config.get("DEFAULT", "develop-version-mapping")
-            else:
-                # read version
-                self._doc_version = self._get_source_version()
+            self._doc_version = self._get_source_version()
         return self._doc_version
 
     def _get_source_version(self):
