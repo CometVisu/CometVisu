@@ -237,8 +237,10 @@ class DocGenerator(Command):
             os.chdir(os.path.join(symlinktarget, ".."))
             try:
                 os.remove(symlinkname)
-            except Exception:
-                pass
+            except Exception as e:
+                print(str(e))
+            ls = sh.Command("ls")
+            print(ls("-la"))
             os.symlink(os.path.relpath(symlinktarget), symlinkname)
             os.chdir(cwd)
 
