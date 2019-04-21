@@ -165,6 +165,28 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
       if (this.getAutoUpload()) {
         this.getUploadHandler().beginUploads();
       }
+    },
+
+    /**
+     * Replace content of existing file with the upload
+     * @param bomFile {File}
+     * @param replacedFile {cv.ui.manager.model.FileItem}
+     */
+    replaceFile: function(bomFile, replacedFile) {
+      this.setFolder(replacedFile.getParent());
+      var id = "upload-" + this._getUniqueFileId();
+      var filename = replacedFile.getName();
+      var file = new com.zenesis.qx.upload.File(bomFile, filename, id);
+      file.setParam('force', true);
+      file.setParam('filename', filename);
+      var fileSize = typeof bomFile.size !== "undefined" ? bomFile.size : bomFile.fileSize;
+      file.setSize(fileSize);
+      file.setUploadWidget(new com.zenesis.qx.upload.UploadButton());
+
+      this.getUploadHandler()._addFile(file);
+      if (this.getAutoUpload()) {
+        this.getUploadHandler().beginUploads();
+      }
     }
   }
 });

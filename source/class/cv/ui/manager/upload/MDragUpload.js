@@ -1,6 +1,12 @@
 /**
  * Add upload via drag&drop feature to this widget. The including widget must have a
- * "upload-dropbox" childcontrol.
+ * "upload-dropbox" childcontrol or add
+ *  <pre class="javascript">
+ *   if (!control) {
+        control = this._createMDragUploadChildControlImpl(id);
+      }
+ *   </pre>
+ *   to their own _createChildControlImpl method
  */
 qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
 
@@ -18,7 +24,8 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
         this._applyStartDragListeners();
       }, this);
     }
-    if (!(this._getLayout() instanceof qx.ui.layout.Grow)) {
+    var layout = this._getLayout();
+    if (!(layout instanceof qx.ui.layout.Grow) && !(layout instanceof qx.ui.layout.Canvas)) {
       this.addListener('resize', this.__syncBounds, this);
     }
   },
@@ -53,7 +60,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
      */
     onHtml5Drop : function (ev) {
       ev.preventDefault();
-      this.__getFiles(ev).forEach(this.uploadFile, this);
+      this.getFiles(ev).forEach(this.uploadFile, this);
     },
 
     /**
@@ -61,8 +68,9 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
      * - config files to the resources/config folder
      * - accepted media files to the resources/config/media folder
      * @param file {File}
+     * @param replaceFile {cv.ui.manager.model.FileItem?} optional, if set this files content gets replaced with the uploaded ones
      */
-    uploadFile: function (file) {
+    uploadFile: function (file, replaceFile) {
       var isConfig = cv.ui.manager.model.FileItem.isConfigFile(file.name);
 
       var folder;
@@ -78,13 +86,17 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
           type: 'dir'
         });
         var manager = new cv.ui.manager.upload.UploadMgr();
-        manager.setFolder(folder);
-        manager.uploadFile(file);
+        if (replaceFile) {
+          manager.replaceFile(file, replaceFile);
+        } else {
+          manager.setFolder(folder);
+          manager.uploadFile(file);
+        }
       }
     },
 
     hasDroppableFile: function (ev) {
-      return this.__getFiles(ev).length > 0;
+      return this.getFiles(ev).length > 0;
     },
 
     /**
@@ -92,7 +104,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
      * @param ev {Event}
      * @private
      */
-    __getFiles: function (ev) {
+    getFiles: function (ev) {
       var files = [];
       var i, l, file;
 
@@ -125,6 +137,7 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
   */
   members : {
     __hasEmptyInfo: null,
+    _boundOnStop: null,
 
     __syncBounds: function () {
       var bounds = this.getBounds();
@@ -136,13 +149,16 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
     _createMDragUploadChildControlImpl: function(id) {
       var control;
       var bounds = this.getBounds();
+      var layout = this._getLayout();
 
       switch(id) {
         case "upload-overlay":
           control = new qx.ui.container.Composite();
           control.setZIndex(1000000);
           control.exclude();
-          if (!(this._getLayout() instanceof qx.ui.layout.Grow)) {
+          if (layout instanceof qx.ui.layout.Canvas) {
+            this._add(control, {edge: 0});
+          } else if (!(this._getLayout() instanceof qx.ui.layout.Grow) && bounds) {
             control.setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
           }
           this._add(control);
@@ -150,15 +166,23 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
           break;
 
         case "upload-dropbox":
-          control = new qx.ui.container.Composite(new qx.ui.layout.Atom().set({center: true}));
-          var dropBox = new qx.ui.basic.Atom(this.getUploadHint(), cv.theme.dark.Images.getIcon('upload', 128));
+          control = new qx.ui.container.Composite(new qx.ui.layout.Grow());
+          control.setBackgroundColor('rgba(32, 32, 32, 0.9)');
+          control.setZIndex(1000);
+          var dropBox = new qx.ui.basic.Atom(this.getUploadHint(), cv.theme.dark.Images.getIcon('upload', 32));
           dropBox.set({
-            allowGrowY: false
+            iconPosition: 'top',
+            rich: true,
+            center: true
           });
+          // control.bind('width', dropBox, 'maxWidth');
+          dropBox.getChildControl('label').setWrap(true);
           control.setAnonymous(true);
           control.add(dropBox);
           control.exclude();
-          if (!(this._getLayout() instanceof qx.ui.layout.Grow)) {
+          if (layout instanceof qx.ui.layout.Canvas) {
+            this._add(control, {edge: 0});
+          } else if (!(this._getLayout() instanceof qx.ui.layout.Grow) && bounds) {
             control.setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
           }
           this._add(control);
@@ -167,9 +191,10 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
       return control;
     },
 
-    __onStopDragging: function(ev) {
+    _onStopDragging: function(ev) {
       ev.preventDefault();
       this.setUploadMode(false);
+      document.removeEventListener("dragend", this._boundOnStop, false);
     },
 
     /**
@@ -179,7 +204,12 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
       // add the start listener to this widget
       this.getContentElement().getDomElement().addEventListener("dragenter", function(ev) {
         // ev.preventDefault();
-        if (cv.ui.manager.upload.MDragUpload.hasDroppableFile(ev)) {
+        if (this._isDroppable) {
+          if (this._isDroppable(ev.dataTransfer.items)) {
+            // we have something to drop
+            this.setUploadMode(true);
+          }
+        } else if (cv.ui.manager.upload.MDragUpload.hasDroppableFile(ev)) {
           // we have something to drop
           this.setUploadMode(true);
         }
@@ -199,34 +229,53 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
      */
     _applyDragListeners: function() {
       var element = this.getChildControl("upload-overlay").getContentElement().getDomElement();
+      if (!element) {
+        var lid = this.getChildControl("upload-overlay").addListener('visibility', function (ev) {
+          if (ev.getData() === 'visible') {
+            this._applyDragListeners();
+            this.getChildControl("upload-overlay").removeListenerById(lid);
+          }
+        }, this);
+        return;
+      }
       element.addEventListener("dragexit", function() {
         this.setUploadMode(false);
       }.bind(this), false);
 
-      element.addEventListener("dragover", function(ev) {
+      element.addEventListener("dragover", function (ev) {
         ev.preventDefault();
-        if (cv.ui.manager.upload.MDragUpload.hasDroppableFile(ev)) {
-          this.setUploadMode(true);
+        var uploadable = false;
+        if (this._isDroppable) {
+          uploadable = this._isDroppable(ev.dataTransfer.items);
+        } else if (cv.ui.manager.upload.MDragUpload.hasDroppableFile(ev)) {
+          uploadable = true;
         }
+        this.setUploadMode(uploadable);
       }.bind(this), false);
-      document.addEventListener("dragleave", function(ev) {
-        this.__onStopDragging(ev);
-      }.bind(this), false);
+
+      this._boundOnStop = this._onStopDragging.bind(this);
+
+      element.addEventListener("dragleave", this._boundOnStop, false);
       element.addEventListener("dragend", function() {
         this.setUploadMode(false);
       }.bind(this), false);
 
-      element.addEventListener("drop", function(ev) {
-        cv.ui.manager.upload.MDragUpload.onHtml5Drop(ev);
-        this.__onStopDragging(ev);
-      }.bind(this), false);
+      document.addEventListener("dragend", this._boundOnStop, false);
+
+      if (this._onDrop) {
+        element.addEventListener("drop", this._onDrop.bind(this), false);
+      } else {
+        element.addEventListener("drop", function (ev) {
+          cv.ui.manager.upload.MDragUpload.onHtml5Drop(ev);
+          this._onStopDragging(ev);
+        }.bind(this), false);
+      }
     },
 
     // property apply
     __applyUploadMode: function(value) {
       if (value === true) {
         this.getChildControl("upload-dropbox").show();
-        this.setOpacity(0.2);
         if (this.hasChildControl("empty-info") && this.getChildControl("empty-info").isVisible()) {
           this.getChildControl("empty-info").exclude();
           this.__hasEmptyInfo = true;
@@ -235,7 +284,6 @@ qx.Mixin.define("cv.ui.manager.upload.MDragUpload", {
         }
       } else {
         this.getChildControl("upload-dropbox").exclude();
-        this.setOpacity(1.0);
         if (this.__hasEmptyInfo === true) {
           this.getChildControl("empty-info").show();
         }

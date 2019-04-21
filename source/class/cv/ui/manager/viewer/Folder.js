@@ -150,35 +150,22 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       qx.event.message.Bus.dispatchByName('cv.manager.open', ev.getTarget().getModel());
     },
 
-    /**
-     *
-     * @param callback {Function} callback that is called after the model is ready (only one parameter: the model)
-     * @param context {Object} the callback context
-     * @returns {*}
-     * @private
-     */
-    _createModel: function(callback, context) {
-      this.getFile().load(function () {
-        callback.call(context, this.getFile().getChildren());
-      }, this);
-    },
-
     _applyFile: function () {
       var container = this.getChildControl('list');
-      var model = this.getModel();
       if (!this._controller) {
         this._controller = new qx.data.controller.List(null, container);
         this._controller.setDelegate(this._getDelegate());
       }
-      this._createModel(function (newModel) {
-        model.replace(newModel);
-
+      this.getFile().bind('children', this, 'model');
+      var model = this.getModel();
+      model.addListener('change',function () {
         if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
           this._onFilter();
         } else {
           this._controller.setModel(model);
         }
       }, this);
+      this.getFile().load();
     },
 
     _applyShowTextFilter: function (value) {
@@ -216,6 +203,14 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
      */
     _onRemoveChild : function(e) {
       this.fireDataEvent("removeItem", e.getData());
+    },
+
+    _onFileEvent: function (ev) {
+      var data = ev.getData();
+      switch (data.action) {
+        case 'deleted':
+          break;
+      }
     },
 
     // overridden

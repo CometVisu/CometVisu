@@ -4,6 +4,7 @@
 qx.Class.define('cv.ui.manager.form.FileListItem', {
   extend: qx.ui.core.Widget,
   implement : [qx.ui.form.IModel],
+  include: [cv.ui.manager.upload.MDragUpload],
 
   /*
   ***********************************************
@@ -24,6 +25,8 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
     this.addListener('pointerout', this._onPointerOut, this);
 
     cv.ui.manager.model.Preferences.getInstance().addListener('changeDefaultConfigEditor', this._maintainFileActions, this);
+
+    this.setUploadHint(this.tr('Drop the file here to replace the content.'));
   },
 
   /*
@@ -166,6 +169,25 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
      */
     _onPointerOut : function() {
       this.removeState('hovered');
+    },
+
+    _isDroppable: function (files) {
+      if (files.length === 1) {
+        var myMime = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(this.getModel().getName().split(".").pop());
+        return myMime === files[0].type;
+      }
+      return false;
+    },
+
+    _onDrop: function (ev) {
+      ev.preventDefault();
+      dialog.Dialog.confirm(this.tr('Do you really want to replace the \'%1\' with the uploaded files content?', this.getModel().getName()), function (confirmed) {
+        if (confirmed) {
+          var newFile = cv.ui.manager.upload.MDragUpload.getFiles(ev)[0];
+          cv.ui.manager.upload.MDragUpload.uploadFile(newFile, this.getModel());
+        }
+      }, this);
+      this._onStopDragging(ev);
     },
 
     _applyModel: function (value) {
@@ -355,6 +377,9 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
           }, this);
           this.getChildControl('bottom-bar').add(control);
           break;
+      }
+      if (!control) {
+        control = this._createMDragUploadChildControlImpl(id);
       }
 
       return control || this.base(arguments, id);
