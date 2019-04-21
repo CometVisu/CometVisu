@@ -103,11 +103,19 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     /** @type {Class} Pointer to the selection manager to use */
     SELECTION_MANAGER : qx.ui.core.selection.ScrollArea,
 
+    _defaultLabelConverter: function (name) {
+      var parts = name.split('.');
+      if (parts.length > 1) {
+        parts.pop();
+      }
+      return parts.join('.');
+    },
+
     _getDelegate: function () {
       var labelConverter = this.getLabelConverter();
-      var converter = labelConverter ? {
-        converter: labelConverter
-      } : null;
+      var converter = {
+        converter: labelConverter ? labelConverter : this._defaultLabelConverter
+      };
       return {
         createItem: function () {
           return new cv.ui.manager.form.FileListItem();

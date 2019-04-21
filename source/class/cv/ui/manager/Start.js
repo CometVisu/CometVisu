@@ -196,15 +196,14 @@ qx.Class.define('cv.ui.manager.Start', {
            control.set({
              showTextFilter: false
            });
-           var fakeFolder = new cv.ui.manager.model.FileItem('fake', 'fake', cv.ui.manager.model.FileItem.ROOT).set({
+           var fakeFolder = new cv.ui.manager.model.FileItem('fake', 'fake', cv.ui.manager.model.FileItem.ROOT, [
+             cv.ui.manager.model.FileItem.getHiddenConfigFile(),
+             cv.ui.manager.model.FileItem.getIconFile()
+           ]).set({
              fake: true,
              type: 'dir',
              loaded: true
            });
-           fakeFolder.getChildren().replace([
-             cv.ui.manager.model.FileItem.getHiddenConfigFile(),
-             cv.ui.manager.model.FileItem.getIconFile()
-           ]);
            control.setFile(fakeFolder);
            control.addListener('changeSelection', this._onChangeSelection, this);
            this._add(control, {flex: 1});

@@ -270,6 +270,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     },
 
     _handleFileEvent: function (ev) {
+      if (this.isFake()) {
+        return;
+      }
       var data = ev.getData();
       switch (data.action) {
         case 'moved':
@@ -405,6 +408,13 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       if (this.getType() === 'file') {
         // nothing to load
         this.setLoaded(true);
+        return;
+      } else if (this.isFake()) {
+        this.setLoaded(true);
+        if (this.getFakeChildren()) {
+          this.getChildren().append(this.getFakeChildren());
+        }
+        return;
       }
       if (this.isLoading()) {
         if (callback) {

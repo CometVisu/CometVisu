@@ -106,7 +106,10 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
               }
             } else {
               cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('File has been uploaded'));
-              qx.event.message.Bus.dispatchByName('cv.manager.tree.reload', null);
+              qx.event.message.Bus.dispatchByName('cv.manager.file', {
+                action: 'uploaded',
+                path: this.getFolder().getFullPath() + '/' + filename
+              });
             }
           }
           else if (state === "cancelled") {

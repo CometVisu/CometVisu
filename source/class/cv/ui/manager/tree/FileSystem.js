@@ -100,6 +100,7 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
         case 'added':
         case 'deleted':
         case 'restored':
+        case 'uploaded':
           this.reload();
           break;
       }
