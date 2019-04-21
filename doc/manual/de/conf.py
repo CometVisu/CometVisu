@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-import sys, os
+import sys, os, re
 from datetime import date
 
 root_dir = os.path.abspath(os.path.join('..', '..', '..'))
@@ -54,9 +54,17 @@ if os.path.exists(versions_file):
 releaselevel = 'dev' if version[-4:] == '-dev' else 'release'
 release = ''
 
+versionpath = version
+match = re.match("([0-9]+.[0-9]+).[0-9]+.*", version)
+if match:
+    versionpath = match.group(1)
+
 # -- Options for HTML output ---------------------------------------------------
 
 html_theme = 'sphinx_rtd_theme'
+html_theme_options = {
+    'canonical_url': ('https://www.cometvisu.org/CometVisu/%s/%s/manual/' % (language, versionpath) )
+}
 html_theme_path = [os.path.join(root_dir, 'utils', 'docutils', 'template', 'sphinx_rtd_theme-0.2.4')]
 html_title = "CometVisu"
 #html_short_title = None
