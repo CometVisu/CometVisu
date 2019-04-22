@@ -23,6 +23,16 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     this._isImageRegex = new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$');
     this.initModel(new qx.data.Array());
     this._setLayout(new qx.ui.layout.VBox(8));
+
+    this._newItem = new cv.ui.manager.model.FileItem('new', 'new', null).set({
+      fake: true,
+      type: 'file',
+      loaded: true,
+      icon: cv.theme.dark.Images.getIcon('new-file'),
+      displayName: this.tr('Add file'),
+      special: 'add-file'
+    });
+
     this._debouncedOnFilter = qx.util.Function.debounce(this._onFilter, 500, false);
     this._createChildControl('filter');
   },
@@ -99,6 +109,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
   members: {
     _controller: null,
     _isImageRegex: null,
+    _newItem: null,
 
     /** @type {Class} Pointer to the selection manager to use */
     SELECTION_MANAGER : qx.ui.core.selection.ScrollArea,
@@ -149,13 +160,24 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
 
     _onFsItemRightClick: function (ev) {
       var file = ev.getTarget().getModel();
+      if (file.getSpecial() === 'add-file') {
+        ev.preventDefault();
+        ev.stopPropagation();
+        return;
+      }
       var menu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
       menu.configure(file);
       ev.getTarget().setContextMenu(menu);
     },
 
     _onDblTap: function (ev) {
-      qx.event.message.Bus.dispatchByName('cv.manager.open', ev.getTarget().getModel());
+      var file = ev.getTarget().getModel();
+      if (file.getSpecial() === 'add-file') {
+        // Select file for upload
+
+      } else {
+        qx.event.message.Bus.dispatchByName('cv.manager.open', ev.getTarget().getModel());
+      }
     },
 
     _applyFile: function () {
@@ -164,16 +186,24 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         this._controller = new qx.data.controller.List(null, container);
         this._controller.setDelegate(this._getDelegate());
       }
-      this.getFile().bind('children', this, 'model');
+      var file = this.getFile();
+      file.bind('children', this, 'model');
       var model = this.getModel();
+      this._newItem.setParent(file);
       model.addListener('change',function () {
         if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
           this._onFilter();
         } else {
-          this._controller.setModel(model);
+          if (this.getFile().isWriteable()) {
+            var newModel = model.slice(0);
+            newModel.push(this._newItem);
+            this._controller.setModel(newModel);
+          } else {
+            this._controller.setModel(model);
+          }
         }
       }, this);
-      this.getFile().load();
+      file.load();
     },
 
     _applyShowTextFilter: function (value) {
@@ -187,6 +217,9 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         var filtered = this.getModel().filter(function (file) {
           return (!filterFunction || filterFunction(file)) && (!filterString || file.getName().includes(filterString));
         });
+        if (this.getFile().isWriteable()) {
+          filtered.push(this._newItem);
+        }
         this._controller.setModel(filtered);
       }
     },

@@ -134,7 +134,10 @@ qx.Class.define('cv.ui.manager.Start', {
                var match = this._configRegex.exec(file.getName());
                return !!match && (!match[1] || !match[1].endsWith('temp'));
              }.bind(this),
-             labelConverter: function (name) {
+             labelConverter: function (name, file) {
+               if (file.isFake()) {
+                 return name;
+               }
                var configName = cv.ui.manager.model.FileItem.getConfigName(name);
                return configName ? qx.lang.String.firstUp(configName) : '<Default>';
              },

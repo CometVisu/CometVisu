@@ -37,6 +37,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     ROOT: null,
     _fakeIconFile: null,
     _hiddenConfigFakeFile: null,
+    _acceptedFiles: {
+      '.': '*.xml',
+      'media': '*.js,*.jpg,*.gif,*.png,*.conf,*.svg,*.md,*.rst,*,css,*.txt'
+    },
 
     isConfigFile: function (path) {
       return /visu_config.*\.xml/.test(path);
@@ -82,6 +86,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
         });
       }
       return this._hiddenConfigFakeFile;
+    },
+
+    getAcceptedFiles: function (folder) {
+      return this._acceptedFiles[folder.getFullPath()];
     }
   },
 
@@ -162,6 +170,16 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       check: 'Boolean',
       init: false,
       event: 'changeEditing'
+    },
+
+    /**
+     * A special configuration option for mulitple purposes, e.g. creating a fake FileItem with a special
+     * behaviour like an "Add new File" used in writeable Folders.
+     */
+    special: {
+      check: 'String',
+      nullable: true,
+      event: 'changeSpecial'
     },
 
     /**

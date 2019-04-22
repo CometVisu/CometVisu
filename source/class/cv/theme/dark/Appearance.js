@@ -87,6 +87,18 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
+    'cv-file-item-add-file': {
+      include: 'cv-file-item',
+      alias: 'cv-file-item',
+
+      style: function (states) {
+        return {
+          decorator: 'cv-file-item-add-file',
+          opacity: states.hovered ? 1.0 : 0.5,
+          cursor: 'pointer'
+        };
+      }
+    },
     'open-file-item': {
       alias: "atom",
 

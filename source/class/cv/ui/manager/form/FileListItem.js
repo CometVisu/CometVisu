@@ -133,6 +133,15 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
       check : 'Boolean',
       themeable : true,
       event: 'changeCenter'
+    },
+
+    /**
+     * Restrict possible file uploads (not supported by every browxer)
+     */
+    acceptUpload: {
+      init: null,
+      nullable: true,
+      check: "String"
     }
   },
 
@@ -142,7 +151,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
   ***********************************************
   */
   members: {
-    _replacementManager: null,
+    _uploadManager: null,
 
     // overridden
     /**
@@ -173,6 +182,9 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
 
     _isDroppable: function (files) {
       if (files.length === 1) {
+        if (this.getModel().getSpecial() === 'add-file') {
+          return true;
+        }
         var myMime = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(this.getModel().getName().split(".").pop());
         return myMime === files[0].type;
       }
@@ -181,50 +193,80 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
 
     _onDrop: function (ev) {
       ev.preventDefault();
-      dialog.Dialog.confirm(this.tr('Do you really want to replace the \'%1\' with the uploaded files content?', this.getModel().getName()), function (confirmed) {
-        if (confirmed) {
-          var newFile = cv.ui.manager.upload.MDragUpload.getFiles(ev)[0];
-          cv.ui.manager.upload.MDragUpload.uploadFile(newFile, this.getModel());
-        }
-      }, this);
+      if (this.getModel().getSpecial() === 'add-file') {
+        cv.ui.manager.upload.MDragUpload.uploadFile(cv.ui.manager.upload.MDragUpload.getFiles(ev)[0]);
+      } else {
+        dialog.Dialog.confirm(this.tr('Do you really want to replace the \'%1\' with the uploaded files content?', this.getModel().getName()), function (confirmed) {
+          if (confirmed) {
+            var newFile = cv.ui.manager.upload.MDragUpload.getFiles(ev)[0];
+            cv.ui.manager.upload.MDragUpload.uploadFile(newFile, this.getModel());
+          }
+        }, this);
+      }
       this._onStopDragging(ev);
     },
 
     _applyModel: function (value) {
       if (value && value.getType() === 'file') {
         var control = this.getChildControl('file-type');
-        var type = value.getName().split('.').pop();
-
-        // do not use file types that are longer than 4 chars (not enough space)
-        if (type.length <= 4) {
-          var handled = false;
-          switch (type) {
-            case 'xml':
-              control.setValue('</>');
-              handled = true;
-              break;
-
-            case 'js':
-              type = qx.lang.String.firstUp(type); // jshint ignore:line
-            case 'css':
-            case 'conf':
-              control.setValue(type);
-              handled = true;
-              break;
+        value.bind('special', this, 'appearance', {
+          converter: function (value) {
+            return value ? 'cv-file-item-' + value : 'cv-file-item';
           }
-          if (handled) {
-            control.show();
+        });
+        if (value.isFake()) {
+          if (value.getSpecial() !== 'add-file') {
+            this.getChildControl('action-menu').configure(value);
+
+          } else {
+            this.getChildControl('bottom-bar').exclude();
+            this.setUploadHint(this.tr('Drop the file here to upload a the file.'));
+            this.getChildControl('atom').setToolTipText(this.tr('Click to select a file for upload.'));
+            this.setAcceptUpload(cv.ui.manager.model.FileItem.getAcceptedFiles(value.getParent()));
+            if (!this._uploadManager) {
+              this._uploadManager = new cv.ui.manager.upload.UploadMgr();
+              this._uploadManager.addWidget(this);
+            }
+            this._uploadManager.setFolder(value.getParent());
+            return;
+          }
+        } else {
+          var type = value.getName().split('.').pop();
+
+          // do not use file types that are longer than 4 chars (not enough space)
+          if (type.length <= 4) {
+            var handled = false;
+            switch (type) {
+              case 'xml':
+                control.setValue('</>');
+                handled = true;
+                break;
+
+              case 'js':
+                type = qx.lang.String.firstUp(type); // jshint ignore:line
+              case 'css':
+              case 'conf':
+                control.setValue(type);
+                handled = true;
+                break;
+            }
+            if (handled) {
+              control.show();
+            } else {
+              control.exclude();
+            }
           } else {
             control.exclude();
           }
-        } else {
-          control.exclude();
+          this.getChildControl('action-menu').configure(value);
         }
-        this.getChildControl('action-menu').configure(value);
 
       } else {
         this.getChildControl('file-type').exclude();
       }
+      this.getChildControl('bottom-bar').show();
+      this.setUploadHint(this.tr('Drop the file here to replace the content.'));
+      this.getChildControl('atom').setToolTipText(this.tr('Double click to open'));
       this._maintainFileActions();
     },
 
@@ -383,6 +425,22 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
       }
 
       return control || this.base(arguments, id);
+    },
+
+    // overridden
+    capture: function () {
+      // do not fire capture method for upload-items (see: com.zenesis.qx.upload.MUploadButton)
+      if (!this.getFile() || this.getFile().getSpecial() !== 'add-file') {
+        this.base(arguments);
+      }
+    },
+
+    // overridden
+    releaseCapture: function() {
+      // do not fire capture method for upload-items (see: com.zenesis.qx.upload.MUploadButton)
+      if (!this.getFile() || this.getFile().getSpecial() !== 'add-file') {
+        this.base(arguments);
+      }
     }
   },
 
@@ -395,7 +453,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
     this.removeListener('pointerover', this._onPointerOver, this);
     this.removeListener('pointerout', this._onPointerOut, this);
 
-    this._disposeObjects('_replacementManager');
+    this._disposeObjects('_uploadManager');
     cv.ui.manager.model.Preferences.getInstance().removeListener('changeDefaultConfigEditor', this._maintainFileActions, this);
   }
 });

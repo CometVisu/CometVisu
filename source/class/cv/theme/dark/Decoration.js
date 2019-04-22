@@ -73,6 +73,14 @@ qx.Theme.define("cv.theme.dark.Decoration", {
         shadowVerticalLength: 1,
         shadowColor: 'rgba(255, 255, 255, 0.1)'
       }
+    },
+
+    'cv-file-item-add-file': {
+      style: {
+        width: 1,
+        color: 'text',
+        style: 'dashed'
+      }
     }
   }
 });
