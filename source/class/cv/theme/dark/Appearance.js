@@ -24,7 +24,32 @@ qx.Theme.define("cv.theme.dark.Appearance", {
 
   appearances : {
     'cv-start': 'widget',
-    'cv-start/media-title': {
+    'cv-start/configs-header': {
+      style: function () {
+        return {
+          margin: [20, 10, 0, 10],
+          decorator: 'cv-start-section-title'
+        };
+      }
+    },
+    'cv-start/configs-title': {
+      style: function () {
+        return {
+          iconPosition: 'right',
+          font: 'title',
+          marginLeft: 10,
+          allowGrowX: true
+        };
+      }
+    },
+    'cv-start/configs-toolbar': {
+      style: function () {
+        return {
+
+        };
+      }
+    },
+    'cv-start/misc-title': {
       style: function () {
         return {
           iconPosition: 'right',
@@ -37,9 +62,10 @@ qx.Theme.define("cv.theme.dark.Appearance", {
         };
       }
     },
-    'cv-start/configs-title': 'cv-start/media-title',
-    'cv-start/demo-configs-title': 'cv-start/media-title',
-    'cv-start/misc-title': 'cv-start/media-title',
+    'cv-start/demo-configs-title': 'cv-start/misc-title',
+    'cv-start/media-title': 'cv-start/configs-title',
+    'cv-start/media-toolbar': 'cv-start/configs-toolbar',
+    'cv-start/media-header': 'cv-start/configs-header',
 
     'cv-file-item': {
       include: 'listitem',

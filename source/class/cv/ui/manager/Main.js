@@ -101,7 +101,6 @@ qx.Class.define('cv.ui.manager.Main', {
     _pane: null,
     _tree: null,
     _stack: null,
-    _menuBar: null,
     _oldCommandGroup: null,
     _mainContent: null,
     _openFilesController: null,
@@ -633,10 +632,10 @@ qx.Class.define('cv.ui.manager.Main', {
       var main = new qx.ui.container.Composite(new qx.ui.layout.Dock());
       root.add(main, {edge: 0});
       // menu on top
-      this._menuBar = new cv.ui.manager.MenuBar();
-      main.add(this._menuBar, {edge: 'north'});
+      var menuBar = cv.ui.manager.MenuBar.getInstance();
+      main.add(menuBar, {edge: 'north'});
 
-      var uploadButton = this._menuBar.getButton('upload');
+      var uploadButton = menuBar.getButton('upload');
       var uploadManager = new cv.ui.manager.upload.UploadMgr(uploadButton);
       this.bind('currentFolder', uploadManager, 'folder');
 
@@ -662,13 +661,13 @@ qx.Class.define('cv.ui.manager.Main', {
       var leftContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
       // left toolbar
-      var leftBar = new cv.ui.manager.ToolBar(this._menuBar, uploadManager);
+      var leftBar = new cv.ui.manager.ToolBar(uploadManager);
       this.bind('currentFolder', leftBar, 'folder');
       this.bind('currentSelection', leftBar, 'file');
       leftBar.addListener('reload', this._tree.reload, this._tree);
 
       // globally bind writeable folder to command for new files
-      var buttonConfig = this._menuBar.getButtonConfiguration();
+      var buttonConfig = menuBar.getButtonConfiguration();
       this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
       this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
 
@@ -715,10 +714,6 @@ qx.Class.define('cv.ui.manager.Main', {
       console.log(startOpenFile);
       this.getOpenFiles().push(startOpenFile);
       list.setModelSelection([startOpenFile]);
-    },
-
-    getMenuBar: function () {
-      return this._menuBar;
     }
   },
 
@@ -729,7 +724,7 @@ qx.Class.define('cv.ui.manager.Main', {
   */
   destruct: function () {
     this._disposeObjects(
-      '_pane', '_tree', '_stack', '_menuBar', '_mainContent', '_openFilesController'
+      '_pane', '_tree', '_stack', '_mainContent', '_openFilesController'
     );
     // restore former command group
     var application = qx.core.Init.getApplication();

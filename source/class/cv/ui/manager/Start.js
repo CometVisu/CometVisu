@@ -17,9 +17,9 @@ qx.Class.define('cv.ui.manager.Start', {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.VBox(8));
     this._configRegex = /^visu_config_?([^.]+)?\.xml$/;
-    [ 'configs-title', 'configs',
+    [ 'configs-title', 'configs-toolbar', 'configs',
       'demo-configs-title', 'demo-configs',
-      'media-title', 'media',
+      'media-title', 'media-toolbar', 'media',
       'misc-title', 'misc'
     ].forEach(this._createChildControl, this);
   },
@@ -70,6 +70,7 @@ qx.Class.define('cv.ui.manager.Start', {
         value.getChildren().some(function (file) {
           if (file.getName() === 'media') {
             this.getChildControl('media').setFile(file);
+            this.getChildControl('media-toolbar').setFolder(file);
             found++;
           } else if (file.getName() === 'demo') {
             this.getChildControl('demo-configs').setFile(file);
@@ -123,7 +124,21 @@ qx.Class.define('cv.ui.manager.Start', {
            control = new qx.ui.basic.Atom(this.tr('Configurations'), cv.theme.dark.Images.getIcon('drop-up', 18));
            control.setUserData('control', 'configs');
            control.addListener('tap', this._onToggleExpand, this);
+           this.getChildControl('configs-header').add(control);
+           break;
+
+         case 'configs-header':
+           control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
            this._add(control);
+           break;
+
+         case 'configs-toolbar':
+           control = new cv.ui.manager.ToolBar(null, ['new-config-file', 'upload', 'reload']);
+           control.setFolder(cv.ui.manager.model.FileItem.ROOT);
+           control.addListener('reload', function () {
+             cv.ui.manager.model.FileItem.ROOT.reload();
+           }, this);
+           this.getChildControl('configs-header').add(control);
            break;
 
          case 'configs':
@@ -175,7 +190,20 @@ qx.Class.define('cv.ui.manager.Start', {
            control = new qx.ui.basic.Atom(this.tr('Media files'), cv.theme.dark.Images.getIcon('drop-up', 18));
            control.setUserData('control', 'media');
            control.addListener('tap', this._onToggleExpand, this);
+           this.getChildControl('media-header').add(control);
+           break;
+
+         case 'media-header':
+           control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
            this._add(control);
+           break;
+
+         case 'media-toolbar':
+           control = new cv.ui.manager.ToolBar(null, ['new-file', 'upload', 'reload']);
+           control.addListener('reload', function () {
+             control.getFolder().reload();
+           }, this);
+           this.getChildControl('media-header').add(control);
            break;
 
          case 'media':

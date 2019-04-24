@@ -3,6 +3,7 @@
  */
 qx.Class.define('cv.ui.manager.MenuBar', {
   extend: qx.ui.menubar.MenuBar,
+  type: 'singleton',
 
   /*
   ***********************************************

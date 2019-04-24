@@ -20,7 +20,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
   ***********************************************
   */
   statics: {
-    LAST_ID: 0,
+    LAST_ID: 0
   },
 
   /*

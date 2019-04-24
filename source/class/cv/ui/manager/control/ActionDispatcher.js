@@ -41,7 +41,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
   */
   members: {
     _applyFocusedWidget: function () {
-      var menuBar = this.getMain().getMenuBar();
+      var menuBar = cv.ui.manager.MenuBar.getInstance();
       var config = menuBar.getButtonConfiguration();
       var button;
       Object.keys(config).forEach(function (actionId) {
