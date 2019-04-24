@@ -28,8 +28,8 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       fake: true,
       type: 'file',
       loaded: true,
-      icon: cv.theme.dark.Images.getIcon('new-file'),
-      displayName: this.tr('Add file'),
+      icon: cv.theme.dark.Images.getIcon('upload'),
+      displayName: this.tr('Upload file'),
       special: 'add-file'
     });
 
@@ -194,13 +194,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
           this._onFilter();
         } else {
-          if (this.getFile().isWriteable()) {
-            var newModel = model.slice(0);
-            newModel.push(this._newItem);
-            this._controller.setModel(newModel);
-          } else {
-            this._controller.setModel(model);
-          }
+          this._controller.setModel(model);
         }
       }, this);
       file.load();
@@ -217,9 +211,6 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         var filtered = this.getModel().filter(function (file) {
           return (!filterFunction || filterFunction(file)) && (!filterString || file.getName().includes(filterString));
         });
-        if (this.getFile().isWriteable()) {
-          filtered.push(this._newItem);
-        }
         this._controller.setModel(filtered);
       }
     },

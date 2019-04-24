@@ -264,7 +264,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
          case 'replace-button':
            control = new com.zenesis.qx.upload.UploadMenuButton(this.tr('Replace'), cv.theme.dark.Images.getIcon('upload', 18));
            control.exclude();
-           this._replacementManager = new cv.ui.manager.upload.UploadMgr(control);
+           this._replacementManager = new cv.ui.manager.upload.UploadMgr();
            this._replacementManager.setForce(true);
            this._replacementManager.addWidget(control);
            break;

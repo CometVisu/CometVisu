@@ -9,9 +9,18 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct: function (widget, uploadUrl) {
+    this.base(arguments, widget, uploadUrl);
     this._init();
+  },
+
+  /*
+  ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    LAST_ID: 0,
   },
 
   /*
@@ -43,7 +52,6 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
   },
 
   members : {
-    __lastId : 0,
 
     _updateUploadUrl: function () {
       var folder = this.getFolder();
@@ -130,7 +138,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
      * @return {Number}
      */
     _getUniqueFileId: function() {
-      return ++this.__lastId;
+      return ++cv.ui.manager.upload.UploadMgr.LAST_ID;
     },
 
     /**

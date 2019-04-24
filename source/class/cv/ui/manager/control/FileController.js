@@ -113,36 +113,63 @@ qx.Class.define('cv.ui.manager.control.FileController', {
       if (file.isTemporary()) {
         // new file, no need to call the backend
         if (callback) {
-          callback.apply(context);
+          callback.apply(context, true);
         }
       } else {
-        this.__fsClient.deleteSync({path: file.getFullPath(), force: file.isTrash()}, null, function (err) {
-          if (err) {
-            cv.ui.manager.snackbar.Controller.error(err);
+        if (file) {
+          var message;
+          if (file.isTrash()) {
+            message = qx.locale.Manager.tr('Do you really want to clear the trash?');
+          } else if (file.isInTrash()) {
+            message = file.getType() === 'file' ?
+              qx.locale.Manager.tr('Do you really want to delete this file from the trash?') :
+              qx.locale.Manager.tr('Do you really want to delete this folder from the trash?');
           } else {
-            var message;
-            if (file.isTrash()) {
-              message = qx.locale.Manager.tr('Trash has been cleared');
-            } else if (file.isInTrash()) {
-              message = this.getType() === 'file' ?
-                qx.locale.Manager.tr('File has been removed from trash') :
-                qx.locale.Manager.tr('Folder has been removed from trash');
-            } else {
-              message = file.getType() === 'file' ?
-                qx.locale.Manager.tr('File has been deleted') :
-                qx.locale.Manager.tr('Folder has been deleted');
-            }
-            cv.ui.manager.snackbar.Controller.info(message);
-            if (callback) {
-              callback.apply(context);
-            }
-            qx.event.message.Bus.dispatchByName('cv.manager.file', {
-              action: 'deleted',
-              path: file.getFullPath()
-            });
+            message = file.getType() === 'file' ?
+              qx.locale.Manager.tr('Do you really want to delete this file?') :
+              qx.locale.Manager.tr('Do you really want to delete this folder?');
           }
-        }, this);
+          dialog.Dialog.confirm(message, function (confirmed) {
+            if (confirmed) {
+              this.__doDelete(file, callback, context);
+            } else if (callback) {
+              callback.apply(context, false);
+            }
+          }, this, qx.locale.Manager.tr('Confirm deletion'));
+        }
       }
+    },
+
+    __doDelete: function (file, callback, context) {
+      this.__fsClient.deleteSync({path: file.getFullPath(), force: file.isTrash()}, null, function (err) {
+        if (err) {
+          cv.ui.manager.snackbar.Controller.error(err);
+          if (callback) {
+            callback.apply(context, false);
+          }
+        } else {
+          var message;
+          if (file.isTrash()) {
+            message = qx.locale.Manager.tr('Trash has been cleared');
+          } else if (file.isInTrash()) {
+            message = this.getType() === 'file' ?
+              qx.locale.Manager.tr('File has been removed from trash') :
+              qx.locale.Manager.tr('Folder has been removed from trash');
+          } else {
+            message = file.getType() === 'file' ?
+              qx.locale.Manager.tr('File has been deleted') :
+              qx.locale.Manager.tr('Folder has been deleted');
+          }
+          cv.ui.manager.snackbar.Controller.info(message);
+          if (callback) {
+            callback.apply(context, true);
+          }
+          qx.event.message.Bus.dispatchByName('cv.manager.file', {
+            action: 'deleted',
+            path: file.getFullPath()
+          });
+        }
+      }, this);
     },
 
     download: function (file) {

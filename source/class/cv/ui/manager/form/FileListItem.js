@@ -209,26 +209,20 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
     _applyModel: function (value) {
       if (value && value.getType() === 'file') {
         var control = this.getChildControl('file-type');
-        value.bind('special', this, 'appearance', {
-          converter: function (value) {
-            return value ? 'cv-file-item-' + value : 'cv-file-item';
-          }
-        });
         if (value.isFake()) {
           if (value.getSpecial() !== 'add-file') {
             this.getChildControl('action-menu').configure(value);
-
           } else {
-            this.getChildControl('bottom-bar').exclude();
-            this.setUploadHint(this.tr('Drop the file here to upload a the file.'));
-            this.getChildControl('atom').setToolTipText(this.tr('Click to select a file for upload.'));
-            this.setAcceptUpload(cv.ui.manager.model.FileItem.getAcceptedFiles(value.getParent()));
-            if (!this._uploadManager) {
-              this._uploadManager = new cv.ui.manager.upload.UploadMgr();
-              this._uploadManager.addWidget(this);
-            }
-            this._uploadManager.setFolder(value.getParent());
-            return;
+            // this.getChildControl('bottom-bar').exclude();
+            // this.setUploadHint(this.tr('Drop the file here to upload a the file.'));
+            // this.getChildControl('atom').setToolTipText(this.tr('Click to select a file for upload.'));
+            // this.setAcceptUpload(cv.ui.manager.model.FileItem.getAcceptedFiles(value.getParent()));
+            // if (!this._uploadManager) {
+            //   this._uploadManager = new cv.ui.manager.upload.UploadMgr();
+            //   this._uploadManager.addWidget(this);
+            // }
+            // this._uploadManager.setFolder(value.getParent());
+            // return;
           }
         } else {
           var type = value.getName().split('.').pop();
@@ -264,10 +258,15 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
       } else {
         this.getChildControl('file-type').exclude();
       }
-      this.getChildControl('bottom-bar').show();
-      this.setUploadHint(this.tr('Drop the file here to replace the content.'));
-      this.getChildControl('atom').setToolTipText(this.tr('Double click to open'));
+      // this.getChildControl('bottom-bar').show();
+      // this.setUploadHint(this.tr('Drop the file here to replace the content.'));
+      // this.getChildControl('atom').setToolTipText(this.tr('Double click to open'));
       this._maintainFileActions();
+      // if (this._uploadManager) {
+      //   try {
+      //     this._uploadManager.removeWidget(this);
+      //   } catch (e) {}
+      // }
     },
 
     _onOpenWith: function (ev) {

@@ -487,23 +487,7 @@ qx.Class.define('cv.ui.manager.Main', {
     _onDelete: function (file) {
       var item = file || this.getCurrentSelection();
       if (item) {
-        var message;
-        if (item.isTrash()) {
-          message = qx.locale.Manager.tr('Do you really want to clear the trash?');
-        } else if (item.isInTrash()) {
-          message = item.getType() === 'file' ?
-            qx.locale.Manager.tr('Do you really want to delete this file from the trash?') :
-            qx.locale.Manager.tr('Do you really want to delete this folder from the trash?');
-        } else {
-          message = item.getType() === 'file' ?
-            qx.locale.Manager.tr('Do you really want to delete this file?') :
-            qx.locale.Manager.tr('Do you really want to delete this folder?');
-        }
-        dialog.Dialog.confirm(message, function (confirmed) {
-          if (confirmed) {
-            cv.ui.manager.control.FileController.getInstance().delete(item);
-          }
-        }, this, qx.locale.Manager.tr('Confirm deletion'));
+        cv.ui.manager.control.FileController.getInstance().delete(item);
       }
     },
 
@@ -677,81 +661,16 @@ qx.Class.define('cv.ui.manager.Main', {
       // left container
       var leftContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
-      // left toobar
-      var leftBar = new qx.ui.toolbar.ToolBar();
-      leftBar.setAppearance('cv-toolbar');
+      // left toolbar
+      var leftBar = new cv.ui.manager.ToolBar(this._menuBar, uploadManager);
+      this.bind('currentFolder', leftBar, 'folder');
+      this.bind('currentSelection', leftBar, 'file');
+      leftBar.addListener('reload', this._tree.reload, this._tree);
+
+      // globally bind writeable folder to command for new files
       var buttonConfig = this._menuBar.getButtonConfiguration();
-
-      function createButton (name) {
-        var args = buttonConfig[name].args;
-        var button = new qx.ui.toolbar.Button(null, args[1].replace(/\/[0-9]+$/, '/15'), args[2]);
-        button.setAppearance('cv-toolbar-button');
-        button.setToolTipText(args[0]);
-        return button;
-      }
-      var newButton = new qx.ui.toolbar.MenuButton(null,
-        cv.theme.dark.Images.getIcon('new-file', 15),
-        this._menuBar.getChildControl('new-menu')
-      );
-      var upload = createButton('upload');
-      uploadManager.addWidget(upload);
-      var deleteSelection = createButton('delete');
-      deleteSelection.addListener('execute', this._onDelete, this);
-
       this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
       this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
-
-      var download = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('download', 15));
-      download.setAppearance('cv-toolbar-button');
-      download.setToolTipText(qx.locale.Manager.tr('Download'));
-      download.addListener('execute', function () {
-        cv.ui.manager.control.FileController.getInstance().download(this.getCurrentSelection());
-      }, this);
-      // download button is only enabled when a file is selected
-      this.bind('currentSelection', download, 'enabled', {
-        converter: function (file) {
-          return !!file && file.getType() === 'file' && !file.isFake();
-        }
-      });
-      this.bind('currentSelection', deleteSelection, 'enabled', {
-        converter: function (file) {
-          return !!file && file.isWriteable() && !file.isFake();
-        }
-      });
-
-      // config check
-      var checkConfig = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('validate', 15));
-      checkConfig.setAppearance('cv-toolbar-button');
-      checkConfig.setToolTipText(qx.locale.Manager.tr('Validate'));
-      checkConfig.addListener('execute', function () {
-        cv.ui.manager.control.FileController.getInstance().validate(this.getCurrentSelection());
-      }, this);
-      // download button is only enabled when a file is selected
-      this.bind('currentSelection', checkConfig, 'enabled', {
-        converter: function (file) {
-          return !!file && file.isConfigFile();
-        }
-      });
-
-      var reload = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 15));
-      reload.setAppearance('cv-toolbar-button');
-      reload.setToolTipText(qx.locale.Manager.tr('Reload'));
-      reload.addListener('execute', this._tree.reload, this._tree);
-
-      var createPart = new qx.ui.toolbar.Part();
-      createPart.set({
-        marginLeft: 0
-      });
-      createPart.add(newButton);
-      createPart.add(upload);
-      createPart.add(download);
-      leftBar.add(createPart);
-
-      leftBar.add(checkConfig);
-      leftBar.add(deleteSelection);
-
-      leftBar.add(new qx.ui.core.Spacer(), {flex: 1});
-      leftBar.add(reload);
 
       leftContainer.add(leftBar);
       leftContainer.add(this._tree, {flex: 1});
@@ -767,9 +686,6 @@ qx.Class.define('cv.ui.manager.Main', {
       // tab list
       var list = new qx.ui.form.List(true);
       list.setAppearance('open-files-tabs');
-      list.set({
-
-      });
       this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, "file.name");
       this._openFilesController.setDelegate({
         createItem: function () {

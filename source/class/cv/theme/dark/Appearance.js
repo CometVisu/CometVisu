@@ -360,8 +360,7 @@ qx.Theme.define("cv.theme.dark.Appearance", {
     'open-files-tabs': {
       style: function () {
         return {
-          minHeight: 38,
-          height: 38,
+          height: 34,
           padding: 0,
           marginBottom: 5,
           decorator: 'open-file-tabs'
