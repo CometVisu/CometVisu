@@ -124,13 +124,53 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
       $filter = 'AND ' . str_replace( "\\'", "'", $filter );
   }
 
-  if( '' != $res )
+  if( '' != $res && 'ELAPSED' !== $ds )
   {
     if( !preg_match( '/^[0-9]+$/', $res ) )
       return 'Error: invalid res parameter [' . $res . ']';
     switch( $ds )
     {
       case 'COUNT':
+      case 'DERIVATIVE':
+      case 'DERIVATIVE_COUNT':
+      case 'DERIVATIVE_MEAN':
+      case 'DERIVATIVE_MEDIAN':
+      case 'DERIVATIVE_MODE':
+      case 'DERIVATIVE_SUM':
+      case 'DERIVATIVE_FIRST':
+      case 'DERIVATIVE_LAST':
+      case 'DERIVATIVE_MIN':
+      case 'DERIVATIVE_MAX':
+      case 'DERIVATIVE_PERCENTILE_1':
+      case 'DERIVATIVE_PERCENTILE_5':
+      case 'DERIVATIVE_PERCENTILE_10':
+      case 'DERIVATIVE_PERCENTILE_20':
+      case 'DERIVATIVE_PERCENTILE_25':
+      case 'DERIVATIVE_PERCENTILE_75':
+      case 'DERIVATIVE_PERCENTILE_80':
+      case 'DERIVATIVE_PERCENTILE_90':
+      case 'DERIVATIVE_PERCENTILE_95':
+      case 'DERIVATIVE_PERCENTILE_99':
+      case 'DIFFERENCE':
+      case 'DIFFERENCE_COUNT':
+      case 'DIFFERENCE_MEAN':
+      case 'DIFFERENCE_MEDIAN':
+      case 'DIFFERENCE_MODE':
+      case 'DIFFERENCE_SUM':
+      case 'DIFFERENCE_FIRST':
+      case 'DIFFERENCE_LAST':
+      case 'DIFFERENCE_MIN':
+      case 'DIFFERENCE_MAX':
+      case 'DIFFERENCE_PERCENTILE_1':
+      case 'DIFFERENCE_PERCENTILE_5':
+      case 'DIFFERENCE_PERCENTILE_10':
+      case 'DIFFERENCE_PERCENTILE_20':
+      case 'DIFFERENCE_PERCENTILE_25':
+      case 'DIFFERENCE_PERCENTILE_75':
+      case 'DIFFERENCE_PERCENTILE_80':
+      case 'DIFFERENCE_PERCENTILE_90':
+      case 'DIFFERENCE_PERCENTILE_95':
+      case 'DIFFERENCE_PERCENTILE_99':
       case 'INTEGRAL':
       case 'MAX':
       case 'MEAN':
@@ -146,6 +186,19 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
         return 'Error: invalid ds parameter (required when res is set) [' . $ds . ']';
     }
 
+    // special casing all the different DERIVATIVE_* and DIFFERENCE_* possibilities
+    $ds_parts = explode( '_', $ds );
+    if( ($ds_parts[0] === 'DERIVATIVE' || $ds_parts[0] === 'DIFFERENCE') && sizeof( $ds_parts) > 1 )
+    {
+      if( $ds_parts[1] === 'PERCENTILE' )
+      {
+        $field = $ds_parts[1] . '(' . $field . ',' . $ds_parts[2] . ')';
+      } else {
+        $field = $ds_parts[1] . '(' . $field . ')';
+      }
+      $ds = $ds_parts[0];
+    }
+
     $q = sprintf( 'SELECT %s(%s) FROM "%s" WHERE time >= %s AND time <= %s %s GROUP BY time(%ss)', $ds, $field, $ts[ 1 ], $start, $end, $filter, $res );
 
     if( '' != $fill )
@@ -156,6 +209,11 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
       $q .= " fill($fill)";
     }
   } else {
+    if( 'ELAPSED' === $ds )
+    {
+      $field = $ds . '(' . $field . ')';
+    }
+
     $q = sprintf( 'SELECT %s FROM "%s" WHERE time >= %s AND time <= %s %s', $field, $ts[ 1 ], $start, $end, $filter );
   }
   $tz = date_default_timezone_get();
