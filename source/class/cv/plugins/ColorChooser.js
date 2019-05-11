@@ -111,7 +111,6 @@ qx.Class.define('cv.plugins.ColorChooser', {
       if (!this.__farbtastic) {
         this.__farbtastic = jQuery.farbtastic( this.getActor() );
         this.__farbtastic.linkTo(function(color) {
-          console.log(color);
           this.setValueR(parseInt(color.substring(1, 3), 16) * 100 / 255.0);
           this.setValueG(parseInt(color.substring(3, 5), 16) * 100 / 255.0);
           this.setValueB(parseInt(color.substring(5, 7), 16) * 100 / 255.0);
@@ -207,8 +206,6 @@ qx.Class.define('cv.plugins.ColorChooser', {
         value      = cv.Transform.decode( this.getAddress()[ ga ][0], data ),
         farbtastic = this.__getFarbtastic(),
         color      = farbtastic.color || '#000000';
-
-      console.log('update');
 
       switch( this.getAddress()[ ga ][2] )
       {
