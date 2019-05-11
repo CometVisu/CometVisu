@@ -258,5 +258,14 @@ qx.Class.define('cv.plugins.ColorChooser', {
     // register the parser
     cv.parser.WidgetParser.addHandler("colorchooser", statics);
     cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this.__farbtastic = null;
   }
 });
