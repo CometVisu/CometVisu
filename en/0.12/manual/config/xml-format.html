@@ -492,34 +492,36 @@ shows how to define and use a template.</p>
 <div class="code-block-caption"><span class="caption-text">Example of a template for a heater and its use in different rooms</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
-        <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heating&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Heating&quot;</span><span class="nt">&gt;</span>
-              {{{ additional_content }}}
-              <span class="nt">&lt;slide</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;100&quot;</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;label&gt;</span>
-                  <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;sani_heating&quot;</span> <span class="nt">/&gt;</span>
-                  Heating
-                <span class="nt">&lt;/label&gt;</span>
-                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:dimmer&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ control_address }}<span class="nt">&lt;/address&gt;</span>
-              <span class="nt">&lt;/slide&gt;</span>
-              <span class="nt">&lt;info</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;label&gt;</span>
-                  <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_temperature&quot;</span> <span class="nt">/&gt;</span>
-                  actual value
-                <span class="nt">&lt;/label&gt;</span>
-                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ currenttemp_address }}<span class="nt">&lt;/address&gt;</span>
-              <span class="nt">&lt;/info&gt;</span>
-              <span class="nt">&lt;infotrigger</span> <span class="na">uplabel=</span><span class="s">&quot;+&quot;</span> <span class="na">upvalue=</span><span class="s">&quot;0.5&quot;</span> <span class="na">downlabel=</span><span class="s">&quot;-&quot;</span>
-                           <span class="na">downvalue=</span><span class="s">&quot;-0.5&quot;</span> <span class="na">styling=</span><span class="s">&quot;BluePurpleRedTemp&quot;</span>
-                           <span class="na">infoposition=</span><span class="s">&quot;middle&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span> <span class="na">change=</span><span class="s">&quot;absolute&quot;</span> <span class="na">min=</span><span class="s">&quot;15&quot;</span> <span class="na">max=</span><span class="s">&quot;25&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;label&gt;</span>
-                  <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_control&quot;</span> <span class="nt">/&gt;</span>
-                  setpoint
-                <span class="nt">&lt;/label&gt;</span>
-                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ targettemp_address }}<span class="nt">&lt;/address&gt;</span>
-              <span class="nt">&lt;/infotrigger&gt;</span>
-            <span class="nt">&lt;/group&gt;</span>
-        <span class="nt">&lt;/template&gt;</span>
+        <span class="nt">&lt;templates&gt;</span>
+            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heating&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Heating&quot;</span><span class="nt">&gt;</span>
+                  {{{ additional_content }}}
+                  <span class="nt">&lt;slide</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;100&quot;</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;label&gt;</span>
+                      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;sani_heating&quot;</span> <span class="nt">/&gt;</span>
+                      Heating
+                    <span class="nt">&lt;/label&gt;</span>
+                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:dimmer&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ control_address }}<span class="nt">&lt;/address&gt;</span>
+                  <span class="nt">&lt;/slide&gt;</span>
+                  <span class="nt">&lt;info</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;label&gt;</span>
+                      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_temperature&quot;</span> <span class="nt">/&gt;</span>
+                      actual value
+                    <span class="nt">&lt;/label&gt;</span>
+                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ currenttemp_address }}<span class="nt">&lt;/address&gt;</span>
+                  <span class="nt">&lt;/info&gt;</span>
+                  <span class="nt">&lt;infotrigger</span> <span class="na">uplabel=</span><span class="s">&quot;+&quot;</span> <span class="na">upvalue=</span><span class="s">&quot;0.5&quot;</span> <span class="na">downlabel=</span><span class="s">&quot;-&quot;</span>
+                               <span class="na">downvalue=</span><span class="s">&quot;-0.5&quot;</span> <span class="na">styling=</span><span class="s">&quot;BluePurpleRedTemp&quot;</span>
+                               <span class="na">infoposition=</span><span class="s">&quot;middle&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span> <span class="na">change=</span><span class="s">&quot;absolute&quot;</span> <span class="na">min=</span><span class="s">&quot;15&quot;</span> <span class="na">max=</span><span class="s">&quot;25&quot;</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;label&gt;</span>
+                      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_control&quot;</span> <span class="nt">/&gt;</span>
+                      setpoint
+                    <span class="nt">&lt;/label&gt;</span>
+                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ targettemp_address }}<span class="nt">&lt;/address&gt;</span>
+                  <span class="nt">&lt;/infotrigger&gt;</span>
+                <span class="nt">&lt;/group&gt;</span>
+            <span class="nt">&lt;/template&gt;</span>
+        <span class="nt">&lt;/templates&gt;</span>
     <span class="nt">&lt;/meta&gt;</span>
     <span class="nt">&lt;page&gt;</span>
         <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Living room&quot;</span><span class="nt">&gt;</span>
@@ -627,11 +629,11 @@ topmost container. All other widgets and pages are inside this main page.
 The position of the elements is processed from top to bottom.</p>
 <p>This looks like this:</p>
 <div class="figure" id="id4">
-<img alt="Mainpage with link to the subpage" src="../_images/structure_main_page.png" />
+<img alt="Mainpage with link to the subpage" src="config/_static/structure_main_page.png" />
 <p class="caption"><span class="caption-text">Mainpage with link to the subpage</span></p>
 </div>
 <div class="figure" id="id5">
-<img alt="subpage" src="../_images/structure_sub_page.png" />
+<img alt="subpage" src="config/_static/structure_sub_page.png" />
 <p class="caption"><span class="caption-text">subpage</span></p>
 </div>
 <div class="highlight-xml"><div class="highlight"><pre><span></span>...
