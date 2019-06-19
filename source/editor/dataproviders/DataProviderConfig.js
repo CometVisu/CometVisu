@@ -29,10 +29,12 @@
  * @since       2012-10-17
  */
 
+var baseRestPath = 'http://localhost:3000';
+
 var DataProviderConfig = {
   'address': {
     '_nodeValue':  {
-      url: 'editor/dataproviders/list_all_addresses.php',
+      url: baseRestPath + '/data/addresses',
       cache: true,
       userInputAllowed: true,
       grouped: true,
@@ -40,7 +42,7 @@ var DataProviderConfig = {
   },
   'rrd': {
     '_nodeValue':  {
-      url: 'editor/dataproviders/list_all_rrds.php',
+      url: baseRestPath + '/data/rrds',
       cache: true,
       userInputAllowed: true,
     },
@@ -71,21 +73,25 @@ var DataProviderConfig = {
   },
   'icon': {
     'name':  {
-      url: 'editor/dataproviders/list_all_icons.php',
+      live: function () {
+        return parent.cv.ui.manager.editor.data.Provider.getInstance().getIcons('dp');
+      },
       cache: true,
       userInputAllowed: false,
     },
   },
   'plugin': {
     'name':  {
-      url: 'editor/dataproviders/list_all_plugins.php',
+      live: function () {
+        return parent.cv.ui.manager.editor.data.Provider.getInstance().getPlugins('dp');
+      },
       cache: true,
       userInputAllowed: false,
     },
   },
   'pages': {
     'design':  {
-      url: 'resource/designs/get_designs.php',
+      url: baseRestPath + '/data/designs',
       map: function(element) {
         return {value: element, label: element};
       },
@@ -96,18 +102,20 @@ var DataProviderConfig = {
   // wildcard: will match ANY elements attribute (lower prio than an exact element-attribute-match)
   '*': {
     'rrd':  {
-      url: 'editor/dataproviders/list_all_rrds.php',
+      url: baseRestPath + '/data/rrds',
       cache: true,
       userInputAllowed: true,
     },
     'ga':  {
-      url: 'editor/dataproviders/list_all_addresses.php',
+      url: baseRestPath + '/data/addresses',
       cache: true,
       userInputAllowed: true,
       grouped: true,
     },
     'transform':  {
-      url: 'editor/dataproviders/dpt_list.json',
+      live: function () {
+        return parent.cv.ui.manager.editor.data.Provider.getInstance().getTransforms('dp');
+      },
       cache: true,
       userInputAllowed: false,
     },

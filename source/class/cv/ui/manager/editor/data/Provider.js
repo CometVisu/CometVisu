@@ -167,8 +167,11 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * Returns the list of available transformations as suggestion entry array.
      * @returns {Array}
      */
-    getTransforms: function () {
-      var cacheId = 'transforms';
+    getTransforms: function (format) {
+      if (!format) {
+        format = 'monaco';
+      }
+      var cacheId = 'transforms|' + format;
       var cached = this._getFromCache(cacheId);
       if (cached) {
         return cached;
@@ -176,13 +179,21 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
         var transforms = [];
         Object.keys(cv.Transform.registry).forEach(function (key) {
           var entry = cv.Transform.registry[key];
-          var suggestion = {
-            label: key,
-            insertText: key,
-            kind: window.monaco.languages.CompletionItemKind.EnumMember
-          };
-          if (entry.lname && entry.lname.hasOwnProperty(qx.locale.Manager.getInstance().getLanguage())) {
-            suggestion.detail = entry.lname[qx.locale.Manager.getInstance().getLanguage()];
+          var suggestion;
+          if (format === 'dp') {
+            suggestion = {
+              label: entry.name + ' [' + key + ']',
+              value: key
+            };
+          } else {
+            suggestion = {
+              label: key,
+              insertText: key,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
+            };
+            if (entry.lname && entry.lname.hasOwnProperty(qx.locale.Manager.getInstance().getLanguage())) {
+              suggestion.detail = entry.lname[qx.locale.Manager.getInstance().getLanguage()];
+            }
           }
           transforms.push(suggestion);
         }, this);
@@ -195,8 +206,11 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
      * Returns the plugin names (all defined parts staring with 'plugin-')
      * @returns {Array}
      */
-    getPlugins: function () {
-      var cacheId = 'plugins';
+    getPlugins: function (format) {
+      if (!format) {
+        format = 'monaco';
+      }
+      var cacheId = 'plugins|' + format;
       var cached = this._getFromCache(cacheId);
       if (cached) {
         return cached;
@@ -206,11 +220,18 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
         Object.keys(qxParts).forEach(function (partName) {
           if (partName.startsWith('plugin-')) {
             var pluginName = partName.substring(7);
-            plugins.push({
-              label: pluginName,
-              insertText: pluginName,
-              kind: window.monaco.languages.CompletionItemKind.EnumMember
-            });
+            if (format === 'dp') {
+              plugins.push({
+                label: pluginName,
+                value: pluginName
+              });
+            } else {
+              plugins.push({
+                label: pluginName,
+                insertText: pluginName,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              });
+            }
           }
         }, this);
         this._addToCache(cacheId, plugins);
@@ -218,19 +239,33 @@ qx.Class.define('cv.ui.manager.editor.data.Provider', {
       }
     },
 
-    getIcons: function () {
-      var cacheId = 'icons';
+    getIcons: function (format) {
+      if (!format) {
+        format = 'monaco';
+      }
+      var cacheId = 'icons|' + format;
       var cached = this._getFromCache(cacheId);
       if (cached) {
         return cached;
       } else {
-        var icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
-          return {
-            label: iconName,
-            insertText: iconName,
-            kind: window.monaco.languages.CompletionItemKind.EnumMember
-          };
-        });
+        var icons;
+        if (format === 'monaco') {
+          icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
+            return {
+              label: iconName,
+              insertText: iconName,
+              kind: window.monaco.languages.CompletionItemKind.EnumMember
+            };
+          });
+        } else if (format === 'dp') {
+          // dataprovider format
+          icons = Object.keys(cv.IconConfig.DB).map(function (iconName) {
+            return {
+              label: iconName,
+              value: iconName
+            };
+          });
+        }
         this._addToCache(cacheId, icons);
         return icons;
       }
