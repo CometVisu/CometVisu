@@ -124,7 +124,7 @@ Proxy einrichten
 
 In der Timberwolf Oberfläche: *Einstellungen* → *Remotezugriff* → *Reverse Proxy*
 
-- URL: ``visu``, Target ``http://127.0.0.1:18080/``
+- URL: ``visu/``, Target ``http://127.0.0.1:18080/``
 
 Über *Add* bestätigen.
 

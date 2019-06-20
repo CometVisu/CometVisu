@@ -225,34 +225,36 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
 
     <pages>
         <meta>
-            <template name="Heizung">
-                <group name="Heizung">
-                  {{{ additional_content }}}
-                  <slide min="0" max="100" format="%d%%">
-                    <label>
-                      <icon name="sani_heating" />
-                      Heizung
-                    </label>
-                    <address transform="OH:dimmer" variant="">{{ control_address }}</address>
-                  </slide>
-                  <info format="%.1f °C">
-                    <label>
-                      <icon name="temp_temperature" />
-                      Ist
-                    </label>
-                    <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
-                  </info>
-                  <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
-                               downvalue="-0.5" styling="BluePurpleRedTemp"
-                               infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
-                    <label>
-                      <icon name="temp_control" />
-                      Soll
-                    </label>
-                    <address transform="OH:number" variant="">{{ targettemp_address }}</address>
-                  </infotrigger>
-                </group>
-            </template>
+            <templates>
+                <template name="Heizung">
+                    <group name="Heizung">
+                      {{{ additional_content }}}
+                      <slide min="0" max="100" format="%d%%">
+                        <label>
+                          <icon name="sani_heating" />
+                          Heizung
+                        </label>
+                        <address transform="OH:dimmer" variant="">{{ control_address }}</address>
+                      </slide>
+                      <info format="%.1f °C">
+                        <label>
+                          <icon name="temp_temperature" />
+                          Ist
+                        </label>
+                        <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
+                      </info>
+                      <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+                                   downvalue="-0.5" styling="BluePurpleRedTemp"
+                                   infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+                        <label>
+                          <icon name="temp_control" />
+                          Soll
+                        </label>
+                        <address transform="OH:number" variant="">{{ targettemp_address }}</address>
+                      </infotrigger>
+                    </group>
+                </template>
+            </templates>
         </meta>
         <page>
             <page name="Wohnzimmer">

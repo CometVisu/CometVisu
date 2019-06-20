@@ -124,7 +124,7 @@ Proxy setup
 At the Timberwolf Frontend:
 *Settings* → *Remote Access* → *Reverse Proxy*
 
-- URL: ``visu``, Target ``http://127.0.0.1:18080/``
+- URL: ``visu/``, Target ``http://127.0.0.1:18080/``
 
 Accept with *Add*
 
