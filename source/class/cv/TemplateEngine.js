@@ -38,9 +38,13 @@ qx.Class.define('cv.TemplateEngine', {
     this.defaults = {widget: {}, plugin: {}};
     var group = new qx.ui.command.Group();
     this.setCommands(group);
-    var manager = qx.core.Init.getApplication().getCommandManager();
-    manager.add(group);
-    manager.setActive(group);
+    var app = qx.core.Init.getApplication();
+    if (app) {
+      // application is not available in tests
+      var manager = app.getCommandManager();
+      manager.add(group);
+      manager.setActive(group);
+    }
   },
 
   properties: {
