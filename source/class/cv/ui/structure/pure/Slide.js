@@ -112,8 +112,13 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         slider.init();
         // set initial value
         slider.setValue(parseFloat(this.getValue()));
+        var throttled = qx.util.Function.throttle(this._onChangeValue, 250, {trailing: true}).bind(this);
 
-        slider.on("changeValue", qx.util.Function.throttle(this._onChangeValue, 250, {trailing: true}), this);
+        slider.on("changeValue", function (ev) {
+          if (!this.__skipUpdatesFromSlider) {
+            throttled(ev);
+          }
+        }, this);
 
         this.addListener("changeValue", function (ev) {
           this.__skipUpdatesFromSlider = true;
@@ -167,11 +172,11 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       try {
         if (this.getValue() !== value) {
           this.setValue(value);
-          this.__skipUpdatesFromSlider = true;
           if (this.__slider) {
+            this.__skipUpdatesFromSlider = true;
             this.__slider.setValue(value);
+            this.__skipUpdatesFromSlider = false;
           }
-          this.__skipUpdatesFromSlider = false;
         }
       } catch(e) {
         this.error(e);
