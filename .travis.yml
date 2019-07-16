@@ -48,10 +48,6 @@ jobs:
     name: 'Unit Tests: Chrome beta'
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=beta
     script: *1
-  - stage: test
-    name: 'Unit Tests: Chrome unstable'
-    env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=unstable
-    script: *1
   - name: 'End-to-end Tests: Chrome stable'
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=stable
     script: &2
@@ -60,7 +56,7 @@ jobs:
     - source temp-python/bin/activate
     - "./generate.py source -sI"
     - deactivate
-    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false --versions.chrome=$(google-chrome --version | cut -d ' ' -f 3)"
+    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
     - grunt e2e-chrome
   - name: 'End-to-end Tests: Chrome beta'
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=beta
@@ -76,7 +72,7 @@ jobs:
     - source temp-python/bin/activate
     - "./generate.py build -sI"
     - deactivate
-    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false --versions.chrome=$(google-chrome --version | cut -d ' ' -f 3)"
+    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
     - sudo apt-get install python-lxml python3-lxml
     - utils/travis/deploy.sh
   - name: "[NIGHTLY] - Build and push Nightly Build"
