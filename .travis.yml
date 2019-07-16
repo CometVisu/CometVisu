@@ -48,6 +48,10 @@ jobs:
     name: 'Unit Tests: Chrome beta'
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=beta
     script: *1
+  - stage: test
+    name: 'Unit Tests: Chrome unstable'
+    env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=unstable
+    script: *1
   - name: 'End-to-end Tests: Chrome stable'
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=stable
     script: &2
@@ -60,9 +64,6 @@ jobs:
     - grunt e2e-chrome
   - name: 'End-to-end Tests: Chrome beta'
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=beta
-    script: *2
-  - name: 'End-to-end Tests: Chrome unstable'
-    env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=unstable
     script: *2
   - stage: deploy
     name: "[DOCS] - Generate and publish manual and API-viewer"
