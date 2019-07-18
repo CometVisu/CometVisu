@@ -98,6 +98,12 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     labelConverter: {
       check: 'Function',
       nullable: true
+    },
+
+    disableScrolling: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyDisableScrolling'
     }
   },
 
@@ -245,6 +251,18 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       }
     },
 
+    _applyDisableScrolling: function (value) {
+      if (value) {
+        this.getChildControl('scroll').exclude();
+        this._addAt(this.getChildControl('list'), 1, {flex: 1});
+      } else {
+        var scrollContainer = this.getChildControl('scroll');
+        scrollContainer.show();
+        scrollContainer.add(this.getChildControl('list'));
+        this._addAt(scrollContainer, 1, {flex: 1});
+      }
+    },
+
     // overridden
     _createChildControlImpl : function(id) {
       var control;
@@ -276,7 +294,11 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
           // Used to fire item add/remove events
           control.addListener("addChildWidget", this._onAddChild, this);
           control.addListener("removeChildWidget", this._onRemoveChild, this);
-          this.getChildControl('scroll').add(control);
+          if (this.isDisableScrolling()) {
+            this._addAt(control, 1, {flex: 1});
+          } else {
+            this.getChildControl('scroll').add(control);
+          }
           break;
       }
 

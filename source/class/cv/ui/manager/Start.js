@@ -15,7 +15,7 @@ qx.Class.define('cv.ui.manager.Start', {
   */
   construct: function () {
     this.base(arguments);
-    this._setLayout(new qx.ui.layout.VBox(8));
+    this._setLayout(new qx.ui.layout.Grow());
     this._configRegex = /^visu_config_?([^.]+)?\.xml$/;
     [ 'configs-title', 'configs-toolbar', 'configs',
       'demo-configs-title', 'demo-configs',
@@ -120,6 +120,16 @@ qx.Class.define('cv.ui.manager.Start', {
        var control;
 
        switch (id) {
+         case 'scroll-container':
+           control = new qx.ui.container.Scroll();
+           this._add(control);
+           break;
+
+         case 'content':
+           control = new qx.ui.container.Composite(new qx.ui.layout.VBox(8));
+           this.getChildControl('scroll-container').add(control);
+           break;
+
          case 'configs-title':
            control = new qx.ui.basic.Atom(this.tr('Configurations'), cv.theme.dark.Images.getIcon('drop-up', 18));
            control.setUserData('control', 'configs');
@@ -129,7 +139,7 @@ qx.Class.define('cv.ui.manager.Start', {
 
          case 'configs-header':
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
-           this._add(control);
+           this.getChildControl('content').add(control);
            break;
 
          case 'configs-toolbar':
@@ -156,17 +166,18 @@ qx.Class.define('cv.ui.manager.Start', {
                var configName = cv.ui.manager.model.FileItem.getConfigName(name);
                return configName ? qx.lang.String.firstUp(configName) : '<Default>';
              },
-             file: cv.ui.manager.model.FileItem.ROOT
+             file: cv.ui.manager.model.FileItem.ROOT,
+             disableScrolling: true
            });
            control.addListener('changeSelection', this._onChangeSelection, this);
-           this._add(control);
+           this.getChildControl('content').add(control);
            break;
 
          case 'demo-configs-title':
            control = new qx.ui.basic.Atom(this.tr('Demo configurations'), cv.theme.dark.Images.getIcon('drop-down', 18));
            control.setUserData('control', 'demo-configs');
            control.addListener('tap', this._onToggleExpand, this);
-           this._add(control);
+           this.getChildControl('content').add(control);
            break;
 
          case 'demo-configs':
@@ -179,11 +190,12 @@ qx.Class.define('cv.ui.manager.Start', {
              labelConverter: function (name) {
                var configName = cv.ui.manager.model.FileItem.getConfigName(name);
                return configName ? qx.lang.String.firstUp(configName) : '<Default>';
-             }
+             },
+             disableScrolling: true
            });
            control.exclude();
            control.addListener('changeSelection', this._onChangeSelection, this);
-           this._add(control);
+           this.getChildControl('content').add(control);
            break;
 
          case 'media-title':
@@ -195,7 +207,7 @@ qx.Class.define('cv.ui.manager.Start', {
 
          case 'media-header':
            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
-           this._add(control);
+           this.getChildControl('content').add(control);
            break;
 
          case 'media-toolbar':
@@ -209,23 +221,25 @@ qx.Class.define('cv.ui.manager.Start', {
          case 'media':
            control = new cv.ui.manager.viewer.Folder();
            control.set({
-             showTextFilter: false
+             showTextFilter: false,
+             disableScrolling: true
            });
            control.addListener('changeSelection', this._onChangeSelection, this);
-           this._add(control);
+           this.getChildControl('content').add(control);
            break;
 
          case 'misc-title':
            control = new qx.ui.basic.Atom(this.tr('Miscellaneous'), cv.theme.dark.Images.getIcon('drop-up', 18));
            control.setUserData('control', 'misc');
            control.addListener('tap', this._onToggleExpand, this);
-           this._add(control);
+           this.getChildControl('content').add(control);
            break;
 
          case 'misc':
            control = new cv.ui.manager.viewer.Folder();
            control.set({
-             showTextFilter: false
+             showTextFilter: false,
+             disableScrolling: true
            });
            var fakeFolder = new cv.ui.manager.model.FileItem('fake', 'fake', cv.ui.manager.model.FileItem.ROOT, [
              cv.ui.manager.model.FileItem.getHiddenConfigFile(),
@@ -237,7 +251,7 @@ qx.Class.define('cv.ui.manager.Start', {
            });
            control.setFile(fakeFolder);
            control.addListener('changeSelection', this._onChangeSelection, this);
-           this._add(control, {flex: 1});
+           this.getChildControl('content').add(control, {flex: 1});
            break;
        }
 
