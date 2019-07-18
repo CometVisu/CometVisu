@@ -15,7 +15,7 @@ qx.Class.define('cv.ui.manager.Start', {
   */
   construct: function () {
     this.base(arguments);
-    this._setLayout(new qx.ui.layout.Grow());
+    this._setLayout(new qx.ui.layout.VBox());
     this._configRegex = /^visu_config_?([^.]+)?\.xml$/;
     [ 'toolbar', 'configs-title', 'configs-toolbar', 'configs',
       'demo-configs-title', 'demo-configs',
@@ -138,7 +138,7 @@ qx.Class.define('cv.ui.manager.Start', {
        switch (id) {
          case 'scroll-container':
            control = new qx.ui.container.Scroll();
-           this._add(control);
+           this._add(control, {flex: 1});
            break;
 
          case 'content':
@@ -172,7 +172,7 @@ qx.Class.define('cv.ui.manager.Start', {
            }, this);
            cv.ui.manager.model.Preferences.getInstance().addListener('changeStartViewMode', this._onChangeViewMode, this);
 
-           this.getChildControl('content').add(control);
+           this._add(control);
            break;
 
          case 'configs-title':
