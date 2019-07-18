@@ -711,7 +711,6 @@ qx.Class.define('cv.ui.manager.Main', {
 
       var startOpenFile = new cv.ui.manager.model.OpenFile(rootFolder, 'cv.ui.manager.Start');
       startOpenFile.setCloseable(false);
-      console.log(startOpenFile);
       this.getOpenFiles().push(startOpenFile);
       list.setModelSelection([startOpenFile]);
     }

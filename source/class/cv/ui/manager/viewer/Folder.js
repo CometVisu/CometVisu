@@ -20,6 +20,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
  */
   construct: function () {
     this.base(arguments);
+    cv.ui.manager.model.Preferences.getInstance().bind('startViewMode', this, 'viewMode');
     this._isImageRegex = new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$');
     this.initModel(new qx.data.Array());
     this._setLayout(new qx.ui.layout.VBox(8));
@@ -104,6 +105,12 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       check: 'Boolean',
       init: false,
       apply: '_applyDisableScrolling'
+    },
+
+    viewMode: {
+      check: ['list', 'preview'],
+      init: 'list',
+      event: 'changeViewMode'
     }
   },
 
@@ -121,6 +128,10 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     SELECTION_MANAGER : qx.ui.core.selection.ScrollArea,
 
     _defaultLabelConverter: function (name) {
+      if (this.getViewMode() === 'list') {
+        // do not remove file type in list mode
+        return name;
+      }
       var parts = name.split('.');
       if (parts.length > 1) {
         parts.pop();
@@ -131,17 +142,20 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     _getDelegate: function () {
       var labelConverter = this.getLabelConverter();
       var converter = {
-        converter: labelConverter ? labelConverter : this._defaultLabelConverter
+        converter: labelConverter ? labelConverter : this._defaultLabelConverter.bind(this)
       };
       return {
         createItem: function () {
           return new cv.ui.manager.form.FileListItem();
         },
+
         configureItem: function (item) {
           item.addListener('dbltap', this._onDblTap, this);
           item.addListener('contextmenu', this._onFsItemRightClick, this);
           item.setShowFileActions(true);
+          this.bind('viewMode', item, 'viewMode');
         }.bind(this),
+
         bindItem: function (controller, item, index) {
           controller.bindProperty('', 'model', null, item, index);
           controller.bindProperty('displayName', 'label', converter, item, index);
@@ -314,5 +328,6 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
   destruct: function () {
     this._disposeObjects('_controller');
     this._isImageRegex = null;
+    cv.ui.manager.model.Preferences.getInstance().removeRelatedBindings(this);
   }
 });

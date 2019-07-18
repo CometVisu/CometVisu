@@ -43,6 +43,16 @@ qx.Class.define('cv.ui.manager.model.Preferences', {
       init: false,
       event: 'changeExpertMode',
       apply: '_savePreferences'
+    },
+
+    /**
+     * View mode of the start page
+     */
+    startViewMode: {
+      check: ['list', 'preview'],
+      init: 'preview',
+      event: 'changeStartViewMode',
+      apply: '_savePreferences'
     }
   },
 

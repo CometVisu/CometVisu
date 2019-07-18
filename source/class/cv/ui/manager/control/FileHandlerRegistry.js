@@ -179,7 +179,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
         return true;
       } else if (config.fullPath && file.getFullPath() === config.fullPath) {
         return true;
-      } else if (config.regex && config.regex.test(file.getFullPath())) {
+      } else if (config.regex && config.regex.test(file.getFullPath().toLowerCase())) {
         return true;
       } else if (config.instanceOf && file instanceof config.instanceOf) {
         return true;

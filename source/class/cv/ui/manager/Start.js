@@ -17,7 +17,7 @@ qx.Class.define('cv.ui.manager.Start', {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.Grow());
     this._configRegex = /^visu_config_?([^.]+)?\.xml$/;
-    [ 'configs-title', 'configs-toolbar', 'configs',
+    [ 'toolbar', 'configs-title', 'configs-toolbar', 'configs',
       'demo-configs-title', 'demo-configs',
       'media-title', 'media-toolbar', 'media',
       'misc-title', 'misc'
@@ -54,6 +54,9 @@ qx.Class.define('cv.ui.manager.Start', {
   members: {
     _configRegex: null,
     _ignoreSelectionChanges: false,
+    _previewButton: null,
+    _listButton: null,
+    _radioGroup: null,
 
     save: function () {},
     getCurrentContent: function () {},
@@ -115,6 +118,19 @@ qx.Class.define('cv.ui.manager.Start', {
       }
     },
 
+    _onChangeViewMode: function () {
+      switch (cv.ui.manager.model.Preferences.getInstance().getStartViewMode()) {
+        case 'list':
+          this._radioGroup.setSelection([this._listButton]);
+          break;
+
+        case 'preview':
+          this._radioGroup.setSelection([this._previewButton]);
+          break;
+      }
+
+    },
+
     // overridden
     _createChildControlImpl : function(id) {
        var control;
@@ -128,6 +144,35 @@ qx.Class.define('cv.ui.manager.Start', {
          case 'content':
            control = new qx.ui.container.Composite(new qx.ui.layout.VBox(8));
            this.getChildControl('scroll-container').add(control);
+           break;
+
+         case 'toolbar':
+           control = new qx.ui.toolbar.ToolBar();
+           var part = new qx.ui.toolbar.Part();
+           var listButton = this._listButton = new qx.ui.toolbar.RadioButton('', cv.theme.dark.Images.getIcon('listViewMode', 22));
+           listButton.setUserData('mode', 'list');
+           listButton.set({
+             show: 'icon',
+             toolTipText: this.tr('List mode')
+           });
+           var previewButton = this._previewButton = new qx.ui.toolbar.RadioButton('', cv.theme.dark.Images.getIcon('previewMode', 22));
+           previewButton.setUserData('mode', 'preview');
+           previewButton.set({
+             show: 'icon',
+             toolTipText: this.tr('Preview mode')
+           });
+           part.add(listButton);
+           part.add(previewButton);
+           control.add(part);
+           this._radioGroup = new qx.ui.form.RadioGroup(listButton, previewButton);
+           this._onChangeViewMode();
+           this._radioGroup.addListener('changeSelection', function (ev) {
+             var selection = ev.getData()[0];
+             cv.ui.manager.model.Preferences.getInstance().setStartViewMode(selection.getUserData('mode'));
+           }, this);
+           cv.ui.manager.model.Preferences.getInstance().addListener('changeStartViewMode', this._onChangeViewMode, this);
+
+           this.getChildControl('content').add(control);
            break;
 
          case 'configs-title':
@@ -266,5 +311,7 @@ qx.Class.define('cv.ui.manager.Start', {
   */
   destruct: function () {
     this._configRegex = null;
+    cv.ui.manager.model.Preferences.getInstance().removeListener('changeStartViewMode', this._onChangeViewMode, this);
+    this._disposeObjects('_previewButton', '_listButton', '_radioGroup');
   }
 });

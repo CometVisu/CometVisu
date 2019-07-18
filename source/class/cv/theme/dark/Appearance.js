@@ -71,11 +71,22 @@ qx.Theme.define("cv.theme.dark.Appearance", {
       include: 'listitem',
       alias: 'listitem',
 
-      style: function () {
+      style: function (states) {
         return  {
-          iconPosition: 'top',
-          font: 'small',
-          width: 130
+          iconPosition: states.list ? 'left' : 'top',
+          show: states.list ? 'label' : 'both',
+          font: states.list ? 'default' : 'small',
+          width: states.list ? 500 : 130,
+          backgroundColor: states.hovered ? 'rgba(255, 255, 255, 0.1)' : 'transparent'
+        };
+      }
+    },
+    'cv-file-item/atom/label': {
+      include: 'atom/label',
+      style: function () {
+        return {
+          alignY: 'middle',
+          allowGrowY: true
         };
       }
     },

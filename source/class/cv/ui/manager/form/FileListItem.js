@@ -142,6 +142,12 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
       init: null,
       nullable: true,
       check: "String"
+    },
+
+    viewMode: {
+      check: ['list', 'preview'],
+      init: 'preview',
+      apply: '_applyViewMode'
     }
   },
 
@@ -157,13 +163,28 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
     /**
      * @lint ignoreReferenceField(_forwardStates)
      */
-    _forwardStates :
-      {
-        focused : true,
-        selected : true,
-        dragover : true
-      },
+    _forwardStates: {
+      focused : true,
+      selected : true,
+      dragover : true,
+      hovered: true
+    },
 
+    _applyViewMode: function () {
+      switch (this.getViewMode()) {
+        case 'list':
+          this.addState('list');
+          this.getChildControl('atom').setLayoutProperties({left: 10, top: 0, bottom: 0, right: null});
+          this.getChildControl('bottom-bar').setLayoutProperties({top: 0, bottom: 0, right: 0, left: null});
+          break;
+
+        case 'preview':
+          this.removeState('list');
+          this.getChildControl('atom').setLayoutProperties({left: 0, top: 0, bottom: 34, right: 0});
+          this.getChildControl('bottom-bar').setLayoutProperties({left: 0, bottom: 0, right: 0, top: null});
+          break;
+      }
+    },
 
     /**
      * Event handler for the pointer over event.
@@ -244,7 +265,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
                 handled = true;
                 break;
             }
-            if (handled) {
+            if (handled && this.getViewMode() === 'preview') {
               control.show();
             } else {
               control.exclude();
