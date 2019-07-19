@@ -7,6 +7,41 @@ use DateTime;
 
 class FileHandler
 {
+  /**
+   * Create a new file
+   * @param $file {String} path to file
+   * @param $content
+   * @param $options {Map}
+   */
+  public static function createFile($file, $content, $options) {
+    if (file_exists($file) && (!$options || !$options['force'])) {
+      throw new Exception('File already exists', 406);
+    } else {
+      FileHandler::saveFile($file, $content);
+    }
+  }
+
+  public static function createFolder($folder)
+  {
+    if (file_exists($folder)) {
+      throw new Exception('Folder already exists', 406);
+    } else {
+      try {
+        mkdir($folder, 0777, true);
+      } catch (Exception $e) {
+        throw new Exception($e->getMessage(), 405);
+      }
+    }
+  }
+
+  public static function rename($sourcePath, $targetPath) {
+    try {
+      rename($sourcePath, $targetPath);
+    } catch (Exception $e) {
+      throw new Exception($e->getMessage(), 405);
+    }
+  }
+
   public static function saveFile($file, $content, $hash) {
     $apiConfig = include("config.php");
     if ($hash) {
@@ -59,6 +94,100 @@ class FileHandler
       }
     } else {
       file_put_contents($file, $content);
+    }
+  }
+
+  /**
+   * Delete a file from filesystem by either moving it to the trash folder or deleting it directly.
+   * @param $file {String} absolute path to file that should be deleted
+   * @param $force {Boolean} if true delete directly, no mosing to trash
+   */
+  public static function deleteFile($file, $force) {
+    if (file_exists($file)) {
+      $apiConfig = include("config.php");
+      try {
+        if (!$force && !FileHandler::startsWith($file, $apiConfig->trashFolder)) {
+          $relDir = substr(dirname($file) , strlen($apiConfig->configDir));
+          $filename = basename($file);
+            if (!file_exists($apiConfig->trashFolder)) {
+              mkdir($apiConfig->trashFolder);
+            }
+            $trashFile = $apiConfig->trashFolder . '/' . $relDir . '/' . $filename;
+            if (file_exists($trashFile)) {
+              // delete old trash file with same name
+              unlink($trashFile);
+            }
+            rename($file, $trashFile);
+          } else {
+            unlink($file);
+          }
+        } catch (Exception $e) {
+          throw new Exception($e->getMessage(), 405);
+        }
+    }
+  }
+
+  public static function deleteFolder($folder, $force) {
+    if (file_exists($folder)) {
+      $apiConfig = include("config.php");
+      try {
+        if (!$force && !FileHandler::startsWith($folder, $apiConfig->trashFolder)) {
+          $relDir = substr($folder, strlen($apiConfig->tconfigDir));
+          if (!file_exists($apiConfig->trashFolder)) {
+            mkdir($apiConfig->trashFolder);
+          }
+          $baseTrashFile = $apiConfig->trashFolder .'/' . $relDir;
+          $trashFile = $baseTrashFile;
+          $index = 1;
+          while (file_exists($trashFile)) {
+            $trashFile = $baseTrashFile - '-' - $index++;
+          }
+          rename($folder, $trashFile);
+        } else {
+          if ($force === true || FileHandler::isEmptyDir($folder)) {
+            unlink($folder);
+          } else {
+            throw new Exception('Folder not empty', 406);
+          }
+        }
+      } catch (Exception $e) {
+        throw new Exception($e->getMessage(), 406);
+      }
+    }
+  }
+
+  public static function isEmptyDir($path) {
+    return count(scandir($path)) <= 2;
+  }
+
+  public static function startsWith($str, $cmp) {
+    return substr($str, 0, strlen($cmp) === $cmp);
+  }
+
+  public static function getMimeTypeFromSuffix($fsPath) {
+    $suffix = array_pop(explode('.', $fsPath));
+    switch ($suffix) {
+      case 'xml':
+        return 'text/xml';
+      case 'html':
+        return 'text/html';
+      case 'jpg':
+      case 'jpeg':
+        return 'image/jpg';
+      case 'png':
+        return 'image/png';
+      case 'gif':
+        return 'image/gif';
+      case 'js':
+        return 'text/javascript';
+      case 'php':
+        return 'application/x-httpd-php';
+      case 'css':
+        return 'text/css';
+      case 'svg':
+        return 'application/svg+xml';
+      default:
+        return 'text/plain';
     }
   }
 }

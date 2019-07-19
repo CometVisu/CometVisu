@@ -48,7 +48,7 @@ class FsApi extends AbstractFsApi
       if ($download) {
         $response = $response->withHeader('Content-Disposition', 'attachment; filename=' . basename($fsPath));
       }
-      return $response->write(file_get_contents($fsPath));
+      return $response->write(file_get_contents($fsPath))->withHeader('Content-Type', FileHandler::getMimeTypeFromSuffix($fsPath));
     }, 'read');
   }
 
@@ -56,6 +56,44 @@ class FsApi extends AbstractFsApi
     return $this->__processRequest($request, $response, null, function ($request, $response, $fsPath, $mount) {
       return $this->updateFile($response, $fsPath, $request->getBody(), $request->getQueryParam('hash'));
     }, 'update');
+  }
+
+  public function delete(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+    return $this->__processRequest($request, $response, function ($request, $response, $fsPath) {
+      try {
+        FileHandler::deleteFolder($fsPath, $request->getQueryParam('force'));
+      } catch (Exception $e) {
+        return $response->withJson(array('message' => $e->getMessage()), $e->getCode());
+      }
+    }, function ($request, $response, $fsPath) {
+      try {
+        FileHandler::deleteFile($fsPath, $request->getQueryParam('force'));
+      } catch (Exception $e) {
+        return $response->withJson(array('message' => $e->getMessage()), $e->getCode());
+      }
+    }, 'delete');
+  }
+
+  public function move(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+    $mount = $this->getMount($request->getQueryParam('src'));
+    $fsPath = $this->getAbsolutePath($request->getQueryParam('src'), $mount);
+    $targetMount = $this->getMount($request->getQueryParam('target'));
+    $targetPath = $this->getAbsolutePath($request->getQueryParam('target'), $targetMount);
+    if (!file_exists($fsPath)) {
+      return $response->withJson(array('message' => 'Source not found'), 404);
+    }
+    if (file_exists(targetPath)) {
+      return $response->withJson(array('message' => 'Target exists'), 406);
+    }
+    if (!$this->checkAccess(targetPath) || ($mount && $mount['writeable'] === false) || ($targetMount && $targetMount['writeable'] === false)) {
+      return $response->withJson(array('message' => 'Forbidden'), 403);
+    } else {
+      try {
+        FileHandler::rename($fsPath, $targetPath);
+      } catch (Exception $e) {
+        return $response->withJson(array('message' => $e->getMessage()), $e->getCode());
+      }
+    }
   }
 
   private function __processRequest(ServerRequestInterface $request, ResponseInterface $response, $folderCallback, $fileCallback, $type) {
@@ -109,7 +147,7 @@ class FsApi extends AbstractFsApi
             'name' => $file,
             'type' => $isDir ? 'dir' : (is_file($filePath) ? 'file' : null),
             'parentFolder' => $relFolder,
-            'hasChildren' => is_dir($filePath) ? count(scandir($filePath)) > 2 : false,
+            'hasChildren' => is_dir($filePath) ? !FileHandler::isEmptyDir($filePath) : false,
             'readable' => is_readable($filePath),
             'writeable' => (!$mount || $mount['writeable'] !== false) && is_writable($filePath),
             'trash' => false,
