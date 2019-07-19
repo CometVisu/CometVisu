@@ -1,6 +1,6 @@
 const path = require('path');
 
-const resourcesDir = path.resolve(path.join(__dirname, '..', 'resource'));
+const resourcesDir = path.resolve(path.join(__dirname, '..', '..', 'resource'));
 const configDir = path.join(resourcesDir, 'config');
 const trashFolderName = '.trash';
 
