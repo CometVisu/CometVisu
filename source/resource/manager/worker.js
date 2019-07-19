@@ -128,7 +128,7 @@ class SourceFile {
    * @return {number}
    */
   static hashCode(string) {
-    return CRC32.str(string);
+    return crc32(string);
   }
 }
 

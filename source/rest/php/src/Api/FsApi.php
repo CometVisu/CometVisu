@@ -6,6 +6,7 @@ use Exception;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use OpenAPIServer\FileHandler;
 
 
 class FsApi extends AbstractFsApi
@@ -39,26 +40,44 @@ class FsApi extends AbstractFsApi
 
   public function read(ServerRequestInterface $request, ResponseInterface $response, array $args)
   {
-    $requestPath = $request->getQueryParam('path');
-
-
-
-    $mount = $this->getMount($requestPath);
-    $path = $this->getAbsolutePath($requestPath, $mount);
-
-    if (!file_exists($path)) {
-      return $response->withStatus(404);
-    }
-
-    if (is_file($path)) {
+    return $this->__processRequest($request, $response, function ($request, $response, $fsPath, $mount) {
+      $recursive = $request->getQueryParam('recursive');
+      return $response->withJson($this->listFolder($fsPath, $recursive, $mount));
+    }, function ($request, $response, $fsPath, $mount) {
       $download = $request->getQueryParam('download');
       if ($download) {
-        $response = $response->withHeader('Content-Disposition', 'attachment; filename=' . basename($path));
+        $response = $response->withHeader('Content-Disposition', 'attachment; filename=' . basename($fsPath));
       }
-      return $response->write(file_get_contents($path));
-    } elseif (is_dir($path)) {
-      $recursive = $request->getQueryParam('recursive');
-      return $response->withJson($this->listFolder($path, $recursive, $mount));
+      return $response->write(file_get_contents($fsPath));
+    }, 'read');
+  }
+
+  public function update(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+    return $this->__processRequest($request, $response, null, function ($request, $response, $fsPath, $mount) {
+      return $this->updateFile($response, $fsPath, $request->getBody(), $request->getQueryParam('hash'));
+    }, 'update');
+  }
+
+  private function __processRequest(ServerRequestInterface $request, ResponseInterface $response, $folderCallback, $fileCallback, $type) {
+    $requestPath = $request->getQueryParam('path');
+    $mount = $this->getMount($requestPath);
+    $fsPath = $this->getAbsolutePath($requestPath, $mount);
+    if (file_exists($fsPath)) {
+      if (!$this->checkAccess($fsPath) || ($mount && $mount['writeable'] === false && $type !== 'read')) {
+        $response->withStatus(403);
+      } else {
+        if (is_dir($fsPath)) {
+          if ($folderCallback) {
+            return $folderCallback($request, $response, $fsPath, $mount);
+                  }
+        } else {
+          if ($fileCallback) {
+            return $fileCallback($request, $response, $fsPath, $mount);
+          }
+        }
+      }
+    } else {
+      return $response->withStatus(404);
     }
   }
 
@@ -137,6 +156,34 @@ class FsApi extends AbstractFsApi
     return $content;
   }
 
+  /**
+   * Update the content of an existing file
+   * @param $response {ResponseInterface}
+   * @param $file {String} absolute path to file
+   * @param $content {String} file content
+   */
+  private function updateFile(ResponseInterface $response, $file, $content, $hash) {
+    if (!file_exists($file)) {
+      return $response->withStatus(404);
+    } else {
+      try {
+        $dirname = dirname($file);
+        if (!file_exists($dirname)) {
+          // create missing dirs first
+          mkdir($dirname, 0777, true);
+        }
+        return FileHandler::saveFile($file, $content, $hash);
+      } catch (Exception $e) {
+        var_dump($e);
+        return $response->withJson(array('message' => $e->getMessage()))->withStatus($e->getCode());
+      }
+    }
+  }
+
+  private function __saveFile(ResponseInterface $response, $file, $content) {
+
+  }
+
   private function getState($folder) {
     $state = 0;
     if (file_exists($folder)) {
@@ -162,7 +209,7 @@ class FsApi extends AbstractFsApi
    * @param $item {String} file name
    * @return {Boolean} true if access is allowed
    */
-  private function checkAccess($fsPath, $item) {
+  private function checkAccess($fsPath, $item = null) {
     if (!$item) {
       $item = basename($fsPath);
       $fsPath = dirname($fsPath);
