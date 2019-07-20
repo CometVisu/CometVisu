@@ -214,12 +214,12 @@ paths:
     parameters:
       - name: section
         in: path
-        description: Section of the config option
+        description: Section of the config option, ('*' for all sections)
         schema:
           type: string
       - name: key
         in: path
-        description: Key (ID) of the config option in the section
+        description: Key (ID) of the config option in the section, ('*' for all options)
         required: true
         schema:
           type: string

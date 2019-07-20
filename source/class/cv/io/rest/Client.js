@@ -10,15 +10,24 @@ qx.Class.define('cv.io.rest.Client', {
   ***********************************************
   */
   statics: {
-    BASE_URL: 'http://localhost:3000',
+    BASE_URL: null,
     __configFile: null,
     __dirClient: null,
     __dpClient: null,
     __callbacks: {},
 
+    getBaseUrl() {
+      if (!this.BASE_URL) {
+        var path = qx.util.Uri.parseUri(window.location.href).path;
+        path += 'rest/php';
+        this.BASE_URL = path;
+      }
+      return this.BASE_URL;
+    },
+
     getConfigClient: function() {
       if (!this.__configFile) {
-        this.__configFile = new qx.io.rest.Resource({
+        var config = {
           get: {
             method: 'GET', url: '/config/hidden/{section}/{key}'
           },
@@ -34,8 +43,9 @@ qx.Class.define('cv.io.rest.Client', {
           save: {
             method: 'PUT', url: '/config/hidden'
           }
-        });
-        this.__configFile.setBaseUrl(this.BASE_URL);
+        };
+        this.__configFile = new qx.io.rest.Resource(config);
+        this.__configFile.setBaseUrl(this.getBaseUrl());
         this.__configFile.configureRequest(function (req, action) {
           if (action === 'save') {
             req.setRequestHeader('Content-Type', 'application/json');
@@ -46,6 +56,8 @@ qx.Class.define('cv.io.rest.Client', {
             req.setAccept('application/json');
           }
         });
+
+        this._enableSync(this.__configFile, config);
       }
       return this.__configFile;
     },
@@ -73,7 +85,7 @@ qx.Class.define('cv.io.rest.Client', {
           }
         };
         this.__dirClient = new qx.io.rest.Resource(config);
-        this.__dirClient.setBaseUrl(this.BASE_URL);
+        this.__dirClient.setBaseUrl(this.getBaseUrl());
         this.__dirClient.configureRequest(function (req, action, params) {
           if (params.hash) {
             req.setUrl(req.getUrl() + '&hash=' + params.hash);
@@ -126,7 +138,7 @@ qx.Class.define('cv.io.rest.Client', {
           }
         };
         this.__dpClient = new qx.io.rest.Resource(config);
-        this.__dpClient.setBaseUrl(this.BASE_URL);
+        this.__dpClient.setBaseUrl(this.getBaseUrl());
 
         this._enableSync(this.__dpClient, config);
       }

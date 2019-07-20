@@ -175,7 +175,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
     download: function (file) {
       if (file.getType() === 'file') {
         var element = document.createElement('a');
-        element.setAttribute('href', cv.io.rest.Client.BASE_URL + '/fs?download=true&path=' + file.getFullPath());
+        element.setAttribute('href', cv.io.rest.Client.getBaseUrl() + '/fs?download=true&path=' + file.getFullPath());
         element.style.display = 'none';
         document.body.appendChild(element);
         element.click();

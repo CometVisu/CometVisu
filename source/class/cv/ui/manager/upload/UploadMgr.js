@@ -56,7 +56,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
     _updateUploadUrl: function () {
       var folder = this.getFolder();
       var path = folder ? folder.getFullPath() : '.';
-      var url = cv.io.rest.Client.BASE_URL + '/fs?type=file&path=' + path;
+      var url = cv.io.rest.Client.getBaseUrl() + '/fs?type=file&path=' + path;
       this.setUploadUrl(url);
     },
 

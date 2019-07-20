@@ -54,7 +54,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     },
 
     _loadFile: function () {
-      this._client.get({section: '*'});
+      this._client.get({section: '*', key: '*'});
     },
 
     _onModelValueChange: function (ev) {
@@ -88,7 +88,14 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
     save: function () {
       var data = qx.util.Serializer.toNativeObject(this._listController.getModel());
-      this._client.save(null, data);
+      this._client.saveSync(null, data, function (err) {
+        if (err) {
+          cv.ui.manager.snackbar.Controller.error(err);
+        } else {
+          cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
+          this._onSaved();
+        }
+      }, this);
     },
 
     // overridden

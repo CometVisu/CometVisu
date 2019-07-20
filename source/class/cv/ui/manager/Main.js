@@ -136,6 +136,12 @@ qx.Class.define('cv.ui.manager.Main', {
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('media folder is not writeable'));
                 }
                 break;
+
+              case 'hidden.php':
+                if ((env.state & 4) === 0) {
+                  cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Hidden configuration file (hidden.php) not writeable'));
+                }
+                break;
             }
           }, this);
         }

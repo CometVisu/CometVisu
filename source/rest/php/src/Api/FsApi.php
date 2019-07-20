@@ -29,7 +29,7 @@ class FsApi extends AbstractFsApi
   public function checkEnvironment(ServerRequestInterface $request, ResponseInterface $response, array $args) {
     $res = [];
     // config folder must be writeable
-    forEach(['.', 'media', 'backup'] as $folder) {
+    forEach(['.', 'media', 'backup', 'hidden.php'] as $folder) {
       array_push($res, [
         "entity" => $folder,
         "state" => $this->getState(realpath($this->baseDir . '/' . $folder))
