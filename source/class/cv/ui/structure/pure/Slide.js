@@ -112,12 +112,15 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         slider.init();
         // set initial value
         slider.setValue(parseFloat(this.getValue()));
-        var throttled = qx.util.Function.throttle(this._onChangeValue, 250, {trailing: false}).bind(this);
+        var throttled = cv.util.Function.throttle(this._onChangeValue, 250, {trailing: true}, this);
 
-        slider.on("changeValue", function (ev) {
+        slider.on("changeValue", function (val) {
           if (!this.__skipUpdatesFromSlider) {
-            throttled(ev);
+            throttled.call(val);
           }
+        }, this);
+        slider.on('done', function () {
+          throttled.abort();
         }, this);
 
         this.addListener("changeValue", function (ev) {
