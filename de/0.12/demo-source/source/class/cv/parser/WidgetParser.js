@@ -430,6 +430,14 @@ qx.Class.define('cv.parser.WidgetParser', {
         if (!skipAdding && (mode & 1) && variantInfo[0]) {// add only addresses when reading from them
           this.model.addAddress(src, id);
         }
+        if (address[src]) {
+          // we already have an entry for this address, merge the modes if the other attribute values are equal
+          if (address[src][0] === transform && address[src][2] === variantInfo[1] && address[src][3] === formatPos) {
+            mode |= address[src][1];
+          } else {
+            console.error('multiple address entries with different configuration:', address[src], [transform, mode, variantInfo[1], formatPos], 'they are only allowed to differ in mode');
+          }
+        }
         address[src] = [transform, mode, variantInfo[1], formatPos];
       }, this);
       return address;
