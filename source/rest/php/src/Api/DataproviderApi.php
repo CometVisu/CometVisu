@@ -109,7 +109,7 @@ class DataproviderApi extends AbstractDataproviderApi
     if ($handle = opendir($this->apiConfig->designsDir)) {
       while (false !== ($entry = readdir($handle))) {
         $filePath = realpath($this->apiConfig->designsDir . "/" . $entry);
-        if (is_dir($filePath)) {
+        if (is_dir($filePath) && substr($entry, 0, 1) !== '.') {
           array_push($designs, $entry);
         }
       }
