@@ -19,7 +19,7 @@ qx.Class.define('cv.io.rest.Client', {
     getBaseUrl() {
       if (!this.BASE_URL) {
         var path = qx.util.Uri.parseUri(window.location.href).path;
-        path += 'rest/php';
+        path += 'rest/cv';
         this.BASE_URL = path;
       }
       return this.BASE_URL;
