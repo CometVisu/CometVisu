@@ -4,50 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "991465809d14e40ffc9a792d0960240e",
+    "content-hash": "355625635032a700d04c5484befe32fa",
     "packages": [
-        {
-            "name": "barryvdh/composer-cleanup-plugin",
-            "version": "v0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/barryvdh/composer-cleanup-plugin.git",
-                "reference": "1efa5ce0aa415f1e7bc7fccfbedfe43d8f0941b0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/composer-cleanup-plugin/zipball/1efa5ce0aa415f1e7bc7fccfbedfe43d8f0941b0",
-                "reference": "1efa5ce0aa415f1e7bc7fccfbedfe43d8f0941b0",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.1-dev"
-                },
-                "class": "Barryvdh\\Composer\\CleanupPlugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "Barryvdh\\Composer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
-                }
-            ],
-            "description": "A composer cleanup plugin, to remove tests and documentation to save space",
-            "time": "2018-05-14T08:32:22+00:00"
-        },
         {
             "name": "container-interop/container-interop",
             "version": "1.2.0",

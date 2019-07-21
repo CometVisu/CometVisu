@@ -16,7 +16,7 @@ qx.Class.define('cv.io.rest.Client', {
     __dpClient: null,
     __callbacks: {},
 
-    getBaseUrl() {
+    getBaseUrl: function () {
       if (!this.BASE_URL) {
         var path = qx.util.Uri.parseUri(window.location.href).path;
         path += 'rest/cv';
