@@ -65,9 +65,6 @@ jobs:
   - name: 'End-to-end Tests: Chrome beta'
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=beta
     script: *2
-  - name: 'End-to-end Tests: Chrome unstable'
-    env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=unstable
-    script: *2
   - stage: deploy
     name: "[DOCS] - Generate and publish manual and API-viewer"
     env: CV_BUILD=docs ENCRYPTION_LABEL=4c79fec0aeb9 COMMIT_AUTHOR_EMAIL=generator@cometvisu.org CV_BROWSER=Chrome_travis CV_VERSION=stable
