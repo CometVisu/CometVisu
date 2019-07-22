@@ -100,19 +100,27 @@ qx.Class.define('cv.plugins.ColorChooser', {
   */
   members: {
     __skipSending: false,
+    __farbtastic: null,
 
     _onDomReady: function() {
       this.base(arguments);
-      var $actor = $( '#' + this.getPath() + ' .actor' );
-      $actor.farbtastic( function(color){
-        this.setValueR(parseInt(color.substring(1, 3), 16) * 100 / 255.0);
-        this.setValueG(parseInt(color.substring(3, 5), 16) * 100 / 255.0);
-        this.setValueB(parseInt(color.substring(5, 7), 16) * 100 / 255.0);
+      this.__getFarbtastic();
+    },
 
-        if( this.getRateLimiter() === false && this.__skipSending === false) {// already requests going?
-          this._rateLimitedSend($actor);
-        }
-      }.bind(this));
+    __getFarbtastic: function () {
+      if (!this.__farbtastic) {
+        this.__farbtastic = jQuery.farbtastic( this.getActor() );
+        this.__farbtastic.linkTo(function(color) {
+          this.setValueR(parseInt(color.substring(1, 3), 16) * 100 / 255.0);
+          this.setValueG(parseInt(color.substring(3, 5), 16) * 100 / 255.0);
+          this.setValueB(parseInt(color.substring(5, 7), 16) * 100 / 255.0);
+
+          if( this.getRateLimiter() === false && this.__skipSending === false) {// already requests going?
+            this._rateLimitedSend();
+          }
+        }.bind(this));
+      }
+      return this.__farbtastic;
     },
 
     _rateLimitedSend: function() {
@@ -187,10 +195,16 @@ qx.Class.define('cv.plugins.ColorChooser', {
 
     _update: function( ga, data ) {
       if (ga === undefined) { return; }
+      if (this.$$domReady !== true) {
+        // not ready yet, delay this update
+        this.addListenerOnce('changeDomReady', function () {
+          this._update(ga, data);
+        }, this);
+      }
       function toHex( x ) { var r = parseInt( x ).toString(16); return r.length === 1 ? '0'+r : r; }
       var
         value      = cv.Transform.decode( this.getAddress()[ ga ][0], data ),
-        farbtastic = jQuery.farbtastic( this.getActor() ),
+        farbtastic = this.__getFarbtastic(),
         color      = farbtastic.color || '#000000';
 
       switch( this.getAddress()[ ga ][2] )
@@ -244,5 +258,14 @@ qx.Class.define('cv.plugins.ColorChooser', {
     // register the parser
     cv.parser.WidgetParser.addHandler("colorchooser", statics);
     cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this.__farbtastic = null;
   }
 });
