@@ -57,7 +57,7 @@ describe("testing a colorchooser plugin", function() {
       transform: 'OH:color',
       variant: 'rgb'
     });
-    var farbtastic = jasmine.createSpyObj("farbtastic", ["setColor"]);
+    var farbtastic = jasmine.createSpyObj("farbtastic", ["setColor", "linkTo"]);
     spyOn(jQuery, "farbtastic").and.callFake(function () {
       return farbtastic;
     });
@@ -75,7 +75,7 @@ describe("testing a colorchooser plugin", function() {
       transform: 'OH:number',
       variant: 'r'
     });
-    var farbtastic = jasmine.createSpyObj("farbtastic", ["setColor"]);
+    var farbtastic = jasmine.createSpyObj("farbtastic", ["setColor", "linkTo"]);
     spyOn(jQuery, "farbtastic").and.callFake(function() {
       return farbtastic;
     });
