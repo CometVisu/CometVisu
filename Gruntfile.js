@@ -586,7 +586,7 @@ module.exports = function(grunt) {
           var now = new Date();
           newName += "-" + now.toISOString().split(".")[0].replace(/[\D]/g, "");
         }
-        fs.rename(path + file, path + newName + "." + parts.join('.'));
+        fs.renameSync(path + file, path + newName + "." + parts.join('.'));
       }
     });
   });
