@@ -1,5 +1,23 @@
 ## Change Log
 
+0.11.2
+======
+
+### v0.11.2 (2019/08/11 19:13 +00:00)
+- [#950](https://github.com/CometVisu/CometVisu/pull/950) do not use group widgets align setting as global class because its on… (@peuter)
+- [#948](https://github.com/CometVisu/CometVisu/pull/948) fix the problem that slider updates are send back to the backend agai… (@peuter)
+- [#946](https://github.com/CometVisu/CometVisu/pull/946) merge address modes when there is more than one entry for this address (@peuter)
+- [#944](https://github.com/CometVisu/CometVisu/pull/944) add format attributes to widgets that already support it (sync schema… (@peuter)
+- [#943](https://github.com/CometVisu/CometVisu/pull/943) fix template example to correctly bracket the actual template (@Zugschlus)
+- [#937](https://github.com/CometVisu/CometVisu/pull/937) fix initialization problem with colorchooser, when the update is rece… (@peuter)
+- [#934](https://github.com/CometVisu/CometVisu/pull/934) Fix for https://forum.timberwolf.io/viewtopic.php?p=8879#p8879 (@ChristianMayer)
+- [#927](https://github.com/CometVisu/CometVisu/pull/927) Add canonical_url to documentation (@ChristianMayer)
+- [#933](https://github.com/CometVisu/CometVisu/pull/933) Change docu symlinks (@ChristianMayer)
+- [#931](https://github.com/CometVisu/CometVisu/pull/931) Add transformations to influxdb request. (@ChristianMayer)
+- [#929](https://github.com/CometVisu/CometVisu/pull/929) fix templates with multiple child nodes (@peuter)
+- [#928](https://github.com/CometVisu/CometVisu/pull/928) Switch sitemap to https (@ChristianMayer)
+- [#925](https://github.com/CometVisu/CometVisu/pull/925) Make redirect point to correct path (@ChristianMayer)
+
 0.11.1
 ======
 

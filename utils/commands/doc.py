@@ -36,6 +36,7 @@ import json
 import sys
 import re
 from lxml import etree
+from distutils.version import LooseVersion
 from argparse import ArgumentParser
 from . import Command
 from scaffolding import Scaffolder
@@ -143,11 +144,7 @@ class DocGenerator(Command):
             branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
                 else os.environ.get('TRAVIS_BRANCH')
 
-            if branch == "develop":
-                self._doc_version = self.config.get("DEFAULT", "develop-version-mapping")
-            else:
-                # read version
-                self._doc_version = self._get_source_version()
+            self._doc_version = self._get_source_version()
         return self._doc_version
 
     def _get_source_version(self):
@@ -160,7 +157,7 @@ class DocGenerator(Command):
     def _get_doc_target_path(self):
         """ returns the target sub directory where the documentation should be stored."""
         ver = self._get_doc_version()
-        match = re.match("([0-9]+.[0-9]+).[0-9]+.*", ver)
+        match = re.match("([0-9]+\.[0-9]+)\.[0-9]+.*", ver)
         if match:
             return match.group(1)
         else:
@@ -214,6 +211,35 @@ class DocGenerator(Command):
 
         with open(os.path.join(target_dir, "..", "version"), "w+") as f:
             f.write(self._get_source_version())
+
+        # create symlinks
+        symlinkname = ''
+        git = sh.Command("git")
+        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
+            else os.environ.get('TRAVIS_BRANCH')
+
+        if branch == "develop":
+            # handle develop builds:
+            print('detected development build')
+            symlinkname = self.config.get("DEFAULT", "develop-version-mapping")
+        elif branch == "master":
+            # handle releases:
+            print('detected build of most recent version of master branch')
+            symlinkname = self.config.get("DEFAULT", "most-recent-version-mapping")
+
+        if '' != symlinkname:
+            symlinktarget = os.path.join(target_dir, "..")
+            print("setting symlink '%s' to '%s'" % (symlinkname, symlinktarget))
+            cwd = os.getcwd()
+            os.chdir(os.path.join(symlinktarget, ".."))
+            try:
+                os.remove(symlinkname)
+            except Exception as e:
+                print(str(e))
+            ls = sh.Command("ls")
+            print(ls("-la"))
+            os.symlink(os.path.relpath(symlinktarget), symlinkname)
+            os.chdir(cwd)
 
     def from_source(self, path, plugin=False):
         """
@@ -473,14 +499,7 @@ class DocGenerator(Command):
         return None
 
     def _sort_versions(self, a, b):
-        va = a.split("|")[0]
-        vb = b.split("|")[0]
-        if va == "latest":
-            return 1
-        elif vb == "latest":
-            return -1
-        else:
-            return compare(va, vb)
+        return cmp(LooseVersion(a.split("|")[0]), LooseVersion(b.split("|")[0]))
 
     def process_versions(self, path):
         root, dirs, files = os.walk(path).next()
@@ -494,12 +513,12 @@ class DocGenerator(Command):
                 special_versions = []
                 for version_dir in dirs:
                     version = version_dir
-                    if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")) and re.match("^[0-9]+.[0-9]+.?[0-9]*$", version) is not None:
+                    if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")) and re.match("^[0-9]+\.[0-9]+\.?[0-9]*$", version) is not None:
                         with open(os.path.join(path, lang_dir, version_dir, "version")) as f:
-                            version = f.read()
+                            version = f.read().rstrip('\n')
                     if os.path.islink(os.path.join(root, version_dir)):
                         symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
-                    elif re.match("^[0-9]+.[0-9]+.*$", version) is not None:
+                    elif re.match("^[0-9]+\.[0-9]+.*$", version) is not None:
                         versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
                     else:
                         special_versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
@@ -521,20 +540,6 @@ class DocGenerator(Command):
                             break
 
                 print("versions found: %s (%s)" % (versions, special_versions))
-
-                if found_max is True and max_version_path is not None:
-                    # checking current symlink to max version
-                    if 'current' not in symlinks or symlinks['current'] != max_version_path:
-                        print("setting 'current' symlink to '%s'" % max_version_path)
-                        cwd = os.getcwd()
-                        os.chdir(root)
-                        try:
-                            os.remove('current')
-                        except Exception:
-                            pass
-                        os.symlink(max_version_path, 'current')
-                        symlinks['current'] = max_version_path
-                        os.chdir(cwd)
 
                 # saving versions to json file
                 try:
@@ -568,7 +573,7 @@ class DocGenerator(Command):
         parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
         parser.add_argument("--move-apiviewer", dest="move_apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
-        parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/current docs and weite version files")
+        parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/develop docs and weite version files")
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
         parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
