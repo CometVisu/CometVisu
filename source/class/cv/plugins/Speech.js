@@ -87,10 +87,10 @@ qx.Class.define('cv.plugins.Speech', {
 
       return cv.data.Model.getInstance().setWidgetData( path, {
         'path'    : path,
-        'language': qx.bom.element.Attribute.get(element, 'lang') ? qx.bom.element.Attribute.get(element, 'lang') .toLowerCase() : null,
+        'language': element.getAttribute('lang') ? element.getAttribute('lang') .toLowerCase() : null,
         'address' : address,
-        'mapping' : qx.bom.element.Attribute.get(element, 'mapping'),
-        'repeatTimeout': qx.bom.element.Attribute.get(element, 'repeat-timeout') ? parseInt(qx.bom.element.Attribute.get(element, 'repeat-timeout')) : -1,
+        'mapping' : element.getAttribute('mapping'),
+        'repeatTimeout': element.getAttribute('repeat-timeout') ? parseInt(element.getAttribute('repeat-timeout')) : -1,
         '$$type'  : 'speech'
       });
     }

@@ -35,17 +35,17 @@ qx.Class.define('cv.parser.widgets.Page', {
 
       var storagePath = cv.parser.WidgetParser.getStoragePath(page, path);
       var addresses = {};
-      if (qx.bom.element.Attribute.get(page, 'ga')) {
-        var src = qx.bom.element.Attribute.get(page, 'ga');
+      if (page.getAttribute('ga')) {
+        var src = page.getAttribute('ga');
         cv.data.Model.getInstance().addAddress(src, storagePath);
         addresses[ src ] = [ 'DPT:1.001', cv.data.Model.READ ];
       }
 
-      var name    = qx.bom.element.Attribute.get(page, 'name');
-      pageType = qx.bom.element.Attribute.get(page, 'type') || 'text';              //text, 2d or 3d
-      var backdrop = qx.bom.element.Attribute.get(page, 'backdrop');
-      var showtopnavigation = qx.bom.element.Attribute.get(page, 'showtopnavigation') ? qx.bom.element.Attribute.get(page, 'showtopnavigation') === "true" : null;
-      var showfooter = qx.bom.element.Attribute.get(page, 'showfooter') ? qx.bom.element.Attribute.get(page, 'showfooter') === "true": true;
+      var name    = page.getAttribute('name');
+      pageType = page.getAttribute('type') || 'text';              //text, 2d or 3d
+      var backdrop = page.getAttribute('backdrop');
+      var showtopnavigation = page.getAttribute('showtopnavigation') ? page.getAttribute('showtopnavigation') === "true" : null;
+      var showfooter = page.getAttribute('showfooter') ? page.getAttribute('showfooter') === "true": true;
       // make sure the type has the correct value as we need to use it ass CSS class
       switch (pageType) {
         case '2d':
@@ -65,7 +65,7 @@ qx.Class.define('cv.parser.widgets.Page', {
         right  : path === "id" ? false : null
       };
       qx.bom.Selector.matches("navbar", qx.dom.Hierarchy.getChildElements(page)).forEach( function(elem) {
-        shownavbar[ qx.bom.element.Attribute.get(elem, 'position') || 'left' ] = true;
+        shownavbar[ elem.getAttribute('position') || 'left' ] = true;
       });
       // overwrite default when set manually in the config
       ['top', 'left', 'right', 'bottom'].forEach(function(pos) {
@@ -73,21 +73,21 @@ qx.Class.define('cv.parser.widgets.Page', {
           // do not override current values
           return;
         }
-        var value = qx.bom.element.Attribute.get(page, 'shownavbar-'+pos);
+        var value = page.getAttribute('shownavbar-'+pos);
         if (qx.lang.Type.isString(value)) {
           shownavbar[pos] = value === "true";
         }
       }, this);
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
-      if (qx.bom.element.Attribute.get(page, "bind_click_to_widget")) {
-        bindClickToWidget = qx.bom.element.Attribute.get(page, "bind_click_to_widget")==="true";
+      if (page.getAttribute("bind_click_to_widget")) {
+        bindClickToWidget = page.getAttribute("bind_click_to_widget")==="true";
       }
-      if( qx.bom.element.Attribute.get(page, 'flavour') ) {
-        flavour = qx.bom.element.Attribute.get(page, 'flavour');// sub design choice
+      if( page.getAttribute('flavour') ) {
+        flavour = page.getAttribute('flavour');// sub design choice
       }
       var wstyle  = '';                                     // widget style
-      if( qx.bom.element.Attribute.get(page, 'align') ) {
-        wstyle += 'text-align:' + qx.bom.element.Attribute.get(page, 'align') + ';';
+      if( page.getAttribute('align') ) {
+        wstyle += 'text-align:' + page.getAttribute('align') + ';';
       }
       if( wstyle !== '' ) {
         wstyle = 'style="' + wstyle + '"';
@@ -109,10 +109,10 @@ qx.Class.define('cv.parser.widgets.Page', {
         showNavbarBottom  : shownavbar.bottom,
         showNavbarLeft    : shownavbar.left,
         showNavbarRight   : shownavbar.right,
-        backdropAlign     : '2d' === pageType ? (qx.bom.element.Attribute.get(page, 'backdropalign' ) || '50% 50%') : null,
-        size              : qx.bom.element.Attribute.get(page, 'size') || null,
+        backdropAlign     : '2d' === pageType ? (page.getAttribute('backdropalign') || '50% 50%') : null,
+        size              : page.getAttribute('size') || null,
         address           : addresses,
-        linkVisible       : qx.bom.element.Attribute.get(page, 'visible') ? qx.bom.element.Attribute.get(page, 'visible') === "true" : true,
+        linkVisible       : page.getAttribute('visible') ? page.getAttribute('visible') === "true" : true,
         flavour           : flavour || null,
         $$type            : "page",
         backdrop          : backdrop || null,

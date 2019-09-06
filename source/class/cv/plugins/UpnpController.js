@@ -253,7 +253,7 @@ qx.Class.define('cv.plugins.UpnpController', {
     callgetplaylists: function () {
       this.traceLog("click callgetplaylists");
       var playlist = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_getplaylists')[0];
-      var currentValue = qx.bom.element.Attribute.get(playlist, 'value');
+      var currentValue = playlist.getAttribute('value');
       var playerIp = this.getPlayerIp();
       var playerPort = this.getPlayerPort();
 
@@ -300,7 +300,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     callvolumedown: function () {
       this.traceLog("click callvolumedown");
-      var currentVolume = qx.bom.element.Attribute.get(qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_volume div.value')[0], "text");
+      var currentVolume = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_volume div.value')[0].getAttribute("text");
 
       this.traceLog("currentVolume: " + currentVolume);
       var volume = Number(currentVolume) - 5;
@@ -312,7 +312,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     callvolumeup: function () {
       this.traceLog("click callvolumeup");
-      var currentVolume = qx.bom.element.Attribute.get(qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_volume div.value')[0], "text");
+      var currentVolume = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_volume div.value')[0].getAttribute("text");
       this.traceLog("currentVolume: " + currentVolume);
       var volume = Number(currentVolume) + 5;
 
@@ -338,7 +338,7 @@ qx.Class.define('cv.plugins.UpnpController', {
     toggleMute: function () {
       this.traceLog("click mute");
       var muteButton = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_muteButton')[0];
-      var muteValue = qx.bom.element.Attribute.get(qx.bom.Selector.query('div.value', muteButton)[0], "text");
+      var muteValue = qx.bom.Selector.query('div.value', muteButton)[0].getAttribute("text");
 
       this.traceLog("current muteValue: " + muteValue);
 
@@ -360,7 +360,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     togglePlay: function () {
       this.traceLog("click play");
-      var playValue = qx.bom.element.Attribute.get(qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_playButton div.value')[0], "text");
+      var playValue = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_playButton div.value')[0].getAttribute("text");
       var cmd;
 
       this.traceLog("current playValue: " + playValue);

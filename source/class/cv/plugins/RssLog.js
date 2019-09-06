@@ -381,7 +381,7 @@ qx.Class.define('cv.plugins.RssLog', {
       var c = qx.bom.Selector.query(selector)[0];
       var itemack = isBig === true ? this.getItemack() : ( 'modify' === this.getItemack() ? 'display' : this.getItemack());
 
-      this.debug("ID: "+qx.bom.element.Attribute.get(c, "id")+", Feed: "+this.getSrc());
+      this.debug("ID: "+c.getAttribute("id")+", Feed: "+this.getSrc());
 
       var ul = qx.dom.Element.create("ul");
       var displayrows = this.__prepareContentElement(ul, c);

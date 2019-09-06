@@ -101,7 +101,7 @@ describe("testing a page widget", function() {
     expect(backdrop).toHaveStyleSetting('height', '100%');
     expect(backdrop).toHaveStyleSetting('object-fit', 'contain');
     expect(backdrop).toHaveStyleSetting('object-position', 'left');
-    expect(qx.bom.element.Attribute.get(backdrop, 'src')).toBe('test.svg');
+    expect(backdrop.getAttribute('src')).toBe('test.svg');
   });
 
   it("should test the 2d-page creator with fixed png backdrop", function() {
@@ -120,7 +120,7 @@ describe("testing a page widget", function() {
     expect(page).toHaveClass("type_2d");
     var backdrop = qx.bom.Selector.query("img", page)[0];
 
-    expect(qx.bom.element.Attribute.get(backdrop, 'src')).toBe('test.png');
+    expect(backdrop.getAttribute('src')).toBe('test.png');
   });
 
   it("should test the page update", function() {

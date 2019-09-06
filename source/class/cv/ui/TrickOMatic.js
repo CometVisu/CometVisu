@@ -105,7 +105,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
             pipe_group.insertBefore(n, path.nextElementSibling);
           }
           length += path.getTotalLength();
-          var activeValues = qx.bom.element.Attribute.get(pipe_group, 'data-cometvisu-active');
+          var activeValues = pipe_group.getAttribute('data-cometvisu-active');
           if (activeValues) {
             activeValues.split(' ').forEach(function (address) {
               var id = "flow_"+cv.ui.TrickOMatic.id++;

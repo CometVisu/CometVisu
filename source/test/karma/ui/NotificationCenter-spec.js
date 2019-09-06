@@ -74,7 +74,7 @@ describe('test the NotificationCenter', function () {
     center.handleMessage(qx.lang.Object.clone(message));
     expect(center.getMessages().getLength()).toBe(1);
 
-    expect(qx.bom.element.Attribute.get(badge, "html")).toEqual("1");
+    expect(badge.getAttribute("html")).toEqual("1");
     expect(qx.bom.element.Class.has(badge, "normal")).toBeTruthy();
 
     // add message with higher severity
@@ -85,7 +85,7 @@ describe('test the NotificationCenter', function () {
     // as the message was unique it replaces the old one
     expect(center.getMessages().getLength()).toBe(1);
 
-    expect(qx.bom.element.Attribute.get(badge, "html")).toEqual("1");
+    expect(badge.getAttribute("html")).toEqual("1");
     expect(qx.bom.element.Class.has(badge, "high")).toBeTruthy();
 
     // add message with higher severity
@@ -96,7 +96,7 @@ describe('test the NotificationCenter', function () {
     // as the message was unique it replaces the old one
     expect(center.getMessages().getLength()).toBe(2);
 
-    expect(qx.bom.element.Attribute.get(badge, "html")).toEqual("2");
+    expect(badge.getAttribute("html")).toEqual("2");
     expect(qx.bom.element.Class.has(badge, "urgent")).toBeTruthy();
 
     // remove unique messages
@@ -108,7 +108,7 @@ describe('test the NotificationCenter', function () {
     // as we had 2 messages with same topic both should be gone now
     expect(center.getMessages().getLength()).toBe(0);
 
-    expect(qx.bom.element.Attribute.get(badge, "html")).toBeNull();
+    expect(badge.getAttribute("html")).toBeNull();
     expect(qx.bom.element.Class.has(badge, "urgent")).toBeFalsy();
   });
 

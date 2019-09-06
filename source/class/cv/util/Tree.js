@@ -154,7 +154,7 @@ qx.Class.define('cv.util.Tree', {
     getParent: function(element, until, selector, limit) {
       var parents = [];
       var parent = qx.dom.Element.getParentElement(element);
-      while (parent && qx.bom.element.Attribute.get(parent, 'id') !== "pages") {
+      while (parent && parent.getAttribute('id') !== "pages") {
         var found = [parent];
         if (selector) {
           found = qx.bom.Selector.matches(selector, found);

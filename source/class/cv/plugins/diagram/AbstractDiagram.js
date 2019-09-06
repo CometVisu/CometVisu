@@ -96,7 +96,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
       cv.parser.WidgetParser.parseRefresh(xml, path);
 
-      var legend = qx.bom.element.Attribute.get(xml, "legend") || "both";
+      var legend = xml.getAttribute("legend") || "both";
       return cv.data.Model.getInstance().setWidgetData( path, {
         content           : this.getDiagramElements(xml),
         legendInline      : ["both", "inline"].indexOf(legend) >= 0,

@@ -53,7 +53,7 @@ describe("testing a navbar widget", function() {
 
     var navbar = qx.bom.Selector.query('#'+barContainerId+' .navbar')[0];
     expect(navbar).not.toBeNull();
-    expect(qx.bom.element.Attribute.get(navbar, 'id')).toBe('id_'+pos+'_navbar');
+    expect(navbar.getAttribute('id')).toBe('id_'+pos+'_navbar');
 
     if (pos === "left") {
       expect(navbar).toHaveClass("flavour_potassium");

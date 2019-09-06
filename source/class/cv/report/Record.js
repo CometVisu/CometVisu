@@ -312,7 +312,7 @@ qx.Class.define('cv.report.Record', {
 
     recordScroll: function(ev) {
       var page = ev.getTarget();
-      var path = (undefined !== page && 'getAttribute' in page) ? qx.bom.element.Attribute.get(page, "id") : undefined;
+      var path = (undefined !== page && 'getAttribute' in page) ? page.getAttribute("id") : undefined;
       var data = {
         type: ev.getType(),
         page: path,

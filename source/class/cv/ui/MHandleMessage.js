@@ -225,7 +225,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
       var target = ev.getTarget();
       var deleteTarget = null;
       var messageId = -1;
-      var id = qx.bom.element.Attribute.get(target, "id");
+      var id = target.getAttribute("id");
       var rootId = this.getRootElementId();
       var messageElementId = this.getMessageElementId();
       while (!id || !id.startsWith(rootId)) {
@@ -241,7 +241,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
         if (!target) {
           break;
         }
-        id = qx.bom.element.Attribute.get(target, "id");
+        id = target.getAttribute("id");
       }
       return [messageId, deleteTarget ? "delete" : "action"];
     },

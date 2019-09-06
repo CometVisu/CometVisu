@@ -43,7 +43,7 @@ qx.Class.define('cv.io.Reflection', {
     list: function () {
       var widgetTree = {};
       qx.bom.Selector.query('.page').forEach(function (elem) {
-        var id = qx.bom.element.Attribute.get(elem, "id").split('_');
+        var id = elem.getAttribute("id").split('_');
         var thisEntry = widgetTree;
         if ('id' === id.shift()) {
           var thisNumber;
@@ -177,7 +177,7 @@ qx.Class.define('cv.io.Reflection', {
     getParentPage: function (page) {
       if (0 === page.length) { return null; }
 
-      return this.getParentPageById(qx.bom.element.Attribute.get(page, 'id'), true);
+      return this.getParentPageById(page.getAttribute('id'), true);
     },
 
     getParentPageById: function (path, isPageId) {

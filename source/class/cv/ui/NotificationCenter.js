@@ -272,7 +272,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     __updateBadge: function() {
-      var currentContent = parseInt(qx.bom.element.Attribute.get(this.__badge, "html"));
+      var currentContent = parseInt(this.__badge.getAttribute("html"));
       if (isNaN(currentContent)) {
         currentContent = 0;
       }

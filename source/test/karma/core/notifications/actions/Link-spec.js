@@ -10,7 +10,7 @@ describe("testing the Link action", function() {
     });
 
     var actionButton = action.getDomElement();
-    expect(qx.bom.element.Attribute.get(actionButton, "text")).toBe("Title");
+    expect(actionButton.getAttribute("text")).toBe("Title");
     expect(actionButton).toHaveClass("action");
 
     var spy = spyOn(cv.util.Location, "open");

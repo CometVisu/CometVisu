@@ -333,7 +333,7 @@ qx.Class.define('cv.TemplateEngine', {
       var settings = cv.Config.configSettings;
       var pagesNode = qx.bom.Selector.query("pages", loaded_xml)[0];
 
-      var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
+      var predefinedDesign = pagesNode.getAttribute("design");
       // design by url
       // design by config file
       if (!cv.Config.clientDesign && !settings.clientDesign) {
@@ -349,37 +349,37 @@ qx.Class.define('cv.TemplateEngine', {
       // load structure-part
       this.loadParts([cv.Config.getStructure()]);
 
-      if (qx.bom.element.Attribute.get(pagesNode, "backend") !== null) {
-        settings.backend = qx.bom.element.Attribute.get(pagesNode, "backend");
+      if (pagesNode.getAttribute("backend") !== null) {
+        settings.backend = pagesNode.getAttribute("backend");
       }
       this.initBackendClient();
 
-      if (qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') === null) {
+      if (pagesNode.getAttribute('scroll_speed') === null) {
         settings.scrollSpeed = 400;
       } else {
-        settings.scrollSpeed = parseInt(qx.bom.element.Attribute.get(pagesNode, 'scroll_speed'));
+        settings.scrollSpeed = parseInt(pagesNode.getAttribute('scroll_speed'));
       }
 
-      if (qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') !== null) {
-        settings.bindClickToWidget = qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') === "true";
+      if (pagesNode.getAttribute('bind_click_to_widget') !== null) {
+        settings.bindClickToWidget = pagesNode.getAttribute('bind_click_to_widget') === "true";
       }
-      if (qx.bom.element.Attribute.get(pagesNode, 'default_columns') !== null) {
-        settings.defaultColumns = qx.bom.element.Attribute.get(pagesNode, 'default_columns');
+      if (pagesNode.getAttribute('default_columns') !== null) {
+        settings.defaultColumns = pagesNode.getAttribute('default_columns');
       }
-      if (qx.bom.element.Attribute.get(pagesNode, 'min_column_width') !== null) {
-        settings.minColumnWidth = qx.bom.element.Attribute.get(pagesNode, 'min_column_width');
+      if (pagesNode.getAttribute('min_column_width') !== null) {
+        settings.minColumnWidth = pagesNode.getAttribute('min_column_width');
       }
-      settings.screensave_time = qx.bom.element.Attribute.get(pagesNode, 'screensave_time');
+      settings.screensave_time = pagesNode.getAttribute('screensave_time');
       if (settings.screensave_time) {
         settings.screensave_time = parseInt(settings.screensave_time, 10);
       }
-      settings.screensave_page = qx.bom.element.Attribute.get(pagesNode, 'screensave_page');
+      settings.screensave_page = pagesNode.getAttribute('screensave_page');
 
-      if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null) {
-        settings.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
+      if (pagesNode.getAttribute('max_mobile_screen_width') !== null) {
+        settings.maxMobileScreenWidth = pagesNode.getAttribute('max_mobile_screen_width');
       }
 
-      var globalClass = qx.bom.element.Attribute.get(pagesNode, 'class');
+      var globalClass = pagesNode.getAttribute('class');
       if (globalClass !== null) {
         qx.bom.element.Class.add(qx.bom.Selector.query('body')[0], globalClass);
       }
@@ -632,7 +632,7 @@ qx.Class.define('cv.TemplateEngine', {
           pages.forEach(function (page) {
             var p = cv.util.Tree.getClosest(page, ".page");
             if (qx.dom.Node.getText(page) === page_name) {
-              var pid = qx.bom.element.Attribute.get(p, 'id');
+              var pid = p.getAttribute('id');
               if (pid.length < currentPageId.length) {
                 // found pages path is shorter the the current pages -> must be an ancestor
                 if (currentPageId.indexOf(pid) === 0) {
@@ -657,7 +657,7 @@ qx.Class.define('cv.TemplateEngine', {
             // take the first page that fits (old behaviour)
             pages.forEach(function (page) {
               if (qx.dom.Node.getText(page)  === page_name) {
-                page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
+                page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
                 // break loop
                 return false;
               }
@@ -666,7 +666,7 @@ qx.Class.define('cv.TemplateEngine', {
         } else {
           pages.forEach(function (page) {
             if (qx.dom.Node.getText(page) === page_name) {
-              page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
+              page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
               // break loop
               return false;
             }

@@ -71,7 +71,7 @@ qx.Class.define('cv.util.ConfigLoader', {
         }
         else {
           // check the library version
-          var xmlLibVersion = qx.bom.element.Attribute.get(qx.bom.Selector.query('pages', xml)[0], "lib_version");
+          var xmlLibVersion = qx.bom.Selector.query('pages', xml)[0].getAttribute("lib_version");
           if (xmlLibVersion === undefined) {
             xmlLibVersion = -1;
           }
@@ -116,7 +116,7 @@ qx.Class.define('cv.util.ConfigLoader', {
      * @param includeElem {Element}
      */
     loadInclude: function (includeElem) {
-      var url = qx.bom.element.Attribute.get(includeElem, 'src');
+      var url = includeElem.getAttribute('src');
       if (!url.startsWith('/')) {
         url = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + url;
       }

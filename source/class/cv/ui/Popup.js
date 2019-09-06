@@ -158,7 +158,7 @@ qx.Class.define('cv.ui.Popup', {
             qx.dom.Element.insertBegin(this.__elementMap.icon, this.__elementMap.content);
           } else {
             var use = qx.bom.Selector.query("use", this.__elementMap.icon)[0];
-            var currentIconPath = qx.bom.element.Attribute.get(use, "xlink:href");
+            var currentIconPath = use.getAttribute("xlink:href");
             if (!currentIconPath.endsWith("#kuf-"+attributes.icon)) {
               var parts = currentIconPath.split("#");
               qx.bom.element.Attribute.set(use, "xlink:href", parts[0]+"#kuf-"+attributes.icon);

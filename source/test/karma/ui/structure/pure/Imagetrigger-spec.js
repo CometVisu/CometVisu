@@ -80,7 +80,7 @@ describe("testing a imagetrigger widget", function() {
     res.update('12/7/37', 1);
     var actor = qx.bom.Selector.query('.actor img', this.container.children[0])[0];
     expect(actor).toBeVisible();
-    expect(qx.bom.element.Attribute.get(actor, 'src')).toBe('imgs.jpg');
+    expect(actor.getAttribute('src')).toBe('imgs.jpg');
 
     res.update('12/7/37', 0);
     expect(actor).not.toBeVisible();
@@ -97,7 +97,7 @@ describe("testing a imagetrigger widget", function() {
     var actor = qx.bom.Selector.query('.actor img', this.container.children[0])[0];
 
     expect(actor).toBeVisible();
-    expect(qx.bom.element.Attribute.get(actor, 'src')).toBe('imgs1.jpg');
+    expect(actor.getAttribute('src')).toBe('imgs1.jpg');
 
     res.update('12/7/37', 0);
     expect(actor).not.toBeVisible();

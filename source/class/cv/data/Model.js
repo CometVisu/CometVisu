@@ -216,10 +216,10 @@ qx.Class.define('cv.data.Model', {
     getWidgetDataByElement: function (element) {
       var
         parent = qx.dom.Element.getParentElement(element),
-        path = qx.bom.element.Attribute.get(parent, 'id');
+        path = parent.getAttribute('id');
 
       if (path === undefined) {
-        path = qx.bom.element.Attribute.get(qx.dom.Element.getParentElement(parent), 'id');
+        path = qx.dom.Element.getParentElement(parent).getAttribute('id');
       }
       return this.getWidgetData(path);
     },

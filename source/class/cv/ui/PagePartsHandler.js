@@ -108,7 +108,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       if (typeof page === "string") {
         page = cv.ui.structure.WidgetFactory.getInstanceById(page);
       } else if (page.attributes ) {
-        page = cv.ui.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(page, 'id'));
+        page = cv.ui.structure.WidgetFactory.getInstanceById(page.getAttribute('id'));
       }
 
       if (!page) {
@@ -284,7 +284,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       }
       var level = 1;
       tree.forEach(function (elem) {
-        var id = qx.bom.element.Attribute.get(elem, 'id');
+        var id = elem.getAttribute('id');
         var topNav = qx.bom.Selector.query('#' + id + 'top_navbar')[0];
         var topData = cv.data.Model.getInstance().getWidgetData(id + 'top_navbar');
         var rightNav = qx.bom.Selector.query('#' + id + 'right_navbar')[0];
@@ -330,7 +330,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
     removeInactiveNavbars: function (page_id) {
       // remove all navbars that do not belong to this page
       qx.bom.Selector.query('.navbar.navbarActive').forEach(function (elem) {
-        var navBarPath = qx.bom.element.Attribute.get(elem, 'id').split('_');
+        var navBarPath = elem.getAttribute('id').split('_');
         // skip last 2 elements e.g. '_top_navbar'
         navBarPath = navBarPath.slice(0, navBarPath.length - 2).join('_');
         var expr = new RegExp("^" + navBarPath + ".*", "i");

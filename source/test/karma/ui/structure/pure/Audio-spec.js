@@ -64,8 +64,8 @@ describe("testing a audio widget", function() {
     expect(audio).toHaveAttribute("autoplay");
     expect(audio).toHaveAttribute("loop");
     expect(audio).toHaveAttribute("controls");
-    expect(qx.bom.element.Attribute.get(audio, 'style')).toBe('width:50%;height:50%;');
-    expect(qx.bom.element.Attribute.get(audio, 'id')).toBe('test');
+    expect(audio.getAttribute('style')).toBe('width:50%;height:50%;');
+    expect(audio.getAttribute('id')).toBe('test');
 
   });
 

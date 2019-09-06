@@ -100,7 +100,7 @@ qx.Class.define('cv.ui.structure.pure.Web', {
       if (!addr) { return; }
       if (data === 1) {
         var iframe = qx.bom.Selector.query('iframe', this.getDomElement())[0];
-        this.refreshAction(iframe, qx.bom.element.Attribute.get(iframe, 'src'));
+        this.refreshAction(iframe, iframe.getAttribute('src'));
         // reset the value
         cv.TemplateEngine.getInstance().visu.write( address, cv.Transform.encode(addr[0], 0));
       }
