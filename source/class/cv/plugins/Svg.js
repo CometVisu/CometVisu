@@ -71,7 +71,7 @@ qx.Class.define('cv.plugins.Svg', {
       ajaxRequest.addListenerOnce("success", function (e) {
         var req = e.getTarget();
         var actor = this.getActor();
-        qx.bom.element.Attribute.set(actor, 'html', req.getResponseText());
+        actor.setAttribute('html', req.getResponseText());
       }, this);
       ajaxRequest.send();
     },
@@ -86,13 +86,13 @@ qx.Class.define('cv.plugins.Svg', {
       var line, i, l;
       for(i = 0, l = Math.floor(value/line_qty); i<=l;i++) {
         line = qx.bom.Selector.query('#line'+(i+1), element)[0];
-        qx.bom.element.Attribute.set(line, 'y1', 9+total*(i)+((value%line_qty)/line_qty)*total);
-        qx.bom.element.Attribute.set(line, 'y2', 9+total*(i)+((value%line_qty)/line_qty)*total);
+        line.setAttribute('y1', 9+total*(i)+((value%line_qty)/line_qty)*total);
+        line.setAttribute('y2', 9+total*(i)+((value%line_qty)/line_qty)*total);
       }
       for(i = Math.floor(value/line_qty)+1; i<=line_qty;i++) {
         line = qx.bom.Selector.query('#line'+(i+1), element)[0];
-        qx.bom.element.Attribute.set(line, 'y1', 9);
-        qx.bom.element.Attribute.set(line, 'y2', 9);
+        line.setAttribute('y1', 9);
+        line.setAttribute('y2', 9);
       }
     }
   },

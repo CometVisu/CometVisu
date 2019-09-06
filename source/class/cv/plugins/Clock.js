@@ -111,8 +111,8 @@ qx.Class.define('cv.plugins.Clock', {
       var hourElem = qx.bom.Selector.query('#Hour', svg)[0];
       var minuteElem = qx.bom.Selector.query('#Minute', svg)[0];
       if( hourElem !== undefined && minuteElem !== undefined ) {
-        qx.bom.element.Attribute.set(hourElem, "transform", 'rotate(' + ((time[0] % 12) * 360 / 12 + time[1] * 30 / 60) + ',50,50)');
-        qx.bom.element.Attribute.set(minuteElem, "transform", 'rotate(' + (time[1] * 6) + ',50,50)');
+        hourElem.setAttribute("transform", 'rotate(' + ((time[0] % 12) * 360 / 12 + time[1] * 30 / 60) + ',50,50)');
+        minuteElem.setAttribute("transform", 'rotate(' + (time[1] * 6) + ',50,50)');
       } else {
         console.error('Error: trying to update unknown clock SVG elements #Hour and/or #Minute');
       }

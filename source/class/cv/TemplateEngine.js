@@ -432,7 +432,7 @@ qx.Class.define('cv.TemplateEngine', {
 
         // as we are sure that the default CSS were loaded now:
         qx.bom.Selector.query('link[href*="mobile.css"]').forEach(function (elem) {
-          qx.bom.element.Attribute.set(elem, 'media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
+          elem.setAttribute('media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
         });
         if (!cv.Config.cacheUsed) {
           this.debug("creating pages");

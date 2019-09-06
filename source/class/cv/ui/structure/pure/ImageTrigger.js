@@ -130,7 +130,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
           qx.bom.element.Style.set(imageChild, "display", "none");
         }
         else {
-          qx.bom.element.Attribute.set(imageChild, "src", this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
+          imageChild.setAttribute("src", this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
           qx.bom.element.Style.set(imageChild, "display", "block");
         }
       }
@@ -139,7 +139,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
           qx.bom.element.Style.set(imageChild, "display", "none");
         }
         else {
-          qx.bom.element.Attribute.set(imageChild, "src", this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
+          imageChild.setAttribute("src", this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
           qx.bom.element.Style.set(imageChild, "display", "block");
         }
       }

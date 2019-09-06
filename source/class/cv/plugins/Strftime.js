@@ -119,7 +119,7 @@ qx.Class.define('cv.plugins.Strftime', {
       var elem = this.getValueElement();
       var d = new Date();
       d.locale = this.getLocale();
-      qx.bom.element.Attribute.set(elem, "text", d.strftime(this.getFormat()));
+      elem.setAttribute("text", d.strftime(this.getFormat()));
     }
   },
 

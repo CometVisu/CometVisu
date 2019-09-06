@@ -298,9 +298,9 @@ qx.Class.define("cv.ui.NotificationCenter", {
         qx.bom.element.Animation.animate(this.__badge, cv.ui.NotificationCenter.BLINK);
       }
       if (messages) {
-        qx.bom.element.Attribute.set(this.__badge, "html", ""+messages);
+        this.__badge.setAttribute("html", ""+messages);
       } else{
-        qx.bom.element.Attribute.set(this.__badge, "html", "");
+        this.__badge.setAttribute("html", "");
       }
 
 

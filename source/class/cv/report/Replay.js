@@ -223,7 +223,7 @@ qx.Class.define('cv.report.Replay', {
         this.__cursor = qx.dom.Element.create("span", {
           style: "position: absolute; transform: rotate(-40deg); font-size: 36px; z-index: 1000000"
         });
-        qx.bom.element.Attribute.set(this.__cursor, "html", "&uarr;");
+        this.__cursor.setAttribute("html", "&uarr;");
         qx.dom.Element.insertEnd(this.__cursor, qx.bom.Selector.query("body")[0]);
       }
       qx.bom.element.Style.setStyles(this.__cursor, {top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"});

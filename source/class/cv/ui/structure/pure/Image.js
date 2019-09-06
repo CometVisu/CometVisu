@@ -99,9 +99,9 @@ qx.Class.define('cv.ui.structure.pure.Image', {
         return;
       }
       if (value === true) {
-        qx.bom.element.Attribute.set(valueElem, "src", this.__getSrc());
+        valueElem.setAttribute("src", this.__getSrc());
       } else {
-        qx.bom.element.Attribute.set(valueElem, "src", "");
+        valueElem.setAttribute("src", "");
       }
     }
   },

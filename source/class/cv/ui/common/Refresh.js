@@ -163,9 +163,9 @@ qx.Mixin.define("cv.ui.common.Refresh", {
          */
         var parenthost = window.location.protocol + "//" + window.location.host;
         if (target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) {
-          qx.bom.element.Attribute.set(target, "src", "");
+          target.setAttribute("src", "");
           qx.event.Timer.once(function () {
-            qx.bom.element.Attribute.set(target, "src", src);
+            target.setAttribute("src", src);
           }, this, 0);
         } else {
           var cachecontrol = this.getCachecontrol();
@@ -178,11 +178,11 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           
           switch( cachecontrol ) {
             case 'full':
-              qx.bom.element.Attribute.set(target, "src", qx.util.Uri.appendParamsToUrl(src, ""+new Date().getTime()));
+              target.setAttribute("src", qx.util.Uri.appendParamsToUrl(src, ""+new Date().getTime()));
               break;
               
             case 'weak':
-              qx.bom.element.Attribute.set(target, "src", src + '#' + new Date().getTime());
+              target.setAttribute("src", src + '#' + new Date().getTime());
               break;
               
             case 'force':
@@ -238,7 +238,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
         },
         imgReloadRestore = function(){
           elements.forEach(function(elem){
-            qx.bom.element.Attribute.set(elem, "src", src); 
+            elem.setAttribute("src", src);
             elem.removeAttribute('width');
             elem.removeAttribute('height');
           });

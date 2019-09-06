@@ -374,7 +374,7 @@ qx.Class.define("cv.Application",
           cv.ui.ToastManager.getInstance();
         } else {
           // load empty HTML structure
-          qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
+          body.innerHTML = cv.Application.HTML_STRUCT;
           // initialize NotificationCenter
           cv.ui.NotificationCenter.getInstance();
           cv.ui.ToastManager.getInstance();
@@ -408,7 +408,7 @@ qx.Class.define("cv.Application",
 
           // load empty HTML structure
           var body = qx.bom.Selector.query("body")[0];
-          qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
+          body.innerHTML = cv.Application.HTML_STRUCT;
 
           //empty model
           cv.data.Model.getInstance().resetWidgetDataModel();

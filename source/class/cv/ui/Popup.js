@@ -103,7 +103,7 @@ qx.Class.define('cv.ui.Popup', {
       } else {
         isNew = false;
         ret_val = this.__domElement;
-        qx.bom.element.Attribute.set(ret_val, "class", classes.join(" "));
+        ret_val.setAttribute("class", classes.join(" "));
         if (closable && !this.__elementMap.close) {
           this.__domElement.close = qx.dom.Element.create("div", {"class": "popup_close", "html": "X"});
           qx.dom.Element.insertBegin(this.__domElement.close, body);
@@ -123,7 +123,7 @@ qx.Class.define('cv.ui.Popup', {
         }
 
         if (qx.lang.Type.isString(attributes.title)) {
-          qx.bom.element.Attribute.set(this.__elementMap.title, "html", "" + attributes.title);
+          this.__elementMap.title.setAttribute("html", "" + attributes.title);
         } else {
           qx.dom.Element.insertEnd(attributes.title, this.__elementMap.title);
         }
@@ -142,7 +142,7 @@ qx.Class.define('cv.ui.Popup', {
             qx.dom.Element.insertBegin(this.__elementMap.messageContent, this.__elementMap.content);
           }
           if (qx.lang.Type.isString(attributes.content)) {
-            qx.bom.element.Attribute.set(this.__elementMap.messageContent, "html", attributes.content);
+            this.__elementMap.messageContent.setAttribute("html", attributes.content);
           } else {
             qx.dom.Element.replaceChild(attributes.content, this.__elementMap.messageContent);
             this.__elementMap.messageContent = attributes.content;
@@ -161,7 +161,7 @@ qx.Class.define('cv.ui.Popup', {
             var currentIconPath = use.getAttribute("xlink:href");
             if (!currentIconPath.endsWith("#kuf-"+attributes.icon)) {
               var parts = currentIconPath.split("#");
-              qx.bom.element.Attribute.set(use, "xlink:href", parts[0]+"#kuf-"+attributes.icon);
+              use.setAttribute("xlink:href", parts[0]+"#kuf-"+attributes.icon);
             }
           }
         } else  {
@@ -186,7 +186,7 @@ qx.Class.define('cv.ui.Popup', {
           qx.dom.Element.insertEnd(this.__elementMap.actions, ret_val);
         } else {
           // clear content
-          qx.bom.element.Attribute.set(this.__elementMap.actions, "html", "");
+          this.__elementMap.actions.setAttribute("html", "");
         }
         var actionTypes = Object.getOwnPropertyNames(attributes.actions).length;
         Object.getOwnPropertyNames(attributes.actions).forEach(function (type, index) {
