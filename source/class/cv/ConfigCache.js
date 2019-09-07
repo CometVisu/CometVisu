@@ -70,7 +70,7 @@ qx.Class.define('cv.ConfigCache', {
       }
       model.setWidgetDataModel(cache.data);
       model.setAddressList(cache.addresses);
-      body.setAttribute("html", cv.ConfigCache.getBody());
+      body.innerHTML = cv.ConfigCache.getBody();
     },
     
     save: function(key, data) {

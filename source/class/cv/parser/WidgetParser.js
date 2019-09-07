@@ -61,7 +61,7 @@ qx.Class.define('cv.parser.WidgetParser', {
         if (this.__templates.hasOwnProperty(templateName)) {
           var renderedString = qx.bom.Template.render(this.__templates[templateName], variables).replace('\n', '').trim();
           var helperNode = elem.ownerDocument.createElement('template');
-          helperNode.setAttribute('html', renderedString.substring(6, renderedString.length - 7).trim());
+          helperNode.innerHTML = renderedString.substring(6, renderedString.length - 7).trim();
           // replace existing element with the rendered templates child
           var replacement = helperNode.firstElementChild;
           var next = elem.nextElementSibling;

@@ -199,13 +199,13 @@ qx.Class.define('cv.plugins.UpnpController', {
         qx.bom.element.Class.replace(qx.bom.Selector.query('#' + id + '_playButton')[0], 'switchUnpressed', 'switchPressed');
       }
 
-      qx.bom.Selector.query('#' + id + '_muteButton div.value')[0].setAttribute("text", mute);
-      qx.bom.Selector.query('#' + id + '_playButton div.value')[0].setAttribute("text", playMode);
-      qx.bom.Selector.query('#' + id + '_volume div.value')[0].setAttribute("text", volume);
-      qx.bom.Selector.query('#' + id + '_title div.value')[0].setAttribute("text", title);
-      qx.bom.Selector.query('#' + id + '_artist div.value')[0].setAttribute("text", artist);
-      qx.bom.Selector.query('#' + id + '_album div.value')[0].setAttribute("text", album);
-      qx.bom.Selector.query('#' + id + '_time div.value')[0].setAttribute("text", reltime + ' of ' + duration);
+      qx.bom.Selector.query('#' + id + '_muteButton div.value')[0].innerText = mute;
+      qx.bom.Selector.query('#' + id + '_playButton div.value')[0].innerText = playMode;
+      qx.bom.Selector.query('#' + id + '_volume div.value')[0].innerText = volume;
+      qx.bom.Selector.query('#' + id + '_title div.value')[0].innerText = title;
+      qx.bom.Selector.query('#' + id + '_artist div.value')[0].innerText = artist;
+      qx.bom.Selector.query('#' + id + '_album div.value')[0].innerText = album;
+      qx.bom.Selector.query('#' + id + '_time div.value')[0].innerText = reltime + ' of ' + duration;
 
       this.upnpcontroller_song_process_rel = this.calculateSongProcessed(reltime, duration);
       this.traceLog("song_process_rel: " + this.upnpcontroller_song_process_rel);
@@ -287,11 +287,11 @@ qx.Class.define('cv.plugins.UpnpController', {
         }
 
         if (currentValue !== 'pressed') {
-          qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_playlistsresult div.value')[0].setAttribute("html", playlists);
+          qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_playlistsresult div.value')[0].innerHTML = playlists;
           playlists.setAttribute('value', 'pressed');
           qx.bom.element.Class.replace(playlists, 'switchUnpressed', 'switchPressed');
         } else {
-          qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_playlistsresult div.value')[0].setAttribute("text", "");
+          qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_playlistsresult div.value')[0].innerText = "";
           playlists.setAttribute('value', 'unpressed');
           qx.bom.element.Class.replace(playlists, 'switchUnpressed', 'switchPressed');
         }

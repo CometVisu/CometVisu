@@ -123,7 +123,7 @@ qx.Class.define('cv.ui.Popup', {
         }
 
         if (qx.lang.Type.isString(attributes.title)) {
-          this.__elementMap.title.setAttribute("html", "" + attributes.title);
+          this.__elementMap.title.innerHTML = "" + attributes.title;
         } else {
           qx.dom.Element.insertEnd(attributes.title, this.__elementMap.title);
         }
@@ -142,7 +142,7 @@ qx.Class.define('cv.ui.Popup', {
             qx.dom.Element.insertBegin(this.__elementMap.messageContent, this.__elementMap.content);
           }
           if (qx.lang.Type.isString(attributes.content)) {
-            this.__elementMap.messageContent.setAttribute("html", attributes.content);
+            this.__elementMap.messageContent.innerHTML = attributes.content;
           } else {
             qx.dom.Element.replaceChild(attributes.content, this.__elementMap.messageContent);
             this.__elementMap.messageContent = attributes.content;
@@ -186,7 +186,7 @@ qx.Class.define('cv.ui.Popup', {
           qx.dom.Element.insertEnd(this.__elementMap.actions, ret_val);
         } else {
           // clear content
-          this.__elementMap.actions.setAttribute("html", "");
+          this.__elementMap.actions.innerHTML = "";
         }
         var actionTypes = Object.getOwnPropertyNames(attributes.actions).length;
         Object.getOwnPropertyNames(attributes.actions).forEach(function (type, index) {

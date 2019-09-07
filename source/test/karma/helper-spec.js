@@ -40,7 +40,7 @@ var createTestWidgetString = function (name, attributes, content) {
     content = "";
   }
   var elem = qx.dom.Element.create(name, attributes);
-  elem.setAttribute("html", content);
+  elem.innerHTML = content;
 
   var data = null;
   if (name !== "page") {

@@ -422,7 +422,7 @@ qx.Class.define('cv.plugins.RssLog', {
         var itemHtml = this.__getItemHtml(item, isBig);
 
         var rowElem = qx.dom.Element.create('li', { 'class' : 'rsslogRow ' + row });
-        rowElem.setAttribute("html", itemHtml);
+        rowElem.innerHTML = itemHtml;
 
         if (item.mapping && item.mapping !== '') {
           var mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);

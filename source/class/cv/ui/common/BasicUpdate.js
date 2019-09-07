@@ -320,7 +320,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     _applyValueToDom: function(valueElement, e) {
       if (qx.lang.Type.isNumber(e)) {
-        valueElement.setAttribute("text", e);
+        valueElement.innerText = e;
       } else {
         qx.bom.Html.clean([e]).forEach(function (newElem) {
           qx.dom.Element.insertEnd(newElem, valueElement);

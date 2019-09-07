@@ -71,7 +71,7 @@ qx.Class.define('cv.plugins.Svg', {
       ajaxRequest.addListenerOnce("success", function (e) {
         var req = e.getTarget();
         var actor = this.getActor();
-        actor.setAttribute('html', req.getResponseText());
+        actor.innerHTML = req.getResponseText();
       }, this);
       ajaxRequest.send();
     },
