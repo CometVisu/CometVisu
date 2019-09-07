@@ -82,10 +82,10 @@ qx.Class.define('cv.io.Reflection', {
     select: function (path, state) {
       var container = this.lookupWidget(path);
       if (state) {
-        qx.bom.element.Class.set(container, 'selected');
+        container.classList.add('selected');
       }
       else {
-        qx.bom.element.Class.remove(container, 'selected');
+        container.classList.remove('selected');
       }
     },
 
@@ -188,7 +188,7 @@ qx.Class.define('cv.io.Reflection', {
           pathParts.pop();
           path = pathParts.join('_') + '_';
           var page = document.querySelector('#' + path);
-          if (qx.bom.element.Class.has(page, "page")) {
+          if (page.classList.contains("page")) {
             return page;
           }
         }
@@ -217,8 +217,8 @@ qx.Class.define('cv.io.Reflection', {
      * Focus a widget.
      */
     focus: function (path) {
-      qx.bom.element.Class.remove(document.querySelector('.focused'), 'focused');
-      qx.bom.element.Class.add(this.lookupWidget(path), 'focused');
+      document.querySelector('.focused').classList.remove('focused');
+      this.lookupWidget(path).classList.add('focused');
     }
   },
 

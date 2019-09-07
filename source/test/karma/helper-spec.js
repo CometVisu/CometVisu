@@ -162,7 +162,7 @@ var customMatchers = {
       compare: function(actual, expected) {
         var result = {};
 
-        result.pass = qx.bom.element.Class.has(actual, 'flavour_'+expected);
+        result.pass = actual.classList.contains('flavour_'+expected);
         if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to be flavoured with "+expected;
         }
@@ -178,7 +178,7 @@ var customMatchers = {
     return  {
       compare: function(actual, expected) {
         var result = {};
-        result.pass = qx.bom.element.Class.has(actual, expected);
+        result.pass = actual.classList.contains(expected);
         if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to have class "+expected;
         }

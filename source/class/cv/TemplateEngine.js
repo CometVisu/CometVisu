@@ -381,7 +381,7 @@ qx.Class.define('cv.TemplateEngine', {
 
       var globalClass = pagesNode.getAttribute('class');
       if (globalClass !== null) {
-        qx.bom.element.Class.add(document.querySelector('body'), globalClass);
+        document.querySelector('body').classList.add(globalClass);
       }
 
       settings.scriptsToLoad = [];
@@ -482,7 +482,7 @@ qx.Class.define('cv.TemplateEngine', {
 
         document.querySelectorAll('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
         document.querySelectorAll('.loading').forEach(function(elem) {
-          qx.bom.element.Class.remove(elem, 'loading');
+          elem.classList.remove('loading');
         }, this);
 
         this.startScreensaver();

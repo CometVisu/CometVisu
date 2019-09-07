@@ -90,17 +90,17 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
 
       // remove old active classes
       document.querySelectorAll('.pagejump.active').forEach(function(elem) {
-        qx.bom.element.Class.remove(elem, 'active');
+        elem.classList.remove('active');
       }, this);
       document.querySelectorAll('.pagejump.active_ancestor').forEach(function(elem) {
-        qx.bom.element.Class.remove(elem, 'active_ancestor');
+        elem.classList.remove('active_ancestor');
       }, this);
 
       // and set the new active ones
       document.querySelectorAll('.pagejump').forEach(function(elem) {
         var data = model.getWidgetDataByElement(elem);
         if (name === data.target) {
-          qx.bom.element.Class.add(elem, 'active');
+          elem.classList.add('active');
         }
       }, this);
 
@@ -115,7 +115,7 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
             qx.lang.Type.isString(data.path) && data.path.match(parentName + "$") ||
             qx.lang.Type.isString(data.targetPath) && data.targetPath.match(parentName + "$"))
         )) {
-          qx.bom.element.Class.add(elem, 'active_ancestor');
+          elem.classList.add('active_ancestor');
         }
       };
 

@@ -266,7 +266,7 @@ qx.Class.define('cv.ui.layout.Manager', {
                 elem.classList.remove(cssClass);
               }
             }, this);
-            qx.bom.element.Class.add(elem, 'width-' + parseInt(widthClassSuffix));
+            elem.classList.add('width-' + parseInt(widthClassSuffix));
             break;
 
           default:

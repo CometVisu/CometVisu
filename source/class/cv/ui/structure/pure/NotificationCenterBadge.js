@@ -107,9 +107,10 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     },
 
     _onChangeGlobalSeverity: function(ev) {
-      qx.bom.element.Class.removeClasses(this.__getBadgeElement(), cv.ui.NotificationCenter.getInstance().getSeverities());
+      var classList = this.__getBadgeElement().classList;
+      classList.remove.apply( classList, cv.ui.NotificationCenter.getInstance().getSeverities() );
       if (ev.getData()) {
-        qx.bom.element.Class.add(this.__getBadgeElement(), ev.getData());
+        classList.add(ev.getData());
       }
     },
 

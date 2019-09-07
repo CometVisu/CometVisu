@@ -229,7 +229,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
       var rootId = this.getRootElementId();
       var messageElementId = this.getMessageElementId();
       while (!id || !id.startsWith(rootId)) {
-        if (qx.bom.element.Class.has(target, "delete")) {
+        if (target.classList.contains("delete")) {
           deleteTarget = target;
         }
         if (id && id.startsWith(messageElementId)) {

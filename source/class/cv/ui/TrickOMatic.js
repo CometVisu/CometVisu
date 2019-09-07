@@ -153,9 +153,9 @@ qx.Class.define('cv.ui.TrickOMatic', {
 
     updateActive: function (pipe_group, data) {
       if (parseInt(data) === 1 || data === 'ON') {
-        qx.bom.element.Class.toggle(pipe_group, "flow_active", true);
+        pipe_group.classList.toggle("flow_active",true);
       } else {
-        qx.bom.element.Class.toggle(pipe_group, "flow_active", false);
+        pipe_group.classList.toggle("flow_active",false);
       }
     }
   }

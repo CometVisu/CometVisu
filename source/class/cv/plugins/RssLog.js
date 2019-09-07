@@ -234,7 +234,7 @@ qx.Class.define('cv.plugins.RssLog', {
         // But delay it so that any change done to the data has a chance to
         // arrive here.
 
-        if (popup.getCurrentDomElement() && qx.bom.element.Class.has(popup.getCurrentDomElement(), 'popup') && this.getItemack() === 'modify') {
+        if (popup.getCurrentDomElement() && popup.getCurrentDomElement().classList.contains('popup') && this.getItemack() === 'modify') {
           qx.event.Timer.once(function () {
             this.refreshRSSlog();
           }, this, 100);
@@ -430,7 +430,7 @@ qx.Class.define('cv.plugins.RssLog', {
           this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
         }
         if (this.__separatoradd && idx !== 0) {
-          qx.bom.element.Class.add(rowElem, 'rsslog_separator');
+          rowElem.classList.add('rsslog_separator');
           this.__separatorprevday = true;
         }
         else {
@@ -438,11 +438,11 @@ qx.Class.define('cv.plugins.RssLog', {
         }
 
         if (this.__separatorprevday === true) {
-          qx.bom.element.Class.add(rowElem, 'rsslog_prevday');
+          rowElem.classList.add('rsslog_prevday');
         }
 
         if (this.__isFuture) {
-          qx.bom.element.Class.add(rowElem, (row === 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
+          rowElem.classList.add((row === 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
         }
 
         qx.bom.element.Dataset.set(rowElem, 'id', item.id);
@@ -450,13 +450,13 @@ qx.Class.define('cv.plugins.RssLog', {
         if (item.tags) {
           var tmp = rowElem.querySelector('span');
           if (qx.lang.Type.isArray(item.tags)) {
-            item.tags.forEach(qx.lang.Function.curry(qx.bom.element.Class.add, tmp), this);
+            tmp.classList.add.apply( tmp.classList, item.tags );
           } else {
-            qx.bom.element.Class.add(tmp, item.tags);
+            tmp.classList.add(item.tags);
           }
         }
         if (item.state === "1" && itemack !== 'disable') {
-          qx.bom.element.Class.add(rowElem, "rsslog_ack");
+          rowElem.classList.add("rsslog_ack");
         }
 
         if (itemack === 'modify') {
@@ -504,8 +504,8 @@ qx.Class.define('cv.plugins.RssLog', {
 
       var id = qx.bom.element.Dataset.get(item, 'id');
       var mapping = qx.bom.element.Dataset.get(item, 'mapping');
-      qx.bom.element.Class.toggle(item, "rsslog_ack");
-      var state = +qx.bom.element.Class.has(item, "rsslog_ack"); // the new state is the same as hasClass
+      item.classList.toggle("rsslog_ack");
+      var state = +item.classList.contains("rsslog_ack"); // the new state is the same as hasClass
       if (mapping && mapping !== '') {
         var mappedValue = this.applyMapping(state, mapping);
         var span = item.querySelector('.mappedValue');

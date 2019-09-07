@@ -48,13 +48,13 @@ describe('test the NotificationCenter', function () {
 
     expect(element).not.toBeUndefined();
 
-    expect(qx.bom.element.Class.has(element, "hidden")).toBeFalsy();
+    expect(element.classList.contains("hidden")).toBeFalsy();
     center.disableBadge(true);
     setTimeout(function() {
-      expect(qx.bom.element.Class.has(element, "hidden")).toBeTruthy();
+      expect(element.classList.contains("hidden")).toBeTruthy();
       center.disableBadge(false);
       setTimeout(function() {
-        expect(qx.bom.element.Class.has(element, "hidden")).toBeFalsy();
+        expect(element.classList.contains("hidden")).toBeFalsy();
         done();
       }, 10);
     }, 10);
@@ -75,7 +75,7 @@ describe('test the NotificationCenter', function () {
     expect(center.getMessages().getLength()).toBe(1);
 
     expect(badge.innerHTML).toEqual("1");
-    expect(qx.bom.element.Class.has(badge, "normal")).toBeTruthy();
+    expect(badge.classList.contains("normal")).toBeTruthy();
 
     // add message with higher severity
     message.severity = "high";
@@ -86,7 +86,7 @@ describe('test the NotificationCenter', function () {
     expect(center.getMessages().getLength()).toBe(1);
 
     expect(badge.innerHTML).toEqual("1");
-    expect(qx.bom.element.Class.has(badge, "high")).toBeTruthy();
+    expect(badge.classList.contains("high")).toBeTruthy();
 
     // add message with higher severity
     message.severity = "urgent";
@@ -97,7 +97,7 @@ describe('test the NotificationCenter', function () {
     expect(center.getMessages().getLength()).toBe(2);
 
     expect(badge.innerHTML).toEqual("2");
-    expect(qx.bom.element.Class.has(badge, "urgent")).toBeTruthy();
+    expect(badge.classList.contains("urgent")).toBeTruthy();
 
     // remove unique messages
     message.condition = false;
@@ -109,7 +109,7 @@ describe('test the NotificationCenter', function () {
     expect(center.getMessages().getLength()).toBe(0);
 
     expect(badge.innerHTML).toBe('');
-    expect(qx.bom.element.Class.has(badge, "urgent")).toBeFalsy();
+    expect(badge.classList.contains("urgent")).toBeFalsy();
   });
 
   it("should test the maxEntries limit", function() {

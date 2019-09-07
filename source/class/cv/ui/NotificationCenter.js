@@ -186,9 +186,9 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     disableBadge: function(value) {
       if (value) {
-        qx.bom.element.Class.add(this.__badge, "hidden");
+        this.__badge.classList.add("hidden");
       } else {
-        qx.bom.element.Class.remove(this.__badge, "hidden");
+        this.__badge.classList.remove("hidden");
       }
     },
 
@@ -309,8 +309,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
     _onSeverityChange: function() {
       var severity = this.getGlobalSeverity();
       if (this.__badge) {
-        qx.bom.element.Class.removeClasses(this.__badge, this._severities);
-        qx.bom.element.Class.add(this.__badge, severity);
+        this.__badge.classList.remove.apply( this.__badge.classList, this._severities );
+        this.__badge.classList.add(severity);
       }
 
       if (this.__favico) {

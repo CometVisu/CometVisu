@@ -150,8 +150,8 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
         // delay this a little bit to give the HasAnimatedButton stuff time to finish
         // otherwise it might override the settings here
         new qx.util.DeferredCall(function() {
-          qx.bom.element.Class.remove(actor, isPressed ? 'switchUnpressed' : 'switchPressed');
-          qx.bom.element.Class.add(actor, isPressed ? 'switchPressed' : 'switchUnpressed');
+          actor.classList.remove(isPressed ? 'switchUnpressed' : 'switchPressed');
+          actor.classList.add(isPressed ? 'switchPressed' : 'switchUnpressed');
         }, this).schedule();
       }, this);
     },

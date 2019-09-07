@@ -71,8 +71,8 @@ qx.Class.define('cv.plugins.MobileMenu', {
     getDomString: function() {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth){
         var navLeft = this.__navLeft = document.querySelector('#navbarLeft');
-        if (!qx.bom.element.Class.has(navLeft, 'mobilemenu')){
-          qx.bom.element.Class.add(navLeft, 'mobilemenu');
+        if (!navLeft.classList.contains('mobilemenu')){
+          navLeft.classList.add('mobilemenu');
         }
         qx.bom.element.Style.set(navLeft, "display", "none");
         qx.event.message.Bus.subscribe("path.pageChanged", function() {

@@ -57,7 +57,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
         this.__counters[topic]++;
       }
       document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
-        qx.bom.element.Class.add(elem, "blurred");
+        elem.classList.add("blurred");
       });
     },
 
@@ -70,7 +70,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
             if (Object.keys(this.__counters).length === 0) {
               this.base(arguments);
               document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-                qx.bom.element.Class.remove(elem, "blurred");
+                elem.classList.remove("blurred");
               });
             }
           }
@@ -80,7 +80,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
         this.__counters = {};
         this.base(arguments);
         document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-          qx.bom.element.Class.remove(elem, "blurred");
+          elem.classList.remove("blurred");
         });
       }
     },

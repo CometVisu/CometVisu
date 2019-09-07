@@ -183,7 +183,7 @@ qx.Class.define('cv.ui.PageHandler', {
      * @param oldPageWidget {cv.ui.structure.pure.Page}
      */
     __onLeavePage: function(oldPageWidget) {
-      qx.bom.element.Class.removeClasses(oldPageWidget.getDomElement(), ['pageActive', 'activePage']);
+      oldPageWidget.getDomElement().classList.remove('pageActive', 'activePage');
       qx.bom.element.Style.set(oldPageWidget.getDomElement(), "overflow", null);
       qx.event.message.Bus.dispatchByName("path." + oldPageWidget.getPath() + ".afterPageChange", oldPageWidget.getPath());
       qx.event.message.Bus.dispatchByName("path.pageLeft", oldPageWidget.getPath());
@@ -199,7 +199,7 @@ qx.Class.define('cv.ui.PageHandler', {
     __onEnterPage: function(pageWidget, oldPos, updateVisibility) {
       var page = pageWidget.getDomElement();
       var target = pageWidget.getPath();
-      qx.bom.element.Class.addClasses(page, ['pageActive', 'activePage']);// show new page
+      page.classList.add('pageActive', 'activePage');// show new page
       if (updateVisibility === true) {
         // set it to visible
         pageWidget.setVisible(true);

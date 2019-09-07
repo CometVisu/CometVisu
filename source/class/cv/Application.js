@@ -275,7 +275,7 @@ qx.Class.define("cv.Application",
               action: function(ev) {
                 var parent = ev.getTarget().parentNode;
                 while (parent) {
-                  if (parent.id === "notification-center" || qx.bom.element.Class.has(parent, "popup")) {
+                  if (parent.id === "notification-center" || parent.classList.contains("popup")) {
                     break;
                   }
                   parent = parent.parentNode;

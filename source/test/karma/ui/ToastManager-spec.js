@@ -42,7 +42,7 @@ describe('test the NotificationCenter', function () {
     expect(center.getMessages().getLength()).toBe(1);
 
     var messageElement = document.querySelector("#"+center.getMessageElementId()+messageId);
-    expect(qx.bom.element.Class.has(messageElement, "high")).toBeTruthy();
+    expect(messageElement.classList.contains("high")).toBeTruthy();
 
     // add message with higher severity
     message.severity = "urgent";
@@ -54,7 +54,7 @@ describe('test the NotificationCenter', function () {
     expect(center.getMessages().getLength()).toBe(2);
 
     messageElement = document.querySelector("#"+center.getMessageElementId()+messageId);
-    expect(qx.bom.element.Class.has(messageElement, "urgent")).toBeTruthy();
+    expect(messageElement.classList.contains("urgent")).toBeTruthy();
 
     // remove unique messages
     message.condition = false;

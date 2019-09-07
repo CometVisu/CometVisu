@@ -64,7 +64,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       for (var i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
         id += path[i] + '_';
         var pageElem = document.querySelector("#"+id);
-        if (pageElem && qx.bom.element.Class.has(pageElem, "page")) { // FIXME is this still needed?!?
+        if (pageElem && pageElem.classList.contains("page")) { // FIXME is this still needed?!?
           pageTitle = document.querySelector("#"+id+" h1").textContent;
           nav += '<span> &#x25ba; </span>' +
             '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_'+id+'">' +
@@ -175,7 +175,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           key = value.toLowerCase(),
           navbar = document.querySelector('#navbar' + value),
           display = qx.bom.element.Style.get(navbar, "display"),
-          isLoading = qx.bom.element.Class.has(navbar, 'loading');
+          isLoading = navbar.classList.contains('loading');
         if (shownavbar[key] === true) {
           if (display === "none" || isLoading) {
             this.fadeNavbar(value, "in", speed);
@@ -296,30 +296,30 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         // console.log(tree.length+"-"+level+"<="+topData.scope);
         if (topNav) {
           if (topData.scope === undefined || topData.scope < 0 || tree.length - level <= topData.scope) {
-            qx.bom.element.Class.add(topNav, 'navbarActive');
+            topNav.classList.add('navbarActive');
           } else {
-            qx.bom.element.Class.remove(topNav, 'navbarActive');
+            topNav.classList.remove('navbarActive');
           }
         }
         if (rightNav) {
           if (rightData.scope === undefined || rightData.scope < 0 || tree.length - level <= rightData.scope) {
-            qx.bom.element.Class.add(rightNav, 'navbarActive');
+            rightNav.classList.add('navbarActive');
           } else {
-            qx.bom.element.Class.remove(rightNav, 'navbarActive');
+            rightNav.classList.remove('navbarActive');
           }
         }
         if (bottomNav) {
           if (bottomData.scope === undefined || bottomData.scope < 0 || tree.length - level <= bottomData.scope) {
-            qx.bom.element.Class.add(bottomNav, 'navbarActive');
+            bottomNav.classList.add('navbarActive');
           } else {
-            qx.bom.element.Class.remove(bottomNav, 'navbarActive');
+            bottomNav.classList.remove('navbarActive');
           }
         }
         if (leftNav) {
           if (leftData.scope === undefined || leftData.scope < 0 || tree.length - level <= leftData.scope) {
-            qx.bom.element.Class.add(leftNav, 'navbarActive');
+            leftNav.classList.add('navbarActive');
           } else {
-            qx.bom.element.Class.remove(leftNav, 'navbarActive');
+            leftNav.classList.remove('navbarActive');
           }
         }
         level++;
@@ -335,7 +335,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         navBarPath = navBarPath.slice(0, navBarPath.length - 2).join('_');
         var expr = new RegExp("^" + navBarPath + ".*", "i");
         if (navBarPath !== page_id && !expr.test(page_id)) {
-          qx.bom.element.Class.remove(elem, 'navbarActive');
+          elem.classList.remove('navbarActive');
         }
       });
     }

@@ -300,7 +300,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       // TODO: check if this is the right place for this
       // might be if the styling removes the align class
       if (this.getAlign()) {
-        qx.bom.element.Class.add(element, this.getAlign());
+        element.classList.add(this.getAlign());
       }
       var valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
       qx.dom.Element.empty(valueElement);

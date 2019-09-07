@@ -188,15 +188,15 @@ qx.Class.define('cv.plugins.UpnpController', {
       var id = this.upnpcontroller_uid;
 
       if (mute === 0) {
-        qx.bom.element.Class.replace(document.querySelector('#' + id + '_muteButton'), 'switchPressed', 'switchUnpressed');
+        document.querySelector('#' + id + '_muteButton').classList.replace('switchPressed','switchUnpressed');
       } else {
-        qx.bom.element.Class.replace(document.querySelector('#' + id + '_muteButton'), 'switchUnpressed', 'switchPressed');
+        document.querySelector('#' + id + '_muteButton').classList.replace('switchUnpressed','switchPressed');
       }
 
       if (playMode === 'Play') {
-        qx.bom.element.Class.replace(document.querySelector('#' + id + '_playButton'), 'switchPressed', 'switchUnpressed');
+        document.querySelector('#' + id + '_playButton').classList.replace('switchPressed','switchUnpressed');
       } else {
-        qx.bom.element.Class.replace(document.querySelector('#' + id + '_playButton'), 'switchUnpressed', 'switchPressed');
+        document.querySelector('#' + id + '_playButton').classList.replace('switchUnpressed','switchPressed');
       }
 
       document.querySelector('#' + id + '_muteButton div.value').innerText = mute;
@@ -289,11 +289,11 @@ qx.Class.define('cv.plugins.UpnpController', {
         if (currentValue !== 'pressed') {
           document.querySelector('#' + this.upnpcontroller_uid + '_playlistsresult div.value').innerHTML = playlists;
           playlists.setAttribute('value', 'pressed');
-          qx.bom.element.Class.replace(playlists, 'switchUnpressed', 'switchPressed');
+          playlists.classList.replace('switchUnpressed','switchPressed');
         } else {
           document.querySelector('#' + this.upnpcontroller_uid + '_playlistsresult div.value').innerText = "";
           playlists.setAttribute('value', 'unpressed');
-          qx.bom.element.Class.replace(playlists, 'switchUnpressed', 'switchPressed');
+          playlists.classList.replace('switchUnpressed','switchPressed');
         }
       });
     },
@@ -345,10 +345,10 @@ qx.Class.define('cv.plugins.UpnpController', {
 
       if (muteValue === 0) {
         muteValue = 1;
-        qx.bom.element.Class.replace(muteButton, 'switchUnpressed', 'switchPressed');
+        muteButton.classList.replace('switchUnpressed','switchPressed');
       } else {
         muteValue = 0;
-        qx.bom.element.Class.replace(muteButton, 'switchPressed', 'switchUnpressed');
+        muteButton.classList.replace('switchPressed','switchUnpressed');
       }
 
       this.__callRemote('mute', {mute: muteValue}, function (data) {
@@ -368,10 +368,10 @@ qx.Class.define('cv.plugins.UpnpController', {
       var playButton = document.querySelector('#' + this.upnpcontroller_uid + '_playButton');
       if (playValue === 'Play') {
         cmd = 'pause';
-        qx.bom.element.Class.replace(playButton, 'switchUnpressed', 'switchPressed');
+        playButton.classList.replace('switchUnpressed','switchPressed');
       } else {
         cmd = 'play';
-        qx.bom.element.Class.replace(playButton, 'switchPressed', 'switchUnpressed');
+        playButton.classList.replace('switchPressed','switchUnpressed');
       }
 
       this.__callRemote(cmd, {}, function (ev) {
