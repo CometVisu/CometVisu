@@ -108,7 +108,7 @@ describe('test the NotificationCenter', function () {
     // as we had 2 messages with same topic both should be gone now
     expect(center.getMessages().getLength()).toBe(0);
 
-    expect(badge.innerHTML).toBeNull();
+    expect(badge.innerHTML).toBe('');
     expect(qx.bom.element.Class.has(badge, "urgent")).toBeFalsy();
   });
 
