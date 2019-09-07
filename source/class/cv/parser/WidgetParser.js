@@ -351,7 +351,7 @@ qx.Class.define('cv.parser.WidgetParser', {
         elementData.colspanS = qx.xml.Element.getAttributeNS(layout, '', 'colspan-s');
         rowspan = qx.xml.Element.getAttributeNS(layout, '', 'rowspan');
       }
-      elementData.colspan = parseFloat(elementData.colspan || qx.bom.element.Dataset.get(document.querySelector('head'), 'colspanDefault') || 6);
+      elementData.colspan = parseFloat(elementData.colspan || document.querySelector('head').dataset['colspanDefault'] || 6);
       elementData.colspanM = parseFloat(elementData.colspanM || cv.parser.WidgetParser.lookupM[Math.floor(elementData.colspan)] || elementData.colspan);
       elementData.colspanS = parseFloat(elementData.colspanS || cv.parser.WidgetParser.lookupS[Math.floor(elementData.colspan)] || elementData.colspan);
 

@@ -25,7 +25,7 @@
  * @since 2012
  */
 qx.event.message.Bus.subscribe("setup.dom.finished.before", function() {
-  qx.bom.element.Dataset.set(document.querySelector('head'), 'colspanDefault', 1);
-  qx.bom.element.Dataset.set(document.querySelector('#navbarLeft'), 'columns', 6);
-  qx.bom.element.Dataset.set(document.querySelector('#navbarRight'), 'columns', 6);
+  document.querySelector('head').dataset['colspanDefault'] = 1;
+  document.querySelector('#navbarLeft').dataset['columns'] = 6;
+  document.querySelector('#navbarRight').dataset['columns'] = 6;
 });

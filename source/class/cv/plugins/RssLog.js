@@ -341,7 +341,7 @@ qx.Class.define('cv.plugins.RssLog', {
       qx.dom.Element.insertEnd(ul, c);
 
       // get height of one entry, calc max num of display items in widget
-      var displayrows = parseInt(qx.bom.element.Dataset.get(c, "last_rowcount"), 10) || 0;
+      var displayrows = parseInt(c.dataset["last_rowcount"], 10) || 0;
       qx.bom.Html.clean(['<li class="rsslogRow odd" id="dummydiv">.</li>'], null, c);
       var dummyDiv = c.querySelector('#dummydiv');
       var itemheight = qx.bom.element.Dimension.getHeight(dummyDiv);
@@ -356,7 +356,7 @@ qx.Class.define('cv.plugins.RssLog', {
         }
         displayrows = Math.floor(displayheight / itemheight);
       }
-      qx.bom.element.Dataset.set(c, "last_rowcount", displayrows);
+      c.dataset["last_rowcount"] = displayrows;
       return displayrows;
     },
 
@@ -396,11 +396,11 @@ qx.Class.define('cv.plugins.RssLog', {
           itemoffset = itemnum - displayrows;
         }
         if (this.getMode() === 'rollover') {
-          itemoffset = parseInt(qx.bom.element.Dataset.get(c, "itemoffset"), 10) || 0;
+          itemoffset = parseInt(c.dataset["itemoffset"], 10) || 0;
           if (itemoffset === itemnum) {
             itemoffset = 0;
           }
-          qx.bom.element.Dataset.set(c, "itemoffset", itemoffset + 1);
+          c.dataset["itemoffset"] = itemoffset + 1;
         }
       }
 
@@ -445,8 +445,8 @@ qx.Class.define('cv.plugins.RssLog', {
           rowElem.classList.add((row === 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
         }
 
-        qx.bom.element.Dataset.set(rowElem, 'id', item.id);
-        qx.bom.element.Dataset.set(rowElem, 'mapping', item.mapping);
+        rowElem.dataset['id'] = item.id;
+        rowElem.dataset['mapping'] = item.mapping;
         if (item.tags) {
           var tmp = rowElem.querySelector('span');
           if (qx.lang.Type.isArray(item.tags)) {
@@ -502,8 +502,8 @@ qx.Class.define('cv.plugins.RssLog', {
     _onTap: function(ev) {
       var item = ev.getCurrentTarget();
 
-      var id = qx.bom.element.Dataset.get(item, 'id');
-      var mapping = qx.bom.element.Dataset.get(item, 'mapping');
+      var id = item.dataset['id'];
+      var mapping = item.dataset['mapping'];
       item.classList.toggle("rsslog_ack");
       var state = +item.classList.contains("rsslog_ack"); // the new state is the same as hasClass
       if (mapping && mapping !== '') {

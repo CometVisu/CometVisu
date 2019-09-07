@@ -105,8 +105,8 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
     _onDomReady: function() {
       var left = document.querySelector('#navbarLeft');
       var right = document.querySelector('#navbarRight');
-      this.__navbarLeftSize = left ? qx.bom.element.Dataset.get(left, 'size') : 0;
-      this.__navbarRightSize = right ? qx.bom.element.Dataset.get(right, 'size') : 0;
+      this.__navbarLeftSize = left ? left.dataset['size'] : 0;
+      this.__navbarRightSize = right ? right.dataset['size'] : 0;
     },
     
     getGlobalPath: function () {

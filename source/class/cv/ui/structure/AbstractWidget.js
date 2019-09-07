@@ -342,7 +342,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       if (this.isAnonymous()) { return; }
       var widget = this.getInteractionElement();
       if (widget) {
-        qx.bom.element.Dataset.set(widget, "longtapable", type !== "longtap");
+        widget.dataset["longtapable"] = type !== "longtap";
         return qx.event.Registration.addListener(widget, type, callback, context);
       }
       return null;

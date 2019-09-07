@@ -196,7 +196,7 @@ qx.Class.define('cv.ui.layout.Manager', {
      */
     applyColumnWidths: function (selector, includeNavbars) {
       var width = this.getAvailableWidth();
-      var mainAreaColumns = qx.bom.element.Dataset.get(document.querySelector('#main'), 'columns');
+      var mainAreaColumns = document.querySelector('#main').dataset['columns'];
       var mainAreaColspan = parseInt(mainAreaColumns || cv.Config.defaultColumns);
 
       var pageSelector = selector ? selector : '#main .activePage';
@@ -211,7 +211,7 @@ qx.Class.define('cv.ui.layout.Manager', {
       selectors.forEach(function (area) {
         var allContainer = document.querySelectorAll(area + ' .widget_container');
         if (allContainer.length > 0) {
-          var areaColumns = qx.bom.element.Dataset.get(document.querySelector(area), 'columns');
+          var areaColumns = document.querySelector(area).dataset['columns'];
           var areaColspan = areaColumns || cv.Config.defaultColumns;
           allContainer.forEach(function(child) {
             var widget = cv.ui.structure.WidgetFactory.getInstanceByElement(child);

@@ -93,7 +93,8 @@ qx.Class.define('cv.io.Reflection', {
      * Set all attributes of a widget.
      */
     write: function (path, attributes) {
-      qx.bom.element.Dataset.setData(qx.dom.Hierarchy.getChildElements(this.lookupWidget(path))[0], attributes);
+      // TODO: Implement - it was the non existing function
+      //  qx .bom.element.Dataset.setData(qx.dom.Hierarchy.getChildElements(this.lookupWidget(path))[0], attributes);
     },
 
     /**
