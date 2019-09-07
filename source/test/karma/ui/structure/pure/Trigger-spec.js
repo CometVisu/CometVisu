@@ -63,12 +63,12 @@ describe("testing a trigger", function() {
 
     expect(widget).toHaveFlavour('potassium');
 
-    var actor = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getChildElements(widget))[0];
+    var actor = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(widget),function(m){return m.matches(".actor");})[0];
     expect(actor).not.toBeNull();
     expect(actor).toHaveClass("switchUnpressed");
     expect(actor).not.toHaveClass("switchPressed");
 
-    var value = qx.bom.Selector.matches(".value", qx.dom.Hierarchy.getChildElements(actor))[0];
+    var value = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(actor),function(m){return m.matches(".value");})[0];
     expect(value).not.toBeNull();
     expect(qx.dom.Node.getText(value)).toBe("-");
 
@@ -76,7 +76,7 @@ describe("testing a trigger", function() {
 
     expect(qx.dom.Node.getText(value)).toBe("1");
 
-    var label = qx.bom.Selector.matches(".label", qx.dom.Hierarchy.getChildElements(widget))[0];
+    var label = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(widget),function(m){return m.matches(".label");})[0];
     expect(label).not.toBeNull();
     expect(qx.dom.Node.getText(label)).toBe("Test");
 

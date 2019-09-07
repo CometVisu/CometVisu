@@ -43,7 +43,7 @@ describe("testing a page widget", function() {
 
     var elem = page.getDomElement();
     expect(elem).toHaveClass("type_text");
-    expect(qx.dom.Node.getText(qx.bom.Selector.matches("h1", qx.dom.Hierarchy.getDescendants(elem))[0])).toBe("Testpage");
+    expect(qx.dom.Node.getText(Array.prototype.filter.call(qx.dom.Hierarchy.getDescendants(elem),function(m){return m.matches("h1");})[0])).toBe("Testpage");
   });
 
   it("should test the page creator with some attributes", function() {

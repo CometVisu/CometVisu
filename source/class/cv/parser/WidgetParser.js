@@ -183,7 +183,7 @@ qx.Class.define('cv.parser.WidgetParser', {
         return handler.createDefaultWidget(widgetType, element, path, flavour, pageType);
       }
 
-      var layout = this.parseLayout( qx.bom.Selector.matches('layout', qx.dom.Hierarchy.getChildElements(element))[0] );
+      var layout = this.parseLayout( Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(element),function(m){return m.matches('layout');})[0] );
       var style = qx.lang.Object.isEmpty(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
       var classes = handler.getDefaultClasses ? handler.getDefaultClasses(widgetType) : this.getDefaultClasses(widgetType);
       // the group widgets align attribute is just targeting the group header and is handled by the widget itself, so we skip it here
@@ -341,7 +341,7 @@ qx.Class.define('cv.parser.WidgetParser', {
     setWidgetLayout: function( element, path ) {
       var
         elementData = this.model.getWidgetData( path ),
-        layout      = qx.bom.Selector.matches('layout', qx.dom.Hierarchy.getChildElements(element))[0],
+        layout      = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(element),function(m){return m.matches('layout');})[0],
         ret_val = '',
         rowspan = null;
 

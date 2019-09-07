@@ -56,7 +56,7 @@ function roundCorners() {
       return;
     }
     // do not use this in navbars
-    if (qx.bom.Selector.matches('.navbar', qx.dom.Hierarchy.getAncestors(group)).length > 0) { return; }
+    if (Array.prototype.filter.call(qx.dom.Hierarchy.getAncestors(group),function(m){return m.matches('.navbar');}).length > 0) { return; }
     var groupCorners = getOffsetCorners(group);
     // if the group has a headline (=name) we must not round the upper corners
     var topRight = window.getComputedStyle(group)['border-top-right-radius'];
@@ -96,9 +96,9 @@ qx.event.message.Bus.subscribe("setup.dom.finished", function() {
   document.querySelectorAll('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').forEach(function(label) {
 
     if (label.textContent.trim()!=="") {
-      var actor = qx.bom.Selector.matches('.actor', qx.dom.Hierarchy.getSiblings(label))[0];
-      if (actor && qx.bom.Selector.matches('img', qx.dom.Hierarchy.getChildElements(label)).length === 0) {
-        var value = qx.bom.Selector.matches('.value', qx.dom.Hierarchy.getChildElements(actor))[0];
+      var actor = Array.prototype.filter.call(qx.dom.Hierarchy.getSiblings(label),function(m){return m.matches('.actor');})[0];
+      if (actor && Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(label),function(m){return m.matches('img');}).length === 0) {
+        var value = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(actor),function(m){return m.matches('.value');})[0];
         if (value && value.textContent.trim() !== "") {
           actor.style['padding-top'] = '0.5em';
         }

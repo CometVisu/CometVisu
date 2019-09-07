@@ -136,7 +136,7 @@ qx.Class.define('cv.util.Tree', {
     getChildElements: function(element, selector) {
       return qx.dom.Hierarchy.getChildElements(element).filter(function(child) {
         if (selector) {
-          return qx.bom.Selector.matches(selector, child);
+          return Array.prototype.filter.call(child,function(m){return m.matches(selector);});
         } else {
           return true;
         }
@@ -157,13 +157,13 @@ qx.Class.define('cv.util.Tree', {
       while (parent && parent.getAttribute('id') !== "pages") {
         var found = [parent];
         if (selector) {
-          found = qx.bom.Selector.matches(selector, found);
+          found = Array.prototype.filter.call(found,function(m){return m.matches(selector);});
         }
         parents = parents.concat(found);
         if (limit && parents.length >= limit) {
           break;
         }
-        if (until && qx.bom.Selector.matches(until, [parent]).length > 0) {
+        if (until && Array.prototype.filter.call([parent],function(m){return m.matches(until);}).length > 0) {
           break;
         }
         parent = qx.dom.Element.getParentElement(parent);
@@ -174,7 +174,7 @@ qx.Class.define('cv.util.Tree', {
     getClosest: function(elem, selector) {
 
       var findClosest = function (current) {
-        var found = qx.bom.Selector.matches(selector, [current]);
+        var found = Array.prototype.filter.call([current],function(m){return m.matches(selector);});
         if (found.length) {
           return found[0];
         } else {
