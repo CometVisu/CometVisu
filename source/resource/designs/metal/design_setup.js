@@ -108,7 +108,7 @@ qx.event.message.Bus.subscribe("setup.dom.finished", function() {
   // Disable borders for groups that contain widget-group as children
   document.querySelectorAll('.page > div > .widget_container > .group:not(.widget)').forEach(function(elem) {
     if (elem.querySelectorAll('.clearfix > .widget_container > .group.widget').length > 0) {
-      qx.bom.element.Style.setStyles(elem, {'border': 'none', 'margin': 0});
+      Object.entries({'border': 'none', 'margin': 0}).forEach(function(key,value){elem.style[key]=value;});
     }
   });
 });

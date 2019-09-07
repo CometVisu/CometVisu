@@ -216,11 +216,11 @@ qx.Class.define('cv.ui.Popup', {
       }
 
       if (attributes.width) {
-        qx.bom.element.Style.add(ret_val, "width", attributes.width);
+        ret_val.style.width = attributes.width;
       }
 
       if (attributes.height) {
-        qx.bom.element.Style.add(ret_val, "height", attributes.height);
+        ret_val.style.height = attributes.height;
       }
 
       var anchor = {x: -1, y: -1, w: 0, h: 0};

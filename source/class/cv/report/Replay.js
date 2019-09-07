@@ -226,7 +226,7 @@ qx.Class.define('cv.report.Replay', {
         this.__cursor.innerHTML = "&uarr;";
         qx.dom.Element.insertEnd(this.__cursor, document.querySelector("body"));
       }
-      qx.bom.element.Style.setStyles(this.__cursor, {top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"});
+      Object.entries({top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"}).forEach(function(key,value){this.__cursor.style[key]=value;});
 
       if (/.+(down|start)/.test(record.d.native.type)) {
         this.__cursor.style["color"] = record.d.native.button === 2 ? "blue" : "red";

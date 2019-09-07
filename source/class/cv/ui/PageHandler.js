@@ -107,10 +107,10 @@ qx.Class.define('cv.ui.PageHandler', {
         animationConfig = this.__getAnimationConfig(direction);
 
         // show the new page (because animations do not work on hidden elements) + hide scrollbar
-        qx.bom.element.Style.setStyles(pageWidget.getDomElement(), {
+        Object.entries({
           "display": "block",
           "overflow": "hidden"
-        });
+        }).forEach(function(key,value){pageWidget.getDomElement().style[key]=value;});
         // set it to visible
         pageWidget.setVisible(true);
       }
@@ -215,7 +215,7 @@ qx.Class.define('cv.ui.PageHandler', {
       if (oldPos) {
         styles.position = oldPos;
       }
-      qx.bom.element.Style.setStyles(page, styles);
+      Object.entries(styles).forEach(function(key,value){page.style[key]=value;});
     }
   }
 });

@@ -157,12 +157,12 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
             page.getBackdropType() === 'embed' ||
             ( uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1 )
           ) {
-            qx.bom.element.Style.setStyles(backdrop, {
+            Object.entries({
               width: backdropWidth + 'px',
               height: backdropHeight + 'px',
               left: backdropLeft + 'px',
               top: backdropTop + 'px'
-            });
+            }).forEach(function(key,value){backdrop.style[key]=value;});
           }
 
           page.getDomElement().querySelectorAll('.widget_container').forEach(function (widgetContainer) {

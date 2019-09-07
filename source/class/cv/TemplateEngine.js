@@ -728,13 +728,13 @@ qx.Class.define('cv.TemplateEngine', {
 
 
       var div = qx.dom.Element.create("div", {id: "designSelector"});
-      qx.bom.element.Style.setStyles(body, {
+      Object.entries({
         background: "#808080",
         width: "400px",
         color: "white",
         margin: "auto",
         padding: "0.5em"
-      });
+      }).forEach(function(key,value){body.style[key]=value;});
       div.innerHTML = "Loading ...";
 
       body.appendChild(div);
@@ -773,10 +773,10 @@ qx.Class.define('cv.TemplateEngine', {
             zIndex: 2
           });
           var pos = document.querySelector("iframe").getBoundingClientRect();
-          qx.bom.element.Style.setStyles(tDiv, {
+          Object.entries({
             left: pos.left + "px",
             top: pos.top + "px"
-          });
+          }).forEach(function(key,value){tDiv.style[key]=value;});
           qx.dom.Element.insertEnd(tDiv, myDiv);
 
           qx.event.Registration.addListener(myDiv, 'pointerover', function() {

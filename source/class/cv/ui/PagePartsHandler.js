@@ -91,10 +91,10 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
         case 'right':
           document.querySelector('#centerContainer').style["padding-right"] = cssSize;
-          qx.bom.element.Style.setStyles(document.querySelector('#navbarRight'), {
+          Object.entries({
             width: cssSize,
             'margin-right': '-' + cssSize
-          });
+          }).forEach(function(key,value){document.querySelector('#navbarRight').style[key]=value;});
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
       }
@@ -240,9 +240,9 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           }
           break;
       }
-      qx.bom.element.Style.setStyles(navbar, initCss);
+      Object.entries(initCss).forEach(function(key,value){navbar.style[key]=value;});
       if (speed === 0) {
-        qx.bom.element.Style.setStyles(navbar, targetCss);
+        Object.entries(targetCss).forEach(function(key,value){navbar.style[key]=value;});
         onAnimationEnd();
       } else {
         var spec = {

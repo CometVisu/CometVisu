@@ -195,10 +195,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
     _onResize: function() {
       var height = qx.bom.Viewport.getHeight();
       if (this.__element) {
-        qx.bom.element.Style.setStyles(this.__element, {
-          left: qx.bom.Viewport.getWidth() + "px",
-          height: height + "px"
-        }, false);
+        this.__element.style.left = qx.bom.Viewport.getWidth() + "px";
+        this.__element.style.height = height + "px";
       }
 
       if (this.__messagesContainer) {
@@ -206,9 +204,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         var messageBoxHeight = height -
           qx.bom.element.Dimension.getHeight(this.__element.querySelector(":scope > header")) -
           qx.bom.element.Dimension.getHeight(this.__element.querySelector(":scope > footer"));
-        qx.bom.element.Style.setStyles(this.__messagesContainer, {
-          height: messageBoxHeight + "px"
-        }, false);
+        this.__messagesContainer.style.height = messageBoxHeight + "px";
       }
     },
 
@@ -283,7 +279,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         if (this.getMessages().getLength() === 0) {
           this.hide();
         } else {
-          qx.bom.element.Style.reset(this.__element, "visibility");
+          this.__element.style.visibility = '';
           this._onSeverityChange();
         }
       }.bind(this);
@@ -328,7 +324,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (!this.__visible) {
         this.__visible = true;
         this.__blocker.block();
-        qx.bom.element.Style.reset(this.__element, "visibility");
+        this.__element.style.visibility = '';
         qx.event.Registration.addListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
           var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
