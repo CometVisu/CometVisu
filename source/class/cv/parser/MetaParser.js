@@ -59,14 +59,14 @@ qx.Class.define("cv.parser.MetaParser", {
         var content = elem.getAttribute('content');
         switch (type) {
           case 'css':
-            files.css.push(elem.getAttribute('text'));
+            files.css.push(elem.innerText);
             break;
 
           case 'js':
             if (content === 'plugin') {
-              cv.Config.configSettings.pluginsToLoad.push(elem.getAttribute('text'));
+              cv.Config.configSettings.pluginsToLoad.push(elem.innerText);
             } else {
-              files.js.push(elem.getAttribute('text'));
+              files.js.push(elem.innerText);
             }
             break;
 
@@ -287,16 +287,16 @@ qx.Class.define("cv.parser.MetaParser", {
         // templates
         var titleElem = qx.bom.Selector.query('title-template', elem)[0];
         if (titleElem) {
-          config.titleTemplate = titleElem.getAttribute("html");
+          config.titleTemplate = titleElem.innerHTML;
         }
         var messageElem = qx.bom.Selector.query('message-template', elem)[0];
         if (messageElem) {
-          config.messageTemplate = messageElem.getAttribute("html");
+          config.messageTemplate = messageElem.innerHTML;
         }
 
         // condition
         var conditionElem = qx.bom.Selector.query('condition', elem)[0];
-        var condition = conditionElem.getAttribute("text");
+        var condition = conditionElem.innerText;
         if (condition === "true") {
           condition = true;
         } else if (condition === "false") {
@@ -371,7 +371,7 @@ qx.Class.define("cv.parser.MetaParser", {
             }, this);
             areq.send();
           } else {
-            var cleaned = elem.getAttribute('html').replace(/\n\s*/g, '').trim();
+            var cleaned = elem.innerHTML.replace(/\n\s*/g, '').trim();
             cv.parser.WidgetParser.addTemplate(
               templateName,
               // templates can only have one single root element, so we wrap it here

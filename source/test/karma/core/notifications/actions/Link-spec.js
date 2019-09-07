@@ -10,7 +10,7 @@ describe("testing the Link action", function() {
     });
 
     var actionButton = action.getDomElement();
-    expect(actionButton.getAttribute("text")).toBe("Title");
+    expect(actionButton.innerText).toBe("Title");
     expect(actionButton).toHaveClass("action");
 
     var spy = spyOn(cv.util.Location, "open");
