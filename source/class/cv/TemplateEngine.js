@@ -431,7 +431,7 @@ qx.Class.define('cv.TemplateEngine', {
         this.debug("logged in");
 
         // as we are sure that the default CSS were loaded now:
-        qx.bom.Selector.query('link[href*="mobile.css"]').forEach(function (elem) {
+        document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {
           elem.setAttribute('media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
         });
         if (!cv.Config.cacheUsed) {
@@ -472,7 +472,7 @@ qx.Class.define('cv.TemplateEngine', {
         }, this);
 
         // run the Trick-O-Matic scripts for great SVG backdrops
-        qx.bom.Selector.query('embed').forEach(function(elem) {
+        document.querySelectorAll('embed').forEach(function(elem) {
           elem.onload = cv.ui.TrickOMatic.run;
         });
 
@@ -480,8 +480,8 @@ qx.Class.define('cv.TemplateEngine', {
 
         this.xml = null; // not needed anymore - free the space
 
-        qx.bom.Selector.query('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
-        qx.bom.Selector.query('.loading').forEach(function(elem) {
+        document.querySelectorAll('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
+        document.querySelectorAll('.loading').forEach(function(elem) {
           qx.bom.element.Class.remove(elem, 'loading');
         }, this);
 
@@ -624,7 +624,7 @@ qx.Class.define('cv.TemplateEngine', {
 
         //      console.log("Page: "+page_name+", Scope: "+scope);
         var selector = (scope !== undefined && scope !== null) ? '.page[id^="' + scope + '"] h1:contains(' + page_name + ')' : '.page h1:contains(' + page_name + ')';
-        var pages = qx.bom.Selector.query(selector);
+        var pages = document.querySelectorAll(selector);
         if (pages.length > 1 && this.getCurrentPage() !== null) {
           var currentPageId = this.getCurrentPage().getPath();
           // More than one Page found -> search in the current pages descendants first
@@ -705,7 +705,7 @@ qx.Class.define('cv.TemplateEngine', {
 
       // push new state to history
       if (skipHistory === undefined) {
-        var headline = qx.bom.Selector.query("#"+page_id+" h1");
+        var headline = document.querySelectorAll("#"+page_id+" h1");
         var pageTitle = "CometVisu";
         if (headline.length) {
           pageTitle = headline[0].textContent+ " - "+pageTitle;
@@ -721,7 +721,7 @@ qx.Class.define('cv.TemplateEngine', {
     selectDesign: function () {
       var body = document.querySelector("body");
 
-      qx.bom.Selector.query('body > *').forEach(function(elem) {
+      document.querySelectorAll('body > *').forEach(function(elem) {
         qx.bom.element.Style.set(elem, 'display', 'none');
       }, this);
       qx.bom.element.Style.set(body, 'backgroundColor', "black");

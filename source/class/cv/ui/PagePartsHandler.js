@@ -148,7 +148,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       var bottomDisplay = qx.bom.element.Style.get(document.querySelector("#bottom"), "display");
       if (showtopnavigation) {
         if (topDisplay === "none") {
-          qx.bom.Selector.query('#top, #top > *').forEach(function(elem) {
+          document.querySelectorAll('#top, #top > *').forEach(function(elem) {
             qx.bom.element.Style.set(elem, "display", "block");
           }, this);
           this.removeInactiveNavbars(page.getPath());
@@ -267,7 +267,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
      */
     initializeNavbars: function (page_id) {
       this.removeInactiveNavbars(page_id);
-      var tree = qx.bom.Selector.query('#id_');
+      var tree = document.querySelectorAll('#id_');
       if (page_id !== "id_") {
         var parts = page_id.split("_");
         parts.pop();
@@ -275,7 +275,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         for (var i = 0; i < parts.length; i++) {
           var subPath = parts.slice(0, i + 1).join('_');
           if (subPath) {
-            var item = qx.bom.Selector.query('#id' + subPath + "_.page");
+            var item = document.querySelectorAll('#id' + subPath + "_.page");
             if (item.length === 1) {
               tree.push(item[0]);
             }
@@ -329,7 +329,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
     removeInactiveNavbars: function (page_id) {
       // remove all navbars that do not belong to this page
-      qx.bom.Selector.query('.navbar.navbarActive').forEach(function (elem) {
+      document.querySelectorAll('.navbar.navbarActive').forEach(function (elem) {
         var navBarPath = elem.getAttribute('id').split('_');
         // skip last 2 elements e.g. '_top_navbar'
         navBarPath = navBarPath.slice(0, navBarPath.length - 2).join('_');

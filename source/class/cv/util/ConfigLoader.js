@@ -63,7 +63,7 @@ qx.Class.define('cv.util.ConfigLoader', {
           xml = qx.xml.Document.fromString(xml);
         }
         this.__xml = xml;
-        qx.bom.Selector.query('include', xml).forEach(this.loadInclude, this);
+        xml.querySelectorAll('include').forEach(this.loadInclude, this);
         this.__loadQueue.remove(ajaxRequest.getUrl());
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {

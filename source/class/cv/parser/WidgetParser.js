@@ -51,7 +51,7 @@ qx.Class.define('cv.parser.WidgetParser', {
      * @param rootPage
      */
     renderTemplates: function (rootPage) {
-      qx.bom.Selector.query('template', rootPage).forEach(function (elem) {
+      rootPage.querySelectorAll('template').forEach(function (elem) {
         var templateName = elem.getAttribute('name');
         var variables = {};
         qx.dom.Hierarchy.getChildElements(elem).forEach(function (variable) {
@@ -402,7 +402,7 @@ qx.Class.define('cv.parser.WidgetParser', {
      */
     makeAddressList: function (element, id, makeAddressListFn, skipAdding) {
       var address = {};
-      qx.bom.Selector.query('address', element).forEach(function (elem) {
+      element.querySelectorAll('address').forEach(function (elem) {
         var
           src = elem.textContent,
           transform = elem.getAttribute('transform'),

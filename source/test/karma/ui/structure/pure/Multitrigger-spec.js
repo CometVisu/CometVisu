@@ -53,7 +53,7 @@ describe("testing a multitrigger widget", function() {
 
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
-    var values = qx.bom.Selector.query("div.actor > div.value", widget);
+    var values = widget.querySelectorAll("div.actor > div.value");
     for (var i=0; i<4; i++) {
       expect(qx.dom.Node.getText(values[i])).toBe('B'+(i+1));
     }
@@ -74,7 +74,7 @@ describe("testing a multitrigger widget", function() {
     this.initWidget(creator);
 
     var check = function(index) {
-      qx.bom.Selector.query(".actor_container .actor", this.container.children[0]).forEach(function(actor, i) {
+      this.container.children[0].querySelectorAll(".actor_container .actor").forEach(function(actor, i) {
         if (index === i) {
           expect(actor).toHaveClass('switchPressed');
           expect(actor).not.toHaveClass('switchUnpressed');
@@ -137,7 +137,7 @@ describe("testing a multitrigger widget", function() {
       'showstatus': 'true'
     }, null, '<address transform="DPT:4001" mode="read">1/0/0</address>', {'transform': '4.001'});
     spyOn(creator, "sendToBackend");
-    var actors = qx.bom.Selector.query(".actor_container .actor", this.container.children[0]);
+    var actors = this.container.children[0].querySelectorAll(".actor_container .actor");
     expect(actors.length).not.toBe(0);
 
     this.initWidget(creator);

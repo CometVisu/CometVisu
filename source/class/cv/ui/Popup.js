@@ -98,7 +98,7 @@ qx.Class.define('cv.ui.Popup', {
           html: closable ? '<div class="popup_close">X</div>' : ""
         });
         qx.dom.Element.insertEnd(ret_val, body);
-        this.__elementMap.close = qx.bom.Selector.query("div.popup_close", ret_val);
+        this.__elementMap.close = ret_val.querySelectorAll("div.popup_close");
         addCloseListeners = true;
       } else {
         isNew = false;

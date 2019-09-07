@@ -79,7 +79,7 @@ qx.Class.define('cv.plugins.CalendarList', {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseRefresh(xml, path);
       this.calendars[path] = [];
-      qx.bom.Selector.query('calendar', xml).forEach(function (cal) {
+      xml.querySelectorAll('calendar').forEach(function (cal) {
         var calData = {
           type: cal.getAttribute('type'),
           userid: cal.getAttribute('userid'),

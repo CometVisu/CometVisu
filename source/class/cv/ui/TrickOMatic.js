@@ -38,9 +38,9 @@ qx.Class.define('cv.ui.TrickOMatic', {
       if (!svg) { return; }
 
       // Pipe-O-Matic:
-      var pipes = qx.bom.Selector.query(".pipe_group", svg);
+      var pipes = svg.querySelectorAll(".pipe_group");
       pipes.forEach(function (pipe_group) {
-        qx.bom.Selector.query('path', pipe_group).forEach(function(path) {
+        pipe_group.querySelectorAll('path').forEach(function(path) {
           var halfsize = parseInt(parseFloat(path.style.strokeWidth) / 2);
           var opacity = 0.15;
           for (var width = halfsize - 1; width > 0; width--) {
@@ -60,10 +60,10 @@ qx.Class.define('cv.ui.TrickOMatic', {
 
       // Flow-O-Matic: add Paths
       var segmentLength = 40;
-      pipes = qx.bom.Selector.query(".show_flow", svg);
+      pipes = svg.querySelectorAll(".show_flow");
       pipes.forEach(function (pipe_group) {
         var length = 0.0;
-        qx.bom.Selector.query('path', pipe_group).forEach(function(path) {
+        pipe_group.querySelectorAll('path').forEach(function(path) {
           if (path.className.animVal.split(' ').indexOf('pipe-o-matic_clone') > 0) {
             return;
           }

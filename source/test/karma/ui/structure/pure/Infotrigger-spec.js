@@ -77,7 +77,7 @@ describe("testing a infotrigger widget", function() {
   it("should test the infotrigger creator", function() {
     var obj = this.createTestElement("infotrigger", {'align': 'right', 'infoposition': 'middle'});
     var widget = obj.getWidgetElement();
-    var actors = qx.bom.Selector.query("div.actor", widget);
+    var actors = widget.querySelectorAll("div.actor");
     actors.forEach(function(actor) {
       expect(qx.bom.element.Style.get(actor, "text-align")).toBe("right");
     }, this);
@@ -92,7 +92,7 @@ describe("testing a infotrigger widget", function() {
 
     var obj = this.createTestElement("infotrigger", {'align': 'center', 'infoposition': 'right'});
     var widget = obj.getWidgetElement();
-    var actors = qx.bom.Selector.query("div.actor", widget);
+    var actors = widget.querySelectorAll("div.actor");
     actors.forEach(function(actor) {
       expect(qx.bom.element.Style.get(actor, "text-align")).toBe("center");
     }, this);

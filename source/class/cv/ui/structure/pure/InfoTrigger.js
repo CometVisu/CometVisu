@@ -137,7 +137,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
 
     getActors: function(){
-      return qx.bom.Selector.query(".actor.uplabel, .actor.downlabel", this.getDomElement());
+      return this.getDomElement().querySelectorAll(".actor.uplabel, .actor.downlabel");
     },
 
     // overridden

@@ -49,7 +49,7 @@ function setRadius(elem, type, value) {
 
 function roundCorners() {
   // find elements in each groups corners
-  qx.bom.Selector.query('.page.activePage .group').forEach(function(group) {
+  document.querySelectorAll('.page.activePage .group').forEach(function(group) {
     var bounds = group.getBoundingClientRect();
     // skip invisible groups
     if (bounds.width === 0 || bounds.height === 0) {
@@ -62,9 +62,9 @@ function roundCorners() {
     var topRight = qx.bom.element.Style.get(group, 'border-top-right-radius');
     var bottomRight = qx.bom.element.Style.get(group, 'border-bottom-right-radius');
     var bottomLeft = qx.bom.element.Style.get(group, 'border-bottom-left-radius');
-    var roundUpperCorners = (qx.bom.Selector.query('.widget_container:first-child', group).length>0) && topRight !== "0px";
+    var roundUpperCorners = (group.querySelectorAll('.widget_container:first-child').length>0) && topRight !== "0px";
     var threshold=5;
-    qx.bom.Selector.query('.widget_container', group).forEach(function (elem) {
+    group.querySelectorAll('.widget_container').forEach(function (elem) {
       var elemCorners = getOffsetCorners(elem);
       if (roundUpperCorners) {
         // upper left corner is done by regular  css-rule  upper right corner
@@ -93,7 +93,7 @@ if (/(opera|chrome|safari)/i.test(navigator.userAgent.toLowerCase())) {
 }
 
 qx.event.message.Bus.subscribe("setup.dom.finished", function() {
-  qx.bom.Selector.query('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').forEach(function(label) {
+  document.querySelectorAll('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').forEach(function(label) {
 
     if (label.textContent.trim()!=="") {
       var actor = qx.bom.Selector.matches('.actor', qx.dom.Hierarchy.getSiblings(label))[0];
@@ -106,8 +106,8 @@ qx.event.message.Bus.subscribe("setup.dom.finished", function() {
     }
   });
   // Disable borders for groups that contain widget-group as children
-  qx.bom.Selector.query('.page > div > .widget_container > .group:not(.widget)').forEach(function(elem) {
-    if (qx.bom.Selector.query('.clearfix > .widget_container > .group.widget', elem).length > 0) {
+  document.querySelectorAll('.page > div > .widget_container > .group:not(.widget)').forEach(function(elem) {
+    if (elem.querySelectorAll('.clearfix > .widget_container > .group.widget').length > 0) {
       qx.bom.element.Style.setStyles(elem, {'border': 'none', 'margin': 0});
     }
   });

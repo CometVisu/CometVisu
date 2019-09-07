@@ -33,13 +33,13 @@ qx.Class.define("cv.parser.MetaParser", {
       this.parseFiles(xml);
 
       // parse the icons
-      qx.bom.Selector.query('meta > icons icon-definition', xml).forEach(this.parseIcons, this);
+      xml.querySelectorAll('meta > icons icon-definition').forEach(this.parseIcons, this);
 
       // then the mappings
-      qx.bom.Selector.query('meta > mappings mapping', xml).forEach(this.parseMappings, this);
+      xml.querySelectorAll('meta > mappings mapping').forEach(this.parseMappings, this);
 
       // then the stylings
-      qx.bom.Selector.query('meta > stylings styling', xml).forEach(this.parseStylings, this);
+      xml.querySelectorAll('meta > stylings styling').forEach(this.parseStylings, this);
 
       // then the status bar
       this.parseStatusBar(xml);
@@ -54,7 +54,7 @@ qx.Class.define("cv.parser.MetaParser", {
         css: [],
         js: []
       };
-      qx.bom.Selector.query('meta > files file', xml).forEach(function (elem) {
+      xml.querySelectorAll('meta > files file').forEach(function (elem) {
         var type = elem.getAttribute('type');
         var content = elem.getAttribute('content');
         switch (type) {
@@ -91,12 +91,12 @@ qx.Class.define("cv.parser.MetaParser", {
     parseMappings: function(elem) {
       var name = elem.getAttribute('name');
       var mapping = {};
-      var formula = qx.bom.Selector.query('formula', elem);
+      var formula = elem.querySelectorAll('formula');
       if (formula.length > 0) {
         mapping.formulaSource = qx.dom.Node.getText(formula[0]);
         mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
       }
-      var subElements = qx.bom.Selector.query('entry', elem);
+      var subElements = elem.querySelectorAll('entry');
       subElements.forEach(function (subElem) {
         var origin = subElem.childNodes;
         var value = [];
@@ -145,7 +145,7 @@ qx.Class.define("cv.parser.MetaParser", {
       var name = elem.getAttribute('name');
       var classnames = '';
       var styling = {};
-      qx.bom.Selector.query('entry', elem).forEach(function (subElem) {
+      elem.querySelectorAll('entry').forEach(function (subElem) {
         classnames += qx.dom.Node.getText(subElem) + ' ';
         // check for default entry
         var isDefaultValue = subElem.getAttribute('default');
@@ -176,7 +176,7 @@ qx.Class.define("cv.parser.MetaParser", {
 
     parseStatusBar: function(xml) {
       var code = '';
-      qx.bom.Selector.query('meta > statusbar status', xml).forEach(function (elem) {
+      xml.querySelectorAll('meta > statusbar status').forEach(function (elem) {
         var condition = elem.getAttribute('condition');
         var extend = elem.getAttribute('hrefextend');
         var sPath = window.location.pathname;
@@ -232,7 +232,7 @@ qx.Class.define("cv.parser.MetaParser", {
 
     parsePlugins: function(xml) {
       var pluginsToLoad = [];
-      qx.bom.Selector.query('meta > plugins plugin', xml).forEach(function (elem) {
+      xml.querySelectorAll('meta > plugins plugin').forEach(function (elem) {
         var name = elem.getAttribute('name');
         if (name) {
           pluginsToLoad.push("plugin-"+name);
@@ -256,7 +256,7 @@ qx.Class.define("cv.parser.MetaParser", {
 
     parseStateNotifications: function(xml) {
       var stateConfig = {};
-      qx.bom.Selector.query('meta > notifications state-notification', xml).forEach(function (elem) {
+      xml.querySelectorAll('meta > notifications state-notification').forEach(function (elem) {
         var target = cv.core.notifications.Router.getTarget(elem.getAttribute('target')) || cv.ui.NotificationCenter.getInstance();
 
         var addressContainer = elem.querySelector('addresses');
@@ -330,7 +330,7 @@ qx.Class.define("cv.parser.MetaParser", {
           done();
         }
       };
-      var templates = qx.bom.Selector.query('meta > templates template', xml);
+      var templates = xml.querySelectorAll('meta > templates template');
       if (templates.length === 0) {
         done();
       } else {

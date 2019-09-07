@@ -42,7 +42,7 @@ qx.Class.define('cv.io.Reflection', {
      */
     list: function () {
       var widgetTree = {};
-      qx.bom.Selector.query('.page').forEach(function (elem) {
+      document.querySelectorAll('.page').forEach(function (elem) {
         var id = elem.getAttribute("id").split('_');
         var thisEntry = widgetTree;
         if ('id' === id.shift()) {

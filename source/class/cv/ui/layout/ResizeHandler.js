@@ -165,7 +165,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
             });
           }
 
-          qx.bom.Selector.query('.widget_container', page.getDomElement()).forEach(function (widgetContainer) {
+          page.getDomElement().querySelectorAll('.widget_container').forEach(function (widgetContainer) {
             var widget = cv.ui.structure.WidgetFactory.getInstanceById(widgetContainer.id);
             var value;
             var layout = widget.getResponsiveLayout();
@@ -309,7 +309,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       for (var rowspan in cv.Config.configSettings.usedRowspans) {
         styles += '.rowspan.rowspan' + rowspan + ' { height: ' + Math.round(rowspan * height) + "px;}\n";
       }
-      qx.bom.Selector.query("#calcrowspan").forEach(qx.dom.Element.remove, qx.dom.Element);
+      document.querySelectorAll("#calcrowspan").forEach(qx.dom.Element.remove, qx.dom.Element);
 
       // set css style
       var rowSpanStyle = document.querySelector('#rowspanStyle');

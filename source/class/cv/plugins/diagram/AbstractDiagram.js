@@ -141,7 +141,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       };
       var axesNameIndex = [];
 
-      qx.bom.Selector.query('axis', xmlElement).forEach(function(elem) {
+      xmlElement.querySelectorAll('axis').forEach(function(elem) {
         var unit = elem.getAttribute('unit') || "";
         retVal.axes[retVal.axesnum] = {
           axisLabel     : elem.getAttribute('label') || null,
@@ -158,7 +158,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         axesNameIndex[qx.dom.Node.getText(elem)] = retVal.axesnum;
       }, this);
 
-      qx.bom.Selector.query("influx,rrd", xmlElement).forEach(function(elem) {
+      xmlElement.querySelectorAll("influx,rrd").forEach(function(elem) {
         var
           src = elem.tagName === 'rrd' ? qx.dom.Node.getText(elem) : elem.getAttribute('measurement'),
           steps = (elem.getAttribute("steps") || "false") === "true",

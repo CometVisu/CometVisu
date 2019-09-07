@@ -218,7 +218,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
     // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
     __forceImgReload: function(src, twostage) {
       var step = 0,                                       // step: 0 - started initial load, 1 - wait before proceeding (twostage mode only), 2 - started forced reload, 3 - cancelled
-        elements = qx.bom.Selector.query('img[src="'+src+'"]'),
+        elements = document.querySelectorAll('img[src="'+src+'"]'),
         canvases = [],
         imgReloadBlank = function(){
           elements.forEach(function(elem){

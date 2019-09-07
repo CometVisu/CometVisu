@@ -100,10 +100,10 @@ qx.Class.define("cv.ui.ToastManager", {
           this.__domElement = qx.dom.Element.create("div", {"id": this.getRootElementId()});
         }
       }
-      if (qx.bom.Selector.query(this.getRootElementId()).length === 0) {
+      if (document.querySelectorAll(this.getRootElementId()).length === 0) {
         qx.dom.Element.insertEnd(this.__domElement, document.body);
       }
-      if (qx.bom.Selector.query("#ToastTemplate").length === 0) {
+      if (document.querySelectorAll("#ToastTemplate").length === 0) {
         var template = qx.dom.Element.create("script", {
           id: "ToastTemplate",
           type: "text/template",

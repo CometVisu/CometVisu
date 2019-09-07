@@ -56,7 +56,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
       } else if (!unique) {
         this.__counters[topic]++;
       }
-      qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
+      document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
         qx.bom.element.Class.add(elem, "blurred");
       });
     },
@@ -69,7 +69,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
             delete this.__counters[topic];
             if (Object.keys(this.__counters).length === 0) {
               this.base(arguments);
-              qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
+              document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
                 qx.bom.element.Class.remove(elem, "blurred");
               });
             }
@@ -79,7 +79,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
         // not topic given unblock all
         this.__counters = {};
         this.base(arguments);
-        qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
+        document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
           qx.bom.element.Class.remove(elem, "blurred");
         });
       }

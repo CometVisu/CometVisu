@@ -85,7 +85,7 @@ qx.Class.define('cv.report.Record', {
         // add scroll listeners to all pages
         qx.event.message.Bus.subscribe("setup.dom.finished", function() {
           var throttled = qx.util.Function.throttle(record.recordScroll, 250, true);
-          qx.bom.Selector.query("#pages > .page").forEach(function (page) {
+          document.querySelectorAll("#pages > .page").forEach(function (page) {
             Reg.addListener(page, "scroll", throttled, record);
           }, this);
         }, this);

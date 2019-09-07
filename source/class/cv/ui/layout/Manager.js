@@ -209,7 +209,7 @@ qx.Class.define('cv.ui.layout.Manager', {
       }
 
       selectors.forEach(function (area) {
-        var allContainer = qx.bom.Selector.query(area + ' .widget_container');
+        var allContainer = document.querySelectorAll(area + ' .widget_container');
         if (allContainer.length > 0) {
           var areaColumns = qx.bom.element.Dataset.get(document.querySelector(area), 'columns');
           var areaColspan = areaColumns || cv.Config.defaultColumns;
@@ -227,7 +227,7 @@ qx.Class.define('cv.ui.layout.Manager', {
         }
 
         // and elements inside groups
-        var adjustableElements = qx.bom.Selector.query(area + ' .group .widget_container');
+        var adjustableElements = document.querySelectorAll(area + ' .group .widget_container');
         adjustableElements.forEach(function (e) {
           var
             widget = cv.ui.structure.WidgetFactory.getInstanceByElement(e),
