@@ -79,7 +79,7 @@ describe("testing a infotrigger widget", function() {
     var widget = obj.getWidgetElement();
     var actors = widget.querySelectorAll("div.actor");
     actors.forEach(function(actor) {
-      expect(qx.bom.element.Style.get(actor, "text-align")).toBe("right");
+      expect(window.getComputedStyle(actor)["text-align"]).toBe("right");
     }, this);
 
     // check infoposition
@@ -94,7 +94,7 @@ describe("testing a infotrigger widget", function() {
     var widget = obj.getWidgetElement();
     var actors = widget.querySelectorAll("div.actor");
     actors.forEach(function(actor) {
-      expect(qx.bom.element.Style.get(actor, "text-align")).toBe("center");
+      expect(window.getComputedStyle(actor)["text-align"]).toBe("center");
     }, this);
 
     // check infoposition

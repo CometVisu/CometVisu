@@ -244,7 +244,7 @@ qx.Class.define('cv.plugins.RssLog', {
           }
         }
       }, this);
-      qx.bom.element.Style.set(popup.getCurrentDomElement().querySelector('.main'), "overflow", "auto");
+      popup.getCurrentDomElement().querySelector('.main').style["overflow"] = "auto";
       this.refreshRSSlog(true);
     },
 

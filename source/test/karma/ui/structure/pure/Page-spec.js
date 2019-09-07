@@ -65,7 +65,7 @@ describe("testing a page widget", function() {
 
     var widget = qx.bom.Html.clean([res[1]])[0];
     var actor = this.findChild(widget, ".actor");
-    expect(qx.bom.element.Style.get(actor, 'text-align')).toBe('right');
+    expect(actor.style['text-align']).toBe('right');
     cv.ui.structure.pure.Page.createFinal();
 
     expect(page.getShowTopNavigation()).toBeTruthy();

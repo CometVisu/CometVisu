@@ -278,9 +278,9 @@ var customMatchers = {
     return  {
       compare: function(actual) {
         var result = {};
-        result.pass = qx.bom.element.Style.get(actual, 'display') !== 'none';
+        result.pass = window.getComputedStyle(actual)['display'] !== 'none';
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " not to be visible, but it is "+qx.bom.element.Style.get(actual, 'display');
+          result.message = "Expected " + actual.tagName + " not to be visible, but it is "+window.getComputedStyle(actual)['display'];
         }
         else{
           result.message = "Expected " + actual.tagName + " to be visible";

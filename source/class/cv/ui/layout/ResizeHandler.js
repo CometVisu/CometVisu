@@ -231,8 +231,8 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         var navbarTop = this.getNavbarTop();
         var navbarBottom = this.getNavbarBottom();
         if (
-          (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && qx.bom.element.Dimension.getHeight(navbarTop) <= 2) ||
-          (qx.bom.element.Style.get(navbarBottom, 'display') !== 'none' && qx.bom.element.Dimension.getHeight(navbarBottom) <= 2)
+          (window.getComputedStyle(navbarTop)['display'] !== 'none' && qx.bom.element.Dimension.getHeight(navbarTop) <= 2) ||
+          (window.getComputedStyle(navbarBottom)['display'] !== 'none' && qx.bom.element.Dimension.getHeight(navbarBottom) <= 2)
         ) {
           // Top/Bottom-Navbar is not initialized yet, re-queue the job
           new qx.util.DeferredCall(function() {

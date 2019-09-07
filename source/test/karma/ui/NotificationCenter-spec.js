@@ -31,13 +31,13 @@ describe('test the NotificationCenter', function () {
 
     expect(element).not.toBeUndefined();
 
-    expect(qx.bom.element.Style.get(element, "transform")).toEqual("none");
+    expect(window.getComputedStyle(element)["transform"]).toEqual("none");
     center.show();
     setTimeout(function() {
-      expect(qx.bom.element.Style.get(element, "transform")).toEqual("matrix(1, 0, 0, 1, -300, 0)");
+      expect(window.getComputedStyle(element)["transform"]).toEqual("matrix(1, 0, 0, 1, -300, 0)");
       center.hide();
       setTimeout(function() {
-        expect(qx.bom.element.Style.get(element, "transform")).toEqual("matrix(1, 0, 0, 1, 0, 0)");
+        expect(window.getComputedStyle(element)["transform"]).toEqual("matrix(1, 0, 0, 1, 0, 0)");
         done();
       }, 10);
     }, 10);

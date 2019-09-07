@@ -260,8 +260,8 @@ qx.Class.define('cv.ui.Popup', {
         align
       );
 
-      qx.bom.element.Style.set(ret_val, 'left', placement.x);
-      qx.bom.element.Style.set(ret_val, 'top', placement.y);
+      ret_val.style['left'] = placement.x;
+      ret_val.style['top'] = placement.y;
 
       if (closable && addCloseListeners) {
         this.addListener('close', this.close, this);
@@ -278,7 +278,7 @@ qx.Class.define('cv.ui.Popup', {
 
       attributes.id = this.__counter;
       if (isNew) {
-        qx.bom.element.Style.set(ret_val, 'display', 'block');
+        ret_val.style['display'] = 'block';
         this.__counter++;
       }
       return ret_val;

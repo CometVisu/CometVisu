@@ -93,14 +93,14 @@ qx.Class.define('cv.ui.layout.Manager', {
         var navbarVisibility = this.getCurrentPageNavbarVisibility();
 
         var left = document.querySelector('#navbarLeft');
-        var widthNavbarLeft = navbarVisibility.left === true && qx.bom.element.Style.get(left, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
+        var widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
         if (widthNavbarLeft >= bodyWidth) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
           widthNavbarLeft = 0;
         }
         var right = document.querySelector('#navbarRight');
-        var widthNavbarRight = navbarVisibility.right === true && qx.bom.element.Style.get(right, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
+        var widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
         if (widthNavbarRight >= bodyWidth) {
           // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
@@ -132,10 +132,10 @@ qx.Class.define('cv.ui.layout.Manager', {
       var top = document.querySelector('#top');
       var bottomNav = document.querySelector('#navbarBottom');
       var bottom = document.querySelector('#bottom');
-      var topNavDisplay = qx.bom.element.Style.get(topNav, 'display');
-      var topDisplay = qx.bom.element.Style.get(top, 'display');
-      var bottomNavDisplay = qx.bom.element.Style.get(bottomNav, 'display');
-      var bottomDisplay = qx.bom.element.Style.get(bottom, 'display');
+      var topNavDisplay = window.getComputedStyle(topNav)['display'];
+      var topDisplay = window.getComputedStyle(top)['display'];
+      var bottomNavDisplay = window.getComputedStyle(bottomNav)['display'];
+      var bottomDisplay = window.getComputedStyle(bottom)['display'];
       var topHeight = qx.bom.element.Dimension.getHeight(top);
       var topNavHeight = qx.bom.element.Dimension.getHeight(topNav);
       var bottomNavHeight = qx.bom.element.Dimension.getHeight(bottomNav);
@@ -256,7 +256,7 @@ qx.Class.define('cv.ui.layout.Manager', {
 
     __applyWidthClass: function (elem, widthClassSuffix) {
       if (widthClassSuffix === 'auto') {
-        qx.bom.element.Style.set(elem, 'width', widthClassSuffix);
+        elem.style['width'] = widthClassSuffix;
       } else {
         switch (this.LAYOUT_MODE) {
           case 'GRID':
@@ -270,7 +270,7 @@ qx.Class.define('cv.ui.layout.Manager', {
             break;
 
           default:
-            qx.bom.element.Style.set(elem, 'width', widthClassSuffix);
+            elem.style['width'] = widthClassSuffix;
             break;
         }
       }

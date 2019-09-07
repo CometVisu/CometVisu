@@ -722,9 +722,9 @@ qx.Class.define('cv.TemplateEngine', {
       var body = document.querySelector("body");
 
       document.querySelectorAll('body > *').forEach(function(elem) {
-        qx.bom.element.Style.set(elem, 'display', 'none');
+        elem.style['display'] = 'none';
       }, this);
-      qx.bom.element.Style.set(body, 'backgroundColor', "black");
+      body.style['backgroundColor'] = "black";
 
 
       var div = qx.dom.Element.create("div", {id: "designSelector"});
@@ -780,11 +780,11 @@ qx.Class.define('cv.TemplateEngine', {
           qx.dom.Element.insertEnd(tDiv, myDiv);
 
           qx.event.Registration.addListener(myDiv, 'pointerover', function() {
-            qx.bom.element.Style.set(myDiv, 'background', "#bbbbbb");
+            myDiv.style['background'] = "#bbbbbb";
           }, this);
 
           qx.event.Registration.addListener(myDiv, 'pointerout', function() {
-            qx.bom.element.Style.set(myDiv, 'background', "transparent");
+            myDiv.style['background'] = "transparent";
           }, this);
 
           qx.event.Registration.addListener(myDiv, 'tap', function() {

@@ -127,20 +127,20 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
       var imageChild = this.getDomElement().querySelector("img");
       if (this.getUpdateType() === "show") {
         if (value === 0) {
-          qx.bom.element.Style.set(imageChild, "display", "none");
+          imageChild.style["display"] = "none";
         }
         else {
           imageChild.setAttribute("src", this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
-          qx.bom.element.Style.set(imageChild, "display", "block");
+          imageChild.style["display"] = "block";
         }
       }
       else if (this.getUpdateType() === "select") {
         if (value === 0) {
-          qx.bom.element.Style.set(imageChild, "display", "none");
+          imageChild.style["display"] = "none";
         }
         else {
           imageChild.setAttribute("src", this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
-          qx.bom.element.Style.set(imageChild, "display", "block");
+          imageChild.style["display"] = "block";
         }
       }
 

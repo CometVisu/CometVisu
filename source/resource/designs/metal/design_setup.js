@@ -41,9 +41,9 @@ function getOffsetCorners(elem) {
 }
 
 function setRadius(elem, type, value) {
-  qx.bom.element.Style.set(elem, type, value);
+  elem.style[type] = value;
   qx.dom.Hierarchy.getChildElements(elem).forEach(function(subElem) {
-    qx.bom.element.Style.set(subElem, type, value);
+    subElem.style[type] = value;
   }, this);
 }
 
@@ -59,9 +59,9 @@ function roundCorners() {
     if (qx.bom.Selector.matches('.navbar', qx.dom.Hierarchy.getAncestors(group)).length > 0) { return; }
     var groupCorners = getOffsetCorners(group);
     // if the group has a headline (=name) we must not round the upper corners
-    var topRight = qx.bom.element.Style.get(group, 'border-top-right-radius');
-    var bottomRight = qx.bom.element.Style.get(group, 'border-bottom-right-radius');
-    var bottomLeft = qx.bom.element.Style.get(group, 'border-bottom-left-radius');
+    var topRight = window.getComputedStyle(group)['border-top-right-radius'];
+    var bottomRight = window.getComputedStyle(group)['border-bottom-right-radius'];
+    var bottomLeft = window.getComputedStyle(group)['border-bottom-left-radius'];
     var roundUpperCorners = (group.querySelectorAll('.widget_container:first-child').length>0) && topRight !== "0px";
     var threshold=5;
     group.querySelectorAll('.widget_container').forEach(function (elem) {
@@ -100,7 +100,7 @@ qx.event.message.Bus.subscribe("setup.dom.finished", function() {
       if (actor && qx.bom.Selector.matches('img', qx.dom.Hierarchy.getChildElements(label)).length === 0) {
         var value = qx.bom.Selector.matches('.value', qx.dom.Hierarchy.getChildElements(actor))[0];
         if (value && value.textContent.trim() !== "") {
-          qx.bom.element.Style.set(actor, 'padding-top', '0.5em');
+          actor.style['padding-top'] = '0.5em';
         }
       }
     }

@@ -74,12 +74,12 @@ qx.Class.define('cv.plugins.MobileMenu', {
         if (!navLeft.classList.contains('mobilemenu')){
           navLeft.classList.add('mobilemenu');
         }
-        qx.bom.element.Style.set(navLeft, "display", "none");
+        navLeft.style["display"] = "none";
         qx.event.message.Bus.subscribe("path.pageChanged", function() {
           var navbar = navLeft.querySelector('.navbar');
           var animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
           animation.addListenerOnce("end", function() {
-            qx.bom.element.Style.set(navLeft, "display", "none");
+            navLeft.style["display"] = "none";
           }, this);
         });
 
@@ -98,7 +98,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
     _action: function() {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth){
         if(this.isTouchDevice()){
-          qx.bom.element.Style.set(this.__navLeft, "display", "block");
+          this.__navLeft.style["display"] = "block";
           var navbar = this.__navLeft.querySelector('.navbar.navbarActive');
           qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
         }

@@ -85,12 +85,12 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       var cssSize = size + (isFinite(size) ? 'px' : '');
       switch (position) {
         case 'left':
-          qx.bom.element.Style.set(document.querySelector('#navbarLeft'), "width", cssSize);
+          document.querySelector('#navbarLeft').style["width"] = cssSize;
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
 
         case 'right':
-          qx.bom.element.Style.set(document.querySelector('#centerContainer'), "padding-right", cssSize);
+          document.querySelector('#centerContainer').style["padding-right"] = cssSize;
           qx.bom.element.Style.setStyles(document.querySelector('#navbarRight'), {
             width: cssSize,
             'margin-right': '-' + cssSize
@@ -144,29 +144,29 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         showtopnavigation = page.getShowTopNavigation();
         showfooter = page.getShowFooter();
       }
-      var topDisplay = qx.bom.element.Style.get(document.querySelector("#top"), "display");
-      var bottomDisplay = qx.bom.element.Style.get(document.querySelector("#bottom"), "display");
+      var topDisplay = window.getComputedStyle(document.querySelector("#top"))["display"];
+      var bottomDisplay = window.getComputedStyle(document.querySelector("#bottom"))["display"];
       if (showtopnavigation) {
         if (topDisplay === "none") {
           document.querySelectorAll('#top, #top > *').forEach(function(elem) {
-            qx.bom.element.Style.set(elem, "display", "block");
+            elem.style["display"] = "block";
           }, this);
           this.removeInactiveNavbars(page.getPath());
         }
       } else {
         if (topDisplay !== "none") {
-          qx.bom.element.Style.set(document.querySelector("#top"), "display", "none");
+          document.querySelector("#top").style["display"] = "none";
           this.removeInactiveNavbars(page.getPath());
         }
       }
       if (showfooter) {
         if (bottomDisplay === "none") {
-          qx.bom.element.Style.set(document.querySelector("#bottom"), "display", "block");
+          document.querySelector("#bottom").style["display"] = "block";
           this.removeInactiveNavbars(page.getPath());
         }
       } else {
         if (bottomDisplay !== "none") {
-          qx.bom.element.Style.set(document.querySelector("#bottom"), "display", "none");
+          document.querySelector("#bottom").style["display"] = "none";
           this.removeInactiveNavbars(page.getPath());
         }
       }
@@ -174,7 +174,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         var
           key = value.toLowerCase(),
           navbar = document.querySelector('#navbar' + value),
-          display = qx.bom.element.Style.get(navbar, "display"),
+          display = window.getComputedStyle(navbar)["display"],
           isLoading = navbar.classList.contains('loading');
         if (shownavbar[key] === true) {
           if (display === "none" || isLoading) {
@@ -208,7 +208,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       };
       switch (direction) {
         case "in":
-          if (qx.bom.element.Style.get(navbar, "display") === 'none') {
+          if (window.getComputedStyle(navbar)["display"] === 'none') {
             initCss.display = 'block';
           }
           targetCss[key] = 0;
@@ -225,7 +225,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           break;
         case "out":
           onAnimationEnd = function () {
-            qx.bom.element.Style.set(navbar, "display", "none");
+            navbar.style["display"] = "none";
             cv.ui.layout.ResizeHandler.invalidateNavbar();
           };
           switch (position) {
