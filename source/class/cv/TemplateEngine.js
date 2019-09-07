@@ -623,8 +623,9 @@ qx.Class.define('cv.TemplateEngine', {
         page_name = decodeURI(page_name.replace("\\\/", "/"));
 
         //      console.log("Page: "+page_name+", Scope: "+scope);
-        var selector = (scope !== undefined && scope !== null) ? '.page[id^="' + scope + '"] h1:contains(' + page_name + ')' : '.page h1:contains(' + page_name + ')';
+        var selector = (scope !== undefined && scope !== null) ? '.page[id^="' + scope + '"] h1' : '.page h1';
         var pages = document.querySelectorAll(selector);
+        pages = Array.from( pages ).filter(function(h){return h.textContent === page_name;});
         if (pages.length > 1 && this.getCurrentPage() !== null) {
           var currentPageId = this.getCurrentPage().getPath();
           // More than one Page found -> search in the current pages descendants first

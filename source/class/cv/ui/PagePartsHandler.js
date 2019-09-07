@@ -267,7 +267,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
      */
     initializeNavbars: function (page_id) {
       this.removeInactiveNavbars(page_id);
-      var tree = document.querySelectorAll('#id_');
+      var tree = Array.from( document.querySelectorAll('#id_') );
       if (page_id !== "id_") {
         var parts = page_id.split("_");
         parts.pop();
