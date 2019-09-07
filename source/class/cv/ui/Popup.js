@@ -258,7 +258,7 @@ qx.Class.define('cv.ui.Popup', {
         placement = cv.ui.PopupHandler.placementStrategy(
         anchor,
         {w: Math.round(ret_valRect.right - ret_valRect.left), h: Math.round(ret_valRect.bottom - ret_valRect.top)},
-        {w: qx.bom.Viewport.getWidth(), h: qx.bom.Viewport.getHeight()},
+        {w: document.documentElement.clientWidth, h: document.documentElement.clientHeight},
         align
       );
 

@@ -85,7 +85,7 @@ qx.Class.define('cv.ui.layout.Manager', {
       // currently this calculation is done once after every page scroll (where cv.TemplateEngine.getInstance()currentPageUnavailableWidth is reseted)
       // if the screen width falls below the threshold which activates/deactivates the mobile.css
       // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
-      var bodyWidth = qx.bom.Viewport.getWidth();
+      var bodyWidth = document.documentElement.clientWidth;
       var mobileUseChanged = (this.lastBodyWidth < cv.Config.maxMobileScreenWidth) !== (bodyWidth < cv.Config.maxMobileScreenWidth);
       if (this.currentPageUnavailableWidth < 0 || mobileUseChanged || true) {
         //      console.log("Mobile.css use changed "+mobileUseChanged);
@@ -127,7 +127,7 @@ qx.Class.define('cv.ui.layout.Manager', {
      *         because the value of main.position().top is not reliable all the time
      */
     getAvailableHeight: function () {
-      var windowHeight = qx.bom.Viewport.getHeight();
+      var windowHeight = document.documentElement.clientHeight;
       this.currentPageUnavailableHeight = 0;
       var navbarVisibility = this.getCurrentPageNavbarVisibility();
       var topNav = document.querySelector('#navbarTop');

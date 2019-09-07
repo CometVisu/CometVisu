@@ -193,9 +193,9 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     _onResize: function() {
-      var height = qx.bom.Viewport.getHeight();
+      var height = document.documentElement.clientHeight;
       if (this.__element) {
-        this.__element.style.left = qx.bom.Viewport.getWidth() + "px";
+        this.__element.style.left = document.documentElement.clientWidth + "px";
         this.__element.style.height = height + "px";
       }
 

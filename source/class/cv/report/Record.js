@@ -77,8 +77,8 @@ qx.Class.define('cv.report.Record', {
         // add resize listener
         Reg.addListener(window, "resize", function() {
           this.record(this.SCREEN, "resize", {
-            w: qx.bom.Viewport.getWidth(),
-            h: qx.bom.Viewport.getHeight()
+            w: document.documentElement.clientWidth,
+            h: document.documentElement.clientHeight
           });
         }, this);
 
@@ -94,8 +94,8 @@ qx.Class.define('cv.report.Record', {
 
         // save initial size
         this.record(this.SCREEN, "resize", {
-          w: qx.bom.Viewport.getWidth(),
-          h: qx.bom.Viewport.getHeight()
+          w: document.documentElement.clientWidth,
+          h: document.documentElement.clientHeight
         });
       }
     },
@@ -118,8 +118,8 @@ qx.Class.define('cv.report.Record', {
         build: Env.get("cv.build"),
         locale: qx.bom.client.Locale.getLocale(),
         cv: {},
-        width: qx.bom.Viewport.getWidth(),
-        height: qx.bom.Viewport.getHeight(),
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight,
         anchor: req.anchor,
         query: req.queryKey,
         path: req.relative
