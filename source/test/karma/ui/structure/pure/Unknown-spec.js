@@ -32,6 +32,6 @@ describe("testing a unknown widget", function() {
     var inst = cv.ui.structure.WidgetFactory.createInstance("unknown", data);
     var unknown = qx.bom.Html.clean([inst.getDomString()])[0];
 
-    expect(qx.bom.Selector.query("pre", unknown)[0].textContent).toBe('unknown: unknown_widget');
+    expect(unknown.querySelector("pre").textContent).toBe('unknown: unknown_widget');
   });
 });

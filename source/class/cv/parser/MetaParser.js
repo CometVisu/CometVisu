@@ -226,7 +226,7 @@ qx.Class.define("cv.parser.MetaParser", {
         }
         code += text;
       }, this);
-      var footerElement = qx.bom.Selector.query(".footer")[0];
+      var footerElement = document.querySelector(".footer");
       footerElement.innerHTML += code;
     },
 
@@ -259,7 +259,7 @@ qx.Class.define("cv.parser.MetaParser", {
       qx.bom.Selector.query('meta > notifications state-notification', xml).forEach(function (elem) {
         var target = cv.core.notifications.Router.getTarget(elem.getAttribute('target')) || cv.ui.NotificationCenter.getInstance();
 
-        var addressContainer = qx.bom.Selector.query('addresses', elem)[0];
+        var addressContainer = elem.querySelector('addresses');
 
         var config = {
           target: target,
@@ -285,17 +285,17 @@ qx.Class.define("cv.parser.MetaParser", {
         }
 
         // templates
-        var titleElem = qx.bom.Selector.query('title-template', elem)[0];
+        var titleElem = elem.querySelector('title-template');
         if (titleElem) {
           config.titleTemplate = titleElem.innerHTML;
         }
-        var messageElem = qx.bom.Selector.query('message-template', elem)[0];
+        var messageElem = elem.querySelector('message-template');
         if (messageElem) {
           config.messageTemplate = messageElem.innerHTML;
         }
 
         // condition
-        var conditionElem = qx.bom.Selector.query('condition', elem)[0];
+        var conditionElem = elem.querySelector('condition');
         var condition = conditionElem.innerText;
         if (condition === "true") {
           condition = true;

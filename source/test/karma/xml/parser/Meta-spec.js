@@ -7,7 +7,7 @@ describe("testing the meta parser", function() {
   it("should test the meta parser", function () {
     // add footer to document
     var footer = qx.dom.Element.create("div", {"class": 'footer'});
-    var body = qx.bom.Selector.query("body")[0];
+    var body = document.querySelector("body");
     qx.dom.Element.insertEnd(footer, body);
 
     // ugly hack to allow multiline string

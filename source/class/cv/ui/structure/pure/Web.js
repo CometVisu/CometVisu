@@ -99,7 +99,7 @@ qx.Class.define('cv.ui.structure.pure.Web', {
       var addr = this.getAddress()[ address ];
       if (!addr) { return; }
       if (data === 1) {
-        var iframe = qx.bom.Selector.query('iframe', this.getDomElement())[0];
+        var iframe = this.getDomElement().querySelector('iframe');
         this.refreshAction(iframe, iframe.getAttribute('src'));
         // reset the value
         cv.TemplateEngine.getInstance().visu.write( address, cv.Transform.encode(addr[0], 0));

@@ -59,7 +59,7 @@ describe("testing a trigger", function() {
       flavour: "potassium"
     }, '<label>Test</label>');
 
-    var widget = qx.bom.Selector.query('#id_0 .widget')[0];
+    var widget = document.querySelector('#id_0 .widget');
 
     expect(widget).toHaveFlavour('potassium');
 

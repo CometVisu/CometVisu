@@ -71,7 +71,7 @@ qx.Class.define('cv.util.ConfigLoader', {
         }
         else {
           // check the library version
-          var xmlLibVersion = qx.bom.Selector.query('pages', xml)[0].getAttribute("lib_version");
+          var xmlLibVersion = xml.querySelector('pages').getAttribute("lib_version");
           if (xmlLibVersion === undefined) {
             xmlLibVersion = -1;
           }

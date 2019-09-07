@@ -85,12 +85,12 @@ qx.Class.define('cv.plugins.Svg', {
       var line_qty = 48 / total;
       var line, i, l;
       for(i = 0, l = Math.floor(value/line_qty); i<=l;i++) {
-        line = qx.bom.Selector.query('#line'+(i+1), element)[0];
+        line = element.querySelector('#line'+(i+1));
         line.setAttribute('y1', 9+total*(i)+((value%line_qty)/line_qty)*total);
         line.setAttribute('y2', 9+total*(i)+((value%line_qty)/line_qty)*total);
       }
       for(i = Math.floor(value/line_qty)+1; i<=line_qty;i++) {
-        line = qx.bom.Selector.query('#line'+(i+1), element)[0];
+        line = element.querySelector('#line'+(i+1));
         line.setAttribute('y1', 9);
         line.setAttribute('y2', 9);
       }

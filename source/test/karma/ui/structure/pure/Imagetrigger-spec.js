@@ -78,7 +78,7 @@ describe("testing a imagetrigger widget", function() {
     });
 
     res.update('12/7/37', 1);
-    var actor = qx.bom.Selector.query('.actor img', this.container.children[0])[0];
+    var actor = this.container.children[0].querySelector('.actor img');
     expect(actor).toBeVisible();
     expect(actor.getAttribute('src')).toBe('imgs.jpg');
 
@@ -94,7 +94,7 @@ describe("testing a imagetrigger widget", function() {
     });
 
     res.update('12/7/37', 1);
-    var actor = qx.bom.Selector.query('.actor img', this.container.children[0])[0];
+    var actor = this.container.children[0].querySelector('.actor img');
 
     expect(actor).toBeVisible();
     expect(actor.getAttribute('src')).toBe('imgs1.jpg');
@@ -118,7 +118,7 @@ describe("testing a imagetrigger widget", function() {
     this.initWidget(res);
     var Reg = qx.event.Registration;
 
-    var actor = qx.bom.Selector.query('.actor', this.container.children[0])[0];
+    var actor = this.container.children[0].querySelector('.actor');
     expect(actor).not.toBe(null);
 
     // no write flag

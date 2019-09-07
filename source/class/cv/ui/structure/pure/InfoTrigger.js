@@ -192,15 +192,15 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
 
     getDownActor: function() {
-      return qx.bom.Selector.query(".actor.downlabel", this.getDomElement())[0];
+      return this.getDomElement().querySelector(".actor.downlabel");
     },
 
     getUpActor: function() {
-      return qx.bom.Selector.query(".actor.uplabel", this.getDomElement())[0];
+      return this.getDomElement().querySelector(".actor.uplabel");
     },
 
     getInfoActor: function() {
-      return qx.bom.Selector.query(".actor.switchInvisible", this.getDomElement())[0];
+      return this.getDomElement().querySelector(".actor.switchInvisible");
     }
   },
 

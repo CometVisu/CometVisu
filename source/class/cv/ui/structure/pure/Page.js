@@ -94,7 +94,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * Append the complete generated HTML code to the DOM tree at the end of the generation process
      */
     createFinal: function() { // special function - only for pages!
-      qx.bom.Selector.query("#pages")[0].innerHTML = this.allPages;
+      document.querySelector("#pages").innerHTML = this.allPages;
       qx.event.message.Bus.unsubscribe("setup.dom.append", this.createFinal, this);
     }
 

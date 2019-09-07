@@ -58,20 +58,20 @@ qx.Class.define('cv.ui.PagePartsHandler', {
     updateTopNavigation: function (path) {
       path = path.split('_'); path.pop();
       var id = "id_"; //path[0];
-      var pageTitle = qx.bom.Selector.query("#"+id+" h1")[0].textContent;
+      var pageTitle = document.querySelector("#"+id+" h1").textContent;
       var nav = '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_'+id+'">' +
         pageTitle + '</a>';
       for (var i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
         id += path[i] + '_';
-        var pageElem = qx.bom.Selector.query("#"+id)[0];
+        var pageElem = document.querySelector("#"+id);
         if (pageElem && qx.bom.element.Class.has(pageElem, "page")) { // FIXME is this still needed?!?
-          pageTitle = qx.bom.Selector.query("#"+id+" h1")[0].textContent;
+          pageTitle = document.querySelector("#"+id+" h1").textContent;
           nav += '<span> &#x25ba; </span>' +
             '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_'+id+'">' +
             pageTitle + '</a>';
         }
       }
-      qx.bom.Selector.query(".nav_path")[0].innerHTML = nav;
+      document.querySelector(".nav_path").innerHTML = nav;
       // cv.TemplateEngine.getInstance().handleResize(); - TODO CM160528: why? This shouldn't have
       //                             any effect on the page size => commented out
     },
@@ -85,13 +85,13 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       var cssSize = size + (isFinite(size) ? 'px' : '');
       switch (position) {
         case 'left':
-          qx.bom.element.Style.set(qx.bom.Selector.query('#navbarLeft')[0], "width", cssSize);
+          qx.bom.element.Style.set(document.querySelector('#navbarLeft'), "width", cssSize);
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
 
         case 'right':
-          qx.bom.element.Style.set(qx.bom.Selector.query('#centerContainer')[0], "padding-right", cssSize);
-          qx.bom.element.Style.setStyles(qx.bom.Selector.query('#navbarRight')[0], {
+          qx.bom.element.Style.set(document.querySelector('#centerContainer'), "padding-right", cssSize);
+          qx.bom.element.Style.setStyles(document.querySelector('#navbarRight'), {
             width: cssSize,
             'margin-right': '-' + cssSize
           });
@@ -144,8 +144,8 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         showtopnavigation = page.getShowTopNavigation();
         showfooter = page.getShowFooter();
       }
-      var topDisplay = qx.bom.element.Style.get(qx.bom.Selector.query("#top")[0], "display");
-      var bottomDisplay = qx.bom.element.Style.get(qx.bom.Selector.query("#bottom")[0], "display");
+      var topDisplay = qx.bom.element.Style.get(document.querySelector("#top"), "display");
+      var bottomDisplay = qx.bom.element.Style.get(document.querySelector("#bottom"), "display");
       if (showtopnavigation) {
         if (topDisplay === "none") {
           qx.bom.Selector.query('#top, #top > *').forEach(function(elem) {
@@ -155,25 +155,25 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         }
       } else {
         if (topDisplay !== "none") {
-          qx.bom.element.Style.set(qx.bom.Selector.query("#top")[0], "display", "none");
+          qx.bom.element.Style.set(document.querySelector("#top"), "display", "none");
           this.removeInactiveNavbars(page.getPath());
         }
       }
       if (showfooter) {
         if (bottomDisplay === "none") {
-          qx.bom.element.Style.set(qx.bom.Selector.query("#bottom")[0], "display", "block");
+          qx.bom.element.Style.set(document.querySelector("#bottom"), "display", "block");
           this.removeInactiveNavbars(page.getPath());
         }
       } else {
         if (bottomDisplay !== "none") {
-          qx.bom.element.Style.set(qx.bom.Selector.query("#bottom")[0], "display", "none");
+          qx.bom.element.Style.set(document.querySelector("#bottom"), "display", "none");
           this.removeInactiveNavbars(page.getPath());
         }
       }
       ['Left', 'Top', 'Right', 'Bottom'].forEach(function (value) {
         var
           key = value.toLowerCase(),
-          navbar = qx.bom.Selector.query('#navbar' + value)[0],
+          navbar = document.querySelector('#navbar' + value),
           display = qx.bom.element.Style.get(navbar, "display"),
           isLoading = qx.bom.element.Class.has(navbar, 'loading');
         if (shownavbar[key] === true) {
@@ -201,7 +201,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       speed = (speed !== undefined) ? speed : cv.TemplateEngine.getInstance().main_scroll.getSpeed();
       var initCss = {};
       var targetCss = {};
-      var navbar = qx.bom.Selector.query('#navbar' + position)[0];
+      var navbar = document.querySelector('#navbar' + position);
       var key = position.toLowerCase();
       var onAnimationEnd = function () {
         cv.ui.layout.ResizeHandler.invalidateNavbar();
@@ -285,13 +285,13 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       var level = 1;
       tree.forEach(function (elem) {
         var id = elem.getAttribute('id');
-        var topNav = qx.bom.Selector.query('#' + id + 'top_navbar')[0];
+        var topNav = document.querySelector('#' + id + 'top_navbar');
         var topData = cv.data.Model.getInstance().getWidgetData(id + 'top_navbar');
-        var rightNav = qx.bom.Selector.query('#' + id + 'right_navbar')[0];
+        var rightNav = document.querySelector('#' + id + 'right_navbar');
         var rightData = cv.data.Model.getInstance().getWidgetData(id + 'right_navbar');
-        var bottomNav = qx.bom.Selector.query('#' + id + 'bottom_navbar')[0];
+        var bottomNav = document.querySelector('#' + id + 'bottom_navbar');
         var bottomData = cv.data.Model.getInstance().getWidgetData(id + 'bottom_navbar');
-        var leftNav = qx.bom.Selector.query('#' + id + 'left_navbar')[0];
+        var leftNav = document.querySelector('#' + id + 'left_navbar');
         var leftData = cv.data.Model.getInstance().getWidgetData(id + 'left_navbar');
         // console.log(tree.length+"-"+level+"<="+topData.scope);
         if (topNav) {

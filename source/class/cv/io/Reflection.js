@@ -171,7 +171,7 @@ qx.Class.define('cv.io.Reflection', {
      * Return a widget (to be precise: the widget_container) for the given path
      */
     lookupWidget: function (path) {
-      return qx.bom.Selector.query('.page#' + path)[0];
+      return document.querySelector('.page#' + path);
     },
 
     getParentPage: function (page) {
@@ -187,7 +187,7 @@ qx.Class.define('cv.io.Reflection', {
         while (pathParts.length > 1) {
           pathParts.pop();
           path = pathParts.join('_') + '_';
-          var page = qx.bom.Selector.query('#' + path)[0];
+          var page = document.querySelector('#' + path);
           if (qx.bom.element.Class.has(page, "page")) {
             return page;
           }
@@ -208,7 +208,7 @@ qx.Class.define('cv.io.Reflection', {
      * child elements.
      */
     deleteCommand: function (path) {
-      this.debug(this.lookupWidget(path), qx.bom.Selector.query('#' + path)[0]);
+      this.debug(this.lookupWidget(path), document.querySelector('#' + path));
       //this.lookupWidget( path ).remove();
       return "deleted widget '" + path + "'";
     },
@@ -217,7 +217,7 @@ qx.Class.define('cv.io.Reflection', {
      * Focus a widget.
      */
     focus: function (path) {
-      qx.bom.element.Class.remove(qx.bom.Selector.query('.focused')[0], 'focused');
+      qx.bom.element.Class.remove(document.querySelector('.focused'), 'focused');
       qx.bom.element.Class.add(this.lookupWidget(path), 'focused');
     }
   },

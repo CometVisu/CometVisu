@@ -200,7 +200,7 @@ qx.Class.define('cv.parser.WidgetParser', {
       if (element.getAttribute('class')) {
         classes += ' custom_' + element.getAttribute('class');
       }
-      var label = (widgetType==='text') ? this.parseLabel( qx.bom.Selector.query("label", element)[0], flavour, '' ) : this.parseLabel( qx.bom.Selector.query("label", element)[0], flavour );
+      var label = (widgetType==='text') ? this.parseLabel( element.querySelector("label"), flavour, '' ) : this.parseLabel( element.querySelector("label"), flavour );
 
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
       if (element.getAttribute("bind_click_to_widget")) {
@@ -351,7 +351,7 @@ qx.Class.define('cv.parser.WidgetParser', {
         elementData.colspanS = qx.xml.Element.getAttributeNS(layout, '', 'colspan-s');
         rowspan = qx.xml.Element.getAttributeNS(layout, '', 'rowspan');
       }
-      elementData.colspan = parseFloat(elementData.colspan || qx.bom.element.Dataset.get(qx.bom.Selector.query('head')[0], 'colspanDefault') || 6);
+      elementData.colspan = parseFloat(elementData.colspan || qx.bom.element.Dataset.get(document.querySelector('head'), 'colspanDefault') || 6);
       elementData.colspanM = parseFloat(elementData.colspanM || cv.parser.WidgetParser.lookupM[Math.floor(elementData.colspan)] || elementData.colspan);
       elementData.colspanS = parseFloat(elementData.colspanS || cv.parser.WidgetParser.lookupS[Math.floor(elementData.colspan)] || elementData.colspan);
 

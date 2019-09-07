@@ -27,7 +27,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it('should toggle the visibility', function(done) {
-    var element = qx.bom.Selector.query("#notification-center")[0];
+    var element = document.querySelector("#notification-center");
 
     expect(element).not.toBeUndefined();
 
@@ -44,7 +44,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it('should toggle the badge visibility', function(done) {
-    var element = qx.bom.Selector.query("#notification-center .badge")[0];
+    var element = document.querySelector("#notification-center .badge");
 
     expect(element).not.toBeUndefined();
 
@@ -68,7 +68,7 @@ describe('test the NotificationCenter', function () {
       message: "Test message",
       severity: "normal"
     };
-    var badge = qx.bom.Selector.query("#notification-center .badge")[0];
+    var badge = document.querySelector("#notification-center .badge");
     expect(badge).not.toBeUndefined();
 
     center.handleMessage(qx.lang.Object.clone(message));
@@ -216,7 +216,7 @@ describe('test the NotificationCenter', function () {
       };
       center.handleMessage(message);
 
-      var messageElement = qx.bom.Selector.query("#notification_0")[0];
+      var messageElement = document.querySelector("#notification_0");
       spyOn(center, "deleteMessage");
       spyOn(center, "performAction");
 
@@ -232,13 +232,13 @@ describe('test the NotificationCenter', function () {
         cancelable: true,
         view: window
       });
-      var element = qx.bom.Selector.query(".content", messageElement)[0];
+      var element = messageElement.querySelector(".content");
       element.dispatchEvent(down);
       element.dispatchEvent(up);
       expect(center.performAction).toHaveBeenCalledWith(0, jasmine.any(qx.event.type.Event));
 
       // click on the delete button
-      element = qx.bom.Selector.query(".delete", messageElement)[0];
+      element = messageElement.querySelector(".delete");
       element.dispatchEvent(down);
       element.dispatchEvent(up);
       expect(center.deleteMessage).toHaveBeenCalledWith(0, jasmine.any(qx.event.type.Event));

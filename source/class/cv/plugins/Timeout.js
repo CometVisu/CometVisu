@@ -124,7 +124,7 @@ qx.Class.define('cv.plugins.Timeout', {
       qx.event.message.Bus.subscribe("path.pageChanged", function (ev) {
         var path = ev.getData();
         this.__timeoutCurrentPage = path;
-        this.__timeoutCurrentPageTitle = qx.dom.Node.getText(qx.bom.Selector.query("#" + path+ " div > h1")[0]);
+        this.__timeoutCurrentPageTitle = qx.dom.Node.getText(document.querySelector("#" + path+ " div > h1"));
         this.__timeoutIdleCount = 0;
         /* We could trun on and off the above binds if we are already on the right page
 

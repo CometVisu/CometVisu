@@ -135,7 +135,7 @@ resetApplication = function() {
     delete subs[topic];
   });
 
-  var body = qx.bom.Selector.query("body")[0];
+  var body = document.querySelector("body");
   // load empty HTML structure
   qx.dom.Element.empty(body);
   qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
@@ -350,7 +350,7 @@ afterEach(function () {
     this.creator = null;
   }
 
-  var body = qx.bom.Selector.query("body")[0];
+  var body = document.querySelector("body");
   // load empty HTML structure
   qx.dom.Element.empty(body);
   qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);

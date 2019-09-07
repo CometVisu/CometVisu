@@ -95,7 +95,7 @@ qx.Class.define("cv.ui.ToastManager", {
     _init: function() {
       if (!this.__domElement) {
         // check if there is one (might be restored from cache)
-        this.__domElement = qx.bom.Selector.query(this.getRootElementId())[0];
+        this.__domElement = document.querySelector(this.getRootElementId());
         if (!this.__domElement) {
           this.__domElement = qx.dom.Element.create("div", {"id": this.getRootElementId()});
         }

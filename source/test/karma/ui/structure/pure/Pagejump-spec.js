@@ -135,7 +135,7 @@ describe("testing a pagejump widget", function() {
       return null;
     });
 
-    var actor = qx.bom.Selector.query(".pagejump", creator.getDomElement())[0];
+    var actor = creator.getDomElement().querySelector(".pagejump");
     qx.event.message.Bus.dispatchByName("path.pageChanged", "id_");
     expect(actor).toHaveClass("active");
     qx.event.message.Bus.dispatchByName("path.pageChanged", "id_1_");

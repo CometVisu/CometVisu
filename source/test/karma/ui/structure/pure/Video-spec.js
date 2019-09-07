@@ -32,7 +32,7 @@ describe("testing a video widget", function() {
     expect(widget).toHaveClass('video');
     expect(widget).toHaveLabel('Test');
 
-    var videoWidget = qx.bom.Selector.query("video", widget)[0];
+    var videoWidget = widget.querySelector("video");
     expect(videoWidget).toHaveStyleSetting("width", "100%");
     expect(videoWidget).toHaveStyleSetting("height", "90%");
   });

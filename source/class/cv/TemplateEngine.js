@@ -331,7 +331,7 @@ qx.Class.define('cv.TemplateEngine', {
        */
       // read predefined design in config
       var settings = cv.Config.configSettings;
-      var pagesNode = qx.bom.Selector.query("pages", loaded_xml)[0];
+      var pagesNode = loaded_xml.querySelector("pages");
 
       var predefinedDesign = pagesNode.getAttribute("design");
       // design by url
@@ -381,7 +381,7 @@ qx.Class.define('cv.TemplateEngine', {
 
       var globalClass = pagesNode.getAttribute('class');
       if (globalClass !== null) {
-        qx.bom.element.Class.add(qx.bom.Selector.query('body')[0], globalClass);
+        qx.bom.element.Class.add(document.querySelector('body'), globalClass);
       }
 
       settings.scriptsToLoad = [];
@@ -436,7 +436,7 @@ qx.Class.define('cv.TemplateEngine', {
         });
         if (!cv.Config.cacheUsed) {
           this.debug("creating pages");
-          var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
+          var page = this.xml.querySelector('pages > page'); // only one page element allowed...
 
           this.createPages(page, 'id');
           this.debug("finalizing");
@@ -719,7 +719,7 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     selectDesign: function () {
-      var body = qx.bom.Selector.query("body")[0];
+      var body = document.querySelector("body");
 
       qx.bom.Selector.query('body > *').forEach(function(elem) {
         qx.bom.element.Style.set(elem, 'display', 'none');
@@ -772,7 +772,7 @@ qx.Class.define('cv.TemplateEngine', {
             width: "160px",
             zIndex: 2
           });
-          var pos = qx.bom.Selector.query("iframe")[0].getBoundingClientRect();
+          var pos = document.querySelector("iframe").getBoundingClientRect();
           qx.bom.element.Style.setStyles(tDiv, {
             left: pos.left + "px",
             top: pos.top + "px"

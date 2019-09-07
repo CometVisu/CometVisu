@@ -138,13 +138,13 @@ qx.Class.define('cv.plugins.UpnpController', {
      */
     initListeners: function () {
       var Reg = qx.event.Registration;
-      Reg.addListener(qx.bom.Selector.query('#' + this.upnpcontroller_uid + "_muteButton")[0], "tap", this.toggleMute, this);
-      Reg.addListener(qx.bom.Selector.query('#' + this.upnpcontroller_uid + "_playButton")[0], "tap", this.togglePlay, this);
-      Reg.addListener(qx.bom.Selector.query('#' + this.upnpcontroller_uid + "_next")[0], "tap", this.callNext, this);
-      Reg.addListener(qx.bom.Selector.query('#' + this.upnpcontroller_uid + "_prev")[0], "tap", this.callPrev, this);
-      Reg.addListener(qx.bom.Selector.query('#' + this.upnpcontroller_uid + "_volumedown")[0], "tap", this.callvolumedown, this);
-      Reg.addListener(qx.bom.Selector.query('#' + this.upnpcontroller_uid + "_volumeup")[0], "tap", this.callvolumeup, this);
-      Reg.addListener(qx.bom.Selector.query('#' + this.upnpcontroller_uid + "_getplaylists")[0], "tap", this.callgetplaylists, this);
+      Reg.addListener(document.querySelector('#' + this.upnpcontroller_uid + "_muteButton"), "tap", this.toggleMute, this);
+      Reg.addListener(document.querySelector('#' + this.upnpcontroller_uid + "_playButton"), "tap", this.togglePlay, this);
+      Reg.addListener(document.querySelector('#' + this.upnpcontroller_uid + "_next"), "tap", this.callNext, this);
+      Reg.addListener(document.querySelector('#' + this.upnpcontroller_uid + "_prev"), "tap", this.callPrev, this);
+      Reg.addListener(document.querySelector('#' + this.upnpcontroller_uid + "_volumedown"), "tap", this.callvolumedown, this);
+      Reg.addListener(document.querySelector('#' + this.upnpcontroller_uid + "_volumeup"), "tap", this.callvolumeup, this);
+      Reg.addListener(document.querySelector('#' + this.upnpcontroller_uid + "_getplaylists"), "tap", this.callgetplaylists, this);
     },
 
     _setupRefreshAction: function () {
@@ -188,28 +188,28 @@ qx.Class.define('cv.plugins.UpnpController', {
       var id = this.upnpcontroller_uid;
 
       if (mute === 0) {
-        qx.bom.element.Class.replace(qx.bom.Selector.query('#' + id + '_muteButton')[0], 'switchPressed', 'switchUnpressed');
+        qx.bom.element.Class.replace(document.querySelector('#' + id + '_muteButton'), 'switchPressed', 'switchUnpressed');
       } else {
-        qx.bom.element.Class.replace(qx.bom.Selector.query('#' + id + '_muteButton')[0], 'switchUnpressed', 'switchPressed');
+        qx.bom.element.Class.replace(document.querySelector('#' + id + '_muteButton'), 'switchUnpressed', 'switchPressed');
       }
 
       if (playMode === 'Play') {
-        qx.bom.element.Class.replace(qx.bom.Selector.query('#' + id + '_playButton')[0], 'switchPressed', 'switchUnpressed');
+        qx.bom.element.Class.replace(document.querySelector('#' + id + '_playButton'), 'switchPressed', 'switchUnpressed');
       } else {
-        qx.bom.element.Class.replace(qx.bom.Selector.query('#' + id + '_playButton')[0], 'switchUnpressed', 'switchPressed');
+        qx.bom.element.Class.replace(document.querySelector('#' + id + '_playButton'), 'switchUnpressed', 'switchPressed');
       }
 
-      qx.bom.Selector.query('#' + id + '_muteButton div.value')[0].innerText = mute;
-      qx.bom.Selector.query('#' + id + '_playButton div.value')[0].innerText = playMode;
-      qx.bom.Selector.query('#' + id + '_volume div.value')[0].innerText = volume;
-      qx.bom.Selector.query('#' + id + '_title div.value')[0].innerText = title;
-      qx.bom.Selector.query('#' + id + '_artist div.value')[0].innerText = artist;
-      qx.bom.Selector.query('#' + id + '_album div.value')[0].innerText = album;
-      qx.bom.Selector.query('#' + id + '_time div.value')[0].innerText = reltime + ' of ' + duration;
+      document.querySelector('#' + id + '_muteButton div.value').innerText = mute;
+      document.querySelector('#' + id + '_playButton div.value').innerText = playMode;
+      document.querySelector('#' + id + '_volume div.value').innerText = volume;
+      document.querySelector('#' + id + '_title div.value').innerText = title;
+      document.querySelector('#' + id + '_artist div.value').innerText = artist;
+      document.querySelector('#' + id + '_album div.value').innerText = album;
+      document.querySelector('#' + id + '_time div.value').innerText = reltime + ' of ' + duration;
 
       this.upnpcontroller_song_process_rel = this.calculateSongProcessed(reltime, duration);
       this.traceLog("song_process_rel: " + this.upnpcontroller_song_process_rel);
-      qx.bom.Selector.query('#' + id + '_progress')[0].setAttribute("value", this.upnpcontroller_song_process_rel);
+      document.querySelector('#' + id + '_progress').setAttribute("value", this.upnpcontroller_song_process_rel);
     },
 
     /**
@@ -252,7 +252,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     callgetplaylists: function () {
       this.traceLog("click callgetplaylists");
-      var playlist = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_getplaylists')[0];
+      var playlist = document.querySelector('#' + this.upnpcontroller_uid + '_getplaylists');
       var currentValue = playlist.getAttribute('value');
       var playerIp = this.getPlayerIp();
       var playerPort = this.getPlayerPort();
@@ -287,11 +287,11 @@ qx.Class.define('cv.plugins.UpnpController', {
         }
 
         if (currentValue !== 'pressed') {
-          qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_playlistsresult div.value')[0].innerHTML = playlists;
+          document.querySelector('#' + this.upnpcontroller_uid + '_playlistsresult div.value').innerHTML = playlists;
           playlists.setAttribute('value', 'pressed');
           qx.bom.element.Class.replace(playlists, 'switchUnpressed', 'switchPressed');
         } else {
-          qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_playlistsresult div.value')[0].innerText = "";
+          document.querySelector('#' + this.upnpcontroller_uid + '_playlistsresult div.value').innerText = "";
           playlists.setAttribute('value', 'unpressed');
           qx.bom.element.Class.replace(playlists, 'switchUnpressed', 'switchPressed');
         }
@@ -300,7 +300,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     callvolumedown: function () {
       this.traceLog("click callvolumedown");
-      var currentVolume = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_volume div.value')[0].innerText;
+      var currentVolume = document.querySelector('#' + this.upnpcontroller_uid + '_volume div.value').innerText;
 
       this.traceLog("currentVolume: " + currentVolume);
       var volume = Number(currentVolume) - 5;
@@ -312,7 +312,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     callvolumeup: function () {
       this.traceLog("click callvolumeup");
-      var currentVolume = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_volume div.value')[0].innerText;
+      var currentVolume = document.querySelector('#' + this.upnpcontroller_uid + '_volume div.value').innerText;
       this.traceLog("currentVolume: " + currentVolume);
       var volume = Number(currentVolume) + 5;
 
@@ -337,8 +337,8 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     toggleMute: function () {
       this.traceLog("click mute");
-      var muteButton = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_muteButton')[0];
-      var muteValue = qx.bom.Selector.query('div.value', muteButton)[0].innerText;
+      var muteButton = document.querySelector('#' + this.upnpcontroller_uid + '_muteButton');
+      var muteValue = muteButton.querySelector('div.value').innerText;
 
       this.traceLog("current muteValue: " + muteValue);
 
@@ -360,12 +360,12 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     togglePlay: function () {
       this.traceLog("click play");
-      var playValue = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_playButton div.value')[0].innerText;
+      var playValue = document.querySelector('#' + this.upnpcontroller_uid + '_playButton div.value').innerText;
       var cmd;
 
       this.traceLog("current playValue: " + playValue);
 
-      var playButton = qx.bom.Selector.query('#' + this.upnpcontroller_uid + '_playButton')[0];
+      var playButton = document.querySelector('#' + this.upnpcontroller_uid + '_playButton');
       if (playValue === 'Play') {
         cmd = 'pause';
         qx.bom.element.Class.replace(playButton, 'switchUnpressed', 'switchPressed');

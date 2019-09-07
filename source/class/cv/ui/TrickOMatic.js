@@ -148,7 +148,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
         'style');
       s.setAttribute('type', 'text/css');
       s.textContent = keyframes;
-      qx.dom.Element.insertBegin(s, qx.bom.Selector.query('svg', svg)[0]);
+      qx.dom.Element.insertBegin(s, svg.querySelector('svg'));
     },
 
     updateActive: function (pipe_group, data) {

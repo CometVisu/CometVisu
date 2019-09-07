@@ -217,7 +217,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
     _action: function () {
       var brss = qx.bom.Html.clean(['<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>'])[0];
-      var title = qx.dom.Node.getText(qx.bom.Selector.query('#' + this.getPath() + ' .label')[0]) || '';
+      var title = qx.dom.Node.getText(document.querySelector('#' + this.getPath() + ' .label')) || '';
       var popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
       var parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
       qx.bom.element.Style.setStyles(parent, {height: "90%", width: "90%", margin: "auto"}); // define parent as 100%!
@@ -244,7 +244,7 @@ qx.Class.define('cv.plugins.RssLog', {
           }
         }
       }, this);
-      qx.bom.element.Style.set(qx.bom.Selector.query('.main', popup.getCurrentDomElement())[0], "overflow", "auto");
+      qx.bom.element.Style.set(popup.getCurrentDomElement().querySelector('.main'), "overflow", "auto");
       this.refreshRSSlog(true);
     },
 
@@ -343,13 +343,13 @@ qx.Class.define('cv.plugins.RssLog', {
       // get height of one entry, calc max num of display items in widget
       var displayrows = parseInt(qx.bom.element.Dataset.get(c, "last_rowcount"), 10) || 0;
       qx.bom.Html.clean(['<li class="rsslogRow odd" id="dummydiv">.</li>'], null, c);
-      var dummyDiv = qx.bom.Selector.query('#dummydiv', c)[0];
+      var dummyDiv = c.querySelector('#dummydiv');
       var itemheight = qx.bom.element.Dimension.getHeight(dummyDiv);
       qx.dom.Element.remove(dummyDiv);
       if (itemheight !== 0) {
         var widget = qx.dom.Element.getParentElement(qx.dom.Element.getParentElement(c)); // get the parent widget
         var displayheight = qx.bom.element.Dimension.getHeight(widget);
-        var labelElem = qx.bom.Selector.query('.label', widget)[0];
+        var labelElem = widget.querySelector('.label');
         if (labelElem) {
           // max. height of actor is widget-label(if exists)
           displayheight -= qx.bom.element.Dimension.getHeight(labelElem);
@@ -378,7 +378,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
       var isBig = this.__request.getUserData("big");
       var selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
-      var c = qx.bom.Selector.query(selector)[0];
+      var c = document.querySelector(selector);
       var itemack = isBig === true ? this.getItemack() : ( 'modify' === this.getItemack() ? 'display' : this.getItemack());
 
       this.debug("ID: "+c.getAttribute("id")+", Feed: "+this.getSrc());
@@ -426,7 +426,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
         if (item.mapping && item.mapping !== '') {
           var mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
-          var span = qx.bom.Selector.query('.mappedValue', rowElem)[0];
+          var span = rowElem.querySelector('.mappedValue');
           this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
         }
         if (this.__separatoradd && idx !== 0) {
@@ -448,7 +448,7 @@ qx.Class.define('cv.plugins.RssLog', {
         qx.bom.element.Dataset.set(rowElem, 'id', item.id);
         qx.bom.element.Dataset.set(rowElem, 'mapping', item.mapping);
         if (item.tags) {
-          var tmp = qx.bom.Selector.query('span', rowElem)[0];
+          var tmp = rowElem.querySelector('span');
           if (qx.lang.Type.isArray(item.tags)) {
             item.tags.forEach(qx.lang.Function.curry(qx.bom.element.Class.add, tmp), this);
           } else {
@@ -508,7 +508,7 @@ qx.Class.define('cv.plugins.RssLog', {
       var state = +qx.bom.element.Class.has(item, "rsslog_ack"); // the new state is the same as hasClass
       if (mapping && mapping !== '') {
         var mappedValue = this.applyMapping(state, mapping);
-        var span = qx.bom.Selector.query('.mappedValue', item)[0];
+        var span = item.querySelector('.mappedValue');
         qx.dom.Element.empty(span);
         this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
       }

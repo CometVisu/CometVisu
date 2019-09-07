@@ -80,7 +80,7 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
 
       var designs = this.getAvailableDesigns();
 
-      var oldDesign = qx.bom.Selector.query('.value',this.getDomElement())[0].textContent;
+      var oldDesign = this.getDomElement().querySelector('.value').textContent;
       var newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
 
       var URL = cv.util.Location.getHref();

@@ -89,7 +89,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
 
     // overridden
     getValueElement: function() {
-      return qx.bom.Selector.query("img", this.getDomElement())[0];
+      return this.getDomElement().querySelector("img");
     },
 
     // overridden

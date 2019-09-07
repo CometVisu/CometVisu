@@ -62,21 +62,21 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     getPageSize: function (noCache) {
       if (!this.$pageSize || noCache === true) {
-        this.$pageSize = qx.bom.Selector.query('#pageSize')[0];
+        this.$pageSize = document.querySelector('#pageSize');
       }
       return this.$pageSize;
     },
 
     getNavbarTop: function (noCache) {
       if (!this.$navbarTop || noCache === true) {
-        this.$navbarTop = qx.bom.Selector.query('#navbarTop')[0];
+        this.$navbarTop = document.querySelector('#navbarTop');
       }
       return this.$navbarTop;
     },
 
     getNavbarBottom: function (noCache) {
       if (!this.$navbarBottom || noCache === true) {
-        this.$navbarBottom = qx.bom.Selector.query('#navbarBottom')[0];
+        this.$navbarBottom = document.querySelector('#navbarBottom');
       }
       return this.$navbarBottom;
     },
@@ -122,7 +122,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       if ('2d' === page.getPageType()) {
         var
           cssPosRegEx = /(\d*)(.*)/,
-          backdrop = qx.bom.Selector.query("div > "+page.getBackdropType(), page.getDomElement())[0];
+          backdrop = page.getDomElement().querySelector("div > "+page.getBackdropType());
         try {
           var backdropSVG = page.getBackdropType() === 'embed' ? backdrop.getSVGDocument() : null;
           var backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {},
@@ -284,7 +284,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makeRowspanValid: function () {
       qx.log.Logger.debug(this, "makeRowspanValid");
-      var elem = qx.bom.Selector.query("#calcrowspan")[0];
+      var elem = document.querySelector("#calcrowspan");
       if (!elem) {
         elem = qx.dom.Element.create("div", {
           "class": "clearfix",
@@ -294,7 +294,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         qx.dom.Element.insertEnd(elem, document.body);
       }
       // use the internal div for height as in mobile view the elem uses the full screen height
-      this.__updateRowHeight(qx.bom.Selector.query("#containerDiv", elem)[0]);
+      this.__updateRowHeight(elem.querySelector("#containerDiv"));
     },
 
     __updateRowHeight: function(elem) {
@@ -312,7 +312,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       qx.bom.Selector.query("#calcrowspan").forEach(qx.dom.Element.remove, qx.dom.Element);
 
       // set css style
-      var rowSpanStyle = qx.bom.Selector.query('#rowspanStyle')[0];
+      var rowSpanStyle = document.querySelector('#rowspanStyle');
       if (rowSpanStyle) {
         rowSpanStyle.innerHTML = styles;
       }

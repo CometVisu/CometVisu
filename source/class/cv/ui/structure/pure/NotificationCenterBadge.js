@@ -101,7 +101,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
 
     __getBadgeElement: function() {
       if (!this.__badgeElement) {
-        this.__badgeElement = qx.bom.Selector.query(".badge", this.getDomElement())[0];
+        this.__badgeElement = this.getDomElement().querySelector(".badge");
       }
       return this.__badgeElement;
     },

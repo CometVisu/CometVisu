@@ -54,7 +54,7 @@ describe("testing a group widget", function() {
     expect(widget).toHaveClass('clickable');
     expect(widget).not.toHaveClass('widget');
 
-    expect(qx.dom.Node.getText(qx.bom.Selector.query("h2", widget)[0])).toBe("Test")
+    expect(qx.dom.Node.getText(widget.querySelector("h2"))).toBe("Test")
   });
 
   it('should trigger the group action', function() {

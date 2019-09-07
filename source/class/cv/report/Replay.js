@@ -132,7 +132,7 @@ qx.Class.define('cv.report.Replay', {
       } else if (path === "document") {
         return document;
       } else {
-        return qx.bom.Selector.query(path)[0];
+        return document.querySelector(path);
       }
     },
 
@@ -212,7 +212,7 @@ qx.Class.define('cv.report.Replay', {
     },
 
     __playScrollEvent: function(record) {
-      var elem = qx.bom.Selector.query("#"+record.d.page)[0];
+      var elem = document.querySelector("#"+record.d.page);
       elem.scrollTop = record.d.native ? record.d.native.pageY : record.d.y;
       elem.scrollLeft = record.d.native ? record.d.native.pageX : record.d.x;
     },
@@ -224,7 +224,7 @@ qx.Class.define('cv.report.Replay', {
           style: "position: absolute; transform: rotate(-40deg); font-size: 36px; z-index: 1000000"
         });
         this.__cursor.innerHTML = "&uarr;";
-        qx.dom.Element.insertEnd(this.__cursor, qx.bom.Selector.query("body")[0]);
+        qx.dom.Element.insertEnd(this.__cursor, document.querySelector("body"));
       }
       qx.bom.element.Style.setStyles(this.__cursor, {top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"});
 

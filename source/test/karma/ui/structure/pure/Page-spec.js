@@ -93,10 +93,10 @@ describe("testing a page widget", function() {
 
     expect(page.getBackdropAlign()).toBe("left");
 
-    page = qx.bom.Selector.query('#pages .page')[0];
+    page = document.querySelector('#pages .page');
 
     expect(page).toHaveClass("type_2d");
-    var backdrop = qx.bom.Selector.query("embed", page)[0];
+    var backdrop = page.querySelector("embed");
     expect(backdrop).toHaveStyleSetting('width', '100%');
     expect(backdrop).toHaveStyleSetting('height', '100%');
     expect(backdrop).toHaveStyleSetting('object-fit', 'contain');
@@ -115,10 +115,10 @@ describe("testing a page widget", function() {
 
     cv.ui.structure.pure.Page.createFinal();
 
-    var page = qx.bom.Selector.query('#pages .page')[0];
+    var page = document.querySelector('#pages .page');
 
     expect(page).toHaveClass("type_2d");
-    var backdrop = qx.bom.Selector.query("img", page)[0];
+    var backdrop = page.querySelector("img");
 
     expect(backdrop.getAttribute('src')).toBe('test.png');
   });

@@ -191,7 +191,7 @@ qx.Class.define('cv.plugins.Gauge', {
 
     // overridden
     getValueElement: function() {
-      return qx.bom.Selector.query('#gauge_' + this.getPath(), this.getDomElement())[0];
+      return this.getDomElement().querySelector('#gauge_' + this.getPath());
     },
 
     // property apply

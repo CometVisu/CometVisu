@@ -124,7 +124,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     },
 
     _update: function(address, value) {
-      var imageChild = qx.bom.Selector.query("img", this.getDomElement())[0];
+      var imageChild = this.getDomElement().querySelector("img");
       if (this.getUpdateType() === "show") {
         if (value === 0) {
           qx.bom.element.Style.set(imageChild, "display", "none");

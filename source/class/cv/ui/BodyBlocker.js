@@ -87,7 +87,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
 
     __getBody: function() {
       if (!this.__body) {
-        this.__body = qx.bom.Selector.query("body")[0];
+        this.__body = document.querySelector("body");
       }
       return this.__body;
     }

@@ -25,9 +25,9 @@
  * @since 2012
  */
 qx.event.message.Bus.subscribe("setup.dom.finished.before", function() {
-  qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarLeft')[0], 'columns', 6);
-  qx.bom.element.Dataset.set(qx.bom.Selector.query('#main')[0], 'columns', 12);
-  qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarRight')[0], 'columns', 6);
+  qx.bom.element.Dataset.set(document.querySelector('#navbarLeft'), 'columns', 6);
+  qx.bom.element.Dataset.set(document.querySelector('#main'), 'columns', 12);
+  qx.bom.element.Dataset.set(document.querySelector('#navbarRight'), 'columns', 6);
 });
 
 function getOffsetCorners(elem) {

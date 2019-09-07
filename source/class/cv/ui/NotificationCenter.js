@@ -204,8 +204,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (this.__messagesContainer) {
         // get header+footer heights
         var messageBoxHeight = height -
-          qx.bom.element.Dimension.getHeight(qx.bom.Selector.query("> header", this.__element)[0]) -
-          qx.bom.element.Dimension.getHeight(qx.bom.Selector.query("> footer", this.__element)[0]);
+          qx.bom.element.Dimension.getHeight(this.__element.querySelector(":scope > header")) -
+          qx.bom.element.Dimension.getHeight(this.__element.querySelector(":scope > footer"));
         qx.bom.element.Style.setStyles(this.__messagesContainer, {
           height: messageBoxHeight + "px"
         }, false);
@@ -217,7 +217,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
      * @private
      */
     _init: function() {
-      var body = qx.bom.Selector.query("body")[0];
+      var body = document.querySelector("body");
       
       this.__blocker = cv.ui.BodyBlocker.getInstance();
 
@@ -227,7 +227,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       });
 
       // check if the element is already there (might have been cached)
-      var elem = this.__element = qx.bom.Selector.query(this.getRootElementId())[0];
+      var elem = this.__element = document.querySelector(this.getRootElementId());
 
       if (!elem) {
         // create new element
@@ -253,8 +253,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
         qx.dom.Element.insertEnd(template, body);
       }
 
-      this.__messagesContainer = qx.bom.Selector.query("section.messages", elem)[0];
-      this.__badge = qx.bom.Selector.query(".badge", elem)[0];
+      this.__messagesContainer = elem.querySelector("section.messages");
+      this.__badge = elem.querySelector(".badge");
       qx.event.Registration.addListener(this.__badge, "tap", this.toggleVisibility, this);
 
       // add HTML template for messages to header

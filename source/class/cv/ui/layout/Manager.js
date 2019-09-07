@@ -92,14 +92,14 @@ qx.Class.define('cv.ui.layout.Manager', {
         this.currentPageUnavailableWidth = 0;
         var navbarVisibility = this.getCurrentPageNavbarVisibility();
 
-        var left = qx.bom.Selector.query('#navbarLeft')[0];
+        var left = document.querySelector('#navbarLeft');
         var widthNavbarLeft = navbarVisibility.left === true && qx.bom.element.Style.get(left, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
         if (widthNavbarLeft >= bodyWidth) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
           widthNavbarLeft = 0;
         }
-        var right = qx.bom.Selector.query('#navbarRight')[0];
+        var right = document.querySelector('#navbarRight');
         var widthNavbarRight = navbarVisibility.right === true && qx.bom.element.Style.get(right, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
         if (widthNavbarRight >= bodyWidth) {
           // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
@@ -128,10 +128,10 @@ qx.Class.define('cv.ui.layout.Manager', {
       var windowHeight = qx.bom.Viewport.getHeight();
       this.currentPageUnavailableHeight = 0;
       var navbarVisibility = this.getCurrentPageNavbarVisibility();
-      var topNav = qx.bom.Selector.query('#navbarTop')[0];
-      var top = qx.bom.Selector.query('#top')[0];
-      var bottomNav = qx.bom.Selector.query('#navbarBottom')[0];
-      var bottom = qx.bom.Selector.query('#bottom')[0];
+      var topNav = document.querySelector('#navbarTop');
+      var top = document.querySelector('#top');
+      var bottomNav = document.querySelector('#navbarBottom');
+      var bottom = document.querySelector('#bottom');
       var topNavDisplay = qx.bom.element.Style.get(topNav, 'display');
       var topDisplay = qx.bom.element.Style.get(top, 'display');
       var bottomNavDisplay = qx.bom.element.Style.get(bottomNav, 'display');
@@ -140,7 +140,7 @@ qx.Class.define('cv.ui.layout.Manager', {
       var topNavHeight = qx.bom.element.Dimension.getHeight(topNav);
       var bottomNavHeight = qx.bom.element.Dimension.getHeight(bottomNav);
       var bottomHeight = qx.bom.element.Dimension.getHeight(bottom);
-      var navPathHeight = qx.bom.element.Dimension.getHeight(qx.bom.Selector.query('.nav_path')[0]);
+      var navPathHeight = qx.bom.element.Dimension.getHeight(document.querySelector('.nav_path'));
 
       if (topDisplay  !== 'none' && topHeight > 0) {
         this.currentPageUnavailableHeight += Math.max(topHeight, navPathHeight);
@@ -196,7 +196,7 @@ qx.Class.define('cv.ui.layout.Manager', {
      */
     applyColumnWidths: function (selector, includeNavbars) {
       var width = this.getAvailableWidth();
-      var mainAreaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query('#main')[0], 'columns');
+      var mainAreaColumns = qx.bom.element.Dataset.get(document.querySelector('#main'), 'columns');
       var mainAreaColspan = parseInt(mainAreaColumns || cv.Config.defaultColumns);
 
       var pageSelector = selector ? selector : '#main .activePage';
@@ -211,7 +211,7 @@ qx.Class.define('cv.ui.layout.Manager', {
       selectors.forEach(function (area) {
         var allContainer = qx.bom.Selector.query(area + ' .widget_container');
         if (allContainer.length > 0) {
-          var areaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query(area)[0], 'columns');
+          var areaColumns = qx.bom.element.Dataset.get(document.querySelector(area), 'columns');
           var areaColspan = areaColumns || cv.Config.defaultColumns;
           allContainer.forEach(function(child) {
             var widget = cv.ui.structure.WidgetFactory.getInstanceByElement(child);

@@ -79,7 +79,7 @@
 
       // overridden
       getActor: function() {
-        return qx.bom.Selector.query(".actor audio", this.getDomElement())[0];
+        return this.getDomElement().querySelector(".actor audio");
       },
 
       /**

@@ -51,11 +51,11 @@ qx.Class.define('cv.ConfigCache', {
         addresses: model.getAddressList(),
         configSettings: config
       });
-      localStorage.setItem(cv.Config.configSuffix+".body", qx.bom.Selector.query('body')[0].innerHTML);
+      localStorage.setItem(cv.Config.configSuffix+".body", document.querySelector('body').innerHTML);
     },
 
     restore: function() {
-      var body = qx.bom.Selector.query("body")[0];
+      var body = document.querySelector("body");
       var model = cv.data.Model.getInstance();
       var cache = this.getData();
       cv.Config.configSettings = cache.configSettings;

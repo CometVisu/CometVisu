@@ -302,7 +302,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       if (this.getAlign()) {
         qx.bom.element.Class.add(element, this.getAlign());
       }
-      var valueElement = this.getValueElement ? this.getValueElement() : qx.bom.Selector.query('.value', element)[0];
+      var valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
       qx.dom.Element.empty(valueElement);
       if (undefined !== value) {
         this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, valueElement));

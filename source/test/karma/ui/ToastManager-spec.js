@@ -41,7 +41,7 @@ describe('test the NotificationCenter', function () {
     // as the message was unique it replaces the old one
     expect(center.getMessages().getLength()).toBe(1);
 
-    var messageElement = qx.bom.Selector.query("#"+center.getMessageElementId()+messageId)[0];
+    var messageElement = document.querySelector("#"+center.getMessageElementId()+messageId);
     expect(qx.bom.element.Class.has(messageElement, "high")).toBeTruthy();
 
     // add message with higher severity
@@ -53,7 +53,7 @@ describe('test the NotificationCenter', function () {
     // as the message was unique it replaces the old one
     expect(center.getMessages().getLength()).toBe(2);
 
-    messageElement = qx.bom.Selector.query("#"+center.getMessageElementId()+messageId)[0];
+    messageElement = document.querySelector("#"+center.getMessageElementId()+messageId);
     expect(qx.bom.element.Class.has(messageElement, "urgent")).toBeTruthy();
 
     // remove unique messages
@@ -182,7 +182,7 @@ describe('test the NotificationCenter', function () {
       var messageId = center.__idCounter;
       center.handleMessage(message);
 
-      var element = qx.bom.Selector.query("#"+center.getMessageElementId()+messageId)[0];
+      var element = document.querySelector("#"+center.getMessageElementId()+messageId);
       element.dispatchEvent(down);
       element.dispatchEvent(up);
       expect(center.deleteMessage).toHaveBeenCalledWith(messageId);
@@ -203,7 +203,7 @@ describe('test the NotificationCenter', function () {
 
       center.handleMessage(message);
 
-      element = qx.bom.Selector.query("#"+center.getMessageElementId()+messageId)[0];
+      element = document.querySelector("#"+center.getMessageElementId()+messageId);
 
       spyOn(center, "performAction");
 

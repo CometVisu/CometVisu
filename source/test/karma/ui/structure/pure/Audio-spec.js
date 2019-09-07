@@ -35,7 +35,7 @@ describe("testing a audio widget", function() {
     expect(widget).toHaveClass('audio');
     expect(widget).toHaveLabel('Test');
 
-    var audio = qx.bom.Selector.query("audio", widget)[0];
+    var audio = widget.querySelector("audio");
 
     expect(audio).not.toHaveAttribute("autoplay");
     expect(audio).not.toHaveAttribute("loop");
@@ -60,7 +60,7 @@ describe("testing a audio widget", function() {
     expect(widget).toHaveClass('audio');
     expect(widget).toHaveLabel('Test');
 
-    var audio = qx.bom.Selector.query("audio", widget)[0];
+    var audio = widget.querySelector("audio");
     expect(audio).toHaveAttribute("autoplay");
     expect(audio).toHaveAttribute("loop");
     expect(audio).toHaveAttribute("controls");
