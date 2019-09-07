@@ -201,9 +201,12 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
       if (this.__messagesContainer) {
         // get header+footer heights
-        var messageBoxHeight = height -
-          qx.bom.element.Dimension.getHeight(this.__element.querySelector(":scope > header")) -
-          qx.bom.element.Dimension.getHeight(this.__element.querySelector(":scope > footer"));
+        var
+          headerRect = this.__element.querySelector(":scope > header").getBoundingClientRect(),
+          footerRect = this.__element.querySelector(":scope > footer").getBoundingClientRect(),
+          messageBoxHeight = height -
+            Math.round(headerRect.bottom - headerRect.top) -
+            Math.round(footerRect.bottom - footerRect.top);
         this.__messagesContainer.style.height = messageBoxHeight + "px";
       }
     },

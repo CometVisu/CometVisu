@@ -60,9 +60,11 @@ qx.Class.define("cv.ui.util.ProgressBar", {
     __progressElement: null,
 
     _applyValue: function(value) {
-      var totalWidth = qx.bom.element.Dimension.getContentWidth(this.__domElement);
-      var progressWidth = Math.round(totalWidth*value/100)+"px";
-      this.__progressElement.style["width"] = progressWidth;
+      var
+        rect = this.__domElement.getBoundingClientRect(),
+        totalWidth = Math.round(rect.right - rect.left),
+        progressWidth = Math.round(totalWidth*value/100)+"px";
+      this.__progressElement.style.width = progressWidth;
     },
 
     getDomElement: function() {

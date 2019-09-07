@@ -228,11 +228,14 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       if (cv.Config.mobileDevice) {
         //do nothing
       } else {
-        var navbarTop = this.getNavbarTop();
-        var navbarBottom = this.getNavbarBottom();
+        var
+          navbarTop = this.getNavbarTop(),
+          navbarTopRect = navbarTop.getBoundingClientRect(),
+          navbarBottom = this.getNavbarBottom(),
+          navbarBottomRect = navbarBottom.getBoundingClientRect();
         if (
-          (window.getComputedStyle(navbarTop)['display'] !== 'none' && qx.bom.element.Dimension.getHeight(navbarTop) <= 2) ||
-          (window.getComputedStyle(navbarBottom)['display'] !== 'none' && qx.bom.element.Dimension.getHeight(navbarBottom) <= 2)
+          (window.getComputedStyle(navbarTop)['display'] !== 'none' && Math.round(navbarTopRect.bottom - navbarTopRect.top) <= 2) ||
+          (window.getComputedStyle(navbarBottom)['display'] !== 'none' && Math.round(navbarBottomRect.bottom - navbarBottomRect.top) <= 2)
         ) {
           // Top/Bottom-Navbar is not initialized yet, re-queue the job
           new qx.util.DeferredCall(function() {
@@ -298,7 +301,9 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     },
 
     __updateRowHeight: function(elem) {
-      var height = qx.bom.element.Dimension.getHeight(elem);
+      var
+        rect = elem.getBoundingClientRect(),
+        height = Math.round(rect.bottom - rect.top);
       if (height === 0) {
         // not ready try again
         qx.bom.AnimationFrame.request(qx.lang.Function.curry(this.__updateRowHeight, elem), this);

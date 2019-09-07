@@ -92,15 +92,17 @@ qx.Class.define('cv.ui.layout.Manager', {
         this.currentPageUnavailableWidth = 0;
         var navbarVisibility = this.getCurrentPageNavbarVisibility();
 
-        var left = document.querySelector('#navbarLeft');
-        var widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
+        var left = document.querySelector('#navbarLeft'),
+          leftRect = left.getBoundingClientRect(),
+          widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== "none" ? Math.round(leftRect.right - leftRect.left) : 0;
         if (widthNavbarLeft >= bodyWidth) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
           widthNavbarLeft = 0;
         }
-        var right = document.querySelector('#navbarRight');
-        var widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
+        var right = document.querySelector('#navbarRight'),
+          rightRect = right.getBoundingClientRect(),
+          widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== "none" ? Math.round(rightRect.right - rightRect.left) : 0;
         if (widthNavbarRight >= bodyWidth) {
           // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
@@ -136,11 +138,16 @@ qx.Class.define('cv.ui.layout.Manager', {
       var topDisplay = window.getComputedStyle(top)['display'];
       var bottomNavDisplay = window.getComputedStyle(bottomNav)['display'];
       var bottomDisplay = window.getComputedStyle(bottom)['display'];
-      var topHeight = qx.bom.element.Dimension.getHeight(top);
-      var topNavHeight = qx.bom.element.Dimension.getHeight(topNav);
-      var bottomNavHeight = qx.bom.element.Dimension.getHeight(bottomNav);
-      var bottomHeight = qx.bom.element.Dimension.getHeight(bottom);
-      var navPathHeight = qx.bom.element.Dimension.getHeight(document.querySelector('.nav_path'));
+      var topRect = top.getBoundingClientRect();
+      var topHeight = Math.round(topRect.bottom - topRect.top);
+      var topNavRect = topNav.getBoundingClientRect();
+      var topNavHeight = Math.round(topNavRect.bottom - topNavRect.top);
+      var bottomNavRect = bottomNav.getBoundingClientRect();
+      var bottomNavHeight = Math.round(bottomNavRect.bottom - bottomNavRect.top);
+      var bottomRect = bottom.getBoundingClientRect();
+      var bottomHeight = Math.round(bottomRect.bottom - bottomRect.top);
+      var nav_pathRect = document.querySelector('.nav_path').getBoundingClientRect();
+      var navPathHeight = Math.round(nav_pathRect.bottom - nav_pathRect.top);
 
       if (topDisplay  !== 'none' && topHeight > 0) {
         this.currentPageUnavailableHeight += Math.max(topHeight, navPathHeight);

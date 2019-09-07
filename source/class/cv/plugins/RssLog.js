@@ -343,16 +343,19 @@ qx.Class.define('cv.plugins.RssLog', {
       // get height of one entry, calc max num of display items in widget
       var displayrows = parseInt(c.dataset["last_rowcount"], 10) || 0;
       qx.bom.Html.clean(['<li class="rsslogRow odd" id="dummydiv">.</li>'], null, c);
-      var dummyDiv = c.querySelector('#dummydiv');
-      var itemheight = qx.bom.element.Dimension.getHeight(dummyDiv);
+      var dummyDiv = c.querySelector('#dummydiv'),
+        rect = dummyDiv.getBoundingClientRect(),
+        itemheight = Math.round(rect.bottom - rect.top);
       qx.dom.Element.remove(dummyDiv);
       if (itemheight !== 0) {
-        var widget = qx.dom.Element.getParentElement(qx.dom.Element.getParentElement(c)); // get the parent widget
-        var displayheight = qx.bom.element.Dimension.getHeight(widget);
-        var labelElem = widget.querySelector('.label');
+        var widget = qx.dom.Element.getParentElement(qx.dom.Element.getParentElement(c)), // get the parent widget
+          widgetRect = widget.getBoundingClientRect(),
+          displayheight = Math.round(widgetRect.bottom - widgetRect.top),
+          labelElem = widget.querySelector('.label');
         if (labelElem) {
           // max. height of actor is widget-label(if exists)
-          displayheight -= qx.bom.element.Dimension.getHeight(labelElem);
+          var labelElemRect = labelElem.getBoundingClientRect();
+          displayheight -= Math.round(labelElemRect.bottom - labelElemRect.top);
         }
         displayrows = Math.floor(displayheight / itemheight);
       }

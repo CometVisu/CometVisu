@@ -253,9 +253,11 @@ qx.Class.define('cv.ui.Popup', {
       if (attributes.align !== undefined) {
         align = attributes.align;
       }
-      var placement = cv.ui.PopupHandler.placementStrategy(
+      var
+        ret_valRect = ret_val.getBoundingClientRect(),
+        placement = cv.ui.PopupHandler.placementStrategy(
         anchor,
-        {w: qx.bom.element.Dimension.getWidth(ret_val), h: qx.bom.element.Dimension.getHeight(ret_val)},
+        {w: Math.round(ret_valRect.right - ret_valRect.left), h: Math.round(ret_valRect.bottom - ret_valRect.top)},
         {w: qx.bom.Viewport.getWidth(), h: qx.bom.Viewport.getHeight()},
         align
       );
