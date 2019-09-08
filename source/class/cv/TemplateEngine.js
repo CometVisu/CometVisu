@@ -735,7 +735,7 @@ qx.Class.define('cv.TemplateEngine', {
         color: "white",
         margin: "auto",
         padding: "0.5em"
-      }).forEach(function([key,value]){body.style[key]=value;});
+      }).forEach(function(key_value){body.style[key_value[0]]=key_value[1];});
       div.innerHTML = "Loading ...";
 
       body.appendChild(div);
@@ -777,7 +777,7 @@ qx.Class.define('cv.TemplateEngine', {
           Object.entries({
             left: pos.left + "px",
             top: pos.top + "px"
-          }).forEach(function([key,value]){tDiv.style[key]=value;});
+          }).forEach(function(key_value){tDiv.style[key_value[0]]=key_value[1];});
           qx.dom.Element.insertEnd(tDiv, myDiv);
 
           qx.event.Registration.addListener(myDiv, 'pointerover', function() {

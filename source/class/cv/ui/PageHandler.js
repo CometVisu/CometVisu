@@ -110,7 +110,7 @@ qx.Class.define('cv.ui.PageHandler', {
         Object.entries({
           "display": "block",
           "overflow": "hidden"
-        }).forEach(function([key,value]){pageWidget.getDomElement().style[key]=value;});
+        }).forEach(function(key_value){pageWidget.getDomElement().style[key_value[0]]=key_value[1];});
         // set it to visible
         pageWidget.setVisible(true);
       }
@@ -215,7 +215,7 @@ qx.Class.define('cv.ui.PageHandler', {
       if (oldPos) {
         styles.position = oldPos;
       }
-      Object.entries(styles).forEach(function([key,value]){page.style[key]=value;});
+      Object.entries(styles).forEach(function(key_value){page.style[key_value[0]]=key_value[1];});
     }
   }
 });

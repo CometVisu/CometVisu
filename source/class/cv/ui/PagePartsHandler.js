@@ -94,7 +94,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           Object.entries({
             width: cssSize,
             'margin-right': '-' + cssSize
-          }).forEach(function([key,value]){document.querySelector('#navbarRight').style[key]=value;});
+          }).forEach(function(key_value){document.querySelector('#navbarRight').style[key_value[0]]=key_value[1];});
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
       }

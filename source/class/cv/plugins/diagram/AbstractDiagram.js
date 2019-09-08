@@ -496,7 +496,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }, this);
 
       var parent = qx.dom.Element.getParentElement(popupDiagram);
-      Object.entries({height: "100%", width: "95%", margin: "auto"}).forEach(function([key,value]){parent.style[key]=value;});// define parent as 100%!
+      Object.entries({height: "100%", width: "95%", margin: "auto"}).forEach(function(key_value){parent.style[key_value[0]]=key_value[1];});// define parent as 100%!
       qx.dom.Element.empty(popupDiagram);
       qx.event.Registration.addListener(popupDiagram, "tap", function(event) {
         // don't let the popup know about the click, or it will close
