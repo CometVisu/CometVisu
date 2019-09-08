@@ -110,7 +110,7 @@ qx.Class.define('cv.ui.PageHandler', {
         Object.entries({
           "display": "block",
           "overflow": "hidden"
-        }).forEach(function(key,value){pageWidget.getDomElement().style[key]=value;});
+        }).forEach(function([key,value]){pageWidget.getDomElement().style[key]=value;});
         // set it to visible
         pageWidget.setVisible(true);
       }

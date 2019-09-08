@@ -162,7 +162,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
               height: backdropHeight + 'px',
               left: backdropLeft + 'px',
               top: backdropTop + 'px'
-            }).forEach(function(key,value){backdrop.style[key]=value;});
+            }).forEach(function([key,value]){backdrop.style[key]=value;});
           }
 
           page.getDomElement().querySelectorAll('.widget_container').forEach(function (widgetContainer) {

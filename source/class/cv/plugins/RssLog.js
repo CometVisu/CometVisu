@@ -220,7 +220,7 @@ qx.Class.define('cv.plugins.RssLog', {
       var title = qx.dom.Node.getText(document.querySelector('#' + this.getPath() + ' .label')) || '';
       var popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
       var parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
-      Object.entries({height: "90%", width: "90%", margin: "auto"}).forEach(function(key,value){parent.style[key]=value;}); // define parent as 100%!
+      Object.entries({height: "90%", width: "90%", margin: "auto"}).forEach(function([key,value]){parent.style[key]=value;}); // define parent as 100%!
       if (this._timer) {
         this._timer.stop();
       }
