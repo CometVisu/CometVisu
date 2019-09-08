@@ -723,9 +723,9 @@ qx.Class.define('cv.TemplateEngine', {
       var body = document.querySelector("body");
 
       document.querySelectorAll('body > *').forEach(function(elem) {
-        elem.style['display'] = 'none';
+        elem.style.display = 'none';
       }, this);
-      body.style['backgroundColor'] = "black";
+      body.style['background-color'] = "black";
 
 
       var div = qx.dom.Element.create("div", {id: "designSelector"});
@@ -781,11 +781,11 @@ qx.Class.define('cv.TemplateEngine', {
           qx.dom.Element.insertEnd(tDiv, myDiv);
 
           qx.event.Registration.addListener(myDiv, 'pointerover', function() {
-            myDiv.style['background'] = "#bbbbbb";
+            myDiv.style.background = "#bbbbbb";
           }, this);
 
           qx.event.Registration.addListener(myDiv, 'pointerout', function() {
-            myDiv.style['background'] = "transparent";
+            myDiv.style.background = "transparent";
           }, this);
 
           qx.event.Registration.addListener(myDiv, 'tap', function() {

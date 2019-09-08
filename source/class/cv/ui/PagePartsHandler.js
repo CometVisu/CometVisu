@@ -85,7 +85,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       var cssSize = size + (isFinite(size) ? 'px' : '');
       switch (position) {
         case 'left':
-          document.querySelector('#navbarLeft').style["width"] = cssSize;
+          document.querySelector('#navbarLeft').style.width = cssSize;
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
 
@@ -149,24 +149,24 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       if (showtopnavigation) {
         if (topDisplay === "none") {
           document.querySelectorAll('#top, #top > *').forEach(function(elem) {
-            elem.style["display"] = "block";
+            elem.style.display = "block";
           }, this);
           this.removeInactiveNavbars(page.getPath());
         }
       } else {
         if (topDisplay !== "none") {
-          document.querySelector("#top").style["display"] = "none";
+          document.querySelector("#top").style.display = "none";
           this.removeInactiveNavbars(page.getPath());
         }
       }
       if (showfooter) {
         if (bottomDisplay === "none") {
-          document.querySelector("#bottom").style["display"] = "block";
+          document.querySelector("#bottom").style.display = "block";
           this.removeInactiveNavbars(page.getPath());
         }
       } else {
         if (bottomDisplay !== "none") {
-          document.querySelector("#bottom").style["display"] = "none";
+          document.querySelector("#bottom").style.display = "none";
           this.removeInactiveNavbars(page.getPath());
         }
       }
@@ -225,7 +225,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           break;
         case "out":
           onAnimationEnd = function () {
-            navbar.style["display"] = "none";
+            navbar.style.display = "none";
             cv.ui.layout.ResizeHandler.invalidateNavbar();
           };
           switch (position) {

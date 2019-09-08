@@ -263,7 +263,7 @@ qx.Class.define('cv.ui.layout.Manager', {
 
     __applyWidthClass: function (elem, widthClassSuffix) {
       if (widthClassSuffix === 'auto') {
-        elem.style['width'] = widthClassSuffix;
+        elem.style.width = widthClassSuffix;
       } else {
         switch (this.LAYOUT_MODE) {
           case 'GRID':
@@ -277,7 +277,7 @@ qx.Class.define('cv.ui.layout.Manager', {
             break;
 
           default:
-            elem.style['width'] = widthClassSuffix;
+            elem.style.width = widthClassSuffix;
             break;
         }
       }

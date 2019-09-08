@@ -118,7 +118,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       var messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
       this.__getBadgeElement().innerHTML = ""+messages;
       if (this.isHideWhenEmpty()) {
-        this.__getBadgeElement().style["display"] = messages === 0 ? "none" : "block";
+        this.__getBadgeElement().style.display = messages === 0 ? "none" : "block";
       }
     },
 

@@ -123,11 +123,11 @@ qx.Class.define('cv.ui.PageHandler', {
       } else {
         if (oldPageWidget) {
           var outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.out, speed);
-          oldPageWidget.getDomElement().style["overflowY"] = "hidden";
+          oldPageWidget.getDomElement().style["overflow-y"] = "hidden";
           outAnim.addListenerOnce("end", qx.lang.Function.curry(this.__onLeavePage, oldPageWidget), this);
         }
-        var oldPos = window.getComputedStyle(pageWidget.getDomElement())["position"];
-        pageWidget.getDomElement().style["position"] = "absolute";
+        var oldPos = window.getComputedStyle(pageWidget.getDomElement()).position;
+        pageWidget.getDomElement().style.position = "absolute";
         qx.bom.AnimationFrame.request(function() {
           var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig["in"], speed);
           animation.addListenerOnce("end", qx.lang.Function.curry(this.__onEnterPage, pageWidget, oldPos), this);
@@ -184,7 +184,7 @@ qx.Class.define('cv.ui.PageHandler', {
      */
     __onLeavePage: function(oldPageWidget) {
       oldPageWidget.getDomElement().classList.remove('pageActive', 'activePage');
-      oldPageWidget.getDomElement().style["overflow"] = null;
+      oldPageWidget.getDomElement().style.overflow = null;
       qx.event.message.Bus.dispatchByName("path." + oldPageWidget.getPath() + ".afterPageChange", oldPageWidget.getPath());
       qx.event.message.Bus.dispatchByName("path.pageLeft", oldPageWidget.getPath());
       oldPageWidget.setVisible(false);
@@ -215,7 +215,7 @@ qx.Class.define('cv.ui.PageHandler', {
       if (oldPos) {
         styles.position = oldPos;
       }
-      Object.entries(styles).forEach(function(key,value){page.style[key]=value;});
+      Object.entries(styles).forEach(function([key,value]){page.style[key]=value;});
     }
   }
 });
