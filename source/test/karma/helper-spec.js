@@ -194,7 +194,7 @@ var customMatchers = {
     return  {
       compare: function(actual, expected) {
         var result = {};
-        var label = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(actual),function(m){return m.matches("div.label");})[0];
+        var label = Array.from(actual.children).filter(function(m){return m.matches("div.label");})[0];
         result.pass = label && label.innerText === expected;
         if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to have value "+expected;

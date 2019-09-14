@@ -117,7 +117,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
     _onDomReady: function() {
       this.base(arguments);
       var actor = this.getActor();
-      var children = qx.dom.Hierarchy.getChildElements(actor);
+      var children = actor.childNodes;
       var value;
 
       if (this.getMapping()) {

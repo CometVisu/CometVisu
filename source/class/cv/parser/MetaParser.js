@@ -102,7 +102,7 @@ qx.Class.define("cv.parser.MetaParser", {
         var value = [];
         for (var i = 0; i < origin.length; i++) {
           var v = origin[i];
-          if (qx.dom.Node.isElement(v) && v.nodeName.toLowerCase() === 'icon') {
+          if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === 'icon') {
             var icon = this.__parseIconDefinition(v);
             value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon["class"]));
           }

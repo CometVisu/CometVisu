@@ -54,7 +54,7 @@ qx.Class.define('cv.parser.WidgetParser', {
       rootPage.querySelectorAll('template').forEach(function (elem) {
         var templateName = elem.getAttribute('name');
         var variables = {};
-        qx.dom.Hierarchy.getChildElements(elem).forEach(function (variable) {
+        elem.children.forEach(function (variable) {
           variables[variable.getAttribute('name')] = variable.innerHTML;
         }, this);
 
@@ -183,7 +183,7 @@ qx.Class.define('cv.parser.WidgetParser', {
         return handler.createDefaultWidget(widgetType, element, path, flavour, pageType);
       }
 
-      var layout = this.parseLayout( Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(element),function(m){return m.matches('layout');})[0] );
+      var layout = this.parseLayout( Array.from(element.children).filter(function(m){return m.matches('layout');})[0] );
       var style = qx.lang.Object.isEmpty(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
       var classes = handler.getDefaultClasses ? handler.getDefaultClasses(widgetType) : this.getDefaultClasses(widgetType);
       // the group widgets align attribute is just targeting the group header and is handled by the widget itself, so we skip it here
@@ -316,7 +316,7 @@ qx.Class.define('cv.parser.WidgetParser', {
         ( style ? (' style="' + style + '"') : '' ) + '>';
 
       Array.prototype.forEach.call(label.childNodes, function(elem) {
-        if( qx.dom.Node.isNodeName(elem, 'icon') ) {
+        if( elem.nodeName.toLowerCase() ==='icon' ) {
           ret_val += cv.IconHandler.getInstance().getIconText(
             elem.getAttribute('name'),
             elem.getAttribute('type'),
@@ -341,7 +341,7 @@ qx.Class.define('cv.parser.WidgetParser', {
     setWidgetLayout: function( element, path ) {
       var
         elementData = this.model.getWidgetData( path ),
-        layout      = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(element),function(m){return m.matches('layout');})[0],
+        layout      = Array.from(element.children).filter(function(m){return m.matches('layout');})[0],
         ret_val = '',
         rowspan = null;
 
@@ -480,7 +480,7 @@ qx.Class.define('cv.parser.WidgetParser', {
       if (!data.children) {
         data.children = [];
       }
-      var childs = qx.dom.Hierarchy.getChildElements(xml).filter(function(child) {
+      var childs = Array.from(xml.children).filter(function(child) {
         return ['layout', 'label', 'address'].indexOf(child.nodeName.toLowerCase()) === -1;
       }, this);
       childs.forEach(function (child, idx) {

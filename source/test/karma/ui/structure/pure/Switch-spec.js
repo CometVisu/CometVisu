@@ -28,7 +28,7 @@ describe("testing a switch", function() {
   it("should test the switch creator", function() {
 
     var res = this.createTestElement("switch", {flavour: 'potassium'}, '<label>Test</label>');
-    var switchWidget = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(res.getDomElement()),function(m){return m.matches(".switch");})[0];
+    var switchWidget = Array.from(res.getDomElement().children).filter(function(m){return m.matches(".switch");})[0];
 
     expect(switchWidget).toHaveFlavour('potassium');
     var actor = res.getActor();
@@ -40,7 +40,7 @@ describe("testing a switch", function() {
     expect(value).not.toBeNull();
     expect(value.innerText).toBe("-");
 
-    var label = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(switchWidget),function(m){return m.matches(".label");})[0];
+    var label = Array.from(switchWidget.children).filter(function(m){return m.matches(".label");})[0];
     expect(label).not.toBeNull();
     expect(label.innerText).toBe("Test");
 

@@ -64,7 +64,7 @@ qx.Class.define('cv.parser.widgets.Page', {
         left   : path === "id" ? false : null,
         right  : path === "id" ? false : null
       };
-      Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(page),function(m){return m.matches("navbar");}).forEach( function(elem) {
+      Array.from(page.children).filter(function(m){return m.matches("navbar");}).forEach( function(elem) {
         shownavbar[ elem.getAttribute('position') || 'left' ] = true;
       });
       // overwrite default when set manually in the config
@@ -93,7 +93,7 @@ qx.Class.define('cv.parser.widgets.Page', {
         wstyle = 'style="' + wstyle + '"';
       }
 
-      var layout = cv.parser.WidgetParser.parseLayout( Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(page),function(m){return m.matches("layout");})[0] );
+      var layout = cv.parser.WidgetParser.parseLayout( Array.from(page.children).filter(function(m){return m.matches("layout");})[0] );
       var backdropType = null;
       if (backdrop) {
         backdropType = '.svg' === backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';

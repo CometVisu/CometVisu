@@ -131,7 +131,7 @@ qx.Class.define('cv.util.ConfigLoader', {
         var xml = qx.xml.Document.fromString('<root>' + req.getResponseText() + '</root>');
         var parent = includeElem.parentElement;
         parent.removeChild(includeElem);
-        qx.dom.Hierarchy.getChildElements(xml.firstChild).forEach(function (child) {
+        xml.firstChild.childNodes.forEach(function (child) {
           parent.appendChild(child);
         });
         this.__loadQueue.remove(url);

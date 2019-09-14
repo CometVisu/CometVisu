@@ -45,7 +45,7 @@ qx.Class.define('cv.parser.widgets.Slide', {
       cv.parser.WidgetParser.parseAddress(xml, path);
 
       var datatype_min, datatype_max;
-      Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(xml),function(m){return m.matches("address");}).forEach(function(elem) {
+      Array.from(xml.children).filter(function(m){return m.matches("address");}).forEach(function(elem) {
         var transform = elem.getAttribute('transform');
         if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
           if (!( datatype_min > cv.Transform.registry[transform].range.min )) {// jshint ignore:line

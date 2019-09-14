@@ -42,7 +42,7 @@ function getOffsetCorners(elem) {
 
 function setRadius(elem, type, value) {
   elem.style[type] = value;
-  qx.dom.Hierarchy.getChildElements(elem).forEach(function(subElem) {
+  Array.from(elem.children).forEach(function(subElem) {
     subElem.style[type] = value;
   }, this);
 }
@@ -97,8 +97,8 @@ qx.event.message.Bus.subscribe("setup.dom.finished", function() {
 
     if (label.textContent.trim()!=="") {
       var actor = Array.prototype.filter.call(qx.dom.Hierarchy.getSiblings(label),function(m){return m.matches('.actor');})[0];
-      if (actor && Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(label),function(m){return m.matches('img');}).length === 0) {
-        var value = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(actor),function(m){return m.matches('.value');})[0];
+      if (actor && Array.from(label.children).filter(function(m){return m.matches('img');}).length === 0) {
+        var value = Array.from(actor.children).filter(function(m){return m.matches('.value');})[0];
         if (value && value.textContent.trim() !== "") {
           actor.style['padding-top'] = '0.5em';
         }

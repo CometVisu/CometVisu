@@ -134,7 +134,7 @@ qx.Class.define('cv.util.Tree', {
     * ********************************************************
     */
     getChildElements: function(element, selector) {
-      return qx.dom.Hierarchy.getChildElements(element).filter(function(child) {
+      return Array.from(element.childNodes).filter(function(child) {
         if (selector) {
           return Array.prototype.filter.call(child,function(m){return m.matches(selector);});
         } else {
