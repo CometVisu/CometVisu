@@ -41,7 +41,7 @@ describe("testing a colorchooser plugin", function() {
 
   it("should test the colorchooser creator", function() {
     var res = this.createTestWidgetString("colorchooser", {id: 'test'}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
     var widgetInstance = res[0];
 
     expect(widget).toHaveClass('colorchooser');

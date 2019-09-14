@@ -235,7 +235,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
           style: "visibility: hidden;",
           html: '<div class="badge"></div><header><h3>' + qx.locale.Manager.tr("Message center") + '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' + qx.locale.Manager.tr("Delete all") + '<div></div></footer>'
         });
-        qx.dom.Element.insertEnd(elem, body);
+        body.appendChild(elem);
 
         // create the template
         var templateCode = '<div class="message {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="'+this.getMessageElementId()+'{{ id }}">';
@@ -249,7 +249,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
           type: "text/template",
           html: templateCode
         });
-        qx.dom.Element.insertEnd(template, body);
+        body.appendChild(template);
       }
 
       this.__messagesContainer = elem.querySelector("section.messages");

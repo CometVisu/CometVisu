@@ -303,12 +303,12 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
         element.classList.add(this.getAlign());
       }
       var valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
-      qx.dom.Element.empty(valueElement);
+      valueElement.innerHTML = '';
       if (undefined !== value) {
         this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, valueElement));
       }
       else {
-        qx.dom.Element.insertEnd(document.createTextNode('-'), valueElement);
+        valueElement.appendChild(document.createTextNode('-'));
       }
       return value;
     },
@@ -323,7 +323,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
         valueElement.innerText = e;
       } else {
         qx.bom.Html.clean([e]).forEach(function (newElem) {
-          qx.dom.Element.insertEnd(newElem, valueElement);
+          valueElement.appendChild(newElem);
         }, this);
       }
     }

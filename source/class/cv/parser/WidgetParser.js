@@ -481,7 +481,7 @@ qx.Class.define('cv.parser.WidgetParser', {
         data.children = [];
       }
       var childs = qx.dom.Hierarchy.getChildElements(xml).filter(function(child) {
-        return ['layout', 'label', 'address'].indexOf(qx.dom.Node.getName(child)) === -1;
+        return ['layout', 'label', 'address'].indexOf(child.nodeName.toLowerCase()) === -1;
       }, this);
       childs.forEach(function (child, idx) {
         var childData = cv.parser.WidgetParser.parse(child, path + '_' + idx, flavour, pageType);

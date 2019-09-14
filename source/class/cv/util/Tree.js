@@ -153,7 +153,7 @@ qx.Class.define('cv.util.Tree', {
 
     getParent: function(element, until, selector, limit) {
       var parents = [];
-      var parent = qx.dom.Element.getParentElement(element);
+      var parent = element.parentNode;
       while (parent && parent.getAttribute('id') !== "pages") {
         var found = [parent];
         if (selector) {
@@ -166,7 +166,7 @@ qx.Class.define('cv.util.Tree', {
         if (until && Array.prototype.filter.call([parent],function(m){return m.matches(until);}).length > 0) {
           break;
         }
-        parent = qx.dom.Element.getParentElement(parent);
+        parent = parent.parentNode;
       }
       return parents;
     },

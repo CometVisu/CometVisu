@@ -123,7 +123,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
       if (this.getMapping()) {
         children.forEach(function (element, i) {
           value = this.defaultValueHandling(undefined, this['getButton' + (i + 1) + 'value']());
-          qx.dom.Element.empty(element);
+          element.innerHTML = '';
           this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, element));
         }, this);
       }

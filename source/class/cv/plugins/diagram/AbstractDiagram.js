@@ -155,12 +155,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           }
         };
         retVal.axesnum++;
-        axesNameIndex[qx.dom.Node.getText(elem)] = retVal.axesnum;
+        axesNameIndex[elem.innerText] = retVal.axesnum;
       }, this);
 
       xmlElement.querySelectorAll("influx,rrd").forEach(function(elem) {
         var
-          src = elem.tagName === 'rrd' ? qx.dom.Node.getText(elem) : elem.getAttribute('measurement'),
+          src = elem.tagName === 'rrd' ? elem.innerText : elem.getAttribute('measurement'),
           steps = (elem.getAttribute("steps") || "false") === "true",
           fillMissing = elem.getAttribute('fillMissing');
         retVal.ts[retVal.tsnum] = {
@@ -495,9 +495,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         }
       }, this);
 
-      var parent = qx.dom.Element.getParentElement(popupDiagram);
+      var parent = popupDiagram.parentNode;
       Object.entries({height: "100%", width: "95%", margin: "auto"}).forEach(function(key_value){parent.style[key_value[0]]=key_value[1];});// define parent as 100%!
-      qx.dom.Element.empty(popupDiagram);
+      popupDiagram.innerHTML = '';
       qx.event.Registration.addListener(popupDiagram, "tap", function(event) {
         // don't let the popup know about the click, or it will close
         event.stopPropagation();

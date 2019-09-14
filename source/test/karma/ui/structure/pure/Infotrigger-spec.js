@@ -70,7 +70,7 @@ describe("testing a infotrigger widget", function() {
 
     // check infoposition
     var info = obj.getInfoActor();
-    var actors = Array.prototype.filter.call(qx.dom.Hierarchy.getDescendants(widget),function(m){return m.matches(".actor");});
+    var actors = Array.from(widget.getElementsByTagName("*")).filter(function(m){return m.matches(".actor");});
     expect(actors.indexOf(info)).toBe(0);
   });
 
@@ -84,7 +84,7 @@ describe("testing a infotrigger widget", function() {
 
     // check infoposition
     var info = obj.getInfoActor();
-    actors = Array.prototype.filter.call(qx.dom.Hierarchy.getDescendants(widget),function(m){return m.matches(".actor");});
+    actors = Array.from(widget.getElementsByTagName("*")).filter(function(m){return m.matches(".actor");});
     expect(actors.indexOf(info)).toBe(1);
   });
 
@@ -99,7 +99,7 @@ describe("testing a infotrigger widget", function() {
 
     // check infoposition
     var info = obj.getInfoActor();
-    actors = Array.prototype.filter.call(qx.dom.Hierarchy.getDescendants(widget),function(m){return m.matches(".actor");});
+    actors = Array.from(widget.getElementsByTagName("*")).filter(function(m){return m.matches(".actor");});
     expect(actors.indexOf(info)).toBe(2);
   });
 

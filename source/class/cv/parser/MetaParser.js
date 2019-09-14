@@ -93,7 +93,7 @@ qx.Class.define("cv.parser.MetaParser", {
       var mapping = {};
       var formula = elem.querySelectorAll('formula');
       if (formula.length > 0) {
-        mapping.formulaSource = qx.dom.Node.getText(formula[0]);
+        mapping.formulaSource = formula[0].textContent;
         mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
       }
       var subElements = elem.querySelectorAll('entry');
@@ -102,12 +102,12 @@ qx.Class.define("cv.parser.MetaParser", {
         var value = [];
         for (var i = 0; i < origin.length; i++) {
           var v = origin[i];
-          if (qx.dom.Node.isElement(v) && qx.dom.Node.getName(v).toLowerCase() === 'icon') {
+          if (qx.dom.Node.isElement(v) && v.nodeName.toLowerCase() === 'icon') {
             var icon = this.__parseIconDefinition(v);
             value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon["class"]));
           }
-          else if (qx.dom.Node.getText(v).trim().length) {
-            value.push(qx.dom.Node.getText(v).trim());
+          else if (v.textContent.trim().length) {
+            value.push(v.textContent.trim());
           }
         }
         // check for default entry
@@ -146,7 +146,7 @@ qx.Class.define("cv.parser.MetaParser", {
       var classnames = '';
       var styling = {};
       elem.querySelectorAll('entry').forEach(function (subElem) {
-        classnames += qx.dom.Node.getText(subElem) + ' ';
+        classnames += subElem.textContent + ' ';
         // check for default entry
         var isDefaultValue = subElem.getAttribute('default');
         if (isDefaultValue !== undefined) {
@@ -156,7 +156,7 @@ qx.Class.define("cv.parser.MetaParser", {
         }
         // now set the styling values
         if (subElem.getAttribute('value')) {
-          styling[subElem.getAttribute('value')] = qx.dom.Node.getText(subElem);
+          styling[subElem.getAttribute('value')] = subElem.textContent;
           if (isDefaultValue) {
             styling.defaultValue = subElem.getAttribute('value');
           }
@@ -164,7 +164,7 @@ qx.Class.define("cv.parser.MetaParser", {
           if (!styling.range) {
             styling.range = {};
           }
-          styling.range[parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), qx.dom.Node.getText(subElem)];
+          styling.range[parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), subElem.textContent];
           if (isDefaultValue) {
             styling.defaultValue = parseFloat(subElem.getAttribute('range_min'));
           }
@@ -202,7 +202,7 @@ qx.Class.define("cv.parser.MetaParser", {
           return;
         }
 
-        var text = qx.dom.Node.getText(elem);
+        var text = elem.textContent;
         var search;
         switch (extend) {
           case 'all': // append all parameters

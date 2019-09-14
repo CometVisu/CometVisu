@@ -8,7 +8,7 @@ describe("testing the meta parser", function() {
     // add footer to document
     var footer = qx.dom.Element.create("div", {"class": 'footer'});
     var body = document.querySelector("body");
-    qx.dom.Element.insertEnd(footer, body);
+    body.appendChild(footer);
 
     // ugly hack to allow multiline string
     var source = (function() {/*
@@ -128,7 +128,7 @@ describe("testing the meta parser", function() {
       expect(cv.parser.WidgetParser.__templates.hasOwnProperty('test')).toBeTruthy();
       expect(cv.parser.WidgetParser.__templates.test.trim()).toEqual('<root><text><label>Test template</label></text></root>');
 
-      qx.dom.Element.remove(footer);
+      footer.parentNode.removeChild(footer);
     });
   });
 });

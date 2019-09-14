@@ -38,11 +38,11 @@ describe("testing a switch", function() {
 
     var value = res.getValueElement();
     expect(value).not.toBeNull();
-    expect(qx.dom.Node.getText(value)).toBe("-");
+    expect(value.innerText).toBe("-");
 
     var label = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(switchWidget),function(m){return m.matches(".label");})[0];
     expect(label).not.toBeNull();
-    expect(qx.dom.Node.getText(label)).toBe("Test");
+    expect(label.innerText).toBe("Test");
 
     expect(res.getOnValue()).toBe("1");
     expect(res.getOffValue()).toBe("0");

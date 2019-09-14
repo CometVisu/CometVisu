@@ -51,7 +51,7 @@ describe("testing a image widget", function() {
       flavour: 'potassium'
     }, '<label>Test</label>');
 
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
 
     expect(widget).toHaveClass('image');
     expect(widget).toHaveLabel('Test');

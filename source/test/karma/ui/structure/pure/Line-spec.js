@@ -30,9 +30,9 @@ describe("testing a line widget", function() {
 
     var res = this.createTestWidgetString("line");
 
-    var line = qx.bom.Html.clean([res[1]])[0];
+    var line = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
 
-    expect(qx.dom.Node.getName(line).toLowerCase()).toBe('hr');
+    expect(line.nodeName.toLowerCase()).toBe('hr');
     expect(res[0].getPath()).toBe("id_0");
   });
 });

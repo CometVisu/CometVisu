@@ -75,7 +75,7 @@ qx.Class.define("cv.ui.util.ProgressBar", {
       var container = this.__domElement = qx.dom.Element.create("div", { "class": "progressbar" });
       this.__domElement.$$widget = this;
       var progress = this.__progressElement = qx.dom.Element.create("div", { "class": "completed" });
-      qx.dom.Element.insertEnd(progress, container);
+      container.appendChild(progress);
       return container;
     }
   }

@@ -57,7 +57,7 @@ describe("testing a navbar widget", function() {
 
     if (pos === "left") {
       expect(navbar).toHaveClass("flavour_potassium");
-      expect(qx.dom.Node.getText(navbar.querySelector("h2"))).toBe('Testbar');
+      expect(navbar.querySelector("h2").innerText).toBe('Testbar');
       expect(templateEngine.pagePartsHandler.navbarSetSize).toHaveBeenCalledWith(pos,"200");
       expect(obj.getScope()).toBe(1);
     }

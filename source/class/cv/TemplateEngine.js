@@ -632,7 +632,7 @@ qx.Class.define('cv.TemplateEngine', {
           var fallback = true;
           pages.forEach(function (page) {
             var p = cv.util.Tree.getClosest(page, ".page");
-            if (qx.dom.Node.getText(page) === page_name) {
+            if (page.innerText === page_name) {
               var pid = p.getAttribute('id');
               if (pid.length < currentPageId.length) {
                 // found pages path is shorter the the current pages -> must be an ancestor
@@ -657,7 +657,7 @@ qx.Class.define('cv.TemplateEngine', {
           if (fallback) {
             // take the first page that fits (old behaviour)
             pages.forEach(function (page) {
-              if (qx.dom.Node.getText(page)  === page_name) {
+              if (page.innerText  === page_name) {
                 page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
                 // break loop
                 return false;
@@ -666,7 +666,7 @@ qx.Class.define('cv.TemplateEngine', {
           }
         } else {
           pages.forEach(function (page) {
-            if (qx.dom.Node.getText(page) === page_name) {
+            if (page.innerText === page_name) {
               page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
               // break loop
               return false;
@@ -763,7 +763,7 @@ qx.Class.define('cv.TemplateEngine', {
           myDiv.innerHTML += "<iframe src=\""+qx.util.ResourceManager.getInstance().toUri("designs/design_preview.html")+"?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
           myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\""+qx.util.ResourceManager.getInstance().toUri("demo/media/arrow.png")+"\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
 
-          qx.dom.Element.insertEnd(myDiv, div);
+          div.appendChild(myDiv);
 
 
           var tDiv = qx.dom.Element.create("div", {
@@ -778,7 +778,7 @@ qx.Class.define('cv.TemplateEngine', {
             left: pos.left + "px",
             top: pos.top + "px"
           }).forEach(function(key_value){tDiv.style[key_value[0]]=key_value[1];});
-          qx.dom.Element.insertEnd(tDiv, myDiv);
+          myDiv.appendChild(tDiv);
 
           qx.event.Registration.addListener(myDiv, 'pointerover', function() {
             myDiv.style.background = "#bbbbbb";

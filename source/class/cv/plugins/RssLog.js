@@ -216,8 +216,8 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _action: function () {
-      var brss = qx.bom.Html.clean(['<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>'])[0];
-      var title = qx.dom.Node.getText(document.querySelector('#' + this.getPath() + ' .label')) || '';
+      var brss = (function(){var div=document.createElement('div');div.innerHTML='<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>';return div.childNodes[0];})();
+      var title = document.querySelector('#' + this.getPath() + ' .label').innerText || '';
       var popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
       var parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
       Object.entries({height: "90%", width: "90%", margin: "auto"}).forEach(function(key_value){parent.style[key_value[0]]=key_value[1];}); // define parent as 100%!
@@ -336,9 +336,9 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     __prepareContentElement: function(ul, c) {
-      qx.dom.Element.empty(c);
+      c.innerHTML = '';
 
-      qx.dom.Element.insertEnd(ul, c);
+      c.appendChild(ul);
 
       // get height of one entry, calc max num of display items in widget
       var displayrows = parseInt(c.dataset["last_rowcount"], 10) || 0;
@@ -346,9 +346,9 @@ qx.Class.define('cv.plugins.RssLog', {
       var dummyDiv = c.querySelector('#dummydiv'),
         rect = dummyDiv.getBoundingClientRect(),
         itemheight = Math.round(rect.bottom - rect.top);
-      qx.dom.Element.remove(dummyDiv);
+      dummyDiv.parentNode.removeChild(dummyDiv);
       if (itemheight !== 0) {
-        var widget = qx.dom.Element.getParentElement(qx.dom.Element.getParentElement(c)), // get the parent widget
+        var widget = c.parentNode.parentNode, // get the parent widget
           widgetRect = widget.getBoundingClientRect(),
           displayheight = Math.round(widgetRect.bottom - widgetRect.top),
           labelElem = widget.querySelector('.label');
@@ -386,7 +386,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
       this.debug("ID: "+c.getAttribute("id")+", Feed: "+this.getSrc());
 
-      var ul = qx.dom.Element.create("ul");
+      var ul = document.createElement("ul");
       var displayrows = this.__prepareContentElement(ul, c);
 
       var itemnum = items.length;
@@ -465,7 +465,7 @@ qx.Class.define('cv.plugins.RssLog', {
         if (itemack === 'modify') {
           qx.event.Registration.addListener(rowElem, "tap", this._onTap, this);
         }
-        qx.dom.Element.insertEnd(rowElem, ul);
+        ul.appendChild(rowElem);
 
         // Alternate row classes
         row = (row === 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
@@ -512,7 +512,7 @@ qx.Class.define('cv.plugins.RssLog', {
       if (mapping && mapping !== '') {
         var mappedValue = this.applyMapping(state, mapping);
         var span = item.querySelector('.mappedValue');
-        qx.dom.Element.empty(span);
+        span.innerHTML = '';
         this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
       }
       var req = new qx.io.request.Xhr(this.__request.getUrl());

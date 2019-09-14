@@ -70,15 +70,15 @@ describe("testing a trigger", function() {
 
     var value = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(actor),function(m){return m.matches(".value");})[0];
     expect(value).not.toBeNull();
-    expect(qx.dom.Node.getText(value)).toBe("-");
+    expect(value.innerText).toBe("-");
 
     this.initWidget(res);
 
-    expect(qx.dom.Node.getText(value)).toBe("1");
+    expect(value.innerText).toBe("1");
 
     var label = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(widget),function(m){return m.matches(".label");})[0];
     expect(label).not.toBeNull();
-    expect(qx.dom.Node.getText(label)).toBe("Test");
+    expect(label.innerText).toBe("Test");
 
     expect(res.getSendValue()).toBe("1");
     expect(res.getShortValue()).toBe("0");

@@ -27,7 +27,7 @@ describe("testing a multitrigger widget", function() {
   it("should test the multitrigger creator", function() {
 
     var res = this.createTestWidgetString("multitrigger", {}, "<label>Test</label>");
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
 
     expect(widget).toHaveClass('multitrigger');
     expect(widget).toHaveLabel('Test');
@@ -49,13 +49,13 @@ describe("testing a multitrigger widget", function() {
       'showstatus': 'true',
       'mapping': 'test'
     });
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
 
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
     var values = widget.querySelectorAll("div.actor > div.value");
     for (var i=0; i<4; i++) {
-      expect(qx.dom.Node.getText(values[i])).toBe('B'+(i+1));
+      expect(values[i].innerText).toBe('B'+(i+1));
     }
   });
 

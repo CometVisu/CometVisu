@@ -46,7 +46,7 @@ var createTestWidgetString = function (name, attributes, content) {
   if (name !== "page") {
     // create surrounding root page
     var page = qx.dom.Element.create("page", {visible: "false"});
-    qx.dom.Element.insertEnd(elem, page);
+    page.appendChild(elem);
     data = cv.parser.WidgetParser.parse(page, 'id', null, "text");
     cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
     data = cv.data.Model.getInstance().getWidgetData(data.children[0]);
@@ -137,7 +137,7 @@ resetApplication = function() {
 
   var body = document.querySelector("body");
   // load empty HTML structure
-  qx.dom.Element.empty(body);
+  body.innerHTML = '';
   qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
 
   cv.Config.cacheUsed = false;
@@ -153,7 +153,7 @@ resetApplication = function() {
 // DOM Helpers
 
 var findChild = function(elem, selector) {
-  return Array.prototype.filter.call(qx.dom.Hierarchy.getDescendants(elem),function(m){return m.matches(selector);})[0];
+  return Array.from(elem.getElementsByTagName("*")).filter(function(m){return m.matches(selector);})[0];
 };
 
 var customMatchers = {
@@ -195,12 +195,12 @@ var customMatchers = {
       compare: function(actual, expected) {
         var result = {};
         var label = Array.prototype.filter.call(qx.dom.Hierarchy.getChildElements(actual),function(m){return m.matches("div.label");})[0];
-        result.pass = label && qx.dom.Node.getText(label) === expected;
+        result.pass = label && label.innerText === expected;
         if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to have value "+expected;
         }
         else{
-          result.message = "Expected " + actual.tagName + " to have value "+expected+", but it has "+qx.dom.Node.getText(label);
+          result.message = "Expected " + actual.tagName + " to have value "+expected+", but it has "+label.innerText;
         }
         return result;
       }
@@ -211,13 +211,13 @@ var customMatchers = {
     return  {
       compare: function(actual, expected) {
         var result = {};
-        var label = Array.prototype.filter.call(qx.dom.Hierarchy.getDescendants(actual),function(m){return m.matches(".value");})[0];
-        result.pass = label && qx.dom.Node.getText(label) === expected;
+        var label = Array.from(actual.getElementsByTagName("*")).filter(function(m){return m.matches(".value");})[0];
+        result.pass = label && label.innerText === expected;
         if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to have label "+expected;
         }
         else{
-          result.message = "Expected " + actual.tagName + " to have label "+expected+", but it has "+qx.dom.Node.getText(label);
+          result.message = "Expected " + actual.tagName + " to have label "+expected+", but it has "+label.innerText;
         }
         return result;
       }
@@ -352,7 +352,7 @@ afterEach(function () {
 
   var body = document.querySelector("body");
   // load empty HTML structure
-  qx.dom.Element.empty(body);
+  body.innerHTML = '';
   qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
   cv.TemplateEngine.getInstance().resetDomFinished();
   // resetApplication();

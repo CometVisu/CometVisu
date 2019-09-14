@@ -257,7 +257,7 @@ qx.Class.define('cv.util.IconTools', {
   },
 
   defer: function() {
-    var canvas = qx.dom.Element.create('canvas');
+    var canvas = document.createElement('canvas');
     this.defer.self.tmpCanvas = canvas;
     this.defer.self.tmpCtx = canvas.getContext('2d');
   }

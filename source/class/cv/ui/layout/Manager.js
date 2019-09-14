@@ -249,7 +249,7 @@ qx.Class.define('cv.ui.layout.Manager', {
             var groupColspan = mainAreaColspan;
             var parentGroupElement = cv.util.Tree.getParent(e, '.widget_container', '.group', 1)[0];
             if (parentGroupElement) {
-              var parentGroupWidget = cv.ui.structure.WidgetFactory.getInstanceByElement(qx.dom.Element.getParentElement(parentGroupElement));
+              var parentGroupWidget = cv.ui.structure.WidgetFactory.getInstanceByElement(parentGroupElement.parentNode);
               if (parentGroupWidget) {
                 groupColspan = Math.min(mainAreaColspan, this.getWidgetColspan(parentGroupWidget, width));
               }

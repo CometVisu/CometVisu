@@ -53,7 +53,7 @@ qx.Class.define('cv.io.Reflection', {
             }
             thisEntry = thisEntry[thisNumber];
           }
-          Array.prototype.filter.call(qx.dom.Hierarchy.getDescendants(elem),function(m){return m.matches('div.widget_container');}).forEach(function(widget, i) {
+          Array.from(elem.getElementsByTagName("*")).filter(function(m){return m.matches('div.widget_container');}).forEach(function(widget, i) {
             if (undefined === thisEntry[i]) {
               thisEntry[i] = {};
             }

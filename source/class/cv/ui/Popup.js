@@ -97,7 +97,7 @@ qx.Class.define('cv.ui.Popup', {
           style: "display:none",
           html: closable ? '<div class="popup_close">X</div>' : ""
         });
-        qx.dom.Element.insertEnd(ret_val, body);
+        body.appendChild(ret_val);
         this.__elementMap.close = ret_val.querySelectorAll("div.popup_close");
         addCloseListeners = true;
       } else {
@@ -119,13 +119,13 @@ qx.Class.define('cv.ui.Popup', {
       if (attributes.title) {
         if (!this.__elementMap.title) {
           this.__elementMap.title = qx.dom.Element.create("div", {"class": "head"});
-          qx.dom.Element.insertEnd(this.__elementMap.title, ret_val);
+          ret_val.appendChild(this.__elementMap.title);
         }
 
         if (qx.lang.Type.isString(attributes.title)) {
           this.__elementMap.title.innerHTML = "" + attributes.title;
         } else {
-          qx.dom.Element.insertEnd(attributes.title, this.__elementMap.title);
+          this.__elementMap.title.appendChild(attributes.title);
         }
 
       }
@@ -133,7 +133,7 @@ qx.Class.define('cv.ui.Popup', {
       if (attributes.content || attributes.icon || attributes.progress) {
         if (!this.__elementMap.content) {
           this.__elementMap.content = qx.dom.Element.create("div", {"class": "main"});
-          qx.dom.Element.insertEnd(this.__elementMap.content, ret_val);
+          ret_val.appendChild(this.__elementMap.content);
         }
 
         if (attributes.content) {
@@ -144,7 +144,7 @@ qx.Class.define('cv.ui.Popup', {
           if (qx.lang.Type.isString(attributes.content)) {
             this.__elementMap.messageContent.innerHTML = attributes.content;
           } else {
-            qx.dom.Element.replaceChild(attributes.content, this.__elementMap.messageContent);
+            this.__elementMap.messageContent.parentNode.replaceChild(attributes.content, this.__elementMap.messageContent);
             this.__elementMap.messageContent = attributes.content;
           }
         } else {
@@ -172,7 +172,7 @@ qx.Class.define('cv.ui.Popup', {
           if (!this.__elementMap.progress) {
             var bar = new cv.ui.util.ProgressBar();
             this.__elementMap.progress = bar.getDomElement();
-            qx.dom.Element.insertEnd(this.__elementMap.progress, this.__elementMap.content);
+            this.__elementMap.content.appendChild(this.__elementMap.progress);
           }
           this.__elementMap.progress.$$widget.setValue(attributes.progress);
         } else {
@@ -183,7 +183,7 @@ qx.Class.define('cv.ui.Popup', {
       if (attributes.actions && Object.getOwnPropertyNames(attributes.actions).length > 0) {
         if (!this.__elementMap.actions) {
           this.__elementMap.actions = qx.dom.Element.create("div", {"class": "actions"});
-          qx.dom.Element.insertEnd(this.__elementMap.actions, ret_val);
+          ret_val.appendChild(this.__elementMap.actions);
         } else {
           // clear content
           this.__elementMap.actions.innerHTML = "";
@@ -199,7 +199,7 @@ qx.Class.define('cv.ui.Popup', {
           } else {
             wrapper = qx.dom.Element.create('div', (actionTypes > index + 1) ? {style: "margin-bottom: 20px"} : {});
           }
-          qx.dom.Element.insertEnd(wrapper, target);
+          target.appendChild(wrapper);
           target = wrapper;
           typeActions.forEach(function (action) {
             var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
@@ -207,7 +207,7 @@ qx.Class.define('cv.ui.Popup', {
               actionButton.$$handler && actionButton.$$handler.addListener('close', function () {
                 this.close();
               }, this);
-              qx.dom.Element.insertEnd(actionButton, target);
+              target.appendChild(actionButton);
             }
           }, this);
         }, this);
@@ -288,7 +288,7 @@ qx.Class.define('cv.ui.Popup', {
 
     destroyElement: function(name) {
       if (this.__elementMap[name]) {
-        qx.dom.Element.remove(this.__elementMap[name]);
+        this.__elementMap[name].parentNode.removeChild(this.__elementMap[name]);
         delete this.__elementMap[name];
       }
     },
@@ -299,7 +299,7 @@ qx.Class.define('cv.ui.Popup', {
     close: function () {
       if (this.__domElement) {
         cv.ui.BodyBlocker.getInstance().unblock(this.__domElement.$$topic);
-        qx.dom.Element.remove(this.__domElement);
+        this.__domElement.parentNode.removeChild(this.__domElement);
         this.__domElement = null;
         this.__elementMap = {};
       } else {

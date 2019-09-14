@@ -36,7 +36,7 @@ qx.Class.define('cv.util.String', {
      */
     decodeHtmlEntities: function (str) {
       if (!this.__elem) {
-        this.__elem = qx.dom.Element.create("span");
+        this.__elem = document.createElement("span");
       }
       this.__elem.innerHTML = str;
       return this.__elem.innerText;

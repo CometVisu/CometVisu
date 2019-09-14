@@ -120,7 +120,7 @@ qx.Class.define('cv.ui.PopupHandler', {
       if (popup instanceof cv.ui.Popup) {
         popup.close();
       } else {
-        qx.dom.Element.remove(popup);
+        popup.parentNode.removeChild(popup);
       }
     },
 

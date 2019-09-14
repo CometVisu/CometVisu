@@ -37,13 +37,13 @@ describe("testing a page widget", function() {
     var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
     expect(page.getPageType()).toBe("text");
 
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
     cv.ui.structure.pure.Page.createFinal();
     expect(widget).toHaveClass('pagelink');
 
     var elem = page.getDomElement();
     expect(elem).toHaveClass("type_text");
-    expect(qx.dom.Node.getText(Array.prototype.filter.call(qx.dom.Hierarchy.getDescendants(elem),function(m){return m.matches("h1");})[0])).toBe("Testpage");
+    expect(Array.from(elem.getElementsByTagName("*")).filter(function(m){return m.matches("h1");})[0].innerText).toBe("Testpage");
   });
 
   it("should test the page creator with some attributes", function() {
@@ -63,7 +63,7 @@ describe("testing a page widget", function() {
     var pageLink = res[0];
     var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
 
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
     var actor = this.findChild(widget, ".actor");
     expect(actor.style['text-align']).toBe('right');
     cv.ui.structure.pure.Page.createFinal();

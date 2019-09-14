@@ -224,7 +224,7 @@ qx.Class.define('cv.report.Replay', {
           style: "position: absolute; transform: rotate(-40deg); font-size: 36px; z-index: 1000000"
         });
         this.__cursor.innerHTML = "&uarr;";
-        qx.dom.Element.insertEnd(this.__cursor, document.querySelector("body"));
+        document.querySelector("body").appendChild(this.__cursor);
       }
       Object.entries({top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"}).forEach(function(key_value){this.__cursor.style[key_value[0]]=key_value[1];});
 
