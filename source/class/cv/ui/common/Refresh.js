@@ -233,7 +233,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
             elem.width = elem.width;
             elem.height = elem.height;
             elem.parentNode.insertBefore( canvas, elem );
-            qx.bom.element.Attribute.reset(elem, "src"); 
+            elem.removeAttribute("src");
           });
         },
         imgReloadRestore = function(){

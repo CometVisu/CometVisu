@@ -60,7 +60,7 @@ qx.Class.define('cv.io.Client', {
     }
 
     if (backendName && backendName !== 'default') {
-      if (qx.lang.Type.isObject(backendName)) {
+      if (typeof backendName === 'object') {
         // override default settings
         this.setBackend(backendName);
       } else if (cv.io.Client.backends[backendName]) {
@@ -402,7 +402,7 @@ qx.Class.define('cv.io.Client', {
         if (!ev) { return null; }
         var json = ev.getTarget().getResponse();
         if (!json) { return null; }
-        if (qx.lang.Type.isString(json)) {
+        if (typeof json === 'string') {
           json = cv.io.parser.Json.parse(json);
         }
         return json;
@@ -428,7 +428,7 @@ qx.Class.define('cv.io.Client', {
         Object.getOwnPropertyNames(data).forEach(function (key) {
           if (key === "i" || key === "t") {
             prefix += key + "=" + data[key] + "&";
-          } else if (qx.lang.Type.isArray(data[key])) {
+          } else if (Array.isArray(data[key])) {
             suffix += key + "=" + data[key].join("&" + key + "=") + "&";
           } else {
             suffix += key + "=" + data[key] + "&";

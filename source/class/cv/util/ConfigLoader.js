@@ -59,7 +59,7 @@ qx.Class.define('cv.util.ConfigLoader', {
         cv.Config.configServer = req.getResponseHeader("Server");
         // Response parsed according to the server's response content type
         var xml = req.getResponse();
-        if (xml && qx.lang.Type.isString(xml)) {
+        if (xml && (typeof xml === 'string')) {
           xml = qx.xml.Document.fromString(xml);
         }
         this.__xml = xml;

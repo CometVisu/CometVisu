@@ -168,7 +168,7 @@ qx.Class.define('cv.plugins.UpnpController', {
       this.__callRemote('status', {}, function (ev) {
         var data = ev.getTarget().getResponse();
         try {
-          if (qx.lang.Type.isString(data)) {
+          if (typeof data === 'string') {
             data = qx.lang.Json.parse(data);
           }
           this.traceLog("volume          : " + data.volume);
@@ -263,7 +263,7 @@ qx.Class.define('cv.plugins.UpnpController', {
       this.__callRemote('playlists', {}, function (ev) {
         var data = ev.getTarget().getResponse();
         try {
-          if (qx.lang.Type.isString(data)) {
+          if (typeof data === 'string') {
             data = qx.lang.Json.parse(data);
           }
         } catch (e) {

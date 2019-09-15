@@ -319,7 +319,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * @param e {var} value to add to the element
      */
     _applyValueToDom: function(valueElement, e) {
-      if (qx.lang.Type.isNumber(e)) {
+      if (typeof e === 'number') {
         valueElement.innerText = e;
       } else {
         valueElement.innerHTML += e;

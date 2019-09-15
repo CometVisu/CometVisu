@@ -129,7 +129,7 @@ qx.Class.define('cv.TemplateEngine', {
      * @param parts {String[]|String} parts to load
      */
     loadParts: function(parts) {
-      if (!qx.lang.Type.isArray(parts)) {
+      if (!Array.isArray(parts)) {
         parts = [parts];
       }
       var loadLazyParts = this.lazyPlugins.filter(function(part) {
@@ -497,7 +497,7 @@ qx.Class.define('cv.TemplateEngine', {
      * Start the screensaver if a screensave time is set
      */
     startScreensaver: function() {
-      if (qx.lang.Type.isNumber(cv.Config.configSettings.screensave_time)) {
+      if (typeof cv.Config.configSettings.screensave_time === 'number') {
         this.screensave = new qx.event.Timer(cv.Config.configSettings.screensave_time * 1000);
         this.screensave.addListener("interval", function () {
           this.scrollToPage();

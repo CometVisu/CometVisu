@@ -332,7 +332,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
         return;
       }
       Object.getOwnPropertyNames(message.actions).forEach(function(type) {
-        var typeActions = qx.lang.Type.isArray(message.actions[type]) ? message.actions[type] : [message.actions[type]];
+        var typeActions = Array.isArray(message.actions[type]) ? message.actions[type] : [message.actions[type]];
         typeActions.forEach(function(action) {
           if (!action.needsConfirmation) {
             var handler = cv.core.notifications.ActionRegistry.getActionHandler(type, action);

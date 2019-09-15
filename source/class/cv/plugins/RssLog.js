@@ -365,7 +365,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
     __updateRssContent: function(ev) {
       var result = ev.getTarget().getResponse();
-      if (qx.lang.Type.isString(result)) {
+      if (typeof result === 'string') {
         // no json -> error
         this.error(result);
         return;
@@ -452,7 +452,7 @@ qx.Class.define('cv.plugins.RssLog', {
         rowElem.dataset['mapping'] = item.mapping;
         if (item.tags) {
           var tmp = rowElem.querySelector('span');
-          if (qx.lang.Type.isArray(item.tags)) {
+          if (Array.isArray(item.tags)) {
             tmp.classList.add.apply( tmp.classList, item.tags );
           } else {
             tmp.classList.add(item.tags);

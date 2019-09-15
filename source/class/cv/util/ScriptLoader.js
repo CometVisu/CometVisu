@@ -69,7 +69,7 @@ qx.Class.define('cv.util.ScriptLoader', {
     __listener : null,
 
     addStyles: function(styleArr) {
-      var queue = (qx.lang.Type.isString(styleArr) ? [ styleArr ] : qx.lang.Array.clone(styleArr));
+      var queue = (typeof styleArr === 'string' ? [ styleArr ] : qx.lang.Array.clone(styleArr));
       var suffix = (cv.Config.forceReload === true) ? '?'+Date.now() : '';
       queue.forEach(function(style) {
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
@@ -77,7 +77,7 @@ qx.Class.define('cv.util.ScriptLoader', {
     },
 
     addScripts: function(scriptArr, order) {
-      var queue = (qx.lang.Type.isString(scriptArr) ? [ scriptArr ] : scriptArr);
+      var queue = (typeof scriptArr === 'string' ? [ scriptArr ] : scriptArr);
       // make sure that no cached scripts are loaded
       var suffix = (cv.Config.forceReload === true) ? '?'+Date.now() : '';
       var realQueue = [];

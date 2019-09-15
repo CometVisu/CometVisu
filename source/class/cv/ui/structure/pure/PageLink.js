@@ -63,7 +63,7 @@ qx.Class.define('cv.ui.structure.pure.PageLink', {
     getDomString: function() {
       var layout = this.getLayout();
 
-      var style = qx.lang.Type.isObject(layout) ? '' : 'style="' + cv.parser.WidgetParser.extractLayout(layout, this.getPageType()) + '"';
+      var style = typeof layout === 'object' ? '' : 'style="' + cv.parser.WidgetParser.extractLayout(layout, this.getPageType()) + '"';
 
       var ret_val = '<div class="widget clearfix link pagelink ' + this.getClasses() + '" ' + style + '>';
       ret_val += '<div class="actor" ' + this.getWstyle() + '><a href="javascript:void(0)">' + this.getName() + '</a></div>';

@@ -122,7 +122,7 @@ qx.Class.define('cv.ui.Popup', {
           ret_val.appendChild(this.__elementMap.title);
         }
 
-        if (qx.lang.Type.isString(attributes.title)) {
+        if (typeof attributes.title === 'string') {
           this.__elementMap.title.innerHTML = "" + attributes.title;
         } else {
           this.__elementMap.title.appendChild(attributes.title);
@@ -141,7 +141,7 @@ qx.Class.define('cv.ui.Popup', {
             this.__elementMap.messageContent = qx.dom.Element.create("div", {"class": "message"});
             qx.dom.Element.insertBegin(this.__elementMap.messageContent, this.__elementMap.content);
           }
-          if (qx.lang.Type.isString(attributes.content)) {
+          if (typeof attributes.content === 'string') {
             this.__elementMap.messageContent.innerHTML = attributes.content;
           } else {
             this.__elementMap.messageContent.parentNode.replaceChild(attributes.content, this.__elementMap.messageContent);
@@ -190,7 +190,7 @@ qx.Class.define('cv.ui.Popup', {
         }
         var actionTypes = Object.getOwnPropertyNames(attributes.actions).length;
         Object.getOwnPropertyNames(attributes.actions).forEach(function (type, index) {
-          var typeActions = qx.lang.Type.isArray(attributes.actions[type]) ? attributes.actions[type] : [attributes.actions[type]];
+          var typeActions = Array.isArray(attributes.actions[type]) ? attributes.actions[type] : [attributes.actions[type]];
 
           var target = this.__elementMap.actions;
           var wrapper = null;

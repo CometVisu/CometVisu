@@ -74,7 +74,7 @@ qx.Class.define('cv.parser.widgets.Page', {
           return;
         }
         var value = page.getAttribute('shownavbar-'+pos);
-        if (qx.lang.Type.isString(value)) {
+        if (typeof value === 'string') {
           shownavbar[pos] = value === "true";
         }
       }, this);

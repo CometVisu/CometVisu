@@ -332,10 +332,10 @@ qx.Class.define("cv.ui.NotificationCenter", {
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
           var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
           anim.on("end", function () {
-            qx.bom.element.Transform.translate(this.__element, "-300px");
+            this.__element.style.transform = 'translate(-300px)';
           }, this);
         } else {
-          qx.bom.element.Transform.translate(this.__element, "-300px");
+          this.__element.style.transform = 'translate(-300px)';
         }
       }
     },
@@ -361,11 +361,11 @@ qx.Class.define("cv.ui.NotificationCenter", {
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
           var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
           anim.on("end", function () {
-            qx.bom.element.Transform.translate(this.__element, "-0px");
+            this.__element.style.transform = 'translate(-0px)';
             this.__blocker.unblock();
           }, this);
         } else {
-          qx.bom.element.Transform.translate(this.__element, "-0px");
+          this.__element.style.transform = 'translate(-0px)';
           this.__blocker.unblock();
         }
       }
