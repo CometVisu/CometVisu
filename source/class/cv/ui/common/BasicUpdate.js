@@ -322,9 +322,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       if (qx.lang.Type.isNumber(e)) {
         valueElement.innerText = e;
       } else {
-        qx.bom.Html.clean([e]).forEach(function (newElem) {
-          valueElement.appendChild(newElem);
-        }, this);
+        valueElement.innerHTML += e;
       }
     }
   }

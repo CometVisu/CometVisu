@@ -137,8 +137,7 @@ resetApplication = function() {
 
   var body = document.querySelector("body");
   // load empty HTML structure
-  body.innerHTML = '';
-  qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+  body.innerHTML = cv.Application.HTML_STRUCT;
 
   cv.Config.cacheUsed = false;
   // reset templateEngine's init values
@@ -352,8 +351,7 @@ afterEach(function () {
 
   var body = document.querySelector("body");
   // load empty HTML structure
-  body.innerHTML = '';
-  qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+  body.innerHTML = cv.Application.HTML_STRUCT;
   cv.TemplateEngine.getInstance().resetDomFinished();
   // resetApplication();
 });

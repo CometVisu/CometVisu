@@ -342,7 +342,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
       // get height of one entry, calc max num of display items in widget
       var displayrows = parseInt(c.dataset["last_rowcount"], 10) || 0;
-      qx.bom.Html.clean(['<li class="rsslogRow odd" id="dummydiv">.</li>'], null, c);
+      ul.innerHTML = '<li class="rsslogRow odd" id="dummydiv">.</li>';
       var dummyDiv = c.querySelector('#dummydiv'),
         rect = dummyDiv.getBoundingClientRect(),
         itemheight = Math.round(rect.bottom - rect.top);
