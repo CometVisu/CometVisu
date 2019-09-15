@@ -430,7 +430,8 @@ qx.Class.define('cv.plugins.RssLog', {
         if (item.mapping && item.mapping !== '') {
           var mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
           var span = rowElem.querySelector('.mappedValue');
-          this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
+          var self = this;
+          this.defaultValue2DOM(mappedValue, function(e){self._applyValueToDom(span,e);});
         }
         if (this.__separatoradd && idx !== 0) {
           rowElem.classList.add('rsslog_separator');
@@ -513,7 +514,8 @@ qx.Class.define('cv.plugins.RssLog', {
         var mappedValue = this.applyMapping(state, mapping);
         var span = item.querySelector('.mappedValue');
         span.innerHTML = '';
-        this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
+        var self = this;
+        this.defaultValue2DOM(mappedValue, function(e){self._applyValueToDom(span,e);});
       }
       var req = new qx.io.request.Xhr(this.__request.getUrl());
       req.set({

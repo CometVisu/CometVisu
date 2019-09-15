@@ -50,7 +50,7 @@ qx.Class.define('cv.util.String', {
      * @return {String}
      */
     sprintf: function() {
-      var args = qx.lang.Array.fromArguments(arguments);
+      var args = Array.prototype.slice.call(arguments);
       var string = '-';
       try {
         string = sprintf.apply(this, args);

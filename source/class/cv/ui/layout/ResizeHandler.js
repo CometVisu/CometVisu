@@ -306,7 +306,8 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         height = Math.round(rect.bottom - rect.top);
       if (height === 0) {
         // not ready try again
-        qx.bom.AnimationFrame.request(qx.lang.Function.curry(this.__updateRowHeight, elem), this);
+        var self = this;
+        qx.bom.AnimationFrame.request(function(){self.__updateRowHeight(elem);}, this);
         return;
       }
       var styles = '';

@@ -42,11 +42,13 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
   ******************************************************
   */
   construct: function(props) {
-    var classes = props.classes.trim().split(" ");
-    if (classes.indexOf("right")) {
+    var classes = props.classes.trim().split(" "),
+        i_right = classes.indexOf("right");
+
+    if (i_right !== -1) {
       // do not align, but float the container instead
       this.setContainerClass("float-right");
-      qx.lang.Array.remove(classes, "right");
+      classes.splice(i_right, 1);
       props.classes = classes.join(" ");
     }
     this.base(arguments, props);

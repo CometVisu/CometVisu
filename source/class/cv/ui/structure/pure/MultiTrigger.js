@@ -124,7 +124,8 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
         children.forEach(function (element, i) {
           value = this.defaultValueHandling(undefined, this['getButton' + (i + 1) + 'value']());
           element.innerHTML = '';
-          this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, element));
+          var self = this;
+          this.defaultValue2DOM(value, function(e){self._applyValueToDom(element,e);});
         }, this);
       }
     },

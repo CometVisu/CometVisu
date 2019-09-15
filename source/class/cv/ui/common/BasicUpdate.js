@@ -305,7 +305,8 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       var valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
       valueElement.innerHTML = '';
       if (undefined !== value) {
-        this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, valueElement));
+        var self = this;
+        this.defaultValue2DOM(value, function(e){self._applyValueToDom(valueElement, e);});
       }
       else {
         valueElement.appendChild(document.createTextNode('-'));

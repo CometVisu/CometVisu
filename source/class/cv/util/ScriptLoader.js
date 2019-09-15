@@ -69,7 +69,7 @@ qx.Class.define('cv.util.ScriptLoader', {
     __listener : null,
 
     addStyles: function(styleArr) {
-      var queue = (typeof styleArr === 'string' ? [ styleArr ] : qx.lang.Array.clone(styleArr));
+      var queue = (typeof styleArr === 'string' ? [ styleArr ] : styleArr.concat());
       var suffix = (cv.Config.forceReload === true) ? '?'+Date.now() : '';
       queue.forEach(function(style) {
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(style) + suffix);
@@ -102,7 +102,7 @@ qx.Class.define('cv.util.ScriptLoader', {
         var processQueue = function () {
           if (order.length > 0) {
             var loadIndex = order.shift();
-            var script = qx.lang.Array.removeAt(realQueue, loadIndex);
+            var script = realQueue.splice(loadIndex, 1)[0];
             var loader = this.__loadSingleScript(script);
             loader.addListener("ready", processQueue, this);
           } else {

@@ -143,7 +143,7 @@ qx.Class.define('cv.data.Model', {
           }
         });
         if (removeIndex >= 0) {
-          qx.lang.Array.removeAt(this.__stateListeners[address], removeIndex);
+          this.__stateListeners[address].splice(removeIndex, 1);
           if (this.__stateListeners[address].length === 0) {
             delete this.__stateListeners[address];
           }

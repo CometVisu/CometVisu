@@ -194,8 +194,8 @@ qx.Class.define('cv.ui.Popup', {
 
           var target = this.__elementMap.actions;
           var wrapper = null;
-          if (cv.core.notifications.actions[qx.lang.String.firstUp(type)] && cv.core.notifications.actions[qx.lang.String.firstUp(type)].getWrapper) {
-            wrapper = cv.core.notifications.actions[qx.lang.String.firstUp(type)].getWrapper();
+          if (cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)] && cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)].getWrapper) {
+            wrapper = cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)].getWrapper();
           } else {
             wrapper = qx.dom.Element.create('div', (actionTypes > index + 1) ? {style: "margin-bottom: 20px"} : {});
           }

@@ -121,16 +121,17 @@ qx.Class.define('cv.ui.PageHandler', {
         }
         this.__onEnterPage(pageWidget, 0, true);
       } else {
+        var self = this;
         if (oldPageWidget) {
           var outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.out, speed);
           oldPageWidget.getDomElement().style["overflow-y"] = "hidden";
-          outAnim.addListenerOnce("end", qx.lang.Function.curry(this.__onLeavePage, oldPageWidget), this);
+          outAnim.addListenerOnce("end", function(){self.__onLeavePage(oldPageWidget);}, this);
         }
         var oldPos = window.getComputedStyle(pageWidget.getDomElement()).position;
         pageWidget.getDomElement().style.position = "absolute";
         qx.bom.AnimationFrame.request(function() {
           var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig["in"], speed);
-          animation.addListenerOnce("end", qx.lang.Function.curry(this.__onEnterPage, pageWidget, oldPos), this);
+          animation.addListenerOnce("end", function(updateVisibility){self.__onEnterPage(pageWidget,oldPos,updateVisibility);}, this);
         }, this);
       }
     },

@@ -62,13 +62,13 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       ].forEach(function (tuple) {
         var property = tuple[0];
         var defaultValue = tuple[1];
-        if (this['get' + qx.lang.String.firstUp(property)]() === null) {
+        if (this['get' + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
           // inherit from parent
           if (parentPage) {
             parentPage.bind(property, this, property);
           } else {
             // we have not parent page, because we are the root page, use the default value
-            this['set' + qx.lang.String.firstUp(property)](defaultValue);
+            this['set' + property.charAt(0).toUpperCase() + property.substr(1)](defaultValue);
           }
         }
         if (!parentPage) {
@@ -177,7 +177,10 @@ qx.Class.define('cv.ui.structure.pure.Page', {
 
     _applyNavbarVisibility: function(value, old, name) {
       if (value !== null) {
-        qx.lang.Array.remove(this.__waitForProperties, name);
+        var i_name = this.__waitForProperties.indexOf(name);
+        if( i_name !== -1 ) {
+          this.__waitForProperties.splice(i_name,1);
+        }
         if (this.__waitForProperties.length === 0) {
           this.setInitialized(true);
         }

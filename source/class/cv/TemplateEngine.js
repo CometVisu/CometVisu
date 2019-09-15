@@ -136,7 +136,7 @@ qx.Class.define('cv.TemplateEngine', {
         return parts.indexOf(part) >= 0;
       });
       if (loadLazyParts.length) {
-        qx.lang.Array.exclude(parts, loadLazyParts);
+        parts = parts.filter(function(p){return !loadLazyParts.includes(p);});
       }
       this.__partQueue.append(parts);
       qx.io.PartLoader.require(parts, function(states) {
@@ -243,7 +243,8 @@ qx.Class.define('cv.TemplateEngine', {
       var model = cv.data.Model.getInstance();
       this.visu.update = model.update.bind(model); // override clients update function
       if (cv.Config.reporting) {
-        this.visu.record = qx.lang.Function.curry(cv.report.Record.getInstance().record, cv.report.Record.BACKEND).bind(cv.report.Record.getInstance());
+        var recordInstance = cv.report.Record.getInstance();
+        this.visu.record = function(p,d){recordInstance.record.apply(recordInstance,[cv.report.Record.BACKEND,p,d]);};
       }
       this.visu.showError = this._handleClientError.bind(this);
       this.visu.user = 'demo_user'; // example for setting a user
@@ -271,7 +272,7 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     _handleClientError: function (errorCode, varargs) {
-      varargs = qx.lang.Array.fromArguments(arguments, 1);
+      varargs = Array.prototype.slice.call(arguments, 1);
       var notification;
       var message = '';
       switch (errorCode) {
@@ -413,7 +414,7 @@ qx.Class.define('cv.TemplateEngine', {
       var metaParser = new cv.parser.MetaParser();
 
       // start with the plugins
-      settings.pluginsToLoad = qx.lang.Array.append(settings.pluginsToLoad, metaParser.parsePlugins(loaded_xml));
+      settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(loaded_xml));
       // and then the rest
       metaParser.parse(loaded_xml, done);
       this.debug("parsed");

@@ -138,7 +138,8 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       if (page) {
         if (!page.isInitialized()) {
           // page is not ready, defer this update
-          page.addListenerOnce("changeInitialized", qx.lang.Function.curry(this.updatePageParts, page, speed), this);
+          var self = this;
+          page.addListenerOnce("changeInitialized", function(){self.updatePageParts(page,speed);}, this);
           return;
         }
         showtopnavigation = page.getShowTopNavigation();
