@@ -89,7 +89,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      */
     parse: function (xml, path, flavour, pageType, mappings) {
       if (mappings) {
-        mappings = qx.lang.Object.mergeWith(mappings, this.getAttributeToPropertyMappings());
+        mappings = Object.assign(mappings, this.getAttributeToPropertyMappings());
       } else {
         mappings = this.getAttributeToPropertyMappings();
       }
@@ -539,7 +539,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           frameRate: 20,
           triggerOnDrag : false
         },
-        yaxes  : qx.lang.Object.clone(this.getContent().axes,true), // copy to prevent side effects
+        yaxes  : JSON.parse(JSON.stringify(this.getContent().axes)), // deep copy to prevent side effects
         xaxes  : [{
           mode       : "time",
           timeformat : this.getTimeformat()
@@ -573,13 +573,13 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         }
       };
       options.yaxes.forEach(function(val) {
-        qx.lang.Object.mergeWith(val, {axisLabelColour: this.getGridcolor(), color: this.getGridcolor()});
+        Object.assign(val, {axisLabelColour: this.getGridcolor(), color: this.getGridcolor()});
       }, this);
       options.xaxes.forEach(function(val) {
-        qx.lang.Object.mergeWith(val, {axisLabelColour: this.getGridcolor(), color: this.getGridcolor()});
+        Object.assign(val, {axisLabelColour: this.getGridcolor(), color: this.getGridcolor()});
       }, this);
       if (isPopup) {
-        qx.lang.Object.mergeWith(options, {
+        Object.assign(options, {
           yaxis : {
             isPopup   : true,
             zoomRange : this.getZoomYAxis() ? [null, null] : false
@@ -596,12 +596,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
 
       if (!isPopup && !this.getPreviewlabels()) {
-        qx.lang.Object.mergeWith(options, {xaxes: [ {ticks: 0, mode: options.xaxes[0].mode } ]});
+        Object.assign(options, {xaxes: [ {ticks: 0, mode: options.xaxes[0].mode } ]});
         if( 0 === options.yaxes.length ) {
           options.yaxes[0] = {};
         }
         options.yaxes.forEach(function(val) {
-          qx.lang.Object.mergeWith(val, {ticks:0, axisLabel: null});
+          Object.assign(val, {ticks:0, axisLabel: null});
         }, this);
       }
 

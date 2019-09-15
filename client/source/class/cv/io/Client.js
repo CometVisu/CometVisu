@@ -248,13 +248,13 @@ qx.Class.define('cv.io.Client', {
 
     setBackend: function(newBackend) {
       // override default settings
-      var backend = qx.lang.Object.mergeWith(qx.lang.Object.clone(cv.io.Client.backends['default']), newBackend);
+      var backend = Object.assign({}, cv.io.Client.backends['default'], newBackend);
       this.backend = backend;
       if (backend.transport === 'sse' && backend.transportFallback) {
         if (window.EventSource === undefined) {
           // browser does not support EventSource object => use fallback
           // transport + settings
-          qx.lang.Object.mergeWith(backend, backend.transportFallback);
+          Object.assign(backend, backend.transportFallback);
         }
       }
       // add trailing slash to baseURL if not set
@@ -496,7 +496,7 @@ qx.Class.define('cv.io.Client', {
             delete options.listeners;
           }
         }
-        ajaxRequest.set(qx.lang.Object.mergeWith({
+        ajaxRequest.set(Object.assign({
           accept: "application/json"
         }, options || {}));
         if (callback) {
@@ -553,7 +553,7 @@ qx.Class.define('cv.io.Client', {
       var json = this.getResponse(args);
       // read backend configuration if send by backend
       if (json.c) {
-        this.setBackend(qx.lang.Object.mergeWith(this.getBackend(), json.c));
+        this.setBackend(Object.assign(this.getBackend(), json.c));
       }
       this.session = json.s || "SESSION";
       this.setServer(this.getResponseHeader(args, "Server"));

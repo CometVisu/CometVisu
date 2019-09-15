@@ -184,7 +184,7 @@ qx.Class.define('cv.parser.WidgetParser', {
       }
 
       var layout = this.parseLayout( Array.from(element.children).filter(function(m){return m.matches('layout');})[0] );
-      var style = qx.lang.Object.isEmpty(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
+      var style = Object.keys(layout).length === 0 ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
       var classes = handler.getDefaultClasses ? handler.getDefaultClasses(widgetType) : this.getDefaultClasses(widgetType);
       // the group widgets align attribute is just targeting the group header and is handled by the widget itself, so we skip it here
       if ( element.getAttribute('align') && widgetType !== "group" ) {

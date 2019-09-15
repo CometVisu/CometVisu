@@ -71,7 +71,7 @@ describe('test the NotificationCenter', function () {
     var badge = document.querySelector("#notification-center .badge");
     expect(badge).not.toBeUndefined();
 
-    center.handleMessage(qx.lang.Object.clone(message));
+    center.handleMessage(Object.assign({}, message));
     expect(center.getMessages().getLength()).toBe(1);
 
     expect(badge.innerHTML).toEqual("1");
@@ -81,7 +81,7 @@ describe('test the NotificationCenter', function () {
     message.severity = "high";
     message.unique = true;
 
-    center.handleMessage(qx.lang.Object.clone(message));
+    center.handleMessage(Object.assign({}, message));
     // as the message was unique it replaces the old one
     expect(center.getMessages().getLength()).toBe(1);
 
@@ -92,7 +92,7 @@ describe('test the NotificationCenter', function () {
     message.severity = "urgent";
     message.unique = false;
 
-    center.handleMessage(qx.lang.Object.clone(message));
+    center.handleMessage(Object.assign({}, message));
     // as the message was unique it replaces the old one
     expect(center.getMessages().getLength()).toBe(2);
 
@@ -103,8 +103,8 @@ describe('test the NotificationCenter', function () {
     message.condition = false;
     message.unique = true;
 
-    center.handleMessage(qx.lang.Object.clone(message));
-    center.handleMessage(qx.lang.Object.clone(message));
+    center.handleMessage(Object.assign({}, message));
+    center.handleMessage(Object.assign({}, message));
     // as we had 2 messages with same topic both should be gone now
     expect(center.getMessages().getLength()).toBe(0);
 
@@ -122,7 +122,7 @@ describe('test the NotificationCenter', function () {
     };
 
     for(var i=0; i< 10; i++) {
-      var msg = qx.lang.Object.clone(message);
+      var msg = Object.assign({}, message);
       msg.title = i;
       center.handleMessage(msg);
     }

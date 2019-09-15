@@ -41,7 +41,7 @@ qx.Class.define('cv.ConfigCache', {
       if (qx.core.Environment.get("html.storage.local") === false) {
         return;
       }
-      var config = qx.lang.Object.clone(cv.Config.configSettings, true);
+      var config = JSON.parse(JSON.stringify(cv.Config.configSettings)); // deep copy
       var model = cv.data.Model.getInstance();
       this.save(this._cacheKey, {
         hash: this.toHash(xml),

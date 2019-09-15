@@ -283,7 +283,7 @@ qx.Class.define('cv.plugins.RssLog', {
      */
     __refreshRss: function() {
       var src = this.getSrc();
-      var requestData = qx.lang.Object.clone(this.__fixedRequestData);
+      var requestData = Object.assign({}, this.__fixedRequestData);
       if (this.getFilter()) {
         requestData.f = this.getFilter();
       }
@@ -518,7 +518,7 @@ qx.Class.define('cv.plugins.RssLog', {
       var req = new qx.io.request.Xhr(this.__request.getUrl());
       req.set({
         method: "GET",
-        requestData: qx.lang.Object.mergeWith(qx.lang.Object.clone(this.__fixedRequestData), {
+        requestData: Object.assign({}, this.__fixedRequestData, {
           'u': id,
           'state': state
         }),

@@ -82,7 +82,7 @@ qx.Class.define('cv.util.Tree', {
         return null;
       }
       var model = cv.data.Model.getInstance();
-      while (qx.lang.Object.isEmpty(data) && parentPath.length > 2) {
+      while (Object.keys(data).length === 0 && parentPath.length > 2) {
         data = model.getWidgetData(parentPath);
         if (parentPath === "id_") {
           break;

@@ -223,7 +223,7 @@ qx.Class.define('cv.plugins.UpnpController', {
       if (!data) {
         data = {};
       }
-      data = qx.lang.Object.mergeWith(data, {
+      data = Object.assign(data, {
         player_ip_addr: this.getPlayerIp(),
         port: this.getPlayerPort()
       });

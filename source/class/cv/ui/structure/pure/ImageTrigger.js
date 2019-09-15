@@ -101,7 +101,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     _getInnerDomString: function () {
 
       var style = "";
-      if (qx.lang.Object.isEmpty(this.getLayout())) {
+      if (Object.keys(this.getLayout()).length === 0) {
         style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
       }
       if (this.getHeight()) {

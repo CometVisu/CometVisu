@@ -310,7 +310,7 @@ qx.Class.define("cv.parser.MetaParser", {
           if (!stateConfig.hasOwnProperty(address)) {
             stateConfig[address] = [];
           }
-          var addressConfig = qx.lang.Object.clone(config);
+          var addressConfig = Object.assign({}, config);
           addressConfig.addressConfig = addresses[address];
           stateConfig[address].push(addressConfig);
         });

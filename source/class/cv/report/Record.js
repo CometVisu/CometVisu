@@ -251,7 +251,7 @@ qx.Class.define('cv.report.Record', {
       };
 
       if (data.eventClass === "PointerEvent") {
-        qx.lang.Object.mergeWith(data.native, {
+        Object.assign(data.native, {
           pointerId : nativeEvent.pointerId,
           width : nativeEvent.width,
           height : nativeEvent.height,
@@ -262,7 +262,7 @@ qx.Class.define('cv.report.Record', {
           isPrimary : nativeEvent.isPrimary
         });
       } else if (data.eventClass === "WheelEvent") {
-        qx.lang.Object.mergeWith(data.native, {
+        Object.assign(data.native, {
           deltaX : nativeEvent.deltaX,
           deltaY : nativeEvent.deltaY,
           deltaZ : nativeEvent.deltaZ,
@@ -373,11 +373,11 @@ qx.Class.define('cv.report.Record', {
 
       var d = new Date();
       var ts = d.getFullYear()+
-        qx.lang.String.pad(""+(d.getMonth()+1), 2, "0")+
-        qx.lang.String.pad(""+d.getDate(), 2, "0")+"-"+
-        qx.lang.String.pad(""+d.getHours(), 2, "0")+
-        qx.lang.String.pad(""+d.getMinutes(), 2, "0")+
-        qx.lang.String.pad(""+d.getSeconds(), 2, "0");
+        (""+(d.getMonth()+1)).padStart(2,"0")+
+        (""+d.getDate()).padStart(2,"0")+"-"+
+        (""+d.getHours()).padStart(2,"0")+
+        (""+d.getMinutes()).padStart(2,"0")+
+        (""+d.getSeconds()).padStart(2,"0");
 
       var a = window.document.createElement('a');
       a.href = window.URL.createObjectURL(new Blob([qx.lang.Json.stringify(data)], {type: 'application/json'}));

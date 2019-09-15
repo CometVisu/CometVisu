@@ -70,7 +70,7 @@ qx.Class.define('cv.io.Reflection', {
      */
     read: function (path) {
       var widget = this.lookupWidget(path),
-        data = qx.lang.Object.mergeWith({}, cv.data.Model.getInstance().getWidgetDataByElement(widget)); // copy
+        data = Object.assign({}, cv.data.Model.getInstance().getWidgetDataByElement(widget)); // copy
       delete data.basicvalue;
       delete data.value;
       return data;
