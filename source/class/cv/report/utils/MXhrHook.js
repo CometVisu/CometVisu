@@ -34,7 +34,7 @@ qx.Mixin.define('cv.report.utils.MXhrHook', {
      */
     getRequestHash: function() {
       return cv.ConfigCache.hashCode(cv.report.Record.normalizeUrl(this._getConfiguredUrl()) +
-        this.getMethod()+qx.lang.Json.stringify(this.getRequestData()));
+        this.getMethod()+JSON.stringify(this.getRequestData()));
     },
 
     _onPhaseChange: function(ev) {

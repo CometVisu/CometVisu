@@ -169,7 +169,7 @@ qx.Class.define('cv.plugins.UpnpController', {
         var data = ev.getTarget().getResponse();
         try {
           if (typeof data === 'string') {
-            data = qx.lang.Json.parse(data);
+            data = JSON.parse(data);
           }
           this.traceLog("volume          : " + data.volume);
           this.traceLog("reltime         : " + data.reltimeResponse);
@@ -264,7 +264,7 @@ qx.Class.define('cv.plugins.UpnpController', {
         var data = ev.getTarget().getResponse();
         try {
           if (typeof data === 'string') {
-            data = qx.lang.Json.parse(data);
+            data = JSON.parse(data);
           }
         } catch (e) {
           this.error(e);

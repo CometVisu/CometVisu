@@ -108,7 +108,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       if (!e.data) {
         this.error("invalid content received from SSE: ", e);
       }
-      var json = typeof e.data === 'object' ? e.data : qx.lang.Json.parse(e.data);
+      var json = typeof e.data === 'object' ? e.data : JSON.parse(e.data);
       this.__notificationRouter.dispatchMessage(json.topic || "cv.backend", json);
     }
   },

@@ -383,7 +383,7 @@ var jOWM = jOWM || {};
            var req = ev.getTarget();
            var data = req.getResponse();
            if (typeof data === 'string') {
-               data = qx.lang.Json.parse(data);
+               data = JSON.parse(data);
            }
            callback(data);
        }, this);

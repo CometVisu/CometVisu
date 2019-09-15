@@ -31,12 +31,12 @@ qx.Class.define('cv.io.parser.Json', {
       "qx": function(data) {
         var result = {};
         try {
-          result = qx.lang.Json.parse(data);
+          result = JSON.parse(data);
         } catch (e) {
           data.split("}{").forEach(function(subData, i) {
             try {
               var jsonString = i === 0 ? subData + "}" : "{" + subData;
-              result = Object.assign(result, qx.lang.Json.parse(jsonString));
+              result = Object.assign(result, JSON.parse(jsonString));
             } catch (se) {
               qx.log.Logger.error(se);
             }

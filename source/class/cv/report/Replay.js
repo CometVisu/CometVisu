@@ -102,7 +102,7 @@ qx.Class.define('cv.report.Replay', {
       this.__config = qx.xml.Document.fromString(log.config);
       if (log.data.cache && qx.core.Environment.get("html.storage.local") === true) {
         localStorage.setItem(cv.Config.configSuffix + ".body", log.data.cache.body);
-        localStorage.setItem(cv.Config.configSuffix + ".data", qx.lang.Json.stringify(log.data.cache.data));
+        localStorage.setItem(cv.Config.configSuffix + ".data", JSON.stringify(log.data.cache.data));
       }
       cv.report.utils.FakeServer.init(log.xhr, this.__data.runtime.build);
     },
@@ -165,7 +165,7 @@ qx.Class.define('cv.report.Replay', {
 
         case cv.report.Record.SCREEN:
           // most browsers do not allow resizing the window
-          console.log("resize event received "+qx.lang.Json.stringify(record.d));
+          console.log("resize event received "+JSON.stringify(record.d));
           window.resizeTo(record.d.w, record.d.h);
           break;
 

@@ -255,7 +255,7 @@ qx.Class.define("cv.Application",
           }
         }
       }
-      body += "```\n"+exString+"\n```\n\n**Client-Data:**\n```\n"+qx.lang.Json.stringify(bugData, null, 2)+"\n```";
+      body += "```\n"+exString+"\n```\n\n**Client-Data:**\n```\n"+JSON.stringify(bugData, null, 2)+"\n```";
 
       var notification = {
         topic: "cv.error",

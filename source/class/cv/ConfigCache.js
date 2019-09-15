@@ -75,7 +75,7 @@ qx.Class.define('cv.ConfigCache', {
     
     save: function(key, data) {
       if (qx.core.Environment.get("html.storage.local") === true) {
-        localStorage.setItem(cv.Config.configSuffix + "." + key, qx.lang.Json.stringify(data));
+        localStorage.setItem(cv.Config.configSuffix + "." + key, JSON.stringify(data));
       }
     },
     
@@ -91,7 +91,7 @@ qx.Class.define('cv.ConfigCache', {
         return null;
       }
       if (!this._parseCacheData) {
-        this._parseCacheData = qx.lang.Json.parse(localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey));
+        this._parseCacheData = JSON.parse(localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey));
       }
       if (!this._parseCacheData) {
         return null;

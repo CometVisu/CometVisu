@@ -380,7 +380,7 @@ qx.Class.define('cv.report.Record', {
         (""+d.getSeconds()).padStart(2,"0");
 
       var a = window.document.createElement('a');
-      a.href = window.URL.createObjectURL(new Blob([qx.lang.Json.stringify(data)], {type: 'application/json'}));
+      a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {type: 'application/json'}));
       a.download = 'CometVisu-replay-'+ts+'.json';
 
       // Append anchor to body.
