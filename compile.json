@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/qooxdoo/qooxdoo-compiler/master/source/resource/qx/tool/schema/compile-1-0-0.json",
   "environment": {
     "qx.promise"     : false,
-    "cv.version"     : "${CV_VERSION}",
+    "cv.version"     : "dev",
     "cv.xhr"         : "qx",
     "cv.testMode"    : false
   },
@@ -128,11 +128,21 @@
       "outputPath": "compiled/source",
       "bundle": {
         "include": [ "qx.*" ]
+      },
+      "environment": {
+        "cv.build": "source",
+        "cv.sentry": false,
+        "qx.globalErrorHandling": false
       }
     },
     {
       "type": "build",
-      "outputPath": "compiled/build"
+      "outputPath": "compiled/build",
+      "environment": {
+        "cv.build": "build",
+        "cv.sentry": true,
+        "qx.globalErrorHandling": true
+      }
     }
   ],
   "defaultTarget": "source",
@@ -145,7 +155,16 @@
     "listenPort": 8082
   },
 
-  "run": {
-    "application": "my-server-app"
-  }
+  "ignores": [
+    "$",
+    "jQuery",
+    "THREE",
+    "sprintf",
+    "replayLog",
+    "svg4everybody",
+    "EVENT_RECORDER",
+    "EventSource",
+    "Favico",
+    "Sentry"
+  ]
 }
