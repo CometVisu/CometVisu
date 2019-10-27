@@ -298,7 +298,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         var millisOffset = (ts.offset ? ts.offset * 1000 : 0);
         var newRrd = new Array(tsdata.length);
         for (var j = 0, l = tsdata.length; j < l; j++) {
-          if( ts.type === 'rrd' )
+          if( ts.tsType === 'rrd' )
             newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling)];
           else
             newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1]) * ts.scaling)];
