@@ -37,7 +37,7 @@ describe("testing a page widget", function() {
     var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
     expect(page.getPageType()).toBe("text");
 
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     cv.ui.structure.pure.Page.createFinal();
     expect(widget).toHaveClass('pagelink');
 
@@ -63,7 +63,7 @@ describe("testing a page widget", function() {
     var pageLink = res[0];
     var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
 
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     var actor = this.findChild(widget, ".actor");
     expect(actor.style['text-align']).toBe('right');
     cv.ui.structure.pure.Page.createFinal();

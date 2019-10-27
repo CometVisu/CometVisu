@@ -28,7 +28,7 @@ describe("testing a group widget", function() {
 
     var res = this.createTestWidgetString("group");
 
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('group');
     expect(widget).toHaveClass('widget');
@@ -46,7 +46,7 @@ describe("testing a group widget", function() {
       name: "Test",
       target: "target"
     }, '<text/>');
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('group');
     expect(widget).toHaveClass('custom_test');

@@ -29,7 +29,7 @@ describe("testing a audio widget", function() {
   it("should test the audio creator", function() {
 
     var res = this.createTestWidgetString("audio", {id: 'test'}, '<label>Test</label>');
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     var widgetInstance = res[0];
 
     expect(widget).toHaveClass('audio');
@@ -55,7 +55,7 @@ describe("testing a audio widget", function() {
       loop: 'true'
     }, '<label>Test</label>');
 
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('audio');
     expect(widget).toHaveLabel('Test');

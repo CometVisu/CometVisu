@@ -30,7 +30,7 @@ describe("testing a line widget", function() {
 
     var res = this.createTestWidgetString("line");
 
-    var line = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var line = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(line.nodeName.toLowerCase()).toBe('hr');
     expect(res[0].getPath()).toBe("id_0");

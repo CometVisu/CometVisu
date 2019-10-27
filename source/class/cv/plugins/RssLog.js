@@ -216,7 +216,7 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _action: function () {
-      var brss = (function(){var div=document.createElement('div');div.innerHTML='<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>';return div.childNodes[0];})();
+      var brss = cv.util.String.htmlStringToDomElement('<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>');
       var title = document.querySelector('#' + this.getPath() + ' .label').innerText || '';
       var popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
       var parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];

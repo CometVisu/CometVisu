@@ -29,7 +29,7 @@ describe("testing a text widget", function() {
   it("should test the text creator", function() {
 
     var res = this.createTestWidgetString("text", {}, '<label>Test</label>');
-    var text = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var text = cv.util.String.htmlStringToDomElement(res[1]);
     expect(res[0].getPath()).toBe("id_0");
 
     expect(text).toHaveClass('text');

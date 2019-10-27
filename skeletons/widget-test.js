@@ -6,7 +6,7 @@ describe("testing a %WIDGET_NAME% widget", function() {
 
   it("should test the %WIDGET_NAME% creator", function() {
     var res = this.createTestWidgetString("%WIDGET_NAME%", {}, "<label>Test</label>");
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     var obj = res[0];
 
     expect(widget).toHaveClass('%WIDGET_NAME%');

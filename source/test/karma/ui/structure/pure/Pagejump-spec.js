@@ -28,7 +28,7 @@ describe("testing a pagejump widget", function() {
   it("should test the pagejump creator", function() {
 
     var res = this.createTestWidgetString("pagejump", {'name': 'Testpage'}, "<label>Test</label>");
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     expect(widget).toHaveClass('pagejump');
     expect(widget).toHaveLabel('Test');
     expect(widget).toHaveValue('Testpage');
@@ -46,7 +46,7 @@ describe("testing a pagejump widget", function() {
       'path': 'ParentPage',
       'active_scope': 'path'
     }, '<layout colspan="6" rowspan="2"></layout>');
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('right');
     expect(widget).toHaveClass('innerrowspan');
@@ -65,7 +65,7 @@ describe("testing a pagejump widget", function() {
 
     var res = this.createTestWidgetString("pagejump", {},
       '<widgetinfo><text>Test</text></widgetinfo>');
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('infoaction');
   });

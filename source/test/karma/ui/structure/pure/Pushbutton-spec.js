@@ -27,7 +27,7 @@ describe("testing a pushbutton widget", function() {
   it("should test the pushbutton creator", function() {
 
     var res = this.createTestWidgetString("pushbutton", {}, '<label>Test</label>');
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     expect(res[0].getPath()).toBe("id_0");
 
     expect(widget).toHaveClass('pushbutton');

@@ -51,7 +51,7 @@ describe("testing a image widget", function() {
       flavour: 'potassium'
     }, '<label>Test</label>');
 
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('image');
     expect(widget).toHaveLabel('Test');

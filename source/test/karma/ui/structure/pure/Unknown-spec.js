@@ -30,7 +30,7 @@ describe("testing a unknown widget", function() {
 
     var data = cv.parser.WidgetParser.parse(document.createElement('unknown_widget'), 'id_0', null, "text");
     var inst = cv.ui.structure.WidgetFactory.createInstance("unknown", data);
-    var unknown = (function(){var div=document.createElement('div');div.innerHTML=inst.getDomString();return div.childNodes[0];})();
+    var unknown = cv.util.String.htmlStringToDomElement(inst.getDomString());
 
     expect(unknown.querySelector("pre").textContent).toBe('unknown: unknown_widget');
   });

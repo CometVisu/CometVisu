@@ -27,7 +27,7 @@ describe("testing a multitrigger widget", function() {
   it("should test the multitrigger creator", function() {
 
     var res = this.createTestWidgetString("multitrigger", {}, "<label>Test</label>");
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('multitrigger');
     expect(widget).toHaveLabel('Test');
@@ -49,7 +49,7 @@ describe("testing a multitrigger widget", function() {
       'showstatus': 'true',
       'mapping': 'test'
     });
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
 

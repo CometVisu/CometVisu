@@ -45,7 +45,7 @@ describe("testing a imagetrigger widget", function() {
   it("should test the imagetrigger creator", function() {
 
     var res = this.createTestWidgetString("imagetrigger", {flavour: 'potassium'}, '<label>Test</label>');
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('imagetrigger');
     expect(widget).toHaveClass('image');

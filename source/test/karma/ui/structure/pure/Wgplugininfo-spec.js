@@ -27,7 +27,7 @@ describe("testing a wgplugin_info widget", function() {
   it("should test the wgplugin_info creator", function() {
 
     var res = this.createTestWidgetString("wgplugin_info", {}, '<label>Test</label>');
-    var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     expect(res[0].getPath()).toBe("id_0");
 
     expect(widget).toHaveClass('info');
