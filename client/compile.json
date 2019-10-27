@@ -1,0 +1,48 @@
+{
+  "$schema": "https://raw.githubusercontent.com/qooxdoo/qooxdoo-compiler/master/source/resource/qx/tool/schema/compile-1-0-0.json",
+  "targets": [
+    {
+      "type": "source",
+      "outputPath": "compiled/source",
+      "bundle": {
+        "include": "qx.*"
+      }
+    },
+    {
+      "type": "build",
+      "outputPath": "compiled/build"
+    }
+  ],
+  "defaultTarget": "source",
+  "locales": [],
+  "environment": {
+    "qx.promise": false,
+    "qx.theme" : null,
+    "cv.xhr": ["qx", "jquery"]
+  },
+  "applications": [
+    {
+      "class": "cv.io.Client",
+      "theme": "",
+      "name": "CometVisuClient",
+      "bootPath": "source/boot",
+      "loaderTemplate": "oo.loader.tmpl.js",
+      "include": [
+        "cv.io.Client"
+      ],
+      "standalone": false
+    }
+  ],
+  //  "path-mappings": {
+  //    "../qooxdoo": "../external/qooxdoo"
+  //  },
+  "eslintConfig": {
+    "globals": {
+      "$": "readonly",
+      "EventSource": "readonly"
+    },
+    "extends": [
+      "qx/browser"
+    ]
+  }
+}

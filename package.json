@@ -19,6 +19,7 @@
     }
   ],
   "devDependencies": {
+    "@qooxdoo/compiler": "^1.0.0-beta.20191015-0937",
     "csso": "^3.5.1",
     "easyimage": "^3.1.1",
     "grunt": "^1.0.4",
