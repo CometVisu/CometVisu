@@ -1,14 +1,13 @@
-qx.Class.define("cv.compile.CompilerApi", {
-  extend: qx.tool.cli.api.CompilerApi,
+qx.Class.define("cv.compile.LibraryApi", {
+  extend: qx.tool.cli.api.LibraryApi,
 
   members: {
     async load () {
-      const config = await this.base(arguments)
-      this.compile(config)
-      return config
+      const config = this.getCompilerApi().getConfiguration()
+      this.readEnv(config)
     },
 
-    compile: function (data) {
+    readEnv (config) {
       const checkEnvs = {
         CV_VERSION: 'cv.version',
         CV_TESTMODE: "cv.testMode"
@@ -17,7 +16,7 @@ qx.Class.define("cv.compile.CompilerApi", {
       // transfer environment variables
       Object.keys(checkEnvs).forEach((name) => {
         if (process.env[name]) {
-          data.environment[checkEnvs[name]] = process.env[name]
+          config.environment[checkEnvs[name]] = process.env[name]
         }
       })
     }
@@ -25,5 +24,5 @@ qx.Class.define("cv.compile.CompilerApi", {
 });
 
 module.exports = {
-  CompilerApi: cv.compile.CompilerApi
+  LibraryApi: cv.compile.LibraryApi
 };
