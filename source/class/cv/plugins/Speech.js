@@ -65,6 +65,7 @@ qx.Class.define('cv.plugins.Speech', {
    ******************************************************
    */
   construct: function(props) {
+    this._initOnCreate = true;
     this.base(arguments);
     this.set(props);
     this.__lastSpeech = {};
