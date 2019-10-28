@@ -72,7 +72,7 @@ qx.Class.define('cv.io.Mockup', {
             // the respond would fail if we do not override it here
             request.readyState = 1;
           }
-          request.respond(response.status, response.headers, qx.lang.Json.stringify(response.body));
+          request.respond(response.status, response.headers, JSON.stringify(response.body));
         }
       }.bind(this));
     }

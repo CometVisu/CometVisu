@@ -112,14 +112,14 @@ qx.Class.define("cv.plugins.openhab.Settings", {
       // load data
       service.get();
       this._store.addListenerOnce("changeModel", function() {
-        this.__initialValues = qx.lang.Json.parse(qx.util.Serializer.toJson(this._store.getModel()));
+        this.__initialValues = JSON.parse(qx.util.Serializer.toJson(this._store.getModel()));
       }, this);
     },
 
     _saveConfig: function() {
       var data = qx.util.Serializer.toJson(this._store.getModel());
       data = data.replace(/icons_mapping_/g, "icons.mapping>");
-      data = qx.lang.Json.parse(data.replace("icons_enableMapping", "icons>enableMapping"));
+      data = JSON.parse(data.replace("icons_enableMapping", "icons>enableMapping"));
       this.__service.put(null, data);
       this.__service.addListenerOnce("putSuccess", this.close, this);
     },

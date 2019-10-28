@@ -42,8 +42,8 @@ qx.Class.define('cv.io.Reflection', {
      */
     list: function () {
       var widgetTree = {};
-      qx.bom.Selector.query('.page').forEach(function (elem) {
-        var id = qx.bom.element.Attribute.get(elem, "id").split('_');
+      document.querySelectorAll('.page').forEach(function (elem) {
+        var id = elem.getAttribute("id").split('_');
         var thisEntry = widgetTree;
         if ('id' === id.shift()) {
           var thisNumber;
@@ -53,7 +53,7 @@ qx.Class.define('cv.io.Reflection', {
             }
             thisEntry = thisEntry[thisNumber];
           }
-          qx.bom.Selector.matches('div.widget_container', qx.dom.Hierarchy.getDescendants(elem)).forEach(function(widget, i) {
+          Array.from(elem.getElementsByTagName("*")).filter(function(m){return m.matches('div.widget_container');}).forEach(function(widget, i) {
             if (undefined === thisEntry[i]) {
               thisEntry[i] = {};
             }
@@ -70,7 +70,7 @@ qx.Class.define('cv.io.Reflection', {
      */
     read: function (path) {
       var widget = this.lookupWidget(path),
-        data = qx.lang.Object.mergeWith({}, cv.data.Model.getInstance().getWidgetDataByElement(widget)); // copy
+        data = Object.assign({}, cv.data.Model.getInstance().getWidgetDataByElement(widget)); // copy
       delete data.basicvalue;
       delete data.value;
       return data;
@@ -82,10 +82,10 @@ qx.Class.define('cv.io.Reflection', {
     select: function (path, state) {
       var container = this.lookupWidget(path);
       if (state) {
-        qx.bom.element.Class.set(container, 'selected');
+        container.classList.add('selected');
       }
       else {
-        qx.bom.element.Class.remove(container, 'selected');
+        container.classList.remove('selected');
       }
     },
 
@@ -93,7 +93,8 @@ qx.Class.define('cv.io.Reflection', {
      * Set all attributes of a widget.
      */
     write: function (path, attributes) {
-      qx.bom.element.Dataset.setData(qx.dom.Hierarchy.getChildElements(this.lookupWidget(path))[0], attributes);
+      // TODO: Implement - it was the non existing function
+      //  qx .bom.element.Dataset.setData(qx.dom.Hierarchy.getChildElements(this.lookupWidget(path))[0], attributes);
     },
 
     /**
@@ -171,13 +172,13 @@ qx.Class.define('cv.io.Reflection', {
      * Return a widget (to be precise: the widget_container) for the given path
      */
     lookupWidget: function (path) {
-      return qx.bom.Selector.query('.page#' + path)[0];
+      return document.querySelector('.page#' + path);
     },
 
     getParentPage: function (page) {
       if (0 === page.length) { return null; }
 
-      return this.getParentPageById(qx.bom.element.Attribute.get(page, 'id'), true);
+      return this.getParentPageById(page.getAttribute('id'), true);
     },
 
     getParentPageById: function (path, isPageId) {
@@ -187,8 +188,8 @@ qx.Class.define('cv.io.Reflection', {
         while (pathParts.length > 1) {
           pathParts.pop();
           path = pathParts.join('_') + '_';
-          var page = qx.bom.Selector.query('#' + path)[0];
-          if (qx.bom.element.Class.has(page, "page")) {
+          var page = document.querySelector('#' + path);
+          if (page.classList.contains("page")) {
             return page;
           }
         }
@@ -208,7 +209,7 @@ qx.Class.define('cv.io.Reflection', {
      * child elements.
      */
     deleteCommand: function (path) {
-      this.debug(this.lookupWidget(path), qx.bom.Selector.query('#' + path)[0]);
+      this.debug(this.lookupWidget(path), document.querySelector('#' + path));
       //this.lookupWidget( path ).remove();
       return "deleted widget '" + path + "'";
     },
@@ -217,8 +218,8 @@ qx.Class.define('cv.io.Reflection', {
      * Focus a widget.
      */
     focus: function (path) {
-      qx.bom.element.Class.remove(qx.bom.Selector.query('.focused')[0], 'focused');
-      qx.bom.element.Class.add(this.lookupWidget(path), 'focused');
+      document.querySelector('.focused').classList.remove('focused');
+      this.lookupWidget(path).classList.add('focused');
     }
   },
 

@@ -42,11 +42,13 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
   ******************************************************
   */
   construct: function(props) {
-    var classes = props.classes.trim().split(" ");
-    if (classes.indexOf("right")) {
+    var classes = props.classes.trim().split(" "),
+        i_right = classes.indexOf("right");
+
+    if (i_right !== -1) {
       // do not align, but float the container instead
       this.setContainerClass("float-right");
-      qx.lang.Array.remove(classes, "right");
+      classes.splice(i_right, 1);
       props.classes = classes.join(" ");
     }
     this.base(arguments, props);
@@ -101,23 +103,24 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
 
     __getBadgeElement: function() {
       if (!this.__badgeElement) {
-        this.__badgeElement = qx.bom.Selector.query(".badge", this.getDomElement())[0];
+        this.__badgeElement = this.getDomElement().querySelector(".badge");
       }
       return this.__badgeElement;
     },
 
     _onChangeGlobalSeverity: function(ev) {
-      qx.bom.element.Class.removeClasses(this.__getBadgeElement(), cv.ui.NotificationCenter.getInstance().getSeverities());
+      var classList = this.__getBadgeElement().classList;
+      classList.remove.apply( classList, cv.ui.NotificationCenter.getInstance().getSeverities() );
       if (ev.getData()) {
-        qx.bom.element.Class.add(this.__getBadgeElement(), ev.getData());
+        classList.add(ev.getData());
       }
     },
 
     _onChangeCounter: function() {
       var messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
-      qx.bom.element.Attribute.set(this.__getBadgeElement(), "html", ""+messages);
+      this.__getBadgeElement().innerHTML = ""+messages;
       if (this.isHideWhenEmpty()) {
-        qx.bom.element.Style.set(this.__getBadgeElement(), "display", messages === 0 ? "none" : "block");
+        this.__getBadgeElement().style.display = messages === 0 ? "none" : "block";
       }
     },
 

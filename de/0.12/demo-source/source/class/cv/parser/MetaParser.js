@@ -33,13 +33,13 @@ qx.Class.define("cv.parser.MetaParser", {
       this.parseFiles(xml);
 
       // parse the icons
-      qx.bom.Selector.query('meta > icons icon-definition', xml).forEach(this.parseIcons, this);
+      xml.querySelectorAll('meta > icons icon-definition').forEach(this.parseIcons, this);
 
       // then the mappings
-      qx.bom.Selector.query('meta > mappings mapping', xml).forEach(this.parseMappings, this);
+      xml.querySelectorAll('meta > mappings mapping').forEach(this.parseMappings, this);
 
       // then the stylings
-      qx.bom.Selector.query('meta > stylings styling', xml).forEach(this.parseStylings, this);
+      xml.querySelectorAll('meta > stylings styling').forEach(this.parseStylings, this);
 
       // then the status bar
       this.parseStatusBar(xml);
@@ -54,19 +54,19 @@ qx.Class.define("cv.parser.MetaParser", {
         css: [],
         js: []
       };
-      qx.bom.Selector.query('meta > files file', xml).forEach(function (elem) {
-        var type = qx.bom.element.Attribute.get(elem, 'type');
-        var content = qx.bom.element.Attribute.get(elem, 'content');
+      xml.querySelectorAll('meta > files file').forEach(function (elem) {
+        var type = elem.getAttribute('type');
+        var content = elem.getAttribute('content');
         switch (type) {
           case 'css':
-            files.css.push(qx.bom.element.Attribute.get(elem, 'text'));
+            files.css.push(elem.innerText);
             break;
 
           case 'js':
             if (content === 'plugin') {
-              cv.Config.configSettings.pluginsToLoad.push(qx.bom.element.Attribute.get(elem, 'text'));
+              cv.Config.configSettings.pluginsToLoad.push(elem.innerText);
             } else {
-              files.js.push(qx.bom.element.Attribute.get(elem, 'text'));
+              files.js.push(elem.innerText);
             }
             break;
 
@@ -76,7 +76,7 @@ qx.Class.define("cv.parser.MetaParser", {
         }
       }, this);
       if (files.css.length > 0) {
-        qx.lang.Array.append(cv.Config.configSettings.stylesToLoad, files.css);
+        cv.Config.configSettings.stylesToLoad = cv.Config.configSettings.stylesToLoad.concat(files.css);
       }
       if (files.js.length > 0) {
         cv.util.ScriptLoader.getInstance().addScripts(files.js);
@@ -89,29 +89,29 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseMappings: function(elem) {
-      var name = qx.bom.element.Attribute.get(elem, 'name');
+      var name = elem.getAttribute('name');
       var mapping = {};
-      var formula = qx.bom.Selector.query('formula', elem);
+      var formula = elem.querySelectorAll('formula');
       if (formula.length > 0) {
-        mapping.formulaSource = qx.dom.Node.getText(formula[0]);
+        mapping.formulaSource = formula[0].textContent;
         mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;'); // jshint ignore:line
       }
-      var subElements = qx.bom.Selector.query('entry', elem);
+      var subElements = elem.querySelectorAll('entry');
       subElements.forEach(function (subElem) {
         var origin = subElem.childNodes;
         var value = [];
         for (var i = 0; i < origin.length; i++) {
           var v = origin[i];
-          if (qx.dom.Node.isElement(v) && qx.dom.Node.getName(v).toLowerCase() === 'icon') {
+          if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === 'icon') {
             var icon = this.__parseIconDefinition(v);
             value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon["class"]));
           }
-          else if (qx.dom.Node.getText(v).trim().length) {
-            value.push(qx.dom.Node.getText(v).trim());
+          else if (v.textContent.trim().length) {
+            value.push(v.textContent.trim());
           }
         }
         // check for default entry
-        var isDefaultValue = qx.bom.element.Attribute.get(subElem, 'default');
+        var isDefaultValue = subElem.getAttribute('default');
         if (isDefaultValue !== undefined) {
           isDefaultValue = isDefaultValue === "true";
         }
@@ -129,9 +129,9 @@ qx.Class.define("cv.parser.MetaParser", {
           if (!mapping.range) {
             mapping.range = {};
           }
-          mapping.range[parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'))] = [parseFloat(qx.bom.element.Attribute.get(subElem, 'range_max')), value];
+          mapping.range[parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), value];
           if (isDefaultValue) {
-            mapping.defaultValue = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
+            mapping.defaultValue = parseFloat(subElem.getAttribute('range_min'));
           }
         } else if (subElements.length === 1) {
           // use as catchall mapping
@@ -142,13 +142,13 @@ qx.Class.define("cv.parser.MetaParser", {
     },
 
     parseStylings: function(elem) {
-      var name = qx.bom.element.Attribute.get(elem, 'name');
+      var name = elem.getAttribute('name');
       var classnames = '';
       var styling = {};
-      qx.bom.Selector.query('entry', elem).forEach(function (subElem) {
-        classnames += qx.dom.Node.getText(subElem) + ' ';
+      elem.querySelectorAll('entry').forEach(function (subElem) {
+        classnames += subElem.textContent + ' ';
         // check for default entry
-        var isDefaultValue = qx.bom.element.Attribute.get(subElem, 'default');
+        var isDefaultValue = subElem.getAttribute('default');
         if (isDefaultValue !== undefined) {
           isDefaultValue = isDefaultValue === "true";
         } else {
@@ -156,7 +156,7 @@ qx.Class.define("cv.parser.MetaParser", {
         }
         // now set the styling values
         if (subElem.getAttribute('value')) {
-          styling[subElem.getAttribute('value')] = qx.dom.Node.getText(subElem);
+          styling[subElem.getAttribute('value')] = subElem.textContent;
           if (isDefaultValue) {
             styling.defaultValue = subElem.getAttribute('value');
           }
@@ -164,9 +164,9 @@ qx.Class.define("cv.parser.MetaParser", {
           if (!styling.range) {
             styling.range = {};
           }
-          styling.range[parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'))] = [parseFloat(qx.bom.element.Attribute.get(subElem, 'range_max')), qx.dom.Node.getText(subElem)];
+          styling.range[parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), subElem.textContent];
           if (isDefaultValue) {
-            styling.defaultValue = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
+            styling.defaultValue = parseFloat(subElem.getAttribute('range_min'));
           }
         }
       }, this);
@@ -176,9 +176,9 @@ qx.Class.define("cv.parser.MetaParser", {
 
     parseStatusBar: function(xml) {
       var code = '';
-      qx.bom.Selector.query('meta > statusbar status', xml).forEach(function (elem) {
-        var condition = qx.bom.element.Attribute.get(elem,'condition');
-        var extend = qx.bom.element.Attribute.get(elem,'hrefextend');
+      xml.querySelectorAll('meta > statusbar status').forEach(function (elem) {
+        var condition = elem.getAttribute('condition');
+        var extend = elem.getAttribute('hrefextend');
         var sPath = window.location.pathname;
         var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 
@@ -202,7 +202,7 @@ qx.Class.define("cv.parser.MetaParser", {
           return;
         }
 
-        var text = qx.dom.Node.getText(elem);
+        var text = elem.textContent;
         var search;
         switch (extend) {
           case 'all': // append all parameters
@@ -226,14 +226,14 @@ qx.Class.define("cv.parser.MetaParser", {
         }
         code += text;
       }, this);
-      var footerElement = qx.bom.Selector.query(".footer")[0];
+      var footerElement = document.querySelector(".footer");
       footerElement.innerHTML += code;
     },
 
     parsePlugins: function(xml) {
       var pluginsToLoad = [];
-      qx.bom.Selector.query('meta > plugins plugin', xml).forEach(function (elem) {
-        var name = qx.bom.element.Attribute.get(elem, 'name');
+      xml.querySelectorAll('meta > plugins plugin').forEach(function (elem) {
+        var name = elem.getAttribute('name');
         if (name) {
           pluginsToLoad.push("plugin-"+name);
         }
@@ -243,60 +243,60 @@ qx.Class.define("cv.parser.MetaParser", {
 
     __parseIconDefinition: function(elem) {
       return {
-        name : qx.bom.element.Attribute.get(elem, 'name'),
-        uri : qx.bom.element.Attribute.get(elem, 'uri'),
-        type : qx.bom.element.Attribute.get(elem, 'type'),
-        flavour : qx.bom.element.Attribute.get(elem, 'flavour'),
-        color : qx.bom.element.Attribute.get(elem, 'color'),
-        styling : qx.bom.element.Attribute.get(elem, 'styling'),
-        dynamic : qx.bom.element.Attribute.get(elem, 'dynamic'),
-        'class' : qx.bom.element.Attribute.get(elem, 'class')
+        name : elem.getAttribute('name'),
+        uri : elem.getAttribute('uri'),
+        type : elem.getAttribute('type'),
+        flavour : elem.getAttribute('flavour'),
+        color : elem.getAttribute('color'),
+        styling : elem.getAttribute('styling'),
+        dynamic : elem.getAttribute('dynamic'),
+        'class' : elem.getAttribute('class')
       };
     },
 
     parseStateNotifications: function(xml) {
       var stateConfig = {};
-      qx.bom.Selector.query('meta > notifications state-notification', xml).forEach(function (elem) {
-        var target = cv.core.notifications.Router.getTarget(qx.bom.element.Attribute.get(elem, 'target')) || cv.ui.NotificationCenter.getInstance();
+      xml.querySelectorAll('meta > notifications state-notification').forEach(function (elem) {
+        var target = cv.core.notifications.Router.getTarget(elem.getAttribute('target')) || cv.ui.NotificationCenter.getInstance();
 
-        var addressContainer = qx.bom.Selector.query('addresses', elem)[0];
+        var addressContainer = elem.querySelector('addresses');
 
         var config = {
           target: target,
-          severity: qx.bom.element.Attribute.get(elem, 'severity'),
-          skipInitial: qx.bom.element.Attribute.get(elem, 'skip-initial') !== "false",
-          deletable: qx.bom.element.Attribute.get(elem, 'deletable') !== "false",
-          unique: qx.bom.element.Attribute.get(elem, 'unique') === "true",
-          valueMapping: qx.bom.element.Attribute.get(addressContainer, 'value-mapping'),
-          addressMapping: qx.bom.element.Attribute.get(addressContainer, 'address-mapping')
+          severity: elem.getAttribute('severity'),
+          skipInitial: elem.getAttribute('skip-initial') !== "false",
+          deletable: elem.getAttribute('deletable') !== "false",
+          unique: elem.getAttribute('unique') === "true",
+          valueMapping: addressContainer.getAttribute('value-mapping'),
+          addressMapping: addressContainer.getAttribute('address-mapping')
         };
 
-        var name = qx.bom.element.Attribute.get(elem, 'name');
+        var name = elem.getAttribute('name');
         if (name) {
           config.topic = "cv.state."+name;
         }
-        var icon = qx.bom.element.Attribute.get(elem, 'icon');
+        var icon = elem.getAttribute('icon');
         if (icon) {
           config.icon = icon;
-          var iconClasses = qx.bom.element.Attribute.get(elem, 'icon-classes');
+          var iconClasses = elem.getAttribute('icon-classes');
           if (iconClasses) {
             config.iconClasses = iconClasses;
           }
         }
 
         // templates
-        var titleElem = qx.bom.Selector.query('title-template', elem)[0];
+        var titleElem = elem.querySelector('title-template');
         if (titleElem) {
-          config.titleTemplate = qx.bom.element.Attribute.get(titleElem, "html");
+          config.titleTemplate = titleElem.innerHTML;
         }
-        var messageElem = qx.bom.Selector.query('message-template', elem)[0];
+        var messageElem = elem.querySelector('message-template');
         if (messageElem) {
-          config.messageTemplate = qx.bom.element.Attribute.get(messageElem, "html");
+          config.messageTemplate = messageElem.innerHTML;
         }
 
         // condition
-        var conditionElem = qx.bom.Selector.query('condition', elem)[0];
-        var condition = qx.bom.element.Attribute.get(conditionElem, "text");
+        var conditionElem = elem.querySelector('condition');
+        var condition = conditionElem.innerText;
         if (condition === "true") {
           condition = true;
         } else if (condition === "false") {
@@ -310,7 +310,7 @@ qx.Class.define("cv.parser.MetaParser", {
           if (!stateConfig.hasOwnProperty(address)) {
             stateConfig[address] = [];
           }
-          var addressConfig = qx.lang.Object.clone(config);
+          var addressConfig = Object.assign({}, config);
           addressConfig.addressConfig = addresses[address];
           stateConfig[address].push(addressConfig);
         });
@@ -330,14 +330,14 @@ qx.Class.define("cv.parser.MetaParser", {
           done();
         }
       };
-      var templates = qx.bom.Selector.query('meta > templates template', xml);
+      var templates = xml.querySelectorAll('meta > templates template');
       if (templates.length === 0) {
         done();
       } else {
         templates.forEach(function (elem) {
-          var templateName = qx.bom.element.Attribute.get(elem, 'name');
+          var templateName = elem.getAttribute('name');
           qx.log.Logger.debug(this, 'loading template:', templateName);
-          var ref = qx.bom.element.Attribute.get(elem, 'ref');
+          var ref = elem.getAttribute('ref');
           if (ref) {
             // load template fom external file
             var areq = new qx.io.request.Xhr(ref);
@@ -371,7 +371,7 @@ qx.Class.define("cv.parser.MetaParser", {
             }, this);
             areq.send();
           } else {
-            var cleaned = qx.bom.element.Attribute.get(elem, 'html').replace(/\n\s*/g, '').trim();
+            var cleaned = elem.innerHTML.replace(/\n\s*/g, '').trim();
             cv.parser.WidgetParser.addTemplate(
               templateName,
               // templates can only have one single root element, so we wrap it here

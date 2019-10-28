@@ -274,8 +274,13 @@ qx.Class.define('cv.plugins.tr064.CallList', {
           self.__calllistUri = '<fail>';
         })
         .then( function( data ) {
-          self.__calllistUri = data;
-          self.refreshCalllist('getCallListURI');
+          if( typeof data === 'string' ) {
+            self.__calllistUri = data;
+            self.refreshCalllist('getCallListURI');
+          } else {
+            console.error('Error: reading URL "' + url + ' failed with content:', data );
+            self.__calllistUri = '<fail>';
+          }
         });
     },
 

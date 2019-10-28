@@ -101,7 +101,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     _getInnerDomString: function () {
 
       var style = "";
-      if (qx.lang.Object.isEmpty(this.getLayout())) {
+      if (Object.keys(this.getLayout()).length === 0) {
         style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
       }
       if (this.getHeight()) {
@@ -124,23 +124,23 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     },
 
     _update: function(address, value) {
-      var imageChild = qx.bom.Selector.query("img", this.getDomElement())[0];
+      var imageChild = this.getDomElement().querySelector("img");
       if (this.getUpdateType() === "show") {
         if (value === 0) {
-          qx.bom.element.Style.set(imageChild, "display", "none");
+          imageChild.style.display = "none";
         }
         else {
-          qx.bom.element.Attribute.set(imageChild, "src", this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
-          qx.bom.element.Style.set(imageChild, "display", "block");
+          imageChild.setAttribute("src", this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
+          imageChild.style.display = "block";
         }
       }
       else if (this.getUpdateType() === "select") {
         if (value === 0) {
-          qx.bom.element.Style.set(imageChild, "display", "none");
+          imageChild.style.display = "none";
         }
         else {
-          qx.bom.element.Attribute.set(imageChild, "src", this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
-          qx.bom.element.Style.set(imageChild, "display", "block");
+          imageChild.setAttribute("src", this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
+          imageChild.style.display = "block";
         }
       }
 

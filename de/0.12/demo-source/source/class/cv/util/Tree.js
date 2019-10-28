@@ -82,7 +82,7 @@ qx.Class.define('cv.util.Tree', {
         return null;
       }
       var model = cv.data.Model.getInstance();
-      while (qx.lang.Object.isEmpty(data) && parentPath.length > 2) {
+      while (Object.keys(data).length === 0 && parentPath.length > 2) {
         data = model.getWidgetData(parentPath);
         if (parentPath === "id_") {
           break;
@@ -134,9 +134,9 @@ qx.Class.define('cv.util.Tree', {
     * ********************************************************
     */
     getChildElements: function(element, selector) {
-      return qx.dom.Hierarchy.getChildElements(element).filter(function(child) {
+      return Array.from(element.childNodes).filter(function(child) {
         if (selector) {
-          return qx.bom.Selector.matches(selector, child);
+          return Array.prototype.filter.call(child,function(m){return m.matches(selector);});
         } else {
           return true;
         }
@@ -153,20 +153,20 @@ qx.Class.define('cv.util.Tree', {
 
     getParent: function(element, until, selector, limit) {
       var parents = [];
-      var parent = qx.dom.Element.getParentElement(element);
-      while (parent && qx.bom.element.Attribute.get(parent, 'id') !== "pages") {
+      var parent = element.parentNode;
+      while (parent && parent.getAttribute('id') !== "pages") {
         var found = [parent];
         if (selector) {
-          found = qx.bom.Selector.matches(selector, found);
+          found = Array.prototype.filter.call(found,function(m){return m.matches(selector);});
         }
         parents = parents.concat(found);
         if (limit && parents.length >= limit) {
           break;
         }
-        if (until && qx.bom.Selector.matches(until, [parent]).length > 0) {
+        if (until && Array.prototype.filter.call([parent],function(m){return m.matches(until);}).length > 0) {
           break;
         }
-        parent = qx.dom.Element.getParentElement(parent);
+        parent = parent.parentNode;
       }
       return parents;
     },
@@ -174,7 +174,7 @@ qx.Class.define('cv.util.Tree', {
     getClosest: function(elem, selector) {
 
       var findClosest = function (current) {
-        var found = qx.bom.Selector.matches(selector, [current]);
+        var found = Array.prototype.filter.call([current],function(m){return m.matches(selector);});
         if (found.length) {
           return found[0];
         } else {

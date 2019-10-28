@@ -123,7 +123,7 @@ qx.Class.define('cv.ui.structure.pure.Group', {
     // overridden
     _onDomReady: function() {
       this.base(arguments);
-      qx.bom.element.Style.set(this.getDomElement(), "z-index", 1);
+      this.getDomElement().style["z-index"] = 1;
     },
 
     // overridden

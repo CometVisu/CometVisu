@@ -132,8 +132,8 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           }
         } else if (!this._timer || !this._timer.isEnabled()) {
           var element = this.getDomElement();
-          var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
-          var src = qx.bom.element.Attribute.get(target, "src");
+          var target = element.querySelector('img') || element.querySelector('iframe');
+          var src = target.getAttribute("src");
           if (src.indexOf('?') < 0 && ((target.nodeName === 'IMG' && this.getCachecontrol() === 'full') || target.nodeName !== 'IMG')) {
             src += '?';
           }
@@ -163,9 +163,9 @@ qx.Mixin.define("cv.ui.common.Refresh", {
          */
         var parenthost = window.location.protocol + "//" + window.location.host;
         if (target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) {
-          qx.bom.element.Attribute.set(target, "src", "");
+          target.setAttribute("src", "");
           qx.event.Timer.once(function () {
-            qx.bom.element.Attribute.set(target, "src", src);
+            target.setAttribute("src", src);
           }, this, 0);
         } else {
           var cachecontrol = this.getCachecontrol();
@@ -178,11 +178,11 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           
           switch( cachecontrol ) {
             case 'full':
-              qx.bom.element.Attribute.set(target, "src", qx.util.Uri.appendParamsToUrl(src, ""+new Date().getTime()));
+              target.setAttribute("src", qx.util.Uri.appendParamsToUrl(src, ""+new Date().getTime()));
               break;
               
             case 'weak':
-              qx.bom.element.Attribute.set(target, "src", src + '#' + new Date().getTime());
+              target.setAttribute("src", src + '#' + new Date().getTime());
               break;
               
             case 'force':
@@ -218,7 +218,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
     // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
     __forceImgReload: function(src, twostage) {
       var step = 0,                                       // step: 0 - started initial load, 1 - wait before proceeding (twostage mode only), 2 - started forced reload, 3 - cancelled
-        elements = qx.bom.Selector.query('img[src="'+src+'"]'),
+        elements = document.querySelectorAll('img[src="'+src+'"]'),
         canvases = [],
         imgReloadBlank = function(){
           elements.forEach(function(elem){
@@ -233,12 +233,12 @@ qx.Mixin.define("cv.ui.common.Refresh", {
             elem.width = elem.width;
             elem.height = elem.height;
             elem.parentNode.insertBefore( canvas, elem );
-            qx.bom.element.Attribute.reset(elem, "src"); 
+            elem.removeAttribute("src");
           });
         },
         imgReloadRestore = function(){
           elements.forEach(function(elem){
-            qx.bom.element.Attribute.set(elem, "src", src); 
+            elem.setAttribute("src", src);
             elem.removeAttribute('width');
             elem.removeAttribute('height');
           });

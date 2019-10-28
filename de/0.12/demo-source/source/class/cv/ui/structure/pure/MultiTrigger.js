@@ -117,20 +117,21 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
     _onDomReady: function() {
       this.base(arguments);
       var actor = this.getActor();
-      var children = qx.dom.Hierarchy.getChildElements(actor);
+      var children = actor.childNodes;
       var value;
 
       if (this.getMapping()) {
         children.forEach(function (element, i) {
           value = this.defaultValueHandling(undefined, this['getButton' + (i + 1) + 'value']());
-          qx.dom.Element.empty(element);
-          this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, element));
+          element.innerHTML = '';
+          var self = this;
+          this.defaultValue2DOM(value, function(e){self._applyValueToDom(element,e);});
         }, this);
       }
     },
 
     getActors: function(){
-      return qx.bom.Selector.query('.actor_container .actor', this.getDomElement());
+      return this.getDomElement().querySelectorAll('.actor_container .actor');
     },
 
     // overridden, only transform the value, do not apply it to DOM
@@ -144,14 +145,14 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
     handleUpdate: function () {
       var children = this.getActors();
       children.forEach(function(actor) {
-        var index = children.indexOf(actor)+1;
+        var index = Array.prototype.indexOf.call( children, actor )+1;
         var isPressed = (''+this.getBasicValue()) === (''+this['getButton' + index + 'value']()); // compare as string
 
         // delay this a little bit to give the HasAnimatedButton stuff time to finish
         // otherwise it might override the settings here
         new qx.util.DeferredCall(function() {
-          qx.bom.element.Class.remove(actor, isPressed ? 'switchUnpressed' : 'switchPressed');
-          qx.bom.element.Class.add(actor, isPressed ? 'switchPressed' : 'switchUnpressed');
+          actor.classList.remove(isPressed ? 'switchUnpressed' : 'switchPressed');
+          actor.classList.add(isPressed ? 'switchPressed' : 'switchUnpressed');
         }, this).schedule();
       }, this);
     },
@@ -161,7 +162,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
      *
      */
     getActionValue: function (event) {
-      var index = qx.bom.Selector.query('.actor_container .actor', this.getDomElement()).indexOf(event.getCurrentTarget())+1;
+      var index = Array.prototype.indexOf.call( this.getDomElement().querySelectorAll('.actor_container .actor'), event.getCurrentTarget() )+1;
       return this['getButton' + index + 'value']();
     },
 

@@ -52,7 +52,7 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
 
       var value = cv.Transform.decode( this.getAddress()[ address ][0], data );
 
-      var bg = qx.bom.element.Style.get(valElem, 'background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
+      var bg = window.getComputedStyle(valElem)['background-color'].replace(/[a-zA-Z()\s]/g, '').split(/,/);
       if( 3 !== bg.length ) {
         bg = [0, 0, 0];
       }
@@ -62,7 +62,7 @@ qx.Class.define('cv.ui.structure.pure.Rgb', {
         case 'b' :  bg[2] = value; break;
       }
       var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
-      qx.bom.element.Style.set(valElem, 'background-color', bgs);
+      valElem.style['background-color'] = bgs;
     }
   },
 

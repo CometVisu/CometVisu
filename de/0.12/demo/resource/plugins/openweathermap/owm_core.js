@@ -382,8 +382,8 @@ var jOWM = jOWM || {};
        req.addListener("success", function (ev) {
            var req = ev.getTarget();
            var data = req.getResponse();
-           if (qx.lang.Type.isString(data)) {
-               data = qx.lang.Json.parse(data);
+           if (typeof data === 'string') {
+               data = JSON.parse(data);
            }
            callback(data);
        }, this);

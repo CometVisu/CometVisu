@@ -59,11 +59,11 @@ qx.Class.define('cv.util.ConfigLoader', {
         cv.Config.configServer = req.getResponseHeader("Server");
         // Response parsed according to the server's response content type
         var xml = req.getResponse();
-        if (xml && qx.lang.Type.isString(xml)) {
+        if (xml && (typeof xml === 'string')) {
           xml = qx.xml.Document.fromString(xml);
         }
         this.__xml = xml;
-        qx.bom.Selector.query('include', xml).forEach(this.loadInclude, this);
+        xml.querySelectorAll('include').forEach(this.loadInclude, this);
         this.__loadQueue.remove(ajaxRequest.getUrl());
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
@@ -71,7 +71,7 @@ qx.Class.define('cv.util.ConfigLoader', {
         }
         else {
           // check the library version
-          var xmlLibVersion = qx.bom.element.Attribute.get(qx.bom.Selector.query('pages', xml)[0], "lib_version");
+          var xmlLibVersion = xml.querySelector('pages').getAttribute("lib_version");
           if (xmlLibVersion === undefined) {
             xmlLibVersion = -1;
           }
@@ -116,7 +116,7 @@ qx.Class.define('cv.util.ConfigLoader', {
      * @param includeElem {Element}
      */
     loadInclude: function (includeElem) {
-      var url = qx.bom.element.Attribute.get(includeElem, 'src');
+      var url = includeElem.getAttribute('src');
       if (!url.startsWith('/')) {
         url = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + url;
       }
@@ -131,7 +131,7 @@ qx.Class.define('cv.util.ConfigLoader', {
         var xml = qx.xml.Document.fromString('<root>' + req.getResponseText() + '</root>');
         var parent = includeElem.parentElement;
         parent.removeChild(includeElem);
-        qx.dom.Hierarchy.getChildElements(xml.firstChild).forEach(function (child) {
+        xml.firstChild.childNodes.forEach(function (child) {
           parent.appendChild(child);
         });
         this.__loadQueue.remove(url);

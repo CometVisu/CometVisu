@@ -104,7 +104,7 @@ qx.Class.define('cv.plugins.Strftime', {
     // overridden
     getValueElement: function() {
       if (!this.__valueElement) {
-        this.__valueElement = qx.bom.Selector.query(".strftime_value", this.getDomElement())[0];
+        this.__valueElement = this.getDomElement().querySelector(".strftime_value");
       }
       return this.__valueElement;
     },
@@ -119,7 +119,7 @@ qx.Class.define('cv.plugins.Strftime', {
       var elem = this.getValueElement();
       var d = new Date();
       d.locale = this.getLocale();
-      qx.bom.element.Attribute.set(elem, "text", d.strftime(this.getFormat()));
+      elem.innerText = d.strftime(this.getFormat());
     }
   },
 

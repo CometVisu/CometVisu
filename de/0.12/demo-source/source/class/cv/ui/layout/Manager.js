@@ -85,22 +85,24 @@ qx.Class.define('cv.ui.layout.Manager', {
       // currently this calculation is done once after every page scroll (where cv.TemplateEngine.getInstance()currentPageUnavailableWidth is reseted)
       // if the screen width falls below the threshold which activates/deactivates the mobile.css
       // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
-      var bodyWidth = qx.bom.Viewport.getWidth();
+      var bodyWidth = document.documentElement.clientWidth;
       var mobileUseChanged = (this.lastBodyWidth < cv.Config.maxMobileScreenWidth) !== (bodyWidth < cv.Config.maxMobileScreenWidth);
       if (this.currentPageUnavailableWidth < 0 || mobileUseChanged || true) {
         //      console.log("Mobile.css use changed "+mobileUseChanged);
         this.currentPageUnavailableWidth = 0;
         var navbarVisibility = this.getCurrentPageNavbarVisibility();
 
-        var left = qx.bom.Selector.query('#navbarLeft')[0];
-        var widthNavbarLeft = navbarVisibility.left === true && qx.bom.element.Style.get(left, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
+        var left = document.querySelector('#navbarLeft'),
+          leftRect = left.getBoundingClientRect(),
+          widthNavbarLeft = navbarVisibility.left === true && window.getComputedStyle(left)['display'] !== "none" ? Math.round(leftRect.right - leftRect.left) : 0;
         if (widthNavbarLeft >= bodyWidth) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
           widthNavbarLeft = 0;
         }
-        var right = qx.bom.Selector.query('#navbarRight')[0];
-        var widthNavbarRight = navbarVisibility.right === true && qx.bom.element.Style.get(right, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
+        var right = document.querySelector('#navbarRight'),
+          rightRect = right.getBoundingClientRect(),
+          widthNavbarRight = navbarVisibility.right === true && window.getComputedStyle(right)['display'] !== "none" ? Math.round(rightRect.right - rightRect.left) : 0;
         if (widthNavbarRight >= bodyWidth) {
           // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
@@ -125,22 +127,27 @@ qx.Class.define('cv.ui.layout.Manager', {
      *         because the value of main.position().top is not reliable all the time
      */
     getAvailableHeight: function () {
-      var windowHeight = qx.bom.Viewport.getHeight();
+      var windowHeight = document.documentElement.clientHeight;
       this.currentPageUnavailableHeight = 0;
       var navbarVisibility = this.getCurrentPageNavbarVisibility();
-      var topNav = qx.bom.Selector.query('#navbarTop')[0];
-      var top = qx.bom.Selector.query('#top')[0];
-      var bottomNav = qx.bom.Selector.query('#navbarBottom')[0];
-      var bottom = qx.bom.Selector.query('#bottom')[0];
-      var topNavDisplay = qx.bom.element.Style.get(topNav, 'display');
-      var topDisplay = qx.bom.element.Style.get(top, 'display');
-      var bottomNavDisplay = qx.bom.element.Style.get(bottomNav, 'display');
-      var bottomDisplay = qx.bom.element.Style.get(bottom, 'display');
-      var topHeight = qx.bom.element.Dimension.getHeight(top);
-      var topNavHeight = qx.bom.element.Dimension.getHeight(topNav);
-      var bottomNavHeight = qx.bom.element.Dimension.getHeight(bottomNav);
-      var bottomHeight = qx.bom.element.Dimension.getHeight(bottom);
-      var navPathHeight = qx.bom.element.Dimension.getHeight(qx.bom.Selector.query('.nav_path')[0]);
+      var topNav = document.querySelector('#navbarTop');
+      var top = document.querySelector('#top');
+      var bottomNav = document.querySelector('#navbarBottom');
+      var bottom = document.querySelector('#bottom');
+      var topNavDisplay = window.getComputedStyle(topNav)['display'];
+      var topDisplay = window.getComputedStyle(top)['display'];
+      var bottomNavDisplay = window.getComputedStyle(bottomNav)['display'];
+      var bottomDisplay = window.getComputedStyle(bottom)['display'];
+      var topRect = top.getBoundingClientRect();
+      var topHeight = Math.round(topRect.bottom - topRect.top);
+      var topNavRect = topNav.getBoundingClientRect();
+      var topNavHeight = Math.round(topNavRect.bottom - topNavRect.top);
+      var bottomNavRect = bottomNav.getBoundingClientRect();
+      var bottomNavHeight = Math.round(bottomNavRect.bottom - bottomNavRect.top);
+      var bottomRect = bottom.getBoundingClientRect();
+      var bottomHeight = Math.round(bottomRect.bottom - bottomRect.top);
+      var nav_pathRect = document.querySelector('.nav_path').getBoundingClientRect();
+      var navPathHeight = Math.round(nav_pathRect.bottom - nav_pathRect.top);
 
       if (topDisplay  !== 'none' && topHeight > 0) {
         this.currentPageUnavailableHeight += Math.max(topHeight, navPathHeight);
@@ -196,7 +203,7 @@ qx.Class.define('cv.ui.layout.Manager', {
      */
     applyColumnWidths: function (selector, includeNavbars) {
       var width = this.getAvailableWidth();
-      var mainAreaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query('#main')[0], 'columns');
+      var mainAreaColumns = document.querySelector('#main').dataset['columns'];
       var mainAreaColspan = parseInt(mainAreaColumns || cv.Config.defaultColumns);
 
       var pageSelector = selector ? selector : '#main .activePage';
@@ -209,9 +216,9 @@ qx.Class.define('cv.ui.layout.Manager', {
       }
 
       selectors.forEach(function (area) {
-        var allContainer = qx.bom.Selector.query(area + ' .widget_container');
+        var allContainer = document.querySelectorAll(area + ' .widget_container');
         if (allContainer.length > 0) {
-          var areaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query(area)[0], 'columns');
+          var areaColumns = document.querySelector(area).dataset['columns'];
           var areaColspan = areaColumns || cv.Config.defaultColumns;
           allContainer.forEach(function(child) {
             var widget = cv.ui.structure.WidgetFactory.getInstanceByElement(child);
@@ -227,7 +234,7 @@ qx.Class.define('cv.ui.layout.Manager', {
         }
 
         // and elements inside groups
-        var adjustableElements = qx.bom.Selector.query(area + ' .group .widget_container');
+        var adjustableElements = document.querySelectorAll(area + ' .group .widget_container');
         adjustableElements.forEach(function (e) {
           var
             widget = cv.ui.structure.WidgetFactory.getInstanceByElement(e),
@@ -242,7 +249,7 @@ qx.Class.define('cv.ui.layout.Manager', {
             var groupColspan = mainAreaColspan;
             var parentGroupElement = cv.util.Tree.getParent(e, '.widget_container', '.group', 1)[0];
             if (parentGroupElement) {
-              var parentGroupWidget = cv.ui.structure.WidgetFactory.getInstanceByElement(qx.dom.Element.getParentElement(parentGroupElement));
+              var parentGroupWidget = cv.ui.structure.WidgetFactory.getInstanceByElement(parentGroupElement.parentNode);
               if (parentGroupWidget) {
                 groupColspan = Math.min(mainAreaColspan, this.getWidgetColspan(parentGroupWidget, width));
               }
@@ -256,7 +263,7 @@ qx.Class.define('cv.ui.layout.Manager', {
 
     __applyWidthClass: function (elem, widthClassSuffix) {
       if (widthClassSuffix === 'auto') {
-        qx.bom.element.Style.set(elem, 'width', widthClassSuffix);
+        elem.style.width = widthClassSuffix;
       } else {
         switch (this.LAYOUT_MODE) {
           case 'GRID':
@@ -266,11 +273,11 @@ qx.Class.define('cv.ui.layout.Manager', {
                 elem.classList.remove(cssClass);
               }
             }, this);
-            qx.bom.element.Class.add(elem, 'width-' + parseInt(widthClassSuffix));
+            elem.classList.add('width-' + parseInt(widthClassSuffix));
             break;
 
           default:
-            qx.bom.element.Style.set(elem, 'width', widthClassSuffix);
+            elem.style.width = widthClassSuffix;
             break;
         }
       }

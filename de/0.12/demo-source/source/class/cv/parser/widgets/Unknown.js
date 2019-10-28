@@ -37,7 +37,7 @@ qx.Class.define('cv.parser.widgets.Unknown', {
     parse: function (xml, path, flavour, pageType) {
       return cv.data.Model.getInstance().setWidgetData(path, {
         'path': path,
-        'unknownType': qx.dom.Node.getName(xml).toLowerCase(),
+        'unknownType': xml.nodeName.toLowerCase(),
         '$$type': "unknown",
         'pageType': pageType
       });
