@@ -29,13 +29,13 @@ describe("testing a audio widget", function() {
   it("should test the audio creator", function() {
 
     var res = this.createTestWidgetString("audio", {id: 'test'}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     var widgetInstance = res[0];
 
     expect(widget).toHaveClass('audio');
     expect(widget).toHaveLabel('Test');
 
-    var audio = qx.bom.Selector.query("audio", widget)[0];
+    var audio = widget.querySelector("audio");
 
     expect(audio).not.toHaveAttribute("autoplay");
     expect(audio).not.toHaveAttribute("loop");
@@ -55,17 +55,17 @@ describe("testing a audio widget", function() {
       loop: 'true'
     }, '<label>Test</label>');
 
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('audio');
     expect(widget).toHaveLabel('Test');
 
-    var audio = qx.bom.Selector.query("audio", widget)[0];
+    var audio = widget.querySelector("audio");
     expect(audio).toHaveAttribute("autoplay");
     expect(audio).toHaveAttribute("loop");
     expect(audio).toHaveAttribute("controls");
-    expect(qx.bom.element.Attribute.get(audio, 'style')).toBe('width:50%;height:50%;');
-    expect(qx.bom.element.Attribute.get(audio, 'id')).toBe('test');
+    expect(audio.getAttribute('style')).toBe('width:50%;height:50%;');
+    expect(audio.getAttribute('id')).toBe('test');
 
   });
 

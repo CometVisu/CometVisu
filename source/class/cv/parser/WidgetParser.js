@@ -51,17 +51,17 @@ qx.Class.define('cv.parser.WidgetParser', {
      * @param rootPage
      */
     renderTemplates: function (rootPage) {
-      qx.bom.Selector.query('template', rootPage).forEach(function (elem) {
-        var templateName = qx.bom.element.Attribute.get(elem, 'name');
+      rootPage.querySelectorAll('template').forEach(function (elem) {
+        var templateName = elem.getAttribute('name');
         var variables = {};
-        qx.dom.Hierarchy.getChildElements(elem).forEach(function (variable) {
-          variables[qx.bom.element.Attribute.get(variable, 'name')] = qx.bom.element.Attribute.get(variable, 'html');
+        elem.children.forEach(function (variable) {
+          variables[variable.getAttribute('name')] = variable.innerHTML;
         }, this);
 
         if (this.__templates.hasOwnProperty(templateName)) {
           var renderedString = qx.bom.Template.render(this.__templates[templateName], variables).replace('\n', '').trim();
           var helperNode = elem.ownerDocument.createElement('template');
-          qx.bom.element.Attribute.set(helperNode, 'html', renderedString.substring(6, renderedString.length - 7).trim());
+          helperNode.innerHTML = renderedString.substring(6, renderedString.length - 7).trim();
           // replace existing element with the rendered templates child
           var replacement = helperNode.firstElementChild;
           var next = elem.nextElementSibling;
@@ -183,28 +183,28 @@ qx.Class.define('cv.parser.WidgetParser', {
         return handler.createDefaultWidget(widgetType, element, path, flavour, pageType);
       }
 
-      var layout = this.parseLayout( qx.bom.Selector.matches('layout', qx.dom.Hierarchy.getChildElements(element))[0] );
-      var style = qx.lang.Object.isEmpty(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
+      var layout = this.parseLayout( Array.from(element.children).filter(function(m){return m.matches('layout');})[0] );
+      var style = Object.keys(layout).length === 0 ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
       var classes = handler.getDefaultClasses ? handler.getDefaultClasses(widgetType) : this.getDefaultClasses(widgetType);
       // the group widgets align attribute is just targeting the group header and is handled by the widget itself, so we skip it here
-      if ( qx.bom.element.Attribute.get(element, 'align') && widgetType !== "group" ) {
-        classes+=" "+qx.bom.element.Attribute.get(element, 'align') ;
+      if ( element.getAttribute('align') && widgetType !== "group" ) {
+        classes+=" "+element.getAttribute('align') ;
       }
       classes += ' ' + this.setWidgetLayout(element, path);
-      if( qx.bom.element.Attribute.get(element, 'flavour') ) {
-        flavour = qx.bom.element.Attribute.get(element, 'flavour');
+      if( element.getAttribute('flavour') ) {
+        flavour = element.getAttribute('flavour');
       }// sub design choice
       if( flavour ) {
         classes += ' flavour_' + flavour;
       }
-      if (qx.bom.element.Attribute.get(element, 'class')) {
-        classes += ' custom_' + qx.bom.element.Attribute.get(element, 'class');
+      if (element.getAttribute('class')) {
+        classes += ' custom_' + element.getAttribute('class');
       }
-      var label = (widgetType==='text') ? this.parseLabel( qx.bom.Selector.query("label", element)[0], flavour, '' ) : this.parseLabel( qx.bom.Selector.query("label", element)[0], flavour );
+      var label = (widgetType==='text') ? this.parseLabel( element.querySelector("label"), flavour, '' ) : this.parseLabel( element.querySelector("label"), flavour );
 
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
-      if (qx.bom.element.Attribute.get(element, "bind_click_to_widget")) {
-        bindClickToWidget = qx.bom.element.Attribute.get(element, "bind_click_to_widget") === "true";
+      if (element.getAttribute("bind_click_to_widget")) {
+        bindClickToWidget = element.getAttribute("bind_click_to_widget") === "true";
       }
 
       var data = {
@@ -214,7 +214,7 @@ qx.Class.define('cv.parser.WidgetParser', {
       };
       data.bindClickToWidget = bindClickToWidget;
       ['mapping', 'align', 'align'].forEach(function(prop) {
-        data[prop] = qx.bom.element.Attribute.get(element, prop) || null;
+        data[prop] = element.getAttribute(prop) || null;
       }, this);
 
       data.layout = layout || null;
@@ -316,13 +316,13 @@ qx.Class.define('cv.parser.WidgetParser', {
         ( style ? (' style="' + style + '"') : '' ) + '>';
 
       Array.prototype.forEach.call(label.childNodes, function(elem) {
-        if( qx.dom.Node.isNodeName(elem, 'icon') ) {
+        if( elem.nodeName.toLowerCase() ==='icon' ) {
           ret_val += cv.IconHandler.getInstance().getIconText(
-            qx.bom.element.Attribute.get(elem, 'name'),
-            qx.bom.element.Attribute.get(elem, 'type'),
-            qx.bom.element.Attribute.get(elem, 'flavour') || flavour,
-            qx.bom.element.Attribute.get(elem, 'color'),
-            qx.bom.element.Attribute.get(elem, 'styling') );
+            elem.getAttribute('name'),
+            elem.getAttribute('type'),
+            elem.getAttribute('flavour') || flavour,
+            elem.getAttribute('color'),
+            elem.getAttribute('styling') );
         } else {
           ret_val += elem.textContent;
         }
@@ -341,7 +341,7 @@ qx.Class.define('cv.parser.WidgetParser', {
     setWidgetLayout: function( element, path ) {
       var
         elementData = this.model.getWidgetData( path ),
-        layout      = qx.bom.Selector.matches('layout', qx.dom.Hierarchy.getChildElements(element))[0],
+        layout      = Array.from(element.children).filter(function(m){return m.matches('layout');})[0],
         ret_val = '',
         rowspan = null;
 
@@ -351,7 +351,7 @@ qx.Class.define('cv.parser.WidgetParser', {
         elementData.colspanS = qx.xml.Element.getAttributeNS(layout, '', 'colspan-s');
         rowspan = qx.xml.Element.getAttributeNS(layout, '', 'rowspan');
       }
-      elementData.colspan = parseFloat(elementData.colspan || qx.bom.element.Dataset.get(qx.bom.Selector.query('head')[0], 'colspanDefault') || 6);
+      elementData.colspan = parseFloat(elementData.colspan || document.querySelector('head').dataset['colspanDefault'] || 6);
       elementData.colspanM = parseFloat(elementData.colspanM || cv.parser.WidgetParser.lookupM[Math.floor(elementData.colspan)] || elementData.colspan);
       elementData.colspanS = parseFloat(elementData.colspanS || cv.parser.WidgetParser.lookupS[Math.floor(elementData.colspan)] || elementData.colspan);
 
@@ -369,7 +369,7 @@ qx.Class.define('cv.parser.WidgetParser', {
      */
     parseFormat: function (xml, path) {
       var data = this.model.getWidgetData(path);
-      var value = qx.bom.element.Attribute.get(xml, 'format');
+      var value = xml.getAttribute('format');
       if (value) {
         data.format = value;
       }
@@ -402,18 +402,18 @@ qx.Class.define('cv.parser.WidgetParser', {
      */
     makeAddressList: function (element, id, makeAddressListFn, skipAdding) {
       var address = {};
-      qx.bom.Selector.query('address', element).forEach(function (elem) {
+      element.querySelectorAll('address').forEach(function (elem) {
         var
           src = elem.textContent,
-          transform = qx.bom.element.Attribute.get(elem, 'transform'),
-          formatPos = +(qx.bom.element.Attribute.get(elem, 'format-pos') || 1) | 0, // force integer
+          transform = elem.getAttribute('transform'),
+          formatPos = +(elem.getAttribute('format-pos') || 1) | 0, // force integer
           mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
 
         if ((!src) || (!transform)) {// fix broken address-entries in config
           qx.log.Logger.error(this, "Either address or transform is missing in address element %1", element.outerHTML);
           return;
         }
-        switch (qx.bom.element.Attribute.get(elem, 'mode')) {
+        switch (elem.getAttribute('mode')) {
           case 'disable':
             mode = 0;
             break;
@@ -427,7 +427,7 @@ qx.Class.define('cv.parser.WidgetParser', {
             mode = 1 | 2;
             break;
         }
-        var variantInfo = makeAddressListFn ? makeAddressListFn(src, transform, mode, qx.bom.element.Attribute.get(elem, 'variant')) : [true, undefined];
+        var variantInfo = makeAddressListFn ? makeAddressListFn(src, transform, mode, elem.getAttribute('variant')) : [true, undefined];
         if (!skipAdding && (mode & 1) && variantInfo[0]) {// add only addresses when reading from them
           this.model.addAddress(src, id);
         }
@@ -470,7 +470,7 @@ qx.Class.define('cv.parser.WidgetParser', {
 
     parseStyling: function (xml, path) {
       var data = this.model.getWidgetData(path);
-      data.styling = qx.bom.element.Attribute.get(xml, 'styling');
+      data.styling = xml.getAttribute('styling');
     },
 
     // this might have been called from the cv.parser.WidgetParser with the including class as context
@@ -480,8 +480,8 @@ qx.Class.define('cv.parser.WidgetParser', {
       if (!data.children) {
         data.children = [];
       }
-      var childs = qx.dom.Hierarchy.getChildElements(xml).filter(function(child) {
-        return ['layout', 'label', 'address'].indexOf(qx.dom.Node.getName(child)) === -1;
+      var childs = Array.from(xml.children).filter(function(child) {
+        return ['layout', 'label', 'address'].indexOf(child.nodeName.toLowerCase()) === -1;
       }, this);
       childs.forEach(function (child, idx) {
         var childData = cv.parser.WidgetParser.parse(child, path + '_' + idx, flavour, pageType);

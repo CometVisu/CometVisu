@@ -10,7 +10,7 @@ describe("testing the Link action", function() {
     });
 
     var actionButton = action.getDomElement();
-    expect(qx.bom.element.Attribute.get(actionButton, "text")).toBe("Title");
+    expect(actionButton.innerText).toBe("Title");
     expect(actionButton).toHaveClass("action");
 
     var spy = spyOn(cv.util.Location, "open");
@@ -28,7 +28,7 @@ describe("testing the Link action", function() {
       action: "reload",
       needsConfirmation: false
     });
-    expect(qx.lang.Type.isFunction(action.getAction())).toBeTruthy();
+    expect(typeof action.getAction() === 'function').toBeTruthy();
 
     action = new cv.core.notifications.actions.Link({
       title: "Title",
@@ -42,7 +42,7 @@ describe("testing the Link action", function() {
       action: function() {},
       needsConfirmation: false
     });
-    expect(qx.lang.Type.isFunction(action.getAction())).toBeTruthy();
+    expect(typeof action.getAction() === 'function').toBeTruthy();
   });
 
   it("should execute the actions", function() {

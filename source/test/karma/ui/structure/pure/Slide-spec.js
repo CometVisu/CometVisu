@@ -28,7 +28,7 @@ describe("testing a slide widget", function() {
   it("should test the slide creator", function() {
 
     var res = this.createTestWidgetString("slide", {}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     expect(res[0].getPath()).toBe("id_0");
 
     expect(widget).toHaveClass('slide');

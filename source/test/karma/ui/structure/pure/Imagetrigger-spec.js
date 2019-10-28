@@ -45,7 +45,7 @@ describe("testing a imagetrigger widget", function() {
   it("should test the imagetrigger creator", function() {
 
     var res = this.createTestWidgetString("imagetrigger", {flavour: 'potassium'}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('imagetrigger');
     expect(widget).toHaveClass('image');
@@ -78,9 +78,9 @@ describe("testing a imagetrigger widget", function() {
     });
 
     res.update('12/7/37', 1);
-    var actor = qx.bom.Selector.query('.actor img', this.container.children[0])[0];
+    var actor = this.container.children[0].querySelector('.actor img');
     expect(actor).toBeVisible();
-    expect(qx.bom.element.Attribute.get(actor, 'src')).toBe('imgs.jpg');
+    expect(actor.getAttribute('src')).toBe('imgs.jpg');
 
     res.update('12/7/37', 0);
     expect(actor).not.toBeVisible();
@@ -94,10 +94,10 @@ describe("testing a imagetrigger widget", function() {
     });
 
     res.update('12/7/37', 1);
-    var actor = qx.bom.Selector.query('.actor img', this.container.children[0])[0];
+    var actor = this.container.children[0].querySelector('.actor img');
 
     expect(actor).toBeVisible();
-    expect(qx.bom.element.Attribute.get(actor, 'src')).toBe('imgs1.jpg');
+    expect(actor.getAttribute('src')).toBe('imgs1.jpg');
 
     res.update('12/7/37', 0);
     expect(actor).not.toBeVisible();
@@ -118,7 +118,7 @@ describe("testing a imagetrigger widget", function() {
     this.initWidget(res);
     var Reg = qx.event.Registration;
 
-    var actor = qx.bom.Selector.query('.actor', this.container.children[0])[0];
+    var actor = this.container.children[0].querySelector('.actor');
     expect(actor).not.toBe(null);
 
     // no write flag

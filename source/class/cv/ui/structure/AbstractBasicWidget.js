@@ -95,7 +95,16 @@ qx.Class.define('cv.ui.structure.AbstractBasicWidget', {
      * @return {Element}
      */
     getDomElement: function() {
-      return qx.bom.Selector.query('#'+this.getPath())[0];
+      var element = document.querySelector('#'+this.getPath());
+      if( null === element ) {
+        // TODO and FIXME: no code should rely on a return of `document` here.
+        // But currently it is required as this is the behaviour that Qx had
+        // when it called getAttribute().
+        // This is only an issue for the Karma tests.
+        console.warn( 'Compatability mode used - everything should be set up, so that getDomElement() can return the element and not `document` instead.', this.get$$type(), this.getPath());
+        return document;
+      }
+      return element;
     },
 
     /**

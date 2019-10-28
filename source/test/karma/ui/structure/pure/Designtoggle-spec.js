@@ -26,7 +26,7 @@ describe("testing a designtoggle widget", function() {
 
   it("should test the designtoggle creator", function() {
     var res = this.createTestWidgetString("designtoggle", {}, "<label>Test</label>");
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('toggle');
     expect(widget).toHaveLabel('Test');

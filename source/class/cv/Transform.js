@@ -94,7 +94,7 @@ qx.Class.define('cv.Transform', {
     addTransform: function (prefix, transforms) {
       for (var trans in transforms) {
         if (transforms[trans].link) {
-          this.registry[prefix + ':' + trans] = qx.lang.Object.mergeWith(qx.lang.Object.clone(transforms[transforms[trans].link]), transforms[trans]);
+          this.registry[prefix + ':' + trans] = Object.assign({}, transforms[transforms[trans].link], transforms[trans]);
         } else {
           this.registry[prefix + ':' + trans] = transforms[trans];
         }

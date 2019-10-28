@@ -62,7 +62,7 @@ qx.Class.define('cv.ui.structure.pure.Video', {
 
     // overridden
     getValueElement: function() {
-      return qx.bom.Selector.query("video", this.getDomElement())[0];
+      return this.getDomElement().querySelector("video");
     },
 
     // overridden

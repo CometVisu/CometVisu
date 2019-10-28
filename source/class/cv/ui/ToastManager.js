@@ -95,21 +95,21 @@ qx.Class.define("cv.ui.ToastManager", {
     _init: function() {
       if (!this.__domElement) {
         // check if there is one (might be restored from cache)
-        this.__domElement = qx.bom.Selector.query(this.getRootElementId())[0];
+        this.__domElement = document.querySelector(this.getRootElementId());
         if (!this.__domElement) {
           this.__domElement = qx.dom.Element.create("div", {"id": this.getRootElementId()});
         }
       }
-      if (qx.bom.Selector.query(this.getRootElementId()).length === 0) {
-        qx.dom.Element.insertEnd(this.__domElement, document.body);
+      if (document.querySelectorAll(this.getRootElementId()).length === 0) {
+        document.body.appendChild(this.__domElement);
       }
-      if (qx.bom.Selector.query("#ToastTemplate").length === 0) {
+      if (document.querySelectorAll("#ToastTemplate").length === 0) {
         var template = qx.dom.Element.create("script", {
           id: "ToastTemplate",
           type: "text/template",
           html: '<div class="toast {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="'+this.getMessageElementId()+'{{ id }}"><div class="content">{{&message}}</div></div>'
         });
-        qx.dom.Element.insertEnd(template, document.body);
+        document.body.appendChild(template);
       }
       this._list = new qx.data.controller.website.List(this._messages, this.__domElement, "ToastTemplate");
       qx.event.Registration.addListener(this.__domElement, "tap", this._onListTap, this);
@@ -135,7 +135,7 @@ qx.Class.define("cv.ui.ToastManager", {
       this.__timer = null;
     }
     if (this.__domElement) {
-      qx.dom.Element.remove(this.__domElement);
+      this.__domElement.parentNode.removeChild(this.__domElement);
       this.__domElement = null;
     }
   }

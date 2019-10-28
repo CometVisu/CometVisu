@@ -113,24 +113,24 @@ describe('test the notification router', function () {
     var model = cv.data.Model.getInstance();
     model.onUpdate("0/0/1", 1);
 
-    var popup = qx.bom.Selector.query("#popup_0")[0];
+    var popup = document.querySelector("#popup_0");
 
     // initial state should trigger no popup
-    expect(popup).toBeUndefined();
+    expect(popup).toBeNull();
 
     model.onUpdate("0/0/1", 0);
-    popup = qx.bom.Selector.query("#popup_0")[0];
+    popup = document.querySelector("#popup_0");
     // still no popup cause value is 0
-    expect(popup).toBeUndefined();
+    expect(popup).toBeNull();
 
     model.onUpdate("0/0/1", 1);
-    popup = qx.bom.Selector.query("#popup_0")[0];
-    expect(popup).not.toBeUndefined();
+    popup = document.querySelector("#popup_0");
+    expect(popup).not.toBeNull();
 
     model.onUpdate("0/0/1", 0);
-    popup = qx.bom.Selector.query("#popup_0")[0];
+    popup = document.querySelector("#popup_0");
     // as the condition isn't met anymore the popup must be gone
-    expect(popup).toBeUndefined();
+    expect(popup).toBeNull();
 
     router.unregisterStateUpdatehandler(["0/0/1"]);
   });

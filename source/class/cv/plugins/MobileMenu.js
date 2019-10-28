@@ -70,16 +70,16 @@ qx.Class.define('cv.plugins.MobileMenu', {
     // overridden
     getDomString: function() {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth){
-        var navLeft = this.__navLeft = qx.bom.Selector.query('#navbarLeft')[0];
-        if (!qx.bom.element.Class.has(navLeft, 'mobilemenu')){
-          qx.bom.element.Class.add(navLeft, 'mobilemenu');
+        var navLeft = this.__navLeft = document.querySelector('#navbarLeft');
+        if (!navLeft.classList.contains('mobilemenu')){
+          navLeft.classList.add('mobilemenu');
         }
-        qx.bom.element.Style.set(navLeft, "display", "none");
+        navLeft.style.display = "none";
         qx.event.message.Bus.subscribe("path.pageChanged", function() {
-          var navbar = qx.bom.Selector.query('.navbar', navLeft)[0];
+          var navbar = navLeft.querySelector('.navbar');
           var animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
           animation.addListenerOnce("end", function() {
-            qx.bom.element.Style.set(navLeft, "display", "none");
+            navLeft.style.display = "none";
           }, this);
         });
 
@@ -98,8 +98,8 @@ qx.Class.define('cv.plugins.MobileMenu', {
     _action: function() {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth){
         if(this.isTouchDevice()){
-          qx.bom.element.Style.set(this.__navLeft, "display", "block");
-          var navbar = qx.bom.Selector.query('.navbar.navbarActive', this.__navLeft)[0];
+          this.__navLeft.style.display = "block";
+          var navbar = this.__navLeft.querySelector('.navbar.navbarActive');
           qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
         }
       }
@@ -108,7 +108,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
     touchScroll: function(id){
       var scrollStartPos=0;
 
-      var elem = qx.bom.Selector.query('#'+id)[0];
+      var elem = document.querySelector('#'+id);
       qx.event.Registration.addListener(elem, "touchstart", function(event) {
         scrollStartPos=this.scrollTop+event.touches[0].pageY;
         event.preventDefault();

@@ -207,7 +207,7 @@ qx.Class.define('cv.util.IconTools', {
         if (asText) {
           return newCanvas;
         }
-        var newElement = qx.bom.Selector.query(newCanvas)[0];
+        var newElement = document.querySelector(newCanvas);
         if (cv.util.IconTools.iconCache[url].icon.complete) {
           cv.util.IconTools.fillCanvas(newElement, cv.util.IconTools.iconCache[url].colors[color]);
         }
@@ -257,7 +257,7 @@ qx.Class.define('cv.util.IconTools', {
   },
 
   defer: function() {
-    var canvas = qx.dom.Element.create('canvas');
+    var canvas = document.createElement('canvas');
     this.defer.self.tmpCanvas = canvas;
     this.defer.self.tmpCtx = canvas.getContext('2d');
   }

@@ -40,13 +40,13 @@ var createTestWidgetString = function (name, attributes, content) {
     content = "";
   }
   var elem = qx.dom.Element.create(name, attributes);
-  qx.bom.element.Attribute.set(elem, "html", content);
+  elem.innerHTML = content;
 
   var data = null;
   if (name !== "page") {
     // create surrounding root page
     var page = qx.dom.Element.create("page", {visible: "false"});
-    qx.dom.Element.insertEnd(elem, page);
+    page.appendChild(elem);
     data = cv.parser.WidgetParser.parse(page, 'id', null, "text");
     cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
     data = cv.data.Model.getInstance().getWidgetData(data.children[0]);
@@ -135,10 +135,9 @@ resetApplication = function() {
     delete subs[topic];
   });
 
-  var body = qx.bom.Selector.query("body")[0];
+  var body = document.querySelector("body");
   // load empty HTML structure
-  qx.dom.Element.empty(body);
-  qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+  body.innerHTML = cv.Application.HTML_STRUCT;
 
   cv.Config.cacheUsed = false;
   // reset templateEngine's init values
@@ -153,7 +152,7 @@ resetApplication = function() {
 // DOM Helpers
 
 var findChild = function(elem, selector) {
-  return qx.bom.Selector.matches(selector, qx.dom.Hierarchy.getDescendants(elem))[0];
+  return Array.from(elem.getElementsByTagName("*")).filter(function(m){return m.matches(selector);})[0];
 };
 
 var customMatchers = {
@@ -162,7 +161,7 @@ var customMatchers = {
       compare: function(actual, expected) {
         var result = {};
 
-        result.pass = qx.bom.element.Class.has(actual, 'flavour_'+expected);
+        result.pass = actual.classList.contains('flavour_'+expected);
         if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to be flavoured with "+expected;
         }
@@ -178,7 +177,7 @@ var customMatchers = {
     return  {
       compare: function(actual, expected) {
         var result = {};
-        result.pass = qx.bom.element.Class.has(actual, expected);
+        result.pass = actual.classList.contains(expected);
         if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to have class "+expected;
         }
@@ -194,13 +193,13 @@ var customMatchers = {
     return  {
       compare: function(actual, expected) {
         var result = {};
-        var label = qx.bom.Selector.matches("div.label", qx.dom.Hierarchy.getChildElements(actual))[0];
-        result.pass = label && qx.dom.Node.getText(label) === expected;
+        var label = Array.from(actual.children).filter(function(m){return m.matches("div.label");})[0];
+        result.pass = label && label.innerText === expected;
         if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to have value "+expected;
         }
         else{
-          result.message = "Expected " + actual.tagName + " to have value "+expected+", but it has "+qx.dom.Node.getText(label);
+          result.message = "Expected " + actual.tagName + " to have value "+expected+", but it has "+label.innerText;
         }
         return result;
       }
@@ -211,13 +210,13 @@ var customMatchers = {
     return  {
       compare: function(actual, expected) {
         var result = {};
-        var label = qx.bom.Selector.matches(".value", qx.dom.Hierarchy.getDescendants(actual))[0];
-        result.pass = label && qx.dom.Node.getText(label) === expected;
+        var label = Array.from(actual.getElementsByTagName("*")).filter(function(m){return m.matches(".value");})[0];
+        result.pass = label && label.innerText === expected;
         if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to have label "+expected;
         }
         else{
-          result.message = "Expected " + actual.tagName + " to have label "+expected+", but it has "+qx.dom.Node.getText(label);
+          result.message = "Expected " + actual.tagName + " to have label "+expected+", but it has "+label.innerText;
         }
         return result;
       }
@@ -278,9 +277,9 @@ var customMatchers = {
     return  {
       compare: function(actual) {
         var result = {};
-        result.pass = qx.bom.element.Style.get(actual, 'display') !== 'none';
+        result.pass = window.getComputedStyle(actual)['display'] !== 'none';
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " not to be visible, but it is "+qx.bom.element.Style.get(actual, 'display');
+          result.message = "Expected " + actual.tagName + " not to be visible, but it is "+window.getComputedStyle(actual)['display'];
         }
         else{
           result.message = "Expected " + actual.tagName + " to be visible";
@@ -350,10 +349,9 @@ afterEach(function () {
     this.creator = null;
   }
 
-  var body = qx.bom.Selector.query("body")[0];
+  var body = document.querySelector("body");
   // load empty HTML structure
-  qx.dom.Element.empty(body);
-  qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+  body.innerHTML = cv.Application.HTML_STRUCT;
   cv.TemplateEngine.getInstance().resetDomFinished();
   // resetApplication();
 });

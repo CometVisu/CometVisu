@@ -58,9 +58,9 @@ qx.Class.define("cv.core.notifications.Router", {
       if (!message.hasOwnProperty("condition")) {
         // nothing to evaluate
         return true;
-      } else if (qx.lang.Type.isBoolean(message.condition)) {
+      } else if (typeof message.condition === 'boolean') {
         return message.condition;
-      } else if (qx.lang.Type.isFunction(message.condition)) {
+      } else if (typeof message.condition === 'function') {
         return message.condition();
       } else {
         qx.log.Logger.error(this, "unhandled message condition type: "+message.condition);

@@ -62,21 +62,21 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     getPageSize: function (noCache) {
       if (!this.$pageSize || noCache === true) {
-        this.$pageSize = qx.bom.Selector.query('#pageSize')[0];
+        this.$pageSize = document.querySelector('#pageSize');
       }
       return this.$pageSize;
     },
 
     getNavbarTop: function (noCache) {
       if (!this.$navbarTop || noCache === true) {
-        this.$navbarTop = qx.bom.Selector.query('#navbarTop')[0];
+        this.$navbarTop = document.querySelector('#navbarTop');
       }
       return this.$navbarTop;
     },
 
     getNavbarBottom: function (noCache) {
       if (!this.$navbarBottom || noCache === true) {
-        this.$navbarBottom = qx.bom.Selector.query('#navbarBottom')[0];
+        this.$navbarBottom = document.querySelector('#navbarBottom');
       }
       return this.$navbarBottom;
     },
@@ -122,7 +122,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       if ('2d' === page.getPageType()) {
         var
           cssPosRegEx = /(\d*)(.*)/,
-          backdrop = qx.bom.Selector.query("div > "+page.getBackdropType(), page.getDomElement())[0];
+          backdrop = page.getDomElement().querySelector("div > "+page.getBackdropType());
         try {
           var backdropSVG = page.getBackdropType() === 'embed' ? backdrop.getSVGDocument() : null;
           var backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {},
@@ -157,15 +157,15 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
             page.getBackdropType() === 'embed' ||
             ( uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1 )
           ) {
-            qx.bom.element.Style.setStyles(backdrop, {
+            Object.entries({
               width: backdropWidth + 'px',
               height: backdropHeight + 'px',
               left: backdropLeft + 'px',
               top: backdropTop + 'px'
-            });
+            }).forEach(function(key_value){backdrop.style[key_value[0]]=key_value[1];});
           }
 
-          qx.bom.Selector.query('.widget_container', page.getDomElement()).forEach(function (widgetContainer) {
+          page.getDomElement().querySelectorAll('.widget_container').forEach(function (widgetContainer) {
             var widget = cv.ui.structure.WidgetFactory.getInstanceById(widgetContainer.id);
             var value;
             var layout = widget.getResponsiveLayout();
@@ -228,11 +228,14 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       if (cv.Config.mobileDevice) {
         //do nothing
       } else {
-        var navbarTop = this.getNavbarTop();
-        var navbarBottom = this.getNavbarBottom();
+        var
+          navbarTop = this.getNavbarTop(),
+          navbarTopRect = navbarTop.getBoundingClientRect(),
+          navbarBottom = this.getNavbarBottom(),
+          navbarBottomRect = navbarBottom.getBoundingClientRect();
         if (
-          (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && qx.bom.element.Dimension.getHeight(navbarTop) <= 2) ||
-          (qx.bom.element.Style.get(navbarBottom, 'display') !== 'none' && qx.bom.element.Dimension.getHeight(navbarBottom) <= 2)
+          (window.getComputedStyle(navbarTop)['display'] !== 'none' && Math.round(navbarTopRect.bottom - navbarTopRect.top) <= 2) ||
+          (window.getComputedStyle(navbarBottom)['display'] !== 'none' && Math.round(navbarBottomRect.bottom - navbarBottomRect.top) <= 2)
         ) {
           // Top/Bottom-Navbar is not initialized yet, re-queue the job
           new qx.util.DeferredCall(function() {
@@ -284,24 +287,27 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makeRowspanValid: function () {
       qx.log.Logger.debug(this, "makeRowspanValid");
-      var elem = qx.bom.Selector.query("#calcrowspan")[0];
+      var elem = document.querySelector("#calcrowspan");
       if (!elem) {
         elem = qx.dom.Element.create("div", {
           "class": "clearfix",
           "id": "calcrowspan",
           "html": '<div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv"></div>'
         });
-        qx.dom.Element.insertEnd(elem, document.body);
+        document.body.appendChild(elem);
       }
       // use the internal div for height as in mobile view the elem uses the full screen height
-      this.__updateRowHeight(qx.bom.Selector.query("#containerDiv", elem)[0]);
+      this.__updateRowHeight(elem.querySelector("#containerDiv"));
     },
 
     __updateRowHeight: function(elem) {
-      var height = qx.bom.element.Dimension.getHeight(elem);
+      var
+        rect = elem.getBoundingClientRect(),
+        height = Math.round(rect.bottom - rect.top);
       if (height === 0) {
         // not ready try again
-        qx.bom.AnimationFrame.request(qx.lang.Function.curry(this.__updateRowHeight, elem), this);
+        var self = this;
+        qx.bom.AnimationFrame.request(function(){self.__updateRowHeight(elem);}, this);
         return;
       }
       var styles = '';
@@ -309,10 +315,13 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       for (var rowspan in cv.Config.configSettings.usedRowspans) {
         styles += '.rowspan.rowspan' + rowspan + ' { height: ' + Math.round(rowspan * height) + "px;}\n";
       }
-      qx.bom.Selector.query("#calcrowspan").forEach(qx.dom.Element.remove, qx.dom.Element);
+      var calcrowspan = document.querySelector("#calcrowspan");
+      if( calcrowspan ) {
+        calcrowspan.parentNode.removeChild(calcrowspan);
+      }
 
       // set css style
-      var rowSpanStyle = qx.bom.Selector.query('#rowspanStyle')[0];
+      var rowSpanStyle = document.querySelector('#rowspanStyle');
       if (rowSpanStyle) {
         rowSpanStyle.innerHTML = styles;
       }

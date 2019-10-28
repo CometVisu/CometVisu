@@ -41,7 +41,7 @@ qx.Class.define('cv.ConfigCache', {
       if (qx.core.Environment.get("html.storage.local") === false) {
         return;
       }
-      var config = qx.lang.Object.clone(cv.Config.configSettings, true);
+      var config = JSON.parse(JSON.stringify(cv.Config.configSettings)); // deep copy
       var model = cv.data.Model.getInstance();
       this.save(this._cacheKey, {
         hash: this.toHash(xml),
@@ -51,11 +51,11 @@ qx.Class.define('cv.ConfigCache', {
         addresses: model.getAddressList(),
         configSettings: config
       });
-      localStorage.setItem(cv.Config.configSuffix+".body", qx.bom.element.Attribute.get(qx.bom.Selector.query('body')[0], 'html'));
+      localStorage.setItem(cv.Config.configSuffix+".body", document.querySelector('body').innerHTML);
     },
 
     restore: function() {
-      var body = qx.bom.Selector.query("body")[0];
+      var body = document.querySelector("body");
       var model = cv.data.Model.getInstance();
       var cache = this.getData();
       cv.Config.configSettings = cache.configSettings;
@@ -70,12 +70,12 @@ qx.Class.define('cv.ConfigCache', {
       }
       model.setWidgetDataModel(cache.data);
       model.setAddressList(cache.addresses);
-      qx.bom.element.Attribute.set(body, "html", cv.ConfigCache.getBody());
+      body.innerHTML = cv.ConfigCache.getBody();
     },
     
     save: function(key, data) {
       if (qx.core.Environment.get("html.storage.local") === true) {
-        localStorage.setItem(cv.Config.configSuffix + "." + key, qx.lang.Json.stringify(data));
+        localStorage.setItem(cv.Config.configSuffix + "." + key, JSON.stringify(data));
       }
     },
     
@@ -91,7 +91,7 @@ qx.Class.define('cv.ConfigCache', {
         return null;
       }
       if (!this._parseCacheData) {
-        this._parseCacheData = qx.lang.Json.parse(localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey));
+        this._parseCacheData = JSON.parse(localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey));
       }
       if (!this._parseCacheData) {
         return null;
