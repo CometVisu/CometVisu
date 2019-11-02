@@ -60,7 +60,7 @@ qx.Class.define("cv.compile.LibraryApi", {
         "../node_modules/monaco-editor"
       ]
       const currentDir = process.cwd()
-      const targetDir = this._getTargetDir(config, config.targetType)
+      const targetDir = this._getTargetDir(config)
       if (targetDir) {
         filesToCopy.forEach(file => {
           const source = path.join(currentDir, 'source', file)
@@ -93,17 +93,22 @@ qx.Class.define("cv.compile.LibraryApi", {
       console.log('uglifying libraries')
       exec('grunt uglify:libs')
 
+      const targetDir = this._getTargetDir(config)
+
       // build-append-plugin-libs
       console.log('appending libraries to plugins')
-      exec('./cv build -bp"')
+      exec('./cv build -bp -d ' + targetDir)
 
       // build-paths
-      console.log('build paths')
-      exec('./cv build -up')
+      console.log('update paths')
+      exec('./cv build -up -d ' + targetDir)
     },
 
     _getTargetDir (config, type) {
       let targetDir = null
+      if (!type) {
+        type = config.targetType
+      }
       config.targets.some(target => {
         if (target.type === type) {
           targetDir = target.outputPath

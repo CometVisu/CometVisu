@@ -36,14 +36,16 @@ class BuildHelper(Command):
         self.log = logging.getLogger("BuildHelper")
         logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
-    def build_plugins(self):
-        if not os.path.exists("build"):
+    def build_plugins(self, build_dir="build"):
+        if not os.path.exists(build_dir):
             print("Please run generate the build first")
             return
         p = re.compile("^qx.\$\$packageData\['\d+'\]=(.+);")
         scripts_reg = re.compile("[\w]+\.addScripts\(\[?([^\]\)]+)\]?,?(\[[^\]]\]+)?\)")
-        for subdir, dirs, files in os.walk(os.path.join("build", "script")):
+        for subdir, dirs, files in os.walk(os.path.join(build_dir, "cv")):
             for file in files:
+                if file[-3:] != ".js":
+                    continue
                 # print(os.path.join(subdir, file))
                 with open(os.path.join(subdir, file), 'r+') as f:
                     content = f.read()
@@ -55,7 +57,7 @@ class BuildHelper(Command):
                         package_data = json.loads(data[0])
                         first_resource = True
                         js_files = []
-                        #print(package_data['resources'])
+                        print(package_data['resources'])
                         for resource in package_data['resources']:
                             if resource.startswith("plugins/") and resource.split(".")[-1] == "js":
                                 js_files.append(resource)
@@ -73,7 +75,7 @@ class BuildHelper(Command):
                                 if load_order is not None:
                                     for idx in load_order:
                                         script = scripts[idx]
-                                        with open(os.path.join("build", "resource", script), 'r') as fr:
+                                        with open(os.path.join(build_dir, "resource", script), 'r') as fr:
                                             if first_resource is True:
                                                 content = "//PROCESSED\n%s" % content
                                                 first_resource = False
@@ -82,7 +84,7 @@ class BuildHelper(Command):
 
                                 # load the rest
                                 for script in filter(lambda s: s not in loaded, scripts):
-                                    with open(os.path.join("build", "resource", script), 'r') as fr:
+                                    with open(os.path.join(build_dir, "resource", script), 'r') as fr:
                                         if first_resource is True:
                                             content = "//PROCESSED\n%s" % content
                                             first_resource = False
@@ -95,8 +97,8 @@ class BuildHelper(Command):
                             f.write(content)
                             print("%s has peen processed" % os.path.join(subdir, file))
 
-    def update_paths(self):
-        with open(os.path.join("build", "editor", "text", "index.html"), "r+") as f:
+    def update_paths(self, build_dir="build"):
+        with open(os.path.join(build_dir, "editor", "text", "index.html"), "r+") as f:
             data = f.read()
             # change path to node_modules
             data = data.replace("../../../node_modules", "../../node_modules")
@@ -108,24 +110,24 @@ class BuildHelper(Command):
 
         # cleanup
         try:
-            dev = os.path.join("build", "node_modules", "monaco-editor", "dev")
+            dev = os.path.join(build_dir, "node_modules", "monaco-editor", "dev")
             if os.path.exists(dev):
                 shutil.rmtree(dev)
-            maps = os.path.join("build", "node_modules", "monaco-editor", "min-maps")
+            maps = os.path.join(build_dir, "node_modules", "monaco-editor", "min-maps")
             if os.path.exists(maps):
                 shutil.rmtree(maps)
-            ts = os.path.join("build", "node_modules", "monaco-editor", "monaco.d.ts")
+            ts = os.path.join(build_dir, "node_modules", "monaco-editor", "monaco.d.ts")
             if os.path.exists(ts):
                 os.unlink(ts)
         except Exception as e:
             print(str(e))
 
         # create config media + backup dir
-        media = os.path.join("build", "resource", "config", "media")
+        media = os.path.join(build_dir, "resource", "config", "media")
         if not os.path.exists(media):
             os.mkdir(media)
 
-        backup = os.path.join("build", "resource", "config", "backup")
+        backup = os.path.join(build_dir, "resource", "config", "backup")
         if not os.path.exists(backup):
             os.mkdir(backup)
 
@@ -134,10 +136,11 @@ class BuildHelper(Command):
 
         parser.add_argument("--build-plugins", "-bp", dest="build_plugins", action='store_true', help="include external libs in plugin parts")
         parser.add_argument("--update-paths", "-up", dest="update_paths", action='store_true', help="update some paths inside certain files")
+        parser.add_argument("--build-dir", "-d", dest="build_dir", default="build", help="build dir")
 
         options = parser.parse_args(args)
 
         if options.build_plugins:
-            self.build_plugins()
+            self.build_plugins(options.build_dir)
         elif options.update_paths:
-            self.update_paths()
+            self.update_paths(options.build_dir)
