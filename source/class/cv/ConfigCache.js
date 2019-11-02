@@ -70,6 +70,17 @@ qx.Class.define('cv.ConfigCache', {
       }
       model.setWidgetDataModel(cache.data);
       model.setAddressList(cache.addresses);
+      var widgetsToInitialize = Object.keys(cache.data).filter(function (widgetId) {
+        return cache.data[widgetId].$$initOnCacheLoad === true;
+      });
+      if (widgetsToInitialize.length > 0) {
+        cv.TemplateEngine.getInstance().addListenerOnce('changeReady', function () {
+          widgetsToInitialize.forEach(function (widgetId) {
+            var widgetData = cache.data[widgetId];
+            cv.ui.structure.WidgetFactory.createInstance(widgetData.$$type, widgetData);
+          })
+        }, this);
+      }
       qx.bom.element.Attribute.set(body, "html", cv.ConfigCache.getBody());
     },
     

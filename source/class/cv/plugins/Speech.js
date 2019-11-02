@@ -92,7 +92,9 @@ qx.Class.define('cv.plugins.Speech', {
         'address' : address,
         'mapping' : qx.bom.element.Attribute.get(element, 'mapping'),
         'repeatTimeout': qx.bom.element.Attribute.get(element, 'repeat-timeout') ? parseInt(qx.bom.element.Attribute.get(element, 'repeat-timeout')) : -1,
-        '$$type'  : 'speech'
+        '$$type'  : 'speech',
+        // this widget needs to be initialized when the cache is used, otherwise it wont be available
+        '$$initOnCacheLoad': true
       });
     }
   },
@@ -105,6 +107,7 @@ qx.Class.define('cv.plugins.Speech', {
   properties: {
     path              : { check: "String" },
     $$type            : { check: "String" },
+    $$initOnCacheLoad : { check: "Boolean" },
     language          : { check: "String" },
     mapping           : { check: "String", init: "" },
     repeatTimeout     : { check: "Number", init: -1 },
