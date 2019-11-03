@@ -109,8 +109,8 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
       var voices = synth.getVoices();
       if (voices.length === 0) {
         synth.onvoiceschanged = function () {
-          this.say(text, language)
-        }.bind(this)
+          this.say(text, language);
+        }.bind(this);
         return;
       } else {
         synth.onvoiceschanged = null;
