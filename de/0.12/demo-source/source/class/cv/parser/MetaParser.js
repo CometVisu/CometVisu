@@ -59,14 +59,14 @@ qx.Class.define("cv.parser.MetaParser", {
         var content = elem.getAttribute('content');
         switch (type) {
           case 'css':
-            files.css.push(elem.innerText);
+            files.css.push(elem.textContent);
             break;
 
           case 'js':
             if (content === 'plugin') {
-              cv.Config.configSettings.pluginsToLoad.push(elem.innerText);
+              cv.Config.configSettings.pluginsToLoad.push(elem.textContent);
             } else {
-              files.js.push(elem.innerText);
+              files.js.push(elem.textContent);
             }
             break;
 
@@ -296,7 +296,7 @@ qx.Class.define("cv.parser.MetaParser", {
 
         // condition
         var conditionElem = elem.querySelector('condition');
-        var condition = conditionElem.innerText;
+        var condition = conditionElem.textContent;
         if (condition === "true") {
           condition = true;
         } else if (condition === "false") {

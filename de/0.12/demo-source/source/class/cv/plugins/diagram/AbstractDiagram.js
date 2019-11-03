@@ -155,12 +155,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           }
         };
         retVal.axesnum++;
-        axesNameIndex[elem.innerText] = retVal.axesnum;
+        axesNameIndex[elem.textContent] = retVal.axesnum;
       }, this);
 
       xmlElement.querySelectorAll("influx,rrd").forEach(function(elem) {
         var
-          src = elem.tagName === 'rrd' ? elem.innerText : elem.getAttribute('measurement'),
+          src = elem.tagName === 'rrd' ? elem.textContent : elem.getAttribute('measurement'),
           steps = (elem.getAttribute("steps") || "false") === "true",
           fillMissing = elem.getAttribute('fillMissing');
         retVal.ts[retVal.tsnum] = {
