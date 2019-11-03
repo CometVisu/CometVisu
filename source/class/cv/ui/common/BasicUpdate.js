@@ -300,15 +300,16 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       // TODO: check if this is the right place for this
       // might be if the styling removes the align class
       if (this.getAlign()) {
-        qx.bom.element.Class.add(element, this.getAlign());
+        element.classList.add(this.getAlign());
       }
-      var valueElement = this.getValueElement ? this.getValueElement() : qx.bom.Selector.query('.value', element)[0];
-      qx.dom.Element.empty(valueElement);
+      var valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
+      valueElement.innerHTML = '';
       if (undefined !== value) {
-        this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, valueElement));
+        var self = this;
+        this.defaultValue2DOM(value, function(e){self._applyValueToDom(valueElement, e);});
       }
       else {
-        qx.dom.Element.insertEnd(document.createTextNode('-'), valueElement);
+        valueElement.appendChild(document.createTextNode('-'));
       }
       return value;
     },
@@ -319,12 +320,10 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * @param e {var} value to add to the element
      */
     _applyValueToDom: function(valueElement, e) {
-      if (qx.lang.Type.isNumber(e)) {
-        qx.bom.element.Attribute.set(valueElement, "text", e);
+      if (typeof e === 'number') {
+        valueElement.innerText = e;
       } else {
-        qx.bom.Html.clean([e]).forEach(function (newElem) {
-          qx.dom.Element.insertEnd(newElem, valueElement);
-        }, this);
+        valueElement.innerHTML += e;
       }
     }
   }

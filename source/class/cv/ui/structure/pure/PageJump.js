@@ -89,18 +89,18 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
       var name = page.getName();
 
       // remove old active classes
-      qx.bom.Selector.query('.pagejump.active').forEach(function(elem) {
-        qx.bom.element.Class.remove(elem, 'active');
+      document.querySelectorAll('.pagejump.active').forEach(function(elem) {
+        elem.classList.remove('active');
       }, this);
-      qx.bom.Selector.query('.pagejump.active_ancestor').forEach(function(elem) {
-        qx.bom.element.Class.remove(elem, 'active_ancestor');
+      document.querySelectorAll('.pagejump.active_ancestor').forEach(function(elem) {
+        elem.classList.remove('active_ancestor');
       }, this);
 
       // and set the new active ones
-      qx.bom.Selector.query('.pagejump').forEach(function(elem) {
+      document.querySelectorAll('.pagejump').forEach(function(elem) {
         var data = model.getWidgetDataByElement(elem);
         if (name === data.target) {
-          qx.bom.element.Class.add(elem, 'active');
+          elem.classList.add('active');
         }
       }, this);
 
@@ -108,19 +108,19 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
       var parentPage = cv.util.Tree.getParentWidget(page, "page");
       // set for all parent pages apart from the root page
 
-      var pageJumps = qx.bom.Selector.query('.pagejump');
+      var pageJumps = document.querySelectorAll('.pagejump');
       var markPageJumps = function(parentName, elem) {
         var data = model.getWidgetDataByElement(elem);
         if (parentName === data.target || (data.activeScope === "path" && (
-            qx.lang.Type.isString(data.path) && data.path.match(parentName + "$") ||
-            qx.lang.Type.isString(data.targetPath) && data.targetPath.match(parentName + "$"))
+            (typeof data.path === 'string') && data.path.match(parentName + "$") ||
+            (typeof data.targetPath === 'string') && data.targetPath.match(parentName + "$"))
         )) {
-          qx.bom.element.Class.add(elem, 'active_ancestor');
+          elem.classList.add('active_ancestor');
         }
       };
 
       while (parentPage && cv.util.Tree.getParentWidget(parentPage, "page")) {
-        pageJumps.forEach(qx.lang.Function.curry(markPageJumps, parentPage.getName()));
+        pageJumps.forEach(function(elem){markPageJumps(parentPage.getName(), elem);});
         // recursively find pagejumps for parent pages
         parentPage = cv.util.Tree.getParentWidget(parentPage, "page");
       }

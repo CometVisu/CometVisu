@@ -69,7 +69,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
     _createSettings: function() {
       // add element structure to notification-center
       var settingsRoot = qx.dom.Element.create("section", {"id": "qxsettings", "html": "<div></div>"});
-      qx.dom.Element.insertAfter(settingsRoot, qx.bom.Selector.query("#"+cv.ui.NotificationCenter.getInstance().getRootElementId()+" section.messages")[0]);
+      qx.dom.Element.insertAfter(settingsRoot, document.querySelector("#"+cv.ui.NotificationCenter.getInstance().getRootElementId()+" section.messages"));
 
       // add a settings button to trigger opening the settings
       var button = qx.dom.Element.create("div", {
@@ -82,7 +82,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
         this.__settings.show();
       }, this);
       cv.TemplateEngine.getInstance().getCommands().add("open-settings", this._openSettings);
-      qx.dom.Element.insertBegin(button, qx.bom.Selector.query("#notification-center footer")[0]);
+      qx.dom.Element.insertBegin(button, document.querySelector("#notification-center footer"));
       qx.event.Registration.addListener(button, "tap", function() {
         this.__settings.show();
       }, this);
@@ -94,7 +94,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       // and that breaks the inline container sizes)
       // qx.ui.tooltip.Manager.getInstance();
 
-      this._inline = new qx.ui.root.Inline(qx.bom.Selector.query("#qxsettings > div")[0], true, false);
+      this._inline = new qx.ui.root.Inline(document.querySelector("#qxsettings > div"), true, false);
       this._inline.setLayout(new qx.ui.layout.VBox());
       this.__settings = new cv.plugins.openhab.Settings();
       this.__settings.exclude();
@@ -110,7 +110,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       if (!e.data) {
         this.error("invalid content received from SSE: ", e);
       }
-      var json = qx.lang.Type.isObject(e.data) ? e.data : qx.lang.Json.parse(e.data);
+      var json = typeof e.data === 'object' ? e.data : JSON.parse(e.data);
       this.__notificationRouter.dispatchMessage(json.topic || "cv.backend", json);
     }
   },

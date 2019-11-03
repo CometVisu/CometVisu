@@ -181,17 +181,14 @@ qx.Class.define('cv.plugins.Gauge', {
         lcdColor: steelseries.LcdColor.STANDARD,
         ledColor: steelseries.LedColor.RED_LED
       };
-      var params = qx.lang.Object.mergeWith(
-        qx.lang.Object.clone(cv.data.Model.getInstance().getWidgetData(this.getPath())),
-        additional
-      );
+      var params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional );
       this.__gaugeElement = new steelseries[this.getGType()]("gauge_"+this.getPath(), params);
       this.base(arguments);
     },
 
     // overridden
     getValueElement: function() {
-      return qx.bom.Selector.query('#gauge_' + this.getPath(), this.getDomElement())[0];
+      return this.getDomElement().querySelector('#gauge_' + this.getPath());
     },
 
     // property apply

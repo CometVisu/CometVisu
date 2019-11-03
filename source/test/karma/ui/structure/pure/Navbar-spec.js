@@ -51,13 +51,13 @@ describe("testing a navbar widget", function() {
     qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
-    var navbar = qx.bom.Selector.query('#'+barContainerId+' .navbar')[0];
+    var navbar = document.querySelector('#'+barContainerId+' .navbar');
     expect(navbar).not.toBeNull();
-    expect(qx.bom.element.Attribute.get(navbar, 'id')).toBe('id_'+pos+'_navbar');
+    expect(navbar.getAttribute('id')).toBe('id_'+pos+'_navbar');
 
     if (pos === "left") {
       expect(navbar).toHaveClass("flavour_potassium");
-      expect(qx.dom.Node.getText(qx.bom.Selector.query("h2", navbar)[0])).toBe('Testbar');
+      expect(navbar.querySelector("h2").innerText).toBe('Testbar');
       expect(templateEngine.pagePartsHandler.navbarSetSize).toHaveBeenCalledWith(pos,"200");
       expect(obj.getScope()).toBe(1);
     }

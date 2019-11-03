@@ -86,7 +86,7 @@ Der Test für diese Datei sollte nun folgendermaßen aussehen:
         // die Hilfsfunktion gibt ein Array mit 2 Elementen zurück, das erste ist die Instanz den Widget-Objekts, das zweite der HTML-Code als String
         var res = this.createTestWidgetString("new-widget", {}, "<label>Test</label>");
         // macht aus dem String ein DOM Element
-        var widget = qx.bom.Html.clean([res[1]])[0];
+        var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
         // das Widget Object (Instanz der Klasse cv.ui.structure.pure.NewWidget)
         var obj = res[0];
 

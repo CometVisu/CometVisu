@@ -59,26 +59,26 @@ describe("testing a trigger", function() {
       flavour: "potassium"
     }, '<label>Test</label>');
 
-    var widget = qx.bom.Selector.query('#id_0 .widget')[0];
+    var widget = document.querySelector('#id_0 .widget');
 
     expect(widget).toHaveFlavour('potassium');
 
-    var actor = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getChildElements(widget))[0];
+    var actor = Array.from(widget.children).filter(function(m){return m.matches(".actor");})[0];
     expect(actor).not.toBeNull();
     expect(actor).toHaveClass("switchUnpressed");
     expect(actor).not.toHaveClass("switchPressed");
 
-    var value = qx.bom.Selector.matches(".value", qx.dom.Hierarchy.getChildElements(actor))[0];
+    var value = Array.from(actor.children).filter(function(m){return m.matches(".value");})[0];
     expect(value).not.toBeNull();
-    expect(qx.dom.Node.getText(value)).toBe("-");
+    expect(value.innerText).toBe("-");
 
     this.initWidget(res);
 
-    expect(qx.dom.Node.getText(value)).toBe("1");
+    expect(value.innerText).toBe("1");
 
-    var label = qx.bom.Selector.matches(".label", qx.dom.Hierarchy.getChildElements(widget))[0];
+    var label = Array.from(widget.children).filter(function(m){return m.matches(".label");})[0];
     expect(label).not.toBeNull();
-    expect(qx.dom.Node.getText(label)).toBe("Test");
+    expect(label.innerText).toBe("Test");
 
     expect(res.getSendValue()).toBe("1");
     expect(res.getShortValue()).toBe("0");

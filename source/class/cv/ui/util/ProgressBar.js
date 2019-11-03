@@ -60,9 +60,11 @@ qx.Class.define("cv.ui.util.ProgressBar", {
     __progressElement: null,
 
     _applyValue: function(value) {
-      var totalWidth = qx.bom.element.Dimension.getContentWidth(this.__domElement);
-      var progressWidth = Math.round(totalWidth*value/100)+"px";
-      qx.bom.element.Style.set(this.__progressElement, "width", progressWidth);
+      var
+        rect = this.__domElement.getBoundingClientRect(),
+        totalWidth = Math.round(rect.right - rect.left),
+        progressWidth = Math.round(totalWidth*value/100)+"px";
+      this.__progressElement.style.width = progressWidth;
     },
 
     getDomElement: function() {
@@ -73,7 +75,7 @@ qx.Class.define("cv.ui.util.ProgressBar", {
       var container = this.__domElement = qx.dom.Element.create("div", { "class": "progressbar" });
       this.__domElement.$$widget = this;
       var progress = this.__progressElement = qx.dom.Element.create("div", { "class": "completed" });
-      qx.dom.Element.insertEnd(progress, container);
+      container.appendChild(progress);
       return container;
     }
   }

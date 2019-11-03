@@ -47,7 +47,7 @@ describe("testing a TR-064 plugin", function() {
 
   it("should test the TR-064:calllist creator", function() {
     var res = this.createTestWidgetString("calllist", {id: 'test', device: 'testdevice'}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     var widgetInstance = res[0];
 
     expect(widget).toHaveClass('calllist');

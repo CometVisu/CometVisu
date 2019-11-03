@@ -38,9 +38,9 @@ qx.Class.define('cv.ui.TrickOMatic', {
       if (!svg) { return; }
 
       // Pipe-O-Matic:
-      var pipes = qx.bom.Selector.query(".pipe_group", svg);
+      var pipes = svg.querySelectorAll(".pipe_group");
       pipes.forEach(function (pipe_group) {
-        qx.bom.Selector.query('path', pipe_group).forEach(function(path) {
+        pipe_group.querySelectorAll('path').forEach(function(path) {
           var halfsize = parseInt(parseFloat(path.style.strokeWidth) / 2);
           var opacity = 0.15;
           for (var width = halfsize - 1; width > 0; width--) {
@@ -60,10 +60,10 @@ qx.Class.define('cv.ui.TrickOMatic', {
 
       // Flow-O-Matic: add Paths
       var segmentLength = 40;
-      pipes = qx.bom.Selector.query(".show_flow", svg);
+      pipes = svg.querySelectorAll(".show_flow");
       pipes.forEach(function (pipe_group) {
         var length = 0.0;
-        qx.bom.Selector.query('path', pipe_group).forEach(function(path) {
+        pipe_group.querySelectorAll('path').forEach(function(path) {
           if (path.className.animVal.split(' ').indexOf('pipe-o-matic_clone') > 0) {
             return;
           }
@@ -105,7 +105,7 @@ qx.Class.define('cv.ui.TrickOMatic', {
             pipe_group.insertBefore(n, path.nextElementSibling);
           }
           length += path.getTotalLength();
-          var activeValues = qx.bom.element.Attribute.get(pipe_group, 'data-cometvisu-active');
+          var activeValues = pipe_group.getAttribute('data-cometvisu-active');
           if (activeValues) {
             activeValues.split(' ').forEach(function (address) {
               var id = "flow_"+cv.ui.TrickOMatic.id++;
@@ -148,14 +148,14 @@ qx.Class.define('cv.ui.TrickOMatic', {
         'style');
       s.setAttribute('type', 'text/css');
       s.textContent = keyframes;
-      qx.dom.Element.insertBegin(s, qx.bom.Selector.query('svg', svg)[0]);
+      qx.dom.Element.insertBegin(s, svg.querySelector('svg'));
     },
 
     updateActive: function (pipe_group, data) {
       if (parseInt(data) === 1 || data === 'ON') {
-        qx.bom.element.Class.toggle(pipe_group, "flow_active", true);
+        pipe_group.classList.toggle("flow_active",true);
       } else {
-        qx.bom.element.Class.toggle(pipe_group, "flow_active", false);
+        pipe_group.classList.toggle("flow_active",false);
       }
     }
   }

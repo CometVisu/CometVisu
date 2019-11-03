@@ -29,13 +29,13 @@ describe("testing a text widget", function() {
   it("should test the text creator", function() {
 
     var res = this.createTestWidgetString("text", {}, '<label>Test</label>');
-    var text = qx.bom.Html.clean([res[1]])[0];
+    var text = cv.util.String.htmlStringToDomElement(res[1]);
     expect(res[0].getPath()).toBe("id_0");
 
     expect(text).toHaveClass('text');
     // the text widget does not add the 'label' class to the label-div, so the toHaveLabel
     // helper does not work here and we have to check it manually
-    var label = qx.bom.Selector.matches("div", qx.dom.Hierarchy.getChildElements(text))[0];
-    expect(qx.dom.Node.getText(label)).toBe('Test');
+    var label = Array.from(text.children).filter(function(m){return m.matches("div");})[0];
+    expect(label.innerText).toBe('Test');
   });
 });

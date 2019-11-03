@@ -40,7 +40,7 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
 
     createInstance: function (type, data) {
       if (!this.registry[data.path]) {
-        if (!cv.ui.structure.pure[qx.lang.String.firstUp(type)]) {
+        if (!cv.ui.structure.pure[type.charAt(0).toUpperCase() + type.substr(1)]) {
           var clazz = this.__typeMapping[type];
           if (clazz) {
             this.registry[data.path] = new clazz(data); // jshint ignore:line
@@ -49,8 +49,8 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
             return null;
           }
         } else {
-          // console.log(data.path+" cv.ui.structure.pure."+qx.lang.String.firstUp(type));
-          this.registry[data.path] = new cv.ui.structure.pure[qx.lang.String.firstUp(type)](data);
+          // console.log(data.path+" cv.ui.structure.pure."+type.charAt(0).toUpperCase() + type.substr(1));
+          this.registry[data.path] = new cv.ui.structure.pure[type.charAt(0).toUpperCase() + type.substr(1)](data);
         }
         this.c++;
       }
@@ -67,7 +67,7 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
     },
 
     getInstanceByElement: function(element) {
-      var instance = this.getInstanceById(qx.bom.element.Attribute.get(element, 'id'));
+      var instance = this.getInstanceById(element.getAttribute('id'));
       if (instance && cv.Config.lazyLoading === true && instance._onDomReady && !instance.$$domReady) {
         // apply listeners and update initial value
         instance._onDomReady();

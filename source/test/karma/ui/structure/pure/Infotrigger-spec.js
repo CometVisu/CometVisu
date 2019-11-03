@@ -70,21 +70,21 @@ describe("testing a infotrigger widget", function() {
 
     // check infoposition
     var info = obj.getInfoActor();
-    var actors = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getDescendants(widget));
+    var actors = Array.from(widget.getElementsByTagName("*")).filter(function(m){return m.matches(".actor");});
     expect(actors.indexOf(info)).toBe(0);
   });
 
   it("should test the infotrigger creator", function() {
     var obj = this.createTestElement("infotrigger", {'align': 'right', 'infoposition': 'middle'});
     var widget = obj.getWidgetElement();
-    var actors = qx.bom.Selector.query("div.actor", widget);
+    var actors = widget.querySelectorAll("div.actor");
     actors.forEach(function(actor) {
-      expect(qx.bom.element.Style.get(actor, "text-align")).toBe("right");
+      expect(window.getComputedStyle(actor)["text-align"]).toBe("right");
     }, this);
 
     // check infoposition
     var info = obj.getInfoActor();
-    actors = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getDescendants(widget));
+    actors = Array.from(widget.getElementsByTagName("*")).filter(function(m){return m.matches(".actor");});
     expect(actors.indexOf(info)).toBe(1);
   });
 
@@ -92,14 +92,14 @@ describe("testing a infotrigger widget", function() {
 
     var obj = this.createTestElement("infotrigger", {'align': 'center', 'infoposition': 'right'});
     var widget = obj.getWidgetElement();
-    var actors = qx.bom.Selector.query("div.actor", widget);
+    var actors = widget.querySelectorAll("div.actor");
     actors.forEach(function(actor) {
-      expect(qx.bom.element.Style.get(actor, "text-align")).toBe("center");
+      expect(window.getComputedStyle(actor)["text-align"]).toBe("center");
     }, this);
 
     // check infoposition
     var info = obj.getInfoActor();
-    actors = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getDescendants(widget));
+    actors = Array.from(widget.getElementsByTagName("*")).filter(function(m){return m.matches(".actor");});
     expect(actors.indexOf(info)).toBe(2);
   });
 

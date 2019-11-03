@@ -102,7 +102,7 @@ qx.Class.define('cv.report.Replay', {
       this.__config = qx.xml.Document.fromString(log.config);
       if (log.data.cache && qx.core.Environment.get("html.storage.local") === true) {
         localStorage.setItem(cv.Config.configSuffix + ".body", log.data.cache.body);
-        localStorage.setItem(cv.Config.configSuffix + ".data", qx.lang.Json.stringify(log.data.cache.data));
+        localStorage.setItem(cv.Config.configSuffix + ".data", JSON.stringify(log.data.cache.data));
       }
       cv.report.utils.FakeServer.init(log.xhr, this.__data.runtime.build);
     },
@@ -112,7 +112,7 @@ qx.Class.define('cv.report.Replay', {
      */
     start: function() {
       var runtime = Math.round((this.__end - this.__start)/1000);
-      console.log("Replay time: "+Math.floor(runtime/60)+":"+ qx.lang.String.pad(""+(runtime  % 60), 2, "0"));
+      console.log("Replay time: "+Math.floor(runtime/60)+":"+ (""+(runtime  % 60)).padStart(2,"0"));
       this.__startTime = Date.now();
 
       var delay = this.__log[0].t - this.__start;
@@ -132,7 +132,7 @@ qx.Class.define('cv.report.Replay', {
       } else if (path === "document") {
         return document;
       } else {
-        return qx.bom.Selector.query(path)[0];
+        return document.querySelector(path);
       }
     },
 
@@ -146,7 +146,7 @@ qx.Class.define('cv.report.Replay', {
           qx.bom.Notification.getInstance().show("Replay", "Replay finished");
           cv.io.Client.stopAll();
           var runtime = Math.round((Date.now() - this.__startTime) / 1000);
-          console.log("Log replayed in: "+Math.floor(runtime/60)+":"+ qx.lang.String.pad(""+(runtime  % 60), 2, "0"));
+          console.log("Log replayed in: "+Math.floor(runtime/60)+":"+ (""+(runtime  % 60)).padStart(2,"0"));
         }, this, this.__end - this.__log[index].t);
         return;
       }
@@ -165,7 +165,7 @@ qx.Class.define('cv.report.Replay', {
 
         case cv.report.Record.SCREEN:
           // most browsers do not allow resizing the window
-          console.log("resize event received "+qx.lang.Json.stringify(record.d));
+          console.log("resize event received "+JSON.stringify(record.d));
           window.resizeTo(record.d.w, record.d.h);
           break;
 
@@ -212,7 +212,7 @@ qx.Class.define('cv.report.Replay', {
     },
 
     __playScrollEvent: function(record) {
-      var elem = qx.bom.Selector.query("#"+record.d.page)[0];
+      var elem = document.querySelector("#"+record.d.page);
       elem.scrollTop = record.d.native ? record.d.native.pageY : record.d.y;
       elem.scrollLeft = record.d.native ? record.d.native.pageX : record.d.x;
     },
@@ -223,15 +223,15 @@ qx.Class.define('cv.report.Replay', {
         this.__cursor = qx.dom.Element.create("span", {
           style: "position: absolute; transform: rotate(-40deg); font-size: 36px; z-index: 1000000"
         });
-        qx.bom.element.Attribute.set(this.__cursor, "html", "&uarr;");
-        qx.dom.Element.insertEnd(this.__cursor, qx.bom.Selector.query("body")[0]);
+        this.__cursor.innerHTML = "&uarr;";
+        document.querySelector("body").appendChild(this.__cursor);
       }
-      qx.bom.element.Style.setStyles(this.__cursor, {top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"});
+      Object.entries({top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"}).forEach(function(key_value){this.__cursor.style[key_value[0]]=key_value[1];});
 
       if (/.+(down|start)/.test(record.d.native.type)) {
-        qx.bom.element.Style.set(this.__cursor, "color", record.d.native.button === 2 ? "blue" : "red");
+        this.__cursor.style.color = record.d.native.button === 2 ? "blue" : "red";
       } else if (/.+(up|end)/.test(record.d.native.type)) {
-        qx.bom.element.Style.set(this.__cursor, "color", "white");
+        this.__cursor.style.color = "white";
       }
     },
 

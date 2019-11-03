@@ -60,6 +60,16 @@ qx.Class.define('cv.ui.website.Slider', {
     }
   },
 
+  /*
+  ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    // This event is send when the user interaction end (pointerup)
+    'done': 'qx.event.type.Data'
+  },
+
 
   /*
   ******************************************************
@@ -169,8 +179,12 @@ qx.Class.define('cv.ui.website.Slider', {
     //overridden
     _onDocPointerUp: function(e) {
       this.__pointerMoveEvent = false;
+      var callDone = this.__dragMode;
       this.base(arguments, e);
       this.__dragMode = false;
+      if (callDone) {
+        this.emit('done', this.getValue());
+      }
     },
 
     isInPointerMove: function() {

@@ -186,29 +186,28 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     disableBadge: function(value) {
       if (value) {
-        qx.bom.element.Class.add(this.__badge, "hidden");
+        this.__badge.classList.add("hidden");
       } else {
-        qx.bom.element.Class.remove(this.__badge, "hidden");
+        this.__badge.classList.remove("hidden");
       }
     },
 
     _onResize: function() {
-      var height = qx.bom.Viewport.getHeight();
+      var height = document.documentElement.clientHeight;
       if (this.__element) {
-        qx.bom.element.Style.setStyles(this.__element, {
-          left: qx.bom.Viewport.getWidth() + "px",
-          height: height + "px"
-        }, false);
+        this.__element.style.left = document.documentElement.clientWidth + "px";
+        this.__element.style.height = height + "px";
       }
 
       if (this.__messagesContainer) {
         // get header+footer heights
-        var messageBoxHeight = height -
-          qx.bom.element.Dimension.getHeight(qx.bom.Selector.query("> header", this.__element)[0]) -
-          qx.bom.element.Dimension.getHeight(qx.bom.Selector.query("> footer", this.__element)[0]);
-        qx.bom.element.Style.setStyles(this.__messagesContainer, {
-          height: messageBoxHeight + "px"
-        }, false);
+        var
+          headerRect = this.__element.querySelector(":scope > header").getBoundingClientRect(),
+          footerRect = this.__element.querySelector(":scope > footer").getBoundingClientRect(),
+          messageBoxHeight = height -
+            Math.round(headerRect.bottom - headerRect.top) -
+            Math.round(footerRect.bottom - footerRect.top);
+        this.__messagesContainer.style.height = messageBoxHeight + "px";
       }
     },
 
@@ -217,7 +216,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
      * @private
      */
     _init: function() {
-      var body = qx.bom.Selector.query("body")[0];
+      var body = document.querySelector("body");
       
       this.__blocker = cv.ui.BodyBlocker.getInstance();
 
@@ -227,7 +226,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       });
 
       // check if the element is already there (might have been cached)
-      var elem = this.__element = qx.bom.Selector.query(this.getRootElementId())[0];
+      var elem = this.__element = document.querySelector(this.getRootElementId());
 
       if (!elem) {
         // create new element
@@ -236,7 +235,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
           style: "visibility: hidden;",
           html: '<div class="badge"></div><header><h3>' + qx.locale.Manager.tr("Message center") + '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' + qx.locale.Manager.tr("Delete all") + '<div></div></footer>'
         });
-        qx.dom.Element.insertEnd(elem, body);
+        body.appendChild(elem);
 
         // create the template
         var templateCode = '<div class="message {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="'+this.getMessageElementId()+'{{ id }}">';
@@ -250,11 +249,11 @@ qx.Class.define("cv.ui.NotificationCenter", {
           type: "text/template",
           html: templateCode
         });
-        qx.dom.Element.insertEnd(template, body);
+        body.appendChild(template);
       }
 
-      this.__messagesContainer = qx.bom.Selector.query("section.messages", elem)[0];
-      this.__badge = qx.bom.Selector.query(".badge", elem)[0];
+      this.__messagesContainer = elem.querySelector("section.messages");
+      this.__badge = elem.querySelector(".badge");
       qx.event.Registration.addListener(this.__badge, "tap", this.toggleVisibility, this);
 
       // add HTML template for messages to header
@@ -272,7 +271,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     __updateBadge: function() {
-      var currentContent = parseInt(qx.bom.element.Attribute.get(this.__badge, "html"));
+      var currentContent = parseInt(this.__badge.getAttribute("html"));
       if (isNaN(currentContent)) {
         currentContent = 0;
       }
@@ -283,7 +282,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         if (this.getMessages().getLength() === 0) {
           this.hide();
         } else {
-          qx.bom.element.Style.reset(this.__element, "visibility");
+          this.__element.style.visibility = '';
           this._onSeverityChange();
         }
       }.bind(this);
@@ -298,9 +297,9 @@ qx.Class.define("cv.ui.NotificationCenter", {
         qx.bom.element.Animation.animate(this.__badge, cv.ui.NotificationCenter.BLINK);
       }
       if (messages) {
-        qx.bom.element.Attribute.set(this.__badge, "html", ""+messages);
+        this.__badge.innerHTML = ""+messages;
       } else{
-        qx.bom.element.Attribute.set(this.__badge, "html", "");
+        this.__badge.innerHTML = "";
       }
 
 
@@ -309,8 +308,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
     _onSeverityChange: function() {
       var severity = this.getGlobalSeverity();
       if (this.__badge) {
-        qx.bom.element.Class.removeClasses(this.__badge, this._severities);
-        qx.bom.element.Class.add(this.__badge, severity);
+        this.__badge.classList.remove.apply( this.__badge.classList, this._severities );
+        this.__badge.classList.add(severity);
       }
 
       if (this.__favico) {
@@ -328,15 +327,15 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (!this.__visible) {
         this.__visible = true;
         this.__blocker.block();
-        qx.bom.element.Style.reset(this.__element, "visibility");
+        this.__element.style.visibility = '';
         qx.event.Registration.addListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
           var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
           anim.on("end", function () {
-            qx.bom.element.Transform.translate(this.__element, "-300px");
+            this.__element.style.transform = 'translate(-300px)';
           }, this);
         } else {
-          qx.bom.element.Transform.translate(this.__element, "-300px");
+          this.__element.style.transform = 'translate(-300px)';
         }
       }
     },
@@ -362,11 +361,11 @@ qx.Class.define("cv.ui.NotificationCenter", {
         if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
           var anim = qx.bom.element.Animation.animateReverse(this.__element, cv.ui.NotificationCenter.SLIDE);
           anim.on("end", function () {
-            qx.bom.element.Transform.translate(this.__element, "-0px");
+            this.__element.style.transform = 'translate(-0px)';
             this.__blocker.unblock();
           }, this);
         } else {
-          qx.bom.element.Transform.translate(this.__element, "-0px");
+          this.__element.style.transform = 'translate(-0px)';
           this.__blocker.unblock();
         }
       }

@@ -26,7 +26,7 @@ describe("testing a info widget", function() {
 
   it("should test the info creator", function() {
     var res = this.createTestWidgetString("info", {}, "<label>Test</label>");
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     var obj = res[0];
 
     expect(widget).toHaveClass('info');

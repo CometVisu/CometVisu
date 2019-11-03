@@ -289,7 +289,7 @@ qx.Class.define("cv.Application",
           }
         }
       }
-      body += "```\n"+exString+"\n```\n\n**Client-Data:**\n```\n"+qx.lang.Json.stringify(bugData, null, 2)+"\n```";
+      body += "```\n"+exString+"\n```\n\n**Client-Data:**\n```\n"+JSON.stringify(bugData, null, 2)+"\n```";
 
       var notification = {
         topic: "cv.error",
@@ -309,18 +309,18 @@ qx.Class.define("cv.Application",
               action: function(ev) {
                 var parent = ev.getTarget().parentNode;
                 while (parent) {
-                  if (parent.id === "notification-center" || qx.bom.element.Class.has(parent, "popup")) {
+                  if (parent.id === "notification-center" || parent.classList.contains("popup")) {
                     break;
                   }
                   parent = parent.parentNode;
                 }
-                var box = qx.bom.Selector.query("#enableReporting", parent)[0];
+                var box = parent.querySelector("#enableReporting");
                 var url = window.location.href.split("#").shift();
                 if (box && box.checked) {
                   // reload with reporting enabled
                   url = qx.util.Uri.appendParamsToUrl(url, "reporting=true");
                 }
-                box = qx.bom.Selector.query("#reportErrors", parent)[0];
+                box = parent.querySelector("#reportErrors");
                 if (box && box.checked) {
                   // reload with automatic error reporting enabled
                   url = qx.util.Uri.appendParamsToUrl(url, "reportErrors=true");
@@ -397,7 +397,7 @@ qx.Class.define("cv.Application",
       qx.bom.Lifecycle.onReady(function () {
         // init notification router
         cv.core.notifications.Router.getInstance();
-        var body = qx.bom.Selector.query("body")[0];
+        var body = document.querySelector("body");
 
         if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
           // load settings
@@ -408,7 +408,7 @@ qx.Class.define("cv.Application",
           cv.ui.ToastManager.getInstance();
         } else {
           // load empty HTML structure
-          qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
+          body.innerHTML = cv.Application.HTML_STRUCT;
           // initialize NotificationCenter
           cv.ui.NotificationCenter.getInstance();
           cv.ui.ToastManager.getInstance();
@@ -441,8 +441,8 @@ qx.Class.define("cv.Application",
           cv.ConfigCache.clear();
 
           // load empty HTML structure
-          var body = qx.bom.Selector.query("body")[0];
-          qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
+          var body = document.querySelector("body");
+          body.innerHTML = cv.Application.HTML_STRUCT;
 
           //empty model
           cv.data.Model.getInstance().resetWidgetDataModel();

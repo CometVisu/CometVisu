@@ -137,14 +137,14 @@ qx.Class.define('cv.TemplateEngine', {
      * @param parts {String[]|String} parts to load
      */
     loadParts: function(parts) {
-      if (!qx.lang.Type.isArray(parts)) {
+      if (!Array.isArray(parts)) {
         parts = [parts];
       }
       var loadLazyParts = this.lazyPlugins.filter(function(part) {
         return parts.indexOf(part) >= 0;
       });
       if (loadLazyParts.length) {
-        qx.lang.Array.exclude(parts, loadLazyParts);
+        parts = parts.filter(function(p){return !loadLazyParts.includes(p);});
       }
       this.__partQueue.append(parts);
       qx.io.PartLoader.require(parts, function(states) {
@@ -251,7 +251,8 @@ qx.Class.define('cv.TemplateEngine', {
       var model = cv.data.Model.getInstance();
       this.visu.update = model.update.bind(model); // override clients update function
       if (cv.Config.reporting) {
-        this.visu.record = qx.lang.Function.curry(cv.report.Record.getInstance().record, cv.report.Record.BACKEND).bind(cv.report.Record.getInstance());
+        var recordInstance = cv.report.Record.getInstance();
+        this.visu.record = function(p,d){recordInstance.record.apply(recordInstance,[cv.report.Record.BACKEND,p,d]);};
       }
       this.visu.showError = this._handleClientError.bind(this);
       this.visu.user = 'demo_user'; // example for setting a user
@@ -279,7 +280,7 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     _handleClientError: function (errorCode, varargs) {
-      varargs = qx.lang.Array.fromArguments(arguments, 1);
+      varargs = Array.prototype.slice.call(arguments, 1);
       var notification;
       var message = '';
       switch (errorCode) {
@@ -339,9 +340,9 @@ qx.Class.define('cv.TemplateEngine', {
        */
       // read predefined design in config
       var settings = cv.Config.configSettings;
-      var pagesNode = qx.bom.Selector.query("pages", loaded_xml)[0];
+      var pagesNode = loaded_xml.querySelector("pages");
 
-      var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
+      var predefinedDesign = pagesNode.getAttribute("design");
       // design by url
       // design by config file
       if (!cv.Config.clientDesign && !settings.clientDesign) {
@@ -357,39 +358,39 @@ qx.Class.define('cv.TemplateEngine', {
       // load structure-part
       this.loadParts([cv.Config.getStructure()]);
 
-      if (qx.bom.element.Attribute.get(pagesNode, "backend") !== null) {
-        settings.backend = qx.bom.element.Attribute.get(pagesNode, "backend");
+      if (pagesNode.getAttribute("backend") !== null) {
+        settings.backend = pagesNode.getAttribute("backend");
       }
       this.initBackendClient();
 
-      if (qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') === null) {
+      if (pagesNode.getAttribute('scroll_speed') === null) {
         settings.scrollSpeed = 400;
       } else {
-        settings.scrollSpeed = parseInt(qx.bom.element.Attribute.get(pagesNode, 'scroll_speed'));
+        settings.scrollSpeed = parseInt(pagesNode.getAttribute('scroll_speed'));
       }
 
-      if (qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') !== null) {
-        settings.bindClickToWidget = qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') === "true";
+      if (pagesNode.getAttribute('bind_click_to_widget') !== null) {
+        settings.bindClickToWidget = pagesNode.getAttribute('bind_click_to_widget') === "true";
       }
-      if (qx.bom.element.Attribute.get(pagesNode, 'default_columns') !== null) {
-        settings.defaultColumns = qx.bom.element.Attribute.get(pagesNode, 'default_columns');
+      if (pagesNode.getAttribute('default_columns') !== null) {
+        settings.defaultColumns = pagesNode.getAttribute('default_columns');
       }
-      if (qx.bom.element.Attribute.get(pagesNode, 'min_column_width') !== null) {
-        settings.minColumnWidth = qx.bom.element.Attribute.get(pagesNode, 'min_column_width');
+      if (pagesNode.getAttribute('min_column_width') !== null) {
+        settings.minColumnWidth = pagesNode.getAttribute('min_column_width');
       }
-      settings.screensave_time = qx.bom.element.Attribute.get(pagesNode, 'screensave_time');
+      settings.screensave_time = pagesNode.getAttribute('screensave_time');
       if (settings.screensave_time) {
         settings.screensave_time = parseInt(settings.screensave_time, 10);
       }
-      settings.screensave_page = qx.bom.element.Attribute.get(pagesNode, 'screensave_page');
+      settings.screensave_page = pagesNode.getAttribute('screensave_page');
 
-      if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null) {
-        settings.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
+      if (pagesNode.getAttribute('max_mobile_screen_width') !== null) {
+        settings.maxMobileScreenWidth = pagesNode.getAttribute('max_mobile_screen_width');
       }
 
-      var globalClass = qx.bom.element.Attribute.get(pagesNode, 'class');
+      var globalClass = pagesNode.getAttribute('class');
       if (globalClass !== null) {
-        qx.bom.element.Class.add(qx.bom.Selector.query('body')[0], globalClass);
+        document.querySelector('body').classList.add(globalClass);
       }
 
       settings.scriptsToLoad = [];
@@ -421,7 +422,7 @@ qx.Class.define('cv.TemplateEngine', {
       var metaParser = new cv.parser.MetaParser();
 
       // start with the plugins
-      settings.pluginsToLoad = qx.lang.Array.append(settings.pluginsToLoad, metaParser.parsePlugins(loaded_xml));
+      settings.pluginsToLoad = settings.pluginsToLoad.concat(metaParser.parsePlugins(loaded_xml));
       // and then the rest
       metaParser.parse(loaded_xml, done);
       this.debug("parsed");
@@ -439,12 +440,12 @@ qx.Class.define('cv.TemplateEngine', {
         this.debug("logged in");
 
         // as we are sure that the default CSS were loaded now:
-        qx.bom.Selector.query('link[href*="mobile.css"]').forEach(function (elem) {
-          qx.bom.element.Attribute.set(elem, 'media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
+        document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {
+          elem.setAttribute('media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
         });
         if (!cv.Config.cacheUsed) {
           this.debug("creating pages");
-          var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
+          var page = this.xml.querySelector('pages > page'); // only one page element allowed...
 
           this.createPages(page, 'id');
           this.debug("finalizing");
@@ -480,7 +481,7 @@ qx.Class.define('cv.TemplateEngine', {
         }, this);
 
         // run the Trick-O-Matic scripts for great SVG backdrops
-        qx.bom.Selector.query('embed').forEach(function(elem) {
+        document.querySelectorAll('embed').forEach(function(elem) {
           elem.onload = cv.ui.TrickOMatic.run;
         });
 
@@ -488,9 +489,9 @@ qx.Class.define('cv.TemplateEngine', {
 
         this.xml = null; // not needed anymore - free the space
 
-        qx.bom.Selector.query('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
-        qx.bom.Selector.query('.loading').forEach(function(elem) {
-          qx.bom.element.Class.remove(elem, 'loading');
+        document.querySelectorAll('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
+        document.querySelectorAll('.loading').forEach(function(elem) {
+          elem.classList.remove('loading');
         }, this);
 
         this.startScreensaver();
@@ -505,7 +506,7 @@ qx.Class.define('cv.TemplateEngine', {
      * Start the screensaver if a screensave time is set
      */
     startScreensaver: function() {
-      if (qx.lang.Type.isNumber(cv.Config.configSettings.screensave_time)) {
+      if (typeof cv.Config.configSettings.screensave_time === 'number') {
         this.screensave = new qx.event.Timer(cv.Config.configSettings.screensave_time * 1000);
         this.screensave.addListener("interval", function () {
           this.scrollToPage();
@@ -631,16 +632,17 @@ qx.Class.define('cv.TemplateEngine', {
         page_name = decodeURI(page_name.replace("\\\/", "/"));
 
         //      console.log("Page: "+page_name+", Scope: "+scope);
-        var selector = (scope !== undefined && scope !== null) ? '.page[id^="' + scope + '"] h1:contains(' + page_name + ')' : '.page h1:contains(' + page_name + ')';
-        var pages = qx.bom.Selector.query(selector);
+        var selector = (scope !== undefined && scope !== null) ? '.page[id^="' + scope + '"] h1' : '.page h1';
+        var pages = document.querySelectorAll(selector);
+        pages = Array.from( pages ).filter(function(h){return h.textContent === page_name;});
         if (pages.length > 1 && this.getCurrentPage() !== null) {
           var currentPageId = this.getCurrentPage().getPath();
           // More than one Page found -> search in the current pages descendants first
           var fallback = true;
           pages.forEach(function (page) {
             var p = cv.util.Tree.getClosest(page, ".page");
-            if (qx.dom.Node.getText(page) === page_name) {
-              var pid = qx.bom.element.Attribute.get(p, 'id');
+            if (page.innerText === page_name) {
+              var pid = p.getAttribute('id');
               if (pid.length < currentPageId.length) {
                 // found pages path is shorter the the current pages -> must be an ancestor
                 if (currentPageId.indexOf(pid) === 0) {
@@ -664,8 +666,8 @@ qx.Class.define('cv.TemplateEngine', {
           if (fallback) {
             // take the first page that fits (old behaviour)
             pages.forEach(function (page) {
-              if (qx.dom.Node.getText(page)  === page_name) {
-                page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
+              if (page.innerText  === page_name) {
+                page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
                 // break loop
                 return false;
               }
@@ -673,8 +675,8 @@ qx.Class.define('cv.TemplateEngine', {
           }
         } else {
           pages.forEach(function (page) {
-            if (qx.dom.Node.getText(page) === page_name) {
-              page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
+            if (page.innerText === page_name) {
+              page_id = cv.util.Tree.getClosest(page, ".page").getAttribute("id");
               // break loop
               return false;
             }
@@ -713,7 +715,7 @@ qx.Class.define('cv.TemplateEngine', {
 
       // push new state to history
       if (skipHistory === undefined) {
-        var headline = qx.bom.Selector.query("#"+page_id+" h1");
+        var headline = document.querySelectorAll("#"+page_id+" h1");
         var pageTitle = "CometVisu";
         if (headline.length) {
           pageTitle = headline[0].textContent+ " - "+pageTitle;
@@ -727,22 +729,22 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     selectDesign: function () {
-      var body = qx.bom.Selector.query("body")[0];
+      var body = document.querySelector("body");
 
-      qx.bom.Selector.query('body > *').forEach(function(elem) {
-        qx.bom.element.Style.set(elem, 'display', 'none');
+      document.querySelectorAll('body > *').forEach(function(elem) {
+        elem.style.display = 'none';
       }, this);
-      qx.bom.element.Style.set(body, 'backgroundColor', "black");
+      body.style['background-color'] = "black";
 
 
       var div = qx.dom.Element.create("div", {id: "designSelector"});
-      qx.bom.element.Style.setStyles(body, {
+      Object.entries({
         background: "#808080",
         width: "400px",
         color: "white",
         margin: "auto",
         padding: "0.5em"
-      });
+      }).forEach(function(key_value){body.style[key_value[0]]=key_value[1];});
       div.innerHTML = "Loading ...";
 
       body.appendChild(div);
@@ -770,7 +772,7 @@ qx.Class.define('cv.TemplateEngine', {
           myDiv.innerHTML += "<iframe src=\""+qx.util.ResourceManager.getInstance().toUri("designs/design_preview.html")+"?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
           myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\""+qx.util.ResourceManager.getInstance().toUri("demo/media/arrow.png")+"\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
 
-          qx.dom.Element.insertEnd(myDiv, div);
+          div.appendChild(myDiv);
 
 
           var tDiv = qx.dom.Element.create("div", {
@@ -780,19 +782,19 @@ qx.Class.define('cv.TemplateEngine', {
             width: "160px",
             zIndex: 2
           });
-          var pos = qx.bom.Selector.query("iframe")[0].getBoundingClientRect();
-          qx.bom.element.Style.setStyles(tDiv, {
+          var pos = document.querySelector("iframe").getBoundingClientRect();
+          Object.entries({
             left: pos.left + "px",
             top: pos.top + "px"
-          });
-          qx.dom.Element.insertEnd(tDiv, myDiv);
+          }).forEach(function(key_value){tDiv.style[key_value[0]]=key_value[1];});
+          myDiv.appendChild(tDiv);
 
           qx.event.Registration.addListener(myDiv, 'pointerover', function() {
-            qx.bom.element.Style.set(myDiv, 'background', "#bbbbbb");
+            myDiv.style.background = "#bbbbbb";
           }, this);
 
           qx.event.Registration.addListener(myDiv, 'pointerout', function() {
-            qx.bom.element.Style.set(myDiv, 'background', "transparent");
+            myDiv.style.background = "transparent";
           }, this);
 
           qx.event.Registration.addListener(myDiv, 'tap', function() {
