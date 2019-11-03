@@ -111,9 +111,9 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
         synth.onvoiceschanged = function () {
           this.say(text, language)
         }.bind(this)
-        return
+        return;
       } else {
-        synth.onvoiceschanged= null
+        synth.onvoiceschanged = null;
       }
       for (var i = 0, l = voices.length; i < l; i++) {
         if (language && voices[i].lang.substr(0, 2).toLowerCase() === language) {
