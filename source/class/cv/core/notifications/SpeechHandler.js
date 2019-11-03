@@ -107,6 +107,14 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
 
       var selectedVoice, defaultVoice;
       var voices = synth.getVoices();
+      if (voices.length === 0) {
+        synth.onvoiceschanged = function () {
+          this.say(text, language)
+        }.bind(this)
+        return;
+      } else {
+        synth.onvoiceschanged = null;
+      }
       for (var i = 0, l = voices.length; i < l; i++) {
         if (language && voices[i].lang.substr(0, 2).toLowerCase() === language) {
           selectedVoice = voices[i];
