@@ -121,6 +121,9 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         }, this);
         slider.on('done', function () {
           throttled.abort();
+          if (this.isSendOnFinish()) {
+            this._onChangeValue(slider.getValue(), true);
+          }
         }, this);
 
         this.addListener("changeValue", function (ev) {
@@ -193,9 +196,11 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
      * Handle incoming value changes send by the slider widget (e.g. triggered by user interaction)
      * @param value {Number}
      */
-    _onChangeValue: function(value) {
+    _onChangeValue: function(value, finished) {
       if (!this.__initialized || this.__skipUpdatesFromSlider === true) { return; }
-      if (this.isSendOnFinish() === false || this.__slider.isInPointerMove()) {
+      if ((this.isSendOnFinish() === true && finished) ||
+        (this.isSendOnFinish() === false && this.__slider.isInPointerMove())
+      ) {
         this._lastBusValue = this.sendToBackend(value, false, this._lastBusValue );
       }
       this.setValue(value);
