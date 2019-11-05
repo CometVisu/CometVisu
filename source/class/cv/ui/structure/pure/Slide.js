@@ -194,7 +194,8 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
 
     /**
      * Handle incoming value changes send by the slider widget (e.g. triggered by user interaction)
-     * @param value {Number}
+     * @param value {Number} the current value to send
+     * @param finished {Boolean} if sendOnFinish is true settings this parameter to true triggers the value to be send
      */
     _onChangeValue: function(value, finished) {
       if (!this.__initialized || this.__skipUpdatesFromSlider === true) { return; }
