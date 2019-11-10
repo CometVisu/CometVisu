@@ -225,11 +225,11 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
       var target = ev.getTarget();
       var deleteTarget = null;
       var messageId = -1;
-      var id = qx.bom.element.Attribute.get(target, "id");
+      var id = target.getAttribute("id");
       var rootId = this.getRootElementId();
       var messageElementId = this.getMessageElementId();
       while (!id || !id.startsWith(rootId)) {
-        if (qx.bom.element.Class.has(target, "delete")) {
+        if (target.classList.contains("delete")) {
           deleteTarget = target;
         }
         if (id && id.startsWith(messageElementId)) {
@@ -241,7 +241,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
         if (!target) {
           break;
         }
-        id = qx.bom.element.Attribute.get(target, "id");
+        id = target.getAttribute("id");
       }
       return [messageId, deleteTarget ? "delete" : "action"];
     },
@@ -332,7 +332,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
         return;
       }
       Object.getOwnPropertyNames(message.actions).forEach(function(type) {
-        var typeActions = qx.lang.Type.isArray(message.actions[type]) ? message.actions[type] : [message.actions[type]];
+        var typeActions = Array.isArray(message.actions[type]) ? message.actions[type] : [message.actions[type]];
         typeActions.forEach(function(action) {
           if (!action.needsConfirmation) {
             var handler = cv.core.notifications.ActionRegistry.getActionHandler(type, action);

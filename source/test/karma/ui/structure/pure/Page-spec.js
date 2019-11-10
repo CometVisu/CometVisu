@@ -37,13 +37,13 @@ describe("testing a page widget", function() {
     var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
     expect(page.getPageType()).toBe("text");
 
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     cv.ui.structure.pure.Page.createFinal();
     expect(widget).toHaveClass('pagelink');
 
     var elem = page.getDomElement();
     expect(elem).toHaveClass("type_text");
-    expect(qx.dom.Node.getText(qx.bom.Selector.matches("h1", qx.dom.Hierarchy.getDescendants(elem))[0])).toBe("Testpage");
+    expect(Array.from(elem.getElementsByTagName("*")).filter(function(m){return m.matches("h1");})[0].innerText).toBe("Testpage");
   });
 
   it("should test the page creator with some attributes", function() {
@@ -63,9 +63,9 @@ describe("testing a page widget", function() {
     var pageLink = res[0];
     var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
 
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     var actor = this.findChild(widget, ".actor");
-    expect(qx.bom.element.Style.get(actor, 'text-align')).toBe('right');
+    expect(actor.style['text-align']).toBe('right');
     cv.ui.structure.pure.Page.createFinal();
 
     expect(page.getShowTopNavigation()).toBeTruthy();
@@ -93,15 +93,15 @@ describe("testing a page widget", function() {
 
     expect(page.getBackdropAlign()).toBe("left");
 
-    page = qx.bom.Selector.query('#pages .page')[0];
+    page = document.querySelector('#pages .page');
 
     expect(page).toHaveClass("type_2d");
-    var backdrop = qx.bom.Selector.query("embed", page)[0];
+    var backdrop = page.querySelector("embed");
     expect(backdrop).toHaveStyleSetting('width', '100%');
     expect(backdrop).toHaveStyleSetting('height', '100%');
     expect(backdrop).toHaveStyleSetting('object-fit', 'contain');
     expect(backdrop).toHaveStyleSetting('object-position', 'left');
-    expect(qx.bom.element.Attribute.get(backdrop, 'src')).toBe('test.svg');
+    expect(backdrop.getAttribute('src')).toBe('test.svg');
   });
 
   it("should test the 2d-page creator with fixed png backdrop", function() {
@@ -115,12 +115,12 @@ describe("testing a page widget", function() {
 
     cv.ui.structure.pure.Page.createFinal();
 
-    var page = qx.bom.Selector.query('#pages .page')[0];
+    var page = document.querySelector('#pages .page');
 
     expect(page).toHaveClass("type_2d");
-    var backdrop = qx.bom.Selector.query("img", page)[0];
+    var backdrop = page.querySelector("img");
 
-    expect(qx.bom.element.Attribute.get(backdrop, 'src')).toBe('test.png');
+    expect(backdrop.getAttribute('src')).toBe('test.png');
   });
 
   it("should test the page update", function() {

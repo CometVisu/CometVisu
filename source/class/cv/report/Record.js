@@ -77,15 +77,15 @@ qx.Class.define('cv.report.Record', {
         // add resize listener
         Reg.addListener(window, "resize", function() {
           this.record(this.SCREEN, "resize", {
-            w: qx.bom.Viewport.getWidth(),
-            h: qx.bom.Viewport.getHeight()
+            w: document.documentElement.clientWidth,
+            h: document.documentElement.clientHeight
           });
         }, this);
 
         // add scroll listeners to all pages
         qx.event.message.Bus.subscribe("setup.dom.finished", function() {
           var throttled = qx.util.Function.throttle(record.recordScroll, 250, true);
-          qx.bom.Selector.query("#pages > .page").forEach(function (page) {
+          document.querySelectorAll("#pages > .page").forEach(function (page) {
             Reg.addListener(page, "scroll", throttled, record);
           }, this);
         }, this);
@@ -94,8 +94,8 @@ qx.Class.define('cv.report.Record', {
 
         // save initial size
         this.record(this.SCREEN, "resize", {
-          w: qx.bom.Viewport.getWidth(),
-          h: qx.bom.Viewport.getHeight()
+          w: document.documentElement.clientWidth,
+          h: document.documentElement.clientHeight
         });
       }
     },
@@ -118,8 +118,8 @@ qx.Class.define('cv.report.Record', {
         build: Env.get("cv.build"),
         locale: qx.bom.client.Locale.getLocale(),
         cv: {},
-        width: qx.bom.Viewport.getWidth(),
-        height: qx.bom.Viewport.getHeight(),
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight,
         anchor: req.anchor,
         query: req.queryKey,
         path: req.relative
@@ -251,7 +251,7 @@ qx.Class.define('cv.report.Record', {
       };
 
       if (data.eventClass === "PointerEvent") {
-        qx.lang.Object.mergeWith(data.native, {
+        Object.assign(data.native, {
           pointerId : nativeEvent.pointerId,
           width : nativeEvent.width,
           height : nativeEvent.height,
@@ -262,7 +262,7 @@ qx.Class.define('cv.report.Record', {
           isPrimary : nativeEvent.isPrimary
         });
       } else if (data.eventClass === "WheelEvent") {
-        qx.lang.Object.mergeWith(data.native, {
+        Object.assign(data.native, {
           deltaX : nativeEvent.deltaX,
           deltaY : nativeEvent.deltaY,
           deltaZ : nativeEvent.deltaZ,
@@ -312,7 +312,7 @@ qx.Class.define('cv.report.Record', {
 
     recordScroll: function(ev) {
       var page = ev.getTarget();
-      var path = (undefined !== page && 'getAttribute' in page) ? qx.bom.element.Attribute.get(page, "id") : undefined;
+      var path = (undefined !== page && 'getAttribute' in page) ? page.getAttribute("id") : undefined;
       var data = {
         type: ev.getType(),
         page: path,
@@ -373,14 +373,14 @@ qx.Class.define('cv.report.Record', {
 
       var d = new Date();
       var ts = d.getFullYear()+
-        qx.lang.String.pad(""+(d.getMonth()+1), 2, "0")+
-        qx.lang.String.pad(""+d.getDate(), 2, "0")+"-"+
-        qx.lang.String.pad(""+d.getHours(), 2, "0")+
-        qx.lang.String.pad(""+d.getMinutes(), 2, "0")+
-        qx.lang.String.pad(""+d.getSeconds(), 2, "0");
+        (""+(d.getMonth()+1)).padStart(2,"0")+
+        (""+d.getDate()).padStart(2,"0")+"-"+
+        (""+d.getHours()).padStart(2,"0")+
+        (""+d.getMinutes()).padStart(2,"0")+
+        (""+d.getSeconds()).padStart(2,"0");
 
       var a = window.document.createElement('a');
-      a.href = window.URL.createObjectURL(new Blob([qx.lang.Json.stringify(data)], {type: 'application/json'}));
+      a.href = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {type: 'application/json'}));
       a.download = 'CometVisu-replay-'+ts+'.json';
 
       // Append anchor to body.

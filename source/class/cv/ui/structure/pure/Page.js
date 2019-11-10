@@ -62,13 +62,13 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       ].forEach(function (tuple) {
         var property = tuple[0];
         var defaultValue = tuple[1];
-        if (this['get' + qx.lang.String.firstUp(property)]() === null) {
+        if (this['get' + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
           // inherit from parent
           if (parentPage) {
             parentPage.bind(property, this, property);
           } else {
             // we have not parent page, because we are the root page, use the default value
-            this['set' + qx.lang.String.firstUp(property)](defaultValue);
+            this['set' + property.charAt(0).toUpperCase() + property.substr(1)](defaultValue);
           }
         }
         if (!parentPage) {
@@ -94,7 +94,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * Append the complete generated HTML code to the DOM tree at the end of the generation process
      */
     createFinal: function() { // special function - only for pages!
-      qx.bom.Selector.query("#pages")[0].innerHTML = this.allPages;
+      document.querySelector("#pages").innerHTML = this.allPages;
       qx.event.message.Bus.unsubscribe("setup.dom.append", this.createFinal, this);
     }
 
@@ -177,7 +177,10 @@ qx.Class.define('cv.ui.structure.pure.Page', {
 
     _applyNavbarVisibility: function(value, old, name) {
       if (value !== null) {
-        qx.lang.Array.remove(this.__waitForProperties, name);
+        var i_name = this.__waitForProperties.indexOf(name);
+        if( i_name !== -1 ) {
+          this.__waitForProperties.splice(i_name,1);
+        }
         if (this.__waitForProperties.length === 0) {
           this.setInitialized(true);
         }
@@ -252,17 +255,17 @@ qx.Class.define('cv.ui.structure.pure.Page', {
          });
          }}, floorplan.translateMouseEvent );
          $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
-         if (qx.bom.element.Attribute.get(page, 'azimut')) {
-         cv.TemplateEngine.getInstance().addAddress( qx.bom.element.Attribute.get(page, 'azimut'), path + '_' );
-         address[ qx.bom.element.Attribute.get(page, 'azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
+         if (page.getAttribute('azimut')) {
+         cv.TemplateEngine.getInstance().addAddress( page.getAttribute('azimut'), path + '_' );
+         address[ page.getAttribute('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
          }
-         if (qx.bom.element.Attribute.get(page, 'elevation')) {
-         cv.TemplateEngine.getInstance().addAddress( qx.bom.element.Attribute.get(page, 'elevation'), path + '_' );
-         address[ qx.bom.element.Attribute.get(page, 'elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
+         if (page.getAttribute('elevation')) {
+         cv.TemplateEngine.getInstance().addAddress( page.getAttribute('elevation'), path + '_' );
+         address[ page.getAttribute('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
          };
-         if (qx.bom.element.Attribute.get(page, 'floor')) {
-         cv.TemplateEngine.getInstance().addAddress( qx.bom.element.Attribute.get(page, 'floor'), path + '_' );
-         address[ qx.bom.element.Attribute.get(page, 'floor') ] = [ 'DPT:5.004', 0, 'floor' ];
+         if (page.getAttribute('floor')) {
+         cv.TemplateEngine.getInstance().addAddress( page.getAttribute('floor'), path + '_' );
+         address[ page.getAttribute('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
          };
 
          $( childs ).each( function(i,a){

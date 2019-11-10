@@ -28,7 +28,7 @@ describe("testing a group widget", function() {
 
     var res = this.createTestWidgetString("group");
 
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('group');
     expect(widget).toHaveClass('widget');
@@ -46,7 +46,7 @@ describe("testing a group widget", function() {
       name: "Test",
       target: "target"
     }, '<text/>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('group');
     expect(widget).toHaveClass('custom_test');
@@ -54,7 +54,7 @@ describe("testing a group widget", function() {
     expect(widget).toHaveClass('clickable');
     expect(widget).not.toHaveClass('widget');
 
-    expect(qx.dom.Node.getText(qx.bom.Selector.query("h2", widget)[0])).toBe("Test")
+    expect(widget.querySelector("h2").innerText).toBe("Test")
   });
 
   it('should trigger the group action', function() {

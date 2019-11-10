@@ -77,7 +77,7 @@ qx.Class.define('cv.ui.structure.pure.Unknown', {
      * @return {Element} the DOM element
      */
     getDomElement: function () {
-      return qx.bom.Selector.query('#' + this.getPath())[0];
+      return document.querySelector('#' + this.getPath());
     },
 
     /**

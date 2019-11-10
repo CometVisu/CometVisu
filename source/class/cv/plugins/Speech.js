@@ -65,6 +65,7 @@ qx.Class.define('cv.plugins.Speech', {
    ******************************************************
    */
   construct: function(props) {
+    this._initOnCreate = true;
     this.base(arguments);
     this.set(props);
     this.__lastSpeech = {};
@@ -87,11 +88,13 @@ qx.Class.define('cv.plugins.Speech', {
 
       return cv.data.Model.getInstance().setWidgetData( path, {
         'path'    : path,
-        'language': qx.bom.element.Attribute.get(element, 'lang') ? qx.bom.element.Attribute.get(element, 'lang') .toLowerCase() : null,
+        'language': element.getAttribute('lang') ? element.getAttribute('lang') .toLowerCase() : null,
         'address' : address,
-        'mapping' : qx.bom.element.Attribute.get(element, 'mapping'),
-        'repeatTimeout': qx.bom.element.Attribute.get(element, 'repeat-timeout') ? parseInt(qx.bom.element.Attribute.get(element, 'repeat-timeout')) : -1,
-        '$$type'  : 'speech'
+        'mapping' : element.getAttribute('mapping'),
+        'repeatTimeout': element.getAttribute('repeat-timeout') ? parseInt(element.getAttribute('repeat-timeout')) : -1,
+        '$$type'  : 'speech',
+        // this widget needs to be initialized when the cache is used, otherwise it wont be available
+        '$$initOnCacheLoad': true
       });
     }
   },
@@ -104,6 +107,7 @@ qx.Class.define('cv.plugins.Speech', {
   properties: {
     path              : { check: "String" },
     $$type            : { check: "String" },
+    $$initOnCacheLoad : { check: "Boolean" },
     language          : { check: "String" },
     mapping           : { check: "String", init: "" },
     repeatTimeout     : { check: "Number", init: -1 },

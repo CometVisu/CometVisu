@@ -28,7 +28,7 @@ describe("testing a pagejump widget", function() {
   it("should test the pagejump creator", function() {
 
     var res = this.createTestWidgetString("pagejump", {'name': 'Testpage'}, "<label>Test</label>");
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     expect(widget).toHaveClass('pagejump');
     expect(widget).toHaveLabel('Test');
     expect(widget).toHaveValue('Testpage');
@@ -46,7 +46,7 @@ describe("testing a pagejump widget", function() {
       'path': 'ParentPage',
       'active_scope': 'path'
     }, '<layout colspan="6" rowspan="2"></layout>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('right');
     expect(widget).toHaveClass('innerrowspan');
@@ -65,7 +65,7 @@ describe("testing a pagejump widget", function() {
 
     var res = this.createTestWidgetString("pagejump", {},
       '<widgetinfo><text>Test</text></widgetinfo>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     expect(widget).toHaveClass('infoaction');
   });
@@ -135,7 +135,7 @@ describe("testing a pagejump widget", function() {
       return null;
     });
 
-    var actor = qx.bom.Selector.query(".pagejump", creator.getDomElement())[0];
+    var actor = creator.getDomElement().querySelector(".pagejump");
     qx.event.message.Bus.dispatchByName("path.pageChanged", "id_");
     expect(actor).toHaveClass("active");
     qx.event.message.Bus.dispatchByName("path.pageChanged", "id_1_");

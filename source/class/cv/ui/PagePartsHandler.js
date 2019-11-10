@@ -58,20 +58,20 @@ qx.Class.define('cv.ui.PagePartsHandler', {
     updateTopNavigation: function (path) {
       path = path.split('_'); path.pop();
       var id = "id_"; //path[0];
-      var pageTitle = qx.bom.Selector.query("#"+id+" h1")[0].textContent;
+      var pageTitle = document.querySelector("#"+id+" h1").textContent;
       var nav = '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_'+id+'">' +
         pageTitle + '</a>';
       for (var i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
         id += path[i] + '_';
-        var pageElem = qx.bom.Selector.query("#"+id)[0];
-        if (pageElem && qx.bom.element.Class.has(pageElem, "page")) { // FIXME is this still needed?!?
-          pageTitle = qx.bom.Selector.query("#"+id+" h1")[0].textContent;
+        var pageElem = document.querySelector("#"+id);
+        if (pageElem && pageElem.classList.contains("page")) { // FIXME is this still needed?!?
+          pageTitle = document.querySelector("#"+id+" h1").textContent;
           nav += '<span> &#x25ba; </span>' +
             '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_'+id+'">' +
             pageTitle + '</a>';
         }
       }
-      qx.bom.Selector.query(".nav_path")[0].innerHTML = nav;
+      document.querySelector(".nav_path").innerHTML = nav;
       // cv.TemplateEngine.getInstance().handleResize(); - TODO CM160528: why? This shouldn't have
       //                             any effect on the page size => commented out
     },
@@ -85,16 +85,16 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       var cssSize = size + (isFinite(size) ? 'px' : '');
       switch (position) {
         case 'left':
-          qx.bom.element.Style.set(qx.bom.Selector.query('#navbarLeft')[0], "width", cssSize);
+          document.querySelector('#navbarLeft').style.width = cssSize;
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
 
         case 'right':
-          qx.bom.element.Style.set(qx.bom.Selector.query('#centerContainer')[0], "padding-right", cssSize);
-          qx.bom.element.Style.setStyles(qx.bom.Selector.query('#navbarRight')[0], {
+          document.querySelector('#centerContainer').style["padding-right"] = cssSize;
+          Object.entries({
             width: cssSize,
             'margin-right': '-' + cssSize
-          });
+          }).forEach(function(key_value){document.querySelector('#navbarRight').style[key_value[0]]=key_value[1];});
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
       }
@@ -108,7 +108,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       if (typeof page === "string") {
         page = cv.ui.structure.WidgetFactory.getInstanceById(page);
       } else if (page.attributes ) {
-        page = cv.ui.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(page, 'id'));
+        page = cv.ui.structure.WidgetFactory.getInstanceById(page.getAttribute('id'));
       }
 
       if (!page) {
@@ -138,44 +138,45 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       if (page) {
         if (!page.isInitialized()) {
           // page is not ready, defer this update
-          page.addListenerOnce("changeInitialized", qx.lang.Function.curry(this.updatePageParts, page, speed), this);
+          var self = this;
+          page.addListenerOnce("changeInitialized", function(){self.updatePageParts(page,speed);}, this);
           return;
         }
         showtopnavigation = page.getShowTopNavigation();
         showfooter = page.getShowFooter();
       }
-      var topDisplay = qx.bom.element.Style.get(qx.bom.Selector.query("#top")[0], "display");
-      var bottomDisplay = qx.bom.element.Style.get(qx.bom.Selector.query("#bottom")[0], "display");
+      var topDisplay = window.getComputedStyle(document.querySelector("#top"))["display"];
+      var bottomDisplay = window.getComputedStyle(document.querySelector("#bottom"))["display"];
       if (showtopnavigation) {
         if (topDisplay === "none") {
-          qx.bom.Selector.query('#top, #top > *').forEach(function(elem) {
-            qx.bom.element.Style.set(elem, "display", "block");
+          document.querySelectorAll('#top, #top > *').forEach(function(elem) {
+            elem.style.display = "block";
           }, this);
           this.removeInactiveNavbars(page.getPath());
         }
       } else {
         if (topDisplay !== "none") {
-          qx.bom.element.Style.set(qx.bom.Selector.query("#top")[0], "display", "none");
+          document.querySelector("#top").style.display = "none";
           this.removeInactiveNavbars(page.getPath());
         }
       }
       if (showfooter) {
         if (bottomDisplay === "none") {
-          qx.bom.element.Style.set(qx.bom.Selector.query("#bottom")[0], "display", "block");
+          document.querySelector("#bottom").style.display = "block";
           this.removeInactiveNavbars(page.getPath());
         }
       } else {
         if (bottomDisplay !== "none") {
-          qx.bom.element.Style.set(qx.bom.Selector.query("#bottom")[0], "display", "none");
+          document.querySelector("#bottom").style.display = "none";
           this.removeInactiveNavbars(page.getPath());
         }
       }
       ['Left', 'Top', 'Right', 'Bottom'].forEach(function (value) {
         var
           key = value.toLowerCase(),
-          navbar = qx.bom.Selector.query('#navbar' + value)[0],
-          display = qx.bom.element.Style.get(navbar, "display"),
-          isLoading = qx.bom.element.Class.has(navbar, 'loading');
+          navbar = document.querySelector('#navbar' + value),
+          display = window.getComputedStyle(navbar)["display"],
+          isLoading = navbar.classList.contains('loading');
         if (shownavbar[key] === true) {
           if (display === "none" || isLoading) {
             this.fadeNavbar(value, "in", speed);
@@ -201,14 +202,14 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       speed = (speed !== undefined) ? speed : cv.TemplateEngine.getInstance().main_scroll.getSpeed();
       var initCss = {};
       var targetCss = {};
-      var navbar = qx.bom.Selector.query('#navbar' + position)[0];
+      var navbar = document.querySelector('#navbar' + position);
       var key = position.toLowerCase();
       var onAnimationEnd = function () {
         cv.ui.layout.ResizeHandler.invalidateNavbar();
       };
       switch (direction) {
         case "in":
-          if (qx.bom.element.Style.get(navbar, "display") === 'none') {
+          if (window.getComputedStyle(navbar)["display"] === 'none') {
             initCss.display = 'block';
           }
           targetCss[key] = 0;
@@ -225,7 +226,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           break;
         case "out":
           onAnimationEnd = function () {
-            qx.bom.element.Style.set(navbar, "display", "none");
+            navbar.style.display = "none";
             cv.ui.layout.ResizeHandler.invalidateNavbar();
           };
           switch (position) {
@@ -240,9 +241,9 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           }
           break;
       }
-      qx.bom.element.Style.setStyles(navbar, initCss);
+      Object.entries(initCss).forEach(function(key,value){navbar.style[key]=value;});
       if (speed === 0) {
-        qx.bom.element.Style.setStyles(navbar, targetCss);
+        Object.entries(targetCss).forEach(function(key,value){navbar.style[key]=value;});
         onAnimationEnd();
       } else {
         var spec = {
@@ -267,7 +268,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
      */
     initializeNavbars: function (page_id) {
       this.removeInactiveNavbars(page_id);
-      var tree = qx.bom.Selector.query('#id_');
+      var tree = Array.from( document.querySelectorAll('#id_') );
       if (page_id !== "id_") {
         var parts = page_id.split("_");
         parts.pop();
@@ -275,7 +276,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         for (var i = 0; i < parts.length; i++) {
           var subPath = parts.slice(0, i + 1).join('_');
           if (subPath) {
-            var item = qx.bom.Selector.query('#id' + subPath + "_.page");
+            var item = document.querySelectorAll('#id' + subPath + "_.page");
             if (item.length === 1) {
               tree.push(item[0]);
             }
@@ -284,42 +285,42 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       }
       var level = 1;
       tree.forEach(function (elem) {
-        var id = qx.bom.element.Attribute.get(elem, 'id');
-        var topNav = qx.bom.Selector.query('#' + id + 'top_navbar')[0];
+        var id = elem.getAttribute('id');
+        var topNav = document.querySelector('#' + id + 'top_navbar');
         var topData = cv.data.Model.getInstance().getWidgetData(id + 'top_navbar');
-        var rightNav = qx.bom.Selector.query('#' + id + 'right_navbar')[0];
+        var rightNav = document.querySelector('#' + id + 'right_navbar');
         var rightData = cv.data.Model.getInstance().getWidgetData(id + 'right_navbar');
-        var bottomNav = qx.bom.Selector.query('#' + id + 'bottom_navbar')[0];
+        var bottomNav = document.querySelector('#' + id + 'bottom_navbar');
         var bottomData = cv.data.Model.getInstance().getWidgetData(id + 'bottom_navbar');
-        var leftNav = qx.bom.Selector.query('#' + id + 'left_navbar')[0];
+        var leftNav = document.querySelector('#' + id + 'left_navbar');
         var leftData = cv.data.Model.getInstance().getWidgetData(id + 'left_navbar');
         // console.log(tree.length+"-"+level+"<="+topData.scope);
         if (topNav) {
           if (topData.scope === undefined || topData.scope < 0 || tree.length - level <= topData.scope) {
-            qx.bom.element.Class.add(topNav, 'navbarActive');
+            topNav.classList.add('navbarActive');
           } else {
-            qx.bom.element.Class.remove(topNav, 'navbarActive');
+            topNav.classList.remove('navbarActive');
           }
         }
         if (rightNav) {
           if (rightData.scope === undefined || rightData.scope < 0 || tree.length - level <= rightData.scope) {
-            qx.bom.element.Class.add(rightNav, 'navbarActive');
+            rightNav.classList.add('navbarActive');
           } else {
-            qx.bom.element.Class.remove(rightNav, 'navbarActive');
+            rightNav.classList.remove('navbarActive');
           }
         }
         if (bottomNav) {
           if (bottomData.scope === undefined || bottomData.scope < 0 || tree.length - level <= bottomData.scope) {
-            qx.bom.element.Class.add(bottomNav, 'navbarActive');
+            bottomNav.classList.add('navbarActive');
           } else {
-            qx.bom.element.Class.remove(bottomNav, 'navbarActive');
+            bottomNav.classList.remove('navbarActive');
           }
         }
         if (leftNav) {
           if (leftData.scope === undefined || leftData.scope < 0 || tree.length - level <= leftData.scope) {
-            qx.bom.element.Class.add(leftNav, 'navbarActive');
+            leftNav.classList.add('navbarActive');
           } else {
-            qx.bom.element.Class.remove(leftNav, 'navbarActive');
+            leftNav.classList.remove('navbarActive');
           }
         }
         level++;
@@ -329,13 +330,13 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
     removeInactiveNavbars: function (page_id) {
       // remove all navbars that do not belong to this page
-      qx.bom.Selector.query('.navbar.navbarActive').forEach(function (elem) {
-        var navBarPath = qx.bom.element.Attribute.get(elem, 'id').split('_');
+      document.querySelectorAll('.navbar.navbarActive').forEach(function (elem) {
+        var navBarPath = elem.getAttribute('id').split('_');
         // skip last 2 elements e.g. '_top_navbar'
         navBarPath = navBarPath.slice(0, navBarPath.length - 2).join('_');
         var expr = new RegExp("^" + navBarPath + ".*", "i");
         if (navBarPath !== page_id && !expr.test(page_id)) {
-          qx.bom.element.Class.remove(elem, 'navbarActive');
+          elem.classList.remove('navbarActive');
         }
       });
     }

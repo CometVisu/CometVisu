@@ -89,14 +89,14 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      */
     parse: function (xml, path, flavour, pageType, mappings) {
       if (mappings) {
-        mappings = qx.lang.Object.mergeWith(mappings, this.getAttributeToPropertyMappings());
+        mappings = Object.assign(mappings, this.getAttributeToPropertyMappings());
       } else {
         mappings = this.getAttributeToPropertyMappings();
       }
       cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
       cv.parser.WidgetParser.parseRefresh(xml, path);
 
-      var legend = qx.bom.element.Attribute.get(xml, "legend") || "both";
+      var legend = xml.getAttribute("legend") || "both";
       return cv.data.Model.getInstance().setWidgetData( path, {
         content           : this.getDiagramElements(xml),
         legendInline      : ["both", "inline"].indexOf(legend) >= 0,
@@ -141,7 +141,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       };
       var axesNameIndex = [];
 
-      qx.bom.Selector.query('axis', xmlElement).forEach(function(elem) {
+      xmlElement.querySelectorAll('axis').forEach(function(elem) {
         var unit = elem.getAttribute('unit') || "";
         retVal.axes[retVal.axesnum] = {
           axisLabel     : elem.getAttribute('label') || null,
@@ -155,12 +155,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           }
         };
         retVal.axesnum++;
-        axesNameIndex[qx.dom.Node.getText(elem)] = retVal.axesnum;
+        axesNameIndex[elem.textContent] = retVal.axesnum;
       }, this);
 
-      qx.bom.Selector.query("influx,rrd", xmlElement).forEach(function(elem) {
+      xmlElement.querySelectorAll("influx,rrd").forEach(function(elem) {
         var
-          src = elem.tagName === 'rrd' ? qx.dom.Node.getText(elem) : elem.getAttribute('measurement'),
+          src = elem.tagName === 'rrd' ? elem.textContent : elem.getAttribute('measurement'),
           steps = (elem.getAttribute("steps") || "false") === "true",
           fillMissing = elem.getAttribute('fillMissing');
         retVal.ts[retVal.tsnum] = {
@@ -277,11 +277,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
             this.cache[ key ].xhr.dispose();
           }
           var xhr = new qx.io.request.Xhr(url);
+          var self = this;
           xhr.set({
             accept: "application/json"
           });
-          xhr.addListener("success", qx.lang.Function.curry(this._onSuccess, ts, key), this);
-          xhr.addListener("statusError", qx.lang.Function.curry(this._onStatusError, ts, key), this);
+          xhr.addListener("success", function(ev){self._onSuccess(ts, key, ev);}, this);
+          xhr.addListener("statusError", function(ev){self._onStatusError(ts, key, ev);}, this);
           this.cache[ key ].xhr = xhr;
           xhr.send();
         }
@@ -297,7 +298,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         var millisOffset = (ts.offset ? ts.offset * 1000 : 0);
         var newRrd = new Array(tsdata.length);
         for (var j = 0, l = tsdata.length; j < l; j++) {
-          if( ts.type === 'rrd' )
+          if( ts.tsType === 'rrd' )
             newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling)];
           else
             newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1]) * ts.scaling)];
@@ -495,9 +496,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         }
       }, this);
 
-      var parent = qx.dom.Element.getParentElement(popupDiagram);
-      qx.bom.element.Style.setStyles(parent, {height: "100%", width: "95%", margin: "auto"});// define parent as 100%!
-      qx.dom.Element.empty(popupDiagram);
+      var parent = popupDiagram.parentNode;
+      Object.entries({height: "100%", width: "95%", margin: "auto"}).forEach(function(key_value){parent.style[key_value[0]]=key_value[1];});// define parent as 100%!
+      popupDiagram.innerHTML = '';
       qx.event.Registration.addListener(popupDiagram, "tap", function(event) {
         // don't let the popup know about the click, or it will close
         event.stopPropagation();
@@ -539,7 +540,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           frameRate: 20,
           triggerOnDrag : false
         },
-        yaxes  : qx.lang.Object.clone(this.getContent().axes,true), // copy to prevent side effects
+        yaxes  : JSON.parse(JSON.stringify(this.getContent().axes)), // deep copy to prevent side effects
         xaxes  : [{
           mode       : "time",
           timeformat : this.getTimeformat()
@@ -573,13 +574,13 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         }
       };
       options.yaxes.forEach(function(val) {
-        qx.lang.Object.mergeWith(val, {axisLabelColour: this.getGridcolor(), color: this.getGridcolor()});
+        Object.assign(val, {axisLabelColour: this.getGridcolor(), color: this.getGridcolor()});
       }, this);
       options.xaxes.forEach(function(val) {
-        qx.lang.Object.mergeWith(val, {axisLabelColour: this.getGridcolor(), color: this.getGridcolor()});
+        Object.assign(val, {axisLabelColour: this.getGridcolor(), color: this.getGridcolor()});
       }, this);
       if (isPopup) {
-        qx.lang.Object.mergeWith(options, {
+        Object.assign(options, {
           yaxis : {
             isPopup   : true,
             zoomRange : this.getZoomYAxis() ? [null, null] : false
@@ -596,12 +597,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
 
       if (!isPopup && !this.getPreviewlabels()) {
-        qx.lang.Object.mergeWith(options, {xaxes: [ {ticks: 0, mode: options.xaxes[0].mode } ]});
+        Object.assign(options, {xaxes: [ {ticks: 0, mode: options.xaxes[0].mode } ]});
         if( 0 === options.yaxes.length ) {
           options.yaxes[0] = {};
         }
         options.yaxes.forEach(function(val) {
-          qx.lang.Object.mergeWith(val, {ticks:0, axisLabel: null});
+          Object.assign(val, {ticks:0, axisLabel: null});
         }, this);
       }
 

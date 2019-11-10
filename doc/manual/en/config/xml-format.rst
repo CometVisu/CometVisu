@@ -222,34 +222,36 @@ shows how to define and use a template.
 
     <pages>
         <meta>
-            <template name="Heating">
-                <group name="Heating">
-                  {{{ additional_content }}}
-                  <slide min="0" max="100" format="%d%%">
-                    <label>
-                      <icon name="sani_heating" />
-                      Heating
-                    </label>
-                    <address transform="OH:dimmer" variant="">{{ control_address }}</address>
-                  </slide>
-                  <info format="%.1f °C">
-                    <label>
-                      <icon name="temp_temperature" />
-                      actual value
-                    </label>
-                    <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
-                  </info>
-                  <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
-                               downvalue="-0.5" styling="BluePurpleRedTemp"
-                               infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
-                    <label>
-                      <icon name="temp_control" />
-                      setpoint
-                    </label>
-                    <address transform="OH:number" variant="">{{ targettemp_address }}</address>
-                  </infotrigger>
-                </group>
-            </template>
+            <templates>
+                <template name="Heating">
+                    <group name="Heating">
+                      {{{ additional_content }}}
+                      <slide min="0" max="100" format="%d%%">
+                        <label>
+                          <icon name="sani_heating" />
+                          Heating
+                        </label>
+                        <address transform="OH:dimmer" variant="">{{ control_address }}</address>
+                      </slide>
+                      <info format="%.1f °C">
+                        <label>
+                          <icon name="temp_temperature" />
+                          actual value
+                        </label>
+                        <address transform="OH:number" variant="">{{ currenttemp_address }}</address>
+                      </info>
+                      <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+                                   downvalue="-0.5" styling="BluePurpleRedTemp"
+                                   infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+                        <label>
+                          <icon name="temp_control" />
+                          setpoint
+                        </label>
+                        <address transform="OH:number" variant="">{{ targettemp_address }}</address>
+                      </infotrigger>
+                    </group>
+                </template>
+            </templates>
         </meta>
         <page>
             <page name="Living room">

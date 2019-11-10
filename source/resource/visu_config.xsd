@@ -240,7 +240,6 @@
   
   <xsd:attribute name="target" type="xsd:string">
     <xsd:annotation>
-      <xsd:appinfo>level:expert</xsd:appinfo>
       <xsd:documentation xml:lang="en">The name of the page, that should be called.</xsd:documentation>
       <xsd:documentation xml:lang="de">Der Name der Seite, die aufgerufen werden soll.</xsd:documentation>
     </xsd:annotation>
@@ -1241,6 +1240,7 @@
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional" />
     <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute ref="format" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="trigger">
@@ -1269,6 +1269,7 @@
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
     <xsd:attribute ref="class" use="optional" />
     <xsd:attribute ref="send-long-on-release" use="optional"/>
+    <xsd:attribute ref="format" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="refresh">
@@ -1309,6 +1310,7 @@
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
     <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute ref="format" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="urltrigger">
@@ -2177,6 +2179,7 @@
     <xsd:attribute ref="align" use="optional" />  
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute ref="format" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="axis">

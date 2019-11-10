@@ -56,8 +56,8 @@ qx.Class.define('cv.ui.BodyBlocker', {
       } else if (!unique) {
         this.__counters[topic]++;
       }
-      qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
-        qx.bom.element.Class.add(elem, "blurred");
+      document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
+        elem.classList.add("blurred");
       });
     },
 
@@ -69,8 +69,8 @@ qx.Class.define('cv.ui.BodyBlocker', {
             delete this.__counters[topic];
             if (Object.keys(this.__counters).length === 0) {
               this.base(arguments);
-              qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-                qx.bom.element.Class.remove(elem, "blurred");
+              document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
+                elem.classList.remove("blurred");
               });
             }
           }
@@ -79,15 +79,15 @@ qx.Class.define('cv.ui.BodyBlocker', {
         // not topic given unblock all
         this.__counters = {};
         this.base(arguments);
-        qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
-          qx.bom.element.Class.remove(elem, "blurred");
+        document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
+          elem.classList.remove("blurred");
         });
       }
     },
 
     __getBody: function() {
       if (!this.__body) {
-        this.__body = qx.bom.Selector.query("body")[0];
+        this.__body = document.querySelector("body");
       }
       return this.__body;
     }

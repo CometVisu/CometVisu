@@ -71,7 +71,7 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   members: {
 
     _transformAction: function(value) {
-      if (qx.lang.Type.isFunction(value)) {
+      if (typeof value === 'function') {
         return value;
       }
       switch(value) {

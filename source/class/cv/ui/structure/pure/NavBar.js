@@ -83,7 +83,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
     initializeNavbars: function() {
       ['Top', 'Left', 'Right', 'Bottom'].forEach(function(pos) {
         if (this['_navbar'+pos]) {
-          var elem = qx.bom.Selector.query('#navbar'+pos)[0];
+          var elem = document.querySelector('#navbar'+pos);
           if (elem) {
             elem.innerHTML += this['_navbar' + pos];
           }
@@ -103,10 +103,10 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
     // overridden
     _onDomReady: function() {
-      var left = qx.bom.Selector.query('#navbarLeft')[0];
-      var right = qx.bom.Selector.query('#navbarRight')[0];
-      this.__navbarLeftSize = left ? qx.bom.element.Dataset.get(left, 'size') : 0;
-      this.__navbarRightSize = right ? qx.bom.element.Dataset.get(right, 'size') : 0;
+      var left = document.querySelector('#navbarLeft');
+      var right = document.querySelector('#navbarRight');
+      this.__navbarLeftSize = left ? left.dataset['size'] : 0;
+      this.__navbarRightSize = right ? right.dataset['size'] : 0;
     },
     
     getGlobalPath: function () {

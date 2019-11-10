@@ -216,11 +216,11 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _action: function () {
-      var brss = qx.bom.Html.clean(['<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>'])[0];
-      var title = qx.dom.Node.getText(qx.bom.Selector.query('#' + this.getPath() + ' .label')[0]) || '';
+      var brss = cv.util.String.htmlStringToDomElement('<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>');
+      var title = document.querySelector('#' + this.getPath() + ' .label').innerText || '';
       var popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
       var parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
-      qx.bom.element.Style.setStyles(parent, {height: "90%", width: "90%", margin: "auto"}); // define parent as 100%!
+      Object.entries({height: "90%", width: "90%", margin: "auto"}).forEach(function(key_value){parent.style[key_value[0]]=key_value[1];}); // define parent as 100%!
       if (this._timer) {
         this._timer.stop();
       }
@@ -234,7 +234,7 @@ qx.Class.define('cv.plugins.RssLog', {
         // But delay it so that any change done to the data has a chance to
         // arrive here.
 
-        if (popup.getCurrentDomElement() && qx.bom.element.Class.has(popup.getCurrentDomElement(), 'popup') && this.getItemack() === 'modify') {
+        if (popup.getCurrentDomElement() && popup.getCurrentDomElement().classList.contains('popup') && this.getItemack() === 'modify') {
           qx.event.Timer.once(function () {
             this.refreshRSSlog();
           }, this, 100);
@@ -244,7 +244,7 @@ qx.Class.define('cv.plugins.RssLog', {
           }
         }
       }, this);
-      qx.bom.element.Style.set(qx.bom.Selector.query('.main', popup.getCurrentDomElement())[0], "overflow", "auto");
+      popup.getCurrentDomElement().querySelector('.main').style.overflow = "auto";
       this.refreshRSSlog(true);
     },
 
@@ -283,7 +283,7 @@ qx.Class.define('cv.plugins.RssLog', {
      */
     __refreshRss: function() {
       var src = this.getSrc();
-      var requestData = qx.lang.Object.clone(this.__fixedRequestData);
+      var requestData = Object.assign({}, this.__fixedRequestData);
       if (this.getFilter()) {
         requestData.f = this.getFilter();
       }
@@ -336,33 +336,36 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     __prepareContentElement: function(ul, c) {
-      qx.dom.Element.empty(c);
+      c.innerHTML = '';
 
-      qx.dom.Element.insertEnd(ul, c);
+      c.appendChild(ul);
 
       // get height of one entry, calc max num of display items in widget
-      var displayrows = parseInt(qx.bom.element.Dataset.get(c, "last_rowcount"), 10) || 0;
-      qx.bom.Html.clean(['<li class="rsslogRow odd" id="dummydiv">.</li>'], null, c);
-      var dummyDiv = qx.bom.Selector.query('#dummydiv', c)[0];
-      var itemheight = qx.bom.element.Dimension.getHeight(dummyDiv);
-      qx.dom.Element.remove(dummyDiv);
+      var displayrows = parseInt(c.dataset["last_rowcount"], 10) || 0;
+      ul.innerHTML = '<li class="rsslogRow odd" id="dummydiv">.</li>';
+      var dummyDiv = c.querySelector('#dummydiv'),
+        rect = dummyDiv.getBoundingClientRect(),
+        itemheight = Math.round(rect.bottom - rect.top);
+      dummyDiv.parentNode.removeChild(dummyDiv);
       if (itemheight !== 0) {
-        var widget = qx.dom.Element.getParentElement(qx.dom.Element.getParentElement(c)); // get the parent widget
-        var displayheight = qx.bom.element.Dimension.getHeight(widget);
-        var labelElem = qx.bom.Selector.query('.label', widget)[0];
+        var widget = c.parentNode.parentNode, // get the parent widget
+          widgetRect = widget.getBoundingClientRect(),
+          displayheight = Math.round(widgetRect.bottom - widgetRect.top),
+          labelElem = widget.querySelector('.label');
         if (labelElem) {
           // max. height of actor is widget-label(if exists)
-          displayheight -= qx.bom.element.Dimension.getHeight(labelElem);
+          var labelElemRect = labelElem.getBoundingClientRect();
+          displayheight -= Math.round(labelElemRect.bottom - labelElemRect.top);
         }
         displayrows = Math.floor(displayheight / itemheight);
       }
-      qx.bom.element.Dataset.set(c, "last_rowcount", displayrows);
+      c.dataset["last_rowcount"] = displayrows;
       return displayrows;
     },
 
     __updateRssContent: function(ev) {
       var result = ev.getTarget().getResponse();
-      if (qx.lang.Type.isString(result)) {
+      if (typeof result === 'string') {
         // no json -> error
         this.error(result);
         return;
@@ -378,12 +381,12 @@ qx.Class.define('cv.plugins.RssLog', {
 
       var isBig = this.__request.getUserData("big");
       var selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
-      var c = qx.bom.Selector.query(selector)[0];
+      var c = document.querySelector(selector);
       var itemack = isBig === true ? this.getItemack() : ( 'modify' === this.getItemack() ? 'display' : this.getItemack());
 
-      this.debug("ID: "+qx.bom.element.Attribute.get(c, "id")+", Feed: "+this.getSrc());
+      this.debug("ID: "+c.getAttribute("id")+", Feed: "+this.getSrc());
 
-      var ul = qx.dom.Element.create("ul");
+      var ul = document.createElement("ul");
       var displayrows = this.__prepareContentElement(ul, c);
 
       var itemnum = items.length;
@@ -396,11 +399,11 @@ qx.Class.define('cv.plugins.RssLog', {
           itemoffset = itemnum - displayrows;
         }
         if (this.getMode() === 'rollover') {
-          itemoffset = parseInt(qx.bom.element.Dataset.get(c, "itemoffset"), 10) || 0;
+          itemoffset = parseInt(c.dataset["itemoffset"], 10) || 0;
           if (itemoffset === itemnum) {
             itemoffset = 0;
           }
-          qx.bom.element.Dataset.set(c, "itemoffset", itemoffset + 1);
+          c.dataset["itemoffset"] = itemoffset + 1;
         }
       }
 
@@ -422,15 +425,16 @@ qx.Class.define('cv.plugins.RssLog', {
         var itemHtml = this.__getItemHtml(item, isBig);
 
         var rowElem = qx.dom.Element.create('li', { 'class' : 'rsslogRow ' + row });
-        qx.bom.element.Attribute.set(rowElem, "html", itemHtml);
+        rowElem.innerHTML = itemHtml;
 
         if (item.mapping && item.mapping !== '') {
           var mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
-          var span = qx.bom.Selector.query('.mappedValue', rowElem)[0];
-          this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
+          var span = rowElem.querySelector('.mappedValue');
+          var self = this;
+          this.defaultValue2DOM(mappedValue, function(e){self._applyValueToDom(span,e);});
         }
         if (this.__separatoradd && idx !== 0) {
-          qx.bom.element.Class.add(rowElem, 'rsslog_separator');
+          rowElem.classList.add('rsslog_separator');
           this.__separatorprevday = true;
         }
         else {
@@ -438,31 +442,31 @@ qx.Class.define('cv.plugins.RssLog', {
         }
 
         if (this.__separatorprevday === true) {
-          qx.bom.element.Class.add(rowElem, 'rsslog_prevday');
+          rowElem.classList.add('rsslog_prevday');
         }
 
         if (this.__isFuture) {
-          qx.bom.element.Class.add(rowElem, (row === 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
+          rowElem.classList.add((row === 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
         }
 
-        qx.bom.element.Dataset.set(rowElem, 'id', item.id);
-        qx.bom.element.Dataset.set(rowElem, 'mapping', item.mapping);
+        rowElem.dataset['id'] = item.id;
+        rowElem.dataset['mapping'] = item.mapping;
         if (item.tags) {
-          var tmp = qx.bom.Selector.query('span', rowElem)[0];
-          if (qx.lang.Type.isArray(item.tags)) {
-            item.tags.forEach(qx.lang.Function.curry(qx.bom.element.Class.add, tmp), this);
+          var tmp = rowElem.querySelector('span');
+          if (Array.isArray(item.tags)) {
+            tmp.classList.add.apply( tmp.classList, item.tags );
           } else {
-            qx.bom.element.Class.add(tmp, item.tags);
+            tmp.classList.add(item.tags);
           }
         }
         if (item.state === "1" && itemack !== 'disable') {
-          qx.bom.element.Class.add(rowElem, "rsslog_ack");
+          rowElem.classList.add("rsslog_ack");
         }
 
         if (itemack === 'modify') {
           qx.event.Registration.addListener(rowElem, "tap", this._onTap, this);
         }
-        qx.dom.Element.insertEnd(rowElem, ul);
+        ul.appendChild(rowElem);
 
         // Alternate row classes
         row = (row === 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
@@ -502,20 +506,21 @@ qx.Class.define('cv.plugins.RssLog', {
     _onTap: function(ev) {
       var item = ev.getCurrentTarget();
 
-      var id = qx.bom.element.Dataset.get(item, 'id');
-      var mapping = qx.bom.element.Dataset.get(item, 'mapping');
-      qx.bom.element.Class.toggle(item, "rsslog_ack");
-      var state = +qx.bom.element.Class.has(item, "rsslog_ack"); // the new state is the same as hasClass
+      var id = item.dataset['id'];
+      var mapping = item.dataset['mapping'];
+      item.classList.toggle("rsslog_ack");
+      var state = +item.classList.contains("rsslog_ack"); // the new state is the same as hasClass
       if (mapping && mapping !== '') {
         var mappedValue = this.applyMapping(state, mapping);
-        var span = qx.bom.Selector.query('.mappedValue', item)[0];
-        qx.dom.Element.empty(span);
-        this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
+        var span = item.querySelector('.mappedValue');
+        span.innerHTML = '';
+        var self = this;
+        this.defaultValue2DOM(mappedValue, function(e){self._applyValueToDom(span,e);});
       }
       var req = new qx.io.request.Xhr(this.__request.getUrl());
       req.set({
         method: "GET",
-        requestData: qx.lang.Object.mergeWith(qx.lang.Object.clone(this.__fixedRequestData), {
+        requestData: Object.assign({}, this.__fixedRequestData, {
           'u': id,
           'state': state
         }),

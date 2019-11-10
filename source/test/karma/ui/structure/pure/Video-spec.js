@@ -27,12 +27,12 @@ describe("testing a video widget", function() {
   it("should test the video creator", function() {
 
     var res = this.createTestWidgetString("video", {src: '', width: "100%", height: "90%"}, '<label>Test</label>');
-    var widget = qx.bom.Html.clean([res[1]])[0];
+    var widget = cv.util.String.htmlStringToDomElement(res[1]);
     expect(res[0].getPath()).toBe("id_0");
     expect(widget).toHaveClass('video');
     expect(widget).toHaveLabel('Test');
 
-    var videoWidget = qx.bom.Selector.query("video", widget)[0];
+    var videoWidget = widget.querySelector("video");
     expect(videoWidget).toHaveStyleSetting("width", "100%");
     expect(videoWidget).toHaveStyleSetting("height", "90%");
   });

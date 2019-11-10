@@ -200,7 +200,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
      * @return {Element}
      */
     getActor: function() {
-      return qx.bom.Selector.query('.actor', this.getDomElement())[0];
+      return this.getDomElement().querySelector('.actor');
     },
 
     /**
@@ -208,7 +208,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
      * @return {Element}
      */
     getValueElement: function() {
-      return qx.bom.Selector.query(".value", this.getDomElement())[0];
+      return this.getDomElement().querySelector(".value");
     },
 
     /**
@@ -216,7 +216,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
      * @return {Element}
      */
     getWidgetElement: function() {
-      return qx.bom.Selector.query('.widget', this.getDomElement())[0];
+      return this.getDomElement().querySelector('.widget');
     },
 
     /**
@@ -342,7 +342,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       if (this.isAnonymous()) { return; }
       var widget = this.getInteractionElement();
       if (widget) {
-        qx.bom.element.Dataset.set(widget, "longtapable", type !== "longtap");
+        widget.dataset["longtapable"] = type !== "longtap";
         return qx.event.Registration.addListener(widget, type, callback, context);
       }
       return null;

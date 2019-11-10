@@ -112,8 +112,19 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         slider.init();
         // set initial value
         slider.setValue(parseFloat(this.getValue()));
+        var throttled = cv.util.Function.throttle(this._onChangeValue, 250, {trailing: true}, this);
 
-        slider.on("changeValue", qx.util.Function.throttle(this._onChangeValue, 250, {trailing: true}), this);
+        slider.on("changeValue", function (val) {
+          if (!this.__skipUpdatesFromSlider) {
+            throttled.call(val);
+          }
+        }, this);
+        slider.on('done', function () {
+          throttled.abort();
+          if (this.isSendOnFinish()) {
+            this._onChangeValue(slider.getValue(), true);
+          }
+        }, this);
 
         this.addListener("changeValue", function (ev) {
           this.__skipUpdatesFromSlider = true;
@@ -167,11 +178,11 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       try {
         if (this.getValue() !== value) {
           this.setValue(value);
-          this.__skipUpdatesFromSlider = true;
           if (this.__slider) {
+            this.__skipUpdatesFromSlider = true;
             this.__slider.setValue(value);
+            this.__skipUpdatesFromSlider = false;
           }
-          this.__skipUpdatesFromSlider = false;
         }
       } catch(e) {
         this.error(e);
@@ -183,11 +194,14 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
 
     /**
      * Handle incoming value changes send by the slider widget (e.g. triggered by user interaction)
-     * @param value {Number}
+     * @param value {Number} the current value to send
+     * @param finished {Boolean} if sendOnFinish is true settings this parameter to true triggers the value to be send
      */
-    _onChangeValue: function(value) {
+    _onChangeValue: function(value, finished) {
       if (!this.__initialized || this.__skipUpdatesFromSlider === true) { return; }
-      if (this.isSendOnFinish() === false || this.__slider.isInPointerMove()) {
+      if ((this.isSendOnFinish() === true && finished) ||
+        (this.isSendOnFinish() === false && this.__slider.isInPointerMove())
+      ) {
         this._lastBusValue = this.sendToBackend(value, false, this._lastBusValue );
       }
       this.setValue(value);
