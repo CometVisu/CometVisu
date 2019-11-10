@@ -41,6 +41,7 @@
   "notificationcenterbadge": "/develop/manual/config/widgets/notificationcenterbadge/index.html#notificationcenterbadge", 
   "notifications": "/develop/manual/config/notifications.html#notifications", 
   "openhab-plugin": "/develop/manual/config/widgets/plugins/openhab/index.html#openhab-plugin", 
+  "openweathermap": "/develop/manual/config/widgets/plugins/openweathermap/index.html#openweathermap", 
   "page": "/develop/manual/config/widgets/page/index.html#page", 
   "pagejump": "/develop/manual/config/widgets/pagejump/index.html#pagejump", 
   "powerspectrum": "/develop/manual/config/widgets/plugins/powerspectrum/index.html#powerspectrum", 

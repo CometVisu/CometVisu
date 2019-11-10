@@ -255,51 +255,51 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <tr class="row-odd"><td rowspan="13">openweathermap</td>
 <td>lang</td>
 <td><em>en</em>, <em>de</em> or <em>fr</em></td>
-<td>&nbsp;</td>
+<td>Language / format of the date</td>
 </tr>
 <tr class="row-even"><td><abbr title="mandatory">appid</abbr></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Personal access key as obtained from <a class="reference external" href="https://openweathermap.org/">https://openweathermap.org/</a></td>
 </tr>
 <tr class="row-odd"><td>description</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>Describing text, displays the place name when left empty. &#8220;false&#8221; disables the display</td>
 </tr>
 <tr class="row-even"><td>detailItems</td>
 <td>integer</td>
-<td>&nbsp;</td>
+<td>Displays details when set to 1 (default) and hides them when set to 0</td>
 </tr>
 <tr class="row-odd"><td>forecast24hItems</td>
 <td>integer</td>
-<td>&nbsp;</td>
+<td>Number of items to show (0...8)</td>
 </tr>
 <tr class="row-even"><td>forecastDailyItems</td>
 <td>integer</td>
-<td>&nbsp;</td>
+<td>Number of items to show (0...4)</td>
 </tr>
 <tr class="row-odd"><td>showSunrise</td>
-<td>string</td>
-<td>&nbsp;</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Show the sun rise and set information</td>
 </tr>
 <tr class="row-even"><td>owID</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>OpenWeatherMap city ID as defined in <a class="reference external" href="http://bulk.openweathermap.org/sample/city.list.json.gz">http://bulk.openweathermap.org/sample/city.list.json.gz</a></td>
 </tr>
 <tr class="row-odd"><td>q</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>When owID is not used: City name and country code divided by comma, use ISO 3166 country codes</td>
 </tr>
 <tr class="row-even"><td>lat</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>When owID or q is not used: latitude of place</td>
 </tr>
 <tr class="row-odd"><td>lon</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>When owID or q is not used: longitue of place</td>
 </tr>
 <tr class="row-even"><td>refresh</td>
 <td>integer</td>
-<td>&nbsp;</td>
+<td>Refresh interval of the data in minutes</td>
 </tr>
 <tr class="row-odd"><td>class</td>
 <td>string</td>
@@ -307,9 +307,18 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tr>
 </tbody>
 </table>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The value of the attribute <cite>appid</cite> has to be replaced by your own key!</p>
+</div>
+<p>The OpenweatherMap uses the web service of <a class="reference external" href="https://openweathermap.org/">https://openweathermap.org/</a> to fetch
+the current weather date and forecast. To be able to access this data you need
+a key that can be obtained free of charge at the homepage and which must be
+inserted at the <cite>appid</cite> attribute.</p>
 </div>
 <div class="section" id="allowed-child-elements-und-their-attributes">
 <h3>Allowed child-elements und their attributes<a class="headerlink" href="#allowed-child-elements-und-their-attributes" title="Permalink to this headline">¶</a></h3>
+<p>None.</p>
 </div>
 </div>
 <div class="section" id="examples">
@@ -320,6 +329,23 @@ for the openweathermap plugin.</p>
 <p class="first admonition-title">Caution</p>
 <p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
 XML-editor to UTF-8 mode!</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The value of the attribute <cite>appid</cite> has to be replaced by your own key!</p>
+</div>
+<p>This minimal example code will create this screen shot:</p>
+<div class="figure">
+<img alt="../../../../_images/weather.png" src="../../../../_images/weather.png" />
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;openweathermap&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+...
+<span class="nt">&lt;openweathermap</span> <span class="na">q=</span><span class="s">&quot;Munich&quot;</span> <span class="na">appid=</span><span class="s">&quot;...&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
 </div>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">

@@ -291,12 +291,12 @@ var jOWM = jOWM || {};
         //time sunrise
         var d = new Date(options.sunrise * 1000);
         var output = '<li class="sunrise-sunset"><div class="weather-forecast weather-sunrise clearfix" style="float: left;">';
-        output += '<div class="weather-icon" </div>';
+        output += '<div class="weather-icon"></div>';
         output += '<div class="sunrise-sunset">' + d.strftime('%H:%M') + '</div> </div>';
         //time sunset
         d = new Date(options.sunset * 1000);
         output += '<div class="weather-forecast weather-sunset clearfix" style="float: left;">';
-        output += '<div class="weather-icon" </div>';
+        output += '<div class="weather-icon"></div>';
         output += '<div class="sunrise-sunset">' + d.strftime('%H:%M') + '</div> </div></li>';
         return output;
     }

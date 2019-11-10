@@ -2171,6 +2171,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/plugins/openweathermap/index.html</loc>
+    <lastmod>2019-11-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/plugins/speech/index.html</loc>
     <lastmod>2019-11-10</lastmod>
     <priority>0.5</priority>
