@@ -40,12 +40,24 @@ qx.Class.define("cv.compile.LibraryApi", {
         CV_TESTMODE: "cv.testMode"
       }
 
+      let setVersion = false
+
       // transfer environment variables
       Object.keys(checkEnvs).forEach((name) => {
         if (process.env[name]) {
           config.environment[checkEnvs[name]] = process.env[name]
+          if (name === "CV_VERSION") {
+            setVersion = true
+          }
         }
       })
+      if (setVersion) {
+        config.applications.some(function (app) {
+          if (app.name === "apiviewer") {
+            app.environment['versionLabel.version'] = process.env.CV_VERSION
+          }
+        })
+      }
     },
 
     copyFiles (config) {
@@ -76,6 +88,11 @@ qx.Class.define("cv.compile.LibraryApi", {
       const classTargetDir = path.join(currentDir, targetDir, 'class', 'cv')
       fse.ensureDirSync(classTargetDir)
       fse.copySync(path.join(process.cwd(), 'source', 'class', 'cv', 'IconConfig.js'), path.join(classTargetDir, 'IconConfig.js'))
+
+      if (config.targetType === 'source') {
+        // copy a fake /cgi-bin/l response to the target folder
+        fse.copySync(path.join(process.cwd(), 'source', 'resource', 'test'), path.join(targetDir, 'cgi-bin'))
+      }
     },
 
     /**

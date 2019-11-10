@@ -1,17 +1,12 @@
 {
   "$schema": "https://raw.githubusercontent.com/qooxdoo/qooxdoo-compiler/master/source/resource/qx/tool/schema/Manifest-1-0-0.json",
-  "info" : 
-  {
-    "name" : "cv",
-
-    "summary" : "CometVisu",
-    "description" : "The CometVisu is an interactive, realtime, web based visualization.",
-    
-    "homepage" : "http://www.cometvisu.org/",
-
-    "license" : "GPL-3.0",
-    "authors" :
-    [
+  "info": {
+    "name": "cv",
+    "summary": "CometVisu",
+    "description": "The CometVisu is an interactive, realtime, web based visualization.",
+    "homepage": "http://www.cometvisu.org/",
+    "license": "GPL-3.0",
+    "authors": [
       {
         "name": "Christian Mayer (ChristianMayer)",
         "email": "CometVisu at ChristianMayer dot de"
@@ -21,22 +16,20 @@
         "email": "tbraeutigam at gmail dot com"
       }
     ],
-
     "version": "0.12.0-dev",
     "sourceViewUri": "https://github.com/CometVisu/CometVisu/blob/develop/source/class/%{classFilePath}#L%{lineNumber}"
   },
-  
-  "provides" : 
-  {
-    "namespace"   : "cv",
-    "encoding"    : "utf-8",
-    "class"       : "source/class",
-    "resource"    : "source/resource",
-    "translation" : "source/translation"
+  "provides": {
+    "namespace": "cv",
+    "encoding": "utf-8",
+    "class": "source/class",
+    "resource": "source/resource",
+    "translation": "source/translation"
   },
   "requires": {
     "@qooxdoo/framework": "^6.0.0-beta",
-    "@qooxdoo/compiler": "^1.0.0-beta.20190917-1105"
+    "@qooxdoo/compiler": "^1.0.0-beta.20190917-1105",
+    "qooxdoo/qxl.apiviewer": "^1.0.0-beta.7"
   },
   "externalResources": {
     "script": [
@@ -50,4 +43,3 @@
     ]
   }
 }
-

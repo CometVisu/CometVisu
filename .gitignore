@@ -28,3 +28,4 @@ settings/keys/deploy_key
 *.pyc
 /doc/manual/*/_build/**
 **/.vscode/**
+qx_packages/
