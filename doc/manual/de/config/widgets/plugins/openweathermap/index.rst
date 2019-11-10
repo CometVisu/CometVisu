@@ -26,8 +26,8 @@ Nur die mit ..... unterstrichenen Attribute/Elemente müssen zwingend angegeben 
 daher weg gelassen werden.
 
 
-Erlaubte Attribute im ColorChooser-Element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Erlaubte Attribute im OpenweatherMap-Element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: openweathermap
 
@@ -36,7 +36,7 @@ Erlaubte Attribute im ColorChooser-Element
     Der Wert des Attibuts `appid` muss durch den eigenen Schlüssel ersetzt werden!
 
 Das OpenweatherMap nutzt den Web-Service von https://openweathermap.org/ um
-die Aktuellen Wetterdaten bzw. Vorhersage darstellen zu können. Um auf diese
+die aktuellen Wetterdaten bzw. Vorhersage darstellen zu können. Um auf diese
 Daten zugreifen zu können benötigt man einen Schlüssel, der dort auf der
 Homepage kostenlos erzeugt werden kann und im Attribut `appid` angegeben
 werden muss.
@@ -74,8 +74,7 @@ Screenshot erzeugt:
         </plugins>
     </meta>
     ...
-    <openweathermap q="Munich" appid="...">
-    </openweathermap>
+    <openweathermap q="Munich" appid="..." />
 
 
 
