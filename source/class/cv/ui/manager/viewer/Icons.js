@@ -10,7 +10,7 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
   ***********************************************
   */
   statics: {
-    SUPPORTED_FILES: /^CometVisu-Icons$/,
+    SUPPORTED_FILES: /^CometVisu-Icons$/i,
     TITLE: qx.locale.Manager.tr('Show icons'),
     ICON: cv.theme.dark.Images.getIcon('icons', 18)
   },

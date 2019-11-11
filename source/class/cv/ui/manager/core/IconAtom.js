@@ -27,6 +27,18 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
       this.getChildControl('icon').setName(value);
     },
 
+    /**
+     * Updates the visibility of the icon
+     */
+    _handleIcon : function()
+    {
+      if (!this.getChildControl('icon').getName() || this.getShow() === "label") {
+        this._excludeChildControl("icon");
+      } else {
+        this._showChildControl("icon");
+      }
+    },
+
     // overridden
     _createChildControlImpl : function(id) {
        var control;
