@@ -223,6 +223,8 @@ qx.Class.define('cv.ui.manager.Main', {
             this.closeFile(openFile);
           }
         }, this);
+      } else {
+        this.warn('unhandled file event', data.action);
       }
     },
 
@@ -597,8 +599,8 @@ qx.Class.define('cv.ui.manager.Main', {
 
     // overridden
     _draw: function () {
-
-      var root = new qx.ui.root.Inline(this.__getRoot(), true, true);
+      var domRoot = this.__getRoot();
+      var root = new qx.ui.root.Inline(domRoot, true, true);
       root.addListenerOnce('appear', function () {
         // disable file drop
         var element = root.getContentElement().getDomElement();
@@ -634,6 +636,10 @@ qx.Class.define('cv.ui.manager.Main', {
       }
       root.addListener('resize', resize, this);
       root.addListener('appear', resize, this);
+      window.addEventListener('resize', function () {
+        // sync window height with manager height
+        domRoot.style.height = window.innerHeight + 'px';
+      });
 
       var main = new qx.ui.container.Composite(new qx.ui.layout.Dock());
       root.add(main, {edge: 0});

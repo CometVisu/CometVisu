@@ -191,7 +191,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     getAllFileHandlers: function (file, type) {
       if (qx.core.Environment.get('qx.debug')) {
-        qx.core.Assert.assertInstance(file, cv.ui.manager.model.FileItem);
+        qx.core.Assert.assertTrue(file instanceof cv.ui.manager.model.FileItem || file instanceof cv.ui.manager.model.CompareFiles);
       }
       return  Object.keys(this.__registry).filter(function (key) {
         return this.__canHandle(this.__registry[key], file) && (!type || this.__registry[key].type === type);

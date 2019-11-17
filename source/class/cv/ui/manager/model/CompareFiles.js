@@ -49,7 +49,8 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
 
     modified: {
       check: 'Boolean',
-      init: false
+      init: false,
+      event: 'changeModified'
     }
   },
 
@@ -73,6 +74,26 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
 
     _applyModifiedFile: function () {
       this.setName(qx.locale.Manager.tr('Diff: %1', this.getModifiedFile().getName()));
+    },
+
+    getParent: function () {
+      return this.getModifiedFile().getParent();
+    },
+
+    isWriteable: function () {
+      return this.getModifiedFile().isWriteable();
+    },
+
+    isTrash: function () {
+      return this.getModifiedFile().isTrash();
+    },
+
+    isInTrash: function () {
+      return this.getModifiedFile().isInTrash();
+    },
+
+    isFake: function () {
+      return this.getModifiedFile().isFake();
     },
 
     /**
