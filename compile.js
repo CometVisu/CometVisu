@@ -112,6 +112,8 @@ qx.Class.define("cv.compile.LibraryApi", {
 
       const targetDir = this._getTargetDir(config)
 
+      this.appendLibrariesToPlugins(targetDir)
+
       // build-append-plugin-libs
       console.log('appending libraries to plugins')
       exec('./cv build -bp -d ' + targetDir)
@@ -119,6 +121,58 @@ qx.Class.define("cv.compile.LibraryApi", {
       // build-paths
       console.log('update paths')
       exec('./cv build -up -d ' + targetDir)
+    },
+
+    /**
+     * In Build releases the libraries used in plugins are directly included in the generated parts.
+     * This saves some loading time.
+     * @param targetDir
+     */
+    appendLibrariesToPlugins (targetDir) {
+      // load boot.js in a sandbox to extract the part definitions
+      const bootjs = fs.readFileSync(path.join(targetDir, 'cv', 'boot.js')).toString('utf8')
+      let lines = bootjs.split('\n')
+      let inParts = false
+      let partsCode = []
+      lines.forEach(line => {
+        if (line === '  parts : {') {
+          inParts = true
+          partsCode.push('context.parts = {')
+        } else if (inParts) {
+          if (line === '},') {
+            inParts = false
+            partsCode.push('}')
+          } else {
+            partsCode.push(line)
+          }
+        }
+      })
+
+      const code = partsCode.join('\n')
+      const vm = require('vm')
+      let context = { }
+      vm.runInNewContext(code,{
+        context: context
+      })
+
+      Object.keys(context.parts)
+        .filter(name => name.startsWith('plugin-'))
+        .forEach(name => {
+          // check if the part is loading external scripts
+          context.parts[name].forEach(partId => {
+            const partFile = path.join(targetDir, 'cv', 'part-' + partId + '.js')
+            const partSource = fs.readFileSync(partFile).toString('utf-8')
+            let startIndex = partSource.indexOf('cv.util.ScriptLoader.getInstance().addScripts(')
+            if (startIndex > 0) {
+              let scripts = partSource.substring(startIndex)
+              let endIndex = scripts.indexOf(')')
+              if (endIndex >= 0) {
+                scripts = scripts.substring(0, endIndex)
+              }
+              console.log(partFile, scripts);
+            }
+          })
+        })
     },
 
     _getTargetDir (config, type) {
