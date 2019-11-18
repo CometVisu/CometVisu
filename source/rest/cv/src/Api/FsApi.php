@@ -75,10 +75,17 @@ class FsApi extends AbstractFsApi
   }
 
   public function move(ServerRequestInterface $request, ResponseInterface $response, array $args) {
-    $mount = $this->getMount($request->getQueryParam('src'));
-    $fsPath = $this->getAbsolutePath($request->getQueryParam('src'), $mount);
-    $targetMount = $this->getMount($request->getQueryParam('target'));
-    $targetPath = $this->getAbsolutePath($request->getQueryParam('target'), $targetMount);
+    $src = $request->getQueryParam('src');
+    $target = $request->getQueryParam('target');
+    $renaming = dirname($src) == dirname($target);
+    $mount = $this->getMount($src);
+    $fsPath = $this->getAbsolutePath($src, $mount);
+    if ($renaming) {
+      $targetPath= dirname($fsPath) . '/' . basename($target);
+    } else {
+      $targetMount = $this->getMount();
+      $targetPath = $this->getAbsolutePath($target, $targetMount);
+    }
     if (!file_exists($fsPath)) {
       return $response->withJson(array('message' => 'Source not found'), 404);
     }
@@ -89,7 +96,11 @@ class FsApi extends AbstractFsApi
       return $response->withJson(array('message' => 'Forbidden'), 403);
     } else {
       try {
-        FileHandler::rename($fsPath, $targetPath);
+        if (FileHandler::rename($fsPath, $targetPath)) {
+          $response->withStatus(200);
+        } else {
+          return $response->withJson(array('message' => 'rename failed'), 500);
+        }
       } catch (Exception $e) {
         return $response->withJson(array('message' => $e->getMessage()), $e->getCode());
       }
@@ -275,9 +286,19 @@ class FsApi extends AbstractFsApi
     if ($mount) {
       // remove mountPoint from requested path
       $fsPath = substr($fsPath,strlen($mount['mountPoint']) + 1);
-      return realpath($mount['path'] .  '/' . $fsPath);
+      $res = realpath($mount['path'] .  '/' . $fsPath);
+      if ($res == false) {
+        // path does not exist, create the path without normalizing
+        $res = $mount['path'] .  '/' . $fsPath;
+      }
+      return $res;
     }
-    return realpath($this->baseDir . '/' . $fsPath);
+    $res = realpath($this->baseDir . '/' . $fsPath);
+    if ($res == false) {
+      // path does not exist, create the path without normalizing
+      $res = $mount['path'] .  '/' . $fsPath;
+    }
+    return $res;
   }
 
   private function __sanitize($requestPath) {

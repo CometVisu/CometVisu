@@ -36,7 +36,7 @@ class FileHandler
 
   public static function rename($sourcePath, $targetPath) {
     try {
-      rename($sourcePath, $targetPath);
+      return rename($sourcePath, $targetPath);
     } catch (Exception $e) {
       throw new Exception($e->getMessage(), 405);
     }

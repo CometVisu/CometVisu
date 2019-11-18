@@ -19,6 +19,14 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     if (file) {
       this.configure(file);
     }
+
+    // only react to events when this menu is visible
+    this.addListener('appear', function () {
+      this.setActive(true);
+    });
+    this.addListener('disappear', function () {
+      this.setActive(false);
+    });
   },
 
   /*
@@ -30,6 +38,12 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     appearance: {
       refine: true,
       init: 'cv-file-contextmenu'
+    },
+    
+    /* This flag enables the event handling for this menu */
+    active: {
+      check: 'Boolean',
+      init: false
     }
   },
 
@@ -43,7 +57,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     _selectedNode: null,
     _dateFormat: null,
     _timeFormat: null,
-
+    _renameDialog: null,
 
     configure: function (file) {
       this._selectedNode = file;
@@ -160,46 +174,55 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     },
 
     _onCompareWith: function (ev) {
-      var compareWith = ev.getTarget().getUserData('file');
-      qx.event.message.Bus.dispatchByName('cv.manager.compareFiles',
-        new cv.ui.manager.model.CompareFiles(compareWith, this._selectedNode)
-      );
+      if (this.isActive()) {
+        var compareWith = ev.getTarget().getUserData('file');
+        qx.event.message.Bus.dispatchByName('cv.manager.compareFiles',
+          new cv.ui.manager.model.CompareFiles(compareWith, this._selectedNode)
+        );
+      }
     },
 
     _onOpenWith: function (ev) {
-      var handlerId = ev.getTarget().getUserData('handlerId');
-      qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
-        file: this._selectedNode,
-        handler: handlerId
-      });
+      if (this.isActive()) {
+        var handlerId = ev.getTarget().getUserData('handlerId');
+        qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
+          file: this._selectedNode,
+          handler: handlerId
+        });
+      }
     },
 
     _onRename: function () {
-      if (this._selectedNode) {
-        this._selectedNode.setEditing(true);
+      if (this._selectedNode && !this._renameDialog && this.isActive()) {
+        this._renameDialog = dialog.Dialog.prompt(this.tr('New name'), function (name) {
+          if (name && name !== this._selectedNode.getName()) {
+            cv.ui.manager.control.FileController.getInstance().rename(this._selectedNode, name);
+          }
+          this._renameDialog = null;
+        }, this, this._selectedNode.getName(), this.tr('Rename file'));
       }
     },
 
     _onDownload: function () {
-      if (this._selectedNode) {
+      if (this._selectedNode && this.isActive()) {
         cv.ui.manager.control.FileController.getInstance().download(this._selectedNode);
       }
     },
 
     _onRestore: function () {
-      if (this._selectedNode) {
+      if (this._selectedNode && this.isActive()) {
         cv.ui.manager.control.FileController.getInstance().restore(this._selectedNode);
       }
     },
 
     _onValidate: function () {
-      if (this._selectedNode) {
+      if (this._selectedNode && this.isActive()) {
         cv.ui.manager.control.FileController.getInstance().validate(this._selectedNode);
       }
     },
 
     _onClone: function () {
-      if (this._selectedNode) {
+      if (this._selectedNode && this.isActive()) {
         qx.event.message.Bus.dispatchByName('cv.manager.action.clone', {
           file: this._selectedNode
         });
@@ -212,7 +235,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
        switch (id) {
          case 'new-file-button':
-           control = new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file'));
+           control = new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18));
            break;
 
          case 'clone-file-button':
@@ -222,11 +245,11 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
            break;
 
          case 'new-folder-button':
-           control = new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18), this._commandGroup.get('new-folder'));
+           control = new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18));
            break;
 
          case 'rename-button':
-           control = new qx.ui.menu.Button(this.tr('Rename'), cv.theme.dark.Images.getIcon('rename', 18), this._commandGroup.get('rename'));
+           control = new qx.ui.menu.Button(this.tr('Rename'), cv.theme.dark.Images.getIcon('rename', 18));
            control.addListener('execute', this._onRename, this);
            break;
 
@@ -297,6 +320,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
   */
   destruct: function () {
     this._commandGroup = null;
+    this._renameDialog = null;
     this._disposeObjects('_dateFormat', '_timeFormat');
   }
 });
