@@ -147,10 +147,14 @@ class FileHandler
           while (file_exists($trashFile)) {
             $trashFile = $baseTrashFile - '-' - $index++;
           }
-          rename($folder, $trashFile);
+          if (rename($folder, $trashFile) === false) {
+            throw new Exception('Folder could not be deleted', 406);
+          }
         } else {
           if ($force === true || FileHandler::isEmptyDir($folder)) {
-            unlink($folder);
+            if (rmdir($folder) === false) {
+              throw new Exception('Folder could not be deleted', 406);
+            }
           } else {
             throw new Exception('Folder not empty', 406);
           }

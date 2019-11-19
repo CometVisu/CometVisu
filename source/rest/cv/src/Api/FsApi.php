@@ -39,7 +39,9 @@ class FsApi extends AbstractFsApi
   }
 
   public function create(ServerRequestInterface $request, ResponseInterface $response, array $args) {
-    return $this->__processRequest($request, $response, null, function ($request, $response, $fsPath, $mount) {
+    return $this->__processRequest($request, $response, function ($request, $response, $fsPath, $mount) {
+      return $this->createFolder($response, $fsPath);
+    }, function ($request, $response, $fsPath, $mount) {
       return $this->createFile($response, $fsPath, $request->getBody(), $request->getQueryParam('hash'));
     }, 'create');
   }
@@ -121,7 +123,7 @@ class FsApi extends AbstractFsApi
       if (!$this->checkAccess($fsPath) || ($mount && $mount['writeable'] === false && $type !== 'read')) {
         $response->withStatus(403);
       } else {
-        if (is_dir($fsPath)) {
+        if (is_dir($fsPath) || ($type === 'create' && $request->getQueryParam('type') === 'dir')) {
           if ($folderCallback) {
             return $folderCallback($request, $response, $fsPath, $mount);
                   }
@@ -250,6 +252,15 @@ class FsApi extends AbstractFsApi
         mkdir($dirname, 0777, true);
       }
       FileHandler::createFile($file, $content, $hash);
+      return $response->withStatus(200);
+    } catch (Exception $e) {
+      return $response->withJson(array('message' => $e->getMessage()))->withStatus($e->getCode());
+    }
+  }
+
+  private function createFolder(ResponseInterface $response, $file) {
+    try {
+      FileHandler::createFolder($file);
       return $response->withStatus(200);
     } catch (Exception $e) {
       return $response->withJson(array('message' => $e->getMessage()))->withStatus($e->getCode());

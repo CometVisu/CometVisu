@@ -228,11 +228,13 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
     },
 
     _applyModel: function (value) {
+      var resetActionMenu = true;
       if (value && value.getType() === 'file') {
         var control = this.getChildControl('file-type');
         if (value.isFake()) {
           if (value.getSpecial() !== 'add-file') {
             this.getChildControl('action-menu').configure(value);
+            resetActionMenu = false;
           } else {
             // this.getChildControl('bottom-bar').exclude();
             // this.setUploadHint(this.tr('Drop the file here to upload a the file.'));
@@ -274,10 +276,14 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
             control.exclude();
           }
           this.getChildControl('action-menu').configure(value);
+          resetActionMenu = false;
         }
 
       } else {
         this.getChildControl('file-type').exclude();
+      }
+      if (resetActionMenu) {
+        this.getChildControl('action-menu').configure(null);
       }
       // this.getChildControl('bottom-bar').show();
       // this.setUploadHint(this.tr('Drop the file here to replace the content.'));

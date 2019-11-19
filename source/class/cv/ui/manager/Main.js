@@ -196,7 +196,7 @@ qx.Class.define('cv.ui.manager.Main', {
           break;
 
         case 'new-folder':
-          this._onCreate('dir');
+          this._onCreate('dir', null, data);
           break;
 
         case 'delete':
@@ -223,6 +223,9 @@ qx.Class.define('cv.ui.manager.Main', {
             this.closeFile(openFile);
           }
         }, this);
+        if (this.getCurrentFolder().getFullPath() === data.path) {
+          this.resetCurrentFolder();
+        }
       } else {
         this.warn('unhandled file event', data.action);
       }
@@ -566,6 +569,29 @@ qx.Class.define('cv.ui.manager.Main', {
             parentFolder: currentFolder.getFullPath(),
             content: content || ''
           });
+          if (type === 'dir') {
+            // create directory directly
+            cv.io.rest.Client.getFsClient().createSync({
+              path: item.getFullPath(),
+              type: 'dir'
+            }, null, function (err) {
+              if (err) {
+                cv.ui.manager.snackbar.Controller.error(err);
+              } else {
+                cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Folder has been created'));
+                item.set({
+                  modified: false,
+                  temporary: false
+                });
+                qx.event.message.Bus.dispatchByName(item.getBusTopic(), {
+                  type: 'created',
+                  file: item,
+                  data: '',
+                  source: this
+                });
+              }
+            }, this);
+          }
           currentFolder.addChild(item);
           currentFolder.sortElements();
           this._tree.refresh();

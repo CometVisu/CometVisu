@@ -236,6 +236,13 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
        switch (id) {
          case 'new-file-button':
            control = new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18));
+           control.addListener('execute', function () {
+             if (this._selectedNode.isConfigFile()) {
+               qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file');
+             } else {
+               qx.event.message.Bus.dispatchByName('cv.manager.action.new-file');
+             }
+           }, this);
            break;
 
          case 'clone-file-button':
@@ -246,6 +253,9 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
 
          case 'new-folder-button':
            control = new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18));
+           control.addListener('execute', function () {
+             qx.event.message.Bus.dispatchByName('cv.manager.action.new-folder', this._selectedNode.getParent());
+           }, this);
            break;
 
          case 'rename-button':
