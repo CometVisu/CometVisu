@@ -38,6 +38,12 @@ class FsApi extends AbstractFsApi
     return $response->withJson($res);
   }
 
+  public function create(ServerRequestInterface $request, ResponseInterface $response, array $args) {
+    return $this->__processRequest($request, $response, null, function ($request, $response, $fsPath, $mount) {
+      return $this->createFile($response, $fsPath, $request->getBody(), $request->getQueryParam('hash'));
+    }, 'create');
+  }
+
   public function read(ServerRequestInterface $request, ResponseInterface $response, array $args)
   {
     return $this->__processRequest($request, $response, function ($request, $response, $fsPath, $mount) {
@@ -111,7 +117,7 @@ class FsApi extends AbstractFsApi
     $requestPath = $request->getQueryParam('path');
     $mount = $this->getMount($requestPath);
     $fsPath = $this->getAbsolutePath($requestPath, $mount);
-    if (file_exists($fsPath)) {
+    if (file_exists($fsPath) || $type === 'create') {
       if (!$this->checkAccess($fsPath) || ($mount && $mount['writeable'] === false && $type !== 'read')) {
         $response->withStatus(403);
       } else {
@@ -221,11 +227,32 @@ class FsApi extends AbstractFsApi
           // create missing dirs first
           mkdir($dirname, 0777, true);
         }
-        return FileHandler::saveFile($file, $content, $hash);
+        FileHandler::saveFile($file, $content, $hash);
+        return $response->withStatus(200);
       } catch (Exception $e) {
         var_dump($e);
         return $response->withJson(array('message' => $e->getMessage()))->withStatus($e->getCode());
       }
+    }
+  }
+
+  /**
+   * Create a new file with content
+   * @param $response {ResponseInterface}
+   * @param $file {String} absolute path to file
+   * @param $content {String} file content
+   */
+  private function createFile(ResponseInterface $response, $file, $content, $hash) {
+    try {
+      $dirname = dirname($file);
+      if (!file_exists($dirname)) {
+        // create missing dirs first
+        mkdir($dirname, 0777, true);
+      }
+      FileHandler::createFile($file, $content, $hash);
+      return $response->withStatus(200);
+    } catch (Exception $e) {
+      return $response->withJson(array('message' => $e->getMessage()))->withStatus($e->getCode());
     }
   }
 
@@ -296,7 +323,7 @@ class FsApi extends AbstractFsApi
     $res = realpath($this->baseDir . '/' . $fsPath);
     if ($res == false) {
       // path does not exist, create the path without normalizing
-      $res = $mount['path'] .  '/' . $fsPath;
+      $res = $this->baseDir .  '/' . $fsPath;
     }
     return $res;
   }

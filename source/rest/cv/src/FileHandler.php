@@ -13,11 +13,11 @@ class FileHandler
    * @param $content
    * @param $options {Map}
    */
-  public static function createFile($file, $content, $options) {
+  public static function createFile($file, $content, $hash, $options = null) {
     if (file_exists($file) && (!$options || !$options['force'])) {
       throw new Exception('File already exists', 406);
     } else {
-      FileHandler::saveFile($file, $content);
+      FileHandler::saveFile($file, $content, $hash);
     }
   }
 
@@ -74,26 +74,31 @@ class FileHandler
         copy($file, $file . $backupSuffix);
       }
       // 2. write new content
-      file_put_contents($file, $content);
-      // 3. check hash of written file
-      $writtenContent = file_get_contents($file);
-      $newHash = sprintf('%u', crc32($writtenContent));
-      if ($newHash !== $contentHash) {
-        // something went wrong -> restore old file content
-        if ($fileExists) {
-          copy($file . $backupSuffix, $file);
-          if ($backupFilename) {
-            // no changes no need for backup file
-            unlink($backupFilename);
+      if (file_put_contents($file, $content) === false) {
+        throw new Exception('file not written', 405);
+      } else {
+        // 3. check hash of written file
+        $writtenContent = file_get_contents($file);
+        $newHash = sprintf('%u', crc32($writtenContent));
+        if ($newHash !== $contentHash) {
+          // something went wrong -> restore old file content
+          if ($fileExists) {
+            copy($file . $backupSuffix, $file);
+            if ($backupFilename) {
+              // no changes no need for backup file
+              unlink($backupFilename);
+            }
           }
+          throw new Exception('hash mismatch on written content', 405);
         }
-        throw new Exception('hash mismatch on written content', 405);
       }
       if ($fileExists) {
         unlink($file . $backupSuffix);
       }
     } else {
-      file_put_contents($file, $content);
+      if (file_put_contents($file, $content) === false) {
+        throw new Exception('file not written', 405);
+      }
     }
   }
 
