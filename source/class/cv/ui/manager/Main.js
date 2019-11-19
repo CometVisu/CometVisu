@@ -223,7 +223,7 @@ qx.Class.define('cv.ui.manager.Main', {
             this.closeFile(openFile);
           }
         }, this);
-        if (this.getCurrentFolder().getFullPath() === data.path) {
+        if (this.getCurrentFolder() && this.getCurrentFolder().getFullPath() === data.path) {
           this.resetCurrentFolder();
         }
       } else {
@@ -596,7 +596,10 @@ qx.Class.define('cv.ui.manager.Main', {
           currentFolder.sortElements();
           this._tree.refresh();
           this._tree.setSelection(item);
-          this.openFile(item, false);
+          // do not open new folders
+          if (type !== 'dir') {
+            this.openFile(item, false);
+          }
         }
       };
 
