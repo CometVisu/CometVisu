@@ -40,7 +40,7 @@ qx.$$loader = {};
 
 %{BootPart}
 
-if (typeof exports != "undefined") {for (var key in qx) {exports[key] = qx[key];}
+if (typeof exports != "undefined") {for (var key in qx) {exports[key] = qx[key];}}
 
 // backwards compability for <= 0.10x
 var CometVisuClient = cv.io.Client;
