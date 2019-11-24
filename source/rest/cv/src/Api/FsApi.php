@@ -91,7 +91,7 @@ class FsApi extends AbstractFsApi
     if ($renaming) {
       $targetPath= dirname($fsPath) . '/' . basename($target);
     } else {
-      $targetMount = $this->getMount();
+      $targetMount = $this->getMount($src);
       $targetPath = $this->getAbsolutePath($target, $targetMount);
     }
     if (!file_exists($fsPath)) {

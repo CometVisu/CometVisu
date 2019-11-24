@@ -331,6 +331,15 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     },
 
     getPath: function () {
+      if (!this.__path) {
+        var parentFolder = this.getParentFolder();
+        if (!parentFolder) {
+          parentFolder = '';
+        } else if (!parentFolder.endsWith('/')) {
+          parentFolder += '/';
+        }
+        this.__path = parentFolder;
+      }
       return this.__path;
     },
 
@@ -478,13 +487,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
      */
     getFullPath: function () {
       if (!this.__fullPath) {
-        var parentFolder = this.getParentFolder();
-        if (!parentFolder) {
-          parentFolder = '';
-        } else if (!parentFolder.endsWith('/')) {
-          parentFolder += '/';
-        }
-        this.__fullPath = parentFolder + this.getName();
+        this.__fullPath = this.getPath() + this.getName();
       }
       return this.__fullPath;
     },
