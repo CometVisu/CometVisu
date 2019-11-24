@@ -39,7 +39,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
               qx.locale.Manager.tr('File has been created') :
               qx.locale.Manager.tr('Folder has been created')
             );
-            file.resetTenporary();
+            file.resetTemporary();
             file.resetModified();
             file.setName(newName);
             file.reload();

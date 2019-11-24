@@ -333,11 +333,18 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
-    openFile: function (file, preview, handlerId) {
+    /**
+     *
+     * @param file {cv.ui.manager.model.FileItem} the file to open
+     * @param preview {Boolean} open the file in preview mode
+     * @param handlerId {String} use this handler to open the file (classname as string)
+     * @param handlerType {String} use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer
+     */
+    openFile: function (file, preview, handlerId, handlerType) {
       var openFiles = this.getOpenFiles();
       var openFile;
       if (!handlerId) {
-        var handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
+        var handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, handlerType);
 
         if (!handlerConf) {
           // no handler
@@ -393,6 +400,12 @@ qx.Class.define('cv.ui.manager.Main', {
         dialog.Dialog.confirm(message, function (confirmed) {
           if (confirmed) {
             this.closeFile(openFile, true);
+            if (file.isTemporary()) {
+              qx.event.message.Bus.dispatchByName('cv.manager.file', {
+                action: 'deleted',
+                path: file.getFullPath()
+              });
+            }
           }
         }, this, qx.locale.Manager.tr('Unsaved changes'));
         return;
@@ -573,7 +586,7 @@ qx.Class.define('cv.ui.manager.Main', {
             // create directory directly
             cv.io.rest.Client.getFsClient().createSync({
               path: item.getFullPath(),
-              type: 'dir'
+              type: type
             }, null, function (err) {
               if (err) {
                 cv.ui.manager.snackbar.Controller.error(err);
@@ -598,7 +611,8 @@ qx.Class.define('cv.ui.manager.Main', {
           this._tree.setSelection(item);
           // do not open new folders
           if (type !== 'dir') {
-            this.openFile(item, false);
+            // open the file in an editor
+            this.openFile(item, false, null, 'edit');
           }
         }
       };

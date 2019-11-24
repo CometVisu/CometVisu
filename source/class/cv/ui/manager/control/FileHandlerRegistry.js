@@ -26,7 +26,8 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source, {type: 'edit'});
     this.registerFileHandler(/visu_config(_.+)?\.xml/, cv.ui.manager.editor.Xml, {
       preview: false,
-      type: 'edit'
+      type: 'edit',
+      noTemporaryFiles: true // the old XML-Editor cannot handle temporary files
     });
     this.registerFileHandler(cv.ui.manager.model.CompareFiles, cv.ui.manager.editor.Diff, {type: 'view'});
 
@@ -96,7 +97,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
         // check if there is a default first
         var defaultHandler;
         Object.keys(this.__defaults).some(function (key) {
-          if (this.__defaults[key].regex.test(file.getFullPath())) {
+          if (this.__defaults[key].regex.test(file.getFullPath()) && (!file.isTemporary() || !this.__defaults[key].noTemporaryFiles)) {
             if (type) {
               var config = this.getFileHandlerById(this.__defaults[key].clazz.classname);
               if (config.type === type) {
@@ -148,16 +149,18 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     /**
      * Mark the handler with the given classname as default for the selector-id and all others with the same selector id not,
      * @param selectorId {RegExp}
+     * @param noTemporaryFiles {Boolean} flag to prevent this default editor from being used to open temporary files.
      * @param clazz {qx.Class}
      */
-    setDefault: function (selector, clazz) {
+    setDefault: function (selector, clazz, noTemporaryFiles) {
       if (qx.core.Environment.get('qx.debug')) {
         qx.core.Assert.assertRegExp(selector);
         qx.core.Assert.assertTrue(qx.Class.isClass(clazz));
       }
       this.__defaults[selector.toString()] = {
         regex: selector,
-        clazz: clazz
+        clazz: clazz,
+        noTemporaryFiles: noTemporaryFiles
       };
     },
 
@@ -169,13 +172,15 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
           break;
 
         case 'xml':
-          this.setDefault(selector, cv.ui.manager.editor.Xml);
+          this.setDefault(selector, cv.ui.manager.editor.Xml, true);
           break;
       }
     },
 
     __canHandle: function(config, file) {
-      if (config.fileName && file.getName() === config.fileName) {
+      if (config.noTemporaryFiles === true && file.isTemporary()) {
+        return false;
+      } else if (config.fileName && file.getName() === config.fileName) {
         return true;
       } else if (config.fullPath && file.getFullPath() === config.fullPath) {
         return true;
