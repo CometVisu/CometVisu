@@ -95,11 +95,14 @@ qx.Class.define('cv.ui.manager.ToolBar', {
       } else if (this.__show('new-config-file')) {
         newButton = this._createButton('new-config-file', cv.theme.dark.Images.getIcon('new-file', 15));
         newButton.addListener('execute', function () {
-          qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file');
+          qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file',this.getFolder());
         }, this);
         createPart.add(newButton);
       } else if (this.__show('new-file')) {
-        newButton = this._createButton('new-file');
+        newButton = this._createButton('new-file', null, true);
+        newButton.addListener('execute', function () {
+          qx.event.message.Bus.dispatchByName('cv.manager.action.new-file',this.getFolder());
+        }, this);
         createPart.add(newButton);
       }
 
@@ -168,9 +171,9 @@ qx.Class.define('cv.ui.manager.ToolBar', {
       }
     },
 
-    _createButton: function (name, icon) {
+    _createButton: function (name, icon, doNotUseCommand) {
       var args = this._menuButtonConfig[name].args;
-      var button = new qx.ui.toolbar.Button(null, icon || args[1].replace(/\/[0-9]+$/, '/15'), args[2]);
+      var button = new qx.ui.toolbar.Button(null, icon || args[1].replace(/\/[0-9]+$/, '/15'), !doNotUseCommand ? args[2] : null);
       button.setAppearance('cv-toolbar-button');
       button.setToolTipText(args[0]);
       return button;

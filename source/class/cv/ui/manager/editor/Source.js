@@ -187,31 +187,25 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     _applyContent: function(value) {
       var model = this._editor.getModel();
       var file = this.getFile();
-      if (!value) {
-        if (model) {
-          this._editor.setValue('');
-        }
-      } else {
-        if (this._workerWrapper) {
-          this._workerWrapper.open(file, value);
-        }
-        var newModel = window.monaco.editor.getModel(file.getUri());
-        if (!newModel) {
-          // create new model
-          if (qx.xml.Document.isXmlDocument(value)) {
-            value = value.documentElement.outerHTML;
-          }
-          newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
-        }
-
-        if (model !== newModel) {
-          newModel.updateOptions(this._getDefaultModelOptions());
-          this._editor.setModel(newModel);
-        } else {
-          this._editor.setValue(value);
-        }
-        this._editor.updateOptions({ readOnly: !file.isWriteable() });
+      if (this._workerWrapper) {
+        this._workerWrapper.open(file, value);
       }
+      var newModel = window.monaco.editor.getModel(file.getUri());
+      if (!newModel) {
+        // create new model
+        if (qx.xml.Document.isXmlDocument(value)) {
+          value = value.documentElement.outerHTML;
+        }
+        newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
+      }
+
+      if (model !== newModel) {
+        newModel.updateOptions(this._getDefaultModelOptions());
+        this._editor.setModel(newModel);
+      } else {
+        this._editor.setValue(value);
+      }
+      this._editor.updateOptions({ readOnly: !file.isWriteable() });
     },
 
     getCurrentContent: function () {

@@ -238,9 +238,9 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
            control = new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18));
            control.addListener('execute', function () {
              if (this._selectedNode.isConfigFile()) {
-               qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file');
+               qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file', this._selectedNode.getParent());
              } else {
-               qx.event.message.Bus.dispatchByName('cv.manager.action.new-file');
+               qx.event.message.Bus.dispatchByName('cv.manager.action.new-file', this._selectedNode.getParent());
              }
            }, this);
            break;

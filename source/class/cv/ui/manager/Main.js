@@ -167,7 +167,7 @@ qx.Class.define('cv.ui.manager.Main', {
           break;
 
         case 'new-file':
-          this._onCreate('file');
+          this._onCreate('file', null, data);
           break;
 
         case 'new-config-file':
@@ -175,7 +175,7 @@ qx.Class.define('cv.ui.manager.Main', {
             if (err) {
               cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load config template'));
             } else {
-              this._onCreate('config', res);
+              this._onCreate('config', res, data);
             }
           }, this);
           break;
