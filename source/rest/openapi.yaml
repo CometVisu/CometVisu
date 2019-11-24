@@ -481,6 +481,7 @@ components:
           default: false
         mounted:
           type: boolean
+          description: true when this file/folder is inside a mounted folder
           default: false
         trash:
           type: boolean

@@ -313,6 +313,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
             children.some(function (child) {
               if (child.getFullPath() === data.path) {
                 children.remove(child);
+                this.removeRelatedBindings(child);
                 return true;
               }
             }, this);
@@ -371,7 +372,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     unload: function() {
       this.setLoaded(false);
       this.setLoading(false);
-      this.getChildren().removeAll();
+      this.getChildren().removeAll().forEach(function (child) {
+        this.removeRelatedBindings(child);
+      }, this);
     },
 
     reload : function(callback, context) {
@@ -383,14 +386,21 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       var oldParent = child.getParent();
       if (oldParent !== this) {
         oldParent.getChildren().remove(child);
+        oldParent.removeRelatedBindings(child);
       }
       child.setParent(this);
+      if (child.getType() !== "dir" || !child.isMounted()) {
+        // inherit the mounted state from the parent folder
+        this.bind('mounted', child, 'mounted');
+      }
       this.getChildren().push(child);
     },
 
     _onGet: function (data) {
       var children = this.getChildren();
-      children.removeAll();
+      children.removeAll().forEach(function (child) {
+        this.removeRelatedBindings(child);
+      }, this);
       if (data) {
         data.forEach(function (node) {
           var child = new cv.ui.manager.model.FileItem(null, null, this);
@@ -413,7 +423,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     _onError: function (err) {
       console.error(err);
       cv.ui.manager.snackbar.Controller.error(err);
-      this.getChildren().removeAll();
+      this.getChildren().removeAll().forEach(function (child) {
+        this.removeRelatedBindings(child);
+      }, this);
       this.setLoaded(true);
       if (this.__onLoadCallback) {
         this.__onLoadCallback();
@@ -492,6 +504,11 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
 
     /**
      * Returns the path to this file for requests over HTTP (not the REST API)
+     *
+     * Note: Please be aware that this path does not work if the file is in a mounted folder
+     * like the demo configs. The backend handles those mounts transparently to the client. But
+     * because of that the client does not know the real path to the file.
+     *
      * @returns {string}
      */
     getServerPath: function () {

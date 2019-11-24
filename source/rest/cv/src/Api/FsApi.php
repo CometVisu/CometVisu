@@ -144,9 +144,11 @@ class FsApi extends AbstractFsApi
     if ($handle = opendir($path)) {
       $inTrash = $path === $this->config->trashFolder || substr($path, 0, strlen($this->config->trashFolder )) === $this->config->trashFolder;
       $trashFound = false;
+      $mounted = false;
 
       if ($mount) {
         $relFolder = $mount['mountPoint'] . substr($path, strlen($mount['path']));
+        $mounted = true;
       } else {
         $relFolder = substr($path, strlen($this->baseDir));
       }
@@ -170,7 +172,8 @@ class FsApi extends AbstractFsApi
             'readable' => is_readable($filePath),
             'writeable' => (!$mount || $mount['writeable'] !== false) && is_writable($filePath),
             'trash' => false,
-            'inTrash' => $inTrash
+            'inTrash' => $inTrash,
+            'mounted' => $mounted
           );
           $isTrash = $isDir && $file === $this->config->trashFolderName;
           $c['trash'] = $isTrash;

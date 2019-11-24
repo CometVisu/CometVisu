@@ -119,7 +119,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         }, this);
 
         // validate button
-        this.getChildControl('validate-config-button').setVisibility(file.isConfigFile() ? 'visible' : 'excluded');
+        this.getChildControl('validate-config-button').setVisibility(file.isConfigFile() && !file.isMounted() ? 'visible' : 'excluded');
 
         // replacement button
         if (file.getType() === 'file') {
