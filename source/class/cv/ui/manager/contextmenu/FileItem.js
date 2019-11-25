@@ -9,8 +9,9 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function (file) {
+  construct: function (file, noCompare) {
     this.base(arguments);
+    this._noCompare = noCompare === true;
     this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
     this._init();
     this._dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('medium'));
@@ -71,30 +72,32 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
           this.tr('Delete'));
 
         // create compare menu
-        var compareMenu = this.getChildControl('compare-menu');
-        compareMenu.removeAll();
-        var backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(file);
-        this.getChildControl('compare-with-button').setEnabled(backups.length > 0);
-        backups.sort(function (a, b) {
-          return b.date.getTime() - a.date.getTime();
-        });
-        var group = null;
-        backups.forEach(function (backupEntry) {
-          var date = this._dateFormat.format(backupEntry.date);
-          if (group !== date) {
-            if (group !== null) {
-              compareMenu.add(new qx.ui.menu.Separator());
+        if (!this._noCompare) {
+          var compareMenu = this.getChildControl('compare-menu');
+          compareMenu.removeAll();
+          var backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(file);
+          this.getChildControl('compare-with-button').setEnabled(backups.length > 0);
+          backups.sort(function (a, b) {
+            return b.date.getTime() - a.date.getTime();
+          });
+          var group = null;
+          backups.forEach(function (backupEntry) {
+            var date = this._dateFormat.format(backupEntry.date);
+            if (group !== date) {
+              if (group !== null) {
+                compareMenu.add(new qx.ui.menu.Separator());
+              }
+              var groupButton = new qx.ui.menu.Button(date);
+              groupButton.setEnabled(false);
+              compareMenu.add(groupButton);
+              group = date;
             }
-            var groupButton = new qx.ui.menu.Button(date);
-            groupButton.setEnabled(false);
-            compareMenu.add(groupButton);
-            group = date;
-          }
-          var button = new qx.ui.menu.Button(this.tr('Backup from %1', this._timeFormat.format(backupEntry.date)));
-          button.setUserData('file', backupEntry.file);
-          button.addListener('execute', this._onCompareWith, this);
-          compareMenu.add(button);
-        }, this);
+            var button = new qx.ui.menu.Button(this.tr('Backup from %1', this._timeFormat.format(backupEntry.date)));
+            button.setUserData('file', backupEntry.file);
+            button.addListener('execute', this._onCompareWith, this);
+            compareMenu.add(button);
+          }, this);
+        }
 
         var defaultHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
 
@@ -154,7 +157,9 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
       this.add(new qx.ui.menu.Separator());
       this.add(this.getChildControl('open-button'));
       this.add(this.getChildControl('open-with-button'));
-      this.add(this.getChildControl('compare-with-button'));
+      if (!this._noCompare) {
+        this.add(this.getChildControl('compare-with-button'));
+      }
       this.add(new qx.ui.menu.Separator());
       this.add(this.getChildControl('rename-button'));
       this.add(this.getChildControl('delete-button'));

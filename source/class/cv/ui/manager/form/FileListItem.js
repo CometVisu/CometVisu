@@ -427,7 +427,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
           break;
 
         case 'action-menu':
-          control = new cv.ui.manager.contextmenu.FileItem();
+          control = new cv.ui.manager.contextmenu.FileItem(null, true);
           break;
 
         case 'action-button':
