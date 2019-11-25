@@ -56,7 +56,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
 
     getIconFile: function () {
       if (!this._fakeIconFile) {
-        this._fakeIconFile = new cv.ui.manager.model.FileItem('CometVisu-Icons', '.', cv.ui.manager.model.FileItem.ROOT).set({
+        this._fakeIconFile = new cv.ui.manager.model.FileItem('CometVisu-Icons', '', cv.ui.manager.model.FileItem.ROOT).set({
           type: 'file',
           overrideIcon: true,
           writeable: false,
@@ -73,7 +73,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
 
     getHiddenConfigFile: function () {
       if (!this._hiddenConfigFakeFile) {
-        this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem('hidden.php', '.', cv.ui.manager.model.FileItem.ROOT).set({
+        this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem('hidden.php', '', cv.ui.manager.model.FileItem.ROOT).set({
           hasChildren: false,
           loaded: true,
           readable: true,

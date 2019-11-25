@@ -53,8 +53,10 @@ qx.Class.define('cv.ui.manager.editor.Config', {
       this._client.addListener('updateSuccess', this._onSaved, this);
     },
 
-    _loadFile: function () {
-      this._client.get({section: '*', key: '*'});
+    _loadFile: function (file) {
+      if (file) {
+        this._client.get({section: '*', key: '*'});
+      }
     },
 
     _onModelValueChange: function (ev) {

@@ -200,24 +200,33 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       }
     },
 
-    _applyFile: function () {
-      var container = this.getChildControl('list');
-      if (!this._controller) {
-        this._controller = new qx.data.controller.List(null, container);
-        this._controller.setDelegate(this._getDelegate());
+    _applyFile: function (file, old) {
+      if (old) {
+        old.removeRelatedBindings(this);
       }
-      var file = this.getFile();
-      file.bind('children', this, 'model');
-      var model = this.getModel();
-      this._newItem.setParent(file);
-      model.addListener('change',function () {
-        if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
-          this._onFilter();
-        } else {
-          this._controller.setModel(model);
+      if (file) {
+        var container = this.getChildControl('list');
+        if (!this._controller) {
+          this._controller = new qx.data.controller.List(null, container);
+          this._controller.setDelegate(this._getDelegate());
         }
-      }, this);
-      file.load();
+        file.bind('children', this, 'model');
+        var model = this.getModel();
+        this._newItem.setParent(file);
+        model.addListener('change', function () {
+          if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
+            this._onFilter();
+          } else {
+            this._controller.setModel(model);
+          }
+        }, this);
+        file.load();
+      } else {
+        if (this._controller) {
+          this._controller.resetModel();
+        }
+        this._newItem.resetParent();
+      }
     },
 
     _applyShowTextFilter: function (value) {

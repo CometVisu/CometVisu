@@ -100,6 +100,10 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
       return this.getModifiedFile().isTemporary() || this.getOriginalFile().isTemporary();
     },
 
+    isMounted: function () {
+      return this.getModifiedFile().isMounted() || this.getOriginalFile().isMounted();
+    },
+
     /**
      * Returns a fake URI that can be used to identify the file.
      * Used by monaco editor as model URI.
