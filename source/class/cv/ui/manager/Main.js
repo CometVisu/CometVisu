@@ -419,6 +419,11 @@ qx.Class.define('cv.ui.manager.Main', {
         selectionIndex = openFiles.indexOf(openFile);
       }
       openFiles.remove(openFile);
+      var currentHandler = this._stack.getSelection()[0];
+      if (qx.Class.hasInterface(currentHandler.constructor, cv.ui.manager.editor.IEditor)) {
+        // reset the handlers file
+        currentHandler.resetFile();
+      }
       if (this.getOpenFiles().length === 0) {
         this._stack.resetSelection();
         this.__actionDispatcher.resetFocusedWidget();
@@ -445,6 +450,7 @@ qx.Class.define('cv.ui.manager.Main', {
         if (oldModel) {
           oldModel.dispose();
         }
+        // dispose the
       }
     },
 

@@ -186,8 +186,11 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     _applyContent: function(value) {
-      var model = this._editor.getModel();
       var file = this.getFile();
+      if (!file) {
+        return;
+      }
+      var model = this._editor.getModel();
       if (this._workerWrapper) {
         this._workerWrapper.open(file, value);
       }
