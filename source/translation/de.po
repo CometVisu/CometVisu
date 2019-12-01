@@ -245,7 +245,7 @@ msgstr "Löschen"
 
 #: cv/ui/manager/MenuBar.js:86
 msgid "Close file"
-msgstr "Datei schlie0en"
+msgstr "Datei schließen"
 
 #: cv/ui/manager/MenuBar.js:92
 msgid "Quit"
