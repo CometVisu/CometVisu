@@ -22,11 +22,9 @@ qx.Class.define('cv.compile.BuildTarget', {
     _pluginsLoadingScripts: null,
 
     // overridden
-    _writeApplication: async function(compileInfo) {
-      const dbFile = path.join(this.getOutputDir(), 'db.json')
-
+    _afterWriteApplication: async function(compileInfo) {
+      const analyser = this.getAnalyser()
       this._pluginsLoadingScripts = {}
-      const db = require('./' + dbFile)
       const plugins = []
       compileInfo.parts.forEach((part, partId) => {
         if (part.name.startsWith('plugin-')) {
@@ -35,7 +33,7 @@ qx.Class.define('cv.compile.BuildTarget', {
       })
       for (const entry of plugins) {
         for (const classname of entry.part.classes) {
-          const classInfo = db.classInfo[classname]
+          const classInfo = analyser.getCachedClassInfo(classname)
           if (this.__loadsScripts(classInfo)) {
             if (!this._pluginsLoadingScripts.hasOwnProperty(entry.part.name)) {
               this._pluginsLoadingScripts[entry.part.name] = {
@@ -51,12 +49,6 @@ qx.Class.define('cv.compile.BuildTarget', {
           }
         }
       }
-      // console.log(JSON.stringify(this._pluginsLoadingScripts, null, 2))
-      this.base(arguments,compileInfo)
-    },
-
-    // overridden
-    _afterWriteApplication: async function(compileInfo) {
       await this.appendLibrariesToPlugins()
       this.base(arguments, compileInfo)
     },
@@ -124,7 +116,6 @@ qx.Class.define('cv.compile.BuildTarget', {
           w.end('', null, () => {
             // now we copy the temporary part file over the real part file
             fs.renameSync(entry.filename + '.tmp', entry.filename)
-            console.log('all libraries have been added to', entry.filename)
             resolve()
           })
         })
@@ -166,7 +157,7 @@ qx.Class.define("cv.compile.LibraryApi", {
       const config = this.getCompilerApi().getConfiguration()
       this.readEnv(config)
 
-      // remove application apiviewer from config (TODO: add some environment variable to skip stio step)
+      // remove application apiviewer from config (TODO: add some environment variable to skip this step)
       config.applications = config.applications.filter(app => app.name === 'cv')
 
       if (config.targetType === 'build') {
