@@ -156,7 +156,6 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
   ***********************************************
   */
   destruct: function () {
-    this.__unbindModel(this.getModel());
     this._disposeObjects('_listController');
   }
 });
