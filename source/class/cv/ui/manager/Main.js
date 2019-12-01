@@ -175,7 +175,7 @@ qx.Class.define('cv.ui.manager.Main', {
             if (err) {
               cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load config template'));
             } else {
-              this._onCreate('config', res, data);
+              this._onCreate('config', res, cv.ui.manager.model.FileItem.ROOT);
             }
           }, this);
           break;
