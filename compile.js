@@ -1,7 +1,159 @@
 const fs = require('fs')
 const fse = require('fs-extra')
+const readline = require('readline')
 const path = require('path')
-const { exec } = require('child_process');
+const glob = require('glob')
+const { exec } = require('child_process')
+
+qx.Class.define('cv.compile.BuildTarget', {
+  extend: qx.tool.compiler.targets.BuildTarget,
+
+  /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (outputDir) {
+    this.base(arguments, outputDir);
+    this.setWriteCompileInfo(true)
+  },
+
+  members: {
+    _pluginsLoadingScripts: null,
+
+    // overridden
+    _writeApplication: async function(compileInfo) {
+      const dbFile = path.join(this.getOutputDir(), 'db.json')
+
+      this._pluginsLoadingScripts = {}
+      const db = require('./' + dbFile)
+      const plugins = []
+      compileInfo.parts.forEach((part, partId) => {
+        if (part.name.startsWith('plugin-')) {
+          plugins.push({part: part, id: partId})
+        }
+      })
+      for (const entry of plugins) {
+        for (const classname of entry.part.classes) {
+          const classInfo = db.classInfo[classname]
+          if (this.__loadsScripts(classInfo)) {
+            if (!this._pluginsLoadingScripts.hasOwnProperty(entry.part.name)) {
+              this._pluginsLoadingScripts[entry.part.name] = {
+                part: entry.part.name,
+                filename: path.join(this.getOutputDir(), 'cv', 'part-' + entry.id + '.js'),
+                classes: []
+              }
+            }
+            this._pluginsLoadingScripts[entry.part.name].classes.push({
+              classname: classname,
+              assets: this.__extractAssets(classInfo)
+            })
+          }
+        }
+      }
+      // console.log(JSON.stringify(this._pluginsLoadingScripts, null, 2))
+      this.base(arguments,compileInfo)
+    },
+
+    // overridden
+    _afterWriteApplication: async function(compileInfo) {
+      await this.appendLibrariesToPlugins()
+      this.base(arguments, compileInfo)
+    },
+
+    /**
+     * Checks the the class is loading external libraries in its defer method by using the cv.util.ScriptLoader
+     * @param classInfo {Object} class info from generated db.json
+     * @private
+     */
+    __loadsScripts (classInfo) {
+      if (classInfo.hasDefer === true &&
+        classInfo.hasOwnProperty('assets') &&
+        classInfo.assets.length > 0 &&
+        classInfo.dependsOn.hasOwnProperty('cv.util.ScriptLoader') &&
+        classInfo.dependsOn['cv.util.ScriptLoader'].defer === 'runtime'
+      ) {
+        return classInfo.assets.some(entry => {
+          return entry.split(',').some(name => name.endsWith('.js'))
+        })
+
+      }
+      return false
+    },
+
+    __extractAssets (classInfo) {
+      const targetDir = this.getOutputDir()
+      const assets = []
+      classInfo.assets.forEach(asset => {
+        asset.split(',').filter(name => name.endsWith('.js')).forEach(name => {
+          if (name.indexOf('*') >= 0) {
+            // wildcard pattern on filesystem
+            const files = glob.sync(path.join(targetDir, 'resource', name), {
+              nodir: true
+            })
+            for (const file of files) {
+              if (file.endsWith('.js') && !assets.includes(file)) {
+                assets.push(file)
+              }
+            }
+          } else if (!assets.includes(path.join(targetDir, 'resource', name))) {
+            assets.push(path.join(targetDir, 'resource', name))
+          }
+        })
+      })
+      return assets
+    },
+
+    /**
+     * In Build releases the libraries used in plugins are directly included in the generated parts.
+     * This saves some loading time.
+     */
+    async appendLibrariesToPlugins () {
+      for (const entry of Object.values(this._pluginsLoadingScripts)) {
+        // write everything to a temporary file
+        const w = fs.createWriteStream(entry.filename + '.tmp', {flags: 'w'})
+        // read the assets source code and append it to the part
+        for (const clazz of entry.classes) {
+          for (const asset of clazz.assets) {
+            await this.__queuedWrite(asset, w)
+          }
+        }
+        // all done, now we copy the plugin code to the temporayy file too (to append it at the end)
+        await this.__queuedWrite(entry.filename, w, true)
+        await new Promise((resolve) => {
+          w.end('', null, () => {
+            // now we copy the temporary part file over the real part file
+            fs.renameSync(entry.filename + '.tmp', entry.filename)
+            console.log('all libraries have been added to', entry.filename)
+            resolve()
+          })
+        })
+      }
+    },
+
+    __queuedWrite: async function (sourceFile, targetStream, skipLoadedCode) {
+      const resourcePath = path.join(this.getOutputDir(), 'resource')
+
+      return new Promise((resolve, reject) => {
+        const reader = fs.createReadStream(sourceFile)
+        const relativePath = sourceFile.substring(resourcePath.length + 1)
+        if (!skipLoadedCode) {
+          targetStream.write('\nif (!cv.util.ScriptLoader.isMarkedAsLoaded("' + relativePath + '")) {\n')
+        }
+        reader.pipe(targetStream, {end: false})
+        reader.on('end', () => {
+          if (!skipLoadedCode) {
+            targetStream.write('cv.util.ScriptLoader.markAsLoaded("' + relativePath + '")}\n');
+          }
+          resolve()
+        })
+        reader.on('error', (err) => {
+          reject(err)
+        })
+      })
+    }
+  }
+})
 
 qx.Class.define("cv.compile.LibraryApi", {
   extend: qx.tool.cli.api.LibraryApi,
@@ -14,7 +166,15 @@ qx.Class.define("cv.compile.LibraryApi", {
       const config = this.getCompilerApi().getConfiguration()
       this.readEnv(config)
 
+      // remove application apiviewer from config (TODO: add some environment variable to skip stio step)
+      config.applications = config.applications.filter(app => app.name === 'cv')
+
       if (config.targetType === 'build') {
+        config.targets.some(target => {
+          if (target.type === 'build') {
+            target.targetClass = cv.compile.BuildTarget
+          }
+        })
         this.beforeBuild()
       }
 
@@ -30,7 +190,9 @@ qx.Class.define("cv.compile.LibraryApi", {
       this.copyFiles(config)
 
       if (config.targetType === 'build') {
-        this.afterBuild(config)
+        return this.afterBuild(config)
+      } else {
+        return Promise.resolve(true)
       }
     },
 
@@ -105,74 +267,16 @@ qx.Class.define("cv.compile.LibraryApi", {
     /**
      * Executed after the build version has been compiled
      */
-    afterBuild (config) {
+    async afterBuild (config) {
       // build-libs
       console.log('uglifying libraries')
       exec('grunt uglify:libs')
 
       const targetDir = this._getTargetDir(config)
 
-      this.appendLibrariesToPlugins(targetDir)
-
-      // build-append-plugin-libs
-      console.log('appending libraries to plugins')
-      exec('./cv build -bp -d ' + targetDir)
-
       // build-paths
       console.log('update paths')
       exec('./cv build -up -d ' + targetDir)
-    },
-
-    /**
-     * In Build releases the libraries used in plugins are directly included in the generated parts.
-     * This saves some loading time.
-     * @param targetDir
-     */
-    appendLibrariesToPlugins (targetDir) {
-      // load boot.js in a sandbox to extract the part definitions
-      const bootjs = fs.readFileSync(path.join(targetDir, 'cv', 'boot.js')).toString('utf8')
-      let lines = bootjs.split('\n')
-      let inParts = false
-      let partsCode = []
-      lines.forEach(line => {
-        if (line === '  parts : {') {
-          inParts = true
-          partsCode.push('context.parts = {')
-        } else if (inParts) {
-          if (line === '},') {
-            inParts = false
-            partsCode.push('}')
-          } else {
-            partsCode.push(line)
-          }
-        }
-      })
-
-      const code = partsCode.join('\n')
-      const vm = require('vm')
-      let context = { }
-      vm.runInNewContext(code,{
-        context: context
-      })
-
-      Object.keys(context.parts)
-        .filter(name => name.startsWith('plugin-'))
-        .forEach(name => {
-          // check if the part is loading external scripts
-          context.parts[name].forEach(partId => {
-            const partFile = path.join(targetDir, 'cv', 'part-' + partId + '.js')
-            const partSource = fs.readFileSync(partFile).toString('utf-8')
-            let startIndex = partSource.indexOf('cv.util.ScriptLoader.getInstance().addScripts(')
-            if (startIndex > 0) {
-              let scripts = partSource.substring(startIndex)
-              let endIndex = scripts.indexOf(')')
-              if (endIndex >= 0) {
-                scripts = scripts.substring(0, endIndex)
-              }
-              console.log(partFile, scripts);
-            }
-          })
-        })
     },
 
     _getTargetDir (config, type) {
