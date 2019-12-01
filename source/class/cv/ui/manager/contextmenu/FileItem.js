@@ -64,9 +64,13 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
       this._selectedNode = file;
       if (file) {
         var folder = file.getType() === 'folder' ? file : file.getParent();
-        this.getChildControl('new-file-button').setEnabled(folder ? folder.isWriteable() : false);
-        this.getChildControl('clone-file-button').setVisibility(file.isConfigFile() ? 'visible' : 'excluded');
-        this.getChildControl('new-folder-button').setEnabled(folder ? folder.isWriteable() : false);
+        var isBackup = false;
+        if (folder && folder.getFullPath().startsWith('backup') || file.getFullPath().startsWith('backup')) {
+          isBackup = true;
+        }
+        this.getChildControl('new-file-button').setEnabled(folder && !isBackup ? folder.isWriteable() : false);
+        this.getChildControl('clone-file-button').setVisibility(file.isConfigFile() && !isBackup ? 'visible' : 'excluded');
+        this.getChildControl('new-folder-button').setEnabled(folder && !isBackup ? folder.isWriteable() : false);
         this.getChildControl('delete-button').setLabel(file.isTrash() ?
           this.tr('Clear') :
           this.tr('Delete'));
@@ -75,57 +79,68 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         if (!this._noCompare) {
           var compareMenu = this.getChildControl('compare-menu');
           compareMenu.removeAll();
-          var backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(file);
-          this.getChildControl('compare-with-button').setEnabled(backups.length > 0);
-          backups.sort(function (a, b) {
-            return b.date.getTime() - a.date.getTime();
-          });
-          var group = null;
-          backups.forEach(function (backupEntry) {
-            var date = this._dateFormat.format(backupEntry.date);
-            if (group !== date) {
-              if (group !== null) {
-                compareMenu.add(new qx.ui.menu.Separator());
+          if (!isBackup) {
+            this.getChildControl('compare-with-button').show();
+            var backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(file);
+            this.getChildControl('compare-with-button').setEnabled(backups.length > 0);
+            backups.sort(function (a, b) {
+              return b.date.getTime() - a.date.getTime();
+            });
+            var group = null;
+            backups.forEach(function (backupEntry) {
+              var date = this._dateFormat.format(backupEntry.date);
+              if (group !== date) {
+                if (group !== null) {
+                  compareMenu.add(new qx.ui.menu.Separator());
+                }
+                var groupButton = new qx.ui.menu.Button(date);
+                groupButton.setEnabled(false);
+                compareMenu.add(groupButton);
+                group = date;
               }
-              var groupButton = new qx.ui.menu.Button(date);
-              groupButton.setEnabled(false);
-              compareMenu.add(groupButton);
-              group = date;
-            }
-            var button = new qx.ui.menu.Button(this.tr('Backup from %1', this._timeFormat.format(backupEntry.date)));
-            button.setUserData('file', backupEntry.file);
-            button.addListener('execute', this._onCompareWith, this);
-            compareMenu.add(button);
-          }, this);
+              var button = new qx.ui.menu.Button(this.tr('Backup from %1', this._timeFormat.format(backupEntry.date)));
+              button.setUserData('file', backupEntry.file);
+              button.addListener('execute', this._onCompareWith, this);
+              compareMenu.add(button);
+            }, this);
+          } else {
+            this.getChildControl('compare-with-button').exclude();
+          }
         }
 
         var defaultHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
 
         // open with menu
-        var availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(file);
         var openWithMenu = this.getChildControl('open-with-menu');
         openWithMenu.removeAll();
-        // this menu only makes sense when there is more than one option to select from
-        this.getChildControl('open-with-button').setEnabled(availableHandlers.length > 1);
-        availableHandlers.sort(function (a, b) {
-          return a.Clazz.constructor.TITLE.toString().localeCompare(b.Clazz.constructor.TITLE.toString());
-        });
-        availableHandlers.forEach(function (handlerConf) {
-          var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE, handlerConf.Clazz.constructor.ICON);
-          button.setAppearance('open-with-button');
-          if (defaultHandler.Clazz.classname === handlerConf.Clazz.classname) {
-            button.addState('default');
-          }
-          button.setUserData('handlerId', handlerConf.Clazz.classname);
-          button.addListener('execute', this._onOpenWith, this);
-          openWithMenu.add(button);
-        }, this);
+        if (!isBackup) {
+          this.getChildControl('open-with-button').show();
+          var availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(file);
+
+          // this menu only makes sense when there is more than one option to select from
+          this.getChildControl('open-with-button').setEnabled(availableHandlers.length > 1);
+          availableHandlers.sort(function (a, b) {
+            return a.Clazz.constructor.TITLE.toString().localeCompare(b.Clazz.constructor.TITLE.toString());
+          });
+          availableHandlers.forEach(function (handlerConf) {
+            var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE, handlerConf.Clazz.constructor.ICON);
+            button.setAppearance('open-with-button');
+            if (defaultHandler.Clazz.classname === handlerConf.Clazz.classname) {
+              button.addState('default');
+            }
+            button.setUserData('handlerId', handlerConf.Clazz.classname);
+            button.addListener('execute', this._onOpenWith, this);
+            openWithMenu.add(button);
+          }, this);
+        } else {
+          this.getChildControl('open-with-button').exclude();
+        }
 
         // validate button
-        this.getChildControl('validate-config-button').setVisibility(file.isConfigFile() && !file.isMounted() ? 'visible' : 'excluded');
+        this.getChildControl('validate-config-button').setVisibility(file.isConfigFile() && !file.isMounted() && !isBackup ? 'visible' : 'excluded');
 
         // replacement button
-        if (file.getType() === 'file') {
+        if (file.getType() === 'file' && !isBackup) {
           this.getChildControl('replace-button').show();
           this._replacementManager.setFilename(file.getName());
           this._replacementManager.setFolder(file.getParent());
@@ -134,11 +149,11 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         }
         // buttons that need write access
         ['delete-button', 'replace-button', 'rename-button'].forEach(function (controlName) {
-          this.getChildControl(controlName).setEnabled(file.isWriteable());
+          this.getChildControl(controlName).setEnabled(file.isWriteable() && (!isBackup || controlName === 'delete-button'));
         }, this);
         this.getChildControl('download-button').setEnabled(!file.isFake());
 
-        this.getChildControl('restore-button').setVisibility(file.isInTrash() ? 'visible' : 'excluded');
+        this.getChildControl('restore-button').setVisibility(file.isInTrash() || !isBackup ? 'visible' : 'excluded');
       } else {
         this.getChildControl('delete-button').set({
           label: this.tr('Delete'),

@@ -177,6 +177,11 @@ class FsApi extends AbstractFsApi
           );
           $isTrash = $isDir && $file === $this->config->trashFolderName;
           $c['trash'] = $isTrash;
+
+          if ($file === $this->config->backupFolderName ||
+            substr($relFolder, 1, strlen($this->config->backupFolderName)) === $this->config->backupFolderName) {
+            $c['writeable'] = false;
+          }
           if ($recursive && $c['hasChildren']) {
             $c['children'] = $this->listFolder($filePath, $recursive, $mount);
           }

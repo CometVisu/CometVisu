@@ -4,6 +4,7 @@ namespace OpenAPIServer;
 $resourcesDir = realpath(getcwd() . '/../../resource/');
 $configDir = realpath($resourcesDir .  '/config');
 $trashFolderName = '.trash';
+$backupFolderName = 'backup';
 
 return (object) array(
   'resourcesDir' => $resourcesDir,
@@ -11,7 +12,8 @@ return (object) array(
   'designsDir' => realpath($resourcesDir .'/designs'),
   'trashFolderName' => $trashFolderName,
   'trashFolder' => realpath($configDir .'/' . $trashFolderName),
-  'backupFolder' => realpath($configDir . '/backup'),
+  'backupFolderName' => $backupFolderName,
+  'backupFolder' => realpath($configDir . '/' . $backupFolderName),
   'backupOnChange' => ['/visu_config.*\.xml/'],
   'mounts' => [
     [
