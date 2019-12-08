@@ -134,12 +134,12 @@ var jOWM = jOWM || {};
                 options.id = data.id;
                 // Description text
                 if (options.description === '') {
-                    $('div.openweathermap_value').append("<p>" + options.cityname + "</p>");
+                    $('div.openweathermap_value').html("<p>" + options.cityname + "</p>");
                 } else if (options.description === 'false') {
                     // no text
                     $('div.openweathermap_value').parent().css('display', 'none');
                 } else {
-                    $('div.openweathermap_value').append("<p>" + options.description + "</p>");
+                    $('div.openweathermap_value').html("<p>" + options.description + "</p>");
                 }
                 // Fetch data for detailed items.
                 _processDataDetailed(e, currentURL, options);
