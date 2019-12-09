@@ -216,11 +216,11 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           switch (position) {
             case "Top":
             case "Bottom":
-              initCss[key] = -navbar.getBoundingClientRect().height;
+              initCss[key] = -navbar.getBoundingClientRect().height + 'px';
               break;
             case "Left":
             case "Right":
-              initCss[key] = -navbar.getBoundingClientRect().width;
+              initCss[key] = -navbar.getBoundingClientRect().width + 'px';
               break;
           }
           break;
@@ -232,18 +232,18 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           switch (position) {
             case "Top":
             case "Bottom":
-              targetCss[key] = -navbar.getBoundingClientRect().height;
+              targetCss[key] = -navbar.getBoundingClientRect().height + 'px';
               break;
             case "Left":
             case "Right":
-              targetCss[key] = -navbar.getBoundingClientRect().width;
+              targetCss[key] = -navbar.getBoundingClientRect().width + 'px';
               break;
           }
           break;
       }
-      Object.entries(initCss).forEach(function(key,value){navbar.style[key]=value;});
+      Object.entries(initCss).forEach(function(key_value){navbar.style[key_value[0]]=key_value[1];});
       if (speed === 0) {
-        Object.entries(targetCss).forEach(function(key,value){navbar.style[key]=value;});
+        Object.entries(targetCss).forEach(function(key_value){navbar.style[key_value[0]]=key_value[1];});
         onAnimationEnd();
       } else {
         var spec = {
