@@ -8,7 +8,7 @@
   <script type="text/javascript" src="lib/jquery.js"></script>
   <script type="text/javascript" src="script/jquery-CometVisuClient.js"></script>
   <script type="text/javascript">
-    var client = new cv.io.Client('openhab2', "http://home:8080/rest/cv/l");
+    var client = new cv.io.Client('openhab2', "http://openhab:8080/rest/cv/l");
     client.update = function(data) {
       console.log(data);
     }; // override clients update function
