@@ -391,7 +391,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (design) {
         var baseUri = 'designs/' + design;
         settings.stylesToLoad.push(baseUri + '/basic.css');
-        if (!settings.forceNonMobile) {
+        if (cv.Config.mobileDevice) {
           settings.stylesToLoad.push(baseUri + '/mobile.css');
         }
         settings.stylesToLoad.push(baseUri + '/custom.css');
@@ -402,11 +402,12 @@ qx.Class.define('cv.TemplateEngine', {
             this.error('Failed to load "'+design+'" design! Falling back to simplified "pure"');
 
             baseUri = 'designs/pure';
-            cv.util.ScriptLoader.getInstance().addStyles([
-              baseUri+"/basic.css",
-              baseUri+"/mobile.css",
-              baseUri+"/custom.css"
-            ]);
+            var alternativeStyles = [baseUri+'/basic.css'];
+            if (cv.Config.mobileDevice) {
+              alternativeStyles.push(baseUri+'/mobile.css');
+            }
+            alternativeStyles.push(baseUri+'/custom.css');
+            cv.util.ScriptLoader.getInstance().addStyles( alternativeStyles );
             cv.util.ScriptLoader.getInstance().addScripts(baseUri+"/design_setup.js");
           }
         }, this);
