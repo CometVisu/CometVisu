@@ -265,6 +265,15 @@ qx.Class.define('cv.ui.Popup', {
       ret_val.style.left = placement.x;
       ret_val.style.top  = placement.y;
 
+      if (!closable) {
+        var reload = '<div class="reload">' +
+          '<a href="javascript:location.reload(true);">' +
+          qx.locale.Manager.tr('Reload').toString() +
+          '</a>' +
+          '</div>';
+        ret_val.insertAdjacentHTML('beforeend', reload);
+      }
+
       if (closable && addCloseListeners) {
         this.addListener('close', this.close, this);
         qx.event.Registration.addListener(ret_val, 'tap', function () {
