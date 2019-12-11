@@ -52,6 +52,11 @@ body
   width: 0;          /* right bar width */
   margin-right: 0;   /* right bar width */
 }
+.mobile #navbarLeft,
+.mobile #navbarRight {
+  position: absolute;
+  z-index: 1;
+}
 #navbarTop {
 }
 #navbarBottom {

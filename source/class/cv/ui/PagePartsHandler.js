@@ -226,7 +226,6 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           break;
         case "out":
           onAnimationEnd = function () {
-            navbar.style.display = "none";
             cv.ui.layout.ResizeHandler.invalidateNavbar();
           };
           switch (position) {

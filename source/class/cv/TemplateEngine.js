@@ -393,6 +393,7 @@ qx.Class.define('cv.TemplateEngine', {
         settings.stylesToLoad.push(baseUri + '/basic.css');
         if (cv.Config.mobileDevice) {
           settings.stylesToLoad.push(baseUri + '/mobile.css');
+          document.querySelector('body').classList.add('mobile');
         }
         settings.stylesToLoad.push(baseUri + '/custom.css');
         settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
