@@ -176,8 +176,18 @@ qx.Class.define('cv.io.rest.Client', {
         var req = ev.getRequest();
         var id = parseInt(req.toHashCode(), 10);
         if (this.__callbacks.hasOwnProperty(id)) {
-          qx.log.Logger.error(this, ev.getData());
-          this.__callbacks[id](ev.getData().message, null);
+          var data = ev.getData();
+          var error;
+          if (data) {
+            error = data.message;
+          } else {
+            error = {
+              status: ev.getRequest().getStatus(),
+              statusText: ev.getRequest().getStatusText()
+            };
+          }
+          qx.log.Logger.error(this, error);
+          this.__callbacks[id](error, null);
           delete this.__callbacks[id];
         }
         if (req.getPhase() === 'load') {

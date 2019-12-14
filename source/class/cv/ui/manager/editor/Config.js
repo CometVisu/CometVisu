@@ -92,7 +92,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
       var data = qx.util.Serializer.toNativeObject(this._listController.getModel());
       this._client.saveSync(null, data, function (err) {
         if (err) {
-          cv.ui.manager.snackbar.Controller.error(err);
+          cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
         } else {
           cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
           this._onSaved();
