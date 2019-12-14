@@ -320,8 +320,8 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
     _maintainFileActions: function () {
       var file = this.getModel();
       if (this.isShowFileActions() && file) {
-        this.getChildControl('download-button').setEnabled(!file.isFake());
-        this.getChildControl('download-button').setVisibility(file.getType() === 'dir' ? 'excluded' : 'visible');
+        this.getChildControl('download-button').setVisibility(file.getType() === 'dir' || file.isFake() ? 'excluded' : 'visible');
+        this.getChildControl('action-button').setVisibility(file.isFake() ? 'excluded' : 'visible');
         var editorConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, 'edit');
         var viewerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, 'view');
         var openButton = this.getChildControl('open-button');
