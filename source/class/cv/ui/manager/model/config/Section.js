@@ -23,7 +23,7 @@ qx.Class.define('cv.ui.manager.model.config.Section', {
   properties: {
     name: {
       check: 'String',
-      event: 'changeString',
+      event: 'changeName',
       init: ''
     },
 

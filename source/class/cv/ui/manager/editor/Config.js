@@ -46,6 +46,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
   members: {
     _model: null,
     _listController: null,
+    __initialSectionCount: 0,
 
     _initClient: function () {
       this._client = cv.io.rest.Client.getConfigClient();
@@ -68,6 +69,8 @@ qx.Class.define('cv.ui.manager.editor.Config', {
       var model = this._listController.getModel();
       model.removeAll();
 
+      this.__initialSectionCount = Object.keys(value).length;
+
       Object.keys(value).forEach(function (sectionName) {
         var section = new cv.ui.manager.model.config.Section(sectionName);
         Object.keys(value[sectionName]).forEach(function (optionKey) {
@@ -75,6 +78,8 @@ qx.Class.define('cv.ui.manager.editor.Config', {
         }, this);
         model.push(section);
       }, this);
+
+      this.__checkForModification();
     },
 
     // overridden
@@ -86,6 +91,20 @@ qx.Class.define('cv.ui.manager.editor.Config', {
       var section = ev.getData();
       var model = this._listController.getModel();
       model.remove(section);
+      this.__checkForModification();
+    },
+
+    // compare current controller model with the loaded config content
+    __checkForModification: function () {
+      var file = this.getFile();
+      if (this.__initialSectionCount !== this._listController.getModel().length) {
+        file.setModified(true);
+        return;
+      }
+      var modified = this.getChildControl('list').getChildren().some(function (sectionListItem) {
+        return sectionListItem.isModified();
+      }, this);
+      file.setModified(modified);
     },
 
     save: function () {
@@ -116,6 +135,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
              configureItem: function (item) {
                item.addListener('delete', this._onDeleteSection, this);
+               item.addListener('changeModified', this.__checkForModification, this);
              }.bind(this),
 
              bindItem: function (controller, item, index) {
@@ -134,6 +154,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
            control = new qx.ui.form.Button(this.tr('Add section'));
            control.addListener('execute', function () {
              this._listController.getModel().push(new cv.ui.manager.model.config.Section(''));
+             this.__checkForModification();
            }, this);
            this.getChildControl('buttons').add(control);
            break;

@@ -35,6 +35,12 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
       check: "cv.ui.manager.model.config.Section",
       nullable: false,
       apply: '_applyModel'
+    },
+
+    modified:{
+      check: 'Boolean',
+      init: false,
+      event: 'changeModified'
     }
   },
 
@@ -54,18 +60,31 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
   */
   members: {
     _listController: null,
+    _originalName: null,
+    _originalOptions: null,
 
     _applyModel: function (value, old) {
       var nameField = this.getChildControl('name');
       this.__unbindModel(old);
       if (value) {
         value.bind('name', nameField, 'value');
+        this._originalName = value.getName();
+        this._originalOptions = {};
+        value.getOptions().forEach(function (option) {
+          option.addListener('change', this.__checkForModification, this);
+          this._originalOptions[option.getKey()] = option.getValue();
+        }, this);
         nameField.bind('value', value, 'name');
+        value.addListener('changeName', this.__checkForModification, this);
         value.bind('options', this._listController, 'model');
         // add at least one empty entry, when there are no options
         if (value.getOptions().length === 0) {
-          value.getOptions().push(new cv.ui.manager.model.config.Option('', ''));
+          var emptyOption = new cv.ui.manager.model.config.Option('', '')
+          value.getOptions().push(emptyOption);
         }
+      } else {
+        this._originalName = null;
+        this._originalOptions = null;
       }
     },
 
@@ -75,9 +94,32 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
         if (this._listController) {
           model.removeRelatedBindings(this._listController);
         }
+        model.removeListener('changeName', this.__checkForModification, this);
         model.removeRelatedBindings(nameField);
         nameField.removeRelatedBindings(model);
+        model.getOptions().forEach(function (option) {
+          option.removeListener('change', this.__checkForModification, this);
+        }, this);
       }
+    },
+
+    __checkForModification: function () {
+      if (this._originalName !== this.getModel().getName()) {
+        this.setModified(true);
+        return;
+      }
+      // check if the still have the same the same amount of options
+      if (Object.keys(this._originalOptions).length !== this.getModel().getOptions().length) {
+        this.setModified(true);
+        return;
+      }
+      // compare options one by one
+      var modified = this.getModel().getOptions().some(function (option) {
+        return (!this._originalOptions.hasOwnProperty(option.getKey()) ||
+          this._originalOptions[option.getKey()] !== option.getValue()
+        );
+      }, this);
+      this.setModified(modified);
     },
 
     _onDeleteOption: function (ev) {
@@ -88,12 +130,19 @@ qx.Class.define('cv.ui.manager.form.SectionListItem', {
         option.resetKey();
         option.resetValue();
       } else {
-        this.getModel().getOptions().remove(option);
+        var removed = this.getModel().getOptions().remove(option);
+        if (removed) {
+          removed.removeListener('change', this.__checkForModification, this);
+        }
       }
+      this.__checkForModification();
     },
 
     _onAddOption: function () {
-      this.getModel().getOptions().push(new cv.ui.manager.model.config.Option('', ''));
+      var option = new cv.ui.manager.model.config.Option('', '');
+      option.addListener('change', this.__checkForModification, this);
+      this.getModel().getOptions().push(option);
+      this.__checkForModification();
     },
 
     // overridden
