@@ -108,15 +108,44 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     },
 
     save: function () {
-      var data = qx.util.Serializer.toNativeObject(this._listController.getModel());
-      this._client.saveSync(null, data, function (err) {
-        if (err) {
-          cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
+      // check for duplicate section names of keys
+      var model = this._listController.getModel();
+      var keys = [];
+      var valid = true;
+      model.forEach(function (section) {
+        var key = section.getName();
+        if (!keys.includes(key)) {
+          keys.push(key);
         } else {
-          cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
-          this._onSaved();
+          valid = false;
+          cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Section name duplicate: "%1".', key));
         }
+        // check for key duplicates in this sections options
+        var optionKeys = [];
+        section.getOptions().forEach(function (option) {
+          var optionKey = option.getKey();
+          if (!optionKeys.includes(optionKey)) {
+            optionKeys.push(optionKey);
+          } else {
+            valid = false;
+            cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Option key duplicate: "%1" in section "%2".', optionKey, key));
+          }
+        }, this);
       }, this);
+
+      if (valid) {
+        var data = qx.util.Serializer.toNativeObject(this._listController.getModel());
+        this._client.saveSync(null, data, function (err) {
+          if (err) {
+            cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
+          } else {
+            cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
+            this._onSaved();
+          }
+        }, this);
+      } else {
+        cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Section is invalid and has not been saved.'));
+      }
     },
 
     // overridden
