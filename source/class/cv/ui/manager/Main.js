@@ -149,15 +149,11 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     canHandleAction: function (actionName) {
-      return ['close', 'quit', 'hidden-config', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone'].includes(actionName);
+      return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone'].includes(actionName);
     },
 
     handleAction: function (actionName, data) {
       switch (actionName) {
-        case 'hidden-config':
-          this._onOpenHiddenConfig();
-          break;
-
         case 'close':
           this.closeCurrentFile();
           break;
@@ -502,15 +498,6 @@ qx.Class.define('cv.ui.manager.Main', {
       this._oldCommandGroup = manager.getActive();
       manager.add(group);
       manager.setActive(group);
-    },
-
-    _onOpenHiddenConfig: function () {
-      var fakeFile = new cv.ui.manager.model.FileItem.getHiddenConfigFile();
-      if (this.getOpenFiles().includes(fakeFile)) {
-        this.closeFile(fakeFile);
-      } else {
-        this.openFile(fakeFile, false);
-      }
     },
 
     _onDelete: function (file) {

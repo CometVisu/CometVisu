@@ -286,21 +286,43 @@ qx.Class.define('cv.ui.manager.Start', {
              showTextFilter: false,
              disableScrolling: true
            });
-           var fakeFolder = new cv.ui.manager.model.FileItem('fake', 'fake', cv.ui.manager.model.FileItem.ROOT, [
-             cv.ui.manager.model.FileItem.getHiddenConfigFile(),
-             cv.ui.manager.model.FileItem.getIconFile()
-           ]).set({
-             fake: true,
-             type: 'dir',
-             loaded: true
-           });
-           control.setFile(fakeFolder);
-           control.addListener('changeSelection', this._onChangeSelection, this);
+           this.__initMiscFolder(control);
            this.getChildControl('content').add(control, {flex: 1});
            break;
        }
 
        return control || this.base(arguments, id);
+    },
+
+    __initMiscFolder: function (folderWidget) {
+      if (!cv.ui.manager.model.FileItem.ROOT.isLoaded()) {
+        cv.ui.manager.model.FileItem.ROOT.addListenerOnce('changeLoaded', function () {
+          this.__initMiscFolder(folderWidget);
+        }, this);
+        return;
+      }
+      // find the real 'hidden.php' in the root folder
+      var specialFiles = [cv.ui.manager.model.FileItem.getIconFile()];
+      cv.ui.manager.model.FileItem.ROOT.getChildren().some(function (file) {
+        if (file.getFullPath() === 'hidden.php') {
+          // set some special flags needed to configure the special hidden configuration file
+          file.set({
+            overrideIcon: true,
+            icon: cv.theme.dark.Images.getIcon('hidden-config', 15),
+            displayName: qx.locale.Manager.tr('Hidden configuration'),
+            fake: true
+          });
+          specialFiles.unshift(file);
+          return true;
+        }
+      });
+      var fakeFolder = new cv.ui.manager.model.FileItem('fake', 'fake', cv.ui.manager.model.FileItem.ROOT, specialFiles).set({
+        fake: true,
+        type: 'dir',
+        loaded: true
+      });
+      folderWidget.setFile(fakeFolder);
+      folderWidget.addListener('changeSelection', this._onChangeSelection, this);
     }
   },
 
