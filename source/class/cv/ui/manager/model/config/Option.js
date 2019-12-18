@@ -55,5 +55,5 @@ qx.Class.define('cv.ui.manager.model.config.Option', {
     _applyChange: function () {
       this.fireEvent('change');
     }
-  },
+  }
 });
