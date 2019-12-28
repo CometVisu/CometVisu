@@ -48,6 +48,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     xhr: null, // the ongoing AJAX request
     lastIndex: -1,    // index returned by the last request
     retryCounter: 0,      // count number of retries (reset with each valid response)
+    retryServerErrorCounter: 0, // count number of successive temporary server errors
     sessionId: null,
     client: null,
     running: null,
@@ -152,6 +153,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.client.setConnected(true);
       }
 
+      this.retryServerErrorCounter = 0; // server has successfully responded
       if (this.running) { // keep the requests going
         this.retryCounter++;
         data = this.client.buildRequest();
@@ -179,6 +181,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.client.setDataReceived(true);
         this.client.setConnected(true);
       }
+      this.retryServerErrorCounter = 0; // server has successfully responded
       if (this.running) { // keep the requests going, but only
         // request
         // addresses-startPageAddresses
@@ -208,6 +211,14 @@ qx.Class.define('cv.io.transport.LongPolling', {
     handleError: qx.core.Environment.select("cv.xhr", {
       "qx": function (ev) {
         var req = ev.getTarget();
+        // check for temporary server errors and retry a few times
+        if([502].indexOf(req.getStatus()) >= 0 && this.retryServerErrorCounter < this.client.backend.maxRetries) {
+          this.info('Temporary connection problem (status: ' + req.getStatus() + ') - retry count: ' + this.retryServerErrorCounter);
+          this.retryServerErrorCounter++;
+          req.serverErrorHandled = true;
+          this.restart();
+          return;
+        }
         // ignore error when connection is irrelevant
         if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) {
           this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
