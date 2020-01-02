@@ -212,7 +212,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
       "qx": function (ev) {
         var req = ev.getTarget();
         // check for temporary server errors and retry a few times
-        if([502].indexOf(req.getStatus()) >= 0 && this.retryServerErrorCounter < this.client.backend.maxRetries) {
+        if([408,444,499,502,503,504].indexOf(req.getStatus()) >= 0 && this.retryServerErrorCounter < this.client.backend.maxRetries) {
           this.info('Temporary connection problem (status: ' + req.getStatus() + ') - retry count: ' + this.retryServerErrorCounter);
           this.retryServerErrorCounter++;
           req.serverErrorHandled = true;
