@@ -98,6 +98,7 @@ qx.Class.define('cv.ui.layout.Manager', {
         if (widthNavbarLeft >= bodyWidth || cv.Config.mobileDevice ) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
+          // OR: we have a mobile device where the nav bar is floating above the other content
           widthNavbarLeft = 0;
         }
         var right = document.querySelector('#navbarRight'),
@@ -106,6 +107,7 @@ qx.Class.define('cv.ui.layout.Manager', {
         if (widthNavbarRight >= bodyWidth || cv.Config.mobileDevice) {
           // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
+          // OR: we have a mobile device where the nav bar is floating above the other content
           widthNavbarRight = 0;
         }
         this.currentPageUnavailableWidth = widthNavbarLeft + widthNavbarRight + 1; // remove an additional pixel for Firefox

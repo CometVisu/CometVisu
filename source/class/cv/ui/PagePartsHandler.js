@@ -228,6 +228,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           onAnimationEnd = function () {
             cv.ui.layout.ResizeHandler.invalidateNavbar();
           };
+          initCss[key] = 0;
           switch (position) {
             case "Top":
             case "Bottom":
@@ -266,6 +267,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
      * @param page_id {String}
      */
     initializeNavbars: function (page_id) {
+      var self = this;
       this.removeInactiveNavbars(page_id);
       var tree = Array.from( document.querySelectorAll('#id_') );
       if (page_id !== "id_") {
@@ -283,46 +285,36 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         }
       }
       var level = 1;
+      var size = {top: 0, right: 0, bottom: 0, left: 0};
+      var positions = ['top','right','bottom','left'];
       tree.forEach(function (elem) {
         var id = elem.getAttribute('id');
-        var topNav = document.querySelector('#' + id + 'top_navbar');
-        var topData = cv.data.Model.getInstance().getWidgetData(id + 'top_navbar');
-        var rightNav = document.querySelector('#' + id + 'right_navbar');
-        var rightData = cv.data.Model.getInstance().getWidgetData(id + 'right_navbar');
-        var bottomNav = document.querySelector('#' + id + 'bottom_navbar');
-        var bottomData = cv.data.Model.getInstance().getWidgetData(id + 'bottom_navbar');
-        var leftNav = document.querySelector('#' + id + 'left_navbar');
-        var leftData = cv.data.Model.getInstance().getWidgetData(id + 'left_navbar');
-        // console.log(tree.length+"-"+level+"<="+topData.scope);
-        if (topNav) {
-          if (topData.scope === undefined || topData.scope < 0 || tree.length - level <= topData.scope) {
-            topNav.classList.add('navbarActive');
-          } else {
-            topNav.classList.remove('navbarActive');
+        positions.forEach(function (pos) {
+          var nav = document.querySelector('#' + id + pos+ '_navbar');
+          if (nav) {
+            var data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
+            if (data.scope === undefined || data.scope < 0 || tree.length - level <= data.scope) {
+              nav.classList.add('navbarActive');
+            } else {
+              nav.classList.remove('navbarActive');
+            }
+            if (data.width !== null ) {
+              // set size when it is dynamic - or when it's the first given value
+              if (data.dynamic || size[pos] === 0) {
+                size[pos] = data.width;
+              }
+            } else {
+              if (size[pos] === 0){
+                // navbar with content but no size given so far => use default
+                size[pos] = 300;
+              }
+            }
           }
-        }
-        if (rightNav) {
-          if (rightData.scope === undefined || rightData.scope < 0 || tree.length - level <= rightData.scope) {
-            rightNav.classList.add('navbarActive');
-          } else {
-            rightNav.classList.remove('navbarActive');
-          }
-        }
-        if (bottomNav) {
-          if (bottomData.scope === undefined || bottomData.scope < 0 || tree.length - level <= bottomData.scope) {
-            bottomNav.classList.add('navbarActive');
-          } else {
-            bottomNav.classList.remove('navbarActive');
-          }
-        }
-        if (leftNav) {
-          if (leftData.scope === undefined || leftData.scope < 0 || tree.length - level <= leftData.scope) {
-            leftNav.classList.add('navbarActive');
-          } else {
-            leftNav.classList.remove('navbarActive');
-          }
-        }
+        });
         level++;
+      });
+      positions.forEach(function (pos) {
+        self.navbarSetSize(pos, size[pos]);
       });
       cv.ui.layout.ResizeHandler.invalidateNavbar();
     },

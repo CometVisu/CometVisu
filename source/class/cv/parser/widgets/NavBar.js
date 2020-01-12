@@ -57,7 +57,9 @@ qx.Class.define('cv.parser.widgets.NavBar', {
       id.pop();
       var pos = n.getAttribute('position') || 'left';
       cv.data.Model.getInstance().setWidgetData(id.join('_') + '_' + pos + '_navbar', {
-        'scope': cv.parser.widgets.NavBar._transformScope(n.getAttribute('scope'))
+        'dynamic': n.getAttribute('dynamic') === 'true',
+        'scope': cv.parser.widgets.NavBar._transformScope(n.getAttribute('scope')),
+        'width': n.getAttribute('width')
       });
 
       return cv.data.Model.getInstance().setWidgetData(cv.parser.WidgetParser.getStoragePath(n, path), {

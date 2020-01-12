@@ -98,15 +98,8 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
   ******************************************************
   */
   members: {
-    __navbarLeftSize: null,
-    __navbarRightSize: null,
-
     // overridden
     _onDomReady: function() {
-      var left = document.querySelector('#navbarLeft');
-      var right = document.querySelector('#navbarRight');
-      this.__navbarLeftSize = left ? left.dataset['size'] : 0;
-      this.__navbarRightSize = right ? right.dataset['size'] : 0;
     },
     
     getGlobalPath: function () {
@@ -127,7 +120,6 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       container += '</div>';
 
       var templateEngine = cv.TemplateEngine.getInstance();
-      var thisSize;
       // add this to the navbars in DOM not inside the page
       switch (this.getPosition()) {
         case 'top':
@@ -136,18 +128,10 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
         case 'left':
           this.self(arguments)._navbarLeft += container;
-          thisSize = this.__navbarLeftSize || this.getWidth(); // FIXME - only a temporal solution
-          if (this.isDynamic()) {
-            templateEngine.pagePartsHandler.navbarSetSize('left', thisSize);
-          }
           break;
 
         case 'right':
           this.self(arguments)._navbarRight += container;
-          thisSize = this.__navbarRightSize || this.getWidth(); // FIXME - only a temporal solution
-          if (this.isDynamic()) {
-            templateEngine.pagePartsHandler.navbarSetSize('right', thisSize);
-          }
           break;
 
         case 'bottom':
