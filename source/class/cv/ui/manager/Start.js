@@ -210,7 +210,7 @@ qx.Class.define('cv.ui.manager.Start', {
                  return name;
                }
                var configName = cv.ui.manager.model.FileItem.getConfigName(name);
-               return configName ? qx.lang.String.firstUp(configName) : '<Default>';
+               return configName ? configName : '<Default>';
              },
              file: cv.ui.manager.model.FileItem.ROOT,
              disableScrolling: true
@@ -235,7 +235,7 @@ qx.Class.define('cv.ui.manager.Start', {
              }.bind(this),
              labelConverter: function (name) {
                var configName = cv.ui.manager.model.FileItem.getConfigName(name);
-               return configName ? qx.lang.String.firstUp(configName) : '<Default>';
+               return configName ? configName : '<Default>';
              },
              disableScrolling: true
            });
