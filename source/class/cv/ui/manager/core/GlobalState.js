@@ -28,5 +28,5 @@ qx.Class.define('cv.ui.manager.core.GlobalState', {
     _applyFile: function () {
       cv.ui.manager.control.ActionDispatcher.getInstance().updateBarButtons();
     }
-  },
+  }
 });
