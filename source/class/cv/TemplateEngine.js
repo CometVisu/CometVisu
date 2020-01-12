@@ -464,6 +464,10 @@ qx.Class.define('cv.TemplateEngine', {
 
         new qx.util.DeferredCall(function() {
           this.scrollToPage(cv.Config.initialPage, 0);
+          if (cv.Config.mobileDevice) {
+            this.pagePartsHandler.fadeNavbar('Left', 'out', 0);
+            this.pagePartsHandler.fadeNavbar('Right', 'out', 0);
+          }
         }, this).schedule();
 
         // reaction on browser back button

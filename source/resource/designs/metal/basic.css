@@ -587,7 +587,11 @@ div#demo_3 {
 	width: auto;
 }
 
-#navbarTop {
+#navbarTop,
+#navbarBottom,
+#navbarLeft,
+#navbarRight
+{
 	background: #333333;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(   #666), to(   #000));
 	background-image: -webkit-linear-gradient(  #666 ,   #000); 
@@ -597,15 +601,6 @@ div#demo_3 {
 	background-image:         linear-gradient(   #666,   #000);
 }
 #navbarTop .navbar .widget:not(.info), #navbarBottom .navbar .widget:not(.info) { background: none; }
-#navbarBottom  {
-	background: #333333;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(   #000), to(   #666));
-	background-image: -webkit-linear-gradient(  #000 ,   #666); 
-	background-image:    -moz-linear-gradient(   #000,   #666);
-	background-image:     -ms-linear-gradient(   #000,   #666);
-	background-image:      -o-linear-gradient(   #000,   #666);
-	background-image:         linear-gradient(   #000,   #666);
-}
 #navbarTop .navbar .widget:not(.info), #navbarBottom .navbar .widget:not(.info) {
 	margin: 0;
 	border-width:0;

@@ -33,16 +33,20 @@ qx.Class.define('cv.ui.PagePartsHandler', {
   construct: function () {
     this.navbars = {
       top: {
-        dynamic: false
+        dynamic: false,
+        fadeVisible: true
       },
       left: {
-        dynamic: false
+        dynamic: false,
+        fadeVisible: true
       },
       right: {
-        dynamic: false
+        dynamic: false,
+        fadeVisible: true
       },
       bottom: {
-        dynamic: false
+        dynamic: false,
+        fadeVisible: true
       }
     };
   },
@@ -83,18 +87,25 @@ qx.Class.define('cv.ui.PagePartsHandler', {
      */
     navbarSetSize: function (position, size) {
       var cssSize = size + (isFinite(size) ? 'px' : '');
+      var navbar;
       switch (position) {
         case 'left':
-          document.querySelector('#navbarLeft').style.width = cssSize;
+          navbar = document.querySelector('#navbarLeft');
+          navbar.style.width = cssSize;
+          if (!this.navbars.left.fadeVisible) {
+            navbar.style.left = -navbar.getBoundingClientRect().width + 'px';
+          }
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
 
         case 'right':
           document.querySelector('#centerContainer').style["padding-right"] = cssSize;
-          Object.entries({
-            width: cssSize,
-            'margin-right': '-' + cssSize
-          }).forEach(function(key_value){document.querySelector('#navbarRight').style[key_value[0]]=key_value[1];});
+          navbar = document.querySelector('#navbarRight');
+          navbar.style.width = cssSize;
+          navbar.style['margin-right'] = '-' + cssSize;
+          if (!this.navbars.right.fadeVisible) {
+            navbar.style.right = -navbar.getBoundingClientRect().width + 'px';
+          }
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
       }
@@ -171,23 +182,6 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           this.removeInactiveNavbars(page.getPath());
         }
       }
-      ['Left', 'Top', 'Right', 'Bottom'].forEach(function (value) {
-        var
-          key = value.toLowerCase(),
-          navbar = document.querySelector('#navbar' + value),
-          display = window.getComputedStyle(navbar)["display"],
-          isLoading = navbar.classList.contains('loading');
-        if (shownavbar[key] === true) {
-          if (display === "none" || isLoading) {
-            this.fadeNavbar(value, "in", speed);
-            this.removeInactiveNavbars(page.getPath());
-          }
-        } else {
-          if (display !== "none" || isLoading) {
-            this.fadeNavbar(value, "out", speed);
-          }
-        }
-      }, this);
       cv.ui.layout.ResizeHandler.invalidateNavbar();
     },
 
@@ -204,7 +198,9 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       var targetCss = {};
       var navbar = document.querySelector('#navbar' + position);
       var key = position.toLowerCase();
+      var self = this;
       var onAnimationEnd = function () {
+        self.navbars[key].fadeVisible = direction === 'in';
         cv.ui.layout.ResizeHandler.invalidateNavbar();
       };
       switch (direction) {
@@ -225,9 +221,6 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           }
           break;
         case "out":
-          onAnimationEnd = function () {
-            cv.ui.layout.ResizeHandler.invalidateNavbar();
-          };
           initCss[key] = 0;
           switch (position) {
             case "Top":
