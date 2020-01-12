@@ -58,11 +58,10 @@ describe("testing a navbar widget", function() {
     if (pos === "left") {
       expect(navbar).toHaveClass("flavour_potassium");
       expect(navbar.querySelector("h2").innerText).toBe('Testbar');
-      expect(templateEngine.pagePartsHandler.navbarSetSize).toHaveBeenCalledWith(pos,"200");
+      expect(document.querySelector('#'+barContainerId).style.width).toBe('200px');
       expect(obj.getScope()).toBe(1);
     }
     else {
-      expect(templateEngine.pagePartsHandler.navbarSetSize).not.toHaveBeenCalled();
       expect(obj.getScope()).toBe(-1);
     }
     // document.body.removeChild(bar);
