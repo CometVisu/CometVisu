@@ -144,7 +144,6 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
       }
       if (value) {
         value.bind('file.writeable', this, 'writeable');
-        this.getChildControl('contextmenu').configure(value.getFile());
       }
     },
 
@@ -205,12 +204,6 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
            control.setAnonymous(true);
            this._addAt(control, 1);
            break;
-
-         case 'contextmenu':
-           control = new cv.ui.manager.contextmenu.FileItem();
-           this.setContextMenu(control);
-           break;
-
 
          case 'close':
            control = new qx.ui.basic.Image('decoration/tabview/close.gif');
