@@ -112,6 +112,10 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
         if (defaultHandler) {
           return defaultHandler;
         }
+        if (file.getDisplayName().split('.').length === 1) {
+          // file without file ending => use the source code editor
+          return this.getFileHandlerById('cv.ui.manager.editor.Source');
+        }
       }
 
       Object.keys(this.__registry).forEach(function (classname) {
