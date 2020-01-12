@@ -76,16 +76,9 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           enabled: false
         },
         'delete': {
-          menu: 'file-menu',
           args: [this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18), this._commandGroup.get('delete')],
           enabled: false,
-          separator: 'before'
-        },
-        'close': {
-          menu: 'file-menu',
-          args: [this.tr('Close file'), cv.theme.dark.Images.getIcon('close', 18), this._commandGroup.get('close')],
-          enabled: false,
-          separator: 'before'
+          hidden: true
         },
         'quit': {
           menu: 'file-menu',
@@ -212,16 +205,18 @@ qx.Class.define('cv.ui.manager.MenuBar', {
           button.addListener('execute', function () {
             qx.event.message.Bus.dispatchByName('cv.manager.action.' + id);
           }, this);
-          var menu = this.getChildControl(buttonConf.menu);
-          if (!menu) {
-            throw new Error('no menu named ' + buttonConf.menu + ' found!');
-          }
-          if (buttonConf.separator === 'before') {
-            menu.add(new qx.ui.menu.Separator());
-          }
-          menu.add(button);
-          if (buttonConf.separator === 'after') {
-            menu.add(new qx.ui.menu.Separator());
+          if (!buttonConf.hidden) {
+            var menu = this.getChildControl(buttonConf.menu);
+            if (!menu) {
+              throw new Error('no menu named ' + buttonConf.menu + ' found!');
+            }
+            if (buttonConf.separator === 'before') {
+              menu.add(new qx.ui.menu.Separator());
+            }
+            menu.add(button);
+            if (buttonConf.separator === 'after') {
+              menu.add(new qx.ui.menu.Separator());
+            }
           }
           this.__buttons[id] = button;
 
