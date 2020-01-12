@@ -81,6 +81,12 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
       check: 'Boolean',
       init: true,
       apply: '_applyCloseable'
+    },
+
+    writeable:{
+      check: 'Boolean',
+      init: true,
+      apply: '_applyLabel'
     }
   },
 
@@ -132,8 +138,12 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
       this.getChildControl('close').setVisibility(value ? 'visible' : 'excluded');
     },
 
-    _applyModel: function (value) {
+    _applyModel: function (value, old) {
+      if (old) {
+        old.removeRelatedBindings(this);
+      }
       if (value) {
+        value.bind('file.writeable', this, 'writeable');
         this.getChildControl('contextmenu').configure(value.getFile());
       }
     },
@@ -152,10 +162,21 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
       var label = this.getChildControl("label");
       var value = this.getLabel();
       if (value) {
-        label.setValue(this.getLabel() + (this.isModified() ? ' *' : ''));
+        var labelValue = this.getLabel();
+        if (!this.isWriteable()) {
+          labelValue += ' !';
+          this.setToolTipText(this.tr('This file is not writeable'));
+        } else {
+          this.resetToolTipText();
+        }
+        if (this.isModified()) {
+          labelValue += ' *';
+        }
+        label.setValue(labelValue);
         label.show();
       } else {
         label.exclude();
+        this.resetToolTipText();
       }
     },
 

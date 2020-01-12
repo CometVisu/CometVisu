@@ -47,6 +47,9 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     _handledActions: null,
 
     canHandleAction: function (actionName) {
+      if (actionName === 'save' && this.getFile() && !this.getFile().isWriteable()) {
+        return false;
+      }
       return this._handledActions && this._handledActions.includes(actionName);
     },
 

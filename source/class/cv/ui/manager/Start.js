@@ -32,7 +32,8 @@ qx.Class.define('cv.ui.manager.Start', {
   properties: {
     file: {
       check: 'cv.ui.manager.model.FileItem',
-      apply: '_loadRoot'
+      apply: '_loadRoot',
+      event: 'changeFile'
     },
     appearance: {
       refine: true,

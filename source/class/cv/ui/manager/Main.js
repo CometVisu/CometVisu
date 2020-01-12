@@ -149,6 +149,10 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     canHandleAction: function (actionName) {
+      if (actionName === 'delete' && this.getCurrentSelection() && this.getCurrentSelection().isWriteable()) {
+        // needs a writeable file
+        return false;
+      }
       return ['close', 'quit', 'new-file', 'new-config-file', 'new-folder', 'delete', 'upload', 'clone'].includes(actionName);
     },
 
@@ -326,6 +330,10 @@ qx.Class.define('cv.ui.manager.Main', {
         }
         this._stack.setSelection([editorConfig.instance]);
         this.__actionDispatcher.setFocusedWidget(editorConfig.instance);
+
+        cv.ui.manager.core.GlobalState.getInstance().setOpenedFocusedFile(file);
+      } else {
+        cv.ui.manager.core.GlobalState.getInstance().resetOpenedFocusedFile();
       }
     },
 
@@ -446,7 +454,6 @@ qx.Class.define('cv.ui.manager.Main', {
         if (oldModel) {
           oldModel.dispose();
         }
-        // dispose the
       }
     },
 
@@ -482,11 +489,12 @@ qx.Class.define('cv.ui.manager.Main', {
       group.add('new-file', new qx.ui.command.Command('Ctrl+N'));
       group.add('new-folder', new qx.ui.command.Command('Ctrl+Shift+N'));
       group.add('quit', new qx.ui.command.Command('Ctrl+Q'));
-      // group.add('delete', new qx.ui.command.Command('Del'));
+      // group.add('delete', new qx.ui.command.Command('Ctrl+Del'));
 
       var renameCommand = new qx.ui.command.Command('F2');
       group.add('rename', renameCommand);
       this.bind('renameableSelection', renameCommand, 'enabled');
+
 
       // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
       // and as we cannot simulate pasting from clipboard, we do not use them here
@@ -718,6 +726,7 @@ qx.Class.define('cv.ui.manager.Main', {
       var buttonConfig = menuBar.getButtonConfiguration();
       this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
       this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
+      // this.bind('deleteableSelection', buttonConfig['delete'].args[2], 'enabled');
 
       leftContainer.add(leftBar);
       leftContainer.add(this._tree, {flex: 1});

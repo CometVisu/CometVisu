@@ -25,7 +25,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
     focusedWidget: {
       check: 'cv.ui.manager.IActionHandler',
       nullable: true,
-      apply: '_applyFocusedWidget'
+      apply: 'updateBarButtons'
     },
 
     main: {
@@ -40,7 +40,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
   ***********************************************
   */
   members: {
-    _applyFocusedWidget: function () {
+    updateBarButtons: function () {
       var menuBar = cv.ui.manager.MenuBar.getInstance();
       var config = menuBar.getButtonConfiguration();
       var button;
