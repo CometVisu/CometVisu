@@ -112,10 +112,6 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
         if (defaultHandler) {
           return defaultHandler;
         }
-        if (file.getDisplayName().split('.').length === 1) {
-          // file without file ending => use the source code editor
-          return this.getFileHandlerById('cv.ui.manager.editor.Source');
-        }
       }
 
       Object.keys(this.__registry).forEach(function (classname) {
@@ -125,6 +121,10 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
         }
       }, this);
       if (handlers.length === 0) {
+        if (!file.isFake() && file.getDisplayName().split('.').length === 1) {
+          // file without file ending => use the source code editor
+          return this.getFileHandlerById('cv.ui.manager.editor.Source');
+        }
         // no editors found
         return null;
       } else if (handlers.length === 1) {
