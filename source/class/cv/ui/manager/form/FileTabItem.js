@@ -162,7 +162,7 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
       var value = this.getLabel();
       if (value) {
         var labelValue = this.getLabel();
-        if (!this.isWriteable()) {
+        if (!this.isWriteable() && !this.getModel().getFile().isFake()) {
           labelValue += ' !';
           this.setToolTipText(this.tr('This file is not writeable'));
         } else {
