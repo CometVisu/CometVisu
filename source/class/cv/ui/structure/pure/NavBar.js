@@ -75,6 +75,8 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
     _navbarLeft: '',
     _navbarRight: '',
     _navbarBottom: '',
+    _touchX: null,
+    _touchY: null,
 
     /**
      * Called on setup.dom.finished event with high priority. Adds the navbar dom string
@@ -89,6 +91,65 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
           }
         }
       }, this);
+
+      var self = this;
+      // Event handlers to allow navbar fade in and fade out.
+      // Currently only implemented for the major use case of a left navbar.
+      // TODO add logig for other navbars as well
+      // Logic:
+      //   To fade in the touch must start on the left screen side and then
+      //   swipe right.
+      //   To fade out all places on the screen are fine.
+      //   There is a minimum swipe distance and the direction must be mostly
+      //   horizontal (up to +/-45° tolerance is allowed)
+      //   When during a valid swipe the direction is reversed the fading
+      //   action is also reverted.
+      document.addEventListener('touchstart', function (evt) {
+        var
+          touches = evt.touches[0],
+          pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+        if (!cv.Config.mobileDevice ||
+          (!pPH.navbars.left.fadeVisible && touches.clientX > 20)) { // left navbar is not visible but the finger isn't on the left end -> not relevant
+          return;
+        }
+
+        self._touchX = touches.clientX;
+        self._touchY = touches.clientY;
+      }, false);
+      document.addEventListener('touchend', function () {
+        self._touchX = null;
+        self._touchY = null;
+      }, false);
+      document.addEventListener('touchmove', function (evt) {
+        if (self._touchX === null) {
+          return; // early exit as this touch isn't relevant for us
+        }
+
+        var
+          touches = evt.touches[0],
+          x = touches.clientX - self._touchX,
+          y = touches.clientY - self._touchY,
+          necessaryDistance = 10,
+          enoughDistance = Math.abs(x) > necessaryDistance,
+          horizontal = Math.abs(x) > Math.abs(y),
+          toRight = x > 0;
+        if (horizontal && enoughDistance) {
+          var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+          if (toRight) {
+            self._touchX = touches.clientX - necessaryDistance;
+            self._touchY = touches.clientY;
+            if (!pPH.navbars.left.fadeVisible) {
+              pPH.fadeNavbar('Left', 'in', 250);
+            }
+          } else { // !toRight
+            self._touchX = touches.clientX + necessaryDistance;
+            self._touchY = touches.clientY;
+            if (pPH.navbars.left.fadeVisible) {
+              pPH.fadeNavbar('Left','out',250);
+            }
+          }
+        }
+      }, false);
     }
   },
   
