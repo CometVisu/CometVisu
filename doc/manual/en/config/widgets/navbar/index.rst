@@ -28,6 +28,20 @@ The screenshots show, how both can be edited in the :ref:`editor <editor>`.
 
 Attributes underlined by ..... are mandatory, all the others are optional and be omitted.
 
+The ``dynamic`` attribute allows to dynamically show and hide the navbar.
+
++-------------+------------------------------------+------------------------------------+
+| ``dynamic`` | Mobile device                      | Big screen                         |
++=============+====================================+====================================+
+| *empty*     | Navbar can be shown and hidden.    | Navbar is allways shown.           |
+|             | After start it is hidden.          |                                    |
++-------------+------------------------------------+------------------------------------+
+| true        | Navbar can be shown and hidden.    | Navbar can be shown and hidden.    |
+|             | After start it is hidden.          | After start it is shown.           |
++-------------+------------------------------------+------------------------------------+
+| false       | Navbar is allways shown.           | Navbar is allways shown.           |
++-------------+------------------------------------+------------------------------------+
+
 Allowed attributes in the NavBar-element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
