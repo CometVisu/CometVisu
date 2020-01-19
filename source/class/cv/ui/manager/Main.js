@@ -803,10 +803,7 @@ qx.Class.define('cv.ui.manager.Main', {
     delete cv.ui.manager.Main.$$instance;
   },
 
-  defer: function(statics) {
-    // initialize on load
-    statics.getInstance();
-
+  defer: function() {
     // load backupFolder
     cv.ui.manager.model.BackupFolder.getInstance();
   }
