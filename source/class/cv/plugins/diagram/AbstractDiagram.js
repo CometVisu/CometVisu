@@ -423,7 +423,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     _applyTitle: function(value) {
       if (value) {
         // override label
-        this.setLabel(value);
+        this.setLabel('<div class="label">' + value + '</div>');
       }
     },
 
