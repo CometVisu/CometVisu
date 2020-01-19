@@ -129,6 +129,7 @@ qx.Class.define('cv.io.Client', {
         maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful
         // read is older (should be faster than the index overflow at max data rate,
         // i.e. 2^16 @ 20 tps for KNX TP)
+        maxRetries: 3, // amount of connection retries for temporary server failures
         hooks: {}
       },
       'openhab': {
@@ -491,7 +492,8 @@ qx.Class.define('cv.io.Client', {
           }
           if (options.listeners) {
             Object.getOwnPropertyNames(options.listeners).forEach(function(eventName) {
-              ajaxRequest.addListener(eventName, options.listeners[eventName], context);
+              var qxEventName = 'error' !== eventName ? eventName : 'statusError';
+              ajaxRequest.addListener(qxEventName, options.listeners[eventName], context);
             });
             delete options.listeners;
           }
@@ -514,6 +516,9 @@ qx.Class.define('cv.io.Client', {
      */
     _onError: function(ev) {
       var req = ev.getTarget();
+      if(req.serverErrorHandled) {
+        return; // ignore error when already handled
+      }
       this.__lastError = {
         code: req.getStatus(),
         text: req.getStatusText(),
