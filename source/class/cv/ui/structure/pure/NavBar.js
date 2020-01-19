@@ -95,7 +95,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       var self = this;
       // Event handlers to allow navbar fade in and fade out.
       // Currently only implemented for the major use case of a left navbar.
-      // TODO add logig for other navbars as well
+      // TODO add logic for other navbars as well
       // Logic:
       //   To fade in the touch must start on the left screen side and then
       //   swipe right.
