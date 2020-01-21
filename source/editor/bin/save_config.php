@@ -120,7 +120,9 @@ try {
     $objDOM->formatOutput = true;
 
     if ($configType === "string") {
-        $objDOM->loadXML($arrData[0]);
+        if (!$objDOM->loadXML($arrData[0])) {
+            exitWithResponse(false, 'error: config file is not valid');
+        }
     } else {
 
       foreach ($arrData as $arrRootNodeData) {
