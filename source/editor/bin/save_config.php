@@ -118,31 +118,31 @@ try {
     /** die alten Mappings und stylings übernehmen */
     $objDOM = new DOMDocument('1.0', 'UTF-8');
     $objDOM->formatOutput = true;
+    $content = "";
 
     if ($configType === "string") {
-        if (!$objDOM->loadXML($arrData[0])) {
-            exitWithResponse(false, 'error: config file is not valid');
-        }
+        $content = $arrData[0];
     } else {
+        foreach ($arrData as $arrRootNodeData) {
+            $objDOM->appendChild(createDOMFromData($objDOM, $arrRootNodeData));
+        }
+        $objDOM->preserveWhiteSpace = false;
+        $objDOM->formatOutput = true;
 
-      foreach ($arrData as $arrRootNodeData) {
-          $objDOM->appendChild(createDOMFromData($objDOM, $arrRootNodeData));
-      }
+        $content = $objDOM->saveXML();
     }
 
-    $objDOM->preserveWhiteSpace = false;
-    $objDOM->formatOutput = true;
 
     if ($isOhGenerated === false) {
         // save the XML to its configuration file
         $handle = fopen($strConfigFQFilename, "w");
-        fputs($handle, $objDOM->saveXML());
+        fputs($handle, $content);
         fclose($handle);
     } else {
         // send generated data to openhab
         $data = array(
             'config' => $strConfig,
-            'data' => $objDOM->saveXML(),
+            'data' => $content,
             'type' => 'xml'
         );
 
@@ -157,7 +157,7 @@ try {
         $result = file_get_contents($saveUrl, false, $context);
 
         if ($result === false) {
-            exitWithResponse(false, 'error: ' . $resp);
+            exitWithResponse(false, 'error');
         } else {
             exitWithResponse(true, 'all good, file ' . $strConfigFQFilename . ' saved');
         }

@@ -37,7 +37,7 @@
 
       var messages = {
         "de": {
-          "This config file is not valid. You cannot save this file!": "Diese Konfigurationsdatei ist ungültig. Es ist nicht möglich diese Datei abzuspeichern!",
+          "You are about to save a config file with invalid syntax. Please confirm!": "Sie sind dabei eine ungültige Konfigurationsdatei abzuspeichern. Sind Sie sich sicher?",
           "Save": "Speichern",
           "Ctrl+S": "Strg+S",
           "Open manager": "Manager öffnen"
@@ -153,23 +153,25 @@
           if (saveButton.hasAttribute("disabled")) {
             return;
           }
+          var confirmed = true;
           if (editorState.valid === false) {
-            alert(tr("This config file is not valid. You cannot save this file!"));
-            return;
+            confirmed = confirm(tr("You are about to save a config file with invalid syntax. Please confirm!"));
           }
-          saveConfig(configSuffix, editor.getValue())
-            .then(function (result) {
-              console.log(result);
-              errorField.innerHTML = "";
-              // update hash value + disable save button
-              worker.postMessage(["savedFile", editor.getValue()]);
-              saveButton.setAttribute("disabled", "disabled");
-              saveButton.removeAttribute("class");
-            })
-            .catch(function (error) {
-              errorField.innerHTML = error;
-              saveButton.setAttribute("class", "error");
-            });
+          if (confirmed) {
+            saveConfig(configSuffix, editor.getValue())
+              .then(function (result) {
+                console.log(result);
+                errorField.innerHTML = "";
+                // update hash value + disable save button
+                worker.postMessage(["savedFile", editor.getValue()]);
+                saveButton.setAttribute("disabled", "disabled");
+                saveButton.removeAttribute("class");
+              })
+              .catch(function (error) {
+                errorField.innerHTML = error;
+                saveButton.setAttribute("class", "error");
+              });
+          }
         }
 
         function showErrors(errorList) {
