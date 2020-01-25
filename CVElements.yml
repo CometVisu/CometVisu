@@ -36,13 +36,6 @@
   "name": "Link"
   "screenshot": "/de/develop/manual/_images/link.png"
 - "description":
-    "de": "Wettervorhersage"
-    "en": "Weather forecast"
-  "manual":
-    "de": "/de/develop/manual/config/widgets/plugins/openweathermap/index.html"
-    "en": "/en/develop/manual/config/widgets/plugins/openweathermap/index.html"
-  "name": "OpenweatherMap"
-- "description":
     "de": "Darstellung des Strom-Spektrums"
     "en": "Graph of the spectrum of a power source."
   "manual":
