@@ -296,6 +296,7 @@
       {
         "cv.build": "source",
         "cv.sentry": false,
+        "qx.dynlocale": false,
         "qx.globalErrorHandling": false
       },
       "run" :
