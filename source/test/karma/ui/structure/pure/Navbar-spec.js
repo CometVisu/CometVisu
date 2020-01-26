@@ -58,10 +58,6 @@ describe("testing a navbar widget", function() {
     if (pos === "left") {
       expect(navbar).toHaveClass("flavour_potassium");
       expect(navbar.querySelector("h2").innerText).toBe('Testbar');
-      // TODO and FIXME: this test doesn't work anymore:
-      //expect(templateEngine.pagePartsHandler.navbarSetSize).toHaveBeenCalledWith(pos,"200");
-      // but to fix it most likely the navbar must be created in the DOM and then the resizing / makingvalid calls be
-      // done and not only this out of DOM element creation
       expect(obj.getScope()).toBe(1);
     }
     else {

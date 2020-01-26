@@ -57,7 +57,7 @@ qx.Class.define('cv.parser.widgets.NavBar', {
       id.pop();
       var pos = n.getAttribute('position') || 'left';
       cv.data.Model.getInstance().setWidgetData(id.join('_') + '_' + pos + '_navbar', {
-        'dynamic': n.getAttribute('dynamic') === 'true',
+        'dynamic': cv.parser.widgets.NavBar._transformDynamic(n.getAttribute('dynamic')),
         'scope': cv.parser.widgets.NavBar._transformScope(n.getAttribute('scope')),
         'width': n.getAttribute('width')
       });
@@ -67,6 +67,17 @@ qx.Class.define('cv.parser.widgets.NavBar', {
         'classes': classes,
         '$$type': widgetType
       });
+    },
+
+    _transformDynamic: function(value) {
+      switch (value) {
+        case 'true':
+          return true;
+
+        case 'false':
+          return false;
+      }
+      return null;
     },
 
     _transformScope: function(value) {
@@ -82,11 +93,7 @@ qx.Class.define('cv.parser.widgets.NavBar', {
       return {
         'scope': {"default": -1, transform: cv.parser.widgets.NavBar._transformScope},
         'name': {},
-        'dynamic': {
-          transform: function (value) {
-            return value === "true";
-          }
-        },
+        'dynamic': {transform: cv.parser.widgets.NavBar._transformDynamic},
         'width': {"default": "300"},
         'position': {"default": 'left'}
       };

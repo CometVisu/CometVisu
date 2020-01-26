@@ -56,8 +56,9 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       init: 'left'
     },
     dynamic: {
-      check: "Boolean", 
-      init: false
+      check: [true, false, null],
+      nullable : true,
+      init: null
     },
     visible: {
       refine: true,
@@ -108,7 +109,9 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
         var
           touches = evt.touches[0],
           pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
-        if (!cv.Config.mobileDevice ||
+
+        if (pPH.navbars.left.dynamic === false ||
+          (!cv.Config.mobileDevice && pPH.navbars.left.dynamic !== true) ||
           (!pPH.navbars.left.fadeVisible && touches.clientX > 20)) { // left navbar is not visible but the finger isn't on the left end -> not relevant
           return;
         }
@@ -180,7 +183,6 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
       container += '</div>';
 
-      var templateEngine = cv.TemplateEngine.getInstance();
       // add this to the navbars in DOM not inside the page
       switch (this.getPosition()) {
         case 'top':
@@ -199,7 +201,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
           this.self(arguments)._navbarBottom += container;
           break;
       }
-      templateEngine.pagePartsHandler.navbars[this.getPosition()].dynamic |= this.getDynamic();
+
       return '';
     }
   },

@@ -33,19 +33,19 @@ qx.Class.define('cv.ui.PagePartsHandler', {
   construct: function () {
     this.navbars = {
       top: {
-        dynamic: false,
+        dynamic: null,
         fadeVisible: true
       },
       left: {
-        dynamic: false,
+        dynamic: null,
         fadeVisible: true
       },
       right: {
-        dynamic: false,
+        dynamic: null,
         fadeVisible: true
       },
       bottom: {
-        dynamic: false,
+        dynamic: null,
         fadeVisible: true
       }
     };
@@ -135,7 +135,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
     },
 
     /**
-     * update the visibility ob top-navigation, footer and navbar for this page
+     * update the visibility of top-navigation, footer and navbar for this page
      *
      * @param page {cv.ui.structure.pure.Page} page to update the parts for
      * @param speed {Number} animation duration for changes
@@ -205,7 +205,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       };
       switch (direction) {
         case "in":
-          if (window.getComputedStyle(navbar)["display"] === 'none') {
+          if (window.getComputedStyle(navbar).display === 'none') {
             initCss.display = 'block';
           }
           targetCss[key] = 0;
@@ -279,6 +279,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       }
       var level = 1;
       var size = {top: 0, right: 0, bottom: 0, left: 0};
+      var dynamic = {top: null, right: null, bottom: null, left: null};
       var positions = ['top','right','bottom','left'];
       tree.forEach(function (elem) {
         var id = elem.getAttribute('id');
@@ -286,18 +287,19 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           var nav = document.querySelector('#' + id + pos+ '_navbar');
           if (nav) {
             var data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
+            if (data.dynamic !== null) {
+              dynamic[pos] = data.dynamic;
+            }
+            self.navbars[pos].dynamic = dynamic[pos];
             if (data.scope === undefined || data.scope < 0 || tree.length - level <= data.scope) {
               nav.classList.add('navbarActive');
             } else {
               nav.classList.remove('navbarActive');
             }
             if (data.width !== null ) {
-              // set size when it is dynamic - or when it's the first given value
-              if (data.dynamic || size[pos] === 0) {
-                size[pos] = data.width;
-              }
+              size[pos] = data.width;
             } else {
-              if (size[pos] === 0){
+              if (size[pos] === 0) {
                 // navbar with content but no size given so far => use default
                 size[pos] = 300;
               }

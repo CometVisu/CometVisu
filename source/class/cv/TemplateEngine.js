@@ -391,6 +391,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (design) {
         var baseUri = 'designs/' + design;
         settings.stylesToLoad.push(baseUri + '/basic.css');
+        this.debug('cv.Config.mobileDevice: ' + cv.Config.mobileDevice);
         if (cv.Config.mobileDevice) {
           settings.stylesToLoad.push(baseUri + '/mobile.css');
           document.querySelector('body').classList.add('mobile');
@@ -435,7 +436,6 @@ qx.Class.define('cv.TemplateEngine', {
 
         // as we are sure that the default CSS were loaded now:
         document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {
-          elem.setAttribute('media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
         });
         if (!cv.Config.cacheUsed) {
           this.debug("creating pages");
@@ -464,10 +464,6 @@ qx.Class.define('cv.TemplateEngine', {
 
         new qx.util.DeferredCall(function() {
           this.scrollToPage(cv.Config.initialPage, 0);
-          if (cv.Config.mobileDevice) {
-            this.pagePartsHandler.fadeNavbar('Left', 'out', 0);
-            this.pagePartsHandler.fadeNavbar('Right', 'out', 0);
-          }
         }, this).schedule();
 
         // reaction on browser back button
@@ -724,6 +720,19 @@ qx.Class.define('cv.TemplateEngine', {
       this.main_scroll.seekTo(page_id, speed); // scroll to it
 
       this.pagePartsHandler.initializeNavbars(page_id);
+      if (cv.Config.mobileDevice) {
+        switch (this.pagePartsHandler.navbars.left.dynamic) {
+          case null:
+          case true:
+            this.pagePartsHandler.fadeNavbar('Left', 'out', 0);
+            break;
+
+          case false:
+            this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
+        }
+      } else {
+        this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
+      }
     },
 
     selectDesign: function () {
