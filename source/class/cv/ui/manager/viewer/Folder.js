@@ -179,7 +179,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     },
 
     _onFsItemRightClick: function (ev) {
-      var file = ev.getTarget().getModel();
+      var file = ev.getCurrentTarget().getModel();
       if (file.getSpecial() === 'add-file') {
         ev.preventDefault();
         ev.stopPropagation();
@@ -191,7 +191,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     },
 
     _onDblTap: function (ev) {
-      var file = ev.getTarget().getModel();
+      var file = ev.getCurrentTarget().getModel();
       if (file.getSpecial() === 'add-file') {
         // Select file for upload
 
