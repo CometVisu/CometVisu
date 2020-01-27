@@ -180,7 +180,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         if (file && file.getType() === 'file' && this.isSupported(file)) {
           this.base(arguments, file, old);
         } else {
-          this.resetContent();
+          this.base(arguments, null, old);
         }
       }
     },

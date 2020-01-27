@@ -12,7 +12,7 @@ qx.Class.define('cv.ui.manager.core.GlobalState', {
   */
   properties: {
     openedFocusedFile: {
-      check: 'cv.ui.manager.model.FileItem',
+      check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
       nullable: true,
       event: 'changeOpenedFocusedFile',
       apply: '_applyFile'

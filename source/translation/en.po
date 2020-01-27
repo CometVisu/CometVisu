@@ -208,11 +208,11 @@ msgstr ""
 msgid "Folder has been created"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:258 cv/ui/manager/MenuBar.js:46
+#: cv/ui/manager/contextmenu/FileItem.js:257 cv/ui/manager/MenuBar.js:46
 msgid "New file"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:275 cv/ui/manager/MenuBar.js:51
+#: cv/ui/manager/contextmenu/FileItem.js:274 cv/ui/manager/MenuBar.js:51
 msgid "New folder"
 msgstr ""
 
@@ -229,8 +229,8 @@ msgid "Save as..."
 msgstr ""
 
 #: cv/ui/manager/contextmenu/FileItem.js:76
-#: cv/ui/manager/contextmenu/FileItem.js:159
-#: cv/ui/manager/contextmenu/FileItem.js:287 cv/ui/manager/MenuBar.js:79
+#: cv/ui/manager/contextmenu/FileItem.js:158
+#: cv/ui/manager/contextmenu/FileItem.js:286 cv/ui/manager/MenuBar.js:79
 msgid "Delete"
 msgstr ""
 
@@ -343,11 +343,11 @@ msgstr ""
 msgid "Hidden configuration"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:294 cv/ui/manager/ToolBar.js:131
+#: cv/ui/manager/contextmenu/FileItem.js:293 cv/ui/manager/ToolBar.js:131
 msgid "Download"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:312 cv/ui/manager/ToolBar.js:148
+#: cv/ui/manager/contextmenu/FileItem.js:311 cv/ui/manager/ToolBar.js:148
 msgid "Validate"
 msgstr ""
 
@@ -359,39 +359,39 @@ msgstr ""
 msgid "Backup from %1"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:217
+#: cv/ui/manager/contextmenu/FileItem.js:216
 msgid "New name"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:222
+#: cv/ui/manager/contextmenu/FileItem.js:221
 msgid "Rename file"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:269
+#: cv/ui/manager/contextmenu/FileItem.js:268
 msgid "Clone file"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:282
+#: cv/ui/manager/contextmenu/FileItem.js:281
 msgid "Rename"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:299
+#: cv/ui/manager/contextmenu/FileItem.js:298
 msgid "Open"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:306
+#: cv/ui/manager/contextmenu/FileItem.js:305
 msgid "Restore"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:318
+#: cv/ui/manager/contextmenu/FileItem.js:317
 msgid "Replace"
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:330
+#: cv/ui/manager/contextmenu/FileItem.js:329
 msgid "Compare with..."
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js:334
+#: cv/ui/manager/contextmenu/FileItem.js:333
 msgid "Open with..."
 msgstr ""
 
@@ -419,67 +419,72 @@ msgstr ""
 msgid "Folder \"%1\" has been moved"
 msgstr ""
 
-#: cv/ui/manager/control/FileController.js:100
-msgid "File \"%1\" has been restored"
-msgstr ""
-
-#: cv/ui/manager/control/FileController.js:101
-msgid "Folder \"%1\" has been restored"
-msgstr ""
-
-#: cv/ui/manager/control/FileController.js:122
-msgid "Do you really want to clear the trash?"
-msgstr ""
-
 #: cv/ui/manager/control/FileController.js:125
-msgid "Do you really want to delete file \"%1\" from the trash?"
-msgstr ""
-
-#: cv/ui/manager/control/FileController.js:126
-msgid "Do you really want to delete folder \"%1\" from the trash?"
-msgstr ""
-
-#: cv/ui/manager/control/FileController.js:129
-msgid "Do you really want to delete file \"%1\"?"
-msgstr ""
-
-#: cv/ui/manager/control/FileController.js:130
-msgid "Do you really want to delete folder \"%1\"?"
-msgstr ""
-
-#: cv/ui/manager/control/FileController.js:138
-msgid "Confirm deletion"
-msgstr ""
-
-#: cv/ui/manager/control/FileController.js:153
-msgid "Trash has been cleared"
-msgstr ""
-
-#: cv/ui/manager/control/FileController.js:156
-msgid "File \"%1\" has been removed from trash"
-msgstr ""
-
-#: cv/ui/manager/control/FileController.js:157
-msgid "Folder \"%1\" has been removed from trash"
+#: cv/ui/manager/control/FileController.js:144
+msgid "%1 has been restored"
 msgstr ""
 
 #: cv/ui/manager/control/FileController.js:160
-msgid "File \"%1\" has been deleted"
+msgid "File \"%1\" has been restored"
 msgstr ""
 
 #: cv/ui/manager/control/FileController.js:161
+msgid "Folder \"%1\" has been restored"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:181
+msgid "Do you really want to clear the trash?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:184
+msgid "Do you really want to delete file \"%1\" from the trash?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:185
+msgid "Do you really want to delete folder \"%1\" from the trash?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:188
+msgid "Do you really want to delete file \"%1\"?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:189
+msgid "Do you really want to delete folder \"%1\"?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:197
+msgid "Confirm deletion"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:212
+msgid "Trash has been cleared"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:215
+msgid "File \"%1\" has been removed from trash"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:216
+msgid "Folder \"%1\" has been removed from trash"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:219
+msgid "File \"%1\" has been deleted"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:220
 msgid "Folder \"%1\" has been deleted"
 msgstr ""
 
-#: cv/ui/manager/control/FileController.js:198
+#: cv/ui/manager/control/FileController.js:257
 msgid "Validating %1"
 msgstr ""
 
-#: cv/ui/manager/control/FileController.js:203
+#: cv/ui/manager/control/FileController.js:262
 msgid "%1 has no errors!"
 msgstr ""
 
-#: cv/ui/manager/control/FileController.js:211
+#: cv/ui/manager/control/FileController.js:270
 msgid "%1 error found in %2!"
 msgid_plural "%1 errors found in %2!"
 msgstr[0] ""
@@ -688,19 +693,13 @@ msgstr ""
 #~ msgid "Close file"
 #~ msgstr ""
 
-#~ msgid "File has been restored"
-#~ msgstr ""
-
-#~ msgid "Folder has been restored"
-#~ msgstr ""
-
 #~ msgid "Do you really want to delete this file from the trash?"
 #~ msgstr ""
 
-#~ msgid "Do you really want to delete this folder from the trash?"
+#~ msgid "Do you really want to delete this file?"
 #~ msgstr ""
 
-#~ msgid "Do you really want to delete this file?"
+#~ msgid "Do you really want to delete this folder from the trash?"
 #~ msgstr ""
 
 #~ msgid "Do you really want to delete this folder?"
@@ -721,28 +720,34 @@ msgstr ""
 #~ msgid "Entries"
 #~ msgstr ""
 
-#~ msgid "File has been removed from trash"
-#~ msgstr ""
-
-#~ msgid "Folder has been removed from trash"
-#~ msgstr ""
-
 #~ msgid "File has been deleted"
-#~ msgstr ""
-
-#~ msgid "Folder has been deleted"
-#~ msgstr ""
-
-#~ msgid "File has been renamed"
-#~ msgstr ""
-
-#~ msgid "Folder has been renamed"
 #~ msgstr ""
 
 #~ msgid "File has been moved"
 #~ msgstr ""
 
+#~ msgid "File has been removed from trash"
+#~ msgstr ""
+
+#~ msgid "File has been renamed"
+#~ msgstr ""
+
+#~ msgid "File has been restored"
+#~ msgstr ""
+
+#~ msgid "Folder has been deleted"
+#~ msgstr ""
+
 #~ msgid "Folder has been moved"
+#~ msgstr ""
+
+#~ msgid "Folder has been removed from trash"
+#~ msgstr ""
+
+#~ msgid "Folder has been renamed"
+#~ msgstr ""
+
+#~ msgid "Folder has been restored"
 #~ msgstr ""
 
 #~ msgid "Report Bug"

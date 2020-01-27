@@ -240,7 +240,6 @@ class FsApi extends AbstractFsApi
         FileHandler::saveFile($file, $content, $hash);
         return $response->withStatus(200);
       } catch (Exception $e) {
-        var_dump($e);
         return $response->withJson(array('message' => $e->getMessage()))->withStatus($e->getCode());
       }
     }

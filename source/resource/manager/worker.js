@@ -138,9 +138,9 @@ const openFiles = {};
 function openFile(data) { // jshint ignore:line
   if (!openFiles.hasOwnProperty(data.path)) {
     const source = new SourceFile(data.path);
-    source.open(data);
     openFiles[data.path] = source;
   }
+  openFiles[data.path].open(data);
 }
 
 function closeFile(path) { // jshint ignore:line

@@ -67,21 +67,36 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       this._client = cv.io.rest.Client.getFsClient();
     },
 
-    _loadFile: function (file) {
+    _loadFile: function (file, old) {
+      if (old) {
+        qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
+      }
       if (file && file.getType() === 'file') {
         if (file.getContent() !== null) {
           this.setContent(file.getContent());
         } else {
-          this._client.readSync({path: this.getFile().getFullPath()}, function (err, res) {
-            if (err) {
-              cv.ui.manager.snackbar.Controller.error(err);
-            } else {
-              this.setContent(res);
-            }
-          }, this);
+          this._loadFromFs();
         }
+        qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
       } else {
         this.resetContent();
+      }
+    },
+
+    _loadFromFs: function () {
+      this._client.readSync({path: this.getFile().getFullPath()}, function (err, res) {
+        if (err) {
+          cv.ui.manager.snackbar.Controller.error(err);
+        } else {
+          this.setContent(res);
+        }
+      }, this);
+    },
+
+    _onChange: function (ev) {
+      var data = ev.getData();
+      if (data.type === 'fsContentChanged' && data.source !== this) {
+        this.setContent(data.data);
       }
     },
 

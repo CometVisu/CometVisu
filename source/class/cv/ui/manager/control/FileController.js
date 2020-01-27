@@ -92,21 +92,80 @@ qx.Class.define('cv.ui.manager.control.FileController', {
     restore: function (file) {
       if (file.isInTrash()) {
         var target = file.getFullPath().replace('.trash/', '');
-        this.__fsClient.moveSync({src: file.getFullPath(), target: target}, function (err) {
-          if (err) {
-            cv.ui.manager.snackbar.Controller.error(err);
-          } else {
-            cv.ui.manager.snackbar.Controller.info(file.getType() === 'file' ?
-              qx.locale.Manager.tr('File "%1" has been restored', file.getDisplayName()) :
-              qx.locale.Manager.tr('Folder "%1" has been restored', file.getDisplayName())
-            );
-            qx.event.message.Bus.dispatchByName('cv.manager.file', {
-              action: 'restored',
-              path: file.getFullPath()
-            });
-          }
-        }, this);
+        this.__moveFile(file, target);
+      } else if (file.getType() === 'file' && !file.isTemporary()) {
+        var match = /^\/backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(file.getFullPath())
+        if (match) {
+          // find the existing target config to restore
+          var targetFileName = 'visu_config' + match[1] + '.xml';
+
+          // find the target file
+          var parentFolder = file.getParent().getParent();
+          var targetFile = null;
+          parentFolder.getChildren().some(function(child) {
+            if (child.getFullPath() === targetFileName) {
+              targetFile = child;
+              return true;
+            }
+          });
+
+          // load the backup content
+          this.__fsClient.readSync({path: file.getFullPath()}, function (err, res) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(err);
+            } else {
+              if (targetFile) {
+                this.__fsClient.updateSync({
+                  path: targetFile.getFullPath(),
+                  hash: 'ignore'
+                }, res, function (err) {
+                  if (err) {
+                    cv.ui.manager.snackbar.Controller.error(err);
+                  } else {
+                    cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('%1 has been restored', file.getName()));
+                    targetFile.resetModified();
+                    targetFile.resetTemporary();
+                    qx.event.message.Bus.dispatchByName(targetFile.getBusTopic(), {
+                      type: 'fsContentChanged',
+                      data: res,
+                      source: this
+                    });
+                  }
+                }, this);
+              } else {
+                // target file does not exist copy to a new file
+                this.__fsClient.createSync({
+                  path: targetFileName,
+                  hash: 'ignore'
+                }, res, function (err) {
+                  if (err) {
+                    cv.ui.manager.snackbar.Controller.error(err);
+                  } else {
+                    cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('%1 has been restored', file.getName()));
+                  }
+                }, this);
+              }
+            }
+          }, this);
+        }
       }
+    },
+
+    __moveFile: function (file, target) {
+      this.__fsClient.moveSync({src: file.getFullPath(), target: target}, function (err) {
+        if (err) {
+          cv.ui.manager.snackbar.Controller.error(err);
+        } else {
+          cv.ui.manager.snackbar.Controller.info(file.getType() === 'file' ?
+            qx.locale.Manager.tr('File "%1" has been restored', file.getDisplayName()) :
+            qx.locale.Manager.tr('Folder "%1" has been restored', file.getDisplayName())
+          );
+          qx.event.message.Bus.dispatchByName('cv.manager.file', {
+            action: 'restored',
+            path: file.getFullPath()
+          });
+        }
+      }, this);
     },
 
     'delete': function(file, callback, context) {

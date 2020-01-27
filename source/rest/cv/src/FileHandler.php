@@ -46,7 +46,7 @@ class FileHandler
     $apiConfig = include("config.php");
     if ($hash) {
       $contentHash = sprintf('%u', crc32($content));
-      if ($hash != $contentHash) {
+      if ($hash !== "ignore" && $hash != $contentHash) {
         // data has been corrupted during transport
         throw new Exception('data has been corrupted during transport' . $hash . ' !=' . sprintf('%u', $contentHash), 405);
       }
@@ -64,10 +64,13 @@ class FileHandler
         // store permanent backup of existing file before change
         $parts = explode('.', basename($file));
         $suffix = array_pop($parts);
-        $backupFilename = join('.', $parts) . '-' . preg_replace('/[\D]/g', '', explode('.', date(DateTime::ISO8601))[0])
+        $now = date('YmdHis');
+        $backupFilename = join('.', $parts) . '-' . $now
           . '.' . $suffix;
         $target = $apiConfig->backupFolder . '/' . $backupFilename;
-        copy($file, $target);
+        if (!copy($file, $target)) {
+          throw new Exception( 'backup failed, please check if the backup folder is writeable', 405);
+        }
       }
       if ($fileExists) {
         // 1. create backup of existing file (this is just a temporary backup
