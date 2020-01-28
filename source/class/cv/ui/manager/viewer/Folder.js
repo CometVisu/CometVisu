@@ -187,7 +187,12 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       }
       var menu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
       menu.configure(file);
-      ev.getTarget().setContextMenu(menu);
+      ev.getCurrentTarget().setContextMenu(menu);
+      menu.openAtPointer(ev);
+
+      // Do not show native menu
+      // don't open any other contextmenus
+      ev.stop();
     },
 
     _onDblTap: function (ev) {
