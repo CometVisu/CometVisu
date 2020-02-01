@@ -13,6 +13,7 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
   construct: function () {
     this.base(arguments, 'backup');
     this.load();
+    qx.event.message.Bus.subscribe('cv.manager.fs.*', this._onFilesSystemMessage, this);
   },
 
   /*
@@ -21,6 +22,17 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
   ***********************************************
   */
   members: {
+    _onFilesSystemMessage: function (ev) {
+      if (/^cv\.manager\.fs\.visu_config.*\.xml$/.test(ev.getName())) {
+        // Fs event on config file
+        var data = ev.getData();
+        if (['contentChanged', 'fsContentChanged'].includes(data.type)) {
+          // config file has been changed or restored, refresh the backups
+          this.reload();
+        }
+      }
+    },
+
     /**
      * Returns the list of existing backup files for the given file.
      * @param file
@@ -56,7 +68,12 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
     }
   },
 
-  defer: function () {
-
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    qx.event.message.Bus.unsubscribe('cv.manager.fs.*', this._onFilesSystemMessage, this);
   }
 });

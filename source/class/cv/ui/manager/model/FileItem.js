@@ -493,7 +493,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     },
 
     getBusTopic: function () {
-      return this.getFullPath().replace(/\//g, '.');
+      return 'cv.manager.fs.' + this.getFullPath().replace(/\//g, '.');
     },
 
     /**
