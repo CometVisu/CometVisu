@@ -56,7 +56,7 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       init: 'left'
     },
     dynamic: {
-      check: [true, false, null],
+      check: "Boolean",
       nullable : true,
       init: null
     },
