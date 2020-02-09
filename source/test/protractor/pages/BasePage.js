@@ -1,5 +1,5 @@
 /**
- * The basic PageObject supplies generic helerp functions needed for testing the CometVisu app
+ * The basic PageObject supplies generic helper functions needed for testing the CometVisu app
  * @author Tobias Bräutigam
  * @since 2016
  */
@@ -19,8 +19,12 @@ var BasePage = function () {
    *
    * @requires page have both `url` and `pageLoaded` properties
    */
-  this.to = function () {
-    browser.get(this.url, this.timeout.xl);
+  this.to = function (urlModification) {
+    if(urlModification === undefined) {
+      urlModification = '';
+    }
+
+    browser.get(this.url + urlModification, this.timeout.xl);
     return this.at();
   };
 
