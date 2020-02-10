@@ -29,6 +29,9 @@ The screenshots show, how both can be edited in the :ref:`editor <editor>`.
 Attributes underlined by ..... are mandatory, all the others are optional and be omitted.
 
 The ``dynamic`` attribute allows to dynamically show and hide the navbar.
+The show and hide is only implemented for the left navbar and requires a
+touch capable device. To show you must swipe from the left end of the screen
+horizontal to the middle, to hide you must swipe to the left.
 
 +-------------+------------------------------------+------------------------------------+
 | ``dynamic`` | Mobile device                      | Big screen                         |
