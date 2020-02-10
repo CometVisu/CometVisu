@@ -1,8 +1,8 @@
 /**
- * switch-spec: Test cases for switch widget
+ * navbar-spec: Test cases for switch widget
  *
- * @author Tobias Bräutigam
- * @since 2016
+ * @author Christian Mayer
+ * @since 2020
  */
 
 var CometVisuMockup = require('../../pages/Mock');
