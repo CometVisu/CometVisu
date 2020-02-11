@@ -68,6 +68,7 @@ body hr
   -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000)) 1 100%;
   -moz-border-image: linear-gradient(to bottom, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 1 100%;
   border-image: linear-gradient(to bottom, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 1 100%;
+  background-color: #000;
 }
 
 body br

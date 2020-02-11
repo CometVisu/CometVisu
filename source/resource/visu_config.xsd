@@ -978,7 +978,12 @@
         <xsd:documentation xml:lang="de">Position der Navigationsleiste auf der Seite</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="dynamic" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="dynamic" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Set dynamic behaviour, use automatic when not set</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt dynamisches Verhalten fest, Automatik wenn nicht angegeben</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="width" type="xsd:string" use="optional" />
     <xsd:attribute name="scope" type="xsd:decimal" use="optional" />
   </xsd:complexType>

@@ -1,5 +1,5 @@
 /**
- * The basic PageObject supplies generic helerp functions needed for testing the CometVisu app
+ * The basic PageObject supplies generic helper functions needed for testing the CometVisu app
  * @author Tobias Bräutigam
  * @since 2016
  */
@@ -19,8 +19,12 @@ var BasePage = function () {
    *
    * @requires page have both `url` and `pageLoaded` properties
    */
-  this.to = function () {
-    browser.get(this.url, this.timeout.xl);
+  this.to = function (urlModification) {
+    if(urlModification === undefined) {
+      urlModification = '';
+    }
+
+    browser.get(this.url + urlModification, this.timeout.xl);
     return this.at();
   };
 
@@ -79,7 +83,9 @@ var BasePage = function () {
   };
 
   this.getPageTitle = function () {
-    return element(by.css(".activePage")).element(by.tagName("h1")).getText();
+    // Note: as some designs (like "metal") are hiding the h1 the page name
+    // must be extracted by this little detour
+    return browser.executeScript("return document.querySelectorAll('.activePage h1')[0].textContent;");
   };
 
   this.getPages = function () {
@@ -100,17 +106,35 @@ var BasePage = function () {
    * Navigate to a page by name
    * @param name {String}
    */
-  this.goToPage = function(name) {
-    element.all(by.css("div.pagelink")).then(function(links) {
+  this.goToPage = function(name, force) {
+    if(force) {
+      browser.driver.executeScript('cv.TemplateEngine.getInstance().scrollToPage(arguments[0])', name);
+      return;
+    }
+    var done = false;
+    element.all(by.css(".activePage div.pagelink")).then(function(links) {
       links.some(function(link) {
         var actor = link.element(by.css(".actor"));
         actor.element(by.tagName("a")).getText().then(function(linkName) {
           if (linkName === name) {
+            done = true;
             actor.click();
             return true;
           }
         });
       });
+    }).then(function(){
+      if( !done ) {
+        // not found - probably it was a parent page
+        element.all(by.css(".nav_path > a")).each(function (link) {
+         link.getText().then(function(linkName) {
+           if(linkName === name) {
+             done = true;
+             link.click();
+           }
+          });
+        });
+      }
     });
   };
 
