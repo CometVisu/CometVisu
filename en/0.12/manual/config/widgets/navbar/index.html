@@ -225,6 +225,40 @@ it is recommended to read this section first: <a class="reference internal" href
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ..... are mandatory, all the others are optional and be omitted.</p>
+<p>The <code class="docutils literal"><span class="pre">dynamic</span></code> attribute allows to dynamically show and hide the navbar.
+The show and hide is only implemented for the left navbar and requires a
+touch capable device. To show you must swipe from the left end of the screen
+horizontal to the middle, to hide you must swipe to the left.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="42%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><code class="docutils literal"><span class="pre">dynamic</span></code></th>
+<th class="head">Mobile device</th>
+<th class="head">Big screen</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><em>empty</em></td>
+<td>Navbar can be shown and hidden.
+After start it is hidden.</td>
+<td>Navbar is allways shown.</td>
+</tr>
+<tr class="row-odd"><td>true</td>
+<td>Navbar can be shown and hidden.
+After start it is hidden.</td>
+<td>Navbar can be shown and hidden.
+After start it is shown.</td>
+</tr>
+<tr class="row-even"><td>false</td>
+<td>Navbar is allways shown.</td>
+<td>Navbar is allways shown.</td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="allowed-attributes-in-the-navbar-element">
 <h3>Allowed attributes in the NavBar-element<a class="headerlink" href="#allowed-attributes-in-the-navbar-element" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
@@ -256,7 +290,7 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tr>
 <tr class="row-odd"><td>dynamic</td>
 <td><em>true</em> or <em>false</em></td>
-<td>&nbsp;</td>
+<td>Set dynamic behaviour, use automatic when not set</td>
 </tr>
 <tr class="row-even"><td>width</td>
 <td>string</td>

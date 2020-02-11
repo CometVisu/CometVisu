@@ -33,16 +33,20 @@ qx.Class.define('cv.ui.PagePartsHandler', {
   construct: function () {
     this.navbars = {
       top: {
-        dynamic: false
+        dynamic: null,
+        fadeVisible: true
       },
       left: {
-        dynamic: false
+        dynamic: null,
+        fadeVisible: true
       },
       right: {
-        dynamic: false
+        dynamic: null,
+        fadeVisible: true
       },
       bottom: {
-        dynamic: false
+        dynamic: null,
+        fadeVisible: true
       }
     };
   },
@@ -83,18 +87,25 @@ qx.Class.define('cv.ui.PagePartsHandler', {
      */
     navbarSetSize: function (position, size) {
       var cssSize = size + (isFinite(size) ? 'px' : '');
+      var navbar;
       switch (position) {
         case 'left':
-          document.querySelector('#navbarLeft').style.width = cssSize;
+          navbar = document.querySelector('#navbarLeft');
+          navbar.style.width = cssSize;
+          if (!this.navbars.left.fadeVisible) {
+            navbar.style.left = -navbar.getBoundingClientRect().width + 'px';
+          }
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
 
         case 'right':
           document.querySelector('#centerContainer').style["padding-right"] = cssSize;
-          Object.entries({
-            width: cssSize,
-            'margin-right': '-' + cssSize
-          }).forEach(function(key_value){document.querySelector('#navbarRight').style[key_value[0]]=key_value[1];});
+          navbar = document.querySelector('#navbarRight');
+          navbar.style.width = cssSize;
+          navbar.style['margin-right'] = '-' + cssSize;
+          if (!this.navbars.right.fadeVisible) {
+            navbar.style.right = -navbar.getBoundingClientRect().width + 'px';
+          }
           cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
       }
@@ -124,7 +135,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
     },
 
     /**
-     * update the visibility ob top-navigation, footer and navbar for this page
+     * update the visibility of top-navigation, footer and navbar for this page
      *
      * @param page {cv.ui.structure.pure.Page} page to update the parts for
      * @param speed {Number} animation duration for changes
@@ -171,23 +182,6 @@ qx.Class.define('cv.ui.PagePartsHandler', {
           this.removeInactiveNavbars(page.getPath());
         }
       }
-      ['Left', 'Top', 'Right', 'Bottom'].forEach(function (value) {
-        var
-          key = value.toLowerCase(),
-          navbar = document.querySelector('#navbar' + value),
-          display = window.getComputedStyle(navbar)["display"],
-          isLoading = navbar.classList.contains('loading');
-        if (shownavbar[key] === true) {
-          if (display === "none" || isLoading) {
-            this.fadeNavbar(value, "in", speed);
-            this.removeInactiveNavbars(page.getPath());
-          }
-        } else {
-          if (display !== "none" || isLoading) {
-            this.fadeNavbar(value, "out", speed);
-          }
-        }
-      }, this);
       cv.ui.layout.ResizeHandler.invalidateNavbar();
     },
 
@@ -204,46 +198,45 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       var targetCss = {};
       var navbar = document.querySelector('#navbar' + position);
       var key = position.toLowerCase();
+      var self = this;
       var onAnimationEnd = function () {
+        self.navbars[key].fadeVisible = direction === 'in';
         cv.ui.layout.ResizeHandler.invalidateNavbar();
       };
       switch (direction) {
         case "in":
-          if (window.getComputedStyle(navbar)["display"] === 'none') {
+          if (window.getComputedStyle(navbar).display === 'none') {
             initCss.display = 'block';
           }
           targetCss[key] = 0;
           switch (position) {
             case "Top":
             case "Bottom":
-              initCss[key] = -navbar.getBoundingClientRect().height;
+              initCss[key] = -navbar.getBoundingClientRect().height + 'px';
               break;
             case "Left":
             case "Right":
-              initCss[key] = -navbar.getBoundingClientRect().width;
+              initCss[key] = -navbar.getBoundingClientRect().width + 'px';
               break;
           }
           break;
         case "out":
-          onAnimationEnd = function () {
-            navbar.style.display = "none";
-            cv.ui.layout.ResizeHandler.invalidateNavbar();
-          };
+          initCss[key] = 0;
           switch (position) {
             case "Top":
             case "Bottom":
-              targetCss[key] = -navbar.getBoundingClientRect().height;
+              targetCss[key] = -navbar.getBoundingClientRect().height + 'px';
               break;
             case "Left":
             case "Right":
-              targetCss[key] = -navbar.getBoundingClientRect().width;
+              targetCss[key] = -navbar.getBoundingClientRect().width + 'px';
               break;
           }
           break;
       }
-      Object.entries(initCss).forEach(function(key,value){navbar.style[key]=value;});
+      Object.entries(initCss).forEach(function(key_value){navbar.style[key_value[0]]=key_value[1];});
       if (speed === 0) {
-        Object.entries(targetCss).forEach(function(key,value){navbar.style[key]=value;});
+        Object.entries(targetCss).forEach(function(key_value){navbar.style[key_value[0]]=key_value[1];});
         onAnimationEnd();
       } else {
         var spec = {
@@ -267,6 +260,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
      * @param page_id {String}
      */
     initializeNavbars: function (page_id) {
+      var self = this;
       this.removeInactiveNavbars(page_id);
       var tree = Array.from( document.querySelectorAll('#id_') );
       if (page_id !== "id_") {
@@ -284,46 +278,38 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         }
       }
       var level = 1;
+      var size = {top: 0, right: 0, bottom: 0, left: 0};
+      var dynamic = {top: null, right: null, bottom: null, left: null};
+      var positions = ['top','right','bottom','left'];
       tree.forEach(function (elem) {
         var id = elem.getAttribute('id');
-        var topNav = document.querySelector('#' + id + 'top_navbar');
-        var topData = cv.data.Model.getInstance().getWidgetData(id + 'top_navbar');
-        var rightNav = document.querySelector('#' + id + 'right_navbar');
-        var rightData = cv.data.Model.getInstance().getWidgetData(id + 'right_navbar');
-        var bottomNav = document.querySelector('#' + id + 'bottom_navbar');
-        var bottomData = cv.data.Model.getInstance().getWidgetData(id + 'bottom_navbar');
-        var leftNav = document.querySelector('#' + id + 'left_navbar');
-        var leftData = cv.data.Model.getInstance().getWidgetData(id + 'left_navbar');
-        // console.log(tree.length+"-"+level+"<="+topData.scope);
-        if (topNav) {
-          if (topData.scope === undefined || topData.scope < 0 || tree.length - level <= topData.scope) {
-            topNav.classList.add('navbarActive');
-          } else {
-            topNav.classList.remove('navbarActive');
+        positions.forEach(function (pos) {
+          var nav = document.querySelector('#' + id + pos+ '_navbar');
+          if (nav) {
+            var data = cv.data.Model.getInstance().getWidgetData(id + pos + '_navbar');
+            if (data.dynamic !== null) {
+              dynamic[pos] = data.dynamic;
+            }
+            self.navbars[pos].dynamic = dynamic[pos];
+            if (data.scope === undefined || data.scope < 0 || tree.length - level <= data.scope) {
+              nav.classList.add('navbarActive');
+            } else {
+              nav.classList.remove('navbarActive');
+            }
+            if (data.width !== null ) {
+              size[pos] = data.width;
+            } else {
+              if (size[pos] === 0) {
+                // navbar with content but no size given so far => use default
+                size[pos] = 300;
+              }
+            }
           }
-        }
-        if (rightNav) {
-          if (rightData.scope === undefined || rightData.scope < 0 || tree.length - level <= rightData.scope) {
-            rightNav.classList.add('navbarActive');
-          } else {
-            rightNav.classList.remove('navbarActive');
-          }
-        }
-        if (bottomNav) {
-          if (bottomData.scope === undefined || bottomData.scope < 0 || tree.length - level <= bottomData.scope) {
-            bottomNav.classList.add('navbarActive');
-          } else {
-            bottomNav.classList.remove('navbarActive');
-          }
-        }
-        if (leftNav) {
-          if (leftData.scope === undefined || leftData.scope < 0 || tree.length - level <= leftData.scope) {
-            leftNav.classList.add('navbarActive');
-          } else {
-            leftNav.classList.remove('navbarActive');
-          }
-        }
+        });
         level++;
+      });
+      positions.forEach(function (pos) {
+        self.navbarSetSize(pos, size[pos]);
       });
       cv.ui.layout.ResizeHandler.invalidateNavbar();
     },
