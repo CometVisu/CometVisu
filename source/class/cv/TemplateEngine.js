@@ -391,8 +391,10 @@ qx.Class.define('cv.TemplateEngine', {
       if (design) {
         var baseUri = 'designs/' + design;
         settings.stylesToLoad.push(baseUri + '/basic.css');
-        if (!settings.forceNonMobile) {
+        this.debug('cv.Config.mobileDevice: ' + cv.Config.mobileDevice);
+        if (cv.Config.mobileDevice) {
           settings.stylesToLoad.push(baseUri + '/mobile.css');
+          document.querySelector('body').classList.add('mobile');
         }
         settings.stylesToLoad.push(baseUri + '/custom.css');
         settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
@@ -402,11 +404,12 @@ qx.Class.define('cv.TemplateEngine', {
             this.error('Failed to load "'+design+'" design! Falling back to simplified "pure"');
 
             baseUri = 'designs/pure';
-            cv.util.ScriptLoader.getInstance().addStyles([
-              baseUri+"/basic.css",
-              baseUri+"/mobile.css",
-              baseUri+"/custom.css"
-            ]);
+            var alternativeStyles = [baseUri+'/basic.css'];
+            if (cv.Config.mobileDevice) {
+              alternativeStyles.push(baseUri+'/mobile.css');
+            }
+            alternativeStyles.push(baseUri+'/custom.css');
+            cv.util.ScriptLoader.getInstance().addStyles( alternativeStyles );
             cv.util.ScriptLoader.getInstance().addScripts(baseUri+"/design_setup.js");
           }
         }, this);
@@ -433,7 +436,6 @@ qx.Class.define('cv.TemplateEngine', {
 
         // as we are sure that the default CSS were loaded now:
         document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {
-          elem.setAttribute('media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
         });
         if (!cv.Config.cacheUsed) {
           this.debug("creating pages");
@@ -718,6 +720,19 @@ qx.Class.define('cv.TemplateEngine', {
       this.main_scroll.seekTo(page_id, speed); // scroll to it
 
       this.pagePartsHandler.initializeNavbars(page_id);
+      if (cv.Config.mobileDevice) {
+        switch (this.pagePartsHandler.navbars.left.dynamic) {
+          case null:
+          case true:
+            this.pagePartsHandler.fadeNavbar('Left', 'out', 0);
+            break;
+
+          case false:
+            this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
+        }
+      } else {
+        this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
+      }
     },
 
     selectDesign: function () {

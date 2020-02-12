@@ -4,15 +4,21 @@
     font-weight: 400;
     src: url("fonts/Dosis-Medium.ttf");
 }
-body 
-{ 
-  color: white;
-  font-family: Dosis, Helvetica, Arial, sans-serif;
-  font-size: 5.5mm;
-  overflow: hidden;
-  margin:0;
-  color:   	#fff   /*{a-body-color}*/;
-	text-shadow:   0   /*{a-body-shadow-x}*/   1px   /*{a-body-shadow-y}*/   1px   /*{a-body-shadow-radius}*/   #111   /*{a-body-shadow-color}*/;
+body {
+    color: white;
+    font-family: Dosis, Helvetica, Arial, sans-serif;
+    font-size: 5.5mm;
+    overflow: hidden;
+    margin: 0;
+    color: #fff /*{a-body-color}*/;
+    text-shadow: 0 /*{a-body-shadow-x}*/ 1px /*{a-body-shadow-y}*/ 1px /*{a-body-shadow-radius}*/ #111 /*{a-body-shadow-color}*/;
+}
+
+body,
+#navbarBottom,
+#navbarLeft,
+#navbarRight
+{
 	background:   			#222   /*{a-body-background-color}*/;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(   #444   /*{a-body-background-start}*/), to(   #222   /*{a-body-background-end}*/)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(   #444   /*{a-body-background-start}*/,   #222   /*{a-body-background-end}*/); /* Chrome 10+, Saf5.1+ */
@@ -597,15 +603,6 @@ div#demo_3 {
 	background-image:         linear-gradient(   #666,   #000);
 }
 #navbarTop .navbar .widget:not(.info), #navbarBottom .navbar .widget:not(.info) { background: none; }
-#navbarBottom  {
-	background: #333333;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(   #000), to(   #666));
-	background-image: -webkit-linear-gradient(  #000 ,   #666); 
-	background-image:    -moz-linear-gradient(   #000,   #666);
-	background-image:     -ms-linear-gradient(   #000,   #666);
-	background-image:      -o-linear-gradient(   #000,   #666);
-	background-image:         linear-gradient(   #000,   #666);
-}
 #navbarTop .navbar .widget:not(.info), #navbarBottom .navbar .widget:not(.info) {
 	margin: 0;
 	border-width:0;

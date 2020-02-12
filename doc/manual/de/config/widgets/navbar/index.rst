@@ -40,6 +40,24 @@ Mit ``scope="1"`` wird die Navbar auf das nächste Page-Element vererbt, d.h. ei
 der Unterseite wird zusätzlich zur Navbar der übergeordneten Page angezeigt, mit ``scope="2"`` wird um 2 Ebenen 
 vererbt, usw.
 
+Über das ``dynamic`` kann eingestellt werden, ob die Navbar angezeigt werden soll
+und unter welchen Bedingungen diese dynamisch ein- und ausgeblendet wird.
+Das Ein- und Ausblenden ist nur für die linke Navbar implementiert und benötigt
+ein touch-fähiges Gerät. Zum Einblenden muss vom linken Bildschirmrand in die
+Mitte horizontal gewischt werden, zum Ausblenden muss nach links gewischt werden.
+
++-------------+------------------------------------------+------------------------------------------+
+| ``dynamic`` | Mobiles Gerät                            | Großer Bildschirm                        |
++=============+==========================================+==========================================+
+| *leer*      | Wie auf der übergeordneten Seite, sonst: | Wie auf der übergeordneten Seite, sonst: |
+|             | Navbar ist ein- und ausblendbar.         | Navbar ist immer eingeblendet.           |
+|             | Nach Start ist diese ausgeblendet.       |                                          |
++-------------+------------------------------------------+------------------------------------------+
+| true        | Navbar ist ein- und ausblendbar.         | Navbar ist ein- und ausblendbar.         |
+|             | Nach Start ist diese ausgeblendet.       | Nach Start ist diese eingeblendet.       |
++-------------+------------------------------------------+------------------------------------------+
+| false       | Navbar ist immer eingeblendet.           | Navbar ist immer eingeblendet.           |
++-------------+------------------------------------------+------------------------------------------+
 
 Erlaubte Attribute im Navbar-Element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

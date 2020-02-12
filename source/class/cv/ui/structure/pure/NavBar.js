@@ -56,8 +56,9 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       init: 'left'
     },
     dynamic: {
-      check: "Boolean", 
-      init: false
+      check: "Boolean",
+      nullable : true,
+      init: null
     },
     visible: {
       refine: true,
@@ -75,6 +76,8 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
     _navbarLeft: '',
     _navbarRight: '',
     _navbarBottom: '',
+    _touchX: null,
+    _touchY: null,
 
     /**
      * Called on setup.dom.finished event with high priority. Adds the navbar dom string
@@ -89,6 +92,67 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
           }
         }
       }, this);
+
+      var self = this;
+      // Event handlers to allow navbar fade in and fade out.
+      // Currently only implemented for the major use case of a left navbar.
+      // TODO add logic for other navbars as well
+      // Logic:
+      //   To fade in the touch must start on the left screen side and then
+      //   swipe right.
+      //   To fade out all places on the screen are fine.
+      //   There is a minimum swipe distance and the direction must be mostly
+      //   horizontal (up to +/-45° tolerance is allowed)
+      //   When during a valid swipe the direction is reversed the fading
+      //   action is also reverted.
+      document.addEventListener('touchstart', function (evt) {
+        var
+          touches = evt.touches[0],
+          pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+
+        if (pPH.navbars.left.dynamic === false ||
+          (!cv.Config.mobileDevice && pPH.navbars.left.dynamic !== true) ||
+          (!pPH.navbars.left.fadeVisible && touches.clientX > 20)) { // left navbar is not visible but the finger isn't on the left end -> not relevant
+          return;
+        }
+
+        self._touchX = touches.clientX;
+        self._touchY = touches.clientY;
+      }, false);
+      document.addEventListener('touchend', function () {
+        self._touchX = null;
+        self._touchY = null;
+      }, false);
+      document.addEventListener('touchmove', function (evt) {
+        if (self._touchX === null) {
+          return; // early exit as this touch isn't relevant for us
+        }
+
+        var
+          touches = evt.touches[0],
+          x = touches.clientX - self._touchX,
+          y = touches.clientY - self._touchY,
+          necessaryDistance = 10,
+          enoughDistance = Math.abs(x) > necessaryDistance,
+          horizontal = Math.abs(x) > Math.abs(y),
+          toRight = x > 0;
+        if (horizontal && enoughDistance) {
+          var pPH = cv.TemplateEngine.getInstance().pagePartsHandler;
+          if (toRight) {
+            self._touchX = touches.clientX - necessaryDistance;
+            self._touchY = touches.clientY;
+            if (!pPH.navbars.left.fadeVisible) {
+              pPH.fadeNavbar('Left', 'in', 250);
+            }
+          } else { // !toRight
+            self._touchX = touches.clientX + necessaryDistance;
+            self._touchY = touches.clientY;
+            if (pPH.navbars.left.fadeVisible) {
+              pPH.fadeNavbar('Left','out',250);
+            }
+          }
+        }
+      }, false);
     }
   },
   
@@ -98,15 +162,8 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
   ******************************************************
   */
   members: {
-    __navbarLeftSize: null,
-    __navbarRightSize: null,
-
     // overridden
     _onDomReady: function() {
-      var left = document.querySelector('#navbarLeft');
-      var right = document.querySelector('#navbarRight');
-      this.__navbarLeftSize = left ? left.dataset['size'] : 0;
-      this.__navbarRightSize = right ? right.dataset['size'] : 0;
     },
     
     getGlobalPath: function () {
@@ -126,8 +183,6 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
       container += '</div>';
 
-      var templateEngine = cv.TemplateEngine.getInstance();
-      var thisSize;
       // add this to the navbars in DOM not inside the page
       switch (this.getPosition()) {
         case 'top':
@@ -136,25 +191,17 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
 
         case 'left':
           this.self(arguments)._navbarLeft += container;
-          thisSize = this.__navbarLeftSize || this.getWidth(); // FIXME - only a temporal solution
-          if (this.isDynamic()) {
-            templateEngine.pagePartsHandler.navbarSetSize('left', thisSize);
-          }
           break;
 
         case 'right':
           this.self(arguments)._navbarRight += container;
-          thisSize = this.__navbarRightSize || this.getWidth(); // FIXME - only a temporal solution
-          if (this.isDynamic()) {
-            templateEngine.pagePartsHandler.navbarSetSize('right', thisSize);
-          }
           break;
 
         case 'bottom':
           this.self(arguments)._navbarBottom += container;
           break;
       }
-      templateEngine.pagePartsHandler.navbars[this.getPosition()].dynamic |= this.getDynamic();
+
       return '';
     }
   },
