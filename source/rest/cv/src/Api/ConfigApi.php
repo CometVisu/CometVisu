@@ -13,6 +13,7 @@ class ConfigApi extends AbstractConfigApi
     protected $configFile;
     protected $apiConfig;
     protected $hidden;
+    protected $escapeChars = "'";
 
 
     public function __construct(ContainerInterface $container)
@@ -159,10 +160,12 @@ EOD;
     $value = $request->getParsedBody();
     forEach($value as $section) {
       if ($section['name']) {
-        $this->hidden[$section['name']] = array();
+        $sectionName = addcslashes($section['name'], $this->escapeChars);
+        $this->hidden[$sectionName] = array();
         forEach ($section['options'] as $option) {
           if ($option['key']) {
-            $this->hidden[$section['name']][$option['key']] = $option['value'];
+            $optionKey = addcslashes($option['key'], $this->escapeChars);
+            $this->hidden[$sectionName][$optionKey] = addcslashes($option['value'], $this->escapeChars);
           }
         };
       }
@@ -177,10 +180,10 @@ EOD;
 
   public function updateHiddenConfig(ServerRequestInterface $request, ResponseInterface $response, array $args)
   {
-    $section = $args['section'];
-    $key = $args['key'];
+    $section = addcslashes($args['section'], $this->escapeChars);
+    $key = addcslashes($args['key'], $this->escapeChars);
     // TODO: sanitize key / value
-    $value = $request->getParsedBody();
+    $value = addcslashes($request->getParsedBody(), $this->escapeChars);
 
     if (array_key_exists($section, $this->hidden) && array_key_exists($key, $this->hidden[$section])) {
       $this->hidden[$section][$key] = $value;
