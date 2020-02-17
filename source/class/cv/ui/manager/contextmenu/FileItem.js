@@ -259,7 +259,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
              if (this._selectedNode.isConfigFile()) {
                qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file', this._selectedNode.getParent());
              } else {
-               qx.event.message.Bus.dispatchByName('cv.manager.action.new-file', this._selectedNode.getParent());
+               qx.event.message.Bus.dispatchByName('cv.manager.action.new-file', this._selectedNode.getType() === 'dir' ? this._selectedNode : this._selectedNode.getParent());
              }
            }, this);
            break;
@@ -273,7 +273,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
          case 'new-folder-button':
            control = new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18));
            control.addListener('execute', function () {
-             qx.event.message.Bus.dispatchByName('cv.manager.action.new-folder', this._selectedNode.getParent());
+             qx.event.message.Bus.dispatchByName('cv.manager.action.new-folder', this._selectedNode.getType() === 'dir' ? this._selectedNode : this._selectedNode.getParent());
            }, this);
            break;
 
