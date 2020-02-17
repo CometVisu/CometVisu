@@ -47,7 +47,9 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
       if (file) {
         var match = /.*visu_config_?(.*)\.xml/.exec(file.getName());
         if (match) {
-          this._iframe = new qx.ui.embed.Iframe(qx.util.Uri.appendParamsToUrl(this.__basePath, 'embed=0&config=' + match[1]));
+          this._iframe = new qx.ui.embed.Iframe(qx.util.Uri.appendParamsToUrl(this.__basePath, 'embed=0&config=' + match[1]) + '&demo=' + (
+            file.getParentFolder() === 'demo/' ? 'true' : 'false'
+          ));
           this._iframe.addListener('load', function () {
             // inject save method
             this._iframe.getWindow().saveFromIframe = this.saveFromIframe.bind(this);
