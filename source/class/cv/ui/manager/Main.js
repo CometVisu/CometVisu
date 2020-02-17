@@ -149,7 +149,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     canHandleAction: function (actionName) {
-      if (actionName === 'delete' && this.getCurrentSelection() && this.getCurrentSelection().isWriteable()) {
+      if (actionName === 'delete' && this.getCurrentSelection() && !this.getCurrentSelection().isWriteable()) {
         // needs a writeable file
         return false;
       }
