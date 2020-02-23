@@ -59,18 +59,31 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     _dateFormat: null,
     _timeFormat: null,
     _renameDialog: null,
+    _noCompare: false,
 
     configure: function (file) {
       this._selectedNode = file;
       if (file) {
-        var folder = file.getType() === 'folder' ? file : file.getParent();
+        var isFolder = file.getType() === 'dir';
+        var folder = isFolder ? file : file.getParent();
         var isBackup = false;
         if (folder && folder.getFullPath().startsWith('backup') || file.getFullPath().startsWith('backup')) {
           isBackup = true;
         }
-        this.getChildControl('new-file-button').setEnabled(folder && !isBackup ? folder.isWriteable() : false);
+        if (!isFolder) {
+          this.getChildControl('new-file-button').exclude();
+          this.getChildControl('new-folder-button').exclude();
+        } else {
+          this.getChildControl('new-file-button').set({
+            enabled: folder && !isBackup ? folder.isWriteable() : false,
+            visibility: 'visible'
+          });
+          this.getChildControl('new-folder-button').set({
+            enabled: folder && !isBackup ? folder.isWriteable() : false,
+            visibility: 'visible'
+          });
+        }
         this.getChildControl('clone-file-button').setVisibility(file.isConfigFile() && !isBackup ? 'visible' : 'excluded');
-        this.getChildControl('new-folder-button').setEnabled(folder && !isBackup ? folder.isWriteable() : false);
         this.getChildControl('delete-button').setLabel(file.isTrash() ?
           this.tr('Clear') :
           this.tr('Delete'));
@@ -165,9 +178,13 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     },
 
     _init: function () {
-      this.add(this.getChildControl('new-file-button'));
+      if (!this._noNew) {
+        this.add(this.getChildControl('new-file-button'));
+      }
       this.add(this.getChildControl('clone-file-button'));
-      this.add(this.getChildControl('new-folder-button'));
+      if (!this._noNew) {
+        this.add(this.getChildControl('new-folder-button'));
+      }
       this.add(new qx.ui.menu.Separator());
       this.add(this.getChildControl('open-button'));
       this.add(this.getChildControl('open-with-button'));
