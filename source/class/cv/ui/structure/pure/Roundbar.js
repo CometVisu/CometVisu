@@ -105,10 +105,10 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
         var
           rMax = Math.max(rI, rO),
           isInside = function(a) {return  (startAngle < a && a < endAngle) || (startAngle > a && a > endAngle);},
-          rMiddle = isInside(Math.PI*0/2) ?  rMax : startInner.x,
-          uMiddle = isInside(Math.PI*1/2) ? -rMax : startInner.y,
-          lMiddle = isInside(Math.PI*2/2) ? -rMax : startInner.x,
-          dMiddle = isInside(Math.PI*3/2) ?  rMax : startInner.y;
+          rMiddle = isInside(-Math.PI*4/2) || isInside(Math.PI*0/2) ?  rMax : startInner.x,
+          uMiddle = isInside(-Math.PI*3/2) || isInside(Math.PI*1/2) ? -rMax : startInner.y,
+          lMiddle = isInside(-Math.PI*2/2) || isInside(Math.PI*2/2) ? -rMax : startInner.x,
+          dMiddle = isInside(-Math.PI*1/2) || isInside(Math.PI*3/2) ?  rMax : startInner.y;
         return {
           u: Math.min(startInner.y, startMiddle.y, startOuter.y, endInner.y, endMiddle.y, endOuter.y, uMiddle),
           d: Math.max(startInner.y, startMiddle.y, startOuter.y, endInner.y, endMiddle.y, endOuter.y, dMiddle),
@@ -380,12 +380,14 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
       if (this.getAxisradius() > 0) {
         var
           sectorPath = createBarPath(s,0,e,0,0,this.getAxisradius(),0),
-          axisPath = createBarPath(s,0,e,0,0,this.getAxisradius(),this.getAxiswidth());
+          axisPath = createBarPath(s,0,e,0,0,this.getAxisradius(),this.getAxiswidth()),
+          stroke = this.getAxiscolor() === '' ? undefined : this.getAxiscolor(),
+          fill   = this.getAxiswidth() < 1 ? 'none' : stroke;
         html +=
           '<path class="sector" d="'+sectorPath+' L0 0Z"/>' +
           '<path class="axis" d="'+axisPath+'" style="' +
-          (this.getAxiswidth() < 1 ? 'fill:none' : '') +
-          (this.getAxiscolor()!== '' ? 'stroke:'+this.getAxiscolor() : '') +
+          (stroke ? 'stroke:'+stroke : '') +
+          (fill   ? ';fill:' +fill   : '') +
           '"/>';
       }
 

@@ -119,23 +119,23 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
           'majorwidth': {"default": 0.0, transform: parseFloat},
           'majorposition': {"default": "min;max"},
           'majorcolor': {"default": ""},
-          'start': {"default": 180.0, transform: deg2rad},
-          'startarrow': {"default": 0.0, transform: parseFloat},
+          'start': {"default": 270.0, transform: deg2rad},
+          'startarrow': {"default": 5.0, transform: parseFloat},
           'end': {"default": 0.0, transform: deg2rad},
-          'endarrow': {"default": 0.0, transform: parseFloat},
+          'endarrow': {"default": -5.0, transform: parseFloat},
           'arrowtype': { "default": 0, transform: function(t){ return ({'angle':0,'distance':1})[t] || 0; } },
           'radius': {"default": 50.0, transform: parseFloat},
           'width': {"default": 10.0, transform: parseFloat},
           'spacing': {"default": 10.0, transform: parseFloat},
-          'overflowarrow': { "default": false, transform: function (value) { return value === "true"; } },
-          'fontsize': {"default": 10, transform: parseFloat},
-          'textx': {"default": 0, transform: parseFloat},
-          'texty': {"default": 0, transform: parseFloat},
+          'overflowarrow': { "default": 'true', transform: function (value) { return value === "true"; } },
+          'fontsize': {"default": 40, transform: parseFloat},
+          'textx': {"default": 10, transform: parseFloat},
+          'texty': {"default": 50, transform: parseFloat},
           'textlength': {"default": 0, transform: parseFloat},
           'textanchor': {"default": ""},
           'linespace': {"default": 12, transform: parseFloat},
           'bboxgrow': {"default": 1.0, transform: parseFloat},
-          'debug': {"default": false, transform: function(v){return v === "true";}},
+          'debug': {"default": false, transform: function(v){return v === "true";}}
         },
         thisPreset = ({
           'A': {
@@ -148,12 +148,19 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
           'B': {
             start: 360,
             end: 135,
-            majorwidth: 50.0,
-            majorposition: "min",
+            //majorwidth: 50.0,
+            //majorposition: "min",
             fontsize: 20,
             linespace: -25,
             textx: 0,
             texty: -10
+          },
+          'bridge': {
+            start: 180,
+            end: 0,
+            textanchor: 'middle',
+            textx: 0,
+            texty: 0
           }
         })[preset] || {};
 

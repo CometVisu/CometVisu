@@ -1182,6 +1182,140 @@
         </navbar>
       </page>
     </page>
+    <page name="Roundbar Test">
+      <slide min="-5" max="105">
+        <layout colspan="3"/>
+        <address transform="DPT:9" mode="readwrite">12/7/90</address>
+      </slide>
+      <slide min="-5" max="105">
+        <layout colspan="3"/>
+        <address transform="DPT:9" mode="readwrite">12/7/91</address>
+      </slide>
+      <slide min="-5" max="105">
+        <layout colspan="3"/>
+        <address transform="DPT:9" mode="readwrite">12/7/92</address>
+      </slide>
+      <slide min="-5" max="105">
+        <layout colspan="3"/>
+        <address transform="DPT:9" mode="readwrite">12/7/93</address>
+      </slide>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <text align="center">
+        <label>Default</label>
+        <layout colspan="2"/>
+      </text>
+      <text align="center">
+        <label>Multi</label>
+        <layout colspan="2"/>
+      </text>
+      <text align="center">
+        <label>Pointer</label>
+        <layout colspan="2"/>
+      </text>
+      <text align="center">
+        <label>Marker</label>
+        <layout colspan="2"/>
+      </text>
+      <text align="center">
+        <label>Complex color</label>
+        <layout colspan="2"/>
+      </text>
+      <text align="center">
+        <label>Ranges</label>
+        <layout colspan="2"/>
+      </text>
+      <roundbar format="%.1f">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001">12/7/90</address>
+      </roundbar>
+      <roundbar format="%.1f" fontsize="25" linespace="26">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001">12/7/90</address>
+        <address transform="DPT:9.001">12/7/91</address>
+        <address transform="DPT:9.001">12/7/92</address>
+      </roundbar>
+      <roundbar format="%.1f">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001" fill="white" stroke="white">12/7/90</address>
+        <address transform="DPT:9.001" type="pointer" showvalue="false" radius="55" thickness="10">12/7/91</address>
+      </roundbar>
+      <roundbar format="%.1f" majorradius="50" majorwidth="15" minorradius="45" minorwidth="5">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001">12/7/90</address>
+      </roundbar>
+      <roundbar format="%.1f" fontsize="25" linespace="26">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001" type="pointer" showvalue="false" radius="50" width="50">12/7/93</address>
+        <address transform="DPT:9.001" fill="#3f20ff" stroke="#3f20ff" radius="50">12/7/90</address>
+        <address transform="DPT:9.001" fill="#9f009f" stroke="#9f009f">12/7/91</address>
+        <address transform="DPT:9.001" fill="#ff003f" stroke="#ff003f">12/7/92</address>
+        <address transform="DPT:9.001" type="pointer" showvalue="false" radius="100" thickness="10">12/7/93</address>
+      </roundbar>
+      <roundbar format="%.1f" ranges="70...90,45,5,yellow;90...100,45,20,red" >
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001">12/7/90</address>
+      </roundbar>
+      <text align="center">
+        <label>Preset "A"</label>
+        <layout colspan="2"/>
+      </text>
+      <text align="center">
+        <label>Preset "B"</label>
+        <layout colspan="2"/>
+      </text>
+      <text align="center">
+        <label>Preset "bridge"</label>
+        <layout colspan="2"/>
+      </text>
+      <text align="center">
+        <label>Modified "B"</label>
+        <layout colspan="2"/>
+      </text>
+      <text align="center">
+        <label>Modified "bridge"</label>
+        <layout colspan="2"/>
+      </text>
+      <text align="center">
+        <label>Full custom</label>
+        <layout colspan="2"/>
+      </text>
+      <break/>
+      <roundbar preset="A" format="%.1f">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001">12/7/90</address>
+      </roundbar>
+      <roundbar preset="B" format="%.1f">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001">12/7/90</address>
+      </roundbar>
+      <roundbar preset="bridge" format="%.1f">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001">12/7/90</address>
+      </roundbar>
+      <roundbar preset="B" format="%.1f" axiswidth="2" axiscolor="white" startarrow="0" endarrow="0">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001" fill="#555" stroke="none" radius="0" width="49">12/7/90</address>
+        <address transform="DPT:9.001" type="pointer" showvalue="false" radius="52" width="-52" thickness="5">12/7/90</address>
+      </roundbar>
+      <roundbar preset="bridge" axiswidth="10" axiscolor="#444" format="%.1f" start="190" end="-10" min="-5" max="105"
+                ranges="-5...0,63,3,red;0...90,63,3,green;90...100,63,3,yellow;100...105,63,3,red" texty="10">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001">12/7/90</address>
+      </roundbar>
+      <roundbar format="%.1f °C" start="-135" end="135" textanchor="end" fontsize="25" textx="15" texty="10" axisradius="0"
+                overflowarrow="false" startarrow="0" endarrow="10"
+                ranges="0...73.4,30,1,white;0,25,5,white;10,25,5,white;20,25,5,white;30,25,5,white;40,25,5,white;50,25,5,white;60,25,5,white;70,25,5,white;75...75.2,30,3,yellow;75...93.4,30,1,yellow;80,25,5,yellow;90,25,5,yellow;95...95.2,30,3,red;95...100,30,1,red;100,25,5,red">
+        <layout rowspan="2" colspan="2"/>
+        <address transform="DPT:9.001" radius="23.5" width="3">12/7/90</address>
+        <address transform="DPT:9.001" type="pointer" showvalue="false" radius="31" width="6" thickness="6" stroke="yellowgreen" fill="none">12/7/91</address>
+        <address transform="DPT:9.001" type="pointer" showvalue="false" radius="31" width="-10" stroke="yellowgreen" fill="none">12/7/91</address>
+        <address transform="DPT:9.001" type="pointer" showvalue="false" radius="31" width="6" thickness="6" stroke="mediumslateblue" fill="none">12/7/92</address>
+        <address transform="DPT:9.001" type="pointer" showvalue="false" radius="31" width="-10" stroke="mediumslateblue" fill="none">12/7/92</address>
+      </roundbar>
+
+    </page>
     <break/>
     <page name="2D fixed Bitmap" type="2d" backdrop="demo/media/demo_2d_backdrop_floorplan.png" align="center" size="fixed">
       <switch mapping="On_Off" styling="Red_Green">
