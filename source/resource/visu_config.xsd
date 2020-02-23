@@ -142,7 +142,12 @@
         <xsd:attribute ref="transform" use="required" />
         <xsd:attribute ref="mode" use="optional" />
         <xsd:attribute name="variant" type="xsd:string" use="optional" />
-        <xsd:attribute name="format-pos" type="xsd:decimal" use="optional" />
+        <xsd:attribute name="format-pos" type="xsd:decimal" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Position for format string when multiple addresses are used.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -1162,6 +1167,7 @@
       <xsd:element name="video" type="video" />
       <xsd:element name="web" type="web" />
       <xsd:element name="rgb" type="rgb" />
+      <xsd:element name="roundbar" type="roundbar" />
       <xsd:element name="pagejump" type="pagejump" />
       <xsd:element name="wgplugin_info" type="wgplugin_info"/>
       <xsd:element name="mobilemenu" type="mobilemenu"/>
@@ -1414,7 +1420,7 @@
     <xsd:attribute ref="class" use="optional" />
     <xsd:attribute ref="send-long-on-release" use="optional"/>
   </xsd:complexType>
-  
+
   <xsd:complexType name="rgb">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
@@ -1422,6 +1428,61 @@
       <xsd:element name="address" type="address" minOccurs="3" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute ref="flavour" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="roundbaraddress">
+    <xsd:simpleContent>
+      <xsd:extension base="addr">
+        <xsd:attribute ref="transform" use="required" />
+        <xsd:attribute ref="mode" use="optional" />
+        <xsd:attribute name="type" type="xsd:string" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Type of the indikators, bar or pointer.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Art des Indikators, Balken oder Zeiger.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="bar" />
+              <xsd:enumeration value="pointer" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="roundbar">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="roundbaraddress" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute name="textanchor" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Orientation of value display in relation to the anchor point.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Orientierung der Wert-Anzeige in Relation zum Ankerpunkt.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="start" />
+          <xsd:enumeration value="middle" />
+          <xsd:enumeration value="end" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="bboxgrow" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Enlargement of the mounding box to take care of sticking out parts.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Vergrößerung der Bounding-Box um überstehende Elemente zu berücksichtigen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="DUMMY" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">.</xsd:documentation>
+        <xsd:documentation xml:lang="de">.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="multitrigger">

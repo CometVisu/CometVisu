@@ -258,6 +258,24 @@ button.ui-slider-handle {
   min-height: 2em;
 }
 
+.roundbar > .actor {
+  position: relative;
+  height: 100%;
+}
+
+.roundbar .axis,
+.roundbar .major,
+.roundbar .minor {
+  stroke: white;
+}
+.roundbar .indicator {
+  fill: #FF8000;
+  stroke: #FF8000;
+}
+.roundbar .value {
+  fill: white;
+}
+
 #notification-center {
   position: absolute;
   width: 300px;
