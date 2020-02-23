@@ -120,7 +120,7 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
               cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('File has been uploaded'));
               qx.event.message.Bus.dispatchByName('cv.manager.file', {
                 action: 'uploaded',
-                path: this.getFolder().getFullPath() + '/' + filename
+                path: this.getFolder().getFullPath() + '/' + file.getFilename()
               });
             }
           }
