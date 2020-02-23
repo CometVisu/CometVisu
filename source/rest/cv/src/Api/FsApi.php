@@ -42,7 +42,7 @@ class FsApi extends AbstractFsApi
     return $this->__processRequest($request, $response, function ($request, $response, $fsPath, $mount) {
       return $this->createFolder($response, $fsPath);
     }, function ($request, $response, $fsPath, $mount) {
-      return $this->createFile($response, $fsPath, $request->getBody(), $request->getQueryParam('hash'));
+      return $this->createFile($response, $fsPath, $request->getUploadedFiles(), $request->getQueryParam('hash'), $request->getParsedBody());
     }, 'create');
   }
 
@@ -123,7 +123,7 @@ class FsApi extends AbstractFsApi
       if (!$this->checkAccess($fsPath) || ($mount && $mount['writeable'] === false && $type !== 'read')) {
         $response->withStatus(403);
       } else {
-        if (is_dir($fsPath) || ($type === 'create' && $request->getQueryParam('type') === 'dir')) {
+        if (($type !== 'create' && is_dir($fsPath)) || ($type === 'create' && $request->getQueryParam('type') === 'dir')) {
           if ($folderCallback) {
             return $folderCallback($request, $response, $fsPath, $mount);
                   }
@@ -250,16 +250,30 @@ class FsApi extends AbstractFsApi
    * @param $response {ResponseInterface}
    * @param $file {String} absolute path to file
    * @param $content {String} file content
+   * @param $options {Array} additional options fpr this request
    */
-  private function createFile(ResponseInterface $response, $file, $content, $hash) {
+  private function createFile(ResponseInterface $response, $dirname, $files, $hash, $options = []) {
     try {
-      $dirname = dirname($file);
+      $uploadedFile = $files['file'];
       if (!file_exists($dirname)) {
         // create missing dirs first
         mkdir($dirname, 0777, true);
       }
-      FileHandler::createFile($file, $content, $hash);
-      return $response->withStatus(200);
+
+      $file = $dirname . DIRECTORY_SEPARATOR . ($options['filename'] ? $options['filename'] : $uploadedFile->getClientFileName());
+      if (file_exists($file) && (!$options || !$options['force'])) {
+        throw new Exception('File already exists', 406);
+      } else if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
+        $content = file_get_contents($uploadedFile->file);
+        if ($content) {
+          FileHandler::saveFile($file, $content, $hash);
+          return $response->withStatus(200);
+        } else {
+          throw new Exception('Uploaded file could not be read', 406);
+        }
+      } else {
+        throw new Exception('File upload failed with error code: ' . $uploadedFile->getError(), 406);
+      }
     } catch (Exception $e) {
       return $response->withJson(array('message' => $e->getMessage()))->withStatus($e->getCode());
     }

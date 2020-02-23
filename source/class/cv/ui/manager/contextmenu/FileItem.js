@@ -153,7 +153,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         this.getChildControl('validate-config-button').setVisibility(file.isConfigFile() && !file.isMounted() && !isBackup ? 'visible' : 'excluded');
 
         // replacement button
-        if (file.getType() === 'file' && !isBackup) {
+        if (!isFolder && !isBackup) {
           this.getChildControl('replace-button').show();
           this._replacementManager.setFilename(file.getName());
           this._replacementManager.setFolder(file.getParent());

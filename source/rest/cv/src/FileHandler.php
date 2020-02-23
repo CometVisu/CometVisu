@@ -44,64 +44,60 @@ class FileHandler
 
   public static function saveFile($file, $content, $hash) {
     $apiConfig = include("config.php");
+    $contentHash = sprintf('%u', crc32($content));
     if ($hash) {
-      $contentHash = sprintf('%u', crc32($content));
       if ($hash !== "ignore" && $hash != $contentHash) {
         // data has been corrupted during transport
         throw new Exception('data has been corrupted during transport' . $hash . ' !=' . sprintf('%u', $contentHash), 405);
       }
-      $backupFilename = "";
-      $backupSuffix = rand();
-      $backup = false;
-      forEach($apiConfig->backupOnChange as $b) {
-        if (preg_match($b, $file) === 1) {
-          $backup = true;
-          break;
-        }
+    }
+    $backupFilename = "";
+    $backupSuffix = rand();
+    $backup = false;
+    forEach($apiConfig->backupOnChange as $b) {
+      if (preg_match($b, $file) === 1) {
+        $backup = true;
+        break;
       }
-      $fileExists = file_exists($file);
-      if ($backup && $fileExists) {
-        // store permanent backup of existing file before change
-        $parts = explode('.', basename($file));
-        $suffix = array_pop($parts);
-        $now = date('YmdHis');
-        $backupFilename = join('.', $parts) . '-' . $now
-          . '.' . $suffix;
-        $target = $apiConfig->backupFolder . '/' . $backupFilename;
-        if (!copy($file, $target)) {
-          throw new Exception( 'backup failed, please check if the backup folder is writeable', 405);
-        }
+    }
+    $fileExists = file_exists($file);
+    if ($backup && $fileExists) {
+      // store permanent backup of existing file before change
+      $parts = explode('.', basename($file));
+      $suffix = array_pop($parts);
+      $now = date('YmdHis');
+      $backupFilename = join('.', $parts) . '-' . $now
+        . '.' . $suffix;
+      $target = $apiConfig->backupFolder . '/' . $backupFilename;
+      if (!copy($file, $target)) {
+        throw new Exception( 'backup failed, please check if the backup folder is writeable', 405);
       }
-      if ($fileExists) {
-        // 1. create backup of existing file (this is just a temporary backup
-        copy($file, $file . $backupSuffix);
-      }
-      // 2. write new content
-      if (file_put_contents($file, $content) === false) {
-        throw new Exception('file not written', 405);
-      } else {
-        // 3. check hash of written file
-        $writtenContent = file_get_contents($file);
-        $newHash = sprintf('%u', crc32($writtenContent));
-        if ($newHash !== $contentHash) {
-          // something went wrong -> restore old file content
-          if ($fileExists) {
-            copy($file . $backupSuffix, $file);
-            if ($backupFilename) {
-              // no changes no need for backup file
-              unlink($backupFilename);
-            }
-          }
-          throw new Exception('hash mismatch on written content', 405);
-        }
-      }
-      if ($fileExists) {
-        unlink($file . $backupSuffix);
-      }
+    }
+    if ($fileExists) {
+      // 1. create backup of existing file (this is just a temporary backup
+      copy($file, $file . $backupSuffix);
+    }
+    // 2. write new content
+    if (file_put_contents($file, $content) === false) {
+      throw new Exception('file not written', 405);
     } else {
-      if (file_put_contents($file, $content) === false) {
-        throw new Exception('file not written', 405);
+      // 3. check hash of written file
+      $writtenContent = file_get_contents($file);
+      $newHash = sprintf('%u', crc32($writtenContent));
+      if ($newHash !== $contentHash) {
+        // something went wrong -> restore old file content
+        if ($fileExists) {
+          copy($file . $backupSuffix, $file);
+          if ($backupFilename) {
+            // no changes no need for backup file
+            unlink($backupFilename);
+          }
+        }
+        throw new Exception('hash mismatch on written content', 405);
       }
+    }
+    if ($fileExists) {
+      unlink($file . $backupSuffix);
     }
   }
 

@@ -183,8 +183,14 @@ qx.Class.define('cv.ui.manager.ToolBar', {
 
     },
 
-    _applyFolder: function () {
-
+    _applyFolder: function (value) {
+      if (this._uploadManager) {
+        if (value) {
+          this._uploadManager.setFolder(value)
+        } else {
+          this._uploadManager.resetFolder()
+        }
+      }
     }
   },
 

@@ -91,11 +91,15 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
               // something went wrong
               switch (file.getStatus()) {
                 case 406:
-                  dialog.Dialog.confirm(qx.locale.Manager.tr('This file already exists, do you want to replace it?'), function (confimed) {
-                    if (confimed) {
-                      this.forceUpload(file);
-                    }
-                  }, this, qx.locale.Manager.tr('File already exists'));
+                  if (this.isForce()) {
+                    cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Replacing the file failed.'));
+                  } else {
+                    dialog.Dialog.confirm(qx.locale.Manager.tr('This file already exists, do you want to replace it?'), function (confirmed) {
+                      if (confirmed) {
+                        this.forceUpload(file);
+                      }
+                    }, this, qx.locale.Manager.tr('File already exists'));
+                  }
                   break;
 
                 case 403:
@@ -170,6 +174,9 @@ qx.Class.define("cv.ui.manager.upload.UploadMgr", {
       var file = new com.zenesis.qx.upload.File(bomFile, filename, id);
       var fileSize = typeof bomFile.size !== "undefined" ? bomFile.size : bomFile.fileSize;
       file.setSize(fileSize);
+      if (this.isForce()) {
+        file.setParam('force', true);
+      }
       file.setUploadWidget(new com.zenesis.qx.upload.UploadButton());
 
       this.getUploadHandler()._addFile(file);
