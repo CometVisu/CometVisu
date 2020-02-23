@@ -10,7 +10,8 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
   include: [
     qx.ui.core.MMultiSelectionHandling,
     qx.ui.core.MRemoteChildrenHandling,
-    qx.ui.form.MModelSelection
+    qx.ui.form.MModelSelection,
+    cv.ui.manager.control.MFileEventHandler
   ],
 
   /*
@@ -231,6 +232,40 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
           this._controller.resetModel();
         }
         this._newItem.resetParent();
+      }
+    },
+
+    _handleFileEvent: function (ev) {
+      var folder = this.getFile();
+      var data = ev.getData();
+      switch (data.action) {
+        case 'moved':
+          folder.reload();
+          break;
+
+        case 'added':
+        case 'uploaded':
+          if (data.path.startsWith(folder.getFullPath())) {
+            folder.reload();
+          }
+          break;
+
+        case 'deleted':
+          if (data.path === folder.getFullPath()) {
+            // this item has been deleted
+            this.dispose();
+          } else if (data.path.startsWith(folder.getFullPath())) {
+            // delete child
+            var children = folder.getChildren();
+            children.some(function (child) {
+              if (child.getFullPath() === data.path) {
+                children.remove(child);
+                this.removeRelatedBindings(child);
+                return true;
+              }
+            }, this);
+          }
+          break;
       }
     },
 
