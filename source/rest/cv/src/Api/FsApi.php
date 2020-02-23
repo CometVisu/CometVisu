@@ -152,6 +152,9 @@ class FsApi extends AbstractFsApi
       } else {
         $relFolder = substr($path, strlen($this->baseDir));
       }
+      if (substr($relFolder, 0, 1) === '/') {
+        $relFolder = substr($relFolder, 1);
+      }
       if (strlen($relFolder) > 0) {
         $relFolder .= '/';
       }
