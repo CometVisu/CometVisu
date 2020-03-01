@@ -105,6 +105,13 @@ qx.Class.define('cv.ui.manager.ToolBar', {
         }, this);
         createPart.add(newButton);
       }
+      if (this.__show('new-folder')) {
+        newButton = this._createButton('new-folder', cv.theme.dark.Images.getIcon('new-folder', 15), true);
+        newButton.addListener('execute', function () {
+          qx.event.message.Bus.dispatchByName('cv.manager.action.new-folder',this.getFolder());
+        }, this);
+        createPart.add(newButton);
+      }
 
       if (this.__show('upload')) {
         var upload = this._createButton('upload');

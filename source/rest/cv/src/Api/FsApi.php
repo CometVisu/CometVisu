@@ -47,11 +47,10 @@ class FsApi extends AbstractFsApi
         // upload file mode, get the information from the uploaded file
         $options = $request->getParsedBody();
         if (!array_key_exists("filename", $options)) {
-          $options["filename"] = $uploadedFiles[0]->getClientFileName();
+          $options["filename"] = $uploadedFiles["file"]->getClientFileName();
         } else {
           $options["filename"] = urldecode($options["filename"]);
         }
-        var_dump($options);
         return $this->createFile($response, $fsPath, $uploadedFiles, $request->getQueryParam('hash'), $options);
       } else {
         $options = [];

@@ -28,7 +28,8 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
     file: {
       check: 'cv.ui.manager.model.FileItem',
       nullable: true,
-      apply: '_applyFile'
+      apply: '_applyFile',
+      event: 'changeFile'
     }
   },
 

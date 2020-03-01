@@ -198,7 +198,7 @@ qx.Class.define('cv.ui.manager.Start', {
            break;
 
          case 'configs':
-           control = new cv.ui.manager.viewer.Folder();
+           control = new cv.ui.manager.viewer.Folder(true);
            control.set({
              showTextFilter: false,
              permanentFilter: function (file) {
@@ -227,7 +227,7 @@ qx.Class.define('cv.ui.manager.Start', {
            break;
 
          case 'demo-configs':
-           control = new cv.ui.manager.viewer.Folder();
+           control = new cv.ui.manager.viewer.Folder(true);
            control.set({
              showTextFilter: false,
              permanentFilter: function (file) {
@@ -265,7 +265,7 @@ qx.Class.define('cv.ui.manager.Start', {
            break;
 
          case 'media':
-           control = new cv.ui.manager.viewer.Folder();
+           control = new cv.ui.manager.viewer.Folder(true);
            control.set({
              showTextFilter: false,
              disableScrolling: true
@@ -282,7 +282,7 @@ qx.Class.define('cv.ui.manager.Start', {
            break;
 
          case 'misc':
-           control = new cv.ui.manager.viewer.Folder();
+           control = new cv.ui.manager.viewer.Folder(true);
            control.set({
              showTextFilter: false,
              disableScrolling: true

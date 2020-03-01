@@ -142,7 +142,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
 
     displayName: {
       check: 'String',
-      nullable: true,
+      init: "",
       event: 'changeDisplayName'
     },
 

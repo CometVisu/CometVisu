@@ -19,7 +19,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
    CONSTRUCTOR
  ***********************************************
  */
-  construct: function () {
+  construct: function (noToolbar) {
     this.base(arguments);
     cv.ui.manager.model.Preferences.getInstance().bind('startViewMode', this, 'viewMode');
     this._isImageRegex = new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$');
@@ -36,6 +36,9 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     });
 
     this._debouncedOnFilter = qx.util.Function.debounce(this._onFilter, 500, false);
+    if (!noToolbar) {
+      this._createChildControl('toolbar');
+    }
     this._createChildControl('filter');
   },
 
@@ -166,6 +169,9 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
                 // use the image as icon
                 return file.getServerPath();
               } else {
+                if (!source) {
+                  return null;
+                }
                 // remove size from icon source
                 var parts = source.split('/');
                 if (parts.length === 3) {
@@ -209,6 +215,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
     _applyFile: function (file, old) {
       if (old) {
         old.removeRelatedBindings(this);
+        this.resetModel();
       }
       if (file) {
         var container = this.getChildControl('list');
@@ -226,6 +233,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
             this._controller.setModel(model);
           }
         }, this);
+        this._controller.setModel(model);
         file.load();
       } else {
         if (this._controller) {
@@ -342,6 +350,14 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       var control;
 
       switch (id) {
+        case 'toolbar':
+          control = new cv.ui.manager.ToolBar(null, ['new-file', 'new-folder', 'upload', 'reload']);
+          this.bind('file', control, 'folder');
+          control.addListener('reload', function () {
+            this.getFile().reload();
+          }, this);
+          this._addAt(control, 0);
+          break;
 
         case 'filter':
           control = new qx.ui.form.TextField();
@@ -354,12 +370,12 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
             control.exclude();
           }
           control.addListener('changeValue', this._debouncedOnFilter, this);
-          this._addAt(control, 0);
+          this._addAt(control, 1);
           break;
 
         case 'scroll':
           control = new qx.ui.container.Scroll();
-          this._addAt(control, 1, {flex: 1});
+          this._addAt(control, 2, {flex: 1});
           break;
 
         case 'list':

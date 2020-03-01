@@ -369,7 +369,7 @@ qx.Class.define('cv.ui.manager.Main', {
       }
       if (preview === true) {
         if (!openFile.isPermanent()) {
-          if (this.__previewFileIndex !== null && !openFiles.getItem(this.__previewFileIndex).isPermanent()) {
+          if (this.__previewFileIndex !== null && openFiles.getItem(this.__previewFileIndex) && !openFiles.getItem(this.__previewFileIndex).isPermanent()) {
             openFiles.setItem(this.__previewFileIndex, openFile);
           } else {
             this.__previewFileIndex = openFiles.length;
