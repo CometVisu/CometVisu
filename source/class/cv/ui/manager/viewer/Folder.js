@@ -245,26 +245,37 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
 
         case 'added':
         case 'uploaded':
+        case 'created':
           if (data.path.startsWith(folder.getFullPath())) {
             folder.reload();
           }
           break;
 
         case 'deleted':
-          if (data.path === folder.getFullPath()) {
-            // this item has been deleted
-            this.dispose();
-          } else if (data.path.startsWith(folder.getFullPath())) {
-            // delete child
-            var children = folder.getChildren();
-            children.some(function (child) {
-              if (child.getFullPath() === data.path) {
-                children.remove(child);
-                this.removeRelatedBindings(child);
-                return true;
-              }
-            }, this);
+          if (folder) {
+            if (data.path === folder.getFullPath()) {
+              // this item has been deleted
+              this.dispose();
+            } else if (data.path.startsWith(folder.getFullPath())) {
+              // delete child
+              var children = folder.getChildren();
+              children.some(function (child) {
+                if (child.getFullPath() === data.path) {
+                  children.remove(child);
+                  this.removeRelatedBindings(child);
+                  return true;
+                }
+              }, this);
+            }
           }
+          var children = this.getModel();
+          children.some(function (child) {
+            if (child.getFullPath() === data.path) {
+              children.remove(child);
+              this.removeRelatedBindings(child);
+              return true;
+            }
+          }, this);
           break;
       }
     },
