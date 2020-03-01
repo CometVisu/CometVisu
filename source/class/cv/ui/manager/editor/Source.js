@@ -309,7 +309,18 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         case 'md':
           return 'markdown';
         default:
-          return type || 'txt';
+          if (!type) {
+            return 'txt';
+          }
+          // check if monaco knows this ending, otherwise fallback to plaintext
+          var typeExt = '.' + type;
+          var found = monaco.languages.getLanguages().some(function (lang) {
+            return lang.id === type || lang.extensions.indexOf(typeExt) >= 0;
+          });
+          if (!found) {
+            type = 'txt';
+          }
+          return type
       }
     }
   },
