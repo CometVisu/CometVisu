@@ -531,6 +531,19 @@ qx.Class.define('cv.ui.manager.Main', {
       this._openFilesController.getSelection().replace(openFiles);
     },
 
+    __getFileNamePrompt: function (message, callback, context, value, caption) {
+      var prompt = new dialog.Prompt({
+        message: message,
+        callback: callback || null,
+        context: context || null,
+        value: value || null,
+        caption: caption || "",
+        filter: /[\w\d_\-\.\s]/
+      })
+      prompt.show();
+      return prompt;
+    },
+
     _onCreate: function (type, content, folder) {
       var currentFolder = folder || this.getCurrentFolder();
       if (!currentFolder) {
@@ -563,14 +576,14 @@ qx.Class.define('cv.ui.manager.Main', {
         }
         // check if name does not exist
         var exists = currentFolder.getChildren().some(function (child) {
-          if (child.getName() === filename) {
+          if (child.getName() === filename && child.getType() === type) {
             return true;
           }
         }, this);
 
         if (exists) {
           cv.ui.manager.snackbar.Controller.error(existsMessage);
-          dialog.Dialog.prompt(message, handlePrompt, this, name);
+          this.__getFileNamePrompt(message, handlePrompt, this, name);
         } else {
           var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getFullPath(), currentFolder);
           item.set({
@@ -618,7 +631,7 @@ qx.Class.define('cv.ui.manager.Main', {
         }
       };
 
-      dialog.Dialog.prompt(message, handlePrompt, this);
+      this.__getFileNamePrompt(message, handlePrompt, this);
     },
 
     /**
