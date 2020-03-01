@@ -42,7 +42,24 @@ class FsApi extends AbstractFsApi
     return $this->__processRequest($request, $response, function ($request, $response, $fsPath, $mount) {
       return $this->createFolder($response, $fsPath);
     }, function ($request, $response, $fsPath, $mount) {
-      return $this->createFile($response, $fsPath, $request->getUploadedFiles(), $request->getQueryParam('hash'), $request->getParsedBody());
+      $uploadedFiles = $request->getUploadedFiles();
+      if (sizeof($uploadedFiles) > 0) {
+        // upload file mode, get the information from the uploaded file
+        $options = $request->getParsedBody();
+        if (!array_key_exists("filename", $options)) {
+          $options["filename"] = $uploadedFiles[0]->getClientFileName();
+        } else {
+          $options["filename"] = urldecode($options["filename"]);
+        }
+        var_dump($options);
+        return $this->createFile($response, $fsPath, $uploadedFiles, $request->getQueryParam('hash'), $options);
+      } else {
+        $options = [];
+        $options['filename'] = basename($fsPath);
+        $fsPath = dirname($fsPath);
+        return $this->createFile($response, $fsPath, $request->getBody(), $request->getQueryParam('hash'), $options);
+      }
+
     }, 'create');
   }
 
@@ -255,27 +272,30 @@ class FsApi extends AbstractFsApi
    * @param $content {String} file content
    * @param $options {Array} additional options fpr this request
    */
-  private function createFile(ResponseInterface $response, $dirname, $files, $hash, $options = []) {
+  private function createFile(ResponseInterface $response, $dirname, $content, $hash, $options = []) {
     try {
-      $uploadedFile = $files['file'];
+      if (is_array($content)) {
+        $uploadedFile = $content['file'];
+        if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
+          $content = file_get_contents($uploadedFile->file);
+          if (!$content) {
+            throw new Exception('Uploaded file could not be read', 406);
+          }
+        } else {
+          throw new Exception('File upload failed with error code: ' . $uploadedFile->getError(), 406);
+        }
+      }
       if (!file_exists($dirname)) {
         // create missing dirs first
         mkdir($dirname, 0777, true);
       }
 
-      $file = $dirname . DIRECTORY_SEPARATOR . ($options['filename'] ? $options['filename'] : $uploadedFile->getClientFileName());
+      $file = $dirname . DIRECTORY_SEPARATOR . $options['filename'];
       if (file_exists($file) && (!$options || !$options['force'])) {
         throw new Exception('File already exists', 406);
-      } else if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
-        $content = file_get_contents($uploadedFile->file);
-        if ($content) {
-          FileHandler::saveFile($file, $content, $hash);
-          return $response->withStatus(200);
-        } else {
-          throw new Exception('Uploaded file could not be read', 406);
-        }
       } else {
-        throw new Exception('File upload failed with error code: ' . $uploadedFile->getError(), 406);
+        FileHandler::saveFile($file, $content, $hash);
+        return $response->withStatus(200);
       }
     } catch (Exception $e) {
       return $response->withJson(array('message' => $e->getMessage()))->withStatus($e->getCode());
