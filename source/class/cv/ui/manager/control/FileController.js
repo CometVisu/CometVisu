@@ -94,7 +94,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
         var target = file.getFullPath().replace('.trash/', '');
         this.__moveFile(file, target);
       } else if (file.getType() === 'file' && !file.isTemporary()) {
-        var match = /^\/backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(file.getFullPath())
+        var match = /^\/?backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(file.getFullPath())
         if (match) {
           // find the existing target config to restore
           var targetFileName = 'visu_config' + match[1] + '.xml';
