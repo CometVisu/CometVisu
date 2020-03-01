@@ -309,7 +309,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         case 'md':
           return 'markdown';
         default:
-          return type;
+          return type || 'txt';
       }
     }
   },
