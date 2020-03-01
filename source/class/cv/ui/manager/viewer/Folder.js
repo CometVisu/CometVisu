@@ -189,7 +189,9 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
       var file = ev.getCurrentTarget().getModel();
       if (file.getSpecial() === 'add-file') {
         ev.preventDefault();
-        ev.stopPropagation();
+        if (ev.getBubbles()) {
+          ev.stopPropagation();
+        }
         return;
       }
       var menu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
@@ -199,7 +201,9 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
 
       // Do not show native menu
       // don't open any other contextmenus
-      ev.stop();
+      if (ev.getBubbles()) {
+        ev.stop();
+      }
     },
 
     _onDblTap: function (ev) {
@@ -208,7 +212,7 @@ qx.Class.define('cv.ui.manager.viewer.Folder', {
         // Select file for upload
 
       } else {
-        qx.event.message.Bus.dispatchByName('cv.manager.open', ev.getTarget().getModel());
+        qx.event.message.Bus.dispatchByName('cv.manager.open', file);
       }
     },
 

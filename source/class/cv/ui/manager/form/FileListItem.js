@@ -228,26 +228,9 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
     },
 
     _applyModel: function (value) {
-      var resetActionMenu = true;
       if (value && value.getType() === 'file') {
         var control = this.getChildControl('file-type');
-        if (value.isFake()) {
-          if (value.getSpecial() !== 'add-file') {
-            this.getChildControl('action-menu').configure(value);
-            resetActionMenu = false;
-          } else {
-            // this.getChildControl('bottom-bar').exclude();
-            // this.setUploadHint(this.tr('Drop the file here to upload a the file.'));
-            // this.getChildControl('atom').setToolTipText(this.tr('Click to select a file for upload.'));
-            // this.setAcceptUpload(cv.ui.manager.model.FileItem.getAcceptedFiles(value.getParent()));
-            // if (!this._uploadManager) {
-            //   this._uploadManager = new cv.ui.manager.upload.UploadMgr();
-            //   this._uploadManager.addWidget(this);
-            // }
-            // this._uploadManager.setFolder(value.getParent());
-            // return;
-          }
-        } else {
+        if (!value.isFake()) {
           var type = value.getName().split('.').pop();
 
           // do not use file types that are longer than 4 chars (not enough space)
@@ -275,15 +258,10 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
           } else {
             control.exclude();
           }
-          this.getChildControl('action-menu').configure(value);
-          resetActionMenu = false;
         }
 
       } else {
         this.getChildControl('file-type').exclude();
-      }
-      if (resetActionMenu) {
-        this.getChildControl('action-menu').configure(null);
       }
       // this.getChildControl('bottom-bar').show();
       // this.setUploadHint(this.tr('Drop the file here to replace the content.'));
@@ -426,14 +404,13 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
           this.getChildControl('bottom-bar').add(control);
           break;
 
-        case 'action-menu':
-          control = new cv.ui.manager.contextmenu.FileItem(null, true);
-          break;
-
         case 'action-button':
-          control = new qx.ui.form.MenuButton(null, cv.theme.dark.Images.getIcon('menu', 18), this.getChildControl('action-menu'));
+          control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('menu', 18));
           control.setToolTipText(this.tr('Other file actions'));
           this.getChildControl('bottom-bar').add(control);
+          control.addListener('tap', function (ev) {
+            this.fireEvent('contextmenu', qx.event.type.Tap, [ev.getNativeEvent(), this, ev.getTarget(), false, true]);
+          }, this);
           break;
 
         case 'open-button':
