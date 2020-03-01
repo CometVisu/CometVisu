@@ -19,7 +19,12 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     if (fakeChildren) {
       this.setFakeChildren(fakeChildren);
     }
-    this.__path = path;
+    if (path) {
+      if (!path.endsWith('/')) {
+        path += '/';
+      }
+      this.__path = path;
+    }
     if (name) {
       this.setName(name);
     }
