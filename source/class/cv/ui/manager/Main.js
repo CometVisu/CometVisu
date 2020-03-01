@@ -572,7 +572,7 @@ qx.Class.define('cv.ui.manager.Main', {
           cv.ui.manager.snackbar.Controller.error(existsMessage);
           dialog.Dialog.prompt(message, handlePrompt, this, name);
         } else {
-          var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getPath(), currentFolder);
+          var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getFullPath(), currentFolder);
           item.set({
             type: type === 'config' ? 'file' : type,
             readable: true,
