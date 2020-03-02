@@ -29,7 +29,7 @@
  * @since       2012-10-17
  */
 
-var baseRestPath = 'http://localhost:3000';
+var baseRestPath = parent && parent.cv ? parent.cv.io.rest.Client.BASE_URL : '';
 
 var cvProvider = parent && parent.cv ? parent.cv.ui.manager.editor.data.Provider.getInstance() : null;
 
