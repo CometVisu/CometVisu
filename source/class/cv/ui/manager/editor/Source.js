@@ -223,8 +223,12 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     isSupported: function (file) {
-      var fileType = file.getName().split('.').pop();
-      return cv.ui.manager.editor.Source.SUPPORTED_FILES.includes(fileType);
+      var parts = file.getName().split('.')
+      var fileType = parts.length > 1 ? parts.pop() : 'txt';
+      var typeExt = '.' + fileType;
+      return monaco.languages.getLanguages().some(function (lang) {
+        return lang.id === fileType || lang.extensions.indexOf(typeExt) >= 0;
+      });
     },
 
     showErrors: function (path, errorList) {
