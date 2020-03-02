@@ -169,14 +169,13 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     },
 
     _onChangesDefaultConfigEditor: function () {
-      var selector = /visu_config(_.+)?\.xml/;
       switch (cv.ui.manager.model.Preferences.getInstance().getDefaultConfigEditor()) {
         case 'source':
-          this.setDefault(selector, cv.ui.manager.editor.Source);
+          this.setDefault(cv.ui.manager.editor.Source.SUPPORTED_FILES, cv.ui.manager.editor.Source);
           break;
 
         case 'xml':
-          this.setDefault(selector, cv.ui.manager.editor.Xml, true);
+          this.setDefault(cv.ui.manager.editor.Xml.SUPPORTED_FILES, cv.ui.manager.editor.Xml, true);
           break;
       }
     },
