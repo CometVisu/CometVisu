@@ -409,7 +409,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
           control.setToolTipText(this.tr('Other file actions'));
           this.getChildControl('bottom-bar').add(control);
           control.addListener('tap', function (ev) {
-            this.fireEvent('contextmenu', qx.event.type.Tap, [ev.getNativeEvent(), this, ev.getTarget(), false, true]);
+            this.fireEvent('action', qx.event.type.Tap, [ev.getNativeEvent(), this, ev.getTarget(), false, true]);
           }, this);
           break;
 
