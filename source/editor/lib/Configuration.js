@@ -107,15 +107,21 @@ var Configuration = function (filename, isDemo) {
       return;
     }
         
-    if (filename === undefined) {
-      // if no filename is given, use the one that we had for loading the file
-      filename = _filename;
-    }
-        
     var data = _config.getAsSerializable();
     if (window.saveFromIframe) {
-      window.saveFromIframe(data);
+      window.saveFromIframe(data, filename, function (err) {
+        if (err) {
+          var result = new Result(false, Messages.configuration.savingErrorServer, [err.textStatus, err.message]);
+          $(document).trigger('configuration_saving_error', [result]);
+        } else {
+          $(document).trigger('configuration_saving_success');
+        }
+      });
     } else {
+      if (filename === undefined) {
+        // if no filename is given, use the one that we had for loading the file
+        filename = _filename;
+      }
       $.ajax('editor/bin/save_config.php',
         {
           dataType: 'json',

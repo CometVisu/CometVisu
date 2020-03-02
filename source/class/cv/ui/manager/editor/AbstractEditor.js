@@ -106,7 +106,24 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     // must be overridden by inheriting classes
     getCurrentContent: function () {},
 
-    save: function () {
+    _handleSaveResponse: function (type, err) {
+      if (err) {
+        cv.ui.manager.snackbar.Controller.error(err);
+      } else {
+        var file = this.getFile();
+        var message = type === 'created' ? this.tr('File has been created') : this.tr('File has been saved')
+        cv.ui.manager.snackbar.Controller.info(message);
+        this._onSaved();
+        qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
+          type: type,
+          file: file,
+          data: this.getCurrentContent(),
+          source: this
+        });
+      }
+    },
+
+    save: function (callback) {
       var file = this.getFile();
       if (file.isModified()) {
         if (file.isTemporary()) {
@@ -114,37 +131,12 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
             path: file.getFullPath(),
             hash: file.getHash(),
             type: 'file'
-          }, this.getCurrentContent(), function (err) {
-            if (err) {
-              cv.ui.manager.snackbar.Controller.error(err);
-            } else {
-              cv.ui.manager.snackbar.Controller.info(this.tr('File has been created'));
-              this._onSaved();
-              qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
-                type: 'created',
-                file: file,
-                data: this.getCurrentContent(),
-                source: this
-              });
-            }
-          }, this);
+          }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, 'created'), this);
         } else {
           this._client.updateSync({
             path: file.getFullPath(),
             hash: file.getHash()
-          }, this.getCurrentContent(), function (err) {
-            if (err) {
-              cv.ui.manager.snackbar.Controller.error(err);
-            } else {
-              cv.ui.manager.snackbar.Controller.info(this.tr('File has been saved'));
-              this._onSaved();
-              qx.event.message.Bus.dispatchByName(file.getBusTopic(), {
-                type: 'contentChanged',
-                data: this.getCurrentContent(),
-                source: this
-              });
-            }
-          }, this);
+          }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, 'contentChanged'), this);
         }
       }
     },

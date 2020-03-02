@@ -183,10 +183,8 @@ var Editor = function (config) {
     $preview.attr({id: 'preview', src: 'index.html?config=' + _previewSuffix});
 
     var height = $(window).height();
-    if (!window.location.search.includes('embed=1')) {
-      var $editor_menu = $('#editor .menu');
-      height = height - $editor_menu.height() - $editor_menu.position().top;
-    }
+    var $editor_menu = $('#editor .menu');
+    height = height - $editor_menu.height() - $editor_menu.position().top;
         
     $preview.css({width: '100%', height: height + 'px', border: 'none'});
         
@@ -216,38 +214,38 @@ var Editor = function (config) {
       $('.submenu:visible').hide();
       $('.toggleSubmenu.active').removeClass('active');
     });
-        
+
     var $editor = $('<div />').attr('id', 'editor');
+    var $menu = $('<div />').addClass('menu');
+    var $save = $('<span />')
+      .addClass('button')
+      .addClass('save')
+      .html(Messages.editor.ui.save.text)
+      .attr('title', Messages.editor.ui.save.tooltip)
+      .click(clickHandler);
+    $menu.append($save);
+
+    var $expert = $('<span />')
+      .addClass('button')
+      .addClass('expert')
+      .html(Messages.editor.ui.expert.text)
+      .attr('title', Messages.editor.ui.expert.tooltip)
+      .click(clickHandler);
+    $menu.append($expert);
+    if (isExpert === true) {
+      // add the active-class even at startup, it might be pre-set
+      $expert.addClass('active');
+    }
+
+    var $preview = $('<span />')
+      .addClass('button')
+      .addClass('preview')
+      .html(Messages.editor.ui.preview.text)
+      .attr('title', Messages.editor.ui.preview.tooltip)
+      .click(clickHandler);
+    $menu.append($preview);
+
     if (!window.location.search.includes('embed=1')) {
-      var $menu = $('<div />').addClass('menu');
-      var $save = $('<span />')
-        .addClass('button')
-        .addClass('save')
-        .html(Messages.editor.ui.save.text)
-        .attr('title', Messages.editor.ui.save.tooltip)
-        .click(clickHandler);
-      $menu.append($save);
-
-      var $expert = $('<span />')
-        .addClass('button')
-        .addClass('expert')
-        .html(Messages.editor.ui.expert.text)
-        .attr('title', Messages.editor.ui.expert.tooltip)
-        .click(clickHandler);
-      $menu.append($expert);
-      if (isExpert === true) {
-        // add the active-class even at startup, it might be pre-set
-        $expert.addClass('active');
-      }
-
-      var $preview = $('<span />')
-        .addClass('button')
-        .addClass('preview')
-        .html(Messages.editor.ui.preview.text)
-        .attr('title', Messages.editor.ui.preview.tooltip)
-        .click(clickHandler);
-      $menu.append($preview);
-
       var $manager = $('<span />')
         .addClass('button')
         .addClass('manager')
@@ -255,9 +253,9 @@ var Editor = function (config) {
         .attr('title', Messages.editor.ui.manager.tooltip)
         .click(clickHandler);
       $menu.append($manager);
-
-      $editor.append($menu);
     }
+
+    $editor.append($menu);
         
     $editor.append($container);
         
