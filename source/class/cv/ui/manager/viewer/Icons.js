@@ -10,6 +10,7 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
   ***********************************************
   */
   construct: function () {
+    this._disableFileEvents = true
     this.base(arguments, true);
   },
 

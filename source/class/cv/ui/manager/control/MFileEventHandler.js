@@ -12,7 +12,18 @@ qx.Mixin.define('cv.ui.manager.control.MFileEventHandler', {
     if (qx.core.Environment.get('qx.debug')) {
       qx.core.Assert.assertInterface(this, cv.ui.manager.control.IFileEventHandler);
     }
-    qx.event.message.Bus.subscribe('cv.manager.file', this._handleFileEvent, this);
+    if (!this._disableFileEvents) {
+      qx.event.message.Bus.subscribe('cv.manager.file', this._handleFileEvent, this);
+    }
+  },
+
+  /*
+  ***********************************************
+    MEMBERS
+  ***********************************************
+  */
+  members: {
+    _disableFileEvents: false
   },
 
   /*
