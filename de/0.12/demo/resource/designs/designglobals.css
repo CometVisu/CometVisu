@@ -20,6 +20,11 @@ body
   overflow: hidden;
 }
 
+a, img {
+  -webkit-user-drag: none;
+  /* not a standard yet, but probably in the future. Also no way known to help firefox at the moment. */
+  user-drag: none;
+}
 /*
  * Default height for all icons
  */
