@@ -82,8 +82,6 @@ var BasePage = function () {
     'xxl': 15000
   };
 
-  this.pageChangeTimeout = 0;
-
   this.getPageTitle = function () {
     // Note: as some designs (like "metal") are hiding the h1 the page name
     // must be extracted by this little detour
@@ -113,29 +111,29 @@ var BasePage = function () {
       browser.driver.executeScript('cv.TemplateEngine.getInstance().scrollToPage(arguments[0])', name);
       return;
     }
-    var waitFor = this.pageChangeTimeout;
     var done = false;
-    element.all(by.xpath("//div[contains(@class, 'pagelink')]/div/a[text()='" + name + "']/parent::*")).then(function(pageLink) {
-      if (pageLink.length > 0) {
-	return pageLink[0];
-      } else {
-	return element.all(by.xpath("//div[contains(@class, 'nav_path')]/a[text()='" + name + "']/parent::*")).then(function(pageLink) {
-	  if (pageLink.length > 0) {
-	    return pageLink[0];
-	  } else {
-	    return null;
-	  }	
-        })
-      }
-    }).then(function(pageLink) {
-      if( pageLink ) {
-         pageLink.click();
-if (waitFor > 0) {
-          var start = Date.now();
-          browser.wait(function () {
-            return (Date.now() - start) > waitFor;
-          }, waitFor - 10);
-        }
+    element.all(by.css(".activePage div.pagelink")).then(function(links) {
+      links.some(function(link) {
+        var actor = link.element(by.css(".actor"));
+        actor.element(by.tagName("a")).getText().then(function(linkName) {
+          if (linkName === name) {
+            done = true;
+            actor.click();
+            return true;
+          }
+        });
+      });
+    }).then(function(){
+      if( !done ) {
+        // not found - probably it was a parent page
+        element.all(by.css(".nav_path > a")).each(function (link) {
+         link.getText().then(function(linkName) {
+           if(linkName === name) {
+             done = true;
+             link.click();
+           }
+          });
+        });
       }
     });
   };
