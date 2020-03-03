@@ -4,10 +4,8 @@
 qx.Class.define('cv.ui.manager.tree.FileSystem', {
   extend: qx.ui.core.Widget,
   include: [
-    cv.ui.manager.upload.MDragUpload,
-    cv.ui.manager.control.MFileEventHandler
+    cv.ui.manager.upload.MDragUpload
   ],
-  implement: [cv.ui.manager.control.IFileEventHandler],
 
   /*
   ***********************************************
@@ -93,25 +91,25 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
     __ignoreSelectionChange: false,
     _replacementManager: null,
 
-    _handleFileEvent: function (ev) {
-      var data = ev.getData();
-      switch (data.action) {
-        case 'moved':
-        case 'added':
-        case 'deleted':
-        case 'restored':
-        case 'uploaded':
-          this.reload();
-          break;
-      }
-    },
-
     reload: function () {
-      var root = this.getChildControl('tree').getModel();
+      var tree = this.getChildControl('tree');
+      var openPaths = tree.getOpenNodes().map(function (node) { return node.getFullPath(); });
+      var root = tree.getModel();
       root.reload(function () {
         this.getChildControl('tree').refresh();
         root.setOpen(true);
+        openPaths.forEach(this.openPath, this)
       }, this);
+    },
+
+    openPath: function (path) {
+      var root = this.getChildControl('tree').getModel();
+      if (path === '.') {
+        root.setOpen(true);
+      } else {
+        root.setOpen(true);
+        root.openPath(path);
+      }
     },
 
     refresh: function () {

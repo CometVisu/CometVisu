@@ -546,6 +546,22 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
         }
       };
       this.getChildren().sort(sortF);
+    },
+
+    openPath: function (path) {
+      var parts = qx.lang.Type.isArray(path) ? path : path.split('/');
+      var relPath = parts.shift();
+      this.getChildren().some(function (child) {
+        if (child.getName() === relPath) {
+          child.load(function () {
+            child.setOpen(true);
+            if (parts.length > 0) {
+              child.openPath(parts);
+            }
+          }, this);
+          return true;
+        }
+      }, this);
     }
   },
   
