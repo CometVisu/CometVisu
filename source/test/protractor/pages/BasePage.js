@@ -78,6 +78,8 @@ var BasePage = function () {
     'xxl': 15000
   };
 
+  this.pageChangeTimeout = 0;
+
   this.getPageTitle = function () {
     return element(by.css(".activePage")).element(by.tagName("h1")).getText();
   };
@@ -101,16 +103,17 @@ var BasePage = function () {
    * @param name {String}
    */
   this.goToPage = function(name) {
-    element.all(by.css("div.pagelink")).then(function(links) {
-      links.some(function(link) {
-        var actor = link.element(by.css(".actor"));
-        actor.element(by.tagName("a")).getText().then(function(linkName) {
-          if (linkName === name) {
-            actor.click();
-            return true;
-          }
-        });
-      });
+    var waitFor = this.pageChangeTimeout;
+    element.all(by.xpath("//div[contains(@class, 'pagelink')]/div/a[text()='" + name + "']/parent::*")).then(function(pageLink) {
+      if (pageLink.length > 0) {
+        pageLink[0].click();
+        if (waitFor > 0) {
+          var start = Date.now();
+          browser.wait(function () {
+            return (Date.now() - start) > waitFor;
+          }, waitFor - 10);
+        }
+      }
     });
   };
 
