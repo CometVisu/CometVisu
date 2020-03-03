@@ -134,12 +134,12 @@ var jOWM = jOWM || {};
                 options.id = data.id;
                 // Description text
                 if (options.description === '') {
-                    $('div.openweathermap_value').append("<p>" + options.cityname + "</p>");
+                    $('div.openweathermap_value').html("<p>" + options.cityname + "</p>");
                 } else if (options.description === 'false') {
                     // no text
                     $('div.openweathermap_value').parent().css('display', 'none');
                 } else {
-                    $('div.openweathermap_value').append("<p>" + options.description + "</p>");
+                    $('div.openweathermap_value').html("<p>" + options.description + "</p>");
                 }
                 // Fetch data for detailed items.
                 _processDataDetailed(e, currentURL, options);
@@ -291,12 +291,12 @@ var jOWM = jOWM || {};
         //time sunrise
         var d = new Date(options.sunrise * 1000);
         var output = '<li class="sunrise-sunset"><div class="weather-forecast weather-sunrise clearfix" style="float: left;">';
-        output += '<div class="weather-icon" </div>';
+        output += '<div class="weather-icon"></div>';
         output += '<div class="sunrise-sunset">' + d.strftime('%H:%M') + '</div> </div>';
         //time sunset
         d = new Date(options.sunset * 1000);
         output += '<div class="weather-forecast weather-sunset clearfix" style="float: left;">';
-        output += '<div class="weather-icon" </div>';
+        output += '<div class="weather-icon"></div>';
         output += '<div class="sunrise-sunset">' + d.strftime('%H:%M') + '</div> </div></li>';
         return output;
     }
