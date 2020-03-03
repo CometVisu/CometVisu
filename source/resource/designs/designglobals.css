@@ -20,6 +20,11 @@ body
   overflow: hidden;
 }
 
+a, img {
+  -webkit-user-drag: none;
+  /* not a standard yet, but probably in the future. Also no way known to help firefox at the moment. */
+  user-drag: none;
+}
 /*
  * Default height for all icons
  */
@@ -51,6 +56,11 @@ body
 #navbarRight {
   width: 0;          /* right bar width */
   margin-right: 0;   /* right bar width */
+}
+.mobile #navbarLeft,
+.mobile #navbarRight {
+  position: absolute;
+  z-index: 1;
 }
 #navbarTop {
 }

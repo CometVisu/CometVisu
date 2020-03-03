@@ -1,5 +1,5 @@
 /**
- * The basic PageObject supplies generic helerp functions needed for testing the CometVisu app
+ * The basic PageObject supplies generic helper functions needed for testing the CometVisu app
  * @author Tobias Bräutigam
  * @since 2016
  */
@@ -19,8 +19,12 @@ var BasePage = function () {
    *
    * @requires page have both `url` and `pageLoaded` properties
    */
-  this.to = function () {
-    browser.get(this.url, this.timeout.xl);
+  this.to = function (urlModification) {
+    if(urlModification === undefined) {
+      urlModification = '';
+    }
+
+    browser.get(this.url + urlModification, this.timeout.xl);
     return this.at();
   };
 
@@ -81,7 +85,9 @@ var BasePage = function () {
   this.pageChangeTimeout = 0;
 
   this.getPageTitle = function () {
-    return element(by.css(".activePage")).element(by.tagName("h1")).getText();
+    // Note: as some designs (like "metal") are hiding the h1 the page name
+    // must be extracted by this little detour
+    return browser.executeScript("return document.querySelectorAll('.activePage h1')[0].textContent;");
   };
 
   this.getPages = function () {
@@ -102,12 +108,29 @@ var BasePage = function () {
    * Navigate to a page by name
    * @param name {String}
    */
-  this.goToPage = function(name) {
+  this.goToPage = function(name, force) {
+    if(force) {
+      browser.driver.executeScript('cv.TemplateEngine.getInstance().scrollToPage(arguments[0])', name);
+      return;
+    }
     var waitFor = this.pageChangeTimeout;
+    var done = false;
     element.all(by.xpath("//div[contains(@class, 'pagelink')]/div/a[text()='" + name + "']/parent::*")).then(function(pageLink) {
       if (pageLink.length > 0) {
-        pageLink[0].click();
-        if (waitFor > 0) {
+	return pageLink[0];
+      } else {
+	return element.all(by.xpath("//div[contains(@class, 'nav_path')]/a[text()='" + name + "']/parent::*")).then(function(pageLink) {
+	  if (pageLink.length > 0) {
+	    return pageLink[0];
+	  } else {
+	    return null;
+	  }	
+        })
+      }
+    }).then(function(pageLink) {
+      if( pageLink ) {
+         pageLink.click();
+if (waitFor > 0) {
           var start = Date.now();
           browser.wait(function () {
             return (Date.now() - start) > waitFor;

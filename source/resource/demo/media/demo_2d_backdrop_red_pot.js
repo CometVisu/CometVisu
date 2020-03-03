@@ -2,15 +2,16 @@
 var qx = window.parent.qx;
 var cv = window.parent.cv;
 
+var backendName = cv.Config.configSettings.backend || cv.Config.backend;
 var
   thisGA = '12/7/52',
   thisTransform = 'DPT:5.001',
-  client = cv.Application.createClient('default');
+  client = cv.Application.createClient(backendName, cv.Config.backendUrl);
 
 client.update = function(json ) // overload the handler
 {
   var h = cv.Transform.decode(thisTransform, json[thisGA] );
-  if (h === undefined) {
+  if (h === undefined || isNaN(h)) {
     return;
   }
   var filling = document.querySelector('#rect3855');

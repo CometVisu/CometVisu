@@ -326,19 +326,23 @@ qx.Class.define('cv.Config', {
     // has changed but the browser doesn't even ask the server about it...
     cv.Config.forceReload = true;
 
-    if (req.queryKey.forceDevice) {
-      cv.Config.forceMobile = req.queryKey.forceDevice === 'mobile';
-      cv.Config.forceNonMobile = !cv.Config.forceMobile;
-    } else {
-      cv.Config.forceMobile = false;
-      cv.Config.forceNonMobile = false;
-    }
     var uagent = navigator.userAgent.toLowerCase();
     cv.Config.mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
     if (/(nexus 7|tablet)/i.test(uagent)) {
       cv.Config.mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
     }
-    cv.Config.mobileDevice |= cv.Config.forceMobile;  // overwrite detection when set by URL
+    if (req.queryKey.forceDevice) { // overwrite detection when set by URL
+      switch( req.queryKey.forceDevice )
+      {
+        case 'mobile':
+          cv.Config.mobileDevice = true;
+          break;
+
+        case 'nonmobile':
+          cv.Config.mobileDevice = false;
+          break;
+      }
+    }
 
 
     // Disable features that aren't ready yet
