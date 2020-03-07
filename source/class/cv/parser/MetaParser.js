@@ -106,7 +106,7 @@ qx.Class.define("cv.parser.MetaParser", {
             var icon = this.__parseIconDefinition(v);
             value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon["class"]));
           }
-          else if (v.textContent.trim().length) {
+          else if (v && v.nodeType === 3 && v.textContent.trim().length) {
             value.push(v.textContent.trim());
           }
         }
