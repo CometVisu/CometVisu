@@ -171,7 +171,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     _onChangesDefaultConfigEditor: function () {
       switch (cv.ui.manager.model.Preferences.getInstance().getDefaultConfigEditor()) {
         case 'source':
-          this.setDefault(cv.ui.manager.editor.Source.SUPPORTED_FILES, cv.ui.manager.editor.Source);
+          this.setDefault(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source);
           break;
 
         case 'xml':
