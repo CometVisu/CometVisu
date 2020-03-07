@@ -102,7 +102,8 @@
           "EVENT_RECORDER",
           "Favico",
           "Sentry",
-          "Promise"
+          "Promise",
+          "monaco"
         ]
       },
 
@@ -206,7 +207,8 @@
           "svg4everybody",
           "EVENT_RECORDER",
           "Favico",
-          "Sentry"
+          "Sentry",
+          "monaco"
         ]
       }
     },

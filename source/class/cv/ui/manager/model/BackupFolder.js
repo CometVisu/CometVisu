@@ -35,7 +35,7 @@ qx.Class.define('cv.ui.manager.model.BackupFolder', {
 
     /**
      * Returns the list of existing backup files for the given file.
-     * @param file
+     * @param file {cv.ui.manager.model.FileItem}
      */
     getBackupFiles: function (file) {
       var files = [];
