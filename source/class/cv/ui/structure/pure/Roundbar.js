@@ -198,9 +198,8 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
     width: { check: "Number" },
     spacing: { check: "Number" },
     overflowarrow: { check: "Boolean" },
-    pointerradius: { check: "Array" },
-    pointerwidth: { check: "Number" },
-    pointerthickness: { check: "Number" },
+    //pointerwidth: { check: "Number" },
+    //pointerthickness: { check: "Number" },
     fontsize: { check: "Number" },
     textx: { check: "Number" },
     texty: { check: "Number" },
@@ -330,8 +329,8 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
           thisBBox = createBarPath(sRange,0,eRange,0,0,rRange,wRange, true);
         svgRanges += '<path class="range" d="';
         svgRanges += createBarPath(sRange,0,eRange,0,0,rRange,wRange);
-        if (range.color) {
-          svgRanges += '" style="fill: ' + range.color + ';stroke:' + range.color;
+        if (range.style) {
+          svgRanges += '" style="' + range.style;
         }
         svgRanges += '" />';
 
@@ -340,11 +339,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
       });
 
       this.getIndicators().forEach(function (indicator) {
-        var style = [];
-        if (indicator.stroke !== '') style.push( 'stroke:' + indicator.stroke );
-        if (indicator.fill   !== '') style.push( 'fill:'   + indicator.fill   );
-
-        svgIndicators += '<path class="indicator" style="' + style.join(';') + '" />';
+        svgIndicators += '<path class="indicator" style="' + indicator.style + '" />';
 
         if (indicator.showValue) { cntValues++; }
       });

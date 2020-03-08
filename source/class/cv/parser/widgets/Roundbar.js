@@ -60,6 +60,7 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
           radius:    data.radius,
           width:     parseFloat( elem.getAttribute('width') || data.width),
           thickness: elem.getAttribute('thickness') || data.thickness,
+          style:     elem.getAttribute('style') || '',
           stroke:    elem.getAttribute('stroke') || '',
           fill:      elem.getAttribute('fill') || ''
         });
@@ -104,7 +105,8 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
                   thisRange.width = parseFloat(components.shift());
                 }
                 if (components.length > 0) {
-                  thisRange.color = components.shift();
+                  var style = components.shift();
+                  thisRange.style = /:/.test(style) ? style : 'fill:'+style+';stroke:'+style;
                 }
                 retval.push(thisRange);
               });
