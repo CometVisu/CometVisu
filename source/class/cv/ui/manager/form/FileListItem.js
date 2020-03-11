@@ -231,7 +231,9 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
       if (value && value.getType() === 'file') {
         var control = this.getChildControl('file-type');
         if (!value.isFake()) {
-          var type = value.getName().split('.').pop();
+          var name = value.getName();
+          this.getChildControl('atom').setToolTipText(this.tr('Double click to open "%1"', name));
+          var type = name.split('.').pop();
 
           // do not use file types that are longer than 4 chars (not enough space)
           if (type.length <= 4) {
@@ -262,6 +264,7 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
 
       } else {
         this.getChildControl('file-type').exclude();
+        this.getChildControl('atom').resetToolTipText();
       }
       // this.getChildControl('bottom-bar').show();
       // this.setUploadHint(this.tr('Drop the file here to replace the content.'));
@@ -369,7 +372,6 @@ qx.Class.define('cv.ui.manager.form.FileListItem', {
             this.bind(prop, control, prop);
           }, this);
           control.setAnonymous(true);
-          control.setToolTipText(this.tr('Double click to open'));
           this._add(control, {top: 0, left: 0, right: 0, bottom: 34});
           break;
 

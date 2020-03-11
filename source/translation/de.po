@@ -27,7 +27,7 @@ msgstr "Ein Fehler ist aufgetreten"
 msgid "Enable on reload:"
 msgstr "Aktivieren beim neu Laden:"
 
-#: cv/ui/manager/ToolBar.js:165 cv/Application.js:308
+#: cv/ui/Popup.js:271 cv/ui/manager/ToolBar.js:185 cv/Application.js:308
 msgid "Reload"
 msgstr "Neu laden"
 
@@ -93,7 +93,7 @@ msgstr ""
 msgid "Backend does not respond!"
 msgstr "Backend antwortet nicht!"
 
-#: cv/io/rest/Client.js:205 cv/ui/manager/editor/AbstractEditor.js:124
+#: cv/io/rest/Client.js:205 cv/ui/manager/editor/AbstractEditor.js:114
 msgid "File has been saved"
 msgstr "Datei wurde gespeichert"
 
@@ -195,7 +195,7 @@ msgstr ""
 msgid "Unsaved changes"
 msgstr "Nicht gespeicherte Änderungen"
 
-#: cv/ui/manager/Main.js:541
+#: cv/ui/manager/Main.js:554
 msgid ""
 "Please enter the name of the new configuration (without \"visu_config_\" at "
 "the beginning and \".xml\" at the end)"
@@ -203,35 +203,35 @@ msgstr ""
 "Bitte geben Sie den Namen der neuen Konfigurationsdatei ein (ohne "
 "\"visu_config_\" am Anfang und \".xml\" am Ende)"
 
-#: cv/ui/manager/Main.js:542
+#: cv/ui/manager/Main.js:555
 msgid "A configuration with this name already exists."
 msgstr "Eine Konfigurationsdatei mit diesem Namen existiert bereits."
 
-#: cv/ui/manager/Main.js:544
+#: cv/ui/manager/Main.js:557
 msgid "Please enter the file name."
 msgstr "Bitte geben Sie den Dateinamen ein."
 
-#: cv/ui/manager/Main.js:545
+#: cv/ui/manager/Main.js:558
 msgid "A file with this name already exists."
 msgstr "Eine Datei mit diesem Namen exisitert bereits."
 
-#: cv/ui/manager/Main.js:547
+#: cv/ui/manager/Main.js:560
 msgid "Please enter the folder name."
 msgstr "Bitte geben Sie den Namen des Ordners ein."
 
-#: cv/ui/manager/Main.js:548
+#: cv/ui/manager/Main.js:561
 msgid "A folder with this name already exists."
 msgstr "Eine Ordner mit diesem Namen exisitert bereits."
 
-#: cv/ui/manager/Main.js:595
+#: cv/ui/manager/Main.js:608
 msgid "Folder has been created"
 msgstr "Verzeichnis wurde erstellt"
 
-#: cv/ui/manager/contextmenu/FileItem.js:257 cv/ui/manager/MenuBar.js:46
+#: cv/ui/manager/contextmenu/FileItem.js:274 cv/ui/manager/MenuBar.js:46
 msgid "New file"
 msgstr "Neue Datei"
 
-#: cv/ui/manager/contextmenu/FileItem.js:274 cv/ui/manager/MenuBar.js:51
+#: cv/ui/manager/contextmenu/FileItem.js:291 cv/ui/manager/MenuBar.js:51
 msgid "New folder"
 msgstr "Neuer Ordner"
 
@@ -239,7 +239,7 @@ msgstr "Neuer Ordner"
 msgid "New config file"
 msgstr "Neue Konfigurationsdatei"
 
-#: cv/ui/manager/MenuBar.js:63 cv/ui/manager/viewer/Folder.js:33
+#: cv/ui/manager/MenuBar.js:63 cv/ui/manager/viewer/Folder.js:34
 msgid "Upload file"
 msgstr "Datei hochladen"
 
@@ -247,9 +247,9 @@ msgstr "Datei hochladen"
 msgid "Save as..."
 msgstr "Speichern unter..."
 
-#: cv/ui/manager/contextmenu/FileItem.js:76
-#: cv/ui/manager/contextmenu/FileItem.js:158
-#: cv/ui/manager/contextmenu/FileItem.js:286 cv/ui/manager/MenuBar.js:79
+#: cv/ui/manager/contextmenu/FileItem.js:89
+#: cv/ui/manager/contextmenu/FileItem.js:171
+#: cv/ui/manager/contextmenu/FileItem.js:303 cv/ui/manager/MenuBar.js:79
 msgid "Delete"
 msgstr "Löschen"
 
@@ -357,60 +357,60 @@ msgstr "Mediendateien"
 msgid "Miscellaneous"
 msgstr "Sonstiges"
 
-#: cv/ui/manager/Start.js:313 cv/ui/manager/model/FileItem.js:85
+#: cv/ui/manager/Start.js:313 cv/ui/manager/model/FileItem.js:90
 #: cv/ui/manager/editor/Config.js:26
 msgid "Hidden configuration"
 msgstr "Versteckte Konfiguration"
 
-#: cv/ui/manager/contextmenu/FileItem.js:293 cv/ui/manager/ToolBar.js:131
+#: cv/ui/manager/contextmenu/FileItem.js:310 cv/ui/manager/ToolBar.js:151
 msgid "Download"
 msgstr "Herunterladen"
 
-#: cv/ui/manager/contextmenu/FileItem.js:311 cv/ui/manager/ToolBar.js:148
+#: cv/ui/manager/contextmenu/FileItem.js:328 cv/ui/manager/ToolBar.js:168
 msgid "Validate"
 msgstr "Prüfen"
 
-#: cv/ui/manager/contextmenu/FileItem.js:75
+#: cv/ui/manager/contextmenu/FileItem.js:88
 msgid "Clear"
 msgstr "Leeren"
 
-#: cv/ui/manager/contextmenu/FileItem.js:101
+#: cv/ui/manager/contextmenu/FileItem.js:114
 msgid "Backup from %1"
 msgstr "Sicherung vom %1"
 
-#: cv/ui/manager/contextmenu/FileItem.js:216
+#: cv/ui/manager/contextmenu/FileItem.js:233
 msgid "New name"
 msgstr "Neuer Name"
 
-#: cv/ui/manager/contextmenu/FileItem.js:221
+#: cv/ui/manager/contextmenu/FileItem.js:238
 msgid "Rename file"
 msgstr "Datei umbenennen"
 
-#: cv/ui/manager/contextmenu/FileItem.js:268
+#: cv/ui/manager/contextmenu/FileItem.js:285
 msgid "Clone file"
 msgstr "Datei duplizieren"
 
-#: cv/ui/manager/contextmenu/FileItem.js:281
+#: cv/ui/manager/contextmenu/FileItem.js:298
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: cv/ui/manager/contextmenu/FileItem.js:298
+#: cv/ui/manager/contextmenu/FileItem.js:315
 msgid "Open"
 msgstr "Öffnen"
 
-#: cv/ui/manager/contextmenu/FileItem.js:305
+#: cv/ui/manager/contextmenu/FileItem.js:322
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: cv/ui/manager/contextmenu/FileItem.js:317
+#: cv/ui/manager/contextmenu/FileItem.js:334
 msgid "Replace"
 msgstr "Ersetzen"
 
-#: cv/ui/manager/contextmenu/FileItem.js:329
+#: cv/ui/manager/contextmenu/FileItem.js:346
 msgid "Compare with..."
 msgstr "Vergleichen mit..."
 
-#: cv/ui/manager/contextmenu/FileItem.js:333
+#: cv/ui/manager/contextmenu/FileItem.js:350
 msgid "Open with..."
 msgstr "Öffnen mit..."
 
@@ -509,7 +509,7 @@ msgid_plural "%1 errors found in %2!"
 msgstr[0] "%1 Fehler gefunden in %2!"
 msgstr[1] "%1 Fehler gefunden in %2!"
 
-#: cv/ui/manager/editor/AbstractEditor.js:106
+#: cv/ui/manager/editor/AbstractEditor.js:114
 msgid "File has been created"
 msgstr "Datei wurde erstellt"
 
@@ -564,15 +564,15 @@ msgid ""
 msgstr ""
 "Möchten Sie \'%1\' wirklich mit dem Inhalt der hochgeladenen Datei ersetzen?"
 
-#: cv/ui/manager/form/FileListItem.js:394
-msgid "Double click to open"
-msgstr "Doppelklick zum Öffnen"
+#: cv/ui/manager/form/FileListItem.js:235
+msgid "Double click to open \"%1\""
+msgstr "Doppelklick zum Öffnen von \"%1\""
 
-#: cv/ui/manager/form/FileListItem.js:422
+#: cv/ui/manager/form/FileListItem.js:402
 msgid "Download file"
 msgstr "Datei herunterladen"
 
-#: cv/ui/manager/form/FileListItem.js:435
+#: cv/ui/manager/form/FileListItem.js:411
 msgid "Other file actions"
 msgstr "Andere Datei-Aktionen"
 
@@ -612,23 +612,27 @@ msgstr "Vergleich: %1"
 msgid "Trash"
 msgstr "Papierkorb"
 
-#: cv/ui/manager/upload/UploadMgr.js:94
+#: cv/ui/manager/upload/UploadMgr.js:95
+msgid "Replacing the file failed."
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js:97
 msgid "This file already exists, do you want to replace it?"
 msgstr "Diese Datei existiert bereits, möchten Sie sie überschreiben?"
 
-#: cv/ui/manager/upload/UploadMgr.js:98
+#: cv/ui/manager/upload/UploadMgr.js:101
 msgid "File already exists"
 msgstr "Diese Datei existiert bereits"
 
-#: cv/ui/manager/upload/UploadMgr.js:102
+#: cv/ui/manager/upload/UploadMgr.js:106
 msgid "Uploading this file is not allowed here."
 msgstr "Das Hochladen der Datei ist an dieser Stelle nicht erleubt."
 
-#: cv/ui/manager/upload/UploadMgr.js:112
+#: cv/ui/manager/upload/UploadMgr.js:116
 msgid "File upload stopped with an error: %1"
 msgstr "Das Hochladen der Datei wurde mit einem Fehler beendet: %1"
 
-#: cv/ui/manager/upload/UploadMgr.js:116
+#: cv/ui/manager/upload/UploadMgr.js:120
 msgid "File has been uploaded"
 msgstr "Die Datei wurde hochgeladen"
 
@@ -640,15 +644,15 @@ msgstr "Konfiguration anzeigen"
 msgid "%1 is no configuration file"
 msgstr "%1 ist keine Konfigurationsdatei"
 
-#: cv/ui/manager/viewer/Folder.js:51
+#: cv/ui/manager/viewer/Folder.js:55
 msgid "Show folder"
 msgstr "Ordner anzeigen"
 
-#: cv/ui/manager/viewer/Folder.js:298
+#: cv/ui/manager/viewer/Folder.js:370
 msgid "Filter by name..."
 msgstr "Nach Namen filtern..."
 
-#: cv/ui/manager/viewer/Icons.js:14
+#: cv/ui/manager/viewer/Icons.js:24
 msgid "Show icons"
 msgstr "Icons anzeigen"
 
@@ -728,6 +732,9 @@ msgstr "Datei-Ladefehler"
 
 #~ msgid "Do you really want to delete this folder?"
 #~ msgstr "Möchten Sie diesen Ordner wirklich löschen?"
+
+#~ msgid "Double click to open"
+#~ msgstr "Doppelklick zum Öffnen"
 
 #~ msgid "Edit hidden config"
 #~ msgstr "Versteckte Konfiguration bearbeiten"

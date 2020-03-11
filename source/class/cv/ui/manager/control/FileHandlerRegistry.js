@@ -16,14 +16,14 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     this.__defaults = [];
 
     // register viewers
-    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.viewer.Image, {type: 'view'});
+    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.viewer.Image, {type: 'view'});
     this.registerFileHandler(cv.ui.manager.viewer.Config.SUPPORTED_FILES, cv.ui.manager.viewer.Config, {type: 'view'});
     this.registerFileHandler(cv.ui.manager.viewer.Icons.SUPPORTED_FILES, cv.ui.manager.viewer.Icons, {type: 'view'});
     this.registerFileHandler(cv.ui.manager.viewer.Folder.SUPPORTED_FILES, cv.ui.manager.viewer.Folder, {type: 'view'});
     this.registerFileHandler(null, cv.ui.manager.Start, {type: 'view'});
 
     // register the basic editors
-    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source, {type: 'edit'});
+    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.editor.Source, {type: 'edit'});
     this.registerFileHandler(/visu_config(_.+)?\.xml/, cv.ui.manager.editor.Xml, {
       preview: false,
       type: 'edit',
@@ -171,7 +171,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     _onChangesDefaultConfigEditor: function () {
       switch (cv.ui.manager.model.Preferences.getInstance().getDefaultConfigEditor()) {
         case 'source':
-          this.setDefault(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$'), cv.ui.manager.editor.Source);
+          this.setDefault(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.editor.Source);
           break;
 
         case 'xml':
