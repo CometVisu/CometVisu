@@ -46,7 +46,8 @@ qx.Class.define('cv.ui.manager.ToolBar', {
     folder: {
       check: 'cv.ui.manager.model.FileItem',
       nullable: true,
-      apply: '_applyFolder'
+      apply: '_applyFolder',
+      event: 'changeFolder'
     },
 
     file: {
@@ -91,31 +92,43 @@ qx.Class.define('cv.ui.manager.ToolBar', {
           cv.theme.dark.Images.getIcon('new-file', 15),
           this._menuBar.getChildControl('new-menu')
         );
+        this.bind('folder.writeable', newButton, 'enabled');
         createPart.add(newButton);
-      } else if (this.__show('new-config-file')) {
-        newButton = this._createButton('new-config-file', cv.theme.dark.Images.getIcon('new-file', 15));
-        newButton.addListener('execute', function () {
-          qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file',this.getFolder());
-        }, this);
-        createPart.add(newButton);
-      } else if (this.__show('new-file')) {
-        newButton = this._createButton('new-file', null, true);
-        newButton.addListener('execute', function () {
-          qx.event.message.Bus.dispatchByName('cv.manager.action.new-file',this.getFolder());
-        }, this);
-        createPart.add(newButton);
-      }
-      if (this.__show('new-folder')) {
-        newButton = this._createButton('new-folder', cv.theme.dark.Images.getIcon('new-folder', 15), true);
-        newButton.addListener('execute', function () {
-          qx.event.message.Bus.dispatchByName('cv.manager.action.new-folder',this.getFolder());
-        }, this);
-        createPart.add(newButton);
+      } else {
+        if (this.__show('new-config-file')) {
+          newButton = this._createButton('new-config-file', cv.theme.dark.Images.getIcon('new-file', 15));
+          this.bind('folder.writeable', newButton, 'enabled');
+          this.bind('folder', newButton, 'visibility', {
+            converter: function (folder) {
+              return folder === cv.ui.manager.model.FileItem.ROOT ? 'visible' : 'excluded';
+            }
+          });
+          newButton.addListener('execute', function () {
+            qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file', this.getFolder());
+          }, this);
+          createPart.add(newButton);
+        } else if (this.__show('new-file')) {
+          newButton = this._createButton('new-file', null, true);
+          this.bind('folder.writeable', newButton, 'enabled');
+          newButton.addListener('execute', function () {
+            qx.event.message.Bus.dispatchByName('cv.manager.action.new-file', this.getFolder());
+          }, this);
+          createPart.add(newButton);
+        }
+        if (this.__show('new-folder')) {
+          newButton = this._createButton('new-folder', cv.theme.dark.Images.getIcon('new-folder', 15), true);
+          this.bind('folder.writeable', newButton, 'enabled');
+          newButton.addListener('execute', function () {
+            qx.event.message.Bus.dispatchByName('cv.manager.action.new-folder', this.getFolder());
+          }, this);
+          createPart.add(newButton);
+        }
       }
 
       if (this.__show('upload')) {
         var upload = this._createButton('upload');
         this._uploadManager.addWidget(upload);
+        this.bind('folder.writeable', upload, 'enabled');
         createPart.add(upload);
       }
 
