@@ -162,7 +162,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         }
         // buttons that need write access
         ['delete-button', 'replace-button', 'rename-button'].forEach(function (controlName) {
-          this.getChildControl(controlName).setEnabled(file.isWriteable() && (!isBackup || controlName === 'delete-button'));
+          this.getChildControl(controlName).setEnabled(!file.isFake() && file.isWriteable() && (!isBackup || controlName === 'delete-button'));
         }, this);
         this.getChildControl('download-button').setEnabled(!file.isFake() && file.getType() === 'file');
         this.getChildControl('restore-button').setVisibility(file.isInTrash() || isBackup ? 'visible' : 'excluded');

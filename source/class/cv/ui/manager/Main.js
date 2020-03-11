@@ -87,6 +87,13 @@ qx.Class.define('cv.ui.manager.Main', {
       check: 'Boolean',
       init: false,
       event: 'changeRenameableSelection'
+    },
+
+    visible: {
+      check: 'Boolean',
+      init: true,
+      event: 'changeVisible',
+      apply: '_applyVisible'
     }
   },
 
@@ -102,10 +109,20 @@ qx.Class.define('cv.ui.manager.Main', {
     _tree: null,
     _stack: null,
     _oldCommandGroup: null,
+    _managerCommands: null,
     _mainContent: null,
     _openFilesController: null,
     _hiddenConfigFakeFile: null,
     __actionDispatcher: null,
+
+    _applyVisible: function (value) {
+      var manager = qx.core.Init.getApplication().getCommandManager();
+      if (value) {
+        manager.setActive(this._managerCommands);
+      } else {
+        manager.setActive(this._oldCommandGroup);
+      }
+    },
 
     _checkEnvironment: function () {
       cv.io.rest.Client.getFsClient().checkEnvironmentSync(function (err, res) {
@@ -163,7 +180,7 @@ qx.Class.define('cv.ui.manager.Main', {
           break;
 
         case 'quit':
-          this.dispose();
+          this.setVisible(false);
           break;
 
         case 'new-file':
@@ -481,7 +498,7 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     __initCommands: function () {
-      var group = new qx.ui.command.Group();
+      var group = this._managerCommands = new qx.ui.command.Group();
       group.add('save', new qx.ui.command.Command('Ctrl+S'));
       group.add('save-as', new qx.ui.command.Command('Ctrl+Shift+S'));
       // this command will close the browser window, thats not what we want
@@ -658,6 +675,11 @@ qx.Class.define('cv.ui.manager.Main', {
     _draw: function () {
       var domRoot = this.__getRoot();
       var root = new qx.ui.root.Inline(domRoot, true, true);
+      this.bind('visible', root, 'visibility', {
+        converter: function (visible) {
+          return visible ? 'visible' : 'excluded';
+        }
+      });
       root.addListenerOnce('appear', function () {
         // disable file drop
         var element = root.getContentElement().getDomElement();

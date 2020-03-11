@@ -220,7 +220,11 @@ qx.Class.define("cv.Application",
 
     showManager: function () {
       qx.io.PartLoader.require(['manager'], function (states) {
-        cv.ui.manager.Main.getInstance();
+        var toggleVisibility = !!cv.ui.manager.Main.constructor.$$instance;
+        var manager = cv.ui.manager.Main.getInstance();
+        if (toggleVisibility) {
+          manager.setVisible(!manager.getVisible());
+        }
       }, this);
     },
 
