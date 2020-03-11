@@ -164,7 +164,7 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
         ['delete-button', 'replace-button', 'rename-button'].forEach(function (controlName) {
           this.getChildControl(controlName).setEnabled(file.isWriteable() && (!isBackup || controlName === 'delete-button'));
         }, this);
-        this.getChildControl('download-button').setEnabled(!file.isFake());
+        this.getChildControl('download-button').setEnabled(!file.isFake() && file.getType() === 'file');
         this.getChildControl('restore-button').setVisibility(file.isInTrash() || isBackup ? 'visible' : 'excluded');
       } else {
         this.getChildControl('delete-button').set({
