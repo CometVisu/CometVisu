@@ -24,10 +24,11 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     // register the basic editors
     this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.editor.Source, {type: 'edit'});
-    this.registerFileHandler(/visu_config(_.+)?\.xml/, cv.ui.manager.editor.Xml, {
+    this.registerFileHandler(cv.ui.manager.editor.Xml.SUPPORTED_FILES, cv.ui.manager.editor.Xml, {
       preview: false,
       type: 'edit',
-      noTemporaryFiles: true // the old XML-Editor cannot handle temporary files
+      noTemporaryFiles: true, // the old XML-Editor cannot handle temporary files,
+      noReadOnlyFiles: true // readonly nit supported
     });
     this.registerFileHandler(cv.ui.manager.model.CompareFiles, cv.ui.manager.editor.Diff, {type: 'view'});
 
@@ -97,7 +98,10 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
         // check if there is a default first
         var defaultHandler;
         Object.keys(this.__defaults).some(function (key) {
-          if (this.__defaults[key].regex.test(file.getFullPath()) && (!file.isTemporary() || !this.__defaults[key].noTemporaryFiles)) {
+          if (this.__defaults[key].regex.test(file.getFullPath()) &&
+            (!file.isTemporary() || !this.__defaults[key].noTemporaryFiles) &&
+            (file.isWriteable() || !this.__defaults[key].noReadOnlyFiles)
+          ) {
             if (type) {
               var config = this.getFileHandlerById(this.__defaults[key].clazz.classname);
               if (config.type === type) {
@@ -152,11 +156,12 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
 
     /**
      * Mark the handler with the given classname as default for the selector-id and all others with the same selector id not,
-     * @param selectorId {RegExp}
-     * @param noTemporaryFiles {Boolean} flag to prevent this default editor from being used to open temporary files.
+     * @param selector {RegExp}
      * @param clazz {qx.Class}
+     * @param noTemporaryFiles {Boolean} flag to prevent this default editor from being used to open temporary files.
+     * @param noReadOnlyFiles {Boolean} fleag to prevent this default editor from being used to open file that are not writeable
      */
-    setDefault: function (selector, clazz, noTemporaryFiles) {
+    setDefault: function (selector, clazz, noTemporaryFiles, noReadOnlyFiles) {
       if (qx.core.Environment.get('qx.debug')) {
         qx.core.Assert.assertRegExp(selector);
         qx.core.Assert.assertTrue(qx.Class.isClass(clazz));
@@ -164,7 +169,8 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
       this.__defaults[selector.toString()] = {
         regex: selector,
         clazz: clazz,
-        noTemporaryFiles: noTemporaryFiles
+        noTemporaryFiles: noTemporaryFiles,
+        noReadOnlyFiles: noReadOnlyFiles
       };
     },
 
@@ -175,7 +181,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
           break;
 
         case 'xml':
-          this.setDefault(cv.ui.manager.editor.Xml.SUPPORTED_FILES, cv.ui.manager.editor.Xml, true);
+          this.setDefault(cv.ui.manager.editor.Xml.SUPPORTED_FILES, cv.ui.manager.editor.Xml, true, true);
           break;
       }
     },
@@ -183,6 +189,8 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     __canHandle: function(config, file) {
       if (config.noTemporaryFiles === true && file.isTemporary()) {
         return false;
+      } else if (config.noReadOnlyFiles === true && !file.isWriteable()) {
+          return false;
       } else if (config.fileName && file.getName() === config.fileName) {
         return true;
       } else if (config.fullPath && file.getFullPath() === config.fullPath) {

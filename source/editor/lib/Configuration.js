@@ -111,7 +111,7 @@ var Configuration = function (filename, isDemo) {
     if (window.saveFromIframe) {
       window.saveFromIframe(data, filename, function (err) {
         if (err) {
-          var result = new Result(false, Messages.configuration.savingErrorServer, [err.textStatus, err.message]);
+          var result = new Result(false, Messages.configuration.savingErrorServer, [err.status, err.statusText]);
           $(document).trigger('configuration_saving_error', [result]);
         } else {
           $(document).trigger('configuration_saving_success');

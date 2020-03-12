@@ -35,6 +35,8 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
   */
   members: {
     _currentContent: null,
+    _iframe: null,
+    _notWriteable: null,
 
     _draw: function () {
 
@@ -47,28 +49,40 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
       if (file) {
         var match = /.*visu_config_?(.*)\.xml/.exec(file.getName());
         if (match) {
-          this._iframe = new qx.ui.embed.Iframe(qx.util.Uri.appendParamsToUrl(this.__basePath, 'embed=1&config=' + match[1]) + '&demo=' + (
-            file.getParentFolder() === 'demo/' ? 'true' : 'false'
-          ));
-          this._iframe.addListener('load', function () {
-            // inject save method
-            this._iframe.getWindow().saveFromIframe = this.saveFromIframe.bind(this);
-          }, this);
+          if (file.isWriteable()) {
+            this._iframe = new qx.ui.embed.Iframe(qx.util.Uri.appendParamsToUrl(this.__basePath, 'embed=1&config=' + match[1]) + '&demo=' + (
+              file.getParentFolder() === 'demo/' ? 'true' : 'false'
+            ));
+            this._iframe.addListener('load', function () {
+              // inject save method
+              this._iframe.getWindow().saveFromIframe = this.saveFromIframe.bind(this);
+            }, this);
 
-          this._add(this._iframe);
+            this._add(this._iframe);
+          } else {
+            if (!this._notWriteable) {
+              this._notWriteable = new qx.ui.basic.Atom(this.tr('The XML-Editor does not support files that are not writeable!'));
+              this._notWriteable.set({
+                center: true,
+                font: "title"
+              });
+              this._add(this._notWriteable);
+            }
+            this._notWriteable.show();
+          }
         }
       }
     },
 
     saveFromIframe: function (data, filename, callback) {
       // create XML string from data
-      var xml = '';
+      var xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
       data.forEach(function (elem) {
         xml += this._elemToXml(elem, '');
       }, this);
       this._currentContent = xml;
       if (!filename) {
-        // mark as changes as long it is no preview change
+        // mark as changed as long it is no preview change
         this._onContentChanged();
       }
       this.save(filename, callback);
@@ -82,12 +96,11 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
         var method = exists ? this._client.updateSync : this._client.createSync;
         // save preview
         method({
-          path: filename,
-          hash: file.getHash(),
+          path: file.getPath() + '/' + relName,
+          hash: 'ignore',
           type: 'file',
           force: true
         }, this.getCurrentContent(), function (err) {
-          console.log(err);
           callback(err);
         }, this);
       } else {
@@ -141,7 +154,7 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
     },
 
     isSupported: function (file) {
-      return cv.ui.manager.editor.Xml.SUPPORTED_FILES.test(file.getName());
+      return cv.ui.manager.editor.Xml.SUPPORTED_FILES.test(file.getName()) && file.isWriteable();
     }
   },
 
@@ -151,6 +164,6 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
   ***********************************************
   */
   destruct: function () {
-
+  this._disposeObjects('_iframe', '_notWriteable');
   }
 });
