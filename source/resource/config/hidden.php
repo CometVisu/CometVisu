@@ -1,5 +1,5 @@
 <?php
-// File for configurations that shouldn't be shared with the user
+// File for configuraions that shouldn't be shared with the user
 $hidden = array(
   'fritzbox' => array( 'uri' => 'https://192.168.0.1:49443/', 'user' => 'CometVisuTestUser', 'pass' => 'cvtu4here' ),
   //'fritzbox' => array( 'uri' => 'http://192.168.0.1:49000/', 'user' => 'CometVisuTestUser', 'pass' => 'cvtu4here' ),

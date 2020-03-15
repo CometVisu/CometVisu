@@ -516,6 +516,14 @@ module.exports = function(grunt) {
           dest: 'build/resource/libs'
         }]
       }
+    },
+    composer : {
+      rest: {
+        options : {
+          flags: ['prefer-dist', 'no-dev'],
+          cwd: 'source/rest/cv'
+        }
+      }
     }
   };
   grunt.initConfig(config);
@@ -642,12 +650,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-scaffold');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-composer');
 
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
-    'updateicons', 'shell:lint', 'clean', 'file-creator', 'buildicons', 'shell:build',
+    'updateicons', 'shell:lint', 'clean', 'file-creator', 'buildicons', 'composer:rest:install', 'shell:build',
     'update-demo-config', 'chmod', 'shell:buildToRelease', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'rename-client-build']);

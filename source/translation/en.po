@@ -11,72 +11,92 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cv/Application.js:187
+#: cv/Application.js:230
 msgid "Please describe what you have done until the error occured?"
 msgstr ""
 
-#: cv/Application.js:254
+#: cv/Application.js:297
 msgid "An error occured"
 msgstr ""
 
-#: cv/Application.js:260
+#: cv/Application.js:303
 msgid "Enable on reload:"
 msgstr ""
 
-#: cv/Application.js:265
+#: cv/ui/Popup.js:271 cv/ui/manager/ToolBar.js:185 cv/Application.js:308
 msgid "Reload"
 msgstr ""
 
-#: cv/Application.js:297
+#: cv/Application.js:340
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
 msgstr ""
 
-#: cv/Application.js:304
+#: cv/Application.js:347
 msgid "Action recording"
 msgstr ""
 
-#: cv/Application.js:315
+#: cv/Application.js:358
 msgid "Send error to sentry.io"
 msgstr ""
 
-#: cv/Application.js:329
+#: cv/Application.js:372
 msgid "Error reporting (on sentry.io)"
 msgstr ""
 
-#: cv/TemplateEngine.js:252
+#: cv/TemplateEngine.js:264
 msgid "Connection error"
 msgstr ""
 
-#: cv/TemplateEngine.js:261
+#: cv/TemplateEngine.js:273
 msgid "Error requesting %1: %2 - %3."
 msgstr ""
 
-#: cv/TemplateEngine.js:263
+#: cv/TemplateEngine.js:275
 msgid "Connection to backend is lost."
 msgstr ""
 
-#: cv/TemplateEngine.js:278 cv/TemplateEngine.js:293
+#: cv/TemplateEngine.js:290 cv/TemplateEngine.js:305
 msgid "CometVisu protocol error"
 msgstr ""
 
-#: cv/TemplateEngine.js:279
+#: cv/TemplateEngine.js:291
 msgid ""
 "The backend did send an invalid response to the %1Login%2 request: missing "
 "protocol version."
 msgstr ""
 
-#: cv/TemplateEngine.js:282 cv/TemplateEngine.js:297
+#: cv/TemplateEngine.js:294 cv/TemplateEngine.js:309
 msgid "Please try to fix the problem in the backend."
 msgstr ""
 
-#: cv/TemplateEngine.js:283 cv/TemplateEngine.js:298
+#: cv/TemplateEngine.js:295 cv/TemplateEngine.js:310
 msgid "Backend-Response:"
 msgstr ""
 
-#: cv/TemplateEngine.js:294
+#: cv/TemplateEngine.js:306
 msgid ""
 "The backend did send an invalid response to a %1read%2 request: Missing "
 "\"i\" value."
+msgstr ""
+
+#: cv/io/rest/Client.js:195
+msgid "Backend does not respond!"
+msgstr ""
+
+#: cv/io/rest/Client.js:205 cv/ui/manager/editor/AbstractEditor.js:114
+msgid "File has been saved"
+msgstr ""
+
+#: cv/io/rest/Client.js:214
+msgid "Error saving file"
+msgstr ""
+
+#: cv/parser/MetaParser.js:365
+msgid "Template loading error"
+msgstr ""
+
+#: cv/parser/MetaParser.js:368
+msgid "Template '%1' could not be loaded from '%2'."
 msgstr ""
 
 #: cv/plugins/openhab/Settings.js:174
@@ -94,58 +114,571 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: cv/plugins/openhab/Settings.js:232
+#: cv/ui/manager/MenuBar.js:69 cv/plugins/openhab/Settings.js:232
 msgid "Save"
 msgstr ""
 
-#: cv/ui/NotificationCenter.js:227
+#: cv/ui/NotificationCenter.js:236
 msgid "Delete all"
 msgstr ""
 
-#: cv/ui/NotificationCenter.js:227
+#: cv/ui/NotificationCenter.js:236
 msgid "Message center"
+msgstr ""
+
+#: cv/ui/manager/Main.js:120
+msgid "config folder does not exists"
+msgstr ""
+
+#: cv/ui/manager/Main.js:122
+msgid "config folder is not readable"
+msgstr ""
+
+#: cv/ui/manager/Main.js:124
+msgid "config folder is not writeable"
+msgstr ""
+
+#: cv/ui/manager/Main.js:130
+msgid "backup folder is not writeable"
+msgstr ""
+
+#: cv/ui/manager/Main.js:136
+msgid "media folder is not writeable"
+msgstr ""
+
+#: cv/ui/manager/Main.js:142
+msgid "Hidden configuration file (hidden.php) not writeable"
+msgstr ""
+
+#: cv/ui/manager/Main.js:176
+msgid "Cannot load config template"
+msgstr ""
+
+#: cv/ui/manager/Main.js:186
+msgid "Cannot load file content"
+msgstr ""
+
+#: cv/ui/manager/Main.js:355
+msgid "Cannot open file: \"%1\""
+msgstr ""
+
+#: cv/ui/manager/Main.js:400
+msgid ""
+"This file has unsaved changes that will be lost when you close it. Do you "
+"really want to close the file?"
+msgstr ""
+
+#: cv/ui/manager/Main.js:402
+msgid ""
+"This file has not been saved on the backend yet. It will be lost when you "
+"close it. Do you really want to close the file?"
+msgstr ""
+
+#: cv/ui/manager/Main.js:414
+msgid "Unsaved changes"
+msgstr ""
+
+#: cv/ui/manager/Main.js:554
+msgid ""
+"Please enter the name of the new configuration (without \"visu_config_\" at "
+"the beginning and \".xml\" at the end)"
+msgstr ""
+
+#: cv/ui/manager/Main.js:555
+msgid "A configuration with this name already exists."
+msgstr ""
+
+#: cv/ui/manager/Main.js:557
+msgid "Please enter the file name."
+msgstr ""
+
+#: cv/ui/manager/Main.js:558
+msgid "A file with this name already exists."
+msgstr ""
+
+#: cv/ui/manager/Main.js:560
+msgid "Please enter the folder name."
+msgstr ""
+
+#: cv/ui/manager/Main.js:561
+msgid "A folder with this name already exists."
+msgstr ""
+
+#: cv/ui/manager/Main.js:608
+msgid "Folder has been created"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:274 cv/ui/manager/MenuBar.js:46
+msgid "New file"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:291 cv/ui/manager/MenuBar.js:51
+msgid "New folder"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:57
+msgid "New config file"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:63 cv/ui/manager/viewer/Folder.js:34
+msgid "Upload file"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:75
+msgid "Save as..."
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:89
+#: cv/ui/manager/contextmenu/FileItem.js:171
+#: cv/ui/manager/contextmenu/FileItem.js:303 cv/ui/manager/MenuBar.js:79
+msgid "Delete"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:85
+msgid "Quit"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:92
+msgid "Ctrl+Z"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:92
+msgid "Undo"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:97
+msgid "Ctrl+Y"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:97
+msgid "Redo"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:102
+msgid "Ctrl+X"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:102
+msgid "Cut"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:108
+msgid "Copy"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:108
+msgid "Ctrl+C"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:113
+msgid "Ctrl+V"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:113
+msgid "Paste"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:120
+msgid "Use text editor"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:131
+msgid "Use xml editor"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:142
+msgid "Enable quick preview"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:150
+msgid "Expert mode"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:251
+msgid "CometVisu Manager"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:256
+msgid "File"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:261
+msgid "Edit"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:266
+msgid "New"
+msgstr ""
+
+#: cv/ui/manager/MenuBar.js:270
+msgid "Preferences"
+msgstr ""
+
+#: cv/ui/manager/Start.js:157
+msgid "List mode"
+msgstr ""
+
+#: cv/ui/manager/Start.js:163
+msgid "Preview mode"
+msgstr ""
+
+#: cv/ui/manager/Start.js:180
+msgid "Configurations"
+msgstr ""
+
+#: cv/ui/manager/Start.js:223
+msgid "Demo configurations"
+msgstr ""
+
+#: cv/ui/manager/Start.js:248
+msgid "Media files"
+msgstr ""
+
+#: cv/ui/manager/Start.js:278
+msgid "Miscellaneous"
+msgstr ""
+
+#: cv/ui/manager/Start.js:313 cv/ui/manager/model/FileItem.js:90
+#: cv/ui/manager/editor/Config.js:26
+msgid "Hidden configuration"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:310 cv/ui/manager/ToolBar.js:151
+msgid "Download"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:328 cv/ui/manager/ToolBar.js:168
+msgid "Validate"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:88
+msgid "Clear"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:114
+msgid "Backup from %1"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:233
+msgid "New name"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:238
+msgid "Rename file"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:285
+msgid "Clone file"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:298
+msgid "Rename"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:315
+msgid "Open"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:322
+msgid "Restore"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:334
+msgid "Replace"
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:346
+msgid "Compare with..."
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js:350
+msgid "Open with..."
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:39
+msgid "File \"%1\" has been created"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:40
+msgid "Folder \"%1\" has been created"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:54
+msgid "File \"%1\" has been renamed"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:55
+msgid "Folder \"%1\" has been renamed"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:77
+msgid "File \"%1\" has been moved"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:78
+msgid "Folder \"%1\" has been moved"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:125
+#: cv/ui/manager/control/FileController.js:144
+msgid "%1 has been restored"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:160
+msgid "File \"%1\" has been restored"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:161
+msgid "Folder \"%1\" has been restored"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:181
+msgid "Do you really want to clear the trash?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:184
+msgid "Do you really want to delete file \"%1\" from the trash?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:185
+msgid "Do you really want to delete folder \"%1\" from the trash?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:188
+msgid "Do you really want to delete file \"%1\"?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:189
+msgid "Do you really want to delete folder \"%1\"?"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:197
+msgid "Confirm deletion"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:212
+msgid "Trash has been cleared"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:215
+msgid "File \"%1\" has been removed from trash"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:216
+msgid "Folder \"%1\" has been removed from trash"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:219
+msgid "File \"%1\" has been deleted"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:220
+msgid "Folder \"%1\" has been deleted"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:257
+msgid "Validating %1"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:262
+msgid "%1 has no errors!"
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js:270
+msgid "%1 error found in %2!"
+msgid_plural "%1 errors found in %2!"
+msgstr[0] ""
+msgstr[1] ""
+
+#: cv/ui/manager/editor/AbstractEditor.js:114
+msgid "File has been created"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js:121
+msgid "Section name duplicate: \"%1\"."
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js:131
+msgid "Option key duplicate: \"%1\" in section \"%2\"."
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js:140
+msgid "Saving hidden config failed with error %1 (%2)"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js:142
+msgid "Hidden config has been saved"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js:147
+msgid "Section is invalid and has not been saved."
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js:183
+msgid "Add section"
+msgstr ""
+
+#: cv/ui/manager/editor/Diff.js:24
+msgid "File compare"
+msgstr ""
+
+#: cv/ui/manager/editor/Source.js:46
+msgid "Texteditor"
+msgstr ""
+
+#: cv/ui/manager/editor/Xml.js:27
+msgid "Xml-editor"
+msgstr ""
+
+#: cv/ui/manager/editor/completion/Config.js:408
+msgid "Variable from template %1"
+msgstr ""
+
+#: cv/ui/manager/form/FileListItem.js:29
+msgid "Drop the file here to replace the content."
+msgstr ""
+
+#: cv/ui/manager/form/FileListItem.js:220
+msgid ""
+"Do you really want to replace the \'%1\' with the uploaded files content?"
+msgstr ""
+
+#: cv/ui/manager/form/FileListItem.js:235
+msgid "Double click to open \"%1\""
+msgstr ""
+
+#: cv/ui/manager/form/FileListItem.js:402
+msgid "Download file"
+msgstr ""
+
+#: cv/ui/manager/form/FileListItem.js:411
+msgid "Other file actions"
+msgstr ""
+
+#: cv/ui/manager/form/FileTabItem.js:167
+msgid "This file is not writeable"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js:130
+msgid "Delete option"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js:139
+msgid "Add option"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js:147
+msgid "Key"
+msgstr ""
+
+#: cv/ui/manager/form/OptionListItem.js:153
+msgid "Value"
+msgstr ""
+
+#: cv/ui/manager/form/SectionListItem.js:154
+msgid "Section"
+msgstr ""
+
+#: cv/ui/manager/form/SectionListItem.js:169
+msgid "Delete section"
+msgstr ""
+
+#: cv/ui/manager/model/CompareFiles.js:76
+msgid "Diff: %1"
+msgstr ""
+
+#: cv/ui/manager/tree/VirtualFsItem.js:83
+msgid "Trash"
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js:95
+msgid "Replacing the file failed."
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js:97
+msgid "This file already exists, do you want to replace it?"
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js:101
+msgid "File already exists"
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js:106
+msgid "Uploading this file is not allowed here."
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js:116
+msgid "File upload stopped with an error: %1"
+msgstr ""
+
+#: cv/ui/manager/upload/UploadMgr.js:120
+msgid "File has been uploaded"
+msgstr ""
+
+#: cv/ui/manager/viewer/Config.js:37
+msgid "Config viewer"
+msgstr ""
+
+#: cv/ui/manager/viewer/Config.js:61
+msgid "%1 is no configuration file"
+msgstr ""
+
+#: cv/ui/manager/viewer/Folder.js:55
+msgid "Show folder"
+msgstr ""
+
+#: cv/ui/manager/viewer/Folder.js:370
+msgid "Filter by name..."
+msgstr ""
+
+#: cv/ui/manager/viewer/Icons.js:24
+msgid "Show icons"
+msgstr ""
+
+#: cv/ui/manager/viewer/Image.js:36
+msgid "Show image"
 msgstr ""
 
 #: cv/ui/structure/pure/Unknown.js:88
 msgid "unknown: %1"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:169
+#: cv/util/ConfigLoader.js:172
 msgid "Config-File Error!"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:173
+#: cv/util/ConfigLoader.js:176
 msgid "Invalid config file!"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:173
+#: cv/util/ConfigLoader.js:176
 msgid "Please check!"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:181
+#: cv/util/ConfigLoader.js:184
 msgid "Config file has wrong library version!"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:182
+#: cv/util/ConfigLoader.js:185
 msgid "This can cause problems with your configuration"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:183
+#: cv/util/ConfigLoader.js:186
 msgid "You can run the %1Configuration Upgrader%2."
 msgstr ""
 
-#: cv/util/ConfigLoader.js:184
+#: cv/util/ConfigLoader.js:187
 msgid ""
 "Or you can start without upgrading %1with possible configuration problems%2"
 msgstr ""
 
-#: cv/util/ConfigLoader.js:187
+#: cv/util/ConfigLoader.js:190
 msgid ""
 "404: Config file not found. Neither as normal config (%1) nor as demo config"
 " (%2)."
 msgstr ""
 
-#: cv/util/ConfigLoader.js:190
+#: cv/util/ConfigLoader.js:193
 msgid "Unhandled error of type \"%1\""
 msgstr ""
 
@@ -161,13 +694,67 @@ msgstr ""
 msgid "File loading error"
 msgstr ""
 
+#~ msgid "Close file"
+#~ msgstr ""
+
+#~ msgid "Do you really want to delete this file from the trash?"
+#~ msgstr ""
+
+#~ msgid "Do you really want to delete this file?"
+#~ msgstr ""
+
+#~ msgid "Do you really want to delete this folder from the trash?"
+#~ msgstr ""
+
+#~ msgid "Do you really want to delete this folder?"
+#~ msgstr ""
+
+#~ msgid "Double click to open"
+#~ msgstr ""
+
+#~ msgid "Edit hidden config"
+#~ msgstr ""
+
 #~ msgid "Enable error reporting"
+#~ msgstr ""
+
+#~ msgid "Enable error sending on reload"
 #~ msgstr ""
 
 #~ msgid "Enable reporting on reload"
 #~ msgstr ""
 
-#~ msgid "Enable error sending on reload"
+#~ msgid "Entries"
+#~ msgstr ""
+
+#~ msgid "File has been deleted"
+#~ msgstr ""
+
+#~ msgid "File has been moved"
+#~ msgstr ""
+
+#~ msgid "File has been removed from trash"
+#~ msgstr ""
+
+#~ msgid "File has been renamed"
+#~ msgstr ""
+
+#~ msgid "File has been restored"
+#~ msgstr ""
+
+#~ msgid "Folder has been deleted"
+#~ msgstr ""
+
+#~ msgid "Folder has been moved"
+#~ msgstr ""
+
+#~ msgid "Folder has been removed from trash"
+#~ msgstr ""
+
+#~ msgid "Folder has been renamed"
+#~ msgstr ""
+
+#~ msgid "Folder has been restored"
 #~ msgstr ""
 
 #~ msgid "Report Bug"
