@@ -79,6 +79,10 @@ class FileHandler
     }
     // 2. write new content
     if (file_put_contents($file, $content) === false) {
+      if ($fileExists) {
+        // delete the temporary copy
+        unlink($file . $backupSuffix);
+      }
       throw new Exception('file not written', 405);
     } else {
       // 3. check hash of written file
@@ -92,6 +96,8 @@ class FileHandler
             // no changes no need for backup file
             unlink($backupFilename);
           }
+          // delete the temporary copy
+          unlink($file . $backupSuffix);
         }
         throw new Exception('hash mismatch on written content', 405);
       }
