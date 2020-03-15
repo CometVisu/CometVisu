@@ -123,19 +123,19 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
-    save: function (callback) {
+    save: function (callback, overrideHash) {
       var file = this.getFile();
       if (file.isModified()) {
         if (file.isTemporary()) {
           this._client.createSync({
             path: file.getFullPath(),
-            hash: file.getHash(),
+            hash: overrideHash || file.getHash(),
             type: 'file'
           }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, 'created'), this);
         } else {
           this._client.updateSync({
             path: file.getFullPath(),
-            hash: file.getHash()
+            hash: overrideHash || file.getHash()
           }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, 'contentChanged'), this);
         }
       }

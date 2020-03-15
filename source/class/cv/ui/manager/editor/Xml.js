@@ -109,7 +109,7 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
             this._onSaved();
           }
           callback(err);
-        }.bind(this));
+        }.bind(this), 'ignore');
       }
     },
 
