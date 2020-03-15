@@ -1,0 +1,1 @@
+qx.$$packageData['1024']={"resources":{"plugins/diagram/dep/flot/jquery.flot.canvas.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.navigate.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.resize.min.js":"cv"}};

@@ -1,0 +1,1 @@
+qx.$$packageData['128']={"resources":{"manager/completion-libs/qooxdoo.d.ts":"cv","manager/crc32.js":"cv","manager/worker.js":"cv","manager/xml.js":"cv","manager/xmllint.js":"cv","qx/static/blank.gif":[1,1,"gif","qx"]}};

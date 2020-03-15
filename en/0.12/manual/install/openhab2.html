@@ -234,18 +234,18 @@ and some configuration directories must be created.</p>
 <span class="go">chown -R openhab:openhab /var/www/cometvisu</span>
 
 <span class="gp">#</span> Customize configuration directories
-<span class="go">mkdir -p /etc/openhab2/cometvisu/config</span>
-<span class="go">mkdir -p /etc/openhab2/cometvisu/designs</span>
+<span class="go">mkdir -p /etc/openhab2/cometvisu/resource/config</span>
+<span class="go">mkdir -p /etc/openhab2/cometvisu/resource/designs</span>
 
 <span class="gp">#</span> Customize user rights <span class="k">for</span> openHAB
 <span class="go">chown -R openhab:openhab /etc/openhab2/cometvisu</span>
 </pre></div>
 </div>
-<p>The two directories <em>/etc/openhab2/cometvisu/config</em> and
-<em>/etc/openhab2/cometvisu/designs</em> will contain the CometVisu
+<p>The two directories <em>/etc/openhab2/cometvisu/resource/config</em> and
+<em>/etc/openhab2/cometvisu/resource/designs</em> will contain the CometVisu
 configurations and are protected from upgrades by the separate
 location. Only if these directories are not present, CometVisu
-will search the configuration in <em>/var/www/cometvisu/config</em>.</p>
+will search the configuration in <em>/var/www/cometvisu/resource/config</em>.</p>
 </div>
 <div class="section" id="openhab-configuration">
 <h2>3.-5. openHAB Configuration<a class="headerlink" href="#openhab-configuration" title="Permalink to this headline">¶</a></h2>

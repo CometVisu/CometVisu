@@ -20,11 +20,67 @@
 
 
 qx.Theme.define("cv.theme.dark.Decoration", {
-  extend : qx.theme.simple.Decoration,
+  extend : osparc.theme.osparcdark.Decoration,
 
   decorations : {
     "window-caption-active": {
+    },
 
+    'cv-editor-config-section': {
+      style: {
+        width: 1,
+        color: 'material-textfield'
+      }
+    },
+
+    'cv-snackbar-msg': {
+      style: {
+        backgroundColor: 'button'
+      }
+    },
+
+    'cv-snackbar-msg-error': {
+      style: {
+        backgroundColor: 'material-textfield-invalid'
+      }
+    },
+
+    'cv-toolbar': {
+      style: {
+        width: [1, 0, 1, 0],
+        color: 'background-main'
+      }
+    },
+
+    'file-action-button': {
+      style: {
+        width: 1,
+        color: 'text'
+      }
+    },
+
+    'cv-start-section-title': {
+      style: {
+        width: [1, 0, 0, 0],
+        color: 'text-placeholder'
+      }
+    },
+    'open-file-tabs': {
+      style: {
+        shadowSpreadRadius: 0,
+        shadowBlurRadius: 4,
+        shadowHorizontalLength: 1,
+        shadowVerticalLength: 1,
+        shadowColor: 'rgba(255, 255, 255, 0.1)'
+      }
+    },
+
+    'cv-file-item-add-file': {
+      style: {
+        width: 1,
+        color: 'text',
+        style: 'dashed'
+      }
     }
   }
 });

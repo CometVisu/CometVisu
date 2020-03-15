@@ -228,16 +228,16 @@ Dies alles kann durch folgenden Konsolenbefehle ausgeführt werden:</p>
 <span class="go">chown -R openhab:openhab /var/www/cometvisu</span>
 
 <span class="gp">#</span> Konfigurationsverzeichnisse anpassen
-<span class="go">mkdir -p /etc/openhab2/cometvisu/config</span>
-<span class="go">mkdir -p /etc/openhab2/cometvisu/designs</span>
+<span class="go">mkdir -p /etc/openhab2/cometvisu/resource/config</span>
+<span class="go">mkdir -p /etc/openhab2/cometvisu/resource/designs</span>
 
 <span class="gp">#</span> Benutzerrechte anpassen für openHAB
 <span class="go">chown -R openhab:openhab /etc/openhab2/cometvisu</span>
 </pre></div>
 </div>
-<p>Die zwei Verzeichnisse <em>/etc/openhab2/cometvisu/config</em> und <em>/etc/openhab2/cometvisu/designs</em> werden die Konfigurationen
+<p>Die zwei Verzeichnisse <em>/etc/openhab2/cometvisu/resource/config</em> und <em>/etc/openhab2/cometvisu/resource/designs</em> werden die Konfigurationen
 der CometVisu enthalten und sind durch die separate Lokation vor Upgrades geschützt. Nur wenn diese Verzeichnisse nicht
-vorhanden sind, wird CometVisu die Konfiguration in <em>/var/www/cometvisu/config</em> suchen.</p>
+vorhanden sind, wird CometVisu die Konfiguration in <em>/var/www/cometvisu/resource/config</em> suchen.</p>
 </div>
 <div class="section" id="openhab-konfigurieren">
 <h2>3.-5. openHAB konfigurieren<a class="headerlink" href="#openhab-konfigurieren" title="Link zu dieser Überschrift">¶</a></h2>

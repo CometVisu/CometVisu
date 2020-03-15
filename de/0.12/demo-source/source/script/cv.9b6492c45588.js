@@ -1,1 +1,0 @@
-qx.$$packageData['512']={"locales":{},"resources":{"plugins/diagram/dep/flot/jquery.flot.canvas.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.navigate.min.js":"cv","plugins/diagram/dep/flot/jquery.flot.resize.min.js":"cv"},"translations":{"de":{},"en":{}}};
