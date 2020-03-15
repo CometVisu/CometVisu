@@ -5,16 +5,6 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
   extend: cv.ui.manager.viewer.AbstractViewer,
 
   /*
-  ***********************************************
-    CONSTRUCTOR
-  ***********************************************
-  */
-  construct: function () {
-    this.base(arguments);
-    this.addListener('resize', this._scaleImage, this);
-  },
-
-  /*
     ***********************************************
       PROPERTIES
     ***********************************************
@@ -77,9 +67,11 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
         } else {
           this._scaleImage();
         }
+        this.addListener('resize', this._scaleImage, this);
       } else {
         control.resetIcon();
         control.resetLabel();
+        this.removeListener('resize', this._scaleImage, this);
       }
     },
 
@@ -89,8 +81,12 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
         this.addListenerOnce('appear', this._scaleImage, this);
         return;
       }
+      var file = this.getFile();
+      if (!file) {
+        return;
+      }
       var icon = this.getChildControl('image').getChildControl('icon');
-      var data = cv.ui.manager.viewer.Image.getImageData(this.getFile().getServerPath());
+      var data = cv.ui.manager.viewer.Image.getImageData(file.getServerPath());
       var paddingX = 10;
       var paddingY = 20;
       var availableHeight = bounds.height - paddingY * 2;
