@@ -35,6 +35,20 @@ qx.Class.define("cv.Application",
   extend : qx.application.Native,
 
   /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function () {
+    this.base(arguments);
+    this.initCommandManager(new qx.ui.command.GroupManager());
+    var lang = qx.locale.Manager.getInstance().getLanguage();
+    if (qx.io.PartLoader.getInstance().hasPart(lang)) {
+      qx.io.PartLoader.require([lang]);
+    }
+  },
+
+  /*
    ******************************************************
    STATICS
    ******************************************************
@@ -42,6 +56,7 @@ qx.Class.define("cv.Application",
   statics: {
     HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
     consoleCommands: [],
+    __commandManager: null,
 
     /**
      * Client factory method -> create a client
@@ -93,6 +108,11 @@ qx.Class.define("cv.Application",
       check: 'Boolean',
       init: false,
       event: 'changeStructureLoaded'
+    },
+
+    commandManager: {
+      check: 'qx.ui.command.GroupManager',
+      deferredInit: true
     }
   },
 
@@ -157,6 +177,14 @@ qx.Class.define("cv.Application",
 
       console.log(info);
 
+      // add command to load and open the manager
+      var manCommand = new qx.ui.command.Command('Ctrl+M');
+      cv.TemplateEngine.getInstance().getCommands().add("open-manager", manCommand);
+      manCommand.addListener('execute', this.showManager, this);
+      if (cv.Config.request.queryKey.manager) {
+        this.showManager();
+      }
+
       if (qx.core.Environment.get("qx.aspects")) {
         qx.dev.Profile.stop();
         qx.dev.Profile.start();
@@ -188,6 +216,16 @@ qx.Class.define("cv.Application",
       qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
 
       this.__init();
+    },
+
+    showManager: function () {
+      qx.io.PartLoader.require(['manager'], function (states) {
+        var toggleVisibility = !!cv.ui.manager.Main.constructor.$$instance;
+        var manager = cv.ui.manager.Main.getInstance();
+        if (toggleVisibility) {
+          manager.setVisible(!manager.getVisible());
+        }
+      }, this);
     },
 
     __globalErrorHandler: function(ex) {

@@ -36,7 +36,8 @@
     "validate-config",
     "validate-manifest",
     "watch",
-    "profile"
+    "profile",
+    "make-font-map"
   ],
 
   "default-job" : "source-hybrid",
@@ -100,7 +101,9 @@
           "svg4everybody",
           "EVENT_RECORDER",
           "Favico",
-          "Sentry"
+          "Sentry",
+          "Promise",
+          "monaco"
         ]
       },
 
@@ -163,7 +166,8 @@
           "version",
           "library_version.inc.php",
           "manifest.json",
-          "../node_modules/monaco-editor"
+          "../node_modules/monaco-editor",
+          "rest/cv"
         ]
       }
     },
@@ -172,7 +176,23 @@
     {
       "library" :
       [
-        { "manifest" : "client/Manifest.json" }
+        { "manifest" : "client/Manifest.json" },
+        {
+          "manifest" : "external/qx-iconfont-material/Manifest.json",
+          "uri"      : "../external/qx-iconfont-material"
+        },
+        {
+          "manifest" :  "external/qx-osparc-theme/Manifest.json",
+          "uri"      : "../external/qx-osparc-theme"
+        },
+        {
+          "manifest" :  "external/qx-contrib-dialog/Manifest.json",
+          "uri"      : "../external/qx-contrib-dialog"
+        },
+        {
+          "manifest" :  "external/qx-upload-manager/Manifest.json",
+          "uri"      : "../external/qx-upload-manager"
+        }
       ]
     },
 
@@ -187,7 +207,8 @@
           "svg4everybody",
           "EVENT_RECORDER",
           "Favico",
-          "Sentry"
+          "Sentry",
+          "monaco"
         ]
       }
     },
@@ -198,6 +219,7 @@
       {
 //        "verifier-bombs-on-error" : false,
 //        "separate-loader" : true,
+        "i18n-as-parts": true,
         "parts"  :
         {
           "boot"     :
@@ -211,6 +233,10 @@
           },
           "structure-pure" : {
             "include": [ "${APPLICATION}.ui.structure.pure.*" ]
+          },
+
+          "manager": {
+            "include": [ "${APPLICATION}.ui.manager.Main" ]
           },
 
           "plugin-diagram" :
@@ -283,7 +309,7 @@
           },
           "plugin-openhab" :
           {
-            "include" : [ "${APPLICATION}.plugins.openhab.*", "${QXTHEME}" ]
+            "include" : [ "${APPLICATION}.plugins.openhab.*" ]
           }
         }
       }
@@ -520,6 +546,30 @@
       "environment" :
       {
         "qx.aspects" : true
+      }
+    },
+
+    "make-font-map" :
+    {
+      "desc" : "Build a font mapping from glyphname to unicode id",
+
+      "let" :
+      {
+        "RESPATH" : "./external/qx-iconfont-material/source/resource",
+        "QXRESPATH" : "${QOOXDOO_PATH}/framework/source/resource"
+      },
+
+      "font-map" :
+      {
+        "fonts" :
+        {
+          "${RESPATH}/iconfont/material/MaterialIcons-Regular.ttf" :
+          {
+            "prefix": [ "${RESPATH}" ],
+            "alias" : "MaterialIcons",
+            "size" : 32
+          }
+        }
       }
     }
   }

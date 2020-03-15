@@ -9,7 +9,8 @@ Preparation
 
 The new build system requires python2 and grunt. Also you have to run `npm install` once,
 because at least the build-task (explained later) includes a grunt task which minifies included
-external dependencies.
+external dependencies. If you want to use the REST API backend included in the CometVisu you
+have to run `grunt composer:rest:install` to load the external dependencies for the PHP code.
 
 After cloning the sources or updating from 0.10.x you have to do the following steps once:
 

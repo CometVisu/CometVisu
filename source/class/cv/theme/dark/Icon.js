@@ -19,5 +19,13 @@
 
 
 qx.Theme.define("cv.theme.dark.Icon", {
+  extend: qx.theme.icon.Tango,
 
+  aliases: {
+    "dialog.icon.cancel" : "@MaterialIcons/cancel/18",
+    "dialog.icon.ok"     : "@MaterialIcons/check/18",
+    "dialog.icon.info"   : "@MaterialIcons/info/18",
+    "dialog.icon.error"  : "@MaterialIcons/error/18",
+    "dialog.icon.warning" : "@MaterialIcons/warning/18"
+  }
 });
