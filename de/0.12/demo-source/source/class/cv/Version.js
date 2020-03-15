@@ -3,9 +3,9 @@ qx.Class.define("cv.Version", {
   type: "static",
 
   statics: {
-    REV: "45d8bea3a4a0c7f89b2df6e299872123258fcd6f",
+    REV: "e66e1e9b3f1798976a4c268214049867418ed410",
     BRANCH: "HEAD",
     VERSION: "0.12.0-dev",
-    DATE: "2020-03-15T13:53:04.505524"
+    DATE: "2020-03-15T20:43:23.506731"
   }
 });

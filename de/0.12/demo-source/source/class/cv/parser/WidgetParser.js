@@ -54,9 +54,9 @@ qx.Class.define('cv.parser.WidgetParser', {
       rootPage.querySelectorAll('template').forEach(function (elem) {
         var templateName = elem.getAttribute('name');
         var variables = {};
-        elem.children.forEach(function (variable) {
+        Array.prototype.forEach.call(elem.children, function (variable) {
           variables[variable.getAttribute('name')] = variable.innerHTML;
-        }, this);
+        });
 
         if (this.__templates.hasOwnProperty(templateName)) {
           var renderedString = qx.bom.Template.render(this.__templates[templateName], variables).replace('\n', '').trim();
