@@ -38,17 +38,9 @@ describe("testing a multitrigger widget", function() {
   it("should test the multitrigger creator", function() {
 
     var res = this.createTestWidgetString("multitrigger", {
-      'button1label': 'B1',
-      'button2label': 'B2',
-      'button3label': 'B3',
-      'button4label': 'B4',
-      'button1value': '1',
-      'button2value': '2',
-      'button3value': '3',
-      'button4value': '4',
       'showstatus': 'true',
       'mapping': 'test'
-    });
+    }, '<buttons><button label="B1">1</button><button label="B2">2</button><button label="B3">3</button><button label="B4">4</button></buttons>');
     var widget = cv.util.String.htmlStringToDomElement(res[1]);
 
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
@@ -61,16 +53,8 @@ describe("testing a multitrigger widget", function() {
 
   it("should update an multitrigger widget", function(done) {
     var creator = this.createTestElement('multitrigger', {
-      'button1label': 'B1',
-      'button2label': 'B2',
-      'button3label': 'B3',
-      'button4label': 'B4',
-      'button1value': 1,
-      'button2value': 2,
-      'button3value': 3,
-      'button4value': 4,
       'showstatus': 'true'
-    }, null, null, {'transform': '4.001'});
+    }, '<buttons><button label="B1">1</button><button label="B2">2</button><button label="B3">3</button><button label="B4">4</button></buttons>', null, {'transform': '4.001'});
     this.initWidget(creator);
 
     var check = function(index) {
@@ -126,16 +110,8 @@ describe("testing a multitrigger widget", function() {
   it('should trigger the multitrigger action', function() {
 
     var creator = this.createTestElement('multitrigger', {
-      'button1label': 'B1',
-      'button2label': 'B2',
-      'button3label': 'B3',
-      'button4label': 'B4',
-      'button1value': 1,
-      'button2value': 2,
-      'button3value': 3,
-      'button4value': 4,
       'showstatus': 'true'
-    }, null, '<address transform="DPT:4001" mode="read">1/0/0</address>', {'transform': '4.001'});
+    }, '<buttons><button label="B1">1</button><button label="B2">2</button><button label="B3">3</button><button label="B4">4</button></buttons>', '<address transform="DPT:4001" mode="read">1/0/0</address>', {'transform': '4.001'});
     spyOn(creator, "sendToBackend");
     var actors = this.container.children[0].querySelectorAll(".actor_container .actor");
     expect(actors.length).not.toBe(0);

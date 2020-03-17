@@ -78,9 +78,7 @@ qx.Class.define('cv.parser.widgets.MultiTrigger', {
           }
         },
         elementsPerLine: {
-          transform: function (value) {
-            return parseInt(value);
-          }
+          transform: parseInt,  "default": 2
         }
       };
     },
