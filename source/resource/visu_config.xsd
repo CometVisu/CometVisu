@@ -1440,6 +1440,12 @@
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute name="elementsPerLine" type="xsd:unsignedByte" use="optional" default="2">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines how many elements are shown in a line before adding a line break (default to 2, 0 adds no line breaks at all).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt fest wie viele Element pro Zeile angezeigt werden (Standardwert ist 2, 0 fügt gar keine Zeilenumbrüche hinzu).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="buttons">
