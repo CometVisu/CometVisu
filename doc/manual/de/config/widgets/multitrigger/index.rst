@@ -14,7 +14,10 @@ Das MultiTrigger Widget
 Beschreibung
 ------------
 
-Der Multitrigger fügt der Visu bis zu vier Schaltflächen hinzu, mit denen z.B. Szenenaufrufe realisiert werden können.
+Der Multitrigger fügt der Visu beliebig Schaltflächen hinzu, mit denen z.B. Szenenaufrufe realisiert werden können.
+
+.. hint::
+    Ab Version 0.12.0 sind beliebig viele Schaltflächen möglich, in älteren Versionen waren nicht mehr als 4 möglich.
 
 .. figure:: _static/multitrigger_simple.png
 
@@ -43,10 +46,16 @@ Erlaubte Attribute im MultiTrigger-Element
     :align: center
 
     <caption>Elemente im Editor</caption>
-    <multitrigger button1label="HDMI1" button1value="0" button2label="HDMI2" button2value="1" button3label="VGA" button3value="2" button4label="-">
+    <multitrigger>
       <layout colspan="6"/>
       <label>Eingangsquelle</label>
       <address transform="DPT:5.001" mode="readwrite">9/6/1</address>
+      <buttons>
+        <button label="HTML1">0</button>
+        <button label="HTML2">1</button>
+        <button label="VGA">2</button>
+        <button label="-"></button>
+      </buttons>
     </multitrigger>
 
 
@@ -61,10 +70,16 @@ Erlaubte Kind-Elemente und deren Attribute
     :align: center
 
     <caption>Elemente im Editor</caption>
-    <multitrigger button1label="HDMI1" button1value="0" button2label="HDMI2" button2value="1" button3label="VGA" button3value="2" button4label="-">
+    <multitrigger>
       <layout colspan="6"/>
       <label>Eingangsquelle</label>
       <address transform="DPT:5.001" mode="readwrite">9/6/1</address>
+      <buttons>
+        <button label="HTML1">0</button>
+        <button label="HTML2">1</button>
+        <button label="VGA">2</button>
+        <button label="-"></button>
+      </buttons>
     </multitrigger>
 
 XML Syntax
@@ -86,10 +101,16 @@ Hier der minimale Beispielcode der das MultiTrigger Widget aus dem folgenden Scr
                 <caption>MultiTrigger, einfaches Beispiel</caption>
             </screenshot>
         </settings>
-        <multitrigger button1label="HDMI1" button1value="0" button2label="HDMI2" button2value="1" button3label="VGA" button3value="2" button4label="-">
+        <multitrigger>
             <layout colspan="6"/>
             <label>Eingangsquelle</label>
             <address transform="DPT:5.001" mode="readwrite">9/6/1</address>
+            <buttons>
+              <button label="HTML1">0</button>
+              <button label="HTML2">1</button>
+              <button label="VGA">2</button>
+              <button label="-"></button>
+            </buttons>
         </multitrigger>
 
 
