@@ -521,7 +521,7 @@ module.exports = function(grunt) {
       rest: {
         options : {
           flags: ['prefer-dist', 'no-dev'],
-          cwd: 'source/rest/cv'
+          cwd: 'source/rest/manager'
         }
       }
     }

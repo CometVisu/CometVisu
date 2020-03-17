@@ -167,7 +167,7 @@
           "library_version.inc.php",
           "manifest.json",
           "../node_modules/monaco-editor",
-          "rest/cv"
+          "rest/manager"
         ]
       }
     },
