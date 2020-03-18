@@ -29,7 +29,10 @@
   "requires": {
     "@qooxdoo/framework": "^6.0.0-beta",
     "@qooxdoo/compiler": "^1.0.0-beta.20190917-1105",
-    "qooxdoo/qxl.apiviewer": "^1.0.0-beta.7"
+    "qooxdoo/qxl.apiviewer": "^1.0.0-beta.7",
+    "ITISFoundation/qx-osparc-theme": "^0.4.13",
+    "johnspackman/UploadMgr": "^1.0.4",
+    "cboulanger/qx-contrib-Dialog": "^2.1.1"
   },
   "externalResources": {
     "script": [
