@@ -24,9 +24,9 @@
  * @author Stefan Borchert (stefan@borchert.cc)
  * @author Matthias
  * @since 0.9.0
- * @asset(plugins/openweathermap/owm_core.js,
- *        plugins/openweathermap/owm_basic_style.css,
- *        plugins/openweathermap/owm_weathericon.css)
+ * @asset(plugins/openweathermap/owm_core.js)
+ * @asset(plugins/openweathermap/owm_basic_style.css)
+ * @asset(plugins/openweathermap/owm_weathericon.css)
  */
 qx.Class.define('cv.plugins.OpenweatherMap', {
   extend: cv.ui.structure.AbstractWidget,

@@ -16,6 +16,8 @@ settings/keys/deploy_key
 # .gitignore template for skeleton-based apps
 /api/
 /build/
+/compiled/
+/.env/
 /test/
 /source/script/
 /source/class/cv/Version.js

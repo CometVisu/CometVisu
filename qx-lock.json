@@ -26,11 +26,11 @@
     },
     {
       "library_name": "qx-iconfont-material",
-      "library_version": "0.1.7",
-      "path": "qx_packages/ITISFoundation_qx-iconfont-material_v0_1_7",
+      "library_version": "0.1.4",
+      "path": "qx_packages/ITISFoundation_qx-iconfont-material_v0_1_4",
       "uri": "ITISFoundation/qx-iconfont-material",
       "repo_name": "ITISFoundation/qx-iconfont-material",
-      "repo_tag": "v0.1.7"
+      "repo_tag": "v0.1.4"
     },
     {
       "library_name": "UploadMgr",

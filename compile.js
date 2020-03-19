@@ -222,7 +222,9 @@ qx.Class.define("cv.compile.LibraryApi", {
         "manager.php",
         "version",
         "library_version.inc.php",
-        "../node_modules/monaco-editor"
+        "../node_modules/monaco-editor",
+        "rest/manager",
+        "resource/visu_config.xsd"
       ]
       const currentDir = process.cwd()
       const targetDir = this._getTargetDir(config)

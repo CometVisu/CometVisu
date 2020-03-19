@@ -21,6 +21,7 @@
       "include": [
         "cv.Application",
         "cv.ui.structure.pure.*",
+        "cv.ui.manager.*",
         "cv.transforms.*",
         "cv.plugins.*",
         "cv.parser.*",
@@ -43,6 +44,11 @@
         "structure-pure": {
           "include": [
             "cv.ui.structure.pure.*"
+          ]
+        },
+        "manager": {
+          "include": [
+            "cv.ui.manager.*"
           ]
         },
         "plugin-diagram": {
@@ -211,6 +217,8 @@
     "EventSource",
     "Favico",
     "Sentry",
-    "localStorage"
+    "localStorage",
+    "monaco",
+    "Worker"
   ]
 }
