@@ -5,6 +5,10 @@ const path = require('path')
 const glob = require('glob')
 const { exec } = require('child_process')
 
+// because the qx compiler does not handle files in the root resoure folder well
+// we add them here
+const additionalResources = ['visu_config.xsd', 'cometvisu_management.css'];
+
 qx.Class.define('cv.compile.BuildTarget', {
   extend: qx.tool.compiler.targets.BuildTarget,
 
@@ -20,6 +24,10 @@ qx.Class.define('cv.compile.BuildTarget', {
 
   members: {
     _pluginsLoadingScripts: null,
+
+    // _writeApplication: async function(compileInfo) {
+    //   this.base(arguments, compileInfo)
+    // },
 
     // overridden
     _afterWriteApplication: async function(compileInfo) {
@@ -171,6 +179,12 @@ qx.Class.define("cv.compile.LibraryApi", {
 
       let command = this.getCompilerApi().getCommand();
       command.addListener("made", () => this._onMade());
+      command.addListener("compiledClass", (ev) => {
+        const data = ev.getData();
+        if (data.classFile.getClassName() === 'cv.Application') {
+          additionalResources.forEach(res => data.dbClassInfo.assets.push(res))
+        }
+      });
     },
 
     /**
@@ -223,8 +237,7 @@ qx.Class.define("cv.compile.LibraryApi", {
         "version",
         "library_version.inc.php",
         "../node_modules/monaco-editor",
-        "rest/manager",
-        "resource/visu_config.xsd"
+        "rest/manager"
       ]
       const currentDir = process.cwd()
       const targetDir = this._getTargetDir(config)
