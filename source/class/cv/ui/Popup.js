@@ -98,7 +98,7 @@ qx.Class.define('cv.ui.Popup', {
           html: closable ? '<div class="popup_close">X</div>' : ""
         });
         body.appendChild(ret_val);
-        this.__elementMap.close = ret_val.querySelectorAll("div.popup_close");
+        this.__elementMap.close = ret_val.querySelector("div.popup_close");
         addCloseListeners = true;
       } else {
         isNew = false;
@@ -122,7 +122,7 @@ qx.Class.define('cv.ui.Popup', {
           ret_val.appendChild(this.__elementMap.title);
         }
 
-        if (typeof attributes.title === 'string') {
+        if (qx.lang.Type.isString(attributes.title)) {
           this.__elementMap.title.innerHTML = "" + attributes.title;
         } else {
           this.__elementMap.title.appendChild(attributes.title);
@@ -141,7 +141,7 @@ qx.Class.define('cv.ui.Popup', {
             this.__elementMap.messageContent = qx.dom.Element.create("div", {"class": "message"});
             qx.dom.Element.insertBegin(this.__elementMap.messageContent, this.__elementMap.content);
           }
-          if (typeof attributes.content === 'string') {
+          if (qx.lang.Type.isString(attributes.content)) {
             this.__elementMap.messageContent.innerHTML = attributes.content;
           } else {
             this.__elementMap.messageContent.parentNode.replaceChild(attributes.content, this.__elementMap.messageContent);
