@@ -150,10 +150,11 @@
       "name": "apiviewer",
       "title": "CometVisu API Viewer",
       "environment": {
-        "qx.promise": true,
         "qx.icontheme": "Tango",
         "excludeFromAPIViewer": [
-          "qxl.apiviewer.*"
+          "qxl.*",
+          "iconfont.*",
+          "osparc.*"
         ],
         "versionLabel.name": "CometVisu",
         "versionLabel.version": "dev"
@@ -194,7 +195,8 @@
       "environment": {
         "cv.build": "build",
         "cv.sentry": true,
-        "qx.globalErrorHandling": true
+        "qx.globalErrorHandling": true,
+        "qx.debug": false
       }
     }
   ],
@@ -204,7 +206,6 @@
   },
   "serve": {
     "listenPort": 8082
-
   },
   "ignores": [
     "$",

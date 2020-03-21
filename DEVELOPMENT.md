@@ -23,7 +23,9 @@ Building source and build versions
 **Short version**
 
 Execute `npx qx compile --watch`, let your webserver serve the folder `compiled/source`, open
-the URL `http://localhost:8082` in your browser and start to develop.
+the URL of you webserver in your browser and start to develop.
+If you need PHP support during development you can run a PHP server that serves the compiled source
+version of the cometvisu by executing `npm run source`. 
 
 **In Detail:**
 
@@ -36,6 +38,9 @@ The most useful build commands are:
 * `npx qx compile` generates a source version of the cometvisu in the subfolder `compiled/source`.
 
     Ideal for debugging and development, just serve the folder with your favorite web browser.
+    
+    If you add the `--watch` parameter the compilation will automatically when whenever you change
+    something in the code.
      
 * `npx qx compile --target=build` generates a minified build version in the subfolder `compiled/build`.
 
