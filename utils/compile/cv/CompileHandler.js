@@ -3,7 +3,7 @@ const fse = require('fs-extra')
 const path = require('path')
 const { exec } = require('child_process')
 const { AbstractCompileHandler } = require('../AbstractCompileHandler')
-const BuildTarget = require('./BuildTarget')
+const { CvBuildTarget } = require('./BuildTarget')
 
 // because the qx compiler does not handle files in the root resoure folder well
 // we add them here
@@ -28,7 +28,7 @@ class CvCompileHandler extends AbstractCompileHandler {
     if (this._config.targetType === 'build') {
       this._config.targets.some(target => {
         if (target.type === 'build') {
-          target.targetClass = BuildTarget
+          target.targetClass = CvBuildTarget
         }
       })
     }

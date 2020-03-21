@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const glob = require('glob')
 
-qx.Class.define('cv.compile.BuildTarget', {
+qx.Class.define('cv.compile.cv.BuildTarget', {
   extend: qx.tool.compiler.targets.BuildTarget,
 
   /*
@@ -142,3 +142,7 @@ qx.Class.define('cv.compile.BuildTarget', {
     }
   }
 })
+
+module.exports = {
+  CvBuildTarget: cv.compile.cv.BuildTarget
+}
