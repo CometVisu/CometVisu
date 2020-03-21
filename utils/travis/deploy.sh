@@ -56,24 +56,19 @@ $CV doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 
 utils/update_version.py
 echo "generating api version $VERSION"
-source temp-python/bin/activate
-# Turn off O_NONBLOCK (breaks large stdout writes)
-python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);'
-{
-  ${DOCKER_RUN} ./generate.py api -qsI --macro=CV_VERSION:$VERSION &&
+
+CV_VERSION=$VERSION qx compile -t build --set apiviewer=true
+if [ $? -eq 0 ]
+then
   echo "API successfully generated"
-} || {
+else {
   echo "API generation failed"
   NO_API=1
 }
-deactivate
 
 # API screenshots are used by the "doc --from-source" run so we generate them here
 if [[ "$NO_API" -eq 0 ]]; then
-    echo "generate API screenshots"
-    ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
-
-    # move the apiviewer to the correct version subfolder, including screenshots
+    # move the apiviewer to the correct version subfolder
     rm -rf out/en/$VERSION_PATH/api
     ${CV} doc --move-apiviewer --target-version=${VERSION_PATH}
 fi

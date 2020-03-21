@@ -617,8 +617,6 @@ class DocGenerator(Command):
             # move to the correct dir
             target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
             target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
-            # remove api suffix from target
-            target_dir = os.path.sep.join(target_dir.split(os.path.sep)[0:-1])
             shutil.move(self.config.get("api", "generator_target"), target_dir)
 
         elif 'doc' not in options or options.doc == "manual":
