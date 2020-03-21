@@ -53,21 +53,10 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
      * Create the SVG path for the round bar.
      * Angle = 0 === horizontal on the right
      */
-    createBarPath: function(startAngle, startArrowPoint, endAngle, endArrowPoint, arrowType, radius, width, getBBox) {
+    createBarPath: function(startAngle, startArrowPoint, endAngle, endArrowPoint, radius, width, getBBox) {
       var
-        startArrowPointAngle = startAngle,
-        endArrowPointAngle   = endAngle;
-
-      switch(arrowType) {
-        case 0: // default: angle
-          startArrowPointAngle += startArrowPoint * Math.PI / 180;
-          endArrowPointAngle   += endArrowPoint * Math.PI / 180;
-          break;
-
-        case 1: // distance
-          startArrowPointAngle += startArrowPoint / radius;
-          endArrowPointAngle   += endArrowPoint / radius;
-      }
+        startArrowPointAngle = startAngle + startArrowPoint,
+        endArrowPointAngle   = endAngle + endArrowPoint;
 
       var
         clockwise   = startAngle > endAngle ? 1 : 0,
@@ -190,16 +179,12 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
     majorposition: { check: "String" },
     majorcolor: { check: "String" },
     start: { check: "Number" },
-    startarrow: { check: "Number" },
     end: { check: "Number" },
-    endarrow: { check: "Number" },
     arrowtype: { check: "Number" },
     radius: { check: "Number" },
     width: { check: "Number" },
     spacing: { check: "Number" },
     overflowarrow: { check: "Boolean" },
-    //pointerwidth: { check: "Number" },
-    //pointerthickness: { check: "Number" },
     fontsize: { check: "Number" },
     textx: { check: "Number" },
     texty: { check: "Number" },
@@ -245,16 +230,20 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
         svgText = '',
         createBarPath = cv.ui.structure.pure.Roundbar.createBarPath;
 
-      var rMax = this.getAxisradius()+this.getAxiswidth();
+      var
+        rMax = this.getAxisradius()+this.getAxiswidth(),
+        sMax = 0,
+        eMax = 0;
       this.getIndicators().forEach(function (indicator) {
         rMax = Math.max(rMax, indicator.radius, indicator.radius+indicator.width);
+        sMax = Math.max(sMax, indicator.startarrow);
+        eMax = Math.max(eMax, indicator.endarrow);
       });
       var BBox = createBarPath(
         s,
-        this.getStartarrow(),
+        sMax,
         e,
-        this.getEndarrow(),
-        this.getArrowtype(),
+        eMax,
         rMax,
         0,
         true
@@ -326,9 +315,9 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
           eRange = (e-s)*(range.end  -min)/(max-min)+s,
           rRange = range.radius || self.getAxisradius(),
           wRange = range.width  || self.getAxiswidth(),
-          thisBBox = createBarPath(sRange,0,eRange,0,0,rRange,wRange, true);
+          thisBBox = createBarPath(sRange,0,eRange,0,rRange,wRange, true);
         svgRanges += '<path class="range" d="';
-        svgRanges += createBarPath(sRange,0,eRange,0,0,rRange,wRange);
+        svgRanges += createBarPath(sRange,0,eRange,0,rRange,wRange);
         if (range.style) {
           svgRanges += '" style="' + range.style;
         }
@@ -374,8 +363,8 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
 
       if (this.getAxisradius() > 0) {
         var
-          sectorPath = createBarPath(s,0,e,0,0,this.getAxisradius(),0),
-          axisPath = createBarPath(s,0,e,0,0,this.getAxisradius(),this.getAxiswidth()),
+          sectorPath = createBarPath(s,0,e,0,this.getAxisradius(),0),
+          axisPath = createBarPath(s,0,e,0,this.getAxisradius(),this.getAxiswidth()),
           stroke = this.getAxiscolor() === '' ? undefined : this.getAxiscolor(),
           fill   = this.getAxiswidth() < 1 ? 'none' : stroke;
         html +=
@@ -448,9 +437,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
       var
         finished = true,
         startAngle = this.getStart(),
-        startArrowPoint= this.getStartarrow(),
         endAngle = this.getEnd(),
-        endArrowPoint= this.getEndarrow(),
         arrowType = this.getArrowtype(),
         overflowarrow = this.getOverflowarrow();
 
@@ -472,15 +459,17 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
         }
 
         var targetAngle = startAngle + current[i]*(endAngle-startAngle);
+        if (!overflowarrow) {
+          targetAngle = Math.max(startAngle,targetAngle - indicators[i].endarrow);
+        }
 
         if (indicators[i].isBar) {
           indicator.setAttribute('d',
             cv.ui.structure.pure.Roundbar.createBarPath(
               startAngle,
-              (overflowarrow&&!(target[i][1]&&current[i]<0.01)) ? 0 : startArrowPoint,
+              (overflowarrow&&!(target[i][1]&&current[i]<0.01)) ? 0 : indicators[i].startarrow,
               targetAngle,
-              (overflowarrow&&!(target[i][2]&&current[i]>0.99)) ? 0 : endArrowPoint,
-              arrowType,
+              (overflowarrow&&!(target[i][2]&&current[i]>0.99)) ? 0 : indicators[i].endarrow,
               indicators[i].radius,
               indicators[i].width
             )

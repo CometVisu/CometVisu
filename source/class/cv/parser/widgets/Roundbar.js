@@ -58,11 +58,11 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
           min:       elem.getAttribute('min') || data.min,
           max:       elem.getAttribute('max') || data.max,
           radius:    data.radius,
+          startarrow: data.startarrow * Math.PI / 180,
+          endarrow: data.endarrow * Math.PI / 180,
           width:     parseFloat( elem.getAttribute('width') || data.width),
           thickness: elem.getAttribute('thickness') || data.thickness,
-          style:     elem.getAttribute('style') || '',
-          stroke:    elem.getAttribute('stroke') || '',
-          fill:      elem.getAttribute('fill') || ''
+          style:     elem.getAttribute('style') || ''
         });
       });
       return data;
