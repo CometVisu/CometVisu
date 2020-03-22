@@ -193,7 +193,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
     textlength: { check: "Number" },
     textanchor: { check: "String" },
     linespace: { check: "Number" },
-    bboxgrow: { check: "Number" },
+    bboxgrow: { check: "Object" },
     debug: { check: "Boolean" },
     currentRatioValue: { check: "Array", init: [] },
     targetRatioValue: { check: "Array", init: [] }
@@ -455,10 +455,10 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
 
       var html = '<div class="actor">'
         + '<svg width="100%" height="100%" viewBox="' + [
-          BBox.l - this.getBboxgrow(),
-          BBox.u - this.getBboxgrow(),
-          BBox.r - BBox.l + 2*this.getBboxgrow(),
-          BBox.d - BBox.u + 2*this.getBboxgrow()
+          BBox.l - this.getBboxgrow().l,
+          BBox.u - this.getBboxgrow().u,
+          BBox.r - BBox.l + this.getBboxgrow().l + this.getBboxgrow().r,
+          BBox.d - BBox.u + this.getBboxgrow().u + this.getBboxgrow().d
         ].join(' ') + '">';
       if(this.getDebug()) {
         html += '<rect width="'+(BBox.r-BBox.l)+'" height="'+(BBox.d-BBox.u)+'" x="'+(BBox.l)+'" y="'+(BBox.u)+'" stroke="blue" />'

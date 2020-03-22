@@ -179,25 +179,41 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
           'textlength': {"default": 0, transform: parseFloat},
           'textanchor': {"default": ""},
           'linespace': {"default": 12, transform: parseFloat},
-          'bboxgrow': {"default": 1.0, transform: parseFloat},
+          'bboxgrow': {
+            "default": "1",
+            transform: function (value) {
+              var parts = value.split(';');
+              switch (parts.length) {
+                default:
+                case 1: // one value for all sides
+                  return {l:parseFloat(parts[0]), u:parseFloat(parts[0]), r:parseFloat(parts[0]), d:parseFloat(parts[0])};
+
+                case 2: // horizontal;vertical
+                  return {l:parseFloat(parts[0]), u:parseFloat(parts[1]), r:parseFloat(parts[0]), d:parseFloat(parts[1])};
+
+                case 4: // left;up;right;down
+                  return {l:parseFloat(parts[0]), u:parseFloat(parts[1]), r:parseFloat(parts[2]), d:parseFloat(parts[3])};
+              }
+            }
+          },
           'debug': {"default": false, transform: function(v){return v === "true";}}
         },
         thisPreset = ({
           'A': {
             start: 225,
-            fontsize: 20,
+            fontsize: 40,
             linespace: 25,
-            textx: 0,
-            texty: 20
+            textanchor: 'end',
+            textx: 60,
+            texty: 40
           },
           'B': {
             start: 360,
             end: 135,
-            //majorwidth: 50.0,
-            //majorposition: "min",
-            fontsize: 20,
+            fontsize: 40,
             linespace: -25,
-            textx: 0,
+            textanchor: 'end',
+            textx: 60,
             texty: -10
           },
           'bridge': {

@@ -1680,10 +1680,10 @@
         <xsd:documentation xml:lang="de">.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="bboxgrow" type="xsd:decimal" use="optional">
+    <xsd:attribute name="bboxgrow" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Enlargement of the mounding box to take care of sticking out parts.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Vergrößerung der Bounding-Box um überstehende Elemente zu berücksichtigen.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Enlargement of the mounding box in virtual pixels to take care of sticking out parts (everywhere or horizontal;vertical or left;up;right;down).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Vergrößerung der Bounding-Box in virtuellen Pixeln um überstehende Elemente zu berücksichtigen (Überall bzw. horizontal;vertikal bzw. links;oben;rechts;unten).</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="preset" type="xsd:string" use="optional">
