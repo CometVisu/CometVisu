@@ -95,10 +95,12 @@ qx.Class.define('cv.ui.website.Slider', {
         knob.setStyle("width", (pos+paddingLeft)+"px");
         knob.setStyle("marginLeft", paddingLeft*-1+"px");
       }, this);
-      this.on("pointerdown", function(ev) {
-        this._onSliderPointerUp(ev);
-        this._onPointerDown(ev);
-      }, this);
+      if (this.getEnabled()) {
+        this.on("pointerdown", function (ev) {
+          this._onSliderPointerUp(ev);
+          this._onPointerDown(ev);
+        }, this);
+      }
     },
 
     // overridden
@@ -107,6 +109,13 @@ qx.Class.define('cv.ui.website.Slider', {
         return cv.util.String.sprintf(this.getFormat(), this.getValue());
       } else {
         return "";
+      }
+    },
+
+    // overridden
+    _onKeyDown: function(e) {
+      if (this.getEnabled()) {
+        this.base(arguments, e);
       }
     },
 
@@ -167,7 +176,7 @@ qx.Class.define('cv.ui.website.Slider', {
     _onPointerDown : function(e) {
       // this can happen if the user releases the button while dragging outside
       // of the browser viewport
-      if (this.__dragMode) {
+      if (this.__dragMode || !this.getEnabled()) {
         return;
       }
 

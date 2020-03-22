@@ -1,6 +1,6 @@
 sudo: required
 language: python
-dist: trusty
+dist: xenial
 services:
   - docker
 python:
@@ -12,7 +12,7 @@ cache:
   - downloads
 before_install:
 - mkdir -p downloads
-- nvm install 6.9
+- nvm install --lts=carbon
 - mkdir cache
 install:
 - npm install -g grunt-cli

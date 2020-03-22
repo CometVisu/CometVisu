@@ -56,7 +56,7 @@ describe('navbar widget testing', function () {
     '<navbar name="Navbar1" position="left" width="250px">'+
     '</navbar>'+
     '</page>'+configParts.end);
-  
+
   it('should show a simple navbar: desktop', function() {
     var navbar = element.all(by.css('#navbarLeft')).first();
 

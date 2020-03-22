@@ -22,6 +22,7 @@ describe('cometvisu demo config test:', function () {
 
   it('should navigate to a page', function() {
     cvDemo.goToPage("Format Test");
+    browser.driver.sleep(500);
     expect(cvDemo.getPageTitle()).toEqual('Format Test');
   });
 
