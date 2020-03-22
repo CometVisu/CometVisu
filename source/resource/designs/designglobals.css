@@ -275,6 +275,7 @@ button.ui-slider-handle {
   fill: #FF8000;
   stroke: #FF8000;
 }
+.roundbar .label,
 .roundbar .value {
   fill: white;
 }

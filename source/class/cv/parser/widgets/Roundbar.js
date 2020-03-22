@@ -121,6 +121,49 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
           'majorwidth': {"default": 0.0, transform: parseFloat},
           'majorposition': {"default": "min;max"},
           'majorcolor': {"default": ""},
+          'labels': {
+            "default": "",
+            transform: function (value) {
+              if(!value) { return []; }
+              var
+                retval = [],
+                radius = 50,
+                position = 'outside',
+                orientation = 'horizontal';
+
+              value.split(';').forEach(function (label) {
+                var components = label.split(':');
+
+                if (components.length > 1) {
+                  var subcompontents = components[0].split(',');
+                  if (subcompontents[0] !== '') {
+                    position = subcompontents[0];
+                  }
+                  if (subcompontents[1] !== '') {
+                    orientation = subcompontents[1];
+                  }
+                  components.shift();
+                }
+
+                var valueName = components[0].split(',');
+                if (valueName.length > 1 && valueName[1] !== '') {
+                  radius = parseFloat(valueName[1]);
+                }
+                if (valueName.length < 3 || valueName[2] === '') {
+                  valueName[2] = valueName[0];
+                }
+                retval.push({
+                  'value': parseFloat(valueName[0]),
+                  'radius': radius,
+                  'name': valueName[2],
+                  'position': ({'outside':0,'center':1,'inside':2})[position] || 0,
+                  'orientation': ({'horizontal':0,'parallel':1,'perpendicular':2,'roundstart':3,'roundmiddle':4,'roundend':5})[orientation] || 0
+                });
+              });
+              return retval;
+            }
+          },
+          'labelstyle': {"default": ""},
           'start': {"default": 270.0, transform: deg2rad},
           'startarrow': {"default": 5.0, transform: parseFloat},
           'end': {"default": 0.0, transform: deg2rad},

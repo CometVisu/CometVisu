@@ -178,6 +178,8 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
     majorwidth: { check: "Number" },
     majorposition: { check: "String" },
     majorcolor: { check: "String" },
+    labels: { check: "Array" },
+    labelstyle: { check: "String" },
     start: { check: "Number" },
     end: { check: "Number" },
     arrowtype: { check: "Number" },
@@ -225,6 +227,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
         cntValues = 0,
         svgMajor = '',
         svgMinor = '',
+        svgLabels = '',
         svgRanges = '',
         svgIndicators = '',
         svgText = '',
@@ -309,6 +312,107 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
         svgMajor += '" />';
       }
 
+      var labelstyle = this.getLabelstyle();
+      this.getLabels().forEach(function (label, labelnumber) {
+        var
+          angle = s+(e-s)*(label.value-min)/(max-min),
+          x = label.radius * Math.cos(angle),
+          y = label.radius * -Math.sin(angle),
+          alignmentBaseline = '',
+          textAnchor = '';
+
+        if (label.orientation < 3) {
+          svgLabels += '<text class="axislabel" x="' + x + '" y="' + y + '"';
+          switch (label.orientation) {
+            default:
+            case 0: // horizontal
+              if (x < 0) {
+                textAnchor = (['end', 'middle', 'start'])[label.position];
+              } else {
+                textAnchor = (['start', 'middle', 'end'])[label.position];
+              }
+              if (Math.abs(x) < 1) {
+                textAnchor = 'middle';
+              }
+              if (y < 0) {
+                alignmentBaseline = (['baseline', 'middle', 'hanging'])[label.position];
+              } else {
+                alignmentBaseline = (['hanging', 'middle', 'baseline'])[label.position];
+              }
+              if (Math.abs(y) < 1) {
+                alignmentBaseline = 'middle';
+              }
+              break;
+
+            case 1: // parallel
+              var textAngle = -angle * 180 / Math.PI + 90;
+              if (y < 0) {
+                alignmentBaseline = (['baseline', 'middle', 'hanging'])[label.position];
+              } else {
+                alignmentBaseline = (['hanging', 'middle', 'baseline'])[label.position];
+                textAngle += 180;
+              }
+              textAnchor = 'middle';
+              svgLabels += ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
+              break;
+
+            case 2: // perpendicular
+              textAngle = -angle * 180 / Math.PI;
+              if (x < 0) {
+                textAnchor = (['end', 'middle', 'start'])[label.position];
+                textAngle += 180;
+              } else {
+                textAnchor = (['start', 'middle', 'end'])[label.position];
+              }
+              alignmentBaseline = 'middle';
+              svgLabels += ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
+              break;
+          }
+          if (alignmentBaseline !== '') {
+            svgLabels += ' alignment-baseline="' + alignmentBaseline + '"';
+          }
+          if (textAnchor !== '') {
+            svgLabels += ' text-anchor="' + textAnchor + '"';
+          }
+
+          if (labelstyle !== '') {
+            svgLabels += ' style="' + labelstyle + '"';
+          }
+
+          svgLabels += '>' + label.name + '</text>';
+        } else { // label.orientation >= 3 -> round
+          var
+            labelid = self.$$user_path + '_label' + labelnumber,
+            cw = s < e ? 0 : 1,
+            path = '',
+            align = '';
+
+          switch (label.orientation) {
+            case 3: // roundstart
+              path = ['M', x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y].join(' ');
+              break;
+
+            case 4: // roundmiddle
+              path = ['M', -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y, 'A', label.radius, label.radius, 0, 0, cw, -x,-y].join(' ');
+              align = ' startOffset="50%" text-anchor="middle"';
+              break;
+
+            case 5: // roundend
+              path = ['M', x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y].join(' ');
+              align = ' startOffset="100%" text-anchor="end"';
+              break;
+          }
+          svgLabels += '<path style="stroke:none; fill:none; stroke-width:0" id="' + labelid + '" d="' + path + '"/>';
+          svgLabels += '<text class="axislabel"';
+
+          if (labelstyle !== '') {
+            svgLabels += ' style="' + labelstyle + '"';
+          }
+
+          svgLabels += '><textPath href="#'+labelid+'"' + align + '>' + label.name + '</textPath></text>';
+        }
+      });
+
       this.getRanges().forEach(function (range) {
         var
           sRange = (e-s)*(range.start-min)/(max-min)+s,
@@ -375,7 +479,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
           '"/>';
       }
 
-      html += svgMinor + svgMajor + svgRanges + svgIndicators + svgText;
+      html += svgMinor + svgMajor + svgRanges + svgLabels + svgIndicators + svgText;
       html += '</svg></div>';
 
       return html;
