@@ -47,6 +47,8 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       data.indicators = [];
+      data.radius = 50; // default
+      data.width = 10; // default
       xml.querySelectorAll('address').forEach(function (elem, i) {
         data.radius = parseFloat( elem.getAttribute('radius') || (data.radius + (i === 0 ? 0 : data.spacing+data.width)));
         indicatorValueCnt = parseInt(elem.getAttribute('valuepos') || indicatorValueCnt+1);
@@ -169,8 +171,6 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
           'end': {"default": 0.0, transform: deg2rad},
           'endarrow': {"default": -5.0, transform: parseFloat},
           'arrowtype': { "default": 0, transform: function(t){ return ({'angle':0,'distance':1})[t] || 0; } },
-          'radius': {"default": 50.0, transform: parseFloat},
-          'width': {"default": 10.0, transform: parseFloat},
           'spacing': {"default": 10.0, transform: parseFloat},
           'overflowarrow': { "default": 'true', transform: function (value) { return value === "true"; } },
           'fontsize': {"default": 40, transform: parseFloat},

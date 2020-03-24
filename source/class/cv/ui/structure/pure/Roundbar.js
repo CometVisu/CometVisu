@@ -183,8 +183,6 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
     start: { check: "Number" },
     end: { check: "Number" },
     arrowtype: { check: "Number" },
-    radius: { check: "Number" },
-    width: { check: "Number" },
     spacing: { check: "Number" },
     overflowarrow: { check: "Boolean" },
     fontsize: { check: "Number" },
