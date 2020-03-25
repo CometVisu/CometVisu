@@ -21,7 +21,11 @@
 /**
  * Adds a horizontal slider to the visu. This can be used, for example, to dim a light or change temperature values.
  *
- * @require(qx.module.Attribute,qx.module.Css,qx.module.Traversing,qx.module.Manipulating,qx.module.event.Keyboard)
+ * @require(qx.module.Attribute)
+ * @require(qx.module.Css)
+ * @require(qx.module.Traversing)
+ * @require(qx.module.Manipulating)
+ * @require(qx.module.event.Keyboard)
  * @author Christian Mayer
  * @since 2012
  */
@@ -121,9 +125,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         }, this);
         slider.on('done', function () {
           throttled.abort();
-          if (this.isSendOnFinish()) {
-            this._onChangeValue(slider.getValue(), true);
-          }
+          this._onChangeValue(slider.getValue(), true);
         }, this);
 
         this.addListener("changeValue", function (ev) {
@@ -199,7 +201,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
      */
     _onChangeValue: function(value, finished) {
       if (!this.__initialized || this.__skipUpdatesFromSlider === true) { return; }
-      if ((this.isSendOnFinish() === true && finished) ||
+      if (finished ||
         (this.isSendOnFinish() === false && this.__slider.isInPointerMove())
       ) {
         this._lastBusValue = this.sendToBackend(value, false, this._lastBusValue );
