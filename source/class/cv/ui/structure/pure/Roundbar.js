@@ -366,12 +366,8 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
               svgLabels += ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
               break;
           }
-          if (alignmentBaseline !== '') {
-            svgLabels += ' alignment-baseline="' + alignmentBaseline + '"';
-          }
-          if (textAnchor !== '') {
-            svgLabels += ' text-anchor="' + textAnchor + '"';
-          }
+          svgLabels += ' alignment-baseline="' + alignmentBaseline + '"';
+          svgLabels += ' text-anchor="' + textAnchor + '"';
 
           if (labelstyle !== '') {
             svgLabels += ' style="' + labelstyle + '"';
@@ -562,7 +558,9 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
 
         var targetAngle = startAngle + current[i]*(endAngle-startAngle);
         if (!overflowarrow) {
-          targetAngle = Math.max(startAngle,targetAngle - indicators[i].endarrow);
+          targetAngle = (endAngle > startAngle)
+            ? Math.max(startAngle,targetAngle - indicators[i].endarrow)
+            : Math.min(startAngle,targetAngle - indicators[i].endarrow);
         }
 
         if (indicators[i].isBar) {
