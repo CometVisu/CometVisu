@@ -20565,7 +20565,7 @@ qx.Mixin.define("qx.core.MEvent",
    http://qooxdoo.org
 
    Copyright:
-     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de
+     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
 
    License:
      MIT: https://opensource.org/licenses/MIT
@@ -20577,42 +20577,72 @@ qx.Mixin.define("qx.core.MEvent",
 ************************************************************************ */
 
 /**
- * All event dispatchers must implement this interface. Event dispatchers must
- * register themselves at the event Manager using
- * {@link qx.event.Registration#addDispatcher}.
+ * Event handler Interface.
+ *
+ * All custom event handler like mouse or keyboard event handler must implement
+ * this interface.
  */
-qx.Interface.define("qx.event.IEventDispatcher",
+qx.Interface.define("qx.event.IEventHandler",
 {
-  members:
+  statics :
+  {
+    /** @type {Integer} The event target must be a dom node */
+    TARGET_DOMNODE: 1,
+
+    /** @type {Integer} The event target must be a window object */
+    TARGET_WINDOW : 2,
+
+    /** @type {Integer} The event target must be a qooxdoo object */
+    TARGET_OBJECT: 4,
+
+    /** @type {Integer} The event target must be a document node */
+    TARGET_DOCUMENT: 8
+  },
+
+
+  members :
   {
     /**
-     * Whether the dispatcher is responsible for the this event.
+     * Whether the event handler can handle events of the given type. If the
+     * event handler class has a static variable called <code>IGNORE_CAN_HANDLE</code>
+     * with the value <code>true</code> this function is not called. Whether the
+     * handler can handle the event is them only determined by the static variables
+     * <code>SUPPORTED_TYPES</code> and <code>TARGET_CHECK</code>.
      *
-     * @param target {Element|Event} The event dispatch target
-     * @param event {qx.event.type.Event} The event object
-     * @param type {String} the event type
-     * @return {Boolean} Whether the event dispatcher is responsible for the this event
+     * @param target {var} The target to, which the event handler should
+     *     be attached
+     * @param type {String} event type
+     * @return {Boolean} Whether the event handler can handle events of the
+     *     given type.
      */
-    canDispatchEvent : function(target, event, type)
-    {
-      this.assertInstance(event, qx.event.type.Event);
-      this.assertString(type);
-    },
+    canHandleEvent : function(target, type) {},
 
 
     /**
-     * This function dispatches the event to the event listeners.
+     * This method is called each time an event listener, for one of the
+     * supported events, is added using {@link qx.event.Manager#addListener}.
      *
-     * @param target {Element|Event} The event dispatch target
-     * @param event {qx.event.type.Event} event object to dispatch
-     * @param type {String} the event type
-     * @return {qx.Promise?} a promise, if one or more of the event handlers returned a promise
+     * @param target {var} The target to, which the event handler should
+     *     be attached
+     * @param type {String} event type
+     * @param capture {Boolean} Whether to attach the event to the
+     *         capturing phase or the bubbling phase of the event.
      */
-    dispatchEvent : function(target, event, type)
-    {
-      this.assertInstance(event, qx.event.type.Event);
-      this.assertString(type);
-    }
+    registerEvent : function(target, type, capture) {},
+
+
+    /**
+     * This method is called each time an event listener, for one of the
+     * supported events, is removed by using {@link qx.event.Manager#removeListener}
+     * and no other event listener is listening on this type.
+     *
+     * @param target {var} The target from, which the event handler should
+     *     be removed
+     * @param type {String} event type
+     * @param capture {Boolean} Whether to attach the event to the
+     *         capturing phase or the bubbling phase of the event.
+     */
+    unregisterEvent : function(target, type, capture) {}
   }
 });
 /* ************************************************************************
@@ -22569,6 +22599,166 @@ qx.Class.define("qx.util.DisposeUtil",
       }
 
       return false;
+    }
+  }
+});
+/* ************************************************************************
+
+   qooxdoo - the new era of web development
+
+   http://qooxdoo.org
+
+   Copyright:
+     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de
+
+   License:
+     MIT: https://opensource.org/licenses/MIT
+     See the LICENSE file in the project's top-level directory for details.
+
+   Authors:
+     * Fabian Jakobs (fjakobs)
+     * Sebastian Werner (wpbasti)
+
+************************************************************************ */
+
+/**
+ * This class provides qooxdoo object event support.
+ */
+qx.Class.define("qx.event.handler.Object",
+{
+  extend : qx.core.Object,
+  implement : qx.event.IEventHandler,
+
+
+
+
+
+  /*
+  *****************************************************************************
+     STATICS
+  *****************************************************************************
+  */
+
+  statics :
+  {
+    /** @type {Integer} Priority of this handler */
+    PRIORITY : qx.event.Registration.PRIORITY_LAST,
+
+    /** @type {Map} Supported event types */
+    SUPPORTED_TYPES : null,
+
+    /** @type {Integer} Which target check to use */
+    TARGET_CHECK : qx.event.IEventHandler.TARGET_OBJECT,
+
+    /** @type {Integer} Whether the method "canHandleEvent" must be called */
+    IGNORE_CAN_HANDLE : false
+  },
+
+
+
+
+
+  /*
+  *****************************************************************************
+     MEMBERS
+  *****************************************************************************
+  */
+
+  members :
+  {
+    /*
+    ---------------------------------------------------------------------------
+      EVENT HANDLER INTERFACE
+    ---------------------------------------------------------------------------
+    */
+
+    // interface implementation
+    canHandleEvent : function(target, type) {
+      return qx.Class.supportsEvent(target.constructor, type);
+    },
+
+
+    // interface implementation
+    registerEvent : function(target, type, capture) {
+      // Nothing needs to be done here
+    },
+
+
+    // interface implementation
+    unregisterEvent : function(target, type, capture) {
+      // Nothing needs to be done here
+    }
+  },
+
+
+
+
+
+
+  /*
+  *****************************************************************************
+     DEFER
+  *****************************************************************************
+  */
+
+  defer : function(statics) {
+    qx.event.Registration.addHandler(statics);
+  }
+});
+/* ************************************************************************
+
+   qooxdoo - the new era of web development
+
+   http://qooxdoo.org
+
+   Copyright:
+     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de
+
+   License:
+     MIT: https://opensource.org/licenses/MIT
+     See the LICENSE file in the project's top-level directory for details.
+
+   Authors:
+     * Fabian Jakobs (fjakobs)
+
+************************************************************************ */
+
+/**
+ * All event dispatchers must implement this interface. Event dispatchers must
+ * register themselves at the event Manager using
+ * {@link qx.event.Registration#addDispatcher}.
+ */
+qx.Interface.define("qx.event.IEventDispatcher",
+{
+  members:
+  {
+    /**
+     * Whether the dispatcher is responsible for the this event.
+     *
+     * @param target {Element|Event} The event dispatch target
+     * @param event {qx.event.type.Event} The event object
+     * @param type {String} the event type
+     * @return {Boolean} Whether the event dispatcher is responsible for the this event
+     */
+    canDispatchEvent : function(target, event, type)
+    {
+      this.assertInstance(event, qx.event.type.Event);
+      this.assertString(type);
+    },
+
+
+    /**
+     * This function dispatches the event to the event listeners.
+     *
+     * @param target {Element|Event} The event dispatch target
+     * @param event {qx.event.type.Event} event object to dispatch
+     * @param type {String} the event type
+     * @return {qx.Promise?} a promise, if one or more of the event handlers returned a promise
+     */
+    dispatchEvent : function(target, event, type)
+    {
+      this.assertInstance(event, qx.event.type.Event);
+      this.assertString(type);
     }
   }
 });
@@ -31885,196 +32075,6 @@ qx.Class.define("qx.event.Utils", {
         }
       }
     })
-  }
-});
-/* ************************************************************************
-
-   qooxdoo - the new era of web development
-
-   http://qooxdoo.org
-
-   Copyright:
-     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
-
-   License:
-     MIT: https://opensource.org/licenses/MIT
-     See the LICENSE file in the project's top-level directory for details.
-
-   Authors:
-     * Fabian Jakobs (fjakobs)
-
-************************************************************************ */
-
-/**
- * Event handler Interface.
- *
- * All custom event handler like mouse or keyboard event handler must implement
- * this interface.
- */
-qx.Interface.define("qx.event.IEventHandler",
-{
-  statics :
-  {
-    /** @type {Integer} The event target must be a dom node */
-    TARGET_DOMNODE: 1,
-
-    /** @type {Integer} The event target must be a window object */
-    TARGET_WINDOW : 2,
-
-    /** @type {Integer} The event target must be a qooxdoo object */
-    TARGET_OBJECT: 4,
-
-    /** @type {Integer} The event target must be a document node */
-    TARGET_DOCUMENT: 8
-  },
-
-
-  members :
-  {
-    /**
-     * Whether the event handler can handle events of the given type. If the
-     * event handler class has a static variable called <code>IGNORE_CAN_HANDLE</code>
-     * with the value <code>true</code> this function is not called. Whether the
-     * handler can handle the event is them only determined by the static variables
-     * <code>SUPPORTED_TYPES</code> and <code>TARGET_CHECK</code>.
-     *
-     * @param target {var} The target to, which the event handler should
-     *     be attached
-     * @param type {String} event type
-     * @return {Boolean} Whether the event handler can handle events of the
-     *     given type.
-     */
-    canHandleEvent : function(target, type) {},
-
-
-    /**
-     * This method is called each time an event listener, for one of the
-     * supported events, is added using {@link qx.event.Manager#addListener}.
-     *
-     * @param target {var} The target to, which the event handler should
-     *     be attached
-     * @param type {String} event type
-     * @param capture {Boolean} Whether to attach the event to the
-     *         capturing phase or the bubbling phase of the event.
-     */
-    registerEvent : function(target, type, capture) {},
-
-
-    /**
-     * This method is called each time an event listener, for one of the
-     * supported events, is removed by using {@link qx.event.Manager#removeListener}
-     * and no other event listener is listening on this type.
-     *
-     * @param target {var} The target from, which the event handler should
-     *     be removed
-     * @param type {String} event type
-     * @param capture {Boolean} Whether to attach the event to the
-     *         capturing phase or the bubbling phase of the event.
-     */
-    unregisterEvent : function(target, type, capture) {}
-  }
-});
-/* ************************************************************************
-
-   qooxdoo - the new era of web development
-
-   http://qooxdoo.org
-
-   Copyright:
-     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de
-
-   License:
-     MIT: https://opensource.org/licenses/MIT
-     See the LICENSE file in the project's top-level directory for details.
-
-   Authors:
-     * Fabian Jakobs (fjakobs)
-     * Sebastian Werner (wpbasti)
-
-************************************************************************ */
-
-/**
- * This class provides qooxdoo object event support.
- */
-qx.Class.define("qx.event.handler.Object",
-{
-  extend : qx.core.Object,
-  implement : qx.event.IEventHandler,
-
-
-
-
-
-  /*
-  *****************************************************************************
-     STATICS
-  *****************************************************************************
-  */
-
-  statics :
-  {
-    /** @type {Integer} Priority of this handler */
-    PRIORITY : qx.event.Registration.PRIORITY_LAST,
-
-    /** @type {Map} Supported event types */
-    SUPPORTED_TYPES : null,
-
-    /** @type {Integer} Which target check to use */
-    TARGET_CHECK : qx.event.IEventHandler.TARGET_OBJECT,
-
-    /** @type {Integer} Whether the method "canHandleEvent" must be called */
-    IGNORE_CAN_HANDLE : false
-  },
-
-
-
-
-
-  /*
-  *****************************************************************************
-     MEMBERS
-  *****************************************************************************
-  */
-
-  members :
-  {
-    /*
-    ---------------------------------------------------------------------------
-      EVENT HANDLER INTERFACE
-    ---------------------------------------------------------------------------
-    */
-
-    // interface implementation
-    canHandleEvent : function(target, type) {
-      return qx.Class.supportsEvent(target.constructor, type);
-    },
-
-
-    // interface implementation
-    registerEvent : function(target, type, capture) {
-      // Nothing needs to be done here
-    },
-
-
-    // interface implementation
-    unregisterEvent : function(target, type, capture) {
-      // Nothing needs to be done here
-    }
-  },
-
-
-
-
-
-
-  /*
-  *****************************************************************************
-     DEFER
-  *****************************************************************************
-  */
-
-  defer : function(statics) {
-    qx.event.Registration.addHandler(statics);
   }
 });
 /* ************************************************************************
