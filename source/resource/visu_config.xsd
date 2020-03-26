@@ -1435,7 +1435,7 @@
       <xsd:extension base="addr">
         <xsd:attribute ref="transform" use="required" />
         <xsd:attribute ref="mode" use="optional" />
-        <xsd:attribute name="type" type="xsd:string" use="optional">
+        <xsd:attribute name="type" use="optional">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Type of the indicators: bar or pointer.</xsd:documentation>
             <xsd:documentation xml:lang="de">Art des Indikators: Balken oder Zeiger.</xsd:documentation>
@@ -1495,9 +1495,24 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="roundbaraddress" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute ref="format" use="optional" />
-    <xsd:attribute ref="min" />
-    <xsd:attribute ref="max" />
+    <xsd:attribute ref="min">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Minimal value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Minimaler Wert.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="max">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximum value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximaler Wert.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="format" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format string.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Format String.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="axisradius" type="xsd:decimal" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Radius of the round axis.</xsd:documentation>
@@ -1606,11 +1621,17 @@
         <xsd:documentation xml:lang="de">Größe der Pfeilspitze am Ende.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="arrowtype" type="xsd:string" use="optional">
+    <xsd:attribute name="arrowtype" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Unit type of arrow size (angle or distance).</xsd:documentation>
-        <xsd:documentation xml:lang="de">Art der Einheit der Pfeilspitzengröße (Werte: angle und distance).</xsd:documentation>
+        <xsd:documentation xml:lang="en">Unit type of arrow size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Art der Einheit der Pfeilspitzengröße.</xsd:documentation>
       </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="angle" />
+          <xsd:enumeration value="distance" />
+        </xsd:restriction>
+      </xsd:simpleType>
     </xsd:attribute>
     <xsd:attribute name="spacing" type="xsd:decimal" use="optional">
       <xsd:annotation>
@@ -1648,7 +1669,7 @@
         <xsd:documentation xml:lang="de">Für den Wert vorzuhaltende Länge.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="textanchor" type="xsd:string" use="optional">
+    <xsd:attribute name="textanchor" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Orientation of value display in relation to the anchor point.</xsd:documentation>
         <xsd:documentation xml:lang="de">Orientierung der Wert-Anzeige in Relation zum Ankerpunkt.</xsd:documentation>
@@ -1673,7 +1694,13 @@
         <xsd:documentation xml:lang="de">Vergrößerung der Bounding-Box in virtuellen Pixeln um überstehende Elemente zu berücksichtigen (Überall bzw. horizontal;vertikal bzw. links;oben;rechts;unten).</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="preset" type="xsd:string" use="optional">
+    <xsd:attribute name="debug" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Activates the debug mode and shows the automatic determined border.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Aktiviert Debug-Modus und zeigt den automatisch bestimmten Rand.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="preset" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Choose a preset design.</xsd:documentation>
         <xsd:documentation xml:lang="de">Auswahl eines vorgegebenen Designs.</xsd:documentation>

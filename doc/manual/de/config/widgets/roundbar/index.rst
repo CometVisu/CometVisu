@@ -11,58 +11,61 @@ Beschreibung
 Das Roundbar Widget fügt der Visualisierung einen oder mehrere dynamische Indikatoren hinzu, in Form eines runden
 Balkens und/oder Zeigers. Dies ermöglicht die grafische Anzeige von Werten von Gruppenadressen.
 
-Das Roundbar Widget ist sowohl sehr einfach in der Parametrierung als auch sehr flexibel an die jeweiligen Anforderungen
-anpassbar.
+Das Roundbar Widget ist sowohl mit sehr einfacher Parametrierung nutzbar, als auch sehr flexibel an die jeweiligen
+Anforderungen anpassbar.
 
 .. widget-example::
     :hide-source: true
 
     <settings>
-        <screenshot name="roundbar_simple">
+        <screenshot name="roundbar_simple" sleep="400">
             <caption>Beispiel Roundbar Widget</caption>
-            <data address="3/3/1">50</data>
+            <data address="3/3/1">63.3</data>
         </screenshot>
     </settings>
     <roundbar>
         <layout colspan="2" rowspan="2"/>
-        <label>Roundbar</label>
         <address transform="DPT:9.001" mode="read">3/3/1</address>
     </roundbar>
 
-Die Darstellung kann in vielen Punkten angepasst werden:
+Die Darstellung kann jedoch auch vielen Details angepasst werden:
 
 .. widget-example::
     :hide-source: true
 
     <settings>
-        <screenshot name="roundbar_complex">
-            <caption>Beispiel Komplexes Roundbar Widget</caption>
+        <screenshot name="roundbar_complex" sleep="400">
+            <caption>Beispiel für komplexes Roundbar Widgets</caption>
             <data address="3/6/0">87.4</data>
             <data address="3/6/1">78.1</data>
             <data address="3/6/2">63.6</data>
             <data address="3/6/3">44.0</data>
         </screenshot>
     </settings>
-    <roundbar format="%.1f °C" fontsize="25" linespace="26">
-      <layout rowspan="2"/>
-      <address transform="DPT:9.001" type="pointer" showvalue="false" radius="50" width="50">3/6/3</address>
-      <address transform="DPT:9.001" style="fill:#3f20ff; stroke:#3f20ff" radius="50">3/6/0</address>
-      <address transform="DPT:9.001" style="fill:#9f009f; stroke:#9f009f">3/6/1</address>
-      <address transform="DPT:9.001" style="fill:#ff003f; stroke:#ff003f">3/6/2</address>
-      <address transform="DPT:9.001" type="pointer" showvalue="false" radius="100" thickness="10">3/6/3</address>
-    </roundbar>
-    <roundbar preset="B" format="%.1f" axiswidth="2" axiscolor="white" startarrow="0" endarrow="0" fontsize="30" textx="52" texty="-15">
-      <layout rowspan="2"/>
-      <address transform="DPT:9.001" style="fill:#555; stroke:none" radius="0" width="49">3/6/0</address>
-      <address transform="DPT:9.001" type="pointer" showvalue="false" radius="52" width="-52" thickness="5">3/6/0</address>
-    </roundbar>
-    <roundbar preset="bridge" axiswidth="10" axiscolor="#444" format="%.1f" start="190" end="-10" min="-5" max="105"
-          labels=",roundmiddle:30,70,30.0;70,,70.0;85,,85.0;center,horizontal:-7,57,0.0;107,,100.0"
-          labelstyle="font-size:60%"
-          ranges="0...30,63,3,yellow;30...70,63,3,green;70...85,63,3,yellow;85...100,63,3,red" texty="10">
-      <layout rowspan="2"/>
-      <address transform="DPT:9.001">3/6/2</address>
-    </roundbar>
+    <group nowidget="true">
+        <layout rowspan="2" colspan="6"/>
+        <roundbar format="%.1f °C" fontsize="25" linespace="26">
+          <layout rowspan="2" colspan="2"/>
+          <address transform="DPT:9.001" type="pointer" showvalue="false" radius="50" width="50">3/6/3</address>
+          <address transform="DPT:9.001" style="fill:#3f20ff; stroke:#3f20ff" radius="50">3/6/0</address>
+          <address transform="DPT:9.001" style="fill:#9f009f; stroke:#9f009f">3/6/2</address>
+          <address transform="DPT:9.001" style="fill:#ff003f; stroke:#ff003f">3/6/1</address>
+          <address transform="DPT:9.001" type="pointer" showvalue="false" radius="100" thickness="10">3/6/3</address>
+        </roundbar>
+        <roundbar preset="B" format="%.1f" axiswidth="2" axiscolor="white" startarrow="0" endarrow="0" fontsize="30" textx="52" texty="-15">
+          <layout rowspan="2" colspan="2"/>
+          <address transform="DPT:9.001" style="fill:#555; stroke:none" radius="0" width="49">3/6/0</address>
+          <address transform="DPT:9.001" type="pointer" showvalue="false" radius="52" width="-52" thickness="5">3/6/0</address>
+        </roundbar>
+        <roundbar preset="bridge" axiswidth="10" axiscolor="#555" format="%.1f" start="190" end="-10" min="0" max="100"
+              labels=",roundmiddle:30,70,30.0;70,,70.0;85,,85.0;center,horizontal:-8,57,0.0;108,,100.0"
+              labelstyle="font-size:60%"
+              bboxgrow="0;10"
+              ranges="0...30,63,3,yellow;30...70,63,3,green;70...85,63,3,yellow;85...100,63,3,red" texty="10">
+          <layout rowspan="2" colspan="2"/>
+          <address transform="DPT:9.001">3/6/2</address>
+        </roundbar>
+    </group>
 
 Einstellungen
 -------------
@@ -120,14 +123,14 @@ der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 
-Hier der minimale Beispielcode der das Roundbar Widget aus dem folgenden Screenshot erzeugt:
+Hier der minimale Beispielcode, der das Roundbar Widget aus dem folgenden Screenshot erzeugt:
 
 .. widget-example::
 
         <settings>
-            <screenshot name="roundbar_simple">
+            <screenshot name="roundbar_minimal" sleep="400">
                 <caption>Roundbar, einfaches Beispiel</caption>
-                <data address="3/3/1">10.3</data>
+                <data address="3/3/1">63.3</data>
             </screenshot>
         </settings>
         <roundbar>
@@ -135,53 +138,55 @@ Hier der minimale Beispielcode der das Roundbar Widget aus dem folgenden Screens
             <address transform="DPT:9.001" mode="read">3/3/1</address>
         </roundbar>
 
-
 Bestandteile
 ------------
 
-Das Roundbar-Widget besteht aus vielen verschiednen Bestandteilen die teilweise optional sind und auf
-verschiedene Arten konfiguriert werden können. Grundsätzlich wird für die Realisierung ein die Visu-Seite
+Das Roundbar-Widget besteht aus vielen verschiednen Bestandteilen, die teilweise optional sind und auf
+verschiedene Arten konfiguriert werden können. Grundsätzlich wird für die Realisierung in die Visu-Seite
 ein SVG-Block eingebunden, dessen Darstellung über CSS-Regeln angepasst werden kann (siehe auch
-:doc:`Vorhandenes Design verändern <_custom_cssrules>`).
+:ref:`"Vorhandenes Design verändern" <custom_cssrules>`).
 
 Indikatoren
 ^^^^^^^^^^^
 
 Der offensichtlichste Bestandteil ist der Indikator, der als gebogener Balken oder als Zeiger ausgeführt sein kann.
-Ein Roundbar Widget kann mehrere Indikatoren gleichzeitig enthalten.
+Ein Roundbar Widget kann auch mehrere Indikatoren gleichzeitig enthalten.
 
 .. widget-example::
 
         <settings>
-            <screenshot name="roundbar_indicators">
+            <screenshot name="roundbar_indicators" sleep="400">
                 <caption>Balken und Zeiger</caption>
                 <data address="3/3/1">63.3</data>
             </screenshot>
         </settings>
-        <roundbar>
-            <layout colspan="2" rowspan="2"/>
-            <address transform="DPT:9.001" mode="read">3/3/1</address>
-        </roundbar>
-        <roundbar format="%.1f">
-            <layout colspan="2" rowspan="2"/>
-            <address transform="DPT:9.001" type="pointer" mode="read">3/3/1</address>
-        </roundbar>
+        <group nowidget="true">
+            <layout colspan="4" rowspan="2"/>
+            <roundbar>
+                <layout colspan="2" rowspan="2"/>
+                <address transform="DPT:9.001" mode="read">3/3/1</address>
+            </roundbar>
+            <roundbar format="%.1f">
+                <layout colspan="2" rowspan="2"/>
+                <address transform="DPT:9.001" type="pointer" radius="50" width="-50" thickness="3" mode="read">3/3/1</address>
+            </roundbar>
+        </group>
 
 Markierungen
 ^^^^^^^^^^^^
 
 Um die Skala einzuteilen können Markierungen gesetzt werden. Die "großen" (major) Markierungen können frei auf die
-interessanten Werte gesetzt werden, die "kleinen" (minor) werden gleichmäßig verteilt.
+relevanten Werte gesetzt werden, die "kleinen" (minor) werden gleichmäßig verteilt.
 
 .. widget-example::
 
         <settings>
-            <screenshot name="roundbar_marking">
+            <screenshot name="roundbar_marking" sleep="400">
                 <caption>Große und kleine Markierungen</caption>
                 <data address="3/3/1">63.3</data>
             </screenshot>
         </settings>
-        <roundbar majorradius="50" majorwidth="15" minorradius="45" majorposition="10;20;40;60;80;100" minorwidth="5" minorspacing="5" format="%.1f">
+        <roundbar majorradius="35" majorwidth="15" majorposition="0;20;40;60;80;100" minorradius="45" minorwidth="5" minorspacing="5" format="%.1f">
             <layout colspan="2" rowspan="2"/>
             <address transform="DPT:9.001" mode="read">3/3/1</address>
         </roundbar>
@@ -190,7 +195,7 @@ Beschriftungen
 ^^^^^^^^^^^^^^
 
 Die Achse kann auf verschiedene Arten beschriftet werden. Hierzu werden im Attribut ``labels`` durch ein Semikolon
-getrennt wie Werte aufgeführt:
+getrennt die Werte aufgeführt:
 
   ``labels="0;20;40;80;100"``
 
@@ -200,7 +205,7 @@ Jeder Wert kann einen individuellen Radius bekommen, so wie kann der anzuzeigend
 
   ``Wert,Radius,Text``
 
-Außerdem kann die Position (``outside``, ``center`` und ``inside``) so wie Orientierung
+Außerdem kann die Position (``outside``, ``center`` und ``inside``), so wie Orientierung
 (``horizontal``, ``parallel``, ``perpendicular``, ``roundstart``, ``roundmiddle`` und ``roundend``) gewählt werden
 und per Dopplepunkt vor den Wert gestellt werden:
 
@@ -210,19 +215,20 @@ und per Dopplepunkt vor den Wert gestellt werden:
 
   ``Position,Orientierung:Wert``
 
-Es ist ausreichend die Position, die Orientierung aber auch den Radius vor dem ersten Wert aufzuführen, alle folgenden
-Werte übernehmen dann diese Eigenschaften. Für spezielle Effekte können diese Eigenschaften auch mehrfach gewechselt
-werden.
+Es ist ausreichend die Position, die Orientierung oder aber auch den Radius vor dem ersten Wert aufzuführen, alle
+folgenden Werte übernehmen dann diese Eigenschaften. Für spezielle Effekte können diese Eigenschaften auch mehrfach
+gewechselt werden.
 
 .. widget-example::
 
         <settings>
-            <screenshot name="roundbar_marking">
-                <caption>Große und kleine Markierungen</caption>
+            <screenshot name="roundbar_labels" sleep="400">
+                <caption>Beschriftungen</caption>
                 <data address="3/3/1">63.3</data>
             </screenshot>
         </settings>
-        <roundbar majorradius="50" majorwidth="15" minorradius="45" majorposition="10;20;40;60;80;100" minorwidth="5" minorspacing="5" format="%.1f">
+        <roundbar labels="inside:0,44;25;50;75;100" majorradius="45" majorwidth="5" majorposition="0;25;50;75;100"
+            minorradius="48" minorwidth="2" minorspacing="5" format="%.1f">
             <layout colspan="2" rowspan="2"/>
             <address transform="DPT:9.001" mode="read">3/3/1</address>
         </roundbar>
@@ -231,9 +237,9 @@ Wertebereiche
 ^^^^^^^^^^^^^
 
 Um schnell einen Überblick über den aktuellen Wert zu bekommen können Wertebereiche farbig hinterlegt werden. Hierzu
-muss dem ``ranges`` Attribut eine durch ein Semikolon getrennte Liste der Wertebereiche übergeben werden.
+muss dem ``ranges`` Attribut eine durch ein Semikolon getrennte Liste der Wertebereich-Definitionen übergeben werden.
 
-Jeder Wertebereich besteht aus einer durch ein Komma getrennten Liste:
+Jeder Wertebereich selbst besteht aus einer durch ein Komma getrennten Liste:
 
   ``Wert,Radius,Breite,Farbe``
 
@@ -241,22 +247,22 @@ Jeder Wertebereich besteht aus einer durch ein Komma getrennten Liste:
 
 Beispiel:
 
-  ``ranges="0...70,63,3,green;70...100,63,3,red;70,60,9,#00f"``
+  ``ranges="0...70,63,3,green;70...100,63,3,red;70,60,9,#ff0"``
 
 Hier werden drei Bereiche festgelegt. Zuerst von den Werten 0 bis 70 ein grüner Bogen mit dem Radius 63 und der
 Breite 3. Dann ein roter Bogen von 70 bis 100, auch mit Radius 63 und Breite 3. Zu letzt wird über alles ein
-Strich bei Wert 70 gemalt, der von Radius 60 für 9 Einheiten nach außen geht und die Farbe ``#00f``, also ein
-sattes Blau, besitzt.
+Strich bei Wert 70 gemalt, der von Radius 60 für 9 Einheiten nach außen geht und die Farbe ``#ff0``, also ein
+sattes Gelb, besitzt.
 
 .. widget-example::
 
         <settings>
-            <screenshot name="roundbar_marking">
-                <caption>Große und kleine Markierungen</caption>
+            <screenshot name="roundbar_ranges" sleep="400">
+                <caption>Wertebereiche</caption>
                 <data address="3/3/1">63.3</data>
             </screenshot>
         </settings>
-        <roundbar ranges="0...70,63,3,green;70...100,63,3,red;70,60,9,#00f" format="%.1f">
+        <roundbar ranges="0...70,63,3,green;70...100,63,3,red;70,60,9,#ff0" format="%.1f">
             <layout colspan="2" rowspan="2"/>
             <address transform="DPT:9.001" mode="read">3/3/1</address>
         </roundbar>
@@ -273,52 +279,53 @@ eines Presetzt können durch die Werte aus der Konfiguration übersteuert werden
 .. widget-example::
 
         <settings>
-            <screenshot name="roundbar_presets">
+            <screenshot name="roundbar_presets" sleep="400">
                 <caption>Preset "A", "B" und "bridge"</caption>
                 <data address="3/3/1">35.8</data>
             </screenshot>
         </settings>
-        <roundbar preset="A">
-            <layout colspan="2" rowspan="2"/>
-            <address transform="DPT:9.001" mode="read">3/3/1</address>
-        </roundbar>
-        <roundbar preset="B">
-            <layout colspan="2" rowspan="2"/>
-            <address transform="DPT:9.001" mode="read">3/3/1</address>
-        </roundbar>
-        <roundbar preset="bridge">
-            <layout colspan="2" rowspan="2"/>
-            <address transform="DPT:9.001" mode="read">3/3/1</address>
-        </roundbar>
+        <group nowidget="true">
+            <roundbar preset="A">
+                <layout colspan="2" rowspan="2"/>
+                <address transform="DPT:9.001" mode="read">3/3/1</address>
+            </roundbar>
+            <roundbar preset="B">
+                <layout colspan="2" rowspan="2"/>
+                <address transform="DPT:9.001" mode="read">3/3/1</address>
+            </roundbar>
+            <roundbar preset="bridge">
+                <layout colspan="2" rowspan="2"/>
+                <address transform="DPT:9.001" mode="read">3/3/1</address>
+            </roundbar>
+        </group>
 
 Debug-Modus
 ^^^^^^^^^^^
 
 Das Roundbar-Widget versucht den verfügbaren Platz maximal auszufüllen. Hierzu muss aber bereits während der
-Erzeugung der Visu-Seite bekannt sein wie groß der Inhalt des Widget werden kann. Gerade bei den Text-Bestandteilen
-wie den Labeln ist dies jedoch nicht möglich.
+Erzeugung der Visu-Seite bekannt sein wie groß der Inhalt des Widget werden kann. Gerade bei den Text-Bestandteilen,
+wie den Labeln, ist dies jedoch nicht möglich.
 
 Hier kann über das Attribut ``bboxgrow`` dem automatisch bestimmten Wert noch ein zusätzlicher Abstand hinzugefügt
 werden. Wird hier eine Zahl angegeben, so wird diese auf allen Seiten gleichzeitig hinzugefügt. Mit Strichpunkt
-getrennt lassen sich für "horizontal;vertikal" jeweils eigene Werte angeben. Für Spezialfälle kann über
-"links;oben;rechts;unten" für jede Seite ein eigener Wert angegeben werden.
+getrennt lassen sich für ``horizontal;vertikal`` jeweils eigene Werte angeben. Für Spezialfälle kann über
+``links;oben;rechts;unten`` für jede Seite ein eigener Wert angegeben werden.
 
-Um hier schneller zu einem Ergebnis zu kommen, gerade weil man sich hier iterativ dem besten Wert nähern muss, kann
-man das Attribut ``debug`` auf ``true`` setzen um einen Rahmen an der automatisch bestimmten Größe zu sehen.
+Um hier schneller zu einem Ergebnis zu kommen, gerade weil man sich iterativ dem besten Wert nähern muss, kann
+das Attribut ``debug`` auf ``true`` gesetzent werden um einen Rahmen an der automatisch bestimmten Größe zu sehen.
 
 .. widget-example::
 
         <settings>
-            <screenshot name="roundbar_debug">
+            <screenshot name="roundbar_debug" sleep="400">
                 <caption>Aktivierter Debug Modus</caption>
                 <data address="3/3/1">35.8</data>
             </screenshot>
         </settings>
-        <roundbar debug="true" bboxgrow="0;100">
+        <roundbar debug="true" bboxgrow="0;50">
             <layout colspan="2" rowspan="2"/>
             <address transform="DPT:9.001" mode="read">3/3/1</address>
         </roundbar>
-
 
 .. rubric:: Fußnoten
 
