@@ -366,7 +366,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
               svgLabels += ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
               break;
           }
-          svgLabels += ' alignment-baseline="' + alignmentBaseline + '"';
+          svgLabels += ' dominant-baseline="' + alignmentBaseline + '"';
           svgLabels += ' text-anchor="' + textAnchor + '"';
 
           if (labelstyle !== '') {
