@@ -12,7 +12,8 @@
     "prebuild": "mkdir -p compiled/build && php -S 0.0.0.0:8082 -t compiled/build &",
     "build": "qx compile --watch --t build --set fakeLogin=true",
     "make-cv": "qx compile --t build",
-    "compile": "qx compile --watch"
+    "compile": "qx compile --watch",
+    "api": "qx compile --set apiviewer=true"
   },
   "license": "GPL-3.0",
   "authors": [
@@ -26,7 +27,7 @@
     }
   ],
   "devDependencies": {
-    "@qooxdoo/compiler": "^1.0.0-beta.20200314-0952",
+    "@qooxdoo/compiler": "^1.0.0-beta.20200326-1746",
     "csso": "^3.5.1",
     "easyimage": "^3.1.1",
     "fs-extra": "^8.1.0",

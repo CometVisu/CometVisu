@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>CometVisu API Viewer</title>
+    <link type="text/css" rel="stylesheet" href="${resourcePath}qxl/apiviewer/css/sunlight.default.css">
+    <script type="text/javascript" src="${resourcePath}qxl/apiviewer/lib/sunlight-min.js"></script>
+    <script type="text/javascript" src="${resourcePath}qxl/apiviewer/lib/sunlight.javascript-min.js"></script>
+    <script type="text/javascript" src="${resourcePath}qxl/apiviewer/lib/sunlight.xml-min.js"></script>
+    <script type="application/javascript">
+      ${preBootJs}
+    </script>
+    <script type="text/javascript" src="apiviewer/boot.js"></script>
+    <script type="application/javascript">
+      setTimeout(function() {
+
+        function highlight() {
+          setTimeout(() => {
+            Sunlight.highlightAll();
+          }, 100);
+        }
+        const controller = qxl.apiviewer.TabViewController.instance;
+        controller.addListener("changeSelection", highlight);
+        const tree = qxl.apiviewer.MWidgetRegistry.getWidgetById('tree');
+        tree.addListener('changeSelection', highlight);
+      }, 2000);
+    </script>
+</head>
+<body>
+</body>
+</html>

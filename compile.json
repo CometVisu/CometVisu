@@ -31,7 +31,7 @@
         "cv.test.*",
         "qx.test.*"
       ],
-      "bootPath": "./source/boot",
+      "bootPath": "source/boot",
       "parts": {
         "boot": {
           "include": [
@@ -166,7 +166,8 @@
         "qx.test.*",
         "qx.module.Blocker",
         "qx.module.Placement"
-      ]
+      ],
+      "bootPath": "../../source/apiboot"
     }
   ],
   "libraries": [
