@@ -312,7 +312,8 @@ getrennt lassen sich für ``horizontal;vertikal`` jeweils eigene Werte angeben. 
 ``links;oben;rechts;unten`` für jede Seite ein eigener Wert angegeben werden.
 
 Um hier schneller zu einem Ergebnis zu kommen, gerade weil man sich iterativ dem besten Wert nähern muss, kann
-das Attribut ``debug`` auf ``true`` gesetzent werden um einen Rahmen an der automatisch bestimmten Größe zu sehen.
+das Attribut ``debug`` auf ``true`` gesetzent werden um einen blauen Rahmen an der automatisch bestimmten Größe, so wie
+einen grünen Rahmen bei der finalen Größe zu sehen.
 
 .. widget-example::
 
@@ -322,7 +323,7 @@ das Attribut ``debug`` auf ``true`` gesetzent werden um einen Rahmen an der auto
                 <data address="3/3/1">35.8</data>
             </screenshot>
         </settings>
-        <roundbar debug="true" bboxgrow="0;50">
+        <roundbar debug="true" bboxgrow="50;0">
             <layout colspan="2" rowspan="2"/>
             <address transform="DPT:9.001" mode="read">3/3/1</address>
         </roundbar>

@@ -184,8 +184,18 @@
   <xsd:attribute name="max" type="xsd:decimal" />
   <xsd:attribute name="step" type="xsd:decimal" />
 
-  <xsd:attribute name="transform" type="xsd:string" />
-  <xsd:attribute name="format" type="xsd:string" />
+  <xsd:attribute name="transform" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Transformation of the bus system value to be shown.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Umwandlung des Bus-System Wertes um angezeigt werden zu können.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="format" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Formataion of the value (printf syntax).</xsd:documentation>
+      <xsd:documentation xml:lang="de">Formatierung des Wertes (printf-Syntax).</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
 
   <xsd:attribute name="timeformat" type="xsd:string" >
     <xsd:annotation>
@@ -1437,8 +1447,8 @@
         <xsd:attribute ref="mode" use="optional" />
         <xsd:attribute name="type" use="optional">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">Type of the indicators: bar or pointer.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Art des Indikators: Balken oder Zeiger.</xsd:documentation>
+            <xsd:documentation xml:lang="en">Type of the indicators.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Art des Indikators.</xsd:documentation>
           </xsd:annotation>
           <xsd:simpleType>
             <xsd:restriction base="xsd:string">
@@ -1453,8 +1463,18 @@
             <xsd:documentation xml:lang="de">Zeige den Wert für diesen Indikator an.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
-        <xsd:attribute ref="min" />
-        <xsd:attribute ref="max" />
+        <xsd:attribute name="min" type="xsd:decimal" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Overrules the minimum value of the widget for this indicator.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Übersteuert den für das Widget gültigen Minimal-Wert für diesen Indikator.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="max" type="xsd:decimal" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Overrules the maximum value of the widget for this indicator.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Übersteuert den für das Widget gültigen Maximal-Wert für diesen Indikator.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
         <xsd:attribute name="radius" type="xsd:decimal" use="optional">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Radius of the indicator.</xsd:documentation>
@@ -1507,12 +1527,14 @@
         <xsd:documentation xml:lang="de">Maximaler Wert.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="format" use="optional">
+    <xsd:attribute ref="format" use="optional"/>
+      <!--
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Format string.</xsd:documentation>
         <xsd:documentation xml:lang="de">Format String.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    -->
     <xsd:attribute name="axisradius" type="xsd:decimal" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Radius of the round axis.</xsd:documentation>
