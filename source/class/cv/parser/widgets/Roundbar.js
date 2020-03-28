@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.parser.widgets.Roundbar', {
-  type: "static",
+  type: 'static',
 
   /*
    ******************************************************
@@ -30,6 +30,9 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
    ******************************************************
    */
   statics: {
+    deg2rad: function(deg) {
+      return parseFloat(deg) * Math.PI / 180;
+    },
 
     /**
      * Parses the widgets XML configuration and extracts the given information
@@ -42,10 +45,11 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
      */
     parse: function (xml, path, flavour, pageType) {
       var
+        self = this,
         data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings(xml.getAttribute('preset'))),
         indicatorValueCnt = 0;
       cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+      cv.parser.WidgetParser.parseAddress(xml, path);
       data.indicators = [];
       data.radius = 50; // default
       data.width = 10; // default
@@ -53,41 +57,33 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
         data.radius = parseFloat( elem.getAttribute('radius') || (data.radius + (i === 0 ? 0 : data.spacing+data.width)));
         indicatorValueCnt = parseInt(elem.getAttribute('valuepos') || indicatorValueCnt+1);
         data.indicators.push({
-          address:   elem.textContent,
-          showValue: elem.getAttribute('showvalue') !== 'false',
-          valuepos:  indicatorValueCnt,
-          isBar:     elem.getAttribute('type') !== 'pointer',
-          min:       elem.getAttribute('min') || data.min,
-          max:       elem.getAttribute('max') || data.max,
-          radius:    data.radius,
-          startarrow: data.startarrow * Math.PI / 180,
-          endarrow: data.endarrow * Math.PI / 180,
-          width:     parseFloat( elem.getAttribute('width') || data.width),
-          thickness: elem.getAttribute('thickness') || data.thickness,
-          style:     elem.getAttribute('style') || ''
+          address:    elem.textContent,
+          showValue:  elem.getAttribute('showvalue') !== 'false',
+          valuepos:   indicatorValueCnt,
+          isBar:      elem.getAttribute('type') !== 'pointer',
+          min:        elem.getAttribute('min') || data.min,
+          max:        elem.getAttribute('max') || data.max,
+          radius:     data.radius,
+          startarrow: self.deg2rad(data.startarrow),// * Math.PI / 180,
+          endarrow:   self.deg2rad(data.endarrow),// * Math.PI / 180,
+          width:      parseFloat( elem.getAttribute('width') || data.width),
+          thickness:  elem.getAttribute('thickness') || data.thickness,
+          style:      elem.getAttribute('style') || ''
         });
       });
       return data;
     },
 
-    makeAddressListFn: function(src, transform, mode, variant) {
-      return [true, variant];
-    },
-
     getAttributeToPropertyMappings: function (preset) {
-      function deg2rad(deg) {
-        return parseFloat(deg) * Math.PI / 180;
-      }
-
       var
         retObj = {
-          'min': {"default": 0.0, transform: parseFloat},
-          'max': {"default": 100.0, transform: parseFloat},
-          'axisradius': {"default": 50.0, transform: parseFloat},
-          'axiswidth': {"default": 0.0, transform: parseFloat},
-          'axiscolor': {"default": ""},
+          'min': {'default': 0.0, transform: parseFloat},
+          'max': {'default': 100.0, transform: parseFloat},
+          'axisradius': {'default': 50.0, transform: parseFloat},
+          'axiswidth': {'default': 0.0, transform: parseFloat},
+          'axiscolor': {'default': ''},
           'ranges': {
-            "default": "",
+            'default': '',
             transform: function (value) {
               if(!value) { return []; }
               var retval = [];
@@ -115,16 +111,16 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
               return retval;
             }
           },
-          'minorradius': {"default": 0.0, transform: parseFloat},
-          'minorwidth': {"default": 0.0, transform: parseFloat},
-          'minorspacing': {"default": "25%"},
-          'minorcolor': {"default": ""},
-          'majorradius': {"default": 0.0, transform: parseFloat},
-          'majorwidth': {"default": 0.0, transform: parseFloat},
-          'majorposition': {"default": "min;max"},
-          'majorcolor': {"default": ""},
+          'minorradius': {'default': 0.0, transform: parseFloat},
+          'minorwidth': {'default': 0.0, transform: parseFloat},
+          'minorspacing': {'default': '25%'},
+          'minorcolor': {'default': ''},
+          'majorradius': {'default': 0.0, transform: parseFloat},
+          'majorwidth': {'default': 0.0, transform: parseFloat},
+          'majorposition': {'default': 'min;max'},
+          'majorcolor': {'default': ''},
           'labels': {
-            "default": "",
+            'default': '',
             transform: function (value) {
               if(!value) { return []; }
               var
@@ -165,22 +161,22 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
               return retval;
             }
           },
-          'labelstyle': {"default": ""},
-          'start': {"default": 270.0, transform: deg2rad},
-          'startarrow': {"default": 5.0, transform: parseFloat},
-          'end': {"default": 0.0, transform: deg2rad},
-          'endarrow': {"default": -5.0, transform: parseFloat},
-          'arrowtype': { "default": 0, transform: function(t){ return ({'angle':0,'distance':1})[t] || 0; } },
-          'spacing': {"default": 10.0, transform: parseFloat},
-          'overflowarrow': { "default": 'true', transform: function (value) { return value === "true"; } },
-          'fontsize': {"default": 40, transform: parseFloat},
-          'textx': {"default": 10, transform: parseFloat},
-          'texty': {"default": 50, transform: parseFloat},
-          'textlength': {"default": 0, transform: parseFloat},
-          'textanchor': {"default": ""},
-          'linespace': {"default": 12, transform: parseFloat},
+          'labelstyle': {'default': ''},
+          'start': {'default': 270.0, transform: this.deg2rad},
+          'startarrow': {'default': 5.0, transform: parseFloat},
+          'end': {'default': 0.0, transform: this.deg2rad},
+          'endarrow': {'default': -5.0, transform: parseFloat},
+          'arrowtype': { 'default': 0, transform: function(t){ return ({'angle':0,'distance':1})[t] || 0; } },
+          'spacing': {'default': 10.0, transform: parseFloat},
+          'overflowarrow': { 'default': 'true', transform: function (value) { return value === 'true'; } },
+          'fontsize': {'default': 40, transform: parseFloat},
+          'textx': {'default': 10, transform: parseFloat},
+          'texty': {'default': 50, transform: parseFloat},
+          'textlength': {'default': 0, transform: parseFloat},
+          'textanchor': {'default': ''},
+          'linespace': {'default': 12, transform: parseFloat},
           'bboxgrow': {
-            "default": "1",
+            'default': '1',
             transform: function (value) {
               var parts = value.split(';');
               switch (parts.length) {
@@ -196,7 +192,7 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
               }
             }
           },
-          'debug': {"default": false, transform: function(v){return v === "true";}}
+          'debug': {'default': false, transform: function(v){return v === 'true';}}
         },
         thisPreset = ({
           'A': {
@@ -235,6 +231,6 @@ qx.Class.define('cv.parser.widgets.Roundbar', {
 
   defer: function(statics) {
     // register the parser
-    cv.parser.WidgetParser.addHandler("roundbar", statics);
+    cv.parser.WidgetParser.addHandler('roundbar', statics);
   }
 });

@@ -1528,13 +1528,6 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="format" use="optional"/>
-      <!--
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Format string.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Format String.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    -->
     <xsd:attribute name="axisradius" type="xsd:decimal" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Radius of the round axis.</xsd:documentation>
