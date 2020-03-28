@@ -35,7 +35,7 @@ require_once('../library_version.inc.php');
  * the library-version the upgrader understands
  * @const   integer
  */
-define('UPGRADER_LIBRARY_VERSION', 8);
+define('UPGRADER_LIBRARY_VERSION', 9);
 
 
 /**
@@ -100,15 +100,18 @@ class ConfigurationUpgrader {
     			case 4:
     				$this->upgrade4To5();
     				break;
-    			case 5:
-    				$this->upgrade5To6();
-    				break;
-                        case 6:
-                                $this->upgrade6To7();
-                                break;
-                        case 7:
-    				$this->upgrade7To8();
-    				break;
+          case 5:
+            $this->upgrade5To6();
+            break;
+          case 6:
+            $this->upgrade6To7();
+            break;
+          case 7:
+            $this->upgrade7To8();
+            break;
+          case 8:
+            $this->upgrade8To9();
+            break;
     		}
     		$intVersionCounter++;
     	}
@@ -546,6 +549,48 @@ class ConfigurationUpgrader {
         }
         $this->log('removed ' . $i . ' \'plugin\'-nodes with obsolete plugin (gweather)');
     }
+
+    /**
+    * do all necessary changes from version 8 to version 9
+    */
+    protected function upgrade8to9() {
+      $objXPath = new DOMXPath($this->objDOM);
+      // convert all button attributes to subelements
+      $objElements = $objXPath->query('//multitrigger');
+      $i = 0;
+      foreach ($objElements as $objElementNode) {
+        $buttonConf = [];
+        $attributesToDelete = [];
+        forEach($objElementNode->attributes as $attr) {
+          if (preg_match('/^button([\d]+)(label|value)$/', $attr->name, $matches)) {
+            if (!array_key_exists($matches[1], $buttonConf)) {
+              $buttonConf[$matches[1]] = [];
+            }
+            $buttonConf[$matches[1]][$matches[2]] = $attr->value;
+            $attributesToDelete[] = $attr;
+          }
+        }
+        forEach ($attributesToDelete as $attr) {
+          $objElementNode->removeAttributeNode($attr);
+        }
+        ksort($buttonConf);
+        if (sizeof($buttonConf) > 0) {
+          $buttons = $this->objDOM->createElement('buttons');
+          forEach($buttonConf as $index => $config) {
+            $button = $this->objDOM->createElement('button');
+            $button->nodeValue = $config['value'];
+            if ($config['label']) {
+              $button->setAttribute('label', $config['label']);
+            }
+            $buttons->appendChild($button);
+          }
+          $objElementNode->appendChild($buttons);
+          ++$i;
+        }
+      }
+      $this->log('converted ' . $i . ' \'multitrigger\'-nodes to new button configuration');
+    }
+
     /**
      * helper-function for sorting of elements
      * 

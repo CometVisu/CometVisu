@@ -1429,6 +1429,7 @@
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
+      <xsd:element name="buttons" type="buttons" minOccurs="0" maxOccurs="1"/>
     </xsd:sequence>
     <xsd:attribute name="showstatus" type="xsd:string" use="optional">
       <xsd:annotation>
@@ -1436,58 +1437,43 @@
         <xsd:documentation xml:lang="de">Legt fest, ob auf den Schaltflächen der aktuelle Status angezeigt wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="button1label" type="xsd:string" use="optional">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the label for the top left button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt die Beschriftung für die obere linke Schaltfläche fest.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="button1value" type="xsd:string" use="optional">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the value which will be sent when pressing the top left button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der oberen linken Schaltfläche gesendet wird.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="button2label" type="xsd:string" use="optional">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the label for the top right button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt die Beschriftung für die obere rechte Schaltfläche fest.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="button2value" type="xsd:string" use="optional">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the value which will be sent when pressing the top right button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der oberen rechten Schaltfläche gesendet wird.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="button3label" type="xsd:string" use="optional">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the label for the bottom left button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt die Beschriftung für die untere linke Schaltfläche fest.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="button3value" type="xsd:string" use="optional">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the value which will be sent when pressing the bottom left button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der unteren linken Schaltfläche gesendet wird.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="button4label" type="xsd:string" use="optional">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the label for the bottom right button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt die Beschriftung für die untere rechte Schaltfläche fest.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="button4value" type="xsd:string" use="optional">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the value which will be sent when pressing the bottom right button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der unteren rechten Schaltfläche gesendet wird.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute name="elementsPerLine" type="xsd:unsignedByte" use="optional" default="2">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines how many elements are shown in a line before adding a line break (default to 2, 0 adds no line breaks at all).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt fest wie viele Element pro Zeile angezeigt werden (Standardwert ist 2, 0 fügt gar keine Zeilenumbrüche hinzu).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
+
+  <xsd:complexType name="buttons">
+    <xsd:sequence>
+      <xsd:element name="button" type="button" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="button">
+    <xsd:simpleContent>
+      <xsd:extension base="buttonValue">
+        <xsd:attribute name="label" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Label of the button.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Beschriftung des Buttons.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:simpleType name="buttonValue">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Value of the button.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Wert des Buttons.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
 
   <xsd:complexType name="slide">
     <xsd:sequence>
