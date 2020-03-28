@@ -19,7 +19,7 @@ install:
 - npm install
 - sudo pip install -r utils/requirements.txt
 stages:
-- name: lint
+#- name: lint
 - name: test
 - name: deploy
   if: repo = CometVisu/CometVisu AND (NOT type IN (pull_request)) AND ( branch =~ ^master|develop|release-[0-9\.]+$ )
