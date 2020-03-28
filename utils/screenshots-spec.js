@@ -66,7 +66,7 @@ var createDir = function(dir) {
       }
     }
     create.forEach(function(newDir) {
-      fs.mkdirSync(newDir, "0744");
+      fs.mkdirSync(newDir, "0755");
     });
   }
 };

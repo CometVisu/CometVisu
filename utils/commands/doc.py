@@ -626,7 +626,7 @@ class DocGenerator(Command):
             sys.exit(0)
 
         elif options.doc == "source":
-            cmd = "./generate.py api -sI --macro=CV_VERSION:%s" % self._get_doc_version()
+            cmd = "CV_VERSION=%s npm run api" % self._get_doc_version()
             subprocess.call(cmd, shell=True)
 
         else:

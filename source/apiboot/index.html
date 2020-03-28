@@ -4,6 +4,35 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>CometVisu API Viewer</title>
     <link type="text/css" rel="stylesheet" href="${resourcePath}qxl/apiviewer/css/sunlight.default.css">
+    <style>
+        div.class-description div.widget-example {
+            margin-top: 5px; float:left; width: 50%; text-align: center;
+        }
+        div.class-description div.widget-example.last,
+        div.class-description div.caption,
+        div.class-description div.code {
+            clear: left;
+        }
+        div.class-description div.widget-example label,
+        div.class-description div.caption {
+            margin: 3px 0 10px 0;
+        }
+        div.class-description div.widget-example label {
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+
+        div.class-description div.authors label, div.class-description div.since label {
+            font-weight: bold;
+            float: left;
+            margin-right: 0.5em;
+        }
+        div.class-description div.authors p, div.class-description div.since p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    </style>
     <script type="text/javascript" src="${resourcePath}qxl/apiviewer/lib/sunlight-min.js"></script>
     <script type="text/javascript" src="${resourcePath}qxl/apiviewer/lib/sunlight.javascript-min.js"></script>
     <script type="text/javascript" src="${resourcePath}qxl/apiviewer/lib/sunlight.xml-min.js"></script>
@@ -12,18 +41,28 @@
     </script>
     <script type="text/javascript" src="apiviewer/boot.js"></script>
     <script type="application/javascript">
-      setTimeout(function() {
+      function highlight() {
+        setTimeout(() => {
+          Sunlight.highlightAll();
+        }, 100);
+      }
 
-        function highlight() {
-          setTimeout(() => {
-            Sunlight.highlightAll();
-          }, 100);
-        }
-        const controller = qxl.apiviewer.TabViewController.instance;
-        controller.addListener("changeSelection", highlight);
-        const tree = qxl.apiviewer.MWidgetRegistry.getWidgetById('tree');
-        tree.addListener('changeSelection', highlight);
-      }, 2000);
+      let retried = 0;
+
+      function init () {
+        setTimeout(function() {
+          const controller = qxl.apiviewer.TabViewController.instance;
+          if (!controller && retried < 3) {
+            retried++;
+            init();
+            return;
+          }
+          controller.addListener("changeSelection", highlight);
+          const tree = qxl.apiviewer.MWidgetRegistry.getWidgetById('tree');
+          tree.addListener('changeSelection', highlight);
+        }, 2000);
+      }
+      init();
     </script>
 </head>
 <body>

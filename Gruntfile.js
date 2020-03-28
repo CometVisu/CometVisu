@@ -369,6 +369,7 @@ module.exports = function(grunt) {
         options: {
           port: 8000,
           hostname: '*',
+          base: 'compiled',
           middleware : function(connect, options, middlewares) {
             // inject out mockup middlewares before the default ones
             middlewares.unshift(captureMock());
