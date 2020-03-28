@@ -455,7 +455,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
           BBox.d - BBox.u + this.getBboxgrow().u + this.getBboxgrow().d
         ].join(' ') + '">';
       if(this.getDebug()) {
-        html += '<rect width="'+(BBox.r-BBox.l)+'" height="'+(BBox.d-BBox.u)+'" x="'+(BBox.l)+'" y="'+(BBox.u)+'" stroke="blue" />'
+        html += '<rect width="'+(BBox.r-BBox.l)+'" height="'+(BBox.d-BBox.u)+'" x="'+(BBox.l)+'" y="'+(BBox.u)+'" stroke="blue" fill="none" />'
           + '<rect width="'+(BBox.r-BBox.l + this.getBboxgrow().l + this.getBboxgrow().r)+'" height="'+(BBox.d-BBox.u + this.getBboxgrow().u + this.getBboxgrow().d)+'" x="'+(BBox.l - this.getBboxgrow().l)+'" y="'+(BBox.u - this.getBboxgrow().u)+'" stroke="green" fill="none" />'
           + '<circle cx="0" cy="0" r="3" fill="red" />';
       }

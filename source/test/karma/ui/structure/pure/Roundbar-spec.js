@@ -216,6 +216,7 @@ describe("testing a roundbar widget", function() {
     var bar   = actor.querySelectorAll('path.indicator');
 
     expect(bar.length).toBe(3);
+    expect(svg.childNodes.length).toBe(9);
 
     // check correctness of bboxgrow calculation
     expect(svg.viewBox.baseVal.x     ).toBe(-200);
@@ -229,10 +230,15 @@ describe("testing a roundbar widget", function() {
     expect(svg.childNodes[0].y.baseVal.value     ).toBe(-100);
     expect(svg.childNodes[0].width.baseVal.value ).toBe(200);
     expect(svg.childNodes[0].height.baseVal.value).toBe(200);
-    expect(svg.childNodes[1].nodeName).toBe('circle');
-    expect(svg.childNodes[1].cx.baseVal.value).toBe(0);
-    expect(svg.childNodes[1].cy.baseVal.value).toBe(0);
-    expect(svg.childNodes[1].r.baseVal.value ).toBe(3);
+    expect(svg.childNodes[1].nodeName).toBe('rect');
+    expect(svg.childNodes[1].x.baseVal.value     ).toBe(-200);
+    expect(svg.childNodes[1].y.baseVal.value     ).toBe(-400);
+    expect(svg.childNodes[1].width.baseVal.value ).toBe(400);
+    expect(svg.childNodes[1].height.baseVal.value).toBe(800);
+    expect(svg.childNodes[2].nodeName).toBe('circle');
+    expect(svg.childNodes[2].cx.baseVal.value).toBe(0);
+    expect(svg.childNodes[2].cy.baseVal.value).toBe(0);
+    expect(svg.childNodes[2].r.baseVal.value ).toBe(3);
 
     creator.update('12/7/30', '64'); // 0x64 hex === 100 decimal
     creator.update('12/7/31', '64');
