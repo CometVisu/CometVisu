@@ -18,6 +18,7 @@ install:
 - npm install -g grunt-cli
 - npm install
 - sudo pip install -r utils/requirements.txt
+- npm qx package install
 stages:
 - name: lint
   if: branch = test-linter
