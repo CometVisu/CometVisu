@@ -42,7 +42,7 @@
       "EventSource": "readonly"
     },
     "extends": [
-      "qx/browser"
+      "@qooxdoo/qx/browser"
     ]
   }
 }
