@@ -18,7 +18,6 @@ install:
 - npm install -g grunt-cli
 - npm install
 - sudo pip install -r utils/requirements.txt
-- virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
 stages:
 - name: lint
 - name: test
@@ -29,7 +28,7 @@ jobs:
   - stage: lint
     name: Lint
     script:
-    - qx lint
+    - npx qx lint
   - stage: test
     name: 'Unit Tests: Chrome stable'
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=stable
@@ -38,7 +37,7 @@ jobs:
     - export CHROME_BIN=`pwd`/chrome/google-chrome
     - export PATH=`pwd`/firefox:`pwd`/chrome:$PATH
     - google-chrome --version
-    - qx compile
+    - npx qx compile
     - grunt karma:travis --browser=$CV_BROWSER
     - if [ "$CV_BUILD" == "test" ] && [ "$CV_VERSION" == "stable" ] ; then grunt coveralls; fi
   - stage: test
@@ -54,7 +53,7 @@ jobs:
     script: &2
     - sudo ./utils/travis/browser-setup.sh
     - export CHROME_BIN=`pwd`/chrome/google-chrome
-    - qx compile
+    - npx qx compile
     - export CHROME_VERSION=$($CHROME_BIN --version | awk '{ print $3 }' | cut -d'.' -f 1,2,3)
     - export DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
     - echo "using chrome driver version $DRIVER_VERSION"
@@ -68,7 +67,7 @@ jobs:
     env: CV_BUILD=docs ENCRYPTION_LABEL=4c79fec0aeb9 COMMIT_AUTHOR_EMAIL=generator@cometvisu.org CV_BROWSER=Chrome_travis CV_VERSION=stable
     script:
     - docker pull cometvisu/dev-helper
-    - qx compile --t build # builds the cv for the screenshot generator
+    - npx qx compile --t build # builds the cv for the screenshot generator
     - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
     - sudo apt-get install python-lxml python3-lxml
     - utils/travis/deploy.sh
