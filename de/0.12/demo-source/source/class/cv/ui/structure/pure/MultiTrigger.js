@@ -19,7 +19,7 @@
 
 
 /**
- * Adds a widget with 4 buttons to the visu.
+ * Adds a widget with multiple buttons to the visu.
  * Thus, e.g. change the operating mode of the heating system
  * (Comfort -> Night -> Absent -> Frost protection) or create scene functions.
  *
@@ -40,37 +40,13 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
       check: "Boolean",
       init: false
     },
-    button1label: {
-      check: "String",
-      nullable: true
+    elementsPerLine: {
+      check: "Number",
+      init: 2
     },
-    button1value: {
-      check: "String",
-      nullable: true
-    },
-    button2label: {
-      check: "String",
-      nullable: true
-    },
-    button2value: {
-      check: "String",
-      nullable: true
-    },
-    button3label: {
-      check: "String",
-      nullable: true
-    },
-    button3value: {
-      check: "String",
-      nullable: true
-    },
-    button4label: {
-      check: "String",
-      nullable: true
-    },
-    button4value: {
-      check: "String",
-      nullable: true
+    buttonConfiguration: {
+      check: 'Object',
+      nullable: false
     }
   },
 
@@ -84,50 +60,33 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
     _getInnerDomString: function () {
       // create the actor
       var ret_val = '<div class="actor_container" style="float:left">';
+      var mapping = this.getMapping();
+      var elementsPerLine = this.getElementsPerLine();
 
-      if (this.getButton1label()) {
-        ret_val += '<div class="actor switchUnpressed">';
-        ret_val += '<div class="value">' + this.getButton1label() + '</div>';
-        ret_val += '</div>';
-      }
+      var config = this.getButtonConfiguration();
+      var indices = Object.keys(config).sort();
 
-      if (this.getButton2label()) {
-        ret_val += '<div class="actor switchUnpressed">';
-        ret_val += '<div class="value">' + this.getButton2label() + '</div>';
-        ret_val += '</div>';
-        ret_val += '<br/>';
-      }
+      indices.forEach(function (i) {
+        var buttonConfig = config[i];
+        var label = buttonConfig.label;
+        if (mapping) {
+          var mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
+          if (mappedValue !== buttonConfig.value || !label) {
+            label = '';
+            this.defaultValue2DOM(mappedValue, function (e) {
+              label += e;
+            });
+          }
+        }
 
-      if (this.getButton3label()) {
-        ret_val += '<div class="actor switchUnpressed">';
-        ret_val += '<div class="value">' + this.getButton3label() + '</div>';
-        ret_val += '</div>';
-      }
-
-      if (this.getButton4label()) {
-        ret_val += '<div class="actor switchUnpressed">';
-        ret_val += '<div class="value">' + this.getButton4label() + '</div>';
-        ret_val += '</div>';
-        ret_val += '<br/>';
-      }
+        if (label) {
+          ret_val += '<div class="actor switchUnpressed"><div class="value">' + label + '</div></div>';
+        }
+        if (elementsPerLine > 0 && i % elementsPerLine === 0) {
+          ret_val+= '<br/>';
+        }
+      }, this);
       return ret_val + '</div>';
-    },
-
-    // overridden
-    _onDomReady: function() {
-      this.base(arguments);
-      var actor = this.getActor();
-      var children = actor.childNodes;
-      var value;
-
-      if (this.getMapping()) {
-        children.forEach(function (element, i) {
-          value = this.defaultValueHandling(undefined, this['getButton' + (i + 1) + 'value']());
-          element.innerHTML = '';
-          var self = this;
-          this.defaultValue2DOM(value, function(e){self._applyValueToDom(element,e);});
-        }, this);
-      }
     },
 
     getActors: function(){
@@ -144,16 +103,19 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
      */
     handleUpdate: function () {
       var children = this.getActors();
+      var buttonConfiguration = this.getButtonConfiguration();
       children.forEach(function(actor) {
         var index = Array.prototype.indexOf.call( children, actor )+1;
-        var isPressed = (''+this.getBasicValue()) === (''+this['getButton' + index + 'value']()); // compare as string
+        if (buttonConfiguration.hasOwnProperty(index)) {
+          var isPressed = ('' + this.getBasicValue()) === ('' + buttonConfiguration[index].value); // compare as string
 
-        // delay this a little bit to give the HasAnimatedButton stuff time to finish
-        // otherwise it might override the settings here
-        new qx.util.DeferredCall(function() {
-          actor.classList.remove(isPressed ? 'switchUnpressed' : 'switchPressed');
-          actor.classList.add(isPressed ? 'switchPressed' : 'switchUnpressed');
-        }, this).schedule();
+          // delay this a little bit to give the HasAnimatedButton stuff time to finish
+          // otherwise it might override the settings here
+          new qx.util.DeferredCall(function () {
+            actor.classList.remove(isPressed ? 'switchUnpressed' : 'switchPressed');
+            actor.classList.add(isPressed ? 'switchPressed' : 'switchUnpressed');
+          }, this).schedule();
+        }
       }, this);
     },
 
@@ -163,7 +125,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
      */
     getActionValue: function (event) {
       var index = Array.prototype.indexOf.call( this.getDomElement().querySelectorAll('.actor_container .actor'), event.getCurrentTarget() )+1;
-      return this['getButton' + index + 'value']();
+      return this.getButtonConfiguration()[index].value;
     },
 
     // overridden

@@ -43,6 +43,30 @@ qx.Class.define('cv.parser.widgets.MultiTrigger', {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+      var buttonRegex = /^button([\d]+)(label|value)$/;
+      var buttonConfig = {};
+      for (var i=0; i<xml.attributes.length; i++) {
+        var attrib = xml.attributes[i];
+        var match = buttonRegex.exec(attrib.name);
+        if (match) {
+          if (!buttonConfig.hasOwnProperty(match[1])) {
+            buttonConfig[match[1]] = {};
+          }
+          buttonConfig[match[1]][match[2]] = attrib.value;
+        }
+      }
+
+      // parse buttons
+      var buttons = xml.querySelectorAll('buttons > button');
+      for (i = 0; i < buttons.length; i++) {
+        buttonConfig[i + 1] = {
+          value: buttons[i].textContent
+        }
+        if (buttons[i].hasAttribute('label')) {
+          buttonConfig[i + 1].label = buttons[i].getAttribute('label');
+        }
+      }
+      data.buttonConfiguration = buttonConfig;
       return data;
     },
 
@@ -53,14 +77,9 @@ qx.Class.define('cv.parser.widgets.MultiTrigger', {
             return value === 'true';
           }
         },
-        button1label: {},
-        button1value: {},
-        button2label: {},
-        button2value: {},
-        button3label: {},
-        button3value: {},
-        button4label: {},
-        button4value: {}
+        elementsPerLine: {
+          transform: parseInt,  "default": 2
+        }
       };
     },
 

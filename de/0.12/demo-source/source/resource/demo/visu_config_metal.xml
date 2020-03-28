@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0" bind_click_to_widget="true">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0" bind_click_to_widget="true">
   <meta>
     <mappings>
       <mapping name="OpenClose">
@@ -294,15 +294,23 @@ Config</a> ]]></status>
         </group>
         <group name="Jalousien">
           <layout colspan="12"/>
-          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
+          <multitrigger>
             <label><icon name="fts_shutter"/>Fenster</label>
             <address transform="DPT:1.001" variant="">13/0/3</address>
+            <buttons>
+              <button label="↑">0</button>
+              <button label="↓">1</button>
+            </buttons>
           </multitrigger>
-          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
+          <multitrigger>
             <label><icon name="fts_shutter"/>
               Tür
             </label>
             <address transform="DPT:1.001" variant="">13/0/4</address>
+            <buttons>
+              <button label="↑">0</button>
+              <button label="↓">1</button>
+            </buttons>
           </multitrigger>
         </group>
         <group name="Steckdosen">
@@ -408,9 +416,13 @@ Config</a> ]]></status>
         </group>
         <group name="Jalousien + Fenster">
           <layout colspan="12"/>
-          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
+          <multitrigger>
             <label><icon name="fts_shutter"/>Jalousien</label>
             <address transform="DPT:1.001" variant="">13/1/1</address>
+            <buttons>
+              <button label="↑">0</button>
+              <button label="↓">1</button>
+            </buttons>
           </multitrigger>
           <info mapping="OpenClose">
             <label><icon name="fts_shutter"/>Fenster</label>

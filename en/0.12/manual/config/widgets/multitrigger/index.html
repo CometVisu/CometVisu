@@ -225,9 +225,13 @@ by an online translation service.</p>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>Adds a widget with 4 buttons to the visu.
+<p>Adds a widget with multiple buttons to the visu.
 Thus, e.g. change the operating mode of the heating system
 (Comfort -&gt; Night -&gt; Absent -&gt; Frost protection) or create scene functions.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Since version 0.12.0 multiple buttons are possible, in older versions the buttons were limited to 4.</p>
+</div>
 </div>
 <div class="section" id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
@@ -257,42 +261,10 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-odd"><td rowspan="12">multitrigger</td>
+<tr class="row-odd"><td rowspan="5">multitrigger</td>
 <td>showstatus</td>
 <td>string</td>
 <td>Defines if the current status is shown on the buttons.</td>
-</tr>
-<tr class="row-even"><td>button1label</td>
-<td>string</td>
-<td>Defines the label for the top left button.</td>
-</tr>
-<tr class="row-odd"><td>button1value</td>
-<td>string</td>
-<td>Defines the value which will be sent when pressing the top left button.</td>
-</tr>
-<tr class="row-even"><td>button2label</td>
-<td>string</td>
-<td>Defines the label for the top right button.</td>
-</tr>
-<tr class="row-odd"><td>button2value</td>
-<td>string</td>
-<td>Defines the value which will be sent when pressing the top right button.</td>
-</tr>
-<tr class="row-even"><td>button3label</td>
-<td>string</td>
-<td>Defines the label for the bottom left button.</td>
-</tr>
-<tr class="row-odd"><td>button3value</td>
-<td>string</td>
-<td>Defines the value which will be sent when pressing the bottom left button.</td>
-</tr>
-<tr class="row-even"><td>button4label</td>
-<td>string</td>
-<td>Defines the label for the bottom right button.</td>
-</tr>
-<tr class="row-odd"><td>button4value</td>
-<td>string</td>
-<td>Defines the value which will be sent when pressing the bottom right button.</td>
 </tr>
 <tr class="row-even"><td>flavour</td>
 <td>string</td>
@@ -305,6 +277,10 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <tr class="row-even"><td>class</td>
 <td>string</td>
 <td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+</tr>
+<tr class="row-odd"><td>elementsPerLine</td>
+<td>unsignedByte</td>
+<td>Defines how many elements are shown in a line before adding a line break (default to 2, 0 adds no line breaks at all).</td>
 </tr>
 </tbody>
 </table>
@@ -535,6 +511,55 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <td>&nbsp;</td>
 <td>string</td>
 <td>The GA (like: 12/0/7) for KNX-backends or the item name for openHAB-backend</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>multitrigger</dt>
+<dd><ul class="first last simple">
+<li>buttons</li>
+<li><abbr title="mandatory">button</abbr></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>label</td>
+<td>string</td>
+<td>Label of the button.</td>
+</tr>
+<tr class="row-even"><td><dl class="first last docutils">
+<dt>multitrigger</dt>
+<dd><ul class="first last simple">
+<li>buttons</li>
+<li>button<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&nbsp;</td>
+<td>string</td>
+<td>Value of the button.</td>
 </tr>
 </tbody>
 </table>

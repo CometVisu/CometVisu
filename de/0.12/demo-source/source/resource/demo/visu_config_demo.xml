@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd" max_mobile_screen_width="480">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd" max_mobile_screen_width="480">
   <meta>
     <plugins>
       <plugin name="colorchooser"/>
@@ -213,9 +213,15 @@
       <address transform="DPT:1.001" mode="readwrite">12/7/2</address>
     </pushbutton>
     <break/>
-    <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy" showstatus="true">
+    <multitrigger showstatus="true">
       <label>Multitrigger: KONNEX Betriebsart</label>
       <address transform="DPT:20.102" mode="readwrite">12/7/20</address>
+      <buttons>
+        <button label="Auto">auto</button>
+        <button label="Komfort">comfort</button>
+        <button label="Stand By">standby</button>
+        <button label="Economy">economy</button>
+      </buttons>
     </multitrigger>
     <info mapping="KonnexHVAC">
       <label>Info: Betriebsart</label>
@@ -227,9 +233,15 @@
       <address transform="DPT:20.102" mode="readwrite">12/7/20</address>
     </toggle>
     <break/>
-    <multitrigger button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
+    <multitrigger>
       <label>Multitrigger: Szenenaufruf</label>
       <address transform="DPT:5.010" mode="readwrite">12/7/5</address>
+      <buttons>
+        <button label="An">0</button>
+        <button label="Aus">1</button>
+        <button label="Essen">2</button>
+        <button label="Fernsehen">3</button>
+      </buttons>
     </multitrigger>
     <switch mapping="audio_mute">
       <label>
@@ -270,9 +282,15 @@
         <label>Relative GA</label>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </info>
-      <multitrigger button1label="An" button1value="50%" button2label="Aus" button2value="0%" button3label="Leise" button3value="25%" button4label="Laut" button4value="100%">
+      <multitrigger>
         <label>Lautstärke-Text</label>
         <address transform="DPT:16.000" mode="readwrite">12/7/16</address>
+        <buttons>
+          <button label="An">50%</button>
+          <button label="Aus">0%</button>
+          <button label="Leise">25%</button>
+          <button label="Laut">100%</button>
+        </buttons>
       </multitrigger>
       <line>
         <layout colspan="12"/>
