@@ -1,13 +1,11 @@
 
 describe('test the NotificationCenter', function () {
 
-  var center = cv.ui.NotificationCenter.getInstance();
-
   beforeEach(function(done) {
     // set animation time to 0
     cv.ui.NotificationCenter.SLIDE.duration = 0;
     cv.ui.NotificationCenter.BLINK.duration = 0;
-    center._init();
+    cv.ui.NotificationCenter.getInstance()._init();
     cv.ui.NotificationCenter.hide();
     setTimeout(done, 10);
   });
@@ -19,6 +17,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it("should test some basics", function () {
+    var center = cv.ui.NotificationCenter.getInstance();
     var severities = center.getSeverities();
     expect(severities.indexOf("low")).toBeGreaterThanOrEqual(0);
     expect(severities.indexOf("normal")).toBeGreaterThanOrEqual(0);
@@ -27,6 +26,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it('should toggle the visibility', function(done) {
+    var center = cv.ui.NotificationCenter.getInstance();
     var element = document.querySelector("#notification-center");
 
     expect(element).not.toBeUndefined();
@@ -44,6 +44,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it('should toggle the badge visibility', function(done) {
+    var center = cv.ui.NotificationCenter.getInstance();
     var element = document.querySelector("#notification-center .badge");
 
     expect(element).not.toBeUndefined();
@@ -61,7 +62,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it('should handle messages', function() {
-
+    var center = cv.ui.NotificationCenter.getInstance();
     var message = {
       topic: "cv.test",
       title: "Title",
@@ -113,6 +114,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it("should test the maxEntries limit", function() {
+    var center = cv.ui.NotificationCenter.getInstance();
     center.setMaxEntries(5);
     var message = {
       topic: "cv.test",
@@ -145,6 +147,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it("should perform a message action", function() {
+    var center = cv.ui.NotificationCenter.getInstance();
     var spy = jasmine.createSpy();
 
     qx.Class.define("cv.test.ActionHandler", {
@@ -186,6 +189,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it("should test the interaction handling with list items", function() {
+    var center = cv.ui.NotificationCenter.getInstance();
     if (window.PointerEvent) {
 
       qx.Class.define("cv.test.ActionHandler", {

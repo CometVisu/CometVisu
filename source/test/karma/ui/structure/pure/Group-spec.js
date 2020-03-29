@@ -58,7 +58,7 @@ describe("testing a group widget", function() {
   });
 
   it('should trigger the group action', function() {
-
+    var templateEngine = cv.TemplateEngine.getInstance();
     spyOn(templateEngine, 'scrollToPage');
     var res = this.createTestElement("group", { target: "target" }, "", false);
 

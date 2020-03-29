@@ -19,7 +19,9 @@ const filesToCopy = [
   "version",
   "library_version.inc.php",
   "../node_modules/monaco-editor",
-  "rest/manager"
+  "rest/manager",
+  "test",
+  "resource/test"
 ]
 
 class CvCompileHandler extends AbstractCompileHandler {

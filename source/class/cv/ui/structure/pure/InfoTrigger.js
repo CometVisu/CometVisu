@@ -168,6 +168,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     },
 
     __action: function (isShort, isDown) {
+      console.log(isShort, isDown, this._skipNextEvent)
       var value;
       if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
         value = isDown ? this.getShortDownValue() : this.getShortUpValue();

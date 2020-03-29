@@ -26,10 +26,10 @@ describe('test the notification router', function () {
   });
 
   it("should test the static message dispatching", function() {
-    var spied = spyOn(router, "dispatchMessage");
-    expect(spied).not.toHaveBeenCalled();
+    spyOn(router, "dispatchMessage");
+    expect(router.dispatchMessage).not.toHaveBeenCalled();
     cv.core.notifications.Router.dispatchMessage("test.unknown", {});
-    expect(spied).toHaveBeenCalled();
+    expect(router.dispatchMessage).toHaveBeenCalled();
   });
 
   it("should test the routing", function() {
@@ -46,46 +46,46 @@ describe('test the notification router', function () {
     });
 
     var handler = new cv.test.MessageHandler();
-    var spiedHandleMessage = spyOn(handler, "handleMessage").and.callThrough();
+    spyOn(handler, "handleMessage").and.callThrough();
 
     router.registerMessageHandler(handler, {
       "test.message": {},
       "test.wildcard.*": {}
     });
 
-    expect(spiedHandleMessage).not.toHaveBeenCalled();
+    expect(handler.handleMessage).not.toHaveBeenCalled();
 
     router.dispatchMessage("test.unknown", {});
-    expect(spiedHandleMessage).not.toHaveBeenCalled();
+    expect(handler.handleMessage).not.toHaveBeenCalled();
 
     router.dispatchMessage("test.message.other", {});
-    expect(spiedHandleMessage).not.toHaveBeenCalled();
+    expect(handler.handleMessage).not.toHaveBeenCalled();
 
     router.dispatchMessage("test.message", {});
-    expect(spiedHandleMessage).toHaveBeenCalled();
+    expect(handler.handleMessage).toHaveBeenCalled();
 
     // test the wildcard
-    spiedHandleMessage.calls.reset();
-    expect(spiedHandleMessage).not.toHaveBeenCalled();
+    handler.handleMessage.calls.reset();
+    expect(handler.handleMessage).not.toHaveBeenCalled();
 
     router.dispatchMessage("test.wildcard.anything.thats.possible", {});
-    expect(spiedHandleMessage).toHaveBeenCalled();
+    expect(handler.handleMessage).toHaveBeenCalled();
 
     // get target from message
-    var spy = spyOn(cv.ui.PopupHandler, "handleMessage");
+    spyOn(cv.ui.PopupHandler, "handleMessage");
     router.dispatchMessage("test.message", {target: "popup"});
-    expect(spy).toHaveBeenCalled();
+    expect(cv.ui.PopupHandler.handleMessage).toHaveBeenCalled();
 
-    spiedHandleMessage.calls.reset();
+    handler.handleMessage.calls.reset();
     // test unknown topic
     router.dispatchMessage("unknown.message", {});
-    expect(spiedHandleMessage).not.toHaveBeenCalled();
+    expect(handler.handleMessage).not.toHaveBeenCalled();
 
     // for some reason the spy does not count the number of calls right, so we use our own counter
     callCounter = 0;
     // dispatch with wildcard
     router.dispatchMessage("test.*", {});
-    expect(spy).toHaveBeenCalled();
+    expect(cv.ui.PopupHandler.handleMessage).toHaveBeenCalled();
     expect(callCounter).toEqual(2);
 
     qx.Class.undefine("cv.test.MessageHandler");

@@ -23,7 +23,7 @@ qx.Class.define("cv.compile.LibraryApi", {
         })
         this.__compileHandler = new ApiCompileHandler(compilerApi, configDb);
       } else {
-        config.applications = config.applications.filter(app => app.name === 'cv')
+        config.applications = config.applications.filter(app => app.name !== 'apiviewer')
         this.__compileHandler = new CvCompileHandler(compilerApi, configDb);
       }
       await this.__compileHandler.onLoad();

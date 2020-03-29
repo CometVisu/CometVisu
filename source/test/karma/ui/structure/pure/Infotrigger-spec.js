@@ -58,7 +58,19 @@ describe("testing a infotrigger widget", function() {
     var nativeEvent = new window.PointerEvent(type, eventData);
     qx.event.Registration.fireEvent(actor, type, qx.event.type.Pointer, [nativeEvent, actor, actor, true, true]);
   };
-  //
+
+  var realClient;
+  beforeEach(function() {
+    realClient = cv.TemplateEngine.getInstance().visu;
+    var client = new cv.io.Mockup();
+    cv.TemplateEngine.getInstance().visu = client
+    spyOn(client, "write");
+  });
+
+  afterEach(function () {
+    cv.TemplateEngine.getInstance().visu = realClient;
+  })
+
   it("should test the infotrigger creator", function() {
 
     var obj = this.createTestElement("infotrigger", {}, "<label>Test</label>");
@@ -173,7 +185,7 @@ describe("testing a infotrigger widget", function() {
     ]);
 
     this.initWidget(res);
-    var spy = spyOn(cv.TemplateEngine.getInstance().visu, "write");
+    var client = cv.TemplateEngine.getInstance().visu;
     var actor = res.getUpActor();
     expect(actor).not.toBe(null);
 
@@ -182,15 +194,14 @@ describe("testing a infotrigger widget", function() {
     expect(actor).not.toHaveClass("switchUnpressed");
 
     setTimeout(function () {
-      expect(spy.calls.count()).toEqual(0);
+      expect(client.write.calls.count()).toEqual(0);
       // up
       simulateEvent(actor, "pointerup");
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '81');
       qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
-
-      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
-      expect(spy.calls.count()).toEqual(1);
+      expect(client.write.calls.count()).toEqual(1);
       done();
     }, 150);
 
@@ -207,7 +218,7 @@ describe("testing a infotrigger widget", function() {
     ]);
 
     this.initWidget(res);
-    var spy = spyOn(cv.TemplateEngine.getInstance().visu, "write");
+    var client = cv.TemplateEngine.getInstance().visu;
     var actor = res.getUpActor();
     expect(actor).not.toBe(null);
 
@@ -216,8 +227,8 @@ describe("testing a infotrigger widget", function() {
     expect(actor).not.toHaveClass("switchUnpressed");
 
     setTimeout(function () {
-      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
-      expect(spy.calls.count()).toEqual(1);
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '81');
+      expect(client.write.calls.count()).toEqual(1);
 
       // up
       simulateEvent(actor, "pointerup");
@@ -225,8 +236,8 @@ describe("testing a infotrigger widget", function() {
       expect(actor).toHaveClass("switchUnpressed");
       qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
 
-      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
-      expect(spy.calls.count()).toEqual(1);
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '81');
+      expect(client.write.calls.count()).toEqual(1);
       done();
     }, 150);
 
@@ -242,7 +253,7 @@ describe("testing a infotrigger widget", function() {
     ]);
 
     this.initWidget(res);
-    var spy = spyOn(cv.TemplateEngine.getInstance().visu, "write");
+    var client = cv.TemplateEngine.getInstance().visu;
     var actor = res.getUpActor();
     expect(actor).not.toBe(null);
 
@@ -255,10 +266,10 @@ describe("testing a infotrigger widget", function() {
       simulateEvent(actor, "pointerup");
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
-      qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
+      expect(client.write).toHaveBeenCalledWith('1/0/1', '82');
 
-      expect(spy).toHaveBeenCalledWith('1/0/1', '82');
-      expect(spy.calls.count()).toEqual(1);
+      qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
+      expect(client.write.calls.count()).toEqual(1);
       done();
     }, 50);
 

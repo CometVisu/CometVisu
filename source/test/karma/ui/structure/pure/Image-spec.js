@@ -26,10 +26,10 @@
  */
 describe("testing a image widget", function() {
 
-  var Con = qx.event.Timer;
-  var spiedTimer;
+  var Con, spiedTimer;
 
   beforeEach(function () {
+    Con = qx.event.Timer;
 
     spyOn(qx.event, "Timer").and.callFake(function () {
       spiedTimer = new Con();
@@ -42,6 +42,7 @@ describe("testing a image widget", function() {
 
   afterEach(function () {
     qx.event.Timer = Con;
+    this.spiedTimer = null;
   });
 
   it("should test the image creator", function () {

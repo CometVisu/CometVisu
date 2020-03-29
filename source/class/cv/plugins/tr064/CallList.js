@@ -386,7 +386,7 @@ qx.Class.define('cv.plugins.tr064.CallList', {
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('resource/plugins/tr064/tr064.css');
+    loader.addStyles('plugins/tr064/tr064.css');
     cv.parser.WidgetParser.addHandler("calllist", cv.plugins.tr064.CallList);
     cv.ui.structure.WidgetFactory.registerClass("calllist", statics);
   }

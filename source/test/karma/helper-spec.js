@@ -342,7 +342,11 @@ afterEach(function () {
   cv.ui.layout.ResizeHandler.reset();
 
   if (this.container) {
-    document.body.removeChild(this.container);
+    try {
+      document.body.removeChild(this.container);
+    } catch (e) {
+      console.error(e)
+    }
     this.container = null;
   }
   if (this.creator) {

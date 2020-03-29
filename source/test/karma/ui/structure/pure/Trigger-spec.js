@@ -25,30 +25,17 @@
  * @since 2016
  */
 describe("testing a trigger", function() {
-  var templateEngine = cv.TemplateEngine.getInstance();
+  var realClient;
+  beforeEach(function() {
+    realClient = cv.TemplateEngine.getInstance().visu;
+    var client = new cv.io.Mockup();
+    cv.TemplateEngine.getInstance().visu = client
+    spyOn(client, "write");
+  });
 
-  // templateEngine.visu = new ClientMockup();
-  // var creator = design.basicdesign.getCreator("trigger");
-  // var container;
-  //
-  // beforeEach(function() {
-  //
-  //   var xml = document.createElement('template');
-  //   xml.innerHTML = '<trigger value="1" shortvalue="0" shorttime="100" flavour="potassium"><label>Test</label><address transform="DPT:1.001" mode="readwrite">12/7/37</address></trigger>';
-  //   xml = xml.firstChild;
-  //   var triggerString = creator.create(xml, 'id_0', null, 'trigger');
-  //
-  //   container = document.createElement('div');
-  //   container.setAttribute("class","widget_container");
-  //   container.setAttribute("id", 'id_0');
-  //   container.innerHTML = triggerString;
-  //   document.body.appendChild(container);
-  //
-  // });
-  //
-  // afterEach(function() {
-  //   document.body.removeChild(container);
-  // });
+  afterEach(function () {
+    cv.TemplateEngine.getInstance().visu = realClient;
+  })
 
   it("should test the trigger creator", function() {
 
@@ -100,7 +87,7 @@ describe("testing a trigger", function() {
 
     this.initWidget(res);
 
-    var spy = spyOn(cv.TemplateEngine.getInstance().visu, "write");
+    var client = cv.TemplateEngine.getInstance().visu;
     var actor = res.getInteractionElement();
     expect(actor).not.toBe(null);
 
@@ -149,8 +136,8 @@ describe("testing a trigger", function() {
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 
-      expect(spy).toHaveBeenCalledWith('1/0/1', '82');
-      expect(spy.calls.count()).toEqual(1);
+      expect(client.write).toHaveBeenCalledWith('1/0/1', '82');
+      expect(client.write.calls.count()).toEqual(1);
       done();
     }, 10);
 
@@ -168,7 +155,7 @@ describe("testing a trigger", function() {
     ]);
 
     this.initWidget(res);
-    var spy = spyOn(cv.TemplateEngine.getInstance().visu, "write");
+    var client = cv.TemplateEngine.getInstance().visu
     var actor = res.getInteractionElement();
     expect(actor).not.toBe(null);
 
@@ -208,7 +195,7 @@ describe("testing a trigger", function() {
     expect(actor).not.toHaveClass("switchUnpressed");
 
     setTimeout(function () {
-      expect(spy.calls.count()).toEqual(0);
+      expect(client.write.calls.count()).toEqual(0);
 
       // up
       nativeEvent = new window.PointerEvent("pointerup", Object.assign(eventData, {
@@ -219,8 +206,8 @@ describe("testing a trigger", function() {
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 
-      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
-      expect(spy.calls.count()).toEqual(1);
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '81');
+      expect(client.write.calls.count()).toEqual(1);
       done();
     }, 150);
 
@@ -239,7 +226,7 @@ describe("testing a trigger", function() {
     ]);
 
     this.initWidget(res);
-    var spy = spyOn(cv.TemplateEngine.getInstance().visu, "write");
+    var client = cv.TemplateEngine.getInstance().visu;
     var actor = res.getInteractionElement();
     expect(actor).not.toBe(null);
 
@@ -279,8 +266,8 @@ describe("testing a trigger", function() {
     expect(actor).not.toHaveClass("switchUnpressed");
 
     setTimeout(function () {
-      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
-      expect(spy.calls.count()).toEqual(1);
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '81');
+      expect(client.write.calls.count()).toEqual(1);
 
       // up
       nativeEvent = new window.PointerEvent("pointerup", Object.assign(eventData, {
@@ -290,8 +277,8 @@ describe("testing a trigger", function() {
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 
-      expect(spy).toHaveBeenCalledWith('1/0/0', '81');
-      expect(spy.calls.count()).toEqual(1);
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '81');
+      expect(client.write.calls.count()).toEqual(1);
       done();
     }, 150);
 
