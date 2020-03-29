@@ -58,7 +58,7 @@ Die Darstellung kann jedoch auch vielen Details angepasst werden:
           <address transform="DPT:9.001" type="pointer" showvalue="false" radius="52" width="-52" thickness="5">3/6/0</address>
         </roundbar>
         <roundbar preset="bridge" axiswidth="10" axiscolor="#555" format="%.1f" start="190" end="-10" min="0" max="100"
-6      6   6roundmiddle:30,70,30.0;70,,70.0;85,,85.0;center,horizontal:-6,57,0.0;106,,100.0"
+              labels=",roundmiddle:30,70,30.0;70,,70.0;85,,85.0;center,horizontal:-6,57,0.0;106,,100.0"
               labelstyle="font-size:60%"
               bboxgrow="12;10"
               ranges="0...30,63,3,yellow;30...70,63,3,green;70...85,63,3,yellow;85...100,63,3,red" texty="10">
