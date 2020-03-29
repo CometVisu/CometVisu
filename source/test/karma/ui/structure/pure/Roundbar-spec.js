@@ -60,14 +60,14 @@ describe("testing a roundbar widget", function() {
 
       // prepare for test at 800ms:
       creator.update('12/7/37', '00');
-    }, 400);
+    }, 500);
 
     setTimeout(function () {
       expect(value.textContent).toBe('0.0');
       expect(bar[0].getBBox().width ).toBeCloseTo(0, -1);
       expect(bar[0].getBBox().height).toBeCloseTo(10, -1);
       done();
-    }, 800);
+    }, 1000);
   });
 
   it("should update a multiple bar roundbar widget", function(done) {
@@ -180,7 +180,7 @@ describe("testing a roundbar widget", function() {
       creator.update('12/7/31', '64'); // 0x64 hex === 100 decimal
       creator.update('12/7/32', '64'); // 0x64 hex === 100 decimal
       creator.update('12/7/33', '00');
-    }, 400);
+    }, 500);
 
     setTimeout(function () {
       expect(value[0].textContent).toBe('0');
@@ -195,7 +195,7 @@ describe("testing a roundbar widget", function() {
       expect(bar[3].getBBox().height).toBeCloseTo(15, -1);
 
       done();
-    }, 800);
+    }, 1000);
   });
 
   it("should test 2 factor bboxgrow, debug mode and automated bar spacing of a roundbar widget", function(done) {
