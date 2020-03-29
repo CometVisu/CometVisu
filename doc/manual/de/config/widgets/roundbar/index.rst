@@ -58,9 +58,9 @@ Die Darstellung kann jedoch auch vielen Details angepasst werden:
           <address transform="DPT:9.001" type="pointer" showvalue="false" radius="52" width="-52" thickness="5">3/6/0</address>
         </roundbar>
         <roundbar preset="bridge" axiswidth="10" axiscolor="#555" format="%.1f" start="190" end="-10" min="0" max="100"
-              labels=",roundmiddle:30,70,30.0;70,,70.0;85,,85.0;center,horizontal:-8,57,0.0;108,,100.0"
+6      6   6roundmiddle:30,70,30.0;70,,70.0;85,,85.0;center,horizontal:-6,57,0.0;106,,100.0"
               labelstyle="font-size:60%"
-              bboxgrow="0;10"
+              bboxgrow="12;10"
               ranges="0...30,63,3,yellow;30...70,63,3,green;70...85,63,3,yellow;85...100,63,3,red" texty="10">
           <layout rowspan="2" colspan="2"/>
           <address transform="DPT:9.001">3/6/2</address>
@@ -110,7 +110,7 @@ Erlaubte Kind-Elemente und deren Attribute
         <caption>Elemente im Editor</caption>
         <roundbar>
           <layout colspan="2" rowspan="2"/>
-          <address transform="DPT:13.001" mode="read">3/3/1</address>
+          <address transform="DPT:9.001" mode="read">3/3/1</address>
         </roundbar>
 
 XML Syntax minimal
@@ -304,7 +304,7 @@ Debug-Modus
 
 Das Roundbar-Widget versucht den verfügbaren Platz maximal auszufüllen. Hierzu muss aber bereits während der
 Erzeugung der Visu-Seite bekannt sein wie groß der Inhalt des Widget werden kann. Gerade bei den Text-Bestandteilen,
-wie den Labeln, ist dies jedoch nicht möglich.
+wie den Labeln, ist dies jedoch nicht automatisiert möglich.
 
 Hier kann über das Attribut ``bboxgrow`` dem automatisch bestimmten Wert noch ein zusätzlicher Abstand hinzugefügt
 werden. Wird hier eine Zahl angegeben, so wird diese auf allen Seiten gleichzeitig hinzugefügt. Mit Strichpunkt

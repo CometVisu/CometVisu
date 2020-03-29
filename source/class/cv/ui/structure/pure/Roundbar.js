@@ -23,15 +23,14 @@
  * and shows them with a round bar.
  *
  * @widgetexample <settings>
- *   <caption>Show temperature in degree celcius</caption>
- *   <screenshot name="roundbar_temp">
- *     <data address="0/0/0">19</data>
- *   </screenshot>
- * </settings>
- * <roundbar format="%.1f °C">
- *   <label>outside temperature</label>
- *   <address transform="DPT:9.001">0/0/0</address>
- * </roundbar>
+ *    <caption>Example roundbar widget</caption>
+ *    <screenshot name="roundbar_simple">
+ *      <data address="3/3/1">63.3</data>
+ *    </screenshot>
+ *  </settings>
+ *  <roundbar>
+ *      <address transform="DPT:9.001" mode="read">3/3/1</address>
+ *  </roundbar>
  *
  * @author Christian Mayer
  * @since 0.12.0 (2020)
@@ -529,17 +528,21 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
 
       this.setTargetRatioValue(target);
 
-      var
-        indicators =  Array.from(this.getDomElement().getElementsByClassName('indicator'));
-
-      if(true || !this.animationFrame) {
-        // TODO only animate when widget is visible
+      if(!this.animationFrame) {
+        // TODO: only animate when widget is visible
+        var
+          indicators = Array.from(this.getDomElement().getElementsByClassName('indicator'));
         this.animateIndicators(indicators,false);
       }
     },
 
     /**
      * Update the display of the indicators.
+     *
+     * Note: It is a design decision not to pool multiple updates in one requestAnimationFrame which might be beneficial
+     * performace wise. But as it's assumed that a typical visu config is only containing one roundbar per address
+     * a pooling wouldn't make a difference on the one hand but complicate the code on the other hand.
+     * Even with a few roundbars using the same address the performance impact is negligible.
      *
      * @param indicatorElements Array with the bars to modify
      * @param jumpToTarget skip animation
@@ -551,7 +554,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
         indicators = this.getIndicators();
 
       // current is already at target
-      if( current.every(function(this_i,i){return this_i === target[i][0];}) ) {
+      if (current.every(function(this_i,i){return this_i === target[i][0];})) {
         this.animationFrame = 0;
         return; // then nothing to do
       }
@@ -563,6 +566,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
 
       // calculate new values to show by applying two types of rate limiting:
       // first do an exponential smoothing and then limit that to stay in range
+      // Note: for simplicity we don't care about the elapsed time, which would be the perfect way to do it
       var expSmoothing = 0.2;
       var rateLimit = 0.05;
       indicatorElements.forEach(function(indicator,i){
@@ -604,9 +608,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
       });
       this.setCurrentRatioValue(current);
 
-      if (!finished) {
-        this.animationFrame = window.requestAnimationFrame(this.animateIndicators.bind(this,indicatorElements,false));
-      }
+      this.animationFrame = window.requestAnimationFrame(this.animateIndicators.bind(this,indicatorElements,false));
     }
   }
 });
