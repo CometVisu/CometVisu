@@ -57,6 +57,7 @@ jobs:
     script: &2
     - sudo ./utils/travis/browser-setup.sh
     - export CHROME_BIN=`pwd`/chrome/google-chrome
+    - utils/update_version.py
     - qx compile
     - export CHROME_VERSION=$($CHROME_BIN --version | awk '{ print $3 }' | cut -d'.' -f 1,2,3)
     - export DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
@@ -71,7 +72,7 @@ jobs:
     env: CV_BUILD=docs ENCRYPTION_LABEL=4c79fec0aeb9 COMMIT_AUTHOR_EMAIL=generator@cometvisu.org CV_BROWSER=Chrome_travis CV_VERSION=stable
     script:
     - docker pull cometvisu/dev-helper
-    - qx compile --t build # builds the cv for the screenshot generator
+    - utils/update_version.py
     - qx compile --t build # builds the cv for the screenshot generator
     - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
     - sudo apt-get install python-lxml python3-lxml
