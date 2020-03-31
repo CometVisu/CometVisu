@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Sat Mar 05 2016 11:10:08 GMT+0100 (CET)
+const fs = require('fs')
 
 module.exports = function(config) {
   'use strict';
@@ -27,14 +28,14 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'source/cv/{*.js,!(report)/**/*.js}': 'sourcemap'
+      'source/transpiled/cv/{*.js,!(report)/**/*.js}': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec' ], //, 'coverage'],
+    reporters: ['spec', 'coverage', 'remap-coverage'],
 
     specReporter: {
       maxLogLines: 5,         // limit number of lines logged per test
@@ -46,11 +47,26 @@ module.exports = function(config) {
     },
 
     coverageReporter : {
-      dir: 'coverage',
-      reporters: [
-        { type: 'html'},
-        { type : 'text-summary' }
-      ]
+      type: 'in-memory'
+    },
+    remapOptions: {
+      mapFileName: function (file) {
+        const relPath = file.split('/transpiled/')[1]
+        return './source/class/' + relPath
+      },
+      readJSON: function (filePath) {
+        const path = filePath.split('?')[0]
+        if (fs.existsSync(path)) {
+          const content = JSON.parse(fs.readFileSync(path))
+          content.file = path
+          return content
+        }
+      }
+    },
+    remapCoverageReporter: {
+      'text-summary': null, // to show summary in console
+      html: 'coverage',
+      lcov: 'lcov'
     },
 
     // web server port
@@ -103,10 +119,10 @@ module.exports = function(config) {
           '--remote-debugging-port=9222'
         ]
       }
-},
+    },
 
 
-  // Concurrency level
+    // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity,
 

@@ -345,15 +345,7 @@ module.exports = function(grunt) {
       travis: {
         configFile: 'source/test/karma/karma.conf.js',
         singleRun: true,
-        browsers: [grunt.option('browser') || 'Chrome'],
-        coverageReporter : {
-          dir: 'coverage',
-          reporters: [
-            { type : 'lcov' },
-            { type: 'html'},
-            { type : 'text-summary' }
-          ]
-        }
+        browsers: [grunt.option('browser') || 'Chrome']
       },
       debug: {
         configFile: 'source/test/karma/karma.conf.js',
