@@ -40,6 +40,7 @@ jobs:
     - export CHROME_BIN=`pwd`/chrome/google-chrome
     - export PATH=`pwd`/firefox:`pwd`/chrome:$PATH
     - google-chrome --version
+    - utils/update_version.py
     - qx compile
     - grunt karma:travis --browser=$CV_BROWSER
     - if [ "$CV_BUILD" == "test" ] && [ "$CV_VERSION" == "stable" ] ; then grunt coveralls; fi
