@@ -21,7 +21,8 @@ const filesToCopy = [
   "../node_modules/monaco-editor",
   "rest/manager",
   "test",
-  "resource/test"
+  "resource/test",
+  "replay.html"
 ]
 
 class CvCompileHandler extends AbstractCompileHandler {
