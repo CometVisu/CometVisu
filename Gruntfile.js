@@ -459,21 +459,21 @@ module.exports = function(grunt) {
       buildClient: {
         command: [
           'cd client',
-          './generate.py build -sI',
+          'npm run compile',
           'cd ..'
         ].join('&&')
       },
       buildToRelease: {
         command: [
           'rm -rf release',
-          'mv build release'
+          'mv compiled/build release'
         ].join('&&')
       },
       lint: {
-        command: './generate.py lint'
+        command: 'npm run lint'
       },
       build: {
-        command: './generate.py build -sI'
+        command: 'npm run make-cv'
       }
     },
 
@@ -498,16 +498,6 @@ module.exports = function(grunt) {
             grunt.file.write(filename, test.replace(/%WIDGET_NAME%/g, result.widgetName));
           }
         }
-      }
-    },
-    uglify: {
-      libs: {
-        files: [{
-          expand: true,
-          cwd: 'build/resource/libs',
-          src: '*.js',
-          dest: 'build/resource/libs'
-        }]
       }
     },
     composer : {
@@ -547,36 +537,36 @@ module.exports = function(grunt) {
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
     [
-      'build/resource/demo/visu_config_demo.xml',
-      'build/resource/demo/visu_config_2d3d.xml',
-      'build/resource/demo/visu_config_demo_testmode.xml'
+      'compiled/build/resource/demo/visu_config_demo.xml',
+      'compiled/build/resource/demo/visu_config_2d3d.xml',
+      'compiled/build/resource/demo/visu_config_demo_testmode.xml'
     ].forEach(function (filename) {
       var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
       grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
     });
 
-    var filename = 'build/index.html';
+    var filename = 'compiled/build/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
   grunt.registerTask('update-demo-config-source', function() {
     [
-      'source/resource/demo/visu_config_demo.xml',
-      'source/resource/demo/visu_config_2d3d.xml',
-      'source/resource/demo/visu_config_demo_testmode.xml'
+      'compiled/source/resource/demo/visu_config_demo.xml',
+      'compiled/source/resource/demo/visu_config_2d3d.xml',
+      'compiled/source/resource/demo/visu_config_demo_testmode.xml'
     ].forEach(function (filename) {
       var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
       grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
     });
 
-    var filename = 'source/index.html';
+    var filename = 'compiled/source/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
   grunt.registerTask("rename-client-build", function() {
-    var path = 'client/build/script/';
+    var path = 'client/compiled/build/script/';
     fs.readdirSync(path).forEach(function(file) {
       var stats = fs.statSync(path + file);
       var parts = file.split(".");
@@ -642,7 +632,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-scaffold');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-composer');
 
   // Default task runs all code checks, updates the banner and builds the release

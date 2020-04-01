@@ -15,7 +15,8 @@
     "compile": "qx compile",
     "api": "qx compile --set apiviewer=true --t build",
     "pretest": "qx compile",
-    "test": "grunt karma:debug"
+    "test": "grunt karma:debug",
+    "lint": "echo \"lint is currently disabled\""
   },
   "license": "GPL-3.0",
   "authors": [
@@ -32,6 +33,7 @@
     "@qooxdoo/compiler": "^1.0.0-beta.20200326-1746",
     "csso": "^3.5.1",
     "easyimage": "^3.1.1",
+    "fast-glob": "^3.2.2",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
     "grunt": "^1.0.4",

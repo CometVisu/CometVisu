@@ -1,4 +1,5 @@
 const fs = require('fs')
+const fg = require('fast-glob');
 const fse = require('fs-extra')
 const path = require('path')
 const { exec } = require('child_process')
@@ -7,7 +8,12 @@ const { CvBuildTarget } = require('./BuildTarget')
 
 // because the qx compiler does not handle files in the root resoure folder well
 // we add them here
-const additionalResources = ['visu_config.xsd', 'cometvisu_management.css'];
+const additionalResources = [
+  'visu_config.xsd',
+  'cometvisu_management.css',
+  'config/visu_config*.xml',
+  'config/hidden.php'
+];
 
 // files that must be copied in the compiled folder
 const filesToCopy = [
@@ -22,7 +28,8 @@ const filesToCopy = [
   "rest/manager",
   "test",
   "resource/test",
-  "replay.html"
+  "replay.html",
+  "resource/config/.htaccess"
 ]
 
 class CvCompileHandler extends AbstractCompileHandler {
@@ -57,7 +64,12 @@ class CvCompileHandler extends AbstractCompileHandler {
   _onCompiledClass(ev) {
     const data = ev.getData();
     if (data.classFile.getClassName() === 'cv.Application') {
-      additionalResources.forEach(res => data.dbClassInfo.assets.push(res))
+      const currentDir = process.cwd()
+      const resourceDir = path.join(currentDir, 'source', 'resource')
+      additionalResources.forEach(res => {
+        fg.sync(path.join(resourceDir, res)).forEach(file => data.dbClassInfo.assets.push(file.substr(resourceDir.length + 1)))
+      })
+      console.log(data.dbClassInfo.assets)
     }
   }
 
@@ -73,6 +85,8 @@ class CvCompileHandler extends AbstractCompileHandler {
         fse.ensureDirSync(dirname)
         fse.copySync(source, target)
       })
+      // create config/media folder
+      fse.ensureDirSync(path.join(currentDir, targetDir, 'resource', 'config', 'media'))
     }
 
     // copy IconConfig.js to make it available for resource/icon/iconlist.html

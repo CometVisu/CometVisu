@@ -21,7 +21,6 @@
 /**
  * This is the main application class of the CometVisu.
  *
- * @asset(config/*)
  * @asset(demo/*)
  * @asset(designs/*)
  * @asset(icon/*)
