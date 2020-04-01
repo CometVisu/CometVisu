@@ -290,14 +290,15 @@ var customMatchers = {
   }
 };
 
-beforeAll(function(done) {
-
+beforeAll(function() {
   if (!qx.$$loader.applicationHandlerReady) {
     cv.Config.enableCache = false;
-    qx.event.message.Bus.subscribe("setup.dom.finished", function () {
-      resetApplication();
-      done();
-    }, this);
+    const inititialized = new Promise(function (resolve) {
+      qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+        resetApplication();
+        resolve();
+      }, this);
+    });
     var l = qx.$$loader;
     var bootPackageHash = l.parts[l.boot][0];
     l.importPackageData(qx.$$packageData[bootPackageHash]);
@@ -306,6 +307,7 @@ beforeAll(function(done) {
 
     // always test in 'en' locale
     qx.locale.Manager.getInstance().setLocale("en");
+    return inititialized;
   }
 });
 
