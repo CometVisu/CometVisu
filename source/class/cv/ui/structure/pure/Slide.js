@@ -125,7 +125,9 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         }, this);
         slider.on('done', function () {
           throttled.abort();
-          this._onChangeValue(slider.getValue(), true);
+          if (this.isSendOnFinish()) {
+            this._onChangeValue(slider.getValue(), true);
+          }
         }, this);
 
         this.addListener("changeValue", function (ev) {
@@ -201,7 +203,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
      */
     _onChangeValue: function(value, finished) {
       if (!this.__initialized || this.__skipUpdatesFromSlider === true) { return; }
-      if (finished ||
+      if ((this.isSendOnFinish() === true && finished) ||
         (this.isSendOnFinish() === false && this.__slider.isInPointerMove())
       ) {
         this._lastBusValue = this.sendToBackend(value, false, this._lastBusValue );
