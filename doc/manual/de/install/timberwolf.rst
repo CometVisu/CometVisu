@@ -1,11 +1,37 @@
 .. _timberwolf:
 
+Installation auf dem Timberwolf über die App
+============================================
+
+Die einfachste Möglichkeit die CometVisu auf dem  `Timberwolf <https://wiregate.de/>`__-Server zu
+installieren ist über die dort angebotene App.
+
+.. figure:: _static/timberwolf_app.png
+   :scale: 50 %
+
+   Auswahl der CometVisu App auf der Timberwolf-Oberfläche
+
+Nach der Installation über das grüne "+" wird die CometVisu unter "Aktive Apps" aufgeführt. Hinter "URL" ist
+bereits der Link eingeblendet über den die CometVisu aufgerufen werden kann.
+
+Update
+------
+
+.. figure:: _static/timberwolf_installed_app.png
+   :scale: 50 %
+
+   Installierte CometVisu App
+
+Über das Stift-Symbol kann die App konfiguriert werden. Am wichtigsten ist die Zeile "Version". Die dort eingestelle
+Versions-Nummer wird installiert, bzw. über Speichern wird auf diese Versionsnummer gewechselt.
+
 Installation auf dem Timberwolf mittels Portainer
 =================================================
 
-Um die CometVisu auf dem `Timberwolf <https://wiregate.de/>`__-Server zu
-installieren wird die dort verwendete Administrationsoberfläche
-`Portainer <https://portainer.io/>`__ verwendet.
+Die fortgeschrittene Methode die CometVisu auf dem Timberwolf-Server zu installieren (wird nur in Ausnahmefällen
+benöigt, empfohlen ist die Installation über die App) ist über die Docker Administrationsoberfläche
+`Portainer <https://portainer.io/>`__. Auch für andere Systeme mit Docker und Portainer ist diese Anleitung im
+wesentlichen geeignet.
 
 Installation
 ------------
