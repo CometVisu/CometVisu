@@ -207,7 +207,7 @@ Jeder Wert kann einen individuellen Radius bekommen, so wie kann der anzuzeigend
 
 Außerdem kann die Position (``outside``, ``center`` und ``inside``), so wie Orientierung
 (``horizontal``, ``parallel``, ``perpendicular``, ``roundstart``, ``roundmiddle`` und ``roundend``) gewählt werden
-und per Dopplepunkt vor den Wert gestellt werden:
+und per Doppelpunkt vor den Wert gestellt werden:
 
   ``Position:Wert``
 
@@ -312,7 +312,7 @@ getrennt lassen sich für ``horizontal;vertikal`` jeweils eigene Werte angeben. 
 ``links;oben;rechts;unten`` für jede Seite ein eigener Wert angegeben werden.
 
 Um hier schneller zu einem Ergebnis zu kommen, gerade weil man sich iterativ dem besten Wert nähern muss, kann
-das Attribut ``debug`` auf ``true`` gesetzent werden um einen blauen Rahmen an der automatisch bestimmten Größe, so wie
+das Attribut ``debug`` auf ``true`` gesetzt werden um einen blauen Rahmen an der automatisch bestimmten Größe, so wie
 einen grünen Rahmen bei der finalen Größe zu sehen.
 
 .. widget-example::

@@ -129,8 +129,8 @@ Design elements
 
 The roundbar widget is assembled by many different elements, some of them are optional and can be
 configured by different means. The realisation of the roundbar is basically a SVG block that is
-included in the visu page, so it's appearance can be alterd by using CSS rules (see also
-:ref:`"Vorhandenes Design verändern" <custom_cssrules>`).
+included in the visu page, so it's appearance can be altered by using CSS rules (see also
+:ref:`"Change existing design" <custom_cssrules>`).
 
 Indicators
 ^^^^^^^^^^
@@ -252,8 +252,8 @@ value 70 that goes out from radius 60 for 9 units and has the color ``#ff0`` whi
             <address transform="DPT:9.001" mode="read">3/3/1</address>
         </roundbar>
 
-Tipps
------
+Tips
+----
 
 Presets
 ^^^^^^^
