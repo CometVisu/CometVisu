@@ -29,7 +29,7 @@ Installation auf dem Timberwolf mittels Portainer
 =================================================
 
 Die fortgeschrittene Methode die CometVisu auf dem Timberwolf-Server zu installieren (wird nur in Ausnahmefällen
-benöigt, empfohlen ist die Installation über die App) ist über die Docker Administrationsoberfläche
+benötigt, empfohlen ist die Installation über die App) ist über die Docker Administrationsoberfläche
 `Portainer <https://portainer.io/>`__. Auch für andere Systeme mit Docker und Portainer ist diese Anleitung im
 wesentlichen geeignet.
 
