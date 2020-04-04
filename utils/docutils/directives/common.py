@@ -167,15 +167,15 @@ class BaseXsdDirective(BaseDirective):
         else:
             return ""
 
-    def generate_complex_table(self, element_name, include_name=False, mandatory=False,
+    def generate_complex_table(self, element_name, include_name=False, mandatory=False, element_type=None,
                                table_body=None, sub_run=False, parent=None):
         """ needs to be fixed """
         if table_body is None:
             table_body = []
 
         if not element_name == "#text":
-            attributes = schema.get_widget_attributes(element_name)
-            elements = schema.get_widget_elements(element_name, locale=self.locale)
+            attributes = schema.get_widget_attributes(element_type if element_type is not None else element_name)
+            elements = schema.get_widget_elements(element_type if element_type is not None else element_name, locale=self.locale)
             if include_name:
                 rowspan = len(attributes)-1
 
@@ -233,15 +233,16 @@ class BaseXsdDirective(BaseDirective):
             for sub_element in elements:
                 if not isinstance(sub_element, tuple):
                     name = sub_element.get("name")
+                    sub_type = sub_element.get("type")
                     mandatory = sub_element.get("minOccurs") is not None and int(sub_element.get("minOccurs")) > 0
                     if parent is not None:
                         sub_parent = "%s\n  * %s" % (parent, element_name)
                     else:
                         sub_parent = element_name
                     #no recursions
-                    if name != element_name:
+                    if sub_type != element_type:
                         self.generate_complex_table(name, include_name=include_name,
-                                                    mandatory=mandatory, table_body=table_body,
+                                                    mandatory=mandatory, table_body=table_body, element_type=sub_type,
                                                     sub_run=True, parent=sub_parent)
                 else:
                     (sub_element, atype, doc) = sub_element

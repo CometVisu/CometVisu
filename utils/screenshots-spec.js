@@ -11,6 +11,11 @@ var CometVisuMockup = require('../source/test/protractor/pages/Mock');
 var cvMockup = new CometVisuMockup(browser.target || 'source');
 var CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
 var editorMockup = new CometVisuEditorMockup(browser.target || 'source');
+var devicePixelRatio = 1;
+browser.executeScript('return window.devicePixelRatio;').then(function(value){
+  devicePixelRatio = value;
+  console.log("#### devicePixelRatio:", devicePixelRatio, " ####");
+})
 
 var errorHandler = function(err) {
   if (err) {
@@ -22,10 +27,10 @@ var cropInFile = function(size, location, srcFile, width, height) {
   var args = {
     src: srcFile,
     dst: srcFile,
-    cropwidth: size.width,
-    cropheight: size.height,
-    x: location.x,
-    y: location.y,
+    cropwidth: size.width * devicePixelRatio,
+    cropheight: size.height * devicePixelRatio,
+    x: location.x * devicePixelRatio,
+    y: location.y * devicePixelRatio,
     gravity: 'North-West'
   };
   easyimg.crop(args).then(function() {

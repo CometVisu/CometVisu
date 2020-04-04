@@ -235,7 +235,7 @@ Erklärungen an sentry.io schicken.
 .. _log:
 
 *log* - Debug-Meldungen in der Browserconsole an-/abschalten
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Mit diesem Parameter können die Debug-Meldungen auf der Browserkonsole ein- und ausgeschaltet werden.
 In der Entwicklerversion sind diese standardmäßig eingeschaltet in einem Release aus.

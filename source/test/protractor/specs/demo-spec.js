@@ -16,7 +16,7 @@ describe('cometvisu demo config test:', function () {
 
   it('should load the demo page', function () {
     expect(browser.getTitle()).toEqual('CometVisu Widget Demo - CometVisu');
-    expect(cvDemo.getPages().count()).toEqual(36);
+    expect(cvDemo.getPages().count()).toEqual(37);
     expect(cvDemo.getPageTitle()).toEqual('CometVisu Widget Demo');
   });
 
