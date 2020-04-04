@@ -16,12 +16,11 @@
       }
     }
   ],
-  "defaultTarget": "source",
+  "defaultTarget": "build",
   "locales": [],
   "environment": {
     "qx.promise": false,
-    "qx.theme" : null,
-    "cv.xhr": ["qx", "jquery"]
+    "qx.theme" : null
   },
   "applications": [
     {
@@ -33,6 +32,7 @@
       "include": [
         "cv.io.Client"
       ],
+      "exclude": ["cv.io.request.Jquery"],
       "standalone": false,
       "environment": {
         "cv.xhr": "qx"
@@ -47,6 +47,7 @@
       "include": [
         "cv.io.Client"
       ],
+      "exclude": ["qx.io.request.*"],
       "standalone": false,
       "environment": {
         "cv.xhr": "jquery"
