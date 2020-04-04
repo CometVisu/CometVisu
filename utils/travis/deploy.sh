@@ -94,60 +94,51 @@ echo "generating sitemap.xml for documentation"
 ${CV} sitemap
 
 echo "generating test mode build"
-source temp-python/bin/activate
-./generate.py build --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
+CV_TESTMODE=resource/demo/media/demo_testmode_data.json qx compile -t build
 grunt update-demo-config
 rm -rf out/de/$VERSION_PATH/demo
-mv build out/de/$VERSION_PATH/demo
+mv compiled/build out/de/$VERSION_PATH/demo
 
 # Copy demo-mode to default config
 cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
 
-echo "generating test mode source version"
-./generate.py source-hybrid-error --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
-grunt update-demo-config-source
-rm -rf out/de/$VERSION_PATH/demo-source
-mkdir -p out/de/$VERSION_PATH/demo-source/client/source/class/cv/
-mkdir -p out/de/$VERSION_PATH/demo-source/source/
-# copy files
-cp -r client/source/class/cv out/de/$VERSION_PATH/demo-source/client/source/class/
-cp -r source/class source/resource source/loader source/script source/index.html source/manifest.json out/de/$VERSION_PATH/demo-source/source/
-cp out/de/$VERSION_PATH/demo-source/source/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo-source/source/resource/config/visu_config.xml
-deactivate
-
-echo "starting deployment..."
-# Now let's go have some fun with the cloned repo
-cd out
-git config user.name "Travis CI"
-git config user.email "$COMMIT_AUTHOR_EMAIL"
-
-# If there are no changes to the compiled out (e.g. this is a README update) then just bail out.
-# as the changesets on new versions are too big we skip this check to prevent timeouts
-if [ "$NEW_VERSION" -eq 0 ]; then
-    echo "checking diff"
-    if [ `git diff --shortstat | wc -l` -eq 0 ]; then
-       echo "No changes to the output on this push; exiting."
-       exit 0
-    fi
-fi
-
-# Commit the "changes", i.e. the new version.
-# The delta will show diffs between new and old versions.
-echo "adding all changes to git changeset"
-git add --all .
-echo "committing changeset"
-git commit -q -m "Deploy to GitHub Pages: ${SHA}"
-
-# Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
-ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
-ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
-ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
-ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
-openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../utils/travis/deploy_key.enc -out deploy_key -d
-chmod 600 deploy_key
-eval `ssh-agent -s`
-ssh-add deploy_key
-
-# Now that we're all set up, we can push.
-echo "pushing changes to remote repository"
-git push $SSH_REPO $TARGET_BRANCH
+# fixme
+echo "abort test here"
+exit 0
+#
+#echo "starting deployment..."
+## Now let's go have some fun with the cloned repo
+#cd out
+#git config user.name "Travis CI"
+#git config user.email "$COMMIT_AUTHOR_EMAIL"
+#
+## If there are no changes to the compiled out (e.g. this is a README update) then just bail out.
+## as the changesets on new versions are too big we skip this check to prevent timeouts
+#if [ "$NEW_VERSION" -eq 0 ]; then
+#    echo "checking diff"
+#    if [ `git diff --shortstat | wc -l` -eq 0 ]; then
+#       echo "No changes to the output on this push; exiting."
+#       exit 0
+#    fi
+#fi
+#
+## Commit the "changes", i.e. the new version.
+## The delta will show diffs between new and old versions.
+#echo "adding all changes to git changeset"
+#git add --all .
+#echo "committing changeset"
+#git commit -q -m "Deploy to GitHub Pages: ${SHA}"
+#
+## Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
+#ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
+#ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
+#ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
+#ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
+#openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../utils/travis/deploy_key.enc -out deploy_key -d
+#chmod 600 deploy_key
+#eval `ssh-agent -s`
+#ssh-add deploy_key
+#
+## Now that we're all set up, we can push.
+#echo "pushing changes to remote repository"
+#git push $SSH_REPO $TARGET_BRANCH

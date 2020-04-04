@@ -22,17 +22,20 @@ BUILD_DATE=`date --iso-8601=seconds`
 VCS_REF=`git rev-parse --short HEAD`
 
 docker build -t $IMAGE_NAME:$VERSION_TAG --build-arg BUILD_DATE="$BUILD_DATE" --build-arg VCS_REF="$VCS_REF" --build-arg VERSION_TAG="$VERSION_TAG" --build-arg TRAVIS_JOB_NUMBER --build-arg TRAVIS_JOB_WEB_URL --build-arg TRAVIS_BUILD_WEB_URL .
-docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
-docker push "${IMAGE_NAME}:${MASTER_TAG}"
-docker push "${IMAGE_NAME}:${VERSION_TAG}"
-
-if [[ "$SUB_TAG" != "" ]]; then
-    docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${SUB_TAG}"
-    docker push "${IMAGE_NAME}:${SUB_TAG}"
-fi
-
-echo "building ARM docker container for ${IMAGE_NAME}:${VERSION_TAG},${MASTER_TAG},${SUB_TAG} ..."
-docker build -f Dockerfile -t "${IMAGE_NAME}:${VERSION_TAG}-arm" --build-arg CONTAINER_FROM="cometvisu/cometvisuabstractbase:arm32v7-latest" --build-arg BUILD_DATE="$BUILD_DATE" --build-arg VCS_REF="$VCS_REF" --build-arg VERSION_TAG="$VERSION_TAG" --build-arg TRAVIS_JOB_NUMBER --build-arg TRAVIS_JOB_WEB_URL --build-arg TRAVIS_BUILD_WEB_URL .
-docker tag "${IMAGE_NAME}:${VERSION_TAG}-arm" "${IMAGE_NAME}:${MASTER_TAG}-arm"
-docker push "${IMAGE_NAME}:${MASTER_TAG}-arm"
-docker push "${IMAGE_NAME}:${VERSION_TAG}-arm"
+# fixme
+exit 0
+#
+#docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${MASTER_TAG}"
+#docker push "${IMAGE_NAME}:${MASTER_TAG}"
+#docker push "${IMAGE_NAME}:${VERSION_TAG}"
+#
+#if [[ "$SUB_TAG" != "" ]]; then
+#    docker tag "${IMAGE_NAME}:${VERSION_TAG}" "${IMAGE_NAME}:${SUB_TAG}"
+#    docker push "${IMAGE_NAME}:${SUB_TAG}"
+#fi
+#
+#echo "building ARM docker container for ${IMAGE_NAME}:${VERSION_TAG},${MASTER_TAG},${SUB_TAG} ..."
+#docker build -f Dockerfile -t "${IMAGE_NAME}:${VERSION_TAG}-arm" --build-arg CONTAINER_FROM="cometvisu/cometvisuabstractbase:arm32v7-latest" --build-arg BUILD_DATE="$BUILD_DATE" --build-arg VCS_REF="$VCS_REF" --build-arg VERSION_TAG="$VERSION_TAG" --build-arg TRAVIS_JOB_NUMBER --build-arg TRAVIS_JOB_WEB_URL --build-arg TRAVIS_BUILD_WEB_URL .
+#docker tag "${IMAGE_NAME}:${VERSION_TAG}-arm" "${IMAGE_NAME}:${MASTER_TAG}-arm"
+#docker push "${IMAGE_NAME}:${MASTER_TAG}-arm"
+#docker push "${IMAGE_NAME}:${VERSION_TAG}-arm"

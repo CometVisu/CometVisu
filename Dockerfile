@@ -26,6 +26,6 @@ LABEL org.label-schema.vcs-ref=$VCS_REF
 LABEL org.label-schema.version=$VERSION_TAG
 
 # Fill the web root with the current build:
-COPY build/ /var/www/html/
+COPY compiled/build/ /var/www/html/
 
 VOLUME /var/www/html/resource/config
