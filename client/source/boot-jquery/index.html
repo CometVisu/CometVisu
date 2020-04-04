@@ -5,16 +5,16 @@
 <head>
   <title>CometVisu-Client Testpage - jQuery version</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <script type="text/javascript" src="lib/jquery.js"></script>
-  <script type="text/javascript" src="script/jquery-CometVisuClient.js"></script>
+  <script type="text/javascript" src="${resourcePath}lib/jquery.js"></script>
+  <script type="text/javascript" src="cv-client.js"></script>
   <script type="text/javascript">
+    ${preBootJs}
     var client = new cv.io.Client('default', "/cgi-bin/l");
     client.update = function(data) {
       console.log(data);
     }; // override clients update function
     client.user = 'demo_user'; // example for setting a user
     client.subscribe(['1/0/0', "1/0/1"]);
-    console.log(client);
   </script>
 </head>
 <body>

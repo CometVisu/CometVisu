@@ -10,7 +10,10 @@
     },
     {
       "type": "build",
-      "outputPath": "compiled/build"
+      "outputPath": "compiled/build",
+      "babelOptions": {
+        "targets": "Chrome >= 73, Firefox >= 66, edge >= 18"
+      }
     }
   ],
   "defaultTarget": "source",
@@ -24,25 +27,30 @@
     {
       "class": "cv.io.Client",
       "theme": "",
-      "name": "CometVisuClient",
-      "bootPath": "source/boot",
+      "name": "qx-CometVisuClient",
+      "bootPath": "source/boot-qx",
       "loaderTemplate": "oo.loader.tmpl.js",
       "include": [
         "cv.io.Client"
       ],
-      "standalone": false
-    }
-  ],
-  //  "path-mappings": {
-  //    "../qooxdoo": "../external/qooxdoo"
-  //  },
-  "eslintConfig": {
-    "globals": {
-      "$": "readonly",
-      "EventSource": "readonly"
+      "standalone": false,
+      "environment": {
+        "cv.xhr": "qx"
+      }
     },
-    "extends": [
-      "@qooxdoo/qx/browser"
-    ]
-  }
+    {
+      "class": "cv.io.Client",
+      "theme": "",
+      "name": "jQuery-CometVisuClient",
+      "bootPath": "source/boot-jquery",
+      "loaderTemplate": "oo.loader.tmpl.js",
+      "include": [
+        "cv.io.Client"
+      ],
+      "standalone": false,
+      "environment": {
+        "cv.xhr": "jquery"
+      }
+    }
+  ]
 }

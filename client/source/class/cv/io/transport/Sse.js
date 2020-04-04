@@ -17,7 +17,9 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
+/**
+ * @ignore(EventSource)
+ */
 qx.Class.define('cv.io.transport.Sse', {
   extend: qx.core.Object,
 

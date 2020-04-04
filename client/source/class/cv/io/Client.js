@@ -28,6 +28,8 @@
  * @author Christan Mayer
  * @author Tobias Bräutigam
  * @since 0.5.3 (initial contribution) 0.10.0+0.11.0 (major refactoring)
+ *
+ * @ignore($)
  */
 qx.Class.define('cv.io.Client', {
   extend: qx.core.Object,
