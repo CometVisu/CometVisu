@@ -17,7 +17,7 @@ before_install:
 install:
 - npm install -g grunt-cli
 - npm install
-- sudo pip3 install -r utils/requirements.txt
+- sudo pip install -r utils/requirements.txt
 - export PATH="./node_modules/.bin:$PATH"
 - qx package install
 stages:
