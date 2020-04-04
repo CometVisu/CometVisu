@@ -457,11 +457,7 @@ module.exports = function(grunt) {
         ].join('&&')
       },
       buildClient: {
-        command: [
-          'cd client',
-          'npm run compile',
-          'cd ..'
-        ].join('&&')
+        command: 'npm run make-client'
       },
       buildToRelease: {
         command: [
@@ -566,18 +562,21 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask("rename-client-build", function() {
-    var path = 'client/compiled/build/script/';
-    fs.readdirSync(path).forEach(function(file) {
-      var stats = fs.statSync(path + file);
-      var parts = file.split(".");
-      if (!stats.isDirectory() && parts[parts.length-1] === "gz" && file.indexOf(pkg.version) === -1) {
-        var newName = parts.shift() + "-" + pkg.version;
+    var paths = [
+      'client/compiled/build/jQuery-CometVisuClient/cv-client.js.gz',
+      'client/compiled/build/qx-CometVisuClient/cv-client.js.gz'
+    ];
+    paths.forEach(function(p, i) {
+      var dir = path.dirname(p);
+      var file = path.basename(p);
+      if (file.indexOf(pkg.version) === -1) {
+        var newName = "-" + pkg.version;
         if (process.env.TRAVIS_EVENT_TYPE === "cron") {
           // nightly build with date
           var now = new Date();
           newName += "-" + now.toISOString().split(".")[0].replace(/[\D]/g, "");
         }
-        fs.renameSync(path + file, path + newName + "." + parts.join('.'));
+        fs.renameSync(p, dir + newName + ".js.gz");
       }
     });
   });

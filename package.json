@@ -16,7 +16,8 @@
     "api": "qx compile --set apiviewer=true --t build",
     "pretest": "qx compile",
     "test": "grunt karma:debug",
-    "lint": "echo \"lint is currently disabled\""
+    "lint": "echo \"lint is currently disabled\"",
+    "make-client": "cd client && qx compile --t build"
   },
   "license": "GPL-3.0",
   "authors": [

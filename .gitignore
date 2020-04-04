@@ -17,6 +17,7 @@ settings/keys/deploy_key
 /api/
 /build/
 /compiled/
+/client/compiled/
 /.env/
 /test/
 /source/script/
