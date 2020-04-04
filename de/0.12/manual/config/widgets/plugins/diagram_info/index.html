@@ -259,7 +259,7 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 <tr class="row-odd"><td rowspan="19">diagram_info</td>
 <td>format</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>Formatierung des Wertes (printf-Syntax).</td>
 </tr>
 <tr class="row-even"><td>styling</td>
 <td>Text</td>
@@ -754,6 +754,71 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 <td>integer</td>
 <td>Offset in Sekunden, um die angezeigten Zeitstempel der Daten aus der InfluxDB zu modifizieren.</td>
 </tr>
+<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
+<dt>diagram_info</dt>
+<dd><ul class="first last simple">
+<li>influx</li>
+<li>tag</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>key</td>
+<td>Text</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>operator</td>
+<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>value</td>
+<td>Text</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td rowspan="3"><dl class="first last docutils">
+<dt>diagram_info</dt>
+<dd><ul class="first last simple">
+<li>influx</li>
+<li>and</li>
+<li>tag</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>key</td>
+<td>Text</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>operator</td>
+<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>value</td>
+<td>Text</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
+<dt>diagram_info</dt>
+<dd><ul class="first last simple">
+<li>influx</li>
+<li>or</li>
+<li>tag</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>key</td>
+<td>Text</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>operator</td>
+<td><em>=</em>, <em>!=</em>, <em>&lt;</em>, <em>&lt;=</em>, <em>&gt;</em>, <em>&gt;=</em>, <em>=~</em> oder <em>!~</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>value</td>
+<td>Text</td>
+<td>&nbsp;</td>
+</tr>
 </tbody>
 </table>
 <table border="1" class="schema-table docutils">
@@ -784,7 +849,7 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </td>
 <td><abbr title="Pflichtangabe">transform</abbr></td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</td>
 </tr>
 <tr class="row-even"><td>mode</td>
 <td><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></td>
@@ -796,7 +861,7 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tr>
 <tr class="row-even"><td>format-pos</td>
 <td>Zahl</td>
-<td>&nbsp;</td>
+<td>Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
 <dt>diagram_info</dt>

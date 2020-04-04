@@ -1,0 +1,926 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The Roundbar widget &mdash; CometVisu</title>
+  
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/config/widgets/roundbar/index.html"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="CometVisu" href="../../../index.html"/>
+        <link rel="up" title="Operatable widgets" href="../index.html"/>
+        <link rel="next" title="The Text widget" href="../text/index.html"/>
+        <link rel="prev" title="The Rgb widget" href="../rgb/index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+          
+
+          
+            
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.12.0-dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Useage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">The CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pages-and-structure-of-cometvisu">Pages and structure of CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#navigation-elements-in-the-cometvisu">Navigation elements in the CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#the-available-designs">The available designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#basic-elements-for-designing-the-layout">Basic elements for designing the layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#elements-for-conversion-and-formatting-in-the-cometvisu">Elements for conversion and formatting in the CometVisu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#widgets-in-the-cometvisu">Widgets in the CometVisu</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html">Operatable widgets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#informative-widgets">Informative widgets</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../image/index.html">The Image widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../info/index.html">The Info widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../line/index.html">The Line widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rgb/index.html">The Rgb widget</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">The Roundbar widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../text/index.html">The Text widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../video/index.html">The Video widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../web/index.html">The Web widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../wgplugininfo/index.html">The WgPluginInfo widget</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#other-widgets">Other widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#cometvisu-examples">CometVisu - Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Configuration of the CometVisu</a> &raquo;</li>
+        
+          <li><a href="../index.html">Operatable widgets</a> &raquo;</li>
+        
+      <li>The Roundbar widget</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<div class="section" id="the-roundbar-widget">
+<span id="roundbar"></span><h1>The Roundbar widget<a class="headerlink" href="#the-roundbar-widget" title="Permalink to this headline">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Available since version</strong>: 0.12.0 (2020)</div>
+<div class="line"><strong>Author</strong>: Christian Mayer</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Adds a display to the visu that can represent values from the BUS
+and shows them with a round bar.</p>
+<p>The design can the set in many different details:</p>
+<div class="figure" id="id2">
+<img alt="Example for complex Roundbar widgets" src="../../../_images/roundbar_complex.png" />
+<p class="caption"><span class="caption-text">Example for complex Roundbar widgets</span></p>
+</div>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>For a general understanding of how the configuration files are structured and what elements and attributes are
+it is recommended to read this section first: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
+<p>The behaviour and appearance of the Roundbar widget can be influenced by using certain attributes and elements.
+The following tables show the allowed attributes and elements and their possible values.
+The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
+<p>Attributes underlined by ..... are mandatory, all the others are optional and can be omitted.</p>
+<div class="section" id="allowed-attributes-in-the-roundbar-element">
+<h3>Allowed attributes in the Roundbar-element<a class="headerlink" href="#allowed-attributes-in-the-roundbar-element" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">&nbsp;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="33">roundbar</td>
+<td>min</td>
+<td>decimal</td>
+<td>Minimal value.</td>
+</tr>
+<tr class="row-even"><td>max</td>
+<td>decimal</td>
+<td>Maximum value.</td>
+</tr>
+<tr class="row-odd"><td>format</td>
+<td>string</td>
+<td>Formataion of the value (printf syntax).</td>
+</tr>
+<tr class="row-even"><td>axisradius</td>
+<td>decimal</td>
+<td>Radius of the round axis.</td>
+</tr>
+<tr class="row-odd"><td>axiswidth</td>
+<td>decimal</td>
+<td>Width of the axis.</td>
+</tr>
+<tr class="row-even"><td>axiscolor</td>
+<td>string</td>
+<td>Color of the axis.</td>
+</tr>
+<tr class="row-odd"><td>ranges</td>
+<td>string</td>
+<td>Colored ranges.</td>
+</tr>
+<tr class="row-even"><td>minorradius</td>
+<td>decimal</td>
+<td>Radius for the minor ticks.</td>
+</tr>
+<tr class="row-odd"><td>minorwidth</td>
+<td>decimal</td>
+<td>Width of the minor ticks.</td>
+</tr>
+<tr class="row-even"><td>minorspacing</td>
+<td>decimal</td>
+<td>Spacing of minor ticks.</td>
+</tr>
+<tr class="row-odd"><td>minorcolor</td>
+<td>string</td>
+<td>Color of minor ticks.</td>
+</tr>
+<tr class="row-even"><td>majorradius</td>
+<td>decimal</td>
+<td>Radius for the major ticks.</td>
+</tr>
+<tr class="row-odd"><td>majorwidth</td>
+<td>decimal</td>
+<td>Width of the major ticks.</td>
+</tr>
+<tr class="row-even"><td>majorposition</td>
+<td>string</td>
+<td>Positions of the major ticks, separated by &#8221;;&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>majorcolor</td>
+<td>string</td>
+<td>Color of the major ticks.</td>
+</tr>
+<tr class="row-even"><td>labels</td>
+<td>string</td>
+<td>Labels, separated by &#8221;;&#8221;.</td>
+</tr>
+<tr class="row-odd"><td>labelstyle</td>
+<td>string</td>
+<td>CSS style of label text.</td>
+</tr>
+<tr class="row-even"><td>start</td>
+<td>decimal</td>
+<td>Start angle in degrees.</td>
+</tr>
+<tr class="row-odd"><td>startarrow</td>
+<td>decimal</td>
+<td>Arrow size of bar start.</td>
+</tr>
+<tr class="row-even"><td>end</td>
+<td>decimal</td>
+<td>End angle in degrees.</td>
+</tr>
+<tr class="row-odd"><td>endarrow</td>
+<td>decimal</td>
+<td>Arrow size of bar end.</td>
+</tr>
+<tr class="row-even"><td>arrowtype</td>
+<td><em>angle</em> or <em>distance</em></td>
+<td>Unit type of arrow size.</td>
+</tr>
+<tr class="row-odd"><td>spacing</td>
+<td>decimal</td>
+<td>Spacing between the bars for automatic radius selection.</td>
+</tr>
+<tr class="row-even"><td>overflowarrow</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Show an arrow when the value is out of range.</td>
+</tr>
+<tr class="row-odd"><td>fontsize</td>
+<td>decimal</td>
+<td>Font size of the value.</td>
+</tr>
+<tr class="row-even"><td>textx</td>
+<td>decimal</td>
+<td>X position of the value.</td>
+</tr>
+<tr class="row-odd"><td>texty</td>
+<td>decimal</td>
+<td>Y position of the value.</td>
+</tr>
+<tr class="row-even"><td>textlength</td>
+<td>decimal</td>
+<td>Length of the space to reserve for the value.</td>
+</tr>
+<tr class="row-odd"><td>textanchor</td>
+<td><em>start</em>, <em>middle</em> or <em>end</em></td>
+<td>Orientation of value display in relation to the anchor point.</td>
+</tr>
+<tr class="row-even"><td>linespace</td>
+<td>decimal</td>
+<td>Distance between the rows for multiple values.</td>
+</tr>
+<tr class="row-odd"><td>bboxgrow</td>
+<td>string</td>
+<td>Enlargement of the mounding box in virtual pixels to take care of sticking out parts (everywhere or horizontal;vertical or left;up;right;down).</td>
+</tr>
+<tr class="row-even"><td>debug</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Activates the debug mode and shows the automatic determined border.</td>
+</tr>
+<tr class="row-odd"><td>preset</td>
+<td><em>A</em>, <em>B</em> or <em>bridge</em></td>
+<td>Choose a preset design.</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id3">
+<img alt="../../../_images/en_config_widgets_roundbar_index_editor_attributes.png" src="../../../_images/en_config_widgets_roundbar_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+</div>
+</div>
+<div class="section" id="allowed-child-elements-und-their-attributes">
+<h3>Allowed child-elements und their attributes<a class="headerlink" href="#allowed-child-elements-und-their-attributes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
+<dt>roundbar</dt>
+<dd><ul class="first last simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>decimal</td>
+<td>Amount of coloumns this widget sould be wide.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a small screen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>decimal</td>
+<td>Amount of rows this widget should be high.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-even"><td>x-s</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-odd"><td>x-m</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>y-s</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-even"><td>y-m</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>string</td>
+<td>Reserved for future use.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>string</td>
+<td>Width for the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>width-s</td>
+<td>string</td>
+<td>Width for the widget for 2D pages on a small screen.</td>
+</tr>
+<tr class="row-even"><td>width-m</td>
+<td>string</td>
+<td>Width for the widget for 2D pages on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>scale</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages (default: true).</td>
+</tr>
+<tr class="row-even"><td>scale-s</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a small screen (default: true).</td>
+</tr>
+<tr class="row-odd"><td>scale-m</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Enable/Disable scaling layout values relative to backdrop on 2d pages on a medium screen (default: true).</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>roundbar</dt>
+<dd><ul class="first last simple">
+<li>label</li>
+<li>icon</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">name</abbr></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>string</td>
+<td>Selection of a display variant. See also <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>string</td>
+<td>Change the color of the dispayed value depending on its value. See also <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>string</td>
+<td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>roundbar</dt>
+<dd><ul class="first last simple">
+<li>label<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&nbsp;</td>
+<td>string</td>
+<td>Text to display a label for the widget.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="11"><dl class="first last docutils">
+<dt>roundbar</dt>
+<dd><ul class="first last simple">
+<li><abbr title="mandatory">address</abbr></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">transform</abbr></td>
+<td>string</td>
+<td>Transformation of the bus system value to be shown.</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td><em>bar</em> or <em>pointer</em></td>
+<td>Type of the indicators.</td>
+</tr>
+<tr class="row-even"><td>showvalue</td>
+<td><em>true</em> or <em>false</em></td>
+<td>Shows the value for this indicator.</td>
+</tr>
+<tr class="row-odd"><td>min</td>
+<td>decimal</td>
+<td>Overrules the minimum value of the widget for this indicator.</td>
+</tr>
+<tr class="row-even"><td>max</td>
+<td>decimal</td>
+<td>Overrules the maximum value of the widget for this indicator.</td>
+</tr>
+<tr class="row-odd"><td>radius</td>
+<td>decimal</td>
+<td>Radius of the indicator.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>decimal</td>
+<td>Width of the indicator.</td>
+</tr>
+<tr class="row-odd"><td>thickness</td>
+<td>decimal</td>
+<td>Thickness of the indicator (only for pointer).</td>
+</tr>
+<tr class="row-even"><td>valuepos</td>
+<td>integer</td>
+<td>Position (sorting) of the value of this indicator.</td>
+</tr>
+<tr class="row-odd"><td>style</td>
+<td>string</td>
+<td>CSS style for the indicator.</td>
+</tr>
+<tr class="row-even"><td><dl class="first last docutils">
+<dt>roundbar</dt>
+<dd><ul class="first last simple">
+<li>address<ul>
+<li>#text</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>&nbsp;</td>
+<td>string</td>
+<td>The GA (like: 12/0/7) for KNX-backends or the item name for openHAB-backend</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id4">
+<img alt="../../../_images/en_config_widgets_roundbar_index_editor_elements.png" src="../../../_images/en_config_widgets_roundbar_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elements in the editor</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to manually edit the <a class="reference internal" href="../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
+for the Info widget.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+XML-editor to UTF-8 mode!</p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar&gt;</span>
+     <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+ <span class="nt">&lt;/roundbar&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="design-elements">
+<h2>Design elements<a class="headerlink" href="#design-elements" title="Permalink to this headline">¶</a></h2>
+<p>The roundbar widget is assembled by many different elements, some of them are optional and can be
+configured by different means. The realisation of the roundbar is basically a SVG block that is
+included in the visu page, so it&#8217;s appearance can be altered by using CSS rules (see also
+<a class="reference internal" href="../../customizing.html#custom-cssrules"><span class="std std-ref">&#8220;Change existing design&#8221;</span></a>).</p>
+<div class="section" id="indicators">
+<h3>Indicators<a class="headerlink" href="#indicators" title="Permalink to this headline">¶</a></h3>
+<p>The most obvious element is an indicator which is displayed as a round bar or a pointer. A Roundbar widget
+can contain multiple indicators at the same time.</p>
+<div class="figure" id="id5">
+<img alt="Bar and pointer" src="../../../_images/roundbar_indicators.png" />
+<p class="caption"><span class="caption-text">Bar and pointer</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;4&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;roundbar&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/roundbar&gt;</span>
+    <span class="nt">&lt;roundbar</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">type=</span><span class="s">&quot;pointer&quot;</span> <span class="na">radius=</span><span class="s">&quot;50&quot;</span> <span class="na">width=</span><span class="s">&quot;-50&quot;</span> <span class="na">thickness=</span><span class="s">&quot;3&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/roundbar&gt;</span>
+<span class="nt">&lt;/group&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="marking">
+<h3>Marking<a class="headerlink" href="#marking" title="Permalink to this headline">¶</a></h3>
+<p>To partition the axis markings can be used. The values for the big (major) markings can be chosen freely, the
+small (minor) markings are evenly distributed.</p>
+<div class="figure" id="id6">
+<img alt="Big and small markings" src="../../../_images/roundbar_marking.png" />
+<p class="caption"><span class="caption-text">Big and small markings</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span> <span class="na">majorradius=</span><span class="s">&quot;35&quot;</span> <span class="na">majorwidth=</span><span class="s">&quot;15&quot;</span> <span class="na">majorposition=</span><span class="s">&quot;0;20;40;60;80;100&quot;</span> <span class="na">minorradius=</span><span class="s">&quot;45&quot;</span> <span class="na">minorwidth=</span><span class="s">&quot;5&quot;</span> <span class="na">minorspacing=</span><span class="s">&quot;5&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/roundbar&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="labels">
+<h3>Labels<a class="headerlink" href="#labels" title="Permalink to this headline">¶</a></h3>
+<p>The axis can be labeled with different ways. For this the attribute <code class="docutils literal"><span class="pre">labels</span></code> must contain the values separated
+by a semicolon:</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">labels=&quot;0;20;40;80;100&quot;</span></code></div></blockquote>
+<p>Each value can have an individual radius as well as an individual text to display:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">value,radius</span></code></p>
+<p><code class="docutils literal"><span class="pre">value,radius,text</span></code></p>
+</div></blockquote>
+<p>Also the position (<code class="docutils literal"><span class="pre">outside</span></code>, <code class="docutils literal"><span class="pre">center</span></code> and <code class="docutils literal"><span class="pre">inside</span></code>) as well as the orientation
+(<code class="docutils literal"><span class="pre">horizontal</span></code>, <code class="docutils literal"><span class="pre">parallel</span></code>, <code class="docutils literal"><span class="pre">perpendicular</span></code>, <code class="docutils literal"><span class="pre">roundstart</span></code>, <code class="docutils literal"><span class="pre">roundmiddle</span></code> and <code class="docutils literal"><span class="pre">roundend</span></code>) can be chosen
+and put infront of the text, separated by a colon:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">position:value</span></code></p>
+<p><code class="docutils literal"><span class="pre">,orientation:value</span></code></p>
+<p><code class="docutils literal"><span class="pre">position,orientation:value</span></code></p>
+</div></blockquote>
+<p>It is sufficient to put the position, the orientation and also the radius just infront of the first value, all
+following values are inheriting this property. For special effects it&#8217;s possible to change these properties
+multiple times:</p>
+<div class="figure" id="id7">
+<img alt="Labels" src="../../../_images/roundbar_labels.png" />
+<p class="caption"><span class="caption-text">Labels</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span> <span class="na">labels=</span><span class="s">&quot;inside:0,44;25;50;75;100&quot;</span> <span class="na">majorradius=</span><span class="s">&quot;45&quot;</span> <span class="na">majorwidth=</span><span class="s">&quot;5&quot;</span> <span class="na">majorposition=</span><span class="s">&quot;0;25;50;75;100&quot;</span> <span class="na">minorradius=</span><span class="s">&quot;48&quot;</span> <span class="na">minorwidth=</span><span class="s">&quot;2&quot;</span> <span class="na">minorspacing=</span><span class="s">&quot;5&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/roundbar&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ranges">
+<h3>Ranges<a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
+<p>To have a quick overview of the current value it is possible to mark value ranges by a color. For this the
+<code class="docutils literal"><span class="pre">ranges</span></code> attribute needs a list of range definitions that is separated by a semicolon.</p>
+<p>Each range itself consists out of a list that is separated by colons:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">value,radius,width,color</span></code></p>
+<p><code class="docutils literal"><span class="pre">start...end,radius,width,color</span></code></p>
+</div></blockquote>
+<p>Example:</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">ranges=&quot;0...70,63,3,green;70...100,63,3,red;70,60,9,#ff0&quot;</span></code></div></blockquote>
+<p>This defines three ranges. First one for the values between 0 and 70 with a green arc of radius 63 and a
+width of 3. Then a red arc from 70 to 100, also with radius 63 and a width of 3. Last a line is drawn at
+value 70 that goes out from radius 60 for 9 units and has the color <code class="docutils literal"><span class="pre">#ff0</span></code> which is a bright yellow.</p>
+<div class="figure" id="id8">
+<img alt="Ranges" src="../../../_images/roundbar_ranges.png" />
+<p class="caption"><span class="caption-text">Ranges</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span> <span class="na">ranges=</span><span class="s">&quot;0...70,63,3,green;70...100,63,3,red;70,60,9,#ff0&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/roundbar&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tips">
+<h2>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="presets">
+<h3>Presets<a class="headerlink" href="#presets" title="Permalink to this headline">¶</a></h3>
+<p>To simplify the configuration there are preset designs. All details of a preset can be overruled by the
+configuration file.</p>
+<div class="figure" id="id9">
+<img alt="Preset &quot;A&quot;, &quot;B&quot; and &quot;bridge&quot;" src="../../../_images/roundbar_presets.png" />
+<p class="caption"><span class="caption-text">Preset &#8220;A&#8221;, &#8220;B&#8221; and &#8220;bridge&#8221;</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;roundbar</span> <span class="na">preset=</span><span class="s">&quot;A&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/roundbar&gt;</span>
+    <span class="nt">&lt;roundbar</span> <span class="na">preset=</span><span class="s">&quot;B&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/roundbar&gt;</span>
+    <span class="nt">&lt;roundbar</span> <span class="na">preset=</span><span class="s">&quot;bridge&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/roundbar&gt;</span>
+<span class="nt">&lt;/group&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="debug-mode">
+<h3>Debug mode<a class="headerlink" href="#debug-mode" title="Permalink to this headline">¶</a></h3>
+<p>The Roundbar widget tries to fill in the available space as big as possible. To be able to do so it must know
+already during the creation of the visu page how big its content can become. Especially for the text parts like
+the labels or the value this is not possible in an automated way.</p>
+<p>For this the attribute <code class="docutils literal"><span class="pre">bboxgrow</span></code> can add to the automatically determined value a user specified distance.
+When it contains a single number this will be added on all sides simultaneously. Separated by a semicolon it is
+possible to add specific distances for <code class="docutils literal"><span class="pre">horizontal;vertical</span></code>. And for special effects each side can be adjusted
+individually by <code class="docutils literal"><span class="pre">left;up;right;down</span></code>.</p>
+<p>To be able to reach a good result quicker, especially as it is an iterative effort to get the best numbers, the
+attribute <code class="docutils literal"><span class="pre">debug</span></code> can be set to <code class="docutils literal"><span class="pre">true</span></code> to get a blue frame to see the automatically derived dimensions and a
+green frame for the final dimensions.</p>
+<div class="figure" id="id10">
+<img alt="Activated debug mode" src="../../../_images/roundbar_debug.png" />
+<p class="caption"><span class="caption-text">Activated debug mode</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span> <span class="na">debug=</span><span class="s">&quot;true&quot;</span> <span class="na">bboxgrow=</span><span class="s">&quot;50;0&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/roundbar&gt;</span>
+</pre></div>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../text/index.html" class="btn btn-neutral float-right" title="The Text widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../rgb/index.html" class="btn btn-neutral" title="The Rgb widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.12.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../0.10.2|0.10/manual/index.html">0.10.2|0.10</a></dd>
+        
+          <dd><a href="../../../../../0.11.2|0.11/manual/index.html">0.11.2|0.11</a></dd>
+        
+          <dd><a href="../../../../../0.12.0-dev|0.12/manual/index.html">0.12.0-dev|0.12</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
