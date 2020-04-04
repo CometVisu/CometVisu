@@ -13,15 +13,16 @@ if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
 fi
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [[ ! "$TRAVIS_BRANCH" =~ release-[0-9\.]+ ]]); then
-    echo "Skipping deploy;"
-    exit 0
-fi
-
-if [ "$TRAVIS_REPO_SLUG" != "$REPO_SLUG" ]; then
-    echo "Not in main repository => skipping deploy;"
-    exit 0
-fi
+# fixme
+#if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [[ ! "$TRAVIS_BRANCH" =~ release-[0-9\.]+ ]]); then
+#    echo "Skipping deploy;"
+#    exit 0
+#fi
+#
+#if [ "$TRAVIS_REPO_SLUG" != "$REPO_SLUG" ]; then
+#    echo "Not in main repository => skipping deploy;"
+#    exit 0
+#fi
 
 
 # Save some useful information

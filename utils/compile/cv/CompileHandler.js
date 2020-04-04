@@ -69,7 +69,6 @@ class CvCompileHandler extends AbstractCompileHandler {
       additionalResources.forEach(res => {
         fg.sync(path.join(resourceDir, res)).forEach(file => data.dbClassInfo.assets.push(file.substr(resourceDir.length + 1)))
       })
-      console.log(data.dbClassInfo.assets)
     }
   }
 

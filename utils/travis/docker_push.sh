@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION_TAG=`cat build/version`
+VERSION_TAG=`cat compiled/build/version`
 
 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
