@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation auf dem Timberwolf mittels Portainer &mdash; CometVisu</title>
+  <title>Installation auf dem Timberwolf über die App &mdash; CometVisu</title>
   
 
   
@@ -106,7 +106,11 @@
 <li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation auf einem Debian System mit openHAB2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Installation mittels Docker-Container</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation auf dem Timberwolf mittels Portainer</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation auf dem Timberwolf über die App</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#update">Update</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-auf-dem-timberwolf-mittels-portainer">Installation auf dem Timberwolf mittels Portainer</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#volumes-anlegen">Volumes anlegen</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#anlegen-des-containers">Anlegen des Containers</a></li>
@@ -179,7 +183,7 @@
         
           <li><a href="index.html">Installation der CometVisu</a> &raquo;</li>
         
-      <li>Installation auf dem Timberwolf mittels Portainer</li>
+      <li>Installation auf dem Timberwolf über die App</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -202,11 +206,32 @@
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
+<div class="section" id="installation-auf-dem-timberwolf-uber-die-app">
+<span id="timberwolf"></span><h1>Installation auf dem Timberwolf über die App<a class="headerlink" href="#installation-auf-dem-timberwolf-uber-die-app" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die einfachste Möglichkeit die CometVisu auf dem  <a class="reference external" href="https://wiregate.de/">Timberwolf</a>-Server zu
+installieren ist über die dort angebotene App.</p>
+<div class="figure" id="id3">
+<a class="reference internal image-reference" href="../_images/timberwolf_app.png"><img alt="../_images/timberwolf_app.png" src="../_images/timberwolf_app.png" style="width: 450.5px; height: 434.5px;" /></a>
+<p class="caption"><span class="caption-text">Auswahl der CometVisu App auf der Timberwolf-Oberfläche</span></p>
+</div>
+<p>Nach der Installation über das grüne &#8220;+&#8221; wird die CometVisu unter &#8220;Aktive Apps&#8221; aufgeführt. Hinter &#8220;URL&#8221; ist
+bereits der Link eingeblendet über den die CometVisu aufgerufen werden kann.</p>
+<div class="section" id="update">
+<h2>Update<a class="headerlink" href="#update" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="figure" id="id4">
+<a class="reference internal image-reference" href="../_images/timberwolf_installed_app.png"><img alt="../_images/timberwolf_installed_app.png" src="../_images/timberwolf_installed_app.png" style="width: 541.5px; height: 395.5px;" /></a>
+<p class="caption"><span class="caption-text">Installierte CometVisu App</span></p>
+</div>
+<p>Über das Stift-Symbol kann die App konfiguriert werden. Am wichtigsten ist die Zeile &#8220;Version&#8221;. Die dort eingestelle
+Versions-Nummer wird installiert, bzw. über Speichern wird auf diese Versionsnummer gewechselt.</p>
+</div>
+</div>
 <div class="section" id="installation-auf-dem-timberwolf-mittels-portainer">
-<span id="timberwolf"></span><h1>Installation auf dem Timberwolf mittels Portainer<a class="headerlink" href="#installation-auf-dem-timberwolf-mittels-portainer" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Um die CometVisu auf dem <a class="reference external" href="https://wiregate.de/">Timberwolf</a>-Server zu
-installieren wird die dort verwendete Administrationsoberfläche
-<a class="reference external" href="https://portainer.io/">Portainer</a> verwendet.</p>
+<h1>Installation auf dem Timberwolf mittels Portainer<a class="headerlink" href="#installation-auf-dem-timberwolf-mittels-portainer" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die fortgeschrittene Methode die CometVisu auf dem Timberwolf-Server zu installieren (wird nur in Ausnahmefällen
+benötigt, empfohlen ist die Installation über die App) ist über die Docker Administrationsoberfläche
+<a class="reference external" href="https://portainer.io/">Portainer</a>. Auch für andere Systeme mit Docker und Portainer ist diese Anleitung im
+wesentlichen geeignet.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Mit dieser Anleitung wird die CometVisu auf dem Timberwolf Server über HTTPS
@@ -223,7 +248,7 @@ die CometVisu über HTTPS zugreifbar macht.</p>
 und diese über Neustarts und Aktualisierungen des Containers hinweg
 beizubehalten.</p>
 <p>Die notwendigen Schritte sind: <em>Volumes</em> → <em>Add Volume</em> → Name: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> → <em>Create the Volume</em></p>
-<div class="figure" id="id3">
+<div class="figure" id="id5">
 <a class="reference internal image-reference" href="../_images/portainer_volume_add.png"><img alt="../_images/portainer_volume_add.png" src="../_images/portainer_volume_add.png" style="width: 1362.0px; height: 615.0px;" /></a>
 <p class="caption"><span class="caption-text">Volume im Portainer anlegen</span></p>
 </div>
@@ -292,19 +317,19 @@ Wert <code class="docutils literal"><span class="pre">iptn:172.17.0.1:3674</span
 </ul>
 </li>
 </ul>
-<div class="figure" id="id4">
+<div class="figure" id="id6">
 <a class="reference internal image-reference" href="../_images/portainer_container_add.png"><img alt="../_images/portainer_container_add.png" src="../_images/portainer_container_add.png" style="width: 1346.0px; height: 755.0px;" /></a>
 <p class="caption"><span class="caption-text">Container im Portainer anlegen</span></p>
 </div>
-<div class="figure" id="id5">
+<div class="figure" id="id7">
 <a class="reference internal image-reference" href="../_images/portainer_container_volumes_add.png"><img alt="../_images/portainer_container_volumes_add.png" src="../_images/portainer_container_volumes_add.png" style="width: 1082.0px; height: 369.0px;" /></a>
 <p class="caption"><span class="caption-text">Container <em>Volumes</em> im Portainer konfigurieren</span></p>
 </div>
-<div class="figure" id="id6">
+<div class="figure" id="id8">
 <a class="reference internal image-reference" href="../_images/portainer_container_env_add.png"><img alt="../_images/portainer_container_env_add.png" src="../_images/portainer_container_env_add.png" style="width: 1081.0px; height: 259.0px;" /></a>
 <p class="caption"><span class="caption-text">Container <em>Env</em> im Portainer konfigurieren</span></p>
 </div>
-<div class="figure" id="id7">
+<div class="figure" id="id9">
 <a class="reference internal image-reference" href="../_images/portainer_container_restart_add.png"><img alt="../_images/portainer_container_restart_add.png" src="../_images/portainer_container_restart_add.png" style="width: 763.0px; height: 217.0px;" /></a>
 <p class="caption"><span class="caption-text">Container <em>Restart policy</em> im Portainer konfigurieren</span></p>
 </div>
@@ -317,7 +342,7 @@ Wert <code class="docutils literal"><span class="pre">iptn:172.17.0.1:3674</span
 <li>URL: <code class="docutils literal"><span class="pre">visu/</span></code>, Target <code class="docutils literal"><span class="pre">http://127.0.0.1:18080/</span></code></li>
 </ul>
 <p>Über <em>Add</em> bestätigen.</p>
-<div class="figure" id="id8">
+<div class="figure" id="id10">
 <a class="reference internal image-reference" href="../_images/timberwolf_proxy_add.png"><img alt="../_images/timberwolf_proxy_add.png" src="../_images/timberwolf_proxy_add.png" style="width: 694.0px; height: 129.0px;" /></a>
 <p class="caption"><span class="caption-text">Timberwolf Proxy-Eintrag hinzufügen</span></p>
 </div>
@@ -337,7 +362,7 @@ Server unter <em>Portainer</em> bei <em>&#8220;Wie Sie aus dem Docker Container 
 Zeitreihen-Datenbank zugreifen können&#8221;</em> auf das <code class="docutils literal"><span class="pre">i</span></code> geklickt werden um
 den Benutzernamen und das Passwort für die lokale Installation in Erfahrung
 zu bringen.</p>
-<div class="figure" id="id9">
+<div class="figure" id="id11">
 <a class="reference internal image-reference" href="../_images/timberwolf_influx.png"><img alt="../_images/timberwolf_influx.png" src="../_images/timberwolf_influx.png" style="width: 1070.0px; height: 337.0px;" /></a>
 <p class="caption"><span class="caption-text">Timberwolf InfluxDB Credentials</span></p>
 </div>
@@ -355,7 +380,7 @@ gegebenenfalls hier die IP-Addresse entsprechend angepasst werden)</li>
 </ul>
 </li>
 </ul>
-<div class="figure" id="id10">
+<div class="figure" id="id12">
 <a class="reference internal image-reference" href="../_images/timberwolf_influx_manager.png"><img alt="../_images/timberwolf_influx_manager.png" src="../_images/timberwolf_influx_manager.png" style="width: 575.0px; height: 305.0px;" /></a>
 <p class="caption"><span class="caption-text">Timberwolf InfluxDB Credentials im Manager</span></p>
 </div>
@@ -376,12 +401,12 @@ werden soll, so ist noch unter <em>Volumes</em> der Config-Pfad von
 <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> auf <code class="docutils literal"><span class="pre">/var/www/html/resource/config</span></code> anzupassen.</p>
 <p>Mit <em>Actions</em> → <em>Deploy the Container</em> wird der Container nun durch die
 neueste Version ersetzt.</p>
-<div class="figure" id="id11">
+<div class="figure" id="id13">
 <a class="reference internal image-reference" href="../_images/portainer_container_replace.png"><img alt="../_images/portainer_container_replace.png" src="../_images/portainer_container_replace.png" style="width: 836.0px; height: 863.0px;" /></a>
 <p class="caption"><span class="caption-text">Container im Portainer durch eine neue Version ersetzen</span></p>
 </div>
 <p>Anschließend muss die Sicherheitsabfrage bestätigt werden.</p>
-<div class="figure" id="id12">
+<div class="figure" id="id14">
 <img alt="../_images/portainer_container_replace_confirm.png" src="../_images/portainer_container_replace_confirm.png" />
 <p class="caption"><span class="caption-text">Bestätigung um den Container im Portainer durch eine neue Version zu ersetzen</span></p>
 </div>
@@ -393,7 +418,7 @@ neueste Version ersetzt.</p>
 <em>Images</em> löschen.</p>
 <p>Durch markieren des zu löschenden Images (zu erkennen am Label <em>Unused</em> und
 dem entsprechenden Tag) kann über <em>Remove</em> das Image entfernt werden.</p>
-<div class="figure" id="id13">
+<div class="figure" id="id15">
 <a class="reference internal image-reference" href="../_images/portainer_image_remove.png"><img alt="../_images/portainer_image_remove.png" src="../_images/portainer_image_remove.png" style="width: 1349.0px; height: 601.0px;" /></a>
 <p class="caption"><span class="caption-text">Portainer Dialog um ein Image zu löschen</span></p>
 </div>
