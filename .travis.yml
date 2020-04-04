@@ -17,6 +17,7 @@ before_install:
 install:
 - npm install -g grunt-cli
 - npm install
+- export PYTHONPATH=$PYTHONPATH:$(pwd)
 - pip install -r utils/requirements.txt
 - export PATH="./node_modules/.bin:$PATH"
 - qx package install
@@ -76,7 +77,7 @@ jobs:
     - utils/update_version.py
     - qx compile --t build # builds the cv for the screenshot generator
     - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
-    - sudo apt-get install python-lxml python3-lxml
+    - sudo apt-get install python3-lxml
     - utils/travis/deploy.sh
   - name: "[NIGHTLY] - Build and push Nightly Build"
     if: type = cron OR commit_message =~ /^\[ci nightly\].*/
