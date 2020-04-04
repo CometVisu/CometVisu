@@ -39,7 +39,7 @@ from lxml import etree
 from distutils.version import LooseVersion
 from argparse import ArgumentParser
 from . import Command
-from scaffolding import Scaffolder
+from utils.commands.scaffolding import Scaffolder
 from sphinx import main
 try:
     # Python 2.6-2.7
