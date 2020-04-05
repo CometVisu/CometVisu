@@ -246,7 +246,10 @@ class DocGenerator(Command):
         Generates the english manual from the source code comments (api documentation)
         """
         # traverse through the widgets
-        root, dirs, files = os.walk(path).next()
+        if not os.path.exists(path):
+            print("%s does not exist" % path)
+            return
+        root, dirs, files = list(os.walk(path))[0]
         source_files = []
         cleanr = re.compile('</?h.*?>')
         clean_tags = re.compile('</?.*?>')
@@ -350,9 +353,9 @@ class DocGenerator(Command):
                                             content[section].append(".. code-block:: xml\n\n    ")
                                             for child in xml:
                                                 if child.tag == "meta":
-                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').split("\n")))
+                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').decode().split("\n")))
                                                 elif child.tag != "settings":
-                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').split("\n")))
+                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').decode().split("\n")))
                                         else:
                                             # no screenshot name defined, the auto-configured name cannot be guessed
                                             # reliable -> using widget-example
