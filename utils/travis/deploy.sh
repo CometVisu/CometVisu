@@ -85,7 +85,7 @@ ${CV} doc --doc-type manual -l en --target-version=${VERSION_PATH}
 ${CV} doc --process-versions
 
 echo "generating the source verion of the CometVisu for screenshot generation"
-qx compile -f=false
+qx compile -t=build -f=false
 
 echo "generating english manual, including screenshot generation for all languages"
 ${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION_PATH}
