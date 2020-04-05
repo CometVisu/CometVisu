@@ -142,7 +142,12 @@
         <xsd:attribute ref="transform" use="required" />
         <xsd:attribute ref="mode" use="optional" />
         <xsd:attribute name="variant" type="xsd:string" use="optional" />
-        <xsd:attribute name="format-pos" type="xsd:decimal" use="optional" />
+        <xsd:attribute name="format-pos" type="xsd:decimal" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Position for format string when multiple addresses are used.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -179,8 +184,18 @@
   <xsd:attribute name="max" type="xsd:decimal" />
   <xsd:attribute name="step" type="xsd:decimal" />
 
-  <xsd:attribute name="transform" type="xsd:string" />
-  <xsd:attribute name="format" type="xsd:string" />
+  <xsd:attribute name="transform" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Transformation of the bus system value to be shown.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Umwandlung des Bus-System Wertes um angezeigt werden zu können.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="format" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Formataion of the value (printf syntax).</xsd:documentation>
+      <xsd:documentation xml:lang="de">Formatierung des Wertes (printf-Syntax).</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
 
   <xsd:attribute name="timeformat" type="xsd:string" >
     <xsd:annotation>
@@ -1414,7 +1429,7 @@
     <xsd:attribute ref="class" use="optional" />
     <xsd:attribute ref="send-long-on-release" use="optional"/>
   </xsd:complexType>
-  
+
   <xsd:complexType name="rgb">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
@@ -1422,6 +1437,296 @@
       <xsd:element name="address" type="address" minOccurs="3" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute ref="flavour" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="roundbaraddress">
+    <xsd:simpleContent>
+      <xsd:extension base="addr">
+        <xsd:attribute ref="transform" use="required" />
+        <xsd:attribute ref="mode" use="optional" />
+        <xsd:attribute name="type" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Type of the indicators.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Art des Indikators.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="bar" />
+              <xsd:enumeration value="pointer" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="showvalue" type="xsd:boolean" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Shows the value for this indicator.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Zeige den Wert für diesen Indikator an.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="min" type="xsd:decimal" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Overrules the minimum value of the widget for this indicator.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Übersteuert den für das Widget gültigen Minimal-Wert für diesen Indikator.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="max" type="xsd:decimal" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Overrules the maximum value of the widget for this indicator.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Übersteuert den für das Widget gültigen Maximal-Wert für diesen Indikator.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="radius" type="xsd:decimal" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Radius of the indicator.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Radius des Indikators.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="width" type="xsd:decimal" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Width of the indicator.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Breite des Indikator.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="thickness" type="xsd:decimal" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Thickness of the indicator (only for pointer).</xsd:documentation>
+            <xsd:documentation xml:lang="de">Dicke des Indikators (nur für Zeiger).</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="valuepos" type="xsd:integer" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Position (sorting) of the value of this indicator.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Position (Sortierung) des Wertes für diesen Indikator.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="style" type="xsd:string" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">CSS style for the indicator.</xsd:documentation>
+            <xsd:documentation xml:lang="de">CSS Stil für den Indikator.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="roundbar">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="roundbaraddress" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute ref="min">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Minimal value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Minimaler Wert.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="max">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximum value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximaler Wert.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="format" use="optional"/>
+    <xsd:attribute name="axisradius" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Radius of the round axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Radius der runden Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="axiswidth" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width of the axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite der Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="axiscolor" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe der Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="ranges" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Colored ranges.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farblich markierte Bereiche.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="minorradius" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Radius for the minor ticks.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Radius für die Zwischenmarkierungen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="minorwidth" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width of the minor ticks.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite der Zwischenmarkierungen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="minorspacing" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Spacing of minor ticks.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Abstand der Zwischenmarkierungen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="minorcolor" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of minor ticks.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe der Zwischenmarkierungen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="majorradius" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Radius for the major ticks.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Radius für die Markierungen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="majorwidth" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width of the major ticks.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite der Markierungen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="majorposition" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Positions of the major ticks, separated by ";".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Positionen der Markierungen, durch ";" getrennt.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="majorcolor" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the major ticks.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe der Markierungen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="labels" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Labels, separated by ";".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Beschriftungen, durch ";" getrennt.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="labelstyle" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">CSS style of label text.</xsd:documentation>
+        <xsd:documentation xml:lang="de">CSS Stil der Beschriftung.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="start" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Start angle in degrees.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anfangswinkel in Grad.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="startarrow" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Arrow size of bar start.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Größe der Pfeilspitze am Anfang.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="end" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">End angle in degrees.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Endwinkel in Grad.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="endarrow" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Arrow size of bar end.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Größe der Pfeilspitze am Ende.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="arrowtype" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Unit type of arrow size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Art der Einheit der Pfeilspitzengröße.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="angle" />
+          <xsd:enumeration value="distance" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="spacing" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Spacing between the bars for automatic radius selection.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Abstand zwischen den Balken wenn deren Radius automatisch bestimmt werden soll.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="overflowarrow" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show an arrow when the value is out of range.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeige eine Pfeilspitze wenn der Wert außerhalb des Wertebereichs liegt.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="fontsize" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Font size of the value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Schriftgröße für den Wert.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="textx" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">X position of the value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">X Position des Wertes.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="texty" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Y position of the value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Y Position des Wertes.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="textlength" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Length of the space to reserve for the value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Für den Wert vorzuhaltende Länge.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="textanchor" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Orientation of value display in relation to the anchor point.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Orientierung der Wert-Anzeige in Relation zum Ankerpunkt.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="start" />
+          <xsd:enumeration value="middle" />
+          <xsd:enumeration value="end" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="linespace" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Distance between the rows for multiple values.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeilenabstand für mehrere Werte.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="bboxgrow" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Enlargement of the mounding box in virtual pixels to take care of sticking out parts (everywhere or horizontal;vertical or left;up;right;down).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Vergrößerung der Bounding-Box in virtuellen Pixeln um überstehende Elemente zu berücksichtigen (Überall bzw. horizontal;vertikal bzw. links;oben;rechts;unten).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="debug" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Activates the debug mode and shows the automatic determined border.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Aktiviert Debug-Modus und zeigt den automatisch bestimmten Rand.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="preset" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Choose a preset design.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Auswahl eines vorgegebenen Designs.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="A" />
+          <xsd:enumeration value="B" />
+          <xsd:enumeration value="bridge" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="multitrigger">
