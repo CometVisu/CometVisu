@@ -501,16 +501,16 @@ class DocGenerator(Command):
 
         return None
 
-    def _sort_versions(self, a, b):
-        return cmp(LooseVersion(a.split("|")[0]), LooseVersion(b.split("|")[0]))
+    def _key_sort_versions(self, a):
+        return LooseVersion(a.split("|")[0])
 
     def process_versions(self, path):
-        root, dirs, files = list(os.walk(path))
+        root, dirs, files = list(os.walk(path))[0]
         for lang_dir in dirs:
             if lang_dir[0:1] != "." and len(lang_dir) == 2:
                 print("checking versions in language: %s" % lang_dir)
                 # collect versions and symlinks
-                root, dirs, files = list(os.walk(os.path.join(path, lang_dir)))
+                root, dirs, files = list(os.walk(os.path.join(path, lang_dir)))[0]
                 symlinks = {}
                 versions = []
                 special_versions = []
@@ -527,7 +527,7 @@ class DocGenerator(Command):
                         special_versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
 
                 # max_version = max_ver(versions)
-                versions.sort(self._sort_versions)
+                versions.sort(key=self._key_sort_versions)
                 max_version = None
                 max_version_path = None
                 found_max = False
