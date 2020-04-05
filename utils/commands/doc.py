@@ -505,12 +505,12 @@ class DocGenerator(Command):
         return cmp(LooseVersion(a.split("|")[0]), LooseVersion(b.split("|")[0]))
 
     def process_versions(self, path):
-        root, dirs, files = os.walk(path).next()
+        root, dirs, files = list(os.walk(path))
         for lang_dir in dirs:
             if lang_dir[0:1] != "." and len(lang_dir) == 2:
                 print("checking versions in language: %s" % lang_dir)
                 # collect versions and symlinks
-                root, dirs, files = os.walk(os.path.join(path, lang_dir)).next()
+                root, dirs, files = list(os.walk(os.path.join(path, lang_dir)))
                 symlinks = {}
                 versions = []
                 special_versions = []
