@@ -105,7 +105,6 @@ cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/
 
 # fixme
 echo "abort test here"
-exit 0
 #
 #echo "starting deployment..."
 ## Now let's go have some fun with the cloned repo
