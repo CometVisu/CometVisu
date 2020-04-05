@@ -478,7 +478,7 @@ class DocGenerator(Command):
                         if len(features[name]['screenshot']) == 0:
                             del features[name]['screenshot']
                         elif len(features[name]['screenshot']) == 1:
-                            features[name]['screenshot'] = features[name]['screenshot'].values()[0]
+                            features[name]['screenshot'] = list(features[name]['screenshot'].values())[0]
                         if len(features[name]['manual']) == 0:
                             del features[name]['manual']
 
