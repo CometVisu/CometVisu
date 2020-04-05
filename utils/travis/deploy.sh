@@ -66,6 +66,7 @@ else {
   echo "API generation failed"
   NO_API=1
 }
+fi
 
 # API screenshots are used by the "doc --from-source" run so we generate them here
 if [[ "$NO_API" -eq 0 ]]; then
