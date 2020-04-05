@@ -84,6 +84,9 @@ ${CV} doc --doc-type manual -l en --target-version=${VERSION_PATH}
 # update symlinks and write version files
 ${CV} doc --process-versions
 
+echo "generating the source verion of the CometVisu for screenshot generation"
+qx compile -f=false
+
 echo "generating english manual, including screenshot generation for all languages"
 ${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION_PATH}
 echo "generating german manual again with existing screenshots"
