@@ -25,8 +25,7 @@ stages:
   if: branch = test-linter
 - name: test
 - name: deploy
-  # fixme
-  #if: repo = CometVisu/CometVisu AND (NOT type IN (pull_request)) AND ( branch =~ ^master|develop|release-[0-9\.]+$ )
+  if: repo = CometVisu/CometVisu AND (NOT type IN (pull_request)) AND ( branch =~ ^master|develop|release-[0-9\.]+$ )
 jobs:
   include:
   - stage: lint
@@ -93,8 +92,7 @@ jobs:
     deploy:
       on:
         branch: develop
-        # fixme
-        condition: "$DEPLOY_NIGHTLY = 10"
+        condition: "$DEPLOY_NIGHTLY = 1"
       provider: bintray
       file: "./utils/travis/bintray-deploy.json"
       user: peuter
