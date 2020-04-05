@@ -58,7 +58,7 @@ $CV doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 utils/update_version.py
 echo "generating api version $VERSION"
 
-CV_VERSION=$VERSION qx compile -t build --set apiviewer=true
+CV_VERSION=$VERSION qx compile -t build --set apiviewer=true -f=false
 if [ $? -eq 0 ]
 then
   echo "API successfully generated"
@@ -95,7 +95,7 @@ echo "generating sitemap.xml for documentation"
 ${CV} sitemap
 
 echo "generating test mode build"
-CV_TESTMODE=resource/demo/media/demo_testmode_data.json qx compile -t build
+CV_TESTMODE=resource/demo/media/demo_testmode_data.json qx compile -t build -f=false
 grunt update-demo-config
 rm -rf out/de/$VERSION_PATH/demo
 mv compiled/build out/de/$VERSION_PATH/demo
