@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link type="text/css" rel="stylesheet" href="resource/designs/designglobals.css">
+    <link type="text/css" rel="stylesheet" href="resource/designs/metal/basic.css">
+    <link type="text/css" rel="stylesheet" href="resource/designs/metal/mobile.css">
+    <style type="text/css">
+        #container > div {
+            height: 100px;
+            width: 800px;
+            overflow-y: hidden;
+            overflow-x: auto;
+            white-space: nowrap;
+            margin: 50px;
+            -webkit-overflow-scrolling: touch;
+            display: block;
+        }
+        #container > div > div {
+            height: 100px;
+            width: 100px;
+            font-size: 36px;
+            text-align: center;
+            display: inline-block;
+            float: none;
+            background-color: #6E6E6E;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="mobile">
+<div id="container">
+    <div></div>
+    <div style="overflow-x: visible"></div>
+    <div style="overflow-x: scroll"></div>
+</div>
+<div id="time">
+
+</div>
+<script type="application/javascript">
+  const container = document.body.querySelector('#container')
+  for (let i = 0; i<container.children.length; i++) {
+    const child = container.children[i]
+    for (let j = 0; j < 30; j++) {
+      const div = document.createElement("div")
+      div.textContent = j;
+      child.appendChild(div)
+    }
+  }
+  document.body.querySelector('#time').textContent = Date.now()
+</script>
+
+<div id="navbarTop" class="">
+    <div class="navbar clearfix navbarActive" id="id_top_navbar">
+        <div class="widget_container " id="id_0_0" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-control_building_empty"></use>
+                    </svg>
+                    Übersicht
+                </div>
+                <div class="actor switchUnpressed"></div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_2" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-scene_livingroom"></use>
+                    </svg>
+                    Wohnen
+                </div>
+                <div class="actor switchUnpressed"></div>
+                <div class="widget_container  widgetinfo" id="id_0_2_0" data-type="widgetinfo" style="width: 100%;">
+                    <div class="widget_container " id="id_0_2_0_0" data-type="info">
+                        <div class="widget clearfix info ">
+                            <div class="actor" data-longtapable="true">
+                                <div class="value">21°</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_3" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-scene_dinner"></use>
+                    </svg>
+                    Essen
+                </div>
+                <div class="actor switchUnpressed"></div>
+                <div class="widget_container  widgetinfo" id="id_0_3_0" data-type="widgetinfo" style="width: 100%;">
+                    <div class="widget_container " id="id_0_3_0_0" data-type="info">
+                        <div class="widget clearfix info ">
+                            <div class="actor" data-longtapable="true">
+                                <div class="value">21°</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_4" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-scene_baking_oven"></use>
+                    </svg>
+                    Küche
+                </div>
+                <div class="actor switchUnpressed"></div>
+                <div class="widget_container  widgetinfo" id="id_0_4_0" data-type="widgetinfo" style="width: 100%;">
+                    <div class="widget_container " id="id_0_4_0_0" data-type="info">
+                        <div class="widget clearfix info ">
+                            <div class="actor" data-longtapable="true">
+                                <div class="value">21°</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_5" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-scene_bath"></use>
+                    </svg>
+                    Bad
+                </div>
+                <div class="actor switchUnpressed"></div>
+                <div class="widget_container  widgetinfo" id="id_0_5_0" data-type="widgetinfo" style="width: 100%;">
+                    <div class="widget_container " id="id_0_5_0_0" data-type="info">
+                        <div class="widget clearfix info ">
+                            <div class="actor" data-longtapable="true">
+                                <div class="value">21°</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_7" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-scene_sleeping"></use>
+                    </svg>
+                    Schlafen
+                </div>
+                <div class="actor switchUnpressed"></div>
+                <div class="widget_container  widgetinfo" id="id_0_7_0" data-type="widgetinfo" style="width: 100%;">
+                    <div class="widget_container " id="id_0_7_0_0" data-type="info">
+                        <div class="widget clearfix info ">
+                            <div class="actor" data-longtapable="true">
+                                <div class="value">21°</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_8" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-it_pc"></use>
+                    </svg>
+                    Büro
+                </div>
+                <div class="actor switchUnpressed"></div>
+                <div class="widget_container  widgetinfo" id="id_0_8_0" data-type="widgetinfo" style="width: 100%;">
+                    <div class="widget_container " id="id_0_8_0_0" data-type="info">
+                        <div class="widget clearfix info ">
+                            <div class="actor" data-longtapable="true">
+                                <div class="value">25°</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_9" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-scene_bath"></use>
+                    </svg>
+                    Bad
+                </div>
+                <div class="actor switchUnpressed"></div>
+                <div class="widget_container  widgetinfo" id="id_0_9_0" data-type="widgetinfo" style="width: 100%;">
+                    <div class="widget_container " id="id_0_9_0_0" data-type="info">
+                        <div class="widget clearfix info ">
+                            <div class="actor" data-longtapable="true">
+                                <div class="value">24°</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_11" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-scene_hall"></use>
+                    </svg>
+                    Flure
+                </div>
+                <div class="actor switchUnpressed"></div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_12" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-fts_garage"></use>
+                    </svg>
+                    Garage
+                </div>
+                <div class="actor switchUnpressed"></div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_14" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump infoaction active">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-audio_sound"></use>
+                    </svg>
+                    Audio
+                </div>
+                <div class="actor switchUnpressed"></div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_15" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-temp_temperature"></use>
+                    </svg>
+                    Temperatur
+                </div>
+                <div class="actor switchUnpressed"></div>
+            </div>
+        </div>
+        <div class="widget_container " id="id_0_16" data-type="pagejump" data-longtapable="true">
+            <div class="widget clearfix pagejump  infoaction">
+                <div class="label">
+                    <svg class="icon">
+                        <use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-it_network"></use>
+                    </svg>
+                    Netzwerk
+                </div>
+                <div class="actor switchUnpressed"></div>
+            </div>
+        </div>
+        <div class="widget_container  float-right" id="id_0_17" data-type="notificationcenterbadge">
+            <div class="widget clearfix notificationcenterbadge">
+                <div class="actor badge" data-longtapable="true">0</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
