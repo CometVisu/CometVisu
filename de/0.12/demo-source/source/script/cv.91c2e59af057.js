@@ -576,251 +576,6 @@ qx.Bootstrap.define("qx.bom.element.AnimationCss",
 
    Authors:
      * Sebastian Werner (wpbasti)
-
-************************************************************************ */
-
-/**
- * Contains methods to control and query the element's box-sizing property.
- *
- * Supported values:
- *
- * * "content-box" = W3C model (dimensions are content specific)
- * * "border-box" = Microsoft model (dimensions are box specific incl. border and padding)
- */
-qx.Bootstrap.define("qx.bom.element.BoxSizing",
-{
-  /*
-  *****************************************************************************
-     STATICS
-  *****************************************************************************
-  */
-
-  statics :
-  {
-    /** @type {Map} Internal data structure for __usesNativeBorderBox() */
-    __nativeBorderBox :
-    {
-      tags :
-      {
-        button : true,
-        select : true
-      },
-
-      types :
-      {
-        search : true,
-        button : true,
-        submit : true,
-        reset : true,
-        checkbox : true,
-        radio : true
-      }
-    },
-
-
-    /**
-     * Whether the given elements defaults to the "border-box" Microsoft model in all cases.
-     *
-     * @param element {Element} DOM element to query
-     * @return {Boolean} true when the element uses "border-box" independently from the doctype
-     */
-    __usesNativeBorderBox : function(element)
-    {
-      var map = this.__nativeBorderBox;
-      return map.tags[element.tagName.toLowerCase()] || map.types[element.type];
-    },
-
-
-    /**
-     * Compiles the given box sizing into a CSS compatible string.
-     *
-     * @param value {String} Valid CSS box-sizing value
-     * @return {String} CSS string
-     */
-    compile : function(value)
-    {
-      if (qx.core.Environment.get("css.boxsizing")) {
-        var prop = qx.bom.Style.getCssName(qx.core.Environment.get("css.boxsizing"));
-        return prop + ":" + value + ";";
-      }
-      else {
-        if (qx.core.Environment.get("qx.debug")) {
-          qx.log.Logger.warn(this, "This client does not support dynamic modification of the boxSizing property.");
-          qx.log.Logger.trace();
-        }
-      }
-    },
-
-
-    /**
-     * Returns the box sizing for the given element.
-     *
-     * @param element {Element} The element to query
-     * @return {String} Box sizing value of the given element.
-     */
-    get : function(element)
-    {
-      if (qx.core.Environment.get("css.boxsizing")) {
-        return qx.bom.element.Style.get(element, "boxSizing", null, false) || "";
-      }
-
-      if (qx.bom.Document.isStandardMode(qx.dom.Node.getWindow(element)))
-      {
-        if (!this.__usesNativeBorderBox(element)) {
-          return "content-box";
-        }
-      }
-
-      return "border-box";
-    },
-
-
-    /**
-     * Applies a new box sizing to the given element
-     *
-     * @param element {Element} The element to modify
-     * @param value {String} New box sizing value to set
-     */
-    set : function(element, value)
-    {
-      if (qx.core.Environment.get("css.boxsizing")) {
-        // IE8 bombs when trying to apply an unsupported value
-        try {
-          element.style[qx.core.Environment.get("css.boxsizing")] = value;
-        } catch(ex) {
-          if (qx.core.Environment.get("qx.debug")) {
-            qx.log.Logger.warn(this, "This client does not support the boxSizing value", value);
-          }
-        }
-      }
-      else {
-        if (qx.core.Environment.get("qx.debug")) {
-          qx.log.Logger.warn(this, "This client does not support dynamic modification of the boxSizing property.");
-        }
-      }
-    },
-
-
-    /**
-     * Removes the local box sizing applied to the element
-     *
-     * @param element {Element} The element to modify
-     */
-    reset : function(element) {
-      this.set(element, "");
-    }
-  }
-});
-/* ************************************************************************
-
-   qooxdoo - the new era of web development
-
-   http://qooxdoo.org
-
-   Copyright:
-     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
-
-   License:
-     MIT: https://opensource.org/licenses/MIT
-     See the LICENSE file in the project's top-level directory for details.
-
-   Authors:
-     * Sebastian Werner (wpbasti)
-
-************************************************************************ */
-
-
-/**
- * Contains methods to control and query the element's cursor property
- */
-qx.Bootstrap.define("qx.bom.element.Cursor",
-{
-  /*
-  *****************************************************************************
-     STATICS
-  *****************************************************************************
-  */
-
-  statics :
-  {
-    /** Internal helper structure to map cursor values to supported ones */
-    __map : {},
-
-
-    /**
-     * Compiles the given cursor into a CSS compatible string.
-     *
-     * @param cursor {String} Valid CSS cursor name
-     * @return {String} CSS string
-     */
-    compile : function(cursor) {
-      return "cursor:" + (this.__map[cursor] || cursor) + ";";
-    },
-
-
-    /**
-     * Returns the computed cursor style for the given element.
-     *
-     * @param element {Element} The element to query
-     * @param mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},
-     *   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.
-     *   The computed mode is the default one.
-     * @return {String} Computed cursor value of the given element.
-     */
-    get : function(element, mode) {
-      return qx.bom.element.Style.get(element, "cursor", mode, false);
-    },
-
-
-    /**
-     * Applies a new cursor style to the given element
-     *
-     * @param element {Element} The element to modify
-     * @param value {String} New cursor value to set
-     */
-    set : function(element, value) {
-      element.style.cursor = this.__map[value] || value;
-    },
-
-
-    /**
-     * Removes the local cursor style applied to the element
-     *
-     * @param element {Element} The element to modify
-     */
-    reset : function(element) {
-      element.style.cursor = "";
-    }
-  },
-
-
-  defer : function(statics) {
-    // < IE 9
-    if (qx.core.Environment.get("engine.name") == "mshtml" &&
-         ((parseFloat(qx.core.Environment.get("engine.version")) < 9 ||
-          qx.core.Environment.get("browser.documentmode") < 9) &&
-          !qx.core.Environment.get("browser.quirksmode"))
-    ) {
-      statics.__map["nesw-resize"] = "ne-resize";
-      statics.__map["nwse-resize"] = "nw-resize";
-    }
-  }
-});
-/* ************************************************************************
-
-   qooxdoo - the new era of web development
-
-   http://qooxdoo.org
-
-   Copyright:
-     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
-
-   License:
-     MIT: https://opensource.org/licenses/MIT
-     See the LICENSE file in the project's top-level directory for details.
-
-   Authors:
-     * Sebastian Werner (wpbasti)
      * Christian Hagendorn (chris_schmidt)
 
    ======================================================================
@@ -1034,6 +789,251 @@ qx.Bootstrap.define("qx.bom.element.Opacity",
         return 1.0;
       }
     })
+  }
+});
+/* ************************************************************************
+
+   qooxdoo - the new era of web development
+
+   http://qooxdoo.org
+
+   Copyright:
+     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+
+   License:
+     MIT: https://opensource.org/licenses/MIT
+     See the LICENSE file in the project's top-level directory for details.
+
+   Authors:
+     * Sebastian Werner (wpbasti)
+
+************************************************************************ */
+
+
+/**
+ * Contains methods to control and query the element's cursor property
+ */
+qx.Bootstrap.define("qx.bom.element.Cursor",
+{
+  /*
+  *****************************************************************************
+     STATICS
+  *****************************************************************************
+  */
+
+  statics :
+  {
+    /** Internal helper structure to map cursor values to supported ones */
+    __map : {},
+
+
+    /**
+     * Compiles the given cursor into a CSS compatible string.
+     *
+     * @param cursor {String} Valid CSS cursor name
+     * @return {String} CSS string
+     */
+    compile : function(cursor) {
+      return "cursor:" + (this.__map[cursor] || cursor) + ";";
+    },
+
+
+    /**
+     * Returns the computed cursor style for the given element.
+     *
+     * @param element {Element} The element to query
+     * @param mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},
+     *   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.
+     *   The computed mode is the default one.
+     * @return {String} Computed cursor value of the given element.
+     */
+    get : function(element, mode) {
+      return qx.bom.element.Style.get(element, "cursor", mode, false);
+    },
+
+
+    /**
+     * Applies a new cursor style to the given element
+     *
+     * @param element {Element} The element to modify
+     * @param value {String} New cursor value to set
+     */
+    set : function(element, value) {
+      element.style.cursor = this.__map[value] || value;
+    },
+
+
+    /**
+     * Removes the local cursor style applied to the element
+     *
+     * @param element {Element} The element to modify
+     */
+    reset : function(element) {
+      element.style.cursor = "";
+    }
+  },
+
+
+  defer : function(statics) {
+    // < IE 9
+    if (qx.core.Environment.get("engine.name") == "mshtml" &&
+         ((parseFloat(qx.core.Environment.get("engine.version")) < 9 ||
+          qx.core.Environment.get("browser.documentmode") < 9) &&
+          !qx.core.Environment.get("browser.quirksmode"))
+    ) {
+      statics.__map["nesw-resize"] = "ne-resize";
+      statics.__map["nwse-resize"] = "nw-resize";
+    }
+  }
+});
+/* ************************************************************************
+
+   qooxdoo - the new era of web development
+
+   http://qooxdoo.org
+
+   Copyright:
+     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+
+   License:
+     MIT: https://opensource.org/licenses/MIT
+     See the LICENSE file in the project's top-level directory for details.
+
+   Authors:
+     * Sebastian Werner (wpbasti)
+
+************************************************************************ */
+
+/**
+ * Contains methods to control and query the element's box-sizing property.
+ *
+ * Supported values:
+ *
+ * * "content-box" = W3C model (dimensions are content specific)
+ * * "border-box" = Microsoft model (dimensions are box specific incl. border and padding)
+ */
+qx.Bootstrap.define("qx.bom.element.BoxSizing",
+{
+  /*
+  *****************************************************************************
+     STATICS
+  *****************************************************************************
+  */
+
+  statics :
+  {
+    /** @type {Map} Internal data structure for __usesNativeBorderBox() */
+    __nativeBorderBox :
+    {
+      tags :
+      {
+        button : true,
+        select : true
+      },
+
+      types :
+      {
+        search : true,
+        button : true,
+        submit : true,
+        reset : true,
+        checkbox : true,
+        radio : true
+      }
+    },
+
+
+    /**
+     * Whether the given elements defaults to the "border-box" Microsoft model in all cases.
+     *
+     * @param element {Element} DOM element to query
+     * @return {Boolean} true when the element uses "border-box" independently from the doctype
+     */
+    __usesNativeBorderBox : function(element)
+    {
+      var map = this.__nativeBorderBox;
+      return map.tags[element.tagName.toLowerCase()] || map.types[element.type];
+    },
+
+
+    /**
+     * Compiles the given box sizing into a CSS compatible string.
+     *
+     * @param value {String} Valid CSS box-sizing value
+     * @return {String} CSS string
+     */
+    compile : function(value)
+    {
+      if (qx.core.Environment.get("css.boxsizing")) {
+        var prop = qx.bom.Style.getCssName(qx.core.Environment.get("css.boxsizing"));
+        return prop + ":" + value + ";";
+      }
+      else {
+        if (qx.core.Environment.get("qx.debug")) {
+          qx.log.Logger.warn(this, "This client does not support dynamic modification of the boxSizing property.");
+          qx.log.Logger.trace();
+        }
+      }
+    },
+
+
+    /**
+     * Returns the box sizing for the given element.
+     *
+     * @param element {Element} The element to query
+     * @return {String} Box sizing value of the given element.
+     */
+    get : function(element)
+    {
+      if (qx.core.Environment.get("css.boxsizing")) {
+        return qx.bom.element.Style.get(element, "boxSizing", null, false) || "";
+      }
+
+      if (qx.bom.Document.isStandardMode(qx.dom.Node.getWindow(element)))
+      {
+        if (!this.__usesNativeBorderBox(element)) {
+          return "content-box";
+        }
+      }
+
+      return "border-box";
+    },
+
+
+    /**
+     * Applies a new box sizing to the given element
+     *
+     * @param element {Element} The element to modify
+     * @param value {String} New box sizing value to set
+     */
+    set : function(element, value)
+    {
+      if (qx.core.Environment.get("css.boxsizing")) {
+        // IE8 bombs when trying to apply an unsupported value
+        try {
+          element.style[qx.core.Environment.get("css.boxsizing")] = value;
+        } catch(ex) {
+          if (qx.core.Environment.get("qx.debug")) {
+            qx.log.Logger.warn(this, "This client does not support the boxSizing value", value);
+          }
+        }
+      }
+      else {
+        if (qx.core.Environment.get("qx.debug")) {
+          qx.log.Logger.warn(this, "This client does not support dynamic modification of the boxSizing property.");
+        }
+      }
+    },
+
+
+    /**
+     * Removes the local box sizing applied to the element
+     *
+     * @param element {Element} The element to modify
+     */
+    reset : function(element) {
+      this.set(element, "");
+    }
   }
 });
 /* ************************************************************************
