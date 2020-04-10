@@ -3,6 +3,7 @@ release/
 CometVisu-*.tar.gz
 CometVisu-*.zip
 node_modules/
+/source/rest/cv/vendor/
 .idea
 *.swp
 doc/api/examples/
