@@ -7,7 +7,7 @@ to get started.
 Preparation
 -----------
 
-The new build system requires a node environment. Sou have to run `npm install` once to install
+The new build system requires a node environment. So you have to run `npm install` once to install
 all required modules for development.
 
 After cloning the sources or updating from 0.10.x you have to do the following steps once:
@@ -23,7 +23,7 @@ Building source and build versions
 **Short version**
 
 Execute `npx qx compile --watch`, let your webserver serve the folder `compiled/source`, open
-the URL of you webserver in your browser and start to develop.
+the URL of your webserver in your browser and start to develop.
 If you need PHP support during development you can run a PHP server that serves the compiled source
 version of the cometvisu by executing `npm run source`. 
 
@@ -32,14 +32,14 @@ version of the cometvisu by executing `npm run source`.
 Since version >= 0.11.0 the CometVisu sources are based on the
 [Qooxdoo-Framework](http://www.qooxdoo.org) and since version 0.12.0 it uses the new qooxdoo compiler. 
 To develop, test and debug your changes you can work with a source version of the code, 
-which can be compiled by executing`npx qx compile` in your console.
+which can be compiled by executing `npx qx compile` in your console.
 
 The most useful build commands are:
 * `npx qx compile` generates a source version of the cometvisu in the subfolder `compiled/source`.
 
-    Ideal for debugging and development, just serve the folder with your favorite web browser.
+    Ideal for debugging and development, just serve the folder with your favorite web server.
     
-    If you add the `--watch` parameter the compilation will automatically when whenever you change
+    If you add the `--watch` parameter the compilation will happen automatically whenever you change
     something in the code.
      
 * `npx qx compile --target=build` generates a minified build version in the subfolder `compiled/build`.
