@@ -118,31 +118,29 @@ try {
     /** die alten Mappings und stylings übernehmen */
     $objDOM = new DOMDocument('1.0', 'UTF-8');
     $objDOM->formatOutput = true;
-    $content = "";
 
     if ($configType === "string") {
-        $content = $arrData[0];
+        $objDOM->loadXML($arrData[0]);
     } else {
-        foreach ($arrData as $arrRootNodeData) {
-            $objDOM->appendChild(createDOMFromData($objDOM, $arrRootNodeData));
-        }
-        $objDOM->preserveWhiteSpace = false;
-        $objDOM->formatOutput = true;
 
-        $content = $objDOM->saveXML();
+      foreach ($arrData as $arrRootNodeData) {
+          $objDOM->appendChild(createDOMFromData($objDOM, $arrRootNodeData));
+      }
     }
 
+    $objDOM->preserveWhiteSpace = false;
+    $objDOM->formatOutput = true;
 
     if ($isOhGenerated === false) {
         // save the XML to its configuration file
         $handle = fopen($strConfigFQFilename, "w");
-        fputs($handle, $content);
+        fputs($handle, $objDOM->saveXML());
         fclose($handle);
     } else {
         // send generated data to openhab
         $data = array(
             'config' => $strConfig,
-            'data' => $content,
+            'data' => $objDOM->saveXML(),
             'type' => 'xml'
         );
 
@@ -157,7 +155,7 @@ try {
         $result = file_get_contents($saveUrl, false, $context);
 
         if ($result === false) {
-            exitWithResponse(false, 'error');
+            exitWithResponse(false, 'error: ' . $resp);
         } else {
             exitWithResponse(true, 'all good, file ' . $strConfigFQFilename . ' saved');
         }
