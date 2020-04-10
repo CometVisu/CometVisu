@@ -14,7 +14,7 @@
     "public_stats": false
   },
   "version": {
-    "name": "nightlies",
+    "name": "0.12-dev",
     "desc": "nightly builds",
     "released": "2020-04-10",
     "gpgSign": false
