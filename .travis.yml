@@ -86,7 +86,7 @@ jobs:
     - 'CORE_CHANGES=`git log --pretty=format: --name-only --since="1 days ago" ${TRAVIS_BUILD_DIR}/source/ | sort | uniq | sed ''/^$/d'' | wc -l`'
     - export DEPLOY_NIGHTLY=0
     - if [[ ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0) ]]; then export DEPLOY_NIGHTLY=1; fi
-    - echo "'${TRAVIS_COMMIT_MESSAGE:0:12}' - $TRAVIS_COMMIT_MESSAGE"
+    - echo "'${TRAVIS_COMMIT_MESSAGE:0:12}' | $TRAVIS_COMMIT_MESSAGE"
     - if [[ ${TRAVIS_COMMIT_MESSAGE:0:12} == "[ci nightly]" ]]; then export DEPLOY_NIGHTLY=1; export CORE_CHANGES=1; fi
     - echo "$CORE_CHANGES changes in core, $CLIENT_CHANGES changes in client, nighlies $DEPLOY_NIGHTLY, $TRAVIS_EVENT_TYPE event type"
     before_deploy:
