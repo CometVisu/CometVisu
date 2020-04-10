@@ -16,7 +16,7 @@
   "version": {
     "name": "nightlies",
     "desc": "nightly builds",
-    "released": "2017-02-19",
+    "released": "2020-04-10",
     "gpgSign": false
   },
   "files":
