@@ -25,6 +25,9 @@
  *
  * @asset(plugins/colorchooser/farbtastic/farbtastic.js)
  * @asset(plugins/colorchooser/farbtastic/farbtastic.css)
+ * @asset(plugins/colorchooser/farbtastic/wheel.png)
+ * @asset(plugins/colorchooser/farbtastic/mask.png)
+ * @asset(plugins/colorchooser/farbtastic/marker.png)
  */
 qx.Class.define('cv.plugins.ColorChooser', {
   extend: cv.ui.structure.AbstractWidget,

@@ -35,6 +35,7 @@ const filesToCopy = [
 class CvCompileHandler extends AbstractCompileHandler {
 
   onLoad() {
+    super.onLoad();
     if (this._config.targetType === 'build') {
       this._config.targets.some(target => {
         if (target.type === 'build') {
