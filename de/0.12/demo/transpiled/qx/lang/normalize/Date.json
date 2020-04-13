@@ -1,0 +1,125 @@
+{
+  "className": "qx.lang.normalize.Date",
+  "packageName": "qx.lang.normalize",
+  "name": "Date",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 133,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>This class is responsible for the normalization of the native 'Date' object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Polyfill"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "now": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the time elapsed since January 1, 1970 in milliseconds.\n <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date/now\">MDN documentation</a> |\n <a href=\"http://es5.github.com/#x15.9.4.4\">Annotated ES5 Spec</a></p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Milliseconds since the Unix Epoch",
+            "type": "Integer",
+            "description": " Milliseconds since the Unix Epoch"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "parse": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses a string representation of a date and return number of\n milliseconds since Epoch or NaN if string is unrecognized.\n <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse\">MDN documentation</a>\n Derived from <a href=\"https://github.com/csnover/js-iso8601\">https://github.com/csnover/js-iso8601</a>: ©2011 Colin Snover\n <a href=\"http://zetafleet.com\">http://zetafleet.com</a>, MIT license</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dateString {String} A string representing an RFC2822 or ISO 8601\n   date (other formats may be used, but results may be unexpected).",
+            "paramName": "dateString",
+            "description": " A string representing an RFC2822 or ISO 8601\n   date (other formats may be used, but results may be unexpected).",
+            "type": "qx.lang.normalize.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number|NaN} A number representing the milliseconds elapsed\n   since January 1, 1970, 00:00:00 UTC and the date obtained by parsing\n   the given string representation of a date.\n   If the argument doesn't represent a valid date, NaN is returned.",
+            "type": "Number|NaN",
+            "description": " A number representing the milliseconds elapsed\n   since January 1, 1970, 00:00:00 UTC and the date obtained by parsing\n   the given string representation of a date.\n   If the argument doesn't represent a valid date, NaN is returned."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 121,
+        "column": 10
+      },
+      "end": {
+        "line": 132,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

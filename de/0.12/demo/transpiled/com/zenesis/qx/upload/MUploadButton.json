@@ -1,0 +1,250 @@
+{
+  "className": "com.zenesis.qx.upload.MUploadButton",
+  "packageName": "com.zenesis.qx.upload",
+  "name": "MUploadButton",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [
+    "com.zenesis.qx.upload.MParameters"
+  ],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 0
+      },
+      "end": {
+        "line": 64,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>****************************************************************\n</code></pre>\n<p>UploadMgr - provides an API for uploading one or multiple files\n   with progress feedback (on modern browsers), does not block the user\n   interface during uploads, supports cancelling uploads.\n   http://qooxdoo.org\n   Copyright:\n     2011 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     This software is provided under the same licensing terms as Qooxdoo,\n     please see the LICENSE file in the Qooxdoo project's top-level directory\n     for details.\n   Authors:\n John Spackman (john.spackman@zenesis.com)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>This mixin provides a trivial way to make any widget suitable as a widget for\n Uploader - the only trick is that the capture and releaseCapture methods in\n qx.ui.core.Widget must not be fired.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "properties": {
+    "acceptUpload": {
+      "type": "property",
+      "name": "acceptUpload",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    }
+  },
+  "members": {
+    "capture": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>overridden</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "releaseCapture": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>overridden</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setParam": {
+      "type": "function",
+      "name": "setParam",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "com.zenesis.qx.upload.MParameters",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a parameter value to be sent with the file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name\n          {String} name of the parameter",
+            "paramName": "name",
+            "description": " name of the parameter",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value\n          {String} the value of the parameter, or null to delete a\n          previous parameter",
+            "paramName": "value",
+            "description": " the value of the parameter, or null to delete a\n          previous parameter",
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "getParam": {
+      "type": "function",
+      "name": "getParam",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "com.zenesis.qx.upload.MParameters",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a parameter value to be sent with the file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Name of the parameter",
+            "paramName": "name",
+            "description": " Name of the parameter",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "Boolean",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "getParamNames": {
+      "type": "function",
+      "name": "getParamNames",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "com.zenesis.qx.upload.MParameters",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of parameter names</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "getAcceptUpload": {
+      "type": "function",
+      "name": "getAcceptUpload",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>acceptUpload</code>.\n\nFor further details take a look at the property definition: {@link #acceptUpload}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for acceptUpload"
+          }
+        ]
+      }
+    },
+    "setAcceptUpload": {
+      "type": "function",
+      "name": "setAcceptUpload",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>acceptUpload</code>.\n\nFor further details take a look at the property definition: {@link #acceptUpload}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for acceptUpload"
+          }
+        ]
+      }
+    },
+    "resetAcceptUpload": {
+      "type": "function",
+      "name": "resetAcceptUpload",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>acceptUpload</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #acceptUpload}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

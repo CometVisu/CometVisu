@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/dev/unit/MeasurementResult.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "Object",
+    "construct",
+    "message",
+    "iterations",
+    "ownTime",
+    "renderTime",
+    "__message",
+    "__iterations",
+    "__ownTime",
+    "__renderTime",
+    "members",
+    "getData",
+    "toString",
+    "join",
+    "dev",
+    "unit",
+    "MeasurementResult"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;AAIAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,+BAAhB,EAAiD;AAE/CC,IAAAA,MAAM,EAAGC,MAFsC;;AAI/C;;;;;;;AAOAC,IAAAA,SAAS,EAAG,mBAASC,OAAT,EAAkBC,UAAlB,EAA8BC,OAA9B,EAAuCC,UAAvC,EACZ;AACE,WAAKC,SAAL,GAAiBJ,OAAjB;AACA,WAAKK,YAAL,GAAoBJ,UAApB;AACA,WAAKK,SAAL,GAAiBJ,OAAjB;AACA,WAAKK,YAAL,GAAoBJ,UAApB;AACD,KAjB8C;AAmB/CK,IAAAA,OAAO,EACP;AACEJ,MAAAA,SAAS,EAAG,IADd;AAEEC,MAAAA,YAAY,EAAG,IAFjB;AAGEC,MAAAA,SAAS,EAAG,IAHd;AAIEC,MAAAA,YAAY,EAAG,IAJjB;;AAOE;;;;AAIAE,MAAAA,OAAO,EAAG,mBAAW;AACnB,eAAO;AACLT,UAAAA,OAAO,EAAG,KAAKI,SADV;AAELH,UAAAA,UAAU,EAAG,KAAKI,YAFb;AAGLH,UAAAA,OAAO,EAAG,KAAKI,SAHV;AAILH,UAAAA,UAAU,EAAG,KAAKI;AAJb,SAAP;AAMD,OAlBH;;AAqBE;;;;;AAKAG,MAAAA,QAAQ,EAAG,oBACX;AACE,eAAO,CAAC,eAAe,KAAKN,SAArB,EACL,iBAAiB,KAAKC,YADjB,EAEL,WAAW,KAAKC,SAAhB,GAA4B,IAFvB,EAGL,kBAAkB,KAAKC,YAAvB,GAAsC,IAHjC,EAGuCI,IAHvC,CAG4C,IAH5C,CAAP;AAID;AAhCH;AApB+C,GAAjD;AAtBApB,EAAAA,EAAE,CAACqB,GAAH,CAAOC,IAAP,CAAYC,iBAAZ,CAA8BpB,aAA9B,GAA8CA,aAA9C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n\n/**\n * Performance test result object. Used to communicate measurements to the unit\n * testing framework.\n */\nqx.Class.define(\"qx.dev.unit.MeasurementResult\", {\n\n  extend : Object,\n\n  /**\n   *\n   * @param message {String} Description\n   * @param iterations {Number} Amount of times the tested code was executed\n   * @param ownTime {Number} Elapsed JavaScript execution time\n   * @param renderTime {Number} Elapsed DOM rendering time\n   */\n  construct : function(message, iterations, ownTime, renderTime)\n  {\n    this.__message = message;\n    this.__iterations = iterations;\n    this.__ownTime = ownTime;\n    this.__renderTime = renderTime;\n  },\n\n  members :\n  {\n    __message : null,\n    __iterations : null,\n    __ownTime : null,\n    __renderTime : null,\n\n\n    /**\n     * Returns the stored data as a map.\n     * @return {Map} The stored data.\n     */\n    getData : function() {\n      return {\n        message : this.__message,\n        iterations : this.__iterations,\n        ownTime : this.__ownTime,\n        renderTime : this.__renderTime\n      };\n    },\n\n\n    /**\n     * Returns a readable summary of this result\n     *\n     * @return {String} Result summary\n     */\n    toString : function()\n    {\n      return [\"Measured: \" + this.__message,\n        \"Iterations: \" + this.__iterations,\n        \"Time: \" + this.__ownTime + \"ms\",\n        \"Render time: \" + this.__renderTime + \"ms\"].join(\"\\n\");\n    }\n  }\n});"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/tree/core/Util.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "isNode",
+    "node",
+    "childProperty",
+    "hasProperty",
+    "constructor",
+    "hasChildren",
+    "ignoreLeafs",
+    "children",
+    "get",
+    "length",
+    "i",
+    "getLength",
+    "child",
+    "getItem",
+    "ui",
+    "tree",
+    "core",
+    "Util"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sBAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;;;;;;;;AAQAC,MAAAA,MAAM,EAAG,gBAASC,IAAT,EAAeC,aAAf,EACT;AACE,YAAID,IAAI,IAAI,IAAR,IAAgBC,aAAa,IAAI,IAArC,EAA2C;AACzC,iBAAO,KAAP;AACD;;AACD,eAAOT,EAAE,CAACI,KAAH,CAASM,WAAT,CAAqBF,IAAI,CAACG,WAA1B,EAAuCF,aAAvC,CAAP;AACD,OAfH;;AAkBE;;;;;;;;;;AAUAG,MAAAA,WAAW,EAAG,qBAASJ,IAAT,EAAeC,aAAf,EAA8BI,WAA9B,EACd;AACE,YAAIL,IAAI,IAAI,IAAR,IAAgBC,aAAa,IAAI,IAAjC,IAAyC,CAAC,KAAKF,MAAL,CAAYC,IAAZ,EAAkBC,aAAlB,CAA9C,EAAgF;AAC9E,iBAAO,KAAP;AACD;;AAED,YAAIK,QAAQ,GAAGN,IAAI,CAACO,GAAL,CAASN,aAAT,CAAf;;AACA,YAAIK,QAAQ,IAAI,IAAhB,EAAsB;AACpB,iBAAO,KAAP;AACD;;AAED,YAAI,CAACD,WAAL,EAAkB;AAChB,iBAAOC,QAAQ,CAACE,MAAT,GAAkB,CAAzB;AACD,SAFD,MAIA;AACE,eAAK,IAAIC,CAAC,GAAG,CAAb,EAAgBA,CAAC,GAAGH,QAAQ,CAACI,SAAT,EAApB,EAA0CD,CAAC,EAA3C,EACA;AACE,gBAAIE,KAAK,GAAGL,QAAQ,CAACM,OAAT,CAAiBH,CAAjB,CAAZ;;AACA,gBAAI,KAAKV,MAAL,CAAYY,KAAZ,EAAmBV,aAAnB,CAAJ,EAAuC;AACrC,qBAAO,IAAP;AACD;AACF;AACF;;AACD,eAAO,KAAP;AACD;AArDH;AAFF,GADA;AArBAT,EAAAA,EAAE,CAACqB,EAAH,CAAMC,IAAN,CAAWC,IAAX,CAAgBC,IAAhB,CAAqBrB,aAArB,GAAqCA,aAArC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2013 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\n\n/**\n * This utility class implements some methods for the <code>VirtualTree</code>.\n */\nqx.Class.define(\"qx.ui.tree.core.Util\",\n{\n  statics :\n  {\n    /**\n     * Returns if the passed item is a node or a leaf.\n     *\n     * @param node {qx.core.Object} Node to check.\n     * @param childProperty {String} The property name to find the children.\n     * @return {Boolean} <code>True</code> when the passed item is a node,\n     *   </code>false</code> when it is a leaf.\n     */\n    isNode : function(node, childProperty)\n    {\n      if (node == null || childProperty == null) {\n        return false;\n      }\n      return qx.Class.hasProperty(node.constructor, childProperty);\n    },\n\n\n    /**\n     * Returns whether the node has visible children or not.\n     *\n     * @param node {qx.core.Object} Node to check.\n     * @param childProperty {String} The property name to find the children.\n     * @param ignoreLeafs {Boolean?} Indicates whether leafs are ignored. This means when it is set to\n     *    <code>true</code> a node which contains only leafs has no children. The default value is <code>false</code>.\n     * @return {Boolean} <code>True</code> when the node has visible children,\n     *   <code>false</code> otherwise.\n     */\n    hasChildren : function(node, childProperty, ignoreLeafs)\n    {\n      if (node == null || childProperty == null || !this.isNode(node, childProperty)) {\n        return false;\n      }\n\n      var children = node.get(childProperty);\n      if (children == null) {\n        return false;\n      }\n\n      if (!ignoreLeafs) {\n        return children.length > 0;\n      }\n      else\n      {\n        for (var i = 0; i < children.getLength(); i++)\n        {\n          var child = children.getItem(i);\n          if (this.isNode(child, childProperty)) {\n            return true;\n          }\n        }\n      }\n      return false;\n    }\n  }\n});"
+  ]
+}

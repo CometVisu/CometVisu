@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/event/type/Swipe.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "event",
+    "type",
+    "Pointer",
+    "members",
+    "_cloneNativeEvent",
+    "nativeEvent",
+    "clone",
+    "swipe",
+    "getStartTime",
+    "_native",
+    "startTime",
+    "getDuration",
+    "duration",
+    "getAxis",
+    "axis",
+    "getDirection",
+    "direction",
+    "getVelocity",
+    "velocity",
+    "getDistance",
+    "distance",
+    "Swipe"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAmBA;;;;AAIAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACIC,IAAAA,MAAM,EAAGN,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcC,OAD3B;;AAII;;;;;AAMAC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,iBAAiB,EAAG,2BAASC,WAAT,EAAsBC,KAAtB,EACpB;AACE,YAAIA,KAAK,mEAAwBD,WAAxB,EAAqCC,KAArC,CAAT;;AAEAA,QAAAA,KAAK,CAACC,KAAN,GAAcF,WAAW,CAACE,KAA1B;AAEA,eAAOD,KAAP;AACD,OATH;;AAYE;;;;;AAKAE,MAAAA,YAAY,EAAG,wBAAW;AACxB,eAAO,KAAKC,OAAL,CAAaF,KAAb,CAAmBG,SAA1B;AACD,OAnBH;;AAsBE;;;;;AAKAC,MAAAA,WAAW,EAAG,uBAAW;AACvB,eAAO,KAAKF,OAAL,CAAaF,KAAb,CAAmBK,QAA1B;AACD,OA7BH;;AAgCE;;;;;AAKAC,MAAAA,OAAO,EAAG,mBAAW;AACnB,eAAO,KAAKJ,OAAL,CAAaF,KAAb,CAAmBO,IAA1B;AACD,OAvCH;;AA0CE;;;;;;;AAOAC,MAAAA,YAAY,EAAG,wBAAW;AACxB,eAAO,KAAKN,OAAL,CAAaF,KAAb,CAAmBS,SAA1B;AACD,OAnDH;;AAsDE;;;;;AAKAC,MAAAA,WAAW,EAAG,uBAAW;AACvB,eAAO,KAAKR,OAAL,CAAaF,KAAb,CAAmBW,QAA1B;AACD,OA7DH;;AAgEE;;;;;AAKAC,MAAAA,WAAW,EAAG,uBAAW;AACvB,eAAO,KAAKV,OAAL,CAAaF,KAAb,CAAmBa,QAA1B;AACD;AAvEH;AAXJ,GADA;AAvBA3B,EAAAA,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcoB,KAAd,CAAoBzB,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\n\n/**\n * Swipe is a single pointer gesture fired when a pointer is moved in one direction.\n * It contains some additional data like the primary axis, the velocity and the distance.\n */\nqx.Class.define(\"qx.event.type.Swipe\",\n{\n    extend : qx.event.type.Pointer,\n\n\n    /*\n    *****************************************************************************\n       MEMBERS\n    *****************************************************************************\n    */\n\n    members :\n    {\n      // overridden\n      _cloneNativeEvent : function(nativeEvent, clone)\n      {\n        var clone = this.base(arguments, nativeEvent, clone);\n\n        clone.swipe = nativeEvent.swipe;\n\n        return clone;\n      },\n\n\n      /**\n       * Returns the start time of the performed swipe.\n       *\n       * @return {Integer} the start time\n       */\n      getStartTime : function() {\n        return this._native.swipe.startTime;\n      },\n\n\n      /**\n       * Returns the duration the performed swipe took.\n       *\n       * @return {Integer} the duration\n       */\n      getDuration : function() {\n        return this._native.swipe.duration;\n      },\n\n\n      /**\n       * Returns whether the performed swipe was on the x or y axis.\n       *\n       * @return {String} \"x\"/\"y\" axis\n       */\n      getAxis : function() {\n        return this._native.swipe.axis;\n      },\n\n\n      /**\n       * Returns the direction of the performed swipe in reference to the axis.\n       * y = up / down\n       * x = left / right\n       *\n       * @return {String} the direction\n       */\n      getDirection : function() {\n        return this._native.swipe.direction;\n      },\n\n\n      /**\n       * Returns the velocity of the performed swipe.\n       *\n       * @return {Number} the velocity\n       */\n      getVelocity : function() {\n        return this._native.swipe.velocity;\n      },\n\n\n      /**\n       * Returns the distance of the performed swipe.\n       *\n       * @return {Integer} the distance\n       */\n      getDistance : function() {\n        return this._native.swipe.distance;\n      }\n    }\n  });\n"
+  ]
+}

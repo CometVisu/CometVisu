@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/core/queue/Dispose.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "__queue",
+    "add",
+    "widget",
+    "queue",
+    "includes",
+    "unshift",
+    "ui",
+    "core",
+    "Manager",
+    "scheduleFlush",
+    "isEmpty",
+    "length",
+    "flush",
+    "i",
+    "splice",
+    "dispose",
+    "Dispose"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;;AAKAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0BAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,OAAO,EAAG,EAFZ;;AAKE;;;;;;;AAOAC,MAAAA,GAAG,EAAG,aAASC,MAAT,EACN;AACE,YAAIC,KAAK,GAAG,KAAKH,OAAjB;;AACA,YAAIG,KAAK,CAACC,QAAN,CAAeF,MAAf,CAAJ,EAA4B;AAC1B;AACD;;AAEDC,QAAAA,KAAK,CAACE,OAAN,CAAcH,MAAd;AACAT,QAAAA,EAAE,CAACa,EAAH,CAAMC,IAAN,CAAWJ,KAAX,CAAiBK,OAAjB,CAAyBC,aAAzB,CAAuC,SAAvC;AACD,OArBH;;AAwBE;;;;;AAKAC,MAAAA,OAAO,EAAG,mBACV;AACE,eAAO,KAAKV,OAAL,CAAaW,MAAb,IAAuB,CAA9B;AACD,OAhCH;;AAmCE;;;;;AAKAC,MAAAA,KAAK,EAAG,iBACR;AACE;AACA,YAAIT,KAAK,GAAG,KAAKH,OAAjB;;AACA,aAAK,IAAIa,CAAC,GAAGV,KAAK,CAACQ,MAAN,GAAe,CAA5B,EAA+BE,CAAC,IAAI,CAApC,EAAuCA,CAAC,EAAxC,EACA;AACE,cAAIX,MAAM,GAAGC,KAAK,CAACU,CAAD,CAAlB;AACAV,UAAAA,KAAK,CAACW,MAAN,CAAaD,CAAb,EAAgB,CAAhB;AACAX,UAAAA,MAAM,CAACa,OAAP;AACD,SARH,CAUE;;;AACA,YAAIZ,KAAK,CAACQ,MAAN,IAAgB,CAApB,EAAuB;AACrB;AACD,SAbH,CAeE;;;AACA,aAAKX,OAAL,GAAe,EAAf;AACD;AA1DH;AAFF,GADA;AAxBAP,EAAAA,EAAE,CAACa,EAAH,CAAMC,IAAN,CAAWJ,KAAX,CAAiBa,OAAjB,CAAyBpB,aAAzB,GAAyCA,aAAzC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * The DisposeQueue registers all widgets which are should be disposed.\n * This queue makes it possible to remove widgets from the DOM using\n * the layout and element queues and dispose them afterwards.\n */\nqx.Class.define(\"qx.ui.core.queue.Dispose\",\n{\n  statics :\n  {\n    /** @type {Array} This contains all the queued widgets for the next flush. */\n    __queue : [],\n\n\n    /**\n     * Adds a widget to the queue.\n     *\n     * Should only be used by {@link qx.ui.core.Widget}.\n     *\n     * @param widget {qx.ui.core.Widget} The widget to add.\n     */\n    add : function(widget)\n    {\n      var queue = this.__queue;\n      if (queue.includes(widget)) {\n        return;\n      }\n\n      queue.unshift(widget);\n      qx.ui.core.queue.Manager.scheduleFlush(\"dispose\");\n    },\n\n\n    /**\n     * Whether the dispose queue is empty\n     * @return {Boolean}\n     * @internal\n     */\n    isEmpty : function()\n    {\n      return this.__queue.length == 0;\n    },\n\n\n    /**\n     * Flushes the dispose queue.\n     *\n     * This is used exclusively by the {@link qx.ui.core.queue.Manager}.\n     */\n    flush : function()\n    {\n      // Dispose all registered objects\n      var queue = this.__queue;\n      for (var i = queue.length - 1; i >= 0; i--)\n      {\n        var widget = queue[i];\n        queue.splice(i, 1);\n        widget.dispose();\n      }\n\n      // Empty check\n      if (queue.length != 0) {\n        return;\n      }\n\n      // Recreate the array is cheaper compared to keep a sparse array over time\n      this.__queue = [];\n    }\n  }\n});\n"
+  ]
+}

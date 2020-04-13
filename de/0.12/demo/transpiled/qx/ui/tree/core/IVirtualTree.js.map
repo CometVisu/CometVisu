@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/tree/core/IVirtualTree.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "isShowTopLevelOpenCloseIcons",
+    "getLookupTable",
+    "isNode",
+    "item",
+    "assertArgumentsCount",
+    "arguments",
+    "assertInterface",
+    "core",
+    "Object",
+    "isNodeOpen",
+    "node",
+    "getLevel",
+    "row",
+    "assertInteger",
+    "hasChildren",
+    "openNode",
+    "openNodeWithoutScrolling",
+    "closeNode",
+    "closeNodeWithoutScrolling",
+    "getSelection",
+    "ui",
+    "tree",
+    "IVirtualTree"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;AAIAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,8BAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;;;;;;;;AAQAC,MAAAA,4BAA4B,EAAG,wCAAW,CAAE,CAT9C;;AAYE;;;;;;;AAOAC,MAAAA,cAAc,EAAG,0BAAW,CAAE,CAnBhC;;AAsBE;;;;;;;;AAQAC,MAAAA,MAAM,EAAG,gBAASC,IAAT,EACT;AACE,aAAKC,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,eAAL,CAAqBH,IAArB,EAA2BV,EAAE,CAACc,IAAH,CAAQC,MAAnC;AACD,OAlCH;;AAqCE;;;;;;;AAOAC,MAAAA,UAAU,EAAG,oBAASC,IAAT,EACb;AACE,aAAKN,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,eAAL,CAAqBI,IAArB,EAA2BjB,EAAE,CAACc,IAAH,CAAQC,MAAnC;AACD,OAhDH;;AAmDE;;;;;;AAMAG,MAAAA,QAAQ,EAAG,kBAASC,GAAT,EACX;AACE,aAAKR,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKQ,aAAL,CAAmBD,GAAnB;AACD,OA7DH;;AAgEE;;;;;;;;AAQAE,MAAAA,WAAW,EAAG,qBAASJ,IAAT,EACd;AACE,aAAKN,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,eAAL,CAAqBI,IAArB,EAA2BjB,EAAE,CAACc,IAAH,CAAQC,MAAnC;AACD,OA5EH;;AA+EE;;;;;AAKAO,MAAAA,QAAQ,EAAG,kBAASL,IAAT,EACX;AACE,aAAKN,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,eAAL,CAAqBI,IAArB,EAA2BjB,EAAE,CAACc,IAAH,CAAQC,MAAnC;AACD,OAxFH;;AA2FE;;;;;AAKAQ,MAAAA,wBAAwB,EAAG,kCAASN,IAAT,EAC3B;AACE,aAAKN,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,eAAL,CAAqBI,IAArB,EAA2BjB,EAAE,CAACc,IAAH,CAAQC,MAAnC;AACD,OApGH;;AAuGE;;;;;AAKAS,MAAAA,SAAS,EAAG,mBAASP,IAAT,EACZ;AACE,aAAKN,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,eAAL,CAAqBI,IAArB,EAA2BjB,EAAE,CAACc,IAAH,CAAQC,MAAnC;AACD,OAhHH;;AAmHE;;;;;AAKAU,MAAAA,yBAAyB,EAAG,mCAASR,IAAT,EAC5B;AACE,aAAKN,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,eAAL,CAAqBI,IAArB,EAA2BjB,EAAE,CAACc,IAAH,CAAQC,MAAnC;AACD,OA5HH;;AA+HE;;;;;AAKAW,MAAAA,YAAY,EAAG,wBAAW,CAAE;AApI9B;AAFF,GADA;AAtBA1B,EAAAA,EAAE,CAAC2B,EAAH,CAAMC,IAAN,CAAWd,IAAX,CAAgBe,YAAhB,CAA6B1B,aAA7B,GAA6CA,aAA7C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\n\n/**\n * Interface describes the methods which the {@link qx.ui.tree.provider.WidgetProvider}\n * uses for communication.\n */\nqx.Interface.define(\"qx.ui.tree.core.IVirtualTree\",\n{\n  members :\n  {\n    /**\n     * Return whether top level items should have an open/close button. The top\n     * level item item is normally the root item, but when the root is hidden,\n     * the root children are the top level items.\n     *\n     * @return {Boolean} Returns <code>true</code> when top level items should\n     *   show open/close buttons, <code>false</code> otherwise.\n     */\n    isShowTopLevelOpenCloseIcons : function() {},\n\n\n    /**\n     * Returns the internal data structure. The Array index is the row and the\n     * value is the model item.\n     *\n     * @internal\n     * @return {qx.data.Array} The internal data structure.\n     */\n    getLookupTable : function() {},\n\n\n    /**\n     * Returns if the passed item is a note or a leaf.\n     *\n     * @internal\n     * @param item {qx.core.Object} Item to check.\n     * @return {Boolean} <code>True</code> when item is a node,\n     *   </code>false</code> when item is a leaf.\n     */\n    isNode : function(item)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInterface(item, qx.core.Object);\n    },\n\n\n    /**\n     * Return whether the node is opened or closed.\n     *\n     * @param node {qx.core.Object} Node to check.\n     * @return {Boolean} Returns <code>true</code> when the node is opened,\n     *   <code>false</code> otherwise.\n     */\n    isNodeOpen : function(node)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInterface(node, qx.core.Object);\n    },\n\n\n    /**\n     * Returns the row's nesting level.\n     *\n     * @param row {Integer} The row to get the nesting level.\n     * @return {Integer} The row's nesting level or <code>null</code>.\n     */\n    getLevel : function(row)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInteger(row);\n    },\n\n\n    /**\n     * Return whether the node has visible children or not.\n     *\n     * @internal\n     * @param node {qx.core.Object} Node to check.\n     * @return {Boolean} <code>True</code> when the node has visible children,\n     *   <code>false</code> otherwise.\n     */\n    hasChildren : function(node)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInterface(node, qx.core.Object);\n    },\n\n\n    /**\n     * Opens the passed node.\n     *\n     * @param node {qx.core.Object} Node to open.\n     */\n    openNode : function(node)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInterface(node, qx.core.Object);\n    },\n\n\n    /**\n     * Opens the passed node without scrolling selected item into view.\n     *\n     * @param node {qx.core.Object} Node to open.\n     */\n    openNodeWithoutScrolling : function(node)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInterface(node, qx.core.Object);\n    },\n\n\n    /**\n     * Closes the passed node.\n     *\n     * @param node {qx.core.Object} Node to close.\n     */\n    closeNode : function(node)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInterface(node, qx.core.Object);\n    },\n\n\n    /**\n     * Closes the passed node without scrolling selected item into view.\n     *\n     * @param node {qx.core.Object} Node to close.\n     */\n    closeNodeWithoutScrolling : function(node)\n    {\n      this.assertArgumentsCount(arguments, 1, 1);\n      this.assertInterface(node, qx.core.Object);\n    },\n\n\n    /**\n     * Returns the current selection.\n     *\n     * @return {qx.data.Array} The current selected elements.\n     */\n    getSelection : function() {}\n  }\n});\n"
+  ]
+}

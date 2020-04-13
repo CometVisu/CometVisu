@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/module/event/Rotate.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "TYPES",
+    "BIND_METHODS",
+    "getAngle",
+    "_original",
+    "angle",
+    "normalize",
+    "event",
+    "element",
+    "bindMethods",
+    "module",
+    "Rotate",
+    "i",
+    "l",
+    "length",
+    "bind",
+    "defer",
+    "qxWeb",
+    "$registerEventNormalization"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;AAOAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,wBAApB,EAA8C;AAC5CC,IAAAA,OAAO,EACP;AACE;;;AAGAC,MAAAA,KAAK,EAAG,CAAC,QAAD,CAJV;AAOEC,MAAAA,YAAY,EAAG,CAAE,UAAF,CAPjB;;AAUE;;;;;AAKAC,MAAAA,QAAQ,EAAG,oBAAW;AACpB,eAAO,KAAKC,SAAL,CAAeC,KAAtB;AACD,OAjBH;;AAoBE;;;;;;;;;AASAC,MAAAA,SAAS,EAAG,mBAASC,KAAT,EAAgBC,OAAhB,EACZ;AACE,YAAI,CAACD,KAAL,EAAY;AACV,iBAAOA,KAAP;AACD,SAHH,CAIE;;;AACA,YAAIE,WAAW,GAAGd,EAAE,CAACe,MAAH,CAAUH,KAAV,CAAgBI,MAAhB,CAAuBT,YAAzC;;AACA,aAAK,IAAIU,CAAC,GAAC,CAAN,EAASC,CAAC,GAACJ,WAAW,CAACK,MAA5B,EAAoCF,CAAC,GAACC,CAAtC,EAAyCD,CAAC,EAA1C,EAA8C;AAC5C,cAAI,OAAOL,KAAK,CAACE,WAAW,CAACG,CAAD,CAAZ,CAAZ,IAAgC,UAApC,EAAgD;AAC9CL,YAAAA,KAAK,CAACE,WAAW,CAACG,CAAD,CAAZ,CAAL,GAAwBjB,EAAE,CAACe,MAAH,CAAUH,KAAV,CAAgBI,MAAhB,CAAuBF,WAAW,CAACG,CAAD,CAAlC,EAAuCG,IAAvC,CAA4CR,KAA5C,CAAxB;AACD;AACF;;AAED,eAAOA,KAAP;AACD;AA3CH,KAF4C;AAgD5CS,IAAAA,KAAK,EAAG,eAAShB,OAAT,EAAkB;AACxBiB,MAAAA,KAAK,CAACC,2BAAN,CAAkCvB,EAAE,CAACe,MAAH,CAAUH,KAAV,CAAgBI,MAAhB,CAAuBV,KAAzD,EAAgED,OAAO,CAACM,SAAxE;AACD;AAlD2C,GAA9C;AAzBAX,EAAAA,EAAE,CAACe,MAAH,CAAUH,KAAV,CAAgBI,MAAhB,CAAuBb,aAAvB,GAAuCA,aAAvC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n\n/**\n * Normalization for the rotate gesture.\n *\n * @require(qx.module.Event)\n *\n * @group (Event_Normalization)\n */\nqx.Bootstrap.define(\"qx.module.event.Rotate\", {\n  statics :\n  {\n    /**\n     * List of event types to be normalized\n     */\n    TYPES : [\"rotate\"],\n\n\n    BIND_METHODS : [ \"getAngle\" ],\n\n\n    /**\n     * Returns a number with the current calculated angle between the primary and secondary active pointers.\n     *\n     * @return {Number} the angle of the two active pointers.\n     */\n    getAngle : function() {\n      return this._original.angle;\n    },\n\n\n    /**\n     * Manipulates the native event object, adding methods if they're not\n     * already present\n     *\n     * @param event {Event} Native event object\n     * @param element {Element} DOM element the listener was attached to\n     * @return {Event} Normalized event object\n     * @internal\n     */\n    normalize : function(event, element)\n    {\n      if (!event) {\n        return event;\n      }\n      // apply mouse event normalizations\n      var bindMethods = qx.module.event.Rotate.BIND_METHODS;\n      for (var i=0, l=bindMethods.length; i<l; i++) {\n        if (typeof event[bindMethods[i]] != \"function\") {\n          event[bindMethods[i]] = qx.module.event.Rotate[bindMethods[i]].bind(event);\n        }\n      }\n\n      return event;\n    }\n  },\n\n  defer : function(statics) {\n    qxWeb.$registerEventNormalization(qx.module.event.Rotate.TYPES, statics.normalize);\n  }\n});\n"
+  ]
+}

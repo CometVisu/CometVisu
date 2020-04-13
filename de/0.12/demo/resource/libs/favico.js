@@ -1,1 +1,857 @@
-!function(){function e(r){"use strict";r=r||{};var i,a,l,s,h,f,c,n,t,o,d,y,u,w,g,x,m={bgColor:"#d00",textColor:"#fff",fontFamily:"sans-serif",fontStyle:"bold",type:"circle",position:"down",animation:"slide",elementId:!1,dataUrl:!1,win:window};(u={}).ff="undefined"!=typeof InstallTrigger,u.chrome=!!window.chrome,u.opera=!!window.opera||0<=navigator.userAgent.indexOf("Opera"),u.ie=!1,u.safari=0<Object.prototype.toString.call(window.HTMLElement).indexOf("Constructor"),u.supported=u.chrome||u.ff||u.opera;var p=[];n=y=!(d=function(){});var b={ready:function(){n=!0,b.reset(),d()},reset:function(){n&&(o=t=!(p=[]),f.clearRect(0,0,s,l),f.drawImage(c,0,0,s,l),M.setIcon(h),window.clearTimeout(w),window.clearTimeout(g))}};function v(e){return e.n="number"==typeof e.n?Math.abs(0|e.n):e.n,e.x=s*e.x,e.y=l*e.y,e.w=s*e.w,e.h=l*e.h,e.len=(""+e.n).length,e}b.start=function(){if(n&&!o){if(0<p.length){o=!0;var e=function(){["type","animation","bgColor","textColor","fontFamily","fontStyle"].forEach(function(e){e in p[0].options&&(i[e]=p[0].options[e])}),T.run(p[0].options,function(){t=p[0],o=!1,0<p.length&&(p.shift(),b.start())},!1)};t?T.run(t.options,function(){e()},!0):e()}}};var C={};function E(e){if(e.paused||e.ended||y)return!1;try{f.clearRect(0,0,s,l),f.drawImage(e,0,0,s,l)}catch(e){}g=setTimeout(function(){E(e)},T.duration),M.setIcon(h)}C.circle=function(e){var t=!1;2===(e=v(e)).len?(e.x=e.x-.4*e.w,e.w=1.4*e.w,t=!0):3<=e.len&&(e.x=e.x-.65*e.w,e.w=1.65*e.w,t=!0),f.clearRect(0,0,s,l),f.drawImage(c,0,0,s,l),f.beginPath(),f.font=i.fontStyle+" "+Math.floor(e.h*(99<e.n?.85:1))+"px "+i.fontFamily,f.textAlign="center",t?(f.moveTo(e.x+e.w/2,e.y),f.lineTo(e.x+e.w-e.h/2,e.y),f.quadraticCurveTo(e.x+e.w,e.y,e.x+e.w,e.y+e.h/2),f.lineTo(e.x+e.w,e.y+e.h-e.h/2),f.quadraticCurveTo(e.x+e.w,e.y+e.h,e.x+e.w-e.h/2,e.y+e.h),f.lineTo(e.x+e.h/2,e.y+e.h),f.quadraticCurveTo(e.x,e.y+e.h,e.x,e.y+e.h-e.h/2),f.lineTo(e.x,e.y+e.h/2),f.quadraticCurveTo(e.x,e.y,e.x+e.h/2,e.y)):f.arc(e.x+e.w/2,e.y+e.h/2,e.h/2,0,2*Math.PI),f.fillStyle="rgba("+i.bgColor.r+","+i.bgColor.g+","+i.bgColor.b+","+e.o+")",f.fill(),f.closePath(),f.beginPath(),f.stroke(),f.fillStyle="rgba("+i.textColor.r+","+i.textColor.g+","+i.textColor.b+","+e.o+")","number"==typeof e.n&&999<e.n?f.fillText((9999<e.n?9:Math.floor(e.n/1e3))+"k+",Math.floor(e.x+e.w/2),Math.floor(e.y+e.h-.2*e.h)):f.fillText(e.n,Math.floor(e.x+e.w/2),Math.floor(e.y+e.h-.15*e.h)),f.closePath()},C.rectangle=function(e){2===(e=v(e)).len?(e.x=e.x-.4*e.w,e.w=1.4*e.w):3<=e.len&&(e.x=e.x-.65*e.w,e.w=1.65*e.w),f.clearRect(0,0,s,l),f.drawImage(c,0,0,s,l),f.beginPath(),f.font=i.fontStyle+" "+Math.floor(e.h*(99<e.n?.9:1))+"px "+i.fontFamily,f.textAlign="center",f.fillStyle="rgba("+i.bgColor.r+","+i.bgColor.g+","+i.bgColor.b+","+e.o+")",f.fillRect(e.x,e.y,e.w,e.h),f.fillStyle="rgba("+i.textColor.r+","+i.textColor.g+","+i.textColor.b+","+e.o+")","number"==typeof e.n&&999<e.n?f.fillText((9999<e.n?9:Math.floor(e.n/1e3))+"k+",Math.floor(e.x+e.w/2),Math.floor(e.y+e.h-.2*e.h)):f.fillText(e.n,Math.floor(e.x+e.w/2),Math.floor(e.y+e.h-.15*e.h)),f.closePath()};var M={};function A(e){e=e.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i,function(e,t,o,n){return t+t+o+o+n+n});var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return!!t&&{r:parseInt(t[1],16),g:parseInt(t[2],16),b:parseInt(t[3],16)}}function I(e,t){var o,n={};for(o in e)n[o]=e[o];for(o in t)n[o]=t[o];return n}M.getIcon=function(){var e=!1;return i.element?e=i.element:i.elementId?(e=x.getElementById(i.elementId)).setAttribute("href",e.getAttribute("src")):!1===(e=function(){for(var e=x.getElementsByTagName("head")[0].getElementsByTagName("link"),t=e.length-1;0<=t;t--)if(/(^|\s)icon(\s|$)/i.test(e[t].getAttribute("rel")))return e[t];return!1}())&&((e=x.createElement("link")).setAttribute("rel","icon"),x.getElementsByTagName("head")[0].appendChild(e)),e.setAttribute("type","image/png"),e},M.setIcon=function(e){var t=e.toDataURL("image/png");if(i.dataUrl&&i.dataUrl(t),i.element)i.element.setAttribute("href",t),i.element.setAttribute("src",t);else if(i.elementId){var o=x.getElementById(i.elementId);o.setAttribute("href",t),o.setAttribute("src",t)}else if(u.ff||u.opera){var n=a;a=x.createElement("link"),u.opera&&a.setAttribute("rel","icon"),a.setAttribute("rel","icon"),a.setAttribute("type","image/png"),x.getElementsByTagName("head")[0].appendChild(a),a.setAttribute("href",t),n.parentNode&&n.parentNode.removeChild(n)}else a.setAttribute("href",t)};var T={duration:40,types:{}};return T.types.fade=[{x:.4,y:.4,w:.6,h:.6,o:0},{x:.4,y:.4,w:.6,h:.6,o:.1},{x:.4,y:.4,w:.6,h:.6,o:.2},{x:.4,y:.4,w:.6,h:.6,o:.3},{x:.4,y:.4,w:.6,h:.6,o:.4},{x:.4,y:.4,w:.6,h:.6,o:.5},{x:.4,y:.4,w:.6,h:.6,o:.6},{x:.4,y:.4,w:.6,h:.6,o:.7},{x:.4,y:.4,w:.6,h:.6,o:.8},{x:.4,y:.4,w:.6,h:.6,o:.9},{x:.4,y:.4,w:.6,h:.6,o:1}],T.types.none=[{x:.4,y:.4,w:.6,h:.6,o:1}],T.types.pop=[{x:1,y:1,w:0,h:0,o:1},{x:.9,y:.9,w:.1,h:.1,o:1},{x:.8,y:.8,w:.2,h:.2,o:1},{x:.7,y:.7,w:.3,h:.3,o:1},{x:.6,y:.6,w:.4,h:.4,o:1},{x:.5,y:.5,w:.5,h:.5,o:1},{x:.4,y:.4,w:.6,h:.6,o:1}],T.types.popFade=[{x:.75,y:.75,w:0,h:0,o:0},{x:.65,y:.65,w:.1,h:.1,o:.2},{x:.6,y:.6,w:.2,h:.2,o:.4},{x:.55,y:.55,w:.3,h:.3,o:.6},{x:.5,y:.5,w:.4,h:.4,o:.8},{x:.45,y:.45,w:.5,h:.5,o:.9},{x:.4,y:.4,w:.6,h:.6,o:1}],T.types.slide=[{x:.4,y:1,w:.6,h:.6,o:1},{x:.4,y:.9,w:.6,h:.6,o:1},{x:.4,y:.9,w:.6,h:.6,o:1},{x:.4,y:.8,w:.6,h:.6,o:1},{x:.4,y:.7,w:.6,h:.6,o:1},{x:.4,y:.6,w:.6,h:.6,o:1},{x:.4,y:.5,w:.6,h:.6,o:1},{x:.4,y:.4,w:.6,h:.6,o:1}],T.run=function(e,t,o,n){var r=T.types[x.hidden||x.msHidden||x.webkitHidden||x.mozHidden?"none":i.animation];n=!0===o?void 0!==n?n:r.length-1:void 0!==n?n:0,t=t||function(){},n<r.length&&0<=n?(C[i.type](I(e,r[n])),w=setTimeout(function(){o?n-=1:n+=1,T.run(e,t,o,n)},T.duration),M.setIcon(h)):t()},function(){(i=I(m,r)).bgColor=A(i.bgColor),i.textColor=A(i.textColor),i.position=i.position.toLowerCase(),i.animation=T.types[""+i.animation]?i.animation:m.animation,x=i.win.document;var e=-1<i.position.indexOf("up"),t=-1<i.position.indexOf("left");if(e||t)for(var o=0;o<T.types[""+i.animation].length;o++){var n=T.types[""+i.animation][o];e&&(n.y<.6?n.y=n.y-.4:n.y=n.y-2*n.y+(1-n.w)),t&&(n.x<.6?n.x=n.x-.4:n.x=n.x-2*n.x+(1-n.h)),T.types[""+i.animation][o]=n}i.type=C[""+i.type]?i.type:m.type,a=M.getIcon(),h=document.createElement("canvas"),c=document.createElement("img"),a.hasAttribute("href")?(c.setAttribute("crossOrigin","anonymous"),c.onload=function(){l=0<c.height?c.height:32,s=0<c.width?c.width:32,h.height=l,h.width=s,f=h.getContext("2d"),b.ready()},c.setAttribute("src",a.getAttribute("href"))):(c.onload=function(){s=l=32,c.height=l,c.width=s,h.height=l,h.width=s,f=h.getContext("2d"),b.ready()},c.setAttribute("src",""))}(),{badge:function(e,o){o=("string"==typeof o?{animation:o}:o)||{},d=function(){try{if("number"==typeof e?0<e:""!==e){var t={type:"badge",options:{n:e}};if("animation"in o&&T.types[""+o.animation]&&(t.options.animation=""+o.animation),"type"in o&&C[""+o.type]&&(t.options.type=""+o.type),["bgColor","textColor"].forEach(function(e){e in o&&(t.options[e]=A(o[e]))}),["fontStyle","fontFamily"].forEach(function(e){e in o&&(t.options[e]=o[e])}),p.push(t),100<p.length)throw new Error("Too many badges requests in queue.");b.start()}else b.reset()}catch(e){throw new Error("Error setting badge. Message: "+e.message)}},n&&d()},video:function(e){d=function(){try{if("stop"===e)return y=!0,b.reset(),void(y=!1);e.addEventListener("play",function(){E(this)},!1)}catch(e){throw new Error("Error setting video. Message: "+e.message)}},n&&d()},image:function(r){d=function(){try{var e=r.width,t=r.height,o=document.createElement("img"),n=e/s<t/l?e/s:t/l;o.setAttribute("crossOrigin","anonymous"),o.onload=function(){f.clearRect(0,0,s,l),f.drawImage(o,0,0,s,l),M.setIcon(h)},o.setAttribute("src",r.getAttribute("src")),o.height=t/n,o.width=e/n}catch(e){throw new Error("Error setting image. Message: "+e.message)}},n&&d()},webcam:function(e){if(window.URL&&window.URL.createObjectURL||(window.URL=window.URL||{},window.URL.createObjectURL=function(e){return e}),u.supported){var t=!1;navigator.getUserMedia=navigator.getUserMedia||navigator.oGetUserMedia||navigator.msGetUserMedia||navigator.mozGetUserMedia||navigator.webkitGetUserMedia,d=function(){try{if("stop"===e)return y=!0,b.reset(),void(y=!1);(t=document.createElement("video")).width=s,t.height=l,navigator.getUserMedia({video:!0,audio:!1},function(e){t.src=URL.createObjectURL(e),t.play(),E(t)},function(){})}catch(e){throw new Error("Error setting webcam. Message: "+e.message)}},n&&d()}},reset:b.reset,browser:{supported:u.supported}}}"undefined"!=typeof define&&define.amd?define([],function(){return e}):"undefined"!=typeof module&&module.exports?module.exports=e:this.Favico=e}();
+/**
+ * @license MIT
+ * @fileOverview Favico animations
+ * @author Miroslav Magda, http://blog.ejci.net
+ * @version 0.3.10
+ */
+
+/**
+ * Create new favico instance
+ * @param {Object} Options
+ * @return {Object} Favico object
+ * @example
+ * var favico = new Favico({
+ *    bgColor : '#d00',
+ *    textColor : '#fff',
+ *    fontFamily : 'sans-serif',
+ *    fontStyle : 'bold',
+ *    position : 'down',
+ *    type : 'circle',
+ *    animation : 'slide',
+ *    dataUrl: function(url){},
+ *    win: top
+ * });
+ */
+(function () {
+
+	var Favico = (function (opt) {
+		'use strict';
+		opt = (opt) ? opt : {};
+		var _def = {
+			bgColor: '#d00',
+			textColor: '#fff',
+			fontFamily: 'sans-serif', //Arial,Verdana,Times New Roman,serif,sans-serif,...
+			fontStyle: 'bold', //normal,italic,oblique,bold,bolder,lighter,100,200,300,400,500,600,700,800,900
+			type: 'circle',
+			position: 'down', // down, up, left, leftup (upleft)
+			animation: 'slide',
+			elementId: false,
+			dataUrl: false,
+			win: window
+		};
+		var _opt, _orig, _h, _w, _canvas, _context, _img, _ready, _lastBadge, _running, _readyCb, _stop, _browser, _animTimeout, _drawTimeout, _doc;
+
+		_browser = {};
+		_browser.ff = typeof InstallTrigger != 'undefined';
+		_browser.chrome = !!window.chrome;
+		_browser.opera = !!window.opera || navigator.userAgent.indexOf('Opera') >= 0;
+		_browser.ie = /*@cc_on!@*/false;
+		_browser.safari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+		_browser.supported = (_browser.chrome || _browser.ff || _browser.opera);
+
+		var _queue = [];
+		_readyCb = function () {
+		};
+		_ready = _stop = false;
+		/**
+		 * Initialize favico
+		 */
+		var init = function () {
+			//merge initial options
+			_opt = merge(_def, opt);
+			_opt.bgColor = hexToRgb(_opt.bgColor);
+			_opt.textColor = hexToRgb(_opt.textColor);
+			_opt.position = _opt.position.toLowerCase();
+			_opt.animation = (animation.types['' + _opt.animation]) ? _opt.animation : _def.animation;
+
+			_doc = _opt.win.document;
+
+			var isUp = _opt.position.indexOf('up') > -1;
+			var isLeft = _opt.position.indexOf('left') > -1;
+
+			//transform animation
+			if (isUp || isLeft) {
+				for (var i = 0; i < animation.types['' + _opt.animation].length; i++) {
+					var step = animation.types['' + _opt.animation][i];
+
+					if (isUp) {
+						if (step.y < 0.6) {
+							step.y = step.y - 0.4;
+						} else {
+							step.y = step.y - 2 * step.y + (1 - step.w);
+						}
+					}
+
+					if (isLeft) {
+						if (step.x < 0.6) {
+							step.x = step.x - 0.4;
+						} else {
+							step.x = step.x - 2 * step.x + (1 - step.h);
+						}
+					}
+
+					animation.types['' + _opt.animation][i] = step;
+				}
+			}
+			_opt.type = (type['' + _opt.type]) ? _opt.type : _def.type;
+
+			_orig = link.getIcon();
+			//create temp canvas
+			_canvas = document.createElement('canvas');
+			//create temp image
+			_img = document.createElement('img');
+			if (_orig.hasAttribute('href')) {
+				_img.setAttribute('crossOrigin', 'anonymous');
+				//get width/height
+				_img.onload = function () {
+					_h = (_img.height > 0) ? _img.height : 32;
+					_w = (_img.width > 0) ? _img.width : 32;
+					_canvas.height = _h;
+					_canvas.width = _w;
+					_context = _canvas.getContext('2d');
+					icon.ready();
+				};
+				_img.setAttribute('src', _orig.getAttribute('href'));
+			} else {
+				_img.onload = function () {
+					_h = 32;
+					_w = 32;
+					_img.height = _h;
+					_img.width = _w;
+					_canvas.height = _h;
+					_canvas.width = _w;
+					_context = _canvas.getContext('2d');
+					icon.ready();
+				};
+				_img.setAttribute('src', '');
+			}
+
+		};
+		/**
+		 * Icon namespace
+		 */
+		var icon = {};
+		/**
+		 * Icon is ready (reset icon) and start animation (if ther is any)
+		 */
+		icon.ready = function () {
+			_ready = true;
+			icon.reset();
+			_readyCb();
+		};
+		/**
+		 * Reset icon to default state
+		 */
+		icon.reset = function () {
+			//reset
+			if (!_ready) {
+				return;
+			}
+			_queue = [];
+			_lastBadge = false;
+			_running = false;
+			_context.clearRect(0, 0, _w, _h);
+			_context.drawImage(_img, 0, 0, _w, _h);
+			//_stop=true;
+			link.setIcon(_canvas);
+			//webcam('stop');
+			//video('stop');
+			window.clearTimeout(_animTimeout);
+			window.clearTimeout(_drawTimeout);
+		};
+		/**
+		 * Start animation
+		 */
+		icon.start = function () {
+			if (!_ready || _running) {
+				return;
+			}
+			var finished = function () {
+				_lastBadge = _queue[0];
+				_running = false;
+				if (_queue.length > 0) {
+					_queue.shift();
+					icon.start();
+				} else {
+
+				}
+			};
+			if (_queue.length > 0) {
+				_running = true;
+				var run = function () {
+					// apply options for this animation
+					['type', 'animation', 'bgColor', 'textColor', 'fontFamily', 'fontStyle'].forEach(function (a) {
+						if (a in _queue[0].options) {
+							_opt[a] = _queue[0].options[a];
+						}
+					});
+					animation.run(_queue[0].options, function () {
+						finished();
+					}, false);
+				};
+				if (_lastBadge) {
+					animation.run(_lastBadge.options, function () {
+						run();
+					}, true);
+				} else {
+					run();
+				}
+			}
+		};
+
+		/**
+		 * Badge types
+		 */
+		var type = {};
+		var options = function (opt) {
+			opt.n = ((typeof opt.n) === 'number') ? Math.abs(opt.n | 0) : opt.n;
+			opt.x = _w * opt.x;
+			opt.y = _h * opt.y;
+			opt.w = _w * opt.w;
+			opt.h = _h * opt.h;
+			opt.len = ("" + opt.n).length;
+			return opt;
+		};
+		/**
+		 * Generate circle
+		 * @param {Object} opt Badge options
+		 */
+		type.circle = function (opt) {
+			opt = options(opt);
+			var more = false;
+			if (opt.len === 2) {
+				opt.x = opt.x - opt.w * 0.4;
+				opt.w = opt.w * 1.4;
+				more = true;
+			} else if (opt.len >= 3) {
+				opt.x = opt.x - opt.w * 0.65;
+				opt.w = opt.w * 1.65;
+				more = true;
+			}
+			_context.clearRect(0, 0, _w, _h);
+			_context.drawImage(_img, 0, 0, _w, _h);
+			_context.beginPath();
+			_context.font = _opt.fontStyle + " " + Math.floor(opt.h * (opt.n > 99 ? 0.85 : 1)) + "px " + _opt.fontFamily;
+			_context.textAlign = 'center';
+			if (more) {
+				_context.moveTo(opt.x + opt.w / 2, opt.y);
+				_context.lineTo(opt.x + opt.w - opt.h / 2, opt.y);
+				_context.quadraticCurveTo(opt.x + opt.w, opt.y, opt.x + opt.w, opt.y + opt.h / 2);
+				_context.lineTo(opt.x + opt.w, opt.y + opt.h - opt.h / 2);
+				_context.quadraticCurveTo(opt.x + opt.w, opt.y + opt.h, opt.x + opt.w - opt.h / 2, opt.y + opt.h);
+				_context.lineTo(opt.x + opt.h / 2, opt.y + opt.h);
+				_context.quadraticCurveTo(opt.x, opt.y + opt.h, opt.x, opt.y + opt.h - opt.h / 2);
+				_context.lineTo(opt.x, opt.y + opt.h / 2);
+				_context.quadraticCurveTo(opt.x, opt.y, opt.x + opt.h / 2, opt.y);
+			} else {
+				_context.arc(opt.x + opt.w / 2, opt.y + opt.h / 2, opt.h / 2, 0, 2 * Math.PI);
+			}
+			_context.fillStyle = 'rgba(' + _opt.bgColor.r + ',' + _opt.bgColor.g + ',' + _opt.bgColor.b + ',' + opt.o + ')';
+			_context.fill();
+			_context.closePath();
+			_context.beginPath();
+			_context.stroke();
+			_context.fillStyle = 'rgba(' + _opt.textColor.r + ',' + _opt.textColor.g + ',' + _opt.textColor.b + ',' + opt.o + ')';
+			//_context.fillText((more) ? '9+' : opt.n, Math.floor(opt.x + opt.w / 2), Math.floor(opt.y + opt.h - opt.h * 0.15));
+			if ((typeof opt.n) === 'number' && opt.n > 999) {
+				_context.fillText(((opt.n > 9999) ? 9 : Math.floor(opt.n / 1000)) + 'k+', Math.floor(opt.x + opt.w / 2), Math.floor(opt.y + opt.h - opt.h * 0.2));
+			} else {
+				_context.fillText(opt.n, Math.floor(opt.x + opt.w / 2), Math.floor(opt.y + opt.h - opt.h * 0.15));
+			}
+			_context.closePath();
+		};
+		/**
+		 * Generate rectangle
+		 * @param {Object} opt Badge options
+		 */
+		type.rectangle = function (opt) {
+			opt = options(opt);
+			var more = false;
+			if (opt.len === 2) {
+				opt.x = opt.x - opt.w * 0.4;
+				opt.w = opt.w * 1.4;
+				more = true;
+			} else if (opt.len >= 3) {
+				opt.x = opt.x - opt.w * 0.65;
+				opt.w = opt.w * 1.65;
+				more = true;
+			}
+			_context.clearRect(0, 0, _w, _h);
+			_context.drawImage(_img, 0, 0, _w, _h);
+			_context.beginPath();
+			_context.font = _opt.fontStyle + " " + Math.floor(opt.h * (opt.n > 99 ? 0.9 : 1)) + "px " + _opt.fontFamily;
+			_context.textAlign = 'center';
+			_context.fillStyle = 'rgba(' + _opt.bgColor.r + ',' + _opt.bgColor.g + ',' + _opt.bgColor.b + ',' + opt.o + ')';
+			_context.fillRect(opt.x, opt.y, opt.w, opt.h);
+			_context.fillStyle = 'rgba(' + _opt.textColor.r + ',' + _opt.textColor.g + ',' + _opt.textColor.b + ',' + opt.o + ')';
+			//_context.fillText((more) ? '9+' : opt.n, Math.floor(opt.x + opt.w / 2), Math.floor(opt.y + opt.h - opt.h * 0.15));
+			if ((typeof opt.n) === 'number' && opt.n > 999) {
+				_context.fillText(((opt.n > 9999) ? 9 : Math.floor(opt.n / 1000)) + 'k+', Math.floor(opt.x + opt.w / 2), Math.floor(opt.y + opt.h - opt.h * 0.2));
+			} else {
+				_context.fillText(opt.n, Math.floor(opt.x + opt.w / 2), Math.floor(opt.y + opt.h - opt.h * 0.15));
+			}
+			_context.closePath();
+		};
+
+		/**
+		 * Set badge
+		 */
+		var badge = function (number, opts) {
+			opts = ((typeof opts) === 'string' ? {
+				animation: opts
+			} : opts) || {};
+			_readyCb = function () {
+				try {
+					if (typeof (number) === 'number' ? (number > 0) : (number !== '')) {
+						var q = {
+							type: 'badge',
+							options: {
+								n: number
+							}
+						};
+						if ('animation' in opts && animation.types['' + opts.animation]) {
+							q.options.animation = '' + opts.animation;
+						}
+						if ('type' in opts && type['' + opts.type]) {
+							q.options.type = '' + opts.type;
+						}
+						['bgColor', 'textColor'].forEach(function (o) {
+							if (o in opts) {
+								q.options[o] = hexToRgb(opts[o]);
+							}
+						});
+						['fontStyle', 'fontFamily'].forEach(function (o) {
+							if (o in opts) {
+								q.options[o] = opts[o];
+							}
+						});
+						_queue.push(q);
+						if (_queue.length > 100) {
+							throw new Error('Too many badges requests in queue.');
+						}
+						icon.start();
+					} else {
+						icon.reset();
+					}
+				} catch (e) {
+					throw new Error('Error setting badge. Message: ' + e.message);
+				}
+			};
+			if (_ready) {
+				_readyCb();
+			}
+		};
+
+		/**
+		 * Set image as icon
+		 */
+		var image = function (imageElement) {
+			_readyCb = function () {
+				try {
+					var w = imageElement.width;
+					var h = imageElement.height;
+					var newImg = document.createElement('img');
+					var ratio = (w / _w < h / _h) ? (w / _w) : (h / _h);
+					newImg.setAttribute('crossOrigin', 'anonymous');
+					newImg.onload=function(){
+						_context.clearRect(0, 0, _w, _h);
+						_context.drawImage(newImg, 0, 0, _w, _h);
+						link.setIcon(_canvas);
+					};
+					newImg.setAttribute('src', imageElement.getAttribute('src'));
+					newImg.height = (h / ratio);
+					newImg.width = (w / ratio);
+				} catch (e) {
+					throw new Error('Error setting image. Message: ' + e.message);
+				}
+			};
+			if (_ready) {
+				_readyCb();
+			}
+		};
+		/**
+		 * Set video as icon
+		 */
+		var video = function (videoElement) {
+			_readyCb = function () {
+				try {
+					if (videoElement === 'stop') {
+						_stop = true;
+						icon.reset();
+						_stop = false;
+						return;
+					}
+					//var w = videoElement.width;
+					//var h = videoElement.height;
+					//var ratio = (w / _w < h / _h) ? (w / _w) : (h / _h);
+					videoElement.addEventListener('play', function () {
+						drawVideo(this);
+					}, false);
+
+				} catch (e) {
+					throw new Error('Error setting video. Message: ' + e.message);
+				}
+			};
+			if (_ready) {
+				_readyCb();
+			}
+		};
+		/**
+		 * Set video as icon
+		 */
+		var webcam = function (action) {
+			//UR
+			if (!window.URL || !window.URL.createObjectURL) {
+				window.URL = window.URL || {};
+				window.URL.createObjectURL = function (obj) {
+					return obj;
+				};
+			}
+			if (_browser.supported) {
+				var newVideo = false;
+				navigator.getUserMedia = navigator.getUserMedia || navigator.oGetUserMedia || navigator.msGetUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+				_readyCb = function () {
+					try {
+						if (action === 'stop') {
+							_stop = true;
+							icon.reset();
+							_stop = false;
+							return;
+						}
+						newVideo = document.createElement('video');
+						newVideo.width = _w;
+						newVideo.height = _h;
+						navigator.getUserMedia({
+							video: true,
+							audio: false
+						}, function (stream) {
+							newVideo.src = URL.createObjectURL(stream);
+							newVideo.play();
+							drawVideo(newVideo);
+						}, function () {
+						});
+					} catch (e) {
+						throw new Error('Error setting webcam. Message: ' + e.message);
+					}
+				};
+				if (_ready) {
+					_readyCb();
+				}
+			}
+
+		};
+
+		/**
+		 * Draw video to context and repeat :)
+		 */
+		function drawVideo(video) {
+			if (video.paused || video.ended || _stop) {
+				return false;
+			}
+			//nasty hack for FF webcam (Thanks to Julian Ćwirko, kontakt@redsunmedia.pl)
+			try {
+				_context.clearRect(0, 0, _w, _h);
+				_context.drawImage(video, 0, 0, _w, _h);
+			} catch (e) {
+
+			}
+			_drawTimeout = setTimeout(function () {
+				drawVideo(video);
+			}, animation.duration);
+			link.setIcon(_canvas);
+		}
+
+		var link = {};
+		/**
+		 * Get icon from HEAD tag or create a new <link> element
+		 */
+		link.getIcon = function () {
+			var elm = false;
+			//get link element
+			var getLink = function () {
+				var link = _doc.getElementsByTagName('head')[0].getElementsByTagName('link');
+				for (var l = link.length, i = (l - 1); i >= 0; i--) {
+					if ((/(^|\s)icon(\s|$)/i).test(link[i].getAttribute('rel'))) {
+						return link[i];
+					}
+				}
+				return false;
+			};
+			if (_opt.element) {
+				elm = _opt.element;
+			} else if (_opt.elementId) {
+				//if img element identified by elementId
+				elm = _doc.getElementById(_opt.elementId);
+				elm.setAttribute('href', elm.getAttribute('src'));
+			} else {
+				//if link element
+				elm = getLink();
+				if (elm === false) {
+					elm = _doc.createElement('link');
+					elm.setAttribute('rel', 'icon');
+					_doc.getElementsByTagName('head')[0].appendChild(elm);
+				}
+			}
+			elm.setAttribute('type', 'image/png');
+			return elm;
+		};
+		link.setIcon = function (canvas) {
+			var url = canvas.toDataURL('image/png');
+			if (_opt.dataUrl) {
+				//if using custom exporter
+				_opt.dataUrl(url);
+			}
+			if (_opt.element) {
+				_opt.element.setAttribute('href', url);
+				_opt.element.setAttribute('src', url);
+			} else if (_opt.elementId) {
+				//if is attached to element (image)
+				var elm = _doc.getElementById(_opt.elementId);
+				elm.setAttribute('href', url);
+				elm.setAttribute('src', url);
+			} else {
+				//if is attached to fav icon
+				if (_browser.ff || _browser.opera) {
+					//for FF we need to "recreate" element, atach to dom and remove old <link>
+					//var originalType = _orig.getAttribute('rel');
+					var old = _orig;
+					_orig = _doc.createElement('link');
+					//_orig.setAttribute('rel', originalType);
+					if (_browser.opera) {
+						_orig.setAttribute('rel', 'icon');
+					}
+					_orig.setAttribute('rel', 'icon');
+					_orig.setAttribute('type', 'image/png');
+					_doc.getElementsByTagName('head')[0].appendChild(_orig);
+					_orig.setAttribute('href', url);
+					if (old.parentNode) {
+						old.parentNode.removeChild(old);
+					}
+				} else {
+					_orig.setAttribute('href', url);
+				}
+			}
+		};
+
+		//http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb#answer-5624139
+		//HEX to RGB convertor
+		function hexToRgb(hex) {
+			var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+			hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+				return r + r + g + g + b + b;
+			});
+			var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+			return result ? {
+				r: parseInt(result[1], 16),
+				g: parseInt(result[2], 16),
+				b: parseInt(result[3], 16)
+			} : false;
+		}
+
+		/**
+		 * Merge options
+		 */
+		function merge(def, opt) {
+			var mergedOpt = {};
+			var attrname;
+			for (attrname in def) {
+				mergedOpt[attrname] = def[attrname];
+			}
+			for (attrname in opt) {
+				mergedOpt[attrname] = opt[attrname];
+			}
+			return mergedOpt;
+		}
+
+		/**
+		 * Cross-browser page visibility shim
+		 * http://stackoverflow.com/questions/12536562/detect-whether-a-window-is-visible
+		 */
+		function isPageHidden() {
+			return _doc.hidden || _doc.msHidden || _doc.webkitHidden || _doc.mozHidden;
+		}
+
+		/**
+		 * @namespace animation
+		 */
+		var animation = {};
+		/**
+		 * Animation "frame" duration
+		 */
+		animation.duration = 40;
+		/**
+		 * Animation types (none,fade,pop,slide)
+		 */
+		animation.types = {};
+		animation.types.fade = [{
+			x: 0.4,
+			y: 0.4,
+			w: 0.6,
+			h: 0.6,
+			o: 0.0
+		}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 0.1
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 0.2
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 0.3
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 0.4
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 0.5
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 0.6
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 0.7
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 0.8
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 0.9
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 1.0
+			}];
+		animation.types.none = [{
+			x: 0.4,
+			y: 0.4,
+			w: 0.6,
+			h: 0.6,
+			o: 1
+		}];
+		animation.types.pop = [{
+			x: 1,
+			y: 1,
+			w: 0,
+			h: 0,
+			o: 1
+		}, {
+				x: 0.9,
+				y: 0.9,
+				w: 0.1,
+				h: 0.1,
+				o: 1
+			}, {
+				x: 0.8,
+				y: 0.8,
+				w: 0.2,
+				h: 0.2,
+				o: 1
+			}, {
+				x: 0.7,
+				y: 0.7,
+				w: 0.3,
+				h: 0.3,
+				o: 1
+			}, {
+				x: 0.6,
+				y: 0.6,
+				w: 0.4,
+				h: 0.4,
+				o: 1
+			}, {
+				x: 0.5,
+				y: 0.5,
+				w: 0.5,
+				h: 0.5,
+				o: 1
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 1
+			}];
+		animation.types.popFade = [{
+			x: 0.75,
+			y: 0.75,
+			w: 0,
+			h: 0,
+			o: 0
+		}, {
+				x: 0.65,
+				y: 0.65,
+				w: 0.1,
+				h: 0.1,
+				o: 0.2
+			}, {
+				x: 0.6,
+				y: 0.6,
+				w: 0.2,
+				h: 0.2,
+				o: 0.4
+			}, {
+				x: 0.55,
+				y: 0.55,
+				w: 0.3,
+				h: 0.3,
+				o: 0.6
+			}, {
+				x: 0.50,
+				y: 0.50,
+				w: 0.4,
+				h: 0.4,
+				o: 0.8
+			}, {
+				x: 0.45,
+				y: 0.45,
+				w: 0.5,
+				h: 0.5,
+				o: 0.9
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 1
+			}];
+		animation.types.slide = [{
+			x: 0.4,
+			y: 1,
+			w: 0.6,
+			h: 0.6,
+			o: 1
+		}, {
+				x: 0.4,
+				y: 0.9,
+				w: 0.6,
+				h: 0.6,
+				o: 1
+			}, {
+				x: 0.4,
+				y: 0.9,
+				w: 0.6,
+				h: 0.6,
+				o: 1
+			}, {
+				x: 0.4,
+				y: 0.8,
+				w: 0.6,
+				h: 0.6,
+				o: 1
+			}, {
+				x: 0.4,
+				y: 0.7,
+				w: 0.6,
+				h: 0.6,
+				o: 1
+			}, {
+				x: 0.4,
+				y: 0.6,
+				w: 0.6,
+				h: 0.6,
+				o: 1
+			}, {
+				x: 0.4,
+				y: 0.5,
+				w: 0.6,
+				h: 0.6,
+				o: 1
+			}, {
+				x: 0.4,
+				y: 0.4,
+				w: 0.6,
+				h: 0.6,
+				o: 1
+			}];
+		/**
+		 * Run animation
+		 * @param {Object} opt Animation options
+		 * @param {Object} cb Callabak after all steps are done
+		 * @param {Object} revert Reverse order? true|false
+		 * @param {Object} step Optional step number (frame bumber)
+		 */
+		animation.run = function (opt, cb, revert, step) {
+			var animationType = animation.types[isPageHidden() ? 'none' : _opt.animation];
+			if (revert === true) {
+				step = (typeof step !== 'undefined') ? step : animationType.length - 1;
+			} else {
+				step = (typeof step !== 'undefined') ? step : 0;
+			}
+			cb = (cb) ? cb : function () {
+			};
+			if ((step < animationType.length) && (step >= 0)) {
+				type[_opt.type](merge(opt, animationType[step]));
+				_animTimeout = setTimeout(function () {
+					if (revert) {
+						step = step - 1;
+					} else {
+						step = step + 1;
+					}
+					animation.run(opt, cb, revert, step);
+				}, animation.duration);
+
+				link.setIcon(_canvas);
+			} else {
+				cb();
+				return;
+			}
+		};
+		//auto init
+		init();
+		return {
+			badge: badge,
+			video: video,
+			image: image,
+			webcam: webcam,
+			reset: icon.reset,
+			browser: {
+				supported: _browser.supported
+			}
+		};
+	});
+
+	// AMD / RequireJS
+	if (typeof define !== 'undefined' && define.amd) {
+		define([], function () {
+			return Favico;
+		});
+	}
+	// CommonJS
+	else if (typeof module !== 'undefined' && module.exports) {
+		module.exports = Favico;
+	}
+	// included directly via <script> tag
+	else {
+		this.Favico = Favico;
+	}
+
+})();

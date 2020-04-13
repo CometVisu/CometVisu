@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/table/IColumnMenuButton.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "properties",
+    "menu",
+    "members",
+    "factory",
+    "item",
+    "options",
+    "empty",
+    "ui",
+    "table",
+    "IColumnMenuButton"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,+BAApB,EACA;AACEC,IAAAA,UAAU,EACV;AACE;;;AAGAC,MAAAA,IAAI,EAAG;AAJT,KAFF;AASEC,IAAAA,OAAO,EACP;AACE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA2CAC,MAAAA,OAAO,EAAG,iBAASC,IAAT,EAAeC,OAAf,EACV;AACE,eAAO,IAAP;AACD,OA/CH;;AAiDE;;;;;AAKAC,MAAAA,KAAK,EAAG,iBACR;AACE,eAAO,IAAP;AACD;AAzDH;AAVF,GADA;AArBAZ,EAAAA,EAAE,CAACa,EAAH,CAAMC,KAAN,CAAYC,iBAAZ,CAA8BZ,aAA9B,GAA8CA,aAA9C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2009 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Interface for creating the column visibility menu\n */\nqx.Interface.define(\"qx.ui.table.IColumnMenuButton\",\n{\n  properties :\n  {\n    /**\n     * The menu which is displayed when this button is pressed.\n     */\n    menu : { }\n  },\n\n  members :\n  {\n    /**\n     * Instantiate a sub-widget.\n     *\n     * @param item {String}\n     *   One of the following strings, indicating what type of\n     *   column-menu-specific object to instantiate:\n     *   <dl>\n     *     <dt>menu</dt>\n     *     <dd>\n     *       Instantiate a menu which will appear when the column visibility\n     *       button is pressed. No options are provided in this case.\n     *     </dd>\n     *     <dt>menu-button</dt>\n     *     <dd>\n     *       Instantiate a button to correspond to a column within the\n     *       table. The options are a map containing <i>text</i>, the name of\n     *       the column; <i>column</i>, the column number; and\n     *       <i>bVisible</i>, a boolean indicating whether this column is\n     *       currently visible. The instantiated return object must implement\n     *       interface {@link qx.ui.table.IColumnMenuItem}\n     *     </dd>\n     *     <dt>user-button</dt>\n     *     <dd>\n     *       Instantiate a button for other than a column name. This is used,\n     *       for example, to add the \"Reset column widths\" button when the\n     *       Resize column model is requested. The options is a map containing\n     *       <i>text</i>, the text to present in the button.\n     *     </dd>\n     *     <dt>separator</dt>\n     *     <dd>\n     *       Instantiate a separator object to added to the menu. This is\n     *       used, for example, to separate the table column name list from\n     *       the \"Reset column widths\" button when the Resize column model is\n     *       requested. No options are provided in this case.\n     *     </dd>\n     *   </dl>\n     *\n     * @param options {Map}\n     *   Options specific to the <i>item</i> being requested.\n     *\n     * @return {qx.ui.core.Widget}\n     *   The instantiated object as specified by <i>item</i>.\n     */\n    factory : function(item, options)\n    {\n      return true;\n    },\n\n    /**\n     * Empty the menu of all items, in preparation for building a new column\n     * visibility menu.\n     *\n     */\n    empty : function()\n    {\n      return true;\n    }\n  }\n});\n"
+  ]
+}

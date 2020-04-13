@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/io/remote/RpcError.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "qx1",
+    "origin",
+    "Server",
+    "Application",
+    "Transport",
+    "Client",
+    "error",
+    "server",
+    "ScriptError",
+    "Unknown",
+    "IllegalService",
+    "ServiceNotFound",
+    "ClassNotFound",
+    "MethodNotFound",
+    "ParameterMismatch",
+    "PermissionDenied",
+    "v2",
+    "ParseError",
+    "InvalidRequest",
+    "InvalidParams",
+    "InternalError",
+    "io",
+    "remote",
+    "RpcError"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,GAAG,EACH;AACE;AACAC,QAAAA,MAAM,EACN;AACEC,UAAAA,MAAM,EAAQ,CADhB;AAEEC,UAAAA,WAAW,EAAG,CAFhB;AAGEC,UAAAA,SAAS,EAAK,CAHhB;AAIEC,UAAAA,MAAM,EAAQ;AAJhB,SAHF;;AAUE;;;;AAIAC,QAAAA,KAAK,EACL;AACE;AACAC,UAAAA,MAAM,EACN;AACE;;;;;;AAMAC,YAAAA,WAAW,EAAS,CAAC,CAPvB;;AAUE;;;;;;;AAOAC,YAAAA,OAAO,EAAa,CAjBtB;;AAoBE;;;;;;AAMAC,YAAAA,cAAc,EAAM,CA1BtB;;AA6BE;;;;;AAKAC,YAAAA,eAAe,EAAK,CAlCtB;;AAqCE;;;;;;;;;AASAC,YAAAA,aAAa,EAAO,CA9CtB;AA8CyB;;AAGvB;;;;;;AAMAC,YAAAA,cAAc,EAAM,CAvDtB;;AA0DE;;;;;;;;;;AAUAC,YAAAA,iBAAiB,EAAG,CApEtB;;AAuEE;;;;;;;;;;AAUAC,YAAAA,gBAAgB,EAAI;AAjFtB;AAHF;AAfF,OAHF;;AA2GE;AACAC,MAAAA,EAAE,EACF;AACE;;;;AAIAV,QAAAA,KAAK,EACL;AACE;;;;;;AAMAW,UAAAA,UAAU,EAAO,CAAC,KAPpB;;AASE;;;;;AAKAC,UAAAA,cAAc,EAAG,CAAC,KAdpB;;AAgBE;;;;;;AAMAL,UAAAA,cAAc,EAAG,CAAC,KAtBpB;;AAwBE;;;;;;;AAOAM,UAAAA,aAAa,EAAI,CAAC,KA/BpB;;AAiCE;;;AAGAC,UAAAA,aAAa,EAAI,CAAC,KApCpB;;AAsCE;;;;;;AAMA;;;;;;;;;;AAUAL,UAAAA,gBAAgB,EAAI,CAAC;AAtDvB;AANF;AA7GF;AAFF,GADA;AArBAtB,EAAAA,EAAE,CAAC4B,EAAH,CAAMC,MAAN,CAAaC,QAAb,CAAsB3B,aAAtB,GAAsCA,aAAtC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * The well-defined error codes for JSON-RPC.\n */\nqx.Class.define(\"qx.io.remote.RpcError\",\n{\n  statics :\n  {\n    /** Information pertaining to qooxdoo's modified JSON-RPC Version 1 */\n    qx1:\n    {\n      /** Origin of the error */\n      origin :\n      {\n        Server      : 1,\n        Application : 2,\n        Transport   : 3,\n        Client      : 4\n      },\n\n      /**\n       * Error data. In Version 1, each origin can have its own error codes.\n       * Only 'Server' error codes are globally-defined, however.\n       */\n      error :\n      {\n        /** Error codes for the Server origin */\n        server :\n        {\n          /*\n           * Script Error\n           *\n           * An error was thrown during the processing of a remote procedure\n           * call.\n           */\n          ScriptError       : -1,\n\n\n          /*\n           * Unknown Error\n           *\n           * The default error code, used only when no specific error code is\n           * passed to the JsonRpcError constructor.  This code should\n           * generally not be used.\n           */\n          Unknown           : 0,\n\n\n          /**\n           * Illegal Service\n           *\n           * The service name contains illegal characters or is otherwise\n           * deemed unacceptable to the JSON-RPC server.\n           */\n          IllegalService    : 1,\n\n\n          /**\n           * Service Not Found\n           *\n           * The requested service does not exist at the JSON-RPC server.\n           */\n          ServiceNotFound   : 2,\n\n\n          /**\n           * Class Not Found\n           *\n           * If the JSON-RPC server divides service methods into subsets\n           * (classes), this indicates that the specified class was not found.\n           * This is slightly more detailed than \"Method Not Found\", but that\n           * error would always also be legal (and true) whenever this one is\n           * returned. (Not used in this implementation)\n           */\n          ClassNotFound     : 3, // not used in this implementation\n\n\n          /**\n           * Method Not Found\n           *\n           * The method specified in the request is not found in the requested\n           * service.\n           */\n          MethodNotFound    : 4,\n\n\n          /**\n           * Parameter Mismatch\n           *\n           * If a method discovers that the parameters (arguments) provided to\n           * it do not match the requisite types for the method's parameters,\n           * it should return this error code to indicate so to the caller.\n           *\n           * This error is also used to indicate an illegal parameter value,\n           * in server scripts.\n           */\n          ParameterMismatch : 5,\n\n\n          /**\n           * Permission Denied\n           *\n           * A JSON-RPC service provider can require authentication, and that\n           * authentication can be implemented such the method takes\n           * authentication parameters, or such that a method or class of\n           * methods requires prior authentication.  If the caller has not\n           * properly authenticated to use the requested method, this error\n           * code is returned.\n           */\n          PermissionDenied  : 6\n        }\n      }\n    },\n\n    /** Information pertaining to a conformant JSON-RPC Version 2 */\n    v2 :\n    {\n      /**\n       * Error data. In Version 1, each origin can have its own error codes.\n       * Only 'Server' error codes are globally-defined, however.\n       */\n      error :\n      {\n        /**\n         * Parse Error\n         *\n         * Invalid JSON was received by the server.\n         * An error occurred on the server while parsing the JSON text.\n         */\n        ParseError     : -32700,\n\n        /**\n         * Invalid Request\n         *\n         * The JSON received by the server is not a valid Request object.\n         */\n        InvalidRequest : -32600,\n\n        /**\n         * Method Not Found\n         *\n         * The method specified in the request is not found in the requested\n         * service.\n         */\n        MethodNotFound : -32601,\n\n        /**\n         * Invalid method parameter(s)\n         *\n         * If a method discovers that the parameters (arguments) provided to\n         * it do not match the requisite types for the method's parameters,\n         * it should return this error code to indicate so to the caller.\n         */\n        InvalidParams  : -32602,\n\n        /**\n         * Internal JSON-RPC error\n         */\n        InternalError  : -32603,\n\n        /*********************************************************************\n         * The values -32099 to -32000 are reserved for implementation-defined\n         * server errors. RPC-specific error codes must be outside of this\n         * range, and should generally be positive values.\n         *********************************************************************/\n\n        /**\n         * Permission Denied\n         *\n         * A JSON-RPC service provider can require authentication, and that\n         * authentication can be implemented such the method takes\n         * authentication parameters, or such that a method or class of\n         * methods requires prior authentication.  If the caller has not\n         * properly authenticated to use the requested method, this error\n         * code is returned.\n         */\n        PermissionDenied  : -32000\n      }\n    }\n  }\n});\n"
+  ]
+}

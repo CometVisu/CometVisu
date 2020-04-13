@@ -1,0 +1,38 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/util/Permutation.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "permute",
+    "options",
+    "callback",
+    "context",
+    "keys",
+    "Object",
+    "map",
+    "indices",
+    "i",
+    "length",
+    "key",
+    "_perm",
+    "index",
+    "ignore",
+    "values",
+    "call",
+    "window",
+    "util",
+    "Permutation"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;;;;;;;;;;;;;;;;;;;;;;;;AAwBAC,MAAAA,OAAO,EAAG,iBAASC,OAAT,EAAkBC,QAAlB,EAA4BC,OAA5B,EACV;AACE,YAAIC,IAAI,GAAGC,MAAM,CAACD,IAAP,CAAYH,OAAZ,CAAX,CADF,CAGE;;AACA,YAAIK,GAAG,GAAG,EAAV;AACA,YAAIC,OAAO,GAAG,EAAd;;AACA,aAAK,IAAIC,CAAC,GAAC,CAAX,EAAcA,CAAC,GAACJ,IAAI,CAACK,MAArB,EAA6BD,CAAC,EAA9B,EACA;AACED,UAAAA,OAAO,CAACC,CAAD,CAAP,GAAa,CAAb;AACA,cAAIE,GAAG,GAAGN,IAAI,CAACI,CAAD,CAAd;AACAF,UAAAA,GAAG,CAACI,GAAD,CAAH,GAAWT,OAAO,CAACS,GAAD,CAAP,CAAa,CAAb,CAAX;AACD;;AAED,YAAIC,KAAK,GAAG,SAARA,KAAQ,CAASC,KAAT,EAAgBC,MAAhB,EACZ;AACE,cAAID,KAAK,IAAIR,IAAI,CAACK,MAAlB,EAA0B;AACxB;AACD;;AAED,cAAIC,GAAG,GAAGN,IAAI,CAACQ,KAAD,CAAd;AACA,cAAIE,MAAM,GAAGb,OAAO,CAACS,GAAD,CAApB;;AAEA,eAAK,IAAIF,CAAC,GAAC,CAAX,EAAcA,CAAC,GAACM,MAAM,CAACL,MAAvB,EAA+BD,CAAC,EAAhC,EACA;AACE,gBAAIK,MAAM,KAAKL,CAAf,EACA;AACED,cAAAA,OAAO,CAACK,KAAD,CAAP,GAAiBJ,CAAjB;AACAF,cAAAA,GAAG,CAACI,GAAD,CAAH,GAAWI,MAAM,CAACN,CAAD,CAAjB;AACAN,cAAAA,QAAQ,CAACa,IAAT,CAAcZ,OAAO,IAAIa,MAAzB,EAAiCV,GAAjC;AACD;;AACDK,YAAAA,KAAK,CAACC,KAAK,GAAC,CAAP,EAAUL,OAAO,CAACK,KAAK,GAAC,CAAP,CAAjB,CAAL;AACD;AACF,SAnBD;;AAqBAD,QAAAA,KAAK,CAAC,CAAD,EAAI,CAAC,CAAL,CAAL;AACD;AA7DH;AAFF,GADA;AAHAlB,EAAAA,EAAE,CAACwB,IAAH,CAAQC,WAAR,CAAoBtB,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/**\n * Generate permutations of a map.\n */\nqx.Class.define(\"qx.util.Permutation\",\n{\n  statics :\n  {\n    /**\n     * The first parameter is a map with array values. This function computes\n     * all combinations of the array values and call the callback for each\n     * combination.\n     *\n     * e.g. a value of\n     * <pre class=\"javascript\">\n     *   {\n     *     a: [1, 2],\n     *     b: [\"a\", \"b\"]\n     *   }\n     * </pre>\n     * would call the callback for each of these maps:\n     * <pre class=\"javascript\">\n     *  { a: 1, b: \"a\" },\n     *  { a: 1, b: \"b\" },\n     *  { a: 2, b: \"a\" },\n     *  { a: 2, b: \"b\" }\n     * </pre>\n     *\n     * @param options {Map} map with array values to generate the permutations of\n     * @param callback {Function} This callback is called for each permuted map\n     * @param context {Object} The callback's <code>this</code> context.\n     */\n    permute : function(options, callback, context)\n    {\n      var keys = Object.keys(options);\n\n      // init\n      var map = {};\n      var indices = [];\n      for (var i=0; i<keys.length; i++)\n      {\n        indices[i] = 0;\n        var key = keys[i];\n        map[key] = options[key][0];\n      }\n\n      var _perm = function(index, ignore)\n      {\n        if (index >= keys.length) {\n          return;\n        }\n\n        var key = keys[index];\n        var values = options[key];\n\n        for (var i=0; i<values.length; i++)\n        {\n          if (ignore !== i)\n          {\n            indices[index] = i;\n            map[key] = values[i];\n            callback.call(context || window, map);\n          }\n          _perm(index+1, indices[index+1]);\n        }\n      };\n\n      _perm(0, -1);\n    }\n  }\n});"
+  ]
+}

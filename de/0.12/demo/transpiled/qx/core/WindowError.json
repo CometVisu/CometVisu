@@ -1,0 +1,288 @@
+{
+  "className": "qx.core.WindowError",
+  "packageName": "qx.core",
+  "name": "WindowError",
+  "superClass": "Error",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 125,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>This exception is thrown by the {@link qx.event.GlobalError} handler if a\n <code>window.onerror</code> event occurs in the browser.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 43,
+        "column": 14
+      },
+      "end": {
+        "line": 59,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
+        },
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "failMessage {String} The error message",
+          "paramName": "failMessage",
+          "description": " The error message",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "uri {String} URI where error was raised",
+          "paramName": "uri",
+          "description": " URI where error was raised",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "lineNumber {Integer} The line number where the error was raised",
+          "paramName": "lineNumber",
+          "description": " The line number where the error was raised",
+          "type": "Integer"
+        },
+        {
+          "name": "@param",
+          "body": "columnNumber {Integer} The column number where the error was raised",
+          "paramName": "columnNumber",
+          "description": " The column number where the error was raised",
+          "type": "Integer"
+        },
+        {
+          "name": "@param",
+          "body": "sourceException {Error} orginal error",
+          "paramName": "sourceException",
+          "description": " orginal error",
+          "type": "Error"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__failMessage": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__uri": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 16
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__lineNumber": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 73,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__columnNumber": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__sourceException": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getUri": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the URI where error was raised</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} URI where error was raised",
+            "type": "String",
+            "description": " URI where error was raised"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getLineNumber": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 105,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the line number where the error was raised</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The line number where the error was raised",
+            "type": "Integer",
+            "description": " The line number where the error was raised"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getColumnNumber": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the column number where the error was raised</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The line number where the error was raised",
+            "type": "Integer",
+            "description": " The line number where the error was raised"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSourceException": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 123,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the source exception</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Error} The source error",
+            "type": "Error",
+            "description": " The source error"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

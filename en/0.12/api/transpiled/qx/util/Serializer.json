@@ -1,0 +1,266 @@
+{
+  "className": "qx.util.Serializer",
+  "packageName": "qx.util",
+  "name": "Serializer",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 374,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>This is an util class responsible for serializing qooxdoo objects.</p>"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.data, qx.data.IListData"
+        },
+        {
+          "name": "@ignore",
+          "body": "qx.locale, qx.locale.LocalizedString"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "toUriParameter": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Serializes the properties of the given qooxdoo object. To get the\n serialization working, every property needs to have a string\n representation because the value of the property will be concatenated to the\n serialized string.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {qx.core.Object} Any qooxdoo object",
+            "paramName": "object",
+            "description": " Any qooxdoo object",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "qxSerializer {Function?} Function used for serializing qooxdoo\n   objects stored in the properties of the object. Check for the type of\n   classes <ou want to serialize and return the serialized value. In all\n   other cases, just return nothing.",
+            "paramName": "qxSerializer",
+            "description": " Function used for serializing qooxdoo\n   objects stored in the properties of the object. Check for the type of\n   classes <ou want to serialize and return the serialized value. In all\n   other cases, just return nothing.",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "dateFormat {qx.util.format.DateFormat?} If a date formater is given,\n   the format method of this given formater is used to convert date\n   objects into strings.",
+            "paramName": "dateFormat",
+            "description": " If a date formater is given,\n   the format method of this given formater is used to convert date\n   objects into strings.",
+            "optional": true,
+            "type": "qx.util.format.DateFormat"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The serialized object.",
+            "type": "String",
+            "description": " The serialized object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__toUriParameter": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method for {@link #toUriParameter}. Check for qooxdoo objects\n and returns the serialized name value pair for the given parameter.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} The name of the value",
+            "paramName": "name",
+            "description": " The name of the value",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value itself",
+            "paramName": "value",
+            "description": " The value itself",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "qxSerializer {Function?} The serializer for qooxdoo objects.",
+            "paramName": "qxSerializer",
+            "description": " The serializer for qooxdoo objects.",
+            "optional": true,
+            "type": "Function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The serialized name value pair.",
+            "type": "String",
+            "description": " The serialized name value pair."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "toNativeObject": {
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4
+        },
+        "end": {
+          "line": 242,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Serializes the properties of the given qooxdoo object into a native\n object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {qx.core.Object}\n   Any qooxdoo object",
+            "paramName": "object",
+            "description": "\n   Any qooxdoo object",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "qxSerializer {Function?}\n   Function used for serializing qooxdoo objects stored in the properties\n   of the object. Check for the type of classes you want to serialize\n   and return the serialized value. In all other cases, just return\n   nothing.",
+            "paramName": "qxSerializer",
+            "description": "\n   Function used for serializing qooxdoo objects stored in the properties\n   of the object. Check for the type of classes you want to serialize\n   and return the serialized value. In all other cases, just return\n   nothing.",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "dateFormat {qx.util.format.DateFormat?} If a date formater is given,\n   the format method of this given formater is used to convert date\n   objects into strings.",
+            "paramName": "dateFormat",
+            "description": " If a date formater is given,\n   the format method of this given formater is used to convert date\n   objects into strings.",
+            "optional": true,
+            "type": "qx.util.format.DateFormat"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|Array|String|Object}\n   The serialized object. Depending on the input qooxdoo object, the returning\n   type will vary.",
+            "type": "null|Array|String|Object",
+            "description": "\n   The serialized object. Depending on the input qooxdoo object, the returning\n   type will vary."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toJson": {
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 4
+        },
+        "end": {
+          "line": 372,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Serializes the properties of the given qooxdoo object into a json object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {qx.core.Object} Any qooxdoo object",
+            "paramName": "object",
+            "description": " Any qooxdoo object",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "qxSerializer {Function?} Function used for serializing qooxdoo\n   objects stored in the properties of the object. Check for the type of\n   classes <ou want to serialize and return the serialized value. In all\n   other cases, just return nothing.",
+            "paramName": "qxSerializer",
+            "description": " Function used for serializing qooxdoo\n   objects stored in the properties of the object. Check for the type of\n   classes <ou want to serialize and return the serialized value. In all\n   other cases, just return nothing.",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "dateFormat {qx.util.format.DateFormat?} If a date formater is given,\n   the format method of this given formater is used to convert date\n   objects into strings.",
+            "paramName": "dateFormat",
+            "description": " If a date formater is given,\n   the format method of this given formater is used to convert date\n   objects into strings.",
+            "optional": true,
+            "type": "qx.util.format.DateFormat"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The serialized object.",
+            "type": "String",
+            "description": " The serialized object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

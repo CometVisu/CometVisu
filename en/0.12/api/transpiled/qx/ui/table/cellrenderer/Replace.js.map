@@ -1,0 +1,45 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/table/cellrenderer/Replace.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "table",
+    "cellrenderer",
+    "Default",
+    "properties",
+    "replaceMap",
+    "check",
+    "nullable",
+    "init",
+    "replaceFunction",
+    "members",
+    "_getContentHtml",
+    "cellInfo",
+    "value",
+    "getReplaceMap",
+    "replaceFunc",
+    "getReplaceFunction",
+    "label",
+    "bom",
+    "String",
+    "escape",
+    "_formatValue",
+    "addReversedReplaceMap",
+    "map",
+    "key",
+    "Replace"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAmBA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAyCAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,kCAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,KAAN,CAAYC,YAAZ,CAAyBC,OADpC;;AAGE;;;;;AAMAC,IAAAA,UAAU,EACV;AAEE;AACAC,MAAAA,UAAU,EACV;AACEC,QAAAA,KAAK,EAAG,QADV;AAEEC,QAAAA,QAAQ,EAAG,IAFb;AAGEC,QAAAA,IAAI,EAAG;AAHT,OAJF;;AAUE;;;AAGAC,MAAAA,eAAe,EACf;AACEH,QAAAA,KAAK,EAAG,UADV;AAEEC,QAAAA,QAAQ,EAAG,IAFb;AAGEC,QAAAA,IAAI,EAAG;AAHT;AAdF,KAVF;;AAiCE;;;;;AAMAE,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,eAAe,EAAG,yBAASC,QAAT,EAClB;AACE,YAAIC,KAAK,GAAWD,QAAQ,CAACC,KAA7B;AACA,YAAIR,UAAU,GAAM,KAAKS,aAAL,EAApB;AACA,YAAIC,WAAW,GAAK,KAAKC,kBAAL,EAApB;AACA,YAAIC,KAAJ,CAJF,CAME;;AACA,YAAKZ,UAAL,EACA;AACEY,UAAAA,KAAK,GAAGZ,UAAU,CAACQ,KAAD,CAAlB;;AACA,cAAK,OAAOI,KAAP,IAAgB,WAArB,EACA;AACEL,YAAAA,QAAQ,CAACC,KAAT,GAAiBI,KAAjB;AACA,mBAAOxB,EAAE,CAACyB,GAAH,CAAOC,MAAP,CAAcC,MAAd,CAAqB,KAAKC,YAAL,CAAkBT,QAAlB,CAArB,CAAP;AACD;AACF,SAfH,CAiBE;;;AACA,YAAKG,WAAL,EACA;AACEH,UAAAA,QAAQ,CAACC,KAAT,GAAiBE,WAAW,CAAEF,KAAF,CAA5B;AACD;;AACD,eAAOpB,EAAE,CAACyB,GAAH,CAAOC,MAAP,CAAcC,MAAd,CAAqB,KAAKC,YAAL,CAAkBT,QAAlB,CAArB,CAAP;AACD,OA1BH;;AA4BE;;;;AAIAU,MAAAA,qBAAqB,EAAG,iCACxB;AACG,YAAIC,GAAG,GAAG,KAAKT,aAAL,EAAV;;AACA,aAAK,IAAIU,GAAT,IAAgBD,GAAhB,EACA;AACE,cAAIV,KAAK,GAAGU,GAAG,CAACC,GAAD,CAAf;AACAD,UAAAA,GAAG,CAACV,KAAD,CAAH,GAAaW,GAAb;AACD;;AACD,eAAO,IAAP;AACF;AAzCH;AAxCF,GADA;AA5DA/B,EAAAA,EAAE,CAACO,EAAH,CAAMC,KAAN,CAAYC,YAAZ,CAAyBuB,OAAzB,CAAiC7B,aAAjC,GAAiDA,aAAjD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007 by Christian Boulanger\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Boulanger (cboulanger)\n\n************************************************************************ */\n\n\n/**\n * The cell will use, if given, the\n * replaceMap property and/or the replaceFunction to look up labels for a\n * specific cell value. if the replaceMap, which does not need to be used but\n * takes precedence if given, has no entry for a specific value, you can implement\n * a fallback lookup in the replacementFunction, or use the replacementFunction exclusively.\n *\n * In editable cells, you need to make sure that the method returning the data\n * to the data storage (for example, a database backend) translates the replaced\n * cell value (the label) back into the corresponding value. Thus, both map and\n * function MUST also take care of the reverse translation of labels into\n * values. Example: if you have a field that should display \"Active\" on a \"1\"\n * value and \"Inactive\" on a \"0\" value, you must use the following map:\n *\n * <pre class='javascript'>\n * {\n *   0 : \"Inactive\",\n *   1 : \"Active\",\n *   \"Inactive\" : 0,\n *   \"Active\" : 1\n * }\n * </pre>\n *\n * You can use the addReversedReplaceMap() method to do this for you:\n * <pre class='javascript'>\n * var propertyCellRenderer = new qx.ui.table.cellrenderer.Replace;\n * propertyCellRenderer.setReplaceMap({\n *    1 : \"Active\",\n *   0 : \"Inactive\",\n *   2  : \"Waiting\",\n *   'admin' : \"System Administrator\",\n *   'manager' : \"User Manager\",\n *   'user' : \"Website User\"\n * });\n * propertyCellRenderer.addReversedReplaceMap();\n * </pre>\n *\n * @param cellInfo {Map} The information about the cell.\n *          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.\n * @return {String}\n */\nqx.Class.define(\"qx.ui.table.cellrenderer.Replace\",\n{\n  extend : qx.ui.table.cellrenderer.Default,\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n\n    /** a hashmap which is used to replace values by labels */\n    replaceMap :\n    {\n      check : \"Object\",\n      nullable : true,\n      init : null\n    },\n\n    /**\n     * function that provides the label for a specific value\n     **/\n    replaceFunction :\n    {\n      check : \"Function\",\n      nullable : true,\n      init : null\n    }\n\n  },\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden\n    _getContentHtml : function(cellInfo)\n    {\n      var value         = cellInfo.value;\n      var replaceMap    = this.getReplaceMap();\n      var replaceFunc   = this.getReplaceFunction();\n      var label;\n\n      // use map\n      if ( replaceMap  )\n      {\n        label = replaceMap[value];\n        if ( typeof label != \"undefined\" )\n        {\n          cellInfo.value = label;\n          return qx.bom.String.escape(this._formatValue(cellInfo));\n        }\n      }\n\n      // use function\n      if ( replaceFunc )\n      {\n        cellInfo.value = replaceFunc (value);\n      }\n      return qx.bom.String.escape(this._formatValue(cellInfo));\n    },\n\n    /**\n     * adds a reversed replaceMap to itself to translate labels back to the original values\n     * @return {Boolean} <code>true</code>\n     */\n    addReversedReplaceMap : function()\n    {\n       var map = this.getReplaceMap();\n       for (var key in map )\n       {\n         var value = map[key];\n         map[value] = key;\n       }\n       return true;\n    }\n  }\n});\n"
+  ]
+}

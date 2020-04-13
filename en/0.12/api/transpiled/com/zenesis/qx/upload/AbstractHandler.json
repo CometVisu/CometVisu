@@ -1,0 +1,949 @@
+{
+  "className": "com.zenesis.qx.upload.AbstractHandler",
+  "packageName": "com.zenesis.qx.upload",
+  "name": "AbstractHandler",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 326,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>****************************************************************\n</code></pre>\n<p>UploadMgr - provides an API for uploading one or multiple files\n   with progress feedback (on modern browsers), does not block the user\n   interface during uploads, supports cancelling uploads.\n   http://qooxdoo.org\n   Copyright:\n     2011 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     This software is provided under the same licensing terms as Qooxdoo,\n     please see the LICENSE file in the Qooxdoo project's top-level directory\n     for details.\n   Authors:\n John Spackman (john.spackman@zenesis.com)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Base class for upload implementations; operates a queue of pending and\n current uploads, and restricts the number of simultaneous uploads.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": true,
+  "isStatic": false,
+  "isSingleton": false,
+  "construct": {
+    "location": {
+      "start": {
+        "line": 38,
+        "column": 13
+      },
+      "end": {
+        "line": 45,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Constructor</p>"
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "uploader\n          {com.zenesis.qx.upload.UploadMgr} controller for uploading",
+          "paramName": "uploader",
+          "description": " controller for uploading",
+          "type": "com.zenesis.qx.upload.UploadMgr"
+        }
+      ]
+    }
+  },
+  "properties": {
+    "maxConnections": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximum number of simultaneous uploads</p>"
+          }
+        ]
+      },
+      "name": "maxConnections",
+      "propertyType": "new",
+      "event": "changeMaxConnections",
+      "nullable": false,
+      "init": 5,
+      "allowNull": false,
+      "check": "Integer",
+      "defaultValue": 5
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    }
+  },
+  "members": {
+    "__lastId": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 15
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Last unique ID used</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__uploader": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Uploader instance</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__queue": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Queue of com.zenesis.qx.upload.File's to send</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__current": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of com.zenesis.qx.upload.File's currently being sent</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__params": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 73,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parameters to post with the file</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "addFile": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a file to the upload queue; this does not start uploading until\n beginUploads is called.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "input\n          {DOM} either one input[type=file] or an array of\n          input[type=file]",
+            "paramName": "input",
+            "description": " either one input[type=file] or an array of\n          input[type=file]",
+            "type": "DOM"
+          },
+          {
+            "name": "@param",
+            "body": "widget\n          {Widget} the widget that trigger the upload",
+            "paramName": "widget",
+            "description": " the widget that trigger the upload",
+            "type": "Widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addBlob": {
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a blob to the upload list</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename    {String}  name of object",
+            "paramName": "filename",
+            "description": "  name of object",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "blob        {Blob}    the blob to upload",
+            "paramName": "blob",
+            "description": "    the blob to upload",
+            "type": "Blob"
+          },
+          {
+            "name": "@param",
+            "body": "params      {Object}  List of params added to the upload params",
+            "paramName": "params",
+            "description": "  List of params added to the upload params",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_addFile": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4
+        },
+        "end": {
+          "line": 117,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a file to the outbound queue</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file\n          {com.zenesis.qx.upload.File} the file to add",
+            "paramName": "file",
+            "description": " the file to add",
+            "type": "com.zenesis.qx.upload.File"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "beginUploads": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4
+        },
+        "end": {
+          "line": 130,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Begins spooling uploads to the server, up to the maxConnections</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "cancel": {
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancels a file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file\n          {com.zenesis.qx.upload.File} the file to cancel",
+            "paramName": "file",
+            "description": " the file to cancel",
+            "type": "com.zenesis.qx.upload.File"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "cancelAll": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 155,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancels all uploads</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_cancel": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4
+        },
+        "end": {
+          "line": 180,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancels a file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file\n          {com.zenesis.qx.upload.File} the file to cancel",
+            "paramName": "file",
+            "description": " the file to cancel",
+            "type": "com.zenesis.qx.upload.File"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onCompleted": {
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4
+        },
+        "end": {
+          "line": 211,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called by derived classes when a file has completed</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file\n          {com.zenesis.qx.upload.File} the file which has finsihed\n          uploading",
+            "paramName": "file",
+            "description": " the file which has finsihed\n          uploading",
+            "type": "com.zenesis.qx.upload.File"
+          },
+          {
+            "name": "@param",
+            "body": "response\n          {String} text received",
+            "paramName": "response",
+            "description": " text received",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getUploader": {
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4
+        },
+        "end": {
+          "line": 220,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the uploader</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{com.zenesis.qx.upload.UploadMgr}",
+            "type": "com.zenesis.qx.upload.UploadMgr",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getUniqueFileId": {
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4
+        },
+        "end": {
+          "line": 229,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Allocates a unique ID</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number}",
+            "type": "Number",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "addParam": {
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4
+        },
+        "end": {
+          "line": 245,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a parameter to send to the client</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key\n          {String} the name of the parameter",
+            "paramName": "key",
+            "description": " the name of the parameter",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value\n          {String} the value of the parameter",
+            "paramName": "value",
+            "description": " the value of the parameter",
+            "type": "String"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{1.0} see com.zenesis.qx.upload.UploadMgr.setParam or\n             com.zenesis.qx.upload.File.setParam"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getParams": {
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4
+        },
+        "end": {
+          "line": 257,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the paramaters map</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map",
+            "description": ""
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{1.0} see com.zenesis.qx.upload.File.getParam"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getMergedParams": {
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4
+        },
+        "end": {
+          "line": 291,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method that produces a final list of parameter values, by merging\n those set in this with those in the file.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file\n          {File} the file object",
+            "paramName": "file",
+            "description": " the file object",
+            "type": "com.zenesis.qx.upload.File"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} map of parameters to sent to the server",
+            "type": "Map",
+            "description": " map of parameters to sent to the server"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_createFile": {
+      "location": {
+        "start": {
+          "line": 301,
+          "column": 4
+        },
+        "end": {
+          "line": 303,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Implementation must create a com.zenesis.qx.upload.File or array of\n com.zenesis.qx.upload.File</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "input\n          {DOM} the DOM input[type=file]",
+            "paramName": "input",
+            "description": " the DOM input[type=file]",
+            "type": "DOM"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{com.zenesis.qx.upload.File|com.zenesis.qx.upload.File[]}",
+            "type": "com.zenesis.qx.upload.File|com.zenesis.qx.upload.File[]",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_doUpload": {
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4
+        },
+        "end": {
+          "line": 313,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called to do the real work of uploading the file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file\n          {com.zenesis.qx.upload.File}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_doCancel": {
+      "location": {
+        "start": {
+          "line": 321,
+          "column": 4
+        },
+        "end": {
+          "line": 323,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called to cancel the upload</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file\n          {com.zenesis.qx.upload.File} file to cancel uploading",
+            "paramName": "file",
+            "description": " file to cancel uploading",
+            "type": "com.zenesis.qx.upload.File"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getMaxConnections": {
+      "type": "function",
+      "name": "getMaxConnections",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>maxConnections</code>.\n\nFor further details take a look at the property definition: {@link #maxConnections}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for maxConnections"
+          }
+        ]
+      }
+    },
+    "setMaxConnections": {
+      "type": "function",
+      "name": "setMaxConnections",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>maxConnections</code>.\n\nFor further details take a look at the property definition: {@link #maxConnections}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for maxConnections"
+          }
+        ]
+      }
+    },
+    "resetMaxConnections": {
+      "type": "function",
+      "name": "resetMaxConnections",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxConnections</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxConnections}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": [
+    "com.zenesis.qx.upload.XhrHandler",
+    "com.zenesis.qx.upload.FormHandler"
+  ]
+}

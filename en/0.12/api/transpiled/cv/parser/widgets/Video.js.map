@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/parser/widgets/Video.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "parse",
+    "xml",
+    "path",
+    "flavour",
+    "pageType",
+    "cv",
+    "parser",
+    "WidgetParser",
+    "parseElement",
+    "getAttributeToPropertyMappings",
+    "target",
+    "transform",
+    "value",
+    "defer",
+    "addHandler",
+    "widgets",
+    "Video"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAoBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EAA2C;AACzCC,IAAAA,IAAI,EAAE,QADmC;;AAGzC;;;;;AAKAC,IAAAA,OAAO,EAAE;AACP;;;;;;;;;AASAC,MAAAA,KAAK,EAAE,eAAUC,GAAV,EAAeC,IAAf,EAAqBC,OAArB,EAA8BC,QAA9B,EAAwC;AAC7C,eAAOC,EAAE,CAACC,MAAH,CAAUC,YAAV,CAAuBC,YAAvB,CAAoC,IAApC,EAA0CP,GAA1C,EAA+CC,IAA/C,EAAqDC,OAArD,EAA8DC,QAA9D,EAAwE,KAAKK,8BAAL,EAAxE,CAAP;AACD,OAZM;AAcPA,MAAAA,8BAA8B,EAAE,0CAAY;AAC1C,eAAO;AACL,mBAAkB,EADb;AAEL,oBAAkB,EAFb;AAGL,iBAAkB,EAHb;AAIL,sBAAkB;AAAEC,YAAAA,MAAM,EAAE,UAAV;AAAsBC,YAAAA,SAAS,EAAE,mBAASC,KAAT,EAAgB;AACjE,qBAAOA,KAAK,KAAK,MAAjB;AACD;AAFiB;AAJb,SAAP;AAQD;AAvBM,KARgC;AAkCzCC,IAAAA,KAAK,EAAE,eAASd,OAAT,EAAkB;AACvB;AACAM,MAAAA,EAAE,CAACC,MAAH,CAAUC,YAAV,CAAuBO,UAAvB,CAAkC,OAAlC,EAA2Cf,OAA3C;AACD;AArCwC,GAA3C;AAvBAM,EAAAA,EAAE,CAACC,MAAH,CAAUS,OAAV,CAAkBC,KAAlB,CAAwBrB,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* Video.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n *\n */\nqx.Class.define('cv.parser.widgets.Video', {\n  type: \"static\",\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    /**\n     * Parses the widgets XML configuration and extracts the given information\n     * to a simple key/value map.\n     *\n     * @param xml {Element} XML-Element\n     * @param path {String} internal path of the widget\n     * @param flavour {String} Flavour of the widget\n     * @param pageType {String} Page type (2d, 3d, ...)\n     */\n    parse: function (xml, path, flavour, pageType) {\n      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());\n    },\n\n    getAttributeToPropertyMappings: function () {\n      return {\n        'width'       :   {},\n        'height'      :   {},\n        'src'         :   {},\n        'autoplay'    :   { target: 'autoplay', transform: function(value) {\n          return value === \"true\";\n        }}\n      };\n    }\n  },\n\n  defer: function(statics) {\n    // register the parser\n    cv.parser.WidgetParser.addHandler(\"video\", statics);\n  }\n});"
+  ]
+}

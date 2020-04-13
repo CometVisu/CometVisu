@@ -1,1 +1,0 @@
-{"attributes": {"fullName": "osparc.theme.osparcdark.Font", "packageName": "osparc.theme.osparcdark", "isStatic": true, "type": "theme", "name": "Font"}, "type": "class", "children": [{"attributes": {"text": "<p>The simple qooxdoo font theme.</p>"}, "type": "desc"}]}

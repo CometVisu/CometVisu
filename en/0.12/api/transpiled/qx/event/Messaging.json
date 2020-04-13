@@ -1,0 +1,595 @@
+{
+  "className": "qx.event.Messaging",
+  "packageName": "qx.event",
+  "name": "Messaging",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 0
+      },
+      "end": {
+        "line": 260,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tino Butz (tbtz)\n Martin Wittemann (wittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Define messages to react on certain channels.\n The channel names will be used in the {@link #on} method to define handlers which will\n be called on certain channels and routes. The {@link #emit} method can be used\n to execute a given route on a channel. {@link #onAny} defines a handler on any channel.\n<em>Example</em>\n Here is a little example of how to use the messaging.\n </p>\n<pre class='javascript'>\n   var m = new qx.event.Messaging();\n   m.on(\"get\", \"/address/{id}\", function(data) {\n     var id = data.params.id;\n\n   },this);\n   m.emit(\"get\", \"/address/1234\");\n </pre>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 44,
+        "column": 14
+      },
+      "end": {
+        "line": 49,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "members": {
+    "_listener": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__listenerIdCount": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__channelToIdMapping": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 31
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "on": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a route handler for the given channel. The route is called\n if the {@link #emit} method finds a match.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "channel {String} The channel of the message.",
+            "paramName": "channel",
+            "description": " The channel of the message.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "type {String|RegExp} The type, used for checking if the executed path matches.",
+            "paramName": "type",
+            "description": " The type, used for checking if the executed path matches.",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "handler {Function} The handler to call if the route matches the executed path.",
+            "paramName": "handler",
+            "description": " The handler to call if the route matches the executed path.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {var ? null} The scope of the handler.",
+            "paramName": "scope",
+            "description": " The scope of the handler.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The id of the route used to remove the route.",
+            "type": "String",
+            "description": " The id of the route used to remove the route."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onAny": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a handler for the \"any\" channel. The \"any\" channel is called\n before all other channels.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String|RegExp} The route, used for checking if the executed path matches",
+            "paramName": "type",
+            "description": " The route, used for checking if the executed path matches",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "handler {Function} The handler to call if the route matches the executed path",
+            "paramName": "handler",
+            "description": " The handler to call if the route matches the executed path",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {var ? null} The scope of the handler.",
+            "paramName": "scope",
+            "description": " The scope of the handler.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The id of the route used to remove the route.",
+            "type": "String",
+            "description": " The id of the route used to remove the route."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_addListener": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a listener for a certain channel.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "channel {String} The channel the route should be registered for",
+            "paramName": "channel",
+            "description": " The channel the route should be registered for",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "type {String|RegExp} The type, used for checking if the executed path matches",
+            "paramName": "type",
+            "description": " The type, used for checking if the executed path matches",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "handler {Function} The handler to call if the route matches the executed path",
+            "paramName": "handler",
+            "description": " The handler to call if the route matches the executed path",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "scope {var ? null} The scope of the handler.",
+            "paramName": "scope",
+            "description": " The scope of the handler.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The id of the route used to remove the route.",
+            "type": "String",
+            "description": " The id of the route used to remove the route."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "remove": {
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4
+        },
+        "end": {
+          "line": 131,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a registered listener by the given id.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The id of the registered listener.",
+            "paramName": "id",
+            "description": " The id of the registered listener.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "has": {
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4
+        },
+        "end": {
+          "line": 156,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if a listener is registered for the given path in the given channel.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "channel {String} The channel of the message.",
+            "paramName": "channel",
+            "description": " The channel of the message.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} The path to check.",
+            "paramName": "path",
+            "description": " The path to check.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether a listener is registered.",
+            "type": "Boolean",
+            "description": " Whether a listener is registered."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "emit": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 168,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sends a message on the given channel and informs all matching route handlers.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "channel {String} The channel of the message.",
+            "paramName": "channel",
+            "description": " The channel of the message.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} The path to execute",
+            "paramName": "path",
+            "description": " The path to execute",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map} The given parameters that should be propagated",
+            "paramName": "params",
+            "description": " The given parameters that should be propagated",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The given custom data that should be propagated",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_emit": {
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4
+        },
+        "end": {
+          "line": 193,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executes a certain channel with a given path. Informs all\n route handlers that match with the path.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "channel {String} The channel to execute.",
+            "paramName": "channel",
+            "description": " The channel to execute.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} The path to check",
+            "paramName": "path",
+            "description": " The path to check",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map} The given parameters that should be propagated",
+            "paramName": "params",
+            "description": " The given parameters that should be propagated",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The given custom data that should be propagated",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_emitListeners": {
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4
+        },
+        "end": {
+          "line": 220,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executes all given listener for a certain channel. Checks all listeners if they match\n with the given path and executes the stored handler of the matching route.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "channel {String} The channel to execute.",
+            "paramName": "channel",
+            "description": " The channel to execute.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} The path to check",
+            "paramName": "path",
+            "description": " The path to check",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listeners {Map[]} All routes to test and execute.",
+            "paramName": "listeners",
+            "description": " All routes to test and execute.",
+            "type": "Map[]"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map} The given parameters that should be propagated",
+            "paramName": "params",
+            "description": " The given parameters that should be propagated",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The given custom data that should be propagated",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the route has been executed",
+            "type": "Boolean",
+            "description": " Whether the route has been executed"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_emitRoute": {
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4
+        },
+        "end": {
+          "line": 258,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executes a certain listener. Checks if the listener matches the given path and\n executes the stored handler of the route.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "channel {String} The channel to execute.",
+            "paramName": "channel",
+            "description": " The channel to execute.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} The path to check",
+            "paramName": "path",
+            "description": " The path to check",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Map} The route data.",
+            "paramName": "listener",
+            "description": " The route data.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map} The given parameters that should be propagated",
+            "paramName": "params",
+            "description": " The given parameters that should be propagated",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "customData {var} The given custom data that should be propagated",
+            "paramName": "customData",
+            "description": " The given custom data that should be propagated",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the route has been executed",
+            "type": "Boolean",
+            "description": " Whether the route has been executed"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "descendants": []
+}

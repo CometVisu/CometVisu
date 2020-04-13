@@ -1,0 +1,1272 @@
+{
+  "className": "qx.log.Logger",
+  "packageName": "qx.log",
+  "name": "Logger",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 60,
+        "column": 0
+      },
+      "end": {
+        "line": 869,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n John Spackman (john.spackman@zenesis.com)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Main qooxdoo logging class.\n Used as central logging feature by qx.core.Object.\n Extremely modular and lightweight to support logging at bootstrap and\n at shutdown as well.</p>\n<ul>\n<li>Supports dynamic appenders to push the output to the user</li>\n<li>Supports buffering of the last 50 messages (configurable)</li>\n<li>Supports different debug levels (\"debug\", \"info\", \"warn\" or \"error\")</li>\n<li><p>Simple data serialization for incoming messages\nTypical use of this class is via qx.core.MLogging which is included into most\nclasses, so you would use \"this.debug(…)\" etc, but qx.log.Logger.debug(),\n.warn(), .error(), .info(), and .trace() can be used directly for static code.\nThe first parameter is expected to be the context object, ie the object which\nis sending the log; this can be null but that will prevent the filtering from\nfiltering on class name so ideally it will be a real qx.core.Object derived\nobject.  Other parameters are any Javascript object which will be serialized\ninto the log message</p></li>\n</ul>\n<pre class=\"javascript\">\n  qx.log.Logger.warn(myObject, \"This is a message to log\", myParam, otherData);\n </pre>\n<p>The output of logging is controlled by \"appenders\", which are classes that\n accept a log message and output it somehow (see examples in qx.log.appender.*);\n typical examples are qx.log.appender.Console which outputs to the browser\n console, or qx.log.appender.Native which outputs messages into a popup\n window as part of your Qooxdoo UI.\n While it's quick and easy to add logging calls to code as and when you need it,\n it is often convenient to control which logging calls output messages at runtime\n rather than having to edit code. @see qx.log.Logger#addFilter</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.dev.StackTrace"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__level": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  CONFIGURATION\n---------------------------------------------------------------------------\n</code></pre>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "setLevel": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configures the minimum log level required for new messages.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} One of \"debug\", \"info\", \"warn\" or \"error\".",
+            "paramName": "value",
+            "description": " One of \"debug\", \"info\", \"warn\" or \"error\".",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getLevel": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the currently configured minimum log level required for new\n messages.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Debug level",
+            "type": "Integer",
+            "description": " Debug level"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setTreshold": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configures the number of messages to be kept in the buffer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Integer} Any positive integer",
+            "paramName": "value",
+            "description": " Any positive integer",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTreshold": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 112,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the currently configured number of messages to be kept in the\n buffer.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Treshold value",
+            "type": "Integer",
+            "description": " Treshold value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__appenders": {
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4
+        },
+        "end": {
+          "line": 125,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  APPENDER MANAGEMENT\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Map of all known appenders by ID"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__appendersByName": {
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4
+        },
+        "end": {
+          "line": 129,
+          "column": 25
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Map of all known appenders by name"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__filters": {
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4
+        },
+        "end": {
+          "line": 133,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} Array of filters to apply when selecting appenders to append to"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__id": {
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4
+        },
+        "end": {
+          "line": 137,
+          "column": 12
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Last free appender ID"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "register": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Registers the given appender and inserts the last cached messages.\n Note that an appender is named by it's class name, unless it has a property\n called <code>appenderName</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "appender {Class} A static appender class supporting at\n   least a <code>process()</code> method to handle incoming messages.",
+            "paramName": "appender",
+            "description": " A static appender class supporting at\n   least a <code>process()</code> method to handle incoming messages.",
+            "type": "Class"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unregister": {
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4
+        },
+        "end": {
+          "line": 191,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unregisters the given appender</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "appender {Class} A static appender class",
+            "paramName": "appender",
+            "description": " A static appender class",
+            "type": "Class"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addFilter": {
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4
+        },
+        "end": {
+          "line": 242,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a filter that specifies the appenders to use for a given logger name (classname).\n By default, every log entry is output to all appenders but you can change this\n behaviour by calling qx.log.Logger.addFilter; every log message is associated\n with a class and a logging level (ie debug, warn, info, error, etc) and you can\n apply a filter on either one.\n For example, to restrict the output to only allow qx.ui.* classes to output debug\n logging information you would use this:\n  </p>\n<pre class=\"javascript\">\n    qx.log.Logger.addFilter(/^qx\\.ui/, null, \"debug\");\n  </pre>\n<p>Note that while the default is to log everything, as soon as you apply one filter\n you are specifying an exhaustive list of classes; so if you use the above example,\n the ONLY classes that will be able to log is qx.ui.*.  If you want to use multiple\n classes to the output, just add more addFilter calls.\n The logging level (eg \"debug\", \"error\", etc) is greater than or equal to - so in\n the above example, debug, error, warn, and info will be output but trace will not.\n The second parameter to addFilter is the classname of the appender to use; this\n allows you to specify that log messages only go to one destination; for example:\n  </p>\n<pre class=\"javascript\">\n    qx.log.Logger.addFilter(/^qx\\.ui/, \"qx.log.appender.Console\", \"warn\");\n    qx.log.Logger.addFilter(/^qx\\.io/, \"qx.log.appender.Native\", \"debug\");\n    qx.log.Logger.addFilter(/^qx\\.io/, \"qx.log.appender.Console\", \"error\");\n  </pre>\n<p>In this example, qx.ui.* will only go to the Console appender and only if a warning\n is issued; qx.io.* will go to Native for debug, error, warn, and info and to\n Console for error, warn, and info\n Note that an appender is named by it's class name, unless it has a property\n called <code>appenderName</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "logger {String|RegExp} the pattern to match in the logger name",
+            "paramName": "logger",
+            "description": " the pattern to match in the logger name",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "appenderName {String?} the name of the appender class, if undefined then all appenders",
+            "paramName": "appenderName",
+            "description": " the name of the appender class, if undefined then all appenders",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "level {String?} the minimum logging level to use the appender, if undefined the default level is used",
+            "paramName": "level",
+            "description": " the minimum logging level to use the appender, if undefined the default level is used",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetFilters": {
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 4
+        },
+        "end": {
+          "line": 249,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reset all filters</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "debug": {
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4
+        },
+        "end": {
+          "line": 269,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  USER METHODS\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Sending a message at level \"debug\" to the logger.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "message {var} Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "paramName": "message",
+            "description": " Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "info": {
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4
+        },
+        "end": {
+          "line": 282,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sending a message at level \"info\" to the logger.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "message {var} Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "paramName": "message",
+            "description": " Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "warn": {
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 4
+        },
+        "end": {
+          "line": 295,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sending a message at level \"warn\" to the logger.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "message {var} Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "paramName": "message",
+            "description": " Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "error": {
+      "location": {
+        "start": {
+          "line": 306,
+          "column": 4
+        },
+        "end": {
+          "line": 308,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sending a message at level \"error\" to the logger.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "message {var} Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "paramName": "message",
+            "description": " Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "trace": {
+      "location": {
+        "start": {
+          "line": 319,
+          "column": 4
+        },
+        "end": {
+          "line": 326,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints the current stack trace at level \"info\"</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object?} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "optional": true,
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "message {var} Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "paramName": "message",
+            "description": " Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deprecatedMethodWarning": {
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4
+        },
+        "end": {
+          "line": 348,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints a method deprecation warning and a stack trace if the setting\n <code>qx.debug</code> is set to <code>true</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fcn {Function} reference to the deprecated function. This is\n     arguments.callee if the calling method is to be deprecated.",
+            "paramName": "fcn",
+            "description": " reference to the deprecated function. This is\n     arguments.callee if the calling method is to be deprecated.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Optional message to be printed.",
+            "paramName": "msg",
+            "description": " Optional message to be printed.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deprecatedClassWarning": {
+      "location": {
+        "start": {
+          "line": 358,
+          "column": 4
+        },
+        "end": {
+          "line": 369,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints a class deprecation warning and a stack trace if the setting\n <code>qx.debug</code> is set to <code>true</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} reference to the deprecated class.",
+            "paramName": "clazz",
+            "description": " reference to the deprecated class.",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Optional message to be printed.",
+            "paramName": "msg",
+            "description": " Optional message to be printed.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deprecatedEventWarning": {
+      "location": {
+        "start": {
+          "line": 380,
+          "column": 4
+        },
+        "end": {
+          "line": 391,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints an event deprecation warning and a stack trace if the setting\n <code>qx.debug</code> is set to <code>true</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} reference to the deprecated class.",
+            "paramName": "clazz",
+            "description": " reference to the deprecated class.",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "event {String} deprecated event name.",
+            "paramName": "event",
+            "description": " deprecated event name.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Optional message to be printed.",
+            "paramName": "msg",
+            "description": " Optional message to be printed.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deprecatedMixinWarning": {
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4
+        },
+        "end": {
+          "line": 412,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints a mixin deprecation warning and a stack trace if the setting\n <code>qx.debug</code> is set to <code>true</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} reference to the deprecated mixin.",
+            "paramName": "clazz",
+            "description": " reference to the deprecated mixin.",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Optional message to be printed.",
+            "paramName": "msg",
+            "description": " Optional message to be printed.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deprecatedConstantWarning": {
+      "location": {
+        "start": {
+          "line": 424,
+          "column": 4
+        },
+        "end": {
+          "line": 442,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints a constant deprecation warning and a stacktrace if the setting\n <code>qx.debug</code> is set to <code>true</code> AND the browser supports\n <strong>defineGetter</strong>!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} The class the constant is attached to.",
+            "paramName": "clazz",
+            "description": " The class the constant is attached to.",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "constant {String} The name of the constant as string.",
+            "paramName": "constant",
+            "description": " The name of the constant as string.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String} Optional message to be printed.",
+            "paramName": "msg",
+            "description": " Optional message to be printed.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deprecateMethodOverriding": {
+      "location": {
+        "start": {
+          "line": 456,
+          "column": 4
+        },
+        "end": {
+          "line": 477,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints a deprecation warning and a stacktrace when a subclass overrides\n the passed method name. The deprecation is only printed if the setting\n <code>qx.debug</code> is set to <code>true</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {qx.core.Object} Instance to check for overriding.",
+            "paramName": "object",
+            "description": " Instance to check for overriding.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "baseclass {Class} The baseclass as starting point.",
+            "paramName": "baseclass",
+            "description": " The baseclass as starting point.",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "methodName {String} The method name which is deprecated for overriding.",
+            "paramName": "methodName",
+            "description": " The method name which is deprecated for overriding.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Optional message to be printed.",
+            "paramName": "msg",
+            "description": " Optional message to be printed.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clear": {
+      "location": {
+        "start": {
+          "line": 485,
+          "column": 4
+        },
+        "end": {
+          "line": 487,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes the current buffer. Does not influence message handling of the\n connected appenders.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__buffer": {
+      "location": {
+        "start": {
+          "line": 499,
+          "column": 4
+        },
+        "end": {
+          "line": 499,
+          "column": 49
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  INTERNAL LOGGING IMPLEMENTATION\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.log.appender.RingBuffer} Message buffer of previously fired messages."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__levels": {
+      "location": {
+        "start": {
+          "line": 503,
+          "column": 4
+        },
+        "end": {
+          "line": 510,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Numeric translation of log levels"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__appendersCache": {
+      "location": {
+        "start": {
+          "line": 513,
+          "column": 4
+        },
+        "end": {
+          "line": 513,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} cache of appenders for a given logger and level"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__getLoggerName": {
+      "location": {
+        "start": {
+          "line": 522,
+          "column": 4
+        },
+        "end": {
+          "line": 532,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects the name of the logger to use for an object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Logger name",
+            "type": "String",
+            "description": " Logger name"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "isLoggerEnabled": {
+      "location": {
+        "start": {
+          "line": 542,
+          "column": 4
+        },
+        "end": {
+          "line": 546,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether a logger level is enabled for an object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "level {String} One of \"trace\", \"debug\", \"info\", \"warn\" or \"error\"",
+            "paramName": "level",
+            "description": " One of \"trace\", \"debug\", \"info\", \"warn\" or \"error\"",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} True if the logger is enabled",
+            "type": "Boolean",
+            "description": " True if the logger is enabled"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__log": {
+      "location": {
+        "start": {
+          "line": 556,
+          "column": 4
+        },
+        "end": {
+          "line": 605,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal logging main routine.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "level {String} One of \"trace\", \"debug\", \"info\", \"warn\" or \"error\"",
+            "paramName": "level",
+            "description": " One of \"trace\", \"debug\", \"info\", \"warn\" or \"error\"",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array} List of other arguments, where the first is\n   taken as the context object.",
+            "paramName": "args",
+            "description": " List of other arguments, where the first is\n   taken as the context object.",
+            "type": "Array"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getAppenders": {
+      "location": {
+        "start": {
+          "line": 615,
+          "column": 4
+        },
+        "end": {
+          "line": 660,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds the appenders for a given classname</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "className {String} Name of the class",
+            "paramName": "className",
+            "description": " Name of the class",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "level {String} the minimum logging level to use the appender",
+            "paramName": "level",
+            "description": " the minimum logging level to use the appender",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} list of appenders",
+            "type": "Array",
+            "description": " list of appenders"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__detect": {
+      "location": {
+        "start": {
+          "line": 673,
+          "column": 4
+        },
+        "end": {
+          "line": 714,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects the type of the variable given.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Incoming value",
+            "paramName": "value",
+            "description": " Incoming value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Type of the incoming value. Possible values:\n   \"undefined\", \"null\", \"boolean\", \"number\", \"string\",\n   \"function\", \"array\", \"error\", \"map\",\n   \"class\", \"instance\", \"node\", \"stringify\", \"unknown\"",
+            "type": "String",
+            "description": " Type of the incoming value. Possible values:\n   \"undefined\", \"null\", \"boolean\", \"number\", \"string\",\n   \"function\", \"array\", \"error\", \"map\",\n   \"class\", \"instance\", \"node\", \"stringify\", \"unknown\""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__serialize": {
+      "location": {
+        "start": {
+          "line": 728,
+          "column": 4
+        },
+        "end": {
+          "line": 852,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Serializes the incoming value. If it is a singular value, the result is\n a simple string. For an array or a map the result can also be a\n serialized string of a limited number of individual items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Incoming value",
+            "paramName": "value",
+            "description": " Incoming value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "deep {Boolean?false} Whether arrays and maps should be\n    serialized for a limited number of items",
+            "paramName": "deep",
+            "description": " Whether arrays and maps should be\n    serialized for a limited number of items",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Contains the keys <code>type</code>, <code>text</code> and\n <code>trace</code>.",
+            "type": "Map",
+            "description": " Contains the keys <code>type</code>, <code>text</code> and\n <code>trace</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 856,
+        "column": 10
+      },
+      "end": {
+        "line": 868,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

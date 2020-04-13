@@ -1,0 +1,432 @@
+{
+  "className": "qx.bom.Event",
+  "packageName": "qx.bom",
+  "name": "Event",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 67,
+        "column": 0
+      },
+      "end": {
+        "line": 364,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Sebastian Werner (wpbasti)\n Alexander Steitz (aback)\n Christian Hagendorn (chris_schmidt)\n Tobias Oberrauch (toberrauch) <a href=\"&#x6d;&#x61;&#x69;&#108;t&#x6f;&#58;&#116;&#111;&#98;&#x69;&#97;&#115;&#46;&#x6f;&#x62;&#x65;&#114;r&#97;&#117;&#x63;&#104;&#64;&#x31;&#x75;&#x6e;&#100;&#49;&#x2e;&#100;&#101;\">&#116;o&#98;&#105;a&#x73;&#x2e;o&#98;&#x65;&#114;&#x72;&#x61;&#x75;&#x63;&#x68;&#x40;&#49;&#117;&#110;&#x64;&#49;&#46;&#x64;&#101;</a>\n   ======================================================================\n   This class contains code based on the following work:\n Juriy Zaytsev\n     http://thinkweb2.com/projects/prototype/detecting-event-support-without-browser-sniffing/\n     Copyright (c) 2009 Juriy Zaytsev\n     License:\n       BSD: http://github.com/kangax/iseventsupported/blob/master/LICENSE\n     ----------------------------------------------------------------------\n     http://github.com/kangax/iseventsupported/blob/master/LICENSE\n     Copyright (c) 2009 Juriy Zaytsev\n     Permission is hereby granted, free of charge, to any person\n     obtaining a copy of this software and associated documentation\n     files (the \"Software\"), to deal in the Software without\n     restriction, including without limitation the rights to use,\n     copy, modify, merge, publish, distribute, sublicense, and/or sell\n     copies of the Software, and to permit persons to whom the\n     Software is furnished to do so, subject to the following\n     conditions:\n     The above copyright notice and this permission notice shall be\n     included in all copies or substantial portions of the Software.\n     THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\n     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\n     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\n     OTHER DEALINGS IN THE SOFTWARE.\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Wrapper around native event management capabilities of the browser.\n This class should not be used directly normally. It's better\n to use {@link qx.event.Registration} instead.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "addNativeListener": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 102,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Use the low level browser functionality to attach event listeners\n to DOM nodes.\n Use this with caution. This is only thought for event handlers and\n qualified developers. These are not mem-leak protected!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid native event target",
+            "paramName": "target",
+            "description": " Any valid native event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Name of the event",
+            "paramName": "type",
+            "description": " Name of the event",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} The pointer to the function to assign",
+            "paramName": "listener",
+            "description": " The pointer to the function to assign",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "useCapture {Boolean ? false} A Boolean value that specifies the event phase to add\n    the event handler for the capturing phase or the bubbling phase.",
+            "paramName": "useCapture",
+            "description": " A Boolean value that specifies the event phase to add\n    the event handler for the capturing phase or the bubbling phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "passive {Boolean ? false} Specifies whether to set the passive option to true or false if supported.",
+            "paramName": "passive",
+            "description": " Specifies whether to set the passive option to true or false if supported.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeNativeListener": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Use the low level browser functionality to remove event listeners\n from DOM nodes.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid native event target",
+            "paramName": "target",
+            "description": " Any valid native event target",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Name of the event",
+            "paramName": "type",
+            "description": " Name of the event",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} The pointer to the function to assign",
+            "paramName": "listener",
+            "description": " The pointer to the function to assign",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "useCapture {Boolean ? false} A Boolean value that specifies the event phase to remove\n    the event handler for the capturing phase or the bubbling phase.",
+            "paramName": "useCapture",
+            "description": " A Boolean value that specifies the event phase to remove\n    the event handler for the capturing phase or the bubbling phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTarget": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 156,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the target of the event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Native event object",
+            "paramName": "e",
+            "description": " Native event object",
+            "type": "qx.bom.Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Any valid native event target",
+            "type": "Object",
+            "description": " Any valid native event target"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getRelatedTarget": {
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4
+        },
+        "end": {
+          "line": 192,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the related target from the native DOM event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Native DOM event object",
+            "paramName": "e",
+            "description": " Native DOM event object",
+            "type": "qx.bom.Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The related target",
+            "type": "qx.bom.Element",
+            "description": " The related target"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "preventDefault": {
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4
+        },
+        "end": {
+          "line": 217,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prevent the native default of the event to be processed.\n This is useful to stop native keybindings, native selection\n and other native functionality behind events.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Native event object",
+            "paramName": "e",
+            "description": " Native event object",
+            "type": "qx.bom.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "stopPropagation": {
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4
+        },
+        "end": {
+          "line": 234,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops the propagation of the given event to the parent element.\n Only useful for events which bubble e.g. mousedown.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Native event object",
+            "paramName": "e",
+            "description": " Native event object",
+            "type": "qx.bom.Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fire": {
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4
+        },
+        "end": {
+          "line": 262,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires a synthetic native event on the given element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element} DOM element to fire event on",
+            "paramName": "target",
+            "description": " DOM element to fire event on",
+            "type": "qx.bom.Element"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Name of the event to fire",
+            "paramName": "type",
+            "description": " Name of the event to fire",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} A value that indicates whether any of the event handlers called {@link #preventDefault}.\n  <code>true</code> The default action is permitted, <code>false</code> the caller should prevent the default action.",
+            "type": "Boolean",
+            "description": " A value that indicates whether any of the event handlers called {@link #preventDefault}.\n  <code>true</code> The default action is permitted, <code>false</code> the caller should prevent the default action."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "supportsEvent": {
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4
+        },
+        "end": {
+          "line": 338,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the given target supports the given event type.\n Useful for testing for support of new features like\n touch events, gesture events, orientation change, on/offline, etc.\n<em>NOTE:</em> This check is <em>case-insensitive</em>.\n <code>supportsEvent(window, \"cLicK\")</code> will return <code>true</code>\n but <code>window.addEventListener(\"cLicK\", callback)</code> will fail\n silently!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {var} Any valid target e.g. window, dom node, etc.",
+            "paramName": "target",
+            "description": " Any valid target e.g. window, dom node, etc.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Type of the event e.g. click, mousedown",
+            "paramName": "type",
+            "description": " Type of the event e.g. click, mousedown",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the given event is supported",
+            "type": "Boolean",
+            "description": " Whether the given event is supported"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getEventName": {
+      "location": {
+        "start": {
+          "line": 351,
+          "column": 4
+        },
+        "end": {
+          "line": 362,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name of the given event type.\n<em>NOTE:</em> Incorrect capitalization of type names will <em>not</em> be corrected. See\n {@link #supportsEvent} for details.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {var} Any valid target e.g. window, dom node, etc.",
+            "paramName": "target",
+            "description": " Any valid target e.g. window, dom node, etc.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Type of the event e.g. click, mousedown",
+            "paramName": "type",
+            "description": " Type of the event e.g. click, mousedown",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} Event name or <code>null</code> if the event is not\n supported.",
+            "type": "String|null",
+            "description": " Event name or <code>null</code> if the event is not\n supported."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

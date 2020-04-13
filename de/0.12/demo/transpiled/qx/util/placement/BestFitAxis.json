@@ -1,0 +1,217 @@
+{
+  "className": "qx.util.placement.BestFitAxis",
+  "packageName": "qx.util.placement",
+  "name": "BestFitAxis",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 93,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Christian Hagendorn (chris_schmidt)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Places the object according to the target. If parts of the object are outside\n of the axis' range the object's start is adjusted so that the overlap between\n the object and the axis is maximized.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "_isInRange": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 58
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the object specified by <code>start</code> and <code>size</code>\n is completely inside of the axis' range..</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "start {Integer} Computed start position of the object",
+            "paramName": "start",
+            "description": " Computed start position of the object",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "size {Integer} Size of the object",
+            "paramName": "size",
+            "description": " Size of the object",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "areaSize {Integer} The size of the axis",
+            "paramName": "areaSize",
+            "description": " The size of the axis",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the object is inside of the axis' range",
+            "type": "Boolean",
+            "description": " Whether the object is inside of the axis' range"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_moveToEdgeAndAlign": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 76
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the start of the object by taking only the attachment and\n alignment into account. The object by be not fully visible.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "size {Integer} Size of the object to align",
+            "paramName": "size",
+            "description": " Size of the object to align",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "target {Map} Location of the object to align the object to. This map\n   should have the keys <code>start</code> and <code>end</code>.",
+            "paramName": "target",
+            "description": " Location of the object to align the object to. This map\n   should have the keys <code>start</code> and <code>end</code>.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "offsets {Map} Map with all offsets on each side.\n   Comes with the keys <code>start</code> and <code>end</code>.",
+            "paramName": "offsets",
+            "description": " Map with all offsets on each side.\n   Comes with the keys <code>start</code> and <code>end</code>.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "position {String} Accepts the same values as the <code> position</code>\n   argument of {@link #computeStart}.",
+            "paramName": "position",
+            "description": " Accepts the same values as the <code> position</code>\n   argument of {@link #computeStart}.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The computed start position of the object.",
+            "type": "Integer",
+            "description": " The computed start position of the object."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "computeStart": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the start of the object on the axis</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "size {Integer} Size of the object to align",
+            "paramName": "size",
+            "description": " Size of the object to align",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "target {Map} Location of the object to align the object to. This map\n   should have the keys <code>start</code> and <code>end</code>.",
+            "paramName": "target",
+            "description": " Location of the object to align the object to. This map\n   should have the keys <code>start</code> and <code>end</code>.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "offsets {Map} Map with all offsets on each side.\n   Comes with the keys <code>start</code> and <code>end</code>.",
+            "paramName": "offsets",
+            "description": " Map with all offsets on each side.\n   Comes with the keys <code>start</code> and <code>end</code>.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "areaSize {Integer} Size of the axis.",
+            "paramName": "areaSize",
+            "description": " Size of the axis.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "position {String} Alignment of the object on the target. Valid values are\n   <ul>\n   <li><code>edge-start</code> The object is placed before the target</li>\n   <li><code>edge-end</code> The object is placed after the target</li>\n   <li><code>align-start</code>The start of the object is aligned with the start of the target</li>\n   <li><code>align-center</code>The center of the object is aligned with the center of the target</li>\n   <li><code>align-end</code>The end of the object is aligned with the end of the object</li>\n   </ul>",
+            "paramName": "position",
+            "description": " Alignment of the object on the target. Valid values are\n   <ul>\n   <li><code>edge-start</code> The object is placed before the target</li>\n   <li><code>edge-end</code> The object is placed after the target</li>\n   <li><code>align-start</code>The start of the object is aligned with the start of the target</li>\n   <li><code>align-center</code>The center of the object is aligned with the center of the target</li>\n   <li><code>align-end</code>The end of the object is aligned with the end of the object</li>\n   </ul>",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The computed start position of the object.",
+            "type": "Integer",
+            "description": " The computed start position of the object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

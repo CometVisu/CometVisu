@@ -1,0 +1,74 @@
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Interface": {
+        "usage": "dynamic",
+        "require": true
+      }
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Martin Wittemann (martinwittemann)
+  
+  ************************************************************************ */
+
+  /**
+   * Each object which wants to store data representative for the real item
+   * should implement this interface.
+   */
+  qx.Interface.define("qx.ui.form.IModel", {
+    /*
+    *****************************************************************************
+       EVENTS
+    *****************************************************************************
+    */
+    events: {
+      /** Fired when the model data changes */
+      "changeModel": "qx.event.type.Data"
+    },
+
+    /*
+    *****************************************************************************
+       MEMBERS
+    *****************************************************************************
+    */
+    members: {
+      /**
+       * Set the representative data for the item.
+       *
+       * @param value {var} The data.
+       */
+      setModel: function setModel(value) {},
+
+      /**
+       * Returns the representative data for the item
+       *
+       * @return {var} The data.
+       */
+      getModel: function getModel() {},
+
+      /**
+       * Sets the representative data to null.
+       */
+      resetModel: function resetModel() {}
+    }
+  });
+  qx.ui.form.IModel.$$dbClassInfo = $$dbClassInfo;
+})();
+
+//# sourceMappingURL=IModel.js.map?dt=1586772885821

@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/util/Location.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "getHref",
+    "window",
+    "location",
+    "href",
+    "setHref",
+    "loc",
+    "reload",
+    "value",
+    "open",
+    "url",
+    "target",
+    "cv",
+    "util",
+    "Location"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;AAIAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,kBAAhB,EAAoC;AAClCC,IAAAA,IAAI,EAAE,QAD4B;;AAGlC;;;;;AAKAC,IAAAA,OAAO,EAAE;AACP;;;;;AAKAC,MAAAA,OAAO,EAAE,mBAAW;AAClB,eAAOC,MAAM,CAACC,QAAP,CAAgBC,IAAvB;AACD,OARM;;AAUP;;;;;AAKAC,MAAAA,OAAO,EAAE,iBAASC,GAAT,EAAc;AACrBJ,QAAAA,MAAM,CAACC,QAAP,CAAgBC,IAAhB,GAAuBE,GAAvB;AACD,OAjBM;;AAmBP;;;;;AAKAC,MAAAA,MAAM,EAAE,gBAASC,KAAT,EAAgB;AACtBN,QAAAA,MAAM,CAACC,QAAP,CAAgBI,MAAhB,CAAuBC,KAAvB;AACD,OA1BM;;AA4BP;;;;;;AAMAC,MAAAA,IAAI,EAAE,cAASC,GAAT,EAAcC,MAAd,EAAsB;AAC1BT,QAAAA,MAAM,CAACO,IAAP,CAAYC,GAAZ,EAAiBC,MAAjB;AACD;AApCM;AARyB,GAApC;AAvBAC,EAAAA,EAAE,CAACC,IAAH,CAAQC,QAAR,CAAiBlB,aAAjB,GAAiCA,aAAjC",
+  "sourcesContent": [
+    "/* Location.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * Helper function to proxy access to <code>window.location.*</code> functions.\n * The main purpose of proxying them is to allow them to be spyable in unit tests.\n */\nqx.Class.define('cv.util.Location', {\n  type: \"static\",\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    /**\n     * Wrapper for getting the <code>window.location.href</code> value.\n     *\n     * @return {String} URI of the page the browser is currently showing\n     */\n    getHref: function() {\n      return window.location.href;\n    },\n\n    /**\n     * Changes <code>window.location.href</code> to trigger a redirect\n     *\n     * @param loc {String} - URI of the location the browser should be redirected to\n     */\n    setHref: function(loc) {\n      window.location.href = loc;\n    },\n\n    /**\n     * Wrapper for calling <code>window.location.reload()</code>\n     *\n     * @param value {Boolean} parameter to call reload with\n     */\n    reload: function(value) {\n      window.location.reload(value);\n    },\n\n    /**\n     * Wrapper for calling <code>window.open()</code>\n     *\n     * @param url {String} url to open\n     * @param target {String} where to open the window\n     */\n    open: function(url, target) {\n      window.open(url, target);\n    }\n  }\n\n});"
+  ]
+}

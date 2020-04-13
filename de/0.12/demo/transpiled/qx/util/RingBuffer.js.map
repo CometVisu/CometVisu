@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/util/RingBuffer.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "extend",
+    "Object",
+    "construct",
+    "maxEntries",
+    "setMaxEntries",
+    "members",
+    "__nextIndexToStoreTo",
+    "__entriesStored",
+    "__isMarkActive",
+    "__entriesStoredSinceMark",
+    "__entries",
+    "__maxEntries",
+    "clear",
+    "getMaxEntries",
+    "addEntry",
+    "entry",
+    "__addToIndex",
+    "max",
+    "getNumEntriesStored",
+    "mark",
+    "clearMark",
+    "getAllEntries",
+    "getEntries",
+    "count",
+    "startingFromMark",
+    "indexOfYoungestElementInHistory",
+    "startIndex",
+    "result",
+    "slice",
+    "concat",
+    "Array",
+    "idx",
+    "addMe",
+    "util",
+    "RingBuffer"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n     2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Carsten Lergenmueller (carstenl)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * An memory container which stores arbitrary data up to a maximum number of\n * entries. When new entries come in an the maximum is reached, the oldest\n * entries are deleted.\n *\n * A mark feature also exists which can be used to remember a point in time.\n * When retrieving entries, it is possible to get only those entries\n * after the marked time. This is useful if data from the buffer is extracted\n * and processed. Whenever this happens, a mark() call can be used so that the\n * next extraction will only get new data.\n */\nqx.Bootstrap.define(\"qx.util.RingBuffer\",\n{\n  extend : Object,\n\n  /**\n   * Constructor.\n   *\n   * @param maxEntries {Integer ? 50} Maximum number of entries in the buffer\n   */\n  construct : function(maxEntries)\n  {\n    this.setMaxEntries(maxEntries || 50);\n  },\n\n\n  members :\n  {\n    //Next slot in ringbuffer to use\n    __nextIndexToStoreTo : 0,\n\n    //Number of elements in ring buffer\n    __entriesStored : 0,\n\n    //Was a mark set?\n    __isMarkActive: false,\n\n    //How many elements were stored since setting of mark?\n    __entriesStoredSinceMark : 0,\n\n    //ring buffer\n    __entries : null,\n\n    //Maximum number of messages to store. Could be converted to a qx property.\n    __maxEntries : null,\n\n\n    /**\n     * Set the maximum number of messages to hold. If null the number of\n     * messages is not limited.\n     *\n     * Warning: Changing this property will clear the events logged so far.\n     *\n     * @param maxEntries {Integer} the maximum number of messages to hold\n     */\n    setMaxEntries : function(maxEntries)\n    {\n      this.__maxEntries = maxEntries;\n      this.clear();\n    },\n\n\n    /**\n     * Get the maximum number of entries to hold\n     *\n     * @return {Integer}\n     */\n    getMaxEntries : function() {\n      return this.__maxEntries;\n    },\n\n\n    /**\n     * Adds a single entry\n     *\n     * @param entry {var} The data to store\n     */\n    addEntry : function(entry)\n    {\n      this.__entries[this.__nextIndexToStoreTo] = entry;\n\n      this.__nextIndexToStoreTo = this.__addToIndex(this.__nextIndexToStoreTo, 1);\n\n      //Count # of stored entries\n      var max = this.getMaxEntries();\n      if (this.__entriesStored < max){\n        this.__entriesStored++;\n      }\n\n      //Count # of stored elements since last mark call\n      if (this.__isMarkActive && (this.__entriesStoredSinceMark < max)){\n        this.__entriesStoredSinceMark++;\n      }\n    },\n    \n    \n    /**\n     * Returns the number of entries stored\n     * @return {Integer}\n     */\n    getNumEntriesStored: function() {\n      return this.__entriesStored;\n    },\n\n\n    /**\n     * Remembers the current position in the ring buffer\n     *\n     */\n    mark : function(){\n      this.__isMarkActive = true;\n      this.__entriesStoredSinceMark = 0;\n    },\n\n\n    /**\n     * Removes the current mark position\n     */\n    clearMark : function(){\n      this.__isMarkActive = false;\n    },\n\n\n    /**\n     * Returns all stored entries. Mark is ignored.\n     *\n     * @return {Array} array of stored entries\n     */\n    getAllEntries : function() {\n      return this.getEntries(this.getMaxEntries(), false);\n    },\n\n\n    /**\n     * Returns entries which have been added previously.\n     *\n     * @param count {Integer} The number of entries to retrieve. If there are\n     *    more entries than the given count, the oldest ones will not be returned.\n     *\n     * @param startingFromMark {Boolean ? false} If true, only entries since\n     *   the last call to mark() will be returned\n     * @return {Array} array of stored entries\n     */\n    getEntries : function(count, startingFromMark)\n    {\n      //Trim count so it does not exceed ringbuffer size\n      if (count > this.__entriesStored) {\n        count = this.__entriesStored;\n      }\n\n      // Trim count so it does not exceed last call to mark (if mark was called\n      // and startingFromMark was true)\n      if (\n        startingFromMark &&\n        this.__isMarkActive &&\n        (count > this.__entriesStoredSinceMark)\n      ) {\n        count = this.__entriesStoredSinceMark;\n      }\n\n      if (count > 0){\n\n        var indexOfYoungestElementInHistory = this.__addToIndex(this.__nextIndexToStoreTo,  -1);\n        var startIndex = this.__addToIndex(indexOfYoungestElementInHistory, - count + 1);\n\n        var result;\n\n        if (startIndex <= indexOfYoungestElementInHistory) {\n          //Requested segment not wrapping around ringbuffer boundary, get in one run\n          result = this.__entries.slice(startIndex, indexOfYoungestElementInHistory + 1);\n        } else {\n          //Requested segment wrapping around ringbuffer boundary, get two parts & concat\n          result = this.__entries.slice(startIndex, this.__entriesStored).concat(this.__entries.slice(0, indexOfYoungestElementInHistory + 1));\n        }\n      } else {\n        result = [];\n      }\n\n      return result;\n    },\n\n\n    /**\n     * Clears all entries\n     */\n    clear : function()\n    {\n      this.__entries = new Array(this.getMaxEntries());\n      this.__entriesStored = 0;\n      this.__entriesStoredSinceMark = 0;\n      this.__nextIndexToStoreTo = 0;\n    },\n\n\n    /**\n     * Adds a number to an ringbuffer index. Does a modulus calculation,\n     * i. e. if the index leaves the ringbuffer space it will wrap around to\n     * the other end of the ringbuffer.\n     *\n     * @param idx {Number} The current index.\n     * @param addMe {Number} The number to add.\n     * @return {Number} The new index\n     */\n    __addToIndex : function (idx, addMe){\n      var max = this.getMaxEntries();\n      var result = (idx + addMe) % max;\n\n      //If negative, wrap up into the ringbuffer space\n      if (result < 0){\n        result += max;\n      }\n      return result;\n    }\n  }\n});\n"
+  ]
+}

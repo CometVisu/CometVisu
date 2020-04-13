@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/tree/core/IVirtualTreeDelegate.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "configureItem",
+    "item",
+    "createItem",
+    "bindItem",
+    "controller",
+    "id",
+    "onPool",
+    "filter",
+    "data",
+    "sorter",
+    "a",
+    "b",
+    "ui",
+    "tree",
+    "core",
+    "IVirtualTreeDelegate"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;;;;;AAWAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,sCAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;;;;;;AAMAC,MAAAA,aAAa,EAAG,uBAASC,IAAT,EAAe,CAAE,CAPnC;;AAUE;;;;;;;AAOAC,MAAAA,UAAU,EAAG,sBAAW,CAAE,CAjB5B;;AAoBE;;;;;;;;;;;;;AAaAC,MAAAA,QAAQ,EAAG,kBAASC,UAAT,EAAqBH,IAArB,EAA2BI,EAA3B,EAA+B,CAAE,CAjC9C;;AAoCE;;;;;AAKAC,MAAAA,MAAM,EAAG,gBAASL,IAAT,EAAe,CAAE,CAzC5B;;AA4CE;;;;;;;AAOAM,MAAAA,MAAM,EAAG,gBAASC,IAAT,EAAe,CAAE,CAnD5B;;AAsDE;;;;;;;;;;AAUAC,MAAAA,MAAM,EAAG,gBAASC,CAAT,EAAYC,CAAZ,EAAe,CAAE;AAhE5B;AAFF,GADA;AA7BAlB,EAAAA,EAAE,CAACmB,EAAH,CAAMC,IAAN,CAAWC,IAAX,CAAgBC,oBAAhB,CAAqCnB,aAArC,GAAqDA,aAArD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\n\n/**\n * Objects which are used as delegates for the <code>qx.ui.tree.VirtualTree</code> may\n * implement any of the methods described in this interface. The delegate does\n * not need to implement all the methods of this interface. If a method is not\n * implemented the <code>qx.ui.tree.VirtualTree</code> provides a default\n * implementation.\n *\n * Note: This interface is meant to document the delegate but should not be\n * listed in the <code>implement</code> key of a class unless all methods are\n * actually implemented.\n */\nqx.Interface.define(\"qx.ui.tree.core.IVirtualTreeDelegate\",\n{\n  members :\n  {\n    /**\n     * Gives the user the opportunity to set individual styles and properties\n     * on the widget cells created by the controller.\n     *\n     * @param item {qx.ui.core.Widget} Item to modify.\n     */\n    configureItem : function(item) {},\n\n\n    /**\n     * Creates a widget cell which will be used for rendering. Be sure to\n     * implement the {@link #bindItem} function as well to get the needed\n     * properties bound.\n     *\n     * @return {qx.ui.core.Widget} A new created item cell.\n     */\n    createItem : function() {},\n\n\n    /**\n     * Sets up the binding for the given widget cell and index.\n     *\n     * For every property you want to bind, use\n     * {@link MWidgetController#bindProperty} like this:\n     * <code>\n     * controller.bindProperty(null, \"value\", options, item, id);\n     * </code>\n     *\n     * @param controller {qx.ui.list.core.MWidgetController} The currently used controller.\n     * @param item {qx.ui.core.Widget} The created and used item.\n     * @param id {Integer} The id for the binding.\n     */\n    bindItem : function(controller, item, id) {},\n\n\n    /**\n     * Gives the user the opportunity to reset properties or states.\n     *\n     * @param item {qx.ui.core.Widget} Item to modify.\n     */\n    onPool : function(item) {},\n\n\n    /**\n     * Filter checks the current data and returns a boolean if the data should\n     * appear in the filtered data set or not.\n     *\n     * @param data {var} The data which will be checked.\n     * @return {Boolean} True, if the data passes the filter, false otherwise.\n     */\n    filter : function(data) {},\n\n\n    /**\n     * Gives the user the opportunity to sort the children items from a node.\n     * The sorting method should return a negative value if a < b, zero\n     * if a = b, or a positive value if a > b.\n     *\n     * @param a {var} value to compare.\n     * @param b {var} value to compare.\n     * @return {Integer} should return a negative value if a < b, zero\n     *   if a = b, or a positive value if a > b.\n     */\n    sorter : function(a, b) {}\n  }\n});"
+  ]
+}

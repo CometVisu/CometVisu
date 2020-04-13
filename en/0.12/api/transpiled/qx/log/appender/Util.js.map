@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/log/appender/Util.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "toHtml",
+    "toText",
+    "toTextArray",
+    "escapeHTML",
+    "log",
+    "appender",
+    "Formatter",
+    "defer",
+    "formatter",
+    "getFormatter",
+    "forEach",
+    "name",
+    "apply",
+    "lang",
+    "Array",
+    "fromArguments",
+    "arguments",
+    "Util"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;AAKAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,sBAApB,EACA;AACEC,IAAAA,OAAO,EAAE;AACPC,MAAAA,MAAM,EAAE,IADD;AAEPC,MAAAA,MAAM,EAAE,IAFD;AAGPC,MAAAA,WAAW,EAAE,IAHN;AAIPC,MAAAA,UAAU,EAAET,EAAE,CAACU,GAAH,CAAOC,QAAP,CAAgBC,SAAhB,CAA0BH;AAJ/B,KADX;AAQEI,IAAAA,KAAK,EAAE,eAASR,OAAT,EAAkB;AACvB,UAAIS,SAAS,GAAGd,EAAE,CAACU,GAAH,CAAOC,QAAP,CAAgBC,SAAhB,CAA0BG,YAA1B,EAAhB;AACA,OAAE,QAAF,EAAY,QAAZ,EAAsB,aAAtB,EAAqC,YAArC,EAAoDC,OAApD,CAA4D,UAASC,IAAT,EAAe;AACzEZ,QAAAA,OAAO,CAACY,IAAD,CAAP,GAAgB,YAAW;AACzB,iBAAOH,SAAS,CAACG,IAAD,CAAT,CAAgBC,KAAhB,CAAsBJ,SAAtB,EAAiCd,EAAE,CAACmB,IAAH,CAAQC,KAAR,CAAcC,aAAd,CAA4BC,SAA5B,CAAjC,CAAP;AACD,SAFD;AAGD,OAJD;AAKD;AAfH,GADA;AAvBAtB,EAAAA,EAAE,CAACU,GAAH,CAAOC,QAAP,CAAgBY,IAAhB,CAAqBpB,aAArB,GAAqCA,aAArC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Contains some common methods available to all log appenders.\n * \n * @deprecated {6.0} See qx.util.appender.Formatter instead\n */\nqx.Bootstrap.define(\"qx.log.appender.Util\",\n{\n  statics: {\n    toHtml: null,\n    toText: null,\n    toTextArray: null,\n    escapeHTML: qx.log.appender.Formatter.escapeHTML\n  },\n  \n  defer: function(statics) {\n    var formatter = qx.log.appender.Formatter.getFormatter();\n    [ \"toHtml\", \"toText\", \"toTextArray\", \"escapeHTML\" ].forEach(function(name) {\n      statics[name] = function() {\n        return formatter[name].apply(formatter, qx.lang.Array.fromArguments(arguments));\n      };\n    });\n  }\n});"
+  ]
+}

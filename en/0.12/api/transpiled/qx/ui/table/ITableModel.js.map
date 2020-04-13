@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/table/ITableModel.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "events",
+    "members",
+    "getRowCount",
+    "getRowData",
+    "rowIndex",
+    "getColumnCount",
+    "getColumnId",
+    "columnIndex",
+    "getColumnIndexById",
+    "columnId",
+    "getColumnName",
+    "isColumnEditable",
+    "isColumnSortable",
+    "sortByColumn",
+    "ascending",
+    "getSortColumnIndex",
+    "isSortAscending",
+    "prefetchRows",
+    "firstRowIndex",
+    "lastRowIndex",
+    "getValue",
+    "getValueById",
+    "setValue",
+    "value",
+    "setValueById",
+    "ui",
+    "table",
+    "ITableModel"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,yBAApB,EACA;AACE;;;;;AAMAC,IAAAA,MAAM,EAAG;AACP;;;;;;;;;;AAUA,qBAAgB,oBAXT;;AAaP;;;AAGA,yBAAoB,qBAhBb;;AAkBP;;;AAGA,gBAAW;AArBJ,KAPX;;AAgCE;;;;;AAMAC,IAAAA,OAAO,EACP;AACE;;;;;;AAMAC,MAAAA,WAAW,EAAG,uBAAW,CAAE,CAP7B;;AAUE;;;;;;;;;;;;;;AAcAC,MAAAA,UAAU,EAAG,oBAASC,QAAT,EAAmB,CAAE,CAxBpC;;AA2BE;;;;;;AAMAC,MAAAA,cAAc,EAAG,0BAAW,CAAE,CAjChC;;AAoCE;;;;;;;;;AASAC,MAAAA,WAAW,EAAG,qBAASC,WAAT,EAAsB,CAAE,CA7CxC;;AAgDE;;;;;;;AAOAC,MAAAA,kBAAkB,EAAG,4BAASC,QAAT,EAAmB,CAAE,CAvD5C;;AA0DE;;;;;;;;AAQAC,MAAAA,aAAa,EAAG,uBAASH,WAAT,EAAsB,CAAE,CAlE1C;;AAqEE;;;;;;AAMAI,MAAAA,gBAAgB,EAAG,0BAASJ,WAAT,EAAsB,CAAE,CA3E7C;;AA8EE;;;;;;AAMAK,MAAAA,gBAAgB,EAAG,0BAASL,WAAT,EAAsB,CAAE,CApF7C;;AAuFE;;;;;;AAMAM,MAAAA,YAAY,EAAG,sBAASN,WAAT,EAAsBO,SAAtB,EAAiC,CAAE,CA7FpD;;AAgGE;;;;;;AAMAC,MAAAA,kBAAkB,EAAG,8BAAW,CAAE,CAtGpC;;AAyGE;;;;;AAKAC,MAAAA,eAAe,EAAG,2BAAW,CAAE,CA9GjC;;AAiHE;;;;;;;AAOAC,MAAAA,YAAY,EAAG,sBAASC,aAAT,EAAwBC,YAAxB,EAAsC,CAAE,CAxHzD;;AA2HE;;;;;;;;;AASAC,MAAAA,QAAQ,EAAG,kBAASb,WAAT,EAAsBH,QAAtB,EAAgC,CAAE,CApI/C;;AAuIE;;;;;;;;;;AAUAiB,MAAAA,YAAY,EAAG,sBAASZ,QAAT,EAAmBL,QAAnB,EAA6B,CAAE,CAjJhD;;AAoJE;;;;;;;;;AASAkB,MAAAA,QAAQ,EAAG,kBAASf,WAAT,EAAsBH,QAAtB,EAAgCmB,KAAhC,EAAuC,CAAE,CA7JtD;;AAgKE;;;;;;;;;;AAUAC,MAAAA,YAAY,EAAG,sBAASf,QAAT,EAAmBL,QAAnB,EAA6BmB,KAA7B,EAAoC,CAAE;AA1KvD;AAvCF,GADA;AArBA7B,EAAAA,EAAE,CAAC+B,EAAH,CAAMC,KAAN,CAAYC,WAAZ,CAAwB9B,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Til Schneider (til132)\n\n************************************************************************ */\n\n/**\n * The data model of a table.\n */\nqx.Interface.define(\"qx.ui.table.ITableModel\",\n{\n  /*\n  *****************************************************************************\n     EVENTS\n  *****************************************************************************\n  */\n\n  events : {\n    /**\n     * Fired when the table data changed (the stuff shown in the table body).\n     * The data property of the event may be null or a map having the following attributes:\n     * <ul>\n     *   <li>firstRow: The index of the first row that has changed.</li>\n     *   <li>lastRow: The index of the last row that has changed.</li>\n     *   <li>firstColumn: The model index of the first column that has changed.</li>\n     *   <li>lastColumn: The model index of the last column that has changed.</li>\n     * </ul>\n     */\n    \"dataChanged\" : \"qx.event.type.Data\",\n\n    /**\n     * Fired when the meta data changed (the stuff shown in the table header).\n     */\n    \"metaDataChanged\" : \"qx.event.type.Event\",\n\n    /**\n     * Fired after the table is sorted (but before the metaDataChanged event)\n     */\n    \"sorted\" : \"qx.event.type.Data\"\n  },\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /**\n     * Returns the number of rows in the model.\n     *\n     * @abstract\n     * @return {Integer} the number of rows.\n     */\n    getRowCount : function() {},\n\n\n    /**\n     *\n     * Returns the data of one row. This function may be overridden by models which hold\n     * all data of a row in one object. By using this function, clients have a way of\n     * quickly retrieving the entire row data.\n     *\n     * <b>Important:</b>Models which do not have their row data accessible in one object\n     * may return null.\n     *\n     * @param rowIndex {Integer} the model index of the row.\n     * @return {Object} the row data as an object or null if the model does not support row data\n     *                    objects. The details on the object returned are determined by the model\n     *                    implementation only.\n     */\n    getRowData : function(rowIndex) {},\n\n\n    /**\n     * Returns the number of columns in the model.\n     *\n     * @abstract\n     * @return {Integer} the number of columns.\n     */\n    getColumnCount : function() {},\n\n\n    /**\n     * Returns the ID of column. The ID may be used to identify columns\n     * independent from their index in the model. E.g. for being aware of added\n     * columns when saving the width of a column.\n     *\n     * @abstract\n     * @param columnIndex {Integer} the index of the column.\n     * @return {String} the ID of the column.\n     */\n    getColumnId : function(columnIndex) {},\n\n\n    /**\n     * Returns the index of a column.\n     *\n     * @abstract\n     * @param columnId {String} the ID of the column.\n     * @return {Integer} the index of the column.\n     */\n    getColumnIndexById : function(columnId) {},\n\n\n    /**\n     * Returns the name of a column. This name will be shown to the user in the\n     * table header.\n     *\n     * @abstract\n     * @param columnIndex {Integer} the index of the column.\n     * @return {String} the name of the column.\n     */\n    getColumnName : function(columnIndex) {},\n\n\n    /**\n     * Returns whether a column is editable.\n     *\n     * @param columnIndex {Integer} the column to check.\n     * @return {Boolean} whether the column is editable.\n     */\n    isColumnEditable : function(columnIndex) {},\n\n\n    /**\n     * Returns whether a column is sortable.\n     *\n     * @param columnIndex {Integer} the column to check.\n     * @return {Boolean} whether the column is sortable.\n     */\n    isColumnSortable : function(columnIndex) {},\n\n\n    /**\n     * Sorts the model by a column.\n     *\n     * @param columnIndex {Integer} the column to sort by.\n     * @param ascending {Boolean} whether to sort ascending.\n     */\n    sortByColumn : function(columnIndex, ascending) {},\n\n\n    /**\n     * Returns the column index the model is sorted by. If the model is not sorted\n     * -1 is returned.\n     *\n     * @return {Integer} the column index the model is sorted by.\n     */\n    getSortColumnIndex : function() {},\n\n\n    /**\n     * Returns whether the model is sorted ascending.\n     *\n     * @return {Boolean} whether the model is sorted ascending.\n     */\n    isSortAscending : function() {},\n\n\n    /**\n     * Prefetches some rows. This is a hint to the model that the specified rows\n     * will be read soon.\n     *\n     * @param firstRowIndex {Integer} the index of first row.\n     * @param lastRowIndex {Integer} the index of last row.\n     */\n    prefetchRows : function(firstRowIndex, lastRowIndex) {},\n\n\n    /**\n     * Returns a cell value by column index.\n     *\n     * @abstract\n     * @param columnIndex {Integer} the index of the column.\n     * @param rowIndex {Integer} the index of the row.\n     * @return {var} The value of the cell.\n     * @see #getValueById\n     */\n    getValue : function(columnIndex, rowIndex) {},\n\n\n    /**\n     * Returns a cell value by column ID.\n     *\n     * Whenever you have the choice, use {@link #getValue()} instead,\n     * because this should be faster.\n     *\n     * @param columnId {String} the ID of the column.\n     * @param rowIndex {Integer} the index of the row.\n     * @return {var} the value of the cell.\n     */\n    getValueById : function(columnId, rowIndex) {},\n\n\n    /**\n     * Sets a cell value by column index.\n     *\n     * @abstract\n     * @param columnIndex {Integer} The index of the column.\n     * @param rowIndex {Integer} the index of the row.\n     * @param value {var} The new value.\n     * @see #setValueById\n     */\n    setValue : function(columnIndex, rowIndex, value) {},\n\n\n    /**\n     * Sets a cell value by column ID.\n     *\n     * Whenever you have the choice, use {@link #setValue()} instead,\n     * because this should be faster.\n     *\n     * @param columnId {String} The ID of the column.\n     * @param rowIndex {Integer} The index of the row.\n     * @param value {var} The new value.\n     */\n    setValueById : function(columnId, rowIndex, value) {}\n  }\n});"
+  ]
+}

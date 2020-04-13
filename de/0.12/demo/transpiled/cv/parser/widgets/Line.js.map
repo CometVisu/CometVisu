@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/parser/widgets/Line.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "parse",
+    "xml",
+    "path",
+    "flavour",
+    "pageType",
+    "cv",
+    "parser",
+    "WidgetParser",
+    "parseElement",
+    "getDefaultClasses",
+    "defer",
+    "addHandler",
+    "widgets",
+    "Line"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAoBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EAA0C;AACxCC,IAAAA,IAAI,EAAE,QADkC;;AAGxC;;;;;AAKAC,IAAAA,OAAO,EAAE;AACP;;;;;;;;;AASAC,MAAAA,KAAK,EAAE,eAAUC,GAAV,EAAeC,IAAf,EAAqBC,OAArB,EAA8BC,QAA9B,EAAwC;AAC7C,eAAOC,EAAE,CAACC,MAAH,CAAUC,YAAV,CAAuBC,YAAvB,CAAoC,IAApC,EAA0CP,GAA1C,EAA+CC,IAA/C,EAAqDC,OAArD,EAA8DC,QAA9D,CAAP;AACD,OAZM;AAcPK,MAAAA,iBAAiB,EAAE,6BAAW;AAC5B,eAAO,EAAP;AACD;AAhBM,KAR+B;AA2BxCC,IAAAA,KAAK,EAAE,eAASX,OAAT,EAAkB;AACvB;AACAM,MAAAA,EAAE,CAACC,MAAH,CAAUC,YAAV,CAAuBI,UAAvB,CAAkC,MAAlC,EAA0CZ,OAA1C;AACD;AA9BuC,GAA1C;AAvBAM,EAAAA,EAAE,CAACC,MAAH,CAAUM,OAAV,CAAkBC,IAAlB,CAAuBlB,aAAvB,GAAuCA,aAAvC",
+  "sourcesContent": [
+    "/* Line.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n *\n */\nqx.Class.define('cv.parser.widgets.Line', {\n  type: \"static\",\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    /**\n     * Parses the widgets XML configuration and extracts the given information\n     * to a simple key/value map.\n     *\n     * @param xml {Element} XML-Element\n     * @param path {String} internal path of the widget\n     * @param flavour {String} Flavour of the widget\n     * @param pageType {String} Page type (2d, 3d, ...)\n     */\n    parse: function (xml, path, flavour, pageType) {\n      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);\n    },\n\n    getDefaultClasses: function() {\n      return '';\n    }\n  },\n\n  defer: function(statics) {\n    // register the parser\n    cv.parser.WidgetParser.addHandler(\"line\", statics);\n  }\n});"
+  ]
+}

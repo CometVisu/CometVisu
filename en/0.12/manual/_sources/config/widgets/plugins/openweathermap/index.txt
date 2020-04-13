@@ -12,8 +12,6 @@ Description
 
 This plugins integrates OpenWeatherMap data.
 
-       plugins/openweathermap/owm_basic_style.css,
-       plugins/openweathermap/owm_weathericon.css)
 
 .. ###END-WIDGET-DESCRIPTION###
 

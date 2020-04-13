@@ -1,0 +1,112 @@
+{
+  "className": "qx.ui.mobile.list.IListDelegate",
+  "packageName": "qx.ui.mobile.list",
+  "name": "IListDelegate",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 0
+      },
+      "end": {
+        "line": 55,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2010 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n Fabian Jakobs (fjakobs)\n Christian Hagendorn (chris_schmidt)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Objects which are used as delegates for the {@link qx.ui.mobile.list.List#delegate} may\n implement any of the methods described in this interface. The delegate does\n not need to implement all the methods of this interface. If a method is not\n implemented the {@link qx.ui.mobile.list.provider.Provider} provides a default\n implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n actually implemented.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "configureItem": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 48
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configure the list item renderer with the given data. Mandatory method.\n At least this method has to be defined for the delegate.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.mobile.list.renderer.Abstract} Instance of list item renderer to modify",
+            "paramName": "item",
+            "description": " Instance of list item renderer to modify",
+            "type": "qx.ui.mobile.list.renderer.Abstract"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} The data of the row. Can be used to configure the given item.",
+            "paramName": "data",
+            "description": " The data of the row. Can be used to configure the given item.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "row {Integer} The row index.",
+            "paramName": "row",
+            "description": " The row index.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createItemRenderer": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 38
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates an instance of the item renderer to use.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.list.renderer.Abstract} An instance of the item renderer.",
+            "type": "qx.ui.mobile.list.renderer.Abstract",
+            "description": " An instance of the item renderer."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

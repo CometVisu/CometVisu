@@ -1,0 +1,266 @@
+{
+  "className": "qx.util.Uri",
+  "packageName": "qx.util",
+  "name": "Uri",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 173,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tristan Koch (tristankoch)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Static helpers for parsing and modifying URIs.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "parseUri": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Split URL\n Code taken from:\n   parseUri 1.2.2\n   (c) Steven Levithan <stevenlevithan.com>\n   MIT License</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} String to parse as URI",
+            "paramName": "str",
+            "description": " String to parse as URI",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "strict {Boolean} Whether to parse strictly by the rules",
+            "paramName": "strict",
+            "description": " Whether to parse strictly by the rules",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Map with parts of URI as properties",
+            "type": "Object",
+            "description": " Map with parts of URI as properties"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "appendParamsToUrl": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Append string to query part of URL. Respects existing query.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "url {String} URL to append string to.",
+            "paramName": "url",
+            "description": " URL to append string to.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "params {String} Parameters to append to URL.",
+            "paramName": "params",
+            "description": " Parameters to append to URL.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} URL with string appended in query part.",
+            "type": "String",
+            "description": " URL with string appended in query part."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toParameter": {
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4
+        },
+        "end": {
+          "line": 138,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Serializes an object to URI parameters (also known as query string).\n Escapes characters that have a special meaning in URIs as well as\n umlauts. Uses the global function encodeURIComponent, see\n https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/encodeURIComponent\n Note: For URI parameters that are to be sent as\n application/x-www-form-urlencoded (POST), spaces should be encoded\n with \"+\".</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object}   Object to serialize.",
+            "paramName": "obj",
+            "description": "   Object to serialize.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "post {Boolean} Whether spaces should be encoded with \"+\".",
+            "paramName": "post",
+            "description": " Whether spaces should be encoded with \"+\".",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}      Serialized object. Safe to append to URIs or send as\n                       URL encoded string.",
+            "type": "String",
+            "description": "      Serialized object. Safe to append to URIs or send as\n                       URL encoded string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__toParameterPair": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4
+        },
+        "end": {
+          "line": 157,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Encodes key/value to URI safe string and pushes to given array.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} Key.",
+            "paramName": "key",
+            "description": " Key.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {String} Value.",
+            "paramName": "value",
+            "description": " Value.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "parts {Array} Array to push to.",
+            "paramName": "parts",
+            "description": " Array to push to.",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "post {Boolean} Whether spaces should be encoded with \"+\".",
+            "paramName": "post",
+            "description": " Whether spaces should be encoded with \"+\".",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getAbsolute": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 171,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes a relative URI and returns an absolute one.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "uri {String} relative URI",
+            "paramName": "uri",
+            "description": " relative URI",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} absolute URI",
+            "type": "String",
+            "description": " absolute URI"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

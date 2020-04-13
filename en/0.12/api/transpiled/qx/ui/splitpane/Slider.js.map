@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/splitpane/Slider.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "core",
+    "Widget",
+    "properties",
+    "allowShrinkX",
+    "refine",
+    "init",
+    "allowShrinkY",
+    "splitpane",
+    "Slider"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;;AAKAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,MADtB;;AAKE;;;;;AAMAC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,YAAY,EACZ;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAHF;AAQE;AACAC,MAAAA,YAAY,EACZ;AACEF,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAVF;AAZF,GADA;AAxBAb,EAAAA,EAAE,CAACO,EAAH,CAAMQ,SAAN,CAAgBC,MAAhB,CAAuBb,aAAvB,GAAuCA,aAAvC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * The slider of the SplitPane (used during drag sessions for fast feedback)\n *\n * @internal\n */\nqx.Class.define(\"qx.ui.splitpane.Slider\",\n{\n  extend : qx.ui.core.Widget,\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    allowShrinkX :\n    {\n      refine : true,\n      init : false\n    },\n\n    // overridden\n    allowShrinkY :\n    {\n      refine : true,\n      init : false\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "className": "qx.ui.virtual.cell.IWidgetCellDelegate",
+  "packageName": "qx.ui.virtual.cell",
+  "name": "IWidgetCellDelegate",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 0
+      },
+      "end": {
+        "line": 40,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2010 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christian Hagendorn (chris_schmidt)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Objects, which are used as delegates for {@link qx.ui.virtual.cell.WidgetCell} may\n implement any of the methods described in this interface. The delegate does\n not need implement all of the methods of this interface. If a method is not\n implemented the {@link qx.ui.virtual.cell.WidgetCell} provides a default implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n really implemented.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "createWidget": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 32
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a <code>Widget</code> which will be used for rendering.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem} A new created <code>Widget</code>.",
+            "type": "qx.ui.core.LayoutItem",
+            "description": " A new created <code>Widget</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

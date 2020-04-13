@@ -1,0 +1,180 @@
+{
+  "className": "qx.ui.table.IColumnMenuButton",
+  "packageName": "qx.ui.table",
+  "name": "IColumnMenuButton",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 92,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2009 Derrell Lipman\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Derrell Lipman (derrell)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Interface for creating the column visibility menu</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "properties": {
+    "menu": {
+      "type": "property",
+      "name": "menu",
+      "abstract": true,
+      "mixin": false,
+      "access": "public"
+    }
+  },
+  "members": {
+    "factory": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Instantiate a sub-widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {String}\n   One of the following strings, indicating what type of\n   column-menu-specific object to instantiate:\n   <dl>\n     <dt>menu</dt>\n     <dd>\n       Instantiate a menu which will appear when the column visibility\n       button is pressed. No options are provided in this case.\n     </dd>\n     <dt>menu-button</dt>\n     <dd>\n       Instantiate a button to correspond to a column within the\n       table. The options are a map containing <i>text</i>, the name of\n       the column; <i>column</i>, the column number; and\n       <i>bVisible</i>, a boolean indicating whether this column is\n       currently visible. The instantiated return object must implement\n       interface {@link qx.ui.table.IColumnMenuItem}\n     </dd>\n     <dt>user-button</dt>\n     <dd>\n       Instantiate a button for other than a column name. This is used,\n       for example, to add the \"Reset column widths\" button when the\n       Resize column model is requested. The options is a map containing\n       <i>text</i>, the text to present in the button.\n     </dd>\n     <dt>separator</dt>\n     <dd>\n       Instantiate a separator object to added to the menu. This is\n       used, for example, to separate the table column name list from\n       the \"Reset column widths\" button when the Resize column model is\n       requested. No options are provided in this case.\n     </dd>\n   </dl>",
+            "paramName": "item",
+            "description": "\n   One of the following strings, indicating what type of\n   column-menu-specific object to instantiate:\n   <dl>\n     <dt>menu</dt>\n     <dd>\n       Instantiate a menu which will appear when the column visibility\n       button is pressed. No options are provided in this case.\n     </dd>\n     <dt>menu-button</dt>\n     <dd>\n       Instantiate a button to correspond to a column within the\n       table. The options are a map containing <i>text</i>, the name of\n       the column; <i>column</i>, the column number; and\n       <i>bVisible</i>, a boolean indicating whether this column is\n       currently visible. The instantiated return object must implement\n       interface {@link qx.ui.table.IColumnMenuItem}\n     </dd>\n     <dt>user-button</dt>\n     <dd>\n       Instantiate a button for other than a column name. This is used,\n       for example, to add the \"Reset column widths\" button when the\n       Resize column model is requested. The options is a map containing\n       <i>text</i>, the text to present in the button.\n     </dd>\n     <dt>separator</dt>\n     <dd>\n       Instantiate a separator object to added to the menu. This is\n       used, for example, to separate the table column name list from\n       the \"Reset column widths\" button when the Resize column model is\n       requested. No options are provided in this case.\n     </dd>\n   </dl>",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map}\n   Options specific to the <i>item</i> being requested.",
+            "paramName": "options",
+            "description": "\n   Options specific to the <i>item</i> being requested.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget}\n   The instantiated object as specified by <i>item</i>.",
+            "type": "qx.ui.core.Widget",
+            "description": "\n   The instantiated object as specified by <i>item</i>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "empty": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Empty the menu of all items, in preparation for building a new column\n visibility menu.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMenu": {
+      "type": "function",
+      "name": "getMenu",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>menu</code>.\n\nFor further details take a look at the property definition: {@link #menu}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for menu"
+          }
+        ]
+      }
+    },
+    "setMenu": {
+      "type": "function",
+      "name": "setMenu",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>menu</code>.\n\nFor further details take a look at the property definition: {@link #menu}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for menu"
+          }
+        ]
+      }
+    },
+    "resetMenu": {
+      "type": "function",
+      "name": "resetMenu",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>menu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #menu}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

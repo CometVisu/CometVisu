@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/form/MModelProperty.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "properties",
+    "model",
+    "nullable",
+    "event",
+    "apply",
+    "dereference",
+    "members",
+    "_applyModel",
+    "value",
+    "old",
+    "ui",
+    "form",
+    "MModelProperty"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAiBA;;;;AAIAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,2BAAhB,EACA;AACEC,IAAAA,UAAU,EACV;AACE;;;;;;;;;;;;;;;;AAgBAC,MAAAA,KAAK,EACL;AACEC,QAAAA,QAAQ,EAAG,IADb;AAEEC,QAAAA,KAAK,EAAG,aAFV;AAGEC,QAAAA,KAAK,EAAG,aAHV;AAIEC,QAAAA,WAAW,EAAG;AAJhB;AAlBF,KAFF;AA6BEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,WAAW,EAAG,qBAASC,KAAT,EAAgBC,GAAhB,EAAqB,CACjC;AACD;AAJH;AA9BF,GADA;AArBAf,EAAAA,EAAE,CAACgB,EAAH,CAAMC,IAAN,CAAWC,cAAX,CAA0Bf,aAA1B,GAA0CA,aAA1C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n/**\n * Can be included for implementing {@link qx.ui.form.IModel}. It only contains\n * a nullable property named 'model' with a 'changeModel' event.\n */\nqx.Mixin.define(\"qx.ui.form.MModelProperty\",\n{\n  properties :\n  {\n    /**\n     * Model property for storing additional information for the including\n     * object. It can act as value property on form items for example.\n     *\n     * Be careful using that property as this is used for the\n     * {@link qx.ui.form.MModelSelection} it has some restrictions:\n     *\n     * * Don't use equal models in one widget using the\n     *     {@link qx.ui.form.MModelSelection}.\n     *\n     * * Avoid setting only some model properties if the widgets are added to\n     *     a {@link qx.ui.form.MModelSelection} widget.\n     *\n     * Both restrictions result of the fact, that the set models are deputies\n     * for their widget.\n     */\n    model :\n    {\n      nullable : true,\n      event : \"changeModel\",\n      apply : \"_applyModel\",\n      dereference : true\n    }\n  },\n\n\n  members :\n  {\n    // apply method\n    _applyModel : function(value, old) {\n      // Empty implementation\n    }\n  }\n});\n"
+  ]
+}

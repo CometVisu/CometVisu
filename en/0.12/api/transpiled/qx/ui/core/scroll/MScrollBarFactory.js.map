@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/core/scroll/MScrollBarFactory.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "core",
+    "Environment",
+    "add",
+    "Mixin",
+    "define",
+    "members",
+    "_createScrollBar",
+    "orientation",
+    "ui",
+    "scroll",
+    "ScrollBar",
+    "MScrollBarFactory"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;AAkBAH,EAAAA,EAAE,CAACI,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,qBAAxB,EAA+C,KAA/C;AAEA;;;;;AAIAN,EAAAA,EAAE,CAACO,KAAH,CAASC,MAAT,CAAgB,qCAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;;;;;;;AAOAC,MAAAA,gBAAgB,EAAG,0BAASC,WAAT,EACnB;AAGS;AACL,iBAAO,IAAIX,EAAE,CAACY,EAAH,CAAMR,IAAN,CAAWS,MAAX,CAAkBC,SAAtB,CAAgCH,WAAhC,CAAP;AACD;AACF;AAfH;AAFF,GADA;AAxBAX,EAAAA,EAAE,CAACY,EAAH,CAAMR,IAAN,CAAWS,MAAX,CAAkBE,iBAAlB,CAAoCZ,aAApC,GAAoDA,aAApD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.core.Environment.add(\"qx.nativeScrollBars\", false);\n\n/**\n * Include this widget if you want to create scrollbars depending on the global\n * \"qx.nativeScrollBars\" setting.\n */\nqx.Mixin.define(\"qx.ui.core.scroll.MScrollBarFactory\",\n{\n  members :\n  {\n    /**\n     * Creates a new scrollbar. This can either be a styled qooxdoo scrollbar\n     * or a native browser scrollbar.\n     *\n     * @param orientation {String?\"horizontal\"} The initial scroll bar orientation\n     * @return {qx.ui.core.scroll.IScrollBar} The scrollbar instance\n     */\n    _createScrollBar : function(orientation)\n    {\n      if (qx.core.Environment.get(\"qx.nativeScrollBars\")) {\n        return new qx.ui.core.scroll.NativeScrollBar(orientation);\n      } else {\n        return new qx.ui.core.scroll.ScrollBar(orientation);\n      }\n    }\n  }\n});\n"
+  ]
+}

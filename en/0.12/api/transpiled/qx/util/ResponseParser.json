@@ -1,0 +1,243 @@
+{
+  "className": "qx.util.ResponseParser",
+  "packageName": "qx.util",
+  "name": "ResponseParser",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 166,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2013 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Richard Sternagel (rsternagel)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Parsers for parsing response strings (especially for XHR).\n Known parsers are: <code>\"json\"</code> and <code>\"xml\"</code>.</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.util.ResponseParser#parse"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 13
+      },
+      "end": {
+        "line": 36,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "parser {String|Function} See {@link #setParser}.",
+          "paramName": "parser",
+          "description": " See {@link #setParser}.",
+          "type": [
+            "String",
+            "Function"
+          ]
+        }
+      ]
+    }
+  },
+  "statics": {
+    "PARSER": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Map of parser functions. Parsers defined here can be\n referenced symbolically, e.g. with {@link #setParser}.\n Known parsers are: <code>\"json\"</code> and <code>\"xml\"</code>."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__parser": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "parse": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns given response parsed with parser\n determined by {@link #_getParser}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "response {String} response (e.g JSON/XML string)",
+            "paramName": "response",
+            "description": " response (e.g JSON/XML string)",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "contentType {String} contentType (e.g. 'application/json')",
+            "paramName": "contentType",
+            "description": " contentType (e.g. 'application/json')",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|Object} The parsed response of the request.",
+            "type": "String|Object",
+            "description": " The parsed response of the request."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setParser": {
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4
+        },
+        "end": {
+          "line": 116,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set parser used to parse response once request has\n completed successfully.\n Usually, the parser is correctly inferred from the\n content type of the response. This method allows to force the\n parser being used, e.g. if the content type returned from\n the backend is wrong or the response needs special parsing.\n Parser most typically used can be referenced symbolically.\n To cover edge cases, a function can be given. When parsing\n the response, this function is called with the raw response as\n first argument.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parser {String|Function}\n Can be:\n <ul>\n   <li>A parser defined in {@link qx.util.ResponseParser#PARSER},\n       referenced by string.</li>\n   <li>The function to invoke.\n       Receives the raw response as argument.</li>\n </ul>",
+            "paramName": "parser",
+            "description": "\n Can be:\n <ul>\n   <li>A parser defined in {@link qx.util.ResponseParser#PARSER},\n       referenced by string.</li>\n   <li>The function to invoke.\n       Receives the raw response as argument.</li>\n </ul>",
+            "type": [
+              "String",
+              "Function"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The parser function",
+            "type": "qx.util.Function",
+            "description": " The parser function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_getParser": {
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4
+        },
+        "end": {
+          "line": 164,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the parser.\n If not defined explicitly using {@link #setParser},\n the parser is inferred from the content type.\n Override this method to extend the list of content types\n being handled.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "contentType {String}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function|null} The parser function or <code>null</code> if the\n content type is undetermined.",
+            "type": "Function|null",
+            "description": " The parser function or <code>null</code> if the\n content type is undetermined."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "descendants": []
+}

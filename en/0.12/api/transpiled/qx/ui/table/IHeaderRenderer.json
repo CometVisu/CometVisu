@@ -1,0 +1,126 @@
+{
+  "className": "qx.ui.table.IHeaderRenderer",
+  "packageName": "qx.ui.table",
+  "name": "IHeaderRenderer",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 22,
+        "column": 0
+      },
+      "end": {
+        "line": 63,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Til Schneider (til132)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>A cell renderer for header cells.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "createHeaderCell": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a header cell.\n The cellInfo map contains the following properties:\n </p>\n<ul>\n <li>col (int): the model index of the column.</li>\n <li>xPos (int): the x position of the column in the table pane.</li>\n <li>name (string): the name of the column.</li>\n <li>editable (boolean): whether the column is editable.</li>\n <li>sorted (boolean): whether the column is sorted.</li>\n <li>sortedAscending (boolean): whether sorting is ascending.</li>\n </ul>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cellInfo {Map} A map containing the information about the cell to\n      create.",
+            "paramName": "cellInfo",
+            "description": " A map containing the information about the cell to\n      create.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} the widget that renders the header cell.",
+            "type": "qx.ui.core.Widget",
+            "description": " the widget that renders the header cell."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "updateHeaderCell": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates a header cell.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cellInfo {Map} A map containing the information about the cell to\n      create. This map has the same structure as in {@link #createHeaderCell}.",
+            "paramName": "cellInfo",
+            "description": " A map containing the information about the cell to\n      create. This map has the same structure as in {@link #createHeaderCell}.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "cellWidget {qx.ui.core.Widget} the widget that renders the header cell. This is\n      the same widget formally created by {@link #createHeaderCell}.",
+            "paramName": "cellWidget",
+            "description": " the widget that renders the header cell. This is\n      the same widget formally created by {@link #createHeaderCell}.",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

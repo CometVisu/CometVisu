@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/theme/dark/Font.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "extend",
+    "osparc",
+    "theme",
+    "osparcdark",
+    "Font",
+    "fonts",
+    "size",
+    "family",
+    "color",
+    "italic",
+    "sources",
+    "source",
+    "cv",
+    "dark"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAoBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,oBAAhB,EAAqC;AACnCC,IAAAA,MAAM,EAAGC,MAAM,CAACC,KAAP,CAAaC,UAAb,CAAwBC,IADE;AAGnCC,IAAAA,KAAK,EAAG;AACN,gBAAU;AACRC,QAAAA,IAAI,EAAE,EADE;AAERC,QAAAA,MAAM,EAAE,CAAC,YAAD,CAFA;AAGRC,QAAAA,KAAK,EAAE,MAHC;AAIRC,QAAAA,MAAM,EAAE,IAJA;AAKRC,QAAAA,OAAO,EAAE,CACP;AACEH,UAAAA,MAAM,EAAE,QADV;AAEEI,UAAAA,MAAM,EAAE,CACN,0DADM,EAEN,4DAFM,EAGN,2DAHM,EAIN,0DAJM;AAFV,SADO;AALD,OADJ;AAkBN,eAAS;AACPL,QAAAA,IAAI,EAAE,EADC;AAEPC,QAAAA,MAAM,EAAE,CAAC,YAAD,CAFD;AAGPC,QAAAA,KAAK,EAAE,MAHA;AAIPE,QAAAA,OAAO,EAAE,CACP;AACEH,UAAAA,MAAM,EAAE,QADV;AAEEI,UAAAA,MAAM,EAAE,CACN,0DADM,EAEN,4DAFM,EAGN,2DAHM,EAIN,0DAJM;AAFV,SADO;AAJF,OAlBH;AAkCN,eAAS;AACPL,QAAAA,IAAI,EAAE,EADC;AAEPC,QAAAA,MAAM,EAAE,CAAC,YAAD,CAFD;AAGPC,QAAAA,KAAK,EAAE,MAHA;AAIPE,QAAAA,OAAO,EAAE,CACP;AACEH,UAAAA,MAAM,EAAE,QADV;AAEEI,UAAAA,MAAM,EAAE,CACN,0DADM,EAEN,4DAFM,EAGN,2DAHM,EAIN,0DAJM;AAFV,SADO;AAJF,OAlCH;AAkDN,kBAAY;AACVL,QAAAA,IAAI,EAAE,EADI;AAEVC,QAAAA,MAAM,EAAE,CAAC,YAAD,CAFE;AAGVC,QAAAA,KAAK,EAAE,MAHG;AAIVE,QAAAA,OAAO,EAAE,CACP;AACEH,UAAAA,MAAM,EAAE,QADV;AAEEI,UAAAA,MAAM,EAAE,CACN,0DADM,EAEN,4DAFM,EAGN,2DAHM,EAIN,0DAJM;AAFV,SADO,CAJC,CAeX;AACD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAjCY;AAlDN;AAH2B,GAArC;AAvBAC,EAAAA,EAAE,CAACV,KAAH,CAASW,IAAT,CAAcT,IAAd,CAAmBP,aAAnB,GAAmCA,aAAnC",
+  "sourcesContent": [
+    "/* Font.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n * Font definitions\n */\nqx.Theme.define(\"cv.theme.dark.Font\",{\n  extend : osparc.theme.osparcdark.Font,\n\n  fonts : {\n    \"italic\": {\n      size: 13,\n      family: [\"sans-serif\"],\n      color: \"text\",\n      italic: true,\n      sources: [\n        {\n          family: \"Roboto\",\n          source: [\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf\"\n          ]\n        }\n      ]\n    },\n    \"title\": {\n      size: 18,\n      family: [\"sans-serif\"],\n      color: \"text\",\n      sources: [\n        {\n          family: \"Roboto\",\n          source: [\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf\"\n          ]\n        }\n      ]\n    },\n    \"small\": {\n      size: 12,\n      family: [\"sans-serif\"],\n      color: \"text\",\n      sources: [\n        {\n          family: \"Roboto\",\n          source: [\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf\"\n          ]\n        }\n      ]\n    },\n    \"subtitle\": {\n      size: 16,\n      family: [\"sans-serif\"],\n      color: \"text\",\n      sources: [\n        {\n          family: \"Roboto\",\n          source: [\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff\",\n            \"osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf\"\n          ]\n        }\n      ]\n    }//,\n    // \"MaterialIcons\": {\n    //   size: 32,\n    //   lineHeight: 1,\n    //   comparisonString : \"\\uf1e3\\uf1f7\\uf11b\\uf19d\",\n    //   family: [\"MaterialIcons\"],\n    //   sources: [\n    //     {\n    //       family: \"MaterialIcons\",\n    //       mapping: \"iconfont/material/MaterialIcons-Regular.json\",\n    //       source: [\n    //         \"iconfont/material/MaterialIcons-Regular.eot\",\n    //         \"iconfont/material/MaterialIcons-Regular.woff2\",\n    //         \"iconfont/material/MaterialIcons-Regular.woff\",\n    //         \"iconfont/material/MaterialIcons-Regular.ttf\"\n    //       ]\n    //     }\n    //   ]\n    // }\n  }\n});"
+  ]
+}

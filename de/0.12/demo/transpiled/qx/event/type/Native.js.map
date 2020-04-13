@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/event/type/Native.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "event",
+    "type",
+    "Event",
+    "members",
+    "init",
+    "nativeEvent",
+    "target",
+    "relatedTarget",
+    "canBubble",
+    "cancelable",
+    "_target",
+    "bom",
+    "getTarget",
+    "_relatedTarget",
+    "getRelatedTarget",
+    "timeStamp",
+    "_timeStamp",
+    "_native",
+    "_returnValue",
+    "clone",
+    "embryo",
+    "nativeClone",
+    "_cloneNativeEvent",
+    "preventDefault",
+    "getNativeEvent",
+    "setReturnValue",
+    "returnValue",
+    "getReturnValue",
+    "Native"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;;AAoBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcC,KADzB;AAGEC,IAAAA,OAAO,EACP;AACE;;;;;;;;;;;;;;;;;;AAkBAC,MAAAA,IAAI,EAAG,cAASC,WAAT,EAAsBC,MAAtB,EAA8BC,aAA9B,EAA6CC,SAA7C,EAAwDC,UAAxD,EACP;AACE,4DAAqBD,SAArB,EAAgCC,UAAhC;AAEA,aAAKC,OAAL,GAAeJ,MAAM,IAAIb,EAAE,CAACkB,GAAH,CAAOT,KAAP,CAAaU,SAAb,CAAuBP,WAAvB,CAAzB;AACA,aAAKQ,cAAL,GAAsBN,aAAa,IAAId,EAAE,CAACkB,GAAH,CAAOT,KAAP,CAAaY,gBAAb,CAA8BT,WAA9B,CAAvC;;AAEA,YAAIA,WAAW,CAACU,SAAhB,EAA2B;AACzB,eAAKC,UAAL,GAAkBX,WAAW,CAACU,SAA9B;AACD;;AAED,aAAKE,OAAL,GAAeZ,WAAf;AACA,aAAKa,YAAL,GAAoB,IAApB;AAEA,eAAO,IAAP;AACD,OAlCH;AAqCE;AACAC,MAAAA,KAAK,EAAG,eAASC,MAAT,EACR;AACE,YAAID,KAAK,wDAAwBC,MAAxB,CAAT;AAEA,YAAIC,WAAW,GAAG,EAAlB;AACAF,QAAAA,KAAK,CAACF,OAAN,GAAgB,KAAKK,iBAAL,CAAuB,KAAKL,OAA5B,EAAqCI,WAArC,CAAhB;AAEAF,QAAAA,KAAK,CAACD,YAAN,GAAqB,KAAKA,YAA1B;AAEA,eAAOC,KAAP;AACD,OAhDH;;AAmDE;;;;;;;AAOAG,MAAAA,iBAAiB,EAAG,2BAASjB,WAAT,EAAsBc,KAAtB,EACpB;AACEA,QAAAA,KAAK,CAACI,cAAN,GAAwB,YAAW,CAAE,CAArC;;AACA,eAAOJ,KAAP;AACD,OA9DH;;AAiEE;;;AAGAI,MAAAA,cAAc,EAAG,0BACjB;AACE;AACA9B,QAAAA,EAAE,CAACkB,GAAH,CAAOT,KAAP,CAAaqB,cAAb,CAA4B,KAAKN,OAAjC;AACD,OAxEH;;AA2EE;;;;;AAKAO,MAAAA,cAAc,EAAG,0BAAW;AAC1B,eAAO,KAAKP,OAAZ;AACD,OAlFH;;AAqFE;;;;;;;;AAQAQ,MAAAA,cAAc,EAAG,wBAASC,WAAT,EAAsB;AACrC,aAAKR,YAAL,GAAoBQ,WAApB;AACD,OA/FH;;AAkGE;;;;;AAKAC,MAAAA,cAAc,EAAG,0BAAW;AAC1B,eAAO,KAAKT,YAAZ;AACD;AAzGH;AAJF,GADA;AAvBAzB,EAAAA,EAAE,CAACO,KAAH,CAASC,IAAT,CAAc2B,MAAd,CAAqBhC,aAArB,GAAqCA,aAArC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Common base class for all native events (DOM events, IO events, ...).\n */\nqx.Class.define(\"qx.event.type.Native\",\n{\n  extend : qx.event.type.Event,\n\n  members :\n  {\n    /**\n     * Initialize the fields of the event. The event must be initialized before\n     * it can be dispatched.\n     *\n     * @param nativeEvent {Event} The DOM event to use\n     * @param target {Object?} The event target\n     * @param relatedTarget {Object?null} The related event target\n     * @param canBubble {Boolean?false} Whether or not the event is a bubbling event.\n     *     If the event is bubbling, the bubbling can be stopped using\n     *     {@link qx.event.type.Event#stopPropagation}\n     * @param cancelable {Boolean?false} Whether or not an event can have its default\n     *     action prevented. The default action can either be the browser's\n     *     default action of a native event (e.g. open the context menu on a\n     *     right click) or the default action of a qooxdoo class (e.g. close\n     *     the window widget). The default action can be prevented by calling\n     *     {@link #preventDefault}\n     * @return {qx.event.type.Event} The initialized event instance\n     */\n    init : function(nativeEvent, target, relatedTarget, canBubble, cancelable)\n    {\n      this.base(arguments, canBubble, cancelable);\n\n      this._target = target || qx.bom.Event.getTarget(nativeEvent);\n      this._relatedTarget = relatedTarget || qx.bom.Event.getRelatedTarget(nativeEvent);\n\n      if (nativeEvent.timeStamp) {\n        this._timeStamp = nativeEvent.timeStamp;\n      }\n\n      this._native = nativeEvent;\n      this._returnValue = null;\n\n      return this;\n    },\n\n\n    // overridden\n    clone : function(embryo)\n    {\n      var clone = this.base(arguments, embryo);\n\n      var nativeClone = {};\n      clone._native = this._cloneNativeEvent(this._native, nativeClone);\n\n      clone._returnValue = this._returnValue;\n\n      return clone;\n    },\n\n\n    /**\n     * Clone the native browser event\n     *\n     * @param nativeEvent {Event} The native browser event\n     * @param clone {Object} The initialized clone.\n     * @return {Object} The cloned event\n     */\n    _cloneNativeEvent : function(nativeEvent, clone)\n    {\n      clone.preventDefault = (function() {});\n      return clone;\n    },\n\n\n    /**\n     * Prevent browser default behavior, e.g. opening the context menu, ...\n     */\n    preventDefault : function()\n    {\n      this.base(arguments);\n      qx.bom.Event.preventDefault(this._native);\n    },\n\n\n    /**\n     * Get the native browser event object of this event.\n     *\n     * @return {Event} The native browser event\n     */\n    getNativeEvent : function() {\n      return this._native;\n    },\n\n\n    /**\n     * Sets the event's return value. If the return value is set in a\n     * beforeunload event, the user will be asked by the browser, whether\n     * he really wants to leave the page. The return string will be displayed in\n     * the message box.\n     *\n     * @param returnValue {String?null} Return value\n     */\n    setReturnValue : function(returnValue) {\n      this._returnValue = returnValue;\n    },\n\n\n    /**\n     * Retrieves the event's return value.\n     *\n     * @return {String?null} The return value\n     */\n    getReturnValue : function() {\n      return this._returnValue;\n    }\n  }\n});\n"
+  ]
+}

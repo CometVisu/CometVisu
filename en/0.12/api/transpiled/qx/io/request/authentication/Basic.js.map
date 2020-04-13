@@ -1,0 +1,38 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/io/request/authentication/Basic.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "implement",
+    "io",
+    "request",
+    "authentication",
+    "IAuthentication",
+    "construct",
+    "username",
+    "password",
+    "__credentials",
+    "util",
+    "Base64",
+    "encode",
+    "members",
+    "getAuthHeaders",
+    "key",
+    "value",
+    "Basic"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,oCAAhB,EACA;AAEEC,IAAAA,MAAM,EAAEN,EAAE,CAACO,IAAH,CAAQC,MAFlB;AAIEC,IAAAA,SAAS,EAAET,EAAE,CAACU,EAAH,CAAMC,OAAN,CAAcC,cAAd,CAA6BC,eAJ1C;;AAME;;;;AAIAC,IAAAA,SAAS,EAAG,mBAASC,QAAT,EAAmBC,QAAnB,EACZ;AACG,WAAKC,aAAL,GAAqBjB,EAAE,CAACkB,IAAH,CAAQC,MAAR,CAAeC,MAAf,CAAsBL,QAAQ,GAAG,GAAX,GAAiBC,QAAvC,CAArB;AACF,KAbH;AAeEK,IAAAA,OAAO,EACP;AACEJ,MAAAA,aAAa,EAAG,IADlB;;AAGE;;;;AAIAK,MAAAA,cAAc,EAAE,0BAAW;AACzB,eAAO,CACL;AAACC,UAAAA,GAAG,EAAE,eAAN;AAAuBC,UAAAA,KAAK,EAAE,WAAW,KAAKP;AAA9C,SADK,CAAP;AAGD;AAXH;AAhBF,GADA;AArBAjB,EAAAA,EAAE,CAACU,EAAH,CAAMC,OAAN,CAAcC,cAAd,CAA6Ba,KAA7B,CAAmCtB,aAAnC,GAAmDA,aAAnD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tristan Koch (tristankoch)\n\n************************************************************************ */\n\n/**\n * Basic authentication.\n */\nqx.Class.define(\"qx.io.request.authentication.Basic\",\n{\n\n  extend: qx.core.Object,\n\n  implement: qx.io.request.authentication.IAuthentication,\n\n  /**\n   * @param username {var} The username to use.\n   * @param password {var} The password to use.\n   */\n  construct : function(username, password)\n  {\n     this.__credentials = qx.util.Base64.encode(username + ':' + password);\n  },\n\n  members :\n  {\n    __credentials : null,\n\n    /**\n     * Headers to include for basic authentication.\n     * @return {Map} Map containing the authentication credentials\n     */\n    getAuthHeaders: function() {\n      return [\n        {key: \"Authorization\", value: \"Basic \" + this.__credentials}\n      ];\n    }\n  }\n});\n"
+  ]
+}

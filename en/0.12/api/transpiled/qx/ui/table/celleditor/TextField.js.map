@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/table/celleditor/TextField.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "table",
+    "celleditor",
+    "AbstractField",
+    "members",
+    "getCellEditorValue",
+    "cellEditor",
+    "value",
+    "getValue",
+    "validationFunc",
+    "getValidationFunction",
+    "originalValue",
+    "parseFloat",
+    "_createEditor",
+    "form",
+    "TextField",
+    "setAppearance"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,kCAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,KAAN,CAAYC,UAAZ,CAAuBC,aADlC;AAGEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,kBAAkB,EAAG,4BAASC,UAAT,EACrB;AACE,YAAIC,KAAK,GAAGD,UAAU,CAACE,QAAX,EAAZ,CADF,CAGE;;AACA,YAAIC,cAAc,GAAG,KAAKC,qBAAL,EAArB;;AACA,YAAID,cAAJ,EAAqB;AACnBF,UAAAA,KAAK,GAAGE,cAAc,CAAEF,KAAF,EAASD,UAAU,CAACK,aAApB,CAAtB;AACD;;AAED,YAAI,OAAOL,UAAU,CAACK,aAAlB,IAAmC,QAAvC,EAAiD;AAC/C;AACA;AACA,cAAIJ,KAAK,IAAI,IAAT,IAAiBA,KAAK,IAAI,EAA9B,EAAkC;AAChCA,YAAAA,KAAK,GAAGK,UAAU,CAACL,KAAD,CAAlB;AACD;AACF;;AACD,eAAOA,KAAP;AACD,OApBH;AAuBEM,MAAAA,aAAa,EAAG,yBAChB;AACE,YAAIP,UAAU,GAAG,IAAIb,EAAE,CAACO,EAAH,CAAMc,IAAN,CAAWC,SAAf,EAAjB;AACAT,QAAAA,UAAU,CAACU,aAAX,CAAyB,wBAAzB;AACA,eAAOV,UAAP;AACD;AA5BH;AAJF,GADA;AAtBAb,EAAAA,EAAE,CAACO,EAAH,CAAMC,KAAN,CAAYC,UAAZ,CAAuBa,SAAvB,CAAiCnB,aAAjC,GAAiDA,aAAjD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Til Schneider (til132)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * A cell editor factory creating text fields.\n */\nqx.Class.define(\"qx.ui.table.celleditor.TextField\",\n{\n  extend : qx.ui.table.celleditor.AbstractField,\n\n  members :\n  {\n    // overridden\n    getCellEditorValue : function(cellEditor)\n    {\n      var value = cellEditor.getValue();\n\n      // validation function will be called with new and old value\n      var validationFunc = this.getValidationFunction();\n      if (validationFunc ) {\n        value = validationFunc( value, cellEditor.originalValue );\n      }\n     \n      if (typeof cellEditor.originalValue == \"number\") {\n        // Correct problem of NaN displaying when value is null string.\n        //if (value != null) {\n        if (value != null && value != '') {\n          value = parseFloat(value);\n        }\n      }\n      return value;\n    },\n\n\n    _createEditor : function()\n    {\n      var cellEditor = new qx.ui.form.TextField();\n      cellEditor.setAppearance(\"table-editor-textfield\");\n      return cellEditor;\n    }\n  }\n});\n"
+  ]
+}

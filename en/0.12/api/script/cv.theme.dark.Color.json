@@ -1,1 +1,0 @@
-{"attributes": {"isStatic": true, "name": "Color", "hasWarning": true, "packageName": "cv.theme.dark", "hasError": true, "fullName": "cv.theme.dark.Color", "type": "theme"}, "type": "class", "children": [{"attributes": {}, "type": "errors", "children": [{"attributes": {"msg": "Class documentation is missing.", "column": 17, "line": 22}, "type": "error"}]}]}

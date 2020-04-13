@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/mobile/navigationbar/Button.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "mobile",
+    "form",
+    "Button",
+    "properties",
+    "defaultCssClass",
+    "refine",
+    "init",
+    "navigationbar"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,mCAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBC,MAD7B;;AAIC;;;;;AAMCC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,eAAe,EACf;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAHF;AAXF,GADA;AArBAd,EAAAA,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaO,aAAb,CAA2BL,MAA3B,CAAkCP,aAAlC,GAAkDA,aAAlD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\n/**\n * A navigation bar button widget.\n */\nqx.Class.define(\"qx.ui.mobile.navigationbar.Button\",\n{\n  extend : qx.ui.mobile.form.Button,\n\n\n /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    defaultCssClass :\n    {\n      refine : true,\n      init : \"navigationbar-button\"\n    }\n  }\n});\n"
+  ]
+}

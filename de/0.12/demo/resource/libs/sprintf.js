@@ -1,1 +1,208 @@
-!function(e){var x={not_string:/[^s]/,number:/[diefg]/,json:/[j]/,not_json:/[^j]/,text:/^[^\x25]+/,modulo:/^\x25{2}/,placeholder:/^\x25(?:([1-9]\d*)\$|\(([^\)]+)\))?(\+)?(0|'[^$])?(-)?(\d+)?(?:\.(\d+))?([b-gijosuxX])/,key:/^([a-z_][a-z_\d]*)/i,key_access:/^\.([a-z_][a-z_\d]*)/i,index_access:/^\[(\d+)\]/,sign:/^[\+\-]/};function b(){var e=arguments[0],n=b.cache;return n[e]&&n.hasOwnProperty(e)||(n[e]=b.parse(e)),b.format.call(null,n[e],arguments)}b.format=function(e,n){var t,r,s,o,a,i,l,c,f=1,p=e.length,u="",d=[],g=!0,h="";for(r=0;r<p;r++)if("string"===(u=y(e[r])))d[d.length]=e[r];else if("array"===u){if((o=e[r])[2])for(t=n[f],s=0;s<o[2].length;s++){if(!t.hasOwnProperty(o[2][s]))throw new Error(b("[sprintf] property '%s' does not exist",o[2][s]));t=t[o[2][s]]}else t=o[1]?n[o[1]]:n[f++];if("function"==y(t)&&(t=t()),x.not_string.test(o[8])&&x.not_json.test(o[8])&&"number"!=y(t)&&isNaN(t))throw new TypeError(b("[sprintf] expecting number but found %s",y(t)));switch(x.number.test(o[8])&&(g=0<=t),o[8]){case"b":t=t.toString(2);break;case"c":t=String.fromCharCode(t);break;case"d":case"i":t=parseInt(t,10);break;case"j":t=JSON.stringify(t,null,o[6]?parseInt(o[6]):0);break;case"e":t=o[7]?t.toExponential(o[7]):t.toExponential();break;case"f":t=o[7]?parseFloat(t).toFixed(o[7]):parseFloat(t);break;case"g":t=o[7]?parseFloat(t).toPrecision(o[7]):parseFloat(t);break;case"o":t=t.toString(8);break;case"s":t=(t=String(t))&&o[7]?t.substring(0,o[7]):t;break;case"u":t>>>=0;break;case"x":t=t.toString(16);break;case"X":t=t.toString(16).toUpperCase()}x.json.test(o[8])?d[d.length]=t:(!x.number.test(o[8])||g&&!o[3]?h="":(h=g?"+":"-",t=t.toString().replace(x.sign,"")),i=o[4]?"0"===o[4]?"0":o[4].charAt(1):" ",l=o[6]-(h+t).length,a=o[6]&&0<l?(c=i,Array(l+1).join(c)):"",d[d.length]=o[5]?h+t+a:"0"===i?h+a+t:a+h+t)}return d.join("")},b.cache={},b.parse=function(e){for(var n=e,t=[],r=[],s=0;n;){if(null!==(t=x.text.exec(n)))r[r.length]=t[0];else if(null!==(t=x.modulo.exec(n)))r[r.length]="%";else{if(null===(t=x.placeholder.exec(n)))throw new SyntaxError("[sprintf] unexpected placeholder");if(t[2]){s|=1;var o=[],a=t[2],i=[];if(null===(i=x.key.exec(a)))throw new SyntaxError("[sprintf] failed to parse named argument key");for(o[o.length]=i[1];""!==(a=a.substring(i[0].length));)if(null!==(i=x.key_access.exec(a)))o[o.length]=i[1];else{if(null===(i=x.index_access.exec(a)))throw new SyntaxError("[sprintf] failed to parse named argument key");o[o.length]=i[1]}t[2]=o}else s|=2;if(3===s)throw new Error("[sprintf] mixing positional and named placeholders is not (yet) supported");r[r.length]=t}n=n.substring(t[0].length)}return r};function n(e,n,t){return(t=(n||[]).slice(0)).splice(0,0,e),b.apply(null,t)}function y(e){return Object.prototype.toString.call(e).slice(8,-1).toLowerCase()}"undefined"!=typeof exports?(exports.sprintf=b,exports.vsprintf=n):(e.sprintf=b,e.vsprintf=n,"function"==typeof define&&define.amd&&define(function(){return{sprintf:b,vsprintf:n}}))}("undefined"==typeof window?this:window);
+(function(window) {
+    var re = {
+        not_string: /[^s]/,
+        number: /[diefg]/,
+        json: /[j]/,
+        not_json: /[^j]/,
+        text: /^[^\x25]+/,
+        modulo: /^\x25{2}/,
+        placeholder: /^\x25(?:([1-9]\d*)\$|\(([^\)]+)\))?(\+)?(0|'[^$])?(-)?(\d+)?(?:\.(\d+))?([b-gijosuxX])/,
+        key: /^([a-z_][a-z_\d]*)/i,
+        key_access: /^\.([a-z_][a-z_\d]*)/i,
+        index_access: /^\[(\d+)\]/,
+        sign: /^[\+\-]/
+    }
+
+    function sprintf() {
+        var key = arguments[0], cache = sprintf.cache
+        if (!(cache[key] && cache.hasOwnProperty(key))) {
+            cache[key] = sprintf.parse(key)
+        }
+        return sprintf.format.call(null, cache[key], arguments)
+    }
+
+    sprintf.format = function(parse_tree, argv) {
+        var cursor = 1, tree_length = parse_tree.length, node_type = "", arg, output = [], i, k, match, pad, pad_character, pad_length, is_positive = true, sign = ""
+        for (i = 0; i < tree_length; i++) {
+            node_type = get_type(parse_tree[i])
+            if (node_type === "string") {
+                output[output.length] = parse_tree[i]
+            }
+            else if (node_type === "array") {
+                match = parse_tree[i] // convenience purposes only
+                if (match[2]) { // keyword argument
+                    arg = argv[cursor]
+                    for (k = 0; k < match[2].length; k++) {
+                        if (!arg.hasOwnProperty(match[2][k])) {
+                            throw new Error(sprintf("[sprintf] property '%s' does not exist", match[2][k]))
+                        }
+                        arg = arg[match[2][k]]
+                    }
+                }
+                else if (match[1]) { // positional argument (explicit)
+                    arg = argv[match[1]]
+                }
+                else { // positional argument (implicit)
+                    arg = argv[cursor++]
+                }
+
+                if (get_type(arg) == "function") {
+                    arg = arg()
+                }
+
+                if (re.not_string.test(match[8]) && re.not_json.test(match[8]) && (get_type(arg) != "number" && isNaN(arg))) {
+                    throw new TypeError(sprintf("[sprintf] expecting number but found %s", get_type(arg)))
+                }
+
+                if (re.number.test(match[8])) {
+                    is_positive = arg >= 0
+                }
+
+                switch (match[8]) {
+                    case "b":
+                        arg = arg.toString(2)
+                    break
+                    case "c":
+                        arg = String.fromCharCode(arg)
+                    break
+                    case "d":
+                    case "i":
+                        arg = parseInt(arg, 10)
+                    break
+                    case "j":
+                        arg = JSON.stringify(arg, null, match[6] ? parseInt(match[6]) : 0)
+                    break
+                    case "e":
+                        arg = match[7] ? arg.toExponential(match[7]) : arg.toExponential()
+                    break
+                    case "f":
+                        arg = match[7] ? parseFloat(arg).toFixed(match[7]) : parseFloat(arg)
+                    break
+                    case "g":
+                        arg = match[7] ? parseFloat(arg).toPrecision(match[7]) : parseFloat(arg)
+                    break
+                    case "o":
+                        arg = arg.toString(8)
+                    break
+                    case "s":
+                        arg = ((arg = String(arg)) && match[7] ? arg.substring(0, match[7]) : arg)
+                    break
+                    case "u":
+                        arg = arg >>> 0
+                    break
+                    case "x":
+                        arg = arg.toString(16)
+                    break
+                    case "X":
+                        arg = arg.toString(16).toUpperCase()
+                    break
+                }
+                if (re.json.test(match[8])) {
+                    output[output.length] = arg
+                }
+                else {
+                    if (re.number.test(match[8]) && (!is_positive || match[3])) {
+                        sign = is_positive ? "+" : "-"
+                        arg = arg.toString().replace(re.sign, "")
+                    }
+                    else {
+                        sign = ""
+                    }
+                    pad_character = match[4] ? match[4] === "0" ? "0" : match[4].charAt(1) : " "
+                    pad_length = match[6] - (sign + arg).length
+                    pad = match[6] ? (pad_length > 0 ? str_repeat(pad_character, pad_length) : "") : ""
+                    output[output.length] = match[5] ? sign + arg + pad : (pad_character === "0" ? sign + pad + arg : pad + sign + arg)
+                }
+            }
+        }
+        return output.join("")
+    }
+
+    sprintf.cache = {}
+
+    sprintf.parse = function(fmt) {
+        var _fmt = fmt, match = [], parse_tree = [], arg_names = 0
+        while (_fmt) {
+            if ((match = re.text.exec(_fmt)) !== null) {
+                parse_tree[parse_tree.length] = match[0]
+            }
+            else if ((match = re.modulo.exec(_fmt)) !== null) {
+                parse_tree[parse_tree.length] = "%"
+            }
+            else if ((match = re.placeholder.exec(_fmt)) !== null) {
+                if (match[2]) {
+                    arg_names |= 1
+                    var field_list = [], replacement_field = match[2], field_match = []
+                    if ((field_match = re.key.exec(replacement_field)) !== null) {
+                        field_list[field_list.length] = field_match[1]
+                        while ((replacement_field = replacement_field.substring(field_match[0].length)) !== "") {
+                            if ((field_match = re.key_access.exec(replacement_field)) !== null) {
+                                field_list[field_list.length] = field_match[1]
+                            }
+                            else if ((field_match = re.index_access.exec(replacement_field)) !== null) {
+                                field_list[field_list.length] = field_match[1]
+                            }
+                            else {
+                                throw new SyntaxError("[sprintf] failed to parse named argument key")
+                            }
+                        }
+                    }
+                    else {
+                        throw new SyntaxError("[sprintf] failed to parse named argument key")
+                    }
+                    match[2] = field_list
+                }
+                else {
+                    arg_names |= 2
+                }
+                if (arg_names === 3) {
+                    throw new Error("[sprintf] mixing positional and named placeholders is not (yet) supported")
+                }
+                parse_tree[parse_tree.length] = match
+            }
+            else {
+                throw new SyntaxError("[sprintf] unexpected placeholder")
+            }
+            _fmt = _fmt.substring(match[0].length)
+        }
+        return parse_tree
+    }
+
+    var vsprintf = function(fmt, argv, _argv) {
+        _argv = (argv || []).slice(0)
+        _argv.splice(0, 0, fmt)
+        return sprintf.apply(null, _argv)
+    }
+
+    /**
+     * helpers
+     */
+    function get_type(variable) {
+        return Object.prototype.toString.call(variable).slice(8, -1).toLowerCase()
+    }
+
+    function str_repeat(input, multiplier) {
+        return Array(multiplier + 1).join(input)
+    }
+
+    /**
+     * export to either browser or node.js
+     */
+    if (typeof exports !== "undefined") {
+        exports.sprintf = sprintf
+        exports.vsprintf = vsprintf
+    }
+    else {
+        window.sprintf = sprintf
+        window.vsprintf = vsprintf
+
+        if (typeof define === "function" && define.amd) {
+            define(function() {
+                return {
+                    sprintf: sprintf,
+                    vsprintf: vsprintf
+                }
+            })
+        }
+    }
+})(typeof window === "undefined" ? this : window);

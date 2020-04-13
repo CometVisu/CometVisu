@@ -1,0 +1,67 @@
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Mixin": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.ui.mobile.container.Scroll": {},
+      "qx.ui.mobile.core.Root": {}
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2014 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Christopher Zuendorf (czuendorf)
+  
+  ************************************************************************ */
+
+  /**
+   * The mixin contains all functionality to provide methods
+   * for scroll container handling: determine the parent scroll container.
+   *
+   */
+  qx.Mixin.define("qx.ui.mobile.container.MScrollHandling", {
+    members: {
+      /**
+       * Returns the parent scroll container of this widget.
+       * @return {qx.ui.mobile.container.Scroll} the parent scroll container or <code>null</code>
+       */
+      _getParentScrollContainer: function _getParentScrollContainer() {
+        var scroll = this;
+
+        while (!(scroll instanceof qx.ui.mobile.container.Scroll)) {
+          if (scroll.getLayoutParent) {
+            var layoutParent = scroll.getLayoutParent();
+
+            if (layoutParent === null || layoutParent instanceof qx.ui.mobile.core.Root) {
+              return null;
+            }
+
+            scroll = layoutParent;
+          } else {
+            return null;
+          }
+        }
+
+        return scroll;
+      }
+    }
+  });
+  qx.ui.mobile.container.MScrollHandling.$$dbClassInfo = $$dbClassInfo;
+})();
+
+//# sourceMappingURL=MScrollHandling.js.map?dt=1586772664192

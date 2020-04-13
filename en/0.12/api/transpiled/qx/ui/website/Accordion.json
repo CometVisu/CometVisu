@@ -1,0 +1,143 @@
+{
+  "className": "qx.ui.website.Accordion",
+  "packageName": "qx.ui.website",
+  "name": "Accordion",
+  "superClass": "qx.ui.website.Tabs",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 74,
+        "column": 0
+      },
+      "end": {
+        "line": 122,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2013 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Daniel Wagner (danielwagner)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>The Accordion is a group of vertically stacked panels (here called pages),\n each with a header.\n By default, only one page is visible while the others are collapsed.\n Clicking or tapping a collapsed page's header will expand it while collapsing the\n previously expanded page.\n </p>\n<h2>Markup</h2>\n<p>The Accordion contains an unordered list element (<code>ul</code>), which\n will be created if not already present.\n Headers and pages are list items (<code>li</code>). Each header must contain\n a button with an <code>accordionPage</code> data attribute where the value is a\n CSS selector string identifying the corresponding page. Headers and pages\n will not be created automatically. They can be predefined in the DOM before\n the <code>q().accordion()</code> factory method is called, or added programmatically.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-accordion</code></td>\n       <td>Container element</td>\n       <td>Identifies the Accordion widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-accordion-button</code></td>\n       <td>Page header (<code>li</code>)</td>\n       <td>Identifies and styles the page headers</td>\n     </tr>\n     <tr>\n       <td><code>qx-accordion-button-active</code></td>\n       <td>Page header (<code>li</code>)</td>\n       <td>Identifies and styles the header of the currently expanded page. Applied in addition to <code>qx-accordion-button</code></td>\n     </tr>\n     <tr>\n       <td><code>qx-accordion-page</code></td>\n       <td>Page (<code>li</code>)</td>\n       <td>Identifies and styles the pages</td>\n     </tr>\n   </tbody>\n </table>\n<h2 class=\"widget-markup\">Generated DOM Structure</h2>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.util.Object"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Widget"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "_templates": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 8
+        },
+        "end": {
+          "line": 87,
+          "column": 9
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p><em>button</em>\n Template used by {@link qx.ui.website.Tabs#addButton} to create a new button.\n Default value: <pre><li><button>{{{content}}}</button></li></pre></p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "accordion": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 8
+        },
+        "end": {
+          "line": 108,
+          "column": 9
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method which converts the current collection into a collection of\n accordion widgets.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "preselected {Integer?} The (zero-based) index of the panel that\n should initially be opened",
+            "paramName": "preselected",
+            "description": " The (zero-based) index of the panel that\n should initially be opened",
+            "optional": true,
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Accordion} A new Accordion collection.",
+            "type": "qx.ui.website.Accordion",
+            "description": " A new Accordion collection."
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 112,
+        "column": 15
+      },
+      "end": {
+        "line": 114,
+        "column": 5
+      }
+    },
+    "jsdoc": {}
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 117,
+        "column": 11
+      },
+      "end": {
+        "line": 121,
+        "column": 5
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

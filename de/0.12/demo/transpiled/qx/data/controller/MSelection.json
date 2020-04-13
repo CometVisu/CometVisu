@@ -1,0 +1,730 @@
+{
+  "className": "qx.data.controller.MSelection",
+  "packageName": "qx.data.controller",
+  "name": "MSelection",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 448,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Mixin for the selection in the data binding controller.\n It contains an selection property which can be manipulated.\n Remember to call the method {@link #_addChangeTargetListener} on every\n change of the target.\n It is also important that the elements stored in the target e.g. ListItems\n do have the corresponding model stored as user data under the \"model\" key.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 14
+      },
+      "end": {
+        "line": 48,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "properties": {
+    "selection": {
+      "type": "property",
+      "name": "selection",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    }
+  },
+  "events": {
+    "changeSelection": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4
+        },
+        "end": {
+          "line": 83,
+          "column": 44
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This event is fired as soon as the content of the selection property changes, but\n this is not equal to the change of the selection of the widget. If the selection\n of the widget changes, the content of the array stored in the selection property\n changes. This means you have to listen to the change event of the selection array\n to get an event as soon as the user changes the selected item.\n </p>\n<pre class=\"javascript\">obj.getSelection().addListener(\"change\", listener, this);</pre>"
+          }
+        ]
+      },
+      "name": "changeSelection",
+      "type": "qx.event.type.Data"
+    },
+    "changeValue": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires after the value was modified</p>"
+          }
+        ]
+      },
+      "name": "changeValue",
+      "type": "qx.event.type.Data"
+    }
+  },
+  "members": {
+    "_modifingSelection": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>private members</p>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>set the semaphore-like variable for the selection change</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__selectionListenerId": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 32
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__selectionArrayListenerId": {
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4
+        },
+        "end": {
+          "line": 102,
+          "column": 37
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__ownSelection": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "setValue": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 120,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>setValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selection {qx.data.IListData|null} List data to select as value.",
+            "paramName": "selection",
+            "description": " List data to select as value.",
+            "type": [
+              "qx.data.IListData",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null} The status of this operation.",
+            "type": "null",
+            "description": " The status of this operation."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getValue": {
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4
+        },
+        "end": {
+          "line": 130,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>getValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.data.IListData} The current selection.",
+            "type": "qx.data.IListData",
+            "description": " The current selection."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetValue": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4
+        },
+        "end": {
+          "line": 138,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>resetValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_applySelection": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 169,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n   APPLY METHODS\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Apply-method for setting a new selection array. Only the change listener\n will be removed from the old array and added to the new.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {qx.data.Array} The new data array for the selection.",
+            "paramName": "value",
+            "description": " The new data array for the selection.",
+            "type": "qx.data.Array"
+          },
+          {
+            "name": "@param",
+            "body": "old {qx.data.Array|null} The old data array for the selection.",
+            "paramName": "old",
+            "description": " The old data array for the selection.",
+            "type": [
+              "qx.data.Array",
+              "null"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "selection"
+      ]
+    },
+    "__changeSelectionArray": {
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4
+        },
+        "end": {
+          "line": 184,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n   EVENT HANDLER\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the change of the data array holding the selection.\n If a change is in the selection array, the selection update will be\n invoked.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_changeTargetSelection": {
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4
+        },
+        "end": {
+          "line": 231,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for a change in the target selection.\n If the selection in the target has changed, the selected model objects\n will be found and added to the selection array.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_addChangeTargetListener": {
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4
+        },
+        "end": {
+          "line": 264,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n   SELECTION\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Helper method which should be called by the classes including this\n Mixin when the target changes.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {qx.ui.core.Widget|null} The new target.",
+            "paramName": "value",
+            "description": " The new target.",
+            "type": [
+              "qx.ui.core.Widget",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "old {qx.ui.core.Widget|null} The old target.",
+            "paramName": "old",
+            "description": " The old target.",
+            "type": [
+              "qx.ui.core.Widget",
+              "null"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_updateSelection": {
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 4
+        },
+        "end": {
+          "line": 335,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method for updating the selection. It checks for the case of single or\n multi selection and after that checks if the selection in the selection\n array is the same as in the target widget.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__targetSupportsMultiSelection": {
+      "location": {
+        "start": {
+          "line": 342,
+          "column": 4
+        },
+        "end": {
+          "line": 345,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-method returning true, if the target supports multi selection.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if the target supports multi selection.",
+            "type": "Boolean",
+            "description": " true, if the target supports multi selection."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__targetSupportsSingleSelection": {
+      "location": {
+        "start": {
+          "line": 352,
+          "column": 4
+        },
+        "end": {
+          "line": 355,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-method returning true, if the target supports single selection.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if the target supports single selection.",
+            "type": "Boolean",
+            "description": " true, if the target supports single selection."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__selectItem": {
+      "location": {
+        "start": {
+          "line": 364,
+          "column": 4
+        },
+        "end": {
+          "line": 378,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for selecting an item in the target. The item to select\n is defined by a given model item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.core.Object} A model element.",
+            "paramName": "item",
+            "description": " A model element.",
+            "type": "qx.core.Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getSelectableForModel": {
+      "location": {
+        "start": {
+          "line": 387,
+          "column": 4
+        },
+        "end": {
+          "line": 400,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the list item storing the given model in its model property.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "model {var} The representing model of a selectable.",
+            "paramName": "model",
+            "description": " The representing model of a selectable.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object|null} List item or <code>null</code> if none was found",
+            "type": "Object|null",
+            "description": " List item or <code>null</code> if none was found"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_startSelectionModification": {
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 4
+        },
+        "end": {
+          "line": 410,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method signaling that currently the selection of the target is\n in change. That will block the change of the internal selection.\n {@link #_endSelectionModification}</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_endSelectionModification": {
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 4
+        },
+        "end": {
+          "line": 420,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method signaling that the internal changing of the targets\n selection is over.\n {@link #_startSelectionModification}</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_inSelectionModification": {
+      "location": {
+        "start": {
+          "line": 429,
+          "column": 4
+        },
+        "end": {
+          "line": 431,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method for checking the state of the selection modification.\n {@link #<em>startSelectionModification}\n {@link #</em>endSelectionModification}</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if selection modification is active",
+            "type": "Boolean",
+            "description": " <code>true</code> if selection modification is active"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getSelection": {
+      "type": "function",
+      "name": "getSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>selection</code>.\n\nFor further details take a look at the property definition: {@link #selection}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.data.Array",
+            "desc": "Returns the value for selection"
+          }
+        ]
+      }
+    },
+    "setSelection": {
+      "type": "function",
+      "name": "setSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>selection</code>.\n\nFor further details take a look at the property definition: {@link #selection}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.data.Array",
+            "paramName": "value",
+            "desc": "Value for selection"
+          }
+        ]
+      }
+    },
+    "resetSelection": {
+      "type": "function",
+      "name": "resetSelection",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>selection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selection}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 442,
+        "column": 13
+      },
+      "end": {
+        "line": 447,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

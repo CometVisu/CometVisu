@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/menu/Button.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "menu",
+    "AbstractButton",
+    "construct",
+    "label",
+    "icon",
+    "command",
+    "setLabel",
+    "setIcon",
+    "setCommand",
+    "setMenu",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "members",
+    "_onTap",
+    "e",
+    "isLeftPressed",
+    "getMenu",
+    "execute",
+    "open",
+    "Button"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;;AAKAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,mBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,cADtB;;AAIE;;;;;;AAMA;;;;;;AAMAC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EAAgBC,IAAhB,EAAsBC,OAAtB,EAA+BL,IAA/B,EACZ;AACE,uDADF,CAGE;;AACA,UAAIG,KAAK,IAAI,IAAb,EAAmB;AACjB,aAAKG,QAAL,CAAcH,KAAd;AACD;;AAED,UAAIC,IAAI,IAAI,IAAZ,EAAkB;AAChB,aAAKG,OAAL,CAAaH,IAAb;AACD;;AAED,UAAIC,OAAO,IAAI,IAAf,EAAqB;AACnB,aAAKG,UAAL,CAAgBH,OAAhB;AACD;;AAED,UAAIL,IAAI,IAAI,IAAZ,EAAkB;AAChB,aAAKS,OAAL,CAAaT,IAAb;AACD;AACF,KApCH;;AAyCE;;;;;AAMAU,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAHF,KAhDF;;AA4DE;;;;;AAMAC,IAAAA,OAAO,EACP;AACE;;;;;AAOA;AACAC,MAAAA,MAAM,EAAG,gBAASC,CAAT,EACT;AACE,YAAIA,CAAC,CAACC,aAAF,MAAqB,KAAKC,OAAL,EAAzB,EAAyC;AACvC,eAAKC,OAAL,GADuC,CAEvC;;AACA,eAAKD,OAAL,GAAeE,IAAf;AACA;AACD;;AAED,2DAAqBJ,CAArB;AACD;AAnBH;AAnEF,GADA;AAxBAxB,EAAAA,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWqB,MAAX,CAAkB1B,aAAlB,GAAkCA,aAAlC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * The real menu button class which supports a command and an icon. All\n * other features are inherited from the {@link qx.ui.menu.AbstractButton}\n * class.\n */\nqx.Class.define(\"qx.ui.menu.Button\",\n{\n  extend : qx.ui.menu.AbstractButton,\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param label {String} Initial label\n   * @param icon {String} Initial icon\n   * @param command {qx.ui.command.Command} Initial command (shortcut)\n   * @param menu {qx.ui.menu.Menu} Initial sub menu\n   */\n  construct : function(label, icon, command, menu)\n  {\n    this.base(arguments);\n\n    // Initialize with incoming arguments\n    if (label != null) {\n      this.setLabel(label);\n    }\n\n    if (icon != null) {\n      this.setIcon(icon);\n    }\n\n    if (command != null) {\n      this.setCommand(command);\n    }\n\n    if (menu != null) {\n      this.setMenu(menu);\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    appearance :\n    {\n      refine : true,\n      init : \"menu-button\"\n    }\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /*\n    ---------------------------------------------------------------------------\n      EVENT HANDLER\n    ---------------------------------------------------------------------------\n    */\n\n\n    // overridden\n    _onTap : function(e)\n    {\n      if (e.isLeftPressed() && this.getMenu()) {\n        this.execute();\n        // don't close menus if the button is a sub menu button\n        this.getMenu().open();\n        return;\n      }\n\n      this.base(arguments, e);\n    }\n  }\n});\n"
+  ]
+}

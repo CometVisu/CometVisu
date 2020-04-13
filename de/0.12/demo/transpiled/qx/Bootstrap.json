@@ -1,0 +1,1567 @@
+{
+  "className": "qx.Bootstrap",
+  "packageName": "qx",
+  "name": "Bootstrap",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 246,
+        "column": 0
+      },
+      "end": {
+        "line": 971,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Internal class that is responsible for bootstrapping the qooxdoo\n framework at load time.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "LOADSTART": {
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4
+        },
+        "end": {
+          "line": 251,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Timestamp of qooxdoo based application startup</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "DEBUG": {
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 5
+        },
+        "end": {
+          "line": 263,
+          "column": 9
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mapping for early use of the qx.debug environment setting.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getEnvironmentSetting": {
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 5
+        },
+        "end": {
+          "line": 280,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Minimal accessor API for the environment settings given from the\n generator.\n WARNING: This method only should be used if the\n {@link qx.core.Environment} class is not loaded!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key to get the value from.",
+            "paramName": "key",
+            "description": " The key to get the value from.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The value of the setting or <code>undefined</code>.",
+            "type": "var",
+            "description": " The value of the setting or <code>undefined</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setEnvironmentSetting": {
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 5
+        },
+        "end": {
+          "line": 302,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Minimal mutator for the environment settings given from the generator.\n It checks for the existence of the environment settings and sets the\n key if its not given from the generator. If a setting is available from\n the generator, the setting will be ignored.\n WARNING: This method only should be used if the\n {@link qx.core.Environment} class is not loaded!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key of the setting.",
+            "paramName": "key",
+            "description": " The key of the setting.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value for the setting.",
+            "paramName": "value",
+            "description": " The value for the setting.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createNamespace": {
+      "location": {
+        "start": {
+          "line": 315,
+          "column": 4
+        },
+        "end": {
+          "line": 315,
+          "column": 50
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a namespace and assigns the given object to it.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(name, object)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} The complete namespace to create. Typically, the last part is the class name itself",
+            "paramName": "name",
+            "description": " The complete namespace to create. Typically, the last part is the class name itself",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "object {Object} The object to attach to the namespace",
+            "paramName": "object",
+            "description": " The object to attach to the namespace",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} last part of the namespace (which object is assigned to)",
+            "type": "String",
+            "description": " last part of the namespace (which object is assigned to)"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} when the given object already exists.",
+            "type": "Error",
+            "description": " when the given object already exists."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "setRoot": {
+      "location": {
+        "start": {
+          "line": 325,
+          "column": 4
+        },
+        "end": {
+          "line": 327,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Offers the ability to change the root for creating namespaces from window to\n whatever object is given.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "root {Object} The root to use.",
+            "paramName": "root",
+            "description": " The root to use.",
+            "type": "Object"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "base": {
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4
+        },
+        "end": {
+          "line": 337,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Call the same method of the super class.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(args, varargs)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "args {arguments} the arguments variable of the calling method",
+            "paramName": "args",
+            "description": " the arguments variable of the calling method",
+            "type": "arguments"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {var} variable number of arguments passed to the overwritten function",
+            "paramName": "varargs",
+            "description": " variable number of arguments passed to the overwritten function",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the return value of the method of the base class.",
+            "type": "var",
+            "description": " the return value of the method of the base class."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "define": {
+      "location": {
+        "start": {
+          "line": 358,
+          "column": 4
+        },
+        "end": {
+          "line": 358,
+          "column": 32
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Define a new class using the qooxdoo class system.\n Lightweight version of {@link qx.Class#define} with less features.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(name, config)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String?} Name of the class. If null, the class will not be\n   attached to a namespace.",
+            "paramName": "name",
+            "description": " Name of the class. If null, the class will not be\n   attached to a namespace.",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "config {Map ? null} Class definition structure. The configuration map has the following keys:\n     <table>\n       <tr><th>Name</th><th>Type</th><th>Description</th></tr>\n       <tr><th>extend</th><td>Class</td><td>The super class the current class inherits from.</td></tr>\n       <tr><th>construct</th><td>Function</td><td>The constructor of the class.</td></tr>\n       <tr><th>statics</th><td>Map</td><td>Map of static values / functions of the class.</td></tr>\n       <tr><th>members</th><td>Map</td><td>Map of instance members of the class.</td></tr>\n       <tr><th>defer</th><td>Function</td><td>Function that is called at the end of\n          processing the class declaration.</td></tr>\n     </table>",
+            "paramName": "config",
+            "description": " Class definition structure. The configuration map has the following keys:\n     <table>\n       <tr><th>Name</th><th>Type</th><th>Description</th></tr>\n       <tr><th>extend</th><td>Class</td><td>The super class the current class inherits from.</td></tr>\n       <tr><th>construct</th><td>Function</td><td>The constructor of the class.</td></tr>\n       <tr><th>statics</th><td>Map</td><td>Map of static values / functions of the class.</td></tr>\n       <tr><th>members</th><td>Map</td><td>Map of instance members of the class.</td></tr>\n       <tr><th>defer</th><td>Function</td><td>Function that is called at the end of\n          processing the class declaration.</td></tr>\n     </table>",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Class} The defined class.",
+            "type": "qx.Class",
+            "description": " The defined class."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "isQxCoreObject": {
+      "location": {
+        "start": {
+          "line": 369,
+          "column": 4
+        },
+        "end": {
+          "line": 369,
+          "column": 47
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tests whether an object is an instance of qx.core.Object without using instanceof - this\n is only for certain low level instances which would otherwise cause a circular, load time\n dependency</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object?} the object to test",
+            "paramName": "object",
+            "description": " the object to test",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if object is an instance of qx.core.Object",
+            "type": "Boolean",
+            "description": " true if object is an instance of qx.core.Object"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "setDisplayName": {
+      "location": {
+        "start": {
+          "line": 380,
+          "column": 4
+        },
+        "end": {
+          "line": 380,
+          "column": 48
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the display name of the given function</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(fcn, classname, name)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fcn {Function} the function to set the display name for",
+            "paramName": "fcn",
+            "description": " the function to set the display name for",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "classname {String} the name of the class the function is defined in",
+            "paramName": "classname",
+            "description": " the name of the class the function is defined in",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} the function name",
+            "paramName": "name",
+            "description": " the function name",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "setDisplayNames": {
+      "location": {
+        "start": {
+          "line": 391,
+          "column": 4
+        },
+        "end": {
+          "line": 391,
+          "column": 50
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the names of all functions defined in the given map</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(functionMap, classname)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "functionMap {Object} a map with functions as values",
+            "paramName": "functionMap",
+            "description": " a map with functions as values",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "classname {String} the name of the class, the functions are\n   defined in",
+            "paramName": "classname",
+            "description": " the name of the class, the functions are\n   defined in",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "genericToString": {
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4
+        },
+        "end": {
+          "line": 401,
+          "column": 50
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method will be attached to all classes to return\n a nice identifier for them.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The class identifier",
+            "type": "String",
+            "description": " The class identifier"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "extendClass": {
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 4
+        },
+        "end": {
+          "line": 448,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Inherit a clazz from a super class.\n This function differentiates between class and constructor because the\n constructor written by the user might be wrapped and the <code>base</code>\n property has to be attached to the constructor, while the <code>superclass</code>\n property has to be attached to the wrapped constructor.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Function} The class's wrapped constructor",
+            "paramName": "clazz",
+            "description": " The class's wrapped constructor",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "construct {Function} The unwrapped constructor",
+            "paramName": "construct",
+            "description": " The unwrapped constructor",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "superClass {Function} The super class",
+            "paramName": "superClass",
+            "description": " The super class",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "name {Function} fully qualified class name",
+            "paramName": "name",
+            "description": " fully qualified class name",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "basename {Function} the base name",
+            "paramName": "basename",
+            "description": " the base name",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__pendingDefers": {
+      "location": {
+        "start": {
+          "line": 451,
+          "column": 4
+        },
+        "end": {
+          "line": 451,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Private list of classes which have a defer method that needs to be executed</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "addPendingDefer": {
+      "location": {
+        "start": {
+          "line": 460,
+          "column": 4
+        },
+        "end": {
+          "line": 467,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a callback for a class so that it's defer method can be called, either after all classes\n are loaded or when absolutely necessary because of load-time requirements of other classes.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} Class to add a callback to",
+            "paramName": "clazz",
+            "description": " Class to add a callback to",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "cb {Function} Callback function",
+            "paramName": "cb",
+            "description": " Callback function",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "executePendingDefers": {
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 4
+        },
+        "end": {
+          "line": 548,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executes the defer methods for classes which are required by the dependency information in\n dbClassInfo (which is a map in the format generated by qxcompiler).  Defer methods are of course\n only executed once but they are always put off until absolutely necessary to avoid potential\n side effects and recursive and/or difficult to resolve dependencies.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dbClassInfo {Object} qxcompiler map",
+            "paramName": "dbClassInfo",
+            "description": " qxcompiler map",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getByName": {
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 4
+        },
+        "end": {
+          "line": 559,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Find a class by its name</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} class name to resolve",
+            "paramName": "name",
+            "description": " class name to resolve",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Class} the class",
+            "type": "qx.Class",
+            "description": " the class"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "$$registry": {
+      "location": {
+        "start": {
+          "line": 563,
+          "column": 4
+        },
+        "end": {
+          "line": 563,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Stores all defined classes"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "objectGetLength": {
+      "location": {
+        "start": {
+          "line": 579,
+          "column": 4
+        },
+        "end": {
+          "line": 581,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  OBJECT UTILITY FUNCTIONS\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Get the number of own properties in the object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "map {Object} the map",
+            "paramName": "map",
+            "description": " the map",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} number of objects in the map",
+            "type": "Integer",
+            "description": " number of objects in the map"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreUnused(key)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "objectMergeWith": {
+      "location": {
+        "start": {
+          "line": 593,
+          "column": 4
+        },
+        "end": {
+          "line": 607,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Inserts all keys of the source object into the\n target objects. Attention: The target map gets modified.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} target object",
+            "paramName": "target",
+            "description": " target object",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "source {Object} object to be merged",
+            "paramName": "source",
+            "description": " object to be merged",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "overwrite {Boolean ? true} If enabled existing keys will be overwritten",
+            "paramName": "overwrite",
+            "description": " If enabled existing keys will be overwritten",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Target with merged values from the source object",
+            "type": "Object",
+            "description": " Target with merged values from the source object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__shadowedKeys": {
+      "location": {
+        "start": {
+          "line": 617,
+          "column": 4
+        },
+        "end": {
+          "line": 626,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>IE does not return \"shadowed\" keys even if they are defined directly\n in the object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String[]}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "keys": {
+      "location": {
+        "start": {
+          "line": 637,
+          "column": 4
+        },
+        "end": {
+          "line": 689,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the keys of a map as array as returned by a \"for … in\" statement.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(map)"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "map {Object} the map",
+            "paramName": "map",
+            "description": " the map",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} array of the keys of the map",
+            "type": "Array",
+            "description": " array of the keys of the map"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__classToTypeMap": {
+      "location": {
+        "start": {
+          "line": 697,
+          "column": 4
+        },
+        "end": {
+          "line": 712,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mapping from JavaScript string representation of objects to names</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "bind": {
+      "location": {
+        "start": {
+          "line": 748,
+          "column": 4
+        },
+        "end": {
+          "line": 755,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  FUNCTION UTILITY FUNCTIONS\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Returns a function whose \"this\" is altered.\n<em>Syntax</em>\n </p>\n<pre class='javascript'>qx.Bootstrap.bind(myFunction, [self, [varargs...]]);</pre>\n<p><em>Example</em>\n </p>\n<pre class='javascript'>\n function myFunction()\n {\n   this.setStyle('color', 'red');\n\n\n };\n var myBoundFunction = qx.Bootstrap.bind(myFunction, myElement);\n myBoundFunction();\n </pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} Original function to wrap",
+            "paramName": "func",
+            "description": " Original function to wrap",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} The object that the \"this\" of the function will refer to.",
+            "paramName": "self",
+            "description": " The object that the \"this\" of the function will refer to.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {arguments ? null} The arguments to pass to the function.",
+            "paramName": "varargs",
+            "description": " The arguments to pass to the function.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "arguments"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The bound function.",
+            "type": "Function",
+            "description": " The bound function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "firstUp": {
+      "location": {
+        "start": {
+          "line": 771,
+          "column": 4
+        },
+        "end": {
+          "line": 773,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  STRING UTILITY FUNCTIONS\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Convert the first character of the string to upper case.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the string",
+            "paramName": "str",
+            "description": " the string",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the string with an upper case first character",
+            "type": "String",
+            "description": " the string with an upper case first character"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "firstLow": {
+      "location": {
+        "start": {
+          "line": 782,
+          "column": 4
+        },
+        "end": {
+          "line": 784,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convert the first character of the string to lower case.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the string",
+            "paramName": "str",
+            "description": " the string",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the string with a lower case first character",
+            "type": "String",
+            "description": " the string with a lower case first character"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getClass": {
+      "location": {
+        "start": {
+          "line": 801,
+          "column": 4
+        },
+        "end": {
+          "line": 814,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  TYPE UTILITY FUNCTIONS\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Get the internal class of the value. See\n http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/\n for details.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} value to get the class for",
+            "paramName": "value",
+            "description": " value to get the class for",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the internal class of the value",
+            "type": "String",
+            "description": " the internal class of the value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isString": {
+      "location": {
+        "start": {
+          "line": 823,
+          "column": 4
+        },
+        "end": {
+          "line": 837,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the value is a string.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check.",
+            "paramName": "value",
+            "description": " Value to check.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the value is a string.",
+            "type": "Boolean",
+            "description": " Whether the value is a string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isArray": {
+      "location": {
+        "start": {
+          "line": 846,
+          "column": 4
+        },
+        "end": {
+          "line": 860,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the value is an array.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check.",
+            "paramName": "value",
+            "description": " Value to check.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the value is an array.",
+            "type": "Boolean",
+            "description": " Whether the value is an array."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isObject": {
+      "location": {
+        "start": {
+          "line": 870,
+          "column": 4
+        },
+        "end": {
+          "line": 876,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the value is an object. Note that built-in types like Window are\n not reported to be objects.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check.",
+            "paramName": "value",
+            "description": " Value to check.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the value is an object.",
+            "type": "Boolean",
+            "description": " Whether the value is an object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isFunction": {
+      "location": {
+        "start": {
+          "line": 885,
+          "column": 4
+        },
+        "end": {
+          "line": 887,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the value is a function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check.",
+            "paramName": "value",
+            "description": " Value to check.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the value is a function.",
+            "type": "Boolean",
+            "description": " Whether the value is a function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isFunctionOrAsyncFunction": {
+      "location": {
+        "start": {
+          "line": 896,
+          "column": 4
+        },
+        "end": {
+          "line": 899,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the value is a function or an async function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check.",
+            "paramName": "value",
+            "description": " Value to check.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the value is a function.",
+            "type": "Boolean",
+            "description": " Whether the value is a function."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "$$logs": {
+      "location": {
+        "start": {
+          "line": 909,
+          "column": 4
+        },
+        "end": {
+          "line": 909,
+          "column": 15
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  LOGGING UTILITY FUNCTIONS\n---------------------------------------------------------------------------\n</code></pre>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "debug": {
+      "location": {
+        "start": {
+          "line": 920,
+          "column": 4
+        },
+        "end": {
+          "line": 922,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sending a message at level \"debug\" to the logger.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "message {var} Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "paramName": "message",
+            "description": " Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "info": {
+      "location": {
+        "start": {
+          "line": 933,
+          "column": 4
+        },
+        "end": {
+          "line": 935,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sending a message at level \"info\" to the logger.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "message {var} Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "paramName": "message",
+            "description": " Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "warn": {
+      "location": {
+        "start": {
+          "line": 946,
+          "column": 4
+        },
+        "end": {
+          "line": 948,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sending a message at level \"warn\" to the logger.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "message {var} Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "paramName": "message",
+            "description": " Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "error": {
+      "location": {
+        "start": {
+          "line": 959,
+          "column": 4
+        },
+        "end": {
+          "line": 961,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sending a message at level \"error\" to the logger.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "message {var} Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "paramName": "message",
+            "description": " Any number of arguments supported. An argument may\n   have any JavaScript data type. All data is serialized immediately and\n   does not keep references to other objects.",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "trace": {
+      "location": {
+        "start": {
+          "line": 969,
+          "column": 4
+        },
+        "end": {
+          "line": 969,
+          "column": 31
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints the current stack trace at level \"info\"</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object} Contextual object (either instance or static class)",
+            "paramName": "object",
+            "description": " Contextual object (either instance or static class)",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

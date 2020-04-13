@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/virtual/cell/Date.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "virtual",
+    "cell",
+    "Cell",
+    "construct",
+    "dateFormat",
+    "setDateFormat",
+    "initDateFormat",
+    "util",
+    "format",
+    "DateFormat",
+    "getDateTimeInstance",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "check",
+    "deferredInit",
+    "members",
+    "getContent",
+    "value",
+    "states",
+    "getDateFormat",
+    "Date"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;;;AAMAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBC,IAD9B;;AAGE;;;;AAIAC,IAAAA,SAAS,EAAG,mBAASC,UAAT,EACZ;AACE;;AAEA,UAAIA,UAAJ,EAAgB;AACd,aAAKC,aAAL,CAAmBD,UAAnB;AACD,OAFD,MAEO;AACL,aAAKE,cAAL,CAAoBd,EAAE,CAACe,IAAH,CAAQC,MAAR,CAAeC,UAAf,CAA0BC,mBAA1B,EAApB;AACD;AAEF,KAjBH;AAoBEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAHF;;AAQE;AACAV,MAAAA,UAAU,EACV;AACEW,QAAAA,KAAK,EAAG,2BADV;AAEEC,QAAAA,YAAY,EAAG;AAFjB;AAVF,KArBF;AAsCEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,UAAU,EAAG,oBAASC,KAAT,EAAgBC,MAAhB,EAAwB;AACnC,eAAOD,KAAK,GAAG,KAAKE,aAAL,GAAqBb,MAArB,CAA4BW,KAA5B,CAAH,GAAuC,EAAnD;AACD;AAJH;AAvCF,GADA;AAzBA3B,EAAAA,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBqB,IAAnB,CAAwB3B,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * Date cell renderer.\n *\n * Renders a date according to the configured date formatter.\n *\n */\nqx.Class.define(\"qx.ui.virtual.cell.Date\",\n{\n  extend : qx.ui.virtual.cell.Cell,\n\n  /**\n   * @param dateFormat {qx.util.format.DateFormat|null} optional date formatter\n   *   to use\n   */\n  construct : function(dateFormat)\n  {\n    this.base(arguments);\n\n    if (dateFormat) {\n      this.setDateFormat(dateFormat);\n    } else {\n      this.initDateFormat(qx.util.format.DateFormat.getDateTimeInstance());\n    }\n\n  },\n\n\n  properties :\n  {\n    // overridden\n    appearance:\n    {\n      refine : true,\n      init : \"cell-date\"\n    },\n\n    /** The date format used to render the cell */\n    dateFormat:\n    {\n      check : \"qx.util.format.DateFormat\",\n      deferredInit : true\n    }\n  },\n\n\n  members :\n  {\n    // overridden\n    getContent : function(value, states) {\n      return value ? this.getDateFormat().format(value): \"\";\n    }\n  }\n});"
+  ]
+}

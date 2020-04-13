@@ -1,0 +1,862 @@
+{
+  "className": "qxl.apiviewer.UiModel",
+  "packageName": "qxl.apiviewer",
+  "name": "UiModel",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 56,
+        "column": 5
+      }
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": false,
+  "isSingleton": true,
+  "properties": {
+    "showInherited": {
+      "location": {
+        "start": {
+          "line": 9,
+          "column": 4
+        },
+        "end": {
+          "line": 14,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>whether to display inherited items</p>"
+          }
+        ]
+      },
+      "name": "showInherited",
+      "propertyType": "new",
+      "event": "changeShowInherited",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "showIncluded": {
+      "location": {
+        "start": {
+          "line": 17,
+          "column": 4
+        },
+        "end": {
+          "line": 22,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>whether to display included items</p>"
+          }
+        ]
+      },
+      "name": "showIncluded",
+      "propertyType": "new",
+      "event": "changeShowIncluded",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "expandProperties": {
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>whether to display protected items</p>"
+          }
+        ]
+      },
+      "name": "expandProperties",
+      "propertyType": "new",
+      "event": "changeExpandProperties",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "showProtected": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>whether to display protected items</p>"
+          }
+        ]
+      },
+      "name": "showProtected",
+      "propertyType": "new",
+      "event": "changeShowProtected",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "showPrivate": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 46,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>whether to display private items</p>"
+          }
+        ]
+      },
+      "name": "showPrivate",
+      "propertyType": "new",
+      "event": "changeShowPrivate",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "showInternal": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>whether to display internal items</p>"
+          }
+        ]
+      },
+      "name": "showInternal",
+      "propertyType": "new",
+      "event": "changeShowInternal",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    }
+  },
+  "members": {
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getShowInherited": {
+      "type": "function",
+      "name": "getShowInherited",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showInherited</code>.\n\nFor further details take a look at the property definition: {@link #showInherited}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showInherited"
+          }
+        ]
+      }
+    },
+    "isShowInherited": {
+      "type": "function",
+      "name": "isShowInherited",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showInherited</code>.\n\nFor further details take a look at the property definition: {@link #showInherited}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showInherited"
+          }
+        ]
+      }
+    },
+    "setShowInherited": {
+      "type": "function",
+      "name": "setShowInherited",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>showInherited</code>.\n\nFor further details take a look at the property definition: {@link #showInherited}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for showInherited"
+          }
+        ]
+      }
+    },
+    "resetShowInherited": {
+      "type": "function",
+      "name": "resetShowInherited",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showInherited</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showInherited}."
+          }
+        ]
+      }
+    },
+    "getShowIncluded": {
+      "type": "function",
+      "name": "getShowIncluded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showIncluded</code>.\n\nFor further details take a look at the property definition: {@link #showIncluded}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showIncluded"
+          }
+        ]
+      }
+    },
+    "isShowIncluded": {
+      "type": "function",
+      "name": "isShowIncluded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showIncluded</code>.\n\nFor further details take a look at the property definition: {@link #showIncluded}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showIncluded"
+          }
+        ]
+      }
+    },
+    "setShowIncluded": {
+      "type": "function",
+      "name": "setShowIncluded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>showIncluded</code>.\n\nFor further details take a look at the property definition: {@link #showIncluded}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for showIncluded"
+          }
+        ]
+      }
+    },
+    "resetShowIncluded": {
+      "type": "function",
+      "name": "resetShowIncluded",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showIncluded</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showIncluded}."
+          }
+        ]
+      }
+    },
+    "getExpandProperties": {
+      "type": "function",
+      "name": "getExpandProperties",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>expandProperties</code>.\n\nFor further details take a look at the property definition: {@link #expandProperties}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for expandProperties"
+          }
+        ]
+      }
+    },
+    "isExpandProperties": {
+      "type": "function",
+      "name": "isExpandProperties",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>expandProperties</code>.\n\nFor further details take a look at the property definition: {@link #expandProperties}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for expandProperties"
+          }
+        ]
+      }
+    },
+    "setExpandProperties": {
+      "type": "function",
+      "name": "setExpandProperties",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>expandProperties</code>.\n\nFor further details take a look at the property definition: {@link #expandProperties}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for expandProperties"
+          }
+        ]
+      }
+    },
+    "resetExpandProperties": {
+      "type": "function",
+      "name": "resetExpandProperties",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>expandProperties</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #expandProperties}."
+          }
+        ]
+      }
+    },
+    "getShowProtected": {
+      "type": "function",
+      "name": "getShowProtected",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showProtected</code>.\n\nFor further details take a look at the property definition: {@link #showProtected}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showProtected"
+          }
+        ]
+      }
+    },
+    "isShowProtected": {
+      "type": "function",
+      "name": "isShowProtected",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showProtected</code>.\n\nFor further details take a look at the property definition: {@link #showProtected}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showProtected"
+          }
+        ]
+      }
+    },
+    "setShowProtected": {
+      "type": "function",
+      "name": "setShowProtected",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>showProtected</code>.\n\nFor further details take a look at the property definition: {@link #showProtected}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for showProtected"
+          }
+        ]
+      }
+    },
+    "resetShowProtected": {
+      "type": "function",
+      "name": "resetShowProtected",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showProtected</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showProtected}."
+          }
+        ]
+      }
+    },
+    "getShowPrivate": {
+      "type": "function",
+      "name": "getShowPrivate",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showPrivate</code>.\n\nFor further details take a look at the property definition: {@link #showPrivate}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showPrivate"
+          }
+        ]
+      }
+    },
+    "isShowPrivate": {
+      "type": "function",
+      "name": "isShowPrivate",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showPrivate</code>.\n\nFor further details take a look at the property definition: {@link #showPrivate}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showPrivate"
+          }
+        ]
+      }
+    },
+    "setShowPrivate": {
+      "type": "function",
+      "name": "setShowPrivate",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>showPrivate</code>.\n\nFor further details take a look at the property definition: {@link #showPrivate}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for showPrivate"
+          }
+        ]
+      }
+    },
+    "resetShowPrivate": {
+      "type": "function",
+      "name": "resetShowPrivate",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showPrivate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showPrivate}."
+          }
+        ]
+      }
+    },
+    "getShowInternal": {
+      "type": "function",
+      "name": "getShowInternal",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showInternal</code>.\n\nFor further details take a look at the property definition: {@link #showInternal}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showInternal"
+          }
+        ]
+      }
+    },
+    "isShowInternal": {
+      "type": "function",
+      "name": "isShowInternal",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showInternal</code>.\n\nFor further details take a look at the property definition: {@link #showInternal}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showInternal"
+          }
+        ]
+      }
+    },
+    "setShowInternal": {
+      "type": "function",
+      "name": "setShowInternal",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>showInternal</code>.\n\nFor further details take a look at the property definition: {@link #showInternal}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for showInternal"
+          }
+        ]
+      }
+    },
+    "resetShowInternal": {
+      "type": "function",
+      "name": "resetShowInternal",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showInternal</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showInternal}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

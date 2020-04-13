@@ -1,0 +1,259 @@
+{
+  "className": "qx.ui.tree.core.IVirtualTreeDelegate",
+  "packageName": "qx.ui.tree.core",
+  "name": "IVirtualTreeDelegate",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 0
+      },
+      "end": {
+        "line": 99,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christian Hagendorn (chris_schmidt)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Objects which are used as delegates for the <code>qx.ui.tree.VirtualTree</code> may\n implement any of the methods described in this interface. The delegate does\n not need to implement all the methods of this interface. If a method is not\n implemented the <code>qx.ui.tree.VirtualTree</code> provides a default\n implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n actually implemented.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "configureItem": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gives the user the opportunity to set individual styles and properties\n on the widget cells created by the controller.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} Item to modify.",
+            "paramName": "item",
+            "description": " Item to modify.",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createItem": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a widget cell which will be used for rendering. Be sure to\n implement the {@link #bindItem} function as well to get the needed\n properties bound.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} A new created item cell.",
+            "type": "qx.ui.core.Widget",
+            "description": " A new created item cell."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "bindItem": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 48
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets up the binding for the given widget cell and index.\n For every property you want to bind, use\n {@link MWidgetController#bindProperty} like this:\n <code>\n controller.bindProperty(null, \"value\", options, item, id);\n </code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "controller {qx.ui.list.core.MWidgetController} The currently used controller.",
+            "paramName": "controller",
+            "description": " The currently used controller.",
+            "type": "qx.ui.list.core.MWidgetController"
+          },
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} The created and used item.",
+            "paramName": "item",
+            "description": " The created and used item.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "id {Integer} The id for the binding.",
+            "paramName": "id",
+            "description": " The id for the binding.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onPool": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gives the user the opportunity to reset properties or states.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} Item to modify.",
+            "paramName": "item",
+            "description": " Item to modify.",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "filter": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Filter checks the current data and returns a boolean if the data should\n appear in the filtered data set or not.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {var} The data which will be checked.",
+            "paramName": "data",
+            "description": " The data which will be checked.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} True, if the data passes the filter, false otherwise.",
+            "type": "Boolean",
+            "description": " True, if the data passes the filter, false otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "sorter": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gives the user the opportunity to sort the children items from a node.\n The sorting method should return a negative value if a < b, zero\n if a = b, or a positive value if a > b.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "a {var} value to compare.",
+            "paramName": "a",
+            "description": " value to compare.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "b {var} value to compare.",
+            "paramName": "b",
+            "description": " value to compare.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} should return a negative value if a < b, zero\n   if a = b, or a positive value if a > b.",
+            "type": "Integer",
+            "description": " should return a negative value if a < b, zero\n   if a = b, or a positive value if a > b."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

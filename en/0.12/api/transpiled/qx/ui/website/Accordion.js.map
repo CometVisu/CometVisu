@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/website/Accordion.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "extend",
+    "ui",
+    "website",
+    "Tabs",
+    "statics",
+    "_templates",
+    "button",
+    "accordion",
+    "preselected",
+    "Accordion",
+    "setConfig",
+    "init",
+    "construct",
+    "selector",
+    "context",
+    "defer",
+    "qxWeb",
+    "$attach"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAuDAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,yBAApB,EAA+C;AAC3CC,IAAAA,MAAM,EAAEL,EAAE,CAACM,EAAH,CAAMC,OAAN,CAAcC,IADqB;AAG3CC,IAAAA,OAAO,EAAE;AACL;;;;;;;AAOAC,MAAAA,UAAU,EAAE;AACVC,QAAAA,MAAM,EAAE;AADE,OARP;;AAaL;;;;;;;;;AASAC,MAAAA,SAAS,EAAE,mBAASC,WAAT,EAAsB;AAC7B,YAAID,SAAS,GAAG,IAAIZ,EAAE,CAACM,EAAH,CAAMC,OAAN,CAAcO,SAAlB,CAA4B,IAA5B,CAAhB;AACAF,QAAAA,SAAS,CAACG,SAAV,CAAoB,aAApB,EAAmC,UAAnC;;AACA,YAAIF,WAAJ,EAAiB;AACbD,UAAAA,SAAS,CAACG,SAAV,CAAoB,aAApB,EAAmCF,WAAnC;AACH;;AACDD,QAAAA,SAAS,CAACI,IAAV;AAEA,eAAOJ,SAAP;AACH;AA/BI,KAHkC;AAsC3CK,IAAAA,SAAS,EAAE,mBAASC,QAAT,EAAmBC,OAAnB,EAA4B;AACnC,gDAAqBD,QAArB,EAA+BC,OAA/B;AACH,KAxC0C;AA2C3CC,IAAAA,KAAK,EAAE,eAASX,OAAT,EAAkB;AACrBY,MAAAA,KAAK,CAACC,OAAN,CAAc;AACVV,QAAAA,SAAS,EAAEH,OAAO,CAACG;AADT,OAAd;AAGH;AA/C0C,GAA/C;AAzEAZ,EAAAA,EAAE,CAACM,EAAH,CAAMC,OAAN,CAAcO,SAAd,CAAwBX,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2013 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n\n/**\n * The Accordion is a group of vertically stacked panels (here called pages),\n * each with a header.\n * By default, only one page is visible while the others are collapsed.\n * Clicking or tapping a collapsed page's header will expand it while collapsing the\n * previously expanded page.\n *\n * <h2>Markup</h2>\n * The Accordion contains an unordered list element (<code>ul</code>), which\n * will be created if not already present.\n * Headers and pages are list items (<code>li</code>). Each header must contain\n * a button with an <code>accordionPage</code> data attribute where the value is a\n * CSS selector string identifying the corresponding page. Headers and pages\n * will not be created automatically. They can be predefined in the DOM before\n * the <code>q().accordion()</code> factory method is called, or added programmatically.\n *\n * <h2>CSS Classes</h2>\n * <table>\n *   <thead>\n *     <tr>\n *       <td>Class Name</td>\n *       <td>Applied to</td>\n *       <td>Description</td>\n *     </tr>\n *   </thead>\n *   <tbody>\n *     <tr>\n *       <td><code>qx-accordion</code></td>\n *       <td>Container element</td>\n *       <td>Identifies the Accordion widget</td>\n *     </tr>\n *     <tr>\n *       <td><code>qx-accordion-button</code></td>\n *       <td>Page header (<code>li</code>)</td>\n *       <td>Identifies and styles the page headers</td>\n *     </tr>\n *     <tr>\n *       <td><code>qx-accordion-button-active</code></td>\n *       <td>Page header (<code>li</code>)</td>\n *       <td>Identifies and styles the header of the currently expanded page. Applied in addition to <code>qx-accordion-button</code></td>\n *     </tr>\n *     <tr>\n *       <td><code>qx-accordion-page</code></td>\n *       <td>Page (<code>li</code>)</td>\n *       <td>Identifies and styles the pages</td>\n *     </tr>\n *   </tbody>\n * </table>\n *\n * <h2 class=\"widget-markup\">Generated DOM Structure</h2>\n *\n * @require(qx.module.util.Object)\n *\n * @group (Widget)\n */\nqx.Bootstrap.define(\"qx.ui.website.Accordion\", {\n    extend: qx.ui.website.Tabs,\n\n    statics: {\n        /**\n         * *button*\n         *\n         * Template used by {@link qx.ui.website.Tabs#addButton} to create a new button.\n         *\n         * Default value: <pre><li><button>{{{content}}}</button></li></pre>\n         */\n        _templates: {\n          button: \"<li><button>{{{content}}}</button></li>\"\n        },\n\n\n        /**\n         * Factory method which converts the current collection into a collection of\n         * accordion widgets.\n         *\n         * @param preselected {Integer?} The (zero-based) index of the panel that\n         * should initially be opened\n         * @return {qx.ui.website.Accordion} A new Accordion collection.\n         * @attach {qxWeb}\n         */\n        accordion: function(preselected) {\n            var accordion = new qx.ui.website.Accordion(this);\n            accordion.setConfig(\"orientation\", \"vertical\");\n            if (preselected) {\n                accordion.setConfig(\"preselected\", preselected);\n            }\n            accordion.init();\n\n            return accordion;\n        }\n    },\n\n\n    construct: function(selector, context) {\n        this.base(arguments, selector, context);\n    },\n\n\n    defer: function(statics) {\n        qxWeb.$attach({\n            accordion: statics.accordion\n        });\n    }\n});"
+  ]
+}

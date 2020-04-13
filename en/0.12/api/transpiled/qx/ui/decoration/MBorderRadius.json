@@ -1,0 +1,463 @@
+{
+  "className": "qx.ui.decoration.MBorderRadius",
+  "packageName": "qx.ui.decoration",
+  "name": "MBorderRadius",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 0
+      },
+      "end": {
+        "line": 144,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2010 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Mixin for the border radius CSS property.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n Keep in mind that this is not supported by all browsers:</p>\n<ul>\n<li>Firefox 3,5+</li>\n<li>IE9+</li>\n<li>Safari 3.0+</li>\n<li>Opera 10.5+</li>\n<li>Chrome 4.0+</li>\n</ul>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "properties": {
+    "radiusTopLeft": {
+      "type": "property",
+      "name": "radiusTopLeft",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    },
+    "radiusTopRight": {
+      "type": "property",
+      "name": "radiusTopRight",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    },
+    "radiusBottomLeft": {
+      "type": "property",
+      "name": "radiusBottomLeft",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    },
+    "radiusBottomRight": {
+      "type": "property",
+      "name": "radiusBottomRight",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    },
+    "radius": {
+      "type": "property",
+      "name": "radius",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    }
+  },
+  "members": {
+    "_styleBorderRadius": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4
+        },
+        "end": {
+          "line": 131,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes a styles map and adds the border radius styles in place to the\n given map. This is the needed behavior for\n {@link qx.ui.decoration.Decorator}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} A map to add the styles.",
+            "paramName": "styles",
+            "description": " A map to add the styles.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_applyBorderRadius": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4
+        },
+        "end": {
+          "line": 142,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "radiusTopLeft",
+        "radiusTopRight",
+        "radiusBottomLeft",
+        "radiusBottomRight"
+      ]
+    },
+    "getRadiusTopLeft": {
+      "type": "function",
+      "name": "getRadiusTopLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>radiusTopLeft</code>.\n\nFor further details take a look at the property definition: {@link #radiusTopLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for radiusTopLeft"
+          }
+        ]
+      }
+    },
+    "setRadiusTopLeft": {
+      "type": "function",
+      "name": "setRadiusTopLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>radiusTopLeft</code>.\n\nFor further details take a look at the property definition: {@link #radiusTopLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for radiusTopLeft"
+          }
+        ]
+      }
+    },
+    "resetRadiusTopLeft": {
+      "type": "function",
+      "name": "resetRadiusTopLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>radiusTopLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #radiusTopLeft}."
+          }
+        ]
+      }
+    },
+    "getRadiusTopRight": {
+      "type": "function",
+      "name": "getRadiusTopRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>radiusTopRight</code>.\n\nFor further details take a look at the property definition: {@link #radiusTopRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for radiusTopRight"
+          }
+        ]
+      }
+    },
+    "setRadiusTopRight": {
+      "type": "function",
+      "name": "setRadiusTopRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>radiusTopRight</code>.\n\nFor further details take a look at the property definition: {@link #radiusTopRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for radiusTopRight"
+          }
+        ]
+      }
+    },
+    "resetRadiusTopRight": {
+      "type": "function",
+      "name": "resetRadiusTopRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>radiusTopRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #radiusTopRight}."
+          }
+        ]
+      }
+    },
+    "getRadiusBottomLeft": {
+      "type": "function",
+      "name": "getRadiusBottomLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>radiusBottomLeft</code>.\n\nFor further details take a look at the property definition: {@link #radiusBottomLeft}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for radiusBottomLeft"
+          }
+        ]
+      }
+    },
+    "setRadiusBottomLeft": {
+      "type": "function",
+      "name": "setRadiusBottomLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>radiusBottomLeft</code>.\n\nFor further details take a look at the property definition: {@link #radiusBottomLeft}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for radiusBottomLeft"
+          }
+        ]
+      }
+    },
+    "resetRadiusBottomLeft": {
+      "type": "function",
+      "name": "resetRadiusBottomLeft",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>radiusBottomLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #radiusBottomLeft}."
+          }
+        ]
+      }
+    },
+    "getRadiusBottomRight": {
+      "type": "function",
+      "name": "getRadiusBottomRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>radiusBottomRight</code>.\n\nFor further details take a look at the property definition: {@link #radiusBottomRight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for radiusBottomRight"
+          }
+        ]
+      }
+    },
+    "setRadiusBottomRight": {
+      "type": "function",
+      "name": "setRadiusBottomRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>radiusBottomRight</code>.\n\nFor further details take a look at the property definition: {@link #radiusBottomRight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for radiusBottomRight"
+          }
+        ]
+      }
+    },
+    "resetRadiusBottomRight": {
+      "type": "function",
+      "name": "resetRadiusBottomRight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>radiusBottomRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #radiusBottomRight}."
+          }
+        ]
+      }
+    },
+    "getRadius": {
+      "type": "function",
+      "name": "getRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>radius</code>.\n\nFor further details take a look at the property definition: {@link #radius}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for radius"
+          }
+        ]
+      }
+    },
+    "setRadius": {
+      "type": "function",
+      "name": "setRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>radius</code>.\n\nFor further details take a look at the property definition: {@link #radius}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for radius"
+          }
+        ]
+      }
+    },
+    "resetRadius": {
+      "type": "function",
+      "name": "resetRadius",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>radius</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #radius}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

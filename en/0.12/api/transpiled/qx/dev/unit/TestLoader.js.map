@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/dev/unit/TestLoader.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "application",
+    "Standalone",
+    "include",
+    "dev",
+    "unit",
+    "MTestLoader",
+    "members",
+    "main",
+    "log",
+    "appender",
+    "Console",
+    "url",
+    "_getClassNameFromUrl",
+    "setTestNamespace",
+    "namespace",
+    "core",
+    "Environment",
+    "get",
+    "window",
+    "top",
+    "jsUnitTestSuite",
+    "runJsUnit",
+    "runStandAlone",
+    "TestLoader"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;AAIAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,WAAH,CAAeC,UAD1B;AAGEC,IAAAA,OAAO,EAAG,CAACT,EAAE,CAACU,GAAH,CAAOC,IAAP,CAAYC,WAAb,CAHZ;;AAME;;;;;AAMAC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,IAAI,EAAG,gBACP;AACE,8DADF,CAGE;;AACAd,QAAAA,EAAE,CAACe,GAAH,CAAOC,QAAP,CAAgBC,OAAhB;;AAEA,YAAIC,GAAG,GAAG,KAAKC,oBAAL,EAAV;;AACA,YAAID,GAAG,KAAK,mBAAZ,EAAiC;AAC/B,eAAKE,gBAAL,CAAsB,KAAKD,oBAAL,EAAtB;AACD,SAFD,MAEO;AACL,cAAIE,SAAS,GAAGrB,EAAE,CAACsB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,kBAAxB,CAAhB;;AACA,cAAIH,SAAJ,EAAe;AACb,iBAAKD,gBAAL,CAAsBC,SAAtB;AACD;AACF;;AAED,YAAII,MAAM,CAACC,GAAP,CAAWC,eAAf,EACA;AACE,eAAKC,SAAL;AACA;AACD;;AAED,YAAIH,MAAM,IAAIA,MAAM,CAACC,GAAjB,IAAwB1B,EAAE,CAACsB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,sBAAxB,CAA5B,EACA;AACE,eAAKK,aAAL;AACD;AACF;AA7BH;AAbF,GADA;AAtBA7B,EAAAA,EAAE,CAACU,GAAH,CAAOC,IAAP,CAAYmB,UAAZ,CAAuB3B,aAAvB,GAAuCA,aAAvC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * The test loader is the base class of a native application, which can be used\n * to run tests from a non-GUI application or from within JSUnit.\n */\nqx.Class.define(\"qx.dev.unit.TestLoader\",\n{\n  extend : qx.application.Standalone,\n\n  include : [qx.dev.unit.MTestLoader],\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden\n    main : function()\n    {\n      this.base(arguments);\n\n      // Dependencies to loggers\n      qx.log.appender.Console;\n\n      var url = this._getClassNameFromUrl();\n      if (url !== \"__unknown_class__\") {\n        this.setTestNamespace(this._getClassNameFromUrl());\n      } else {\n        var namespace = qx.core.Environment.get(\"qx.testNameSpace\");\n        if (namespace) {\n          this.setTestNamespace(namespace);\n        }\n      }\n\n      if (window.top.jsUnitTestSuite)\n      {\n        this.runJsUnit();\n        return;\n      }\n\n      if (window == window.top && qx.core.Environment.get(\"qx.standaloneAutorun\"))\n      {\n        this.runStandAlone();\n      }\n    }\n  }\n});\n"
+  ]
+}

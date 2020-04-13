@@ -1,0 +1,726 @@
+{
+  "className": "cv.ui.common.Update",
+  "packageName": "cv.ui.common",
+  "name": "Update",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [
+    "cv.ui.common.BasicUpdate"
+  ],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 113,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This role provides the update method for incoming data</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 13
+      },
+      "end": {
+        "line": 42,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>***********************************************\n</code></pre>\n<p>CONSTRUCTOR\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong>*</strong></p>"
+        }
+      ]
+    }
+  },
+  "members": {
+    "_initOnCreate": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__initUpdater": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "update": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4
+        },
+        "end": {
+          "line": 82,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process the incoming data, update the shown value and the stylings</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} Address of the incoming value",
+            "paramName": "address",
+            "description": " Address of the incoming value",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {String} the incoming value",
+            "paramName": "data",
+            "description": " the incoming value",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "processIncomingValue": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "update3d": {
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4
+        },
+        "end": {
+          "line": 111,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Description</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {var}"
+          },
+          {
+            "name": "@param",
+            "body": "data {var}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "applyTransform": {
+      "type": "function",
+      "name": "applyTransform",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decode the given data with the addresses transform</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} KNX-GA or openHAB-item name",
+            "paramName": "address",
+            "description": " KNX-GA or openHAB-item name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} value to be decoded",
+            "paramName": "data",
+            "description": " value to be decoded",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var}",
+            "type": "var",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "applyMapping": {
+      "type": "function",
+      "name": "applyMapping",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the given mapping to the value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} value to be mapped",
+            "paramName": "value",
+            "description": " value to be mapped",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "mappingName {String?} mapping name, if not set the <code>mapping</code> property value is used",
+            "paramName": "mappingName",
+            "description": " mapping name, if not set the <code>mapping</code> property value is used",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the mapped value",
+            "type": "var",
+            "description": " the mapped value"
+          }
+        ]
+      }
+    },
+    "getNextMappedValue": {
+      "type": "function",
+      "name": "getNextMappedValue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Look up the entry for <code>value</code> in the mapping <code>this_map</code> and\n return the next value in the list (including wrap around).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} value to look up",
+            "paramName": "value",
+            "description": " value to look up",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "this_map {String} mapping name",
+            "paramName": "this_map",
+            "description": " mapping name",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the next mapped value",
+            "type": "var",
+            "description": " the next mapped value"
+          }
+        ]
+      }
+    },
+    "applyFormat": {
+      "type": "function",
+      "name": "applyFormat",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Format the given value according to the defined format.\n If no format is defined the value will not be changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} KNX-GA or openHAB item name",
+            "paramName": "address",
+            "description": " KNX-GA or openHAB item name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} value to be formatted",
+            "paramName": "value",
+            "description": " value to be formatted",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the formatted value",
+            "type": "var",
+            "description": " the formatted value"
+          }
+        ]
+      }
+    },
+    "defaultValueHandling": {
+      "type": "function",
+      "name": "defaultValueHandling",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The default value handling for most of the widgets.\n This method applies the transform, mapping, format and styling to the value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} KNX-GA or openHAB item name",
+            "paramName": "address",
+            "description": " KNX-GA or openHAB item name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} value to be processes",
+            "paramName": "data",
+            "description": " value to be processes",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the processed value",
+            "type": "var",
+            "description": " the processed value"
+          }
+        ]
+      }
+    },
+    "defaultValue2DOM": {
+      "type": "function",
+      "name": "defaultValue2DOM",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method to handle all special cases for the value. The might come from\n the mapping where it can be quite complex as it can contain icons.\n value: the value that will be inserted\n modifyFn: callback function that modifies the DOM</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var}"
+          },
+          {
+            "name": "@param",
+            "body": "modifyFn {Function}"
+          }
+        ]
+      }
+    },
+    "defaultUpdate": {
+      "type": "function",
+      "name": "defaultUpdate",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default update function, processes the incoming value and applies it to the Dom value element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ga {String} KNX-GA or openHAB item name",
+            "paramName": "ga",
+            "description": " KNX-GA or openHAB item name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} the raw value from the bus",
+            "paramName": "data",
+            "description": " the raw value from the bus",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "passedElement {Element?} the element to update, if not given {@link getDomElement()} is used",
+            "paramName": "passedElement",
+            "description": " the element to update, if not given {@link getDomElement()} is used",
+            "optional": true,
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} value",
+            "type": "var",
+            "description": " value"
+          }
+        ]
+      }
+    },
+    "_applyValueToDom": {
+      "type": "function",
+      "name": "_applyValueToDom",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal function which updates the DOM element with the given value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "valueElement {Element} element to update",
+            "paramName": "valueElement",
+            "description": " element to update",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "e {var} value to add to the element",
+            "paramName": "e",
+            "description": " value to add to the element",
+            "type": "var"
+          }
+        ]
+      }
+    },
+    "getAddress": {
+      "type": "function",
+      "name": "getAddress",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>address</code>.\n\nFor further details take a look at the property definition: {@link #address}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Object",
+            "desc": "Returns the value for address"
+          }
+        ]
+      }
+    },
+    "setAddress": {
+      "type": "function",
+      "name": "setAddress",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>address</code>.\n\nFor further details take a look at the property definition: {@link #address}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Object",
+            "paramName": "value",
+            "desc": "Value for address"
+          }
+        ]
+      }
+    },
+    "resetAddress": {
+      "type": "function",
+      "name": "resetAddress",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "reset"
+    },
+    "getValue": {
+      "type": "function",
+      "name": "getValue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>value</code>.\n\nFor further details take a look at the property definition: {@link #value}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for value"
+          }
+        ]
+      }
+    },
+    "setValue": {
+      "type": "function",
+      "name": "setValue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>value</code>.\n\nFor further details take a look at the property definition: {@link #value}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for value"
+          }
+        ]
+      }
+    },
+    "resetValue": {
+      "type": "function",
+      "name": "resetValue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "reset"
+    },
+    "getBasicValue": {
+      "type": "function",
+      "name": "getBasicValue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>basicValue</code>.\n\nFor further details take a look at the property definition: {@link #basicValue}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for basicValue"
+          }
+        ]
+      }
+    },
+    "setBasicValue": {
+      "type": "function",
+      "name": "setBasicValue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>basicValue</code>.\n\nFor further details take a look at the property definition: {@link #basicValue}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for basicValue"
+          }
+        ]
+      }
+    },
+    "resetBasicValue": {
+      "type": "function",
+      "name": "resetBasicValue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "reset"
+    },
+    "getFormat": {
+      "type": "function",
+      "name": "getFormat",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>format</code>.\n\nFor further details take a look at the property definition: {@link #format}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for format"
+          }
+        ]
+      }
+    },
+    "setFormat": {
+      "type": "function",
+      "name": "setFormat",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>format</code>.\n\nFor further details take a look at the property definition: {@link #format}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for format"
+          }
+        ]
+      }
+    },
+    "resetFormat": {
+      "type": "function",
+      "name": "resetFormat",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "property": "reset"
+    }
+  },
+  "descendants": []
+}

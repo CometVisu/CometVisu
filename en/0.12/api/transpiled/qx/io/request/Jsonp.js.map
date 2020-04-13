@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/io/request/Jsonp.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "io",
+    "request",
+    "AbstractRequest",
+    "events",
+    "properties",
+    "cache",
+    "check",
+    "init",
+    "members",
+    "_createTransport",
+    "bom",
+    "Jsonp",
+    "_getConfiguredUrl",
+    "url",
+    "getUrl",
+    "serializedData",
+    "getRequestData",
+    "_serializeData",
+    "util",
+    "Uri",
+    "appendParamsToUrl",
+    "getCache",
+    "nocache",
+    "Date",
+    "valueOf",
+    "_getParsedResponse",
+    "_transport",
+    "responseJson",
+    "setCallbackParam",
+    "param",
+    "setCallbackName",
+    "name"
+  ],
+  "mappings": ";;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAqDAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,IAAAA,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,eADxB;AAGEC,IAAAA,MAAM,EACN;AAEE;;;AAGA,iBAAW,qBALb;;AAOE;;;;;;;;AAQA,cAAQ,qBAfV;;AAiBE;;;;;;;;;;;;;;;AAeA,qBAAe;AAhCjB,KAJF;AAuCEC,IAAAA,UAAU,EACV;AACE;;;;;;;;AAQAC,MAAAA,KAAK,EAAE;AACLC,QAAAA,KAAK,EAAE,SADF;AAELC,QAAAA,IAAI,EAAE;AAFD;AATT,KAxCF;AAuDEC,IAAAA,OAAO,EACP;AACE;;;;;;AAMA;;;;;AAKAC,MAAAA,gBAAgB,EAAE,4BAAW;AAC3B,eAAO,IAAIhB,EAAE,CAACiB,GAAH,CAAOT,OAAP,CAAeU,KAAnB,EAAP;AACD,OAdH;;AAgBE;;;;;;;;AAQAC,MAAAA,iBAAiB,EAAE,6BAAW;AAC5B,YAAIC,GAAG,GAAG,KAAKC,MAAL,EAAV;AAAA,YACIC,cADJ;;AAGA,YAAI,KAAKC,cAAL,EAAJ,EAA2B;AACzBD,UAAAA,cAAc,GAAG,KAAKE,cAAL,CAAoB,KAAKD,cAAL,EAApB,CAAjB;AACAH,UAAAA,GAAG,GAAGpB,EAAE,CAACyB,IAAH,CAAQC,GAAR,CAAYC,iBAAZ,CAA8BP,GAA9B,EAAmCE,cAAnC,CAAN;AACD;;AAED,YAAI,CAAC,KAAKM,QAAL,EAAL,EAAsB;AACpB;AACAR,UAAAA,GAAG,GAAGpB,EAAE,CAACyB,IAAH,CAAQC,GAAR,CAAYC,iBAAZ,CAA8BP,GAA9B,EAAmC;AAACS,YAAAA,OAAO,EAAE,IAAIC,IAAJ,GAAWC,OAAX;AAAV,WAAnC,CAAN;AACD;;AAED,eAAOX,GAAP;AACD,OAvCH;;AAyCE;;;;;;;AAOAY,MAAAA,kBAAkB,EAAE,8BAAW;AAC7B,eAAO,KAAKC,UAAL,CAAgBC,YAAvB;AACD,OAlDH;;AAoDE;;;;;;AAMA;;;;;;;AAOAC,MAAAA,gBAAgB,EAAE,0BAASC,KAAT,EAAgB;AAChC,aAAKH,UAAL,CAAgBE,gBAAhB,CAAiCC,KAAjC;AACD,OAnEH;;AAqEE;;;;;;;AAOAC,MAAAA,eAAe,EAAE,yBAASC,IAAT,EAAe;AAC9B,aAAKL,UAAL,CAAgBI,eAAhB,CAAgCC,IAAhC;AACD;AA9EH;AAxDF,GADA;AAvEAtC,EAAAA,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcU,KAAd,CAAoBf,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tristan Koch (tristankoch)\n\n************************************************************************ */\n\n/**\n * Query JSONP services using the script element. Requests may be cross-origin.\n *\n * Configuration of the request is done with properties. Events are fired for\n * various states in the life cycle of a request, such as \"success\". Request\n * data is transparently processed.\n *\n * For an introduction to JSONP, please refer to\n * <a href=\"http://ajaxian.com/archives/jsonp-json-with-padding\">Ajaxian.com</a>.\n *\n * Here is how to request a JSON file from a REST service and listen to\n * the \"success\" event:\n *\n * <pre class=\"javascript\">\n * var req = new qx.io.request.Jsonp();\n * req.setUrl(\"http://feeds.delicious.com/v2/json/popular\");\n *\n * // Some services have a fixed callback name\n * // req.setCallbackName(\"callback\");\n *\n * req.addListener(\"success\", function(e) {\n *   var req = e.getTarget();\n *\n *   // HTTP status code indicating success, e.g. 200\n *   req.getStatus();\n *\n *   // \"success\"\n *   req.getPhase();\n *\n *   // JSON response\n *   req.getResponse();\n * }, this);\n *\n * // Send request\n * req.send();\n * </pre>\n *\n * Some noteable features:\n *\n * * Abstraction of low-level request\n * * Convenient setup using properties\n * * Fine-grained events\n * * Symbolic phases\n * * Transparent processing of request data\n * * Stream-lined authentication\n * * Flexible callback handling\n * * Cross-origin requests\n *\n * In order to debug requests, set the environment flag\n * <code>qx.debug.io</code>.\n *\n * Internally uses {@link qx.bom.request.Jsonp}.\n */\nqx.Class.define(\"qx.io.request.Jsonp\",\n{\n  extend: qx.io.request.AbstractRequest,\n\n  events:\n  {\n\n    /**\n     * Fired when request completes without error and data has been received.\n     */\n    \"success\": \"qx.event.type.Event\",\n\n    /**\n     * Fired when request completes without error.\n     *\n     * Every request receiving a response completes without error. This means\n     * that even for responses that do not call the callback, a \"load\" event\n     * is fired. If you are only interested in the JSON data received, consider\n     * listening to the {@link #success} event instead.\n     */\n    \"load\": \"qx.event.type.Event\",\n\n    /**\n     * Fired when request completes without error but no data was received.\n     *\n     * The underlying script transport does not know the HTTP status of the\n     * response. However, if the callback was not called (no data received)\n     * an erroneous status (500) is assigned to the transport’s status\n     * property.\n     *\n     * Note: If you receive an unexpected \"statusError\", check that the JSONP\n     * service accepts arbitrary callback names given as the \"callback\"\n     * parameter. In case the service expects another parameter for the callback\n     * name, use {@link #setCallbackParam}. Should the service respond with a\n     * hard-coded callback, set a custom callback name with\n     * {@link #setCallbackName}.\n     */\n    \"statusError\": \"qx.event.type.Event\"\n  },\n\n  properties:\n  {\n    /**\n     * Whether to allow request to be answered from cache.\n     *\n     * Allowed values:\n     *\n     * * <code>true</code>: Allow caching (Default)\n     * * <code>false</code>: Prohibit caching. Appends nocache parameter to URL.\n     */\n    cache: {\n      check: \"Boolean\",\n      init: true\n    }\n  },\n\n  members:\n  {\n    /*\n    ---------------------------------------------------------------------------\n      CONFIGURE TRANSPORT\n    ---------------------------------------------------------------------------\n    */\n\n    /**\n     * Create JSONP transport.\n     *\n     * @return {qx.bom.request.Jsonp} Transport.\n     */\n    _createTransport: function() {\n      return new qx.bom.request.Jsonp();\n    },\n\n    /**\n     * Get configured URL.\n     *\n     * Append request data to URL. Also append random string\n     * to URL if required by value of {@link #cache}.\n     *\n     * @return {String} The configured URL.\n     */\n    _getConfiguredUrl: function() {\n      var url = this.getUrl(),\n          serializedData;\n\n      if (this.getRequestData()) {\n        serializedData = this._serializeData(this.getRequestData());\n        url = qx.util.Uri.appendParamsToUrl(url, serializedData);\n      }\n\n      if (!this.getCache()) {\n        // Make sure URL cannot be served from cache and new request is made\n        url = qx.util.Uri.appendParamsToUrl(url, {nocache: new Date().valueOf()});\n      }\n\n      return url;\n    },\n\n    /**\n     * Return the transport’s responseJson property.\n     *\n     * See {@link qx.bom.request.Jsonp}.\n     *\n     * @return {Object} The parsed response of the request.\n     */\n    _getParsedResponse: function() {\n      return this._transport.responseJson;\n    },\n\n    /*\n    ---------------------------------------------------------------------------\n      CALLBACK MANAGEMENT\n    ---------------------------------------------------------------------------\n    */\n\n    /**\n     * Set callback parameter.\n     *\n     * See {@link qx.bom.request.Jsonp#setCallbackParam}.\n     *\n     * @param param {String} Name of the callback parameter.\n     */\n    setCallbackParam: function(param) {\n      this._transport.setCallbackParam(param);\n    },\n\n    /**\n     * Set callback name.\n     *\n     * See {@link qx.bom.request.Jsonp#setCallbackName}.\n     *\n     * @param name {String} Name of the callback function.\n     */\n    setCallbackName: function(name) {\n      this._transport.setCallbackName(name);\n    }\n  }\n});\n"
+  ]
+}

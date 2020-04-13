@@ -5,7 +5,7 @@
 <head>
   <title>CometVisu-Client</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="cv/manifest.json">
   <link rel="icon" href="resource/icon/comet_16x16_ff8000.png" type="image/png" />
   <link rel="apple-touch-icon" href="resource/icon/comet_webapp_icon_180.png" />
   <link rel="apple-touch-icon" sizes="76x76" href="resource/icon/comet_webapp_icon_76.png" />
@@ -31,9 +31,6 @@
       document.head.appendChild(scriptTag);
     };
 
-    var loadCv = function () {
-      loadJS('loader/loader.js');
-    }
     var enableSentry = window.location.search.substring(1).split('&').some(function (qs) {
       var parts = qs.split('=');
       return parts[0] === 'reportErrors' && parts[1] === 'true';
@@ -56,12 +53,11 @@
             return ev;
           }
         });
-        loadCv();
       })
-    } else {
-      loadCv();
     }
+    
   </script>
+  <script type="text/javascript" src="cv/boot.js"></script>
   <style type="text/css" id="pageSize"></style>
   <style type="text/css" id="rowspanStyle"></style>
 </head>

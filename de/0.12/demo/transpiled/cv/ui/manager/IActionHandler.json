@@ -1,0 +1,102 @@
+{
+  "className": "cv.ui.manager.IActionHandler",
+  "packageName": "cv.ui.manager",
+  "name": "IActionHandler",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 4,
+        "column": 0
+      },
+      "end": {
+        "line": 24,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>All Widgets that need to handle actions from the managers action event, need to implement this interface.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "canHandleAction": {
+      "location": {
+        "start": {
+          "line": 15,
+          "column": 4
+        },
+        "end": {
+          "line": 15,
+          "column": 44
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the action handle can process the action.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "actionName {String} action name",
+            "paramName": "actionName",
+            "description": " action name",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "handleAction": {
+      "location": {
+        "start": {
+          "line": 22,
+          "column": 4
+        },
+        "end": {
+          "line": 22,
+          "column": 48
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executes the action handling.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "actionName {String} action name",
+            "paramName": "actionName",
+            "description": " action name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} action payload",
+            "paramName": "data",
+            "description": " action payload",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

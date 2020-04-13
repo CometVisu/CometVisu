@@ -1,0 +1,466 @@
+{
+  "className": "qx.module.util.String",
+  "packageName": "qx.module.util",
+  "name": "String",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 128,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Utility module to give some support to work with strings.\n<em>Info:</em> The <pre class='javascript'>trim</pre> method is available as <a href=\"#String\">Polyfill</a>.</p>"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Utilities"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "camelCase": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 36,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a hyphenated string (separated by '-') to camel case.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, string.camelCase}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} hyphenated string",
+            "paramName": "str",
+            "description": " hyphenated string",
+            "type": "qx.module.util.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} camelcase string",
+            "type": "qx.module.util.String",
+            "description": " camelcase string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hyphenate": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a camelcased string to a hyphenated (separated by '-') string.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, string.hyphenate}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} camelcased string",
+            "paramName": "str",
+            "description": " camelcased string",
+            "type": "qx.module.util.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} hyphenated string",
+            "type": "qx.module.util.String",
+            "description": " hyphenated string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "firstUp": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convert the first character of the string to upper case.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, string.firstUp}"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(str)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the string",
+            "paramName": "str",
+            "description": " the string",
+            "type": "qx.module.util.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the string with an upper case first character",
+            "type": "qx.module.util.String",
+            "description": " the string with an upper case first character"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "firstLow": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 38
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convert the first character of the string to lower case.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, string.firstLow}"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(str)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the string",
+            "paramName": "str",
+            "description": " the string",
+            "type": "qx.module.util.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the string with a lower case first character",
+            "type": "qx.module.util.String",
+            "description": " the string with a lower case first character"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "startsWith": {
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check whether the string starts with the given substring.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, string.startsWith}"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(fullstr, substr)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fullstr {String} the string to search in",
+            "paramName": "fullstr",
+            "description": " the string to search in",
+            "type": "qx.module.util.String"
+          },
+          {
+            "name": "@param",
+            "body": "substr {String} the substring to look for",
+            "paramName": "substr",
+            "description": " the substring to look for",
+            "type": "qx.module.util.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the string starts with the given substring",
+            "type": "Boolean",
+            "description": " whether the string starts with the given substring"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "endsWith": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4
+        },
+        "end": {
+          "line": 98,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check whether the string ends with the given substring.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, string.endsWith}"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(fullstr, substr)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fullstr {String} the string to search in",
+            "paramName": "fullstr",
+            "description": " the string to search in",
+            "type": "qx.module.util.String"
+          },
+          {
+            "name": "@param",
+            "body": "substr {String} the substring to look for",
+            "paramName": "substr",
+            "description": " the substring to look for",
+            "type": "qx.module.util.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the string ends with the given substring",
+            "type": "Boolean",
+            "description": " whether the string ends with the given substring"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "escapeRegexpChars": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 56
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Escapes all chars that have a special meaning in regular expressions.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, string.escapeRegexpChars}"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(str)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the string where to escape the chars.",
+            "paramName": "str",
+            "description": " the string where to escape the chars.",
+            "type": "qx.module.util.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the string with the escaped chars.",
+            "type": "qx.module.util.String",
+            "description": " the string with the escaped chars."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "escapeHtml": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Escapes the characters in a <code>String</code> using HTML entities.\n Supports all known HTML 4.0 entities, including funky accents.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb, string.escapeHtml}"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(str)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the String to escape",
+            "paramName": "str",
+            "description": " the String to escape",
+            "type": "qx.module.util.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} a new escaped String",
+            "type": "qx.module.util.String",
+            "description": " a new escaped String"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 125,
+        "column": 10
+      },
+      "end": {
+        "line": 127,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

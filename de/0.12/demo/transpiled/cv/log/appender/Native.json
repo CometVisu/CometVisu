@@ -1,0 +1,98 @@
+{
+  "className": "cv.log.appender.Native",
+  "packageName": "cv.log.appender",
+  "name": "Native",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 66,
+        "column": 5
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n http://qooxdoo.org\n Copyright:\n 2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n License:\n MIT: https://opensource.org/licenses/MIT\n See the LICENSE file in the project's top-level directory for details.\n Authors:\n Sebastian Werner (wpbasti)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Processes the incoming log entry and displays it by means of the native\n logging capabilities of the client. Can be disable during runtime</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.log.appender.Util"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.client.Html"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "process": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 8
+        },
+        "end": {
+          "line": 51,
+          "column": 9
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Processes a single log entry</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} The entry to process",
+            "paramName": "entry",
+            "description": " The entry to process",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 63,
+        "column": 12
+      },
+      "end": {
+        "line": 65,
+        "column": 5
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n DEFER\n**********************************************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

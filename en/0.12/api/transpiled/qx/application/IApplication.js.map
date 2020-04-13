@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/application/IApplication.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "main",
+    "finalize",
+    "close",
+    "terminate",
+    "application",
+    "IApplication"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,6BAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;;;;AAIAC,MAAAA,IAAI,EAAG,gBAAW,CAAE,CALtB;;AAQE;;;;;AAKAC,MAAAA,QAAQ,EAAG,oBAAW,CAAE,CAb1B;;AAeE;;;;;;;;AAQAC,MAAAA,KAAK,EAAG,iBAAW,CAAE,CAvBvB;;AA0BE;;;;AAIAC,MAAAA,SAAS,EAAG,qBAAW,CAAE;AA9B3B;AAFF,GADA;AArBAV,EAAAA,EAAE,CAACW,WAAH,CAAeC,YAAf,CAA4BT,aAA5B,GAA4CA,aAA5C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * This interface defines what an application class has to implement.\n */\nqx.Interface.define(\"qx.application.IApplication\",\n{\n  members :\n  {\n    /**\n     * Called when the application relevant classes are loaded and ready.\n     *\n     */\n    main : function() {},\n\n\n    /**\n     * Called when the application's main method was executed to handle\n     * \"final\" tasks like rendering or retrieving data.\n     *\n     */\n    finalize : function() {},\n\n    /**\n     * Called in the document.beforeunload event of the browser. If the method\n     * returns a string value, the user will be asked by the browser, whether\n     * he really wants to leave the page. The return string will be displayed in\n     * the message box.\n     *\n     * @return {String?null} message text on unloading the page\n     */\n    close : function() {},\n\n\n    /**\n     * This method contains the last code which is run inside the page and may contain cleanup code.\n     *\n     */\n    terminate : function() {}\n  }\n});\n"
+  ]
+}

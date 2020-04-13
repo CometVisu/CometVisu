@@ -1,0 +1,38 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/ui/manager/core/GlobalState.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "type",
+    "properties",
+    "openedFocusedFile",
+    "check",
+    "nullable",
+    "event",
+    "apply",
+    "members",
+    "_applyFile",
+    "cv",
+    "ui",
+    "manager",
+    "control",
+    "ActionDispatcher",
+    "getInstance",
+    "updateBarButtons",
+    "GlobalState"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,gCAAhB,EAAkD;AAChDC,IAAAA,MAAM,EAAEN,EAAE,CAACO,IAAH,CAAQC,MADgC;AAEhDC,IAAAA,IAAI,EAAE,WAF0C;;AAIhD;;;;;AAKAC,IAAAA,UAAU,EAAE;AACVC,MAAAA,iBAAiB,EAAE;AACjBC,QAAAA,KAAK,EAAE,kEADU;AAEjBC,QAAAA,QAAQ,EAAE,IAFO;AAGjBC,QAAAA,KAAK,EAAE,yBAHU;AAIjBC,QAAAA,KAAK,EAAE;AAJU;AADT,KAToC;;AAkBhD;;;;;AAKAC,IAAAA,OAAO,EAAE;AACPC,MAAAA,UAAU,EAAE,sBAAY;AACtBC,QAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,OAAd,CAAsBC,gBAAtB,CAAuCC,WAAvC,GAAqDC,gBAArD;AACD;AAHM;AAvBuC,GAAlD;AAHAN,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcb,IAAd,CAAmBkB,WAAnB,CAA+BtB,aAA/B,GAA+CA,aAA/C",
+  "sourcesContent": [
+    "/**\n * Global singleton that hold some states that are relevant for many parts of the manager.\n */\nqx.Class.define('cv.ui.manager.core.GlobalState', {\n  extend: qx.core.Object,\n  type: 'singleton',\n\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    openedFocusedFile: {\n      check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',\n      nullable: true,\n      event: 'changeOpenedFocusedFile',\n      apply: '_applyFile'\n    }\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _applyFile: function () {\n      cv.ui.manager.control.ActionDispatcher.getInstance().updateBarButtons();\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/lang/normalize/Date.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "now",
+    "Date",
+    "parse",
+    "dateString",
+    "captureGroups",
+    "exec",
+    "time",
+    "originalParse",
+    "isNaN",
+    "setTime",
+    "NaN",
+    "noTime",
+    "every",
+    "i",
+    "undefined",
+    "forEach",
+    "getTime",
+    "minutesOffset",
+    "UTC",
+    "defer",
+    "core",
+    "Environment",
+    "get",
+    "lang",
+    "normalize"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n/**\n * This class is responsible for the normalization of the native 'Date' object.\n * It checks if these methods are available and, if not, appends them to\n * ensure compatibility in all browsers.\n * For usage samples, check out the attached links.\n *\n * @group (Polyfill)\n */\nqx.Bootstrap.define(\"qx.lang.normalize.Date\", {\n\n  statics : {\n\n    /**\n     * Returns the time elapsed since January 1, 1970 in milliseconds.\n     *\n     * <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date/now\">MDN documentation</a> |\n     * <a href=\"http://es5.github.com/#x15.9.4.4\">Annotated ES5 Spec</a>\n     *\n     * @return {Integer} Milliseconds since the Unix Epoch\n     */\n    now : function () {\n      return +new Date();\n    },\n\n\n    /**\n     * Parses a string representation of a date and return number of\n     * milliseconds since Epoch or NaN if string is unrecognized.\n     *\n     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse\">MDN documentation</a>\n     *\n     * Derived from <https://github.com/csnover/js-iso8601>: ©2011 Colin Snover\n     * <http://zetafleet.com>, MIT license\n     *\n     * @param dateString {String} A string representing an RFC2822 or ISO 8601\n     *   date (other formats may be used, but results may be unexpected).\n     * @return {Number|NaN} A number representing the milliseconds elapsed\n     *   since January 1, 1970, 00:00:00 UTC and the date obtained by parsing\n     *   the given string representation of a date.\n     *   If the argument doesn't represent a valid date, NaN is returned.\n     */\n    parse : function (dateString)\n    {\n      // Match input against ISO8601 regular expression\n      var captureGroups = /^(\\d{4}|[+\\-]\\d{6})(?:-(\\d{2})(?:-(\\d{2}))?)?(?:T(\\d{2}):(\\d{2})(?::(\\d{2})(?:\\.(\\d{3}))?)?(?:(Z)|([+\\-])(\\d{2})(?::(\\d{2}))?)?)?$/.exec(dateString);\n      if (!captureGroups) {\n        //\n        // if the regular expression does not match parse the string\n        // using the original function. \n        // Additionally check if it returns a real time value, which we \n        // ensure by using setTime with an intermediate Date object and the \n        // parsed time value. \n        // Safari 11 e.g. parses the date string '19700101' successfully \n        // into a time value, but returns NaN if that value is used in setTime.\n        // \n        // See:\n        //   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse\n        //   https://github.com/qooxdoo/qooxdoo/issues/9451\n        //\n        var time = Date.originalParse(dateString);\n        if(isNaN(time) || isNaN((new Date()).setTime(time))) {\n          return NaN;\n        }\n        return time;\n      }\n\n      // Just a date without time?\n      var noTime = [ 4, 5, 6, 7 ].every(function (i) {\n        return captureGroups[i] === undefined;\n      });\n\n      // Avoid invalid timestamps caused by undefined values being passed to Date.UTC\n      [ 1, 4, 5, 6, 7, 10, 11 ].forEach(function (i) {\n        captureGroups[i] = +captureGroups[i] || 0;\n      });\n      captureGroups[2] = (+captureGroups[2] || 1) - 1; // Allow undefined months\n      captureGroups[3] =  +captureGroups[3] || 1;      // Allow undefined days\n\n      // No timezone offset given and *not* just a date (without time)\n      if (captureGroups[8] !== \"Z\" && captureGroups[9] === undefined && !noTime)\n      { // => Treat as local\n        return new Date( captureGroups[1], captureGroups[2], captureGroups[3],\n                         captureGroups[4], captureGroups[5], captureGroups[6],\n                         captureGroups[7] ).getTime();\n      }\n\n      // Handle timezone offsets\n      var minutesOffset = 0;\n      if (captureGroups[8] !== \"Z\")\n      {\n        minutesOffset = captureGroups[10] * 60 + captureGroups[11];\n        if (captureGroups[9] === \"+\") {\n          minutesOffset = - minutesOffset;\n        }\n      }\n\n      // Return the number of milliseconds since Epoch\n      return Date.UTC( captureGroups[1], captureGroups[2], captureGroups[3],\n                       captureGroups[4], captureGroups[5] + minutesOffset,\n                       captureGroups[6], captureGroups[7] );\n    }\n  },\n\n  defer : function (statics)\n  {\n    // Date.now\n    if (!qx.core.Environment.get(\"ecmascript.date.now\")) {\n      Date.now = statics.now;\n    }\n    // Date.parse\n    if (!qx.core.Environment.get(\"ecmascript.date.parse\")) {\n      Date.originalParse = Date.parse || function (dateString) { return NaN; };\n      Date.parse = statics.parse;\n    }\n  }\n});\n"
+  ]
+}

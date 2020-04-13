@@ -1,0 +1,19 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/module/Polyfill.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "module",
+    "Polyfill"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;;;;;;;;;;AAaAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,oBAApB,EAA0C,EAA1C;AAhCAJ,EAAAA,EAAE,CAACK,MAAH,CAAUC,QAAV,CAAmBH,aAAnB,GAAmCA,aAAnC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n\n/**\n * Adds JavaScript features that may not be supported by all clients.\n *\n * @require(qx.lang.normalize.Function)\n * @require(qx.lang.normalize.String)\n * @require(qx.lang.normalize.Date)\n * @require(qx.lang.normalize.Array)\n * @require(qx.lang.normalize.Error)\n * @require(qx.lang.normalize.Object)\n * @require(qx.lang.normalize.Number)\n *\n * @group (Polyfill)\n */\nqx.Bootstrap.define(\"qx.module.Polyfill\", {});\n"
+  ]
+}

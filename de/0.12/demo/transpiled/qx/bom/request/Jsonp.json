@@ -1,0 +1,691 @@
+{
+  "className": "qx.bom.request.Jsonp",
+  "packageName": "qx.bom.request",
+  "name": "Jsonp",
+  "superClass": "qx.bom.request.Script",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 52,
+        "column": 0
+      },
+      "end": {
+        "line": 325,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tristan Koch (tristankoch)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>A special script loader handling JSONP responses. Automatically\n provides callbacks and populates responseJson property.\n Example:\n </p>\n<pre class=\"javascript\">\n  var req = new qx.bom.request.Jsonp();\n\n\n  req.onload = function() {\n\n    req.responseJson;\n  }\n  req.open(\"GET\", url);\n  req.send();\n </pre>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#open"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#on"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#onreadystatechange"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#onload"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#onloadend"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#onerror"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#onabort"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#ontimeout"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.request.Script#send"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "IO"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 56,
+        "column": 14
+      },
+      "end": {
+        "line": 62,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "members": {
+    "responseJson": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object} Parsed JSON response."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__id": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
+          "column": 14
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} Identifier of this instance."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__callbackParam": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 25
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} Callback parameter."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__callbackName": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} Callback name."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__callbackCalled": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4
+        },
+        "end": {
+          "line": 89,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether callback was called."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__customCallbackCreated": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 33
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether a custom callback was created automatically."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__generatedUrl": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4
+        },
+        "end": {
+          "line": 99,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The generated URL for the current request"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__disposed": {
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4
+        },
+        "end": {
+          "line": 104,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether request was disposed."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__prefix": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prefix used for the internal callback name.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "open": {
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes (prepares) request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String}\n   The HTTP method to use.\n   This parameter exists for compatibility reasons. The script transport\n   does not support methods other than GET.",
+            "paramName": "method",
+            "description": "\n   The HTTP method to use.\n   This parameter exists for compatibility reasons. The script transport\n   does not support methods other than GET.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "url {String}\n   The URL to which to send the request.",
+            "paramName": "url",
+            "description": "\n   The URL to which to send the request.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.bom.request.Script",
+      "appearsIn": [
+        "qx.bom.request.Script"
+      ]
+    },
+    "callback": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4
+        },
+        "end": {
+          "line": 208,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback provided for JSONP response to pass data.\n Called internally to populate responseJson property\n and indicate successful status.\n Note: If you write a custom callback you’ll need to call\n this method in order to notify the request about the data\n loaded. Writing a custom callback should not be necessary\n in most cases.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {Object} JSON",
+            "paramName": "data",
+            "description": " JSON",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setCallbackParam": {
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4
+        },
+        "end": {
+          "line": 223,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set callback parameter.\n Some JSONP services expect the callback name to be passed labeled with a\n special URL parameter key, e.g. \"jsonp\" in \"?jsonp=myCallback\". The\n default is \"callback\".</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "param {String} Name of the callback parameter.",
+            "paramName": "param",
+            "description": " Name of the callback parameter.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Jsonp} Self reference for chaining.",
+            "type": "qx.bom.request.Jsonp",
+            "description": " Self reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setCallbackName": {
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4
+        },
+        "end": {
+          "line": 248,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set callback name.\n Must be set to the name of the callback function that is called by the\n script returned from the JSONP service. By default, the callback name\n references this instance’s {@link #callback} method, allowing to connect\n multiple JSONP responses to different requests.\n If the JSONP service allows to set custom callback names, it should not\n be necessary to change the default. However, some services use a fixed\n callback name. This is when setting the callbackName is useful. A\n function is created and made available globally under the given name.\n The function receives the JSON data and dispatches it to this instance’s\n {@link #callback} method. Please note that this function is only created\n if it does not exist before.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Name of the callback function.",
+            "paramName": "name",
+            "description": " Name of the callback function.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Jsonp} Self reference for chaining.",
+            "type": "qx.bom.request.Jsonp",
+            "description": " Self reference for chaining."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setPrefix": {
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4
+        },
+        "end": {
+          "line": 259,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the prefix used in front of 'qx.' in case 'qx' is not available\n (for qx.Website e.g.)</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "prefix {String} The prefix to put in front of 'qx'",
+            "paramName": "prefix",
+            "description": " The prefix to put in front of 'qx'",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getGeneratedUrl": {
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4
+        },
+        "end": {
+          "line": 270,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the generated URL for the current / last request</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The current generated URL for the request",
+            "type": "String",
+            "description": " The current generated URL for the request"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4
+        },
+        "end": {
+          "line": 278,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.bom.request.Script",
+      "appearsIn": [
+        "qx.bom.request.Script",
+        "qx.core.IDisposable"
+      ]
+    },
+    "_onNativeLoad": {
+      "location": {
+        "start": {
+          "line": 283,
+          "column": 4
+        },
+        "end": {
+          "line": 294,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle native load.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.bom.request.Script",
+      "appearsIn": [
+        "qx.bom.request.Script"
+      ]
+    },
+    "__deleteCustomCallback": {
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 4
+        },
+        "end": {
+          "line": 304,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delete custom callback if dynamically created before.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__callBase": {
+      "location": {
+        "start": {
+          "line": 312,
+          "column": 4
+        },
+        "end": {
+          "line": 314,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Call overridden method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String} Name of the overridden method.",
+            "paramName": "method",
+            "description": " Name of the overridden method.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array} Arguments.",
+            "paramName": "args",
+            "description": " Arguments.",
+            "type": "Array"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__generateId": {
+      "location": {
+        "start": {
+          "line": 319,
+          "column": 4
+        },
+        "end": {
+          "line": 323,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generate ID.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "descendants": []
+}

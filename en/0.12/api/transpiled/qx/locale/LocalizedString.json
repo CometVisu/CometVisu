@@ -1,0 +1,189 @@
+{
+  "className": "qx.locale.LocalizedString",
+  "packageName": "qx.locale",
+  "name": "LocalizedString",
+  "superClass": "qx.type.BaseString",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 71,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>This class contains the translation of a message and all information\n to translate it again into a different language.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 14
+      },
+      "end": {
+        "line": 40,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "translation {String} The translated message",
+          "paramName": "translation",
+          "description": " The translated message",
+          "type": "qx.locale.String"
+        },
+        {
+          "name": "@param",
+          "body": "messageId {String} The messageId to translate",
+          "paramName": "messageId",
+          "description": " The messageId to translate",
+          "type": "qx.locale.String"
+        },
+        {
+          "name": "@param",
+          "body": "args {Array} list of arguments passed used as values for format strings",
+          "paramName": "args",
+          "description": " list of arguments passed used as values for format strings",
+          "type": "Array"
+        },
+        {
+          "name": "@param",
+          "body": "localized {Boolean} True if the string uses localize instead of translate",
+          "paramName": "localized",
+          "description": " True if the string uses localize instead of translate",
+          "type": "Boolean"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__localized": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__messageId": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__args": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 46,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "translate": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 60,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a translation of the string using the current locale.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.locale.LocalizedString|String} This string translated using the current\n    locale.",
+            "type": "qx.locale.LocalizedString|String",
+            "description": " This string translated using the current\n    locale."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMessageId": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the messageId.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The messageId of this localized String",
+            "type": "qx.locale.String",
+            "description": " The messageId of this localized String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

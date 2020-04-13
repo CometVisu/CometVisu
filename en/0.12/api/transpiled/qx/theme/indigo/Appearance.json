@@ -1,0 +1,75 @@
+{
+  "className": "qx.theme.indigo.Appearance",
+  "packageName": "qx.theme.indigo",
+  "name": "Appearance",
+  "superClass": "qx.theme.simple.Appearance",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 0
+      },
+      "end": {
+        "line": 177,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>**</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n******************************************************************\n</code></pre>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>The simple qooxdoo appearance theme.</p>"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/apps/office-calendar.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/places/folder-open.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/places/folder.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/mimetypes/text-plain.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/actions/view-refresh.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/actions/window-close.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/${qx.icontheme}/16/actions/dialog-ok.png"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": [
+    "qxl.apiviewer.Appearance"
+  ]
+}

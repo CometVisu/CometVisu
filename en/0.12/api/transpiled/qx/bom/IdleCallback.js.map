@@ -1,0 +1,49 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/bom/IdleCallback.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "statics",
+    "TIMEOUT",
+    "REMAINING",
+    "request",
+    "callback",
+    "context",
+    "timeout",
+    "cb",
+    "deadline",
+    "call",
+    "Environment",
+    "get",
+    "window",
+    "requestIdleCallback",
+    "started",
+    "Date",
+    "getTime",
+    "timeRemaining",
+    "now",
+    "Math",
+    "max",
+    "bom",
+    "IdleCallback",
+    "didTimeout",
+    "setTimeout",
+    "cancel",
+    "handle",
+    "cancelIdleCallback",
+    "clearTimeout"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;;;;;;;;;AAeAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,qBAApB,EACA;AACEC,IAAAA,MAAM,EAAGL,EAAE,CAACM,IAAH,CAAQC,MADnB;AAGEC,IAAAA,OAAO,EACP;AACE;;;;;AAKAC,MAAAA,OAAO,EAAG,CANZ;;AAQE;;;;;AAKAC,MAAAA,SAAS,EAAG,GAbd;;AAeE;;;;;;;;;;;;;;;AAeAC,MAAAA,OAAO,EAAG,iBAASC,QAAT,EAAmBC,OAAnB,EAA4BC,OAA5B,EAAqC;AAC7C,YAAIC,EAAE,GAAG,SAALA,EAAK,CAASC,QAAT,EAAmB;AAC1B,iBAAOJ,QAAQ,CAACK,IAAT,CAAcJ,OAAd,EAAuBG,QAAvB,CAAP;AACD,SAFD;;AAIA,YAAIhB,EAAE,CAACM,IAAH,CAAQY,WAAR,CAAoBC,GAApB,CAAwB,aAAxB,CAAJ,EAA4C;AAC1C,iBAAOC,MAAM,CAACC,mBAAP,CAA2BN,EAA3B,EAA+BD,OAA/B,CAAP;AACD,SAFD,MAGK;AAEH,cAAIE,QAAQ,GAAG;AACbM,YAAAA,OAAO,EAAI,IAAIC,IAAJ,EAAD,CAAaC,OAAb,EADG;AAGbC,YAAAA,aAAa,EAAG,yBAAW;AACzB,kBAAIC,GAAG,GAAI,IAAIH,IAAJ,EAAD,CAAaC,OAAb,EAAV;AACA,qBAAOG,IAAI,CAACC,GAAL,CAAS5B,EAAE,CAAC6B,GAAH,CAAOC,YAAP,CAAoBpB,SAApB,IAAiCgB,GAAG,GAAG,KAAKJ,OAA5C,CAAT,EAA+D,CAA/D,CAAP;AACD,aANY;AAQbS,YAAAA,UAAU,EAAG;AARA,WAAf,CAFG,CAaH;AACA;;AACA,iBAAOX,MAAM,CAACY,UAAP,CAAkB,YAAW;AAClCjB,YAAAA,EAAE,CAACC,QAAD,CAAF;AACD,WAFM,EAEJhB,EAAE,CAAC6B,GAAH,CAAOC,YAAP,CAAoBrB,OAFhB,CAAP;AAGD;AACF,OAzDH;;AA2DE;;;;;AAKAwB,MAAAA,MAAM,EAAG,gBAASC,MAAT,EACT;AACE,YAAIlC,EAAE,CAACM,IAAH,CAAQY,WAAR,CAAoBC,GAApB,CAAwB,aAAxB,CAAJ,EAA4C;AAC1CC,UAAAA,MAAM,CAACe,kBAAP,CAA0BD,MAA1B;AACD,SAFD,MAGK;AACHd,UAAAA,MAAM,CAACgB,YAAP,CAAoBF,MAApB;AACD;AACF;AAxEH;AAJF,GADA;AAjCAlC,EAAAA,EAAE,CAAC6B,GAAH,CAAOC,YAAP,CAAoB3B,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2016 GONICUS GmbH, Germany, http://www.gonicus.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Cajus Pollmeier (cajus)\n\n************************************************************************ */\n\n/**\n * This is a cross browser wrapper for requestIdleCallback. For further\n * information about the feature, take a look at spec:\n * https://www.w3.org/TR/requestidlecallback/\n *\n * Here is a sample usage:\n * <pre class='javascript'>var cb = function(deadline) {\n *   while (deadline.timeRemaining() > 0) {\n *     // ... do some last tasks\n *   }\n * };\n *\n * qx.bom.IdleCallback.request(cb, this);\n * </pre>\n */\nqx.Bootstrap.define(\"qx.bom.IdleCallback\",\n{\n  extend : qx.core.Object,\n\n  statics :\n  {\n    /**\n     * The default time in ms the setTimeout() fallback implementation uses. There is no\n     * way to detect if the browser has some spare IDLE time, it defaults to zero - meaning\n     * that the callback will be called as soon as possible.\n     */\n    TIMEOUT : 0,\n\n    /**\n     * The default remaining time in ms the timeout fallback implementation uses. Since we\n     * cannot know how much time is available, this is a hard coded time bucket available\n     * for actions done in the callback.\n     */\n    REMAINING : 250,\n\n    /**\n     * Request for an IDLE callback. If the native <code>requestIdleCallback</code>\n     * method is supported, it will be used. Otherwise, we use timeouts with a\n     * 30ms delay. The HighResolutionTime will be used if supported but the time given\n     * to the callback will still be a timestamp starting at 1 January 1970 00:00:00 UTC.\n     *\n     * @param callback {Function} The callback function which will get a deadline\n     *   object. It contains a <code>timeRemaining()</code> call which returns the\n     *   remaining milliseconds and the <code>didTimeout</code> flag which indicates\n     *   whether the callback was fired due to a timeout. The latter is always false\n     *   in case of the emulation.\n     * @param context {var} The context of the callback.\n     * @param timeout {Number} Timeout in milliseconds.\n     * @return {Number} Handle for that request\n     */\n    request : function(callback, context, timeout) {\n      var cb = function(deadline) {\n        return callback.call(context, deadline);\n      };\n\n      if (qx.core.Environment.get(\"client.idle\")) {\n        return window.requestIdleCallback(cb, timeout);\n      }\n      else {\n\n        var deadline = {\n          started : (new Date()).getTime(),\n\n          timeRemaining : function() {\n            var now = (new Date()).getTime();\n            return Math.max(qx.bom.IdleCallback.REMAINING - (now - this.started), 0);\n          },\n\n          didTimeout : false\n        };\n\n        // make sure to use an indirection because setTimeout passes a\n        // number as first argument as well\n        return window.setTimeout(function() {\n          cb(deadline);\n        }, qx.bom.IdleCallback.TIMEOUT);\n      }\n    },\n\n    /**\n     * Cancel a requested IDLE callback.\n     *\n     * @param handle {Number} Handle acquired by <code>qx.bom.IdleCallback.request()</code>.\n     */\n    cancel : function(handle)\n    {\n      if (qx.core.Environment.get(\"client.idle\")) {\n        window.cancelIdleCallback(handle);\n      }\n      else {\n        window.clearTimeout(handle);\n      }\n    }\n  }\n});\n"
+  ]
+}

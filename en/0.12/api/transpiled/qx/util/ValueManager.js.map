@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/util/ValueManager.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "_dynamic",
+    "members",
+    "resolveDynamic",
+    "value",
+    "isDynamic",
+    "resolve",
+    "_setDynamic",
+    "_getDynamic",
+    "util",
+    "ValueManager"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sBAAhB,EACA;AACEC,IAAAA,IAAI,EAAG,UADT;AAEEC,IAAAA,MAAM,EAAGP,EAAE,CAACQ,IAAH,CAAQC,MAFnB;;AAOE;;;;;AAMAC,IAAAA,SAAS,EAAG,qBACZ;AACE,4CADF,CAGE;;AACA,WAAKC,QAAL,GAAgB,EAAhB;AACD,KAnBH;;AAuBE;;;;;AAMAC,IAAAA,OAAO,EACP;AAEED,MAAAA,QAAQ,EAAG,IAFb;;AAIE;;;;;;AAMAE,MAAAA,cAAc,EAAG,wBAASC,KAAT,EAAgB;AAC/B,eAAO,KAAKH,QAAL,CAAcG,KAAd,CAAP;AACD,OAZH;;AAeE;;;;;;AAMAC,MAAAA,SAAS,EAAG,mBAASD,KAAT,EAAgB;AAC1B,eAAO,CAAC,CAAC,KAAKH,QAAL,CAAcG,KAAd,CAAT;AACD,OAvBH;;AAyBE;;;;;;;AAOAE,MAAAA,OAAO,EAAG,iBAASF,KAAT,EACV;AACE,YAAIA,KAAK,IAAI,KAAKH,QAAL,CAAcG,KAAd,CAAb,EAAmC;AACjC,iBAAO,KAAKH,QAAL,CAAcG,KAAd,CAAP;AACD;;AAED,eAAOA,KAAP;AACD,OAvCH;;AAyCG;;;;AAIDG,MAAAA,WAAW,EAAG,qBAASH,KAAT,EAAgB;AAC5B,aAAKH,QAAL,GAAgBG,KAAhB;AACD,OA/CH;;AAiDE;;;;AAIAI,MAAAA,WAAW,EAAG,uBAAW;AACvB,eAAO,KAAKP,QAAZ;AACD;AAvDH;AA9BF,GADA;AAtBAX,EAAAA,EAAE,CAACmB,IAAH,CAAQC,YAAR,CAAqBjB,aAArB,GAAqCA,aAArC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * Abstract base class for all managers of themed values.\n */\nqx.Class.define(\"qx.util.ValueManager\",\n{\n  type : \"abstract\",\n  extend : qx.core.Object,\n\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct : function()\n  {\n    this.base(arguments);\n\n    // Create empty dynamic map\n    this._dynamic = {};\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n\n    _dynamic : null,\n\n    /**\n     * Returns the dynamically interpreted result for the incoming value\n     *\n     * @param value {String} dynamically interpreted identifier\n     * @return {var} return the (translated) result of the incoming value\n     */\n    resolveDynamic : function(value) {\n      return this._dynamic[value];\n    },\n\n\n    /**\n     * Whether a value is interpreted dynamically\n     *\n     * @param value {String} dynamically interpreted identifier\n     * @return {Boolean} returns true if the value is interpreted dynamically\n     */\n    isDynamic : function(value) {\n      return !!this._dynamic[value];\n    },\n\n    /**\n     * Returns the dynamically interpreted result for the incoming value,\n     * (if available), otherwise returns the original value\n     * @param value {String} Value to resolve\n     * @return {var} either returns the (translated) result of the incoming\n     * value or the value itself\n     */\n    resolve : function(value)\n    {\n      if (value && this._dynamic[value]) {\n        return this._dynamic[value];\n      }\n\n      return value;\n    },\n\n     /**\n      * Sets the dynamics map.\n      * @param value {Map} The map.\n      */\n    _setDynamic : function(value) {\n      this._dynamic = value;\n    },\n\n    /**\n     * Returns the dynamics map.\n     * @return {Map} The map.\n     */\n    _getDynamic : function() {\n      return this._dynamic;\n    }\n\n  }\n});"
+  ]
+}

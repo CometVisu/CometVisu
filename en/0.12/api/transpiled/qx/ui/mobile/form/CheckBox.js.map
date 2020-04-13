@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/mobile/form/CheckBox.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "mobile",
+    "form",
+    "Input",
+    "include",
+    "MValue",
+    "implement",
+    "IField",
+    "construct",
+    "value",
+    "undefined",
+    "_state",
+    "addListener",
+    "_onTap",
+    "properties",
+    "defaultCssClass",
+    "refine",
+    "init",
+    "members",
+    "_getTagName",
+    "_getType",
+    "setValue",
+    "getValue",
+    "_setValue",
+    "addCssClass",
+    "removeCssClass",
+    "_setAttribute",
+    "_getValue",
+    "destruct",
+    "removeListener",
+    "CheckBox"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;;;;;;;;;;;;;;;;;;;;;AAwBAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,4BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBC,KAD7B;AAEEC,IAAAA,OAAO,EAAG,CAACX,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBG,MAAnB,CAFZ;AAGEC,IAAAA,SAAS,EAAG,CAACb,EAAE,CAACO,EAAH,CAAME,IAAN,CAAWK,MAAZ,CAHd;;AAKE;;;;;;AAMA;;;AAGAC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EACZ;AACE;;AAEA,UAAG,QAAOA,KAAP,KAAgBC,SAAnB,EAA8B;AAC5B,aAAKC,MAAL,GAAcF,KAAd;AACD;;AAED,WAAKG,WAAL,CAAiB,KAAjB,EAAwB,KAAKC,MAA7B,EAAqC,IAArC;AACD,KAvBH;;AAyBE;;;;;AAMAC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,eAAe,EACf;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAHF,KAhCF;AA0CEC,IAAAA,OAAO,EACP;AACEP,MAAAA,MAAM,EAAG,IADX;AAIE;AACAQ,MAAAA,WAAW,EAAG,uBACd;AACE,eAAO,MAAP;AACD,OARH;AAWE;AACAC,MAAAA,QAAQ,EAAG,oBACX;AACE,eAAO,IAAP;AACD,OAfH;;AAkBE;;;AAGAP,MAAAA,MAAM,EAAG,kBAAW;AAClB;AACA,aAAKQ,QAAL,CAAc,CAAC,KAAKC,QAAL,EAAf;AACD,OAxBH;;AA2BE;;;;;AAKAC,MAAAA,SAAS,EAAG,mBAASd,KAAT,EAAgB;AAC1B,YAAGA,KAAK,IAAI,IAAZ,EAAkB;AAChB,eAAKe,WAAL,CAAiB,SAAjB;AACD,SAFD,MAEO;AACL,eAAKC,cAAL,CAAoB,SAApB;AACD;;AAED,aAAKC,aAAL,CAAmB,SAAnB,EAA8BjB,KAA9B;;AAEA,aAAKE,MAAL,GAAcF,KAAd;AACD,OA1CH;;AA6CE;;;;;AAKAkB,MAAAA,SAAS,EAAG,qBAAW;AACrB,eAAO,KAAKhB,MAAZ;AACD;AApDH,KA3CF;;AAmGE;;;;;AAKAiB,IAAAA,QAAQ,EAAG,oBACX;AACE,WAAKC,cAAL,CAAoB,KAApB,EAA2B,KAAKhB,MAAhC,EAAwC,IAAxC;AACD;AA3GH,GADA;AA3CApB,EAAAA,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkB4B,QAAlB,CAA2BlC,aAA3B,GAA2CA,aAA3C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2013 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\n/**\n * The Checkbox is the mobile correspondent of the html checkbox.\n *\n * *Example*\n *\n * <pre class='javascript'>\n *   var checkBox = new qx.ui.mobile.form.CheckBox();\n *   var title = new qx.ui.mobile.form.Title(\"Title\");\n *\n *   checkBox.setModel(\"Title Activated\");\n *   checkBox.bind(\"model\", title, \"value\");\n *\n *   checkBox.addListener(\"changeValue\", function(evt){\n *     this.setModel(evt.getdata() ? \"Title Activated\" : \"Title Deactivated\");\n *   });\n *\n *   this.getRoot.add(checkBox);\n *   this.getRoot.add(title);\n * </pre>\n *\n * This example adds 2 widgets , a checkBox and a Title and binds them together by their model and value properties.\n * When the user taps on the checkbox, its model changes and it is reflected in the Title's value.\n *\n */\nqx.Class.define(\"qx.ui.mobile.form.CheckBox\",\n{\n  extend : qx.ui.mobile.form.Input,\n  include : [qx.ui.mobile.form.MValue],\n  implement : [qx.ui.form.IField],\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param value {Boolean?false} The value of the checkbox.\n   */\n  construct : function(value)\n  {\n    this.base(arguments);\n\n    if(typeof value != undefined) {\n      this._state = value;\n    }\n\n    this.addListener(\"tap\", this._onTap, this);\n  },\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    defaultCssClass :\n    {\n      refine : true,\n      init : \"checkbox\"\n    }\n\n  },\n\n  members :\n  {\n    _state : null,\n\n\n    // overridden\n    _getTagName : function()\n    {\n      return \"span\";\n    },\n\n\n    // overridden\n    _getType : function()\n    {\n      return null;\n    },\n\n\n    /**\n     * Handler for tap events.\n     */\n    _onTap : function() {\n      // Toggle State.\n      this.setValue(!this.getValue());\n    },\n\n\n    /**\n     * Sets the value [true/false] of this checkbox.\n     * It is called by setValue method of qx.ui.mobile.form.MValue mixin\n     * @param value {Boolean} the new value of the checkbox\n     */\n    _setValue : function(value) {\n      if(value == true) {\n        this.addCssClass(\"checked\");\n      } else {\n        this.removeCssClass(\"checked\");\n      }\n\n      this._setAttribute(\"checked\", value);\n\n      this._state = value;\n    },\n\n\n    /**\n     * Gets the value [true/false] of this checkbox.\n     * It is called by getValue method of qx.ui.mobile.form.MValue mixin\n     * @return {Boolean} the value of the checkbox\n     */\n    _getValue : function() {\n      return this._state;\n    }\n  },\n\n\n  /*\n  *****************************************************************************\n      DESTRUCTOR\n  *****************************************************************************\n  */\n  destruct : function()\n  {\n    this.removeListener(\"tap\", this._onTap, this);\n  }\n});\n"
+  ]
+}

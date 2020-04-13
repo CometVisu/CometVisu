@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/container/Resizer.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "container",
+    "Composite",
+    "include",
+    "core",
+    "MResizable",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "Resizer"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;;AAoBA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA+BAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AACEC,IAAAA,MAAM,EAAMN,EAAE,CAACO,EAAH,CAAMC,SAAN,CAAgBC,SAD9B;AAEEC,IAAAA,OAAO,EAAKV,EAAE,CAACO,EAAH,CAAMI,IAAN,CAAWC,UAFzB;;AAKE;;;;;AAMAC,IAAAA,UAAU,EACV;AACEC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAFF;AAZF,GADA;AAnDAhB,EAAAA,EAAE,CAACO,EAAH,CAAMC,SAAN,CAAgBS,OAAhB,CAAwBd,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * David Perez (david-perez)\n\n************************************************************************ */\n\n/**\n * The Resizer is a resizable container widget.\n *\n * It allows to be resized (not moved), normally in\n * the right and/or bottom directions. It is an alternative to splitters.\n *\n * *Example*\n *\n * Here is a little example of how to use the widget.\n *\n * <pre class='javascript'>\n *   var resizer = new qx.ui.container.Resizer().set({\n *     width: 200,\n *     height: 100\n *   });\n *\n *   resizer.setLayout(new qx.ui.layout.Canvas());\n *   var text = new qx.ui.form.TextArea(\"Resize me\\nI'm resizable\");\n *   resizer.add(text, {edge: 0});\n *\n *   this.getRoot().add(resizer);\n * </pre>\n *\n * This example creates a resizer, configures it with a canvas layout and\n * adds a text area to it.\n *\n * *External Documentation*\n *\n * <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget/resizer.html' target='_blank'>\n * Documentation of this widget in the qooxdoo manual.</a>\n */\nqx.Class.define(\"qx.ui.container.Resizer\",\n{\n  extend    : qx.ui.container.Composite,\n  include   : qx.ui.core.MResizable,\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties:\n  {\n    appearance :\n    {\n      refine : true,\n      init : \"resizer\"\n    }\n  }\n});"
+  ]
+}

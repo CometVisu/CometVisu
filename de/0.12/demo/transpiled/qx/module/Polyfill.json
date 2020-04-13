@@ -1,0 +1,71 @@
+{
+  "className": "qx.module.Polyfill",
+  "packageName": "qx.module",
+  "name": "Polyfill",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 0
+      },
+      "end": {
+        "line": 33,
+        "column": 46
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n Daniel Wagner (danielwagner)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Adds JavaScript features that may not be supported by all clients.</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.lang.normalize.Function"
+        },
+        {
+          "name": "@require",
+          "body": "qx.lang.normalize.String"
+        },
+        {
+          "name": "@require",
+          "body": "qx.lang.normalize.Date"
+        },
+        {
+          "name": "@require",
+          "body": "qx.lang.normalize.Array"
+        },
+        {
+          "name": "@require",
+          "body": "qx.lang.normalize.Error"
+        },
+        {
+          "name": "@require",
+          "body": "qx.lang.normalize.Object"
+        },
+        {
+          "name": "@require",
+          "body": "qx.lang.normalize.Number"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Polyfill"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "descendants": []
+}

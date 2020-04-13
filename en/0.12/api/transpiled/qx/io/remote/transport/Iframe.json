@@ -1,0 +1,1729 @@
+{
+  "className": "qx.io.remote.transport.Iframe",
+  "packageName": "qx.io.remote.transport",
+  "name": "Iframe",
+  "superClass": "qx.io.remote.transport.Abstract",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 38,
+        "column": 0
+      },
+      "end": {
+        "line": 651,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n     2006 Derrell Lipman\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n Derrell Lipman (derrell)\n Andreas Junghans (lucidcake)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n*****************************************************************\n</code></pre>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Transports requests to a server using an IFRAME.\n This class should not be used directly by client programmers.\n NOTE: Instances of this class must be disposed of after use</p>"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/static/blank.gif"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 52,
+        "column": 14
+      },
+      "end": {
+        "line": 90,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "statics": {
+    "handles": {
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4
+        },
+        "end": {
+          "line": 116,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Capabilities of this transport type.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "isSupported": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 126,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns always true, because iframe transport is supported by all browsers.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "Boolean",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_numericMap": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 150,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT LISTENER\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>For reference:\n http://msdn.microsoft.com/en-us/library/ie/ms534359%28v=vs.85%29.aspx</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    }
+  },
+  "members": {
+    "__data": {
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4
+        },
+        "end": {
+          "line": 165,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__lastReadyState": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4
+        },
+        "end": {
+          "line": 166,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__form": {
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4
+        },
+        "end": {
+          "line": 167,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__frame": {
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4
+        },
+        "end": {
+          "line": 168,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__onreadystatechangeWrapper": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 169,
+          "column": 38
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "send": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4
+        },
+        "end": {
+          "line": 272,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  USER METHODS\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Sends a request with the use of a form.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "appearsIn": [
+        "qx.io.remote.transport.Abstract"
+      ]
+    },
+    "_onload": {
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4
+        },
+        "end": {
+          "line": 296,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converting complete state to numeric value and update state property</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} event object",
+            "paramName": "e",
+            "description": " event object",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_onreadystatechange": {
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 4
+        },
+        "end": {
+          "line": 307,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converting named readyState to numeric value and update state property</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} event object",
+            "paramName": "e",
+            "description": " event object",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_switchReadyState": {
+      "location": {
+        "start": {
+          "line": 315,
+          "column": 4
+        },
+        "end": {
+          "line": 332,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Switches the readystate by setting the internal state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vReadyState {String} readystate value",
+            "paramName": "vReadyState",
+            "description": " readystate value",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "setRequestHeader": {
+      "location": {
+        "start": {
+          "line": 351,
+          "column": 4
+        },
+        "end": {
+          "line": 351,
+          "column": 50
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  REQUEST HEADER SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Sets a request header with the given value.\n This method is not implemented at the moment.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vLabel {String} request header name",
+            "paramName": "vLabel",
+            "description": " request header name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "vValue {var} request header value",
+            "paramName": "vValue",
+            "description": " request header value",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "appearsIn": [
+        "qx.io.remote.transport.Abstract"
+      ]
+    },
+    "getResponseHeader": {
+      "location": {
+        "start": {
+          "line": 368,
+          "column": 4
+        },
+        "end": {
+          "line": 370,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  RESPONSE HEADER SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Returns the value of the given response header.\n This method is not implemented at the moment and returns always \"null\".</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "vLabel {String} Response header name",
+            "paramName": "vLabel",
+            "description": " Response header name",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null} Returns null",
+            "type": "null",
+            "description": " Returns null"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "appearsIn": [
+        "qx.io.remote.transport.Abstract"
+      ]
+    },
+    "getResponseHeaders": {
+      "location": {
+        "start": {
+          "line": 379,
+          "column": 4
+        },
+        "end": {
+          "line": 381,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Provides an hash of all response headers.\n This method is not implemented at the moment and returns an empty map.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} empty map",
+            "type": "Map",
+            "description": " empty map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "appearsIn": [
+        "qx.io.remote.transport.Abstract"
+      ]
+    },
+    "getStatusCode": {
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 4
+        },
+        "end": {
+          "line": 397,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  STATUS SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Returns the current status code of the request if available or -1 if not.\n This method needs implementation (returns always 200).</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} status code",
+            "type": "Integer",
+            "description": " status code"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "appearsIn": [
+        "qx.io.remote.transport.Abstract"
+      ]
+    },
+    "getStatusText": {
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 4
+        },
+        "end": {
+          "line": 407,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Provides the status text for the current request if available and null otherwise.\n This method needs implementation (returns always an empty string)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} status code text",
+            "type": "String",
+            "description": " status code text"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "appearsIn": [
+        "qx.io.remote.transport.Abstract"
+      ]
+    },
+    "getIframeWindow": {
+      "location": {
+        "start": {
+          "line": 420,
+          "column": 4
+        },
+        "end": {
+          "line": 422,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  FRAME UTILITIES\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Returns the DOM window object of the used iframe.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} DOM window object",
+            "type": "Object",
+            "description": " DOM window object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getIframeDocument": {
+      "location": {
+        "start": {
+          "line": 430,
+          "column": 4
+        },
+        "end": {
+          "line": 432,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the document node of the used iframe.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} document node",
+            "type": "Object",
+            "description": " document node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getIframeBody": {
+      "location": {
+        "start": {
+          "line": 440,
+          "column": 4
+        },
+        "end": {
+          "line": 442,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the body node of the used iframe.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} body node",
+            "type": "Object",
+            "description": " body node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getIframeTextContent": {
+      "location": {
+        "start": {
+          "line": 458,
+          "column": 4
+        },
+        "end": {
+          "line": 478,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  RESPONSE DATA SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Returns the iframe content (innerHTML) as text.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} iframe content as text",
+            "type": "String",
+            "description": " iframe content as text"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getIframeHtmlContent": {
+      "location": {
+        "start": {
+          "line": 486,
+          "column": 4
+        },
+        "end": {
+          "line": 490,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the iframe content as HTML.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} iframe content as HTML",
+            "type": "String",
+            "description": " iframe content as HTML"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getFetchedLength": {
+      "location": {
+        "start": {
+          "line": 499,
+          "column": 4
+        },
+        "end": {
+          "line": 501,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the length of the content as fetched thus far.\n This method needs implementation (returns always 0).</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Returns 0",
+            "type": "Integer",
+            "description": " Returns 0"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "appearsIn": [
+        "qx.io.remote.transport.Abstract"
+      ]
+    },
+    "getResponseContent": {
+      "location": {
+        "start": {
+          "line": 508,
+          "column": 4
+        },
+        "end": {
+          "line": 601,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the content of the response</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null | String} null or text of the response (=iframe content).",
+            "type": "null | String",
+            "description": " null or text of the response (=iframe content)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getUrl": {
+      "type": "function",
+      "name": "getUrl",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>url</code>.\n\nFor further details take a look at the property definition: {@link #url}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for url"
+          }
+        ]
+      }
+    },
+    "setUrl": {
+      "type": "function",
+      "name": "setUrl",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>url</code>.\n\nFor further details take a look at the property definition: {@link #url}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for url"
+          }
+        ]
+      }
+    },
+    "resetUrl": {
+      "type": "function",
+      "name": "resetUrl",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getMethod": {
+      "type": "function",
+      "name": "getMethod",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>method</code>.\n\nFor further details take a look at the property definition: {@link #method}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for method"
+          }
+        ]
+      }
+    },
+    "setMethod": {
+      "type": "function",
+      "name": "setMethod",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>method</code>.\n\nFor further details take a look at the property definition: {@link #method}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for method"
+          }
+        ]
+      }
+    },
+    "resetMethod": {
+      "type": "function",
+      "name": "resetMethod",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getAsynchronous": {
+      "type": "function",
+      "name": "getAsynchronous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>asynchronous</code>.\n\nFor further details take a look at the property definition: {@link #asynchronous}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for asynchronous"
+          }
+        ]
+      }
+    },
+    "isAsynchronous": {
+      "type": "function",
+      "name": "isAsynchronous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>asynchronous</code>.\n\nFor further details take a look at the property definition: {@link #asynchronous}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for asynchronous"
+          }
+        ]
+      }
+    },
+    "setAsynchronous": {
+      "type": "function",
+      "name": "setAsynchronous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>asynchronous</code>.\n\nFor further details take a look at the property definition: {@link #asynchronous}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for asynchronous"
+          }
+        ]
+      }
+    },
+    "resetAsynchronous": {
+      "type": "function",
+      "name": "resetAsynchronous",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getData": {
+      "type": "function",
+      "name": "getData",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>data</code>.\n\nFor further details take a look at the property definition: {@link #data}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for data"
+          }
+        ]
+      }
+    },
+    "setData": {
+      "type": "function",
+      "name": "setData",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>data</code>.\n\nFor further details take a look at the property definition: {@link #data}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for data"
+          }
+        ]
+      }
+    },
+    "resetData": {
+      "type": "function",
+      "name": "resetData",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getUsername": {
+      "type": "function",
+      "name": "getUsername",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>username</code>.\n\nFor further details take a look at the property definition: {@link #username}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for username"
+          }
+        ]
+      }
+    },
+    "setUsername": {
+      "type": "function",
+      "name": "setUsername",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>username</code>.\n\nFor further details take a look at the property definition: {@link #username}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for username"
+          }
+        ]
+      }
+    },
+    "resetUsername": {
+      "type": "function",
+      "name": "resetUsername",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getPassword": {
+      "type": "function",
+      "name": "getPassword",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>password</code>.\n\nFor further details take a look at the property definition: {@link #password}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for password"
+          }
+        ]
+      }
+    },
+    "setPassword": {
+      "type": "function",
+      "name": "setPassword",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>password</code>.\n\nFor further details take a look at the property definition: {@link #password}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for password"
+          }
+        ]
+      }
+    },
+    "resetPassword": {
+      "type": "function",
+      "name": "resetPassword",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getState": {
+      "type": "function",
+      "name": "getState",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>state</code>.\n\nFor further details take a look at the property definition: {@link #state}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for state"
+          }
+        ]
+      }
+    },
+    "setState": {
+      "type": "function",
+      "name": "setState",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>state</code>.\n\nFor further details take a look at the property definition: {@link #state}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for state"
+          }
+        ]
+      }
+    },
+    "resetState": {
+      "type": "function",
+      "name": "resetState",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getRequestHeaders": {
+      "type": "function",
+      "name": "getRequestHeaders",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>requestHeaders</code>.\n\nFor further details take a look at the property definition: {@link #requestHeaders}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Object",
+            "desc": "Returns the value for requestHeaders"
+          }
+        ]
+      }
+    },
+    "setRequestHeaders": {
+      "type": "function",
+      "name": "setRequestHeaders",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>requestHeaders</code>.\n\nFor further details take a look at the property definition: {@link #requestHeaders}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Object",
+            "paramName": "value",
+            "desc": "Value for requestHeaders"
+          }
+        ]
+      }
+    },
+    "resetRequestHeaders": {
+      "type": "function",
+      "name": "resetRequestHeaders",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getParameters": {
+      "type": "function",
+      "name": "getParameters",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>parameters</code>.\n\nFor further details take a look at the property definition: {@link #parameters}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Object",
+            "desc": "Returns the value for parameters"
+          }
+        ]
+      }
+    },
+    "setParameters": {
+      "type": "function",
+      "name": "setParameters",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>parameters</code>.\n\nFor further details take a look at the property definition: {@link #parameters}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Object",
+            "paramName": "value",
+            "desc": "Value for parameters"
+          }
+        ]
+      }
+    },
+    "resetParameters": {
+      "type": "function",
+      "name": "resetParameters",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getFormFields": {
+      "type": "function",
+      "name": "getFormFields",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>formFields</code>.\n\nFor further details take a look at the property definition: {@link #formFields}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Object",
+            "desc": "Returns the value for formFields"
+          }
+        ]
+      }
+    },
+    "setFormFields": {
+      "type": "function",
+      "name": "setFormFields",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>formFields</code>.\n\nFor further details take a look at the property definition: {@link #formFields}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Object",
+            "paramName": "value",
+            "desc": "Value for formFields"
+          }
+        ]
+      }
+    },
+    "resetFormFields": {
+      "type": "function",
+      "name": "resetFormFields",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getResponseType": {
+      "type": "function",
+      "name": "getResponseType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>responseType</code>.\n\nFor further details take a look at the property definition: {@link #responseType}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for responseType"
+          }
+        ]
+      }
+    },
+    "setResponseType": {
+      "type": "function",
+      "name": "setResponseType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>responseType</code>.\n\nFor further details take a look at the property definition: {@link #responseType}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for responseType"
+          }
+        ]
+      }
+    },
+    "resetResponseType": {
+      "type": "function",
+      "name": "resetResponseType",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    },
+    "getUseBasicHttpAuth": {
+      "type": "function",
+      "name": "getUseBasicHttpAuth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>useBasicHttpAuth</code>.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for useBasicHttpAuth"
+          }
+        ]
+      }
+    },
+    "isUseBasicHttpAuth": {
+      "type": "function",
+      "name": "isUseBasicHttpAuth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>useBasicHttpAuth</code>.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for useBasicHttpAuth"
+          }
+        ]
+      }
+    },
+    "setUseBasicHttpAuth": {
+      "type": "function",
+      "name": "setUseBasicHttpAuth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>useBasicHttpAuth</code>.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for useBasicHttpAuth"
+          }
+        ]
+      }
+    },
+    "resetUseBasicHttpAuth": {
+      "type": "function",
+      "name": "resetUseBasicHttpAuth",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.io.remote.transport.Abstract",
+      "property": "reset"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 612,
+        "column": 10
+      },
+      "end": {
+        "line": 617,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n DEFER\n**********************************************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 628,
+        "column": 13
+      },
+      "end": {
+        "line": 650,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,55 @@
+{
+  "className": "qx.lang.normalize.Error",
+  "packageName": "qx.lang.normalize",
+  "name": "Error",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 61,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>This class is responsible for the normalization of the native 'Error' object.\n It contains a simple bugfix for toString which might not print out the proper\n error message.</p>"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Polyfill"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {},
+  "defer": {
+    "location": {
+      "start": {
+        "line": 55,
+        "column": 10
+      },
+      "end": {
+        "line": 60,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

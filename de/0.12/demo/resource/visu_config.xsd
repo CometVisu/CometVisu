@@ -1177,7 +1177,6 @@
       <xsd:element name="video" type="video" />
       <xsd:element name="web" type="web" />
       <xsd:element name="rgb" type="rgb" />
-      <xsd:element name="roundbar" type="roundbar" />
       <xsd:element name="pagejump" type="pagejump" />
       <xsd:element name="wgplugin_info" type="wgplugin_info"/>
       <xsd:element name="mobilemenu" type="mobilemenu"/>

@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/core/queue/Visibility.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "__queue",
+    "__lookup",
+    "__data",
+    "remove",
+    "widget",
+    "toHashCode",
+    "lang",
+    "Array",
+    "isVisible",
+    "__computeVisible",
+    "data",
+    "hash",
+    "visible",
+    "isExcluded",
+    "parent",
+    "$$parent",
+    "isRootWidget",
+    "add",
+    "unshift",
+    "ui",
+    "core",
+    "queue",
+    "Manager",
+    "scheduleFlush",
+    "flush",
+    "i",
+    "length",
+    "addChildrenToQueue",
+    "oldData",
+    "splice",
+    "checkAppearanceNeeds",
+    "Visibility"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Keeps data about the visibility of all widgets. Updates the internal\n * tree when widgets are added, removed or modify their visibility.\n */\nqx.Class.define(\"qx.ui.core.queue.Visibility\",\n{\n  statics :\n  {\n    /** @type {Array} This contains all the queued widgets for the next flush. */\n    __queue : [],\n    \n    /** @type {Map} map of widgets by hash code which are in the queue */\n    __lookup : {},\n\n\n    /** @type {Map} Maps hash codes to visibility */\n    __data : {},\n\n\n    /**\n     * Clears the cached data of the given widget. Normally only used\n     * during interims disposes of one or a few widgets.\n     *\n     * @param widget {qx.ui.core.Widget} The widget to clear\n     */\n    remove : function(widget)\n    {\n    \tif (this.__lookup[widget.toHashCode()]) {\n\t      delete this.__lookup[widget.toHashCode()];\n\t      qx.lang.Array.remove(this.__queue, widget);\n    \t}\n      delete this.__data[widget.toHashCode()];\n    },\n\n\n    /**\n     * Whether the given widget is visible.\n     *\n     * Please note that the information given by this method is queued and may not be accurate\n     * until the next queue flush happens.\n     *\n     * @param widget {qx.ui.core.Widget} The widget to query\n     * @return {Boolean} Whether the widget is visible\n     */\n    isVisible : function(widget) {\n      return this.__data[widget.toHashCode()] || false;\n    },\n\n\n    /**\n     * Computes the visibility for the given widget\n     *\n     * @param widget {qx.ui.core.Widget} The widget to update\n     * @return {Boolean} Whether the widget is visible\n     */\n    __computeVisible : function(widget)\n    {\n      var data = this.__data;\n      var hash = widget.toHashCode();\n      var visible;\n\n      // Respect local value\n      if (widget.isExcluded())\n      {\n        visible = false;\n      }\n      else\n      {\n        // Parent hierarchy\n        var parent = widget.$$parent;\n        if (parent) {\n          visible = this.__computeVisible(parent);\n        } else {\n          visible = widget.isRootWidget();\n        }\n      }\n\n      return data[hash] = visible;\n    },\n\n\n    /**\n     * Adds a widget to the queue.\n     *\n     * Should only be used by {@link qx.ui.core.Widget}.\n     *\n     * @param widget {qx.ui.core.Widget} The widget to add.\n     */\n    add : function(widget)\n    {\n      if (this.__lookup[widget.toHashCode()]) {\n        return;\n      }\n\n      this.__queue.unshift(widget);\n      this.__lookup[widget.toHashCode()] = widget;\n      qx.ui.core.queue.Manager.scheduleFlush(\"visibility\");\n    },\n\n\n    /**\n     * Flushes the visibility queue.\n     *\n     * This is used exclusively by the {@link qx.ui.core.queue.Manager}.\n     */\n    flush : function()\n    {\n      // Dispose all registered objects\n      var queue = this.__queue;\n      var data = this.__data;\n\n      // Dynamically add children to queue\n      // Only respect already known widgets because otherwise the children\n      // are also already in the queue (added on their own)\n      for (var i = queue.length - 1; i >= 0; i--)\n      {\n        var hash = queue[i].toHashCode();\n        if (data[hash] != null) {\n          // recursive method call which adds widgets to the queue so be\n          // careful with that one (performance critical)\n          queue[i].addChildrenToQueue(queue);\n        }\n      }\n\n      // Cache old data, clear current data\n      // Do this before starting with recomputation because\n      // new data may also be added by related widgets and not\n      // only the widget itself.\n      var oldData = {};\n      for (var i = queue.length - 1; i >= 0; i--)\n      {\n        var hash = queue[i].toHashCode();\n        oldData[hash] = data[hash];\n        data[hash] = null;\n      }\n\n      // Finally recompute\n      for (var i = queue.length - 1; i >= 0; i--)\n      {\n        var widget = queue[i];\n        var hash = widget.toHashCode();\n        queue.splice(i, 1);\n\n        // Only update when not already updated by another widget\n        if (data[hash] == null) {\n          this.__computeVisible(widget);\n        }\n\n        // Check for updates required to the appearance.\n        // Hint: Invisible widgets are ignored inside appearance flush\n        if (data[hash] && data[hash] != oldData[hash]) {\n          widget.checkAppearanceNeeds();\n        }\n      }\n\n      // Recreate the array is cheaper compared to keep a sparse array over time\n      this.__queue = [];\n      this.__lookup = {};\n    }\n  }\n});\n"
+  ]
+}

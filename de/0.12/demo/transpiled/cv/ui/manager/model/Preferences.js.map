@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/ui/manager/model/Preferences.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "type",
+    "construct",
+    "_restorePreferences",
+    "properties",
+    "defaultConfigEditor",
+    "check",
+    "init",
+    "event",
+    "apply",
+    "quickPreview",
+    "expertMode",
+    "startViewMode",
+    "members",
+    "_savePreferences",
+    "store",
+    "bom",
+    "Storage",
+    "getLocal",
+    "setItem",
+    "util",
+    "Serializer",
+    "toNativeObject",
+    "set",
+    "getItem",
+    "cv",
+    "ui",
+    "manager",
+    "model",
+    "Preferences"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EAAmD;AACjDC,IAAAA,MAAM,EAAEN,EAAE,CAACO,IAAH,CAAQC,MADiC;AAEjDC,IAAAA,IAAI,EAAE,WAF2C;;AAIjD;;;;;AAKAC,IAAAA,SAAS,EAAE,qBAAY;AACrB;;AACA,WAAKC,mBAAL;AACD,KAZgD;;AAcjD;;;;;AAKAC,IAAAA,UAAU,EAAE;AACVC,MAAAA,mBAAmB,EAAE;AACnBC,QAAAA,KAAK,EAAE,CAAC,QAAD,EAAW,KAAX,CADY;AAEnBC,QAAAA,IAAI,EAAE,QAFa;AAGnBC,QAAAA,KAAK,EAAE,2BAHY;AAInBC,QAAAA,KAAK,EAAE;AAJY,OADX;AAQVC,MAAAA,YAAY,EAAE;AACZJ,QAAAA,KAAK,EAAE,SADK;AAEZC,QAAAA,IAAI,EAAE,KAFM;AAGZC,QAAAA,KAAK,EAAE,oBAHK;AAIZC,QAAAA,KAAK,EAAE;AAJK,OARJ;;AAeV;;;AAGAE,MAAAA,UAAU,EAAE;AACVL,QAAAA,KAAK,EAAE,SADG;AAEVC,QAAAA,IAAI,EAAE,KAFI;AAGVC,QAAAA,KAAK,EAAE,kBAHG;AAIVC,QAAAA,KAAK,EAAE;AAJG,OAlBF;;AAyBV;;;AAGAG,MAAAA,aAAa,EAAE;AACbN,QAAAA,KAAK,EAAE,CAAC,MAAD,EAAS,SAAT,CADM;AAEbC,QAAAA,IAAI,EAAE,SAFO;AAGbC,QAAAA,KAAK,EAAE,qBAHM;AAIbC,QAAAA,KAAK,EAAE;AAJM;AA5BL,KAnBqC;;AAuDjD;;;;;AAKAI,IAAAA,OAAO,EAAE;AACPC,MAAAA,gBAAgB,EAAE,4BAAY;AAC5B,YAAIC,KAAK,GAAGvB,EAAE,CAACwB,GAAH,CAAOC,OAAP,CAAeC,QAAf,EAAZ;AACAH,QAAAA,KAAK,CAACI,OAAN,CAAc,aAAd,EAA6B3B,EAAE,CAAC4B,IAAH,CAAQC,UAAR,CAAmBC,cAAnB,CAAkC,IAAlC,CAA7B;AACD,OAJM;AAMPnB,MAAAA,mBAAmB,EAAE,+BAAY;AAC/B,YAAIY,KAAK,GAAGvB,EAAE,CAACwB,GAAH,CAAOC,OAAP,CAAeC,QAAf,EAAZ;AACA,aAAKK,GAAL,CAASR,KAAK,CAACS,OAAN,CAAc,aAAd,CAAT;AACD;AATM;AA5DwC,GAAnD;AAHAC,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,KAAd,CAAoBC,WAApB,CAAgClC,aAAhC,GAAgDA,aAAhD",
+  "sourcesContent": [
+    "/**\n * User preferences.\n */\nqx.Class.define('cv.ui.manager.model.Preferences', {\n  extend: qx.core.Object,\n  type: 'singleton',\n\n  /*\n  ***********************************************\n    CONSTRUCTOR\n  ***********************************************\n  */\n  construct: function () {\n    this.base(arguments);\n    this._restorePreferences();\n  },\n\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    defaultConfigEditor: {\n      check: ['source', 'xml'],\n      init: 'source',\n      event: 'changeDefaultConfigEditor',\n      apply: '_savePreferences'\n    },\n\n    quickPreview: {\n      check: 'Boolean',\n      init: false,\n      event: 'changeQuickPreview',\n      apply: '_savePreferences'\n    },\n\n    /**\n     * In export mode the manager looks and behaves like a file explorer.\n     */\n    expertMode: {\n      check: 'Boolean',\n      init: false,\n      event: 'changeExpertMode',\n      apply: '_savePreferences'\n    },\n\n    /**\n     * View mode of the start page\n     */\n    startViewMode: {\n      check: ['list', 'preview'],\n      init: 'preview',\n      event: 'changeStartViewMode',\n      apply: '_savePreferences'\n    }\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _savePreferences: function () {\n      var store = qx.bom.Storage.getLocal();\n      store.setItem('preferences', qx.util.Serializer.toNativeObject(this));\n    },\n\n    _restorePreferences: function () {\n      var store = qx.bom.Storage.getLocal();\n      this.set(store.getItem('preferences'));\n    }\n  }\n});\n"
+  ]
+}

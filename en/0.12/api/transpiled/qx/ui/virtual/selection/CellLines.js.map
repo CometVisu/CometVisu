@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/virtual/selection/CellLines.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "virtual",
+    "selection",
+    "CellRectangle",
+    "members",
+    "_getSelectableRange",
+    "item1",
+    "item2",
+    "selectables",
+    "columnCount",
+    "_pane",
+    "getColumnConfig",
+    "getItemCount",
+    "row",
+    "column",
+    "start",
+    "end",
+    "i",
+    "cell",
+    "Math",
+    "floor",
+    "_isSelectable",
+    "push",
+    "CellLines"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAoBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,mCAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,SAAd,CAAwBC,aADnC;;AAIE;;;;;AAMAC,IAAAA,OAAO,EACP;AACE;;;;;AAOA;AACAC,MAAAA,mBAAmB,EAAG,6BAASC,KAAT,EAAgBC,KAAhB,EACtB;AACE,YAAIC,WAAW,GAAG,EAAlB;;AACA,YAAIC,WAAW,GAAG,KAAKC,KAAL,CAAWC,eAAX,GAA6BC,YAA7B,EAAlB;;AAEA,YACEN,KAAK,CAACO,GAAN,GAAYN,KAAK,CAACM,GAAlB,IACAP,KAAK,CAACO,GAAN,IAAaN,KAAK,CAACM,GAAnB,IAA0BP,KAAK,CAACQ,MAAN,GAAeP,KAAK,CAACO,MAFjD,EAIA;AACE,cAAIC,KAAK,GAAGT,KAAK,CAACO,GAAN,GAAYJ,WAAZ,GAA0BH,KAAK,CAACQ,MAA5C;AACA,cAAIE,GAAG,GAAGT,KAAK,CAACM,GAAN,GAAYJ,WAAZ,GAA0BF,KAAK,CAACO,MAA1C;AACD,SAPD,MASA;AACE,cAAIC,KAAK,GAAGR,KAAK,CAACM,GAAN,GAAYJ,WAAZ,GAA0BF,KAAK,CAACO,MAA5C;AACA,cAAIE,GAAG,GAAGV,KAAK,CAACO,GAAN,GAAYJ,WAAZ,GAA0BH,KAAK,CAACQ,MAA1C;AACD;;AAGD,aAAK,IAAIG,CAAC,GAACF,KAAX,EAAkBE,CAAC,IAAED,GAArB,EAA0BC,CAAC,EAA3B,EACA;AACE,cAAIC,IAAI,GAAG;AACPL,YAAAA,GAAG,EAAEM,IAAI,CAACC,KAAL,CAAWH,CAAC,GAACR,WAAb,CADE;AAEPK,YAAAA,MAAM,EAAEG,CAAC,GAAGR;AAFL,WAAX;;AAIA,cAAI,KAAKY,aAAL,CAAmBH,IAAnB,CAAJ,EAA8B;AAC5BV,YAAAA,WAAW,CAACc,IAAZ,CAAiBJ,IAAjB;AACD;AACF;;AACD,eAAOV,WAAP;AACD;AAxCH;AAXF,GADA;AAvBAf,EAAAA,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,SAAd,CAAwBqB,SAAxB,CAAkC3B,aAAlC,GAAkDA,aAAlD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n\n/**\n * Cell selection manager\n */\nqx.Class.define(\"qx.ui.virtual.selection.CellLines\",\n{\n  extend : qx.ui.virtual.selection.CellRectangle,\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /*\n    ---------------------------------------------------------------------------\n      IMPLEMENT ABSTRACT METHODS\n    ---------------------------------------------------------------------------\n    */\n\n\n    // overridden\n    _getSelectableRange : function(item1, item2)\n    {\n      var selectables = [];\n      var columnCount = this._pane.getColumnConfig().getItemCount();\n\n      if (\n        item1.row < item2.row ||\n        item1.row == item2.row && item1.column < item2.column\n      )\n      {\n        var start = item1.row * columnCount + item1.column;\n        var end = item2.row * columnCount + item2.column;\n      }\n      else\n      {\n        var start = item2.row * columnCount + item2.column;\n        var end = item1.row * columnCount + item1.column;\n      }\n\n\n      for (var i=start; i<=end; i++)\n      {\n        var cell = {\n            row: Math.floor(i/columnCount),\n            column: i % columnCount\n        };\n        if (this._isSelectable(cell)) {\n          selectables.push(cell);\n        }\n      }\n      return selectables;\n    }\n  }\n});\n"
+  ]
+}

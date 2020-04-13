@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/module/event/OrientationHandler.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "TYPES",
+    "register",
+    "element",
+    "dom",
+    "Node",
+    "isWindow",
+    "Error",
+    "__orientationHandler",
+    "$$emitter",
+    "event",
+    "Emitter",
+    "handler",
+    "OrientationCore",
+    "unregister",
+    "hasListener",
+    "listeners",
+    "getListeners",
+    "module",
+    "OrientationHandler",
+    "forEach",
+    "type",
+    "length",
+    "defer",
+    "qxWeb",
+    "$registerEventHook"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;;AAQAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,oCAApB,EAA0D;AAExDC,IAAAA,OAAO,EACP;AACE;;;AAGAC,MAAAA,KAAK,EAAG,CAAC,mBAAD,CAJV;;AAME;;;;;;AAMAC,MAAAA,QAAQ,EAAG,kBAASC,OAAT,EACX;AACE,YAAI,CAACR,EAAE,CAACS,GAAH,CAAOC,IAAP,CAAYC,QAAZ,CAAqBH,OAArB,CAAL,EAAoC;AAClC,gBAAM,IAAII,KAAJ,CAAU,oEAAV,CAAN;AACD;;AAED,YAAI,CAACJ,OAAO,CAACK,oBAAb,EAAmC;AACjC,cAAI,CAACL,OAAO,CAACM,SAAb,EAAwB;AACtBN,YAAAA,OAAO,CAACM,SAAR,GAAoB,IAAId,EAAE,CAACe,KAAH,CAASC,OAAb,EAApB;AACD;;AAEDR,UAAAA,OAAO,CAACK,oBAAR,GAA+B,IAAIb,EAAE,CAACe,KAAH,CAASE,OAAT,CAAiBC,eAArB,CAAqCV,OAArC,EAA8CA,OAAO,CAACM,SAAtD,CAA/B;AACD;AACF,OAzBH;;AA4BE;;;;;AAKAK,MAAAA,UAAU,EAAG,oBAASX,OAAT,EACb;AACE,YAAIA,OAAO,CAACK,oBAAZ,EAAkC;AAChC,cAAI,CAACL,OAAO,CAACM,SAAb,EAAwB;AACtBN,YAAAA,OAAO,CAACK,oBAAR,GAA+B,IAA/B;AACD,WAFD,MAGK;AACH,gBAAIO,WAAW,GAAG,KAAlB;AACA,gBAAIC,SAAS,GAAGb,OAAO,CAACM,SAAR,CAAkBQ,YAAlB,EAAhB;AACAtB,YAAAA,EAAE,CAACuB,MAAH,CAAUR,KAAV,CAAgBS,kBAAhB,CAAmClB,KAAnC,CAAyCmB,OAAzC,CAAiD,UAASC,IAAT,EAAe;AAC9D,kBAAIA,IAAI,IAAIL,SAAR,IAAqBA,SAAS,CAACK,IAAD,CAAT,CAAgBC,MAAhB,GAAyB,CAAlD,EAAqD;AACnDP,gBAAAA,WAAW,GAAG,IAAd;AACD;AACF,aAJD;;AAKA,gBAAI,CAACA,WAAL,EAAkB;AAChBZ,cAAAA,OAAO,CAACK,oBAAR,GAA+B,IAA/B;AACD;AACF;AACF;AACF;AApDH,KAHwD;AA0DxDe,IAAAA,KAAK,EAAG,eAASvB,OAAT,EACR;AACEwB,MAAAA,KAAK,CAACC,kBAAN,CAAyBzB,OAAO,CAACC,KAAjC,EAAwCD,OAAO,CAACE,QAAhD,EAA0DF,OAAO,CAACc,UAAlE;AACD;AA7DuD,GAA1D;AA1BAnB,EAAAA,EAAE,CAACuB,MAAH,CAAUR,KAAV,CAAgBS,kBAAhB,CAAmCrB,aAAnC,GAAmDA,aAAnD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n\n/**\n * Orientation handler which is responsible for registering and unregistering a\n * {@link qx.event.handler.OrientationCore} handler for each given element.\n *\n * @require(qx.module.Event)\n *\n * @group (Event_Normalization)\n */\nqx.Bootstrap.define(\"qx.module.event.OrientationHandler\", {\n\n  statics :\n  {\n    /**\n     * List of events that require an orientation handler\n     */\n    TYPES : [\"orientationchange\"],\n\n    /**\n     * Creates an orientation handler for the given window when an\n     * orientationchange event listener is attached to it\n     *\n     * @param element {Window} DOM Window\n     */\n    register : function(element)\n    {\n      if (!qx.dom.Node.isWindow(element)) {\n        throw new Error(\"The 'orientationchange' event is only available on window objects!\");\n      }\n\n      if (!element.__orientationHandler) {\n        if (!element.$$emitter) {\n          element.$$emitter = new qx.event.Emitter();\n        }\n\n        element.__orientationHandler = new qx.event.handler.OrientationCore(element, element.$$emitter);\n      }\n    },\n\n\n    /**\n     * Removes the orientation event handler from the element if there are no more\n     * orientationchange event listeners attached to it\n     * @param element {Element} DOM element\n     */\n    unregister : function(element)\n    {\n      if (element.__orientationHandler) {\n        if (!element.$$emitter) {\n          element.__orientationHandler = null;\n        }\n        else {\n          var hasListener = false;\n          var listeners = element.$$emitter.getListeners();\n          qx.module.event.OrientationHandler.TYPES.forEach(function(type) {\n            if (type in listeners && listeners[type].length > 0) {\n              hasListener = true;\n            }\n          });\n          if (!hasListener) {\n            element.__orientationHandler = null;\n          }\n        }\n      }\n    }\n  },\n\n  defer : function(statics)\n  {\n    qxWeb.$registerEventHook(statics.TYPES, statics.register, statics.unregister);\n  }\n});\n"
+  ]
+}

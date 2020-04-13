@@ -1,0 +1,99 @@
+{
+  "className": "qx.dev.unit.Sinon",
+  "packageName": "qx.dev.unit",
+  "name": "Sinon",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 56,
+        "column": 0
+      },
+      "end": {
+        "line": 69,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2013 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tristan Koch (tristankoch)\n   ======================================================================\n   This class contains code based on the following work:\n Sinon.JS 1.9.1\n     Homepage:\n       http://sinonjs.org/\n     Documentation:\n       http://sinonjs.org/docs/\n     Discussion:\n       http://groups.google.com/group/sinonjs\n     Code:\n       https://github.com/cjohansen/Sinon.JS\n     Copyright:\n       (c) 2010-2014, Christian Johansen\n     License:\n       BSD: http://www.opensource.org/licenses/bsd-license.php\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Exposes Sinon.JS to qooxdoo.\n This class exposes Sinon.JS (http://sinonjs.org/) and is not to be used\n directly. Instead, you should include qx.dev.unit.MMock in your TestCase\n and use the wrappers provided.</p>"
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "module, require, global, ProgressEvent, CustomEvent, clearImmediate"
+        },
+        {
+          "name": "@ignore",
+          "body": "process.*"
+        },
+        {
+          "name": "@ignore",
+          "body": "module.exports.*"
+        }
+      ],
+      "@lint": [
+        {
+          "name": "@lint",
+          "body": "ignoreDeprecated(eval)"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getSinon": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 18
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the Sinon.JS object.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The Sinon.JS object",
+            "type": "Object",
+            "description": " The Sinon.JS object"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/Abstract.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "extend",
+    "core",
+    "Object",
+    "members",
+    "_getCellStyle",
+    "cellInfo",
+    "_getCellExtras",
+    "_getContentHtml",
+    "cellData",
+    "render",
+    "html",
+    "style",
+    "push",
+    "stylesheet",
+    "join",
+    "ui",
+    "progressive",
+    "renderer",
+    "table",
+    "cell",
+    "Abstract"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA6DAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,gDAAhB,EACA;AACEC,IAAAA,IAAI,EAAS,UADf;AAEEC,IAAAA,MAAM,EAAOP,EAAE,CAACQ,IAAH,CAAQC,MAFvB;AAKEC,IAAAA,OAAO,EACP;AACE;;;;;;;;;;;AAWAC,MAAAA,aAAa,EAAG,uBAASC,QAAT,EAChB;AACE,eAAO,EAAP;AACD,OAfH;;AAiBE;;;;;;;;;;;;AAYAC,MAAAA,cAAc,EAAG,wBAASD,QAAT,EACjB;AACE,eAAO,EAAP;AACD,OAhCH;;AAkCE;;;;;;;;;;AAUAE,MAAAA,eAAe,EAAG,yBAASF,QAAT,EAClB;AACE,eAAOA,QAAQ,CAACG,QAAT,IAAqB,EAA5B;AACD,OA/CH;;AAiDE;;;;;;;;;;;AAWAC,MAAAA,MAAM,EAAG,gBAASJ,QAAT,EACT;AACE,YAAIK,IAAI,GAAG,EAAX;;AACA,YAAIC,KAAK,GAAG,KAAKP,aAAL,CAAmBC,QAAnB,CAAZ,CAFF,CAIE;;;AACAK,QAAAA,IAAI,CAACE,IAAL,CAAU,OAAV,EACU,SADV,EACqBP,QAAQ,CAACQ,UAD9B,EAC0C,IAD1C;;AAGA,YAAIF,KAAJ,EACA;AACED,UAAAA,IAAI,CAACE,IAAL,CAAU,SAAV,EAAqBD,KAArB,EAA4B,GAA5B;AACD;;AAEDD,QAAAA,IAAI,CAACE,IAAL,CAAU,KAAKN,cAAL,CAAoBD,QAApB,CAAV,EACU,GADV,EAEU,KAAKE,eAAL,CAAqBF,QAArB,CAFV,EAGU,QAHV;AAKA,eAAOK,IAAI,CAACI,IAAL,CAAU,EAAV,CAAP;AACD;AAhFH;AANF,GADA;AA/EArB,EAAAA,EAAE,CAACsB,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,IAAjC,CAAsCC,QAAtC,CAA+CxB,aAA/C,GAA+DA,aAA/D",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Cell Renderer for Progressive's Table.\n *\n * Many of the methods in this class accept a parameter called cellInfo.  This\n * parameter is an object with the following members:\n *\n * <dl>\n *   <dt>\n *     state\n *   </dt>\n *   <dd>\n *     The {@link qx.ui.progressive.State} object pertaining to this rendering\n *     session.\n *   </dd>\n *\n *   <dt>\n *     rowDiv\n *   </dt>\n *   <dd>\n *     The \"div\" DOM element of the row in which this cell is to be added.\n *   </dd>\n *\n *   <dt>\n *     element\n *   </dt>\n *   <dd>\n *     The entire element object returned by the data model.\n *   </dd>\n *\n *   <dt>\n *     dataIndex\n *   </dt>\n *   <dd>\n *     The index into the data element provided by the data model.\n *     Effectively, this is the column number.\n *   </dd>\n *\n *   <dt>\n *     cellData\n *   </dt>\n *   <dd>\n *     The data from the data model, to be rendered.  This the specific column\n *     data for the column being rendered, and is a shorthand for\n *     element.data[element.dataIndex].\n *   </dd>\n *\n *   <dt>\n *     height <span style=\"color:red;\">Input/Output parameter!</span>\n *   </dt>\n *   <dd>\n *     On input to a cell renderer, this contains the height, as determined to\n *     date, for the current row.  The first column being rendered will\n *     receive a height of zero.  Upon return, it may leave the height at\n *     zero, meaning that it will accept any minimum height, or may specify a\n *     minimum height by setting this member.  Subsequent column cell renderers\n *     will receive the maximum height specified by any previous cell\n *     renderer.  Upon completion of calling each of the cell renderers for a\n *     row, the row height will be set to the value found in this member.\n *   </dd>\n * </dl>\n */\nqx.Class.define(\"qx.ui.progressive.renderer.table.cell.Abstract\",\n{\n  type       : \"abstract\",\n  extend     : qx.core.Object,\n\n\n  members :\n  {\n    /**\n     * Retrieve any style characteristics the cell renderer wants applied to\n     * this cell.\n     *\n     * @param cellInfo {Object}\n     *   See {@link qx.ui.progressive.renderer.table.cell.Abstract} class\n     *   description for details\n     *\n     * @return {String}\n     *   The style characteristics to be applied to this cell.\n     */\n    _getCellStyle : function(cellInfo)\n    {\n      return \"\";\n    },\n\n    /**\n     * Retrieve any extra attributes the cell renderer wants applied to this\n     * cell.  Extra attributes could be such things as\n     * \"onclick='handleClick()';\"\n     *\n     * @param cellInfo {Object}\n     *   See {@link qx.ui.progressive.renderer.table.cell.Abstract} class\n     *   description for details\n     *\n     * @return {String}\n     *   The extra attributes to be applied to this cell.\n     */\n    _getCellExtras : function(cellInfo)\n    {\n      return \"\";\n    },\n\n    /**\n     * Retrieve the HTML content to be added to the cell div.\n     *\n     * @param cellInfo {Object}\n     *   See {@link qx.ui.progressive.renderer.table.cell.Abstract} class\n     *   description for details\n     *\n     * @return {String}\n     *   The HTML content to be added to the cell div.\n     */\n    _getContentHtml : function(cellInfo)\n    {\n      return cellInfo.cellData || \"\";\n    },\n\n    /**\n     * Given the provided cell information, generate the HTML for this\n     * cell.\n     *\n     * @param cellInfo {Object}\n     *   See {@link qx.ui.progressive.renderer.table.cell.Abstract} class\n     *   description for details\n     *\n     * @return {String}\n     *   The HTML required to create this cell.\n     */\n    render : function(cellInfo)\n    {\n      var html = [ ];\n      var style = this._getCellStyle(cellInfo);\n\n      // Render this cell\n      html.push(\"<div \",\n                \"class='\", cellInfo.stylesheet, \"' \");\n\n      if (style)\n      {\n        html.push(\"style='\", style, \"'\");\n      }\n\n      html.push(this._getCellExtras(cellInfo),\n                \">\",\n                this._getContentHtml(cellInfo),\n                \"</div>\");\n\n      return html.join(\"\");\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/module/event/Orientation.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "TYPES",
+    "BIND_METHODS",
+    "getOrientation",
+    "_orientation",
+    "isLandscape",
+    "_mode",
+    "isPortrait",
+    "normalize",
+    "event",
+    "element",
+    "type",
+    "_type",
+    "bindMethods",
+    "module",
+    "Orientation",
+    "i",
+    "l",
+    "length",
+    "bind",
+    "defer",
+    "qxWeb",
+    "$registerEventNormalization"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;AAOAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,6BAApB,EAAmD;AACjDC,IAAAA,OAAO,EACP;AACE;;;AAGAC,MAAAA,KAAK,EAAG,CAAC,mBAAD,CAJV;;AAOE;;;;;AAKAC,MAAAA,YAAY,EAAG,CAAC,gBAAD,EAAmB,aAAnB,EAAkC,YAAlC,CAZjB;;AAeE;;;;;;;;;;;;AAYAC,MAAAA,cAAc,EAAE,0BAAW;AACzB,eAAO,KAAKC,YAAZ;AACD,OA7BH;;AAgCE;;;;;;AAMAC,MAAAA,WAAW,EAAG,uBAAW;AACvB,eAAO,KAAKC,KAAL,IAAc,WAArB;AACD,OAxCH;;AA2CE;;;;;;AAMAC,MAAAA,UAAU,EAAG,sBACb;AACE,eAAO,KAAKD,KAAL,IAAc,UAArB;AACD,OApDH;;AAuDE;;;;;;;;;;AAUAE,MAAAA,SAAS,EAAG,mBAASC,KAAT,EAAgBC,OAAhB,EAAyBC,IAAzB,EACZ;AACE,YAAI,CAACF,KAAL,EAAY;AACV,iBAAOA,KAAP;AACD;;AACDA,QAAAA,KAAK,CAACG,KAAN,GAAcD,IAAd;AAEA,YAAIE,WAAW,GAAGlB,EAAE,CAACmB,MAAH,CAAUL,KAAV,CAAgBM,WAAhB,CAA4Bb,YAA9C;;AACA,aAAK,IAAIc,CAAC,GAAC,CAAN,EAASC,CAAC,GAACJ,WAAW,CAACK,MAA5B,EAAoCF,CAAC,GAACC,CAAtC,EAAyCD,CAAC,EAA1C,EAA8C;AAC5C,cAAI,OAAOP,KAAK,CAACI,WAAW,CAACG,CAAD,CAAZ,CAAZ,IAAgC,UAApC,EAAgD;AAC9CP,YAAAA,KAAK,CAACI,WAAW,CAACG,CAAD,CAAZ,CAAL,GAAwBrB,EAAE,CAACmB,MAAH,CAAUL,KAAV,CAAgBM,WAAhB,CAA4BF,WAAW,CAACG,CAAD,CAAvC,EAA4CG,IAA5C,CAAiDV,KAAjD,CAAxB;AACD;AACF;;AAED,eAAOA,KAAP;AACD;AAhFH,KAFiD;AAqFjDW,IAAAA,KAAK,EAAG,eAASpB,OAAT,EAAkB;AACxBqB,MAAAA,KAAK,CAACC,2BAAN,CAAkCtB,OAAO,CAACC,KAA1C,EAAiDD,OAAO,CAACQ,SAAzD;AACD;AAvFgD,GAAnD;AAzBAb,EAAAA,EAAE,CAACmB,MAAH,CAAUL,KAAV,CAAgBM,WAAhB,CAA4BjB,aAA5B,GAA4CA,aAA5C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n\n/**\n * Normalization for orientationchange events\n *\n * @require(qx.module.Event)\n *\n * @group (Event_Normalization)\n */\nqx.Bootstrap.define(\"qx.module.event.Orientation\", {\n  statics :\n  {\n    /**\n     * List of event types to be normalized\n     */\n    TYPES : [\"orientationchange\"],\n\n\n    /**\n     * List of qx.module.event.Orientation methods to be attached to native\n     * event objects\n     * @internal\n     */\n    BIND_METHODS : [\"getOrientation\", \"isLandscape\", \"isPortrait\"],\n\n\n    /**\n     * Returns the current orientation of the viewport in degrees.\n     *\n     * All possible values and their meaning:\n     *\n     * * <code>0</code>: \"Portrait\"\n     * * <code>-90</code>: \"Landscape (right, screen turned clockwise)\"\n     * * <code>90</code>: \"Landscape (left, screen turned counterclockwise)\"\n     * * <code>180</code>: \"Portrait (upside-down portrait)\"\n     *\n     * @return {Number} The current orientation in degrees\n     */\n    getOrientation: function() {\n      return this._orientation;\n    },\n\n\n    /**\n     * Whether the viewport orientation is currently in landscape mode.\n     *\n     * @return {Boolean} <code>true</code> when the viewport orientation\n     *     is currently in landscape mode.\n     */\n    isLandscape : function() {\n      return this._mode == \"landscape\";\n    },\n\n\n    /**\n     * Whether the viewport orientation is currently in portrait mode.\n     *\n     * @return {Boolean} <code>true</code> when the viewport orientation\n     *     is currently in portrait mode.\n     */\n    isPortrait : function()\n    {\n      return this._mode == \"portrait\";\n    },\n\n\n    /**\n     * Manipulates the native event object, adding methods if they're not\n     * already present\n     *\n     * @param event {Event} Native event object\n     * @param element {Element} DOM element the listener was attached to\n     * @param type {String} Event type\n     * @return {Event} Normalized event object\n     * @internal\n     */\n    normalize : function(event, element, type)\n    {\n      if (!event) {\n        return event;\n      }\n      event._type = type;\n\n      var bindMethods = qx.module.event.Orientation.BIND_METHODS;\n      for (var i=0, l=bindMethods.length; i<l; i++) {\n        if (typeof event[bindMethods[i]] != \"function\") {\n          event[bindMethods[i]] = qx.module.event.Orientation[bindMethods[i]].bind(event);\n        }\n      }\n\n      return event;\n    }\n  },\n\n  defer : function(statics) {\n    qxWeb.$registerEventNormalization(statics.TYPES, statics.normalize);\n  }\n});\n"
+  ]
+}

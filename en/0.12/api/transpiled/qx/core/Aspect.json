@@ -1,0 +1,179 @@
+{
+  "className": "qx.core.Aspect",
+  "packageName": "qx.core",
+  "name": "Aspect",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 0
+      },
+      "end": {
+        "line": 132,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Andreas Ecker (ecker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Basis for Aspect Oriented features in qooxdoo.\n This class makes it possible to attach functions (aspects) before or\n after each function call of any function defined in {@link qx.Class#define}.\n Classes, which define own aspects must add an explicit require to this class\n in the header comment using the following code:\n </p>\n<pre>\n &#35;require(qx.core.Aspect)\n &#35;ignore(auto-require)\n </pre>\n<p>One example for a qooxdoo aspect is profiling ({@link qx.dev.Profile}).</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__registry": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 41,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} Registry for all known aspect wishes"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "wrap": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function is used by {@link qx.Class#define} to wrap all statics, members and\n constructors.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fullName {String} Full name of the function including the class name.",
+            "paramName": "fullName",
+            "description": " Full name of the function including the class name.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "fcn {Function} function to wrap.",
+            "paramName": "fcn",
+            "description": " function to wrap.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Type of the wrapped function. One of \"member\", \"static\",\n          \"constructor\", \"destructor\" or \"property\".",
+            "paramName": "type",
+            "description": " Type of the wrapped function. One of \"member\", \"static\",\n          \"constructor\", \"destructor\" or \"property\".",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} wrapped function",
+            "type": "Function",
+            "description": " wrapped function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addAdvice": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 130,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register a function to be called just before or after each time\n one of the selected functions is called.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fcn {Function} Function to be called just before or after any of the\n     selected functions is called. If position is \"before\" the functions\n     supports the same signature as {@link qx.dev.Profile#profileBefore}. If\n     position is \"after\" it supports the same signature as\n     {@link qx.dev.Profile#profileAfter}.",
+            "paramName": "fcn",
+            "description": " Function to be called just before or after any of the\n     selected functions is called. If position is \"before\" the functions\n     supports the same signature as {@link qx.dev.Profile#profileBefore}. If\n     position is \"after\" it supports the same signature as\n     {@link qx.dev.Profile#profileAfter}.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "position {String?\"after\"} One of \"before\" or \"after\". Whether the function\n     should be called before or after the wrapped function.",
+            "paramName": "position",
+            "description": " One of \"before\" or \"after\". Whether the function\n     should be called before or after the wrapped function.",
+            "optional": true,
+            "defaultValue": "\"after\"",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "type {String?null} Type of the wrapped function. One of \"member\",\n     \"static\", \"constructor\", \"destructor\", \"property\" or \"*\". <code>null</code>\n     is handled identical to \"*\".",
+            "paramName": "type",
+            "description": " Type of the wrapped function. One of \"member\",\n     \"static\", \"constructor\", \"destructor\", \"property\" or \"*\". <code>null</code>\n     is handled identical to \"*\".",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "name {String|RegExp?null} Each function, with a full name matching\n     this pattern (using <code>fullName.match(name)</code>) will be\n     wrapped.",
+            "paramName": "name",
+            "description": " Each function, with a full name matching\n     this pattern (using <code>fullName.match(name)</code>) will be\n     wrapped.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

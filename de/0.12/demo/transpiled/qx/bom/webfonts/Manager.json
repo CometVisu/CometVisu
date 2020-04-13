@@ -1,0 +1,954 @@
+{
+  "className": "qx.bom.webfonts.Manager",
+  "packageName": "qx.bom.webfonts",
+  "name": "Manager",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 58,
+        "column": 0
+      },
+      "end": {
+        "line": 575,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Manages font-face definitions, making sure that each rule is only applied\n once. It supports adding fonts of the same family but with different style\n and weight. For instance, the following declaration uses 4 different source\n files and combine them in a single font family.\n </p>\n<pre class='javascript'>\n   sources: [\n     {\n       family: \"Sansation\",\n       source: [\n         \"fonts/Sansation-Regular.ttf\"\n       ]\n     },\n     {\n       family: \"Sansation\",\n       fontWeight: \"bold\",\n       source: [\n         \"fonts/Sansation-Bold.ttf\",\n       ]\n     },\n     {\n       family: \"Sansation\",\n       fontStyle: \"italic\",\n       source: [\n         \"fonts/Sansation-Italic.ttf\",\n       ]\n     },\n     {\n       family: \"Sansation\",\n       fontWeight: \"bold\",\n       fontStyle: \"italic\",\n       source: [\n         \"fonts/Sansation-BoldItalic.ttf\",\n       ]\n     }\n   ]\n </pre>\n<p>This class does not need to be disposed, except when you want to abort the loading\n and validation process.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": false,
+  "isSingleton": true,
+  "construct": {
+    "location": {
+      "start": {
+        "line": 71,
+        "column": 14
+      },
+      "end": {
+        "line": 78,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "statics": {
+    "FONT_FORMATS": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 57
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of known font definition formats (i.e. file extensions). Used to\n identify the type of each font file configured for a web font.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "VALIDATION_TIMEOUT": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4
+        },
+        "end": {
+          "line": 99,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Timeout (in ms) to wait before deciding that a web font was not loaded.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__createdStyles": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 112,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__styleSheet": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__validators": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__preferredFormats": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__queue": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 116,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__queueInterval": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4
+        },
+        "end": {
+          "line": 117,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "require": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4
+        },
+        "end": {
+          "line": 176,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PUBLIC API\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Adds the necessary font-face rule for a web font to the document. Also\n creates a web font Validator ({@link qx.bom.webfonts.Validator}) that\n checks if the webFont was applied correctly.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "familyName {String} Name of the web font",
+            "paramName": "familyName",
+            "description": " Name of the web font",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "sourcesList {Object} List of source URLs along with their style\n (e.g. fontStyle: \"italic\") and weight (e.g. fontWeight: \"bold\").\n For maximum compatibility, this should include EOT, WOFF and TTF versions\n of the font.",
+            "paramName": "sourcesList",
+            "description": " List of source URLs along with their style\n (e.g. fontStyle: \"italic\") and weight (e.g. fontWeight: \"bold\").\n For maximum compatibility, this should include EOT, WOFF and TTF versions\n of the font.",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function?} Optional event listener callback that will be\n executed once the validator has determined whether the webFont was\n applied correctly.\n See {@link qx.bom.webfonts.Validator#changeStatus}",
+            "paramName": "callback",
+            "description": " Optional event listener callback that will be\n executed once the validator has determined whether the webFont was\n applied correctly.\n See {@link qx.bom.webfonts.Validator#changeStatus}",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object?} Optional context for the callback function",
+            "paramName": "context",
+            "description": " Optional context for the callback function",
+            "optional": true,
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "remove": {
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4
+        },
+        "end": {
+          "line": 205,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a font's font-face definition from the style sheet. This means\n the font will no longer be available and any elements using it will\n fall back to the their regular font-families.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "familyName {String} font-family name",
+            "paramName": "familyName",
+            "description": " font-family name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "fontWeight {String} the font-weight.",
+            "paramName": "fontWeight",
+            "description": " the font-weight.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "fontStyle {String} the font-style.",
+            "paramName": "fontStyle",
+            "description": " the font-style.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPreferredFormats": {
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4
+        },
+        "end": {
+          "line": 255,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the preferred font format(s) for the currently used browser. Some\n browsers support multiple formats, e.g. WOFF and TTF or WOFF and EOT. In\n those cases, WOFF is considered the preferred format.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} List of supported font formats ordered by preference\n or empty Array if none could be determined",
+            "type": "String[]",
+            "description": " List of supported font formats ordered by preference\n or empty Array if none could be determined"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeStyleSheet": {
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4
+        },
+        "end": {
+          "line": 271,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the styleSheet element used for all web font definitions from the\n document. This means all web fonts declared by the manager will no longer\n be available and elements using them will fall back to their regular\n font-families</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__createFontLookupKey": {
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4
+        },
+        "end": {
+          "line": 291,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PRIVATE API\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Creates a lookup key to index the created fonts.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "familyName {String} font-family name",
+            "paramName": "familyName",
+            "description": " font-family name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "fontWeight {String} the font-weight.",
+            "paramName": "fontWeight",
+            "description": " the font-weight.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "fontStyle {String} the font-style.",
+            "paramName": "fontStyle",
+            "description": " the font-style.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string} the font lookup key",
+            "type": "string",
+            "description": " the font lookup key"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__require": {
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4
+        },
+        "end": {
+          "line": 350,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Does the actual work of adding stylesheet rules and triggering font\n validation</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "familyName {String} Name of the web font",
+            "paramName": "familyName",
+            "description": " Name of the web font",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "sources {String[]} List of source URLs. For maximum compatibility,\n this should include EOT, WOFF and TTF versions of the font.",
+            "paramName": "sources",
+            "description": " List of source URLs. For maximum compatibility,\n this should include EOT, WOFF and TTF versions of the font.",
+            "type": "String[]"
+          },
+          {
+            "name": "@param",
+            "body": "fontWeight {String} the web font should be registered using a\n fontWeight font weight.",
+            "paramName": "fontWeight",
+            "description": " the web font should be registered using a\n fontWeight font weight.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "fontStyle {String} the web font should be registered using an\n fontStyle font style.",
+            "paramName": "fontStyle",
+            "description": " the web font should be registered using an\n fontStyle font style.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "comparisonString {String} String to check whether the font has loaded or not",
+            "paramName": "comparisonString",
+            "description": " String to check whether the font has loaded or not",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "version {String?} Optional version that is appended to the font URL to be able to override caching",
+            "paramName": "version",
+            "description": " Optional version that is appended to the font URL to be able to override caching",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function?} Optional event listener callback that will be\n executed once the validator has determined whether the webFont was\n applied correctly.",
+            "paramName": "callback",
+            "description": " Optional event listener callback that will be\n executed once the validator has determined whether the webFont was\n applied correctly.",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object?} Optional context for the callback function",
+            "paramName": "context",
+            "description": " Optional context for the callback function",
+            "optional": true,
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__flushQueue": {
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 4
+        },
+        "end": {
+          "line": 364,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Processes the next item in the queue</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__onFontChangeStatus": {
+      "location": {
+        "start": {
+          "line": 372,
+          "column": 4
+        },
+        "end": {
+          "line": 380,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the font-face declaration if a font could not be validated</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {qx.event.type.Data} qx.bom.webfonts.Validator#changeStatus",
+            "paramName": "ev",
+            "description": " qx.bom.webfonts.Validator#changeStatus",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getSourcesMap": {
+      "location": {
+        "start": {
+          "line": 391,
+          "column": 4
+        },
+        "end": {
+          "line": 404,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Uses a naive regExp match to determine the format of each defined source\n file for a webFont. Returns a map with the format names as keys and the\n corresponding source URLs as values.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sources {String[]} Array of source URLs",
+            "paramName": "sources",
+            "description": " Array of source URLs",
+            "type": "String[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map of formats and URLs",
+            "type": "Map",
+            "description": " Map of formats and URLs"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getRule": {
+      "location": {
+        "start": {
+          "line": 419,
+          "column": 4
+        },
+        "end": {
+          "line": 440,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assembles the body of a font-face rule for a single webFont.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "familyName {String} Font-family name",
+            "paramName": "familyName",
+            "description": " Font-family name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "fontWeight {String} the web font should be registered using a\n fontWeight font weight.",
+            "paramName": "fontWeight",
+            "description": " the web font should be registered using a\n fontWeight font weight.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "fontStyle {String} the web font should be registered using an\n fontStyle font style.",
+            "paramName": "fontStyle",
+            "description": " the web font should be registered using an\n fontStyle font style.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "sourcesMap {Map} Map of font formats and sources",
+            "paramName": "sourcesMap",
+            "description": " Map of font formats and sources",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "version {String?} Optional version to be appended to the URL",
+            "paramName": "version",
+            "description": " Optional version to be appended to the URL",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The computed CSS rule",
+            "type": "String",
+            "description": " The computed CSS rule"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getSourceForFormat": {
+      "location": {
+        "start": {
+          "line": 451,
+          "column": 4
+        },
+        "end": {
+          "line": 471,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the full src value for a given font URL depending on the type</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "format {String} The font format, one of eot, woff2, woff, ttf, svg",
+            "paramName": "format",
+            "description": " The font format, one of eot, woff2, woff, ttf, svg",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "url {String} The font file's URL",
+            "paramName": "url",
+            "description": " The font file's URL",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "version {String?} Optional version to be appended to the URL",
+            "paramName": "version",
+            "description": " Optional version to be appended to the URL",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The src directive",
+            "type": "String",
+            "description": " The src directive"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__addRule": {
+      "location": {
+        "start": {
+          "line": 479,
+          "column": 4
+        },
+        "end": {
+          "line": 492,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a font-face rule to the document</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rule {String} The body of the CSS rule",
+            "paramName": "rule",
+            "description": " The body of the CSS rule",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__removeRule": {
+      "location": {
+        "start": {
+          "line": 503,
+          "column": 4
+        },
+        "end": {
+          "line": 538,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the font-face declaration for the given font-family from the\n stylesheet</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "familyName {String} The font-family name",
+            "paramName": "familyName",
+            "description": " The font-family name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "fontWeight {String} fontWeight font-weight.",
+            "paramName": "fontWeight",
+            "description": " fontWeight font-weight.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "fontStyle {String} fontStyle font-style.",
+            "paramName": "fontStyle",
+            "description": " fontStyle font-style.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__fixCssText": {
+      "location": {
+        "start": {
+          "line": 548,
+          "column": 4
+        },
+        "end": {
+          "line": 552,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>IE 6 and 7 omit the trailing quote after the format name when\n querying cssText. This needs to be fixed before cssText is replaced\n or all rules will be invalid and no web fonts will work any more.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cssText {String} CSS text",
+            "paramName": "cssText",
+            "description": " CSS text",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Fixed CSS text",
+            "type": "String",
+            "description": " Fixed CSS text"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 562,
+        "column": 13
+      },
+      "end": {
+        "line": 574,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\nDESTRUCTOR\n**********************************************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

@@ -1,0 +1,559 @@
+{
+  "className": "qx.html.Input",
+  "packageName": "qx.html",
+  "name": "Input",
+  "superClass": "qx.html.Element",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 257,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>A Input wrap any valid HTML input element and make it accessible\n through the normalized qooxdoo element interface.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 47,
+        "column": 14
+      },
+      "end": {
+        "line": 59,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
+        },
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "type {String} The type of the input field. Valid values are\n   <code>text</code>, <code>textarea</code>, <code>select</code>,\n   <code>checkbox</code>, <code>radio</code>, <code>password</code>,\n   <code>hidden</code>, <code>submit</code>, <code>image</code>,\n   <code>file</code>, <code>search</code>, <code>reset</code>,\n   <code>select</code> and <code>textarea</code>.",
+          "paramName": "type",
+          "description": " The type of the input field. Valid values are\n   <code>text</code>, <code>textarea</code>, <code>select</code>,\n   <code>checkbox</code>, <code>radio</code>, <code>password</code>,\n   <code>hidden</code>, <code>submit</code>, <code>image</code>,\n   <code>file</code>, <code>search</code>, <code>reset</code>,\n   <code>select</code> and <code>textarea</code>.",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "styles {Map?null} optional map of CSS styles, where the key is the name\n    of the style and the value is the value to use.",
+          "paramName": "styles",
+          "description": " optional map of CSS styles, where the key is the name\n    of the style and the value is the value to use.",
+          "optional": true,
+          "defaultValue": "null",
+          "type": "Map"
+        },
+        {
+          "name": "@param",
+          "body": "attributes {Map?null} optional map of element attributes, where the\n    key is the name of the attribute and the value is the value to use.",
+          "paramName": "attributes",
+          "description": " optional map of element attributes, where the\n    key is the name of the attribute and the value is the value to use.",
+          "optional": true,
+          "defaultValue": "null",
+          "type": "Map"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__type": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 73,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__selectable": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>used for webkit only</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__enabled": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_createDomElement": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 87,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  ELEMENT API\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>overridden</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} DOM element",
+            "type": "qx.html.Element",
+            "description": " DOM element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.html.Element",
+      "appearsIn": [
+        "qx.html.Element"
+      ]
+    },
+    "_applyProperty": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>overridden</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Unique property identifier",
+            "paramName": "name",
+            "description": " Unique property identifier",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} Any valid value (depends on the property)",
+            "paramName": "value",
+            "description": " Any valid value (depends on the property)",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.html.Element} this object (for chaining support)",
+            "type": "qx.html.Element",
+            "description": " this object (for chaining support)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.html.Element",
+      "appearsIn": [
+        "qx.html.Element"
+      ]
+    },
+    "setEnabled": {
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4
+        },
+        "end": {
+          "line": 142,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the input element enabled / disabled.\n Webkit needs a special treatment because the set color of the input\n field changes automatically. Therefore, we use\n <code>-webkit-user-modify: read-only</code> and\n <code>-webkit-user-select: none</code>\n for disabling the fields in webkit. All other browsers use the disabled\n attribute.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} true, if the input element should be enabled.",
+            "paramName": "value",
+            "description": " true, if the input element should be enabled.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setSelectable": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4
+        },
+        "end": {
+          "line": 167,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set whether the element is selectable. It uses the qooxdoo attribute\n qxSelectable with the values 'on' or 'off'.\n In webkit, a special css property will be used and checks for the\n enabled state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} True, if the element should be selectable.",
+            "paramName": "value",
+            "description": " True, if the element should be selectable.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setValue": {
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4
+        },
+        "end": {
+          "line": 199,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  INPUT API\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Sets the value of the input element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} the new value",
+            "paramName": "value",
+            "description": " the new value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.html.Input} This instance for for chaining support.",
+            "type": "qx.html.Input",
+            "description": " This instance for for chaining support."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getValue": {
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4
+        },
+        "end": {
+          "line": 216,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the current value.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The element's current value.",
+            "type": "String",
+            "description": " The element's current value."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setWrap": {
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4
+        },
+        "end": {
+          "line": 238,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the text wrap behavior of a text area element.\n This property uses the style property \"wrap\" (IE) respectively \"whiteSpace\"</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "wrap {Boolean} Whether to turn text wrap on or off.",
+            "paramName": "wrap",
+            "description": " Whether to turn text wrap on or off.",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "direct {Boolean?false} Whether the execution should be made\n  directly when possible",
+            "paramName": "direct",
+            "description": " Whether the execution should be made\n  directly when possible",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.html.Input} This instance for for chaining support.",
+            "type": "qx.html.Input",
+            "description": " This instance for for chaining support."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getWrap": {
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 4
+        },
+        "end": {
+          "line": 255,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the text wrap behavior of a text area element.\n This property uses the style property \"wrap\" (IE) respectively \"whiteSpace\"</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether wrapping is enabled or disabled.",
+            "type": "Boolean",
+            "description": " Whether wrapping is enabled or disabled."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "reset"
+    }
+  },
+  "descendants": []
+}

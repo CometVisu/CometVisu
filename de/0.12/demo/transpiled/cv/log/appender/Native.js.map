@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/log/appender/Native.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "process",
+    "entry",
+    "cv",
+    "Config",
+    "enableLogging",
+    "level",
+    "console",
+    "args",
+    "log",
+    "appender",
+    "Util",
+    "toText",
+    "defer",
+    "Logger",
+    "register",
+    "Native"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;AAOAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,wBAApB,EACE;AACE;;;;;AAMAC,IAAAA,OAAO,EACL;AACE;;;;;AAKAC,MAAAA,OAAO,EAAG,iBAASC,KAAT,EACV;AACE,YAAIC,EAAE,CAACC,MAAH,CAAUC,aAAd,EAA6B;AAC3B;AACA,cAAIC,KAAK,GAAGC,OAAO,CAACL,KAAK,CAACI,KAAP,CAAP,GAAuBJ,KAAK,CAACI,KAA7B,GAAqC,KAAjD;;AACA,cAAIC,OAAO,CAACD,KAAD,CAAX,EAAoB;AAClB,gBAAIE,IAAI,GAAGb,EAAE,CAACc,GAAH,CAAOC,QAAP,CAAgBC,IAAhB,CAAqBC,MAArB,CAA4BV,KAA5B,CAAX;AACAK,YAAAA,OAAO,CAACD,KAAD,CAAP,CAAeE,IAAf;AACD;AACF;AACF;AAhBH,KARJ;;AA8BE;;;;;AAMAK,IAAAA,KAAK,EAAG,eAASb,OAAT,EAAkB;AACxBL,MAAAA,EAAE,CAACc,GAAH,CAAOK,MAAP,CAAcC,QAAd,CAAuBf,OAAvB;AACD;AAtCH,GADF;AAzBAG,EAAAA,EAAE,CAACM,GAAH,CAAOC,QAAP,CAAgBM,MAAhB,CAAuBlB,aAAvB,GAAuCA,aAAvC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n qooxdoo - the new era of web development\n\n http://qooxdoo.org\n\n Copyright:\n 2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n License:\n MIT: https://opensource.org/licenses/MIT\n See the LICENSE file in the project's top-level directory for details.\n\n Authors:\n * Sebastian Werner (wpbasti)\n\n ************************************************************************ */\n\n/**\n * Processes the incoming log entry and displays it by means of the native\n * logging capabilities of the client. Can be disable during runtime\n *\n * @require(qx.log.appender.Util)\n * @require(qx.bom.client.Html)\n */\nqx.Bootstrap.define(\"cv.log.appender.Native\",\n  {\n    /*\n     *****************************************************************************\n     STATICS\n     *****************************************************************************\n     */\n\n    statics :\n      {\n        /**\n         * Processes a single log entry\n         *\n         * @param entry {Map} The entry to process\n         */\n        process : function(entry)\n        {\n          if (cv.Config.enableLogging) {\n            // Firefox 4's Web Console doesn't support \"debug\"\n            var level = console[entry.level] ? entry.level : \"log\";\n            if (console[level]) {\n              var args = qx.log.appender.Util.toText(entry);\n              console[level](args);\n            }\n          }\n        }\n      },\n\n\n\n\n    /*\n     *****************************************************************************\n     DEFER\n     *****************************************************************************\n     */\n\n    defer : function(statics) {\n      qx.log.Logger.register(statics);\n    }\n  });\n"
+  ]
+}

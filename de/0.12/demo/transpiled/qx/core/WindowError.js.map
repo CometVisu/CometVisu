@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/core/WindowError.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "extend",
+    "Error",
+    "construct",
+    "failMessage",
+    "uri",
+    "lineNumber",
+    "columnNumber",
+    "sourceException",
+    "inst",
+    "call",
+    "stack",
+    "stacktrace",
+    "__failMessage",
+    "__uri",
+    "__lineNumber",
+    "undefined",
+    "__columnNumber",
+    "__sourceException",
+    "members",
+    "toString",
+    "getUri",
+    "getLineNumber",
+    "getColumnNumber",
+    "getSourceException",
+    "core",
+    "WindowError"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;AAIAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,qBAApB,EACA;AACEC,IAAAA,MAAM,EAAGC,KADX;;AAME;;;;;;AAMA;;;;;;;AAOAC,IAAAA,SAAS,EAAG,mBAASC,WAAT,EAAsBC,GAAtB,EAA2BC,UAA3B,EAAuCC,YAAvC,EAAqDC,eAArD,EACZ;AACE,UAAIC,IAAI,GAAGD,eAAe,IAAIN,KAAK,CAACQ,IAAN,CAAW,IAAX,EAAiBN,WAAjB,CAA9B,CADF,CAEE;;AACA,UAAIK,IAAI,CAACE,KAAT,EAAgB;AACd,aAAKA,KAAL,GAAaF,IAAI,CAACE,KAAlB;AACD;;AACD,UAAIF,IAAI,CAACG,UAAT,EAAqB;AACnB,aAAKA,UAAL,GAAkBH,IAAI,CAACG,UAAvB;AACD;;AAED,WAAKC,aAAL,GAAqBT,WAArB;AACA,WAAKU,KAAL,GAAaT,GAAG,IAAI,EAApB;AACA,WAAKU,YAAL,GAAoBT,UAAU,KAAKU,SAAf,GAA2B,CAAC,CAA5B,GAAgCV,UAApD;AACA,WAAKW,cAAL,GAAsBV,YAAY,KAAKS,SAAjB,GAA6B,CAAC,CAA9B,GAAkCT,YAAxD;AACA,WAAKW,iBAAL,GAAyBV,eAAzB;AACD,KAnCH;;AAuCE;;;;;AAMAW,IAAAA,OAAO,EACP;AACEN,MAAAA,aAAa,EAAG,IADlB;AAEEC,MAAAA,KAAK,EAAG,IAFV;AAGEC,MAAAA,YAAY,EAAG,IAHjB;AAIEE,MAAAA,cAAc,EAAG,IAJnB;AAKEC,MAAAA,iBAAiB,EAAE,IALrB;;AAQE;;;;;AAKAE,MAAAA,QAAQ,EAAG,oBAAW;AACpB,eAAO,KAAKP,aAAZ;AACD,OAfH;;AAkBE;;;;;AAKAQ,MAAAA,MAAM,EAAG,kBAAW;AAClB,eAAO,KAAKP,KAAZ;AACD,OAzBH;;AA4BE;;;;;AAKAQ,MAAAA,aAAa,EAAG,yBAAW;AACzB,eAAO,KAAKP,YAAZ;AACD,OAnCH;;AAqCE;;;;;AAKAQ,MAAAA,eAAe,EAAG,2BAAW;AAC3B,eAAO,KAAKN,cAAZ;AACD,OA5CH;;AA8CE;;;;;AAKAO,MAAAA,kBAAkB,EAAG,8BAAW;AAC9B,eAAO,KAAKN,iBAAZ;AACD;AArDH;AA9CF,GADA;AAtBAtB,EAAAA,EAAE,CAAC6B,IAAH,CAAQC,WAAR,CAAoB3B,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * This exception is thrown by the {@link qx.event.GlobalError} handler if a\n * <code>window.onerror</code> event occurs in the browser.\n */\nqx.Bootstrap.define(\"qx.core.WindowError\",\n{\n  extend : Error,\n\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param failMessage {String} The error message\n   * @param uri {String} URI where error was raised\n   * @param lineNumber {Integer} The line number where the error was raised\n   * @param columnNumber {Integer} The column number where the error was raised\n   * @param sourceException {Error} orginal error\n   */\n  construct : function(failMessage, uri, lineNumber, columnNumber, sourceException)\n  {\n    var inst = sourceException || Error.call(this, failMessage);\n    // map stack trace properties since they're not added by Error's constructor\n    if (inst.stack) {\n      this.stack = inst.stack;\n    }\n    if (inst.stacktrace) {\n      this.stacktrace = inst.stacktrace;\n    }\n\n    this.__failMessage = failMessage;\n    this.__uri = uri || \"\";\n    this.__lineNumber = lineNumber === undefined ? -1 : lineNumber;\n    this.__columnNumber = columnNumber === undefined ? -1 : columnNumber;\n    this.__sourceException = sourceException;\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    __failMessage : null,\n    __uri : null,\n    __lineNumber : null,\n    __columnNumber : null,\n    __sourceException: null,\n\n\n    /**\n     * Returns the error message.\n     *\n     * @return {String} error message\n     */\n    toString : function() {\n      return this.__failMessage;\n    },\n\n\n    /**\n     * Get the URI where error was raised\n     *\n     * @return {String} URI where error was raised\n     */\n    getUri : function() {\n      return this.__uri;\n    },\n\n\n    /**\n     * Get the line number where the error was raised\n     *\n     * @return {Integer} The line number where the error was raised\n     */\n    getLineNumber : function() {\n      return this.__lineNumber;\n    },\n\n    /**\n     * Get the column number where the error was raised\n     *\n     * @return {Integer} The line number where the error was raised\n     */\n    getColumnNumber : function() {\n      return this.__columnNumber;\n    },\n\n    /**\n     * Get the source exception\n     *\n     * @return {Error} The source error\n     */\n    getSourceException : function() {\n      return this.__sourceException;\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,510 @@
+{
+  "className": "qx.io.part.Package",
+  "packageName": "qx.io.part",
+  "name": "Package",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 289,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>The Package wraps a list of related script URLs, which are required by one\n or more parts.</p>"
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.util.ResourceManager"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 14
+      },
+      "end": {
+        "line": 39,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "urls {String[]} A list of script URLs",
+          "paramName": "urls",
+          "description": " A list of script URLs",
+          "type": "String[]"
+        },
+        {
+          "name": "@param",
+          "body": "id {var} Unique package hash key",
+          "paramName": "id",
+          "description": " Unique package hash key",
+          "type": "var"
+        },
+        {
+          "name": "@param",
+          "body": "loaded {Boolean?false} Whether the package is already loaded",
+          "paramName": "loaded",
+          "description": " Whether the package is already loaded",
+          "optional": true,
+          "defaultValue": "false",
+          "type": "Boolean"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__readyState": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__urls": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__id": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 46,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__closure": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__loadWithClosure": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__timeoutId": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__notifyPackageResult": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 32
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getId": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 60,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the package ID.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The package id",
+            "type": "String",
+            "description": " The package id"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getReadyState": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the ready state of the package. The value is one of\n <ul>\n <li>\n   <b>initialized</b>: The package is initialized. The {@link #load}\n   method has not yet been called\n </li>\n <li><b>loading</b>: The package is still loading.</li>\n <li><b>complete</b>: The package has been loaded successfully</li>\n <li><b>cached</b>: The package is loaded but is not executed\n   (for closure parts)</li>\n </li></p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The ready state.",
+            "type": "String",
+            "description": " The ready state."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getUrls": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the urlsstored stored in the package.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} An array of urls of this package.",
+            "type": "String[]",
+            "description": " An array of urls of this package."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "saveClosure": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method for storing the closure for this package. This is only relevant\n if a {@link qx.io.part.ClosurePart} is used.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "closure {Function} The code of this package wrapped in a closure.",
+            "paramName": "closure",
+            "description": " The code of this package wrapped in a closure.",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "execute": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4
+        },
+        "end": {
+          "line": 136,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executes the stored closure. This is only relevant if a\n {@link qx.io.part.ClosurePart} is used.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "loadClosure": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4
+        },
+        "end": {
+          "line": 174,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load method if the package loads a closure. This is only relevant if a\n {@link qx.io.part.ClosurePart} is used.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "notifyPackageResult {Function} The callback if all scripts are\n   done loading in this package.",
+            "paramName": "notifyPackageResult",
+            "description": " The callback if all scripts are\n   done loading in this package.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?} The context of the callback.",
+            "paramName": "self",
+            "description": " The context of the callback.",
+            "optional": true,
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "load": {
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4
+        },
+        "end": {
+          "line": 207,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load the part's script URLs in the correct order.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "notifyPackageResult {Function} The callback if all scripts are\n   done loading in this package.",
+            "paramName": "notifyPackageResult",
+            "description": " The callback if all scripts are\n   done loading in this package.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?} The context of the callback.",
+            "paramName": "self",
+            "description": " The context of the callback.",
+            "optional": true,
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__loadScriptList": {
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4
+        },
+        "end": {
+          "line": 277,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads a list of scripts in the correct order.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "urlList {String[]} List of script urls",
+            "paramName": "urlList",
+            "description": " List of script urls",
+            "type": "String[]"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function} Function to execute on completion",
+            "paramName": "callback",
+            "description": " Function to execute on completion",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "errBack {Function} Function to execute on error",
+            "paramName": "errBack",
+            "description": " Function to execute on error",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?window} Context to execute the given function in",
+            "paramName": "self",
+            "description": " Context to execute the given function in",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__importPackageData": {
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 4
+        },
+        "end": {
+          "line": 287,
+          "column": 55
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Import the data of a package. The function is defined in the loader\n script.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(packageData)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "packageData {Map} Map of package data categories (\"resources\",...)",
+            "paramName": "packageData",
+            "description": " Map of package data categories (\"resources\",...)",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    }
+  },
+  "descendants": []
+}

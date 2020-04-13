@@ -1,0 +1,605 @@
+{
+  "className": "qx.ui.layout.Util",
+  "packageName": "qx.ui.layout",
+  "name": "Util",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 513,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Common set of utility methods used by the standard qooxdoo layouts.</p>"
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "PERCENT_VALUE": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 42
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{RegExp} Regular expression to match percent values"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "computeFlexOffsets": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4
+        },
+        "end": {
+          "line": 137,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the flex offsets needed to reduce the space\n difference as much as possible by respecting the\n potential of the given elements (being in the range of\n their min/max values)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "flexibles {Map} Each entry must have these keys:\n   <code>id</code>, <code>potential</code> and <code>flex</code>.\n   The ID is used in the result map as the key for the user to work\n   with later (e.g. upgrade sizes etc. to respect the given offset)\n   The potential is an integer value which is the difference of the\n   currently interesting direction (e.g. shrinking=width-minWidth, growing=\n   maxWidth-width). The flex key holds the flex value of the item.",
+            "paramName": "flexibles",
+            "description": " Each entry must have these keys:\n   <code>id</code>, <code>potential</code> and <code>flex</code>.\n   The ID is used in the result map as the key for the user to work\n   with later (e.g. upgrade sizes etc. to respect the given offset)\n   The potential is an integer value which is the difference of the\n   currently interesting direction (e.g. shrinking=width-minWidth, growing=\n   maxWidth-width). The flex key holds the flex value of the item.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "avail {Integer} Full available space to allocate (ignoring used one)",
+            "paramName": "avail",
+            "description": " Full available space to allocate (ignoring used one)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "used {Integer} Size of already allocated space",
+            "paramName": "used",
+            "description": " Size of already allocated space",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map which contains the calculated offsets under the key\n   which is identical to the ID given in the incoming map.",
+            "type": "Map",
+            "description": " A map which contains the calculated offsets under the key\n   which is identical to the ID given in the incoming map."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "computeHorizontalAlignOffset": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4
+        },
+        "end": {
+          "line": 190,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the offset which needs to be added to the top position\n to result in the stated vertical alignment. Also respects\n existing margins (without collapsing).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "align {String} One of <code>top</code>, <code>center</code> or <code>bottom</code>.",
+            "paramName": "align",
+            "description": " One of <code>top</code>, <code>center</code> or <code>bottom</code>.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer} The visible width of the widget",
+            "paramName": "width",
+            "description": " The visible width of the widget",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "availWidth {Integer} The available inner width of the parent",
+            "paramName": "availWidth",
+            "description": " The available inner width of the parent",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "marginLeft {Integer?0} Optional left margin of the widget",
+            "paramName": "marginLeft",
+            "description": " Optional left margin of the widget",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "marginRight {Integer?0} Optional right margin of the widget",
+            "paramName": "marginRight",
+            "description": " Optional right margin of the widget",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Computed top coordinate",
+            "type": "Integer",
+            "description": " Computed top coordinate"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "computeVerticalAlignOffset": {
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4
+        },
+        "end": {
+          "line": 243,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the offset which needs to be added to the top position\n to result in the stated vertical alignment. Also respects\n existing margins (without collapsing).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "align {String} One of <code>top</code>, <code>middle</code> or <code>bottom</code>.",
+            "paramName": "align",
+            "description": " One of <code>top</code>, <code>middle</code> or <code>bottom</code>.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "height {Integer} The visible height of the widget",
+            "paramName": "height",
+            "description": " The visible height of the widget",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "availHeight {Integer} The available inner height of the parent",
+            "paramName": "availHeight",
+            "description": " The available inner height of the parent",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "marginTop {Integer?0} Optional top margin of the widget",
+            "paramName": "marginTop",
+            "description": " Optional top margin of the widget",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "marginBottom {Integer?0} Optional bottom margin of the widget",
+            "paramName": "marginBottom",
+            "description": " Optional bottom margin of the widget",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Computed top coordinate",
+            "type": "Integer",
+            "description": " Computed top coordinate"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "collapseMargins": {
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4
+        },
+        "end": {
+          "line": 272,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Collapses two margins.\n Supports positive and negative margins.\n Collapsing find the largest positive and the largest\n negative value. Afterwards the result is computed through the\n subtraction of the negative from the positive value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "varargs {arguments} Any number of configured margins",
+            "paramName": "varargs",
+            "description": " Any number of configured margins",
+            "type": "arguments"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The collapsed margin",
+            "type": "Integer",
+            "description": " The collapsed margin"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "computeHorizontalGaps": {
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 4
+        },
+        "end": {
+          "line": 319,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the sum of all horizontal gaps. Normally the\n result is used to compute the available width in a widget.\n The method optionally respects margin collapsing as well. In\n this mode the spacing is collapsed together with the margins.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "children {Array} List of children",
+            "paramName": "children",
+            "description": " List of children",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "spacing {Integer?0} Spacing between every child",
+            "paramName": "spacing",
+            "description": " Spacing between every child",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "collapse {Boolean?false} Optional margin collapsing mode",
+            "paramName": "collapse",
+            "description": " Optional margin collapsing mode",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Sum of all gaps in the final layout.",
+            "type": "Integer",
+            "description": " Sum of all gaps in the final layout."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "computeVerticalGaps": {
+      "location": {
+        "start": {
+          "line": 334,
+          "column": 4
+        },
+        "end": {
+          "line": 366,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the sum of all vertical gaps. Normally the\n result is used to compute the available height in a widget.\n The method optionally respects margin collapsing as well. In\n this mode the spacing is collapsed together with the margins.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "children {Array} List of children",
+            "paramName": "children",
+            "description": " List of children",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "spacing {Integer?0} Spacing between every child",
+            "paramName": "spacing",
+            "description": " Spacing between every child",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "collapse {Boolean?false} Optional margin collapsing mode",
+            "paramName": "collapse",
+            "description": " Optional margin collapsing mode",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Sum of all gaps in the final layout.",
+            "type": "Integer",
+            "description": " Sum of all gaps in the final layout."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "computeHorizontalSeparatorGaps": {
+      "location": {
+        "start": {
+          "line": 377,
+          "column": 4
+        },
+        "end": {
+          "line": 393,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the gaps together with the configuration of separators.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "children {qx.ui.core.LayoutItem[]} List of children",
+            "paramName": "children",
+            "description": " List of children",
+            "type": "qx.ui.core.LayoutItem[]"
+          },
+          {
+            "name": "@param",
+            "body": "spacing {Integer} Configured spacing",
+            "paramName": "spacing",
+            "description": " Configured spacing",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "separator {String|qx.ui.decoration.IDecorator} Separator to render",
+            "paramName": "separator",
+            "description": " Separator to render",
+            "type": [
+              "String",
+              "qx.ui.decoration.IDecorator"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Sum of gaps",
+            "type": "Integer",
+            "description": " Sum of gaps"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "computeVerticalSeparatorGaps": {
+      "location": {
+        "start": {
+          "line": 404,
+          "column": 4
+        },
+        "end": {
+          "line": 420,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the gaps together with the configuration of separators.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "children {qx.ui.core.LayoutItem[]} List of children",
+            "paramName": "children",
+            "description": " List of children",
+            "type": "qx.ui.core.LayoutItem[]"
+          },
+          {
+            "name": "@param",
+            "body": "spacing {Integer} Configured spacing",
+            "paramName": "spacing",
+            "description": " Configured spacing",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "separator {String|qx.ui.decoration.IDecorator} Separator to render",
+            "paramName": "separator",
+            "description": " Separator to render",
+            "type": [
+              "String",
+              "qx.ui.decoration.IDecorator"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Sum of gaps",
+            "type": "Integer",
+            "description": " Sum of gaps"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "arrangeIdeals": {
+      "location": {
+        "start": {
+          "line": 438,
+          "column": 4
+        },
+        "end": {
+          "line": 511,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Arranges two sizes in one box to best respect their individual limitations.\n Mainly used by split layouts (Split Panes) where the layout is mainly defined\n by the outer dimensions.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "beginMin {Integer} Minimum size of first widget (from size hint)",
+            "paramName": "beginMin",
+            "description": " Minimum size of first widget (from size hint)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "beginIdeal {Integer} Ideal size of first widget (maybe after dragging the splitter)",
+            "paramName": "beginIdeal",
+            "description": " Ideal size of first widget (maybe after dragging the splitter)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "beginMax {Integer} Maximum size of first widget (from size hint)",
+            "paramName": "beginMax",
+            "description": " Maximum size of first widget (from size hint)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "endMin {Integer} Minimum size of second widget (from size hint)",
+            "paramName": "endMin",
+            "description": " Minimum size of second widget (from size hint)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "endIdeal {Integer} Ideal size of second widget (maybe after dragging the splitter)",
+            "paramName": "endIdeal",
+            "description": " Ideal size of second widget (maybe after dragging the splitter)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "endMax {Integer} Maximum size of second widget (from size hint)",
+            "paramName": "endMax",
+            "description": " Maximum size of second widget (from size hint)",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map with the keys <code>begin</code and <code>end</code> with the\n   arranged dimensions.",
+            "type": "Map",
+            "description": " Map with the keys <code>begin</code and <code>end</code> with the\n   arranged dimensions."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

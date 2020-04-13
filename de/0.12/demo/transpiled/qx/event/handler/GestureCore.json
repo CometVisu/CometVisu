@@ -1,0 +1,1778 @@
+{
+  "className": "qx.event.handler.GestureCore",
+  "packageName": "qx.event.handler",
+  "name": "GestureCore",
+  "superClass": "Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 910,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2014 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christopher Zuendorf (czuendorf)\n Daniel Wagner (danielwagner)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Listens for (native or synthetic) pointer events and fires events\n for gestures like \"tap\" or \"swipe\"</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "TYPES": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 111
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "GESTURE_EVENTS": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4
+        },
+        "end": {
+          "line": 32,
+          "column": 86
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "TAP_MAX_DISTANCE": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 59
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maximum distance between a pointer-down and pointer-up event, values are configurable"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "DOUBLETAP_MAX_DISTANCE": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 65
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>values are educated guesses</p>"
+          },
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maximum distance between two subsequent taps, values are configurable"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "SWIPE_DIRECTION": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>values are educated guesses</p>"
+          },
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} The direction of a swipe relative to the axis"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "LONGTAP_TIME": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 70
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The time delta in milliseconds to fire a long tap event."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "DOUBLETAP_TIME": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Maximum time between two tap events that will still trigger a\n dbltap event."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "ROLL_FACTOR": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 19
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Factor which is used for adapting the delta of the mouse wheel\n event to the roll events,"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "TOUCHPAD_ROLL_FACTOR": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Factor which is used for adapting the delta of the touchpad gesture\n event to the roll events,"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "TOUCHPAD_WHEEL_EVENTS_THRESHOLD": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4
+        },
+        "end": {
+          "line": 74,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Minimum number of wheel events to receive during the\n TOUCHPAD_WHEEL_EVENTS_PERIOD to detect a touchpad."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "TOUCHPAD_WHEEL_EVENTS_PERIOD": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 37
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Period (in ms) during which the wheel events are counted in order\n to detect a touchpad."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "TOUCHPAD_WHEEL_EVENTS_TIMEOUT": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 39
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Timeout (in ms) after which the touchpad detection is reset if no wheel\n events are received in the meantime."
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 94,
+        "column": 14
+      },
+      "end": {
+        "line": 103,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "target {Element} DOM Element that should fire gesture events",
+          "paramName": "target",
+          "description": " DOM Element that should fire gesture events",
+          "type": "qx.event.handler.Element"
+        },
+        {
+          "name": "@param",
+          "body": "emitter {qx.event.Emitter?} Event emitter (used if dispatchEvent\n is not supported, e.g. in IE8)",
+          "paramName": "emitter",
+          "description": " Event emitter (used if dispatchEvent\n is not supported, e.g. in IE8)",
+          "optional": true,
+          "type": "qx.event.Emitter"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__defaultTarget": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__emitter": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__gesture": {
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4
+        },
+        "end": {
+          "line": 108,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__eventName": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__primaryTarget": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 110,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__isMultiPointerGesture": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4
+        },
+        "end": {
+          "line": 111,
+          "column": 34
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__initialAngle": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 112,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__lastTap": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__rollImpulseId": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__stopMomentum": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__initialDistance": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 116,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__momentum": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4
+        },
+        "end": {
+          "line": 117,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__rollEvents": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__rollEventsCountStart": {
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4
+        },
+        "end": {
+          "line": 119,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__rollEventsCount": {
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4
+        },
+        "end": {
+          "line": 120,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__touchPadDetectionPerformed": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 40
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__lastRollEventTime": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4
+        },
+        "end": {
+          "line": 122,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_initObserver": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register pointer event listeners</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_stopObserver": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4
+        },
+        "end": {
+          "line": 160,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove native pointer event listeners.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "checkAndFireGesture": {
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4
+        },
+        "end": {
+          "line": 188,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if a gesture was made and fires the gesture event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {qx.event.type.Pointer} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "qx.event.type.Pointer"
+          },
+          {
+            "name": "@param",
+            "body": "type {String ? null} type of the event",
+            "paramName": "type",
+            "description": " type of the event",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element ? null} event target",
+            "paramName": "target",
+            "description": " event target",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "gestureBegin": {
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4
+        },
+        "end": {
+          "line": 240,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method for gesture start.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "gestureMove": {
+      "location": {
+        "start": {
+          "line": 249,
+          "column": 4
+        },
+        "end": {
+          "line": 285,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method for gesture move.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_hasIntermediaryHandler": {
+      "location": {
+        "start": {
+          "line": 296,
+          "column": 4
+        },
+        "end": {
+          "line": 304,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if a DOM element located between the target of a gesture\n event and the element this handler is attached to has a gesture\n handler of its own.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element} The gesture event's target",
+            "paramName": "target",
+            "description": " The gesture event's target",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "Boolean",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "gestureFinish": {
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 4
+        },
+        "end": {
+          "line": 398,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method for gesture end.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "stopMomentum": {
+      "location": {
+        "start": {
+          "line": 406,
+          "column": 4
+        },
+        "end": {
+          "line": 408,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops the momentum scrolling currently running.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {Integer} The timeoutId of a 'roll' event",
+            "paramName": "id",
+            "description": " The timeoutId of a 'roll' event",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "gestureCancel": {
+      "location": {
+        "start": {
+          "line": 415,
+          "column": 4
+        },
+        "end": {
+          "line": 424,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancels the gesture if running.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {Number} The pointer Id.",
+            "paramName": "id",
+            "description": " The pointer Id.",
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "updateGestureTarget": {
+      "location": {
+        "start": {
+          "line": 435,
+          "column": 4
+        },
+        "end": {
+          "line": 437,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update the target of a running gesture. This is used in virtual widgets\n when the DOM element changes.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The pointer id.",
+            "paramName": "id",
+            "description": " The pointer id.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} The new target element.",
+            "paramName": "target",
+            "description": " The new target element.",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__handleRollImpulse": {
+      "location": {
+        "start": {
+          "line": 448,
+          "column": 4
+        },
+        "end": {
+          "line": 493,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method which will be called recursively to provide a momentum scrolling.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "deltaX {Number} The last offset in X direction",
+            "paramName": "deltaX",
+            "description": " The last offset in X direction",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "deltaY {Number} The last offset in Y direction",
+            "paramName": "deltaY",
+            "description": " The last offset in Y direction",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "domEvent {Event} The original gesture event",
+            "paramName": "domEvent",
+            "description": " The original gesture event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} The target of the momentum roll events",
+            "paramName": "target",
+            "description": " The target of the momentum roll events",
+            "type": "qx.event.handler.Element"
+          },
+          {
+            "name": "@param",
+            "body": "time {Number ?} The time in ms between the last two calls",
+            "paramName": "time",
+            "description": " The time in ms between the last two calls",
+            "optional": true,
+            "type": "Number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_calcAngle": {
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 4
+        },
+        "end": {
+          "line": 517,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calculates the angle of the primary and secondary pointer.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} the rotation angle of the 2 pointers.",
+            "type": "Number",
+            "description": " the rotation angle of the 2 pointers."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_calcDistance": {
+      "location": {
+        "start": {
+          "line": 524,
+          "column": 4
+        },
+        "end": {
+          "line": 539,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calculates the scaling distance between two pointers.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} the calculated distance.",
+            "type": "Number",
+            "description": " the calculated distance."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_isBelowTapMaxDistance": {
+      "location": {
+        "start": {
+          "line": 549,
+          "column": 4
+        },
+        "end": {
+          "line": 558,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the distance between the x/y coordinates of DOM event\n exceeds TAP<em>MAX</em>DISTANCE and returns the result.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} The DOM event from the browser.",
+            "paramName": "domEvent",
+            "description": " The DOM event from the browser.",
+            "type": "Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|null} true if distance is below TAP_MAX_DISTANCE.",
+            "type": "Boolean|null",
+            "description": " true if distance is below TAP_MAX_DISTANCE."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__isBelowDoubleTapDistance": {
+      "location": {
+        "start": {
+          "line": 572,
+          "column": 4
+        },
+        "end": {
+          "line": 579,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the distance between the x1/y1 and x2/y2 is\n below the TAP<em>MAX</em>DISTANCE and returns the result.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "x1 {Number} The x position of point one.",
+            "paramName": "x1",
+            "description": " The x position of point one.",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "y1 {Number} The y position of point one.",
+            "paramName": "y1",
+            "description": " The y position of point one.",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "x2 {Number} The x position of point two.",
+            "paramName": "x2",
+            "description": " The x position of point two.",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "y2 {Number} The y position of point two.",
+            "paramName": "y2",
+            "description": " The y position of point two.",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} The pointer type e.g. \"mouse\"",
+            "paramName": "type",
+            "description": " The pointer type e.g. \"mouse\"",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if points are in range",
+            "type": "Boolean",
+            "description": " <code>true</code>, if points are in range"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_getDeltaCoordinates": {
+      "location": {
+        "start": {
+          "line": 587,
+          "column": 4
+        },
+        "end": {
+          "line": 606,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calculates the delta coordinates in relation to the position on <code>pointerstart</code> event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} The DOM event from the browser.",
+            "paramName": "domEvent",
+            "description": " The DOM event from the browser.",
+            "type": "Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} containing the deltaX as x, and deltaY as y.",
+            "type": "Map",
+            "description": " containing the deltaX as x, and deltaY as y."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_fireEvent": {
+      "location": {
+        "start": {
+          "line": 617,
+          "column": 4
+        },
+        "end": {
+          "line": 649,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fire a gesture event with the given parameters</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} type of the event",
+            "paramName": "type",
+            "description": " type of the event",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element ? null} event target",
+            "paramName": "target",
+            "description": " event target",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise?} a promise, if one or more of the event handlers returned a promise",
+            "type": "qx.Promise?",
+            "description": " a promise, if one or more of the event handlers returned a promise"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onDblClick": {
+      "location": {
+        "start": {
+          "line": 658,
+          "column": 4
+        },
+        "end": {
+          "line": 662,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fire \"tap\" and \"dbltap\" events after a native \"dblclick\"\n event to fix IE 8's broken mouse event sequence.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} dblclick event",
+            "paramName": "domEvent",
+            "description": " dblclick event",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__getSwipeGesture": {
+      "location": {
+        "start": {
+          "line": 672,
+          "column": 4
+        },
+        "end": {
+          "line": 696,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the swipe gesture when the user performed a swipe.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map|null} returns the swipe data when the user performed a swipe, null if the gesture was no swipe.",
+            "type": "Map|null",
+            "description": " returns the swipe data when the user performed a swipe, null if the gesture was no swipe."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__fireTrack": {
+      "location": {
+        "start": {
+          "line": 706,
+          "column": 4
+        },
+        "end": {
+          "line": 709,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires a track event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} the track type",
+            "paramName": "type",
+            "description": " the track type",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__fireRollEvent": {
+      "location": {
+        "start": {
+          "line": 719,
+          "column": 4
+        },
+        "end": {
+          "line": 727,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires a roll event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          },
+          {
+            "name": "@param",
+            "body": "rollFactor {Integer} the roll factor to apply",
+            "paramName": "rollFactor",
+            "description": " the roll factor to apply",
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__performAdaptativeRollScrolling": {
+      "location": {
+        "start": {
+          "line": 734,
+          "column": 4
+        },
+        "end": {
+          "line": 747,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Triggers the adaptative roll scrolling.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__endTouchPadDetection": {
+      "location": {
+        "start": {
+          "line": 752,
+          "column": 4
+        },
+        "end": {
+          "line": 762,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Ends touch pad detection process.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_isTouchPadDetectionEnabled": {
+      "location": {
+        "start": {
+          "line": 769,
+          "column": 4
+        },
+        "end": {
+          "line": 771,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Is touchpad detection enabled ? Default implementation activates it only for Mac OS after Sierra (&gt;= 10.12).</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean} true if touchpad detection should occur.",
+            "type": "boolean",
+            "description": " true if touchpad detection should occur."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_fireRoll": {
+      "location": {
+        "start": {
+          "line": 782,
+          "column": 4
+        },
+        "end": {
+          "line": 837,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires a roll event after determining the roll factor to apply. Mac OS Sierra (10.12+)\n introduces a lot more wheel events fired from the trackpad, so the roll factor to be applied\n has to be reduced in order to make the scrolling less sensitive.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} The type of the dom event",
+            "paramName": "type",
+            "description": " The type of the dom event",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__fireRotate": {
+      "location": {
+        "start": {
+          "line": 846,
+          "column": 4
+        },
+        "end": {
+          "line": 852,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires a rotate event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__firePinch": {
+      "location": {
+        "start": {
+          "line": 861,
+          "column": 4
+        },
+        "end": {
+          "line": 868,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires a pinch event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__fireLongTap": {
+      "location": {
+        "start": {
+          "line": 877,
+          "column": 4
+        },
+        "end": {
+          "line": 884,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires the long tap event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} event target",
+            "paramName": "target",
+            "description": " event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__stopLongTapTimer": {
+      "location": {
+        "start": {
+          "line": 891,
+          "column": 4
+        },
+        "end": {
+          "line": 896,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops the time for the long tap event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "gesture {Map} Data may representing the gesture.",
+            "paramName": "gesture",
+            "description": " Data may representing the gesture.",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 901,
+          "column": 4
+        },
+        "end": {
+          "line": 908,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispose the current instance</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.core.IDisposable",
+      "appearsIn": [
+        "qx.core.IDisposable"
+      ]
+    }
+  },
+  "descendants": [
+    "qx.event.handler.Gesture"
+  ]
+}

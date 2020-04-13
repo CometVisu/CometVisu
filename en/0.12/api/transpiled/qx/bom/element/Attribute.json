@@ -1,0 +1,227 @@
+{
+  "className": "qx.bom.element.Attribute",
+  "packageName": "qx.bom.element",
+  "name": "Attribute",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 70,
+        "column": 0
+      },
+      "end": {
+        "line": 350,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2010 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Alexander Steitz (aback)\n   ======================================================================\n   This class contains code based on the following work:\n Prototype JS\n     http://www.prototypejs.org/\n     Version 1.5\n     Copyright:\n       (c) 2006-2007, Prototype Core Team\n     License:\n       MIT: http://www.opensource.org/licenses/mit-license.php\n     Authors:\n Prototype Core Team</p>\n<hr />\n<pre><code> Copyright (c) 2005-2008 Sam Stephenson\n Permission is hereby granted, free of charge, to any person\n obtaining a copy of this software and associated documentation\n files (the \"Software\"), to deal in the Software without restriction,\n including without limitation the rights to use, copy, modify, merge,\n publish, distribute, sublicense, and/or sell copies of the Software,\n and to permit persons to whom the Software is furnished to do so,\n subject to the following conditions:\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\n WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\n DEALINGS IN THE SOFTWARE.\n*****************************************************************\n</code></pre>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Attribute/Property handling for DOM HTML elements.\n Also includes support for HTML properties like <code>checked</code>\n or <code>value</code>. This feature set is supported cross-browser\n through one common interface and is independent of the differences between\n the multiple implementations.\n Supports applying text and HTML content using the attribute names\n <code>text</code> and <code>html</code>.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__hints": {
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4
+        },
+        "end": {
+          "line": 195,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal map of attribute conversions</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "compile": {
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4
+        },
+        "end": {
+          "line": 221,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compiles an incoming attribute map to a string which\n could be used when building HTML blocks using innerHTML.\n This method silently ignores runtime attributes like\n <code>html</code> or <code>text</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "map {Map} Map of attributes. The key is the name of the attribute.",
+            "paramName": "map",
+            "description": " Map of attributes. The key is the name of the attribute.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Returns a compiled string ready for usage.",
+            "type": "String",
+            "description": " Returns a compiled string ready for usage."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "get": {
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4
+        },
+        "end": {
+          "line": 269,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the value of the given HTML attribute</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The DOM element to query",
+            "paramName": "element",
+            "description": " The DOM element to query",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} Name of the attribute",
+            "paramName": "name",
+            "description": " Name of the attribute",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The value of the attribute",
+            "type": "var",
+            "description": " The value of the attribute"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "set": {
+      "location": {
+        "start": {
+          "line": 279,
+          "column": 4
+        },
+        "end": {
+          "line": 333,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets an HTML attribute on the given DOM element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The DOM element to modify",
+            "paramName": "element",
+            "description": " The DOM element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} Name of the attribute",
+            "paramName": "name",
+            "description": " Name of the attribute",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} New value of the attribute",
+            "paramName": "value",
+            "description": " New value of the attribute",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "reset": {
+      "location": {
+        "start": {
+          "line": 342,
+          "column": 4
+        },
+        "end": {
+          "line": 348,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets an HTML attribute on the given DOM element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The DOM element to modify",
+            "paramName": "element",
+            "description": " The DOM element to modify",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} Name of the attribute",
+            "paramName": "name",
+            "description": " Name of the attribute",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

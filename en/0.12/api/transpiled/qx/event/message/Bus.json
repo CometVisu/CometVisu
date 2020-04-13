@@ -1,0 +1,782 @@
+{
+  "className": "qx.event.message.Bus",
+  "packageName": "qx.event.message",
+  "name": "Bus",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 380,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007 Christian Boulanger\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christian Boulanger\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>A simple message bus singleton.\n The message bus registers subscriptions and notifies subscribers when\n a matching message is dispatched</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": false,
+  "isSingleton": true,
+  "statics": {
+    "getSubscriptions": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>gets the hash map of message subscriptions</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} with registered subscriptions. The key is the\n    <code>message</code> and the value is a map with <code>{subscriber: {Function},\n    context: {Object|null}}</code>.",
+            "type": "Map",
+            "description": " with registered subscriptions. The key is the\n    <code>message</code> and the value is a map with <code>{subscriber: {Function},\n    context: {Object|null}}</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "subscribe": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>subscribes to a message</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {String} name of message, can be truncated by *",
+            "paramName": "message",
+            "description": " name of message, can be truncated by *",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} subscribing callback function",
+            "paramName": "subscriber",
+            "description": " subscribing callback function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Success",
+            "type": "Boolean",
+            "description": " Success"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "checkSubscription": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>checks if subscription is already present\n if you supply the callback function, match only the exact message monitor\n otherwise match all monitors that have the given message</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {String} Name of message, can be truncated by *",
+            "paramName": "message",
+            "description": " Name of message, can be truncated by *",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Callback Function",
+            "paramName": "subscriber",
+            "description": " Callback Function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} execution context",
+            "paramName": "context",
+            "description": " execution context",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether monitor is present or not",
+            "type": "Boolean",
+            "description": " Whether monitor is present or not"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unsubscribe": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 88,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>unsubscribe a listening method\n if you supply the callback function and execution context,\n remove only this exact subscription\n otherwise remove all subscriptions</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {String} Name of message, can be truncated by *",
+            "paramName": "message",
+            "description": " Name of message, can be truncated by *",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Callback Function",
+            "paramName": "subscriber",
+            "description": " Callback Function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} execution context",
+            "paramName": "context",
+            "description": " execution context",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether monitor was removed or not",
+            "type": "Boolean",
+            "description": " Whether monitor was removed or not"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dispatch": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>dispatch message and call subscribed functions</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "msg {qx.event.message.Message} message which is being dispatched",
+            "paramName": "msg",
+            "description": " message which is being dispatched",
+            "type": "qx.event.message.Message"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise.",
+            "type": "Boolean",
+            "description": " <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dispatchByName": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatches a new message by supplying the name of the\n message and its data.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} name of the message",
+            "paramName": "name",
+            "description": " name of the message",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} Any type of data to attach",
+            "paramName": "data",
+            "description": " Any type of data to attach",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise.",
+            "type": "Boolean",
+            "description": " <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 121,
+        "column": 14
+      },
+      "end": {
+        "line": 127,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>constructor</p>"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__subscriptions": {
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4
+        },
+        "end": {
+          "line": 131,
+          "column": 26
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getSubscriptions": {
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4
+        },
+        "end": {
+          "line": 143,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>gets the hash map of message subscriptions</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} with registered subscriptions. The key is the\n    <code>message</code> and the value is a map with <code>{subscriber: {Function},\n    context: {Object|null}}</code>.",
+            "type": "Map",
+            "description": " with registered subscriptions. The key is the\n    <code>message</code> and the value is a map with <code>{subscriber: {Function},\n    context: {Object|null}}</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "subscribe": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 192,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>subscribes to a message</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {String} name of message, can be truncated by *",
+            "paramName": "message",
+            "description": " name of message, can be truncated by *",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} subscribing callback function",
+            "paramName": "subscriber",
+            "description": " subscribing callback function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Success",
+            "type": "Boolean",
+            "description": " Success"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "checkSubscription": {
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4
+        },
+        "end": {
+          "line": 226,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>checks if subscription is already present\n if you supply the callback function, match only the exact message monitor\n otherwise match all monitors that have the given message</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {String} Name of message, can be truncated by *",
+            "paramName": "message",
+            "description": " Name of message, can be truncated by *",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Callback Function",
+            "paramName": "subscriber",
+            "description": " Callback Function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} execution context",
+            "paramName": "context",
+            "description": " execution context",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether monitor is present or not",
+            "type": "Boolean",
+            "description": " Whether monitor is present or not"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unsubscribe": {
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4
+        },
+        "end": {
+          "line": 269,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>unsubscribe a listening method\n if you supply the callback function and execution context,\n remove only this exact subscription\n otherwise remove all subscriptions</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {String} Name of message, can be truncated by *",
+            "paramName": "message",
+            "description": " Name of message, can be truncated by *",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Callback Function",
+            "paramName": "subscriber",
+            "description": " Callback Function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} execution context",
+            "paramName": "context",
+            "description": " execution context",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether monitor was removed or not",
+            "type": "Boolean",
+            "description": " Whether monitor was removed or not"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dispatch": {
+      "location": {
+        "start": {
+          "line": 278,
+          "column": 4
+        },
+        "end": {
+          "line": 309,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>dispatch message and call subscribed functions</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "msg {qx.event.message.Message} message which is being dispatched",
+            "paramName": "msg",
+            "description": " message which is being dispatched",
+            "type": "qx.event.message.Message"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise.",
+            "type": "Boolean",
+            "description": " <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dispatchByName": {
+      "location": {
+        "start": {
+          "line": 321,
+          "column": 4
+        },
+        "end": {
+          "line": 334,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatches a new message by supplying the name of the\n message and its data.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} name of the message",
+            "paramName": "name",
+            "description": " name of the message",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} Any type of data to attach",
+            "paramName": "data",
+            "description": " Any type of data to attach",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise.",
+            "type": "Boolean",
+            "description": " <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__callSubscribers": {
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 4
+        },
+        "end": {
+          "line": 378,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Call subscribers with passed message.\n Each currently-subscribed subscriber function will be called in\n turn. Any requests to unsubscribe a subscriber from the list, while\n processing the currently-subscribed subscriber functions, will take\n effect after all currently-subscribed subscriber functions have been\n processed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "subscribers {Array} subscribers to call",
+            "paramName": "subscribers",
+            "description": " subscribers to call",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "msg {qx.event.message.Message} message for subscribers",
+            "paramName": "msg",
+            "description": " message for subscribers",
+            "type": "qx.event.message.Message"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    }
+  },
+  "descendants": []
+}

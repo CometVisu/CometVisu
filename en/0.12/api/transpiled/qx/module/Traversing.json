@@ -1,0 +1,2191 @@
+{
+  "className": "qx.module.Traversing",
+  "packageName": "qx.module",
+  "name": "Traversing",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 0
+      },
+      "end": {
+        "line": 927,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2011-2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n Daniel Wagner (danielwagner)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>DOM traversal module</p>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.dom.Hierarchy#getSiblings"
+        },
+        {
+          "name": "@require",
+          "body": "qx.dom.Hierarchy#getNextSiblings"
+        },
+        {
+          "name": "@require",
+          "body": "qx.dom.Hierarchy#getPreviousSiblings"
+        },
+        {
+          "name": "@require",
+          "body": "qx.dom.Hierarchy#contains"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Core"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "EQUALITY_ATTRIBUTES": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>String attributes used to determine if two DOM nodes are equal\n as defined in <a href=\"http://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-isEqualNode\">\n DOM Level 3</a></p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__getAncestors": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for getAncestors and getAncestorsUntil</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} Selector that indicates where to stop including\n ancestor elements",
+            "paramName": "selector",
+            "description": " Selector that indicates where to stop including\n ancestor elements",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "filter {String?null} Optional selector to match",
+            "paramName": "filter",
+            "description": " Optional selector to match",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Collection containing the ancestor elements",
+            "type": "qxWeb",
+            "description": " Collection containing the ancestor elements"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getElementFromArgument": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 94,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper which returns the element from the given argument. If it's a collection,\n it returns it's first child. If it's a string, it tries to use the string\n as selector and returns the first child of the new collection.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "arg {Node|String|qxWeb} The element.",
+            "paramName": "arg",
+            "description": " The element.",
+            "type": [
+              "Node",
+              "String",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Node|var} If a node can be extracted, the node element will be return.\n   If not, at given argument will be returned.",
+            "type": "Node|var",
+            "description": " If a node can be extracted, the node element will be return.\n   If not, at given argument will be returned."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getNodeFromArgument": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 113,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper that attempts to convert the given argument into a DOM node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "arg {var} object to convert",
+            "paramName": "arg",
+            "description": " object to convert",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Node|null} DOM node or null if the conversion failed",
+            "type": "Node|null",
+            "description": " DOM node or null if the conversion failed"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getAttributes": {
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4
+        },
+        "end": {
+          "line": 136,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a map containing the given DOM node's attribute names\n and values</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node} DOM node",
+            "paramName": "node",
+            "description": " DOM node",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map of attribute names/values",
+            "type": "Map",
+            "description": " Map of attribute names/values"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__hierarchyHelper": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4
+        },
+        "end": {
+          "line": 171,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper function that iterates over a set of items and applies the given\n qx.dom.Hierarchy method to each entry, storing the results in a new Array.\n Duplicates are removed and the items are filtered if a selector is\n provided.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "collection {Array} Collection to iterate over (any Array-like object)",
+            "paramName": "collection",
+            "description": " Collection to iterate over (any Array-like object)",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "method {String} Name of the qx.dom.Hierarchy method to apply",
+            "paramName": "method",
+            "description": " Name of the qx.dom.Hierarchy method to apply",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "selector {String?} Optional selector that elements to be included\n must match",
+            "paramName": "selector",
+            "description": " Optional selector that elements to be included\n must match",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Result array",
+            "type": "Array",
+            "description": " Result array"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "isElement": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4
+        },
+        "end": {
+          "line": 183,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the given object is a DOM element</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {Object|String|qxWeb} Object to check",
+            "paramName": "selector",
+            "description": " Object to check",
+            "type": [
+              "Object",
+              "String",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the object is a DOM element",
+            "type": "Boolean",
+            "description": " <code>true</code> if the object is a DOM element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isNode": {
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 4
+        },
+        "end": {
+          "line": 195,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the given object is a DOM node</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {Node|String|qxWeb} Object to check",
+            "paramName": "selector",
+            "description": " Object to check",
+            "type": [
+              "Node",
+              "String",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the object is a DOM node",
+            "type": "Boolean",
+            "description": " <code>true</code> if the object is a DOM node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isNodeName": {
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4
+        },
+        "end": {
+          "line": 208,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the node has the given node name</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {Node|String|qxWeb} the node to check",
+            "paramName": "selector",
+            "description": " the node to check",
+            "type": [
+              "Node",
+              "String",
+              "qxWeb"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "nodeName {String} the node name to check for",
+            "paramName": "nodeName",
+            "description": " the node name to check for",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the node has the given name",
+            "type": "Boolean",
+            "description": " <code>true</code> if the node has the given name"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isDocument": {
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4
+        },
+        "end": {
+          "line": 224,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the given object is a DOM document object</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Object|qxWeb} Object to check. If the value is a qxWeb\n collection, isDocument will check the first item.",
+            "paramName": "node",
+            "description": " Object to check. If the value is a qxWeb\n collection, isDocument will check the first item.",
+            "type": [
+              "Object",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the object is a DOM document",
+            "type": "Boolean",
+            "description": " <code>true</code> if the object is a DOM document"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isDocumentFragment": {
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4
+        },
+        "end": {
+          "line": 240,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the given object is a DOM document fragment object</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Object|qxWeb} Object to check. If the value is a qxWeb\n collection, isDocumentFragment will check the first item.",
+            "paramName": "node",
+            "description": " Object to check. If the value is a qxWeb\n collection, isDocumentFragment will check the first item.",
+            "type": [
+              "Object",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the object is a DOM document fragment",
+            "type": "Boolean",
+            "description": " <code>true</code> if the object is a DOM document fragment"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getWindow": {
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4
+        },
+        "end": {
+          "line": 252,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the DOM2 <code>defaultView</code> (window) for the given node.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {Node|Document|Window|String|qxWeb} Node to inspect",
+            "paramName": "selector",
+            "description": " Node to inspect",
+            "type": [
+              "Node",
+              "Document",
+              "Window",
+              "String",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Window} the <code>defaultView</code> for the given node",
+            "type": "Window",
+            "description": " the <code>defaultView</code> for the given node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isTextNode": {
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4
+        },
+        "end": {
+          "line": 263,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether the given object is a DOM text node</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} the object to be tested",
+            "paramName": "obj",
+            "description": " the object to be tested",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the object is a textNode",
+            "type": "Boolean",
+            "description": " <code>true</code> if the object is a textNode"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isWindow": {
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 4
+        },
+        "end": {
+          "line": 279,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check whether the given object is a browser window object.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object|qxWeb} the object to be tested. If the value\n is a qxWeb collection, isDocument will check the first item.",
+            "paramName": "obj",
+            "description": " the object to be tested. If the value\n is a qxWeb collection, isDocument will check the first item.",
+            "type": [
+              "Object",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the object is a window object",
+            "type": "Boolean",
+            "description": " <code>true</code> if the object is a window object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDocument": {
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 4
+        },
+        "end": {
+          "line": 291,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the owner document of the given node</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {Node|String|qxWeb} Node to get the document for",
+            "paramName": "selector",
+            "description": " Node to get the document for",
+            "type": [
+              "Node",
+              "String",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Document|null} The document of the given DOM node",
+            "type": "Document|null",
+            "description": " The document of the given DOM node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNodeName": {
+      "location": {
+        "start": {
+          "line": 300,
+          "column": 4
+        },
+        "end": {
+          "line": 302,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the DOM node's name as a lowercase string</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {Node|String|qxWeb} DOM Node",
+            "paramName": "selector",
+            "description": " DOM Node",
+            "type": [
+              "Node",
+              "String",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} node name",
+            "type": "String",
+            "description": " node name"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNodeText": {
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4
+        },
+        "end": {
+          "line": 316,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the text content of a node where the node type may be one of\n NODE<em>ELEMENT, NODE</em>ATTRIBUTE, NODE<em>TEXT, NODE</em>CDATA</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {Node|String|qxWeb} the node from where the search should start. If the\n node has subnodes the text contents are recursively retrieved and joined",
+            "paramName": "selector",
+            "description": " the node from where the search should start. If the\n node has subnodes the text contents are recursively retrieved and joined",
+            "type": [
+              "Node",
+              "String",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the joined text content of the given node or null if not\n appropriate.",
+            "type": "String",
+            "description": " the joined text content of the given node or null if not\n appropriate."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isBlockNode": {
+      "location": {
+        "start": {
+          "line": 325,
+          "column": 4
+        },
+        "end": {
+          "line": 327,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the given node is a block node</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {Node|String|qxWeb} the node to check",
+            "paramName": "selector",
+            "description": " the node to check",
+            "type": [
+              "Node",
+              "String",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the node is a block node",
+            "type": "Boolean",
+            "description": " <code>true</code> if the node is a block node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "equalNodes": {
+      "location": {
+        "start": {
+          "line": 340,
+          "column": 4
+        },
+        "end": {
+          "line": 402,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determines if two DOM nodes are equal as defined in the\n <a href=\"http://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-isEqualNode\">DOM Level 3 isEqualNode spec</a>.\n Also works in legacy browsers without native <em>isEqualNode</em> support.</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node1 {String|Element|Element[]|qxWeb} first object to compare",
+            "paramName": "node1",
+            "description": " first object to compare",
+            "type": [
+              "String",
+              "Element",
+              {
+                "type": "Element",
+                "dimensions": 2
+              },
+              "qxWeb"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "node2 {String|Element|Element[]|qxWeb} second object to compare",
+            "paramName": "node2",
+            "description": " second object to compare",
+            "type": [
+              "String",
+              "Element",
+              {
+                "type": "Element",
+                "dimensions": 2
+              },
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the nodes are equal",
+            "type": "Boolean",
+            "description": " <code>true</code> if the nodes are equal"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__getAncestors": {
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 4
+        },
+        "end": {
+          "line": 409,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "add": {
+      "location": {
+        "start": {
+          "line": 419,
+          "column": 4
+        },
+        "end": {
+          "line": 431,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an element to the collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "el {Element|qxWeb} DOM element to add to the collection.\n If a collection is given, only the first element will be added",
+            "paramName": "el",
+            "description": " DOM element to add to the collection.\n If a collection is given, only the first element will be added",
+            "type": [
+              "Element",
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": " The collection for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getChildren": {
+      "location": {
+        "start": {
+          "line": 444,
+          "column": 4
+        },
+        "end": {
+          "line": 454,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a set of elements containing all of the unique immediate children of\n each of the matched set of elements.\n This set can be filtered with an optional expression that will cause only\n elements matching the selector to be collected.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String?null} Optional selector to match",
+            "paramName": "selector",
+            "description": " Optional selector to match",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Collection containing the child elements",
+            "type": "qxWeb",
+            "description": " Collection containing the child elements"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "forEach": {
+      "location": {
+        "start": {
+          "line": 470,
+          "column": 4
+        },
+        "end": {
+          "line": 475,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executes the provided callback function once for each item in the\n collection.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fn {Function} Callback function which is called with two parameters\n <ul>\n  <li>current item - DOM node</li>\n  <li>current index - Number</li>\n </ul>",
+            "paramName": "fn",
+            "description": " Callback function which is called with two parameters\n <ul>\n  <li>current item - DOM node</li>\n  <li>current index - Number</li>\n </ul>",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "ctx {Object} Context object",
+            "paramName": "ctx",
+            "description": " Context object",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": " The collection for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getParents": {
+      "location": {
+        "start": {
+          "line": 488,
+          "column": 4
+        },
+        "end": {
+          "line": 498,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a set of elements containing the parent of each element in the\n collection.\n This set can be filtered with an optional expression that will cause only\n elements matching the selector to be collected.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String?null} Optional selector to match",
+            "paramName": "selector",
+            "description": " Optional selector to match",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Collection containing the parent elements",
+            "type": "qxWeb",
+            "description": " Collection containing the parent elements"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isChildOf": {
+      "location": {
+        "start": {
+          "line": 510,
+          "column": 4
+        },
+        "end": {
+          "line": 525,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if any element of the current collection is child of any element of a given\n parent collection.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parent {qxWeb | String} Collection or selector of the parent collection to check.",
+            "paramName": "parent",
+            "description": " Collection or selector of the parent collection to check.",
+            "type": [
+              "qxWeb",
+              "String"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns true if at least one element of the current collection is child of the parent collection",
+            "type": "Boolean",
+            "description": " Returns true if at least one element of the current collection is child of the parent collection"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAncestors": {
+      "location": {
+        "start": {
+          "line": 538,
+          "column": 4
+        },
+        "end": {
+          "line": 540,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a set of elements containing all ancestors of each element in the\n collection.\n This set can be filtered with an optional expression that will cause only\n elements matching the selector to be collected.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filter {String?null} Optional selector to match",
+            "paramName": "filter",
+            "description": " Optional selector to match",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Collection containing the ancestor elements",
+            "type": "qxWeb",
+            "description": " Collection containing the ancestor elements"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getAncestorsUntil": {
+      "location": {
+        "start": {
+          "line": 556,
+          "column": 4
+        },
+        "end": {
+          "line": 558,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a set of elements containing all ancestors of each element in the\n collection, up to (but not including) the element matched by the provided\n selector.\n This set can be filtered with an optional expression that will cause only\n elements matching the selector to be collected.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} Selector that indicates where to stop including\n ancestor elements",
+            "paramName": "selector",
+            "description": " Selector that indicates where to stop including\n ancestor elements",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "filter {String?null} Optional selector to match",
+            "paramName": "filter",
+            "description": " Optional selector to match",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Collection containing the ancestor elements",
+            "type": "qxWeb",
+            "description": " Collection containing the ancestor elements"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getClosest": {
+      "location": {
+        "start": {
+          "line": 571,
+          "column": 4
+        },
+        "end": {
+          "line": 591,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a set containing the closest matching ancestor for each item in\n the collection.\n If the item itself matches, it is added to the new set. Otherwise, the\n item's parent chain will be traversed until a match is found.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} Selector expression to match",
+            "paramName": "selector",
+            "description": " Selector expression to match",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New collection containing the closest matching ancestors",
+            "type": "qxWeb",
+            "description": " New collection containing the closest matching ancestors"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "find": {
+      "location": {
+        "start": {
+          "line": 603,
+          "column": 4
+        },
+        "end": {
+          "line": 609,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Searches the child elements of each item in the collection and returns\n a new collection containing the children that match the provided selector</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} Selector expression to match the child elements\n against",
+            "paramName": "selector",
+            "description": " Selector expression to match the child elements\n against",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New collection containing the matching child elements",
+            "type": "qxWeb",
+            "description": " New collection containing the matching child elements"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getContents": {
+      "location": {
+        "start": {
+          "line": 619,
+          "column": 4
+        },
+        "end": {
+          "line": 625,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a new set of elements containing the child nodes of each item in the\n current set.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New collection containing the child nodes",
+            "type": "qxWeb",
+            "description": " New collection containing the child nodes"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "is": {
+      "location": {
+        "start": {
+          "line": 637,
+          "column": 4
+        },
+        "end": {
+          "line": 642,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if at least one element in the collection passes the provided\n filter. This can be either a selector expression or a filter\n function</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String|Function} Selector expression or filter function",
+            "paramName": "selector",
+            "description": " Selector expression or filter function",
+            "type": [
+              "String",
+              "Function"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if at least one element matches",
+            "type": "Boolean",
+            "description": " <code>true</code> if at least one element matches"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "eq": {
+      "location": {
+        "start": {
+          "line": 652,
+          "column": 4
+        },
+        "end": {
+          "line": 654,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reduce the set of matched elements to a single element.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Number} The position of the element in the collection",
+            "paramName": "index",
+            "description": " The position of the element in the collection",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} A new collection containing one element",
+            "type": "qxWeb",
+            "description": " A new collection containing one element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getFirst": {
+      "location": {
+        "start": {
+          "line": 663,
+          "column": 4
+        },
+        "end": {
+          "line": 665,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reduces the collection to the first element.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} A new collection containing one element",
+            "type": "qxWeb",
+            "description": " A new collection containing one element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getLast": {
+      "location": {
+        "start": {
+          "line": 674,
+          "column": 4
+        },
+        "end": {
+          "line": 676,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reduces the collection to the last element.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} A new collection containing one element",
+            "type": "qxWeb",
+            "description": " A new collection containing one element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "has": {
+      "location": {
+        "start": {
+          "line": 687,
+          "column": 4
+        },
+        "end": {
+          "line": 697,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a collection containing only the elements that have descendants\n matching the given selector</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} Selector expression",
+            "paramName": "selector",
+            "description": " Selector expression",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} a new collection containing only elements with matching descendants",
+            "type": "qxWeb",
+            "description": " a new collection containing only elements with matching descendants"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "contains": {
+      "location": {
+        "start": {
+          "line": 710,
+          "column": 4
+        },
+        "end": {
+          "line": 730,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a new collection containing only those nodes that\n contain the given element. Also accepts a qxWeb\n collection or an Array of elements. In those cases, the first element\n in the list is used.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element|Window|Element[]|qxWeb} element to check for.",
+            "paramName": "element",
+            "description": " element to check for.",
+            "type": [
+              "Element",
+              "Window",
+              {
+                "type": "Element",
+                "dimensions": 2
+              },
+              "qxWeb"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Collection with matching items",
+            "type": "qxWeb",
+            "description": " Collection with matching items"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNext": {
+      "location": {
+        "start": {
+          "line": 743,
+          "column": 4
+        },
+        "end": {
+          "line": 749,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a collection containing the next sibling element of each item in\n the current set.\n This set can be filtered with an optional expression that will cause only\n elements matching the selector to be collected.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String?} Optional selector expression",
+            "paramName": "selector",
+            "description": " Optional selector expression",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New set containing next siblings",
+            "type": "qxWeb",
+            "description": " New set containing next siblings"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNextAll": {
+      "location": {
+        "start": {
+          "line": 762,
+          "column": 4
+        },
+        "end": {
+          "line": 765,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a collection containing all following sibling elements of each\n item in the current set.\n This set can be filtered with an optional expression that will cause only\n elements matching the selector to be collected.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String?} Optional selector expression",
+            "paramName": "selector",
+            "description": " Optional selector expression",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New set containing following siblings",
+            "type": "qxWeb",
+            "description": " New set containing following siblings"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getNextUntil": {
+      "location": {
+        "start": {
+          "line": 777,
+          "column": 4
+        },
+        "end": {
+          "line": 790,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a collection containing the following sibling elements of each\n item in the current set up to but not including any element that matches\n the given selector.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String?} Optional selector expression",
+            "paramName": "selector",
+            "description": " Optional selector expression",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New set containing following siblings",
+            "type": "qxWeb",
+            "description": " New set containing following siblings"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPrev": {
+      "location": {
+        "start": {
+          "line": 803,
+          "column": 4
+        },
+        "end": {
+          "line": 809,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a collection containing the previous sibling element of each item in\n the current set.\n This set can be filtered with an optional expression that will cause only\n elements matching the selector to be collected.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String?} Optional selector expression",
+            "paramName": "selector",
+            "description": " Optional selector expression",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New set containing previous siblings",
+            "type": "qxWeb",
+            "description": " New set containing previous siblings"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPrevAll": {
+      "location": {
+        "start": {
+          "line": 822,
+          "column": 4
+        },
+        "end": {
+          "line": 825,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a collection containing all preceding sibling elements of each\n item in the current set.\n This set can be filtered with an optional expression that will cause only\n elements matching the selector to be collected.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String?} Optional selector expression",
+            "paramName": "selector",
+            "description": " Optional selector expression",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New set containing preceding siblings",
+            "type": "qxWeb",
+            "description": " New set containing preceding siblings"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPrevUntil": {
+      "location": {
+        "start": {
+          "line": 837,
+          "column": 4
+        },
+        "end": {
+          "line": 850,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a collection containing the preceding sibling elements of each\n item in the current set up to but not including any element that matches\n the given selector.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String?} Optional selector expression",
+            "paramName": "selector",
+            "description": " Optional selector expression",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New set containing preceding siblings",
+            "type": "qxWeb",
+            "description": " New set containing preceding siblings"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getSiblings": {
+      "location": {
+        "start": {
+          "line": 863,
+          "column": 4
+        },
+        "end": {
+          "line": 866,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a collection containing all sibling elements of the items in the\n current set.\n This set can be filtered with an optional expression that will cause only\n elements matching the selector to be collected.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String?} Optional selector expression",
+            "paramName": "selector",
+            "description": " Optional selector expression",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New set containing sibling elements",
+            "type": "qxWeb",
+            "description": " New set containing sibling elements"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "not": {
+      "location": {
+        "start": {
+          "line": 877,
+          "column": 4
+        },
+        "end": {
+          "line": 888,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove elements from the collection that do not pass the given filter.\n This can be either a selector expression or a filter function</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String|Function} Selector or filter function",
+            "paramName": "selector",
+            "description": " Selector or filter function",
+            "type": [
+              "String",
+              "Function"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Reduced collection",
+            "type": "qxWeb",
+            "description": " Reduced collection"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getOffsetParent": {
+      "location": {
+        "start": {
+          "line": 898,
+          "column": 4
+        },
+        "end": {
+          "line": 900,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a new collection containing the offset parent of each item in the\n current set.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} New collection containing offset parents",
+            "type": "qxWeb",
+            "description": " New collection containing offset parents"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isRendered": {
+      "location": {
+        "start": {
+          "line": 911,
+          "column": 4
+        },
+        "end": {
+          "line": 916,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the first element in the collection is inserted into\n the document for which it was created.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> when the element is inserted\n    into the document.",
+            "type": "Boolean",
+            "description": " <code>true</code> when the element is inserted\n    into the document."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 920,
+        "column": 10
+      },
+      "end": {
+        "line": 926,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/ui/manager/editor/IEditor.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "properties",
+    "file",
+    "check",
+    "nullable",
+    "apply",
+    "statics",
+    "TITLE",
+    "members",
+    "save",
+    "getCurrentContent",
+    "cv",
+    "ui",
+    "manager",
+    "editor",
+    "IEditor"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;AAGAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,8BAApB,EAAoD;AAClD;;;;;AAKAC,IAAAA,UAAU,EAAE;AACVC,MAAAA,IAAI,EAAE;AACJC,QAAAA,KAAK,EAAE,8BADH;AAEJC,QAAAA,QAAQ,EAAE,IAFN;AAGJC,QAAAA,KAAK,EAAE;AAHH;AADI,KANsC;;AAclD;;;;;AAKAC,IAAAA,OAAO,EAAE;AACPC,MAAAA,KAAK,EAAE;AADA,KAnByC;;AAuBlD;;;;;AAKAC,IAAAA,OAAO,EAAE;AACPC,MAAAA,IAAI,EAAE,gBAAY,CAAE,CADb;AAGPC,MAAAA,iBAAiB,EAAE,6BAAY,CAAE;AAH1B;AA5ByC,GAApD;AAHAC,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,MAAd,CAAqBC,OAArB,CAA6BjB,aAA7B,GAA6CA,aAA7C",
+  "sourcesContent": [
+    "/**\n * Interface all file editors must implement.\n */\nqx.Interface.define('cv.ui.manager.editor.IEditor', {\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    file: {\n      check: 'cv.ui.manager.model.FileItem',\n      nullable: true,\n      apply: '_loadFile'\n    }\n  },\n\n  /*\n  ***********************************************\n    STATICS\n  ***********************************************\n  */\n  statics: {\n    TITLE: ''\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    save: function () {},\n\n    getCurrentContent: function () {}\n  }\n});\n"
+  ]
+}

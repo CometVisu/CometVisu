@@ -1,0 +1,22 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/core/IDisposable.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "dispose",
+    "core",
+    "IDisposable"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;;AAQAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,qBAApB,EAA2C;AAE1CC,IAAAA,OAAO,EAAE;AACN;;;;AAIFC,MAAAA,OAAO,EAAE,mBAAW,CAEnB;AAPO;AAFiC,GAA3C;AA1BAP,EAAAA,EAAE,CAACQ,IAAH,CAAQC,WAAR,CAAoBN,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2016 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (john.spackman@zenesis.com)\n\n************************************************************************ */\n\n/**\n * Classes which implement this interface are required to be disposed when they are\n * no longer needed, by calling .dispose(); they are also registered with qx.core.ObjectRegistry\n * so that qx.core.ObjectRegistry.fromHashCode() will work.\n * \n * Note that classes do not have to implement this interface in order to provide a dispose\n * method and/or a destructor. \n */\nqx.Interface.define(\"qx.core.IDisposable\", {\n\t\n\tmembers: {\n    /**\n     * Dispose this object\n     *\n     */\n\t\tdispose: function() {\n\t\t\t\n\t\t}\n\t}\n});"
+  ]
+}

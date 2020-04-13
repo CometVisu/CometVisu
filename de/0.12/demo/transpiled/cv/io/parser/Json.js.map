@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/client/source/class/cv/io/parser/Json.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "parse",
+    "data",
+    "result",
+    "JSON",
+    "e",
+    "split",
+    "forEach",
+    "subData",
+    "i",
+    "jsonString",
+    "Object",
+    "assign",
+    "se",
+    "log",
+    "Logger",
+    "error",
+    "cv",
+    "io",
+    "parser",
+    "Json"
+  ],
+  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;AAKAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,mBAAhB,EAAqC;AACnCC,IAAAA,IAAI,EAAE,QAD6B;;AAGnC;;;;;AAKAC,IAAAA,OAAO,EAAE;AACPC,MAAAA,KAAK,EAiBG,eAASC,IAAT,EAAe;AACnB,YAAIC,MAAM,GAAG,EAAb;;AACA,YAAI;AACFA,UAAAA,MAAM,GAAGC,IAAI,CAACH,KAAL,CAAWC,IAAX,CAAT;AACD,SAFD,CAEE,OAAOG,CAAP,EAAU;AACVH,UAAAA,IAAI,CAACI,KAAL,CAAW,IAAX,EAAiBC,OAAjB,CAAyB,UAASC,OAAT,EAAkBC,CAAlB,EAAqB;AAC5C,gBAAI;AACF,kBAAIC,UAAU,GAAGD,CAAC,KAAK,CAAN,GAAUD,OAAO,GAAG,GAApB,GAA0B,MAAMA,OAAjD;AACAL,cAAAA,MAAM,GAAGQ,MAAM,CAACC,MAAP,CAAcT,MAAd,EAAsBC,IAAI,CAACH,KAAL,CAAWS,UAAX,CAAtB,CAAT;AACD,aAHD,CAGE,OAAOG,EAAP,EAAW;AACXpB,cAAAA,EAAE,CAACqB,GAAH,CAAOC,MAAP,CAAcC,KAAd,CAAoBH,EAApB;AACD;AACF,WAPD,EAOG,IAPH;AAQD;;AACD,eAAOV,MAAP;AACD;AAjCI;AAR0B,GAArC;AALAc,EAAAA,EAAE,CAACC,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBxB,aAAlB,GAAkCA,aAAlC",
+  "sourcesContent": [
+    "/**\n * Sometimes the openHAB1 backend returns invalid JSON (e.g. multiple JSON object in one string)\n * This parser can handle those strings\n * @ignore($)\n */\nqx.Class.define('cv.io.parser.Json', {\n  type: \"static\",\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    parse: qx.core.Environment.select(\"cv.xhr\", {\n      \"jquery\": function(data) {\n        var result = {};\n        try {\n          result = JSON.parse(data);\n        } catch (e) {\n          data.split(\"}{\").forEach(function(subData, i) {\n            try {\n              var jsonString = i === 0 ? subData + \"}\" : \"{\" + subData;\n              result = $.extend(result, JSON.parse(jsonString));\n            } catch (se) {\n              qx.log.Logger.error(se);\n            }\n          }, this);\n        }\n        return result;\n      },\n      \"qx\": function(data) {\n        var result = {};\n        try {\n          result = JSON.parse(data);\n        } catch (e) {\n          data.split(\"}{\").forEach(function(subData, i) {\n            try {\n              var jsonString = i === 0 ? subData + \"}\" : \"{\" + subData;\n              result = Object.assign(result, JSON.parse(jsonString));\n            } catch (se) {\n              qx.log.Logger.error(se);\n            }\n          }, this);\n        }\n        return result;\n      }\n    })\n  }\n});"
+  ]
+}

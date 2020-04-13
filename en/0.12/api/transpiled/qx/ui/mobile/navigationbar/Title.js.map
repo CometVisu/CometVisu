@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/mobile/navigationbar/Title.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "mobile",
+    "basic",
+    "Label",
+    "properties",
+    "wrap",
+    "refine",
+    "init",
+    "defaultCssClass",
+    "members",
+    "_getTagName",
+    "navigationbar",
+    "Title"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,kCAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,KAAb,CAAmBC,KAD9B;AAGEC,IAAAA,UAAU,EACV;AACEC,MAAAA,IAAI,EACJ;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAFF;AAQE;AACAC,MAAAA,eAAe,EACf;AACEF,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAVF,KAJF;;AAqBE;;;;;AAMAE,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,WAAW,EAAG,uBACd;AACE,eAAO,IAAP;AACD;AALH;AA5BF,GADA;AArBAjB,EAAAA,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaU,aAAb,CAA2BC,KAA3B,CAAiChB,aAAjC,GAAiDA,aAAjD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\n/**\n * A navigation bar title widget.\n */\nqx.Class.define(\"qx.ui.mobile.navigationbar.Title\",\n{\n  extend : qx.ui.mobile.basic.Label,\n\n  properties :\n  {\n    wrap :\n    {\n      refine : true,\n      init : false\n    },\n\n\n    // overridden\n    defaultCssClass :\n    {\n      refine : true,\n      init : \"title\"\n    }\n  },\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    // overridden\n    _getTagName : function()\n    {\n      return \"h1\";\n    }\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "className": "qx.ui.form.IExecutable",
+  "packageName": "qx.ui.form",
+  "name": "IExecutable",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 79,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Form interface for all form widgets which are executable in some way. This\n could be a button for example.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "events": {
+    "execute": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 37,
+          "column": 36
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the widget is executed. Sets the \"data\" property of the\n event to the object that issued the command.</p>"
+          }
+        ]
+      },
+      "name": "execute",
+      "type": "qx.event.type.Data"
+    }
+  },
+  "members": {
+    "setCommand": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  COMMAND PROPERTY\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Set the command of this executable.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "command {qx.ui.command.Command} The command.",
+            "paramName": "command",
+            "description": " The command.",
+            "type": "qx.ui.command.Command"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getCommand": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the current set command of this executable.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.command.Command} The current set command.",
+            "type": "qx.ui.command.Command",
+            "description": " The current set command."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "execute": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 26
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fire the \"execute\" event on the command.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

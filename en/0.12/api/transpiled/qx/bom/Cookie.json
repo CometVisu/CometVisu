@@ -1,0 +1,203 @@
+{
+  "className": "qx.bom.Cookie",
+  "packageName": "qx.bom",
+  "name": "Cookie",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 0
+      },
+      "end": {
+        "line": 153,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>A wrapper for Cookie handling.\n Previous versions of qooxoo use <code>escape()</code> and <code>unescape()</code> functions. Since those functions\n are deprecated, then now qooxdoo use <code>encodeURIComponent()</code> and <code>decodeURIComponent()</code> functions.\n This may break some cookies.\n There are no issues with special characters like <code>~!@#$%^&amp;*(){}[]=:/,;?+\\'\"\\\\</code> but some unicode\n characters like <code>äëíöü</code> (etc) are encoded different by <code>escape()</code> and <code>encodeURIComponent()</code>,\n so you must take care of this change if you use unicode characters.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "get": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  USER APPLICATION METHODS\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Returns the string value of a cookie.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key for the saved string value.",
+            "paramName": "key",
+            "description": " The key for the saved string value.",
+            "type": "qx.bom.String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null | String} Returns the saved string value, if the cookie\n    contains a value for the key, <code>null</code> otherwise.",
+            "type": "null | String",
+            "description": " Returns the saved string value, if the cookie\n    contains a value for the key, <code>null</code> otherwise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "set": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 120,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the string value of a cookie.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key for the string value.",
+            "paramName": "key",
+            "description": " The key for the string value.",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "value {String} The string value.",
+            "paramName": "value",
+            "description": " The string value.",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "expires {Number?null} The expires in days starting from now,\n    or <code>null</code> if the cookie should deleted after browser close.",
+            "paramName": "expires",
+            "description": " The expires in days starting from now,\n    or <code>null</code> if the cookie should deleted after browser close.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "path {String?null} Path value.",
+            "paramName": "path",
+            "description": " Path value.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "domain {String?null} Domain value.",
+            "paramName": "domain",
+            "description": " Domain value.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "secure {Boolean?null} Secure flag.",
+            "paramName": "secure",
+            "description": " Secure flag.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "del": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4
+        },
+        "end": {
+          "line": 151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes the string value of a cookie.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key for the string value.",
+            "paramName": "key",
+            "description": " The key for the string value.",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "path {String?null} Path value.",
+            "paramName": "path",
+            "description": " Path value.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "domain {String?null} Domain value.",
+            "paramName": "domain",
+            "description": " Domain value.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

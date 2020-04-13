@@ -1,0 +1,87 @@
+{
+  "className": "cv.ui.manager.control.MFileEventHandler",
+  "packageName": "cv.ui.manager.control",
+  "name": "MFileEventHandler",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 5,
+        "column": 0
+      },
+      "end": {
+        "line": 37,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Mixin for all classes that have to handle event on the 'cv.manager.file' topic.\n Those classes need to implement the cv.ui.manager.control.IFileEventHandler interface.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 11,
+        "column": 13
+      },
+      "end": {
+        "line": 18,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>****************************************\nCONSTRUCTOR\n****************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "members": {
+    "_disableFileEvents": {
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4
+        },
+        "end": {
+          "line": 26,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 12
+      },
+      "end": {
+        "line": 36,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>****************************************\nDESTRUCTOR\n****************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

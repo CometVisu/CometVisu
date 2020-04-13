@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/lang/normalize/Object.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "keys",
+    "values",
+    "map",
+    "arr",
+    "Object",
+    "i",
+    "l",
+    "length",
+    "push",
+    "is",
+    "x",
+    "y",
+    "defer",
+    "core",
+    "Environment",
+    "get",
+    "lang",
+    "normalize"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAiBA;;;;;;;;AAQAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,0BAApB,EAAgD;AAE9CC,IAAAA,OAAO,EAAG;AAER;;;;;;;;;;AAUAC,MAAAA,IAAI,EAAGN,EAAE,CAACC,SAAH,CAAaK,IAZZ;;AAcR;;;;;;AAMAC,MAAAA,MAAM,EAAG,gBAASC,GAAT,EAAc;AAKrB,YAAIC,GAAG,GAAG,EAAV;AACA,YAAIH,IAAI,GAAGI,MAAM,CAACJ,IAAP,CAAYE,GAAZ,CAAX;;AAEA,aAAK,IAAIG,CAAC,GAAC,CAAN,EAASC,CAAC,GAACN,IAAI,CAACO,MAArB,EAA6BF,CAAC,GAACC,CAA/B,EAAkCD,CAAC,EAAnC,EAAuC;AACrCF,UAAAA,GAAG,CAACK,IAAJ,CAASN,GAAG,CAACF,IAAI,CAACK,CAAD,CAAL,CAAZ;AACD;;AAED,eAAOF,GAAP;AACD,OAjCO;;AAoCR;;;;;;;;;;AAUAM,MAAAA,EAAE,EAAG,YAASC,CAAT,EAAYC,CAAZ,EAAe;AAClB;AACA,YAAID,CAAC,KAAKC,CAAV,EAAa;AAAE;AACb;AACA,iBAAOD,CAAC,KAAK,CAAN,IAAW,IAAIA,CAAJ,KAAU,IAAIC,CAAhC;AACD,SAHD,MAGO;AACN;AACA,iBAAOD,CAAC,KAAKA,CAAN,IAAWC,CAAC,KAAKA,CAAxB;AACA;AACF;AAvDO,KAFoC;AA4D9CC,IAAAA,KAAK,EAAG,eAASb,OAAT,EAAkB;AACxB;AACA,UAAI,CAACL,EAAE,CAACmB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,wBAAxB,CAAL,EAAwD;AACtDX,QAAAA,MAAM,CAACJ,IAAP,GAAcD,OAAO,CAACC,IAAtB;AACD,OAJuB,CAMxB;;;AACA,UAAI,CAACN,EAAE,CAACmB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,0BAAxB,CAAL,EAA0D;AACxDX,QAAAA,MAAM,CAACH,MAAP,GAAgBF,OAAO,CAACE,MAAxB;AACD,OATuB,CAWxB;;;AACA,UAAI,CAACP,EAAE,CAACmB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,sBAAxB,CAAL,EAAsD;AACpDX,QAAAA,MAAM,CAACK,EAAP,GAAYV,OAAO,CAACU,EAApB;AACD;AACF;AA3E6C,GAAhD;AAzBAf,EAAAA,EAAE,CAACsB,IAAH,CAAQC,SAAR,CAAkBb,MAAlB,CAAyBP,aAAzB,GAAyCA,aAAzC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n/**\n * This class is responsible for the normalization of the native Object.\n * It checks if these methods are available and, if not, appends them to\n * ensure compatibility in all browsers.\n * For usage samples, check out the attached links.\n *\n * @group (Polyfill)\n */\nqx.Bootstrap.define(\"qx.lang.normalize.Object\", {\n\n  statics : {\n\n    /**\n     * Get the keys of a map as array as returned by a \"for ... in\" statement.\n     *\n     * <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys\">MDN documentation</a> |\n     * <a href=\"http://es5.github.com/#x15.2.3.14\">Annotated ES5 Spec</a>\n     *\n     * @signature function(map)\n     * @param map {Object} the map\n     * @return {Array} array of the keys of the map\n     */\n    keys : qx.Bootstrap.keys,\n\n    /**\n     * Get the values of a map as array\n     *\n     * @param map {Object} the map\n     * @return {Array} array of the values of the map\n     */\n    values : function(map) {\n      if (qx.core.Environment.get(\"qx.debug\")) {\n        qx.core.Assert && qx.core.Assert.assertMap(map, \"Invalid argument 'map'\");\n      }\n\n      var arr = [];\n      var keys = Object.keys(map);\n\n      for (var i=0, l=keys.length; i<l; i++) {\n        arr.push(map[keys[i]]);\n      }\n\n      return arr;\n    },\n\n\n    /**\n     * Determines whether two values are the same value.\n     *\n     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is\">MDN web docs: Object.is()</a>\n     *\n     * @signature function(x,y)\n     * @param x {Object} the first value to compare\n     * @param y {Object} the second value to compare\n     * @return {Boolean} indicating whether or not the two arguments are the same value.\n     */\n    is : function(x, y) {\n      // SameValue algorithm\n      if (x === y) { // Steps 1-5, 7-10\n        // Steps 6.b-6.e: +0 != -0\n        return x !== 0 || 1 / x === 1 / y;\n      } else {\n       // Step 6.a: NaN == NaN\n       return x !== x && y !== y;\n      }\n    }\n  },\n\n  defer : function(statics) {\n    // keys\n    if (!qx.core.Environment.get(\"ecmascript.object.keys\")) {\n      Object.keys = statics.keys;\n    }\n\n    // values\n    if (!qx.core.Environment.get(\"ecmascript.object.values\")) {\n      Object.values = statics.values;\n    }\n\n    // is\n    if (!qx.core.Environment.get(\"ecmascript.object.is\")) {\n      Object.is = statics.is;\n    }\n  }\n});\n"
+  ]
+}

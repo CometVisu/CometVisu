@@ -1,0 +1,815 @@
+{
+  "className": "qx.ui.website.Tabs",
+  "packageName": "qx.ui.website",
+  "name": "Tabs",
+  "superClass": "qx.ui.website.Widget",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 113,
+        "column": 0
+      },
+      "end": {
+        "line": 825,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2013-2014 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n Daniel Wagner (danielwagner)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>A row of buttons used to switch between connected pages. The buttons can be\n right- or left-aligned, or they can be justified, i.e. they will be stretched\n to fill the available width.\n </p>\n<h2>Markup</h2>\n<p>Each Tabs widget contains an unordered list element (<code>ul</code>), which\n will be created if not already present.\n The tabs are list items (<code>li</code>). Each tab can contain\n a button with a <code>tabsPage</code> data attribute where the value is a\n CSS selector string identifying the corresponding page. Headers and pages\n will not be created automatically. They can be predefined in the DOM before\n the <code>q().tabs()</code> factory method is called, or added programmatically.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-tabs</code></td>\n       <td>Container element</td>\n       <td>Identifies the Tabs widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-tabs-horizontal</code></td>\n       <td>Container element</td>\n       <td>Styles the widget in horizontal orientation</td>\n     </tr>\n     <tr>\n       <td><code>qx-tabs-vertical</code></td>\n       <td>Container element</td>\n       <td>Styles the widget in vertical orientation</td>\n     </tr>\n     <tr>\n       <td><code>qx-tabs-container</code></td>\n       <td>Tab page container (<code>div</code>)</td>\n       <td>Styles the tab pages' container (horizontal orientation only)</td>\n     </tr>\n     <tr>\n       <td><code>qx-flex-justify-end</code></td>\n       <td>Tab container (<code>ul</code>)</td>\n       <td>Browsers with flexbox support only: Styles the tab buttons when they are right-aligned</td>\n     </tr>\n     <tr>\n       <td><code>qx-tabs-left</code></td>\n       <td>Container element</td>\n       <td>Internet Explorer < 10 only: Styles the tab buttons when they are left-aligned</td>\n     </tr>\n     <tr>\n       <td><code>qx-tabs-justify</code></td>\n       <td>Container element</td>\n       <td>Internet Explorer < 10 only: Styles the tab buttons when they are stretched to fill out the available width</td>\n     </tr>\n     <tr>\n       <td><code>qx-tabs-right</code></td>\n       <td>Container element</td>\n       <td>Internet Explorer < 10 only: Styles the tab buttons when they are right-aligned</td>\n     </tr>\n     <tr>\n       <td><code>qx-tabs-button</code></td>\n       <td>Tab button (<code>li</code>)</td>\n       <td>Identifies and styles the tabs</td>\n     </tr>\n     <tr>\n       <td><code>qx-tabs-button-active</code></td>\n       <td>Tab button (<code>li</code>)</td>\n       <td>Identifies and styles the currently selected tab. Applied in addition to <code>qx-tabs-button</code></td>\n     </tr>\n     <tr>\n       <td><code>qx-flex-1</code></td>\n       <td>Tab button (<code>li</code>)</td>\n       <td>Browsers with flexbox support only: Styles the tab buttons when they are stretched to fill out the available width</td>\n     </tr>\n     <tr>\n       <td><code>qx-tabs-page</code></td>\n       <td>Tab page (<code>div</code> in horizontal mode, <code>li</code>)</td>\n       <td>Styles the tab pages.</td>\n     </tr>\n   </tbody>\n </table>\n<h2 class=\"widget-markup\">Generated DOM Structure</h2>"
+        }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.module.Template"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Widget"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "tabs": {
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method which converts the current collection into a collection of\n tabs widgets.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "align {String?} Tab button alignment. Default: <code>left</code>",
+            "paramName": "align",
+            "description": " Tab button alignment. Default: <code>left</code>",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "preselected {Integer?} The (zero-based) index of the tab that\n should initially be selected. Default: <code>0</code>",
+            "paramName": "preselected",
+            "description": " The (zero-based) index of the tab that\n should initially be selected. Default: <code>0</code>",
+            "optional": true,
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "orientation {String?} <code>horizontal</code> (default) or <code>vertical</code>",
+            "paramName": "orientation",
+            "description": " <code>horizontal</code> (default) or <code>vertical</code>",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Tabs}",
+            "type": "qx.ui.website.Tabs",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_templates": {
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4
+        },
+        "end": {
+          "line": 160,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p><em>button</em>\n Template used by {@link #addButton} to create a new button.\n Default value: <pre><li><button>{{{content}}}</button></li></pre></p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_config": {
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4
+        },
+        "end": {
+          "line": 195,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p><em>preselected</em>\n The index of the page that should be opened after initial\n rendering, or <code>null</code> if no page should be opened.\n Default value: <pre>0</pre>\n<em>align</em>\n Configuration for the alignment of the tab buttons in horizontal\n mode. This possible values are <code>left</code>,\n <code>justify</code> and\n <code>right</code>\n Default value: <pre>left</pre>\n<em>orientation</em>\n Controls the layout of the widget. \"horizontal\" renders it as a\n tab bar appropriate for wide screens. \"vertical\" renders it as a\n stack of collapsible panes (sometimes called an accordion) that\n is better suited for narrow screens.\n<em>mediaQuery</em>\n A CSS media query string that will be used with a\n media query listener to dynamically set the widget's\n orientation. The widget will be rendered in vertical mode unless\n the query matches.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 199,
+        "column": 13
+      },
+      "end": {
+        "line": 201,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "events": {
+    "changeSelected": {
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4
+        },
+        "end": {
+          "line": 209,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the selected page has changed. The value is\n the newly selected page's index</p>"
+          }
+        ]
+      },
+      "name": "changeSelected",
+      "type": "Number"
+    }
+  },
+  "members": {
+    "__mediaQueryListener": {
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4
+        },
+        "end": {
+          "line": 215,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "init": {
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4
+        },
+        "end": {
+          "line": 327,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ],
+      "jsdoc": {
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the widget has been initialized",
+            "type": "Boolean",
+            "description": " <code>true</code> if the widget has been initialized"
+          }
+        ]
+      }
+    },
+    "render": {
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4
+        },
+        "end": {
+          "line": 342,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget"
+      ],
+      "jsdoc": {
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Widget} The widget collection for chaining.",
+            "type": "qx.ui.website.Widget",
+            "description": " The widget collection for chaining."
+          }
+        ]
+      }
+    },
+    "_initMediaQueryListener": {
+      "location": {
+        "start": {
+          "line": 351,
+          "column": 4
+        },
+        "end": {
+          "line": 366,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initiates a media query listener for dynamic orientation switching</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "mediaQuery {String} CSS media query string",
+            "paramName": "mediaQuery",
+            "description": " CSS media query string",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The appropriate orientation: \"horizontal\" if the\n media query matches, \"vertical\" if it doesn't",
+            "type": "String",
+            "description": " The appropriate orientation: \"horizontal\" if the\n media query matches, \"vertical\" if it doesn't"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_renderHorizontal": {
+      "location": {
+        "start": {
+          "line": 373,
+          "column": 4
+        },
+        "end": {
+          "line": 417,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Render the widget in horizontal mode</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Tabs} The collection for chaining",
+            "type": "qx.ui.website.Tabs",
+            "description": " The collection for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_renderVertical": {
+      "location": {
+        "start": {
+          "line": 424,
+          "column": 4
+        },
+        "end": {
+          "line": 461,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Render the widget in vertical mode</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Tabs} The collection for chaining",
+            "type": "qx.ui.website.Tabs",
+            "description": " The collection for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onResize": {
+      "location": {
+        "start": {
+          "line": 468,
+          "column": 4
+        },
+        "end": {
+          "line": 476,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Re-render on browser window resize (page heights must be re-\n calculated)</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "addButton": {
+      "location": {
+        "start": {
+          "line": 486,
+          "column": 4
+        },
+        "end": {
+          "line": 520,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a new tab button</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "label {String} The button's content. Can include markup.",
+            "paramName": "label",
+            "description": " The button's content. Can include markup.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "pageSelector {String} CSS Selector that identifies the associated page",
+            "paramName": "pageSelector",
+            "description": " CSS Selector that identifies the associated page",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Tabs} The collection for chaining",
+            "type": "qx.ui.website.Tabs",
+            "description": " The collection for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "select": {
+      "location": {
+        "start": {
+          "line": 529,
+          "column": 4
+        },
+        "end": {
+          "line": 541,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects a tab button</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} index of the button to select",
+            "paramName": "index",
+            "description": " index of the button to select",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.website.Tabs} The collection for chaining",
+            "type": "qx.ui.website.Tabs",
+            "description": " The collection for chaining"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_onTap": {
+      "location": {
+        "start": {
+          "line": 549,
+          "column": 4
+        },
+        "end": {
+          "line": 582,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initiates the page switch when a button was clicked/tapped</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Tap event",
+            "paramName": "e",
+            "description": " Tap event",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onKeyDown": {
+      "location": {
+        "start": {
+          "line": 590,
+          "column": 4
+        },
+        "end": {
+          "line": 621,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Allows tab selection using the left and right arrow keys</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} keydown event",
+            "paramName": "e",
+            "description": " keydown event",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_showPage": {
+      "location": {
+        "start": {
+          "line": 630,
+          "column": 4
+        },
+        "end": {
+          "line": 638,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initiates the page switch if a tab button is selected</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "newButton {qxWeb} selected button",
+            "paramName": "newButton",
+            "description": " selected button",
+            "type": "qxWeb"
+          },
+          {
+            "name": "@param",
+            "body": "oldButton {qxWeb} previously active button",
+            "paramName": "oldButton",
+            "description": " previously active button",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_switchPages": {
+      "location": {
+        "start": {
+          "line": 647,
+          "column": 4
+        },
+        "end": {
+          "line": 683,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executes a page switch</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "oldPage {qxWeb} the previously selected page",
+            "paramName": "oldPage",
+            "description": " the previously selected page",
+            "type": "qxWeb"
+          },
+          {
+            "name": "@param",
+            "body": "newPage {qxWeb} the newly selected page",
+            "paramName": "newPage",
+            "description": " the newly selected page",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getPage": {
+      "location": {
+        "start": {
+          "line": 692,
+          "column": 4
+        },
+        "end": {
+          "line": 698,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the tab page associated with the given button</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "button {qxWeb} Tab button",
+            "paramName": "button",
+            "description": " Tab button",
+            "type": "qxWeb"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Tab page",
+            "type": "qxWeb",
+            "description": " Tab page"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_applyAlignment": {
+      "location": {
+        "start": {
+          "line": 706,
+          "column": 4
+        },
+        "end": {
+          "line": 742,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the CSS classes for the alignment</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tabs {qx.ui.website.Tabs[]} tabs collection",
+            "paramName": "tabs",
+            "description": " tabs collection",
+            "type": "qx.ui.website.Tabs[]"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_storePageHeight": {
+      "location": {
+        "start": {
+          "line": 748,
+          "column": 4
+        },
+        "end": {
+          "line": 766,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stores the page's natural height for the page opening transition</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "page {qxWeb} page",
+            "paramName": "page",
+            "description": " page",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__deactivateTransition": {
+      "location": {
+        "start": {
+          "line": 775,
+          "column": 4
+        },
+        "end": {
+          "line": 786,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stores an element's CSS transition styles in a property\n and removes them from the style declaration</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {qxWeb} Element",
+            "paramName": "elem",
+            "description": " Element",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__activateTransition": {
+      "location": {
+        "start": {
+          "line": 794,
+          "column": 4
+        },
+        "end": {
+          "line": 801,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Restores an element's transition styles</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {qxWeb} Element",
+            "paramName": "elem",
+            "description": " Element",
+            "type": "qxWeb"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "dispose": {
+      "location": {
+        "start": {
+          "line": 804,
+          "column": 4
+        },
+        "end": {
+          "line": 815,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.website.Widget",
+      "appearsIn": [
+        "qx.ui.website.Widget",
+        "qx.core.IDisposable"
+      ],
+      "jsdoc": {
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} Plain qxWeb collection",
+            "type": "qxWeb",
+            "description": " Plain qxWeb collection"
+          }
+        ]
+      }
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 820,
+        "column": 9
+      },
+      "end": {
+        "line": 824,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": [
+    "qx.ui.website.Accordion"
+  ]
+}

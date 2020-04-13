@@ -1,0 +1,1 @@
+Managers for the theming support.   http:manual.qooxdoo.org${qxversion}pagesdesktopui_theming.html

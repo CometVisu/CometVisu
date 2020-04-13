@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/core/IMultiSelection.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "extend",
+    "ui",
+    "core",
+    "ISingleSelection",
+    "members",
+    "selectAll",
+    "addToSelection",
+    "item",
+    "arguments",
+    "length",
+    "removeFromSelection",
+    "IMultiSelection"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;AAIAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,4BAApB,EACA;AACEC,IAAAA,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,gBADrB;;AAIE;;;;;AAOAC,IAAAA,OAAO,EACP;AACE;;;AAGAC,MAAAA,SAAS,EAAG,qBAAW;AACrB,eAAO,IAAP;AACD,OANH;;AAQE;;;;;;AAMAC,MAAAA,cAAc,EAAG,wBAASC,IAAT,EAAe;AAC9B,eAAOC,SAAS,CAACC,MAAV,IAAoB,CAA3B;AACD,OAhBH;;AAkBE;;;;;;;;;AASAC,MAAAA,mBAAmB,EAAG,6BAASH,IAAT,EAAe;AACnC,eAAOC,SAAS,CAACC,MAAV,IAAoB,CAA3B;AACD;AA7BH;AAZF,GADA;AAvBAf,EAAAA,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWS,eAAX,CAA2Bd,aAA3B,GAA2CA,aAA3C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Each object, which should support multiselection selection have to\n * implement this interface.\n */\nqx.Interface.define(\"qx.ui.core.IMultiSelection\",\n{\n  extend: qx.ui.core.ISingleSelection,\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n\n  members :\n  {\n    /**\n     * Selects all items of the managed object.\n     */\n    selectAll : function() {\n      return true;\n    },\n\n    /**\n     * Adds the given item to the existing selection.\n     *\n     * @param item {qx.ui.core.Widget} Any valid item\n     * @throws {Error} if the item is not a child element.\n     */\n    addToSelection : function(item) {\n      return arguments.length == 1;\n    },\n\n    /**\n     * Removes the given item from the selection.\n     *\n     * Use {@link qx.ui.core.ISingleSelection#resetSelection} when you\n     * want to clear the whole selection at once.\n     *\n     * @param item {qx.ui.core.Widget} Any valid item\n     * @throws {Error} if the item is not a child element.\n     */\n    removeFromSelection : function(item) {\n      return arguments.length == 1;\n    }\n  }\n});\n"
+  ]
+}

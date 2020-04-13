@@ -1,0 +1,243 @@
+{
+  "className": "qx.bom.Input",
+  "packageName": "qx.bom",
+  "name": "Input",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 37,
+        "column": 0
+      },
+      "end": {
+        "line": 286,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n   ======================================================================\n   This class contains code based on the following work:\n jQuery\n     http://jquery.com\n     Version 1.3.1\n     Copyright:\n       2009 John Resig\n     License:\n       MIT: http://www.opensource.org/licenses/mit-license.php\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Cross browser abstractions to work with input elements.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "__types": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Internal data structures with all supported input types"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "create": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates an DOM input/textarea/select element.\n Attributes may be given directly with this call. This is critical\n for some attributes e.g. name, type, … in many clients.\n Note: <code>select</code> and <code>textarea</code> elements are created\n using the identically named <code>type</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Any valid type for HTML, <code>select</code>\n   and <code>textarea</code>",
+            "paramName": "type",
+            "description": " Any valid type for HTML, <code>select</code>\n   and <code>textarea</code>",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "attributes {Map} Map of attributes to apply",
+            "paramName": "attributes",
+            "description": " Map of attributes to apply",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "win {Window} Window to create the element for",
+            "paramName": "win",
+            "description": " Window to create the element for",
+            "type": "qx.bom.Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The created input node",
+            "type": "qx.bom.Element",
+            "description": " The created input node"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setValue": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4
+        },
+        "end": {
+          "line": 174,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Applies the given value to the element.\n Normally the value is given as a string/number value and applied\n to the field content (textfield, textarea) or used to\n detect whether the field is checked (checkbox, radiobutton).\n Supports array values for selectboxes (multiple-selection)\n and checkboxes or radiobuttons (for convenience).\n Please note: To modify the value attribute of a checkbox or\n radiobutton use {@link qx.bom.element.Attribute#set} instead.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to update",
+            "paramName": "element",
+            "description": " element to update",
+            "type": "qx.bom.Element"
+          },
+          {
+            "name": "@param",
+            "body": "value {String|Number|Array} the value to apply",
+            "paramName": "value",
+            "description": " the value to apply",
+            "type": [
+              "String",
+              "Number",
+              "Array"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getValue": {
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4
+        },
+        "end": {
+          "line": 238,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the currently configured value.\n Works with simple input fields as well as with\n select boxes or option elements.\n Returns an array in cases of multi-selection in\n select boxes but in all other cases a string.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to query",
+            "paramName": "element",
+            "description": " DOM element to query",
+            "type": "qx.bom.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|Array} The value of the given element",
+            "type": "String|Array",
+            "description": " The value of the given element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "setWrap": {
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4
+        },
+        "end": {
+          "line": 284,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the text wrap behaviour of a text area element.\n This property uses the attribute \"wrap\" respectively\n the style property \"whiteSpace\"</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element, wrap)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to modify",
+            "paramName": "element",
+            "description": " DOM element to modify",
+            "type": "qx.bom.Element"
+          },
+          {
+            "name": "@param",
+            "body": "wrap {Boolean} Whether to turn text wrap on or off.",
+            "paramName": "wrap",
+            "description": " Whether to turn text wrap on or off.",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

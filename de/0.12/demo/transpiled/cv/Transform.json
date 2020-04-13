@@ -1,0 +1,253 @@
+{
+  "className": "cv.Transform",
+  "packageName": "cv",
+  "name": "Transform",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 45,
+        "column": 0
+      },
+      "end": {
+        "line": 150,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Transform.js\n copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>This class defines some default transformations like <code>raw</code>, <code>int</code> and <code>float</code>.\n New transformation can be added and used. For example an openHAB transformation for a switch item is added by\n {@link cv.transforms.OpenHab} like this:\n </p>\n<pre class=\"javascript\">\n   cv.Transform.addTransform('OH', {\n    'switch': {\n      name: 'OH_Switch',\n       encode: function (phy) {\n         return phy == 1 ? 'ON' : 'OFF';\n      },\n       decode: function (string) {\n         if (cv.transforms.OpenHab.isUndefined(string)) return 0;\n         return (string == \"ON\" || parseInt(string) > 0) ? 1 : 0;\n       }\n     }\n   });\n </pre>"
+        }
+      ],
+      "@author": [
+        {
+          "name": "@author",
+          "body": "Christian Mayer"
+        }
+      ],
+      "@since": [
+        {
+          "name": "@since",
+          "body": "2010"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "registry": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 82,
+          "column": 5
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "addTransform": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4
+        },
+        "end": {
+          "line": 102,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>********************************************************************\n</code></pre>\n<p>All functions below are only in this, i.e. the default, file.\n All further transforms will only have the above data structure.\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>***</p>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Add transformation rules to the registry</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "prefix {String} Tranformation prefix (e.g. DPT for KNX tranformations or OH for openHAB transformations)",
+            "paramName": "prefix",
+            "description": " Tranformation prefix (e.g. DPT for KNX tranformations or OH for openHAB transformations)",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "transforms {Map} map of transformations",
+            "paramName": "transforms",
+            "description": " map of transformations",
+            "type": "Map"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clip": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Enforce that value stays within range\n When value is not a valid number, the min value is returned</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "min {Number} lower threshold",
+            "paramName": "min",
+            "description": " lower threshold",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} value to clip",
+            "paramName": "value",
+            "description": " value to clip",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "max {Number} upper threshold",
+            "paramName": "max",
+            "description": " upper threshold",
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} the clipped value",
+            "type": "Number",
+            "description": " the clipped value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "encode": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 132,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transform JavaScript to bus value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "transformation {String} type of the transformation",
+            "paramName": "transformation",
+            "description": " type of the transformation",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} value to transform",
+            "paramName": "value",
+            "description": " value to transform",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the encoded value",
+            "type": "var",
+            "description": " the encoded value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "decode": {
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transform bus to JavaScript value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "transformation {String} type of the transformation",
+            "paramName": "transformation",
+            "description": " type of the transformation",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} value to transform",
+            "paramName": "value",
+            "description": " value to transform",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the decoded value",
+            "type": "var",
+            "description": " the decoded value"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

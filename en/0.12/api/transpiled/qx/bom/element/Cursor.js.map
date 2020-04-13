@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/bom/element/Cursor.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "__map",
+    "compile",
+    "cursor",
+    "get",
+    "element",
+    "mode",
+    "bom",
+    "Style",
+    "set",
+    "value",
+    "style",
+    "reset",
+    "defer",
+    "core",
+    "Environment",
+    "parseFloat",
+    "Cursor"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAmBA;;;AAGAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,uBAApB,EACA;AACE;;;;;AAMAC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,KAAK,EAAG,EAFV;;AAKE;;;;;;AAMAC,MAAAA,OAAO,EAAG,iBAASC,MAAT,EAAiB;AACzB,eAAO,aAAa,KAAKF,KAAL,CAAWE,MAAX,KAAsBA,MAAnC,IAA6C,GAApD;AACD,OAbH;;AAgBE;;;;;;;;;AASAC,MAAAA,GAAG,EAAG,aAASC,OAAT,EAAkBC,IAAlB,EAAwB;AAC5B,eAAOX,EAAE,CAACY,GAAH,CAAOF,OAAP,CAAeG,KAAf,CAAqBJ,GAArB,CAAyBC,OAAzB,EAAkC,QAAlC,EAA4CC,IAA5C,EAAkD,KAAlD,CAAP;AACD,OA3BH;;AA8BE;;;;;;AAMAG,MAAAA,GAAG,EAAG,aAASJ,OAAT,EAAkBK,KAAlB,EAAyB;AAC7BL,QAAAA,OAAO,CAACM,KAAR,CAAcR,MAAd,GAAuB,KAAKF,KAAL,CAAWS,KAAX,KAAqBA,KAA5C;AACD,OAtCH;;AAyCE;;;;;AAKAE,MAAAA,KAAK,EAAG,eAASP,OAAT,EAAkB;AACxBA,QAAAA,OAAO,CAACM,KAAR,CAAcR,MAAd,GAAuB,EAAvB;AACD;AAhDH,KARF;AA4DEU,IAAAA,KAAK,EAAG,eAASb,OAAT,EAAkB;AACxB;AACA,UAAIL,EAAE,CAACmB,IAAH,CAAQC,WAAR,CAAoBX,GAApB,CAAwB,aAAxB,KAA0C,QAA1C,IACE,CAACY,UAAU,CAACrB,EAAE,CAACmB,IAAH,CAAQC,WAAR,CAAoBX,GAApB,CAAwB,gBAAxB,CAAD,CAAV,GAAwD,CAAxD,IACDT,EAAE,CAACmB,IAAH,CAAQC,WAAR,CAAoBX,GAApB,CAAwB,sBAAxB,IAAkD,CADlD,KAEA,CAACT,EAAE,CAACmB,IAAH,CAAQC,WAAR,CAAoBX,GAApB,CAAwB,oBAAxB,CAHP,EAIE;AACAJ,QAAAA,OAAO,CAACC,KAAR,CAAc,aAAd,IAA+B,WAA/B;AACAD,QAAAA,OAAO,CAACC,KAAR,CAAc,aAAd,IAA+B,WAA/B;AACD;AACF;AAtEH,GADA;AAtBAN,EAAAA,EAAE,CAACY,GAAH,CAAOF,OAAP,CAAeY,MAAf,CAAsBnB,aAAtB,GAAsCA,aAAtC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n\n/**\n * Contains methods to control and query the element's cursor property\n */\nqx.Bootstrap.define(\"qx.bom.element.Cursor\",\n{\n  /*\n  *****************************************************************************\n     STATICS\n  *****************************************************************************\n  */\n\n  statics :\n  {\n    /** Internal helper structure to map cursor values to supported ones */\n    __map : {},\n\n\n    /**\n     * Compiles the given cursor into a CSS compatible string.\n     *\n     * @param cursor {String} Valid CSS cursor name\n     * @return {String} CSS string\n     */\n    compile : function(cursor) {\n      return \"cursor:\" + (this.__map[cursor] || cursor) + \";\";\n    },\n\n\n    /**\n     * Returns the computed cursor style for the given element.\n     *\n     * @param element {Element} The element to query\n     * @param mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n     *   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n     *   The computed mode is the default one.\n     * @return {String} Computed cursor value of the given element.\n     */\n    get : function(element, mode) {\n      return qx.bom.element.Style.get(element, \"cursor\", mode, false);\n    },\n\n\n    /**\n     * Applies a new cursor style to the given element\n     *\n     * @param element {Element} The element to modify\n     * @param value {String} New cursor value to set\n     */\n    set : function(element, value) {\n      element.style.cursor = this.__map[value] || value;\n    },\n\n\n    /**\n     * Removes the local cursor style applied to the element\n     *\n     * @param element {Element} The element to modify\n     */\n    reset : function(element) {\n      element.style.cursor = \"\";\n    }\n  },\n\n\n  defer : function(statics) {\n    // < IE 9\n    if (qx.core.Environment.get(\"engine.name\") == \"mshtml\" &&\n         ((parseFloat(qx.core.Environment.get(\"engine.version\")) < 9 ||\n          qx.core.Environment.get(\"browser.documentmode\") < 9) &&\n          !qx.core.Environment.get(\"browser.quirksmode\"))\n    ) {\n      statics.__map[\"nesw-resize\"] = \"ne-resize\";\n      statics.__map[\"nwse-resize\"] = \"nw-resize\";\n    }\n  }\n});\n"
+  ]
+}

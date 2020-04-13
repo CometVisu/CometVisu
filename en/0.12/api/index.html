@@ -1,22 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-  <title>API Documentation</title>
-  <script type="text/javascript" src="script/apiviewer.js"></script>
-  <script type="text/javascript">
-  if (location.hostname === "demo.qooxdoo.org")
-  {
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>CometVisu API Viewer</title>
+    <link type="text/css" rel="stylesheet" href="resource/qxl/apiviewer/css/sunlight.default.css">
+    <style>
+        div.class-description div.widget-example {
+            margin-top: 5px; float:left; width: 50%; text-align: center;
+        }
+        div.class-description div.widget-example.last,
+        div.class-description div.caption,
+        div.class-description div.code {
+            clear: left;
+        }
+        div.class-description div.widget-example label,
+        div.class-description div.caption {
+            margin: 3px 0 10px 0;
+        }
+        div.class-description div.widget-example label {
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
 
-    ga('create', 'UA-415440-1', 'auto');
-    ga('send', 'pageview');
-  }
-  </script>
+        div.class-description div.authors label, div.class-description div.since label {
+            font-weight: bold;
+            float: left;
+            margin-right: 0.5em;
+        }
+        div.class-description div.authors p, div.class-description div.since p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    </style>
+    <script type="text/javascript" src="resource/qxl/apiviewer/lib/sunlight-min.js"></script>
+    <script type="text/javascript" src="resource/qxl/apiviewer/lib/sunlight.javascript-min.js"></script>
+    <script type="text/javascript" src="resource/qxl/apiviewer/lib/sunlight.xml-min.js"></script>
+    <script type="application/javascript">
+      
+    </script>
+    <script type="text/javascript" src="apiviewer/boot.js"></script>
+    <script type="application/javascript">
+      function highlight() {
+        setTimeout(() => {
+          Sunlight.highlightAll();
+        }, 100);
+      }
+
+      let retried = 0;
+
+      function init () {
+        setTimeout(function() {
+          const controller = qxl.apiviewer.TabViewController.instance;
+          if (!controller && retried < 3) {
+            retried++;
+            init();
+            return;
+          }
+          controller.addListener("changeSelection", highlight);
+          const tree = qxl.apiviewer.MWidgetRegistry.getWidgetById('tree');
+          tree.addListener('changeSelection', highlight);
+        }, 2000);
+      }
+      init();
+    </script>
 </head>
-<body></body>
+<body>
+</body>
 </html>

@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/form/ListItem.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "basic",
+    "Atom",
+    "implement",
+    "form",
+    "IModel",
+    "include",
+    "MModelProperty",
+    "construct",
+    "label",
+    "icon",
+    "model",
+    "setModel",
+    "addListener",
+    "_onPointerOver",
+    "_onPointerOut",
+    "events",
+    "properties",
+    "appearance",
+    "refine",
+    "init",
+    "members",
+    "_forwardStates",
+    "focused",
+    "hovered",
+    "selected",
+    "dragover",
+    "addState",
+    "removeState",
+    "destruct",
+    "removeListener",
+    "ListItem"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;AAIAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,KAAN,CAAYC,IADvB;AAEEC,IAAAA,SAAS,EAAG,CAACV,EAAE,CAACO,EAAH,CAAMI,IAAN,CAAWC,MAAZ,CAFd;AAGEC,IAAAA,OAAO,EAAG,CAACb,EAAE,CAACO,EAAH,CAAMI,IAAN,CAAWG,cAAZ,CAHZ;;AAOE;;;;;;AAMA;;;;;AAKAC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EAAgBC,IAAhB,EAAsBC,KAAtB,EACZ;AACE,8CAAqBF,KAArB,EAA4BC,IAA5B;;AAEA,UAAIC,KAAK,IAAI,IAAb,EAAmB;AACjB,aAAKC,QAAL,CAAcD,KAAd;AACD;;AAED,WAAKE,WAAL,CAAiB,aAAjB,EAAgC,KAAKC,cAArC,EAAqD,IAArD;AACA,WAAKD,WAAL,CAAiB,YAAjB,EAA+B,KAAKE,aAApC,EAAmD,IAAnD;AACD,KA5BH;;AAiCE;;;;;AAMAC,IAAAA,MAAM,EACN;AACE;AACA,gBAAW;AAFb,KAxCF;;AAgDE;;;;;AAMAC,IAAAA,UAAU,EACV;AACEC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAFF,KAvDF;AAgEEC,IAAAA,OAAO,EACP;AACE;;AACA;;;AAGAC,MAAAA,cAAc,EACd;AACEC,QAAAA,OAAO,EAAG,IADZ;AAEEC,QAAAA,OAAO,EAAG,IAFZ;AAGEC,QAAAA,QAAQ,EAAG,IAHb;AAIEC,QAAAA,QAAQ,EAAG;AAJb,OANF;;AAcE;;;AAGAZ,MAAAA,cAAc,EAAG,0BAAW;AAC1B,aAAKa,QAAL,CAAc,SAAd;AACD,OAnBH;;AAsBE;;;AAGAZ,MAAAA,aAAa,EAAG,yBAAW;AACzB,aAAKa,WAAL,CAAiB,SAAjB;AACD;AA3BH,KAjEF;AA+FEC,IAAAA,QAAQ,EAAG,oBAAW;AACpB,WAAKC,cAAL,CAAoB,aAApB,EAAmC,KAAKhB,cAAxC,EAAwD,IAAxD;AACA,WAAKgB,cAAL,CAAoB,YAApB,EAAkC,KAAKf,aAAvC,EAAsD,IAAtD;AACD;AAlGH,GADA;AAvBAtB,EAAAA,EAAE,CAACO,EAAH,CAAMI,IAAN,CAAW2B,QAAX,CAAoBnC,aAApB,GAAoCA,aAApC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * A item for a list. Could be added to all List like widgets but also\n * to the {@link qx.ui.form.SelectBox} and {@link qx.ui.form.ComboBox}.\n */\nqx.Class.define(\"qx.ui.form.ListItem\",\n{\n  extend : qx.ui.basic.Atom,\n  implement : [qx.ui.form.IModel],\n  include : [qx.ui.form.MModelProperty],\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param label {String} Label to use\n   * @param icon {String?null} Icon to use\n   * @param model {String?null} The items value\n   */\n  construct : function(label, icon, model)\n  {\n    this.base(arguments, label, icon);\n\n    if (model != null) {\n      this.setModel(model);\n    }\n\n    this.addListener(\"pointerover\", this._onPointerOver, this);\n    this.addListener(\"pointerout\", this._onPointerOut, this);\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     EVENTS\n  *****************************************************************************\n  */\n\n  events:\n  {\n    /** (Fired by {@link qx.ui.form.List}) */\n    \"action\" : \"qx.event.type.Event\"\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    appearance :\n    {\n      refine : true,\n      init : \"listitem\"\n    }\n  },\n\n\n  members :\n  {\n    // overridden\n    /**\n     * @lint ignoreReferenceField(_forwardStates)\n     */\n    _forwardStates :\n    {\n      focused : true,\n      hovered : true,\n      selected : true,\n      dragover : true\n    },\n\n\n    /**\n     * Event handler for the pointer over event.\n     */\n    _onPointerOver : function() {\n      this.addState(\"hovered\");\n    },\n\n\n    /**\n     * Event handler for the pointer out event.\n     */\n    _onPointerOut : function() {\n      this.removeState(\"hovered\");\n    }\n  },\n\n  destruct : function() {\n    this.removeListener(\"pointerover\", this._onPointerOver, this);\n    this.removeListener(\"pointerout\", this._onPointerOut, this);\n  }\n});\n"
+  ]
+}

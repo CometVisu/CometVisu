@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_0-beta_7/source/class/qxl/apiviewer/ui/panels/StaticMethodsPanel.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "qxl",
+    "apiviewer",
+    "ui",
+    "panels",
+    "AbstractMethodPanel",
+    "construct",
+    "members",
+    "canDisplayItem",
+    "dao",
+    "Method",
+    "isStatic",
+    "getPanelItemObjects",
+    "daoClass",
+    "showInherited",
+    "getStatics",
+    "StaticMethodsPanel"
+  ],
+  "mappings": ";;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;;;;AAuBAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,4CAAhB,EAA8D;AAC5DC,IAAAA,MAAM,EAAEC,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,MAAjB,CAAwBC,mBAD4B;AAG5DC,IAAAA,SAAS,EAAE,qBAAW;AACpB,yEAAqB,gBAArB,EAAuC,CAAC,yCAAD,EAA4C,0CAA5C,CAAvC;AACD,KAL2D;AAO5DC,IAAAA,OAAO,EAAG;AACR;;;AAGAC,MAAAA,cAAc,EAAE,wBAASC,GAAT,EAAc;AAC5B,eAAOA,GAAG,YAAYR,GAAG,CAACC,SAAJ,CAAcO,GAAd,CAAkBC,MAAjC,IAA2CD,GAAG,CAACE,QAAJ,EAAlD;AACD,OANO;AAQRC,MAAAA,mBAAmB,EAAE,6BAASC,QAAT,EAAmBC,aAAnB,EAAkC;AACrD,eAAOD,QAAQ,CAACE,UAAT,EAAP;AACD;AAVO;AAPkD,GAA9D;AAvBAd,EAAAA,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,MAAjB,CAAwBY,kBAAxB,CAA2CnB,aAA3C,GAA2DA,aAA3D",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Til Schneider (til132)\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Fabian Jakobs (fjakobs)\n     * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.ui.panels.StaticMethodsPanel\", {\n  extend: qxl.apiviewer.ui.panels.AbstractMethodPanel,\n\n  construct: function() {\n    this.base(arguments, \"Static Members\", [\"qxl/apiviewer/image/method_public18.gif\", \"qxl/apiviewer/image/overlay_static18.gif\"]);\n  },\n\n  members : {\n    /**\n     * @Override\n     */\n    canDisplayItem: function(dao) {\n      return dao instanceof qxl.apiviewer.dao.Method && dao.isStatic();\n    },\n\n    getPanelItemObjects: function(daoClass, showInherited) {\n      return daoClass.getStatics();\n    }\n  }\n});\n"
+  ]
+}

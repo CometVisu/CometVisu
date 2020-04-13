@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_0-beta_7/source/class/qxl/apiviewer/dao/ChildControl.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "qxl",
+    "apiviewer",
+    "dao",
+    "ClassItem",
+    "construct",
+    "meta",
+    "parentClass",
+    "controlName",
+    "members",
+    "getDefaultValue",
+    "ChildControl"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAoBAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,gCAAhB,EAAkD;AAChDC,IAAAA,MAAM,EAAGC,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkBC,SADqB;AAGhDC,IAAAA,SAAS,EAAG,mBAASC,IAAT,EAAeC,WAAf,EAA4B;AACtC,yDAAqBD,IAArB,EAA2BC,WAA3B,EAAwCD,IAAI,CAACE,WAA7C;AACD,KAL+C;AAMhDC,IAAAA,OAAO,EAAG;AACRC,MAAAA,eAAe,EAAG,2BAAW;AAC3B,eAAO,EAAP;AACD;AAHO;AANsC,GAAlD;AApBAT,EAAAA,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkBQ,YAAlB,CAA+Bd,aAA/B,GAA+CA,aAA/C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Daniel Wagner (d_wagner)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.dao.ChildControl\", {\n  extend : qxl.apiviewer.dao.ClassItem,\n\n  construct : function(meta, parentClass) {\n    this.base(arguments, meta, parentClass, meta.controlName);\n  },\n  members : {\n    getDefaultValue : function() {\n      return \"\";\n    }\n  }\n\n\n\n});\n"
+  ]
+}

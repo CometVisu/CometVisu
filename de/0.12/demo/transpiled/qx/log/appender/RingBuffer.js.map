@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/log/appender/RingBuffer.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "extend",
+    "util",
+    "RingBuffer",
+    "construct",
+    "maxMessages",
+    "setMaxMessages",
+    "members",
+    "setMaxEntries",
+    "getMaxMessages",
+    "getMaxEntries",
+    "process",
+    "entry",
+    "addEntry",
+    "getAllLogEvents",
+    "getAllEntries",
+    "retrieveLogEvents",
+    "count",
+    "startingFromMark",
+    "getEntries",
+    "clearHistory",
+    "clear",
+    "log",
+    "appender"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;;AAoBA;;;;;;;;;;;AAWAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,4BAApB,EACA;AACEC,IAAAA,MAAM,EAAGL,EAAE,CAACM,IAAH,CAAQC,UADnB;;AAGE;;;AAGAC,IAAAA,SAAS,EAAG,mBAASC,WAAT,EAAsB;AAChC,WAAKC,cAAL,CAAoBD,WAAW,IAAI,EAAnC;AACD,KARH;AAWEE,IAAAA,OAAO,EACP;AAEE;;;;;;;;AAQAD,MAAAA,cAAc,EAAG,wBAASD,WAAT,EAAsB;AACrC,aAAKG,aAAL,CAAmBH,WAAnB;AACD,OAZH;;AAeE;;;;;AAKAI,MAAAA,cAAc,EAAG,0BAAW;AAC1B,eAAO,KAAKC,aAAL,EAAP;AACD,OAtBH;;AAyBE;;;;;AAKAC,MAAAA,OAAO,EAAG,iBAASC,KAAT,EAAgB;AACxB,aAAKC,QAAL,CAAcD,KAAd;AACD,OAhCH;;AAmCE;;;;;AAKAE,MAAAA,eAAe,EAAG,2BAAW;AAC3B,eAAO,KAAKC,aAAL,EAAP;AACD,OA1CH;;AA6CE;;;;;;;;;;AAUAC,MAAAA,iBAAiB,EAAG,2BAASC,KAAT,EAAgBC,gBAAhB,EAAkC;AACpD,eAAO,KAAKC,UAAL,CAAgBF,KAAhB,EAAuBC,gBAAvB,CAAP;AACD,OAzDH;;AA4DE;;;AAGAE,MAAAA,YAAY,EAAG,wBAAW;AACxB,aAAKC,KAAL;AACD;AAjEH;AAZF,GADA;AA/BAzB,EAAAA,EAAE,CAAC0B,GAAH,CAAOC,QAAP,CAAgBpB,UAAhB,CAA2BJ,aAA3B,GAA2CA,aAA3C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n     2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Carsten Lergenmueller (carstenl)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * An appender that writes all messages to a memory container. The messages\n * can be retrieved later, f. i. when an error dialog pops up and the question\n * arises what actions have caused the error.\n *\n * A mark feature also exists which can be used to remember a point in time.\n * When retrieving log events, it is possible to get only those events\n * after the marked time. This is useful if data from the buffer is extracted\n * and f. i. sent to a logging system. Whenever this happens, a mark() call\n * can be used so that the next extraction will only get new data.\n */\nqx.Bootstrap.define(\"qx.log.appender.RingBuffer\",\n{\n  extend : qx.util.RingBuffer,\n\n  /**\n   * @param maxMessages {Integer?50} Maximum number of messages in the buffer\n   */\n  construct : function(maxMessages) {\n    this.setMaxMessages(maxMessages || 50);\n  },\n\n\n  members :\n  {\n\n    /**\n     * Set the maximum number of messages to hold. If null the number of\n     * messages is not limited.\n     *\n     * Warning: Changing this property will clear the events logged so far.\n     *\n     * @param maxMessages {Integer} the maximum number of messages to hold\n     */\n    setMaxMessages : function(maxMessages) {\n      this.setMaxEntries(maxMessages);\n    },\n\n\n    /**\n     * Get the maximum number of messages to hold\n     *\n     * @return {Integer} the maximum number of messages\n     */\n    getMaxMessages : function() {\n      return this.getMaxEntries();\n    },\n\n\n    /**\n     * Processes a single log entry\n     *\n     * @param entry {Map} The entry to process\n     */\n    process : function(entry) {\n      this.addEntry(entry);\n    },\n\n\n    /**\n     * Returns all stored log events\n     *\n     * @return {Array} array of stored log events\n     */\n    getAllLogEvents : function() {\n      return this.getAllEntries();\n    },\n\n\n    /**\n     * Returns log events which have been logged previously.\n     *\n     * @param count {Integer} The number of events to retrieve. If there are\n     *    more events than the given count, the oldest ones will not be returned.\n     *\n     * @param startingFromMark {Boolean ? false} If true, only entries since the last call to mark()\n     *                                           will be returned\n     * @return {Array} array of stored log events\n     */\n    retrieveLogEvents : function(count, startingFromMark) {\n      return this.getEntries(count, startingFromMark);\n    },\n\n\n    /**\n     * Clears the log history\n     */\n    clearHistory : function() {\n      this.clear();\n    }\n  }\n});\n"
+  ]
+}

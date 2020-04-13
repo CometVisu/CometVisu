@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/html/Canvas.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "html",
+    "Element",
+    "construct",
+    "styles",
+    "attributes",
+    "__canvas",
+    "document",
+    "createElement",
+    "members",
+    "_createDomElement",
+    "getCanvas",
+    "setWidth",
+    "width",
+    "getWidth",
+    "setHeight",
+    "height",
+    "getHeight",
+    "getContext2d",
+    "getContext",
+    "Canvas"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,gBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC,OADnB;;AAKE;;;;;;AAMA;;;;;;AAMAC,IAAAA,SAAS,EAAG,mBAASC,MAAT,EAAiBC,UAAjB,EACZ;AACE,6CAAqB,QAArB,EAA+BD,MAA/B,EAAuCC,UAAvC;AACA,WAAKC,QAAL,GAAgBC,QAAQ,CAACC,aAAT,CAAuB,QAAvB,CAAhB;AACD,KArBH;;AA2BE;;;;;AAMAC,IAAAA,OAAO,EACP;AAEEH,MAAAA,QAAQ,EAAG,IAFb;AAIE;AACAI,MAAAA,iBAAiB,EAAG,6BAAW;AAC7B,eAAO,KAAKJ,QAAZ;AACD,OAPH;;AAUE;;;;;AAKAK,MAAAA,SAAS,EAAG,qBAAW;AACrB,eAAO,KAAKL,QAAZ;AACD,OAjBH;;AAoBE;;;;;;AAMAM,MAAAA,QAAQ,EAAG,kBAASC,KAAT,EAAgB;AACzB,aAAKP,QAAL,CAAcO,KAAd,GAAsBA,KAAtB;AACD,OA5BH;;AA+BE;;;;;AAKAC,MAAAA,QAAQ,EAAG,oBAAW;AACpB,eAAO,KAAKR,QAAL,CAAcO,KAArB;AACD,OAtCH;;AAyCE;;;;;;AAMAE,MAAAA,SAAS,EAAG,mBAASC,MAAT,EAAiB;AAC3B,aAAKV,QAAL,CAAcU,MAAd,GAAuBA,MAAvB;AACD,OAjDH;;AAoDE;;;;;AAKAC,MAAAA,SAAS,EAAG,qBAAW;AACrB,eAAO,KAAKX,QAAL,CAAcU,MAArB;AACD,OA3DH;;AA8DE;;;;;;;AAOAE,MAAAA,YAAY,EAAG,wBAAW;AACxB,eAAO,KAAKZ,QAAL,CAAca,UAAd,CAAyB,IAAzB,CAAP;AACD;AAvEH;AAlCF,GADA;AArBAzB,EAAAA,EAAE,CAACO,IAAH,CAAQmB,MAAR,CAAevB,aAAf,GAA+BA,aAA/B",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Managed wrapper for the HTML canvas tag.\n */\nqx.Class.define(\"qx.html.Canvas\",\n{\n  extend : qx.html.Element,\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * @param styles {Map?null} optional map of CSS styles, where the key is the name\n   *    of the style and the value is the value to use.\n   * @param attributes {Map?null} optional map of element attributes, where the\n   *    key is the name of the attribute and the value is the value to use.\n   */\n  construct : function(styles, attributes)\n  {\n    this.base(arguments, \"canvas\", styles, attributes);\n    this.__canvas = document.createElement(\"canvas\");\n  },\n\n\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n\n    __canvas : null,\n\n    // overridden\n    _createDomElement : function() {\n      return this.__canvas;\n    },\n\n\n    /**\n     * Get the canvas element [<a href=\"http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvas\">W3C-HMTL5</a>]\n     *\n     * @return {Element} The canvas DOM element.\n     */\n    getCanvas : function() {\n      return this.__canvas;\n    },\n\n\n    /**\n     * Set the width attribute of the canvas element. This property controls the\n     * size of the canvas coordinate space.\n     *\n     * @param width {Integer} canvas width\n     */\n    setWidth : function(width) {\n      this.__canvas.width = width;\n    },\n\n\n    /**\n     * Get the width attribute of the canvas element\n     *\n     * @return {Integer} canvas width\n     */\n    getWidth : function() {\n      return this.__canvas.width;\n    },\n\n\n    /**\n     * Set the height attribute of the canvas element. This property controls the\n     * size of the canvas coordinate space.\n     *\n     * @param height {Integer} canvas height\n     */\n    setHeight : function(height) {\n      this.__canvas.height = height;\n    },\n\n\n    /**\n     * Get the height attribute of the canvas element\n     *\n     * @return {Integer} canvas height\n     */\n    getHeight : function() {\n      return this.__canvas.height;\n    },\n\n\n    /**\n     * Get the canvas' 2D rendering context\n     * [<a href=\"http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvasrenderingcontext2d\">W3C-HTML5</a>].\n     * All drawing operations are performed on this context.\n     *\n     * @return {CanvasRenderingContext2D} The 2D rendering context.\n     */\n    getContext2d : function() {\n      return this.__canvas.getContext(\"2d\");\n    }\n  }\n});\n"
+  ]
+}

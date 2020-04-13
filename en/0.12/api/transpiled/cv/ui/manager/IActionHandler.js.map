@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/ui/manager/IActionHandler.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "canHandleAction",
+    "actionName",
+    "handleAction",
+    "data",
+    "cv",
+    "ui",
+    "manager",
+    "IActionHandler"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;AAGAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,8BAApB,EAAoD;AAClD;;;;;AAKAC,IAAAA,OAAO,EAAE;AACP;;;;AAIAC,MAAAA,eAAe,EAAE,yBAASC,UAAT,EAAqB,CAAE,CALjC;;AAOP;;;;;AAKAC,MAAAA,YAAY,EAAE,sBAAUD,UAAV,EAAsBE,IAAtB,EAA4B,CAAE;AAZrC;AANyC,GAApD;AAHAC,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,cAAd,CAA6BX,aAA7B,GAA6CA,aAA7C",
+  "sourcesContent": [
+    "/**\n * All Widgets that need to handle actions from the managers action event, need to implement this interface.\n */\nqx.Interface.define('cv.ui.manager.IActionHandler', {\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    /**\n     * Checks if the action handle can process the action.\n     * @param actionName {String} action name\n     */\n    canHandleAction: function(actionName) {},\n\n    /**\n     * Executes the action handling.\n     * @param actionName {String} action name\n     * @param data {var} action payload\n     */\n    handleAction: function (actionName, data) {}\n  }\n});\n"
+  ]
+}

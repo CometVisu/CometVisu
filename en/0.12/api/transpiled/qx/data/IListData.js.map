@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/data/IListData.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "events",
+    "members",
+    "getItem",
+    "index",
+    "setItem",
+    "item",
+    "splice",
+    "startIndex",
+    "amount",
+    "varargs",
+    "contains",
+    "getLength",
+    "toArray",
+    "data",
+    "IListData"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;AAKAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,mBAApB,EACA;AACEC,IAAAA,MAAM,EACN;AACE;;;;;;;;;;AAUA,gBAAW,oBAXb;;AAaE;;;;AAIA,sBAAgB;AAjBlB,KAFF;AAuBEC,IAAAA,OAAO,EACP;AACE;;;;;;;AAOAC,MAAAA,OAAO,EAAG,iBAASC,KAAT,EAAgB,CAAE,CAR9B;;AAWE;;;;;;;AAOAC,MAAAA,OAAO,EAAG,iBAASD,KAAT,EAAgBE,IAAhB,EAAsB,CAAE,CAlBpC;;AAqBE;;;;;;;;;;;AAWAC,MAAAA,MAAM,EAAG,gBAASC,UAAT,EAAqBC,MAArB,EAA6BC,OAA7B,EAAsC,CAAE,CAhCnD;;AAmCE;;;;;;AAMAC,MAAAA,QAAQ,EAAG,kBAASL,IAAT,EAAe,CAAE,CAzC9B;;AA4CE;;;;;AAKAM,MAAAA,SAAS,EAAG,qBAAW,CAAE,CAjD3B;;AAoDE;;;;;AAKAC,MAAAA,OAAO,EAAE,mBAAW,CAAE;AAzDxB;AAxBF,GADA;AAvBAlB,EAAAA,EAAE,CAACmB,IAAH,CAAQC,SAAR,CAAkBjB,aAAlB,GAAkCA,aAAlC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * This interface defines a data structure compatible with the data binding\n * controllers.\n * It defines a minimum of functionality which the controller need to work.\n */\nqx.Interface.define(\"qx.data.IListData\",\n{\n  events :\n  {\n    /**\n     * The change event which will be fired if there is a change in the data structure.\n     * The data contains a map with three key value pairs:\n     * <li>start: The start index of the change.</li>\n     * <li>end: The end index of the change.</li>\n     * <li>type: The type of the change as a String. This can be 'add',\n     * 'remove', 'order' or 'add/remove'</li>\n     * <li>added: The items which has been added (as a JavaScript array)</li>\n     * <li>removed: The items which has been removed (as a JavaScript array)</li>\n     */\n    \"change\" : \"qx.event.type.Data\",\n\n    /**\n     * The changeLength event will be fired every time the length of the\n     * data structure changes.\n     */\n    \"changeLength\": \"qx.event.type.Event\"\n  },\n\n\n  members :\n  {\n    /**\n     * Returns the item at the given index\n     *\n     * @param index {Number} The index requested of the data element.\n     *\n     * @return {var} The element at the given index.\n     */\n    getItem : function(index) {},\n\n\n    /**\n     * Sets the given item at the given position in the data structure. A\n     * change event has to be fired.\n     *\n     * @param index {Number} The index of the data element.\n     * @param item {var} The new item to set.\n     */\n    setItem : function(index, item) {},\n\n\n    /**\n     * Method to remove and add new element to the data. For every remove or\n     * add a change event should be fired.\n     *\n     * @param startIndex {Integer} The index where the splice should start\n     * @param amount {Integer} Defines number of element which will be removed\n     *   at the given position.\n     * @param varargs {var} All following parameters will be added at the given\n     *   position to the array.\n     * @return {qx.data.Array} An array containing the removed elements.\n     */\n    splice : function(startIndex, amount, varargs) {},\n\n\n    /**\n     * Check if the given item is in the current data structure.\n     *\n     * @param item {var} The item which is possibly in the data structure.\n     * @return {Boolean} true, if the array contains the given item.\n     */\n    contains : function(item) {},\n\n\n    /**\n     * Returns the current length of the data structure.\n     *\n     * @return {Number} The current length of the data structure.\n     */\n    getLength : function() {},\n\n\n    /**\n     * Returns the list data as native array.\n     *\n     * @return {Array} The native array.\n     */\n    toArray: function() {}\n  }\n});\n"
+  ]
+}

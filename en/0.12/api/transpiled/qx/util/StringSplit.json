@@ -1,0 +1,91 @@
+{
+  "className": "qx.util.StringSplit",
+  "packageName": "qx.util",
+  "name": "StringSplit",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 0
+      },
+      "end": {
+        "line": 140,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Adrian Olaru (adrianolaru)\n   ======================================================================\n   This class contains code based on the following work:\n Cross-Browser Split\n     http://blog.stevenlevithan.com/archives/cross-browser-split\n     Version 1.0.1\n     Copyright:\n       (c) 2006-2007, Steven Levithan <a href=\"http://stevenlevithan.com\">http://stevenlevithan.com</a>\n     License:\n       MIT: http://www.opensource.org/licenses/mit-license.php\n     Authors:\n Steven Levithan\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Implements an ECMA-compliant, uniform cross-browser split method</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "split": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 138,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>ECMA-compliant, uniform cross-browser split method</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} Incoming string to split",
+            "paramName": "str",
+            "description": " Incoming string to split",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "separator {RegExp} Specifies the character to use for separating the string.\n   The separator is treated as a string or a  regular expression. If separator is\n   omitted, the array returned contains one element consisting of the entire string.",
+            "paramName": "separator",
+            "description": " Specifies the character to use for separating the string.\n   The separator is treated as a string or a  regular expression. If separator is\n   omitted, the array returned contains one element consisting of the entire string.",
+            "type": "RegExp"
+          },
+          {
+            "name": "@param",
+            "body": "limit {Integer?} Integer specifying a limit on the number of splits to be found.",
+            "paramName": "limit",
+            "description": " Integer specifying a limit on the number of splits to be found.",
+            "optional": true,
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} split string",
+            "type": "String[]",
+            "description": " split string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

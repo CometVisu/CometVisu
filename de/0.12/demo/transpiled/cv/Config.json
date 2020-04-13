@@ -1,0 +1,879 @@
+{
+  "className": "cv.Config",
+  "packageName": "cv",
+  "name": "Config",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 364,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Config.js\n copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Main settings that an be accessed from anywhere inside the Application</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "isAbstract": false,
+  "isStatic": true,
+  "isSingleton": false,
+  "statics": {
+    "Maturity": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Define ENUM of maturity levels for features, so that e.g. the editor can\n ignore some widgets when they are not supported yet</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "treePath": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 41,
+          "column": 16
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The current path tree</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "currentPageId": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Path to the current page</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "libraryVersion": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Config file version</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "libraryCheck": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "maxMobileScreenWidth": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Threshold where the mobile.css is loaded</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "maxScreenWidthColspanS": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 31
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Threshold where colspan-s is used</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "maxScreenWidthColspanM": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 31
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>threshold where colspan-m is used</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "scrollSpeed": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default scrolling speed for page changes (in ms)</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "defaultColumns": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4
+        },
+        "end": {
+          "line": 83,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default number of colums the layout should use</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "minColumnWidth": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 88,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Minimum column width</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "enableAddressQueue": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If true, the client only loads the states for the widgets that are part of the start page at first\n read request (should increase the performance when huge config files are used)</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "backend": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Type of the used backend (<em>default</em>, <em>openhab</em> or <em>openhab2</em>)</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "backendUrl": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initial URL to the backend</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "configSuffix": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 110,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "clientDesign": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The design currently used</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "use_maturity": {
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4
+        },
+        "end": {
+          "line": 120,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maturity level</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{var}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "configSettings": {
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>All configuration and settings from the current configuration\n (Note: all settings that need to be cached must be put in here)</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "rememberLastPage": {
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4
+        },
+        "end": {
+          "line": 146,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Store last visited page in LocalStorage</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "lazyLoading": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4
+        },
+        "end": {
+          "line": 153,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If enabled the widget instances are created on demand. Note: this must only be used when\n cache is valid!</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "designStructureMap": {
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4
+        },
+        "end": {
+          "line": 160,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Defines which structure is supported by which designs</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "reporting": {
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4
+        },
+        "end": {
+          "line": 165,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If enabled the user interaction gets logged</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "enableLogging": {
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4
+        },
+        "end": {
+          "line": 170,
+          "column": 23
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set console logging</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "configServer": {
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4
+        },
+        "end": {
+          "line": 175,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The server that responded to the config request</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "initialDemoData": {
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4
+        },
+        "end": {
+          "line": 180,
+          "column": 25
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>In testMode the visu can be filled with some demo data</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "getStructure": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4
+        },
+        "end": {
+          "line": 200,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the structure that is related to this design</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "design {String?} name of the design",
+            "paramName": "design",
+            "description": " name of the design",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} name of the structure",
+            "type": "String",
+            "description": " name of the structure"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "guessIfProxied": {
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4
+        },
+        "end": {
+          "line": 212,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method tries to guess if the CometVisu is running on a proxied webserver.\n (by comparing if the visu_config.xml-File has been delivered from another server than the\n loging response). As this is just an assumption, you should not treat this result as reliable.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addMapping": {
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4
+        },
+        "end": {
+          "line": 216,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getMapping": {
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4
+        },
+        "end": {
+          "line": 220,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasMapping": {
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4
+        },
+        "end": {
+          "line": 224,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "clearMappings": {
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4
+        },
+        "end": {
+          "line": 228,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addStyling": {
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 4
+        },
+        "end": {
+          "line": 232,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getStyling": {
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4
+        },
+        "end": {
+          "line": 236,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hasStyling": {
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4
+        },
+        "end": {
+          "line": 240,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDesign": {
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4
+        },
+        "end": {
+          "line": 244,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 247,
+        "column": 9
+      },
+      "end": {
+        "line": 363,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

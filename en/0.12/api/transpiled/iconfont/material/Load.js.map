@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/qx_packages/ITISFoundation_qx-iconfont-material_v0_1_4/source/class/iconfont/material/Load.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "iconfont",
+    "material",
+    "Load"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;AAGA;;;;;;AAMAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EAA0C,EAA1C;AATAC,EAAAA,QAAQ,CAACC,QAAT,CAAkBC,IAAlB,CAAuBL,aAAvB,GAAuCA,aAAvC",
+  "sourcesContent": [
+    "/**\n * A dummy class to trigger the compiler to copy the font files\n */\n/**\n * @asset(iconfont/material/MaterialIcons-Regular.eot)\n * @asset(iconfont/material/MaterialIcons-Regular.ttf)\n * @asset(iconfont/material/MaterialIcons-Regular.woff)\n * @asset(iconfont/material/MaterialIcons-Regular.woff2)\n */\nqx.Class.define(\"iconfont.material.Load\", {});\n"
+  ]
+}

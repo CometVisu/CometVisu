@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/table/IColumnMenuItem.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "properties",
+    "columnVisible",
+    "events",
+    "changeColumnVisible",
+    "ui",
+    "table",
+    "IColumnMenuItem"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,6BAApB,EACA;AACEC,IAAAA,UAAU,EACV;AACE;;;;AAIAC,MAAAA,aAAa,EAAG;AALlB,KAFF;AAUEC,IAAAA,MAAM,EACN;AACE;;;;;AAKAC,MAAAA,mBAAmB,EAAG;AANxB;AAXF,GADA;AArBAT,EAAAA,EAAE,CAACU,EAAH,CAAMC,KAAN,CAAYC,eAAZ,CAA4BT,aAA5B,GAA4CA,aAA5C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2009 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Interface for a column menu item corresponding to a table column.\n */\nqx.Interface.define(\"qx.ui.table.IColumnMenuItem\",\n{\n  properties :\n  {\n    /**\n     * Whether the table column associated with this menu item is visible\n     * Should be of type {Boolean}!\n     */\n    columnVisible : { }\n  },\n\n  events :\n  {\n    /**\n     * Dispatched when a column changes visibility state. The event data is a\n     * boolean indicating whether the table column associated with this menu\n     * item is now visible.\n     */\n    changeColumnVisible : \"qx.event.type.Data\"\n  }\n});\n"
+  ]
+}

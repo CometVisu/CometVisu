@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/parser/widgets/Group.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "parse",
+    "xml",
+    "path",
+    "flavour",
+    "pageType",
+    "data",
+    "cv",
+    "parser",
+    "WidgetParser",
+    "parseElement",
+    "getAttributeToPropertyMappings",
+    "target",
+    "classes",
+    "bindClickToWidget",
+    "noWidget",
+    "replace",
+    "parseChildren",
+    "transform",
+    "value",
+    "defer",
+    "addHandler",
+    "widgets",
+    "Group"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAoBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EAA2C;AACzCC,IAAAA,IAAI,EAAE,QADmC;;AAGzC;;;;;AAKAC,IAAAA,OAAO,EAAE;AACP;;;;;;;;;AASAC,MAAAA,KAAK,EAAE,eAAUC,GAAV,EAAeC,IAAf,EAAqBC,OAArB,EAA8BC,QAA9B,EAAwC;AAC7C,YAAIC,IAAI,GAAGC,EAAE,CAACC,MAAH,CAAUC,YAAV,CAAuBC,YAAvB,CAAoC,IAApC,EAA0CR,GAA1C,EAA+CC,IAA/C,EAAqDC,OAArD,EAA8DC,QAA9D,EAAwE,KAAKM,8BAAL,EAAxE,CAAX;;AACA,YAAIL,IAAI,CAACM,MAAT,EAAiB;AACfN,UAAAA,IAAI,CAACO,OAAL,IAAgB,YAAhB;AACAP,UAAAA,IAAI,CAACQ,iBAAL,GAAyB,IAAzB,CAFe,CAEgB;AAChC;;AACD,YAAIR,IAAI,CAACS,QAAL,KAAkB,IAAtB,EAA4B;AAC1BT,UAAAA,IAAI,CAACO,OAAL,GAAeP,IAAI,CAACO,OAAL,CAAaG,OAAb,CAAqB,SAArB,EAAgC,EAAhC,CAAf;AACD;;AACDT,QAAAA,EAAE,CAACC,MAAH,CAAUC,YAAV,CAAuBQ,aAAvB,CAAqCf,GAArC,EAA0CC,IAA1C,EAAgDC,OAAhD,EAAyDC,QAAzD;AACA,eAAOC,IAAP;AACD,OArBM;AAuBPK,MAAAA,8BAA8B,EAAE,0CAAY;AAC1C,eAAO;AACL,sBAAY;AACVC,YAAAA,MAAM,EAAE,UADE;AACU,uBAAW,KADrB;AAC4BM,YAAAA,SAAS,EAAE,mBAAUC,KAAV,EAAiB;AAChE,qBAAOA,KAAK,KAAK,MAAjB;AACD;AAHS,WADP;AAML,kBAAQ;AAAE,uBAAW;AAAb,WANH;AAOL,oBAAU;AAAE,uBAAW;AAAb;AAPL,SAAP;AASD;AAjCM,KARgC;AA4CzCC,IAAAA,KAAK,EAAE,eAASpB,OAAT,EAAkB;AACvBO,MAAAA,EAAE,CAACC,MAAH,CAAUC,YAAV,CAAuBY,UAAvB,CAAkC,OAAlC,EAA2CrB,OAA3C;AACD;AA9CwC,GAA3C;AAvBAO,EAAAA,EAAE,CAACC,MAAH,CAAUc,OAAV,CAAkBC,KAAlB,CAAwB3B,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* Group.js \n * \n * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n * Parse group config elements\n */\nqx.Class.define('cv.parser.widgets.Group', {\n  type: \"static\",\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    /**\n     * Parses the widgets XML configuration and extracts the given information\n     * to a simple key/value map.\n     *\n     * @param xml {Element} XML-Element\n     * @param path {String} internal path of the widget\n     * @param flavour {String} Flavour of the widget\n     * @param pageType {String} Page type (2d, 3d, ...)\n     */\n    parse: function (xml, path, flavour, pageType) {\n      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());\n      if (data.target) {\n        data.classes += ' clickable';\n        data.bindClickToWidget = true; // for groups with pagejumps this is mandatory\n      }\n      if (data.noWidget === true) {\n        data.classes = data.classes.replace(\"widget \", \"\");\n      }\n      cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);\n      return data;\n    },\n\n    getAttributeToPropertyMappings: function () {\n      return {\n        'nowidget': {\n          target: 'noWidget', \"default\": false, transform: function (value) {\n            return value === \"true\";\n          }\n        },\n        'name': { \"default\": \"\" },\n        'target': { \"default\": \"\" }\n      };\n    }\n  },\n\n  defer: function(statics) {\n    cv.parser.WidgetParser.addHandler(\"group\", statics);\n  }\n});"
+  ]
+}

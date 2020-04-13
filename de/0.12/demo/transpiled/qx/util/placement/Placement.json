@@ -1,0 +1,885 @@
+{
+  "className": "qx.util.placement.Placement",
+  "packageName": "qx.util.placement",
+  "name": "Placement",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 299,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n Christian Hagendorn (chris_schmidt)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Contains methods to compute a position for any object which should\n be positioned relative to another object.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 14
+      },
+      "end": {
+        "line": 33,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "properties": {
+    "axisX": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The axis object to use for the horizontal placement</p>"
+          }
+        ]
+      },
+      "name": "axisX",
+      "propertyType": "new",
+      "check": "Class"
+    },
+    "axisY": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The axis object to use for the vertical placement</p>"
+          }
+        ]
+      },
+      "name": "axisY",
+      "propertyType": "new",
+      "check": "Class"
+    },
+    "edge": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 58,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Specify to which edge of the target object, the object should be attached</p>"
+          }
+        ]
+      },
+      "name": "edge",
+      "propertyType": "new",
+      "init": "top",
+      "possibleValues": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "defaultValue": "top"
+    },
+    "align": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Specify with which edge of the target object, the object should be aligned</p>"
+          }
+        ]
+      },
+      "name": "align",
+      "propertyType": "new",
+      "init": "right",
+      "possibleValues": [
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "center",
+        "middle"
+      ],
+      "defaultValue": "right"
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    }
+  },
+  "statics": {
+    "__instance": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 21
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "compute": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4
+        },
+        "end": {
+          "line": 137,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>DOM and widget independent method to compute the location\n of an object to make it relative to any other object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "size {Map} With the keys <code>width</code> and <code>height</code>\n   of the object to align",
+            "paramName": "size",
+            "description": " With the keys <code>width</code> and <code>height</code>\n   of the object to align",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "area {Map} Available area to position the object. Has the keys\n   <code>width</code> and <code>height</code>. Normally this is the parent\n   object of the one to align.",
+            "paramName": "area",
+            "description": " Available area to position the object. Has the keys\n   <code>width</code> and <code>height</code>. Normally this is the parent\n   object of the one to align.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "target {Map} Location of the object to align the object to. This map\n   should have the keys <code>left</code>, <code>top</code>, <code>right</code>\n   and <code>bottom</code>.",
+            "paramName": "target",
+            "description": " Location of the object to align the object to. This map\n   should have the keys <code>left</code>, <code>top</code>, <code>right</code>\n   and <code>bottom</code>.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "offsets {Map} Map with all offsets for each direction.\n   Comes with the keys <code>left</code>, <code>top</code>,\n   <code>right</code> and <code>bottom</code>.",
+            "paramName": "offsets",
+            "description": " Map with all offsets for each direction.\n   Comes with the keys <code>left</code>, <code>top</code>,\n   <code>right</code> and <code>bottom</code>.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "position {String} Alignment of the object on the target, any of\n   \"top-left\", \"top-center\", \"top-right\", \"bottom-left\", \"bottom-center\", \"bottom-right\",\n   \"left-top\", \"left-middle\", \"left-bottom\", \"right-top\", \"right-middle\", \"right-bottom\".",
+            "paramName": "position",
+            "description": " Alignment of the object on the target, any of\n   \"top-left\", \"top-center\", \"top-right\", \"bottom-left\", \"bottom-center\", \"bottom-right\",\n   \"left-top\", \"left-middle\", \"left-bottom\", \"right-top\", \"right-middle\", \"right-bottom\".",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "modeX {String} Horizontal placement mode. Valid values are:\n   <ul>\n   <li><code>direct</code>: place the object directly at the given\n   location.</li>\n   <li><code>keep-align</code>: if parts of the object is outside of the visible\n   area it is moved to the best fitting 'edge' and 'alignment' of the target.\n   It is guaranteed the the new position attaches the object to one of the\n   target edges and that that is aligned with a target edge.</li>\n   <li>best-fit</li>: If parts of the object are outside of the visible\n   area it is moved into the view port ignoring any offset, and position\n   values.\n   </ul>",
+            "paramName": "modeX",
+            "description": " Horizontal placement mode. Valid values are:\n   <ul>\n   <li><code>direct</code>: place the object directly at the given\n   location.</li>\n   <li><code>keep-align</code>: if parts of the object is outside of the visible\n   area it is moved to the best fitting 'edge' and 'alignment' of the target.\n   It is guaranteed the the new position attaches the object to one of the\n   target edges and that that is aligned with a target edge.</li>\n   <li>best-fit</li>: If parts of the object are outside of the visible\n   area it is moved into the view port ignoring any offset, and position\n   values.\n   </ul>",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "modeY {String} Vertical placement mode. Accepts the same values as\n   the 'modeX' argument.",
+            "paramName": "modeY",
+            "description": " Vertical placement mode. Accepts the same values as\n   the 'modeX' argument.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map with the final location stored in the keys\n   <code>left</code> and <code>top</code>.",
+            "type": "Map",
+            "description": " A map with the final location stored in the keys\n   <code>left</code> and <code>top</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__direct": {
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
+          "column": 19
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__keepAlign": {
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__bestFit": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4
+        },
+        "end": {
+          "line": 142,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__getAxis": {
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4
+        },
+        "end": {
+          "line": 170,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the axis implementation for the given mode</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "mode {String} One of <code>direct</code>, <code>keep-align</code> or\n   <code>best-fit</code>",
+            "paramName": "mode",
+            "description": " One of <code>direct</code>, <code>keep-align</code> or\n   <code>best-fit</code>",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.util.placement.AbstractAxis}",
+            "type": "qx.util.placement.AbstractAxis",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "members": {
+    "__defaultAxis": {
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4
+        },
+        "end": {
+          "line": 176,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "compute": {
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4
+        },
+        "end": {
+          "line": 243,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>DOM and widget independent method to compute the location\n of an object to make it relative to any other object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "size {Map} With the keys <code>width</code> and <code>height</code>\n   of the object to align",
+            "paramName": "size",
+            "description": " With the keys <code>width</code> and <code>height</code>\n   of the object to align",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "area {Map} Available area to position the object. Has the keys\n   <code>width</code> and <code>height</code>. Normally this is the parent\n   object of the one to align.",
+            "paramName": "area",
+            "description": " Available area to position the object. Has the keys\n   <code>width</code> and <code>height</code>. Normally this is the parent\n   object of the one to align.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "target {Map} Location of the object to align the object to. This map\n   should have the keys <code>left</code>, <code>top</code>, <code>right</code>\n   and <code>bottom</code>.",
+            "paramName": "target",
+            "description": " Location of the object to align the object to. This map\n   should have the keys <code>left</code>, <code>top</code>, <code>right</code>\n   and <code>bottom</code>.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "offsets {Map} Map with all offsets for each direction.\n   Comes with the keys <code>left</code>, <code>top</code>,\n   <code>right</code> and <code>bottom</code>.",
+            "paramName": "offsets",
+            "description": " Map with all offsets for each direction.\n   Comes with the keys <code>left</code>, <code>top</code>,\n   <code>right</code> and <code>bottom</code>.",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map with the final location stored in the keys\n   <code>left</code> and <code>top</code>.",
+            "type": "Map",
+            "description": " A map with the final location stored in the keys\n   <code>left</code> and <code>top</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__getPositionX": {
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4
+        },
+        "end": {
+          "line": 267,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the position value for the horizontal axis</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the position",
+            "type": "String",
+            "description": " the position"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__getPositionY": {
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 4
+        },
+        "end": {
+          "line": 291,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the position value for the vertical axis</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the position",
+            "type": "String",
+            "description": " the position"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getAxisX": {
+      "type": "function",
+      "name": "getAxisX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>axisX</code>.\n\nFor further details take a look at the property definition: {@link #axisX}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Class",
+            "desc": "Returns the value for axisX"
+          }
+        ]
+      }
+    },
+    "setAxisX": {
+      "type": "function",
+      "name": "setAxisX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>axisX</code>.\n\nFor further details take a look at the property definition: {@link #axisX}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Class",
+            "paramName": "value",
+            "desc": "Value for axisX"
+          }
+        ]
+      }
+    },
+    "resetAxisX": {
+      "type": "function",
+      "name": "resetAxisX",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>axisX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #axisX}."
+          }
+        ]
+      }
+    },
+    "getAxisY": {
+      "type": "function",
+      "name": "getAxisY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>axisY</code>.\n\nFor further details take a look at the property definition: {@link #axisY}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Class",
+            "desc": "Returns the value for axisY"
+          }
+        ]
+      }
+    },
+    "setAxisY": {
+      "type": "function",
+      "name": "setAxisY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>axisY</code>.\n\nFor further details take a look at the property definition: {@link #axisY}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Class",
+            "paramName": "value",
+            "desc": "Value for axisY"
+          }
+        ]
+      }
+    },
+    "resetAxisY": {
+      "type": "function",
+      "name": "resetAxisY",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>axisY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #axisY}."
+          }
+        ]
+      }
+    },
+    "getEdge": {
+      "type": "function",
+      "name": "getEdge",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>edge</code>.\n\nFor further details take a look at the property definition: {@link #edge}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for edge"
+          }
+        ]
+      }
+    },
+    "setEdge": {
+      "type": "function",
+      "name": "setEdge",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>edge</code>.\n\nFor further details take a look at the property definition: {@link #edge}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for edge"
+          }
+        ]
+      }
+    },
+    "resetEdge": {
+      "type": "function",
+      "name": "resetEdge",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>edge</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #edge}."
+          }
+        ]
+      }
+    },
+    "getAlign": {
+      "type": "function",
+      "name": "getAlign",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>align</code>.\n\nFor further details take a look at the property definition: {@link #align}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for align"
+          }
+        ]
+      }
+    },
+    "setAlign": {
+      "type": "function",
+      "name": "setAlign",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>align</code>.\n\nFor further details take a look at the property definition: {@link #align}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for align"
+          }
+        ]
+      }
+    },
+    "resetAlign": {
+      "type": "function",
+      "name": "resetAlign",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>align</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #align}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 295,
+        "column": 13
+      },
+      "end": {
+        "line": 298,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

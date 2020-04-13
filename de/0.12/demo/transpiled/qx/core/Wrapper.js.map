@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/core/Wrapper.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "extend",
+    "Array",
+    "construct",
+    "i",
+    "l",
+    "arguments",
+    "length",
+    "push",
+    "firstItem",
+    "name",
+    "undefined",
+    "Function",
+    "firstReturnValue",
+    "args",
+    "prototype",
+    "slice",
+    "call",
+    "shift",
+    "forEach",
+    "item",
+    "returnValue",
+    "apply",
+    "bind",
+    "Object",
+    "defineProperty",
+    "enumerable",
+    "get",
+    "set",
+    "value",
+    "core",
+    "Wrapper"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;AAcA;;;;AAIAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,iBAApB,EAAuC;AACrCC,IAAAA,MAAM,EAAGC,KAD4B;AAErCC,IAAAA,SAAS,EAAG,qBAAW;AACrB,WAAK,IAAIC,CAAC,GAAC,CAAN,EAASC,CAAC,GAACC,SAAS,CAACC,MAA1B,EAAkCH,CAAC,GAACC,CAApC,EAAuCD,CAAC,EAAxC,EAA4C;AAC1C,aAAKI,IAAL,CAAUF,SAAS,CAACF,CAAD,CAAnB;AACD;;AAED,UAAIK,SAAS,GAAGH,SAAS,CAAC,CAAD,CAAzB;;AACA,WAAK,IAAII,IAAT,IAAiBD,SAAjB,EAA4B;AAE1B,YAAI,KAAKC,IAAL,MAAeC,SAAnB,EAA8B;AAC5B;AACD;;AAED,YAAIF,SAAS,CAACC,IAAD,CAAT,YAA2BE,QAA/B,EAAyC;AACvC,eAAKF,IAAL,IAAa,UAASA,IAAT,EAAe;AAC1B,gBAAIG,gBAAJ;AAEA,gBAAIC,IAAI,GAAGZ,KAAK,CAACa,SAAN,CAAgBC,KAAhB,CAAsBC,IAAtB,CAA2BX,SAA3B,EAAsC,CAAtC,CAAX;AACAQ,YAAAA,IAAI,CAACI,KAAL;AAEA,iBAAKC,OAAL,CAAa,UAASC,IAAT,EAAe;AAC1B,kBAAIC,WAAW,GAAGD,IAAI,CAACV,IAAD,CAAJ,CAAWY,KAAX,CAAiBF,IAAjB,EAAuBN,IAAvB,CAAlB;;AACA,kBAAID,gBAAgB,KAAKF,SAAzB,EAAoC;AAClCE,gBAAAA,gBAAgB,GAAGQ,WAAnB;AACD;AACF,aALD,EAN0B,CAa1B;;AACA,gBAAIR,gBAAgB,KAAK,KAAK,CAAL,CAAzB,EAAkC;AAChC,qBAAO,IAAP;AACD;;AACD,mBAAOA,gBAAP;AACD,WAlBY,CAkBXU,IAlBW,CAkBN,IAlBM,EAkBAb,IAlBA,CAAb;AAmBD,SApBD,MAoBO;AACLc,UAAAA,MAAM,CAACC,cAAP,CAAsB,IAAtB,EAA4Bf,IAA5B,EAAkC;AAChCgB,YAAAA,UAAU,EAAE,IADoB;AAEhCC,YAAAA,GAAG,EAAE,UAASjB,IAAT,EAAe;AAClB,qBAAO,KAAKA,IAAL,CAAP;AACD,aAFI,CAEHa,IAFG,CAEEd,SAFF,EAEaC,IAFb,CAF2B;AAKhCkB,YAAAA,GAAG,EAAE,UAASlB,IAAT,EAAemB,KAAf,EAAsB;AACzB,mBAAKV,OAAL,CAAa,UAASC,IAAT,EAAe;AAC1BA,gBAAAA,IAAI,CAACV,IAAD,CAAJ,GAAamB,KAAb;AACD,eAFD;AAGD,aAJI,CAIHN,IAJG,CAIE,IAJF,EAIQb,IAJR;AAL2B,WAAlC;AAWD;AACF;AACF;AAhDoC,GAAvC;AAlBAd,EAAAA,EAAE,CAACkC,IAAH,CAAQC,OAAR,CAAgBhC,aAAhB,GAAgCA,aAAhC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2014-2015 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n************************************************************************ */\n/**\n * Generic wrapper instance which wrapps a set of objects and forwards the API of\n * the first object to all objects in the array.\n */\nqx.Bootstrap.define(\"qx.core.Wrapper\", {\n  extend : Array,\n  construct : function() {\n    for (var i=0, l=arguments.length; i<l; i++) {\n      this.push(arguments[i]);\n    }\n\n    var firstItem = arguments[0];\n    for (var name in firstItem) {\n\n      if (this[name] !== undefined) {\n        continue;\n      }\n\n      if (firstItem[name] instanceof Function) {\n        this[name] = function(name) {\n          var firstReturnValue;\n\n          var args = Array.prototype.slice.call(arguments, 0);\n          args.shift();\n\n          this.forEach(function(item) {\n            var returnValue = item[name].apply(item, args);\n            if (firstReturnValue === undefined) {\n              firstReturnValue = returnValue;\n            }\n          });\n\n          // return the collection if the return value was the collection\n          if (firstReturnValue === this[0]) {\n            return this;\n          }\n          return firstReturnValue;\n        }.bind(this, name);\n      } else {\n        Object.defineProperty(this, name, {\n          enumerable: true,\n          get: function(name) {\n            return this[name];\n          }.bind(firstItem, name),\n          set: function(name, value) {\n            this.forEach(function(item) {\n              item[name] = value;\n            });\n          }.bind(this, name)\n        });\n      }\n    }\n  }\n});\n"
+  ]
+}

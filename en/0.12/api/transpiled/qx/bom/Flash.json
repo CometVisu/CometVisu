@@ -1,0 +1,363 @@
+{
+  "className": "qx.bom.Flash",
+  "packageName": "qx.bom",
+  "name": "Flash",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 55,
+        "column": 0
+      },
+      "end": {
+        "line": 354,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Christian Hagendorn (chris_schmidt)\n   ======================================================================\n   This class contains code based on the following work:\n SWFFix\n     http://code.google.com/p/swffix/\n     Version 0.3 (r17)\n     Copyright:\n       (c) 2007 SWFFix developers\n     License:\n       MIT: http://www.opensource.org/licenses/mit-license.php\n     Authors:\n Geoff Stearns\n Michael Williams\n Bobby van der Sluis\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Flash(TM) embed via script\n Include:</p>\n<ul>\n<li>Simple movie embedding (returning a cross-browser working DOM node)</li>\n<li>Support for custom parameters and attributes</li>\n<li>Support for Flash(TM) variables\nDoes not include the following features from SWFFix:</li>\n<li>Active content workarounds for already inserted movies (via markup)</li>\n<li>Express install support</li>\n<li>Transformation of standard conformance markup to cross browser support</li>\n<li>Support for alternative content (alt text)</li>\n</ul>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "_flashObjects": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
+          "column": 21
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Saves the references to the flash objects to delete the flash objects\n before the browser is closed. Note: it is only used in IE.</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "create": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4
+        },
+        "end": {
+          "line": 147,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  CREATION\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Creates an DOM element\n The dimension of the movie should define through CSS styles {@link qx.bom.element.Style}\n It is possible to add these parameters as supported by Flash movies:\n http://helpx.adobe.com/flash/kb/flash-object-embed-tag-attributes.html</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} Parent DOM element node to add flash movie",
+            "paramName": "element",
+            "description": " Parent DOM element node to add flash movie",
+            "type": "qx.bom.Element"
+          },
+          {
+            "name": "@param",
+            "body": "attributes {Map} attributes for the object tag like id or mayscript",
+            "paramName": "attributes",
+            "description": " attributes for the object tag like id or mayscript",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "variables {Map?null} Flash variable data (these are available in the movie later)",
+            "paramName": "variables",
+            "description": " Flash variable data (these are available in the movie later)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map?null} Flash parameter data (these are used to configure the movie itself)",
+            "paramName": "params",
+            "description": " Flash parameter data (these are used to configure the movie itself)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "win {Window?null} Window to create the element for",
+            "paramName": "win",
+            "description": " Window to create the element for",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The created Flash element",
+            "type": "qx.bom.Element",
+            "description": " The created Flash element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "destroy": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 197,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Destroys the flash object from DOM, but not the parent DOM element.\n Note: Removing the flash object like this:\n </p>\n<pre>\n  var div = qx.dom.Element.create(\"div\");\n  document.body.appendChild(div);\n  var flashObject = qx.bom.Flash.create(div, { movie : \"Flash.swf\", id : \"id\" });\n  div.removeChild(div.firstChild);\n </pre>\n<p>involve memory leaks in Internet Explorer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} Either the DOM element that contains\n              the flash object or the flash object itself.",
+            "paramName": "element",
+            "description": " Either the DOM element that contains\n              the flash object or the flash object itself.",
+            "type": "qx.bom.Element"
+          },
+          {
+            "name": "@param",
+            "body": "win {Window?} Window that the element, which is to be destroyed,\n                    belongs to.",
+            "paramName": "win",
+            "description": " Window that the element, which is to be destroyed,\n                    belongs to.",
+            "optional": true,
+            "type": "Window"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element, win)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__getFlashObject": {
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4
+        },
+        "end": {
+          "line": 221,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the flash object element from DOM node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The element to look.",
+            "paramName": "element",
+            "description": " The element to look.",
+            "type": "qx.bom.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} Flash object element",
+            "type": "qx.bom.Element",
+            "description": " Flash object element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__destroyObjectInIE": {
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4
+        },
+        "end": {
+          "line": 247,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Destroy the flash object and remove from DOM, to fix memory leaks.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} Flash object element to destroy.",
+            "paramName": "element",
+            "description": " Flash object element to destroy.",
+            "type": "qx.bom.Element"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__fixOutOfMemoryError": {
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 4
+        },
+        "end": {
+          "line": 266,
+          "column": 6
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper to prevent leaks in IE</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__createSwf": {
+      "location": {
+        "start": {
+          "line": 278,
+          "column": 4
+        },
+        "end": {
+          "line": 339,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a DOM element with a flash movie.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element node where the Flash element node will be added.",
+            "paramName": "element",
+            "description": " DOM element node where the Flash element node will be added.",
+            "type": "qx.bom.Element"
+          },
+          {
+            "name": "@param",
+            "body": "attributes {Map} Flash attribute data.",
+            "paramName": "attributes",
+            "description": " Flash attribute data.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map} Flash parameter data.",
+            "paramName": "params",
+            "description": " Flash parameter data.",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "win {Window} Window to create the element for.",
+            "paramName": "win",
+            "description": " Window to create the element for.",
+            "type": "qx.bom.Window"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element, attributes, params, win)"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 348,
+        "column": 10
+      },
+      "end": {
+        "line": 353,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>**********************************************************************\n DEFER\n**********************************************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "descendants": []
+}

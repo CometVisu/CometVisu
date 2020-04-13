@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/core/scroll/IScrollBar.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "events",
+    "properties",
+    "orientation",
+    "maximum",
+    "position",
+    "knobFactor",
+    "members",
+    "scrollTo",
+    "duration",
+    "assertNumber",
+    "scrollBy",
+    "offset",
+    "scrollBySteps",
+    "steps",
+    "ui",
+    "core",
+    "scroll",
+    "IScrollBar"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,8BAApB,EACA;AACEC,IAAAA,MAAM,EACN;AACE;AACA,gBAAW,oBAFb;;AAGE;AACA,4BAAsB;AAJxB,KAFF;AAUEC,IAAAA,UAAU,EACV;AACE;;;AAGAC,MAAAA,WAAW,EAAG,EAJhB;;AAOE;;;;AAIAC,MAAAA,OAAO,EAAG,EAXZ;;AAcE;;;;;;;;AAQAC,MAAAA,QAAQ,EAAG,EAtBb;;AAyBE;;;;AAIAC,MAAAA,UAAU,EAAG;AA7Bf,KAXF;AA4CEC,IAAAA,OAAO,EACP;AACE;;;;;;;;;AASAC,MAAAA,QAAQ,EAAG,kBAASH,QAAT,EAAmBI,QAAnB,EAA6B;AACtC,aAAKC,YAAL,CAAkBL,QAAlB;AACD,OAZH;;AAeE;;;;;;;;;AASAM,MAAAA,QAAQ,EAAG,kBAASC,MAAT,EAAiBH,QAAjB,EAA2B;AACpC,aAAKC,YAAL,CAAkBE,MAAlB;AACD,OA1BH;;AA6BE;;;;;;;;;AASAC,MAAAA,aAAa,EAAG,uBAASC,KAAT,EAAgBL,QAAhB,EAA0B;AACxC,aAAKC,YAAL,CAAkBI,KAAlB;AACD;AAxCH;AA7CF,GADA;AArBAnB,EAAAA,EAAE,CAACoB,EAAH,CAAMC,IAAN,CAAWC,MAAX,CAAkBC,UAAlB,CAA6BpB,aAA7B,GAA6CA,aAA7C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * All widget used as scrollbars must implement this interface.\n */\nqx.Interface.define(\"qx.ui.core.scroll.IScrollBar\",\n{\n  events :\n  {\n    /** Fired if the user scroll */\n    \"scroll\" : \"qx.event.type.Data\",\n    /** Fired as soon as the scroll animation ended. */\n    \"scrollAnimationEnd\": 'qx.event.type.Event'\n  },\n\n\n  properties :\n  {\n    /**\n     * The scroll bar orientation\n     */\n    orientation : {},\n\n\n    /**\n     * The maximum value (difference between available size and\n     * content size).\n     */\n    maximum : {},\n\n\n    /**\n     * Position of the scrollbar (which means the scroll left/top of the\n     * attached area's pane)\n     *\n     * Strictly validates according to {@link #maximum}.\n     * Does not apply any correction to the incoming value. If you depend\n     * on this, please use {@link #scrollTo} instead.\n     */\n    position : {},\n\n\n    /**\n     * Factor to apply to the width/height of the knob in relation\n     * to the dimension of the underlying area.\n     */\n    knobFactor : {}\n  },\n\n\n  members :\n  {\n    /**\n     * Scrolls to the given position.\n     *\n     * This method automatically corrects the given position to respect\n     * the {@link #maximum}.\n     *\n     * @param position {Integer} Scroll to this position. Must be greater zero.\n     * @param duration {Number} The time in milliseconds the slide to should take.\n     */\n    scrollTo : function(position, duration) {\n      this.assertNumber(position);\n    },\n\n\n    /**\n     * Scrolls by the given offset.\n     *\n     * This method automatically corrects the given position to respect\n     * the {@link #maximum}.\n     *\n     * @param offset {Integer} Scroll by this offset\n     * @param duration {Number} The time in milliseconds the slide to should take.\n     */\n    scrollBy : function(offset, duration) {\n      this.assertNumber(offset);\n    },\n\n\n    /**\n     * Scrolls by the given number of steps.\n     *\n     * This method automatically corrects the given position to respect\n     * the {@link #maximum}.\n     *\n     * @param steps {Integer} Number of steps\n     * @param duration {Number} The time in milliseconds the slide to should take.\n     */\n    scrollBySteps : function(steps, duration) {\n      this.assertNumber(steps);\n    }\n  }\n});\n"
+  ]
+}

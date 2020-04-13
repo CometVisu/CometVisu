@@ -1,0 +1,182 @@
+{
+  "className": "qx.lang.normalize.String",
+  "packageName": "qx.lang.normalize",
+  "name": "String",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 102,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>This class is responsible for the normalization of the native 'String' object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
+        }
+      ],
+      "@group": [
+        {
+          "name": "@group",
+          "body": "Polyfill"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "trim": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes whitespace from both ends of the string.\n <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/Trim\">MDN documentation</a> |\n <a href=\"http://es5.github.com/#x15.5.4.20\">Annotated ES5 Spec</a></p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The trimmed string",
+            "type": "qx.lang.normalize.String",
+            "description": " The trimmed string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "startsWith": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determines whether a string begins with the characters of another\n string, returning true or false as appropriate.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "searchString {String} The characters to be searched for at the\n   start of this string.",
+            "paramName": "searchString",
+            "description": " The characters to be searched for at the\n   start of this string.",
+            "type": "qx.lang.normalize.String"
+          },
+          {
+            "name": "@param",
+            "body": "position {Integer?0} The position in this string at which to\n   begin searching for <code>searchString</code>.",
+            "paramName": "position",
+            "description": " The position in this string at which to\n   begin searching for <code>searchString</code>.",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the string begins with the other string.",
+            "type": "Boolean",
+            "description": " Whether the string begins with the other string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "endsWith": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 83,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determines whether a ends with the characters of another string,\n returning true or false as appropriate.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "searchString {String} The characters to be searched for at the\n   end of this string.",
+            "paramName": "searchString",
+            "description": " The characters to be searched for at the\n   end of this string.",
+            "type": "qx.lang.normalize.String"
+          },
+          {
+            "name": "@param",
+            "body": "position {Integer?length} Search within this string as if this\n   string were only this long; defaults to this string's actual length,\n   clamped within the range established by this string's length.",
+            "paramName": "position",
+            "description": " Search within this string as if this\n   string were only this long; defaults to this string's actual length,\n   clamped within the range established by this string's length.",
+            "optional": true,
+            "defaultValue": "length",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the string ends with the other string.",
+            "type": "Boolean",
+            "description": " Whether the string ends with the other string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 87,
+        "column": 10
+      },
+      "end": {
+        "line": 101,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

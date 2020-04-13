@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/qx_packages/johnspackman_UploadMgr_v1_0_4/source/class/com/zenesis/qx/upload/MUploadButton.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "include",
+    "com",
+    "zenesis",
+    "upload",
+    "MParameters",
+    "properties",
+    "acceptUpload",
+    "init",
+    "nullable",
+    "check",
+    "members",
+    "capture",
+    "releaseCapture",
+    "MUploadButton"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;;;;;AAuBA;;;;;AAKAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qCAAhB,EAAuD;AACrDC,IAAAA,OAAO,EAAE,CAAEC,GAAG,CAACC,OAAJ,CAAYR,EAAZ,CAAeS,MAAf,CAAsBC,WAAxB,CAD4C;AAGrDC,IAAAA,UAAU,EAAE;AACX;;;;;;;;;;;;;AAaAC,MAAAA,YAAY,EAAE;AACbC,QAAAA,IAAI,EAAE,IADO;AAEbC,QAAAA,QAAQ,EAAE,IAFG;AAGbC,QAAAA,KAAK,EAAE;AAHM;AAdH,KAHyC;AAwBrDC,IAAAA,OAAO,EAAE;AACP;AACAC,MAAAA,OAAO,EAAE,mBAAW,CAClB;AACD,OAJM;AAMP;AACAC,MAAAA,cAAc,EAAE,0BAAW,CACzB;AACD;AATM;AAxB4C,GAAvD;AA5BAX,EAAAA,GAAG,CAACC,OAAJ,CAAYR,EAAZ,CAAeS,MAAf,CAAsBU,aAAtB,CAAoChB,aAApC,GAAoDA,aAApD",
+  "sourcesContent": [
+    "/* ***********************************************************************\n\n   UploadMgr - provides an API for uploading one or multiple files\n   with progress feedback (on modern browsers), does not block the user \n   interface during uploads, supports cancelling uploads.\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     \n     This software is provided under the same licensing terms as Qooxdoo,\n     please see the LICENSE file in the Qooxdoo project's top-level directory \n     for details.\n\n   Authors:\n * John Spackman (john.spackman@zenesis.com)\n\n ************************************************************************/\n\n/**\n * This mixin provides a trivial way to make any widget suitable as a widget for\n * Uploader - the only trick is that the capture and releaseCapture methods in\n * qx.ui.core.Widget must not be fired.\n */\nqx.Mixin.define(\"com.zenesis.qx.upload.MUploadButton\", {\n  include: [ com.zenesis.qx.upload.MParameters ],\n  \n  properties: {\n  \t/**\n  \t * File types which are acceptable for upload; note that this is not guaranteed\n  \t * because not all (older) browsers support it, but where available it will\n  \t * restrict the file open dialog to only allow these file types.\n  \t * \n  \t * This value is passed directly through to the input tag's accept attribute, so\n  \t * the format can be seen here: {@link http://www.w3schools.com/tags/att_input_accept.asp};\n  \t * in summary, it is a comma separated list of file extensions (with the dot) and/or\n  \t * MIME types; EG:\n  \t * \n  \t * \t.jpg,.png,.gif\t\t\t-- Images\n  \t * \timage/*,.mp4\t\t\t\t-- Images and *.mp4\n  \t */\n  \tacceptUpload: {\n  \t\tinit: null,\n  \t\tnullable: true,\n  \t\tcheck: \"String\"\n  \t}\n  },\n\n  members: {\n    // overridden\n    capture: function() {\n      // Nothing\n    },\n\n    // overridden\n    releaseCapture: function() {\n      // Nothing\n    }\n  }\n});"
+  ]
+}

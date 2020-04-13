@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/core/MProperty.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "members",
+    "set",
+    "data",
+    "value",
+    "setter",
+    "core",
+    "Property",
+    "$$method",
+    "isString",
+    "firstUp",
+    "undefined",
+    "Error",
+    "prop",
+    "get",
+    "getter",
+    "reset",
+    "resetter",
+    "isPropertyInitialized",
+    "MProperty"
+  ],
+  "mappings": "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",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * This mixin offers the basic property features which include generic\n * setter, getter and resetter.\n */\nqx.Mixin.define(\"qx.core.MProperty\",\n{\n  members :\n  {\n    /**\n     * Sets multiple properties at once by using a property list or\n     * sets one property and its value by the first and second argument.\n     * As a fallback, if no generated property setter could be found, a\n     * handwritten setter will be searched and invoked if available.\n     *\n     * @param data {Map | String} a map of property values. The key is the name of the property.\n     * @param value {var?} the value, only used when <code>data</code> is a string.\n     * @return {Object} Returns this instance if <code>data</code> is a map\n     *   or a non-generated setter is called; otherwise returns <code>value</code>.\n     * @throws {Error} if a property defined does not exist\n     */\n    set : function(data, value)\n    {\n      var setter = qx.core.Property.$$method.set;\n\n      if (qx.Bootstrap.isString(data))\n      {\n        if (!this[setter[data]])\n        {\n          if (this[\"set\" + qx.Bootstrap.firstUp(data)] != undefined) {\n            this[\"set\" + qx.Bootstrap.firstUp(data)](value);\n            return this;\n          }\n\n          throw new Error(\"No such property: \" + data);\n        }\n\n        return this[setter[data]](value);\n      }\n      else\n      {\n        for (var prop in data)\n        {\n          if (!this[setter[prop]])\n          {\n            if (this[\"set\" + qx.Bootstrap.firstUp(prop)] != undefined) {\n              this[\"set\" + qx.Bootstrap.firstUp(prop)](data[prop]);\n              continue;\n            }\n\n            throw new Error(\"No such property: \" + prop);\n          }\n\n          this[setter[prop]](data[prop]);\n        }\n\n        return this;\n      }\n    },\n\n\n    /**\n     * Returns the value of the given property. If no generated getter could be\n     * found, a fallback tries to access a handwritten getter.\n     *\n     * @param prop {String} Name of the property.\n     * @return {var} The value of the value\n     * @throws {Error} if a property defined does not exist\n     */\n    get : function(prop)\n    {\n      var getter = qx.core.Property.$$method.get;\n\n      if (!this[getter[prop]])\n      {\n        if (this[\"get\" + qx.Bootstrap.firstUp(prop)] != undefined) {\n          return this[\"get\" + qx.Bootstrap.firstUp(prop)]();\n        }\n\n        throw new Error(\"No such property: \" + prop);\n      }\n\n\n      return this[getter[prop]]();\n    },\n\n\n    /**\n     * Resets the value of the given property. If no generated resetter could be\n     * found, a handwritten resetter will be invoked, if available.\n     *\n     * @param prop {String} Name of the property.\n     * @throws {Error} if a property defined does not exist\n     */\n    reset : function(prop)\n    {\n      var resetter = qx.core.Property.$$method.reset;\n\n      if (!this[resetter[prop]])\n      {\n        if (this[\"reset\" + qx.Bootstrap.firstUp(prop)] != undefined) {\n          this[\"reset\" + qx.Bootstrap.firstUp(prop)]();\n          return;\n        }\n\n        throw new Error(\"No such property: \" + prop);\n      }\n\n\n      this[resetter[prop]]();\n    },\n\n    /**\n     * Checks if the property is initialized, i.e. has a defined init value or\n     * has got a value by a setter method.\n     *\n     * @param prop {String} Name of the property\n     * @return {Boolean} If the property is initialized\n     * @throws {Error} If the property defined does not exist\n     */\n    isPropertyInitialized : function(prop)\n    {\n      if (qx.core.Environment.get(\"qx.debug\")) {\n        qx.core.Assert.assertString(prop);\n\n        if (!this[\"get\" + qx.Bootstrap.firstUp(prop)]) {\n          throw new Error(\"No such property: \" + prop);\n        }\n      }\n\n      return this[\"$$user_\" + prop] !== undefined ||\n        this[\"$$init_\" + prop] !== undefined;\n    }\n  }\n});\n"
+  ]
+}

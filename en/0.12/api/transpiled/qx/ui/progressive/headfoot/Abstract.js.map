@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/progressive/headfoot/Abstract.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "extend",
+    "ui",
+    "container",
+    "Composite",
+    "construct",
+    "layout",
+    "HBox",
+    "members",
+    "__progressive",
+    "join",
+    "progressive",
+    "destruct",
+    "headfoot",
+    "Abstract"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;AAIAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qCAAhB,EACA;AACEC,IAAAA,IAAI,EAAS,UADf;AAEEC,IAAAA,MAAM,EAAOP,EAAE,CAACQ,EAAH,CAAMC,SAAN,CAAgBC,SAF/B;AAIEC,IAAAA,SAAS,EAAG,qBACZ;AACE,uDAAqB,IAAIX,EAAE,CAACQ,EAAH,CAAMI,MAAN,CAAaC,IAAjB,EAArB;AACD,KAPH;AASEC,IAAAA,OAAO,EACP;AAEEC,MAAAA,aAAa,EAAG,IAFlB;;AAIE;;;;;;;;AAQAC,MAAAA,IAAI,EAAG,cAASC,WAAT,EACP;AACE,aAAKF,aAAL,GAAqBE,WAArB;AACD;AAfH,KAVF;AA4BEC,IAAAA,QAAQ,EAAG,oBAAW;AACpB,WAAKH,aAAL,GAAqB,IAArB;AACD;AA9BH,GADA;AAtBAf,EAAAA,EAAE,CAACQ,EAAH,CAAMS,WAAN,CAAkBE,QAAlB,CAA2BC,QAA3B,CAAoCjB,aAApC,GAAoDA,aAApD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * The abstract class for a header or footer for use with Progressive's Table\n * renderer.\n */\nqx.Class.define(\"qx.ui.progressive.headfoot.Abstract\",\n{\n  type       : \"abstract\",\n  extend     : qx.ui.container.Composite,\n\n  construct : function()\n  {\n    this.base(arguments, new qx.ui.layout.HBox());\n  },\n\n  members    :\n  {\n\n    __progressive : null,\n\n    /**\n     * Join this header/footer to a Progressive.  This makes the Progressive\n     * object available to the header/footer through the _progressive member.\n     *\n     * @param progressive {qx.ui.progressive.Progressive}\n     *   Progressive object to which we're being joined.\n     *\n     */\n    join : function(progressive)\n    {\n      this.__progressive = progressive;\n    }\n  },\n\n  destruct : function() {\n    this.__progressive = null;\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "className": "qx.bom.Selector",
+  "packageName": "qx.bom",
+  "name": "Selector",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 130,
+        "column": 0
+      },
+      "end": {
+        "line": 154,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2008-2010 Sebastian Werner, http://sebastian-werner.net\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n Andreas Ecker (ecker)\n   ======================================================================\n   This class contains code based on the following work:\n Sizzle CSS Selector Engine - v2.3.0\n     Homepage:\n       http://sizzlejs.com/\n     Documentation:\n       https://github.com/jquery/sizzle/wiki/Sizzle-Documentation\n     Discussion:\n       https://groups.google.com/forum/#!forum/sizzlejs\n     Code:\n       https://github.com/jquery/sizzle\n     Copyright:\n       (c) 2009, 2013 jQuery Foundation and other contributors\n     License:\n       MIT: http://www.opensource.org/licenses/mit-license.php</p>\n<hr />\n<pre><code>Copyright 2013 jQuery Foundation and other contributors\nhttp://jquery.com/\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\nLIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\nWITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n</code></pre>\n<hr />\n<pre><code>Version:\n   v2.3.0\n   commit  8d56cba3212f6722a0b47330143d329d7297277e\n*****************************************************************\n</code></pre>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>The selector engine supports virtually all CSS 3 Selectors  – this even\n includes some parts that are infrequently implemented such as escaped\n selectors (<code>.foo\\\\+bar</code>), Unicode selectors, and results returned\n in document order. There are a few notable exceptions to the CSS 3 selector\n support:</p>\n<ul>\n<li><code>:root</code></li>\n<li><code>:target</code></li>\n<li><code>:nth-last-child</code></li>\n<li><code>:nth-of-type</code></li>\n<li><code>:nth-last-of-type</code></li>\n<li><code>:first-of-type</code></li>\n<li><code>:last-of-type</code></li>\n<li><code>:only-of-type</code></li>\n<li><code>:lang()</code>\nIn addition to the CSS 3 Selectors the engine supports the following\nadditional selectors or conventions.\n<em>Changes</em></li>\n<li><code>:not(a.b)</code>: Supports non-simple selectors in <code>:not()</code> (most browsers only support <code>:not(a)</code>, for example).</li>\n<li><code>:not(div &gt; p)</code>: Supports full selectors in <code>:not()</code>.</li>\n<li><code>:not(div, p)</code>: Supports multiple selectors in <code>:not()</code>.</li>\n<li><code>[NAME=VALUE]</code>: Doesn't require quotes around the specified value in an attribute selector.\n<em>Additions</em></li>\n<li><code>[NAME!=VALUE]</code>: Finds all elements whose <code>NAME</code> attribute doesn't match the specified value. Is equivalent to doing <code>:not([NAME=VALUE])</code>.</li>\n<li><code>:contains(TEXT)</code>: Finds all elements whose textual context contains the word <code>TEXT</code> (case sensitive).</li>\n<li><code>:header</code>: Finds all elements that are a header element (h1, h2, h3, h4, h5, h6).</li>\n<li><code>:parent</code>: Finds all elements that contains another element.\n<em>Positional Selector Additions</em></li>\n<li><code>:first</code>/</code>:last</code>: Finds the first or last matching element on the page. (e.g. <code>div:first</code> would find the first div on the page, in document order)</li>\n<li><code>:even</code>/<code>:odd</code>: Finds every other element on the page (counting begins at 0, so <code>:even</code> would match the first element).</li>\n<li><code>:eq</code>/<code>:nth</code>: Finds the Nth element on the page (e.g. <code>:eq(5)</code> finds the 6th element on the page).</li>\n<li><code>:lt</code>/<code>:gt</code>: Finds all elements at positions less than or greater than the specified positions.\n<em>Form Selector Additions</em></li>\n<li><code>:input</code>: Finds all input elements (includes textareas, selects, and buttons).</li>\n<li><code>:text</code>, <code>:checkbox</code>, <code>:file</code>, <code>:password</code>, <code>:submit</code>, <code>:image</code>, <code>:reset</code>, <code>:button</code>: Finds the input element with the specified input type (<code>:button</code> also finds button elements).\nBased on Sizzle by John Resig, see:</li>\n<li>http://sizzlejs.com/\nFor further usage details also have a look at the wiki page at:</li>\n<li>https://github.com/jquery/sizzle/wiki/Sizzle-Home</li>\n</ul>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "query": {
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 15
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Queries the document for the given selector. Supports all CSS3 selectors\n plus some extensions as mentioned in the class description.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(selector, context)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} Valid selector (CSS3 + extensions)",
+            "paramName": "selector",
+            "description": " Valid selector (CSS3 + extensions)",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "context {Element} Context element (result elements must be children of this element)",
+            "paramName": "context",
+            "description": " Context element (result elements must be children of this element)",
+            "type": "qx.bom.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Matching elements",
+            "type": "Array",
+            "description": " Matching elements"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "matches": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4
+        },
+        "end": {
+          "line": 152,
+          "column": 17
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an reduced array which only contains the elements from the given\n array which matches the given selector</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(selector, set)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} Selector to filter given set",
+            "paramName": "selector",
+            "description": " Selector to filter given set",
+            "type": "qx.bom.String"
+          },
+          {
+            "name": "@param",
+            "body": "set {Array} List to filter according to given selector",
+            "paramName": "set",
+            "description": " List to filter according to given selector",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} New array containing matching elements",
+            "type": "Array",
+            "description": " New array containing matching elements"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

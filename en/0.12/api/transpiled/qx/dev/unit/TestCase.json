@@ -1,0 +1,2344 @@
+{
+  "className": "qx.dev.unit.TestCase",
+  "packageName": "qx.dev.unit",
+  "name": "TestCase",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [
+    "qx.core.MAssert"
+  ],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 216,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Daniel Wagner (d_wagner)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Base class for all unit tests.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "events": {
+    "assertionFailed": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 37,
+          "column": 42
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This event can be fired by assertion functions instead of throwing a\n {@link qx.core.AssertionError}, ensuring that any code defined after the\n assertion call will still run.\n Event data: The {@link qx.core.AssertionError}</p>"
+          }
+        ]
+      },
+      "name": "assertionFailed",
+      "type": "qx.event.type.Data"
+    }
+  },
+  "properties": {
+    "testResult": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 46,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The TestResult instance that runs the test</p>"
+          }
+        ]
+      },
+      "name": "testResult",
+      "propertyType": "new"
+    },
+    "testFunc": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 51,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The test currently running</p>"
+          }
+        ]
+      },
+      "name": "testFunc",
+      "propertyType": "new"
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId"
+    }
+  },
+  "members": {
+    "__autoDispose": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "isDebugOn": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether If debugging code is enabled. (i.e. the setting\n <code>qx.debug</code> has the value <code>on</code>.)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether debugging is enabled",
+            "type": "Boolean",
+            "description": " Whether debugging is enabled"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "wait": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Instruct the test to wait. Used for asynchronous tests.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "delay {Integer?5000} Amount of time in milliseconds to wait.",
+            "paramName": "delay",
+            "description": " Amount of time in milliseconds to wait.",
+            "optional": true,
+            "defaultValue": "5000",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "deferredFunction {Function?false} Optional function to run after\n timeout has expired.",
+            "paramName": "deferredFunction",
+            "description": " Optional function to run after\n timeout has expired.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object?window} Optional execution context for\n deferredFunction",
+            "paramName": "context",
+            "description": " Optional execution context for\n deferredFunction",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resume": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancel a timeout started with <code>wait()</code> and run the given\n function. Used for asynchronous tests, e.g. in a listener's callback\n function.\n<em>Important</em>\n The used <em>deferredFunction</em> is the last function which is executed before\n the whole test case is disposed. But you are able to use a new\n <code>wait()</code> / <code>resume()</code> pair in the call sequence of the deferred function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "deferredFunction {Function?} Function to run",
+            "paramName": "deferredFunction",
+            "description": " Function to run",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?} reference to the ‘this’ variable inside the\n callback. By default the test instance is used.",
+            "paramName": "self",
+            "description": " reference to the ‘this’ variable inside the\n callback. By default the test instance is used.",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The return value of the deferred function",
+            "type": "var",
+            "description": " The return value of the deferred function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resumeSetUp": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4
+        },
+        "end": {
+          "line": 132,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancel a timeout started with <code>wait()</code> in setUp() and run the test\n function. Used for asynchronous setUp of tests.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The return value of the testRun",
+            "type": "var",
+            "description": " The return value of the testRun"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resumeHandler": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4
+        },
+        "end": {
+          "line": 168,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancel a timeout started with <code>wait()</code> and return a function,\n which calls {@link #resume}. This function is useful\n to wrap an event handler or callback function within the resume call sequence.\n It provides the deferred function with all parameters from original caller.</p>\n<pre>\n obj.addListener(\"appear\", this.resumeHandler(function(e){\n\n }));\n this.wait();\n</pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "deferredFunction {Function} Function to run as event handler or callback",
+            "paramName": "deferredFunction",
+            "description": " Function to run as event handler or callback",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?} reference to the ‘this’ variable inside the\n        callback. By default the test instance is used.",
+            "paramName": "self",
+            "description": " reference to the ‘this’ variable inside the\n        callback. By default the test instance is used.",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} Wrapper function which runs resume with deferred function",
+            "type": "Function",
+            "description": " Wrapper function which runs resume with deferred function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "skip": {
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4
+        },
+        "end": {
+          "line": 179,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Skip this test. Any code after a call to this method will not be executed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {String|null} Optional message (reason why the test was skipped)",
+            "paramName": "message",
+            "description": " Optional message (reason why the test was skipped)",
+            "type": [
+              "String",
+              "null"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addAutoDispose": {
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4
+        },
+        "end": {
+          "line": 194,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an object to the auto dispose list. This can be cleared manually or will\n be flushed when the test case is disposed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {qx.core.Object} Object to be automatically disposed.",
+            "paramName": "obj",
+            "description": " Object to be automatically disposed.",
+            "type": "qx.core.Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "doAutoDispose": {
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4
+        },
+        "end": {
+          "line": 214,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispose all objects that got registered for auto disposal.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "assert": {
+      "type": "function",
+      "name": "assert",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the condition evaluates to <code>true</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "condition {var} Condition to check for. Must evaluate to\n    <code>true</code>.",
+            "paramName": "condition",
+            "description": " Condition to check for. Must evaluate to\n    <code>true</code>.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "fail": {
+      "type": "function",
+      "name": "fail",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Raise an {@link AssertionError}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "msg {String} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "compact {Boolean?false} Show less verbose message. Default: false.",
+            "paramName": "compact",
+            "description": " Show less verbose message. Default: false.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ]
+      }
+    },
+    "assertTrue": {
+      "type": "function",
+      "name": "assertTrue",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is <code>true</code> (Identity check).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} Condition to check for. Must be identical to\n    <code>true</code>.",
+            "paramName": "value",
+            "description": " Condition to check for. Must be identical to\n    <code>true</code>.",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertFalse": {
+      "type": "function",
+      "name": "assertFalse",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is <code>false</code> (Identity check).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} Condition to check for. Must be identical to\n    <code>false</code>.",
+            "paramName": "value",
+            "description": " Condition to check for. Must be identical to\n    <code>false</code>.",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertEquals": {
+      "type": "function",
+      "name": "assertEquals",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both values are equal. (Uses the equality operator\n <code>==</code>.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {var} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "found {var} found value",
+            "paramName": "found",
+            "description": " found value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotEquals": {
+      "type": "function",
+      "name": "assertNotEquals",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both values are not equal. (Uses the not equality operator\n <code>!=</code>.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {var} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "found {var} found value",
+            "paramName": "found",
+            "description": " found value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertEqualsFloat": {
+      "type": "function",
+      "name": "assertEqualsFloat",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both float values are equal. This might be needed because\n of the natural floating point inaccuracy of computers.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {Float} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "Float"
+          },
+          {
+            "name": "@param",
+            "body": "found {Float} Found value",
+            "paramName": "found",
+            "description": " Found value",
+            "type": "Float"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotEqualsFloat": {
+      "type": "function",
+      "name": "assertNotEqualsFloat",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both float values are not equal. This might be needed\n because of the natural floating point inaccuracy of computers.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {Float} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "Float"
+          },
+          {
+            "name": "@param",
+            "body": "found {Float} Found value",
+            "paramName": "found",
+            "description": " Found value",
+            "type": "Float"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertIdentical": {
+      "type": "function",
+      "name": "assertIdentical",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both values are identical. (Uses the identity operator\n <code>===</code>.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {var} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "found {var} found value",
+            "paramName": "found",
+            "description": " found value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotIdentical": {
+      "type": "function",
+      "name": "assertNotIdentical",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both values are not identical. (Uses the not identity operator\n <code>!==</code>.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {var} Reference value",
+            "paramName": "expected",
+            "description": " Reference value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "found {var} found value",
+            "paramName": "found",
+            "description": " found value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotUndefined": {
+      "type": "function",
+      "name": "assertNotUndefined",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is not <code>undefined</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertUndefined": {
+      "type": "function",
+      "name": "assertUndefined",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is <code>undefined</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotNull": {
+      "type": "function",
+      "name": "assertNotNull",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is not <code>null</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNull": {
+      "type": "function",
+      "name": "assertNull",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is <code>null</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertJsonEquals": {
+      "type": "function",
+      "name": "assertJsonEquals",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the first two arguments are equal, when serialized into\n JSON.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {var} The expected value",
+            "paramName": "expected",
+            "description": " The expected value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "found {var} The found value",
+            "paramName": "found",
+            "description": " The found value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertMatch": {
+      "type": "function",
+      "name": "assertMatch",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the given string matches the regular expression</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} String, which should match the regular expression",
+            "paramName": "str",
+            "description": " String, which should match the regular expression",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "re {RegExp} Regular expression to match",
+            "paramName": "re",
+            "description": " Regular expression to match",
+            "type": "RegExp"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertArgumentsCount": {
+      "type": "function",
+      "name": "assertArgumentsCount",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the number of arguments is within the given range</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "args {arguments} The <code>arguments<code> variable of a function",
+            "paramName": "args",
+            "description": " The <code>arguments<code> variable of a function",
+            "type": "arguments"
+          },
+          {
+            "name": "@param",
+            "body": "minCount {Integer} Minimal number of arguments",
+            "paramName": "minCount",
+            "description": " Minimal number of arguments",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "maxCount {Integer} Maximum number of arguments",
+            "paramName": "maxCount",
+            "description": " Maximum number of arguments",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertEventFired": {
+      "type": "function",
+      "name": "assertEventFired",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that an event is fired.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} The object on which the event should be fired.",
+            "paramName": "obj",
+            "description": " The object on which the event should be fired.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "event {String} The event which should be fired.",
+            "paramName": "event",
+            "description": " The event which should be fired.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "invokeFunc {Function} The function which will be invoked and which\n   fires the event.",
+            "paramName": "invokeFunc",
+            "description": " The function which will be invoked and which\n   fires the event.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function?null} The function which will be invoked in the\n   listener. The function has one parameter called e which is the event.",
+            "paramName": "listener",
+            "description": " The function which will be invoked in the\n   listener. The function has one parameter called e which is the event.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?\"\"} Message to be shows if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shows if the assertion fails.",
+            "optional": true,
+            "defaultValue": "\"\"",
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertEventNotFired": {
+      "type": "function",
+      "name": "assertEventNotFired",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that an event is not fired.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} The object on which the event should be fired.",
+            "paramName": "obj",
+            "description": " The object on which the event should be fired.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "event {String} The event which should be fired.",
+            "paramName": "event",
+            "description": " The event which should be fired.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "invokeFunc {Function} The function which will be invoked and which\n   should not fire the event.",
+            "paramName": "invokeFunc",
+            "description": " The function which will be invoked and which\n   should not fire the event.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shows if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shows if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertException": {
+      "type": "function",
+      "name": "assertException",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Asserts that the callback raises a matching exception.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} function to check",
+            "paramName": "callback",
+            "description": " function to check",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "exception {Error?Error} Expected constructor of the exception.\n   The assertion fails if the raised exception is not an instance of the\n   parameter.",
+            "paramName": "exception",
+            "description": " Expected constructor of the exception.\n   The assertion fails if the raised exception is not an instance of the\n   parameter.",
+            "optional": true,
+            "defaultValue": "Error",
+            "type": "Error"
+          },
+          {
+            "name": "@param",
+            "body": "re {String|RegExp} The assertion fails if the error message does\n   not match this parameter",
+            "paramName": "re",
+            "description": " The assertion fails if the error message does\n   not match this parameter",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertInArray": {
+      "type": "function",
+      "name": "assertInArray",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an item in the given array.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "array {Array} List of valid values",
+            "paramName": "array",
+            "description": " List of valid values",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNotInArray": {
+      "type": "function",
+      "name": "assertNotInArray",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is NOT an item in the given array</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "array {Array} List of values",
+            "paramName": "array",
+            "description": " List of values",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertArrayEquals": {
+      "type": "function",
+      "name": "assertArrayEquals",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that both array have identical array items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {Array} The expected array",
+            "paramName": "expected",
+            "description": " The expected array",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "found {Array} The found array",
+            "paramName": "found",
+            "description": " The found array",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertKeyInMap": {
+      "type": "function",
+      "name": "assertKeyInMap",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a key in the given map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "map {Map} Map, where the keys represent the valid values",
+            "paramName": "map",
+            "description": " Map, where the keys represent the valid values",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertFunction": {
+      "type": "function",
+      "name": "assertFunction",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertString": {
+      "type": "function",
+      "name": "assertString",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a string.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertBoolean": {
+      "type": "function",
+      "name": "assertBoolean",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a boolean.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertNumber": {
+      "type": "function",
+      "name": "assertNumber",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a number.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertPositiveNumber": {
+      "type": "function",
+      "name": "assertPositiveNumber",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a number &gt;= 0.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertInteger": {
+      "type": "function",
+      "name": "assertInteger",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an integer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertPositiveInteger": {
+      "type": "function",
+      "name": "assertPositiveInteger",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an integer &gt;= 0.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertInRange": {
+      "type": "function",
+      "name": "assertInRange",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is inside the given range.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "min {Number} lower bound",
+            "paramName": "min",
+            "description": " lower bound",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "max {Number} upper bound",
+            "paramName": "max",
+            "description": " upper bound",
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertObject": {
+      "type": "function",
+      "name": "assertObject",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertArray": {
+      "type": "function",
+      "name": "assertArray",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an array.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertMap": {
+      "type": "function",
+      "name": "assertMap",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a map either created using <code>new Object</code>\n or by using the object literal notation <code>{ ... }</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertRegExp": {
+      "type": "function",
+      "name": "assertRegExp",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a regular expression.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertType": {
+      "type": "function",
+      "name": "assertType",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value has the given type using the <code>typeof</code>\n operator. Because the type is not always what it is supposed to be it is\n better to use more explicit checks like {@link #assertString} or\n {@link #assertArray}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} expected type of the value",
+            "paramName": "type",
+            "description": " expected type of the value",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertInstance": {
+      "type": "function",
+      "name": "assertInstance",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an instance of the given class.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class} The value must be an instance of this class",
+            "paramName": "clazz",
+            "description": " The value must be an instance of this class",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertInterface": {
+      "type": "function",
+      "name": "assertInterface",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value implements the given interface.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "iface {Class} The value must implement this interface",
+            "paramName": "iface",
+            "description": " The value must implement this interface",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertCssColor": {
+      "type": "function",
+      "name": "assertCssColor",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value represents the given CSS color value. This method\n parses the color strings and compares the RGB values. It is able to\n parse values supported by {@link qx.util.ColorUtil#stringToRgb}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expected {String} The expected color",
+            "paramName": "expected",
+            "description": " The expected color",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {String} The value to check",
+            "paramName": "value",
+            "description": " The value to check",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertElement": {
+      "type": "function",
+      "name": "assertElement",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is a DOM element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertQxObject": {
+      "type": "function",
+      "name": "assertQxObject",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an instance of {@link qx.core.Object}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "assertQxWidget": {
+      "type": "function",
+      "name": "assertQxWidget",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MAssert",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert that the value is an instance of {@link qx.ui.core.Widget}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Value to check",
+            "paramName": "value",
+            "description": " Value to check",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "msg {String?} Message to be shown if the assertion fails.",
+            "paramName": "msg",
+            "description": " Message to be shown if the assertion fails.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      }
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset"
+    },
+    "getTestResult": {
+      "type": "function",
+      "name": "getTestResult",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>testResult</code>.\n\nFor further details take a look at the property definition: {@link #testResult}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for testResult"
+          }
+        ]
+      }
+    },
+    "setTestResult": {
+      "type": "function",
+      "name": "setTestResult",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>testResult</code>.\n\nFor further details take a look at the property definition: {@link #testResult}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for testResult"
+          }
+        ]
+      }
+    },
+    "resetTestResult": {
+      "type": "function",
+      "name": "resetTestResult",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>testResult</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #testResult}."
+          }
+        ]
+      }
+    },
+    "getTestFunc": {
+      "type": "function",
+      "name": "getTestFunc",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>testFunc</code>.\n\nFor further details take a look at the property definition: {@link #testFunc}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for testFunc"
+          }
+        ]
+      }
+    },
+    "setTestFunc": {
+      "type": "function",
+      "name": "setTestFunc",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>testFunc</code>.\n\nFor further details take a look at the property definition: {@link #testFunc}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for testFunc"
+          }
+        ]
+      }
+    },
+    "resetTestFunc": {
+      "type": "function",
+      "name": "resetTestFunc",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>testFunc</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #testFunc}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

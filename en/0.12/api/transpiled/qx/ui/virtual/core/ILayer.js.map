@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/virtual/core/ILayer.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "fullUpdate",
+    "firstRow",
+    "firstColumn",
+    "rowSizes",
+    "columnSizes",
+    "assertArgumentsCount",
+    "arguments",
+    "assertPositiveInteger",
+    "assertArray",
+    "updateLayerWindow",
+    "updateLayerData",
+    "ui",
+    "virtual",
+    "core",
+    "ILayer"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;AAIAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,2BAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;;;;;;;;;;;;;AAaAC,MAAAA,UAAU,EAAG,oBACXC,QADW,EACDC,WADC,EAEXC,QAFW,EAEDC,WAFC,EAGX;AACA,aAAKC,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,qBAAL,CAA2BN,QAA3B;AACA,aAAKM,qBAAL,CAA2BL,WAA3B;AACA,aAAKM,WAAL,CAAiBL,QAAjB;AACA,aAAKK,WAAL,CAAiBJ,WAAjB;AACD,OAvBH;;AA0BE;;;;;;;;;;;;;;;AAeAK,MAAAA,iBAAiB,EAAG,2BAClBR,QADkB,EACRC,WADQ,EAElBC,QAFkB,EAERC,WAFQ,EAGlB;AACA,aAAKC,oBAAL,CAA0BC,SAA1B,EAAqC,CAArC,EAAwC,CAAxC;AACA,aAAKC,qBAAL,CAA2BN,QAA3B;AACA,aAAKM,qBAAL,CAA2BL,WAA3B;AACA,aAAKM,WAAL,CAAiBL,QAAjB;AACA,aAAKK,WAAL,CAAiBJ,WAAjB;AACD,OAlDH;;AAqDE;;;AAGAM,MAAAA,eAAe,EAAG,2BAAW,CAAE;AAxDjC;AAFF,GADA;AAtBAjB,EAAAA,EAAE,CAACkB,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBC,MAAnB,CAA0BlB,aAA1B,GAA0CA,aAA1C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * A layer is responsible to render one aspect of a virtual pane. The pane tells\n * each layer to render/update a specific window of the virtual grid.\n */\nqx.Interface.define(\"qx.ui.virtual.core.ILayer\",\n{\n  members :\n  {\n    /**\n     * Do a complete update of the layer. All cached data should be discarded.\n     * This method is called e.g. after changes to the grid geometry\n     * (row/column sizes, row/column count, ...).\n     *\n     * Note: This method can only be called after the widgets initial appear\n     * event has been fired because it may work with the widget's DOM elements.\n     *\n     * @param firstRow {Integer} Index of the first row to display.\n     * @param firstColumn {Integer} Index of the first column to display.\n     * @param rowSizes {Integer[]} Array of heights for each row to display.\n     * @param columnSizes {Integer[]} Array of widths for each column to display.\n     */\n    fullUpdate : function(\n      firstRow, firstColumn,\n      rowSizes, columnSizes\n    ) {\n      this.assertArgumentsCount(arguments, 6, 6);\n      this.assertPositiveInteger(firstRow);\n      this.assertPositiveInteger(firstColumn);\n      this.assertArray(rowSizes);\n      this.assertArray(columnSizes);\n    },\n\n\n    /**\n     * Update the layer to display a different window of the virtual grid.\n     * This method is called if the pane is scrolled, resized or cells\n     * are prefetched. The implementation can assume that no other grid\n     * data has been changed since the last \"fullUpdate\" of \"updateLayerWindow\"\n     * call.\n     *\n     * Note: This method can only be called after the widgets initial appear\n     * event has been fired because it may work with the widget's DOM elements.\n     *\n     * @param firstRow {Integer} Index of the first row to display.\n     * @param firstColumn {Integer} Index of the first column to display.\n     * @param rowSizes {Integer[]} Array of heights for each row to display.\n     * @param columnSizes {Integer[]} Array of widths for each column to display.\n     */\n    updateLayerWindow : function(\n      firstRow, firstColumn,\n      rowSizes, columnSizes\n    ) {\n      this.assertArgumentsCount(arguments, 6, 6);\n      this.assertPositiveInteger(firstRow);\n      this.assertPositiveInteger(firstColumn);\n      this.assertArray(rowSizes);\n      this.assertArray(columnSizes);\n    },\n\n\n    /**\n     * Update the layer to reflect changes in the data the layer displays.\n     */\n    updateLayerData : function() {}\n  }\n});\n"
+  ]
+}

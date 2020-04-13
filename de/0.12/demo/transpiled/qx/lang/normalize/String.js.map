@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/lang/normalize/String.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "trim",
+    "replace",
+    "startsWith",
+    "searchString",
+    "position",
+    "substr",
+    "length",
+    "endsWith",
+    "subjectString",
+    "toString",
+    "isFinite",
+    "Math",
+    "floor",
+    "lastIndex",
+    "indexOf",
+    "defer",
+    "core",
+    "Environment",
+    "get",
+    "String",
+    "prototype",
+    "lang",
+    "normalize"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAiBA;;;;;;;;AAQAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,0BAApB,EAAgD;AAE9CC,IAAAA,OAAO,EAAG;AAER;;;;;;;;AAQAC,MAAAA,IAAI,EAAG,gBAAW;AAChB,eAAO,KAAKC,OAAL,CAAa,YAAb,EAA0B,EAA1B,CAAP;AACD,OAZO;;AAeR;;;;;;;;;;AAUAC,MAAAA,UAAU,EAAG,oBAAUC,YAAV,EAAwBC,QAAxB,EACb;AACEA,QAAAA,QAAQ,GAAGA,QAAQ,IAAI,CAAvB;AACA,eAAO,KAAKC,MAAL,CAAYD,QAAZ,EAAsBD,YAAY,CAACG,MAAnC,MAA+CH,YAAtD;AACD,OA7BO;;AAgCR;;;;;;;;;;;AAWAI,MAAAA,QAAQ,EAAG,kBAAUJ,YAAV,EAAwBC,QAAxB,EACX;AACE,YAAII,aAAa,GAAG,KAAKC,QAAL,EAApB;;AACA,YAAM,OAAOL,QAAP,KAAoB,QAApB,IACA,CAACM,QAAQ,CAACN,QAAD,CADT,IAEAO,IAAI,CAACC,KAAL,CAAWR,QAAX,MAAyBA,QAFzB,IAGAA,QAAQ,GAAGI,aAAa,CAACF,MAH/B,EAGwC;AACtCF,UAAAA,QAAQ,GAAGI,aAAa,CAACF,MAAzB;AACD;;AACDF,QAAAA,QAAQ,IAAID,YAAY,CAACG,MAAzB;AACA,YAAIO,SAAS,GAAGL,aAAa,CAACM,OAAd,CAAsBX,YAAtB,EAAoCC,QAApC,CAAhB;AACA,eAAOS,SAAS,KAAK,CAAC,CAAf,IAAoBA,SAAS,KAAKT,QAAzC;AACD;AAvDO,KAFoC;AA6D9CW,IAAAA,KAAK,EAAG,eAAShB,OAAT,EACR;AACE;AACA,UAAI,CAACL,EAAE,CAACsB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,wBAAxB,CAAL,EAAwD;AACtDC,QAAAA,MAAM,CAACC,SAAP,CAAiBpB,IAAjB,GAAwBD,OAAO,CAACC,IAAhC;AACD,OAJH,CAKE;;;AACA,UAAI,CAACN,EAAE,CAACsB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,8BAAxB,CAAL,EAA8D;AAC5DC,QAAAA,MAAM,CAACC,SAAP,CAAiBlB,UAAjB,GAA8BH,OAAO,CAACG,UAAtC;AACD,OARH,CASE;;;AACA,UAAI,CAACR,EAAE,CAACsB,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,4BAAxB,CAAL,EAA4D;AAC1DC,QAAAA,MAAM,CAACC,SAAP,CAAiBb,QAAjB,GAA4BR,OAAO,CAACQ,QAApC;AACD;AACF;AA3E6C,GAAhD;AAzBAb,EAAAA,EAAE,CAAC2B,IAAH,CAAQC,SAAR,CAAkBH,MAAlB,CAAyBtB,aAAzB,GAAyCA,aAAzC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n/**\n * This class is responsible for the normalization of the native 'String' object.\n * It checks if these methods are available and, if not, appends them to\n * ensure compatibility in all browsers.\n * For usage samples, check out the attached links.\n *\n * @group (Polyfill)\n */\nqx.Bootstrap.define(\"qx.lang.normalize.String\", {\n\n  statics : {\n\n    /**\n     * Removes whitespace from both ends of the string.\n     *\n     * <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/Trim\">MDN documentation</a> |\n     * <a href=\"http://es5.github.com/#x15.5.4.20\">Annotated ES5 Spec</a>\n     *\n     * @return {String} The trimmed string\n     */\n    trim : function() {\n      return this.replace(/^\\s+|\\s+$/g,'');\n    },\n\n\n    /**\n     * Determines whether a string begins with the characters of another\n     * string, returning true or false as appropriate.\n     *\n     * @param searchString {String} The characters to be searched for at the\n     *   start of this string.\n     * @param position {Integer?0} The position in this string at which to\n     *   begin searching for <code>searchString</code>.\n     * @return {Boolean} Whether the string begins with the other string.\n     */\n    startsWith : function (searchString, position)\n    {\n      position = position || 0;\n      return this.substr(position, searchString.length) === searchString;\n    },\n\n\n    /**\n     * Determines whether a ends with the characters of another string,\n     * returning true or false as appropriate.\n     *\n     * @param searchString {String} The characters to be searched for at the\n     *   end of this string.\n     * @param position {Integer?length} Search within this string as if this\n     *   string were only this long; defaults to this string's actual length,\n     *   clamped within the range established by this string's length.\n     * @return {Boolean} Whether the string ends with the other string.\n     */\n    endsWith : function (searchString, position)\n    {\n      var subjectString = this.toString();\n      if (  typeof position !== 'number'\n         || !isFinite(position)\n         || Math.floor(position) !== position\n         || position > subjectString.length ) {\n        position = subjectString.length;\n      }\n      position -= searchString.length;\n      var lastIndex = subjectString.indexOf(searchString, position);\n      return lastIndex !== -1 && lastIndex === position;\n    }\n\n  },\n\n  defer : function(statics)\n  {\n    // trim\n    if (!qx.core.Environment.get(\"ecmascript.string.trim\")) {\n      String.prototype.trim = statics.trim;\n    }\n    // startsWith\n    if (!qx.core.Environment.get(\"ecmascript.string.startsWith\")) {\n      String.prototype.startsWith = statics.startsWith;\n    }\n    // endsWith\n    if (!qx.core.Environment.get(\"ecmascript.string.endsWith\")) {\n      String.prototype.endsWith = statics.endsWith;\n    }\n  }\n});\n"
+  ]
+}

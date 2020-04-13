@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/module/event/Pointer.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "define",
+    "statics",
+    "TYPES",
+    "getPointerType",
+    "getViewportLeft",
+    "getViewportTop",
+    "getDocumentLeft",
+    "getDocumentTop",
+    "getScreenLeft",
+    "getScreenTop",
+    "normalize",
+    "event",
+    "element",
+    "type",
+    "dom",
+    "Pointer",
+    "defer",
+    "qxWeb",
+    "$registerEventNormalization",
+    "module"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;;;;;;;;;;AAeAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,yBAApB,EAA+C;AAC7CC,IAAAA,OAAO,EACP;AACE;;;AAGAC,MAAAA,KAAK,EAAG,CAAC,aAAD,EAAgB,WAAhB,EAA6B,aAA7B,EAA4C,eAA5C,EAA6D,aAA7D,EAA4E,YAA5E,CAJV;;AAOE;;;;;;;AAOAC,MAAAA,cAAc,EAAG,0BAAW;AAC1B;AACA,eAAO,KAAP;AACD,OAjBH;;AAoBE;;;;;;AAMAC,MAAAA,eAAe,EAAG,2BAAW;AAC3B;AACA,eAAO,KAAP;AACD,OA7BH;;AAgCE;;;;;;;AAOAC,MAAAA,cAAc,EAAG,0BAAW;AAC1B;AACA,eAAO,KAAP;AACD,OA1CH;;AA6CE;;;;;;;AAOAC,MAAAA,eAAe,EAAG,2BAAW;AAC3B;AACA,eAAO,KAAP;AACD,OAvDH;;AA0DE;;;;;;;AAOAC,MAAAA,cAAc,EAAG,0BAAW;AAC1B;AACA,eAAO,KAAP;AACD,OApEH;;AAuEE;;;;;;;;;AASAC,MAAAA,aAAa,EAAG,yBAAW;AACzB;AACA,eAAO,KAAP;AACD,OAnFH;;AAsFE;;;;;;;;;AASAC,MAAAA,YAAY,EAAG,wBAAW;AACxB;AACA,eAAO,KAAP;AACD,OAlGH;;AAqGE;;;;;;;;;AASAC,MAAAA,SAAS,EAAG,mBAASC,KAAT,EAAgBC,OAAhB,EACZ;AACE,YAAI,CAACD,KAAL,EAAY;AACV,iBAAOA,KAAP;AACD;;AAEDf,QAAAA,EAAE,CAACe,KAAH,CAASE,IAAT,CAAcC,GAAd,CAAkBC,OAAlB,CAA0BL,SAA1B,CAAoCC,KAApC;AACA,eAAOA,KAAP;AACD;AAtHH,KAF6C;AA2H7CK,IAAAA,KAAK,EAAG,eAASf,OAAT,EAAkB;AACxBgB,MAAAA,KAAK,CAACC,2BAAN,CAAkCtB,EAAE,CAACuB,MAAH,CAAUR,KAAV,CAAgBI,OAAhB,CAAwBb,KAA1D,EAAiED,OAAO,CAACS,SAAzE;AACD;AA7H4C,GAA/C;AAjCAd,EAAAA,EAAE,CAACuB,MAAH,CAAUR,KAAV,CAAgBI,OAAhB,CAAwBhB,aAAxB,GAAwCA,aAAxC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (danielwagner)\n\n************************************************************************ */\n\n/**\n * Normalization for pointer events. Pointer events are hardware-agnostic and\n * will be fired regardless of which input type of input device is used (e.g. mouse or touchscreen).\n *\n * @require(qx.module.Event)\n * @require(qx.module.event.Pointer#getPointerType) // static code analysis - this method has to referenced\n * @require(qx.module.event.Pointer#getViewportLeft) // static code analysis - this method has to referenced\n * @require(qx.module.event.Pointer#getViewportTop) // static code analysis - this method has to referenced\n * @require(qx.module.event.Pointer#getDocumentLeft) // static code analysis - this method has to referenced\n * @require(qx.module.event.Pointer#getDocumentTop) // static code analysis - this method has to referenced\n * @require(qx.module.event.Pointer#getScreenLeft) // static code analysis - this method has to referenced\n * @require(qx.module.event.Pointer#getScreenTop) // static code analysis - this method has to referenced\n *\n * @group (Event_Normalization)\n */\nqx.Bootstrap.define(\"qx.module.event.Pointer\", {\n  statics :\n  {\n    /**\n     * List of event types to be normalized\n     */\n    TYPES : [\"pointerdown\", \"pointerup\", \"pointermove\", \"pointercancel\", \"pointerover\", \"pointerout\"],\n\n\n    /**\n     * Returns the device type which the event triggered. This can be one\n     * of the following strings: <code>mouse</code>, <code>pen</code>\n     * or <code>touch</code>.\n     *\n     * @return {String} The type of the pointer.\n     */\n    getPointerType : function() {\n      // stub for documentation. Implementation is in qx.event.type.dom.Pointer\n      return false;\n    },\n\n\n    /**\n     * Get the horizontal coordinate at which the event occurred relative\n     * to the viewport.\n     *\n     * @return {Number} The horizontal mouse position\n     */\n    getViewportLeft : function() {\n      // stub for documentation. Implementation is in qx.event.type.dom.Pointer\n      return false;\n    },\n\n\n    /**\n     * Get the vertical coordinate at which the event occurred relative\n     * to the viewport.\n     *\n     * @return {Number} The vertical mouse position\n     * @signature function()\n     */\n    getViewportTop : function() {\n      // stub for documentation. Implementation is in qx.event.type.dom.Pointer\n      return false;\n    },\n\n\n    /**\n     * Get the horizontal position at which the event occurred relative to the\n     * left of the document. This property takes into account any scrolling of\n     * the page.\n     *\n     * @return {Number} The horizontal mouse position in the document.\n     */\n    getDocumentLeft : function() {\n      // stub for documentation. Implementation is in qx.event.type.dom.Pointer\n      return false;\n    },\n\n\n    /**\n     * Get the vertical position at which the event occurred relative to the\n     * top of the document. This property takes into account any scrolling of\n     * the page.\n     *\n     * @return {Number} The vertical mouse position in the document.\n     */\n    getDocumentTop : function() {\n      // stub for documentation. Implementation is in qx.event.type.dom.Pointer\n      return false;\n    },\n\n\n    /**\n     * Get the horizontal coordinate at which the event occurred relative to\n     * the origin of the screen coordinate system.\n     *\n     * Note: This value is usually not very useful unless you want to\n     * position a native popup window at this coordinate.\n     *\n     * @return {Number} The horizontal mouse position on the screen.\n     */\n    getScreenLeft : function() {\n      // stub for documentation. Implementation is in qx.event.type.dom.Pointer\n      return false;\n    },\n\n\n    /**\n     * Get the vertical coordinate at which the event occurred relative to\n     * the origin of the screen coordinate system.\n     *\n     * Note: This value is usually not very useful unless you want to\n     * position a native popup window at this coordinate.\n     *\n     * @return {Number} The vertical mouse position on the screen.\n     */\n    getScreenTop : function() {\n      // stub for documentation. Implementation is in qx.event.type.dom.Pointer\n      return false;\n    },\n\n\n    /**\n     * Manipulates the native event object, adding methods if they're not\n     * already present\n     *\n     * @param event {Event} Native event object\n     * @param element {Element} DOM element the listener was attached to\n     * @return {Event} Normalized event object\n     * @internal\n     */\n    normalize : function(event, element)\n    {\n      if (!event) {\n        return event;\n      }\n\n      qx.event.type.dom.Pointer.normalize(event);\n      return event;\n    }\n  },\n\n  defer : function(statics) {\n    qxWeb.$registerEventNormalization(qx.module.event.Pointer.TYPES, statics.normalize);\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "className": "qx.dev.unit.MeasurementResult",
+  "packageName": "qx.dev.unit",
+  "name": "MeasurementResult",
+  "superClass": "Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 77,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Daniel Wagner (danielwagner)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Performance test result object. Used to communicate measurements to the unit\n testing framework.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 14
+      },
+      "end": {
+        "line": 40,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "message {String} Description",
+          "paramName": "message",
+          "description": " Description",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "iterations {Number} Amount of times the tested code was executed",
+          "paramName": "iterations",
+          "description": " Amount of times the tested code was executed",
+          "type": "Number"
+        },
+        {
+          "name": "@param",
+          "body": "ownTime {Number} Elapsed JavaScript execution time",
+          "paramName": "ownTime",
+          "description": " Elapsed JavaScript execution time",
+          "type": "Number"
+        },
+        {
+          "name": "@param",
+          "body": "renderTime {Number} Elapsed DOM rendering time",
+          "paramName": "renderTime",
+          "description": " Elapsed DOM rendering time",
+          "type": "Number"
+        }
+      ]
+    }
+  },
+  "members": {
+    "__message": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__iterations": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__ownTime": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 46,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__renderTime": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getData": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the stored data as a map.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The stored data.",
+            "type": "Map",
+            "description": " The stored data."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

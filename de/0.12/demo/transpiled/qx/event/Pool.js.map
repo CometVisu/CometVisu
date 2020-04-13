@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/event/Pool.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "util",
+    "ObjectPool",
+    "type",
+    "construct",
+    "event",
+    "Pool"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;AAIAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,eAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC,UADnB;AAEEC,IAAAA,IAAI,EAAG,WAFT;AAKE;AACA;;AAGA;;;;;AAMAC,IAAAA,SAAS,EAAG,qBAAW;AACrB,gDAAqB,EAArB;AACD;AAjBH,GADA;AAvBAV,EAAAA,EAAE,CAACW,KAAH,CAASC,IAAT,CAAcT,aAAd,GAA8BA,aAA9B",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Central instance pool for event objects. All event objects dispatched by the\n * event loader are pooled using this class.\n */\nqx.Class.define(\"qx.event.Pool\",\n{\n  extend : qx.util.ObjectPool,\n  type : \"singleton\",\n\n\n  // Even though this class contains almost no code it is required because the\n  // legacy code needs a place to patch the event pooling behavior.\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct : function() {\n    this.base(arguments, 30);\n  }\n});\n"
+  ]
+}

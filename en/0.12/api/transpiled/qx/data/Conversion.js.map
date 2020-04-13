@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/data/Conversion.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "toString",
+    "value",
+    "TOSTRINGOPTIONS",
+    "converter",
+    "toNumber",
+    "parseFloat",
+    "TONUMBEROPTIONS",
+    "toBoolean",
+    "TOBOOLEANOPTIONS",
+    "defer",
+    "data",
+    "Conversion"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAkBA;;;;;;AAMAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,oBAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;;;;;;AAMAC,MAAAA,QAAQ,EAAG,kBAASC,KAAT,EAAgB;AACzB,eAAOA,KAAK,GAAG,EAAf;AACD,OATH;;AAYE;;;;AAIAC,MAAAA,eAAe,EAAG;AAAEC,QAAAA,SAAS,EAAG;AAAd,OAhBpB;;AAmBE;;;;;;AAMAC,MAAAA,QAAQ,EAAG,kBAASH,KAAT,EAAgB;AACzB,eAAOI,UAAU,CAACJ,KAAD,CAAjB;AACD,OA3BH;;AA8BE;;;;AAIAK,MAAAA,eAAe,EAAG;AAAEH,QAAAA,SAAS,EAAG;AAAd,OAlCpB;;AAqCE;;;;;;AAMAI,MAAAA,SAAS,EAAG,mBAASN,KAAT,EAAgB;AAC1B,eAAO,CAAC,CAACA,KAAT;AACD,OA7CH;;AAgDE;;;;AAIAO,MAAAA,gBAAgB,EAAG;AAAEL,QAAAA,SAAS,EAAG;AAAd;AApDrB,KAFF;AA0DEM,IAAAA,KAAK,EAAG,iBAAW;AACjB;AACA;AACAhB,MAAAA,EAAE,CAACiB,IAAH,CAAQC,UAAR,CAAmBT,eAAnB,CAAmCC,SAAnC,GAA+CV,EAAE,CAACiB,IAAH,CAAQC,UAAR,CAAmBX,QAAlE;AACAP,MAAAA,EAAE,CAACiB,IAAH,CAAQC,UAAR,CAAmBL,eAAnB,CAAmCH,SAAnC,GAA+CV,EAAE,CAACiB,IAAH,CAAQC,UAAR,CAAmBP,QAAlE;AACAX,MAAAA,EAAE,CAACiB,IAAH,CAAQC,UAAR,CAAmBH,gBAAnB,CAAoCL,SAApC,GAAgDV,EAAE,CAACiB,IAAH,CAAQC,UAAR,CAAmBJ,SAAnE;AACD;AAhEH,GADA;AAxBAd,EAAAA,EAAE,CAACiB,IAAH,CAAQC,UAAR,CAAmBf,aAAnB,GAAmCA,aAAnC",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * This class offers a set of default conversion methods and whole options\n * packs for {@link qx.data.SingleValueBinding}. The binding offers a conversion\n * itself if it can determinate which types should be used. In all other cases,\n * you can you this methods / options for the default conversion.\n */\nqx.Class.define(\"qx.data.Conversion\",\n{\n  statics :\n  {\n    /**\n     * Converts the given value to a string via <code> + \"\"</code>.\n     *\n     * @param value {var} The value to convert.\n     * @return {String} The converted value.\n     */\n    toString : function(value) {\n      return value + \"\";\n    },\n\n\n    /**\n     * Options for the {@link qx.data.SingleValueBinding}\n     * containing the {@link #toString} converter.\n     */\n    TOSTRINGOPTIONS : { converter : null },\n\n\n    /**\n     * Converts the given value to a number via <code>parseFloat</code>.\n     *\n     * @param value {var} The value to convert.\n     * @return {Number} The converted value.\n     */\n    toNumber : function(value) {\n      return parseFloat(value);\n    },\n\n\n    /**\n     * Options for the {@link qx.data.SingleValueBinding}\n     * containing the {@link #toNumber} converter.\n     */\n    TONUMBEROPTIONS : { converter : null },\n\n\n    /**\n     * Converts the given value to a boolean via <code>!!value</code>.\n     *\n     * @param value {var} The value to convert.\n     * @return {Boolean} The converted value.\n     */\n    toBoolean : function(value) {\n      return !!value;\n    },\n\n\n    /**\n     * Options for the {@link qx.data.SingleValueBinding}\n     * containing the {@link #toBoolean} converter.\n     */\n    TOBOOLEANOPTIONS : { converter : null }\n  },\n\n\n  defer : function() {\n    // the converter need to be set in the defer because the reference to\n    // the converter function is not available during the class create\n    qx.data.Conversion.TOSTRINGOPTIONS.converter = qx.data.Conversion.toString;\n    qx.data.Conversion.TONUMBEROPTIONS.converter = qx.data.Conversion.toNumber;\n    qx.data.Conversion.TOBOOLEANOPTIONS.converter = qx.data.Conversion.toBoolean;\n  }\n});\n"
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "className": "qx.util.StringEscape",
+  "packageName": "qx.util",
+  "name": "StringEscape",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 111,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Generic escaping and unescaping of DOM strings.\n {@link qx.bom.String} for (un)escaping of HTML strings.\n {@link qx.xml.String} for (un)escaping of XML strings.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "escape": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>generic escaping method</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} string to escape",
+            "paramName": "str",
+            "description": " string to escape",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "charCodeToEntities {Map} entity to charcode map",
+            "paramName": "charCodeToEntities",
+            "description": " entity to charcode map",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} escaped string",
+            "type": "String",
+            "description": " escaped string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unescape": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>generic unescaping method</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} string to unescape",
+            "paramName": "str",
+            "description": " string to unescape",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "entitiesToCharCode {Map} charcode to entity map",
+            "paramName": "entitiesToCharCode",
+            "description": " charcode to entity map",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} unescaped string",
+            "type": "String",
+            "description": " unescaped string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

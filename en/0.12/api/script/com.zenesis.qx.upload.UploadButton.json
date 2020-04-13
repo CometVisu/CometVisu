@@ -1,1 +1,0 @@
-{"attributes": {"name": "UploadButton", "packageName": "com.zenesis.qx.upload", "mixins": "com.zenesis.qx.upload.MUploadButton", "superClass": "qx.ui.form.Button", "fullName": "com.zenesis.qx.upload.UploadButton", "type": "class"}, "type": "class", "children": [{"attributes": {"text": "<p>Implementation of an UploadButton</p>"}, "type": "desc"}]}

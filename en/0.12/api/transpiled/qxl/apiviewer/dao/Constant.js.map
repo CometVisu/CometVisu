@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_0-beta_7/source/class/qxl/apiviewer/dao/Constant.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "qxl",
+    "apiviewer",
+    "dao",
+    "ClassItem",
+    "construct",
+    "meta",
+    "clazz",
+    "name",
+    "_value",
+    "value",
+    "members",
+    "undefined",
+    "getValue",
+    "Constant"
+  ],
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAoBAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,4BAAhB,EAA8C;AAC5CC,IAAAA,MAAM,EAAGC,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkBC,SADiB;AAG5CC,IAAAA,SAAS,EAAG,mBAASC,IAAT,EAAeC,KAAf,EAAsBC,IAAtB,EAA4B;AACtC,yDAAqBF,IAArB,EAA2BC,KAA3B,EAAkCC,IAAlC;AACA,WAAKC,MAAL,GAAcH,IAAI,CAACI,KAAnB;AACD,KAN2C;AAQ5CC,IAAAA,OAAO,EAAG;AACRF,MAAAA,MAAM,EAAEG,SADA;AAGRC,MAAAA,QAAQ,EAAG,oBAAW;AACpB,eAAO,KAAKJ,MAAZ;AACD;AALO;AARkC,GAA9C;AApBAR,EAAAA,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkBW,QAAlB,CAA2BjB,aAA3B,GAA2CA,aAA3C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.dao.Constant\", {\n  extend : qxl.apiviewer.dao.ClassItem,\n\n  construct : function(meta, clazz, name) {\n    this.base(arguments, meta, clazz, name);\n    this._value = meta.value;\n  },\n\n  members : {\n    _value: undefined,\n\n    getValue : function() {\n      return this._value;\n    }\n\n  }\n\n});\n"
+  ]
+}

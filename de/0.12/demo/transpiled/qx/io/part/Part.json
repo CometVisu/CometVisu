@@ -1,0 +1,473 @@
+{
+  "className": "qx.io.part.Part",
+  "packageName": "qx.io.part",
+  "name": "Part",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 0
+      },
+      "end": {
+        "line": 249,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Wrapper for a part as defined in the config file. This class knows about all\n packages the part depends on and provides functionality to load the part.</p>"
+        }
+      ],
+      "@internal": [
+        {
+          "name": "@internal",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 14
+      },
+      "end": {
+        "line": 49,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "name {String} Name of the part as defined in the config file at\n    compile time.",
+          "paramName": "name",
+          "description": " Name of the part as defined in the config file at\n    compile time.",
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "packages {qx.io.part.Package[]} List of dependent packages",
+          "paramName": "packages",
+          "description": " List of dependent packages",
+          "type": "qx.io.part.Package[]"
+        },
+        {
+          "name": "@param",
+          "body": "loader {qx.Part} The loader of this part.",
+          "paramName": "loader",
+          "description": " The loader of this part.",
+          "type": "qx.Part"
+        }
+      ]
+    }
+  },
+  "members": {
+    "_readyState": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_loader": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 18
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_packages": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 20
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__name": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 57,
+          "column": 17
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getReadyState": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the ready state of the part. The value is one of\n <ul>\n <li>\n   <b>initialized</b>: The part is initialized. The {@link #load}\n   method has not yet been called\n </li>\n <li><b>loading</b>: The part is still loading.</li>\n <li><b>complete</b>: The part has been loaded successfully</li>\n </li></p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The ready state.",
+            "type": "String",
+            "description": " The ready state."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getName": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4
+        },
+        "end": {
+          "line": 85,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The part name as defined in the config file</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The part name",
+            "type": "String",
+            "description": " The part name"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPackages": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 96,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for testing purposes.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.io.part.Package[]} All contained packages in an array.",
+            "type": "qx.io.part.Package[]",
+            "description": " All contained packages in an array."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "preload": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 116,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method for preloading this part.\n Empty implementation! Regular parts can not be preloaded.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} Callback for the preload.",
+            "paramName": "callback",
+            "description": " Callback for the preload.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?} The context of the callback.",
+            "paramName": "self",
+            "description": " The context of the callback.",
+            "optional": true,
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "load": {
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4
+        },
+        "end": {
+          "line": 173,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads the part asynchronously. The callback is called after the part and\n its dependencies are fully loaded. If the part is already loaded the\n callback is called immediately.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} Function to execute on completion",
+            "paramName": "callback",
+            "description": " Function to execute on completion",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?window} Context to execute the given function in",
+            "paramName": "self",
+            "description": " Context to execute the given function in",
+            "optional": true,
+            "defaultValue": "window",
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_appendPartListener": {
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4
+        },
+        "end": {
+          "line": 191,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper for appending a listener for this part.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} The function to call when the part is loaded.",
+            "paramName": "callback",
+            "description": " The function to call when the part is loaded.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object?} The context of the callback.",
+            "paramName": "self",
+            "description": " The context of the callback.",
+            "optional": true,
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "part {qx.io.part.Part|qx.io.part.ClosurePart} The part to listen\n   to.",
+            "paramName": "part",
+            "description": " The part to listen\n   to.",
+            "type": [
+              "qx.io.part.Part",
+              "qx.io.part.ClosurePart"
+            ]
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_markAsCompleted": {
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4
+        },
+        "end": {
+          "line": 203,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper for marking the part as complete.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "readyState {String} The new ready state.",
+            "paramName": "readyState",
+            "description": " The new ready state.",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_signalStartup": {
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4
+        },
+        "end": {
+          "line": 216,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method used to start up the application in case not all parts\n necessary to initialize the application are in the boot part. [BUG #3793]</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_checkCompleteLoading": {
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4
+        },
+        "end": {
+          "line": 247,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper for checking if the part is loaded completely.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} The function to be called if the part has\n   been loaded completely.",
+            "paramName": "callback",
+            "description": " The function to be called if the part has\n   been loaded completely.",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object} The context of the callback function.",
+            "paramName": "self",
+            "description": " The context of the callback function.",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if the part is loading, complete or has an error.",
+            "type": "Boolean",
+            "description": " true, if the part is loading, complete or has an error."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "descendants": [
+    "qx.io.part.ClosurePart"
+  ]
+}

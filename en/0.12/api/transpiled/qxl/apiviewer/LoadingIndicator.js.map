@@ -1,0 +1,49 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_0-beta_7/source/class/qxl/apiviewer/LoadingIndicator.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "__blocker",
+    "ui",
+    "Blocker",
+    "qxl",
+    "apiviewer",
+    "MWidgetRegistry",
+    "getWidgetById",
+    "setColor",
+    "setOpacity",
+    "getBlockerElement",
+    "setStyle",
+    "loadingImage",
+    "html",
+    "Element",
+    "setAttribute",
+    "util",
+    "ResourceManager",
+    "getInstance",
+    "toUri",
+    "add",
+    "members",
+    "show",
+    "block",
+    "hide",
+    "unblock",
+    "LoadingIndicator"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,gCAAhB,EACE;AACEC,IAAAA,IAAI,EAAG,WADT;AAEEC,IAAAA,MAAM,EAAGP,EAAE,CAACQ,IAAH,CAAQC,MAFnB;AAIEC,IAAAA,SAAS,EAAE,qBAAW;AACpB,WAAKC,SAAL,GAAiB,IAAIX,EAAE,CAACY,EAAH,CAAMJ,IAAN,CAAWK,OAAf,CAAuBC,GAAG,CAACC,SAAJ,CAAcC,eAAd,CAA8BC,aAA9B,CAA4C,SAA5C,CAAvB,CAAjB;;AACA,WAAKN,SAAL,CAAeO,QAAf,CAAwB,SAAxB;;AACA,WAAKP,SAAL,CAAeQ,UAAf,CAA0B,GAA1B;;AAEA,WAAKR,SAAL,CAAeS,iBAAf,GAAmCC,QAAnC,CAA4C,aAA5C,EAA2D,OAA3D;;AACA,WAAKV,SAAL,CAAeS,iBAAf,GAAmCC,QAAnC,CAA4C,YAA5C,EAA0D,QAA1D;;AAEA,UAAIC,YAAY,GAAG,IAAItB,EAAE,CAACuB,IAAH,CAAQC,OAAZ,CAAoB,KAApB,CAAnB;AACAF,MAAAA,YAAY,CAACG,YAAb,CAA0B,KAA1B,EAAiCzB,EAAE,CAAC0B,IAAH,CAAQC,eAAR,CAAwBC,WAAxB,GAAsCC,KAAtC,CAA4C,mCAA5C,CAAjC;;AACA,WAAKlB,SAAL,CAAeS,iBAAf,GAAmCU,GAAnC,CAAuCR,YAAvC;AACD,KAfH;AAiBES,IAAAA,OAAO,EACT;AACEpB,MAAAA,SAAS,EAAG,IADd;AAEEqB,MAAAA,IAAI,EAAG,gBAAW;AAChB,aAAKrB,SAAL,CAAesB,KAAf;AACD,OAJH;AAKEC,MAAAA,IAAI,EAAG,gBAAW;AAChB,aAAKvB,SAAL,CAAewB,OAAf;AACD;AAPH;AAlBA,GADF;AAnBArB,EAAAA,GAAG,CAACC,SAAJ,CAAcqB,gBAAd,CAA+BjC,aAA/B,GAA+CA,aAA/C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\nqx.Class.define(\"qxl.apiviewer.LoadingIndicator\",\n  {\n    type : \"singleton\",\n    extend : qx.core.Object,\n\n    construct: function() {\n      this.__blocker = new qx.ui.core.Blocker(qxl.apiviewer.MWidgetRegistry.getWidgetById(\"tabView\"));\n      this.__blocker.setColor(\"#D5D5D5\");\n      this.__blocker.setOpacity(0.5);\n\n      this.__blocker.getBlockerElement().setStyle(\"padding-top\", \"100px\");\n      this.__blocker.getBlockerElement().setStyle(\"text-align\", \"center\");\n\n      var loadingImage = new qx.html.Element(\"img\");\n      loadingImage.setAttribute(\"src\", qx.util.ResourceManager.getInstance().toUri(\"qxl/apiviewer/image/loading66.gif\"));\n      this.__blocker.getBlockerElement().add(loadingImage);\n    },\n\n    members :\n  {\n    __blocker : null,\n    show : function() {\n      this.__blocker.block();\n    },\n    hide : function() {\n      this.__blocker.unblock();\n    }\n  }\n  });\n"
+  ]
+}

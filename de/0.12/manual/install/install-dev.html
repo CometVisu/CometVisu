@@ -267,15 +267,15 @@ apt-get install python-software-properties
 apt-get install zlib1g-dev
 apt-get install build-essential autoconf
 apt-get install gettext
-cd /usr/local/src
+<span class="nb">cd</span> /usr/local/src
 wget https://www.kernel.org/pub/software/scm/git/git-2.4.1.tar.gz
 tar -xzvf git-2.4.1.tar.gz
-cd git-2.4.1
+<span class="nb">cd</span> git-2.4.1
 make configure
 ./configure
 make
 make install
-cd ..
+<span class="nb">cd</span> ..
 rm -rf git-2.4.1
 rm git-2.4.1.tar.gz
 </pre></div>
@@ -330,25 +330,25 @@ allerdings SVN (bzw. Subversion) weiterhin zur Verfügung.</p>
 <h4>Git<a class="headerlink" href="#git" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Der eigene Fork der CometVisu wird nun durch einen simplen Befehl
 installiert:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cd /var/www
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
 git clone https://github.com/&lt;Accountname&gt;/CometVisu.git CometVisuGit
 </pre></div>
 </div>
 <p>Unter Umständen funktioniert der Abruf via https nicht, dann sollte der Fork über folgenden
 Befehl initialisiert werden:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cd /var/www
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
 git clone git://github.com/&lt;Accountname&gt;/CometVisu.git CometVisuGit
 </pre></div>
 </div>
 <p>Als Ergebnis sollte nun als Ausgabe ein Text ähnlich diesem erscheinen:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>Klone nach <span class="s1">&#39;CometVisuGit&#39;</span>...
-remote: Counting objects: 20347, done.
-remote: Compressing objects: 100% <span class="o">(</span><span class="m">5220</span>/5220<span class="o">)</span>, done.
-remote: Total 20347 <span class="o">(</span>delta 14950<span class="o">)</span>, reused 20280 <span class="o">(</span>delta 14905<span class="o">)</span>
-Empfange Objekte: 100% <span class="o">(</span><span class="m">20347</span>/20347<span class="o">)</span>, 48.50 MiB <span class="p">|</span> 346.00 KiB/s, Fertig.
-Löse Unterschiede auf: 100% <span class="o">(</span><span class="m">14950</span>/14950<span class="o">)</span>, Fertig.
+remote: Counting objects: <span class="m">20347</span>, <span class="k">done</span>.
+remote: Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5220</span>/5220<span class="o">)</span>, <span class="k">done</span>.
+remote: Total <span class="m">20347</span> <span class="o">(</span>delta <span class="m">14950</span><span class="o">)</span>, reused <span class="m">20280</span> <span class="o">(</span>delta <span class="m">14905</span><span class="o">)</span>
+Empfange Objekte: <span class="m">100</span>% <span class="o">(</span><span class="m">20347</span>/20347<span class="o">)</span>, <span class="m">48</span>.50 MiB <span class="p">|</span> <span class="m">346</span>.00 KiB/s, Fertig.
+Löse Unterschiede auf: <span class="m">100</span>% <span class="o">(</span><span class="m">14950</span>/14950<span class="o">)</span>, Fertig.
 Prüfe Konnektivität... Fertig.
-Checke Dateien aus: 100% <span class="o">(</span><span class="m">1175</span>/1175<span class="o">)</span>, Fertig.
+Checke Dateien aus: <span class="m">100</span>% <span class="o">(</span><span class="m">1175</span>/1175<span class="o">)</span>, Fertig.
 </pre></div>
 </div>
 <p>Sollte das Klonen erfolgreich gewesen sein, wird diese Version als
@@ -361,7 +361,7 @@ als <em>upstream</em> hinzufügen:</p>
 <div class="section" id="subversion">
 <h4>Subversion<a class="headerlink" href="#subversion" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Falls das Git clone nicht funktioniert hat und eine Fehlermeldung wie</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>error: The requested URL returned error: 403
+<div class="highlight-bash"><div class="highlight"><pre><span></span>error: The requested URL returned error: <span class="m">403</span>
 warning: remote HEAD refers to nonexistent ref, unable to checkout.
 </pre></div>
 </div>
@@ -381,25 +381,25 @@ with HTTPS, SSH, or Subversion.&#8221; und klickt dort auf das Wort
 &#8220;Subversion checkout URL&#8221; die URL. Diese sollte die Form <code class="docutils literal"><span class="pre">https://github.com/&lt;Accountname&gt;/CometVisu</span></code>
 haben.</p>
 <p>An der WireGate Kommandozeile führt man nun diese Befehle aus:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cd /var/www
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
 svn co --depth empty https://github.com/&lt;Accountname&gt;/CometVisu CometVisuGitSVN
 </pre></div>
 </div>
 <p>Nach etwas warten, sollte als Bestätigung ein Text ähnlich diesem
 erscheinen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>Ausgecheckt, Revision 1342.
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Ausgecheckt, Revision <span class="m">1342</span>.
 </pre></div>
 </div>
 <p>Nun kann man in der Installation weiter gehen und diese Befehle
 ausführen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cd CometVisuGitSVN/
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> CometVisuGitSVN/
 svn up trunk
 </pre></div>
 </div>
 <p>Wenn nun am Bildschirm viele Zeilen mit Dateinamen auftauchen, war der
 Befehl erfolgreich. Komplettiert wird dieser nun durch</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>svn up --depth empty branches
-cd ..
+<span class="nb">cd</span> ..
 ln -s CometVisuGitSVN/trunk/src visu_git
 </pre></div>
 </div>

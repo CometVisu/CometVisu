@@ -1,0 +1,167 @@
+{
+  "className": "qx.ui.form.IField",
+  "packageName": "qx.ui.form",
+  "name": "IField",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 0
+      },
+      "end": {
+        "line": 99,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2017 Martijn Evers, The Netherlands\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martijn Evers (mever)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Field interface.\n This interface allows any value to be set as long as the following constraint\n is met: any value returned by {@link getValue} can be set by {@link setValue}.\n This specifies the interface for handling the model value of a field.\n The model value is always in a consistent state (see duration example), and\n should only handle model values of a type that correctly represents the\n data available through its UI. E.g.: duration can ideally be modeled by a number\n of time units, like seconds. When using a date the duration may be\n unclear (since Unix time?). Type conversions should be handled by data binding.\n The model value is not necessary what is shown to the end-user\n by implementing class. A good example is the {@link qx.ui.form.TextField}\n which is able to operate with or without live updating the model value.\n Duration example: a field for duration may use two date pickers for begin\n and end dates. When the end date is before the start date the model is in\n inconsistent state. getValue should never return such state. And calling\n it must result in either null or the last consistent value (depending\n on implementation or setting).</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "events": {
+    "changeValue": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 40
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the model value was modified</p>"
+          }
+        ]
+      },
+      "name": "changeValue",
+      "type": "qx.event.type.Data"
+    }
+  },
+  "members": {
+    "setValue": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4
+        },
+        "end": {
+          "line": 81,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  VALUE PROPERTY\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Sets the field model value. Should also update the UI.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var|null} Updates the field with the new model value.",
+            "paramName": "value",
+            "description": " Updates the field with the new model value.",
+            "type": [
+              "var",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|Error} Should return an error when the type of\n  model value is not compatible with the implementing class (the concrete field).",
+            "type": "null|Error",
+            "description": " Should return an error when the type of\n  model value is not compatible with the implementing class (the concrete field)."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetValue": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 87,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the model value to its initial value. Should also update the UI.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getValue": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 28
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a consistent and up-to-date model value.\n Note: returned value can also be a promise of type <code>Promise&amp;lt;*|null&amp;gt;</code>.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var|null} The model value plain or as promise.",
+            "type": "var|null",
+            "description": " The model value plain or as promise."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": [
+    "qx.ui.form.IArrayForm",
+    "qx.ui.form.IBooleanForm",
+    "qx.ui.form.IColorForm",
+    "qx.ui.form.IDateForm",
+    "qx.ui.form.IModelForm",
+    "qx.ui.form.INumberForm",
+    "qx.ui.form.IStringForm"
+  ]
+}

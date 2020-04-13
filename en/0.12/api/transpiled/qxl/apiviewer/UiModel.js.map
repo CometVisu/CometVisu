@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_0-beta_7/source/class/qxl/apiviewer/UiModel.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "type",
+    "properties",
+    "showInherited",
+    "check",
+    "init",
+    "event",
+    "showIncluded",
+    "expandProperties",
+    "showProtected",
+    "showPrivate",
+    "showInternal",
+    "qxl",
+    "apiviewer",
+    "UiModel"
+  ],
+  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;AAAAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACE;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC,MADnB;AAEEC,IAAAA,IAAI,EAAG,WAFT;AAIEC,IAAAA,UAAU,EACZ;AACE;AACAC,MAAAA,aAAa,EACb;AACEC,QAAAA,KAAK,EAAE,SADT;AAEEC,QAAAA,IAAI,EAAE,KAFR;AAGEC,QAAAA,KAAK,EAAG;AAHV,OAHF;;AASE;AACAC,MAAAA,YAAY,EACZ;AACEH,QAAAA,KAAK,EAAE,SADT;AAEEC,QAAAA,IAAI,EAAE,IAFR;AAGEC,QAAAA,KAAK,EAAG;AAHV,OAXF;;AAiBE;AACAE,MAAAA,gBAAgB,EAChB;AACEJ,QAAAA,KAAK,EAAE,SADT;AAEEC,QAAAA,IAAI,EAAE,KAFR;AAGEC,QAAAA,KAAK,EAAG;AAHV,OAnBF;;AAyBE;AACAG,MAAAA,aAAa,EACb;AACEL,QAAAA,KAAK,EAAE,SADT;AAEEC,QAAAA,IAAI,EAAE,KAFR;AAGEC,QAAAA,KAAK,EAAG;AAHV,OA3BF;;AAiCE;AACAI,MAAAA,WAAW,EACX;AACEN,QAAAA,KAAK,EAAE,SADT;AAEEC,QAAAA,IAAI,EAAE,KAFR;AAGEC,QAAAA,KAAK,EAAG;AAHV,OAnCF;;AAyCE;AACAK,MAAAA,YAAY,EACZ;AACEP,QAAAA,KAAK,EAAE,SADT;AAEEC,QAAAA,IAAI,EAAE,KAFR;AAGEC,QAAAA,KAAK,EAAG;AAHV;AA3CF;AALA,GADF;AAAAM,EAAAA,GAAG,CAACC,SAAJ,CAAcC,OAAd,CAAsBnB,aAAtB,GAAsCA,aAAtC",
+  "sourcesContent": [
+    "qx.Class.define(\"qxl.apiviewer.UiModel\",\n  {\n    extend : qx.core.Object,\n    type : \"singleton\",\n\n    properties :\n  {\n    /** whether to display inherited items */\n    showInherited :\n    {\n      check: \"Boolean\",\n      init: false,\n      event : \"changeShowInherited\"\n    },\n\n    /** whether to display included items */\n    showIncluded :\n    {\n      check: \"Boolean\",\n      init: true,\n      event : \"changeShowIncluded\"\n    },\n\n    /** whether to display protected items */\n    expandProperties :\n    {\n      check: \"Boolean\",\n      init: false,\n      event : \"changeExpandProperties\"\n    },\n\n    /** whether to display protected items */\n    showProtected :\n    {\n      check: \"Boolean\",\n      init: false,\n      event : \"changeShowProtected\"\n    },\n\n    /** whether to display private items */\n    showPrivate :\n    {\n      check: \"Boolean\",\n      init: false,\n      event : \"changeShowPrivate\"\n    },\n\n    /** whether to display internal items */\n    showInternal :\n    {\n      check: \"Boolean\",\n      init: false,\n      event : \"changeShowInternal\"\n    }\n  }\n  });\n"
+  ]
+}

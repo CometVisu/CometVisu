@@ -1,0 +1,26 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/source/class/cv/ui/manager/control/IFileEventHandler.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "_handleFileEvent",
+    "ev",
+    "cv",
+    "ui",
+    "manager",
+    "control",
+    "IFileEventHandler"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;AAGAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,yCAApB,EAA+D;AAC7D;;;;;AAKAC,IAAAA,OAAO,EAAE;AACPC,MAAAA,gBAAgB,EAAE,0BAAUC,EAAV,EAAc,CAAE;AAD3B;AANoD,GAA/D;AAHAC,EAAAA,EAAE,CAACC,EAAH,CAAMC,OAAN,CAAcC,OAAd,CAAsBC,iBAAtB,CAAwCV,aAAxC,GAAwDA,aAAxD",
+  "sourcesContent": [
+    "/**\n *\n */\nqx.Interface.define('cv.ui.manager.control.IFileEventHandler', {\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _handleFileEvent: function (ev) {}\n  }\n});\n"
+  ]
+}

@@ -1,4 +1,0 @@
-qx.$$packageData['348192']={"resources":{}};
-qx.Part.$$notifyLoad("348192", function() {
-(function(){var a="cv.ui.common.Operate";qx.Mixin.define(a,{members:{action:function(event){if(event&&this._skipNextEvent===event.getType()){this._skipNextEvent=null;return;};if(this._action){this._action(event);}else {if(this.getActionValue){this.sendToBackend(this.getActionValue(event));};};if(event&&event.getBubbles()){event.stopPropagation();};},downaction:function(event){if(this._downaction){this._downaction(event);};if(event.getBubbles()){event.stopPropagation();};},sendToBackend:function(f,h,b){var e={};if(this.getAddress){var d=this.getAddress();for(var g in d){if(d.hasOwnProperty(g)){var i=d[g];if(cv.data.Model.isWriteAddress(i)&&(!h||h(i))){var c=i[0],j=cv.Transform.encode(c,f);if(!b||j!==b[c]){cv.TemplateEngine.getInstance().visu.write(g,j);};e[c]=j;};};};};return e;}}});})();
-});

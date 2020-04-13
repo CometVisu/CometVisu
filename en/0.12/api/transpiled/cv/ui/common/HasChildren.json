@@ -1,0 +1,240 @@
+{
+  "className": "cv.ui.common.HasChildren",
+  "packageName": "cv.ui.common",
+  "name": "HasChildren",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 107,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Mixin for all widgets that can have other widgets as children, this mixin includes the static parsing part\n and the methods for the widget instance.</p>"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 13
+      },
+      "end": {
+        "line": 48,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>***********************************************\nCONSTRUCTOR\n***********************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
+  "properties": {
+    "children": {
+      "type": "property",
+      "name": "children",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    },
+    "childWidgets": {
+      "type": "property",
+      "name": "childWidgets",
+      "abstract": false,
+      "mixin": true,
+      "access": "public"
+    }
+  },
+  "members": {
+    "getChildrenDomString": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4
+        },
+        "end": {
+          "line": 105,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML code for the children if this widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "noWidgetContainer {Boolean} if false: do not surround the childrens with a div-element with class 'widget_container'",
+            "paramName": "noWidgetContainer",
+            "description": " if false: do not surround the childrens with a div-element with class 'widget_container'",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML code",
+            "type": "String",
+            "description": " HTML code"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getChildren": {
+      "type": "function",
+      "name": "getChildren",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>children</code>.\n\nFor further details take a look at the property definition: {@link #children}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Array",
+            "desc": "Returns the value for children"
+          }
+        ]
+      }
+    },
+    "setChildren": {
+      "type": "function",
+      "name": "setChildren",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>children</code>.\n\nFor further details take a look at the property definition: {@link #children}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Array",
+            "paramName": "value",
+            "desc": "Value for children"
+          }
+        ]
+      }
+    },
+    "resetChildren": {
+      "type": "function",
+      "name": "resetChildren",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>children</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #children}."
+          }
+        ]
+      }
+    },
+    "getChildWidgets": {
+      "type": "function",
+      "name": "getChildWidgets",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>childWidgets</code>.\n\nFor further details take a look at the property definition: {@link #childWidgets}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Array",
+            "desc": "Returns the value for childWidgets"
+          }
+        ]
+      }
+    },
+    "setChildWidgets": {
+      "type": "function",
+      "name": "setChildWidgets",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>childWidgets</code>.\n\nFor further details take a look at the property definition: {@link #childWidgets}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Array",
+            "paramName": "value",
+            "desc": "Value for childWidgets"
+          }
+        ]
+      }
+    },
+    "resetChildWidgets": {
+      "type": "function",
+      "name": "resetChildWidgets",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>childWidgets</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #childWidgets}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

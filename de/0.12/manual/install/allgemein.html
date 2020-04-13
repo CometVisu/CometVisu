@@ -264,65 +264,65 @@ Bedürfnis ändern.</p>
 </pre></div>
 </div>
 <p>/etc/lighttpd/lighttpd.conf</p>
-<div class="highlight-lighttpd"><div class="highlight"><pre><span></span>server.modules = (
-        &quot;mod_access&quot;,
-        &quot;mod_alias&quot;,
-        &quot;mod_compress&quot;,
-        &quot;mod_redirect&quot;,
-#       &quot;mod_rewrite&quot;,
-)
+<div class="highlight-lighttpd"><div class="highlight"><pre><span></span><span class="k">server.modules</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;mod_access&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mod_alias&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mod_compress&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mod_redirect&quot;</span><span class="p">,</span>
+<span class="c1">#       &quot;mod_rewrite&quot;,</span>
+<span class="p">)</span>
 
-server.document-root        = &quot;/var/www&quot;
-server.upload-dirs          = ( &quot;/var/cache/lighttpd/uploads&quot; )
-server.errorlog             = &quot;/var/log/lighttpd/error.log&quot;
-server.pid-file             = &quot;/var/run/lighttpd.pid&quot;
-server.username             = &quot;www-data&quot;
-server.groupname            = &quot;www-data&quot;
+<span class="k">server.document-root</span>        <span class="o">=</span> <span class="s2">&quot;/var/www&quot;</span>
+<span class="k">server.upload-dirs</span>          <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;/var/cache/lighttpd/uploads&quot;</span> <span class="p">)</span>
+<span class="k">server.errorlog</span>             <span class="o">=</span> <span class="s2">&quot;/var/log/lighttpd/error.log&quot;</span>
+<span class="k">server.pid-file</span>             <span class="o">=</span> <span class="s2">&quot;/var/run/lighttpd.pid&quot;</span>
+<span class="k">server.username</span>             <span class="o">=</span> <span class="s2">&quot;www-data&quot;</span>
+<span class="k">server.groupname</span>            <span class="o">=</span> <span class="s2">&quot;www-data&quot;</span>
 
-index-file.names            = ( &quot;index.php&quot;, &quot;index.html&quot;,
-                                &quot;index.htm&quot;, &quot;default.htm&quot;,
-                               &quot; index.lighttpd.html&quot; )
+<span class="k">index-file.names</span>            <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;index.php&quot;</span><span class="p">,</span> <span class="s2">&quot;index.html&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;index.htm&quot;</span><span class="p">,</span> <span class="s2">&quot;default.htm&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot; index.lighttpd.html&quot;</span> <span class="p">)</span>
 
-url.access-deny             = ( &quot;~&quot;, &quot;.inc&quot; )
+<span class="k">url.access-deny</span>             <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;~&quot;</span><span class="p">,</span> <span class="s2">&quot;.inc&quot;</span> <span class="p">)</span>
 
-static-file.exclude-extensions = ( &quot;.php&quot;, &quot;.pl&quot;, &quot;.fcgi&quot; )
+<span class="k">static-file.exclude-extensions</span> <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;.php&quot;</span><span class="p">,</span> <span class="s2">&quot;.pl&quot;</span><span class="p">,</span> <span class="s2">&quot;.fcgi&quot;</span> <span class="p">)</span>
 
-## Use ipv6 if available
-#include_shell &quot;/usr/share/lighttpd/use-ipv6.pl&quot;
+<span class="c1">## Use ipv6 if available</span>
+<span class="c1">#include_shell &quot;/usr/share/lighttpd/use-ipv6.pl&quot;</span>
 
-dir-listing.encoding        = &quot;utf-8&quot;
-server.dir-listing          = &quot;enable&quot;
+<span class="k">dir-listing.encoding</span>        <span class="o">=</span> <span class="s2">&quot;utf-8&quot;</span>
+<span class="k">server.dir-listing</span>          <span class="o">=</span> <span class="s2">&quot;enable&quot;</span>
 
-compress.cache-dir          = &quot;/var/cache/lighttpd/compress/&quot;
-compress.filetype           = ( &quot;application/x-javascript&quot;, &quot;text/css&quot;, &quot;text/html&quot;, &quot;text/plain&quot; )
+<span class="k">compress.cache-dir</span>          <span class="o">=</span> <span class="s2">&quot;/var/cache/lighttpd/compress/&quot;</span>
+<span class="k">compress.filetype</span>           <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;application/x-javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;text/css&quot;</span><span class="p">,</span> <span class="s2">&quot;text/html&quot;</span><span class="p">,</span> <span class="s2">&quot;text/plain&quot;</span> <span class="p">)</span>
 
-include_shell &quot;/usr/share/lighttpd/create-mime.assign.pl&quot;
-include_shell &quot;/usr/share/lighttpd/include-conf-enabled.pl&quot;
+<span class="k">include_shell</span> <span class="s2">&quot;/usr/share/lighttpd/create-mime.assign.pl&quot;</span>
+<span class="k">include_shell</span> <span class="s2">&quot;/usr/share/lighttpd/include-conf-enabled.pl&quot;</span>
 </pre></div>
 </div>
 <p>/etc/lighttpd/conf-enabled/10-cgi.conf</p>
-<div class="highlight-lighttpd"><div class="highlight"><pre><span></span># /usr/share/doc/lighttpd-doc/cgi.txt
+<div class="highlight-lighttpd"><div class="highlight"><pre><span></span><span class="c1"># /usr/share/doc/lighttpd-doc/cgi.txt</span>
 
-server.modules += ( &quot;mod_cgi&quot; )
+<span class="k">server.modules</span> <span class="o">+=</span> <span class="p">(</span> <span class="s2">&quot;mod_cgi&quot;</span> <span class="p">)</span>
 
-$HTTP[&quot;url&quot;] =~ &quot;^/cgi-bin/&quot; {
-        cgi.assign = ( &quot;&quot; =&gt; &quot;&quot; )
-}
+<span class="nb">$HTTP</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span> <span class="o">=~</span> <span class="s2">&quot;^/cgi-bin/&quot;</span> <span class="p">{</span>
+        <span class="k">cgi.assign</span> <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;&quot;</span> <span class="p">)</span>
+<span class="p">}</span>
 
-## Warning this represents a security risk, as it allow to execute any file
-## with a .pl/.py even outside of /usr/lib/cgi-bin.
-#
-cgi.assign      = (
-        &quot;.pl&quot;  =&gt; &quot;/usr/bin/perl&quot;,
-        &quot;.php&quot; =&gt; &quot;/usr/bin/php-cgi&quot;,
-        &quot;.py&quot;  =&gt; &quot;/usr/bin/python&quot;,
-)
+<span class="c1">## Warning this represents a security risk, as it allow to execute any file</span>
+<span class="c1">## with a .pl/.py even outside of /usr/lib/cgi-bin.</span>
+<span class="c1">#</span>
+<span class="k">cgi.assign</span>      <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;.pl&quot;</span>  <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/perl&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.php&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/php-cgi&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.py&quot;</span>  <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/python&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>/etc/lighttpd/conf-enabled/11-cgi-cometvisu.conf</p>
-<div class="highlight-lighttpd"><div class="highlight"><pre><span></span>### Add cgi for cometvisu
-alias.url += ( &quot;/cgi-bin/&quot; =&gt; &quot;/usr/lib/cgi-bin/&quot; )
-compress.filetype += (&quot;application/javascript&quot;, &quot;application/xml&quot;, &quot;application/octet-stream&quot;)
+<div class="highlight-lighttpd"><div class="highlight"><pre><span></span><span class="c1">### Add cgi for cometvisu</span>
+<span class="k">alias.url</span> <span class="o">+=</span> <span class="p">(</span> <span class="s2">&quot;/cgi-bin/&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/lib/cgi-bin/&quot;</span> <span class="p">)</span>
+<span class="k">compress.filetype</span> <span class="o">+=</span> <span class="p">(</span><span class="s2">&quot;application/javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span> <span class="s2">&quot;application/octet-stream&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

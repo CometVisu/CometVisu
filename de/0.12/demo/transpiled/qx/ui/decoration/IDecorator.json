@@ -1,0 +1,127 @@
+{
+  "className": "qx.ui.decoration.IDecorator",
+  "packageName": "qx.ui.decoration",
+  "name": "IDecorator",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 24,
+        "column": 0
+      },
+      "end": {
+        "line": 54,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>A decorator is responsible for computing a widget's decoration styles.</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "members": {
+    "getStyles": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the decorator's styles.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map of decoration styles",
+            "type": "Map",
+            "description": " Map of decoration styles"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPadding": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
+          "column": 30
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the configured padding minus the border width.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map of top, right, bottom and left padding values",
+            "type": "Map",
+            "description": " Map of top, right, bottom and left padding values"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getInsets": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 52,
+          "column": 29
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the amount of space the decoration needs for its border and padding\n on each side.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} the desired inset as a map with the keys <code>top</code>,\n     <code>right</code>, <code>bottom</code>, <code>left</code>.",
+            "type": "Map",
+            "description": " the desired inset as a map with the keys <code>top</code>,\n     <code>right</code>, <code>bottom</code>, <code>left</code>."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

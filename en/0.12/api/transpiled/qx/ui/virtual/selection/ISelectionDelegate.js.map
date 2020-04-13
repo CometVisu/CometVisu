@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/virtual/selection/ISelectionDelegate.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "isItemSelectable",
+    "item",
+    "styleSelectable",
+    "type",
+    "wasAdded",
+    "ui",
+    "virtual",
+    "selection",
+    "ISelectionDelegate"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;AAmBA;;;;;;;;;;AAUAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,4CAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;;;;;;;;;;;;AAYAC,MAAAA,gBAAgB,EAAG,0BAASC,IAAT,EAAe,CAAE,CAbtC;;AAgBE;;;;;;;;AAQAC,MAAAA,eAAe,EAAG,yBAASD,IAAT,EAAeE,IAAf,EAAqBC,QAArB,EAA+B,CAAE;AAxBrD;AAFF,GADA;AA7BAX,EAAAA,EAAE,CAACY,EAAH,CAAMC,OAAN,CAAcC,SAAd,CAAwBC,kBAAxB,CAA2CZ,aAA3C,GAA2DA,aAA3D",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n\n/**\n * Objects, which are used as delegates for a virtual selection manager may\n * implement any of the methods described in this interface. The delegate does\n * not need implement all of the methods of this interface. If a method is not\n * implemented the selection manager provides a default implementation.\n *\n * Note: This interface is meant to document the delegate but should not be\n * listed in the <code>implement</code> key of a class unless all methods are\n * really implemented.\n */\nqx.Interface.define(\"qx.ui.virtual.selection.ISelectionDelegate\",\n{\n  members :\n  {\n    /**\n     * Returns whether the given item is selectable. The type of the item\n     * depends on the concrete selection manager implementation. The\n     * {@link Row} and {@link Column} selection manager use row/column indexes\n     * as items. The {@link qx.ui.virtual.cell.Cell} uses cells as items. Cells are represented by\n     * a map containing <code>row</code> and <code>column</code> keys.\n     *\n     * If this method is not implemented by the delegate all items are selectable.\n     *\n     * @param item {var} The item to be checked\n     * @return {Boolean} Whether the given item is selectable\n     */\n    isItemSelectable : function(item) {},\n\n\n    /**\n     * Update the style (appearance) of the given item.\n     *\n     * @param item {var} Item to modify\n     * @param type {String} Any of <code>selected</code>, <code>anchor</code>\n     *    or <code>lead</code>\n     * @param wasAdded {Boolean} Whether the given style should be added or removed.\n     */\n    styleSelectable : function(item, type, wasAdded) {}\n  }\n});"
+  ]
+}

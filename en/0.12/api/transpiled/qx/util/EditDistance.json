@@ -1,0 +1,224 @@
+{
+  "className": "qx.util.EditDistance",
+  "packageName": "qx.util",
+  "name": "EditDistance",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 165,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>Class to implement different edit distance ideas.\n <a href=\"http://en.wikipedia.org/wiki/Edit_distance\">Edit distance on Wikipedia</a>\n <a href=\"http://en.wikipedia.org/wiki/Levenshtein_distance\">Levenshtein distance on Wikipedia</a></p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "OPERATION_DELETE": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4
+        },
+        "end": {
+          "line": 32,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "OPERATION_INSERT": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
+          "column": 24
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "OPERATION_REPLACE": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__computeLevenshteinDistance": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 82,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a distant matrix following a concept\n named Levenshtein distance for two data structures</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dataA {Array} incoming source data",
+            "paramName": "dataA",
+            "description": " incoming source data",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "dataB {Array} incoming target data",
+            "paramName": "dataB",
+            "description": " incoming target data",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer[][]} outgoing matrix",
+            "type": "Integer[][]",
+            "description": " outgoing matrix"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__computeEditOperations": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 147,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the operations needed to transform dataA to dataB.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "distance {Integer[][]} Precomputed matrix for the data fields",
+            "paramName": "distance",
+            "description": " Precomputed matrix for the data fields",
+            "type": "Integer[][]"
+          },
+          {
+            "name": "@param",
+            "body": "dataA {Array} incoming source data",
+            "paramName": "dataA",
+            "description": " incoming source data",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "dataB {Array} incoming target data",
+            "paramName": "dataB",
+            "description": " incoming target data",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} Array of maps describing the operations needed",
+            "type": "Map[]",
+            "description": " Array of maps describing the operations needed"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getEditOperations": {
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4
+        },
+        "end": {
+          "line": 163,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the operations needed to transform dataA to dataB.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dataA {Array} incoming source data",
+            "paramName": "dataA",
+            "description": " incoming source data",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "dataB {Array} incoming target data",
+            "paramName": "dataB",
+            "description": " incoming target data",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} Array of maps describing the operations needed",
+            "type": "Map[]",
+            "description": " Array of maps describing the operations needed"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

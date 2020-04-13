@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/decoration/IDecorator.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "members",
+    "getStyles",
+    "getPadding",
+    "getInsets",
+    "ui",
+    "decoration",
+    "IDecorator"
+  ],
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBA;;;;AAIAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,6BAApB,EACA;AACEC,IAAAA,OAAO,EACP;AAEE;;;;;AAKAC,MAAAA,SAAS,EAAG,qBAAW,CAAE,CAP3B;;AAWE;;;;AAIAC,MAAAA,UAAU,EAAG,sBAAW,CAAE,CAf5B;;AAkBE;;;;;;;AAOAC,MAAAA,SAAS,EAAG,qBAAW,CAAE;AAzB3B;AAFF,GADA;AAvBAT,EAAAA,EAAE,CAACU,EAAH,CAAMC,UAAN,CAAiBC,UAAjB,CAA4BT,aAA5B,GAA4CA,aAA5C",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * A decorator is responsible for computing a widget's decoration styles.\n *\n */\nqx.Interface.define(\"qx.ui.decoration.IDecorator\",\n{\n  members :\n  {\n\n    /**\n     * Returns the decorator's styles.\n     *\n     * @return {Map} Map of decoration styles\n     */\n    getStyles : function() {},\n\n\n\n    /**\n     * Returns the configured padding minus the border width.\n     * @return {Map} Map of top, right, bottom and left padding values\n     */\n    getPadding : function() {},\n\n\n    /**\n     * Get the amount of space the decoration needs for its border and padding\n     * on each side.\n     *\n     * @return {Map} the desired inset as a map with the keys <code>top</code>,\n     *     <code>right</code>, <code>bottom</code>, <code>left</code>.\n     */\n    getInsets : function() {}\n  }\n});\n"
+  ]
+}
