@@ -54,7 +54,14 @@
  * @author Michael Hausl [michael at hausl dot com]
  * @since 0.6.0
  *
- * @asset(plugins/diagram/dep/flot/*.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.touch.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.canvas.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.resize.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.time.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.axislabels.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.tooltip.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
  */
 qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   extend: cv.ui.structure.AbstractWidget,

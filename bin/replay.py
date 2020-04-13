@@ -26,6 +26,7 @@ import socket
 import errno
 import json
 import shutil
+from sh import npm
 
 try:
     # Python 2.x
@@ -63,7 +64,7 @@ class MutedHttpRequestHandler(SimpleHTTPRequestHandler, object):
 
 
 def prepare_replay(file):
-    with open(os.path.join("source", "replay-log.js"), "w") as target:
+    with open(os.path.join("compiled", "source", "replay-log.js"), "w") as target:
         with open(file) as source:
             data = source.read()
             target.write('var replayLog = %s;' % data)
@@ -131,6 +132,7 @@ def get_server(host="", port=9000, next_attempts=0):
             else:
                 raise
 
+
 if __name__ == '__main__':
     parser = ArgumentParser(usage="%(prog)s - CometVisu documentation helper commands")
 
@@ -142,6 +144,9 @@ if __name__ == '__main__':
         print("please provide a log file")
         parser.print_help()
         sys.exit(0)
+
+    # compile cv
+    npm.run('compile')
 
     settings = prepare_replay(options.file)
     window_size = "%s,%s" % (settings["width"], settings["height"])
@@ -169,7 +174,7 @@ if __name__ == '__main__':
         thread.start()
 
         # open browser
-        start_browser("http://localhost:%s/source/replay.html%s" % (port, anchor),
+        start_browser("http://localhost:%s/compiled/source/replay.html%s" % (port, anchor),
                       browser=browser_name, size=window_size, open_devtools=options.devtools)
 
         while thread.isAlive():

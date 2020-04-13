@@ -5,15 +5,3 @@
 	path = external/qooxdoo
 	url = https://github.com/CometVisu/qooxdoo.git
 	branch = cometvisu
-[submodule "external/qx-osparc-theme"]
-	path = external/qx-osparc-theme
-	url = https://github.com/peuter/qx-osparc-theme.git
-[submodule "external/qx-iconfont-material"]
-	path = external/qx-iconfont-material
-	url = https://github.com/peuter/qx-iconfont-material.git
-[submodule "external/qx-contrib-dialog"]
-	path = external/qx-contrib-dialog
-	url = https://github.com/cboulanger/qx-contrib-Dialog.git
-[submodule "external/qx-upload-manager"]
-	path = external/qx-upload-manager
-	url = https://github.com/johnspackman/UploadMgr.git

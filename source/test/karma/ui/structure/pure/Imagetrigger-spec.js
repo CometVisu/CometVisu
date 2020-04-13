@@ -26,16 +26,17 @@ var templateEngine = cv.TemplateEngine.getInstance();
 
 describe("testing a imagetrigger widget", function() {
 
-  var con = qx.event.Timer;
-  var spiedTimer;
+  var con, spiedTimer;
 
   beforeEach(function() {
+    con = qx.event.Timer;
 
     spyOn(qx.event, "Timer").and.callFake(function() {
       spiedTimer = new con();
       spyOn(spiedTimer, "start");
       return spiedTimer;
     });
+
   });
 
   afterEach(function(){

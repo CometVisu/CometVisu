@@ -88,7 +88,7 @@ qx.Class.define('cv.ui.PageHandler', {
       templateEngine.pagePartsHandler.updatePageParts( pageWidget, speed );
 
       // now the animation
-      var animationConfig = null;
+      var animationConfig = {};
 
       // update reference, because the appearance might have changed
       var oldPageWidget = currentPath ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath) : null;
@@ -114,6 +114,7 @@ qx.Class.define('cv.ui.PageHandler', {
         // set it to visible
         pageWidget.setVisible(true);
       }
+      console.log(speed, animationEnabled, animationConfig)
 
       if (!animationEnabled) {
         if (oldPageWidget) {
@@ -121,17 +122,20 @@ qx.Class.define('cv.ui.PageHandler', {
         }
         this.__onEnterPage(pageWidget, 0, true);
       } else {
-        var self = this;
         if (oldPageWidget) {
-          var outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.out, speed);
+          var outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.leavePage, speed);
           oldPageWidget.getDomElement().style["overflow-y"] = "hidden";
-          outAnim.addListenerOnce("end", function(){self.__onLeavePage(oldPageWidget);}, this);
+          outAnim.addListenerOnce("end", function() {
+            this.__onLeavePage(oldPageWidget);
+          }, this);
         }
         var oldPos = window.getComputedStyle(pageWidget.getDomElement()).position;
         pageWidget.getDomElement().style.position = "absolute";
         qx.bom.AnimationFrame.request(function() {
-          var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig["in"], speed);
-          animation.addListenerOnce("end", function(updateVisibility){self.__onEnterPage(pageWidget,oldPos,updateVisibility);}, this);
+          var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig.enterPage, speed);
+          animation.addListenerOnce("end", function() {
+            this.__onEnterPage(pageWidget, oldPos);
+          }, this);
         }, this);
       }
     },
@@ -174,8 +178,8 @@ qx.Class.define('cv.ui.PageHandler', {
         outAnim.timing = this.getEasing();
       }
       return {
-        "in": inAnim,
-        "out": outAnim
+        enterPage: inAnim,
+        leavePage: outAnim
       };
     },
 

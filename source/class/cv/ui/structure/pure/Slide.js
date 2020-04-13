@@ -21,7 +21,11 @@
 /**
  * Adds a horizontal slider to the visu. This can be used, for example, to dim a light or change temperature values.
  *
- * @require(qx.module.Attribute,qx.module.Css,qx.module.Traversing,qx.module.Manipulating,qx.module.event.Keyboard)
+ * @require(qx.module.Attribute)
+ * @require(qx.module.Css)
+ * @require(qx.module.Traversing)
+ * @require(qx.module.Manipulating)
+ * @require(qx.module.event.Keyboard)
  * @author Christian Mayer
  * @since 2012
  */

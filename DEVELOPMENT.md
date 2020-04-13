@@ -7,10 +7,8 @@ to get started.
 Preparation
 -----------
 
-The new build system requires python2 and grunt. Also you have to run `npm install` once,
-because at least the build-task (explained later) includes a grunt task which minifies included
-external dependencies. If you want to use the REST API backend included in the CometVisu you
-have to run `grunt composer:rest:install` to load the external dependencies for the PHP code.
+The new build system requires a node environment. So you have to run `npm install` once to install
+all required modules for development.
 
 After cloning the sources or updating from 0.10.x you have to do the following steps once:
 
@@ -22,39 +20,41 @@ git submodule update
 Building source and build versions
 ---------------------------------
 
+**Short version**
+
+Execute `npx qx compile --watch`, let your webserver serve the folder `compiled/source`, open
+the URL of your webserver in your browser and start to develop.
+If you need PHP support during development you can run a PHP server that serves the compiled source
+version of the cometvisu by executing `npm run source`. 
+
+**In Detail:**
+
 Since version >= 0.11.0 the CometVisu sources are based on the
- [Qooxdoo-Framework](http://www.qooxdoo.org). To develop, test and debug
-your changes you can work with a source version of the code, which can be generated be executing 
-`./generate.py source` on your console (python2 required).
+[Qooxdoo-Framework](http://www.qooxdoo.org) and since version 0.12.0 it uses the new qooxdoo compiler. 
+To develop, test and debug your changes you can work with a source version of the code, 
+which can be compiled by executing `npx qx compile` in your console.
 
 The most useful build commands are:
-* `./generate.py source` loads all used source files separately.
+* `npx qx compile` generates a source version of the cometvisu in the subfolder `compiled/source`.
 
-    Ideal for debugging and development
-        
-* `./generate.py source-hybrid` loads the CometVisu source files separately the used qooxdoo files as one single file
-
-    Faster load time, also useful to debug and test the CometVisu code, but the qx.* sources are harder to debug
+    Ideal for debugging and development, just serve the folder with your favorite web server.
+    
+    If you add the `--watch` parameter the compilation will happen automatically whenever you change
+    something in the code.
      
-* `./generate.py build` generated a minified single source file
+* `npx qx compile --target=build` generates a minified build version in the subfolder `compiled/build`.
 
-    Not useful for debugging only as a final test that the build is working. This is how CometVisu releases
+    Not useful for debugging, only as a final test that the build is working. This is how CometVisu releases
     are made.
+    
+The qooxdoo compiler works as a transpiler, which requires a re-compilation after every change made in the code.
+It is recommended to run the compiler in watch mode `npx qx compile --watch` during development.
+In this mode the compiler will recognize every change made in the code and automatically re-compile.
     
 Pulling changes
 ---------------
 
-Everytime you pull changes from the main repository into you local clone you have to re-generate the source 
-(`./generate.py source`) if source files have been added or deleted and update the submodules if the 
- qooxdoo submodule got changed too (`git submodule update`).
- 
-If you are not sure which of the two steps above is needed just execute them both.
-    
-**Please note:**
-
-Every time you add a new class-file to the sources are use a qx.* class that hasn't been used before
-you have to re-run `./generate.py source` as this step makes sure that the new file gets included and loaded
-by the browser. If you only change code in existing files you don't have to re-generate the source.
+If there have been changes in submodules of the project you have to run `git submodule update` to get those changes.
 
 Other useful resources you may find useful during development are:
 

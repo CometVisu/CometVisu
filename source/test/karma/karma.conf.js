@@ -1,7 +1,6 @@
 // Karma configuration
 // Generated on Sat Mar 05 2016 11:10:08 GMT+0100 (CET)
-
-var path = require('path');
+const fs = require('fs')
 
 module.exports = function(config) {
   'use strict';
@@ -9,7 +8,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '../../../',
+    basePath: '../../../compiled/',
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -18,24 +17,26 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser => auto-filled by the qooxdoo adapter
     files: [
       "source/test/karma/helper-spec.js",
-      { pattern: "source/test/karma/*.js" },
-      { pattern: "source/test/karma/**/*.js" },
+      { pattern: "source/cv/polyfill.js", included: false },
+      { pattern: "source/test/karma/*-spec.js" },
+      { pattern: "source/test/karma/**/*-spec.js" },
       { pattern: "source/test/fixtures/**", included: false },
-      { pattern: "source/resource/**/*", included: false, served: true, watched: false }
+      { pattern: "source/resource/**/*", included: false, served: true, watched: false },
+      { pattern: "source/transpiled/**/*", included: false, served: true, watched: false },
+      { pattern: "source/**/*.map", included: false, served: true, watched: false }
     ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'source/class/cv/{*.js,!(report)/**/*.js}': 'coverage',
-      'client/source/class/cv/{*.js,!(test)/**/*.js}': 'coverage'
+      'source/transpiled/cv/{*.js,!(report)/**/*.js}': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec', 'coverage'],
+    reporters: ['spec', 'coverage', 'remap-coverage'],
 
     specReporter: {
       maxLogLines: 5,         // limit number of lines logged per test
@@ -47,11 +48,26 @@ module.exports = function(config) {
     },
 
     coverageReporter : {
-      dir: 'coverage',
-      reporters: [
-        { type: 'html'},
-        { type : 'text-summary' }
-      ]
+      type: 'in-memory'
+    },
+    remapOptions: {
+      mapFileName: function (file) {
+        const relPath = file.split('/transpiled/')[1]
+        return './source/class/' + relPath
+      },
+      readJSON: function (filePath) {
+        const path = filePath.split('?')[0]
+        if (fs.existsSync(path)) {
+          const content = JSON.parse(fs.readFileSync(path))
+          content.file = path
+          return content
+        }
+      }
+    },
+    remapCoverageReporter: {
+      'text-summary': null, // to show summary in console
+      html: 'coverage',
+      lcovonly: 'coverage/lcov.info'
     },
 
     // web server port
@@ -62,13 +78,10 @@ module.exports = function(config) {
       '/source/resource/designs': '/base/source/resource/designs',
       '/resource/plugins/tr064/soap.php': '/base/source/test/fixtures/tr064_soap.json',
       '/resource/plugins/tr064/proxy.php': '/base/source/test/fixtures/tr064_proxy.xml',
-      '/source/class/cv': '/base/source/class/cv',
+      '/source/cv': '/base/source/cv',
       '/external/qooxdoo': '/base/external/qooxdoo',
       '/source/resource': '/base/source/resource',
-      '/config': '/base/source/resource/config',
-      '/demo': '/base/source/resource/demo',
       '../source/resource': '/base/source/resource',
-      '/script': '/base/source/script',
       '/cgi-bin': '/base/source/resource/test'
     },
 
@@ -107,16 +120,17 @@ module.exports = function(config) {
           '--remote-debugging-port=9222'
         ]
       }
-},
+    },
 
 
-  // Concurrency level
+    // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity,
 
     qooxdooFramework: {
       testSources: true,
-      scriptFile: "cv.js"
+      codePath: 'source/',
+      scriptFile: "cv/boot.js"
     }
   });
 };

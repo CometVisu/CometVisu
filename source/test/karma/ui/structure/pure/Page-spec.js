@@ -23,7 +23,6 @@
  *
  */
 describe("testing a page widget", function() {
-  var templateEngine = cv.TemplateEngine.getInstance();
 
   it("should test that invisible pages generate no DOM string", function() {
 
@@ -124,6 +123,7 @@ describe("testing a page widget", function() {
   });
 
   it("should test the page update", function() {
+    var templateEngine = cv.TemplateEngine.getInstance();
     spyOn(templateEngine, 'scrollToPage');
 
     var res = this.createTestWidgetString("page", {
@@ -144,6 +144,7 @@ describe("testing a page widget", function() {
   });
 
   it("should trigger the page action", function() {
+    var templateEngine = cv.TemplateEngine.getInstance();
     spyOn(templateEngine, 'scrollToPage');
 
     var pageLink = this.createTestElement("page", {

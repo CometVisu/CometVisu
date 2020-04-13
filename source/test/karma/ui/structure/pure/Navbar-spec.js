@@ -23,9 +23,9 @@
  *
  */
 describe("testing a navbar widget", function() {
-  var templateEngine = cv.TemplateEngine.getInstance();
 
   function testNavbar(pos) {
+    var templateEngine = cv.TemplateEngine.getInstance();
     spyOn(templateEngine.pagePartsHandler, "navbarSetSize");
 
     var bar = document.createElement('div');

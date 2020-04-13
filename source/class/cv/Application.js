@@ -21,12 +21,9 @@
 /**
  * This is the main application class of the CometVisu.
  *
- * @asset(config/*)
  * @asset(demo/*)
  * @asset(designs/*)
  * @asset(icon/*)
- * @asset(plugins/*)
- * @asset(visu_config.xsd)
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)
  */
@@ -220,8 +217,10 @@ qx.Class.define("cv.Application",
 
     showManager: function () {
       qx.io.PartLoader.require(['manager'], function (states) {
-        var toggleVisibility = !!cv.ui.manager.Main.constructor.$$instance;
-        var manager = cv.ui.manager.Main.getInstance();
+        // break dependency
+        var ManagerMain = cv.ui['manager']['Main'];
+        var toggleVisibility = !!ManagerMain.constructor.$$instance;
+        var manager = ManagerMain.getInstance();
         if (toggleVisibility) {
           manager.setVisible(!manager.getVisible());
         }

@@ -20,6 +20,8 @@ qx.Class.define('cv.ui.manager.Main', {
   */
   construct: function () {
     this.base(arguments);
+    iconfont.material.Load;
+    cv.ui.manager.model.BackupFolder.getInstance();
     this._checkEnvironment();
     this.initOpenFiles(new qx.data.Array());
     this.__actionDispatcher = cv.ui.manager.control.ActionDispatcher.getInstance();
@@ -836,10 +838,5 @@ qx.Class.define('cv.ui.manager.Main', {
 
     // destroy the singleton instance
     delete cv.ui.manager.Main.$$instance;
-  },
-
-  defer: function() {
-    // load backupFolder
-    cv.ui.manager.model.BackupFolder.getInstance();
   }
 });

@@ -56,24 +56,20 @@ $CV doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 
 utils/update_version.py
 echo "generating api version $VERSION"
-source temp-python/bin/activate
-# Turn off O_NONBLOCK (breaks large stdout writes)
-python -c 'import os,sys,fcntl; flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);'
-{
-  ${DOCKER_RUN} ./generate.py api -qsI --macro=CV_VERSION:$VERSION &&
+
+CV_VERSION=$VERSION qx compile -t build --set apiviewer=true -f=false
+if [ $? -eq 0 ]
+then
   echo "API successfully generated"
-} || {
+else {
   echo "API generation failed"
   NO_API=1
 }
-deactivate
+fi
 
 # API screenshots are used by the "doc --from-source" run so we generate them here
 if [[ "$NO_API" -eq 0 ]]; then
-    echo "generate API screenshots"
-    ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
-
-    # move the apiviewer to the correct version subfolder, including screenshots
+    # move the apiviewer to the correct version subfolder
     rm -rf out/en/$VERSION_PATH/api
     ${CV} doc --move-apiviewer --target-version=${VERSION_PATH}
 fi
@@ -87,6 +83,9 @@ ${CV} doc --doc-type manual -l en --target-version=${VERSION_PATH}
 # update symlinks and write version files
 ${CV} doc --process-versions
 
+echo "generating the source verion of the CometVisu for screenshot generation"
+qx compile -t=build -f=false
+
 echo "generating english manual, including screenshot generation for all languages"
 ${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t build --target-version=${VERSION_PATH}
 echo "generating german manual again with existing screenshots"
@@ -99,26 +98,13 @@ echo "generating sitemap.xml for documentation"
 ${CV} sitemap
 
 echo "generating test mode build"
-source temp-python/bin/activate
-./generate.py build --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
+CV_TESTMODE=resource/demo/media/demo_testmode_data.json qx compile -t build -f=false
 grunt update-demo-config
 rm -rf out/de/$VERSION_PATH/demo
-mv build out/de/$VERSION_PATH/demo
+mv compiled/build out/de/$VERSION_PATH/demo
 
 # Copy demo-mode to default config
 cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
-
-echo "generating test mode source version"
-./generate.py source-hybrid-error --macro=CV_TESTMODE:resource/demo/media/demo_testmode_data.json
-grunt update-demo-config-source
-rm -rf out/de/$VERSION_PATH/demo-source
-mkdir -p out/de/$VERSION_PATH/demo-source/client/source/class/cv/
-mkdir -p out/de/$VERSION_PATH/demo-source/source/
-# copy files
-cp -r client/source/class/cv out/de/$VERSION_PATH/demo-source/client/source/class/
-cp -r source/class source/resource source/loader source/script source/index.html source/manifest.json out/de/$VERSION_PATH/demo-source/source/
-cp out/de/$VERSION_PATH/demo-source/source/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo-source/source/resource/config/visu_config.xml
-deactivate
 
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo

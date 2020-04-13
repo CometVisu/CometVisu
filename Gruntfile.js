@@ -345,15 +345,7 @@ module.exports = function(grunt) {
       travis: {
         configFile: 'source/test/karma/karma.conf.js',
         singleRun: true,
-        browsers: [grunt.option('browser') || 'Chrome'],
-        coverageReporter : {
-          dir: 'coverage',
-          reporters: [
-            { type : 'lcov' },
-            { type: 'html'},
-            { type : 'text-summary' }
-          ]
-        }
+        browsers: [grunt.option('browser') || 'Chrome_travis']
       },
       debug: {
         configFile: 'source/test/karma/karma.conf.js',
@@ -369,6 +361,7 @@ module.exports = function(grunt) {
         options: {
           port: 8000,
           hostname: '*',
+          base: 'compiled',
           middleware : function(connect, options, middlewares) {
             // inject out mockup middlewares before the default ones
             middlewares.unshift(captureMock());
@@ -464,23 +457,19 @@ module.exports = function(grunt) {
         ].join('&&')
       },
       buildClient: {
-        command: [
-          'cd client',
-          './generate.py build -sI',
-          'cd ..'
-        ].join('&&')
+        command: 'npm run make-client'
       },
       buildToRelease: {
         command: [
           'rm -rf release',
-          'mv build release'
+          'mv compiled/build release'
         ].join('&&')
       },
       lint: {
-        command: './generate.py lint'
+        command: 'npm run lint'
       },
       build: {
-        command: './generate.py build -sI'
+        command: 'npm run make-cv'
       }
     },
 
@@ -505,16 +494,6 @@ module.exports = function(grunt) {
             grunt.file.write(filename, test.replace(/%WIDGET_NAME%/g, result.widgetName));
           }
         }
-      }
-    },
-    uglify: {
-      libs: {
-        files: [{
-          expand: true,
-          cwd: 'build/resource/libs',
-          src: '*.js',
-          dest: 'build/resource/libs'
-        }]
       }
     },
     composer : {
@@ -554,47 +533,50 @@ module.exports = function(grunt) {
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
     [
-      'build/resource/demo/visu_config_demo.xml',
-      'build/resource/demo/visu_config_2d3d.xml',
-      'build/resource/demo/visu_config_demo_testmode.xml'
+      'compiled/build/resource/demo/visu_config_demo.xml',
+      'compiled/build/resource/demo/visu_config_2d3d.xml',
+      'compiled/build/resource/demo/visu_config_demo_testmode.xml'
     ].forEach(function (filename) {
       var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
       grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
     });
 
-    var filename = 'build/index.html';
+    var filename = 'compiled/build/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
   grunt.registerTask('update-demo-config-source', function() {
     [
-      'source/resource/demo/visu_config_demo.xml',
-      'source/resource/demo/visu_config_2d3d.xml',
-      'source/resource/demo/visu_config_demo_testmode.xml'
+      'compiled/source/resource/demo/visu_config_demo.xml',
+      'compiled/source/resource/demo/visu_config_2d3d.xml',
+      'compiled/source/resource/demo/visu_config_demo_testmode.xml'
     ].forEach(function (filename) {
       var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
       grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
     });
 
-    var filename = 'source/index.html';
+    var filename = 'compiled/source/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
   grunt.registerTask("rename-client-build", function() {
-    var path = 'client/build/script/';
-    fs.readdirSync(path).forEach(function(file) {
-      var stats = fs.statSync(path + file);
-      var parts = file.split(".");
-      if (!stats.isDirectory() && parts[parts.length-1] === "gz" && file.indexOf(pkg.version) === -1) {
-        var newName = parts.shift() + "-" + pkg.version;
+    var paths = [
+      'client/compiled/build/jQuery-CometVisuClient/cv-client.js.gz',
+      'client/compiled/build/qx-CometVisuClient/cv-client.js.gz'
+    ];
+    paths.forEach(function(p, i) {
+      var dir = path.dirname(p);
+      var file = path.basename(p);
+      if (file.indexOf(pkg.version) === -1) {
+        var newName = "-" + pkg.version;
         if (process.env.TRAVIS_EVENT_TYPE === "cron") {
           // nightly build with date
           var now = new Date();
           newName += "-" + now.toISOString().split(".")[0].replace(/[\D]/g, "");
         }
-        fs.renameSync(path + file, path + newName + "." + parts.join('.'));
+        fs.renameSync(p, dir + newName + ".js.gz");
       }
     });
   });
@@ -649,7 +631,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-scaffold');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-composer');
 
   // Default task runs all code checks, updates the banner and builds the release

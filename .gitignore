@@ -17,6 +17,9 @@ settings/keys/deploy_key
 # .gitignore template for skeleton-based apps
 /api/
 /build/
+/compiled/
+/client/compiled/
+/.env/
 /test/
 /source/script/
 /source/class/cv/Version.js
@@ -29,3 +32,4 @@ settings/keys/deploy_key
 *.pyc
 /doc/manual/*/_build/**
 **/.vscode/**
+qx_packages/

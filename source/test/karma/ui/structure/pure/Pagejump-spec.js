@@ -23,7 +23,6 @@
  *
  */
 describe("testing a pagejump widget", function() {
-  var templateEngine = cv.TemplateEngine.getInstance();
 
   it("should test the pagejump creator", function() {
 
@@ -82,6 +81,7 @@ describe("testing a pagejump widget", function() {
   });
 
   it("should trigger the pagejumps action", function() {
+    var templateEngine = cv.TemplateEngine.getInstance();
     spyOn(templateEngine, 'scrollToPage');
 
     var widget = this.createTestElement("pagejump", {
@@ -95,6 +95,7 @@ describe("testing a pagejump widget", function() {
   });
 
   it("should trigger the pagejumps action with target path", function() {
+    var templateEngine = cv.TemplateEngine.getInstance();
     spyOn(templateEngine, 'scrollToPage');
     spyOn(templateEngine, 'getPageIdByPath').and.returnValue('id_1');
 

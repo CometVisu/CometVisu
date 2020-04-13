@@ -1,0 +1,226 @@
+{
+  "$schema": "https://raw.githubusercontent.com/qooxdoo/qooxdoo-compiler/master/source/resource/qx/tool/schema/compile-1-0-0.json",
+  "environment": {
+    "cv.version": "dev",
+    "cv.xhr": "qx",
+    "cv.testMode": false
+  },
+  "locales": [
+    "en",
+    "de"
+  ],
+  "applications": [
+    {
+      "class": "cv.Application",
+      "name": "cv",
+      "theme": "cv.theme.Dark",
+      "environment": {
+        "qx.promise": false
+      },
+      "default": true,
+      "include": [
+        "cv.Application",
+        "cv.ui.structure.pure.*",
+        "cv.ui.manager.*",
+        "cv.transforms.*",
+        "cv.plugins.*",
+        "cv.parser.*",
+        "cv.core.*"
+      ],
+      "exclude": [
+        "cv.test.*",
+        "qx.test.*"
+      ],
+      "bootPath": "source/boot",
+      "parts": {
+        "boot": {
+          "include": [
+            "cv.Application",
+            "cv.transforms.*",
+            "cv.parser.widgets.*",
+            "cv.core.notifications.actions.*"
+          ]
+        },
+        "structure-pure": {
+          "include": [
+            "cv.ui.structure.pure.*"
+          ]
+        },
+        "manager": {
+          "include": [
+            "cv.ui.manager.*"
+          ]
+        },
+        "plugin-diagram": {
+          "include": [
+            "cv.plugins.diagram.*"
+          ]
+        },
+        "plugin-colorchooser": {
+          "include": [
+            "cv.plugins.ColorChooser"
+          ]
+        },
+        "plugin-calendarlist": {
+          "include": [
+            "cv.plugins.CalendarList"
+          ]
+        },
+        "plugin-clock": {
+          "include": [
+            "cv.plugins.Clock"
+          ]
+        },
+        "plugin-gauge": {
+          "include": [
+            "cv.plugins.Gauge"
+          ]
+        },
+        "plugin-link": {
+          "include": [
+            "cv.plugins.Link"
+          ]
+        },
+        "plugin-mobilemenu": {
+          "include": [
+            "cv.plugins.MobileMenu"
+          ]
+        },
+        "plugin-powerspectrum": {
+          "include": [
+            "cv.plugins.PowerSpectrum"
+          ]
+        },
+        "plugin-openweathermap": {
+          "include": [
+            "cv.plugins.OpenweatherMap"
+          ]
+        },
+        "plugin-rss": {
+          "include": [
+            "cv.plugins.Rss"
+          ]
+        },
+        "plugin-rsslog": {
+          "include": [
+            "cv.plugins.RssLog"
+          ]
+        },
+        "plugin-strftime": {
+          "include": [
+            "cv.plugins.Strftime"
+          ]
+        },
+        "plugin-speech": {
+          "include": [
+            "cv.plugins.Speech"
+          ]
+        },
+        "plugin-timeout": {
+          "include": [
+            "cv.plugins.Timeout"
+          ]
+        },
+        "plugin-tr064": {
+          "include": [
+            "cv.plugins.tr064.*"
+          ]
+        },
+        "plugin-svg": {
+          "include": [
+            "cv.plugins.Svg"
+          ]
+        },
+        "plugin-upnpcontroller": {
+          "include": [
+            "cv.plugins.UpnpController"
+          ]
+        },
+        "plugin-openhab": {
+          "include": [
+            "cv.plugins.openhab.*",
+            "${QXTHEME}"
+          ]
+        }
+      }
+    },
+    {
+      "class": "qxl.apiviewer.Application",
+      "theme": "qxl.apiviewer.Theme",
+      "name": "apiviewer",
+      "title": "CometVisu API Viewer",
+      "environment": {
+        "qx.icontheme": "Tango",
+        "excludeFromAPIViewer": [
+          "qxl.*",
+          "iconfont.*",
+          "osparc.*"
+        ],
+        "versionLabel.name": "CometVisu",
+        "versionLabel.version": "dev"
+      },
+      "include": [
+        "qx.*"
+      ],
+      "exclude": [
+        "qx.test.*",
+        "qx.module.Blocker",
+        "qx.module.Placement"
+      ],
+      "bootPath": "../../source/apiboot"
+    }
+  ],
+  "libraries": [
+    "external/qooxdoo/framework",
+    "client",
+    "."
+  ],
+  "targets": [
+    {
+      "type": "source",
+      "outputPath": "compiled/source",
+      "bundle": {
+        "include": [
+          "qx.*"
+        ]
+      },
+      "environment": {
+        "cv.build": "source",
+        "cv.sentry": false,
+        "qx.globalErrorHandling": false
+      }
+    },
+    {
+      "type": "build",
+      "outputPath": "compiled/build",
+      "environment": {
+        "cv.build": "build",
+        "cv.sentry": true,
+        "qx.globalErrorHandling": true,
+        "qx.debug": false
+      }
+    }
+  ],
+  "defaultTarget": "source",
+  "path-mappings": {
+    "./qooxdoo": "./external/qooxdoo"
+  },
+  "serve": {
+    "listenPort": 8082
+  },
+  "ignores": [
+    "$",
+    "jQuery",
+    "THREE",
+    "sprintf",
+    "replayLog",
+    "svg4everybody",
+    "EVENT_RECORDER",
+    "EventSource",
+    "Favico",
+    "Sentry",
+    "localStorage",
+    "monaco",
+    "Worker"
+  ]
+}

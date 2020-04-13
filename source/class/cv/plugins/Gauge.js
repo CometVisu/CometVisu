@@ -25,7 +25,9 @@
  * @since 0.8.1
  *
  * @ignore(steelseries.*)
- * @asset(plugins/gauge/gauge.css,plugins/gauge/dep/*.min.js)
+ * @asset(plugins/gauge/gauge.css)
+ * @asset(plugins/gauge/dep/steelseries.js)
+ * @asset(plugins/gauge/dep/tween.js)
 */ 
 qx.Class.define('cv.plugins.Gauge', {
   extend: cv.ui.structure.AbstractWidget,
@@ -281,8 +283,8 @@ qx.Class.define('cv.plugins.Gauge', {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/gauge/gauge.css');
     loader.addScripts([
-      'plugins/gauge/dep/tween-min.js',
-      'plugins/gauge/dep/steelseries-min.js'
+      'plugins/gauge/dep/tween.js',
+      'plugins/gauge/dep/steelseries.js'
     ]);
     cv.parser.WidgetParser.addHandler("gauge", cv.plugins.Gauge);
     cv.ui.structure.WidgetFactory.registerClass("gauge", statics);

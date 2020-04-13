@@ -1,6 +1,7 @@
 /**
  * Sometimes the openHAB1 backend returns invalid JSON (e.g. multiple JSON object in one string)
  * This parser can handle those strings
+ * @ignore($)
  */
 qx.Class.define('cv.io.parser.Json', {
   type: "static",

@@ -3,6 +3,9 @@
  *
  * @author tobiasb
  * @since 2017
+ *
+ * @ignore($)
+ * @asset(lib/jquery.js)
  */
 
 qx.Class.define("cv.io.request.Jquery", {

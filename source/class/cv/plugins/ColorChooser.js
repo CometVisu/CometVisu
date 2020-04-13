@@ -23,7 +23,11 @@
  * @since 0.5.2
  * @author Christian Mayer [CometVisu at ChristianMayer dot de]
  *
- * @asset(plugins/colorchooser/farbtastic/farbtastic.js,plugins/colorchooser/farbtastic/farbtastic.css)
+ * @asset(plugins/colorchooser/farbtastic/farbtastic.js)
+ * @asset(plugins/colorchooser/farbtastic/farbtastic.css)
+ * @asset(plugins/colorchooser/farbtastic/wheel.png)
+ * @asset(plugins/colorchooser/farbtastic/mask.png)
+ * @asset(plugins/colorchooser/farbtastic/marker.png)
  */
 qx.Class.define('cv.plugins.ColorChooser', {
   extend: cv.ui.structure.AbstractWidget,

@@ -31,7 +31,7 @@ exports.config = {
   },
 
   onPrepare: function(){
-    browser.ignoreSynchronization = true;
+    browser.waitForAngularEnabled(false);
 
     // set implicit wait times in ms...
     browser.manage().timeouts().implicitlyWait(5000);
