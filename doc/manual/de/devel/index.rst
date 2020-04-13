@@ -2,8 +2,16 @@
 Informationen für Entwickler
 ****************************
 
+.. toctree::
+    :hidden:
+
+    setup
+
 Diese Seite liefert eine Einführung in die internen Zusammenhänge und Hintergründe der CometVisu und richtet sich in
 erster Linie an Entwickler.
+
+Für einen optimalen Einstieg in die Entwicklung werden im Kapitel :doc:`Setup der Entwicklungsumgebung <setup>`
+Beispiele für, je nach eigenem Entwicklungsfokus, optimale Umgebungen gegeben.
 
 Grundlagen der Software
 -----------------------
