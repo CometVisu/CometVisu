@@ -1,5 +1,5 @@
 {
-    "restructuredtext.confPath" : "${workspaceRoot}/doc/manual/de",
+    "restructuredtext.confPath" : "${workspaceFolder}/doc/manual/de",
     "restructuredtext.builtDocumentationPath" : "${workspaceRoot}/out/preview/de",
     "restructuredtext.updateOnTextChanged" : "false"
     // "restructuredtext.sphinxBuildPath": "${workspaceRoot}/sphinx-build"
