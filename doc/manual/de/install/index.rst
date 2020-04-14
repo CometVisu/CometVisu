@@ -7,9 +7,9 @@ Einfache Installation:
 -  :doc:`Allgemein <allgemein>`
 -  :doc:`auf Wiregate <wiregate>`
 -  :doc:`auf Raspberry Pi <raspberry>`
--  auf einem Debian System mit openHAB1 (`OpenHAB-WIKI <https://github.com/openhab/openhab1-addons/wiki/CometVisu>`__)
--  :doc:`auf einem Debian System mit openHAB2 <openhab2>`
+-  :doc:`auf einem Debian System mit openHAB <openhab2>`
 -  :doc:`Über Docker <docker>`
+-  :doc:`Über Docker mit openHAB <docker_openhab2>`
 -  :doc:`Auf dem Timberwolf / mittels Portainer <timberwolf>`
 
 .. toctree::
