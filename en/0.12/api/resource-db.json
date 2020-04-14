@@ -1300,9 +1300,6 @@
       "plugins/diagram/dep/flot/jquery.flot.touch.min.js": {
         "resourcePath": "resourcePath"
       },
-      "plugins/rss/dep/zrssfeed/jquery.vticker.js": {
-        "resourcePath": "resourcePath"
-      },
       "plugins/rss/dep/zrssfeed/jquery.zrssfeed.css": {
         "resourcePath": "resourcePath"
       },
@@ -1310,6 +1307,9 @@
         "resourcePath": "resourcePath"
       },
       "plugins/rss/dep/zrssfeed/jquery.zrssfeed.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "plugins/rss/dep/zrssfeed/jquery.vticker.js": {
         "resourcePath": "resourcePath"
       }
     },
@@ -2138,10 +2138,10 @@
       "qx/test/array.json": {
         "resourcePath": "resourcePath"
       },
-      "qx/test/bluebar.svg": {
+      "qx/test/build.xml": {
         "resourcePath": "resourcePath"
       },
-      "qx/test/build.xml": {
+      "qx/test/bluebar.svg": {
         "resourcePath": "resourcePath"
       },
       "qx/test/cached-script.php": {
@@ -7497,1034 +7497,6 @@
         "width": 20,
         "height": 20
       },
-      "qx/decoration/Modern/groupbox/groupbox-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 51
-      },
-      "qx/decoration/Modern/groupbox/groupbox-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 51
-      },
-      "qx/decoration/Modern/groupbox/groupbox-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 51
-      },
-      "qx/decoration/Modern/groupbox/groupbox-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/groupbox/groupbox.png": {
-        "resourcePath": "resourcePath",
-        "width": 255,
-        "height": 59
-      },
-      "qx/decoration/Modern/menu/background.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 49
-      },
-      "qx/decoration/Modern/menu/bar-background.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 20
-      },
-      "qx/decoration/Modern/menu/checkbox-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 7
-      },
-      "qx/decoration/Modern/menu/checkbox.gif": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 7
-      },
-      "qx/decoration/Modern/menu/radiobutton-invert.gif": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 5
-      },
-      "qx/decoration/Modern/menu/radiobutton.gif": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 5
-      },
-      "qx/decoration/Modern/pane/pane-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/pane/pane-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/pane/pane-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/pane/pane-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 238
-      },
-      "qx/decoration/Modern/pane/pane-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 238
-      },
-      "qx/decoration/Modern/pane/pane-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 238
-      },
-      "qx/decoration/Modern/pane/pane-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/pane/pane-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/pane/pane-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/pane/pane.png": {
-        "resourcePath": "resourcePath",
-        "width": 185,
-        "height": 250
-      },
-      "qx/decoration/Modern/scrollbar/scrollbar-bg-horizontal.png": {
-        "resourcePath": "resourcePath",
-        "width": 76,
-        "height": 15
-      },
-      "qx/decoration/Modern/scrollbar/scrollbar-bg-pressed-horizontal.png": {
-        "resourcePath": "resourcePath",
-        "width": 19,
-        "height": 10
-      },
-      "qx/decoration/Modern/scrollbar/scrollbar-bg-pressed-vertical.png": {
-        "resourcePath": "resourcePath",
-        "width": 10,
-        "height": 19
-      },
-      "qx/decoration/Modern/scrollbar/scrollbar-bg-vertical.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 76
-      },
-      "qx/decoration/Modern/scrollbar/scrollbar-button-bg-horizontal.png": {
-        "resourcePath": "resourcePath",
-        "width": 12,
-        "height": 10
-      },
-      "qx/decoration/Modern/scrollbar/scrollbar-button-bg-vertical.png": {
-        "resourcePath": "resourcePath",
-        "width": 10,
-        "height": 12
-      },
-      "qx/decoration/Modern/scrollbar/scrollbar-down.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 4
-      },
-      "qx/decoration/Modern/scrollbar/scrollbar-left.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 6
-      },
-      "qx/decoration/Modern/scrollbar/scrollbar-right.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 6
-      },
-      "qx/decoration/Modern/scrollbar/scrollbar-up.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 4
-      },
-      "qx/decoration/Modern/scrollbar/slider-knob-background.png": {
-        "resourcePath": "resourcePath",
-        "width": 12,
-        "height": 10
-      },
-      "qx/decoration/Modern/shadow/shadow-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Modern/shadow/shadow-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Modern/shadow/shadow-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Modern/shadow/shadow-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 382
-      },
-      "qx/decoration/Modern/shadow/shadow-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 382
-      },
-      "qx/decoration/Modern/shadow/shadow-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 382
-      },
-      "qx/decoration/Modern/shadow/shadow-small-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/shadow/shadow-small-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/shadow/shadow-small-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/shadow/shadow-small-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 136
-      },
-      "qx/decoration/Modern/shadow/shadow-small-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 136
-      },
-      "qx/decoration/Modern/shadow/shadow-small-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 136
-      },
-      "qx/decoration/Modern/shadow/shadow-small-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/shadow/shadow-small-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/shadow/shadow-small-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/shadow/shadow-small.png": {
-        "resourcePath": "resourcePath",
-        "width": 114,
-        "height": 146
-      },
-      "qx/decoration/Modern/shadow/shadow-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Modern/shadow/shadow-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Modern/shadow/shadow-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 15
-      },
-      "qx/decoration/Modern/shadow/shadow.png": {
-        "resourcePath": "resourcePath",
-        "width": 381,
-        "height": 412
-      },
-      "qx/decoration/Modern/splitpane/knob-horizontal.png": {
-        "resourcePath": "resourcePath",
-        "width": 1,
-        "height": 8
-      },
-      "qx/decoration/Modern/splitpane/knob-vertical.png": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 1
-      },
-      "qx/decoration/Modern/table/ascending.png": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 5
-      },
-      "qx/decoration/Modern/table/boolean-false.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Modern/table/boolean-true.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
-      "qx/decoration/Modern/table/descending.png": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 5
-      },
-      "qx/decoration/Modern/table/header-cell.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 18
-      },
-      "qx/decoration/Modern/table/select-column-order.png": {
-        "resourcePath": "resourcePath",
-        "width": 10,
-        "height": 9
-      },
-      "qx/decoration/Modern/toolbar/toolbar-gradient-blue.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 130
-      },
-      "qx/decoration/Modern/toolbar/toolbar-gradient.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 130
-      },
-      "qx/decoration/Modern/toolbar/toolbar-handle-knob.gif": {
-        "resourcePath": "resourcePath",
-        "width": 1,
-        "height": 8
-      },
-      "qx/decoration/Modern/toolbar/toolbar-part.gif": {
-        "resourcePath": "resourcePath",
-        "width": 7,
-        "height": 1
-      },
-      "qx/decoration/Modern/tree/closed-selected.png": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 8
-      },
-      "qx/decoration/Modern/tree/closed.png": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 8
-      },
-      "qx/decoration/Modern/tree/open-selected.png": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 8
-      },
-      "qx/decoration/Modern/tree/open.png": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 8
-      },
-      "qx/decoration/Modern/treevirtual/.gitignore": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-active-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-active-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-active-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-active-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 14
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-active-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 14
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-active-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 14
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-active-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-active-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-active-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-active.png": {
-        "resourcePath": "resourcePath",
-        "width": 49,
-        "height": 24
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 15
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 15
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 15
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-bottom-inactive.png": {
-        "resourcePath": "resourcePath",
-        "width": 45,
-        "height": 21
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-active-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-active-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-active-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-active-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 37
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-active-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 37
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-active-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 37
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-active-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-active-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-active-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-active.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 47
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 39
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 39
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 39
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive.png": {
-        "resourcePath": "resourcePath",
-        "width": 20,
-        "height": 45
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 37
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 37
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 37
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-active.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 47
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 39
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 39
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 39
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive.png": {
-        "resourcePath": "resourcePath",
-        "width": 20,
-        "height": 45
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 14
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 12
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 12
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 5,
-        "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 22
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-inactive-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-inactive-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-inactive-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-inactive-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 15
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-inactive-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 15
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-inactive-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 15
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-inactive-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-inactive-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-inactive-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-inactive.png": {
-        "resourcePath": "resourcePath",
-        "width": 45,
-        "height": 21
-      },
-      "qx/decoration/Modern/tabview/tabview-pane-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 30,
-        "height": 30
-      },
-      "qx/decoration/Modern/tabview/tabview-pane-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 30,
-        "height": 30
-      },
-      "qx/decoration/Modern/tabview/tabview-pane-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 30,
-        "height": 30
-      },
-      "qx/decoration/Modern/tabview/tabview-pane-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 120
-      },
-      "qx/decoration/Modern/tabview/tabview-pane-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 30,
-        "height": 2
-      },
-      "qx/decoration/Modern/tabview/tabview-pane-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 30,
-        "height": 2
-      },
-      "qx/decoration/Modern/tabview/tabview-pane-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 30,
-        "height": 30
-      },
-      "qx/decoration/Modern/tabview/tabview-pane-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 30,
-        "height": 30
-      },
-      "qx/decoration/Modern/tabview/tabview-pane-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 30,
-        "height": 30
-      },
-      "qx/decoration/Modern/tabview/tabview-pane.png": {
-        "resourcePath": "resourcePath",
-        "width": 185,
-        "height": 250
-      },
-      "qx/decoration/Modern/window/captionbar-active-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-active-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-active-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-active-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/captionbar-active-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/captionbar-active-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/captionbar-active-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-active-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-active-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-active.png": {
-        "resourcePath": "resourcePath",
-        "width": 69,
-        "height": 21
-      },
-      "qx/decoration/Modern/window/captionbar-inactive-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-inactive-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-inactive-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-inactive-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/captionbar-inactive-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/captionbar-inactive-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/captionbar-inactive-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-inactive-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-inactive-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
-      "qx/decoration/Modern/window/captionbar-inactive.png": {
-        "resourcePath": "resourcePath",
-        "width": 69,
-        "height": 21
-      },
-      "qx/decoration/Modern/window/close-active-hovered.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/close-active.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/close-inactive.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/maximize-active-hovered.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/maximize-active.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/maximize-inactive.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/minimize-active-hovered.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/minimize-active.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/minimize-inactive.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 9
-      },
-      "qx/decoration/Modern/window/restore-active-hovered.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 8
-      },
-      "qx/decoration/Modern/window/restore-active.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 8
-      },
-      "qx/decoration/Modern/window/restore-inactive.png": {
-        "resourcePath": "resourcePath",
-        "width": 9,
-        "height": 8
-      },
-      "qx/decoration/Modern/window/statusbar-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/window/statusbar-bl.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/window/statusbar-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/window/statusbar-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 7
-      },
-      "qx/decoration/Modern/window/statusbar-l.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 7
-      },
-      "qx/decoration/Modern/window/statusbar-r.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 7
-      },
-      "qx/decoration/Modern/window/statusbar-t.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/window/statusbar-tl.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/window/statusbar-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 4
-      },
-      "qx/decoration/Modern/window/statusbar.png": {
-        "resourcePath": "resourcePath",
-        "width": 369,
-        "height": 15
-      },
       "qx/decoration/Modern/form/button-b.png": {
         "resourcePath": "resourcePath",
         "width": 4,
@@ -9279,6 +8251,1034 @@
         "resourcePath": "resourcePath",
         "width": 6,
         "height": 2
+      },
+      "qx/decoration/Modern/groupbox/groupbox-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 51
+      },
+      "qx/decoration/Modern/groupbox/groupbox-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 51
+      },
+      "qx/decoration/Modern/groupbox/groupbox-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 51
+      },
+      "qx/decoration/Modern/groupbox/groupbox-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/groupbox/groupbox.png": {
+        "resourcePath": "resourcePath",
+        "width": 255,
+        "height": 59
+      },
+      "qx/decoration/Modern/menu/background.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 49
+      },
+      "qx/decoration/Modern/menu/bar-background.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 20
+      },
+      "qx/decoration/Modern/menu/checkbox-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 7
+      },
+      "qx/decoration/Modern/menu/checkbox.gif": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 7
+      },
+      "qx/decoration/Modern/menu/radiobutton-invert.gif": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 5
+      },
+      "qx/decoration/Modern/menu/radiobutton.gif": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 5
+      },
+      "qx/decoration/Modern/pane/pane-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/pane/pane-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/pane/pane-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/pane/pane-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 238
+      },
+      "qx/decoration/Modern/pane/pane-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 238
+      },
+      "qx/decoration/Modern/pane/pane-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 238
+      },
+      "qx/decoration/Modern/pane/pane-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/pane/pane-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/pane/pane-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/pane/pane.png": {
+        "resourcePath": "resourcePath",
+        "width": 185,
+        "height": 250
+      },
+      "qx/decoration/Modern/scrollbar/scrollbar-bg-horizontal.png": {
+        "resourcePath": "resourcePath",
+        "width": 76,
+        "height": 15
+      },
+      "qx/decoration/Modern/scrollbar/scrollbar-bg-pressed-horizontal.png": {
+        "resourcePath": "resourcePath",
+        "width": 19,
+        "height": 10
+      },
+      "qx/decoration/Modern/scrollbar/scrollbar-bg-pressed-vertical.png": {
+        "resourcePath": "resourcePath",
+        "width": 10,
+        "height": 19
+      },
+      "qx/decoration/Modern/scrollbar/scrollbar-bg-vertical.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 76
+      },
+      "qx/decoration/Modern/scrollbar/scrollbar-button-bg-horizontal.png": {
+        "resourcePath": "resourcePath",
+        "width": 12,
+        "height": 10
+      },
+      "qx/decoration/Modern/scrollbar/scrollbar-button-bg-vertical.png": {
+        "resourcePath": "resourcePath",
+        "width": 10,
+        "height": 12
+      },
+      "qx/decoration/Modern/scrollbar/scrollbar-down.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 4
+      },
+      "qx/decoration/Modern/scrollbar/scrollbar-left.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 6
+      },
+      "qx/decoration/Modern/scrollbar/scrollbar-right.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 6
+      },
+      "qx/decoration/Modern/scrollbar/scrollbar-up.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 4
+      },
+      "qx/decoration/Modern/scrollbar/slider-knob-background.png": {
+        "resourcePath": "resourcePath",
+        "width": 12,
+        "height": 10
+      },
+      "qx/decoration/Modern/shadow/shadow-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Modern/shadow/shadow-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Modern/shadow/shadow-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Modern/shadow/shadow-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 382
+      },
+      "qx/decoration/Modern/shadow/shadow-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 382
+      },
+      "qx/decoration/Modern/shadow/shadow-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 382
+      },
+      "qx/decoration/Modern/shadow/shadow-small-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/shadow/shadow-small-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/shadow/shadow-small-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/shadow/shadow-small-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 136
+      },
+      "qx/decoration/Modern/shadow/shadow-small-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 136
+      },
+      "qx/decoration/Modern/shadow/shadow-small-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 136
+      },
+      "qx/decoration/Modern/shadow/shadow-small-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/shadow/shadow-small-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/shadow/shadow-small-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/shadow/shadow-small.png": {
+        "resourcePath": "resourcePath",
+        "width": 114,
+        "height": 146
+      },
+      "qx/decoration/Modern/shadow/shadow-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Modern/shadow/shadow-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Modern/shadow/shadow-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 15
+      },
+      "qx/decoration/Modern/shadow/shadow.png": {
+        "resourcePath": "resourcePath",
+        "width": 381,
+        "height": 412
+      },
+      "qx/decoration/Modern/splitpane/knob-horizontal.png": {
+        "resourcePath": "resourcePath",
+        "width": 1,
+        "height": 8
+      },
+      "qx/decoration/Modern/splitpane/knob-vertical.png": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 1
+      },
+      "qx/decoration/Modern/table/ascending.png": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 5
+      },
+      "qx/decoration/Modern/table/boolean-false.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Modern/table/boolean-true.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "qx/decoration/Modern/table/descending.png": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 5
+      },
+      "qx/decoration/Modern/table/header-cell.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 18
+      },
+      "qx/decoration/Modern/table/select-column-order.png": {
+        "resourcePath": "resourcePath",
+        "width": 10,
+        "height": 9
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-active-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-active-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-active-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-active-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 14
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-active-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 14
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-active-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 14
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-active-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-active-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-active-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-active.png": {
+        "resourcePath": "resourcePath",
+        "width": 49,
+        "height": 24
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 15
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 15
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 15
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-inactive-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-bottom-inactive.png": {
+        "resourcePath": "resourcePath",
+        "width": 45,
+        "height": 21
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-active-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-active-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-active-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-active-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 37
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-active-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 37
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-active-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 37
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-active-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-active-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-active-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-active.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 47
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 39
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 39
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 39
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive.png": {
+        "resourcePath": "resourcePath",
+        "width": 20,
+        "height": 45
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 37
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 37
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 37
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-active.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 47
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 39
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 39
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 39
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-right-inactive.png": {
+        "resourcePath": "resourcePath",
+        "width": 20,
+        "height": 45
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 14
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 12
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 12
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 5,
+        "height": 5
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 22
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-inactive-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-inactive-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-inactive-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-inactive-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 15
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-inactive-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 15
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-inactive-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 15
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-inactive-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-inactive-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-inactive-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-inactive.png": {
+        "resourcePath": "resourcePath",
+        "width": 45,
+        "height": 21
+      },
+      "qx/decoration/Modern/tabview/tabview-pane-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 30,
+        "height": 30
+      },
+      "qx/decoration/Modern/tabview/tabview-pane-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 30,
+        "height": 30
+      },
+      "qx/decoration/Modern/tabview/tabview-pane-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 30,
+        "height": 30
+      },
+      "qx/decoration/Modern/tabview/tabview-pane-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 120
+      },
+      "qx/decoration/Modern/tabview/tabview-pane-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 30,
+        "height": 2
+      },
+      "qx/decoration/Modern/tabview/tabview-pane-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 30,
+        "height": 2
+      },
+      "qx/decoration/Modern/tabview/tabview-pane-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 30,
+        "height": 30
+      },
+      "qx/decoration/Modern/tabview/tabview-pane-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 30,
+        "height": 30
+      },
+      "qx/decoration/Modern/tabview/tabview-pane-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 30,
+        "height": 30
+      },
+      "qx/decoration/Modern/tabview/tabview-pane.png": {
+        "resourcePath": "resourcePath",
+        "width": 185,
+        "height": 250
+      },
+      "qx/decoration/Modern/toolbar/toolbar-gradient-blue.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 130
+      },
+      "qx/decoration/Modern/toolbar/toolbar-gradient.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 130
+      },
+      "qx/decoration/Modern/toolbar/toolbar-handle-knob.gif": {
+        "resourcePath": "resourcePath",
+        "width": 1,
+        "height": 8
+      },
+      "qx/decoration/Modern/toolbar/toolbar-part.gif": {
+        "resourcePath": "resourcePath",
+        "width": 7,
+        "height": 1
+      },
+      "qx/decoration/Modern/tree/closed-selected.png": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 8
+      },
+      "qx/decoration/Modern/tree/closed.png": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 8
+      },
+      "qx/decoration/Modern/tree/open-selected.png": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 8
+      },
+      "qx/decoration/Modern/tree/open.png": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 8
+      },
+      "qx/decoration/Modern/treevirtual/.gitignore": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/decoration/Modern/window/captionbar-active-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-active-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-active-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-active-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/captionbar-active-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/captionbar-active-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/captionbar-active-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-active-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-active-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-active.png": {
+        "resourcePath": "resourcePath",
+        "width": 69,
+        "height": 21
+      },
+      "qx/decoration/Modern/window/captionbar-inactive-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-inactive-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-inactive-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-inactive-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/captionbar-inactive-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/captionbar-inactive-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/captionbar-inactive-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-inactive-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-inactive-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
+      },
+      "qx/decoration/Modern/window/captionbar-inactive.png": {
+        "resourcePath": "resourcePath",
+        "width": 69,
+        "height": 21
+      },
+      "qx/decoration/Modern/window/close-active-hovered.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/close-active.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/close-inactive.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/maximize-active-hovered.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/maximize-active.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/maximize-inactive.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/minimize-active-hovered.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/minimize-active.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/minimize-inactive.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 9
+      },
+      "qx/decoration/Modern/window/restore-active-hovered.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 8
+      },
+      "qx/decoration/Modern/window/restore-active.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 8
+      },
+      "qx/decoration/Modern/window/restore-inactive.png": {
+        "resourcePath": "resourcePath",
+        "width": 9,
+        "height": 8
+      },
+      "qx/decoration/Modern/window/statusbar-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/window/statusbar-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/window/statusbar-br.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/window/statusbar-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 7
+      },
+      "qx/decoration/Modern/window/statusbar-l.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Modern/window/statusbar-r.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Modern/window/statusbar-t.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/window/statusbar-tl.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/window/statusbar-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 4,
+        "height": 4
+      },
+      "qx/decoration/Modern/window/statusbar.png": {
+        "resourcePath": "resourcePath",
+        "width": 369,
+        "height": 15
       },
       "qx/decoration/Simple/arrows/down-invert.gif": {
         "resourcePath": "resourcePath",
@@ -10728,51 +10728,6 @@
         "height": 128
       },
       "qx/icon/Oxygen/128/mimetypes/text-plain.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/places/folder-open.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/places/folder-remote.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/places/folder.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/places/network-server.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/places/network-workgroup.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/places/user-desktop.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/places/user-home.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/places/user-trash-full.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/places/user-trash.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -20322,6 +20277,256 @@
         "width": 32,
         "height": 32
       },
+      "qx/icon/Tango/32/apps/internet-blog.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/internet-download-manager.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/internet-feed-reader.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/internet-mail.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/internet-messenger.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/internet-telephony.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/internet-transfer.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/internet-web-browser.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/media-audio-player.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/media-photo-album.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/media-video-player.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-address-book.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-calendar.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-chart.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-database.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-draw.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-graphics.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-layout.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-presentation.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-project.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-spreadsheet.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-web.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/office-writer.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-accessibility.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-clock.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-display.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-font.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-keyboard.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-locale.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-network.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-security.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-sound.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-theme.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-users.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/preferences-wallpaper.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-archiver.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-calculator.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-character-map.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-color-chooser.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-dictionary.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-graphics-viewer.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-help.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-keyring.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-log-viewer.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-network-manager.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-notes.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-statistics.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-system-monitor.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-terminal.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/apps/utilities-text-editor.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
       "qx/icon/Tango/32/categories/accessories.png": {
         "resourcePath": "resourcePath",
         "width": 32,
@@ -20882,6 +21087,11 @@
         "width": 48,
         "height": 48
       },
+      "qx/icon/Tango/48/actions/format-justify-right.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
       "qx/icon/Tango/48/actions/format-text-bold.png": {
         "resourcePath": "resourcePath",
         "width": 48,
@@ -20963,11 +21173,6 @@
         "height": 48
       },
       "qx/icon/Tango/48/actions/help-contents.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Tango/48/actions/format-justify-right.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -22963,255 +23168,50 @@
       "qx/mobile/scss/theme/indigo/_styles.scss": {
         "resourcePath": "resourcePath"
       },
-      "qx/icon/Tango/32/apps/internet-blog.png": {
+      "qx/icon/Oxygen/128/places/folder-open.png": {
         "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Tango/32/apps/internet-download-manager.png": {
+      "qx/icon/Oxygen/128/places/folder-remote.png": {
         "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Tango/32/apps/internet-feed-reader.png": {
+      "qx/icon/Oxygen/128/places/folder.png": {
         "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Tango/32/apps/internet-mail.png": {
+      "qx/icon/Oxygen/128/places/network-server.png": {
         "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Tango/32/apps/internet-messenger.png": {
+      "qx/icon/Oxygen/128/places/network-workgroup.png": {
         "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Tango/32/apps/internet-telephony.png": {
+      "qx/icon/Oxygen/128/places/user-desktop.png": {
         "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Tango/32/apps/internet-transfer.png": {
+      "qx/icon/Oxygen/128/places/user-home.png": {
         "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Tango/32/apps/internet-web-browser.png": {
+      "qx/icon/Oxygen/128/places/user-trash-full.png": {
         "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
+        "width": 128,
+        "height": 128
       },
-      "qx/icon/Tango/32/apps/media-audio-player.png": {
+      "qx/icon/Oxygen/128/places/user-trash.png": {
         "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/media-photo-album.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/media-video-player.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-address-book.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-calendar.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-chart.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-database.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-draw.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-graphics.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-layout.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-presentation.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-project.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-spreadsheet.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-web.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/office-writer.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-accessibility.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-clock.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-display.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-font.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-keyboard.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-locale.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-network.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-security.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-sound.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-theme.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-users.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/preferences-wallpaper.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-archiver.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-calculator.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-character-map.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-color-chooser.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-dictionary.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-graphics-viewer.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-help.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-keyring.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-log-viewer.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-network-manager.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-notes.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-statistics.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-system-monitor.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-terminal.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/apps/utilities-text-editor.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
+        "width": 128,
+        "height": 128
       }
     }
   }

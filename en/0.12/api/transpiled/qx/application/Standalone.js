@@ -62,4 +62,4 @@
   qx.application.Standalone.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Standalone.js.map?dt=1586772642084
+//# sourceMappingURL=Standalone.js.map?dt=1586894624493

@@ -265,4 +265,4 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   com.zenesis.qx.upload.XhrHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XhrHandler.js.map?dt=1586772895374
+//# sourceMappingURL=XhrHandler.js.map?dt=1586894890269

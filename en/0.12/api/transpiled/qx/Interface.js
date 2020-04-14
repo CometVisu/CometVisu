@@ -509,4 +509,4 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   qx.Interface.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Interface.js.map?dt=1586772640630
+//# sourceMappingURL=Interface.js.map?dt=1586894623179

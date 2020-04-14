@@ -1015,4 +1015,4 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   qx.ui.treevirtual.SimpleTreeDataModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleTreeDataModel.js.map?dt=1586772670310
+//# sourceMappingURL=SimpleTreeDataModel.js.map?dt=1586894654660

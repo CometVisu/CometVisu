@@ -222,6 +222,10 @@
       "sourceUri": ".",
       "resourceUri": "../resource"
     },
+    "iconfont.material": {
+      "sourceUri": ".",
+      "resourceUri": "../resource"
+    },
     "dialog": {
       "sourceUri": ".",
       "resourceUri": "../resource"
@@ -231,10 +235,6 @@
       "resourceUri": "../resource"
     },
     "com.zenesis.qx.upload": {
-      "sourceUri": ".",
-      "resourceUri": "../resource"
-    },
-    "iconfont.material": {
       "sourceUri": ".",
       "resourceUri": "../resource"
     },

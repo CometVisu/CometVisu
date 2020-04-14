@@ -68,4 +68,4 @@
   qx.ui.table.celleditor.TextField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextField.js.map?dt=1586772667506
+//# sourceMappingURL=TextField.js.map?dt=1586894651592

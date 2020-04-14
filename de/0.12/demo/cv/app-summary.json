@@ -5,10 +5,10 @@
     "cv.io",
     "qxl.versionlabel",
     "osparc.theme",
+    "iconfont.material",
     "dialog",
     "qxl.apiviewer",
     "com.zenesis.qx.upload",
-    "iconfont.material",
     "qx"
   ],
   "parts": [

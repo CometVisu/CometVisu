@@ -56,4 +56,4 @@
   com.zenesis.qx.upload.UploadMenuButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UploadMenuButton.js.map?dt=1586772675400
+//# sourceMappingURL=UploadMenuButton.js.map?dt=1586894660068

@@ -21,6 +21,6 @@
   ],
   "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,YAAhB,EAA8B;AAC5BC,IAAAA,IAAI,EAAE,QADsB;AAG5BC,IAAAA,OAAO,EAAE;AACPC,MAAAA,GAAG,EAAE,0CADE;AAEPC,MAAAA,MAAM,EAAE,MAFD;AAGPC,MAAAA,OAAO,EAAE,YAHF;AAIPC,MAAAA,IAAI,EAAE;AAJC;AAHmB,GAA9B;AADAC,EAAAA,EAAE,CAACC,OAAH,CAAWV,aAAX,GAA2BA,aAA3B",
   "sourcesContent": [
-    "\nqx.Class.define(\"cv.Version\", {\n  type: \"static\",\n\n  statics: {\n    REV: \"f2c4c9f1c3bddbbff6a1361289d83a3f898f9bda\",\n    BRANCH: \"HEAD\",\n    VERSION: \"0.12.0-dev\",\n    DATE: \"2020-04-13T10:14:30.334Z\"\n  }\n});    \n"
+    "\nqx.Class.define(\"cv.Version\", {\n  type: \"static\",\n\n  statics: {\n    REV: \"2ddac934fc0612259a245a8d3edf0137d1824c65\",\n    BRANCH: \"HEAD\",\n    VERSION: \"0.12.0-dev\",\n    DATE: \"2020-04-14T20:07:43.852Z\"\n  }\n});    \n"
   ]
 }
