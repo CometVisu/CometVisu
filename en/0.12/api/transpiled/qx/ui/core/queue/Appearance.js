@@ -112,4 +112,4 @@
   qx.ui.core.queue.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1586894642622
+//# sourceMappingURL=Appearance.js.map?dt=1586896766195

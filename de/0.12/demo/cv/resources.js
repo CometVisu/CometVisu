@@ -575,36 +575,6 @@ qx.$$packageData['0'] = {
       "css",
       "cv"
     ],
-    "designs/alaska/basic.css": [
-      null,
-      null,
-      "css",
-      "cv"
-    ],
-    "designs/alaska/colors.css": [
-      null,
-      null,
-      "css",
-      "cv"
-    ],
-    "designs/alaska/custom.css": [
-      null,
-      null,
-      "css",
-      "cv"
-    ],
-    "designs/alaska/design_setup.js": [
-      null,
-      null,
-      "js",
-      "cv"
-    ],
-    "designs/alaska/mobile.css": [
-      null,
-      null,
-      "css",
-      "cv"
-    ],
     "designs/alaska_slim/basic.css": [
       null,
       null,
@@ -630,6 +600,36 @@ qx.$$packageData['0'] = {
       "cv"
     ],
     "designs/alaska_slim/mobile.css": [
+      null,
+      null,
+      "css",
+      "cv"
+    ],
+    "designs/alaska/basic.css": [
+      null,
+      null,
+      "css",
+      "cv"
+    ],
+    "designs/alaska/colors.css": [
+      null,
+      null,
+      "css",
+      "cv"
+    ],
+    "designs/alaska/custom.css": [
+      null,
+      null,
+      "css",
+      "cv"
+    ],
+    "designs/alaska/design_setup.js": [
+      null,
+      null,
+      "js",
+      "cv"
+    ],
+    "designs/alaska/mobile.css": [
       null,
       null,
       "css",
@@ -785,13 +785,13 @@ qx.$$packageData['0'] = {
       "css",
       "cv"
     ],
-    "designs/pure/basic.css": [
+    "designs/pure/custom.css": [
       null,
       null,
       "css",
       "cv"
     ],
-    "designs/pure/custom.css": [
+    "designs/pure/basic.css": [
       null,
       null,
       "css",

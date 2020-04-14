@@ -218,11 +218,11 @@
       "sourceUri": ".",
       "resourceUri": "../resource"
     },
-    "osparc.theme": {
+    "iconfont.material": {
       "sourceUri": ".",
       "resourceUri": "../resource"
     },
-    "iconfont.material": {
+    "osparc.theme": {
       "sourceUri": ".",
       "resourceUri": "../resource"
     },
@@ -285,16 +285,16 @@
     "demo/media/testmode.js",
     "designs/design_preview.html",
     "designs/designglobals.css",
-    "designs/alaska/basic.css",
-    "designs/alaska/colors.css",
-    "designs/alaska/custom.css",
-    "designs/alaska/design_setup.js",
-    "designs/alaska/mobile.css",
     "designs/alaska_slim/basic.css",
     "designs/alaska_slim/colors.css",
     "designs/alaska_slim/custom.css",
     "designs/alaska_slim/design_setup.js",
     "designs/alaska_slim/mobile.css",
+    "designs/alaska/basic.css",
+    "designs/alaska/colors.css",
+    "designs/alaska/custom.css",
+    "designs/alaska/design_setup.js",
+    "designs/alaska/mobile.css",
     "designs/discreet/basic.css",
     "designs/discreet/custom.css",
     "designs/discreet/design_setup.js",
@@ -320,8 +320,8 @@
     "designs/planet/custom.css",
     "designs/planet/design_setup.js",
     "designs/planet/mobile.css",
-    "designs/pure/basic.css",
     "designs/pure/custom.css",
+    "designs/pure/basic.css",
     "designs/pure/design_setup.js",
     "designs/pure/mobile.css",
     "designs/alaska/fonts/LICENSE.txt",
