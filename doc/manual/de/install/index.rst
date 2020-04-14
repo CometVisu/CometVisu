@@ -21,6 +21,7 @@ Einfache Installation:
     install-dev
     openhab2
     docker
+    docker_openhab2
     timberwolf
 
 Schwieriger, nur für **Fortgeschrittene**:
