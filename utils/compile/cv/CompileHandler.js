@@ -83,10 +83,15 @@ class CvCompileHandler extends AbstractCompileHandler {
         const stats = fs.statSync(source);
         const dirname = stats.isDirectory() ? target : path.dirname(target)
         fse.ensureDirSync(dirname)
-        fse.copySync(source, target)
+        if (stats.isFile()) {
+          qx.tool.utils.files.Utils.copyFile(source, target);
+        } else {
+          qx.tool.utils.files.Utils.sync(source, target);
+        }
       })
       // create config/media folder
       fse.ensureDirSync(path.join(currentDir, targetDir, 'resource', 'config', 'media'))
+      fse.ensureDirSync(path.join(currentDir, targetDir, 'resource', 'config', 'backup'))
     }
 
     // copy IconConfig.js to make it available for resource/icon/iconlist.html

@@ -17,6 +17,14 @@ qx.Class.define("cv.compile.LibraryApi", {
 
       let configDb = await qx.tool.cli.ConfigDb.getInstance();
       const makeApi = configDb.db('apiviewer') === 'true'
+      const outputPath = process.env.CV_OUTPUT_PATH || configDb.db('outputPath')
+      if (!!outputPath) {
+        config.targets.forEach(target => {
+          if (target.type === config.targetType) {
+            target.outputPath = outputPath
+          }
+        })
+      }
       if (makeApi) {
         config.applications.filter(app => {
           app.default = app.name === 'apiviewer';

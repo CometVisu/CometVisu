@@ -50,6 +50,9 @@ The most useful build commands are:
 The qooxdoo compiler works as a transpiler, which requires a re-compilation after every change made in the code.
 It is recommended to run the compiler in watch mode `npx qx compile --watch` during development.
 In this mode the compiler will recognize every change made in the code and automatically re-compile.
+
+You can change the output path of the compiler by adding `--set outputPath=<path>` to the compile command or
+by setting the environment variable `CV_OUTPUT_PATH`. 
     
 Pulling changes
 ---------------
