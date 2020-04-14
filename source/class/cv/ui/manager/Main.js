@@ -145,19 +145,19 @@ qx.Class.define('cv.ui.manager.Main', {
                 break;
 
               case 'backup':
-                if ((env.state & 4) === 0) {
+                if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('backup folder is not writeable'));
                 }
                 break;
 
               case 'media':
-                if ((env.state & 4) === 0) {
+                if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('media folder is not writeable'));
                 }
                 break;
 
               case 'hidden.php':
-                if ((env.state & 4) === 0) {
+                if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Hidden configuration file (hidden.php) not writeable'));
                 }
                 break;

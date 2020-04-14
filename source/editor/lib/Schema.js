@@ -349,6 +349,7 @@ var SchemaSimpleType = function (node, schema) {
             return false;
           }
           break;
+        case 'xsd:unsignedByte':
         case 'xsd:nonNegativeInteger':
           if (!value.match(/^[+]?[0-9]+$/)) {
             return false;

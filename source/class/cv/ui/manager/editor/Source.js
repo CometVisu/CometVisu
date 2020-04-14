@@ -46,24 +46,25 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     TITLE: qx.locale.Manager.tr('Texteditor'),
     COUNTER: 0,
     SUPPORTED_FILES: ['xml', 'php', 'css', 'js', 'svg', 'json', 'md', 'yaml', 'conf', 'ts', 'rst', 'py', 'txt'],
+    DEFAULT_FOR: /^visu_config.*\.xml/,
     ICON: cv.theme.dark.Images.getIcon('text', 18),
 
     load: function (callback, context) {
       var version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
-      window.documentationMappingPrefix = "../source/editor/"; // jshint ignore:line
+      window.documentationMappingPrefix = "editor/"; // jshint ignore:line
       var sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')+ '/..');
       var loader = new qx.util.DynamicScriptLoader([
         sourcePath + 'editor/dependencies/jquery.min.js',
         sourcePath + 'editor/dependencies/jquery.xpath.min.js',
         sourcePath + 'editor/lib/Messages.js',
         sourcePath + 'editor/lib/Schema.js',
-        sourcePath + '../node_modules/monaco-editor/' + version + '/vs/loader.js',
+        sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js',
         'manager/xml.js'
       ]);
       loader.addListener('ready', function () {
         window.require.config({
           paths: {
-            'vs': sourcePath + '../node_modules/monaco-editor/' + version + '/vs'
+            'vs': sourcePath + 'node_modules/monaco-editor/' + version + '/vs'
           }
         });
         window.require.config({
