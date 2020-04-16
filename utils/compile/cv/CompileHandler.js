@@ -99,7 +99,7 @@ class CvCompileHandler extends AbstractCompileHandler {
     fse.ensureDirSync(classTargetDir)
     fse.copySync(path.join(process.cwd(), 'source', 'class', 'cv', 'IconConfig.js'), path.join(classTargetDir, 'IconConfig.js'))
 
-    if (this._config.targetType === 'source' || this._dbConfig.db("fakeLogin") === "true") {
+    if (this._config.targetType === 'source' || this._customSettings.fakeLogin === "true") {
       // copy a fake /cgi-bin/l response to the target folder
       fse.copySync(path.join(process.cwd(), 'source', 'resource', 'test'), path.join(targetDir, 'cgi-bin'))
     }
