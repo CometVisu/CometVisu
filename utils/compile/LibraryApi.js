@@ -28,13 +28,18 @@ qx.Class.define("cv.compile.LibraryApi", {
         }
         const makeApi = customSettings.apiviewer === 'true'
         const outputPath = process.env.CV_OUTPUT_PATH || customSettings.outputPath
-        if (!!outputPath) {
-          config.targets.forEach(target => {
-            if (target.type === config.targetType) {
+        config.targets.forEach(target => {
+          if (target.type === config.targetType) {
+            if (!!outputPath) {
               target.outputPath = outputPath
             }
-          })
-        }
+            if (customSettings.bundleSources === "true") {
+              target.bundle.include = ["*.*"]
+            } else if (customSettings.bundleSources === "false") {
+              target.bundle.include = []
+            }
+          }
+        })
         if (makeApi) {
           config.applications.filter(app => {
             app.default = app.name === 'apiviewer';
