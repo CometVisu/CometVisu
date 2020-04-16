@@ -33,11 +33,6 @@ qx.Class.define("cv.compile.LibraryApi", {
             if (!!outputPath) {
               target.outputPath = outputPath
             }
-            if (customSettings.bundleSources === "true") {
-              target.bundle.include = ["*.*"]
-            } else if (customSettings.bundleSources === "false") {
-              target.bundle.include = []
-            }
           }
         })
         if (makeApi) {

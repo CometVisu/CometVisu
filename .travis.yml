@@ -41,7 +41,7 @@ jobs:
     - export PATH=`pwd`/firefox:`pwd`/chrome:$PATH
     - google-chrome --version
     - utils/update_version.py
-    - qx compile --set bundleSources=true
+    - qx compile
     - grunt karma:travis --browser=$CV_BROWSER
     - if [ "$CV_BUILD" == "test" ] && [ "$CV_VERSION" == "stable" ] ; then grunt coveralls; fi
   - stage: test
@@ -58,7 +58,7 @@ jobs:
     - sudo ./utils/travis/browser-setup.sh
     - export CHROME_BIN=`pwd`/chrome/google-chrome
     - utils/update_version.py
-    - qx compile --set bundleSources=true
+    - qx compile
     - export CHROME_VERSION=$($CHROME_BIN --version | awk '{ print $3 }' | cut -d'.' -f 1,2,3)
     - export DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
     - echo "using chrome driver version $DRIVER_VERSION"
