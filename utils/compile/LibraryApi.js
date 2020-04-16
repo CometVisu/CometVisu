@@ -18,12 +18,14 @@ qx.Class.define("cv.compile.LibraryApi", {
         this.readEnv(config)
 
         const customSettings = {}
-        command.argv.set.forEach(function(kv) {
-          const parts = kv.split('=')
-          if (parts.length === 2) {
-            customSettings[parts[0]] = parts[1];
-          }
-        })
+        if (command.argv.set) {
+          command.argv.set.forEach(function (kv) {
+            const parts = kv.split('=')
+            if (parts.length === 2) {
+              customSettings[parts[0]] = parts[1];
+            }
+          })
+        }
         const makeApi = customSettings.apiviewer === 'true'
         const outputPath = process.env.CV_OUTPUT_PATH || customSettings.outputPath
         if (!!outputPath) {
