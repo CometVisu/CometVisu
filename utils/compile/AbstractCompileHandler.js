@@ -7,10 +7,10 @@ const execProm = util.promisify(exec)
 
 class AbstractCompileHandler {
 
-  constructor(compilerApi, dbConfig) {
+  constructor(compilerApi, customSettings) {
     this._compilerApi = compilerApi
     this._config = compilerApi.getConfiguration()
-    this._dbConfig = dbConfig
+    this._customSettings = customSettings
   }
 
   async onLoad() {

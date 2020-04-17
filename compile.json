@@ -180,9 +180,8 @@
       "type": "source",
       "outputPath": "compiled/source",
       "bundle": {
-        "include": [
-          "qx.*"
-        ]
+        "include": ["*.*"],
+        "exclude": ["cv.*"]
       },
       "environment": {
         "cv.build": "source",
