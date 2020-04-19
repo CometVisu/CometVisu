@@ -88,11 +88,11 @@ qx.Mixin.define("cv.ui.common.Operate", {
             if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
               var
                 encoding = address[0],
-                encodedValue = cv.Transform.encode(encoding, value);
-              if( !currentBusValues || encodedValue !== currentBusValues[encoding] ) {
-                cv.TemplateEngine.getInstance().visu.write(id, encodedValue);
+                encodedValue = cv.Transform.encodeBusAndRaw(encoding, value);
+              if( !currentBusValues || encodedValue.raw !== currentBusValues[encoding] ) {
+                cv.TemplateEngine.getInstance().visu.write(id, encodedValue.bus);
               }
-              encodedValues[encoding] = encodedValue;
+              encodedValues[encoding] = encodedValue.raw;
             }
           }
         }

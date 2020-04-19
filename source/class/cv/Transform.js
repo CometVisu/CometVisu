@@ -88,15 +88,15 @@ qx.Class.define('cv.Transform', {
 
     /**
      * Add transformation rules to the registry
-     * @param prefix {String} Tranformation prefix (e.g. DPT for KNX tranformations or OH for openHAB transformations)
-     * @param transforms {Map} map of transformations
+     * @param prefix {String} Transformation prefix (e.g. DPT for KNX transformations or OH for openHAB transformations)
+     * @param transforms {Object} map of transformations
      */
     addTransform: function (prefix, transforms) {
-      for (var trans in transforms) {
-        if (transforms[trans].link) {
-          this.registry[prefix + ':' + trans] = Object.assign({}, transforms[transforms[trans].link], transforms[trans]);
+      for (let [transName, transform] of Object.entries(transforms)) {
+        if (transform.link) {
+          this.registry[prefix + ':' + transName] = Object.assign({}, transforms[transform.link], transform);
         } else {
-          this.registry[prefix + ':' + trans] = transforms[trans];
+          this.registry[prefix + ':' + transName] = transform;
         }
       }
     },
@@ -115,6 +115,25 @@ qx.Class.define('cv.Transform', {
     },
 
     /**
+     * transform JavaScript to bus value and raw value
+     *
+     * @param transformation {String} type of the transformation
+     * @param value {var} value to transform
+     * @return {Object} object with both encoded values
+     */
+    encodeBusAndRaw: function (transformation, value) {
+      if (cv.Config.testMode === true) {
+        return value;
+      }
+      var basetrans = transformation.split('.')[0];
+      var encoding = transformation in cv.Transform.registry ? cv.Transform.registry[transformation]
+        .encode(value) : (basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans]
+        .encode(value) : value);
+
+      return typeof encoding === "object" ? encoding : {bus: encoding, raw: encoding};
+    },
+
+    /**
      * transform JavaScript to bus value
      *
      * @param transformation {String} type of the transformation
@@ -122,13 +141,7 @@ qx.Class.define('cv.Transform', {
      * @return {var} the encoded value
      */
     encode: function (transformation, value) {
-      if (cv.Config.testMode === true) {
-        return value;
-      }
-      var basetrans = transformation.split('.')[0];
-      return transformation in cv.Transform.registry ? cv.Transform.registry[transformation]
-        .encode(value) : (basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans]
-        .encode(value) : value);
+      return this.encodeBusAndRaw(transformation, value).bus;
     },
 
     /**
