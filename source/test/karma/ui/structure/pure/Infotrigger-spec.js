@@ -248,8 +248,8 @@ describe("testing a infotrigger widget", function() {
       shorttime: "500",
       'change': 'absolute', 'upvalue': '1', 'downvalue': '-1', 'shortupvalue': '2', 'shortdownvalue': '-2'
     }, '<label>Test</label>', ['1/0/0', '1/0/1'], [
-      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'button'},
-      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'short'}
+      {'transform': 'DPT:5.010', 'mode': 'write', 'variant': 'button'},
+      {'transform': 'DPT:5.010', 'mode': 'write', 'variant': 'short'}
     ]);
 
     this.initWidget(res);

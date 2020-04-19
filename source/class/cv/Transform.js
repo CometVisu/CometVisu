@@ -130,7 +130,7 @@ qx.Class.define('cv.Transform', {
         .encode(value) : (basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans]
         .encode(value) : value);
 
-      return typeof encoding === "object" ? encoding : {bus: encoding, raw: encoding};
+      return encoding.constructor === Object ? encoding : {bus: encoding, raw: encoding};
     },
 
     /**
