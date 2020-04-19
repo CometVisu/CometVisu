@@ -121,8 +121,10 @@ qx.Class.define('cv.ui.manager.Main', {
       var manager = qx.core.Init.getApplication().getCommandManager();
       if (value) {
         manager.setActive(this._managerCommands);
+        qx.bom.element.Style.set(this.__getRoot(), "display", "block");
       } else {
         manager.setActive(this._oldCommandGroup);
+        qx.bom.element.Style.set(this.__getRoot(), "display", "none");
       }
     },
 
