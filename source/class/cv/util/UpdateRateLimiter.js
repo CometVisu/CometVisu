@@ -87,6 +87,7 @@ qx.Class.define('cv.util.UpdateRateLimiter',{
     __animationFrame: undefined,
     __displayRatioFnContext: undefined,
     __currentRatio: 0.0,
+    __targetRatio: 0.0,
     /**
      * Set the value to a new value.
      * @param {Number} targetRatio the new value.
@@ -95,41 +96,38 @@ qx.Class.define('cv.util.UpdateRateLimiter',{
     setTo: function (targetRatio, instant= false) {
       let now = performance.now();
 
-      this.__animate(targetRatio, instant, now, now - 10);
+      this.__targetRatio = targetRatio;
+      if(instant) {
+        this.__currentRatio = targetRatio;
+      }
+      if (this.__animationFrame === undefined) {
+        this.__animate(now, now - 10);
+      }
     },
 
     /**
      * Internal implementation of the animation and value setting.
-     * @param {Number} targetRatio
-     * @param {Boolean} instant
      * @param {DOMHighResTimeStamp} thistime
      * @param {DOMHighResTimeStamp} lasttime
      * @private
      */
-    __animate: function (targetRatio, instant, thistime, lasttime) {
-      if (instant) {
-        if (this.__animationFrame !== undefined) {
-          window.cancelAnimationFrame(this.__animationFrame);
-          this.__animationFrame = undefined;
-        }
-        this.__currentRatio = targetRatio;
-      } else {
-        let nextRatio =  targetRatio * this.getExpDampSpeed() + this.__currentRatio * (1 - this.getExpDampSpeed());
-        let delta = nextRatio - this.__currentRatio;
-        if (Math.abs(delta) > this.getLinearRateLimit) {
-          nextRatio = Math.sign(delta) * this.getLinearRateLimit;
-        }
-        if (Math.abs(delta) < this.getEpsilon()) {
-          nextRatio = targetRatio;
-          instant = true;
-        }
-        this.__currentRatio = nextRatio;
+    __animate: function (thistime, lasttime) {
+      let nextRatio =  this.__targetRatio * this.getExpDampSpeed() + this.__currentRatio * (1 - this.getExpDampSpeed());
+      let delta = nextRatio - this.__currentRatio;
+      if (Math.abs(delta) > this.getLinearRateLimit) {
+        nextRatio = Math.sign(delta) * this.getLinearRateLimit;
       }
+      if (Math.abs(nextRatio - this.__targetRatio) < this.getEpsilon()) {
+        nextRatio = this.__targetRatio;
+      }
+      this.__currentRatio = nextRatio;
 
       this.getDisplayRatioFn().call(this.__displayRatioFnContext, this.__currentRatio);
 
-      if (!instant) {
-         window.requestAnimationFrame((time)=>{this.__animate(targetRatio, false, time, thistime);});
+      if (this.__currentRatio !== this.__targetRatio) {
+        this.__animationFrame = window.requestAnimationFrame((time)=>{this.__animate(time, thistime);});
+      } else {
+        this.__animationFrame = undefined;
       }
     }
   }
