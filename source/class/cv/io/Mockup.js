@@ -43,7 +43,8 @@ qx.Class.define('cv.io.Mockup', {
     window._getWidgetDataModel = model.getWidgetDataModel.bind(model);
     window.writeHistory = [];
 
-    if (qx.core.Environment.get('cv.testMode') !== "true") {
+    var testMode = qx.core.Environment.get('cv.testMode');
+    if (typeof testMode === "string" && testMode !== "true") {
       this.__loadTestData();
     }
     this.addresses = [];
