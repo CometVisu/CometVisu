@@ -2,6 +2,7 @@ const fs = require('fs')
 const fg = require('fast-glob');
 const fse = require('fs-extra')
 const path = require('path')
+const chokidar = require('chokidar');
 const { exec } = require('child_process')
 const { AbstractCompileHandler } = require('../AbstractCompileHandler')
 const { CvBuildTarget } = require('./BuildTarget')
@@ -17,7 +18,6 @@ const additionalResources = [
 
 // files that must be copied in the compiled folder
 const filesToCopy = [
-  "resource/sentry/bundle.min.js",
   "editor",
   "upgrade",
   "check_config.php",
@@ -26,8 +26,8 @@ const filesToCopy = [
   "library_version.inc.php",
   "../node_modules/monaco-editor",
   "rest/manager",
+  "rest/openapi.yaml",
   "test",
-  "resource/test",
   "replay.html",
   "resource/config/.htaccess"
 ]
@@ -36,15 +36,14 @@ class CvCompileHandler extends AbstractCompileHandler {
 
   onLoad() {
     super.onLoad();
-    if (this._config.targetType === 'build') {
+    const command = this._compilerApi.getCommand();
+    if (this._config.targetType === 'build' || command instanceof qx.tool.cli.commands.Deploy) {
       this._config.targets.some(target => {
         if (target.type === 'build') {
           target.targetClass = CvBuildTarget
         }
       })
     }
-
-    let command = this._compilerApi.getCommand();
     command.addListener("made", () => this._onMade());
     command.addListener("compiledClass", this._onCompiledClass, this);
   }
@@ -76,6 +75,8 @@ class CvCompileHandler extends AbstractCompileHandler {
   async copyFiles () {
     const currentDir = process.cwd()
     const targetDir = this._getTargetDir()
+    const command = this._compilerApi.getCommand();
+    this._watchList = {};
     if (targetDir) {
       filesToCopy.forEach(file => {
         const source = path.join(currentDir, 'source', file)
@@ -83,15 +84,30 @@ class CvCompileHandler extends AbstractCompileHandler {
         const stats = fs.statSync(source);
         const dirname = stats.isDirectory() ? target : path.dirname(target)
         fse.ensureDirSync(dirname)
+
         if (stats.isFile()) {
           qx.tool.utils.files.Utils.copyFile(source, target);
         } else {
           qx.tool.utils.files.Utils.sync(source, target);
         }
+        this._watchList[source] = target;
       })
       // create config/media folder
       fse.ensureDirSync(path.join(currentDir, targetDir, 'resource', 'config', 'media'))
       fse.ensureDirSync(path.join(currentDir, targetDir, 'resource', 'config', 'backup'))
+    }
+
+    if (command.argv.watch) {
+      var watcher = this._watcher = chokidar.watch(Object.keys(this._watchList), {});
+      watcher.on("change", filename => this.__onFileChange("change", filename));
+      watcher.on("add", filename => this.__onFileChange("add", filename));
+      watcher.on("unlink", filename => this.__onFileChange("unlink", filename));
+      watcher.on("ready", () => {
+        this.__watcherReady = true;
+      });
+      watcher.on("error", err => {
+        console.error(err);
+      });
     }
 
     // copy IconConfig.js to make it available for resource/icon/iconlist.html
@@ -102,6 +118,20 @@ class CvCompileHandler extends AbstractCompileHandler {
     if (this._config.targetType === 'source' || this._customSettings.fakeLogin === "true") {
       // copy a fake /cgi-bin/l response to the target folder
       fse.copySync(path.join(process.cwd(), 'source', 'resource', 'test'), path.join(targetDir, 'cgi-bin'))
+    }
+  }
+
+  __onFileChange(type, filename) {
+    if (!this.__watcherReady) {
+      return;
+    }
+    if (this._watchList.hasOwnProperty(filename)) {
+      switch (type) {
+        case 'change':
+        case 'add':
+          qx.tool.utils.files.Utils.copyFile(filename, this._watchList[filename]);
+          break
+      }
     }
   }
 
