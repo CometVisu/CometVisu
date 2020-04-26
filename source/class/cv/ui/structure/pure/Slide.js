@@ -106,7 +106,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
 
       this.__throttled = cv.util.Function.throttle(this.__onChangeValue, 250, {trailing: true}, this);
 
-      this.getActor().addEventListener('mousedown', this);
+      this.getActor().addEventListener('pointerdown', this);
       this.getActor().addEventListener('wheel', this);
     },
 
@@ -137,6 +137,12 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       let min = this.getMin();
       let max = this.getMax();
       let step = this.getStep();
+      if (step === 0 || Math.abs((max-min)/step) > 10000) {
+        // limit too small step size - it's not necessary to have more than
+        // 10000 steps for the range as even the biggest screen doesn't have
+        // that many pixels
+        step = (max-min)/10000;
+      }
       let realValue = Math.min(Math.max(value, min), max);
 
       if (!this.getShowInvalidValues()) {
@@ -148,10 +154,10 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         realValue = realValue < maxSwitchValue ? stepValue : max;
       }
 
-      let ratio = (realValue-min)/(max-min);
+      let ratio = max===min ? 0 : (realValue-min)/(max-min);
 
       if (relaxDisplay) {
-        let valueRatio = (Math.min(Math.max(value, min), max)-min)/(max-min);
+        let valueRatio = max===min ? 0 : (Math.min(Math.max(value, min), max)-min)/(max-min);
         let delta = ratio - valueRatio;
         let stepCount = (max - min) / step;
         let factor = (2*stepCount) ** 3;
@@ -193,35 +199,37 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     },
 
     __invalidateScreensize: function () {
+      let min = this.getMin();
+      let max = this.getMax();
       this.__actorWidth = undefined; // invalidate cached values
-      this.__animator.setTo((this.getBasicValue()-this.getMin())/(this.getMax()-this.getMin()));
+      this.__animator.setTo(max===min ? 0 : (this.getBasicValue()-min)/(max-min));
     },
 
     handleEvent: function (event) {
       let newRatio = 0;
 
       switch(event.type) {
-        case 'mousedown':
+        case 'pointerdown':
           this.__inDrag = true;
-          document.addEventListener('mousemove', this);
-          document.addEventListener('mouseup', this);
+          document.addEventListener('pointermove', this);
+          document.addEventListener('pointerup', this);
           let boundingRect = event.currentTarget.getBoundingClientRect();
           let computedStyle = window.getComputedStyle(event.currentTarget);
           this.__coordMin = boundingRect.left + parseFloat(computedStyle.paddingLeft);
           newRatio = (event.clientX - this.__coordMin)/this.__actorWidth;
           break;
 
-        case 'mousemove':
+        case 'pointermove':
           if (!this.__inDrag) {
             return;
           }
           newRatio = (event.clientX - this.__coordMin)/this.__actorWidth;
           break;
 
-        case 'mouseup':
+        case 'pointerup':
           this.__inDrag = false;
-          document.removeEventListener('mousemove', this);
-          document.removeEventListener('mouseup', this);
+          document.removeEventListener('pointermove', this);
+          document.removeEventListener('pointerup', this);
           newRatio = (event.clientX - this.__coordMin)/this.__actorWidth;
           break;
 
@@ -230,7 +238,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       }
 
       newRatio = Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
-      let newValue = this.getMin() + newRatio * this.getMax();
+      let newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
       this.__setSliderTo(newValue, this.__inDrag, this.__inDrag);
       this.__throttled.call(newValue);
     },
