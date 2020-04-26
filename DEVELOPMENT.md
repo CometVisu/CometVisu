@@ -8,7 +8,10 @@ Preparation
 -----------
 
 The new build system requires a node environment. So you have to run `npm install` once to install
-all required modules for development.
+all required modules for development. 
+The REST backend for the manager uses composer to install its dependencies. If you want to use the 
+manager during development you have to install composer (https://getcomposer.org/doc/00-intro.md) 
+and execute `composer install` in the folder `source/rest/manager`.
 
 After cloning the sources or updating from 0.10.x you have to do the following steps once:
 
