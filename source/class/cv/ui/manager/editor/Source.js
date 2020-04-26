@@ -45,7 +45,29 @@ qx.Class.define('cv.ui.manager.editor.Source', {
   statics: {
     TITLE: qx.locale.Manager.tr('Texteditor'),
     COUNTER: 0,
-    SUPPORTED_FILES: ['xml', 'php', 'css', 'js', 'svg', 'json', 'md', 'yaml', 'conf', 'ts', 'rst', 'py', 'txt'],
+    MONACO_EXTENSION_REGEX: null,
+    SUPPORTED_FILES: function (file) {
+      if (file.getName() === 'hidden.php') {
+        return false
+      } else if (window.monaco && window.monaco.languages) {
+        if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
+          // monaco has already been loaded, we can use its languages configuration to check if this file is supported
+          var extensions = []
+          monaco.languages.getLanguages().forEach(function (lang) {
+            lang.extensions.forEach(function (ext) {
+              ext = ext.replace(/\./g, '\\.')
+              if (extensions.indexOf(ext) ===-1) {
+                extensions.push(ext);
+              }
+            })
+          });
+          cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
+        }
+        return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(file.getFullPath().toLowerCase())
+      } else {
+        return /\.(xml|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(file.getFullPath().toLowerCase())
+      }
+    },
     DEFAULT_FOR: /^visu_config.*\.xml/,
     ICON: cv.theme.dark.Images.getIcon('text', 18),
 
