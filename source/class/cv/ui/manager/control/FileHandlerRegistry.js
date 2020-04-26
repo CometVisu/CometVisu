@@ -23,7 +23,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     this.registerFileHandler(null, cv.ui.manager.Start, {type: 'view'});
 
     // register the basic editors
-    this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.editor.Source, {type: 'edit'});
+    this.registerFileHandler(cv.ui.manager.editor.Source.SUPPORTED_FILES, cv.ui.manager.editor.Source, {type: 'edit'});
     this.registerFileHandler(cv.ui.manager.editor.Xml.SUPPORTED_FILES, cv.ui.manager.editor.Xml, {
       preview: false,
       type: 'edit',
@@ -177,7 +177,7 @@ qx.Class.define('cv.ui.manager.control.FileHandlerRegistry', {
     _onChangesDefaultConfigEditor: function () {
       switch (cv.ui.manager.model.Preferences.getInstance().getDefaultConfigEditor()) {
         case 'source':
-          this.setDefault(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.editor.Source);
+          this.setDefault(cv.ui.manager.editor.Source.DEFAULT_FOR, cv.ui.manager.editor.Source);
           break;
 
         case 'xml':

@@ -18,8 +18,14 @@ qx.Class.define('cv.io.rest.Client', {
 
     getBaseUrl: function () {
       if (!this.BASE_URL) {
-        var path = qx.util.Uri.parseUri(window.location.href).path;
-        path += 'rest/manager/index.php';
+        var path = ""; 
+        var engine = cv.TemplateEngine.getInstance();
+        var clientBackend = engine.visu ? engine.visu.getBackend() : {};
+        if (clientBackend.resources.rest) {
+          path = clientBackend.resources.rest
+        } else {
+          path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';
+        }
         this.BASE_URL = path;
       }
       return this.BASE_URL;
@@ -50,11 +56,7 @@ qx.Class.define('cv.io.rest.Client', {
           if (action === 'save') {
             req.setRequestHeader('Content-Type', 'application/json');
           }
-          if (action === 'get') {
-            req.setAccept('text/xml');
-          } else {
-            req.setAccept('application/json');
-          }
+          req.setAccept('application/json');
         });
 
         this._enableSync(this.__configFile, config);

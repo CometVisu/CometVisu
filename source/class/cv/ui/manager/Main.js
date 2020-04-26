@@ -121,8 +121,10 @@ qx.Class.define('cv.ui.manager.Main', {
       var manager = qx.core.Init.getApplication().getCommandManager();
       if (value) {
         manager.setActive(this._managerCommands);
+        qx.bom.element.Style.set(this.__getRoot(), "display", "block");
       } else {
         manager.setActive(this._oldCommandGroup);
+        qx.bom.element.Style.set(this.__getRoot(), "display", "none");
       }
     },
 
@@ -145,19 +147,19 @@ qx.Class.define('cv.ui.manager.Main', {
                 break;
 
               case 'backup':
-                if ((env.state & 4) === 0) {
+                if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('backup folder is not writeable'));
                 }
                 break;
 
               case 'media':
-                if ((env.state & 4) === 0) {
+                if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('media folder is not writeable'));
                 }
                 break;
 
               case 'hidden.php':
-                if ((env.state & 4) === 0) {
+                if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                   cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Hidden configuration file (hidden.php) not writeable'));
                 }
                 break;

@@ -238,6 +238,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
 
     type: {
       check: ['dir', 'file'],
+      transform: "_toLowerCase",
       nullable: true,
       apply: '_maintainIcon'
     },
@@ -287,6 +288,10 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     __path: null,
     __fullPath: null,
     __onLoadCallback: null,
+
+    _toLowerCase: function (name) {
+      return name.toLowerCase();
+    },
 
     isRelated: function (path) {
       return this.getFullPath() === path;
@@ -418,6 +423,14 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       if (data) {
         data.forEach(function (node) {
           var child = new cv.ui.manager.model.FileItem(null, null, this);
+          if (node.hasOwnProperty('children')) {
+            var nodeChildren = node.children;
+            delete node.children;
+            if (nodeChildren.length > 0) {
+              child.getChildren().replace(nodeChildren);
+              child.setLoaded(true);
+            }
+          }
           child.set(node);
           children.push(child);
         }, this);
