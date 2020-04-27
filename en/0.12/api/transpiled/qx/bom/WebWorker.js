@@ -193,4 +193,4 @@
   qx.bom.WebWorker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebWorker.js.map?dt=1586896750288
+//# sourceMappingURL=WebWorker.js.map?dt=1587971385159

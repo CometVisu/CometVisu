@@ -785,4 +785,4 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   qx.ui.treevirtual.TreeVirtual.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TreeVirtual.js.map?dt=1586896777933
+//# sourceMappingURL=TreeVirtual.js.map?dt=1587971412549

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 830,
+        "line": 838,
         "column": 3
       }
     },
@@ -182,6 +182,32 @@
       "allowNull": true,
       "check": "qx.ui.command.Group"
     },
+    "loggedIn": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4
+        },
+        "end": {
+          "line": 105,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>sent after the client is logged in to the backend</p>"
+          }
+        ]
+      },
+      "name": "loggedIn",
+      "propertyType": "new",
+      "event": "changeLoggedIn",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
     "qxOwner": {
       "type": "property",
       "name": "qxOwner",
@@ -203,11 +229,11 @@
     "pagePartsHandler": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 114,
           "column": 4
         },
         "end": {
-          "line": 107,
+          "line": 114,
           "column": 26
         }
       },
@@ -217,11 +243,11 @@
     "bindClickToWidget": {
       "location": {
         "start": {
-          "line": 110,
+          "line": 117,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 117,
           "column": 29
         }
       },
@@ -243,11 +269,11 @@
     "defaults": {
       "location": {
         "start": {
-          "line": 119,
+          "line": 126,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 126,
           "column": 19
         }
       },
@@ -265,11 +291,11 @@
     "main_scroll": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 121,
+          "line": 128,
           "column": 22
         }
       },
@@ -279,11 +305,11 @@
     "old_scroll": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 129,
           "column": 4
         },
         "end": {
-          "line": 122,
+          "line": 129,
           "column": 19
         }
       },
@@ -293,11 +319,11 @@
     "visu": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 130,
           "column": 4
         },
         "end": {
-          "line": 123,
+          "line": 130,
           "column": 15
         }
       },
@@ -307,11 +333,11 @@
     "pluginsToLoadCount": {
       "location": {
         "start": {
-          "line": 125,
+          "line": 132,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 132,
           "column": 26
         }
       },
@@ -321,11 +347,11 @@
     "xml": {
       "location": {
         "start": {
-          "line": 126,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 126,
+          "line": 133,
           "column": 14
         }
       },
@@ -335,11 +361,11 @@
     "__partQueue": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 135,
           "column": 4
         },
         "end": {
-          "line": 128,
+          "line": 135,
           "column": 21
         }
       },
@@ -349,11 +375,11 @@
     "_domFinishedQueue": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 136,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 136,
           "column": 27
         }
       },
@@ -363,11 +389,11 @@
     "lazyPlugins": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 139,
           "column": 35
         }
       },
@@ -385,11 +411,11 @@
     "loadParts": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 174,
+          "line": 181,
           "column": 5
         }
       },
@@ -422,11 +448,11 @@
     "_applyReady": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 184,
           "column": 4
         },
         "end": {
-          "line": 181,
+          "line": 188,
           "column": 5
         }
       },
@@ -447,11 +473,11 @@
     "_applyLoaded": {
       "location": {
         "start": {
-          "line": 184,
+          "line": 191,
           "column": 4
         },
         "end": {
-          "line": 189,
+          "line": 196,
           "column": 5
         }
       },
@@ -473,11 +499,11 @@
     "_applyDomFinished": {
       "location": {
         "start": {
-          "line": 192,
+          "line": 199,
           "column": 4
         },
         "end": {
-          "line": 203,
+          "line": 210,
           "column": 5
         }
       },
@@ -498,11 +524,11 @@
     "executeWhenDomFinished": {
       "location": {
         "start": {
-          "line": 210,
+          "line": 217,
           "column": 4
         },
         "end": {
-          "line": 217,
+          "line": 224,
           "column": 5
         }
       },
@@ -530,11 +556,11 @@
     "addAddress": {
       "location": {
         "start": {
-          "line": 223,
+          "line": 230,
           "column": 4
         },
         "end": {
-          "line": 226,
+          "line": 233,
           "column": 5
         }
       },
@@ -558,11 +584,11 @@
     "getAddresses": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 239,
           "column": 4
         },
         "end": {
-          "line": 235,
+          "line": 242,
           "column": 5
         }
       },
@@ -586,11 +612,11 @@
     "initBackendClient": {
       "location": {
         "start": {
-          "line": 240,
+          "line": 247,
           "column": 4
         },
         "end": {
-          "line": 280,
+          "line": 287,
           "column": 5
         }
       },
@@ -608,11 +634,11 @@
     "_handleClientError": {
       "location": {
         "start": {
-          "line": 282,
+          "line": 289,
           "column": 4
         },
         "end": {
-          "line": 320,
+          "line": 327,
           "column": 5
         }
       },
@@ -622,11 +648,11 @@
     "resetPageValues": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 332,
           "column": 4
         },
         "end": {
-          "line": 330,
+          "line": 337,
           "column": 5
         }
       },
@@ -644,11 +670,11 @@
     "parseXML": {
       "location": {
         "start": {
-          "line": 337,
+          "line": 344,
           "column": 4
         },
         "end": {
-          "line": 432,
+          "line": 439,
           "column": 5
         }
       },
@@ -682,11 +708,11 @@
     "setupPage": {
       "location": {
         "start": {
-          "line": 437,
+          "line": 444,
           "column": 4
         },
         "end": {
-          "line": 505,
+          "line": 513,
           "column": 5
         }
       },
@@ -704,11 +730,11 @@
     "startScreensaver": {
       "location": {
         "start": {
-          "line": 510,
+          "line": 518,
           "column": 4
         },
         "end": {
-          "line": 519,
+          "line": 527,
           "column": 5
         }
       },
@@ -726,11 +752,11 @@
     "startInitialRequest": {
       "location": {
         "start": {
-          "line": 524,
+          "line": 532,
           "column": 4
         },
         "end": {
-          "line": 546,
+          "line": 554,
           "column": 5
         }
       },
@@ -748,11 +774,11 @@
     "createPages": {
       "location": {
         "start": {
-          "line": 555,
+          "line": 563,
           "column": 4
         },
         "end": {
-          "line": 568,
+          "line": 576,
           "column": 5
         }
       },
@@ -800,11 +826,11 @@
     "getPageIdByPath": {
       "location": {
         "start": {
-          "line": 576,
+          "line": 584,
           "column": 4
         },
         "end": {
-          "line": 594,
+          "line": 602,
           "column": 5
         }
       },
@@ -840,11 +866,11 @@
     "traversePath": {
       "location": {
         "start": {
-          "line": 596,
+          "line": 604,
           "column": 4
         },
         "end": {
-          "line": 622,
+          "line": 630,
           "column": 5
         }
       },
@@ -854,11 +880,11 @@
     "getPageIdByName": {
       "location": {
         "start": {
-          "line": 624,
+          "line": 632,
           "column": 4
         },
         "end": {
-          "line": 694,
+          "line": 702,
           "column": 5
         }
       },
@@ -868,11 +894,11 @@
     "scrollToPage": {
       "location": {
         "start": {
-          "line": 696,
+          "line": 704,
           "column": 4
         },
         "end": {
-          "line": 744,
+          "line": 752,
           "column": 5
         }
       },
@@ -882,11 +908,11 @@
     "selectDesign": {
       "location": {
         "start": {
-          "line": 746,
+          "line": 754,
           "column": 4
         },
         "end": {
-          "line": 828,
+          "line": 836,
           "column": 5
         }
       },
@@ -4436,6 +4462,96 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>commands</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #commands}."
+          }
+        ]
+      }
+    },
+    "getLoggedIn": {
+      "type": "function",
+      "name": "getLoggedIn",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>loggedIn</code>.\n\nFor further details take a look at the property definition: {@link #loggedIn}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for loggedIn"
+          }
+        ]
+      }
+    },
+    "isLoggedIn": {
+      "type": "function",
+      "name": "isLoggedIn",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>loggedIn</code>.\n\nFor further details take a look at the property definition: {@link #loggedIn}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for loggedIn"
+          }
+        ]
+      }
+    },
+    "setLoggedIn": {
+      "type": "function",
+      "name": "setLoggedIn",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>loggedIn</code>.\n\nFor further details take a look at the property definition: {@link #loggedIn}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for loggedIn"
+          }
+        ]
+      }
+    },
+    "resetLoggedIn": {
+      "type": "function",
+      "name": "resetLoggedIn",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>loggedIn</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #loggedIn}."
           }
         ]
       }

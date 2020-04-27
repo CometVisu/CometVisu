@@ -154,4 +154,4 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   qx.event.type.dom.Custom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Custom.js.map?dt=1586897337320
+//# sourceMappingURL=Custom.js.map?dt=1587971974469

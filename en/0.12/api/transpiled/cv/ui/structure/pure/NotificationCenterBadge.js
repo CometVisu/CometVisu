@@ -173,4 +173,4 @@
   cv.ui.structure.pure.NotificationCenterBadge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1586896746049
+//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1587971380979

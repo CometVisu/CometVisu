@@ -146,4 +146,4 @@
   qx.ui.container.Scroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroll.js.map?dt=1586896764584
+//# sourceMappingURL=Scroll.js.map?dt=1587971399286

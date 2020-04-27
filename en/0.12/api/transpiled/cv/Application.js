@@ -258,6 +258,14 @@
       showManager: function showManager() {
         qx.io.PartLoader.require(['manager'], function (states) {
           // break dependency
+          var engine = cv.TemplateEngine.getInstance();
+
+          if (!engine.isLoggedIn()) {
+            // never start the manager before we are logged in, as the login response might contain information about the REST API URL
+            engine.addListenerOnce('changeLoggedIn', this.showManager, this);
+            return;
+          }
+
           var ManagerMain = cv.ui['manager']['Main'];
           var toggleVisibility = !!ManagerMain.constructor.$$instance;
           var manager = ManagerMain.getInstance();
@@ -718,4 +726,4 @@
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1586896740708
+//# sourceMappingURL=Application.js.map?dt=1587971375571

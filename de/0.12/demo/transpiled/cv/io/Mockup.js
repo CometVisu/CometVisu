@@ -15,18 +15,11 @@
       "cv.data.Model": {
         "construct": true
       },
-      "cv.Config": {
-        "construct": true
-      },
-      "qx.dev.FakeServer": {
-        "construct": true
-      },
-      "cv.report.Record": {
-        "construct": true
-      },
-      "qx.log.Logger": {
-        "construct": true
-      },
+      "qx.io.request.Xhr": {},
+      "cv.Config": {},
+      "qx.dev.FakeServer": {},
+      "cv.report.Record": {},
+      "qx.log.Logger": {},
       "qx.event.Timer": {}
     }
   };
@@ -76,43 +69,10 @@
       window._widgetDataGet = model.getWidgetData.bind(model);
       window._getWidgetDataModel = model.getWidgetDataModel.bind(model);
       window.writeHistory = [];
+      var testMode = "resource/demo/media/demo_testmode_data.json";
 
-      if ("resource/demo/media/demo_testmode_data.json" && cv.Config.initialDemoData && cv.Config.initialDemoData.xhr) {
-        this.__xhr = cv.Config.initialDemoData.xhr; // configure server
-
-        qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
-          return url.startsWith('https://sentry.io');
-        }, this);
-        var server = qx.dev.FakeServer.getInstance().getFakeServer();
-        server.respondWith(function (request) {
-          var url = cv.report.Record.normalizeUrl(request.url);
-
-          if (url.indexOf("nocache=") >= 0) {
-            url = url.replace(/[\?|&]nocache=[0-9]+/, "");
-          }
-
-          if (!this.__xhr[url] || this.__xhr[url].length === 0) {
-            qx.log.Logger.error(this, "404: no logged responses for URI " + url + " found");
-          } else {
-            qx.log.Logger.debug(this, "faking response for " + url);
-            var response = "";
-
-            if (this.__xhr[url].length === 1) {
-              response = this.__xhr[url][0];
-            } else {
-              // multiple responses recorded use them as LIFO stack
-              response = this.__xhr[url].shift();
-            }
-
-            if (request.readyState === 4 && request.status === 404) {
-              // This is a hack, sometimes the request has a 404 status and send readystate
-              // the respond would fail if we do not override it here
-              request.readyState = 1;
-            }
-
-            request.respond(response.status, response.headers, JSON.stringify(response.body));
-          }
-        }.bind(this));
+      if (typeof testMode === "string" && testMode !== "true") {
+        this.__loadTestData();
       }
 
       this.addresses = [];
@@ -150,6 +110,53 @@
       __sequence: null,
       __sequenceIndex: 0,
       __simulations: null,
+      __loadTestData: function __loadTestData() {
+        // load the demo data to fill the visu with some values
+        var r = new qx.io.request.Xhr("resource/demo/media/demo_testmode_data.json");
+        r.addListener('success', function (e) {
+          cv.Config.initialDemoData = e.getTarget().getResponse();
+
+          this.__applyTestData();
+        }, this);
+        r.send();
+      },
+      __applyTestData: function __applyTestData() {
+        this.__xhr = cv.Config.initialDemoData.xhr; // configure server
+
+        qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
+          return url.startsWith('https://sentry.io');
+        }, this);
+        var server = qx.dev.FakeServer.getInstance().getFakeServer();
+        server.respondWith(function (request) {
+          var url = cv.report.Record.normalizeUrl(request.url);
+
+          if (url.indexOf("nocache=") >= 0) {
+            url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+          }
+
+          if (!this.__xhr[url] || this.__xhr[url].length === 0) {
+            qx.log.Logger.error(this, "404: no logged responses for URI " + url + " found");
+          } else {
+            qx.log.Logger.debug(this, "faking response for " + url);
+            var response = "";
+
+            if (this.__xhr[url].length === 1) {
+              response = this.__xhr[url][0];
+            } else {
+              // multiple responses recorded use them as LIFO stack
+              response = this.__xhr[url].shift();
+            }
+
+            if (request.readyState === 4 && request.status === 404) {
+              // This is a hack, sometimes the request has a 404 status and send readystate
+              // the respond would fail if we do not override it here
+              request.readyState = 1;
+            }
+
+            request.respond(response.status, response.headers, JSON.stringify(response.body));
+          }
+        }.bind(this));
+      },
 
       /**
        * This function gets called once the communication is established and session information is available
@@ -351,4 +358,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1586897313710
+//# sourceMappingURL=Mockup.js.map?dt=1587971950025

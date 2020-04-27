@@ -1267,4 +1267,4 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   qx.lang.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1586897321050
+//# sourceMappingURL=Json.js.map?dt=1587971957766

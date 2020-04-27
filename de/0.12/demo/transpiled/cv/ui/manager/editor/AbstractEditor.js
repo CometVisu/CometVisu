@@ -182,4 +182,4 @@
   cv.ui.manager.editor.AbstractEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractEditor.js.map?dt=1586897310969
+//# sourceMappingURL=AbstractEditor.js.map?dt=1587971947171

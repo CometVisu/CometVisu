@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 298,
+        "line": 312,
         "column": 3
       }
     },
@@ -46,7 +46,7 @@
         "column": 13
       },
       "end": {
-        "line": 81,
+        "line": 51,
         "column": 3
       }
     },
@@ -63,11 +63,11 @@
     "dataReceived": {
       "location": {
         "start": {
-          "line": 89,
+          "line": 59,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 62,
           "column": 5
         }
       },
@@ -80,11 +80,11 @@
     "server": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 96,
+          "line": 66,
           "column": 5
         }
       },
@@ -97,11 +97,11 @@
     "connected": {
       "location": {
         "start": {
-          "line": 97,
+          "line": 67,
           "column": 4
         },
         "end": {
-          "line": 101,
+          "line": 71,
           "column": 5
         }
       },
@@ -133,11 +133,11 @@
     "addresses": {
       "location": {
         "start": {
-          "line": 110,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 80,
           "column": 19
         }
       },
@@ -147,11 +147,11 @@
     "__xhr": {
       "location": {
         "start": {
-          "line": 111,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 111,
+          "line": 81,
           "column": 15
         }
       },
@@ -161,11 +161,11 @@
     "__sequence": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 82,
           "column": 20
         }
       },
@@ -175,11 +175,11 @@
     "__sequenceIndex": {
       "location": {
         "start": {
-          "line": 113,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 113,
+          "line": 83,
           "column": 22
         }
       },
@@ -189,25 +189,53 @@
     "__simulations": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 84,
           "column": 4
         },
         "end": {
-          "line": 114,
+          "line": 84,
           "column": 23
         }
       },
       "type": "variable",
       "access": "private"
     },
-    "receive": {
+    "__loadTestData": {
       "location": {
         "start": {
-          "line": 120,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 126,
+          "line": 94,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__applyTestData": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4
+        },
+        "end": {
+          "line": 128,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "receive": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4
+        },
+        "end": {
+          "line": 140,
           "column": 5
         }
       },
@@ -225,11 +253,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 142,
           "column": 4
         },
         "end": {
-          "line": 149,
+          "line": 163,
           "column": 5
         }
       },
@@ -239,11 +267,11 @@
     "_registerSimulations": {
       "location": {
         "start": {
-          "line": 151,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 162,
+          "line": 176,
           "column": 5
         }
       },
@@ -253,11 +281,11 @@
     "_startSequence": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 178,
           "column": 4
         },
         "end": {
-          "line": 177,
+          "line": 191,
           "column": 5
         }
       },
@@ -267,11 +295,11 @@
     "_processSimulation": {
       "location": {
         "start": {
-          "line": 179,
+          "line": 193,
           "column": 4
         },
         "end": {
-          "line": 249,
+          "line": 263,
           "column": 5
         }
       },
@@ -281,11 +309,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 255,
+          "line": 269,
           "column": 4
         },
         "end": {
-          "line": 257,
+          "line": 271,
           "column": 5
         }
       },
@@ -303,11 +331,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 263,
+          "line": 277,
           "column": 4
         },
         "end": {
-          "line": 288,
+          "line": 302,
           "column": 5
         }
       },
@@ -325,11 +353,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 290,
+          "line": 304,
           "column": 4
         },
         "end": {
-          "line": 290,
+          "line": 304,
           "column": 26
         }
       },
@@ -339,11 +367,11 @@
     "stop": {
       "location": {
         "start": {
-          "line": 292,
+          "line": 306,
           "column": 4
         },
         "end": {
-          "line": 292,
+          "line": 306,
           "column": 24
         }
       },
@@ -353,11 +381,11 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 294,
+          "line": 308,
           "column": 4
         },
         "end": {
-          "line": 296,
+          "line": 310,
           "column": 5
         }
       },

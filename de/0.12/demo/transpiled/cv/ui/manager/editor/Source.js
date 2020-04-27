@@ -83,18 +83,43 @@
     statics: {
       TITLE: qx.locale.Manager.tr('Texteditor'),
       COUNTER: 0,
-      SUPPORTED_FILES: ['xml', 'php', 'css', 'js', 'svg', 'json', 'md', 'yaml', 'conf', 'ts', 'rst', 'py', 'txt'],
+      MONACO_EXTENSION_REGEX: null,
+      SUPPORTED_FILES: function SUPPORTED_FILES(file) {
+        if (file.getName() === 'hidden.php') {
+          return false;
+        } else if (window.monaco && window.monaco.languages) {
+          if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
+            // monaco has already been loaded, we can use its languages configuration to check if this file is supported
+            var extensions = [];
+            monaco.languages.getLanguages().forEach(function (lang) {
+              lang.extensions.forEach(function (ext) {
+                ext = ext.replace(/\./g, '\\.');
+
+                if (extensions.indexOf(ext) === -1) {
+                  extensions.push(ext);
+                }
+              });
+            });
+            cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
+          }
+
+          return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(file.getFullPath().toLowerCase());
+        } else {
+          return /\.(xml|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(file.getFullPath().toLowerCase());
+        }
+      },
+      DEFAULT_FOR: /^visu_config.*\.xml/,
       ICON: cv.theme.dark.Images.getIcon('text', 18),
       load: function load(callback, context) {
         var version = false ? 'dev' : 'min';
-        window.documentationMappingPrefix = "../source/editor/"; // jshint ignore:line
+        window.documentationMappingPrefix = "editor/"; // jshint ignore:line
 
         var sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/..');
-        var loader = new qx.util.DynamicScriptLoader([sourcePath + 'editor/dependencies/jquery.min.js', sourcePath + 'editor/dependencies/jquery.xpath.min.js', sourcePath + 'editor/lib/Messages.js', sourcePath + 'editor/lib/Schema.js', sourcePath + '../node_modules/monaco-editor/' + version + '/vs/loader.js', 'manager/xml.js']);
+        var loader = new qx.util.DynamicScriptLoader([sourcePath + 'editor/dependencies/jquery.min.js', sourcePath + 'editor/dependencies/jquery.xpath.min.js', sourcePath + 'editor/lib/Messages.js', sourcePath + 'editor/lib/Schema.js', sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js', 'manager/xml.js']);
         loader.addListener('ready', function () {
           window.require.config({
             paths: {
-              'vs': sourcePath + '../node_modules/monaco-editor/' + version + '/vs'
+              'vs': sourcePath + 'node_modules/monaco-editor/' + version + '/vs'
             }
           });
 
@@ -401,4 +426,4 @@
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1586897311213
+//# sourceMappingURL=Source.js.map?dt=1587971947330

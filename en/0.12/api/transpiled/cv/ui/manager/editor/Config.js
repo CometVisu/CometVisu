@@ -18,7 +18,6 @@
       "cv.io.rest.Client": {},
       "cv.ui.manager.model.config.Section": {},
       "cv.ui.manager.snackbar.Controller": {},
-      "qx.util.Serializer": {},
       "qx.ui.form.List": {},
       "qx.data.controller.List": {},
       "qx.data.Array": {},
@@ -174,7 +173,15 @@
         }, this);
 
         if (valid) {
-          var data = qx.util.Serializer.toNativeObject(this._listController.getModel());
+          var data = {};
+
+          this._listController.getModel().forEach(function (section) {
+            var options = {};
+            section.getOptions().forEach(function (option) {
+              options[option.getKey()] = option.getValue();
+            });
+            data[section.getName()] = options;
+          }, this);
 
           this._client.saveSync(null, data, function (err) {
             if (err) {
@@ -252,4 +259,4 @@
   cv.ui.manager.editor.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1586896744549
+//# sourceMappingURL=Config.js.map?dt=1587971379375

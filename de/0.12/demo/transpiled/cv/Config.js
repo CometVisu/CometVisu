@@ -13,9 +13,6 @@
       "qx.util.Uri": {
         "defer": "runtime"
       },
-      "qx.io.request.Xhr": {
-        "defer": "runtime"
-      },
       "cv.io.Client": {
         "defer": "runtime"
       },
@@ -318,15 +315,6 @@
       cv.Config.request = req;
       {
         cv.Config.testMode = true;
-        {
-          // load the demo data to fill the visu with some values
-          var r = new qx.io.request.Xhr("resource/demo/media/demo_testmode_data.json");
-          r.addListener('success', function (e) {
-            var data = e.getTarget().getResponse();
-            cv.Config.initialDemoData = data;
-          });
-          r.send();
-        }
       } // propagate to the client
 
       cv.io.Client.TEST_MODE = cv.Config.testMode;
@@ -410,4 +398,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1586897313650
+//# sourceMappingURL=Config.js.map?dt=1587971949866

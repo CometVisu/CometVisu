@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 345,
+        "line": 368,
         "column": 3
       }
     },
@@ -76,7 +76,7 @@
       "type": "variable",
       "access": "public"
     },
-    "SUPPORTED_FILES": {
+    "MONACO_EXTENSION_REGEX": {
       "location": {
         "start": {
           "line": 48,
@@ -84,7 +84,35 @@
         },
         "end": {
           "line": 48,
-          "column": 111
+          "column": 32
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "SUPPORTED_FILES": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "DEFAULT_FOR": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 38
         }
       },
       "type": "variable",
@@ -93,11 +121,11 @@
     "ICON": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 72,
           "column": 4
         },
         "end": {
-          "line": 49,
+          "line": 72,
           "column": 50
         }
       },
@@ -107,11 +135,11 @@
     "load": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 97,
+          "line": 120,
           "column": 5
         }
       },
@@ -123,11 +151,11 @@
     "__schema": {
       "location": {
         "start": {
-          "line": 106,
+          "line": 129,
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 129,
           "column": 18
         }
       },
@@ -137,11 +165,11 @@
     "_editor": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 130,
           "column": 4
         },
         "end": {
-          "line": 107,
+          "line": 130,
           "column": 17
         }
       },
@@ -151,11 +179,11 @@
     "_basePath": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 131,
           "column": 4
         },
         "end": {
-          "line": 108,
+          "line": 131,
           "column": 19
         }
       },
@@ -165,11 +193,11 @@
     "_workerWrapper": {
       "location": {
         "start": {
-          "line": 109,
+          "line": 132,
           "column": 4
         },
         "end": {
-          "line": 109,
+          "line": 132,
           "column": 24
         }
       },
@@ -179,11 +207,11 @@
     "_currentDecorations": {
       "location": {
         "start": {
-          "line": 110,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 133,
           "column": 29
         }
       },
@@ -193,11 +221,11 @@
     "_initWorker": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 135,
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 138,
           "column": 5
         }
       },
@@ -207,11 +235,11 @@
     "_getDefaultModelOptions": {
       "location": {
         "start": {
-          "line": 117,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 123,
+          "line": 146,
           "column": 5
         }
       },
@@ -221,11 +249,11 @@
     "_draw": {
       "location": {
         "start": {
-          "line": 125,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 152,
+          "line": 175,
           "column": 5
         }
       },
@@ -235,11 +263,11 @@
     "handleAction": {
       "location": {
         "start": {
-          "line": 154,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 173,
+          "line": 196,
           "column": 5
         }
       },
@@ -272,11 +300,11 @@
     "_loadFile": {
       "location": {
         "start": {
-          "line": 175,
+          "line": 198,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 209,
           "column": 5
         }
       },
@@ -290,11 +318,11 @@
     "_applyContent": {
       "location": {
         "start": {
-          "line": 188,
+          "line": 211,
           "column": 4
         },
         "end": {
-          "line": 213,
+          "line": 236,
           "column": 5
         }
       },
@@ -308,11 +336,11 @@
     "getCurrentContent": {
       "location": {
         "start": {
-          "line": 215,
+          "line": 238,
           "column": 4
         },
         "end": {
-          "line": 217,
+          "line": 240,
           "column": 5
         }
       },
@@ -327,11 +355,11 @@
     "_onContentChanged": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 242,
           "column": 4
         },
         "end": {
-          "line": 223,
+          "line": 246,
           "column": 5
         }
       },
@@ -341,11 +369,11 @@
     "isSupported": {
       "location": {
         "start": {
-          "line": 225,
+          "line": 248,
           "column": 4
         },
         "end": {
-          "line": 232,
+          "line": 255,
           "column": 5
         }
       },
@@ -355,11 +383,11 @@
     "showErrors": {
       "location": {
         "start": {
-          "line": 234,
+          "line": 257,
           "column": 4
         },
         "end": {
-          "line": 297,
+          "line": 320,
           "column": 5
         }
       },
@@ -369,11 +397,11 @@
     "showDecorations": {
       "location": {
         "start": {
-          "line": 299,
+          "line": 322,
           "column": 4
         },
         "end": {
-          "line": 304,
+          "line": 327,
           "column": 5
         }
       },
@@ -383,11 +411,11 @@
     "_getLanguage": {
       "location": {
         "start": {
-          "line": 306,
+          "line": 329,
           "column": 4
         },
         "end": {
-          "line": 329,
+          "line": 352,
           "column": 5
         }
       },
@@ -4004,11 +4032,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 337,
+        "line": 360,
         "column": 12
       },
       "end": {
-        "line": 344,
+        "line": 367,
         "column": 3
       }
     },

@@ -80,7 +80,7 @@
         type: 'view'
       }); // register the basic editors
 
-      this.registerFileHandler(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.editor.Source, {
+      this.registerFileHandler(cv.ui.manager.editor.Source.SUPPORTED_FILES, cv.ui.manager.editor.Source, {
         type: 'edit'
       });
       this.registerFileHandler(cv.ui.manager.editor.Xml.SUPPORTED_FILES, cv.ui.manager.editor.Xml, {
@@ -236,7 +236,7 @@
       _onChangesDefaultConfigEditor: function _onChangesDefaultConfigEditor() {
         switch (cv.ui.manager.model.Preferences.getInstance().getDefaultConfigEditor()) {
           case 'source':
-            this.setDefault(new RegExp('\.(' + cv.ui.manager.editor.Source.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.editor.Source);
+            this.setDefault(cv.ui.manager.editor.Source.DEFAULT_FOR, cv.ui.manager.editor.Source);
             break;
 
           case 'xml':
@@ -292,4 +292,4 @@
   cv.ui.manager.control.FileHandlerRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileHandlerRegistry.js.map?dt=1586896744309
+//# sourceMappingURL=FileHandlerRegistry.js.map?dt=1587971379235

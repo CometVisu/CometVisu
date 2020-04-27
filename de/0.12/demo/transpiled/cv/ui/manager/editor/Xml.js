@@ -48,7 +48,7 @@
       this._setLayout(new qx.ui.layout.Grow());
 
       this._handledActions = ['save'];
-      this.__basePath = qx.util.Uri.getAbsolute(window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/../editor/editor.html');
+      this.__basePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/../editor/editor.html');
 
       this._draw();
     },
@@ -209,4 +209,4 @@
   cv.ui.manager.editor.Xml.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xml.js.map?dt=1586897311291
+//# sourceMappingURL=Xml.js.map?dt=1587971947399

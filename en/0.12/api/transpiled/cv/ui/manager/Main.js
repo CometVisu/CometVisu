@@ -37,6 +37,7 @@
         "construct": true
       },
       "qx.core.Init": {},
+      "qx.bom.element.Style": {},
       "cv.io.rest.Client": {},
       "cv.ui.manager.snackbar.Controller": {},
       "qx.locale.Manager": {},
@@ -194,8 +195,10 @@
 
         if (value) {
           manager.setActive(this._managerCommands);
+          qx.bom.element.Style.set(this.__getRoot(), "display", "block");
         } else {
           manager.setActive(this._oldCommandGroup);
+          qx.bom.element.Style.set(this.__getRoot(), "display", "none");
         }
       },
       _checkEnvironment: function _checkEnvironment() {
@@ -218,21 +221,21 @@
                   break;
 
                 case 'backup':
-                  if ((env.state & 4) === 0) {
+                  if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('backup folder is not writeable'));
                   }
 
                   break;
 
                 case 'media':
-                  if ((env.state & 4) === 0) {
+                  if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('media folder is not writeable'));
                   }
 
                   break;
 
                 case 'hidden.php':
-                  if ((env.state & 4) === 0) {
+                  if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Hidden configuration file (hidden.php) not writeable'));
                   }
 
@@ -969,4 +972,4 @@
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1586896743826
+//# sourceMappingURL=Main.js.map?dt=1587971378734

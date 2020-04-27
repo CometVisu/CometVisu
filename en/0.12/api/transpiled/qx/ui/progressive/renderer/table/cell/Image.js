@@ -104,4 +104,4 @@
   qx.ui.progressive.renderer.table.cell.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1586896773870
+//# sourceMappingURL=Image.js.map?dt=1587971408694

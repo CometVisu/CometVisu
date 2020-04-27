@@ -140,4 +140,4 @@
   qx.ui.layout.Basic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Basic.js.map?dt=1586896769769
+//# sourceMappingURL=Basic.js.map?dt=1587971404454

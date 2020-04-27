@@ -5,6 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
+      "cv.TemplateEngine": {},
       "qx.util.Uri": {},
       "qx.io.rest.Resource": {},
       "cv.ui.manager.tree.FileSystem": {},
@@ -37,8 +38,16 @@
       __callbacks: {},
       getBaseUrl: function getBaseUrl() {
         if (!this.BASE_URL) {
-          var path = qx.util.Uri.parseUri(window.location.href).path;
-          path += 'rest/manager/index.php';
+          var path = "";
+          var engine = cv.TemplateEngine.getInstance();
+          var clientBackend = engine.visu ? engine.visu.getBackend() : {};
+
+          if (clientBackend.resources.rest) {
+            path = clientBackend.resources.rest;
+          } else {
+            path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';
+          }
+
           this.BASE_URL = path;
         }
 
@@ -77,11 +86,7 @@
               req.setRequestHeader('Content-Type', 'application/json');
             }
 
-            if (action === 'get') {
-              req.setAccept('text/xml');
-            } else {
-              req.setAccept('application/json');
-            }
+            req.setAccept('application/json');
           });
 
           this._enableSync(this.__configFile, config);
@@ -272,4 +277,4 @@
   cv.io.rest.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1586897317800
+//# sourceMappingURL=Client.js.map?dt=1587971954218

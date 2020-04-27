@@ -264,4 +264,4 @@
   qx.ui.mobile.form.MValue.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MValue.js.map?dt=1586896772332
+//# sourceMappingURL=MValue.js.map?dt=1587971407036
