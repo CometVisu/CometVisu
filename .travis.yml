@@ -25,7 +25,7 @@ stages:
   if: branch = test-linter
 - name: test
 - name: deploy
-  if: repo = CometVisu/CometVisu AND (NOT type IN (pull_request)) AND ( branch =~ ^master|develop|release-[0-9\.]+$ )
+  if: repo = CometVisu/CometVisu AND (NOT type IN (pull_request)) AND ( branch =~ ^master|develop|release-[0-9\.]+|sentry-sourcemaps$ )
 jobs:
   include:
   - stage: lint
@@ -78,50 +78,50 @@ jobs:
       sentry-cli releases set-commits --auto $SENTRY_RELEASE
       sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps compiled/build --rewrite --strip-common-prefix --ignore node_modules/
       sentry-cli releases finalize $SENTRY_RELEASE
-  - stage: deploy
-    name: "[DOCS] - Generate and publish manual and API-viewer"
-    env: CV_BUILD=docs ENCRYPTION_LABEL=4c79fec0aeb9 COMMIT_AUTHOR_EMAIL=generator@cometvisu.org CV_BROWSER=Chrome_travis CV_VERSION=stable
-    script:
-    - docker pull cometvisu/dev-helper
-    - utils/update_version.py
-    - qx compile --t build # builds the cv for the screenshot generator
-    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
-    - sudo apt-get install python3-lxml
-    - utils/travis/deploy.sh
-  - name: "[NIGHTLY] - Build and push Nightly Build"
-    if: type = cron OR commit_message =~ /^\[ci nightly\].*/
-    script: &3
-    - 'CLIENT_CHANGES=`git log --pretty=format: --name-only --since="1 days ago" ${TRAVIS_BUILD_DIR}/client/ | sort | uniq | sed ''/^$/d'' | wc -l`'
-    - 'CORE_CHANGES=`git log --pretty=format: --name-only --since="1 days ago" ${TRAVIS_BUILD_DIR}/source/ | sort | uniq | sed ''/^$/d'' | wc -l`'
-    - export DEPLOY_NIGHTLY=0
-    - if [[ ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0) ]]; then export DEPLOY_NIGHTLY=1; fi
-    - echo "'${TRAVIS_COMMIT_MESSAGE:0:12}' | $TRAVIS_COMMIT_MESSAGE"
-    - if [[ ${TRAVIS_COMMIT_MESSAGE:0:12} == "[ci nightly]" ]]; then export DEPLOY_NIGHTLY=1; export CORE_CHANGES=1; fi
-    - echo "$CORE_CHANGES changes in core, $CLIENT_CHANGES changes in client, nighlies $DEPLOY_NIGHTLY, $TRAVIS_EVENT_TYPE event type"
-    before_deploy:
-    - if [ $CORE_CHANGES -gt 0 ]; then grunt release-cv; fi
-    - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
-    deploy:
-      on:
-        branch: develop
-        condition: "$DEPLOY_NIGHTLY = 1"
-      provider: bintray
-      file: "./utils/travis/bintray-deploy.json"
-      user: peuter
-      key:
-        secure: dnqHD0ynwCvyxeniG5ee+ImtnQPP02c4WkV8EVgVwSKcEQ5xtdlfy9/6M4znDMlEKcfwvUr9O8JVtrmTqyLNlcwxiIgnrzfIUBrzwPRhSrDgAbUUHOy4bpES58rGKZvwvavhaRhMnd5nQivG4w7ltKdVX4MY8ht4gGLVIlK5RSA=
-      dry-run: false
-      skip_cleanup: true
-  - name: "[DOCKER] - Build and push Docker Container"
-    if: fork = false AND type != cron
-    script: skip
-    before_deploy:
-    - grunt release-cv
-    - mv release build # move back to build because the dockerfile is expecting the build here
-    deploy:
-      on:
-        all_branches: true
-        condition: $TRAVIS_BRANCH =~ ^master|develop|release-[0-9\.]+$
-      provider: script
-      script: utils/travis/docker_push.sh
-      skip_cleanup: true
+#  - stage: deploy
+#    name: "[DOCS] - Generate and publish manual and API-viewer"
+#    env: CV_BUILD=docs ENCRYPTION_LABEL=4c79fec0aeb9 COMMIT_AUTHOR_EMAIL=generator@cometvisu.org CV_BROWSER=Chrome_travis CV_VERSION=stable
+#    script:
+#    - docker pull cometvisu/dev-helper
+#    - utils/update_version.py
+#    - qx compile --t build # builds the cv for the screenshot generator
+#    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
+#    - sudo apt-get install python3-lxml
+#    - utils/travis/deploy.sh
+#  - name: "[NIGHTLY] - Build and push Nightly Build"
+#    if: type = cron OR commit_message =~ /^\[ci nightly\].*/
+#    script: &3
+#    - 'CLIENT_CHANGES=`git log --pretty=format: --name-only --since="1 days ago" ${TRAVIS_BUILD_DIR}/client/ | sort | uniq | sed ''/^$/d'' | wc -l`'
+#    - 'CORE_CHANGES=`git log --pretty=format: --name-only --since="1 days ago" ${TRAVIS_BUILD_DIR}/source/ | sort | uniq | sed ''/^$/d'' | wc -l`'
+#    - export DEPLOY_NIGHTLY=0
+#    - if [[ ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0) ]]; then export DEPLOY_NIGHTLY=1; fi
+#    - echo "'${TRAVIS_COMMIT_MESSAGE:0:12}' | $TRAVIS_COMMIT_MESSAGE"
+#    - if [[ ${TRAVIS_COMMIT_MESSAGE:0:12} == "[ci nightly]" ]]; then export DEPLOY_NIGHTLY=1; export CORE_CHANGES=1; fi
+#    - echo "$CORE_CHANGES changes in core, $CLIENT_CHANGES changes in client, nighlies $DEPLOY_NIGHTLY, $TRAVIS_EVENT_TYPE event type"
+#    before_deploy:
+#    - if [ $CORE_CHANGES -gt 0 ]; then grunt release-cv; fi
+#    - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
+#    deploy:
+#      on:
+#        branch: develop
+#        condition: "$DEPLOY_NIGHTLY = 1"
+#      provider: bintray
+#      file: "./utils/travis/bintray-deploy.json"
+#      user: peuter
+#      key:
+#        secure: dnqHD0ynwCvyxeniG5ee+ImtnQPP02c4WkV8EVgVwSKcEQ5xtdlfy9/6M4znDMlEKcfwvUr9O8JVtrmTqyLNlcwxiIgnrzfIUBrzwPRhSrDgAbUUHOy4bpES58rGKZvwvavhaRhMnd5nQivG4w7ltKdVX4MY8ht4gGLVIlK5RSA=
+#      dry-run: false
+#      skip_cleanup: true
+#  - name: "[DOCKER] - Build and push Docker Container"
+#    if: fork = false AND type != cron
+#    script: skip
+#    before_deploy:
+#    - grunt release-cv
+#    - mv release build # move back to build because the dockerfile is expecting the build here
+#    deploy:
+#      on:
+#        all_branches: true
+#        condition: $TRAVIS_BRANCH =~ ^master|develop|release-[0-9\.]+$
+#      provider: script
+#      script: utils/travis/docker_push.sh
+#      skip_cleanup: true
