@@ -81,9 +81,6 @@
   "dependencies": {
     "@sentry/browser": "^5.15.5",
     "crc-32": "^1.2.0",
-    "fs-extra": "^8.0.1",
-    "monaco-editor": "^0.20.0",
-    "multer": "^1.4.1",
-    "request-promise-native": "^1.0.7"
+    "monaco-editor": "^0.20.0"
   }
 }

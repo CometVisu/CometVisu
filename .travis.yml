@@ -12,7 +12,8 @@ cache:
   - downloads
 before_install:
 - mkdir -p downloads
-- nvm install --lts=carbon
+- rm -r node_modules
+- nvm install --lts
 - mkdir cache
 install:
 - npm install -g grunt-cli
