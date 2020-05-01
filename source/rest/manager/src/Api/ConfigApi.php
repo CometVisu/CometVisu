@@ -32,39 +32,12 @@ class ConfigApi extends AbstractConfigApi
   }
 
   protected function dump() {
-    $out =  <<<EOD
+    $out =  '
 <?php
-// File for configurations that shouldn't be shared with the user
-\$hidden = array(
-
-EOD;
-    $first = true;
-    foreach( $this->hidden as $section => $options )
-    {
-      if (!$first) {
-        $out .= ",\n";
-      } else {
-        $first = false;
-      }
-      $out .= "  '$section' => array(";
-
-      $firstKey = true;
-        foreach( $options as $key => $value )
-        {
-          if( !$firstKey ) {
-            $out .= ', ';
-          } else {
-            $firstKey = false;
-          }
-          $out .= "'" . $key . "' => '" . $value . "'";
-        }
-      $out .= ')';
-    }
-    $out .= "\n);\n?>";
-
-    print_r($this->hidden);
-
-
+// File for configurations that shouldn\'t be shared with the user
+$data = \'' . json_encode($this->hidden, JSON_PRETTY_PRINT) . '\';
+$hidden = json_decode($data, true);
+';
     // step 3: write
     $res = file_put_contents( $this->configFile, $out );
     if ($res === false && !is_writeable($this->configFile)) {
@@ -156,20 +129,7 @@ EOD;
 
   public function saveHiddenConfig(ServerRequestInterface $request, ResponseInterface $response, array $args)
   {
-    $this->hidden = array();
-    $value = $request->getParsedBody();
-    forEach($value as $section) {
-      if ($section['name']) {
-        $sectionName = addcslashes($section['name'], $this->escapeChars);
-        $this->hidden[$sectionName] = array();
-        forEach ($section['options'] as $option) {
-          if ($option['key']) {
-            $optionKey = addcslashes($option['key'], $this->escapeChars);
-            $this->hidden[$sectionName][$optionKey] = addcslashes($option['value'], $this->escapeChars);
-          }
-        };
-      }
-    }
+    $this->hidden = $request->getParsedBody();
     try {
       $this->dump();
     } catch (Exception $e) {

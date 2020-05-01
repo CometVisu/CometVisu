@@ -29,7 +29,8 @@ const filesToCopy = [
   "rest/openapi.yaml",
   "test",
   "replay.html",
-  "resource/config/.htaccess"
+  "resource/config/.htaccess",
+  "resource/config/.templates"
 ]
 
 class CvCompileHandler extends AbstractCompileHandler {

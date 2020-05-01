@@ -95,6 +95,13 @@ qx.Class.define('cv.TemplateEngine', {
     commands: {
       check: "qx.ui.command.Group",
       nullable: true
+    },
+    
+    // sent after the client is logged in to the backend
+    loggedIn: {
+      check: "Boolean",
+      init: false,
+      event: "changeLoggedIn"
     }
   },
 
@@ -441,6 +448,7 @@ qx.Class.define('cv.TemplateEngine', {
       // login to backend as it might change some settings needed for further processing
       this.visu.login(true, function () {
         this.debug("logged in");
+        this.setLoggedIn(true);
 
         // as we are sure that the default CSS were loaded now:
         document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {

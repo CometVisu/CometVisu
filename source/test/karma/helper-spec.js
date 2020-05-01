@@ -296,7 +296,7 @@ beforeAll(function() {
     const inititialized = new Promise(function (resolve) {
       qx.event.message.Bus.subscribe("setup.dom.finished", function () {
         resetApplication();
-        resolve();
+        setTimeout(resolve, 2000);
       }, this);
     });
     var l = qx.$$loader;

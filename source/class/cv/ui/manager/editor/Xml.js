@@ -13,7 +13,7 @@ qx.Class.define('cv.ui.manager.editor.Xml', {
     this.base(arguments);
     this._setLayout(new qx.ui.layout.Grow());
     this._handledActions = ['save'];
-    this.__basePath = qx.util.Uri.getAbsolute(window.location.pathname + qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/../editor/editor.html');
+    this.__basePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/../editor/editor.html');
     this._draw();
   },
 
