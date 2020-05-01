@@ -40,7 +40,7 @@
       // load sentry and wait for it
       loadJS('${resourcePath}sentry/bundle.min.js', function () {
         Sentry.init({
-          dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@sentry.io/1265678',
+          dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@o178808.ingest.sentry.io/1265678',
           release: 'ReleaseNotSetYet',
           attachStacktrace: true,
           beforeSend: function (ev) {
@@ -49,7 +49,7 @@
               lang: qx.locale.Manager.getInstance().getLanguage() === "de" ? qx.locale.Manager.getInstance().getLanguage() : "en"
             });
             // overwrite release by the now known value
-            ev.release = cv.Version.VERSION;
+            ev.release = cv.Version.REV;
             return ev;
           }
         });

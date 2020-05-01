@@ -68,6 +68,17 @@ jobs:
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=beta
     script: *2
   - stage: deploy
+    name: "[SENTRY] create release and upload sourcemaps"
+    env: SENTRY_ORG=cometvisu SENTRY_PROJECT=cometvisu
+    script: |
+      qx compile -t=build
+      curl -sL https://sentry.io/get-cli/ | bash
+      export SENTRY_RELEASE=$(sentry-cli releases propose-version)
+      sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
+      sentry-cli releases set-commits --auto $SENTRY_RELEASE
+      sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps compiled/build --rewrite --strip-common-prefix --ignore node_modules/
+      sentry-cli releases finalize $SENTRY_RELEASE
+  - stage: deploy
     name: "[DOCS] - Generate and publish manual and API-viewer"
     env: CV_BUILD=docs ENCRYPTION_LABEL=4c79fec0aeb9 COMMIT_AUTHOR_EMAIL=generator@cometvisu.org CV_BROWSER=Chrome_travis CV_VERSION=stable
     script:
