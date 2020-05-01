@@ -240,7 +240,9 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       newRatio = Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
       let newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
       this.__setSliderTo(newValue, this.__inDrag, this.__inDrag);
-      this.__throttled.call(newValue);
+      if (!this.getSendOnFinish() || event.type === 'pointerup') {
+        this.__throttled.call(newValue);
+      }
     },
 
     __onChangeValue: function(value) {
