@@ -32,7 +32,7 @@
   ],
   "devDependencies": {
     "@babel/polyfill": "^7.8.7",
-    "@qooxdoo/compiler": "^1.0.0-beta.20200422-1126",
+    "@qooxdoo/compiler": "^1.0.0-beta.20200430-1934",
     "csso": "^3.5.1",
     "easyimage": "^3.1.1",
     "fast-glob": "^3.2.2",
@@ -72,14 +72,14 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.32",
     "mustache": "^4.0.1",
-    "protractor": "^5.4.3",
+    "protractor": "^5.4.4",
     "request": "^2.88.2",
     "svgmin": "^0.1.0",
     "uglify-es": "^3.3.9",
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@sentry/browser": "^5.15.4",
+    "@sentry/browser": "^5.15.5",
     "crc-32": "^1.2.0",
     "fs-extra": "^8.0.1",
     "monaco-editor": "^0.20.0",
