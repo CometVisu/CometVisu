@@ -23,6 +23,7 @@ stages:
 - name: lint
   if: branch = test-linter
 - name: test
+  if: branch = test-linter
 - name: deploy
   if: repo = CometVisu/CometVisu AND (NOT type IN (pull_request)) AND ( branch =~ ^master|develop|release-[0-9\.]+|sentry-sourcemaps$ )
 jobs:
