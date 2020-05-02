@@ -1,6 +1,7 @@
 // Karma configuration
 // Generated on Sat Mar 05 2016 11:10:08 GMT+0100 (CET)
 const fs = require('fs')
+const path = require('path')
 
 module.exports = function(config) {
   'use strict';
@@ -53,7 +54,12 @@ module.exports = function(config) {
     remapOptions: {
       mapFileName: function (file) {
         const relPath = file.split('/transpiled/')[1]
-        return './source/class/' + relPath
+        let filePath = path.join('source', 'class', relPath)
+        if (!fs.existsSync(filePath)) {
+          // check for client source
+          filePath = path.join('client', filePath)
+        }
+        return filePath
       },
       readJSON: function (filePath) {
         const path = filePath.split('?')[0]
