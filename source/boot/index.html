@@ -43,7 +43,7 @@
           dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@o178808.ingest.sentry.io/1265678',
           release: 'ReleaseNotSetYet',
           attachStacktrace: true,
-          beforeSend: function (data) {
+          beforeSend(data) {
             var stacktrace = data.exception && data.exception.values[0].stacktrace;
             var basePath = window.location.pathname;
 
@@ -55,6 +55,7 @@
               }
               // Show report dialog (only in "de" or "en" language)
               Sentry.showReportDialog({
+                eventId: data.event_id,
                 lang: qx.locale.Manager.getInstance().getLanguage() === "de" ? qx.locale.Manager.getInstance().getLanguage() : "en"
               });
             }
