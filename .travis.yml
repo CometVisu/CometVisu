@@ -7,12 +7,10 @@ python:
 - '3.5'
 cache:
   directories:
-  - node_modules
   - "$HOME/.cache/pip"
   - downloads
 before_install:
 - mkdir -p downloads
-- rm -r node_modules
 - nvm install --lts
 - mkdir cache
 install:

@@ -211,6 +211,7 @@ describe("testing a roundbar widget", function() {
         {transform:'DPT:5.004'}
       ]
     );
+    this.initWidget(creator);
     var actor = creator.getActor();
     var svg   = actor.querySelector('svg');
     var bar   = actor.querySelectorAll('path.indicator');
@@ -252,7 +253,7 @@ describe("testing a roundbar widget", function() {
       expect(bar[2].getBBox().height).toBeCloseTo(200, -1);
 
       done();
-    }, 400);
+    }, 600);
   });
 
   it("should test 4 factor bboxgrow, markers and ranges", function() {

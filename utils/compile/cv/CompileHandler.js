@@ -126,13 +126,33 @@ class CvCompileHandler extends AbstractCompileHandler {
     if (!this.__watcherReady) {
       return;
     }
-    if (this._watchList.hasOwnProperty(filename)) {
+    let matchPath = filename
+    let changedPath = filename
+    let relativePath = ""
+    let matches = this._watchList.hasOwnProperty(changedPath)
+    if (!matches) {
+      Object.keys(this._watchList).some(function (srcPath) {
+        if (filename.startsWith(srcPath)) {
+          relativePath = filename.replace(srcPath, "/");
+          matchPath = srcPath;
+          matches = true;
+        }
+        return matches;
+      })
+    }
+    if (matches) {
       switch (type) {
         case 'change':
         case 'add':
-          qx.tool.utils.files.Utils.copyFile(filename, this._watchList[filename]);
+          console.log('copying:');
+          console.log(' ->', filename);
+          console.log(' <-', path.join(this._watchList[matchPath], relativePath));
+          qx.tool.utils.files.Utils.copyFile(filename, path.join(this._watchList[matchPath], relativePath));
           break
       }
+    } else {
+      console.log(this._watchList);
+      console.log('unhandled change in', filename);
     }
   }
 
