@@ -24,6 +24,8 @@
  * @asset(demo/*)
  * @asset(designs/*)
  * @asset(icon/*)
+ * @asset(sentry/bundle.min.js)
+ * @asset(test/*)
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)
  */
