@@ -230,4 +230,4 @@
   qx.ui.form.renderer.Double.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Double.js.map?dt=1587971404097
+//# sourceMappingURL=Double.js.map?dt=1588445460150

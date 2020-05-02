@@ -124,4 +124,4 @@
   qx.ui.virtual.layer.Row.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Row.js.map?dt=1587971413477
+//# sourceMappingURL=Row.js.map?dt=1588445469576

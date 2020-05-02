@@ -121,4 +121,4 @@
   qx.ui.table.columnmenu.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1587971409888
+//# sourceMappingURL=Button.js.map?dt=1588445466141

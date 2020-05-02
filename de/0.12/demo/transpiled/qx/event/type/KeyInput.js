@@ -89,4 +89,4 @@
   qx.event.type.KeyInput.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=KeyInput.js.map?dt=1587971972654
+//# sourceMappingURL=KeyInput.js.map?dt=1588446016585

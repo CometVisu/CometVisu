@@ -159,4 +159,4 @@
   qx.bom.client.CssTransform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CssTransform.js.map?dt=1587971973164
+//# sourceMappingURL=CssTransform.js.map?dt=1588446017075

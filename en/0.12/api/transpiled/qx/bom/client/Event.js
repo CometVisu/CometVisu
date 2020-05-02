@@ -92,7 +92,7 @@
       getHashChange: function getHashChange() {
         // avoid false positive in IE7
         var engine = qx.bom.client.Engine.getName();
-        var hashchange = "onhashchange" in window;
+        var hashchange = ("onhashchange" in window);
         return engine !== "mshtml" && hashchange || engine === "mshtml" && "documentMode" in document && document.documentMode >= 8 && hashchange;
       },
 
@@ -265,4 +265,4 @@
   qx.bom.client.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1587971385529
+//# sourceMappingURL=Event.js.map?dt=1588445441629

@@ -1,4 +1,4 @@
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 (function () {
   var $$dbClassInfo = {
@@ -348,4 +348,4 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   qx.ui.form.RadioButtonGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioButtonGroup.js.map?dt=1587971403236
+//# sourceMappingURL=RadioButtonGroup.js.map?dt=1588445459293

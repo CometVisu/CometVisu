@@ -25,7 +25,13 @@
         },
         {
           "name": "@description",
-          "body": "<p>Implements the dynamic behavior of the API viewer. The GUI is defined in\n {@link Viewer}.</p>\n<p>@ignore (qx.$$appRoot)</p>"
+          "body": "<p>Implements the dynamic behavior of the API viewer. The GUI is defined in\n {@link Viewer}.</p>"
+        }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.$$appRoot"
         }
       ]
     }
@@ -50,7 +56,16 @@
         },
         {
           "name": "@description",
-          "body": "<p>@param widgetRegistry\n          {Viewer} the GUI</p>"
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "widgetRegistry\n          {Viewer} the GUI",
+          "paramName": "widgetRegistry",
+          "description": " the GUI",
+          "type": "qxl.apiviewer.Viewer"
         }
       ]
     }
@@ -107,7 +122,16 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Loads the API doc tree from the enviroment\n doc tree.</p>\n<p>@param apidata {Object} all the apidata from the enviroment.</p>"
+            "body": "<p>Loads the API doc tree from the enviroment\n doc tree.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "apidata {Object} all the apidata from the enviroment.",
+            "paramName": "apidata",
+            "description": " all the apidata from the enviroment.",
+            "type": "Object"
           }
         ]
       },
@@ -239,7 +263,16 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Push the class to the browser history</p>\n<p>@param className\n          {String} name of the class</p>"
+            "body": "<p>Push the class to the browser history</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "className\n          {String} name of the class",
+            "paramName": "className",
+            "description": " name of the class",
+            "type": "String"
           }
         ]
       },
@@ -261,7 +294,16 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Display information about a class</p>\n<p>@param classNode\n          {qxl.apiviewer.dao.Class} class node to display</p>"
+            "body": "<p>Display information about a class</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "classNode\n          {qxl.apiviewer.dao.Class} class node to display",
+            "paramName": "classNode",
+            "description": " class node to display",
+            "type": "qxl.apiviewer.dao.Class"
           }
         ]
       },
@@ -283,7 +325,22 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Selects an item (class, property, method or constant).</p>\n<p>@param fullItemName\n          {String} the full name of the item to select. (e.g.\n          \"qx.mypackage.MyClass\" or \"qx.mypackage.MyClass#myProperty\")</p>\n<p>@lint ignoreDeprecated(alert)</p>"
+            "body": "<p>Selects an item (class, property, method or constant).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fullItemName\n          {String} the full name of the item to select. (e.g.\n          \"qx.mypackage.MyClass\" or \"qx.mypackage.MyClass#myProperty\")",
+            "paramName": "fullItemName",
+            "description": " the full name of the item to select. (e.g.\n          \"qx.mypackage.MyClass\" or \"qx.mypackage.MyClass#myProperty\")",
+            "type": "String"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreDeprecated(alert)"
           }
         ]
       },

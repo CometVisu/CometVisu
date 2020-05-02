@@ -240,4 +240,4 @@
   cv.ui.manager.upload.UploadMgr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UploadMgr.js.map?dt=1587971380395
+//# sourceMappingURL=UploadMgr.js.map?dt=1588445436429

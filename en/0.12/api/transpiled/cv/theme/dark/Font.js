@@ -72,30 +72,30 @@
         sources: [{
           family: "Roboto",
           source: ["osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf"]
-        }] //,
-        // "MaterialIcons": {
-        //   size: 32,
-        //   lineHeight: 1,
-        //   comparisonString : "\uf1e3\uf1f7\uf11b\uf19d",
-        //   family: ["MaterialIcons"],
-        //   sources: [
-        //     {
-        //       family: "MaterialIcons",
-        //       mapping: "iconfont/material/MaterialIcons-Regular.json",
-        //       source: [
-        //         "iconfont/material/MaterialIcons-Regular.eot",
-        //         "iconfont/material/MaterialIcons-Regular.woff2",
-        //         "iconfont/material/MaterialIcons-Regular.woff",
-        //         "iconfont/material/MaterialIcons-Regular.ttf"
-        //       ]
-        //     }
-        //   ]
-        // }
+        }]
+      } //,
+      // "MaterialIcons": {
+      //   size: 32,
+      //   lineHeight: 1,
+      //   comparisonString : "\uf1e3\uf1f7\uf11b\uf19d",
+      //   family: ["MaterialIcons"],
+      //   sources: [
+      //     {
+      //       family: "MaterialIcons",
+      //       mapping: "iconfont/material/MaterialIcons-Regular.json",
+      //       source: [
+      //         "iconfont/material/MaterialIcons-Regular.eot",
+      //         "iconfont/material/MaterialIcons-Regular.woff2",
+      //         "iconfont/material/MaterialIcons-Regular.woff",
+      //         "iconfont/material/MaterialIcons-Regular.ttf"
+      //       ]
+      //     }
+      //   ]
+      // }
 
-      }
     }
   });
   cv.theme.dark.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1587971419164
+//# sourceMappingURL=Font.js.map?dt=1588445475224

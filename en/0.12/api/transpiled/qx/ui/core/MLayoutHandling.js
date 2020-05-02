@@ -87,4 +87,4 @@
   qx.ui.core.MLayoutHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MLayoutHandling.js.map?dt=1587971400172
+//# sourceMappingURL=MLayoutHandling.js.map?dt=1588445456391

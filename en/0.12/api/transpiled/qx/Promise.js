@@ -1,4 +1,4 @@
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 (function () {
   var $$dbClassInfo = {
@@ -7063,4 +7063,4 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   qx.Promise.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Promise.js.map?dt=1587971383198
+//# sourceMappingURL=Promise.js.map?dt=1588445439190

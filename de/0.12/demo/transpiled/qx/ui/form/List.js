@@ -453,4 +453,4 @@
   qx.ui.form.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1587971954843
+//# sourceMappingURL=List.js.map?dt=1588445998834

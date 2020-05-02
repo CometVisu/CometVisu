@@ -414,4 +414,4 @@
   qxl.apiviewer.ui.AbstractViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractViewer.js.map?dt=1587971421630
+//# sourceMappingURL=AbstractViewer.js.map?dt=1588445478147

@@ -333,4 +333,4 @@
   qx.data.store.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1587971958159
+//# sourceMappingURL=Json.js.map?dt=1588446002104

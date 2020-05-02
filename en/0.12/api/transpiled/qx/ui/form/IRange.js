@@ -130,4 +130,4 @@
   qx.ui.form.IRange.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IRange.js.map?dt=1587971402978
+//# sourceMappingURL=IRange.js.map?dt=1588445459012

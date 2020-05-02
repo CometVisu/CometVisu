@@ -436,4 +436,4 @@
   qx.ui.progressive.Progressive.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Progressive.js.map?dt=1587971408280
+//# sourceMappingURL=Progressive.js.map?dt=1588445464408

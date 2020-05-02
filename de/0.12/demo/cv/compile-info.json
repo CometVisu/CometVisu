@@ -1,656 +1,16 @@
 {
-  "EnvSettings": {
-    "qx.application": "cv.Application",
-    "qx.revision": "",
-    "qx.theme": "cv.theme.Dark",
-    "qx.version": "6.0.0-beta",
-    "qx.libraryInfoMap": {
-      "cv": {
-        "name": "cv",
-        "summary": "CometVisu",
-        "description": "The CometVisu is an interactive, realtime, web based visualization.",
-        "homepage": "http://www.cometvisu.org/",
-        "license": "GPL-3.0",
-        "authors": [
-          {
-            "name": "Christian Mayer (ChristianMayer)",
-            "email": "CometVisu at ChristianMayer dot de"
-          },
-          {
-            "name": "Tobias Bräutigam (Peuter)",
-            "email": "tbraeutigam at gmail dot com"
-          }
-        ],
-        "version": "0.12.0-dev",
-        "sourceViewUri": "https://github.com/CometVisu/CometVisu/blob/develop/source/class/%{classFilePath}#L%{lineNumber}"
-      },
-      "qx": {
-        "name": "qooxdoo framework",
-        "summary": "The qooxdoo framework library",
-        "description": "This library contains the qooxdoo Javascript framework classes for website, mobile, desktop and server.",
-        "keywords": [
-          "qooxdoo",
-          "framework",
-          "widget",
-          "cross-browser",
-          "ajax"
-        ],
-        "homepage": "http://qooxdoo.org",
-        "license": "MIT",
-        "authors": [
-          {
-            "name": "Alexander Steitz (asteitz)",
-            "email": "alexander DOT steitz AT 1und1 DOT de"
-          },
-          {
-            "name": "Christopher Zündorf (czuendorf)",
-            "email": "christopher DOT zuendorf AT 1und1 DOT de"
-          },
-          {
-            "name": "Daniel Wagner (danielwagner)",
-            "email": "daniel DOT wagner AT 1und1 DOT de"
-          },
-          {
-            "name": "Derrell Lipman (derrell)",
-            "email": "derrell DOT lipman AT unwireduniverse DOT com"
-          },
-          {
-            "name": "Andreas Ecker (ecker)",
-            "email": "andreas DOT ecker AT 1und1 DOT de"
-          },
-          {
-            "name": "Christian Hagendorn (Hagendorn)",
-            "email": "christian DOT hagendorn AT 1und1 DOT de"
-          },
-          {
-            "name": "Mustafa Sak (msak)",
-            "email": "Mustafa DOT Sak AT 1und1 DOT de"
-          },
-          {
-            "name": "Thomas Herchenröder (thron7)",
-            "email": "thron7 AT users DOT sourceforge DOT net"
-          },
-          {
-            "name": "Tino Butz (tjbutz)",
-            "email": "tino DOT butz AT 1und1 DOT de"
-          },
-          {
-            "name": "Tristan Koch (trkoch)",
-            "email": "tristan DOT koch AT 1und1 DOT de"
-          },
-          {
-            "name": "Martin Wittemann (wittemann)",
-            "email": "martin DOT wittemann AT 1und1 DOT de"
-          }
-        ],
-        "version": "6.0.0-beta",
-        "qooxdoo-versions": [
-          "6.0.0-beta"
-        ],
-        "sourceViewUri": "https://github.com/qooxdoo/qooxdoo/blob/%{qxGitBranch}/framework/source/class/%{classFilePath}#L%{lineNumber}"
-      },
-      "cv.io": {
-        "name": "CometVisuClient",
-        "summary": "CometVisu-Client",
-        "description": "The JavaScript library that implements the CometVisu protocol.",
-        "homepage": "http://www.cometvisu.org/",
-        "license": "GPL-3.0",
-        "authors": [
-          {
-            "name": "Christian Mayer (ChristianMayer)",
-            "email": "CometVisu at ChristianMayer dot de"
-          },
-          {
-            "name": "Tobias Bräutigam (Peuter)",
-            "email": "tbraeutigam at gmail dot com"
-          }
-        ],
-        "version": "1.0.0"
-      },
-      "osparc.theme": {
-        "name": "qx-osparc-theme",
-        "summary": "theme for the osparc web ui",
-        "description": "a material design inspired dark theme for osparc",
-        "homepage": "https://github.com/ITISFoundation/qx-osparc-theme",
-        "license": "MIT license",
-        "authors": [
-          {
-            "name": "Tobias Oetiker (oetiker)",
-            "email": "tobi@itis.swiss"
-          }
-        ],
-        "version": "0.4.13"
-      },
-      "iconfont.material": {
-        "name": "qx-iconfont-material",
-        "summary": "theme for the osparc web ui",
-        "description": "a material design ispired dark theme for osparc",
-        "homepage": "https://github.com/ITISFoundation/qx-osparc-theme",
-        "license": "MIT license",
-        "authors": [
-          {
-            "name": "Tobias Oetiker (oetiker)",
-            "email": "tobi@itis.ethz.ch"
-          }
-        ],
-        "version": "0.1.4"
-      },
-      "dialog": {
-        "name": "Dialog",
-        "summary": "Dialog Contribution",
-        "description": "The dialog package provides many often-used widgets required in user interaction, such as alert, confirm, prompt, and others that simplify the web developer's daily work.",
-        "homepage": "https://github.com/cboulanger/qx-contrib-Dialog",
-        "license": "LGPL/EPL",
-        "authors": [
-          {
-            "name": "Christian Boulanger (cboulanger)",
-            "email": "info@bibliograph.org"
-          }
-        ],
-        "version": "2.1.1"
-      },
-      "com.zenesis.qx.upload": {
-        "name": "UploadMgr",
-        "summary": "Uploader widget",
-        "description": "Library for uploading files, with progress feedback and doesn't block UI",
-        "homepage": "http://www.zenesis.com/",
-        "license": "LGPL and EPL (see http://qooxdoo.org)",
-        "authors": [
-          {
-            "name": "John Spackman",
-            "email": "john.spackman@zenesis.com"
-          }
-        ],
-        "version": "1.0.4",
-        "qooxdoo-range": "1.5 - 5.9 || >6.0.0-alpha"
-      }
-    },
-    "true": true,
-    "qx.allowUrlSettings": false,
-    "qx.allowUrlVariants": false,
-    "qx.debug.property.level": 0,
-    "qx.debug": false,
-    "qx.debug.ui.queue": true,
-    "qx.debug.touchpad.detection": false,
-    "qx.aspects": false,
-    "qx.dynlocale": true,
-    "qx.dyntheme": true,
-    "qx.blankpage": "qx/static/blank.html",
-    "qx.debug.databinding": false,
-    "qx.debug.dispose": false,
-    "qx.optimization.basecalls": false,
-    "qx.optimization.comments": false,
-    "qx.optimization.privates": false,
-    "qx.optimization.strings": false,
-    "qx.optimization.variables": false,
-    "qx.optimization.variants": false,
-    "module.databinding": true,
-    "module.logger": true,
-    "module.property": true,
-    "module.events": true,
-    "qx.nativeScrollBars": false,
-    "qx.automaticMemoryManagement": true,
-    "qx.promise": false,
-    "qx.promise.warnings": true,
-    "qx.promise.longStackTraces": true,
-    "qx.compilerVersion": "1.0.0-beta.20200326-1746",
-    "cv.version": "stable",
-    "cv.xhr": "qx",
-    "cv.testMode": "resource/demo/media/demo_testmode_data.json",
-    "cv.build": "build",
-    "cv.sentry": true,
-    "qx.globalErrorHandling": true,
-    "qx.headless": false
-  },
-  "Libinfo": {
-    "__out__": {
-      "sourceUri": ""
-    },
-    "cv": {
-      "sourceUri": ".",
-      "resourceUri": "../resource"
-    },
-    "cv.io": {
-      "sourceUri": ".",
-      "resourceUri": "../resource"
-    },
-    "qxl.versionlabel": {
-      "sourceUri": ".",
-      "resourceUri": "../resource"
-    },
-    "osparc.theme": {
-      "sourceUri": ".",
-      "resourceUri": "../resource"
-    },
-    "dialog": {
-      "sourceUri": ".",
-      "resourceUri": "../resource"
-    },
-    "qxl.apiviewer": {
-      "sourceUri": ".",
-      "resourceUri": "../resource"
-    },
-    "com.zenesis.qx.upload": {
-      "sourceUri": ".",
-      "resourceUri": "../resource"
-    },
-    "iconfont.material": {
-      "sourceUri": ".",
-      "resourceUri": "../resource"
-    },
-    "qx": {
-      "sourceUri": ".",
-      "resourceUri": "../resource"
-    }
-  },
-  "UrisBefore": [
-    "cv:libs/EventRecorder.js",
-    "cv:libs/sprintf.js",
-    "cv:libs/jquery.js",
-    "cv:libs/strftime.js",
-    "cv:libs/svg4everybody.js",
-    "cv:libs/favico.js",
-    "cv:libs/inobounce.min.js"
+  "appClass": "cv.Application",
+  "libraries": [
+    "qx",
+    "cv",
+    "cv.io",
+    "osparc.theme",
+    "iconfont.material",
+    "dialog",
+    "com.zenesis.qx.upload"
   ],
-  "CssBefore": [],
-  "Assets": [
-    "cometvisu_management.css",
-    "config/hidden.php",
-    "config/visu_config.xml",
-    "demo/floorplan_demo.xml",
-    "demo/visu_config_2d3d.xml",
-    "demo/visu_config_demo.xml",
-    "demo/visu_config_demo_flat.xml",
-    "demo/visu_config_demo_testmode.xml",
-    "demo/visu_config_demorss.xml",
-    "demo/visu_config_empty.xml",
-    "demo/visu_config_gauge.xml",
-    "demo/visu_config_metal.xml",
-    "demo/visu_config_responsive.xml",
-    "demo/media/arrow.png",
-    "demo/media/demo_2d_backdrop_floorplan.png",
-    "demo/media/demo_2d_backdrop_floorplan_inkscape.svg",
-    "demo/media/demo_2d_backdrop_floorplan_viewbox.svg",
-    "demo/media/demo_2d_backdrop_nikolaushaus.png",
-    "demo/media/demo_2d_backdrop_nikolaushaus.svg",
-    "demo/media/demo_2d_backdrop_red_pot.js",
-    "demo/media/demo_2d_backdrop_red_pot.png",
-    "demo/media/demo_2d_backdrop_red_pot.svg",
-    "demo/media/demo_flat_circuit.svg",
-    "demo/media/demo_flat_floorplan.png",
-    "demo/media/demo_flat_floorplan.svg",
-    "demo/media/demo_testmode_data.json",
-    "demo/media/rollo.svg",
-    "demo/media/testmode.css",
-    "demo/media/testmode.js",
-    "designs/design_preview.html",
-    "designs/designglobals.css",
-    "designs/alaska/basic.css",
-    "designs/alaska/colors.css",
-    "designs/alaska/custom.css",
-    "designs/alaska/design_setup.js",
-    "designs/alaska/mobile.css",
-    "designs/alaska_slim/basic.css",
-    "designs/alaska_slim/colors.css",
-    "designs/alaska_slim/custom.css",
-    "designs/alaska_slim/design_setup.js",
-    "designs/alaska_slim/mobile.css",
-    "designs/discreet/basic.css",
-    "designs/discreet/custom.css",
-    "designs/discreet/design_setup.js",
-    "designs/discreet/mobile.css",
-    "designs/discreet_sand/basic.css",
-    "designs/discreet_sand/custom.css",
-    "designs/discreet_sand/design_setup.js",
-    "designs/discreet_sand/mobile.css",
-    "designs/discreet_slim/basic.css",
-    "designs/discreet_slim/custom.css",
-    "designs/discreet_slim/design_setup.js",
-    "designs/discreet_slim/mobile.css",
-    "designs/metal/basic.css",
-    "designs/metal/custom.css",
-    "designs/metal/design_setup.js",
-    "designs/metal/mobile.css",
-    "designs/pitchblack/README",
-    "designs/pitchblack/basic.css",
-    "designs/pitchblack/custom.css",
-    "designs/pitchblack/design_setup.js",
-    "designs/pitchblack/mobile.css",
-    "designs/planet/basic.css",
-    "designs/planet/custom.css",
-    "designs/planet/design_setup.js",
-    "designs/planet/mobile.css",
-    "designs/pure/basic.css",
-    "designs/pure/custom.css",
-    "designs/pure/design_setup.js",
-    "designs/pure/mobile.css",
-    "designs/alaska/fonts/LICENSE.txt",
-    "designs/alaska/fonts/Tuffy.ttf",
-    "designs/alaska/fonts/Tuffy_Bold.ttf",
-    "designs/discreet/fonts/AUTHORS",
-    "designs/discreet/fonts/COPYING",
-    "designs/discreet/fonts/ChangeLog",
-    "designs/discreet/fonts/License.txt",
-    "designs/discreet/fonts/README",
-    "designs/discreet/fonts/TODO",
-    "designs/discreet/fonts/liberationsans-bold.ttf",
-    "designs/discreet/fonts/liberationsans-regular.ttf",
-    "designs/discreet/images/button_bg.png",
-    "designs/discreet/images/dot_green.png",
-    "designs/discreet/images/dot_red.png",
-    "designs/discreet/images/gradient.png",
-    "designs/discreet/images/head_bg.png",
-    "designs/discreet/images/hr_bg.png",
-    "designs/discreet_sand/fonts/AUTHORS",
-    "designs/discreet_sand/fonts/COPYING",
-    "designs/discreet_sand/fonts/ChangeLog",
-    "designs/discreet_sand/fonts/License.txt",
-    "designs/discreet_sand/fonts/README",
-    "designs/discreet_sand/fonts/TODO",
-    "designs/discreet_sand/fonts/liberationsans-bold.ttf",
-    "designs/discreet_sand/fonts/liberationsans-regular.ttf",
-    "designs/discreet_sand/images/button_bg.png",
-    "designs/discreet_sand/images/dot_green.png",
-    "designs/discreet_sand/images/dot_red.png",
-    "designs/discreet_sand/images/gradient.png",
-    "designs/discreet_sand/images/hr_bg.png",
-    "designs/discreet_sand/images/nav_bg.png",
-    "designs/discreet_slim/fonts/AUTHORS",
-    "designs/discreet_slim/fonts/COPYING",
-    "designs/discreet_slim/fonts/ChangeLog",
-    "designs/discreet_slim/fonts/License.txt",
-    "designs/discreet_slim/fonts/README",
-    "designs/discreet_slim/fonts/TODO",
-    "designs/discreet_slim/fonts/liberationsans-bold.ttf",
-    "designs/discreet_slim/fonts/liberationsans-regular.ttf",
-    "designs/discreet_slim/images/button_bg.png",
-    "designs/discreet_slim/images/dot_green.png",
-    "designs/discreet_slim/images/dot_red.png",
-    "designs/discreet_slim/images/gradient.png",
-    "designs/discreet_slim/images/head_bg.png",
-    "designs/discreet_slim/images/hr_bg.png",
-    "designs/metal/fonts/Dosis-Medium.ttf",
-    "designs/metal/fonts/FONTLOG.txt",
-    "designs/metal/fonts/OFL.txt",
-    "designs/metal/images/active_page.png",
-    "designs/metal/images/active_page24.png",
-    "designs/metal/images/audio_play.png",
-    "designs/metal/images/button_bg.png",
-    "designs/metal/images/dot_green.png",
-    "designs/metal/images/dot_grey.png",
-    "designs/metal/images/dot_orange.png",
-    "designs/metal/images/dot_red.png",
-    "designs/metal/images/dot_white.png",
-    "designs/metal/images/gradient.png",
-    "designs/metal/images/head_bg.png",
-    "designs/metal/images/hr_bg.png",
-    "designs/pitchblack/images/fenster_einfach_auf.png",
-    "designs/pitchblack/images/fenster_einfach_zu.png",
-    "designs/pitchblack/images/fenster_zweifach_auf.png",
-    "designs/pitchblack/images/fenster_zweifach_linksauf.png",
-    "designs/pitchblack/images/fenster_zweifach_rechtsauf.png",
-    "designs/pitchblack/images/fenster_zweifach_zu.png",
-    "designs/pitchblack/images/jal_down.png",
-    "designs/pitchblack/images/jal_stop.png",
-    "designs/pitchblack/images/jal_up.png",
-    "designs/pitchblack/images/licht-an.png",
-    "designs/pitchblack/images/licht-aus.png",
-    "designs/planet/fonts/OSP/OSP-DIN.ttf",
-    "designs/planet/fonts/ubuntu-font-family/UbuntuMono-B.ttf",
-    "designs/planet/fonts/ubuntu-font-family/UbuntuMono-R.ttf",
-    "icon/COPYING",
-    "icon/CometVisu_blue.png",
-    "icon/CometVisu_grey.png",
-    "icon/CometVisu_orange.png",
-    "icon/LICENCE.knx-uf-iconset",
-    "icon/comet_112_ff8000.png",
-    "icon/comet_128_000000.png",
-    "icon/comet_128_00ddff.png",
-    "icon/comet_128_00ff11.png",
-    "icon/comet_128_d00055.png",
-    "icon/comet_128_ff0000.png",
-    "icon/comet_128_ff8000.png",
-    "icon/comet_128_ffffff.png",
-    "icon/comet_16_000000.png",
-    "icon/comet_16_00ddff.png",
-    "icon/comet_16_00ff11.png",
-    "icon/comet_16_d00055.png",
-    "icon/comet_16_ff0000.png",
-    "icon/comet_16_ff8000.png",
-    "icon/comet_16_ffffff.png",
-    "icon/comet_16x16_000000.png",
-    "icon/comet_16x16_ff0000.png",
-    "icon/comet_16x16_ff8000.png",
-    "icon/comet_32_000000.png",
-    "icon/comet_32_00ddff.png",
-    "icon/comet_32_00ff11.png",
-    "icon/comet_32_d00055.png",
-    "icon/comet_32_ff0000.png",
-    "icon/comet_32_ff8000.png",
-    "icon/comet_32_ffffff.png",
-    "icon/comet_50_ff8000.png",
-    "icon/comet_50x50_ff8000.jpg",
-    "icon/comet_50x50_ff8000.png",
-    "icon/comet_512_ff8000.jpg.png",
-    "icon/comet_512_ff8000.png",
-    "icon/comet_64_000000.png",
-    "icon/comet_64_00ddff.png",
-    "icon/comet_64_00ff11.png",
-    "icon/comet_64_d00055.png",
-    "icon/comet_64_ff0000.png",
-    "icon/comet_64_ff8000.png",
-    "icon/comet_64_ffffff.png",
-    "icon/comet_chrome_app_icon_128x128.png",
-    "icon/comet_icon_128x128_ff8000.png",
-    "icon/comet_icon_256x256_ff8000.png",
-    "icon/comet_icon_512_ff8000.png",
-    "icon/comet_icon_512x512_ff8000.png",
-    "icon/comet_opt.svg",
-    "icon/comet_opt_icon.svg",
-    "icon/comet_webapp_icon.png",
-    "icon/comet_webapp_icon_114.png",
-    "icon/comet_webapp_icon_120.png",
-    "icon/comet_webapp_icon_144.png",
-    "icon/comet_webapp_icon_152.png",
-    "icon/comet_webapp_icon_167.png",
-    "icon/comet_webapp_icon_180.png",
-    "icon/comet_webapp_icon_76.png",
-    "icon/comet_webapp_icon_android_114.png",
-    "icon/comet_webapp_icon_android_120.png",
-    "icon/comet_webapp_icon_android_128.png",
-    "icon/comet_webapp_icon_android_144.png",
-    "icon/comet_webapp_icon_android_152.png",
-    "icon/comet_webapp_icon_android_16.png",
-    "icon/comet_webapp_icon_android_192.png",
-    "icon/comet_webapp_icon_android_32.png",
-    "icon/comet_webapp_icon_android_36.png",
-    "icon/comet_webapp_icon_android_48.png",
-    "icon/comet_webapp_icon_android_512.png",
-    "icon/comet_webapp_icon_android_57.png",
-    "icon/comet_webapp_icon_android_72.png",
-    "icon/comet_webapp_icon_android_78.png",
-    "icon/comet_webapp_icon_android_96.png",
-    "icon/cometvisu_icon_opt.svg",
-    "icon/cometvisu_icon_raw.svg",
-    "icon/iconlist.html",
-    "icon/knx-uf-iconset.svg",
-    "libs/EventRecorder.js",
-    "libs/favico.js",
-    "libs/inobounce.min.js",
-    "libs/jquery.js",
-    "libs/sprintf.js",
-    "libs/strftime.js",
-    "libs/svg4everybody.js",
-    "manager/crc32.js",
-    "manager/worker.js",
-    "manager/xml.js",
-    "manager/xmllint.js",
-    "manager/completion-libs/qooxdoo.d.ts",
-    "plugins/calendarlist/calendarlist.php",
-    "plugins/clock/clock_pure.svg",
-    "plugins/colorchooser/farbtastic/farbtastic.css",
-    "plugins/colorchooser/farbtastic/farbtastic.js",
-    "plugins/colorchooser/farbtastic/marker.png",
-    "plugins/colorchooser/farbtastic/mask.png",
-    "plugins/colorchooser/farbtastic/wheel.png",
-    "plugins/diagram/dep/flot/jquery.flot.axislabels.js",
-    "plugins/diagram/dep/flot/jquery.flot.canvas.min.js",
-    "plugins/diagram/dep/flot/jquery.flot.min.js",
-    "plugins/diagram/dep/flot/jquery.flot.navigate.min.js",
-    "plugins/diagram/dep/flot/jquery.flot.resize.min.js",
-    "plugins/diagram/dep/flot/jquery.flot.time.min.js",
-    "plugins/diagram/dep/flot/jquery.flot.tooltip.min.js",
-    "plugins/diagram/dep/flot/jquery.flot.touch.min.js",
-    "plugins/gauge/dep/steelseries.js",
-    "plugins/gauge/dep/tween.js",
-    "plugins/gauge/gauge.css",
-    "plugins/mobilemenu/mobilemenu.css",
-    "plugins/openweathermap/owm_basic_style.css",
-    "plugins/openweathermap/owm_core.js",
-    "plugins/openweathermap/owm_weathericon.css",
-    "plugins/rss/dep/zrssfeed/jquery.zrssfeed.js",
-    "plugins/rsslog/rsslog.css",
-    "plugins/strftime/strftime.css",
-    "plugins/svg/rollo.svg",
-    "plugins/upnpcontroller/mute.php",
-    "plugins/upnpcontroller/next.php",
-    "plugins/upnpcontroller/pause.php",
-    "plugins/upnpcontroller/play.php",
-    "plugins/upnpcontroller/playlists.php",
-    "plugins/upnpcontroller/prev.php",
-    "plugins/upnpcontroller/status.php",
-    "plugins/upnpcontroller/upnpcontroller.css",
-    "plugins/upnpcontroller/upnpctrl_util.php",
-    "plugins/upnpcontroller/volume.php",
-    "visu_config.xsd",
-    "iconfont/material/MaterialIcons-Regular.eot",
-    "iconfont/material/MaterialIcons-Regular.ttf",
-    "iconfont/material/MaterialIcons-Regular.woff",
-    "iconfont/material/MaterialIcons-Regular.woff2",
-    "osparc/theme/font/LICENSE.txt",
-    "osparc/theme/font/README-opensans.txt",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700.eot",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700.svg",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700.ttf",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700.woff",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700.woff2",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700italic.eot",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700italic.svg",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700italic.ttf",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700italic.woff",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700italic.woff2",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-italic.eot",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-italic.svg",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-italic.ttf",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-italic.woff",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-italic.woff2",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-regular.eot",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-regular.svg",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-regular.ttf",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-regular.woff",
-    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-regular.woff2",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-700.eot",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-700.svg",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-700.ttf",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-700.woff",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-700.woff2",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-700italic.eot",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-700italic.svg",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-700italic.ttf",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-700italic.woff",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-700italic.woff2",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-italic.eot",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-italic.svg",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-italic.ttf",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-italic.woff",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-italic.woff2",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-regular.svg",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff",
-    "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2",
-    "qx/decoration/Simple/arrows/down-invert.gif",
-    "qx/decoration/Simple/arrows/down-small.gif",
-    "qx/decoration/Simple/arrows/down.gif",
-    "qx/decoration/Simple/arrows/forward.gif",
-    "qx/decoration/Simple/arrows/left-invert.gif",
-    "qx/decoration/Simple/arrows/left.gif",
-    "qx/decoration/Simple/arrows/rewind.gif",
-    "qx/decoration/Simple/arrows/right-invert.gif",
-    "qx/decoration/Simple/arrows/right.gif",
-    "qx/decoration/Simple/arrows/up-invert.gif",
-    "qx/decoration/Simple/arrows/up-small.gif",
-    "qx/decoration/Simple/arrows/up.gif",
-    "qx/decoration/Simple/checkbox/checked-disabled.png",
-    "qx/decoration/Simple/checkbox/checked.png",
-    "qx/decoration/Simple/checkbox/undetermined-disabled.png",
-    "qx/decoration/Simple/checkbox/undetermined.png",
-    "qx/decoration/Simple/colorselector/brightness-field.png",
-    "qx/decoration/Simple/colorselector/brightness-handle.gif",
-    "qx/decoration/Simple/colorselector/huesaturation-field.jpg",
-    "qx/decoration/Simple/colorselector/huesaturation-handle.gif",
-    "qx/decoration/Simple/cursors/alias.gif",
-    "qx/decoration/Simple/cursors/copy.gif",
-    "qx/decoration/Simple/cursors/move.gif",
-    "qx/decoration/Simple/cursors/nodrop.gif",
-    "qx/decoration/Simple/menu/checkbox-invert.gif",
-    "qx/decoration/Simple/menu/checkbox.gif",
-    "qx/decoration/Simple/menu/radiobutton-invert.gif",
-    "qx/decoration/Simple/menu/radiobutton.gif",
-    "qx/decoration/Simple/splitpane/knob-horizontal.png",
-    "qx/decoration/Simple/splitpane/knob-vertical.png",
-    "qx/decoration/Simple/table/ascending-invert.png",
-    "qx/decoration/Simple/table/ascending.png",
-    "qx/decoration/Simple/table/boolean-false.png",
-    "qx/decoration/Simple/table/boolean-true.png",
-    "qx/decoration/Simple/table/descending-invert.png",
-    "qx/decoration/Simple/table/descending.png",
-    "qx/decoration/Simple/table/select-column-order.png",
-    "qx/decoration/Simple/tabview/close.gif",
-    "qx/decoration/Simple/tree/minus.gif",
-    "qx/decoration/Simple/tree/plus.gif",
-    "qx/decoration/Simple/treevirtual/cross.gif",
-    "qx/decoration/Simple/treevirtual/cross_minus.gif",
-    "qx/decoration/Simple/treevirtual/cross_plus.gif",
-    "qx/decoration/Simple/treevirtual/end.gif",
-    "qx/decoration/Simple/treevirtual/end_minus.gif",
-    "qx/decoration/Simple/treevirtual/end_plus.gif",
-    "qx/decoration/Simple/treevirtual/line.gif",
-    "qx/decoration/Simple/treevirtual/only_minus.gif",
-    "qx/decoration/Simple/treevirtual/only_plus.gif",
-    "qx/decoration/Simple/treevirtual/start.gif",
-    "qx/decoration/Simple/treevirtual/start_minus.gif",
-    "qx/decoration/Simple/treevirtual/start_plus.gif",
-    "qx/decoration/Simple/window/close-white.gif",
-    "qx/decoration/Simple/window/close.gif",
-    "qx/decoration/Simple/window/maximize-white.gif",
-    "qx/decoration/Simple/window/maximize.gif",
-    "qx/decoration/Simple/window/minimize-white.gif",
-    "qx/decoration/Simple/window/minimize.gif",
-    "qx/decoration/Simple/window/restore-white.gif",
-    "qx/decoration/Simple/window/restore.gif",
-    "qx/icon/Tango/16/actions/dialog-cancel.png",
-    "qx/icon/Tango/16/actions/dialog-ok.png",
-    "qx/icon/Tango/16/actions/view-refresh.png",
-    "qx/icon/Tango/16/actions/window-close.png",
-    "qx/icon/Tango/16/apps/office-calendar.png",
-    "qx/icon/Tango/16/mimetypes/text-plain.png",
-    "qx/icon/Tango/16/places/folder-open.png",
-    "qx/icon/Tango/16/places/folder.png",
-    "qx/static/blank.gif",
-    "qx/static/blank.html",
-    "qx/static/blank.png"
-  ],
-  "Parts": [
+  "parts": [
     {
-      "name": "boot",
-      "include": [
-        "cv.Application",
-        "cv.transforms.*",
-        "cv.parser.widgets.*",
-        "cv.core.notifications.actions.*"
-      ],
-      "exclude": [],
       "classes": [
         "qx.Bootstrap",
         "qx.core.ObjectRegistry",
@@ -1250,16 +610,17 @@
         "qx.bom.element.Dataset",
         "qx.core.Wrapper"
       ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
-    },
-    {
-      "name": "structure-pure",
       "include": [
-        "cv.ui.structure.pure.*"
+        "cv.Application",
+        "cv.transforms.*",
+        "cv.parser.widgets.*",
+        "cv.core.notifications.actions.*"
       ],
       "exclude": [],
+      "minify": false,
+      "name": "boot"
+    },
+    {
       "classes": [
         "cv.ui.structure.pure.Audio",
         "cv.ui.structure.pure.Break",
@@ -1294,16 +655,14 @@
         "cv.ui.structure.pure.WgPluginInfo",
         "cv.ui.structure.pure.WidgetInfoAction"
       ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
-    },
-    {
-      "name": "manager",
       "include": [
-        "cv.ui.manager.*"
+        "cv.ui.structure.pure.*"
       ],
       "exclude": [],
+      "minify": false,
+      "name": "structure-pure"
+    },
+    {
       "classes": [
         "cv.ui.manager.IActionHandler",
         "cv.ui.manager.control.MFileEventHandler",
@@ -1354,248 +713,822 @@
         "cv.ui.manager.model.config.Option",
         "cv.ui.manager.form.OptionListItem"
       ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
-    },
-    {
-      "name": "plugin-diagram",
       "include": [
-        "cv.plugins.diagram.*"
+        "cv.ui.manager.*"
       ],
       "exclude": [],
+      "minify": false,
+      "name": "manager"
+    },
+    {
       "classes": [
         "cv.plugins.diagram.AbstractDiagram",
         "cv.plugins.diagram.Diagram",
         "cv.plugins.diagram.Info"
       ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "include": [
+        "cv.plugins.diagram.*"
+      ],
+      "exclude": [],
+      "minify": false,
+      "name": "plugin-diagram"
     },
     {
-      "name": "plugin-colorchooser",
+      "classes": [
+        "cv.plugins.ColorChooser"
+      ],
       "include": [
         "cv.plugins.ColorChooser"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.ColorChooser"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-colorchooser"
     },
     {
-      "name": "plugin-calendarlist",
+      "classes": [
+        "cv.plugins.CalendarList"
+      ],
       "include": [
         "cv.plugins.CalendarList"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.CalendarList"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-calendarlist"
     },
     {
-      "name": "plugin-clock",
+      "classes": [
+        "cv.plugins.Clock"
+      ],
       "include": [
         "cv.plugins.Clock"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.Clock"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-clock"
     },
     {
-      "name": "plugin-gauge",
+      "classes": [
+        "cv.plugins.Gauge"
+      ],
       "include": [
         "cv.plugins.Gauge"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.Gauge"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-gauge"
     },
     {
-      "name": "plugin-link",
+      "classes": [
+        "cv.plugins.Link"
+      ],
       "include": [
         "cv.plugins.Link"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.Link"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-link"
     },
     {
-      "name": "plugin-mobilemenu",
+      "classes": [
+        "cv.plugins.MobileMenu"
+      ],
       "include": [
         "cv.plugins.MobileMenu"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.MobileMenu"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-mobilemenu"
     },
     {
-      "name": "plugin-powerspectrum",
+      "classes": [
+        "cv.plugins.PowerSpectrum"
+      ],
       "include": [
         "cv.plugins.PowerSpectrum"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.PowerSpectrum"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-powerspectrum"
     },
     {
-      "name": "plugin-openweathermap",
+      "classes": [
+        "cv.plugins.OpenweatherMap"
+      ],
       "include": [
         "cv.plugins.OpenweatherMap"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.OpenweatherMap"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-openweathermap"
     },
     {
-      "name": "plugin-rss",
+      "classes": [
+        "cv.plugins.Rss"
+      ],
       "include": [
         "cv.plugins.Rss"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.Rss"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-rss"
     },
     {
-      "name": "plugin-rsslog",
+      "classes": [
+        "cv.plugins.RssLog"
+      ],
       "include": [
         "cv.plugins.RssLog"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.RssLog"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-rsslog"
     },
     {
-      "name": "plugin-strftime",
+      "classes": [
+        "cv.plugins.Strftime"
+      ],
       "include": [
         "cv.plugins.Strftime"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.Strftime"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-strftime"
     },
     {
-      "name": "plugin-speech",
+      "classes": [
+        "cv.plugins.Speech"
+      ],
       "include": [
         "cv.plugins.Speech"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.Speech"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-speech"
     },
     {
-      "name": "plugin-timeout",
+      "classes": [
+        "cv.plugins.Timeout"
+      ],
       "include": [
         "cv.plugins.Timeout"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.Timeout"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-timeout"
     },
     {
-      "name": "plugin-tr064",
+      "classes": [
+        "cv.plugins.tr064.CallList"
+      ],
       "include": [
         "cv.plugins.tr064.*"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.tr064.CallList"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-tr064"
     },
     {
-      "name": "plugin-svg",
+      "classes": [
+        "cv.plugins.Svg"
+      ],
       "include": [
         "cv.plugins.Svg"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.Svg"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-svg"
     },
     {
-      "name": "plugin-upnpcontroller",
+      "classes": [
+        "cv.plugins.UpnpController"
+      ],
       "include": [
         "cv.plugins.UpnpController"
       ],
       "exclude": [],
-      "classes": [
-        "cv.plugins.UpnpController"
-      ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "minify": false,
+      "name": "plugin-upnpcontroller"
     },
     {
-      "name": "plugin-openhab",
-      "include": [
-        "cv.plugins.openhab.*",
-        "${QXTHEME}"
-      ],
-      "exclude": [],
       "classes": [
         "cv.plugins.openhab.Openhab",
         "cv.plugins.openhab.Settings",
         "cv.plugins.openhab.renderer.Single"
       ],
-      "dependsOn": [],
-      "combine": false,
-      "minify": false
+      "include": [
+        "cv.plugins.openhab.*",
+        "${QXTHEME}"
+      ],
+      "exclude": [],
+      "minify": false,
+      "name": "plugin-openhab"
     }
-  ]
+  ],
+  "resources": [
+    "cometvisu_management.css",
+    "config/hidden.php",
+    "config/visu_config.xml",
+    "demo/floorplan_demo.xml",
+    "demo/visu_config_2d3d.xml",
+    "demo/visu_config_demo.xml",
+    "demo/visu_config_demo_flat.xml",
+    "demo/visu_config_demo_testmode.xml",
+    "demo/visu_config_demorss.xml",
+    "demo/visu_config_empty.xml",
+    "demo/visu_config_gauge.xml",
+    "demo/visu_config_metal.xml",
+    "demo/visu_config_responsive.xml",
+    "demo/media/arrow.png",
+    "demo/media/demo_2d_backdrop_floorplan.png",
+    "demo/media/demo_2d_backdrop_floorplan_inkscape.svg",
+    "demo/media/demo_2d_backdrop_floorplan_viewbox.svg",
+    "demo/media/demo_2d_backdrop_nikolaushaus.png",
+    "demo/media/demo_2d_backdrop_nikolaushaus.svg",
+    "demo/media/demo_2d_backdrop_red_pot.js",
+    "demo/media/demo_2d_backdrop_red_pot.png",
+    "demo/media/demo_2d_backdrop_red_pot.svg",
+    "demo/media/demo_flat_circuit.svg",
+    "demo/media/demo_flat_floorplan.png",
+    "demo/media/demo_flat_floorplan.svg",
+    "demo/media/demo_testmode_data.json",
+    "demo/media/rollo.svg",
+    "demo/media/testmode.css",
+    "demo/media/testmode.js",
+    "designs/design_preview.html",
+    "designs/designglobals.css",
+    "designs/alaska_slim/basic.css",
+    "designs/alaska_slim/colors.css",
+    "designs/alaska_slim/custom.css",
+    "designs/alaska_slim/mobile.css",
+    "designs/alaska_slim/design_setup.js",
+    "designs/alaska/basic.css",
+    "designs/alaska/colors.css",
+    "designs/alaska/custom.css",
+    "designs/alaska/design_setup.js",
+    "designs/alaska/mobile.css",
+    "designs/discreet/basic.css",
+    "designs/discreet/custom.css",
+    "designs/discreet/design_setup.js",
+    "designs/discreet/mobile.css",
+    "designs/discreet_sand/basic.css",
+    "designs/discreet_sand/custom.css",
+    "designs/discreet_sand/design_setup.js",
+    "designs/discreet_sand/mobile.css",
+    "designs/discreet_slim/basic.css",
+    "designs/discreet_slim/custom.css",
+    "designs/discreet_slim/design_setup.js",
+    "designs/discreet_slim/mobile.css",
+    "designs/metal/basic.css",
+    "designs/metal/custom.css",
+    "designs/metal/design_setup.js",
+    "designs/metal/mobile.css",
+    "designs/pitchblack/README",
+    "designs/pitchblack/basic.css",
+    "designs/pitchblack/custom.css",
+    "designs/pitchblack/design_setup.js",
+    "designs/pitchblack/mobile.css",
+    "designs/planet/basic.css",
+    "designs/planet/custom.css",
+    "designs/planet/design_setup.js",
+    "designs/planet/mobile.css",
+    "designs/pure/basic.css",
+    "designs/pure/custom.css",
+    "designs/pure/design_setup.js",
+    "designs/pure/mobile.css",
+    "designs/alaska/fonts/LICENSE.txt",
+    "designs/alaska/fonts/Tuffy.ttf",
+    "designs/alaska/fonts/Tuffy_Bold.ttf",
+    "designs/discreet/fonts/AUTHORS",
+    "designs/discreet/fonts/COPYING",
+    "designs/discreet/fonts/ChangeLog",
+    "designs/discreet/fonts/License.txt",
+    "designs/discreet/fonts/README",
+    "designs/discreet/fonts/TODO",
+    "designs/discreet/fonts/liberationsans-bold.ttf",
+    "designs/discreet/fonts/liberationsans-regular.ttf",
+    "designs/discreet/images/button_bg.png",
+    "designs/discreet/images/dot_green.png",
+    "designs/discreet/images/dot_red.png",
+    "designs/discreet/images/gradient.png",
+    "designs/discreet/images/head_bg.png",
+    "designs/discreet/images/hr_bg.png",
+    "designs/discreet_sand/fonts/AUTHORS",
+    "designs/discreet_sand/fonts/COPYING",
+    "designs/discreet_sand/fonts/ChangeLog",
+    "designs/discreet_sand/fonts/License.txt",
+    "designs/discreet_sand/fonts/README",
+    "designs/discreet_sand/fonts/TODO",
+    "designs/discreet_sand/fonts/liberationsans-bold.ttf",
+    "designs/discreet_sand/fonts/liberationsans-regular.ttf",
+    "designs/discreet_sand/images/button_bg.png",
+    "designs/discreet_sand/images/dot_green.png",
+    "designs/discreet_sand/images/dot_red.png",
+    "designs/discreet_sand/images/gradient.png",
+    "designs/discreet_sand/images/hr_bg.png",
+    "designs/discreet_sand/images/nav_bg.png",
+    "designs/discreet_slim/fonts/AUTHORS",
+    "designs/discreet_slim/fonts/COPYING",
+    "designs/discreet_slim/fonts/ChangeLog",
+    "designs/discreet_slim/fonts/License.txt",
+    "designs/discreet_slim/fonts/README",
+    "designs/discreet_slim/fonts/TODO",
+    "designs/discreet_slim/fonts/liberationsans-bold.ttf",
+    "designs/discreet_slim/fonts/liberationsans-regular.ttf",
+    "designs/discreet_slim/images/button_bg.png",
+    "designs/discreet_slim/images/dot_green.png",
+    "designs/discreet_slim/images/dot_red.png",
+    "designs/discreet_slim/images/gradient.png",
+    "designs/discreet_slim/images/head_bg.png",
+    "designs/discreet_slim/images/hr_bg.png",
+    "designs/metal/fonts/Dosis-Medium.ttf",
+    "designs/metal/fonts/FONTLOG.txt",
+    "designs/metal/fonts/OFL.txt",
+    "designs/metal/images/active_page.png",
+    "designs/metal/images/active_page24.png",
+    "designs/metal/images/audio_play.png",
+    "designs/metal/images/button_bg.png",
+    "designs/metal/images/dot_green.png",
+    "designs/metal/images/dot_grey.png",
+    "designs/metal/images/dot_orange.png",
+    "designs/metal/images/dot_red.png",
+    "designs/metal/images/dot_white.png",
+    "designs/metal/images/gradient.png",
+    "designs/metal/images/head_bg.png",
+    "designs/metal/images/hr_bg.png",
+    "designs/pitchblack/images/fenster_einfach_auf.png",
+    "designs/pitchblack/images/fenster_einfach_zu.png",
+    "designs/pitchblack/images/fenster_zweifach_auf.png",
+    "designs/pitchblack/images/fenster_zweifach_linksauf.png",
+    "designs/pitchblack/images/fenster_zweifach_rechtsauf.png",
+    "designs/pitchblack/images/fenster_zweifach_zu.png",
+    "designs/pitchblack/images/jal_down.png",
+    "designs/pitchblack/images/jal_stop.png",
+    "designs/pitchblack/images/jal_up.png",
+    "designs/pitchblack/images/licht-an.png",
+    "designs/pitchblack/images/licht-aus.png",
+    "designs/planet/fonts/OSP/OSP-DIN.ttf",
+    "designs/planet/fonts/ubuntu-font-family/UbuntuMono-B.ttf",
+    "designs/planet/fonts/ubuntu-font-family/UbuntuMono-R.ttf",
+    "icon/COPYING",
+    "icon/CometVisu_blue.png",
+    "icon/CometVisu_grey.png",
+    "icon/CometVisu_orange.png",
+    "icon/LICENCE.knx-uf-iconset",
+    "icon/comet_112_ff8000.png",
+    "icon/comet_128_000000.png",
+    "icon/comet_128_00ddff.png",
+    "icon/comet_128_00ff11.png",
+    "icon/comet_128_d00055.png",
+    "icon/comet_128_ff0000.png",
+    "icon/comet_128_ff8000.png",
+    "icon/comet_128_ffffff.png",
+    "icon/comet_16_000000.png",
+    "icon/comet_16_00ddff.png",
+    "icon/comet_16_00ff11.png",
+    "icon/comet_16_d00055.png",
+    "icon/comet_16_ff0000.png",
+    "icon/comet_16_ff8000.png",
+    "icon/comet_16_ffffff.png",
+    "icon/comet_16x16_000000.png",
+    "icon/comet_16x16_ff0000.png",
+    "icon/comet_16x16_ff8000.png",
+    "icon/comet_32_000000.png",
+    "icon/comet_32_00ddff.png",
+    "icon/comet_32_00ff11.png",
+    "icon/comet_32_d00055.png",
+    "icon/comet_32_ff0000.png",
+    "icon/comet_32_ff8000.png",
+    "icon/comet_32_ffffff.png",
+    "icon/comet_50_ff8000.png",
+    "icon/comet_50x50_ff8000.jpg",
+    "icon/comet_50x50_ff8000.png",
+    "icon/comet_512_ff8000.jpg.png",
+    "icon/comet_512_ff8000.png",
+    "icon/comet_64_000000.png",
+    "icon/comet_64_00ddff.png",
+    "icon/comet_64_00ff11.png",
+    "icon/comet_64_d00055.png",
+    "icon/comet_64_ff0000.png",
+    "icon/comet_64_ff8000.png",
+    "icon/comet_64_ffffff.png",
+    "icon/comet_chrome_app_icon_128x128.png",
+    "icon/comet_icon_128x128_ff8000.png",
+    "icon/comet_icon_256x256_ff8000.png",
+    "icon/comet_icon_512_ff8000.png",
+    "icon/comet_icon_512x512_ff8000.png",
+    "icon/comet_opt.svg",
+    "icon/comet_opt_icon.svg",
+    "icon/comet_webapp_icon.png",
+    "icon/comet_webapp_icon_114.png",
+    "icon/comet_webapp_icon_120.png",
+    "icon/comet_webapp_icon_144.png",
+    "icon/comet_webapp_icon_152.png",
+    "icon/comet_webapp_icon_167.png",
+    "icon/comet_webapp_icon_180.png",
+    "icon/comet_webapp_icon_76.png",
+    "icon/comet_webapp_icon_android_114.png",
+    "icon/comet_webapp_icon_android_120.png",
+    "icon/comet_webapp_icon_android_128.png",
+    "icon/comet_webapp_icon_android_144.png",
+    "icon/comet_webapp_icon_android_152.png",
+    "icon/comet_webapp_icon_android_16.png",
+    "icon/comet_webapp_icon_android_192.png",
+    "icon/comet_webapp_icon_android_32.png",
+    "icon/comet_webapp_icon_android_36.png",
+    "icon/comet_webapp_icon_android_48.png",
+    "icon/comet_webapp_icon_android_512.png",
+    "icon/comet_webapp_icon_android_57.png",
+    "icon/comet_webapp_icon_android_72.png",
+    "icon/comet_webapp_icon_android_78.png",
+    "icon/comet_webapp_icon_android_96.png",
+    "icon/cometvisu_icon_opt.svg",
+    "icon/cometvisu_icon_raw.svg",
+    "icon/iconlist.html",
+    "icon/knx-uf-iconset.svg",
+    "libs/EventRecorder.js",
+    "libs/favico.js",
+    "libs/inobounce.min.js",
+    "libs/jquery.js",
+    "libs/sprintf.js",
+    "libs/strftime.js",
+    "libs/svg4everybody.js",
+    "manager/crc32.js",
+    "manager/worker.js",
+    "manager/xml.js",
+    "manager/xmllint.js",
+    "manager/completion-libs/qooxdoo.d.ts",
+    "plugins/calendarlist/calendarlist.php",
+    "plugins/clock/clock_pure.svg",
+    "plugins/colorchooser/farbtastic/farbtastic.css",
+    "plugins/colorchooser/farbtastic/farbtastic.js",
+    "plugins/colorchooser/farbtastic/marker.png",
+    "plugins/colorchooser/farbtastic/mask.png",
+    "plugins/colorchooser/farbtastic/wheel.png",
+    "plugins/diagram/dep/flot/jquery.flot.axislabels.js",
+    "plugins/diagram/dep/flot/jquery.flot.canvas.min.js",
+    "plugins/diagram/dep/flot/jquery.flot.min.js",
+    "plugins/diagram/dep/flot/jquery.flot.navigate.min.js",
+    "plugins/diagram/dep/flot/jquery.flot.resize.min.js",
+    "plugins/diagram/dep/flot/jquery.flot.time.min.js",
+    "plugins/diagram/dep/flot/jquery.flot.tooltip.min.js",
+    "plugins/diagram/dep/flot/jquery.flot.touch.min.js",
+    "plugins/gauge/dep/steelseries.js",
+    "plugins/gauge/dep/tween.js",
+    "plugins/gauge/gauge.css",
+    "plugins/mobilemenu/mobilemenu.css",
+    "plugins/openweathermap/owm_basic_style.css",
+    "plugins/openweathermap/owm_core.js",
+    "plugins/openweathermap/owm_weathericon.css",
+    "plugins/rss/dep/zrssfeed/jquery.zrssfeed.js",
+    "plugins/rsslog/rsslog.css",
+    "plugins/strftime/strftime.css",
+    "plugins/svg/rollo.svg",
+    "plugins/upnpcontroller/mute.php",
+    "plugins/upnpcontroller/next.php",
+    "plugins/upnpcontroller/pause.php",
+    "plugins/upnpcontroller/play.php",
+    "plugins/upnpcontroller/playlists.php",
+    "plugins/upnpcontroller/prev.php",
+    "plugins/upnpcontroller/status.php",
+    "plugins/upnpcontroller/upnpcontroller.css",
+    "plugins/upnpcontroller/upnpctrl_util.php",
+    "plugins/upnpcontroller/volume.php",
+    "sentry/bundle.min.js",
+    "test/l",
+    "visu_config.xsd",
+    "iconfont/material/MaterialIcons-Regular.eot",
+    "iconfont/material/MaterialIcons-Regular.ttf",
+    "iconfont/material/MaterialIcons-Regular.woff",
+    "iconfont/material/MaterialIcons-Regular.woff2",
+    "osparc/theme/font/LICENSE.txt",
+    "osparc/theme/font/README-opensans.txt",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700.eot",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700.svg",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700.ttf",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700.woff",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700.woff2",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700italic.eot",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700italic.svg",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700italic.ttf",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700italic.woff",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-700italic.woff2",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-italic.eot",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-italic.svg",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-italic.ttf",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-italic.woff",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-italic.woff2",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-regular.eot",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-regular.svg",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-regular.ttf",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-regular.woff",
+    "osparc/theme/font/roboto-mono-v6-latin_latin-ext-regular.woff2",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-700.eot",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-700.svg",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-700.ttf",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-700.woff",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-700.woff2",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-700italic.eot",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-700italic.svg",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-700italic.ttf",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-700italic.woff",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-700italic.woff2",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-italic.eot",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-italic.svg",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-italic.ttf",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-italic.woff",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-italic.woff2",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-regular.svg",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff",
+    "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2",
+    "qx/decoration/Simple/arrows/down-invert.gif",
+    "qx/decoration/Simple/arrows/down-small.gif",
+    "qx/decoration/Simple/arrows/down.gif",
+    "qx/decoration/Simple/arrows/forward.gif",
+    "qx/decoration/Simple/arrows/left-invert.gif",
+    "qx/decoration/Simple/arrows/left.gif",
+    "qx/decoration/Simple/arrows/rewind.gif",
+    "qx/decoration/Simple/arrows/right-invert.gif",
+    "qx/decoration/Simple/arrows/right.gif",
+    "qx/decoration/Simple/arrows/up-invert.gif",
+    "qx/decoration/Simple/arrows/up-small.gif",
+    "qx/decoration/Simple/arrows/up.gif",
+    "qx/decoration/Simple/checkbox/checked-disabled.png",
+    "qx/decoration/Simple/checkbox/checked.png",
+    "qx/decoration/Simple/checkbox/undetermined-disabled.png",
+    "qx/decoration/Simple/checkbox/undetermined.png",
+    "qx/decoration/Simple/colorselector/brightness-field.png",
+    "qx/decoration/Simple/colorselector/brightness-handle.gif",
+    "qx/decoration/Simple/colorselector/huesaturation-field.jpg",
+    "qx/decoration/Simple/colorselector/huesaturation-handle.gif",
+    "qx/decoration/Simple/cursors/alias.gif",
+    "qx/decoration/Simple/cursors/copy.gif",
+    "qx/decoration/Simple/cursors/move.gif",
+    "qx/decoration/Simple/cursors/nodrop.gif",
+    "qx/decoration/Simple/menu/checkbox-invert.gif",
+    "qx/decoration/Simple/menu/checkbox.gif",
+    "qx/decoration/Simple/menu/radiobutton-invert.gif",
+    "qx/decoration/Simple/menu/radiobutton.gif",
+    "qx/decoration/Simple/splitpane/knob-horizontal.png",
+    "qx/decoration/Simple/splitpane/knob-vertical.png",
+    "qx/decoration/Simple/table/ascending-invert.png",
+    "qx/decoration/Simple/table/ascending.png",
+    "qx/decoration/Simple/table/boolean-false.png",
+    "qx/decoration/Simple/table/boolean-true.png",
+    "qx/decoration/Simple/table/descending-invert.png",
+    "qx/decoration/Simple/table/descending.png",
+    "qx/decoration/Simple/table/select-column-order.png",
+    "qx/decoration/Simple/tabview/close.gif",
+    "qx/decoration/Simple/tree/minus.gif",
+    "qx/decoration/Simple/tree/plus.gif",
+    "qx/decoration/Simple/treevirtual/cross.gif",
+    "qx/decoration/Simple/treevirtual/cross_minus.gif",
+    "qx/decoration/Simple/treevirtual/cross_plus.gif",
+    "qx/decoration/Simple/treevirtual/end.gif",
+    "qx/decoration/Simple/treevirtual/end_minus.gif",
+    "qx/decoration/Simple/treevirtual/end_plus.gif",
+    "qx/decoration/Simple/treevirtual/line.gif",
+    "qx/decoration/Simple/treevirtual/only_minus.gif",
+    "qx/decoration/Simple/treevirtual/only_plus.gif",
+    "qx/decoration/Simple/treevirtual/start.gif",
+    "qx/decoration/Simple/treevirtual/start_minus.gif",
+    "qx/decoration/Simple/treevirtual/start_plus.gif",
+    "qx/decoration/Simple/window/close-white.gif",
+    "qx/decoration/Simple/window/close.gif",
+    "qx/decoration/Simple/window/maximize-white.gif",
+    "qx/decoration/Simple/window/maximize.gif",
+    "qx/decoration/Simple/window/minimize-white.gif",
+    "qx/decoration/Simple/window/minimize.gif",
+    "qx/decoration/Simple/window/restore-white.gif",
+    "qx/decoration/Simple/window/restore.gif",
+    "qx/icon/Tango/16/actions/dialog-cancel.png",
+    "qx/icon/Tango/16/actions/dialog-ok.png",
+    "qx/icon/Tango/16/actions/view-refresh.png",
+    "qx/icon/Tango/16/actions/window-close.png",
+    "qx/icon/Tango/16/apps/office-calendar.png",
+    "qx/icon/Tango/16/mimetypes/text-plain.png",
+    "qx/icon/Tango/16/places/folder-open.png",
+    "qx/icon/Tango/16/places/folder.png",
+    "qx/static/blank.gif",
+    "qx/static/blank.html",
+    "qx/static/blank.png"
+  ],
+  "locales": [
+    "en",
+    "de"
+  ],
+  "environment": {
+    "qx.application": "cv.Application",
+    "qx.revision": "",
+    "qx.theme": "cv.theme.Dark",
+    "qx.version": "6.0.0-beta",
+    "qx.libraryInfoMap": {
+      "qx": {
+        "name": "qooxdoo framework",
+        "summary": "The qooxdoo framework library",
+        "description": "This library contains the qooxdoo Javascript framework classes for website, mobile, desktop and server.",
+        "keywords": [
+          "qooxdoo",
+          "framework",
+          "widget",
+          "cross-browser",
+          "ajax"
+        ],
+        "homepage": "http://qooxdoo.org",
+        "license": "MIT",
+        "authors": [
+          {
+            "name": "Alexander Steitz (asteitz)",
+            "email": "alexander DOT steitz AT 1und1 DOT de"
+          },
+          {
+            "name": "Christopher Zündorf (czuendorf)",
+            "email": "christopher DOT zuendorf AT 1und1 DOT de"
+          },
+          {
+            "name": "Daniel Wagner (danielwagner)",
+            "email": "daniel DOT wagner AT 1und1 DOT de"
+          },
+          {
+            "name": "Derrell Lipman (derrell)",
+            "email": "derrell DOT lipman AT unwireduniverse DOT com"
+          },
+          {
+            "name": "Andreas Ecker (ecker)",
+            "email": "andreas DOT ecker AT 1und1 DOT de"
+          },
+          {
+            "name": "Christian Hagendorn (Hagendorn)",
+            "email": "christian DOT hagendorn AT 1und1 DOT de"
+          },
+          {
+            "name": "Mustafa Sak (msak)",
+            "email": "Mustafa DOT Sak AT 1und1 DOT de"
+          },
+          {
+            "name": "Thomas Herchenröder (thron7)",
+            "email": "thron7 AT users DOT sourceforge DOT net"
+          },
+          {
+            "name": "Tino Butz (tjbutz)",
+            "email": "tino DOT butz AT 1und1 DOT de"
+          },
+          {
+            "name": "Tristan Koch (trkoch)",
+            "email": "tristan DOT koch AT 1und1 DOT de"
+          },
+          {
+            "name": "Martin Wittemann (wittemann)",
+            "email": "martin DOT wittemann AT 1und1 DOT de"
+          }
+        ],
+        "version": "6.0.0-beta",
+        "qooxdoo-versions": [
+          "6.0.0-beta"
+        ],
+        "sourceViewUri": "https://github.com/qooxdoo/qooxdoo/blob/%{qxGitBranch}/framework/source/class/%{classFilePath}#L%{lineNumber}"
+      },
+      "cv": {
+        "name": "cv",
+        "summary": "CometVisu",
+        "description": "The CometVisu is an interactive, realtime, web based visualization.",
+        "homepage": "http://www.cometvisu.org/",
+        "license": "GPL-3.0",
+        "authors": [
+          {
+            "name": "Christian Mayer (ChristianMayer)",
+            "email": "CometVisu at ChristianMayer dot de"
+          },
+          {
+            "name": "Tobias Bräutigam (Peuter)",
+            "email": "tbraeutigam at gmail dot com"
+          }
+        ],
+        "version": "0.12.0-dev",
+        "sourceViewUri": "https://github.com/CometVisu/CometVisu/blob/develop/source/class/%{classFilePath}#L%{lineNumber}"
+      },
+      "cv.io": {
+        "name": "CometVisuClient",
+        "summary": "CometVisu-Client",
+        "description": "The JavaScript library that implements the CometVisu protocol.",
+        "homepage": "http://www.cometvisu.org/",
+        "license": "GPL-3.0",
+        "authors": [
+          {
+            "name": "Christian Mayer (ChristianMayer)",
+            "email": "CometVisu at ChristianMayer dot de"
+          },
+          {
+            "name": "Tobias Bräutigam (Peuter)",
+            "email": "tbraeutigam at gmail dot com"
+          }
+        ],
+        "version": "1.0.0"
+      },
+      "osparc.theme": {
+        "name": "qx-osparc-theme",
+        "summary": "theme for the osparc web ui",
+        "description": "a material design inspired dark theme for osparc",
+        "homepage": "https://github.com/ITISFoundation/qx-osparc-theme",
+        "license": "MIT license",
+        "authors": [
+          {
+            "name": "Tobias Oetiker (oetiker)",
+            "email": "tobi@itis.swiss"
+          }
+        ],
+        "version": "0.4.13"
+      },
+      "iconfont.material": {
+        "name": "qx-iconfont-material",
+        "summary": "theme for the osparc web ui",
+        "description": "a material design ispired dark theme for osparc",
+        "homepage": "https://github.com/ITISFoundation/qx-osparc-theme",
+        "license": "MIT license",
+        "authors": [
+          {
+            "name": "Tobias Oetiker (oetiker)",
+            "email": "tobi@itis.ethz.ch"
+          }
+        ],
+        "version": "0.1.4"
+      },
+      "dialog": {
+        "name": "Dialog",
+        "summary": "Dialog Contribution",
+        "description": "The dialog package provides many often-used widgets required in user interaction, such as alert, confirm, prompt, and others that simplify the web developer's daily work.",
+        "homepage": "https://github.com/cboulanger/qx-contrib-Dialog",
+        "license": "LGPL/EPL",
+        "authors": [
+          {
+            "name": "Christian Boulanger (cboulanger)",
+            "email": "info@bibliograph.org"
+          }
+        ],
+        "version": "2.1.1"
+      },
+      "com.zenesis.qx.upload": {
+        "name": "UploadMgr",
+        "summary": "Uploader widget",
+        "description": "Library for uploading files, with progress feedback and doesn't block UI",
+        "homepage": "http://www.zenesis.com/",
+        "license": "LGPL and EPL (see http://qooxdoo.org)",
+        "authors": [
+          {
+            "name": "John Spackman",
+            "email": "john.spackman@zenesis.com"
+          }
+        ],
+        "version": "1.0.4",
+        "qooxdoo-range": "1.5 - 5.9 || >6.0.0-alpha"
+      }
+    },
+    "true": true,
+    "qx.allowUrlSettings": false,
+    "qx.allowUrlVariants": false,
+    "qx.debug.property.level": 0,
+    "qx.debug": false,
+    "qx.debug.ui.queue": true,
+    "qx.debug.touchpad.detection": false,
+    "qx.aspects": false,
+    "qx.dynlocale": true,
+    "qx.dyntheme": true,
+    "qx.blankpage": "qx/static/blank.html",
+    "qx.debug.databinding": false,
+    "qx.debug.dispose": false,
+    "qx.optimization.basecalls": false,
+    "qx.optimization.comments": false,
+    "qx.optimization.privates": false,
+    "qx.optimization.strings": false,
+    "qx.optimization.variables": false,
+    "qx.optimization.variants": false,
+    "module.databinding": true,
+    "module.logger": true,
+    "module.property": true,
+    "module.events": true,
+    "qx.nativeScrollBars": false,
+    "qx.automaticMemoryManagement": true,
+    "qx.promise": false,
+    "qx.promise.warnings": true,
+    "qx.promise.longStackTraces": true,
+    "qx.compilerVersion": "1.0.0-beta.20200502-0822",
+    "cv.version": "stable",
+    "cv.xhr": "qx",
+    "cv.testMode": "resource/demo/media/demo_testmode_data.json",
+    "cv.build": "build",
+    "cv.sentry": true,
+    "qx.globalErrorHandling": true,
+    "qx.headless": false
+  },
+  "urisBefore": [
+    "../resource/libs/EventRecorder.js",
+    "../resource/libs/sprintf.js",
+    "../resource/libs/jquery.js",
+    "../resource/libs/strftime.js",
+    "../resource/libs/svg4everybody.js",
+    "../resource/libs/favico.js",
+    "../resource/libs/inobounce.min.js"
+  ],
+  "cssBefore": []
 }

@@ -22,8 +22,6 @@
  * Unit tests for imagetrigger widget
  *
  */
-var templateEngine = cv.TemplateEngine.getInstance();
-
 describe("testing a imagetrigger widget", function() {
 
   var con, spiedTimer;

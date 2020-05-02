@@ -12936,13 +12936,13 @@
             '*': {
               '*': cv.util.IconTools.svgKUF('weather_winter')
             }
-          } // Do not remove this line: Dynamic Icons End
+          }
+        } // Do not remove this line: Dynamic Icons End
 
-        }
       }
     }
   });
   cv.IconConfig.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconConfig.js.map?dt=1587971418927
+//# sourceMappingURL=IconConfig.js.map?dt=1588445474981

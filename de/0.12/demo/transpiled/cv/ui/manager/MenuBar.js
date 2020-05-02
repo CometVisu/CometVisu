@@ -348,4 +348,4 @@
   cv.ui.manager.MenuBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuBar.js.map?dt=1587971946633
+//# sourceMappingURL=MenuBar.js.map?dt=1588445990664

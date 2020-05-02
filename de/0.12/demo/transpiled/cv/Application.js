@@ -93,6 +93,8 @@
    * @asset(demo/*)
    * @asset(designs/*)
    * @asset(icon/*)
+   * @asset(sentry/bundle.min.js)
+   * @asset(test/*)
    *
    * @require(qx.bom.Html,cv.ui.PopupHandler)
    */
@@ -726,4 +728,4 @@
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1587971943468
+//# sourceMappingURL=Application.js.map?dt=1588445987490

@@ -379,4 +379,4 @@
   com.zenesis.qx.upload.UploadMgr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UploadMgr.js.map?dt=1587971418974
+//# sourceMappingURL=UploadMgr.js.map?dt=1588445475029

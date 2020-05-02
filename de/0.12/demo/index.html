@@ -40,17 +40,29 @@
       // load sentry and wait for it
       loadJS('resource/sentry/bundle.min.js', function () {
         Sentry.init({
-          dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@sentry.io/1265678',
+          dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@o178808.ingest.sentry.io/1265678',
           release: 'ReleaseNotSetYet',
           attachStacktrace: true,
-          beforeSend: function (ev) {
-            // Check if it is an exception -> Show report dialog (only in "de" or "en" language)
-            ev.exception && Sentry.showReportDialog({
-              lang: qx.locale.Manager.getInstance().getLanguage() === "de" ? qx.locale.Manager.getInstance().getLanguage() : "en"
-            });
+          beforeSend(data) {
+            var stacktrace = data.exception && data.exception.values[0].stacktrace;
+            var basePath = window.location.pathname;
+
+            if (stacktrace) {
+              if (stacktrace.frames) {
+                stacktrace.frames.forEach(function (frame) {
+                  frame.filename = frame.filename.replace(basePath, "/");
+                });
+              }
+              // Show report dialog (only in "de" or "en" language)
+              Sentry.showReportDialog({
+                eventId: data.event_id,
+                lang: qx.locale.Manager.getInstance().getLanguage() === "de" ? qx.locale.Manager.getInstance().getLanguage() : "en"
+              });
+            }
             // overwrite release by the now known value
-            ev.release = cv.Version.VERSION;
-            return ev;
+            data.release = cv.Version.REV;
+            data.environment = cv.Version.VERSION;
+            return data;
           }
         });
       })

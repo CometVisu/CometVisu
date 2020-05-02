@@ -85,4 +85,4 @@
   qx.event.type.Roll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roll.js.map?dt=1587971393717
+//# sourceMappingURL=Roll.js.map?dt=1588445449792

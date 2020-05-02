@@ -311,7 +311,7 @@
 
 
         var eventName = "on" + type.toLowerCase();
-        var supportsEvent = eventName in target;
+        var supportsEvent = (eventName in target);
 
         if (!supportsEvent) {
           supportsEvent = typeof target[eventName] == "function";
@@ -354,4 +354,4 @@
   qx.bom.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1587971383666
+//# sourceMappingURL=Event.js.map?dt=1588445439636
