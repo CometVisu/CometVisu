@@ -108,6 +108,7 @@ qx.Class.define('cv.ui.structure.pure.Switch', {
      * @return {var}
      */
     getActionValue: function () {
+      this.callUnknownFunction();
       // using == comparisons to make sure that e.g. 1 equals "1"
       return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue()); // jshint ignore:line
     }
