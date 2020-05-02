@@ -211,7 +211,6 @@ describe("testing a roundbar widget", function() {
         {transform:'DPT:5.004'}
       ]
     );
-    this.initWidget(creator);
     var actor = creator.getActor();
     var svg   = actor.querySelector('svg');
     var bar   = actor.querySelectorAll('path.indicator');
