@@ -252,7 +252,7 @@ describe("testing a roundbar widget", function() {
       expect(bar[2].getBBox().height).toBeCloseTo(200, -1);
 
       done();
-    }, 400);
+    }, 600);
   });
 
   it("should test 4 factor bboxgrow, markers and ranges", function() {

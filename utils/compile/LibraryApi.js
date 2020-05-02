@@ -13,7 +13,7 @@ qx.Class.define("cv.compile.LibraryApi", {
     async afterLibrariesLoaded() {
       const compilerApi = this.getCompilerApi()
       const command = compilerApi.getCommand();
-      if (command instanceof qx.tool.cli.commands.Compile) {
+      if (command instanceof qx.tool.cli.commands.Compile || command instanceof qx.tool.cli.commands.Deploy) {
         const config = compilerApi.getConfiguration()
         this.readEnv(config)
 
