@@ -122,7 +122,8 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
 
       let value = cv.Transform.decode(transform, data);
 
-      this.__setSliderTo(value, false);
+      // animate when visible, otherwise jump to the target value
+      this.__setSliderTo(value, !this.isVisible());
     },
 
     /**

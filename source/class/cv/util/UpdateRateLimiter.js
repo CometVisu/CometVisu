@@ -63,10 +63,10 @@ qx.Class.define('cv.util.UpdateRateLimiter',{
       check: "Number",
       init: 2
     },
-    expDampSpeed: {
-      // factor for exponential dampening
+    expDampTimeConstant: {
+      // time constant for exponential dampening
       check: "Number",
-      init: 0.1
+      init: 0.01
     },
     epsilon: {
       // a difference between current and target ratio smaller than the epsilon
@@ -112,10 +112,13 @@ qx.Class.define('cv.util.UpdateRateLimiter',{
      * @private
      */
     __animate: function (thistime, lasttime) {
-      let nextRatio =  this.__targetRatio * this.getExpDampSpeed() + this.__currentRatio * (1 - this.getExpDampSpeed());
+      let dt = (thistime - lasttime) / 1000; // in seconds
+      let maxLinearDelta =  this.getLinearRateLimit() * dt;
+      let alpha = Math.exp(-dt / this.getExpDampTimeConstant());
+      let nextRatio =  this.__targetRatio * alpha + this.__currentRatio * (1 - alpha);
       let delta = nextRatio - this.__currentRatio;
-      if (Math.abs(delta) > this.getLinearRateLimit) {
-        nextRatio = Math.sign(delta) * this.getLinearRateLimit;
+      if (Math.abs(delta) > maxLinearDelta) {
+        nextRatio = this.__currentRatio + Math.sign(delta) * maxLinearDelta;
       }
       if (Math.abs(nextRatio - this.__targetRatio) < this.getEpsilon()) {
         nextRatio = this.__targetRatio;
