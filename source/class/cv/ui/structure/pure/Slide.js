@@ -187,6 +187,12 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     __updateHandlePosition: function (ratio) {
       let element = this.getDomElement();
       let button = element.querySelector('button');
+      if (button === null) {
+        // most likely reason: the widget / DOM tree was deleted (e.g. due to
+        // browsing to a new page or during unit tests)
+        this._disposeObjects('__animator');
+        return;
+      }
       let range = element.querySelector('.ui-slider-range');
       if (this.__actorWidth === undefined || this.__buttonWidth === undefined) {
         let actor = element.querySelector('.actor');
