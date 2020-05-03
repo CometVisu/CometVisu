@@ -193,6 +193,26 @@ module.exports = function(grunt) {
 
     // make a zipfile
     compress: {
+      qxClient: {
+        options: {
+          mode: 'gzip',
+          level: 9
+        },
+        files: [{
+          src: 'client/compiled/build/qx-CometVisuClient/boot.js',
+          dest: "client/build/deploy/qxCometVisuClient-" + pkg.version+ (process.env.DEPLOY_NIGHTLY ? ("-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "")) : "" ) + ".js.gz"
+        }]
+      },
+      jqClient: {
+        options: {
+          mode: 'gzip',
+          level: 9
+        },
+        files: [{
+          src: 'client/compiled/build/jQuery-CometVisuClient/boot.js',
+          dest: "client/build/deploy/jQueryCometVisuClient-" + pkg.version+ (process.env.DEPLOY_NIGHTLY ? ("-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "")) : "" ) + ".js.gz"
+        }]
+      },
       tar: {
         options: {
           mode: 'tgz',
@@ -561,26 +581,6 @@ module.exports = function(grunt) {
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
-  grunt.registerTask("rename-client-build", function() {
-    var paths = [
-      'client/compiled/build/jQuery-CometVisuClient/cv-client.js.gz',
-      'client/compiled/build/qx-CometVisuClient/cv-client.js.gz'
-    ];
-    paths.forEach(function(p, i) {
-      var dir = path.dirname(p);
-      var file = path.basename(p);
-      if (file.indexOf(pkg.version) === -1) {
-        var newName = "-" + pkg.version;
-        if (process.env.TRAVIS_EVENT_TYPE === "cron") {
-          // nightly build with date
-          var now = new Date();
-          newName += "-" + now.toISOString().split(".")[0].replace(/[\D]/g, "");
-        }
-        fs.renameSync(p, dir + newName + ".js.gz");
-      }
-    });
-  });
-
   // custom task to fix the KNX user forum icons and add them to the iconconfig.js:
   // - replace #FFFFFF with the currentColor
   // - fix viewBox to follow the png icon version
@@ -640,7 +640,7 @@ module.exports = function(grunt) {
     'updateicons', 'shell:lint', 'clean', 'file-creator', 'buildicons', 'composer:rest:install', 'shell:build',
     'update-demo-config', 'chmod', 'shell:buildToRelease', 'compress:tar', 'compress:zip' ]);
 
-  grunt.registerTask('release-client', ['shell:buildClient', 'rename-client-build']);
+  grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
 
   grunt.registerTask('release', [ 'prompt', 'release-build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
