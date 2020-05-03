@@ -266,6 +266,18 @@ qx.Class.define('cv.Config', {
       cv.Config.startpage = req.queryKey.startpage;
     }
 
+    if (req.queryKey.reportErrors) {
+      if (window.Sentry) {
+        Sentry.configureScope(function (scope) {
+          scope.setTag('build_date', cv.Version.DATE);
+          scope.setTag('branch', cv.Version.BRANCH);
+          Object.keys(cv.Version.TAGS).forEach(function (tag) {
+            scope.setTag(tag, cv.Version.TAGS[tag]);
+          })
+        })
+      }
+    }
+
     // store for later usage
     cv.Config.request = req;
 

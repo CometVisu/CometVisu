@@ -39,7 +39,6 @@ jobs:
     - export CHROME_BIN=`pwd`/chrome/google-chrome
     - export PATH=`pwd`/firefox:`pwd`/chrome:$PATH
     - google-chrome --version
-    - utils/update_version.py
     - qx compile
     - grunt karma:travis --browser=$CV_BROWSER
     - if [ "$CV_BUILD" == "test" ] && [ "$CV_VERSION" == "stable" ] ; then grunt coveralls; fi
@@ -56,7 +55,6 @@ jobs:
     script: &2
     - sudo ./utils/travis/browser-setup.sh
     - export CHROME_BIN=`pwd`/chrome/google-chrome
-    - utils/update_version.py
     - qx compile
     - export CHROME_VERSION=$($CHROME_BIN --version | awk '{ print $3 }' | cut -d'.' -f 1,2,3)
     - export DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
@@ -82,7 +80,6 @@ jobs:
     env: CV_BUILD=docs ENCRYPTION_LABEL=4c79fec0aeb9 COMMIT_AUTHOR_EMAIL=generator@cometvisu.org CV_BROWSER=Chrome_travis CV_VERSION=stable
     script:
     - docker pull cometvisu/dev-helper
-    - utils/update_version.py
     - qx compile --t build # builds the cv for the screenshot generator
     - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
     - sudo apt-get install python3-lxml
@@ -115,7 +112,7 @@ jobs:
     if: fork = false AND type != cron
     script: skip
     before_deploy:
-    - grunt release-cv
+    - CV_TAG_RUNTIME=docker grunt release-cv
     - mv release build # move back to build because the dockerfile is expecting the build here
     deploy:
       on:

@@ -31,7 +31,16 @@ class AbstractCompileHandler {
     const data = {
       revision: revision,
       branch: branch,
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
+      tags: []
+    }
+    Object.keys(this._customSettings).forEach(key => {
+      if (key.startsWith('TAG:')) {
+        data.tags.push({name: key.substr(4).toUpperCase(), value: this._customSettings[key]})
+      }
+    })
+    if (data.tags.length > 0){
+      data.tags[data.tags.length - 1].last = true
     }
     const packageData = JSON.parse(fs.readFileSync("package.json"));
     data.version = packageData.version
@@ -43,7 +52,10 @@ qx.Class.define("cv.Version", {
     REV: "{{ revision }}",
     BRANCH: "{{ branch }}",
     VERSION: "{{ version }}",
-    DATE: "{{ date }}"
+    DATE: "{{ date }}",
+    TAGS: { {{#tags}}
+      {{ name }}: "{{value}}"{{^last}},{{/last}}{{/tags}}
+    }
   }
 });    
 `, data)
