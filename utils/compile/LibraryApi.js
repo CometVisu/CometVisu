@@ -15,9 +15,9 @@ qx.Class.define("cv.compile.LibraryApi", {
       const command = compilerApi.getCommand();
       if (command instanceof qx.tool.cli.commands.Compile || command instanceof qx.tool.cli.commands.Deploy) {
         const config = compilerApi.getConfiguration()
-        this.readEnv(config)
-
         const customSettings = {}
+        this.readEnv(config, customSettings)
+
         if (command.argv.set) {
           command.argv.set.forEach(function (kv) {
             const parts = kv.split('=')
@@ -48,20 +48,25 @@ qx.Class.define("cv.compile.LibraryApi", {
       }
     },
 
-    readEnv (config) {
+    readEnv (config, customSettings) {
       const checkEnvs = {
         CV_VERSION: 'cv.version',
         CV_TESTMODE: "cv.testMode"
       }
 
       let setVersion = false
+      const CV_ENVS = Object.keys(process.env).filter(key => key.startsWith('CV_'))
 
       // transfer environment variables
-      Object.keys(checkEnvs).forEach((name) => {
+      CV_ENVS.forEach((name) => {
         if (process.env[name]) {
-          config.environment[checkEnvs[name]] = process.env[name]
-          if (name === "CV_VERSION") {
-            setVersion = true
+          if (checkEnvs.hasOwnProperty(name)) {
+            config.environment[checkEnvs[name]] = process.env[name]
+            if (name === "CV_VERSION") {
+              setVersion = true
+            }
+          } else if (name.startsWith('CV_TAG_')) {
+            customSettings['TAG:' + name.substr(7)] = process.env[name]
           }
         }
       })

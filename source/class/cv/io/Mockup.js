@@ -77,6 +77,7 @@ qx.Class.define('cv.io.Mockup', {
   ******************************************************
   */
   members: {
+    backendName: 'mockup',
     addresses: null,
     __xhr: null,
     __sequence: null,

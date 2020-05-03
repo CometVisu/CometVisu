@@ -263,7 +263,21 @@ qx.Class.define('cv.TemplateEngine', {
       }
       this.visu.showError = this._handleClientError.bind(this);
       this.visu.user = 'demo_user'; // example for setting a user
+      var visu = this.visu;
 
+      if (cv.Config.sentryEnabled && window.Sentry) {
+        Sentry.configureScope(function (scope) {
+          scope.setTag('backend', visu.backendName);
+          var webServer = visu.getServer();
+          if (webServer) {
+            scope.setTag('server.backend', webServer);
+          }
+          if (cv.Config.configServer) {
+            scope.setTag('server.web', cv.Config.configServer);
+          }
+        })
+        visu.addListener('changedServer', this._updateClientScope, this);
+      }
       // show connection state in NotificationCenter
       this.visu.addListener("changeConnected", function(ev) {
         var message = {
@@ -284,6 +298,16 @@ qx.Class.define('cv.TemplateEngine', {
         }
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
       }, this);
+    },
+
+    _updateClientScope: function () {
+      var visu = this.visu;
+      Sentry.configureScope(function (scope) {
+        var webServer = visu.getServer();
+        if (webServer) {
+          scope.setTag('server.backend', webServer);
+        }
+      })
     },
 
     _handleClientError: function (errorCode, varargs) {

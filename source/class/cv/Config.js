@@ -160,6 +160,11 @@ qx.Class.define('cv.Config', {
     },
 
     /**
+     * Wether the error reporting with sentry is enabled or not
+     */
+    sentryEnabled: false,
+
+    /**
      * If enabled the user interaction gets logged
      */
     reporting: false,
@@ -264,6 +269,19 @@ qx.Class.define('cv.Config', {
 
     if (req.queryKey.startpage) {
       cv.Config.startpage = req.queryKey.startpage;
+    }
+
+    if (req.queryKey.reportErrors) {
+      if (window.Sentry) {
+        cv.Config.sentryEnabled = true;
+        Sentry.configureScope(function (scope) {
+          scope.setTag('build.date', cv.Version.DATE);
+          scope.setTag('build.branch', cv.Version.BRANCH);
+          Object.keys(cv.Version.TAGS).forEach(function (tag) {
+            scope.setTag(tag, cv.Version.TAGS[tag]);
+          })
+        })
+      }
     }
 
     // store for later usage

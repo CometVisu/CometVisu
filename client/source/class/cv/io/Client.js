@@ -213,7 +213,8 @@ qx.Class.define('cv.io.Client', {
      */
     server: {
       check: "String",
-      nullable: true
+      nullable: true,
+      event: 'changedServer'
     }
   },
 
