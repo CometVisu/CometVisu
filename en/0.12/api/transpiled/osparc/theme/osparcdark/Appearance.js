@@ -2244,4 +2244,4 @@
   osparc.theme.osparcdark.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1588445476913
+//# sourceMappingURL=Appearance.js.map?dt=1588501558219

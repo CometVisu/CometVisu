@@ -382,4 +382,4 @@
   cv.parser.widgets.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1588445432786
+//# sourceMappingURL=Roundbar.js.map?dt=1588501509753

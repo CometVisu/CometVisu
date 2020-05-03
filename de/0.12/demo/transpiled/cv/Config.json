@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 355,
+        "line": 373,
         "column": 3
       }
     },
@@ -599,7 +599,7 @@
       "type": "variable",
       "access": "public"
     },
-    "reporting": {
+    "sentryEnabled": {
       "location": {
         "start": {
           "line": 165,
@@ -607,6 +607,28 @@
         },
         "end": {
           "line": 165,
+          "column": 24
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Wether the error reporting with sentry is enabled or not</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "reporting": {
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4
+        },
+        "end": {
+          "line": 170,
           "column": 20
         }
       },
@@ -624,11 +646,11 @@
     "enableLogging": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 175,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 175,
           "column": 23
         }
       },
@@ -646,11 +668,11 @@
     "configServer": {
       "location": {
         "start": {
-          "line": 175,
+          "line": 180,
           "column": 4
         },
         "end": {
-          "line": 175,
+          "line": 180,
           "column": 22
         }
       },
@@ -668,11 +690,11 @@
     "initialDemoData": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 185,
           "column": 4
         },
         "end": {
-          "line": 180,
+          "line": 185,
           "column": 25
         }
       },
@@ -690,11 +712,11 @@
     "getStructure": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 192,
           "column": 4
         },
         "end": {
-          "line": 200,
+          "line": 205,
           "column": 5
         }
       },
@@ -730,11 +752,11 @@
     "guessIfProxied": {
       "location": {
         "start": {
-          "line": 207,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 217,
           "column": 5
         }
       },
@@ -752,11 +774,11 @@
     "addMapping": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 219,
           "column": 4
         },
         "end": {
-          "line": 216,
+          "line": 221,
           "column": 5
         }
       },
@@ -766,11 +788,11 @@
     "getMapping": {
       "location": {
         "start": {
-          "line": 218,
+          "line": 223,
           "column": 4
         },
         "end": {
-          "line": 220,
+          "line": 225,
           "column": 5
         }
       },
@@ -780,11 +802,11 @@
     "hasMapping": {
       "location": {
         "start": {
-          "line": 222,
+          "line": 227,
           "column": 4
         },
         "end": {
-          "line": 224,
+          "line": 229,
           "column": 5
         }
       },
@@ -794,11 +816,11 @@
     "clearMappings": {
       "location": {
         "start": {
-          "line": 226,
+          "line": 231,
           "column": 4
         },
         "end": {
-          "line": 228,
+          "line": 233,
           "column": 5
         }
       },
@@ -808,11 +830,11 @@
     "addStyling": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 235,
           "column": 4
         },
         "end": {
-          "line": 232,
+          "line": 237,
           "column": 5
         }
       },
@@ -822,11 +844,11 @@
     "getStyling": {
       "location": {
         "start": {
-          "line": 234,
+          "line": 239,
           "column": 4
         },
         "end": {
-          "line": 236,
+          "line": 241,
           "column": 5
         }
       },
@@ -836,11 +858,11 @@
     "hasStyling": {
       "location": {
         "start": {
-          "line": 238,
+          "line": 243,
           "column": 4
         },
         "end": {
-          "line": 240,
+          "line": 245,
           "column": 5
         }
       },
@@ -850,11 +872,11 @@
     "getDesign": {
       "location": {
         "start": {
-          "line": 242,
+          "line": 247,
           "column": 4
         },
         "end": {
-          "line": 244,
+          "line": 249,
           "column": 5
         }
       },
@@ -865,11 +887,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 247,
+        "line": 252,
         "column": 9
       },
       "end": {
-        "line": 354,
+        "line": 372,
         "column": 3
       }
     },

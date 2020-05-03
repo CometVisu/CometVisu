@@ -222,4 +222,4 @@
   qx.util.PropertyUtil.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PropertyUtil.js.map?dt=1588445471278
+//# sourceMappingURL=PropertyUtil.js.map?dt=1588501552093

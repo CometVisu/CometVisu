@@ -105,6 +105,7 @@
     ******************************************************
     */
     members: {
+      backendName: 'mockup',
       addresses: null,
       __xhr: null,
       __sequence: null,
@@ -338,4 +339,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1588445472505
+//# sourceMappingURL=Mockup.js.map?dt=1588501553435

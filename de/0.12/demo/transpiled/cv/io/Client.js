@@ -239,7 +239,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       server: {
         check: "String",
-        nullable: true
+        nullable: true,
+        event: 'changedServer'
       }
     },
 
@@ -714,4 +715,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1588445994084
+//# sourceMappingURL=Client.js.map?dt=1588502128339

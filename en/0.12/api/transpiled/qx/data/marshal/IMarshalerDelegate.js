@@ -161,4 +161,4 @@
   qx.data.marshal.IMarshalerDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IMarshalerDelegate.js.map?dt=1588445445549
+//# sourceMappingURL=IMarshalerDelegate.js.map?dt=1588501523680

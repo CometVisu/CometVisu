@@ -156,4 +156,4 @@
   qx.event.type.KeySequence.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=KeySequence.js.map?dt=1588445449600
+//# sourceMappingURL=KeySequence.js.map?dt=1588501528112

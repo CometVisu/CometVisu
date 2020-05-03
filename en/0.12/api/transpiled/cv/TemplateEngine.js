@@ -333,7 +333,25 @@
 
         this.visu.showError = this._handleClientError.bind(this);
         this.visu.user = 'demo_user'; // example for setting a user
-        // show connection state in NotificationCenter
+
+        var visu = this.visu;
+
+        if (cv.Config.sentryEnabled && window.Sentry) {
+          Sentry.configureScope(function (scope) {
+            scope.setTag('backend', visu.backendName);
+            var webServer = visu.getServer();
+
+            if (webServer) {
+              scope.setTag('server.backend', webServer);
+            }
+
+            if (cv.Config.configServer) {
+              scope.setTag('server.web', cv.Config.configServer);
+            }
+          });
+          visu.addListener('changedServer', this._updateClientScope, this);
+        } // show connection state in NotificationCenter
+
 
         this.visu.addListener("changeConnected", function (ev) {
           var message = {
@@ -356,6 +374,16 @@
 
           cv.core.notifications.Router.dispatchMessage(message.topic, message);
         }, this);
+      },
+      _updateClientScope: function _updateClientScope() {
+        var visu = this.visu;
+        Sentry.configureScope(function (scope) {
+          var webServer = visu.getServer();
+
+          if (webServer) {
+            scope.setTag('server.backend', webServer);
+          }
+        });
       },
       _handleClientError: function _handleClientError(errorCode, varargs) {
         varargs = Array.prototype.slice.call(arguments, 1);
@@ -917,4 +945,4 @@
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1588445472821
+//# sourceMappingURL=TemplateEngine.js.map?dt=1588501553769

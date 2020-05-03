@@ -146,4 +146,4 @@
   qx.event.type.GeoPosition.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GeoPosition.js.map?dt=1588445449556
+//# sourceMappingURL=GeoPosition.js.map?dt=1588501528067
