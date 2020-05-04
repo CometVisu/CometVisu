@@ -124,6 +124,7 @@ describe('cometvisu demo config test:', function () {
         browser.actions().mouseMove(knob, {x: 10, y:10}).mouseDown().perform();
         cvDemo.getLastWrite().then(function (lastWrite1) {
           browser.actions().mouseMove(knob, {x: 30, y:10}).mouseUp().perform();
+          browser.sleep(500);
           cvDemo.getLastWrite().then(function (lastWrite2) {
             expect(lastWrite2.value).toBeGreaterThan(lastWrite1.value);
           });
