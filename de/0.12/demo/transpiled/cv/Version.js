@@ -11,10 +11,10 @@
   qx.Class.define("cv.Version", {
     type: "static",
     statics: {
-      REV: "0c8ffdfd19e1db7bf11f9abe1364bbe702ce5983",
+      REV: "8e2bba7a456d7609f1cdc9712efae7bac5a6a936",
       BRANCH: "HEAD",
       VERSION: "0.12.0-dev",
-      DATE: "2020-05-03T10:35:17.121Z",
+      DATE: "2020-05-04T17:37:06.839Z",
       TAGS: {
         RUNTIME: "demo"
       }
@@ -23,4 +23,4 @@
   cv.Version.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Version.js.map?dt=1588502128531
+//# sourceMappingURL=Version.js.map?dt=1588613837134

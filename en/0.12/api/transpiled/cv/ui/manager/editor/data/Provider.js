@@ -329,4 +329,4 @@
   cv.ui.manager.editor.data.Provider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Provider.js.map?dt=1588501512995
+//# sourceMappingURL=Provider.js.map?dt=1588613252683
