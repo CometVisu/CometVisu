@@ -123,7 +123,7 @@ qx.Class.define('cv.Transform', {
      */
     encodeBusAndRaw: function (transformation, value) {
       if (cv.Config.testMode === true) {
-        return value;
+        return {bus: value, raw: value};
       }
       var basetrans = transformation.split('.')[0];
       var encoding = transformation in cv.Transform.registry ? cv.Transform.registry[transformation]
