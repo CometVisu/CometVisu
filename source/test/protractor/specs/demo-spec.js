@@ -123,7 +123,7 @@ describe('cometvisu demo config test:', function () {
         var knob = widget.element(by.css(".ui-slider-handle"));
         browser.actions().mouseDown(knob).perform();
         cvDemo.getLastWrite().then(function (lastWrite1) {
-          browser.mouseMove(knob, {x: 20, y:0}).mouseUp(knob).perform();
+          browser.actions().mouseMove(knob, {x: 20, y:0}).mouseUp(knob).perform();
           cvDemo.getLastWrite().then(function (lastWrite2) {
             expect(lastWrite2.value).toBeGreaterThan(lastWrite1.value);
           });
