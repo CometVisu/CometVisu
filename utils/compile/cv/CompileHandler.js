@@ -11,6 +11,7 @@ const { CvBuildTarget } = require('./BuildTarget')
 // we add them here
 const additionalResources = [
   'visu_config.xsd',
+  'hidden-schema.json',
   'cometvisu_management.css',
   'config/visu_config*.xml',
   'config/hidden.php'
@@ -38,7 +39,7 @@ class CvCompileHandler extends AbstractCompileHandler {
   onLoad() {
     super.onLoad();
     const command = this._compilerApi.getCommand();
-    if (this._config.targetType === 'build' || command instanceof qx.tool.cli.commands.Deploy) {
+    if (this._config.targetType === 'build') {// || command instanceof qx.tool.cli.commands.Deploy) {
       this._config.targets.some(target => {
         if (target.type === 'build') {
           target.targetClass = CvBuildTarget

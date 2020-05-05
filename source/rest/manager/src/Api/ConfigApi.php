@@ -32,8 +32,7 @@ class ConfigApi extends AbstractConfigApi
   }
 
   protected function dump() {
-    $out =  '
-<?php
+    $out =  '<?php
 // File for configurations that shouldn\'t be shared with the user
 $data = \'' . json_encode($this->hidden, JSON_PRETTY_PRINT) . '\';
 $hidden = json_decode($data, true);
@@ -130,6 +129,8 @@ $hidden = json_decode($data, true);
   public function saveHiddenConfig(ServerRequestInterface $request, ResponseInterface $response, array $args)
   {
     $this->hidden = $request->getParsedBody();
+    var_dump($request->getParsedBody());
+    var_dump($request->getBody());
     try {
       $this->dump();
     } catch (Exception $e) {

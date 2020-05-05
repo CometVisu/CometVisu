@@ -61,7 +61,9 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     },
 
     _onModelValueChange: function (ev) {
-      this.setContent(ev.getData());
+      if (this.getFile()) {
+        this.setContent(ev.getData());
+      }
     },
 
     // overridden
