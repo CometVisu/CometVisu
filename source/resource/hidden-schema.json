@@ -4,8 +4,8 @@
 
   "type": "object",
   "patternProperties": {
-    "^fritzbox.*": { "$ref": "#/definitions/login" },
-    "^influx.*": { "$ref": "#/definitions/login" }
+    "^fritzbox(\\..*)?$": { "$ref": "#/definitions/login" },
+    "^influx(\\..*)?$": { "$ref": "#/definitions/login" }
   },
   "additionalProperties": false,
 

@@ -245,14 +245,18 @@ qx.Class.define('cv.ui.manager.editor.Source', {
 
     save: function (callback, overrideHash) {
       if (this.getFile().getName() === 'hidden.php') {
-        this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
-          if (err) {
-            cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
-          } else {
-            cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
-            this._onSaved();
-          }
-        }, this);
+        if (!this.getFile().isValid()) {
+          cv.ui.manager.snackbar.Controller.error(this.tr('Hidden config is invalid, please correct the errors'));
+        } else {
+          this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
+            } else {
+              cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
+              this._onSaved();
+            }
+          }, this);
+        }
       } else {
         this.base(arguments, callback, overrideHash);
       }
@@ -274,6 +278,17 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           value = value.documentElement.outerHTML;
         }
         newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
+        newModel.onDidChangeDecorations(function (ev) {
+          var markers = monaco.editor.getModelMarkers({
+            owner: newModel.getModeId(),
+            resource: file.getUri()
+          }).filter(function (marker) {
+            // filter warnings and errors
+            return marker.severity >= monaco.MarkerSeverity.Warning;
+          })
+
+          file.setValid(markers.length === 0);
+        })
       }
 
       if (model !== newModel) {
