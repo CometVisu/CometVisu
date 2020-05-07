@@ -206,6 +206,15 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     },
 
     /**
+     * The validation of this files content found some warnings
+     */
+    hasWarnings: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeHasWarnings'
+    },
+
+    /**
      * Temporary content to show, e.g. for new files, when there is no 'real' file with content yet to request from the backend
      * this content should be shown
      */

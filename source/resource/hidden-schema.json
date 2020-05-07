@@ -5,10 +5,9 @@
   "type": "object",
   "patternProperties": {
     "^fritzbox(\\..*)?$": { "$ref": "#/definitions/login" },
-    "^influx(\\..*)?$": { "$ref": "#/definitions/login" }
+    "^influx(\\..*)?$": { "$ref": "#/definitions/login" },
+    "^tr064(\\..*)?$": { "$ref": "#/definitions/login" }
   },
-  "additionalProperties": false,
-
   "definitions": {
     "login": {
       "type": "object",

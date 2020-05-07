@@ -247,19 +247,30 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       if (this.getFile().getName() === 'hidden.php') {
         if (!this.getFile().isValid()) {
           cv.ui.manager.snackbar.Controller.error(this.tr('Hidden config is invalid, please correct the errors'));
-        } else {
-          this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
-            if (err) {
-              cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
-            } else {
-              cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
-              this._onSaved();
+        } else if (this.getFile().getHasWarnings()) {
+          // ask user if he really want to save a file with warnings
+          dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
+            if (confirmed) {
+              this.__saveHiddenConfig();
             }
-          }, this);
+          }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
+        } else {
+          this.__saveHiddenConfig();
         }
       } else {
         this.base(arguments, callback, overrideHash);
       }
+    },
+
+    __saveHiddenConfig: function () {
+      this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
+        if (err) {
+          cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
+        } else {
+          cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
+          this._onSaved();
+        }
+      }, this);
     },
 
     _applyContent: function(value) {
@@ -279,15 +290,21 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         }
         newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
         newModel.onDidChangeDecorations(function (ev) {
-          var markers = monaco.editor.getModelMarkers({
+          var errors = false;
+          var warnings = false;
+          monaco.editor.getModelMarkers({
             owner: newModel.getModeId(),
             resource: file.getUri()
-          }).filter(function (marker) {
-            // filter warnings and errors
-            return marker.severity >= monaco.MarkerSeverity.Warning;
-          })
-
-          file.setValid(markers.length === 0);
+          }).some(function (marker) {
+            if (marker.severity === monaco.MarkerSeverity.Warning) {
+              warnings = true;
+            } else if (marker.severity === monaco.MarkerSeverity.Error) {
+              errors = true;
+            }
+            return warnings && errors;
+          }, this);
+          file.setValid(!errors);
+          file.setHasWarnings(warnings);
         })
       }
 
