@@ -129,8 +129,6 @@ $hidden = json_decode($data, true);
   public function saveHiddenConfig(ServerRequestInterface $request, ResponseInterface $response, array $args)
   {
     $this->hidden = $request->getParsedBody();
-    var_dump($request->getParsedBody());
-    var_dump($request->getBody());
     try {
       $this->dump();
     } catch (Exception $e) {
