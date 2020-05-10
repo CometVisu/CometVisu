@@ -47,9 +47,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     COUNTER: 0,
     MONACO_EXTENSION_REGEX: null,
     SUPPORTED_FILES: function (file) {
-      if (file.getName() === 'hidden.php') {
-        return false
-      } else if (window.monaco && window.monaco.languages) {
+      if (window.monaco && window.monaco.languages) {
         if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
           // monaco has already been loaded, we can use its languages configuration to check if this file is supported
           var extensions = []
@@ -131,6 +129,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     _basePath: null,
     _workerWrapper: null,
     _currentDecorations: null,
+    _configClient: null,
 
     _initWorker: function () {
       this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
@@ -166,6 +165,27 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             },
             theme: 'vs-dark'
           });
+          var baseVersion = cv.Version.VERSION.split('-')[0];
+          var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("hidden-schema.json"));
+          xhr.set({
+            method: "GET",
+            accept: "application/json"
+          });
+          xhr.addListenerOnce("success", function (e) {
+            var req = e.getTarget();
+            var schema = req.getResponse();
+            window.monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+              validate: true,
+              allowComments: true,
+              schemas: [{
+                uri: "https://www.cometvisu.org/CometVisu/schemas/" + baseVersion + "/hidden-schema.json",
+                fileMatch: ["hidden.php"],
+                schema: schema
+              }]
+            })
+          }, this);
+          xhr.send();
+
           if (this.getFile()) {
             this._loadFile(this.getFile());
           }
@@ -208,6 +228,51 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       }
     },
 
+    _loadFromFs: function () {
+      if (this.getFile().getName() === 'hidden.php') {
+        if (!this._configClient) {
+          this._configClient = cv.io.rest.Client.getConfigClient();
+          this._configClient.addListener('getSuccess', function (ev) {
+            this.setContent(JSON.stringify(ev.getData(), null, 2));
+          }, this);
+          this._configClient.addListener('updateSuccess', this._onSaved, this);
+        }
+        this._configClient.get({section: '*', key: '*'});
+      } else {
+        this.base(arguments);
+      }
+    },
+
+    save: function (callback, overrideHash) {
+      if (this.getFile().getName() === 'hidden.php') {
+        if (!this.getFile().isValid()) {
+          cv.ui.manager.snackbar.Controller.error(this.tr('Hidden config is invalid, please correct the errors'));
+        } else if (this.getFile().getHasWarnings()) {
+          // ask user if he really want to save a file with warnings
+          dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
+            if (confirmed) {
+              this.__saveHiddenConfig();
+            }
+          }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
+        } else {
+          this.__saveHiddenConfig();
+        }
+      } else {
+        this.base(arguments, callback, overrideHash);
+      }
+    },
+
+    __saveHiddenConfig: function () {
+      this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
+        if (err) {
+          cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
+        } else {
+          cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
+          this._onSaved();
+        }
+      }, this);
+    },
+
     _applyContent: function(value) {
       var file = this.getFile();
       if (!file) {
@@ -224,6 +289,23 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           value = value.documentElement.outerHTML;
         }
         newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
+        newModel.onDidChangeDecorations(function (ev) {
+          var errors = false;
+          var warnings = false;
+          monaco.editor.getModelMarkers({
+            owner: newModel.getModeId(),
+            resource: file.getUri()
+          }).some(function (marker) {
+            if (marker.severity === monaco.MarkerSeverity.Warning) {
+              warnings = true;
+            } else if (marker.severity === monaco.MarkerSeverity.Error) {
+              errors = true;
+            }
+            return warnings && errors;
+          }, this);
+          file.setValid(!errors);
+          file.setHasWarnings(warnings);
+        })
       }
 
       if (model !== newModel) {
@@ -327,6 +409,10 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     _getLanguage: function (file) {
+      if (file.getName() === 'hidden.php') {
+        // override this setting as we are loading the hidden config from its REST endpoint as JSON
+        return 'json';
+      }
       var type = file.getName().split('.').pop();
       switch (type) {
         case 'svg':
@@ -363,6 +449,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       this._editor.dispose();
       this._editor = null;
     }
+    this._configClient = null;
     qx.ui.core.FocusHandler.getInstance().setUseTabNavigation(true);
   }
 });

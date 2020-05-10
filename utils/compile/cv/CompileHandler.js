@@ -11,6 +11,7 @@ const { CvBuildTarget } = require('./BuildTarget')
 // we add them here
 const additionalResources = [
   'visu_config.xsd',
+  'hidden-schema.json',
   'cometvisu_management.css',
   'config/visu_config*.xml',
   'config/hidden.php'

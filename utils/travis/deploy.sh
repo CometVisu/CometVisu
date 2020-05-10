@@ -102,6 +102,10 @@ grunt update-demo-config
 rm -rf out/de/$VERSION_PATH/demo
 mv compiled/build out/de/$VERSION_PATH/demo
 
+echo "copying JSON schema for hidden configuration"
+mkdir -p out/schemas/$VERSION_PATH/
+cp source/resource/hidden-schema.json out/schemas/$VERSION_PATH/
+
 # Copy demo-mode to default config
 cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
 
