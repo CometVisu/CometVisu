@@ -107,7 +107,6 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       this.__throttled = cv.util.Function.throttle(this.__onChangeValue, 250, {trailing: true}, this);
 
       this.getActor().addEventListener('pointerdown', this);
-      this.getActor().addEventListener('wheel', this);
     },
 
     _update: function (address, data) {
@@ -238,9 +237,6 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
           document.removeEventListener('pointermove', this);
           document.removeEventListener('pointerup', this);
           newRatio = (event.clientX - this.__coordMin)/this.__actorWidth;
-          break;
-
-        case 'wheel':
           break;
       }
 
