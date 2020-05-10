@@ -39,7 +39,7 @@ class CvCompileHandler extends AbstractCompileHandler {
   onLoad() {
     super.onLoad();
     const command = this._compilerApi.getCommand();
-    if (this._config.targetType === 'build') {// || command instanceof qx.tool.cli.commands.Deploy) {
+    if (this._config.targetType === 'build' || command instanceof qx.tool.cli.commands.Deploy) {
       this._config.targets.some(target => {
         if (target.type === 'build') {
           target.targetClass = CvBuildTarget
