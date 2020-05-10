@@ -18,7 +18,7 @@
         "column": 0
       },
       "end": {
-        "line": 589,
+        "line": 598,
         "column": 3
       }
     },
@@ -477,14 +477,40 @@
       "check": "Boolean",
       "defaultValue": true
     },
-    "content": {
+    "hasWarnings": {
       "location": {
         "start": {
-          "line": 212,
+          "line": 211,
           "column": 4
         },
         "end": {
           "line": 215,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The validation of this files content found some warnings</p>"
+          }
+        ]
+      },
+      "name": "hasWarnings",
+      "propertyType": "new",
+      "event": "changeHasWarnings",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "content": {
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4
+        },
+        "end": {
+          "line": 224,
           "column": 5
         }
       },
@@ -505,11 +531,11 @@
     "modified": {
       "location": {
         "start": {
-          "line": 217,
+          "line": 226,
           "column": 4
         },
         "end": {
-          "line": 221,
+          "line": 230,
           "column": 5
         }
       },
@@ -523,11 +549,11 @@
     "hasChildren": {
       "location": {
         "start": {
-          "line": 225,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 230,
+          "line": 239,
           "column": 5
         }
       },
@@ -550,11 +576,11 @@
     "name": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 241,
           "column": 4
         },
         "end": {
-          "line": 237,
+          "line": 246,
           "column": 5
         }
       },
@@ -569,11 +595,11 @@
     "type": {
       "location": {
         "start": {
-          "line": 239,
+          "line": 248,
           "column": 4
         },
         "end": {
-          "line": 244,
+          "line": 253,
           "column": 5
         }
       },
@@ -590,11 +616,11 @@
     "parentFolder": {
       "location": {
         "start": {
-          "line": 246,
+          "line": 255,
           "column": 4
         },
         "end": {
-          "line": 249,
+          "line": 258,
           "column": 5
         }
       },
@@ -607,11 +633,11 @@
     "readable": {
       "location": {
         "start": {
-          "line": 251,
+          "line": 260,
           "column": 4
         },
         "end": {
-          "line": 255,
+          "line": 264,
           "column": 5
         }
       },
@@ -625,11 +651,11 @@
     "writeable": {
       "location": {
         "start": {
-          "line": 257,
+          "line": 266,
           "column": 4
         },
         "end": {
-          "line": 261,
+          "line": 270,
           "column": 5
         }
       },
@@ -643,11 +669,11 @@
     "mounted": {
       "location": {
         "start": {
-          "line": 263,
+          "line": 272,
           "column": 4
         },
         "end": {
-          "line": 267,
+          "line": 276,
           "column": 5
         }
       },
@@ -661,11 +687,11 @@
     "trash": {
       "location": {
         "start": {
-          "line": 269,
+          "line": 278,
           "column": 4
         },
         "end": {
-          "line": 273,
+          "line": 282,
           "column": 5
         }
       },
@@ -679,11 +705,11 @@
     "inTrash": {
       "location": {
         "start": {
-          "line": 275,
+          "line": 284,
           "column": 4
         },
         "end": {
-          "line": 279,
+          "line": 288,
           "column": 5
         }
       },
@@ -715,11 +741,11 @@
     "__path": {
       "location": {
         "start": {
-          "line": 288,
+          "line": 297,
           "column": 4
         },
         "end": {
-          "line": 288,
+          "line": 297,
           "column": 16
         }
       },
@@ -729,11 +755,11 @@
     "__fullPath": {
       "location": {
         "start": {
-          "line": 289,
+          "line": 298,
           "column": 4
         },
         "end": {
-          "line": 289,
+          "line": 298,
           "column": 20
         }
       },
@@ -743,11 +769,11 @@
     "__onLoadCallback": {
       "location": {
         "start": {
-          "line": 290,
+          "line": 299,
           "column": 4
         },
         "end": {
-          "line": 290,
+          "line": 299,
           "column": 26
         }
       },
@@ -757,11 +783,11 @@
     "_toLowerCase": {
       "location": {
         "start": {
-          "line": 292,
+          "line": 301,
           "column": 4
         },
         "end": {
-          "line": 294,
+          "line": 303,
           "column": 5
         }
       },
@@ -771,11 +797,11 @@
     "isRelated": {
       "location": {
         "start": {
-          "line": 296,
+          "line": 305,
           "column": 4
         },
         "end": {
-          "line": 298,
+          "line": 307,
           "column": 5
         }
       },
@@ -785,11 +811,11 @@
     "_handleFileEvent": {
       "location": {
         "start": {
-          "line": 300,
+          "line": 309,
           "column": 4
         },
         "end": {
-          "line": 333,
+          "line": 342,
           "column": 5
         }
       },
@@ -803,11 +829,11 @@
     "_applyName": {
       "location": {
         "start": {
-          "line": 335,
+          "line": 344,
           "column": 4
         },
         "end": {
-          "line": 341,
+          "line": 350,
           "column": 5
         }
       },
@@ -820,11 +846,11 @@
     "getPath": {
       "location": {
         "start": {
-          "line": 343,
+          "line": 352,
           "column": 4
         },
         "end": {
-          "line": 354,
+          "line": 363,
           "column": 5
         }
       },
@@ -834,11 +860,11 @@
     "_onOpen": {
       "location": {
         "start": {
-          "line": 356,
+          "line": 365,
           "column": 4
         },
         "end": {
-          "line": 362,
+          "line": 371,
           "column": 5
         }
       },
@@ -851,11 +877,11 @@
     "_maintainIcon": {
       "location": {
         "start": {
-          "line": 364,
+          "line": 373,
           "column": 4
         },
         "end": {
-          "line": 378,
+          "line": 387,
           "column": 5
         }
       },
@@ -868,11 +894,11 @@
     "isConfigFile": {
       "location": {
         "start": {
-          "line": 380,
+          "line": 389,
           "column": 4
         },
         "end": {
-          "line": 382,
+          "line": 391,
           "column": 5
         }
       },
@@ -882,11 +908,11 @@
     "_applyHasChildren": {
       "location": {
         "start": {
-          "line": 384,
+          "line": 393,
           "column": 4
         },
         "end": {
-          "line": 389,
+          "line": 398,
           "column": 5
         }
       },
@@ -899,11 +925,11 @@
     "unload": {
       "location": {
         "start": {
-          "line": 391,
+          "line": 400,
           "column": 4
         },
         "end": {
-          "line": 397,
+          "line": 406,
           "column": 5
         }
       },
@@ -913,11 +939,11 @@
     "reload": {
       "location": {
         "start": {
-          "line": 399,
+          "line": 408,
           "column": 4
         },
         "end": {
-          "line": 402,
+          "line": 411,
           "column": 5
         }
       },
@@ -927,11 +953,11 @@
     "addChild": {
       "location": {
         "start": {
-          "line": 404,
+          "line": 413,
           "column": 4
         },
         "end": {
-          "line": 416,
+          "line": 425,
           "column": 5
         }
       },
@@ -941,11 +967,11 @@
     "_onGet": {
       "location": {
         "start": {
-          "line": 418,
+          "line": 427,
           "column": 4
         },
         "end": {
-          "line": 448,
+          "line": 457,
           "column": 5
         }
       },
@@ -955,11 +981,11 @@
     "_onError": {
       "location": {
         "start": {
-          "line": 450,
+          "line": 459,
           "column": 4
         },
         "end": {
-          "line": 461,
+          "line": 470,
           "column": 5
         }
       },
@@ -969,11 +995,11 @@
     "load": {
       "location": {
         "start": {
-          "line": 463,
+          "line": 472,
           "column": 4
         },
         "end": {
-          "line": 500,
+          "line": 509,
           "column": 5
         }
       },
@@ -983,11 +1009,11 @@
     "getFullPath": {
       "location": {
         "start": {
-          "line": 506,
+          "line": 515,
           "column": 4
         },
         "end": {
-          "line": 511,
+          "line": 520,
           "column": 5
         }
       },
@@ -1013,11 +1039,11 @@
     "getBusTopic": {
       "location": {
         "start": {
-          "line": 513,
+          "line": 522,
           "column": 4
         },
         "end": {
-          "line": 515,
+          "line": 524,
           "column": 5
         }
       },
@@ -1027,11 +1053,11 @@
     "getUri": {
       "location": {
         "start": {
-          "line": 522,
+          "line": 531,
           "column": 4
         },
         "end": {
-          "line": 524,
+          "line": 533,
           "column": 5
         }
       },
@@ -1057,11 +1083,11 @@
     "getServerPath": {
       "location": {
         "start": {
-          "line": 535,
+          "line": 544,
           "column": 4
         },
         "end": {
-          "line": 537,
+          "line": 546,
           "column": 5
         }
       },
@@ -1087,11 +1113,11 @@
     "sortElements": {
       "location": {
         "start": {
-          "line": 542,
+          "line": 551,
           "column": 4
         },
         "end": {
-          "line": 562,
+          "line": 571,
           "column": 5
         }
       },
@@ -1109,11 +1135,11 @@
     "openPath": {
       "location": {
         "start": {
-          "line": 564,
+          "line": 573,
           "column": 4
         },
         "end": {
-          "line": 578,
+          "line": 587,
           "column": 5
         }
       },
@@ -5470,6 +5496,96 @@
         ]
       }
     },
+    "getHasWarnings": {
+      "type": "function",
+      "name": "getHasWarnings",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hasWarnings</code>.\n\nFor further details take a look at the property definition: {@link #hasWarnings}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hasWarnings"
+          }
+        ]
+      }
+    },
+    "isHasWarnings": {
+      "type": "function",
+      "name": "isHasWarnings",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hasWarnings</code>.\n\nFor further details take a look at the property definition: {@link #hasWarnings}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hasWarnings"
+          }
+        ]
+      }
+    },
+    "setHasWarnings": {
+      "type": "function",
+      "name": "setHasWarnings",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hasWarnings</code>.\n\nFor further details take a look at the property definition: {@link #hasWarnings}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for hasWarnings"
+          }
+        ]
+      }
+    },
+    "resetHasWarnings": {
+      "type": "function",
+      "name": "resetHasWarnings",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hasWarnings</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hasWarnings}."
+          }
+        ]
+      }
+    },
     "getContent": {
       "type": "function",
       "name": "getContent",
@@ -6368,11 +6484,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 586,
+        "line": 595,
         "column": 12
       },
       "end": {
-        "line": 588,
+        "line": 597,
         "column": 3
       }
     },

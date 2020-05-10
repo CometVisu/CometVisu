@@ -231,6 +231,15 @@
       },
 
       /**
+       * The validation of this files content found some warnings
+       */
+      hasWarnings: {
+        check: 'Boolean',
+        init: false,
+        event: 'changeHasWarnings'
+      },
+
+      /**
        * Temporary content to show, e.g. for new files, when there is no 'real' file with content yet to request from the backend
        * this content should be shown
        */
@@ -617,4 +626,4 @@
   cv.ui.manager.model.FileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileItem.js.map?dt=1589123550084
+//# sourceMappingURL=FileItem.js.map?dt=1589124679839

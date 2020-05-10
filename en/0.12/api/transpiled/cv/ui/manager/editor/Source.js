@@ -28,6 +28,12 @@
       "cv.ui.manager.editor.completion.CometVisu": {},
       "qx.log.Logger": {},
       "cv.ui.manager.editor.Worker": {},
+      "cv.Version": {},
+      "qx.io.request.Xhr": {},
+      "qx.util.ResourceManager": {},
+      "cv.io.rest.Client": {},
+      "cv.ui.manager.snackbar.Controller": {},
+      "dialog.Dialog": {},
       "qx.xml.Document": {}
     }
   };
@@ -85,9 +91,7 @@
       COUNTER: 0,
       MONACO_EXTENSION_REGEX: null,
       SUPPORTED_FILES: function SUPPORTED_FILES(file) {
-        if (file.getName() === 'hidden.php') {
-          return false;
-        } else if (window.monaco && window.monaco.languages) {
+        if (window.monaco && window.monaco.languages) {
           if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
             // monaco has already been loaded, we can use its languages configuration to check if this file is supported
             var extensions = [];
@@ -164,6 +168,7 @@
       _basePath: null,
       _workerWrapper: null,
       _currentDecorations: null,
+      _configClient: null,
       _initWorker: function _initWorker() {
         this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
 
@@ -198,6 +203,26 @@
               },
               theme: 'vs-dark'
             });
+            var baseVersion = cv.Version.VERSION.split('-')[0];
+            var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("hidden-schema.json"));
+            xhr.set({
+              method: "GET",
+              accept: "application/json"
+            });
+            xhr.addListenerOnce("success", function (e) {
+              var req = e.getTarget();
+              var schema = req.getResponse();
+              window.monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+                validate: true,
+                allowComments: true,
+                schemas: [{
+                  uri: "https://www.cometvisu.org/CometVisu/schemas/" + baseVersion + "/hidden-schema.json",
+                  fileMatch: ["hidden.php"],
+                  schema: schema
+                }]
+              });
+            }, this);
+            xhr.send();
 
             if (this.getFile()) {
               this._loadFile(this.getFile());
@@ -243,6 +268,55 @@
           }
         }
       },
+      _loadFromFs: function _loadFromFs() {
+        if (this.getFile().getName() === 'hidden.php') {
+          if (!this._configClient) {
+            this._configClient = cv.io.rest.Client.getConfigClient();
+
+            this._configClient.addListener('getSuccess', function (ev) {
+              this.setContent(JSON.stringify(ev.getData(), null, 2));
+            }, this);
+
+            this._configClient.addListener('updateSuccess', this._onSaved, this);
+          }
+
+          this._configClient.get({
+            section: '*',
+            key: '*'
+          });
+        } else {
+          cv.ui.manager.editor.Source.prototype._loadFromFs.base.call(this);
+        }
+      },
+      save: function save(callback, overrideHash) {
+        if (this.getFile().getName() === 'hidden.php') {
+          if (!this.getFile().isValid()) {
+            cv.ui.manager.snackbar.Controller.error(this.tr('Hidden config is invalid, please correct the errors'));
+          } else if (this.getFile().getHasWarnings()) {
+            // ask user if he really want to save a file with warnings
+            dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
+              if (confirmed) {
+                this.__saveHiddenConfig();
+              }
+            }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
+          } else {
+            this.__saveHiddenConfig();
+          }
+        } else {
+          cv.ui.manager.editor.Source.prototype.save.base.call(this, callback, overrideHash);
+        }
+      },
+      __saveHiddenConfig: function __saveHiddenConfig() {
+        this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
+          if (err) {
+            cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
+          } else {
+            cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
+
+            this._onSaved();
+          }
+        }, this);
+      },
       _applyContent: function _applyContent(value) {
         var file = this.getFile();
 
@@ -265,6 +339,24 @@
           }
 
           newModel = window.monaco.editor.createModel(value, this._getLanguage(file), file.getUri());
+          newModel.onDidChangeDecorations(function (ev) {
+            var errors = false;
+            var warnings = false;
+            monaco.editor.getModelMarkers({
+              owner: newModel.getModeId(),
+              resource: file.getUri()
+            }).some(function (marker) {
+              if (marker.severity === monaco.MarkerSeverity.Warning) {
+                warnings = true;
+              } else if (marker.severity === monaco.MarkerSeverity.Error) {
+                errors = true;
+              }
+
+              return warnings && errors;
+            }, this);
+            file.setValid(!errors);
+            file.setHasWarnings(warnings);
+          });
         }
 
         if (model !== newModel) {
@@ -374,6 +466,11 @@
         this._currentDecorations[path] = decorators;
       },
       _getLanguage: function _getLanguage(file) {
+        if (file.getName() === 'hidden.php') {
+          // override this setting as we are loading the hidden config from its REST endpoint as JSON
+          return 'json';
+        }
+
         var type = file.getName().split('.').pop();
 
         switch (type) {
@@ -420,10 +517,11 @@
         this._editor = null;
       }
 
+      this._configClient = null;
       qx.ui.core.FocusHandler.getInstance().setUseTabNavigation(true);
     }
   });
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1589123549442
+//# sourceMappingURL=Source.js.map?dt=1589124679134

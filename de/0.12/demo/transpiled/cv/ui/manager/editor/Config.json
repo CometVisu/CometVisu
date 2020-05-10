@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 211,
+        "line": 213,
         "column": 3
       }
     },
@@ -172,7 +172,7 @@
           "column": 4
         },
         "end": {
-          "line": 65,
+          "line": 67,
           "column": 5
         }
       },
@@ -182,11 +182,11 @@
     "_applyContent": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 83,
+          "line": 85,
           "column": 5
         }
       },
@@ -208,11 +208,11 @@
     "getCurrentContent": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 90,
           "column": 5
         }
       },
@@ -235,11 +235,11 @@
     "_onDeleteSection": {
       "location": {
         "start": {
-          "line": 90,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 95,
+          "line": 97,
           "column": 5
         }
       },
@@ -249,11 +249,11 @@
     "__checkForModification": {
       "location": {
         "start": {
-          "line": 98,
+          "line": 100,
           "column": 4
         },
         "end": {
-          "line": 108,
+          "line": 110,
           "column": 5
         }
       },
@@ -271,11 +271,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 110,
+          "line": 112,
           "column": 4
         },
         "end": {
-          "line": 156,
+          "line": 158,
           "column": 5
         }
       },
@@ -290,11 +290,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 159,
+          "line": 161,
           "column": 4
         },
         "end": {
-          "line": 200,
+          "line": 202,
           "column": 5
         }
       },
@@ -3949,11 +3949,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 208,
+        "line": 210,
         "column": 12
       },
       "end": {
-        "line": 210,
+        "line": 212,
         "column": 3
       }
     },

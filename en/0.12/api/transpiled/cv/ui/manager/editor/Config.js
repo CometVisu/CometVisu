@@ -97,7 +97,9 @@
         }
       },
       _onModelValueChange: function _onModelValueChange(ev) {
-        this.setContent(ev.getData());
+        if (this.getFile()) {
+          this.setContent(ev.getData());
+        }
       },
       // overridden
       _applyContent: function _applyContent(value) {
@@ -259,4 +261,4 @@
   cv.ui.manager.editor.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1589123549301
+//# sourceMappingURL=Config.js.map?dt=1589124678985

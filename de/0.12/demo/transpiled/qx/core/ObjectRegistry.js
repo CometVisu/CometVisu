@@ -297,4 +297,4 @@
   qx.core.ObjectRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ObjectRegistry.js.map?dt=1589124107646
+//# sourceMappingURL=ObjectRegistry.js.map?dt=1589125247585
