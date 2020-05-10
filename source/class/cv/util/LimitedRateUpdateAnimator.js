@@ -1,4 +1,4 @@
-/* UpdateRateLimiter.js
+/* LimitedRateUpdateAnimator.js
  *
  * copyright (c) 2020-2020, Christian Mayer and the CometVisu contributers.
  *
@@ -19,7 +19,7 @@
 
 
 /**
- * UpdateRateLimiter
+ * LimitedRateUpdateAnimator
  *
  * @author ChristianMayer
  * @since 2020
@@ -29,17 +29,27 @@
  * Helper function to allow widgets animate a displayed property with a
  * limited speed of change to look smoother for the user.
  */
-qx.Class.define('cv.util.UpdateRateLimiter',{
+qx.Class.define('cv.util.LimitedRateUpdateAnimator',{
   extend: qx.core.Object,
   /*
   ******************************************************
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function (displayRatioFn, context = window) {
+
+  /**
+   * Create a new animated display where an object will be smoothly transitioned
+   * from its current position to a new target position.
+   *
+   * @param displayRatioFn {Function} Callback function that does the displaying
+   * @param context The context `this` of the callback function
+   * @param displayRatioFnParameters Optional additional parameter that will be passed to the callback function
+   */
+  construct: function (displayRatioFn, context = window, displayRatioFnParameters = undefined) {
     this.base(arguments);
     this.setDisplayRatioFn(displayRatioFn);
     this.__displayRatioFnContext = context;
+    this.__displayRatioFnParameters = displayRatioFnParameters;
   },
   /*
   ******************************************************
@@ -86,6 +96,7 @@ qx.Class.define('cv.util.UpdateRateLimiter',{
   members: {
     __animationFrame: undefined,
     __displayRatioFnContext: undefined,
+    __displayRatioFnParameters: undefined,
     __currentRatio: 0.0,
     __targetRatio: 0.0,
     /**
@@ -125,7 +136,7 @@ qx.Class.define('cv.util.UpdateRateLimiter',{
       }
       this.__currentRatio = nextRatio;
 
-      this.getDisplayRatioFn().call(this.__displayRatioFnContext, this.__currentRatio);
+      this.getDisplayRatioFn().call(this.__displayRatioFnContext, this.__currentRatio, this.__displayRatioFnParameters);
 
       if (this.__currentRatio !== this.__targetRatio) {
         this.__animationFrame = window.requestAnimationFrame((time)=>{this.__animate(time, thistime);});

@@ -1181,6 +1181,7 @@
       <xsd:element name="wgplugin_info" type="wgplugin_info"/>
       <xsd:element name="mobilemenu" type="mobilemenu"/>
       <xsd:element name="notificationcenterbadge" type="notificationcenterbadge"/>
+      <xsd:element name="roundbar" type="roundbar" />
       <xsd:element name="custom" type="custom"/>
     </xsd:choice>
   </xsd:group>

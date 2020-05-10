@@ -34,7 +34,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
   */
   construct: function(props) {
     this.base(arguments, props);
-    this.__animator = new cv.util.UpdateRateLimiter(this.__updateHandlePosition, this);
+    this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid',()=>{this.__invalidateScreensize();});
   },
   /*

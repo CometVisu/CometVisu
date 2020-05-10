@@ -60,7 +60,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
      * @param width {Float}
      * @param getBBox {Boolean} return the bounding box instead of the path itself
      */
-    createBarPath: function(startAngle, startArrowPoint, endAngle, endArrowPoint, radius, width, getBBox) {
+    createBarPath: function(startAngle, startArrowPoint, endAngle, endArrowPoint, radius, width, getBBox = false) {
       var
         startArrowPointAngle = startAngle + startArrowPoint,
         endArrowPointAngle   = endAngle + endArrowPoint;
@@ -222,6 +222,9 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
   ******************************************************
   */
   members: {
+    __animator: undefined,
+    __indicatorDOMElement: [],
+
     // overridden
     _getInnerDomString: function () {
       /**
@@ -270,7 +273,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
       var BBox = createBarPath( s, sMax, e, eMax, rMax, 0, true );
 
       if (this.getMinorwidth() > 0) {
-        var
+        let
           spacing = parseFloat(this.getMinorspacing()),
           rIn = this.getMinorradius(),
           rOut = this.getMinorwidth() + rIn;
@@ -297,7 +300,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
       }
 
       if (this.getMajorwidth() > 0) {
-        var
+        let
           rIn = this.getMajorradius(),
           rOut = this.getMajorwidth() + rIn;
 
@@ -444,7 +447,9 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
         BBox = bboxAdd(BBox, thisBBox.r, thisBBox.d);
       });
 
-      this.getIndicators().forEach(function (indicator) {
+      this.__animator = [];
+      this.getIndicators().forEach(function (indicator, number) {
+        self.__animator.push(new cv.util.LimitedRateUpdateAnimator(self.__updateIndicatorPosition, self, number));
         svgIndicators += '<path class="indicator" style="' + indicator.style + '" />';
 
         if (indicator.showValue) { cntValues++; }
@@ -508,6 +513,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
     _update: function(address, data) {
       if (data === undefined || address === undefined) { return; }
       var
+        self = this,
         value = cv.Transform.decode( this.getAddress()[ address ][0], data ),
         target = this.getTargetRatioValue(),
         tspan = Array.from(this.getDomElement().getElementsByTagName('tspan')),
@@ -523,92 +529,56 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
           if (tspan[i] !== undefined) {
             tspan[i].textContent = valueFormat;
           }
+          self.__animator[i].setTo(target[i][0], !self.isVisible());
         }
       });
 
       this.setTargetRatioValue(target);
-
-      if(!this.animationFrame) {
-        // TODO: only animate when widget is visible
-        var
-          indicators = Array.from(this.getDomElement().getElementsByClassName('indicator'));
-        this.animateIndicators(indicators,false);
-      }
     },
 
     /**
-     * Update the display of the indicators.
+     * Callback to update the display of the indicators.
      *
      * Note: It is a design decision not to pool multiple updates in one requestAnimationFrame which might be beneficial
-     * performace wise. But as it's assumed that a typical visu config is only containing one roundbar per address
+     * performance wise. But as it's assumed that a typical visu config is only containing one roundbar per address
      * a pooling wouldn't make a difference on the one hand but complicate the code on the other hand.
      * Even with a few roundbars using the same address the performance impact is negligible.
-     *
-     * @param indicatorElements Array with the bars to modify
-     * @param jumpToTarget skip animation
      */
-    animateIndicators: function (indicatorElements, jumpToTarget) {
-      var
-        current = this.getCurrentRatioValue(),
-        target = this.getTargetRatioValue(),
-        indicators = this.getIndicators();
-
-      // current is already at target
-      if (current.every(function(this_i,i){return this_i === target[i][0];})) {
-        this.animationFrame = 0;
-        return; // then nothing to do
+    __updateIndicatorPosition: function (ratio, indicatorNumber) {
+      if (this.__indicatorDOMElement.length === 0) {
+        // cache
+        this.__indicatorDOMElement = Array.from(this.getDomElement().getElementsByClassName('indicator'));
       }
+
       var
-        finished = true,
+        indicator = this.getIndicators()[indicatorNumber],
+        target = this.getTargetRatioValue()[indicatorNumber],
         startAngle = this.getStart(),
         endAngle = this.getEnd(),
+        targetAngle = startAngle + ratio*(endAngle-startAngle),
         overflowarrow = this.getOverflowarrow();
 
-      // calculate new values to show by applying two types of rate limiting:
-      // first do an exponential smoothing and then limit that to stay in range
-      // Note: for simplicity we don't care about the elapsed time, which would be the perfect way to do it
-      var expSmoothing = 0.2;
-      var rateLimit = 0.05;
-      indicatorElements.forEach(function(indicator,i){
-        if( jumpToTarget===true || Math.abs(current[i] - target[i][0]) < 0.01 ) {
-          current[i] = target[i][0];
-        } else {
-          finished = false;
-          var expSmoothedValue = current[i] * (1-expSmoothing) + target[i][0] * expSmoothing;
-          if( current[i] > expSmoothedValue ) {
-            current[i] = current[i]-expSmoothedValue > rateLimit ? current[i]-rateLimit : expSmoothedValue;
-          } else {
-            current[i] = current[i]-expSmoothedValue < -rateLimit ? current[i]+rateLimit : expSmoothedValue;
-          }
-        }
-
-        var targetAngle = startAngle + current[i]*(endAngle-startAngle);
-        if (!overflowarrow) {
-          targetAngle = (endAngle > startAngle)
-            ? Math.max(startAngle,targetAngle - indicators[i].endarrow)
-            : Math.min(startAngle,targetAngle - indicators[i].endarrow);
-        }
-
-        if (indicators[i].isBar) {
-          indicator.setAttribute('d',
-            cv.ui.structure.pure.Roundbar.createBarPath(
-              startAngle,
-              (overflowarrow&&!(target[i][1]&&current[i]<0.01)) ? 0 : indicators[i].startarrow,
-              targetAngle,
-              (overflowarrow&&!(target[i][2]&&current[i]>0.99)) ? 0 : indicators[i].endarrow,
-              indicators[i].radius,
-              indicators[i].width
-            )
-          );
-        } else {
-          indicator.setAttribute('d',
-            cv.ui.structure.pure.Roundbar.createPointerPath( targetAngle, indicators[i] )
-          );
-        }
-      });
-      this.setCurrentRatioValue(current);
-
-      this.animationFrame = window.requestAnimationFrame(this.animateIndicators.bind(this,indicatorElements,false));
+      if (!overflowarrow) {
+        targetAngle = (endAngle > startAngle)
+          ? Math.max(startAngle,targetAngle - indicator.endarrow)
+          : Math.min(startAngle,targetAngle - indicator.endarrow);
+      }
+      if (indicator.isBar) {
+        this.__indicatorDOMElement[indicatorNumber].setAttribute('d',
+          cv.ui.structure.pure.Roundbar.createBarPath(
+            startAngle,
+            (overflowarrow&&!(target[1]&&ratio<0.01)) ? 0 : indicator.startarrow,
+            targetAngle,
+            (overflowarrow&&!(target[2]&&ratio>0.99)) ? 0 : indicator.endarrow,
+            indicator.radius,
+            indicator.width
+          )
+        );
+      } else {
+        this.__indicatorDOMElement[indicatorNumber].setAttribute('d',
+          cv.ui.structure.pure.Roundbar.createPointerPath( targetAngle, indicator )
+        );
+      }
     }
   }
 });
