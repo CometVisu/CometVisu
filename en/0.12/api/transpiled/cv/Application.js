@@ -22,6 +22,9 @@
       "qx.io.PartLoader": {
         "construct": true
       },
+      "qx.bom.PageVisibility": {
+        "construct": true
+      },
       "cv.Config": {},
       "cv.io.Mockup": {},
       "cv.io.Client": {},
@@ -114,6 +117,10 @@
       if (qx.io.PartLoader.getInstance().hasPart(lang)) {
         qx.io.PartLoader.require([lang]);
       }
+
+      qx.bom.PageVisibility.getInstance().addListener('change', function () {
+        this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === "visible");
+      }, this);
     },
 
     /*
@@ -183,6 +190,11 @@
       commandManager: {
         check: 'qx.ui.command.GroupManager',
         deferredInit: true
+      },
+      active: {
+        check: "Boolean",
+        init: true,
+        event: "changeActive"
       }
     },
 
@@ -728,4 +740,4 @@
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1588613248304
+//# sourceMappingURL=Application.js.map?dt=1589123545659

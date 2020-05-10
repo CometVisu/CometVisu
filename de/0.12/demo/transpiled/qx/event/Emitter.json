@@ -638,6 +638,7 @@
     }
   },
   "descendants": [
+    "qx.bom.PageVisibility",
     "qx.bom.AnimationFrame",
     "qx.bom.rest.Resource",
     "qx.bom.element.AnimationHandle",

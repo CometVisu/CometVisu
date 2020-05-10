@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 862,
+        "line": 904,
         "column": 3
       }
     },
@@ -404,14 +404,42 @@
       "type": "variable",
       "access": "public"
     },
-    "loadParts": {
+    "__activeChangedTimer": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 181,
+          "line": 140,
+          "column": 30
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__hasBeenConnected": {
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "loadParts": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4
+        },
+        "end": {
+          "line": 183,
           "column": 5
         }
       },
@@ -444,11 +472,11 @@
     "_applyReady": {
       "location": {
         "start": {
-          "line": 184,
+          "line": 186,
           "column": 4
         },
         "end": {
-          "line": 188,
+          "line": 190,
           "column": 5
         }
       },
@@ -469,11 +497,11 @@
     "_applyLoaded": {
       "location": {
         "start": {
-          "line": 191,
+          "line": 193,
           "column": 4
         },
         "end": {
-          "line": 196,
+          "line": 198,
           "column": 5
         }
       },
@@ -495,11 +523,11 @@
     "_applyDomFinished": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 201,
           "column": 4
         },
         "end": {
-          "line": 210,
+          "line": 212,
           "column": 5
         }
       },
@@ -520,11 +548,11 @@
     "executeWhenDomFinished": {
       "location": {
         "start": {
-          "line": 217,
+          "line": 219,
           "column": 4
         },
         "end": {
-          "line": 224,
+          "line": 226,
           "column": 5
         }
       },
@@ -552,11 +580,11 @@
     "addAddress": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 232,
           "column": 4
         },
         "end": {
-          "line": 233,
+          "line": 235,
           "column": 5
         }
       },
@@ -580,11 +608,11 @@
     "getAddresses": {
       "location": {
         "start": {
-          "line": 239,
+          "line": 241,
           "column": 4
         },
         "end": {
-          "line": 242,
+          "line": 244,
           "column": 5
         }
       },
@@ -608,11 +636,11 @@
     "initBackendClient": {
       "location": {
         "start": {
-          "line": 247,
+          "line": 249,
           "column": 4
         },
         "end": {
-          "line": 301,
+          "line": 288,
           "column": 5
         }
       },
@@ -627,10 +655,10 @@
       "type": "function",
       "access": "public"
     },
-    "_updateClientScope": {
+    "_onActiveChanged": {
       "location": {
         "start": {
-          "line": 303,
+          "line": 290,
           "column": 4
         },
         "end": {
@@ -641,14 +669,42 @@
       "type": "function",
       "access": "protected"
     },
-    "_handleClientError": {
+    "_checkBackendConnection": {
       "location": {
         "start": {
           "line": 313,
           "column": 4
         },
         "end": {
-          "line": 351,
+          "line": 334,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_updateClientScope": {
+      "location": {
+        "start": {
+          "line": 336,
+          "column": 4
+        },
+        "end": {
+          "line": 344,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_handleClientError": {
+      "location": {
+        "start": {
+          "line": 346,
+          "column": 4
+        },
+        "end": {
+          "line": 384,
           "column": 5
         }
       },
@@ -658,11 +714,11 @@
     "resetPageValues": {
       "location": {
         "start": {
-          "line": 356,
+          "line": 389,
           "column": 4
         },
         "end": {
-          "line": 361,
+          "line": 394,
           "column": 5
         }
       },
@@ -680,11 +736,11 @@
     "parseXML": {
       "location": {
         "start": {
-          "line": 368,
+          "line": 401,
           "column": 4
         },
         "end": {
-          "line": 463,
+          "line": 496,
           "column": 5
         }
       },
@@ -718,11 +774,11 @@
     "setupPage": {
       "location": {
         "start": {
-          "line": 468,
+          "line": 501,
           "column": 4
         },
         "end": {
-          "line": 537,
+          "line": 570,
           "column": 5
         }
       },
@@ -740,11 +796,11 @@
     "startScreensaver": {
       "location": {
         "start": {
-          "line": 542,
+          "line": 575,
           "column": 4
         },
         "end": {
-          "line": 551,
+          "line": 584,
           "column": 5
         }
       },
@@ -762,11 +818,11 @@
     "startInitialRequest": {
       "location": {
         "start": {
-          "line": 556,
+          "line": 589,
           "column": 4
         },
         "end": {
-          "line": 578,
+          "line": 611,
           "column": 5
         }
       },
@@ -784,11 +840,11 @@
     "createPages": {
       "location": {
         "start": {
-          "line": 587,
+          "line": 620,
           "column": 4
         },
         "end": {
-          "line": 600,
+          "line": 633,
           "column": 5
         }
       },
@@ -836,11 +892,11 @@
     "getPageIdByPath": {
       "location": {
         "start": {
-          "line": 608,
+          "line": 641,
           "column": 4
         },
         "end": {
-          "line": 626,
+          "line": 659,
           "column": 5
         }
       },
@@ -876,11 +932,11 @@
     "traversePath": {
       "location": {
         "start": {
-          "line": 628,
+          "line": 661,
           "column": 4
         },
         "end": {
-          "line": 654,
+          "line": 687,
           "column": 5
         }
       },
@@ -890,11 +946,11 @@
     "getPageIdByName": {
       "location": {
         "start": {
-          "line": 656,
+          "line": 689,
           "column": 4
         },
         "end": {
-          "line": 726,
+          "line": 759,
           "column": 5
         }
       },
@@ -904,11 +960,11 @@
     "scrollToPage": {
       "location": {
         "start": {
-          "line": 728,
+          "line": 761,
           "column": 4
         },
         "end": {
-          "line": 776,
+          "line": 809,
           "column": 5
         }
       },
@@ -918,11 +974,11 @@
     "selectDesign": {
       "location": {
         "start": {
-          "line": 778,
+          "line": 811,
           "column": 4
         },
         "end": {
-          "line": 860,
+          "line": 893,
           "column": 5
         }
       },
@@ -1630,6 +1686,26 @@
           }
         ]
       }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 901,
+        "column": 12
+      },
+      "end": {
+        "line": 903,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>****************************************\nDESTRUCTOR\n****************************************\n</code></pre>"
+        }
+      ]
     }
   },
   "descendants": []

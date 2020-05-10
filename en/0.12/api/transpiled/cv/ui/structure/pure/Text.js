@@ -63,4 +63,4 @@
   cv.ui.structure.pure.Text.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Text.js.map?dt=1588613254389
+//# sourceMappingURL=Text.js.map?dt=1589123551336

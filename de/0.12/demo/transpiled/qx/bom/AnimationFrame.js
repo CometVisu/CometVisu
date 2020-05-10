@@ -236,4 +236,4 @@
   qx.bom.AnimationFrame.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationFrame.js.map?dt=1588613848003
+//# sourceMappingURL=AnimationFrame.js.map?dt=1589124108040

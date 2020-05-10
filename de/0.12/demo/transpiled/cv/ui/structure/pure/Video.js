@@ -111,4 +111,4 @@
   cv.ui.structure.pure.Video.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Video.js.map?dt=1588613836234
+//# sourceMappingURL=Video.js.map?dt=1589124096534

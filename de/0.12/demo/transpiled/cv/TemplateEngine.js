@@ -30,6 +30,7 @@
       "cv.Config": {},
       "cv.Application": {},
       "cv.report.Record": {},
+      "qx.event.Timer": {},
       "qx.locale.Manager": {},
       "cv.core.notifications.Router": {},
       "cv.io.Client": {},
@@ -42,7 +43,6 @@
       "qx.bom.History": {},
       "cv.ui.TrickOMatic": {},
       "cv.util.IconTools": {},
-      "qx.event.Timer": {},
       "qx.event.Registration": {},
       "cv.parser.WidgetParser": {},
       "cv.util.String": {},
@@ -195,6 +195,8 @@
       _domFinishedQueue: null,
       // plugins that do not need to be loaded to proceed with the initial setup
       lazyPlugins: ["plugin-openhab"],
+      __activeChangedTimer: null,
+      __hasBeenConnected: false,
 
       /**
        * Load parts (e.g. plugins, structure)
@@ -350,30 +352,63 @@
             }
           });
           visu.addListener('changedServer', this._updateClientScope, this);
-        } // show connection state in NotificationCenter
+        }
+
+        var app = qx.core.Init.getApplication();
+        app.addListener('changeActive', this._onActiveChanged, this); // show connection state in NotificationCenter
+
+        this.visu.addListener("changeConnected", this._checkBackendConnection, this);
+      },
+      _onActiveChanged: function _onActiveChanged() {
+        var app = qx.core.Init.getApplication();
+
+        if (app.isActive()) {
+          if (!this.visu.isConnected() && this.__hasBeenConnected) {
+            // reconnect
+            this.visu.restart(true);
+          } // wait for 3 seconds before checking the backend connection
 
 
-        this.visu.addListener("changeConnected", function (ev) {
-          var message = {
-            topic: "cv.client.connection",
-            title: qx.locale.Manager.tr("Connection error"),
-            severity: "urgent",
-            unique: true,
-            deletable: false,
-            condition: !ev.getData()
-          };
-          var lastError = this.visu.getLastError();
+          if (!this.__activeChangedTimer) {
+            this.__activeChangedTimer = new qx.event.Timer(3000);
 
-          if (!ev.getData()) {
-            if (lastError && Date.now() - lastError.time < 100) {
-              message.message = qx.locale.Manager.tr("Error requesting %1: %2 - %3.", lastError.url, lastError.code, lastError.text);
-            } else {
-              message.message = qx.locale.Manager.tr("Connection to backend is lost.");
-            }
+            this.__activeChangedTimer.addListener('interval', function () {
+              if (app.isActive()) {
+                this._checkBackendConnection();
+              }
+
+              this.__activeChangedTimer.stop();
+            }, this);
           }
 
-          cv.core.notifications.Router.dispatchMessage(message.topic, message);
-        }, this);
+          this.__activeChangedTimer.restart();
+        } else {
+          this._checkBackendConnection();
+        }
+      },
+      _checkBackendConnection: function _checkBackendConnection() {
+        var connected = this.visu.isConnected();
+        var message = {
+          topic: "cv.client.connection",
+          title: qx.locale.Manager.tr("Connection error"),
+          severity: "urgent",
+          unique: true,
+          deletable: false,
+          condition: !connected && this.__hasBeenConnected && qx.core.Init.getApplication().isActive()
+        };
+        var lastError = this.visu.getLastError();
+
+        if (!connected) {
+          if (lastError && Date.now() - lastError.time < 100) {
+            message.message = qx.locale.Manager.tr("Error requesting %1: %2 - %3.", lastError.url, lastError.code, lastError.text);
+          } else {
+            message.message = qx.locale.Manager.tr("Connection to backend is lost.");
+          }
+        } else {
+          this.__hasBeenConnected = true;
+        }
+
+        cv.core.notifications.Router.dispatchMessage(message.topic, message);
       },
       _updateClientScope: function _updateClientScope() {
         var visu = this.visu;
@@ -940,9 +975,18 @@
           });
         });
       }
+    },
+
+    /*
+    ***********************************************
+      DESTRUCTOR
+    ***********************************************
+    */
+    destruct: function destruct() {
+      this._disposeObjects('__activeChangedTimer');
     }
   });
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1588613837341
+//# sourceMappingURL=TemplateEngine.js.map?dt=1589124097668

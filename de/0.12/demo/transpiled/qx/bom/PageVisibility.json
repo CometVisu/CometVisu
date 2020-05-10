@@ -1,0 +1,261 @@
+{
+  "className": "qx.bom.PageVisibility",
+  "packageName": "qx.bom",
+  "name": "PageVisibility",
+  "superClass": "qx.event.Emitter",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 0
+      },
+      "end": {
+        "line": 133,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+        },
+        {
+          "name": "@description",
+          "body": "<p>This class offers a constant API over the Page Visibility Spec:\n http://www.w3.org/TR/page-visibility/\n It forwards all the browsers support and provides always a fallback which is\n of course visible all the time.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "getInstance": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get an instance of the PageVisibility object using the default document.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.PageVisibility} An instance of this class.",
+            "type": "qx.bom.PageVisibility",
+            "description": " An instance of this class."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 46,
+        "column": 14
+      },
+      "end": {
+        "line": 56,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@param": [
+        {
+          "name": "@param",
+          "body": "document {document?} Optional document element.",
+          "paramName": "document",
+          "description": " Optional document element.",
+          "optional": true,
+          "type": "document"
+        }
+      ]
+    }
+  },
+  "events": {
+    "change": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The change event for the page visibility.</p>"
+          }
+        ]
+      },
+      "name": "change",
+      "type": "Event"
+    }
+  },
+  "members": {
+    "__doc": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 16
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__hiddenAttr": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 23
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__visibilityAttr": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
+          "column": 27
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__eventName": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__checkAttributeNames": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper to feature check the attribute names and the event name.\n As the event can not be detected using the on<name> attribute, we need\n to guess the event name by checking for the hidden attribute.</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "isHidden": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4
+        },
+        "end": {
+          "line": 120,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns weather the page is hidden or not. If we can not detect it,\n <code>false</code> will always be returned.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the page is hidden",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the page is hidden"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getVisibilityState": {
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4
+        },
+        "end": {
+          "line": 131,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the visibility state of the page. If we can not detect it,\n <code>\"visible\"</code> will always be returned.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The state of the page visibility.",
+            "type": "qx.bom.String",
+            "description": " The state of the page visibility."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}
