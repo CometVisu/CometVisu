@@ -45,6 +45,10 @@ qx.Class.define("cv.Application",
     if (qx.io.PartLoader.getInstance().hasPart(lang)) {
       qx.io.PartLoader.require([lang]);
     }
+
+    qx.bom.PageVisibility.getInstance().addListener('change', function () {
+      this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === "visible");
+    }, this);
   },
 
   /*
@@ -112,6 +116,12 @@ qx.Class.define("cv.Application",
     commandManager: {
       check: 'qx.ui.command.GroupManager',
       deferredInit: true
+    },
+
+    active: {
+      check: "Boolean",
+      init: true,
+      event: "changeActive"
     }
   },
 

@@ -99,6 +99,10 @@ class CvCompileHandler extends AbstractCompileHandler {
     }
 
     if (command.argv.watch) {
+      if (this._watcher) {
+        this._watcher.close();
+      }
+      this.__watcherReady = false;
       var watcher = this._watcher = chokidar.watch(Object.keys(this._watchList), {});
       watcher.on("change", filename => this.__onFileChange("change", filename));
       watcher.on("add", filename => this.__onFileChange("add", filename));
