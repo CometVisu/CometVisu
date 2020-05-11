@@ -884,7 +884,5 @@
       ]
     }
   },
-  "descendants": [
-    "qx.ui.website.Widget"
-  ]
+  "descendants": []
 }

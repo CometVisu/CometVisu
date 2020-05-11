@@ -81,8 +81,8 @@ describe("testing a trigger", function() {
       shorttime: "100",
       flavour: "potassium"
     }, '<label>Test</label>', ['1/0/0', '1/0/1'], [
-      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'button'},
-      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'short'}
+      {'transform': 'DPT:5.010', 'mode': 'write', 'variant': 'button'},
+      {'transform': 'DPT:5.010', 'mode': 'write', 'variant': 'short'}
     ]);
 
     this.initWidget(res);
@@ -136,7 +136,7 @@ describe("testing a trigger", function() {
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 
-      expect(client.write).toHaveBeenCalledWith('1/0/1', '82');
+      expect(client.write).toHaveBeenCalledWith('1/0/1', '8002');
       expect(client.write.calls.count()).toEqual(1);
       done();
     }, 10);
@@ -150,8 +150,8 @@ describe("testing a trigger", function() {
       shorttime: "100",
       flavour: "potassium"
     }, '<label>Test</label>', ['1/0/0', '1/0/1'], [
-      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'button'},
-      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'short'}
+      {'transform': 'DPT:5.010', 'mode': 'write', 'variant': 'button'},
+      {'transform': 'DPT:5.010', 'mode': 'write', 'variant': 'short'}
     ]);
 
     this.initWidget(res);
@@ -206,7 +206,7 @@ describe("testing a trigger", function() {
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 
-      expect(client.write).toHaveBeenCalledWith('1/0/0', '81');
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '8001');
       expect(client.write.calls.count()).toEqual(1);
       done();
     }, 150);
@@ -221,8 +221,8 @@ describe("testing a trigger", function() {
       flavour: "potassium",
       "send-long-on-release": "false"
     }, '<label>Test</label>', ['1/0/0', '1/0/1'], [
-      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'button'},
-      {'transform': 'DPT:1.001', 'mode': 'write', 'variant': 'short'}
+      {'transform': 'DPT:5.010', 'mode': 'write', 'variant': 'button'},
+      {'transform': 'DPT:5.010', 'mode': 'write', 'variant': 'short'}
     ]);
 
     this.initWidget(res);
@@ -266,7 +266,7 @@ describe("testing a trigger", function() {
     expect(actor).not.toHaveClass("switchUnpressed");
 
     setTimeout(function () {
-      expect(client.write).toHaveBeenCalledWith('1/0/0', '81');
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '8001');
       expect(client.write.calls.count()).toEqual(1);
 
       // up
@@ -277,7 +277,7 @@ describe("testing a trigger", function() {
       expect(actor).not.toHaveClass("switchPressed");
       expect(actor).toHaveClass("switchUnpressed");
 
-      expect(client.write).toHaveBeenCalledWith('1/0/0', '81');
+      expect(client.write).toHaveBeenCalledWith('1/0/0', '8001');
       expect(client.write.calls.count()).toEqual(1);
       done();
     }, 150);

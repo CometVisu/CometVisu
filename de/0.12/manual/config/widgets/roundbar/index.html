@@ -210,8 +210,8 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <div class="section" id="das-roundbar-widget">
 <span id="roundbar"></span><h1>Das Roundbar Widget<a class="headerlink" href="#das-roundbar-widget" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
-<div class="line"><strong>Autor</strong>: Christian Mayer</div>
 <div class="line"><strong>Verfügbar seit Version</strong>: 0.12.0 (2020)</div>
+<div class="line"><strong>Autor</strong>: Christian Mayer</div>
 <div class="line"><br /></div>
 </div>
 </div>
@@ -221,7 +221,15 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 Balkens und/oder Zeigers. Dies ermöglicht die grafische Anzeige von Werten von Gruppenadressen.</p>
 <p>Das Roundbar Widget ist sowohl mit sehr einfacher Parametrierung nutzbar, als auch sehr flexibel an die jeweiligen
 Anforderungen anpassbar.</p>
+<div class="figure" id="id2">
+<img alt="Beispiel Roundbar Widget" src="../../../_images/roundbar_simple.png" />
+<p class="caption"><span class="caption-text">Beispiel Roundbar Widget</span></p>
+</div>
 <p>Die Darstellung kann jedoch auch vielen Details angepasst werden:</p>
+<div class="figure" id="id3">
+<img alt="Beispiel für komplexes Roundbar Widgets" src="../../../_images/roundbar_complex.png" />
+<p class="caption"><span class="caption-text">Beispiel für komplexes Roundbar Widgets</span></p>
+</div>
 </div>
 <div class="section" id="einstellungen">
 <h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
@@ -387,6 +395,10 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
+<div class="figure align-center" id="id4">
+<img alt="../../../_images/de_config_widgets_roundbar_index_editor_attributes.png" src="../../../_images/de_config_widgets_roundbar_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+</div>
 </div>
 <div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
@@ -641,6 +653,10 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
+<div class="figure align-center" id="id5">
+<img alt="../../../_images/de_config_widgets_roundbar_index_editor_elements.png" src="../../../_images/de_config_widgets_roundbar_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elemente im Editor</span></p>
+</div>
 </div>
 </div>
 <div class="section" id="xml-syntax-minimal">
@@ -653,6 +669,16 @@ der <a class="reference internal" href="../../xml-format.html"><span class="doc"
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode, der das Roundbar Widget aus dem folgenden Screenshot erzeugt:</p>
+<div class="figure" id="id6">
+<img alt="Roundbar, einfaches Beispiel" src="../../../_images/roundbar_minimal.png" />
+<p class="caption"><span class="caption-text">Roundbar, einfaches Beispiel</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/roundbar&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="bestandteile">
 <h2>Bestandteile<a class="headerlink" href="#bestandteile" title="Link zu dieser Überschrift">¶</a></h2>
@@ -664,11 +690,38 @@ ein SVG-Block eingebunden, dessen Darstellung über CSS-Regeln angepasst werden 
 <h3>Indikatoren<a class="headerlink" href="#indikatoren" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Der offensichtlichste Bestandteil ist der Indikator, der als gebogener Balken oder als Zeiger ausgeführt sein kann.
 Ein Roundbar Widget kann auch mehrere Indikatoren gleichzeitig enthalten.</p>
+<div class="figure" id="id7">
+<img alt="Balken und Zeiger" src="../../../_images/roundbar_indicators.png" />
+<p class="caption"><span class="caption-text">Balken und Zeiger</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;4&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;roundbar&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/roundbar&gt;</span>
+    <span class="nt">&lt;roundbar</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">type=</span><span class="s">&quot;pointer&quot;</span> <span class="na">radius=</span><span class="s">&quot;50&quot;</span> <span class="na">width=</span><span class="s">&quot;-50&quot;</span> <span class="na">thickness=</span><span class="s">&quot;3&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/roundbar&gt;</span>
+<span class="nt">&lt;/group&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="markierungen">
 <h3>Markierungen<a class="headerlink" href="#markierungen" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Um die Skala einzuteilen können Markierungen gesetzt werden. Die &#8220;großen&#8221; (major) Markierungen können frei auf die
 relevanten Werte gesetzt werden, die &#8220;kleinen&#8221; (minor) werden gleichmäßig verteilt.</p>
+<div class="figure" id="id8">
+<img alt="Große und kleine Markierungen" src="../../../_images/roundbar_marking.png" />
+<p class="caption"><span class="caption-text">Große und kleine Markierungen</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span> <span class="na">majorradius=</span><span class="s">&quot;35&quot;</span> <span class="na">majorwidth=</span><span class="s">&quot;15&quot;</span> <span class="na">majorposition=</span><span class="s">&quot;0;20;40;60;80;100&quot;</span> <span class="na">minorradius=</span><span class="s">&quot;45&quot;</span> <span class="na">minorwidth=</span><span class="s">&quot;5&quot;</span> <span class="na">minorspacing=</span><span class="s">&quot;5&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/roundbar&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="beschriftungen">
 <h3>Beschriftungen<a class="headerlink" href="#beschriftungen" title="Link zu dieser Überschrift">¶</a></h3>
@@ -692,6 +745,16 @@ und per Doppelpunkt vor den Wert gestellt werden:</p>
 <p>Es ist ausreichend die Position, die Orientierung oder aber auch den Radius vor dem ersten Wert aufzuführen, alle
 folgenden Werte übernehmen dann diese Eigenschaften. Für spezielle Effekte können diese Eigenschaften auch mehrfach
 gewechselt werden.</p>
+<div class="figure" id="id9">
+<img alt="Beschriftungen" src="../../../_images/roundbar_labels.png" />
+<p class="caption"><span class="caption-text">Beschriftungen</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span> <span class="na">labels=</span><span class="s">&quot;inside:0,44;25;50;75;100&quot;</span> <span class="na">majorradius=</span><span class="s">&quot;45&quot;</span> <span class="na">majorwidth=</span><span class="s">&quot;5&quot;</span> <span class="na">majorposition=</span><span class="s">&quot;0;25;50;75;100&quot;</span> <span class="na">minorradius=</span><span class="s">&quot;48&quot;</span> <span class="na">minorwidth=</span><span class="s">&quot;2&quot;</span> <span class="na">minorspacing=</span><span class="s">&quot;5&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/roundbar&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="wertebereiche">
 <h3>Wertebereiche<a class="headerlink" href="#wertebereiche" title="Link zu dieser Überschrift">¶</a></h3>
@@ -709,6 +772,16 @@ muss dem <code class="docutils literal"><span class="pre">ranges</span></code> A
 Breite 3. Dann ein roter Bogen von 70 bis 100, auch mit Radius 63 und Breite 3. Zu letzt wird über alles ein
 Strich bei Wert 70 gemalt, der von Radius 60 für 9 Einheiten nach außen geht und die Farbe <code class="docutils literal"><span class="pre">#ff0</span></code>, also ein
 sattes Gelb, besitzt.</p>
+<div class="figure" id="id10">
+<img alt="Wertebereiche" src="../../../_images/roundbar_ranges.png" />
+<p class="caption"><span class="caption-text">Wertebereiche</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span> <span class="na">ranges=</span><span class="s">&quot;0...70,63,3,green;70...100,63,3,red;70,60,9,#ff0&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/roundbar&gt;</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="tipps">
@@ -717,6 +790,26 @@ sattes Gelb, besitzt.</p>
 <h3>Presets<a class="headerlink" href="#presets" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Um die Konfiguration zu erleichtern gibt es vorgefertigte Designs die verwendet werden können. Alle Eigenschaften
 eines Presetzt können durch die Werte aus der Konfiguration übersteuert werden.</p>
+<div class="figure" id="id11">
+<img alt="Preset &quot;A&quot;, &quot;B&quot; und &quot;bridge&quot;" src="../../../_images/roundbar_presets.png" />
+<p class="caption"><span class="caption-text">Preset &#8220;A&#8221;, &#8220;B&#8221; und &#8220;bridge&#8221;</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;roundbar</span> <span class="na">preset=</span><span class="s">&quot;A&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/roundbar&gt;</span>
+    <span class="nt">&lt;roundbar</span> <span class="na">preset=</span><span class="s">&quot;B&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/roundbar&gt;</span>
+    <span class="nt">&lt;roundbar</span> <span class="na">preset=</span><span class="s">&quot;bridge&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/roundbar&gt;</span>
+<span class="nt">&lt;/group&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="debug-modus">
 <h3>Debug-Modus<a class="headerlink" href="#debug-modus" title="Link zu dieser Überschrift">¶</a></h3>
@@ -730,11 +823,21 @@ getrennt lassen sich für <code class="docutils literal"><span class="pre">horiz
 <p>Um hier schneller zu einem Ergebnis zu kommen, gerade weil man sich iterativ dem besten Wert nähern muss, kann
 das Attribut <code class="docutils literal"><span class="pre">debug</span></code> auf <code class="docutils literal"><span class="pre">true</span></code> gesetzt werden um einen blauen Rahmen an der automatisch bestimmten Größe, so wie
 einen grünen Rahmen bei der finalen Größe zu sehen.</p>
+<div class="figure" id="id12">
+<img alt="Aktivierter Debug Modus" src="../../../_images/roundbar_debug.png" />
+<p class="caption"><span class="caption-text">Aktivierter Debug Modus</span></p>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span> <span class="na">debug=</span><span class="s">&quot;true&quot;</span> <span class="na">bboxgrow=</span><span class="s">&quot;50;0&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/3/1<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;/roundbar&gt;</span>
+</pre></div>
+</div>
 <p class="rubric">Fußnoten</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
 </tbody>
 </table>
 </div>

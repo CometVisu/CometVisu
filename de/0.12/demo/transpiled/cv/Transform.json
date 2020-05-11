@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 150,
+        "line": 163,
         "column": 3
       }
     },
@@ -86,17 +86,17 @@
         "@param": [
           {
             "name": "@param",
-            "body": "prefix {String} Tranformation prefix (e.g. DPT for KNX tranformations or OH for openHAB transformations)",
+            "body": "prefix {String} Transformation prefix (e.g. DPT for KNX transformations or OH for openHAB transformations)",
             "paramName": "prefix",
-            "description": " Tranformation prefix (e.g. DPT for KNX tranformations or OH for openHAB transformations)",
+            "description": " Transformation prefix (e.g. DPT for KNX transformations or OH for openHAB transformations)",
             "type": "String"
           },
           {
             "name": "@param",
-            "body": "transforms {Map} map of transformations",
+            "body": "transforms {Object} map of transformations",
             "paramName": "transforms",
             "description": " map of transformations",
-            "type": "Map"
+            "type": "Object"
           }
         ]
       },
@@ -156,14 +156,60 @@
       "type": "function",
       "access": "public"
     },
-    "encode": {
+    "encodeBusAndRaw": {
       "location": {
         "start": {
           "line": 124,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 134,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transform JavaScript to bus value and raw value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "transformation {String} type of the transformation",
+            "paramName": "transformation",
+            "description": " type of the transformation",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} value to transform",
+            "paramName": "value",
+            "description": " value to transform",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} object with both encoded values",
+            "type": "Object",
+            "description": " object with both encoded values"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "encode": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
           "column": 5
         }
       },
@@ -205,11 +251,11 @@
     "decode": {
       "location": {
         "start": {
-          "line": 140,
+          "line": 153,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 161,
           "column": 5
         }
       },

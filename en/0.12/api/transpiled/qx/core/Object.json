@@ -3861,6 +3861,7 @@
     "cv.ui.structure.AbstractBasicWidget",
     "com.zenesis.qx.upload.UploadMgr",
     "com.zenesis.qx.upload.File",
+    "cv.util.LimitedRateUpdateAnimator",
     "qxl.apiviewer.Controller",
     "cv.io.transport.LongPolling",
     "cv.io.transport.Sse",

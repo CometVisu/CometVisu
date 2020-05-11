@@ -943,7 +943,5 @@
       ]
     }
   },
-  "descendants": [
-    "cv.ui.website.Slider"
-  ]
+  "descendants": []
 }

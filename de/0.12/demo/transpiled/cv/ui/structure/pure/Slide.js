@@ -1,26 +1,6 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
-      "qx.module.Attribute": {
-        "require": true,
-        "defer": "runtime"
-      },
-      "qx.module.Css": {
-        "require": true,
-        "defer": "runtime"
-      },
-      "qx.module.Traversing": {
-        "require": true,
-        "defer": "runtime"
-      },
-      "qx.module.Manipulating": {
-        "require": true,
-        "defer": "runtime"
-      },
-      "qx.module.event.Keyboard": {
-        "require": true,
-        "defer": "runtime"
-      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -35,13 +15,14 @@
       "cv.ui.common.Update": {
         "require": true
       },
-      "cv.data.Model": {
+      "cv.util.LimitedRateUpdateAnimator": {
         "construct": true
       },
-      "cv.ui.website.Slider": {},
+      "cv.ui.layout.ResizeHandler": {
+        "construct": true
+      },
       "cv.util.Function": {},
-      "qx.util.DeferredCall": {},
-      "qx.event.Timer": {},
+      "cv.Transform": {},
       "cv.ui.structure.WidgetFactory": {
         "defer": "runtime"
       }
@@ -51,7 +32,7 @@
 
   /* Slide.js 
    * 
-   * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2020, Christian Mayer and the CometVisu contributers.
    * 
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -71,11 +52,6 @@
   /**
    * Adds a horizontal slider to the visu. This can be used, for example, to dim a light or change temperature values.
    *
-   * @require(qx.module.Attribute)
-   * @require(qx.module.Css)
-   * @require(qx.module.Traversing)
-   * @require(qx.module.Manipulating)
-   * @require(qx.module.event.Keyboard)
    * @author Christian Mayer
    * @since 2012
    */
@@ -89,26 +65,24 @@
     ******************************************************
     */
     construct: function construct(props) {
-      cv.ui.structure.AbstractWidget.constructor.call(this, props); // check provided address-items for at least one address which has write-access
+      var _this = this;
 
-      var readonly = true;
+      cv.ui.structure.AbstractWidget.constructor.call(this, props);
+      this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
+      this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
+        _this.__invalidateScreensize();
+      });
+    },
 
-      for (var addrIdx in this.getAddress()) {
-        //noinspection JSBitwiseOperatorUsage
-        if (cv.data.Model.isWriteAddress(this.getAddress()[addrIdx])) {
-          // write-access detected --> no read-only mode
-          readonly = false;
-          break;
-        }
-      }
-
-      this.__readonly = readonly; // initialize value with min value
-
-      if (this.getMin() <= 0 && 0 <= this.getMax()) {
-        this.setValue(this.applyMapping(0));
-      } else {
-        this.setValue(this.applyMapping(this.getMin()));
-      }
+    /*
+    ***********************************************
+      DESTRUCTOR
+    ***********************************************
+    */
+    destruct: function destruct() {
+      cv.ui.layout.ResizeHandler.states.removeListenerById(this.__pageSizeListener);
+      this.__pageSizeListener = null;
+      this.__button = null;
     },
 
     /*
@@ -129,6 +103,10 @@
         check: "Number",
         init: 0.5
       },
+      showInvalidValues: {
+        check: "Boolean",
+        init: false
+      },
       sendOnFinish: {
         check: "Boolean",
         init: false
@@ -141,136 +119,184 @@
     ******************************************************
     */
     members: {
-      __main: null,
-      __timerId: null,
-      __slider: null,
-      __readonly: null,
-      __initialized: null,
-      __skipUpdatesFromSlider: null,
+      __lastBusValue: {},
+      __animator: null,
+      __button: undefined,
+      // cache for DOM element
+      __range: undefined,
+      // cache for DOM element
+      __actorWidth: undefined,
+      __buttonWidth: undefined,
+      __pageSizeListener: undefined,
+      __inDrag: false,
+      // is the handle currently dragged?
+      __coordMin: undefined,
+      // minimal screen coordinate of slider
+      // overridden
+      _getInnerDomString: function _getInnerDomString() {
+        var placeholder = this.getFormat() === '' ? '' : '-';
+        return "\n        <div class=\"actor ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all\" style=\"touch-action: pan-y;\">\n          <button class=\"ui-slider-handle ui-state-default ui-corner-all\" draggable=\"false\" unselectable=\"true\" style=\"transform: translate3d(0px, 0px, 0px);\">" + placeholder + "</button>\n          <div class=\"ui-slider-range\" style=\"margin-left: 0px; width: 0px;\"></div>\n        </div>\n      ";
+      },
       // overridden
       _onDomReady: function _onDomReady() {
         cv.ui.structure.pure.Slide.prototype._onDomReady.base.call(this);
 
-        if (!this.__initialized) {
-          this.__skipUpdatesFromSlider = true;
-          var actor = this.getActor();
-          var slider = this.__slider = new cv.ui.website.Slider(actor, this.getPath());
-          slider.setFormat(this.getFormat());
-          slider.setConfig("step", this.getStep());
-          slider.setConfig("minimum", this.getMin());
-          slider.setConfig("maximum", this.getMax());
-
-          if (this.__readonly) {
-            slider.setEnabled(false);
-          }
-
-          slider.init(); // set initial value
-
-          slider.setValue(parseFloat(this.getValue()));
-          var throttled = cv.util.Function.throttle(this._onChangeValue, 250, {
-            trailing: true
-          }, this);
-          slider.on("changeValue", function (val) {
-            if (!this.__skipUpdatesFromSlider) {
-              throttled.call(val);
-            }
-          }, this);
-          slider.on('done', function () {
-            throttled.abort();
-
-            if (this.isSendOnFinish()) {
-              this._onChangeValue(slider.getValue(), true);
-            }
-          }, this);
-          this.addListener("changeValue", function (ev) {
-            this.__skipUpdatesFromSlider = true;
-            slider.setValue(parseFloat(ev.getData()));
-            this.__skipUpdatesFromSlider = false;
-          }, this); // add CSS classes for compability with old sliders
-
-          slider.addClasses(["ui-slider", "ui-slider-horizontal", "ui-widget", "ui-widget-content", "ui-corner-all"]);
-          var knob = slider.find(".qx-slider-knob");
-          knob.addClasses(["ui-slider-handle", "ui-state-default", "ui-corner-all"]);
-          this.addListener("changeVisible", function (ev) {
-            if (ev.getData() === true) {
-              new qx.util.DeferredCall(this.__updateSlider, this).schedule();
-            }
-          }, this);
-
-          if (this.isVisible()) {
-            // delay the update, as the page width is not correct at this moment
-            qx.event.Timer.once(this.__updateSlider, this, 5);
-          }
-
-          this.__skipUpdatesFromSlider = false;
-          this.__initialized = true;
-        }
+        this.__throttled = cv.util.Function.throttle(this.__onChangeValue, 250, {
+          trailing: true
+        }, this);
+        this.getActor().addEventListener('pointerdown', this);
       },
+      _update: function _update(address, data) {
+        var transform = this.getAddress()[address][0];
 
-      /**
-       * Refresh the slider position
-       */
-      __updateSlider: function __updateSlider() {
-        if (this.__slider) {
-          this.__skipUpdatesFromSlider = true;
-
-          this.__slider.updatePositions();
-
-          this.__skipUpdatesFromSlider = false;
-        }
-      },
-      // overridden
-      _getInnerDomString: function _getInnerDomString() {
-        return '<div class="actor"></div>';
-      },
-      _update: function _update(ga, d) {
-        if (this.__slider && this.__slider.isInPointerMove() || d === undefined) {
+        if (this.__inDrag || this.__lastBusValue[transform] === data) {
+          // slider in use -> ignore value from bus
+          // internal state unchanged -> also do nothing
           return;
         }
 
-        var value = this.applyTransform(ga, d);
+        this.__lastBusValue = {}; // forget all other transforms as they might not be valid anymore
 
-        try {
-          if (this.getValue() !== value) {
-            this.setValue(value);
+        this.__lastBusValue[transform] = data;
+        var value = cv.Transform.decode(transform, data); // animate when visible, otherwise jump to the target value
 
-            if (this.__slider) {
-              this.__skipUpdatesFromSlider = true;
-
-              this.__slider.setValue(value);
-
-              this.__skipUpdatesFromSlider = false;
-            }
-          }
-        } catch (e) {
-          this.error(e);
-        }
+        this.__setSliderTo(value, !this.isVisible());
       },
-      // override Operate Mixins on click action, we handle that ourselfs with _onChangeValue
-      _action: function _action() {},
 
       /**
-       * Handle incoming value changes send by the slider widget (e.g. triggered by user interaction)
-       * @param value {Number} the current value to send
-       * @param finished {Boolean} if sendOnFinish is true settings this parameter to true triggers the value to be send
+       * The the internal slider state and its handle and displayed value
+       * @param value {Number} The new value
+       * @param instant {Boolean} Animate or instant change
+       * @param relaxDisplay {Boolean} Let the handle move to an unstable position
+       *   to give visual feedback that something does happen during interaction
+       * @private
        */
-      _onChangeValue: function _onChangeValue(value, finished) {
-        if (!this.__initialized || this.__skipUpdatesFromSlider === true) {
+      __setSliderTo: function __setSliderTo(value, instant) {
+        var relaxDisplay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+        var min = this.getMin();
+        var max = this.getMax();
+        var step = this.getStep();
+
+        if (step === 0 || Math.abs((max - min) / step) > 10000) {
+          // limit too small step size - it's not necessary to have more than
+          // 10000 steps for the range as even the biggest screen doesn't have
+          // that many pixels
+          step = (max - min) / 10000;
+        }
+
+        var realValue = Math.min(Math.max(value, min), max);
+
+        if (!this.getShowInvalidValues()) {
+          // map to closest allowed value
+          var stepValue = Math.round((realValue - min) / step) * step + min; // use max when the value is greater than the middle point between the
+          // biggest allowed step and the maximum
+
+          var maxSwitchValue = (Math.floor((max - min) / step) * step + min + max) / 2;
+          realValue = realValue < maxSwitchValue ? stepValue : max;
+        }
+
+        var ratio = max === min ? 0 : (realValue - min) / (max - min);
+
+        if (relaxDisplay) {
+          var valueRatio = max === min ? 0 : (Math.min(Math.max(value, min), max) - min) / (max - min);
+          var delta = ratio - valueRatio;
+          var stepCount = (max - min) / step;
+          var factor = Math.pow(2 * stepCount, 3);
+          ratio -= Math.min(factor * Math.pow(delta, 4), Math.abs(delta)) * Math.sign(delta);
+        } // store it to be able to suppress sending of unchanged data
+
+
+        this.setBasicValue(realValue);
+
+        if (this.getFormat() !== '') {
+          // #2: map it to a value the user wants to see
+          var displayValue = this.applyMapping(realValue); // #3: format it in a way the user understands the value
+
+          displayValue = this.applyFormat(undefined, displayValue);
+          this.setValue(displayValue);
+          this.applyStyling(realValue);
+          var button = this.getDomElement().querySelector('button');
+          this.defaultValue2DOM(displayValue, function (e) {
+            button.innerHTML = e;
+          });
+        }
+
+        this.__animator.setTo(ratio, instant);
+      },
+      __updateHandlePosition: function __updateHandlePosition(ratio) {
+        if (this.__button === undefined) {
+          var element = this.getDomElement();
+          this.__button = element.querySelector('button');
+          this.__range = element.querySelector('.ui-slider-range');
+        }
+
+        if (this.__button === null) {
+          // most likely reason: the widget / DOM tree was deleted (e.g. due to
+          // browsing to a new page or during unit tests)
+          this._disposeObjects('__animator');
+
           return;
         }
 
-        if (this.isSendOnFinish() === true && finished || this.isSendOnFinish() === false && this.__slider.isInPointerMove()) {
-          this._lastBusValue = this.sendToBackend(value, false, this._lastBusValue);
+        if (this.__actorWidth === undefined || this.__buttonWidth === undefined) {
+          var actor = this.getDomElement().querySelector('.actor');
+          this.__actorWidth = parseFloat(window.getComputedStyle(actor).getPropertyValue('width'));
+          this.__buttonWidth = parseFloat(window.getComputedStyle(this.__button).getPropertyValue('width'));
         }
 
-        this.setValue(value);
+        var length = ratio * this.__actorWidth;
+        this.__button.style.transform = 'translate3d(' + (length - this.__buttonWidth / 2) + 'px, 0px, 0px)';
+        this.__range.style.width = length + 'px';
       },
+      __invalidateScreensize: function __invalidateScreensize() {
+        var min = this.getMin();
+        var max = this.getMax();
+        this.__actorWidth = undefined; // invalidate cached values
 
-      /**
-       * Get the value that should be send to backend after the action has been triggered
-       */
-      getActionValue: function getActionValue() {
-        return "";
+        this.__animator.setTo(max === min ? 0 : (this.getBasicValue() - min) / (max - min));
+      },
+      handleEvent: function handleEvent(event) {
+        var newRatio = 0;
+
+        switch (event.type) {
+          case 'pointerdown':
+            this.__inDrag = true;
+            document.addEventListener('pointermove', this);
+            document.addEventListener('pointerup', this);
+            var boundingRect = event.currentTarget.getBoundingClientRect();
+            var computedStyle = window.getComputedStyle(event.currentTarget);
+            this.__coordMin = boundingRect.left + parseFloat(computedStyle.paddingLeft);
+            newRatio = (event.clientX - this.__coordMin) / this.__actorWidth;
+            break;
+
+          case 'pointermove':
+            if (!this.__inDrag) {
+              return;
+            }
+
+            newRatio = (event.clientX - this.__coordMin) / this.__actorWidth;
+            break;
+
+          case 'pointerup':
+            this.__inDrag = false;
+            document.removeEventListener('pointermove', this);
+            document.removeEventListener('pointerup', this);
+            newRatio = (event.clientX - this.__coordMin) / this.__actorWidth;
+            break;
+        }
+
+        newRatio = Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
+
+        var newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
+
+        this.__setSliderTo(newValue, this.__inDrag, this.__inDrag);
+
+        if (!this.getSendOnFinish() || event.type === 'pointerup') {
+          this.__throttled.call(newValue);
+        }
+      },
+      __onChangeValue: function __onChangeValue(value) {
+        this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue);
       }
     },
     defer: function defer(statics) {
@@ -280,4 +306,4 @@
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1589125236080
+//# sourceMappingURL=Slide.js.map?dt=1589219657332

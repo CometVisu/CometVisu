@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 614,
+        "line": 584,
         "column": 3
       }
     },
@@ -715,14 +715,42 @@
     }
   },
   "members": {
-    "_getInnerDomString": {
+    "__animator": {
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4
+        },
+        "end": {
+          "line": 225,
+          "column": 25
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__indicatorDOMElement": {
       "location": {
         "start": {
           "line": 226,
           "column": 4
         },
         "end": {
-          "line": 500,
+          "line": 226,
+          "column": 29
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_getInnerDomString": {
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4
+        },
+        "end": {
+          "line": 505,
           "column": 5
         }
       },
@@ -752,7 +780,7 @@
     "_update": {
       "location": {
         "start": {
-          "line": 508,
+          "line": 513,
           "column": 4
         },
         "end": {
@@ -787,14 +815,14 @@
       "type": "function",
       "access": "protected"
     },
-    "animateIndicators": {
+    "__updateIndicatorPosition": {
       "location": {
         "start": {
-          "line": 550,
+          "line": 547,
           "column": 4
         },
         "end": {
-          "line": 612,
+          "line": 582,
           "column": 5
         }
       },
@@ -802,22 +830,12 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Update the display of the indicators.\n Note: It is a design decision not to pool multiple updates in one requestAnimationFrame which might be beneficial\n performace wise. But as it's assumed that a typical visu config is only containing one roundbar per address\n a pooling wouldn't make a difference on the one hand but complicate the code on the other hand.\n Even with a few roundbars using the same address the performance impact is negligible.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "indicatorElements Array with the bars to modify"
-          },
-          {
-            "name": "@param",
-            "body": "jumpToTarget skip animation"
+            "body": "<p>Callback to update the display of the indicators.\n Note: It is a design decision not to pool multiple updates in one requestAnimationFrame which might be beneficial\n performance wise. But as it's assumed that a typical visu config is only containing one roundbar per address\n a pooling wouldn't make a difference on the one hand but complicate the code on the other hand.\n Even with a few roundbars using the same address the performance impact is negligible.</p>"
           }
         ]
       },
       "type": "function",
-      "access": "public"
+      "access": "private"
     },
     "__initUpdater": {
       "type": "function",

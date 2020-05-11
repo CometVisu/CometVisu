@@ -1,3 +1,15 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -99,15 +111,19 @@
 
       /**
        * Add transformation rules to the registry
-       * @param prefix {String} Tranformation prefix (e.g. DPT for KNX tranformations or OH for openHAB transformations)
-       * @param transforms {Map} map of transformations
+       * @param prefix {String} Transformation prefix (e.g. DPT for KNX transformations or OH for openHAB transformations)
+       * @param transforms {Object} map of transformations
        */
       addTransform: function addTransform(prefix, transforms) {
-        for (var trans in transforms) {
-          if (transforms[trans].link) {
-            this.registry[prefix + ':' + trans] = Object.assign({}, transforms[transforms[trans].link], transforms[trans]);
+        for (var _i = 0, _Object$entries = Object.entries(transforms); _i < _Object$entries.length; _i++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+              transName = _Object$entries$_i[0],
+              transform = _Object$entries$_i[1];
+
+          if (transform.link) {
+            this.registry[prefix + ':' + transName] = Object.assign({}, transforms[transform.link], transform);
           } else {
-            this.registry[prefix + ':' + trans] = transforms[trans];
+            this.registry[prefix + ':' + transName] = transform;
           }
         }
       },
@@ -127,6 +143,29 @@
       },
 
       /**
+       * transform JavaScript to bus value and raw value
+       *
+       * @param transformation {String} type of the transformation
+       * @param value {var} value to transform
+       * @return {Object} object with both encoded values
+       */
+      encodeBusAndRaw: function encodeBusAndRaw(transformation, value) {
+        if (cv.Config.testMode === true) {
+          return {
+            bus: value,
+            raw: value
+          };
+        }
+
+        var basetrans = transformation.split('.')[0];
+        var encoding = transformation in cv.Transform.registry ? cv.Transform.registry[transformation].encode(value) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].encode(value) : value;
+        return encoding.constructor === Object ? encoding : {
+          bus: encoding,
+          raw: encoding
+        };
+      },
+
+      /**
        * transform JavaScript to bus value
        *
        * @param transformation {String} type of the transformation
@@ -134,12 +173,7 @@
        * @return {var} the encoded value
        */
       encode: function encode(transformation, value) {
-        if (cv.Config.testMode === true) {
-          return value;
-        }
-
-        var basetrans = transformation.split('.')[0];
-        return transformation in cv.Transform.registry ? cv.Transform.registry[transformation].encode(value) : basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans].encode(value) : value;
+        return this.encodeBusAndRaw(transformation, value).bus;
       },
 
       /**
@@ -161,4 +195,4 @@
   cv.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1589124716620
+//# sourceMappingURL=Transform.js.map?dt=1589219112402

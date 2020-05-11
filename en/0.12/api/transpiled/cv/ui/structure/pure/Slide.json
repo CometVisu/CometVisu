@@ -12,11 +12,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 32,
+        "line": 26,
         "column": 0
       },
       "end": {
-        "line": 225,
+        "line": 264,
         "column": 3
       }
     },
@@ -25,28 +25,6 @@
         {
           "name": "@description",
           "body": "<p>Adds a horizontal slider to the visu. This can be used, for example, to dim a light or change temperature values.</p><div class=\"authors\"><label>Author:</label> Christian Mayer</div><div class=\"since\"><label>Since:</label> 2012</div>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Attribute"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Css"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Traversing"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Manipulating"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.Keyboard"
         }
       ],
       "@author": [
@@ -67,11 +45,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 41,
+        "line": 35,
         "column": 13
       },
       "end": {
-        "line": 61,
+        "line": 39,
         "column": 3
       }
     },
@@ -84,15 +62,35 @@
       ]
     }
   },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 45,
+        "column": 12
+      },
+      "end": {
+        "line": 49,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<pre><code>****************************************\nDESTRUCTOR\n****************************************\n</code></pre>"
+        }
+      ]
+    }
+  },
   "properties": {
     "min": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 57,
           "column": 4
         },
         "end": {
-          "line": 73,
+          "line": 60,
           "column": 5
         }
       },
@@ -105,11 +103,11 @@
     "max": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 61,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 64,
           "column": 5
         }
       },
@@ -122,11 +120,11 @@
     "step": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 65,
           "column": 4
         },
         "end": {
-          "line": 81,
+          "line": 68,
           "column": 5
         }
       },
@@ -136,14 +134,31 @@
       "check": "Number",
       "defaultValue": 0.5
     },
-    "sendOnFinish": {
+    "showInvalidValues": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 69,
           "column": 4
         },
         "end": {
-          "line": 85,
+          "line": 72,
+          "column": 5
+        }
+      },
+      "name": "showInvalidValues",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "sendOnFinish": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
           "column": 5
         }
       },
@@ -211,151 +226,173 @@
     }
   },
   "members": {
-    "__main": {
+    "__lastBusValue": {
       "location": {
         "start": {
-          "line": 94,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 94,
-          "column": 16
+          "line": 85,
+          "column": 22
         }
       },
       "type": "variable",
       "access": "private"
     },
-    "__timerId": {
+    "__animator": {
       "location": {
         "start": {
-          "line": 95,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 95,
-          "column": 19
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__slider": {
-      "location": {
-        "start": {
-          "line": 96,
-          "column": 4
-        },
-        "end": {
-          "line": 96,
-          "column": 19
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__readonly": {
-      "location": {
-        "start": {
-          "line": 97,
-          "column": 4
-        },
-        "end": {
-          "line": 97,
+          "line": 86,
           "column": 20
         }
       },
       "type": "variable",
       "access": "private"
     },
-    "__initialized": {
+    "__button": {
       "location": {
         "start": {
-          "line": 98,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 98,
+          "line": 87,
           "column": 23
         }
       },
       "type": "variable",
       "access": "private"
     },
-    "__skipUpdatesFromSlider": {
+    "__range": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 99,
+          "line": 88,
+          "column": 22
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for DOM element</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__actorWidth": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4
+        },
+        "end": {
+          "line": 89,
+          "column": 27
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for DOM element</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__buttonWidth": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 28
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__pageSizeListener": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
           "column": 33
         }
       },
       "type": "variable",
       "access": "private"
     },
-    "_onDomReady": {
+    "__inDrag": {
       "location": {
         "start": {
-          "line": 102,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 158,
-          "column": 5
+          "line": 92,
+          "column": 19
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "protected",
-      "overriddenFrom": "cv.ui.structure.AbstractWidget",
-      "appearsIn": [
-        "cv.ui.structure.AbstractWidget"
-      ]
+      "type": "variable",
+      "access": "private"
     },
-    "__updateSlider": {
+    "__coordMin": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 169,
-          "column": 5
+          "line": 93,
+          "column": 25
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Refresh the slider position</p>"
+            "body": "<p>is the handle currently dragged?</p>"
           }
         ]
       },
-      "type": "function",
+      "type": "variable",
       "access": "private"
     },
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 96,
           "column": 4
         },
         "end": {
-          "line": 174,
+          "line": 104,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
+          {
+            "name": "@description",
+            "body": "<p>minimal screen coordinate of slider</p>"
+          },
           {
             "name": "@description",
             "body": "<p>overridden</p>"
@@ -377,50 +414,54 @@
         "cv.ui.structure.AbstractWidget"
       ]
     },
-    "_update": {
+    "_onDomReady": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 194,
+          "line": 113,
           "column": 5
-        }
-      },
-      "type": "function",
-      "access": "protected"
-    },
-    "_action": {
-      "location": {
-        "start": {
-          "line": 197,
-          "column": 4
-        },
-        "end": {
-          "line": 197,
-          "column": 26
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>override Operate Mixins on click action, we handle that ourselfs with _onChangeValue</p>"
+            "body": "<p>overridden</p>"
           }
         ]
       },
       "type": "function",
-      "access": "protected"
+      "access": "protected",
+      "overriddenFrom": "cv.ui.structure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.AbstractWidget"
+      ]
     },
-    "_onChangeValue": {
+    "_update": {
       "location": {
         "start": {
-          "line": 204,
+          "line": 115,
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 129,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__setSliderTo": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4
+        },
+        "end": {
+          "line": 188,
           "column": 5
         }
       },
@@ -428,50 +469,97 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Handle incoming value changes send by the slider widget (e.g. triggered by user interaction)</p>"
+            "body": "<p>The the internal slider state and its handle and displayed value</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "value {Number} the current value to send",
+            "body": "value {Number} The new value",
             "paramName": "value",
-            "description": " the current value to send",
+            "description": " The new value",
             "type": "Number"
           },
           {
             "name": "@param",
-            "body": "finished {Boolean} if sendOnFinish is true settings this parameter to true triggers the value to be send",
-            "paramName": "finished",
-            "description": " if sendOnFinish is true settings this parameter to true triggers the value to be send",
+            "body": "instant {Boolean} Animate or instant change",
+            "paramName": "instant",
+            "description": " Animate or instant change",
             "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "relaxDisplay {Boolean} Let the handle move to an unstable position\n   to give visual feedback that something does happen during interaction",
+            "paramName": "relaxDisplay",
+            "description": " Let the handle move to an unstable position\n   to give visual feedback that something does happen during interaction",
+            "type": "Boolean"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
           }
         ]
       },
       "type": "function",
-      "access": "protected"
+      "access": "private"
     },
-    "getActionValue": {
+    "__updateHandlePosition": {
       "location": {
         "start": {
-          "line": 217,
+          "line": 190,
           "column": 4
         },
         "end": {
-          "line": 219,
+          "line": 210,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Get the value that should be send to backend after the action has been triggered</p>"
-          }
-        ]
+      "type": "function",
+      "access": "private"
+    },
+    "__invalidateScreensize": {
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4
+        },
+        "end": {
+          "line": 217,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "handleEvent": {
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4
+        },
+        "end": {
+          "line": 254,
+          "column": 5
+        }
       },
       "type": "function",
       "access": "public"
+    },
+    "__onChangeValue": {
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4
+        },
+        "end": {
+          "line": 258,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "private"
     },
     "action": {
       "type": "function",
@@ -5852,6 +5940,96 @@
         ]
       }
     },
+    "getShowInvalidValues": {
+      "type": "function",
+      "name": "getShowInvalidValues",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showInvalidValues</code>.\n\nFor further details take a look at the property definition: {@link #showInvalidValues}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showInvalidValues"
+          }
+        ]
+      }
+    },
+    "isShowInvalidValues": {
+      "type": "function",
+      "name": "isShowInvalidValues",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>showInvalidValues</code>.\n\nFor further details take a look at the property definition: {@link #showInvalidValues}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for showInvalidValues"
+          }
+        ]
+      }
+    },
+    "setShowInvalidValues": {
+      "type": "function",
+      "name": "setShowInvalidValues",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>showInvalidValues</code>.\n\nFor further details take a look at the property definition: {@link #showInvalidValues}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for showInvalidValues"
+          }
+        ]
+      }
+    },
+    "resetShowInvalidValues": {
+      "type": "function",
+      "name": "resetShowInvalidValues",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showInvalidValues</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showInvalidValues}."
+          }
+        ]
+      }
+    },
     "getSendOnFinish": {
       "type": "function",
       "name": "getSendOnFinish",
@@ -5946,11 +6124,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 222,
+        "line": 261,
         "column": 9
       },
       "end": {
-        "line": 224,
+        "line": 263,
         "column": 3
       }
     },

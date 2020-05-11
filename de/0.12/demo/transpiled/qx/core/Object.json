@@ -3806,6 +3806,7 @@
     "com.zenesis.qx.upload.UploadMgr",
     "com.zenesis.qx.upload.File",
     "qx.data.store.Json",
+    "cv.util.LimitedRateUpdateAnimator",
     "qx.event.dispatch.Direct",
     "cv.io.transport.LongPolling",
     "cv.io.transport.Sse",

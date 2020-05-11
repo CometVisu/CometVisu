@@ -47,7 +47,12 @@
         '1.001': {
           name: 'DPT_Switch',
           encode: function encode(phy) {
-            return (phy | 0x80).toString(16);
+            phy = +phy; // cast to number
+
+            return {
+              bus: phy ? '81' : '80',
+              raw: phy ? '01' : '00'
+            };
           },
           decode: function decode(hex) {
             return parseInt(hex, 16);
@@ -78,7 +83,11 @@
           name: 'DPT_Char_ASCII',
           encode: function encode(phy) {
             var val = phy.charCodeAt(0).toString(16);
-            return (val.length === 1 ? '800' : '80') + val;
+            val = val.length === 1 ? '0' + val : val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             return String.fromCharCode(parseInt(hex, 16));
@@ -96,7 +105,11 @@
           },
           encode: function encode(phy) {
             var val = parseInt(phy * 255 / 100).toString(16);
-            return (val.length === 1 ? '800' : '80') + val;
+            val = val.length === 1 ? '0' + val : val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             return parseInt(hex, 16) * 100 / 255.0;
@@ -111,7 +124,11 @@
           },
           encode: function encode(phy) {
             var val = parseInt(phy * 255 / 360).toString(16);
-            return (val.length === 1 ? '800' : '80') + val;
+            val = val.length === 1 ? '0' + val : val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             return parseInt(hex, 16) * 360 / 255.0;
@@ -126,7 +143,11 @@
           },
           encode: function encode(phy) {
             var val = parseInt(cv.Transform.clip(0, phy, 255)).toString(16);
-            return (val.length === 1 ? '800' : '80') + val;
+            val = val.length === 1 ? '0' + val : val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             return parseInt(hex, 16);
@@ -147,7 +168,11 @@
             phy = parseInt(cv.Transform.clip(-128, phy, 127));
             var val = phy < 0 ? phy + 256 : phy;
             val = val.toString(16);
-            return (val.length === 1 ? '800' : '80') + val;
+            val = val.length === 1 ? '0' + val : val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             var val = parseInt(hex, 16);
@@ -161,7 +186,10 @@
           name: 'DPT_Value_2_Ucount',
           encode: function encode(phy) {
             var val = parseInt(phy).toString(16).padStart(4, "0");
-            return '80' + val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             return parseInt(hex, 16);
@@ -175,7 +203,11 @@
           encode: function encode(phy) {
             var val = parseInt(phy);
             val = val < 0 ? val + 65536 : val;
-            return '80' + val.toString(16).padStart(4, "0");
+            val = val.toString(16).padStart(4, "0");
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             var val = parseInt(hex, 16);
@@ -201,8 +233,11 @@
               exp++;
             }
 
-            var val = (sign | exp << 11 | mant & 0x07ff).toString(16);
-            return '80' + (new Array(4 - val.length + 1).join('0') + val);
+            var val = (sign | exp << 11 | mant & 0x07ff).toString(16).padStart(4, "0");
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             if (0x7fff === parseInt(hex, 16)) {
@@ -246,7 +281,10 @@
             var val = ((phy.getDay() << 5) + phy.getHours()).toString(16).padStart(2, "0");
             val += phy.getMinutes().toString(16).padStart(2, "0");
             val += phy.getSeconds().toString(16).padStart(2, "0");
-            return '80' + val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             var date = new Date(); // assume today
@@ -280,7 +318,10 @@
           name: 'DPT_Value_4_Ucount',
           encode: function encode(phy) {
             var val = parseInt(phy).toString(16).padStart(8, "0");
-            return '80' + val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             return parseInt(hex, 16);
@@ -294,7 +335,11 @@
           encode: function encode(phy) {
             var val = parseInt(phy);
             val = val < 0 ? val + 4294967296 : val;
-            return '80' + val.toString(16).padStart(8, "0");
+            val = val.toString(16).padStart(8, "0");
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             var val = parseInt(hex, 16);
@@ -330,7 +375,7 @@
             'de': '14 Byte Text ISO-8859-1'
           },
           encode: function encode(phy) {
-            var val = '80';
+            var val = '';
             phy += ''; // force datatype String
 
             for (var i = 0; i < 14; i++) {
@@ -338,7 +383,10 @@
               val += c ? (c < 16 ? '0' : '') + c.toString(16) : '00';
             }
 
-            return val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             var val = "";
@@ -402,7 +450,11 @@
           },
           encode: function encode(phy) {
             var val = parseInt(cv.Transform.clip(0, phy - 1, 191)).toString(16);
-            return (val.length === 1 ? '800' : '80') + val;
+            val = val.length === 1 ? '0' + val : val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             return parseInt(hex, 16) + 1;
@@ -430,7 +482,11 @@
           },
           encode: function encode(phy) {
             var val = parseInt(cv.Transform.clip(0, phy - 1, 127)).toString(16);
-            return (val.length === 1 ? '800' : '80') + val;
+            val = val.length === 1 ? '0' + val : val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             return parseInt(hex, 16) + 1;
@@ -484,7 +540,11 @@
             }
 
             val = val.toString(16);
-            return (val.length === 1 ? '800' : '80') + val;
+            val = val.length === 1 ? '0' + val : val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             switch (parseInt(hex, 16)) {
@@ -520,7 +580,7 @@
             'de': 'variable String ISO-8859-1'
           },
           encode: function encode(phy) {
-            var val = '80';
+            var val = '';
 
             for (var i = 0; i < phy.length; i++) {
               var c = phy.charCodeAt(i);
@@ -530,7 +590,10 @@
 
 
             val += '00';
-            return val;
+            return {
+              bus: '80' + val,
+              raw: val.toUpperCase()
+            };
           },
           decode: function decode(hex) {
             var val = "";
@@ -577,4 +640,4 @@
   cv.transforms.Knx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Knx.js.map?dt=1589124678120
+//# sourceMappingURL=Knx.js.map?dt=1589219075338
