@@ -111,7 +111,7 @@ describe("testing a multitrigger widget", function() {
 
     var creator = this.createTestElement('multitrigger', {
       'showstatus': 'true'
-    }, '<buttons><button label="B1">1</button><button label="B2">2</button><button label="B3">3</button><button label="B4">4</button></buttons>', '<address transform="DPT:4001" mode="read">1/0/0</address>', {'transform': '4.001'});
+    }, '<buttons><button label="B1">1</button><button label="B2">2</button><button label="B3">3</button><button label="B4">4</button></buttons>', '<address transform="DPT:4.001" mode="read">1/0/0</address>', {'transform': '4.001'});
     spyOn(creator, "sendToBackend");
     var actors = this.container.children[0].querySelectorAll(".actor_container .actor");
     expect(actors.length).not.toBe(0);

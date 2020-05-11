@@ -53,7 +53,7 @@ describe("testing a slide widget", function() {
     var widgetInstance = this.createTestElement("slide", {}, null, "Test_slide", {transform: 'DPT:5.004'});
     this.initWidget(widgetInstance);
     widgetInstance.update("Test_slide", "64"); // 0x64 == 100
-    expect(widgetInstance.__slider.getValue()).toBe(100);
+    expect(widgetInstance.getBasicValue()).toBe(100);
   });
 
   it("should not re-send incoming data", function() {
@@ -63,7 +63,7 @@ describe("testing a slide widget", function() {
     this.initWidget(widgetInstance);
     spyOn(widgetInstance, 'sendToBackend');
     widgetInstance.update("Test_slide_read", "64"); // 0x64 == 100
-    expect(widgetInstance.__slider.getValue()).toBe(100);
+    expect(widgetInstance.getBasicValue()).toBe(100);
     expect(widgetInstance.sendToBackend).not.toHaveBeenCalled();
   });
 });

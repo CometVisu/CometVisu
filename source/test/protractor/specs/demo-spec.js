@@ -121,10 +121,13 @@ describe('cometvisu demo config test:', function () {
 
         // find the slider knob
         var knob = widget.element(by.css(".ui-slider-handle"));
-        browser.actions().mouseDown(knob).mouseMove(knob, {x: 20, y:0}).mouseUp(knob).perform();
-
-        cvDemo.getLastWrite().then(function (lastWrite) {
-          expect(lastWrite.value).toBeGreaterThan(0);
+        browser.actions().mouseMove(knob, {x: 10, y:10}).mouseDown().perform();
+        cvDemo.getLastWrite().then(function (lastWrite1) {
+          browser.actions().mouseMove(knob, {x: 30, y:10}).mouseUp().perform();
+          browser.sleep(500);
+          cvDemo.getLastWrite().then(function (lastWrite2) {
+            expect(lastWrite2.value).toBeGreaterThan(lastWrite1.value);
+          });
         });
         var borderWidth = 1; // depending from design, but as the demo is in pure design, we use a hardcoded value here
 
@@ -136,16 +139,17 @@ describe('cometvisu demo config test:', function () {
                 // slider min
                 cvDemo.sendUpdate(address, data.min || 0);
                 // give the slider some time to reach its position
-                browser.sleep(1000);
+                browser.sleep(1500);
                 knob.getLocation().then(function (newPos) {
-                  expect(newPos.x).toEqual(rangePosition.x + borderWidth - Math.round(knobSize.width/2));
+                  // check with some tolerance
+                  expect(Math.abs(newPos.x-(rangePosition.x + borderWidth - Math.round(knobSize.width/2)))).toBeLessThan(25);
                   expect(newPos.y).toEqual(pos.y);
                 });
 
                 // slider max
                 cvDemo.sendUpdate(address, data.max || 100);
                 // give the slider some time to reach its position
-                browser.sleep(1000);
+                browser.sleep(1500);
                 knob.getLocation().then(function (newPos) {
                   // check with some tolerance
                   expect(Math.abs(newPos.x-(rangePosition.x + rangeSize.width - knobSize.width - borderWidth))).toBeLessThan(25);

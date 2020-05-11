@@ -1181,6 +1181,7 @@
       <xsd:element name="wgplugin_info" type="wgplugin_info"/>
       <xsd:element name="mobilemenu" type="mobilemenu"/>
       <xsd:element name="notificationcenterbadge" type="notificationcenterbadge"/>
+      <xsd:element name="roundbar" type="roundbar" />
       <xsd:element name="custom" type="custom"/>
     </xsd:choice>
   </xsd:group>
@@ -1793,7 +1794,12 @@
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
-    <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Send only when the slider is released.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Sende nur beim Loslassen des Sliders.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
