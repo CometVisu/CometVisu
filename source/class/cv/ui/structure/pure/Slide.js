@@ -45,6 +45,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
   destruct: function () {
     cv.ui.layout.ResizeHandler.states.removeListenerById(this.__pageSizeListener);
     this.__pageSizeListener = null;
+    this.__button = null;
   },
 
   /*
@@ -83,6 +84,8 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
   members: {
     __lastBusValue: {},
     __animator: null,
+    __button: undefined, // cache for DOM element
+    __range: undefined,  // cache for DOM element
     __actorWidth: undefined,
     __buttonWidth: undefined,
     __pageSizeListener: undefined,
@@ -185,23 +188,25 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     },
 
     __updateHandlePosition: function (ratio) {
-      let element = this.getDomElement();
-      let button = element.querySelector('button');
-      if (button === null) {
+      if (this.__button === undefined) {
+        let element = this.getDomElement();
+        this.__button = element.querySelector('button');
+        this.__range = element.querySelector('.ui-slider-range');
+      }
+      if (this.__button === null) {
         // most likely reason: the widget / DOM tree was deleted (e.g. due to
         // browsing to a new page or during unit tests)
         this._disposeObjects('__animator');
         return;
       }
-      let range = element.querySelector('.ui-slider-range');
       if (this.__actorWidth === undefined || this.__buttonWidth === undefined) {
-        let actor = element.querySelector('.actor');
+        let actor = this.getDomElement().querySelector('.actor');
         this.__actorWidth = parseFloat(window.getComputedStyle(actor).getPropertyValue('width'));
-        this.__buttonWidth = parseFloat(window.getComputedStyle(button).getPropertyValue('width'));
+        this.__buttonWidth = parseFloat(window.getComputedStyle(this.__button).getPropertyValue('width'));
       }
       let length = ratio * this.__actorWidth;
-      button.style.transform = 'translate3d(' + (length-this.__buttonWidth/2) + 'px, 0px, 0px)';
-      range.style.width = length + 'px';
+      this.__button.style.transform = 'translate3d(' + (length-this.__buttonWidth/2) + 'px, 0px, 0px)';
+      this.__range.style.width = length + 'px';
     },
 
     __invalidateScreensize: function () {
