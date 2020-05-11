@@ -274,4 +274,4 @@
   qx.ui.container.Stack.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stack.js.map?dt=1589219095621
+//# sourceMappingURL=Stack.js.map?dt=1589222716132

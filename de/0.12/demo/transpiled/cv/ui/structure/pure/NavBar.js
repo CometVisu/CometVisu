@@ -235,4 +235,4 @@
   cv.ui.structure.pure.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1589219656837
+//# sourceMappingURL=NavBar.js.map?dt=1589223268454

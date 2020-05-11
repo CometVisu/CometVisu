@@ -70,4 +70,4 @@
   qx.bom.client.PhoneGap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PhoneGap.js.map?dt=1589219082764
+//# sourceMappingURL=PhoneGap.js.map?dt=1589222703440

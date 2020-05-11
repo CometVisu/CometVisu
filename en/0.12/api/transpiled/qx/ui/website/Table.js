@@ -1491,4 +1491,4 @@
   qx.ui.website.Table.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Table.js.map?dt=1589219109467
+//# sourceMappingURL=Table.js.map?dt=1589222729939

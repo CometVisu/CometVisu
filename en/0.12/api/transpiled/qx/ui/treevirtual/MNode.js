@@ -420,4 +420,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.ui.treevirtual.MNode.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MNode.js.map?dt=1589219107549
+//# sourceMappingURL=MNode.js.map?dt=1589222728059

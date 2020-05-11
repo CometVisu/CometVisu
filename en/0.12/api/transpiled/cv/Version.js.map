@@ -22,6 +22,6 @@
   ],
   "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,YAAhB,EAA8B;AAC5BC,IAAAA,IAAI,EAAE,QADsB;AAG5BC,IAAAA,OAAO,EAAE;AACPC,MAAAA,GAAG,EAAE,0CADE;AAEPC,MAAAA,MAAM,EAAE,MAFD;AAGPC,MAAAA,OAAO,EAAE,YAHF;AAIPC,MAAAA,IAAI,EAAE,0BAJC;AAKPC,MAAAA,IAAI,EAAE;AALC;AAHmB,GAA9B;AADAC,EAAAA,EAAE,CAACC,OAAH,CAAWX,aAAX,GAA2BA,aAA3B",
   "sourcesContent": [
-    "\nqx.Class.define(\"cv.Version\", {\n  type: \"static\",\n\n  statics: {\n    REV: \"1f5ab45ec984d3c2a4ef678367f6bd43b8c2ac61\",\n    BRANCH: \"HEAD\",\n    VERSION: \"0.12.0-dev\",\n    DATE: \"2020-05-11T17:42:47.230Z\",\n    TAGS: { \n    }\n  }\n});    \n"
+    "\nqx.Class.define(\"cv.Version\", {\n  type: \"static\",\n\n  statics: {\n    REV: \"55b6563323af2b4d30acdac37f77850d0bb58aa4\",\n    BRANCH: \"HEAD\",\n    VERSION: \"0.12.0-dev\",\n    DATE: \"2020-05-11T18:43:06.958Z\",\n    TAGS: { \n    }\n  }\n});    \n"
   ]
 }

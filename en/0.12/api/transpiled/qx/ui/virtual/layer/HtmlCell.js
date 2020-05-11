@@ -135,4 +135,4 @@
   qx.ui.virtual.layer.HtmlCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HtmlCell.js.map?dt=1589219108593
+//# sourceMappingURL=HtmlCell.js.map?dt=1589222729100

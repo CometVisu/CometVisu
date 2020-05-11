@@ -149,4 +149,4 @@
   qx.ui.virtual.cell.CellStylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CellStylesheet.js.map?dt=1589219108065
+//# sourceMappingURL=CellStylesheet.js.map?dt=1589222728578

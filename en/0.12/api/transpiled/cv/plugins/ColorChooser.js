@@ -298,4 +298,4 @@
   cv.plugins.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1589219074220
+//# sourceMappingURL=ColorChooser.js.map?dt=1589222694897

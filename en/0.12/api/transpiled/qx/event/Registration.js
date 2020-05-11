@@ -513,4 +513,4 @@
   qx.event.Registration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Registration.js.map?dt=1589219088167
+//# sourceMappingURL=Registration.js.map?dt=1589222708716

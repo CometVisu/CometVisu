@@ -379,4 +379,4 @@
   qx.ui.menu.AbstractButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractButton.js.map?dt=1589219100971
+//# sourceMappingURL=AbstractButton.js.map?dt=1589222721475

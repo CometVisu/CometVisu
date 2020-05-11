@@ -369,4 +369,4 @@
   qx.ui.mobile.dialog.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1589219102497
+//# sourceMappingURL=Menu.js.map?dt=1589222722949
