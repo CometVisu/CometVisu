@@ -1,4 +1,5 @@
-const fs = require('fs')
+const fs = require('fs');
+const chmodr = require('chmodr');
 const fg = require('fast-glob');
 const fse = require('fs-extra')
 const path = require('path')
@@ -93,10 +94,24 @@ class CvCompileHandler extends AbstractCompileHandler {
           qx.tool.utils.files.Utils.sync(source, target);
         }
         this._watchList[source] = target;
-      })
+      });
+
+      // make everything in resource/config writeable
+      const configFolder = path.join(currentDir, targetDir, 'resource', 'config');
+
       // create config/media folder
-      fse.ensureDirSync(path.join(currentDir, targetDir, 'resource', 'config', 'media'))
-      fse.ensureDirSync(path.join(currentDir, targetDir, 'resource', 'config', 'backup'))
+      const configFolders =[
+        path.join(configFolder, 'media'),
+        path.join(configFolder, 'backup')
+      ]
+      configFolders.forEach(folder => {
+        fse.ensureDirSync(folder);
+      });
+      chmodr(configFolder, 0o777, (err) => {
+        if (err) {
+          console.log('Failed to execute chmod in resource/config', err);
+        }
+      });
     }
 
     if (command.argv.watch) {
@@ -153,6 +168,9 @@ class CvCompileHandler extends AbstractCompileHandler {
           console.log(' ->', filename);
           console.log(' <-', path.join(this._watchList[matchPath], relativePath));
           qx.tool.utils.files.Utils.copyFile(filename, path.join(this._watchList[matchPath], relativePath));
+          if (relativePath.includes('resource/config/')) {
+            fs.chmodSync(path.join(this._watchList[matchPath], relativePath), 0o777);
+          }
           break
       }
     } else {
