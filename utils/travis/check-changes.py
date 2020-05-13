@@ -29,7 +29,7 @@ def check_for_changes(type = 'cv'):
     newest_build_time = None
     if r.status_code == 200:
         for file in r.json():
-            build_time = datetime.strptime(file['created'], '%Y-%m-%dT%H:%M:%S.%f%z')
+            build_time = datetime.strptime(upper(file['created']), '%Y-%m-%dT%H:%M:%S.%f%Z')
             if type == 'cv' and file['name'][0:10] == 'CometVisu-':
                 if newest_build_time is None or newest_build_time < build_time:
                     newest_build_time = build_time
