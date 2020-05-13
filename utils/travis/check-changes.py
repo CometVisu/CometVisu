@@ -10,13 +10,13 @@ from datetime import datetime
 
 source_dir = '%s/source' % os.environ['TRAVIS_BUILD_DIR']
 client_dir = '%s/client/source' % os.environ['TRAVIS_BUILD_DIR']
-
+script_dir = os.path.dirname(os.path.realpath(__file__))
 
 def check_for_changes(type = 'cv'):
     if type not in ['cv', 'client']:
         print(0)
         return
-    with open('bintray-deploy.json', 'r') as f:
+    with open('%s/bintray-deploy.json' % script_dir, 'r') as f:
         bintray_config = json.load(f)
 
     bintray_version = bintray_config['version']['name']
