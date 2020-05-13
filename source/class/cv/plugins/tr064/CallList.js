@@ -25,6 +25,7 @@
  * 
  * @author Christian Mayer
  * @since 0.11.0
+ * @asset(plugins/tr064/*)
  */
 
 qx.Class.define('cv.plugins.tr064.CallList', {
