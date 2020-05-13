@@ -785,4 +785,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.ui.treevirtual.TreeVirtual.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TreeVirtual.js.map?dt=1589222728377
+//# sourceMappingURL=TreeVirtual.js.map?dt=1589396236859

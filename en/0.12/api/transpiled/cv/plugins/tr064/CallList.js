@@ -56,6 +56,7 @@
    * 
    * @author Christian Mayer
    * @since 0.11.0
+   * @asset(plugins/tr064/*)
    */
   qx.Class.define('cv.plugins.tr064.CallList', {
     extend: cv.ui.structure.AbstractWidget,
@@ -523,4 +524,4 @@
   cv.plugins.tr064.CallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CallList.js.map?dt=1589222695913
+//# sourceMappingURL=CallList.js.map?dt=1589396200905
