@@ -373,4 +373,4 @@
   qx.event.handler.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1589396215574
+//# sourceMappingURL=Application.js.map?dt=1589400496831

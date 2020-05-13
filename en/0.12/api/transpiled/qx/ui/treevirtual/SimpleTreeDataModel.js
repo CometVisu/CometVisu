@@ -1015,4 +1015,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.ui.treevirtual.SimpleTreeDataModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleTreeDataModel.js.map?dt=1589396236746
+//# sourceMappingURL=SimpleTreeDataModel.js.map?dt=1589400518166

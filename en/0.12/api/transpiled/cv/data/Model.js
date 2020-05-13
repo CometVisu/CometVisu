@@ -295,4 +295,4 @@
   cv.data.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1589396241583
+//# sourceMappingURL=Model.js.map?dt=1589400522992

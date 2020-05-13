@@ -70,4 +70,4 @@
   cv.parser.widgets.Rgb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rgb.js.map?dt=1589396199351
+//# sourceMappingURL=Rgb.js.map?dt=1589400480568
