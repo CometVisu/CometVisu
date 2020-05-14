@@ -171,7 +171,6 @@
     }
   ],
   "libraries": [
-    "external/qooxdoo/framework",
     "client",
     "."
   ],
@@ -201,9 +200,6 @@
     }
   ],
   "defaultTarget": "source",
-  "path-mappings": {
-    "./qooxdoo": "./external/qooxdoo"
-  },
   "serve": {
     "listenPort": 8082
   },
