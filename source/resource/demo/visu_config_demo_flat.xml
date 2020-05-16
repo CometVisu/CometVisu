@@ -53,11 +53,11 @@
     <statusbar>
       <status type="html"><![CDATA[
           <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
-          - <a href="manager.php">Config-Manager</a>
+          - <a href="#" onclick="showManager()">Config-Manager</a>
           - <a href=".?forceReload=true">Reload</a>
         ]]></status>
-      <status type="html" condition="!edit" hrefextend="config"><![CDATA[
-          - <a href="editor/">Edit</a>
+      <status type="html" condition="!edit" hrefextend="action"><![CDATA[
+          - <a cv-action="edit">Edit</a>
         ]]></status>
       <status type="html" condition="edit" hrefextend="config"><![CDATA[
           - <a href=".">normal Mode</a>
@@ -65,8 +65,8 @@
       <status type="html"><![CDATA[
           - <a href="?config=demo">Widget Demo</a>
         ]]></status>
-      <status type="html" hrefextend="config"><![CDATA[
-          - <a href="check_config.php">Check Config</a>
+      <status type="html" hrefextend="action"><![CDATA[
+          - <a cv-action="validate">Check Config</a>
         ]]></status>
     </statusbar>
   </meta>
@@ -185,9 +185,15 @@
 
     <page name="Wohnzimmer" visible="false">
       <group name="Wohnzimmer">
-        <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy" showstatus="true" mapping="KonnexHVAC">
+        <multitrigger showstatus="true" mapping="KonnexHVAC">
           <label>Heizung</label>
           <address transform="DPT:20.102" mode="readwrite">12/7/13</address>
+          <buttons>
+            <button label="Auto">auto</button>
+            <button label="Komfort">comfort</button>
+            <button label="Stand By">standby</button>
+            <button label="Economy">economy</button>
+          </buttons>
         </multitrigger>
         
         <colorchooser>

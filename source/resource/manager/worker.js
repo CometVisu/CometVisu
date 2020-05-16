@@ -33,9 +33,14 @@ function getFileContent (path) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', path, false); // Note: synchronous
     xhr.send();
-    return xhr.response;
+    if (xhr.status === 200) {
+      return xhr.response;
+    } else {
+      console.error("XHR Error for ", path, xhr.status, xhr.statusText);
+      return null;
+    }
   } catch(e) {
-    console.error("XHR Error " + e.toString());
+    console.error("XHR Error for ", path, e.toString());
     return null;
   }
 }
@@ -157,12 +162,13 @@ function contentChange(data) { // jshint ignore:line
 }
 
 function validateConfig (data) {
-  var content = getFileContent('../../' + data.path);
+  const url = data.path.startsWith('http') ? data.path : '../../' + data.path;
+  const content = getFileContent(url);
   if (content) {
     if (!configSchema) {
       configSchema = getFileContent('../visu_config.xsd');
     }
-    var lint = xmllint.validateXML({
+    const lint = xmllint.validateXML({
       xml: content,
       schema: configSchema
     });

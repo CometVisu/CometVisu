@@ -130,6 +130,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     _workerWrapper: null,
     _currentDecorations: null,
     _configClient: null,
+    _onDidChangeContentGuard: 0,
 
     _initWorker: function () {
       this._workerWrapper = cv.ui.manager.editor.Worker.getInstance();
@@ -315,6 +316,26 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         this._editor.setValue(value);
       }
       this._editor.updateOptions({ readOnly: !file.isWriteable() });
+      this.enableMarkers(newModel);
+    },
+
+    // workaround for enabling markers in readonly files (from: https://github.com/microsoft/monaco-editor/issues/311#issuecomment-465139491)
+    enableMarkers: function (model) {
+      if (!model) {
+        return;
+      }
+      [
+        ['getLineDecorations', 2],
+        ['getLinesDecorations', 3],
+        ['getDecorationsInRange', 2],
+        ['getOverviewRulerDecorations', 1],
+        ['getAllDecorations', 1],
+      ].forEach(([functionName, maxArgs]) => {
+        const originalMethod = model[functionName];
+        model[functionName] = function() {
+          return originalMethod.apply(this, Array.from(arguments).slice(0, maxArgs));
+        };
+      });
     },
 
     getCurrentContent: function () {

@@ -14,7 +14,7 @@
           - <a href=".?forceReload=true">Reload</a>
         ]]></status>
       <status type="html" condition="!edit" hrefextend="config"><![CDATA[
-          - <a href="editor/">Edit</a>
+          - <a href="#" onclick="qx.core.Init.getApplication().showManager('open', 'visu_config.xml')">Edit</a>
         ]]></status>
       <status type="html" condition="edit" hrefextend="config"><![CDATA[
           - <a href=".">normal Mode</a>
