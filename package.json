@@ -32,7 +32,7 @@
   ],
   "devDependencies": {
     "@babel/polyfill": "^7.8.7",
-    "@qooxdoo/compiler": "^1.0.0-beta.20200514-1056",
+    "@qooxdoo/compiler": "^1.0.0-beta.20200515-1215",
     "chmodr": "^1.2.0",
     "csso": "^3.5.1",
     "easyimage": "^3.1.1",
