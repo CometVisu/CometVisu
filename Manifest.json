@@ -28,7 +28,7 @@
   },
   "requires": {
     "@qooxdoo/framework": "^6.0.0-beta",
-    "@qooxdoo/compiler": "^1.0.0-beta.20200314-0952",
+    "@qooxdoo/compiler": "^1.0.0-beta.20200514-1056",
     "ITISFoundation/qx-osparc-theme": "^0.4.13",
     "johnspackman/UploadMgr": "^1.0.4",
     "cboulanger/qx-contrib-Dialog": "^2.1.1",
