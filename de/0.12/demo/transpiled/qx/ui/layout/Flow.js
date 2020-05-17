@@ -110,7 +110,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/layout/flow.html'>
+   * <a href='http://qooxdoo.org/docs/#layout/flow.md'>
    * Extended documentation</a> and links to demos of this layout in the qooxdoo manual.
    */
   qx.Class.define("qx.ui.layout.Flow", {
@@ -348,4 +348,4 @@
   qx.ui.layout.Flow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flow.js.map?dt=1589401101685
+//# sourceMappingURL=Flow.js.map?dt=1589727215750

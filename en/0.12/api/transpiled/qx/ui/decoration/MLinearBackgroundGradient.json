@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 419,
+        "line": 417,
         "column": 3
       }
     },
@@ -97,7 +97,7 @@
           "column": 4
         },
         "end": {
-          "line": 191,
+          "line": 189,
           "column": 5
         }
       },
@@ -124,11 +124,11 @@
     "__styleLinearBackgroundGradientForLegacyWebkit": {
       "location": {
         "start": {
-          "line": 209,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 227,
+          "line": 225,
           "column": 5
         }
       },
@@ -212,11 +212,11 @@
     "__styleLinearBackgroundGradientWithCanvas": {
       "location": {
         "start": {
-          "line": 245,
+          "line": 243,
           "column": 4
         },
         "end": {
-          "line": 305,
+          "line": 303,
           "column": 5
         }
       },
@@ -300,11 +300,11 @@
     "__styleLinearBackgroundGradientWithMSFilter": {
       "location": {
         "start": {
-          "line": 323,
+          "line": 321,
           "column": 4
         },
         "end": {
-          "line": 361,
+          "line": 359,
           "column": 5
         }
       },
@@ -388,11 +388,11 @@
     "__styleLinearBackgroundGradientAccordingToSpec": {
       "location": {
         "start": {
-          "line": 379,
+          "line": 377,
           "column": 4
         },
         "end": {
-          "line": 395,
+          "line": 393,
           "column": 5
         }
       },
@@ -476,11 +476,11 @@
     "__getColor": {
       "location": {
         "start": {
-          "line": 402,
+          "line": 400,
           "column": 4
         },
         "end": {
-          "line": 405,
+          "line": 403,
           "column": 5
         }
       },
@@ -515,11 +515,11 @@
     "_applyLinearBackgroundGradient": {
       "location": {
         "start": {
-          "line": 409,
+          "line": 407,
           "column": 4
         },
         "end": {
-          "line": 417,
+          "line": 415,
           "column": 5
         }
       },

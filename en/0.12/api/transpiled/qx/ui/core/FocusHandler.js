@@ -58,6 +58,9 @@
     ***********************************************
     */
     properties: {
+      /**
+       * Activate changing focus with the tab key (default: true)
+       */
       useTabNavigation: {
         check: 'Boolean',
         init: true
@@ -568,4 +571,4 @@
   qx.ui.core.FocusHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FocusHandler.js.map?dt=1589400505066
+//# sourceMappingURL=FocusHandler.js.map?dt=1589726644333

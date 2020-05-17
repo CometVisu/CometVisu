@@ -25,7 +25,7 @@
         },
         {
           "name": "@description",
-          "body": "<p>Theme classes contain styling information for certain aspects of the\n graphical user interface.\n Supported themes are: colors, decorations, fonts, icons, appearances.\n The additional meta theme allows for grouping of the individual\n themes.\n For more details, take a look at the\n <a href='http://manual.qooxdoo.org/${qxversion}/pages/desktop/ui_theming.html' target='_blank'>\n documentation of the theme system in the qooxdoo manual.</a></p>"
+          "body": "<p>Theme classes contain styling information for certain aspects of the\n graphical user interface.\n Supported themes are: colors, decorations, fonts, icons, appearances.\n The additional meta theme allows for grouping of the individual\n themes.\n For more details, take a look at the\n <a href='http://qooxdoo.org/docs/#desktop/gui/theming.md' target='_blank'>\n documentation of the theme system in the qooxdoo manual.</a></p>"
         }
       ]
     }
@@ -51,7 +51,7 @@
           },
           {
             "name": "@description",
-            "body": "<p>Theme config\n Example:\n </p>\n<pre class='javascript'>\n qx.Theme.define(\"name\",\n {\n   aliases : {\n     \"aliasKey\" : \"resourceFolderOrUri\"\n   },\n   extend : otherTheme,\n   include : [MMixinTheme],\n   patch : [MMixinTheme],\n   colors : {},\n   decorations : {},\n   fonts : {},\n   widgets : {},\n   appearances : {},\n   meta : {},\n   boot : function(){}\n });\n </pre>\n<p>For more details, take a look at the\n <a href='http://manual.qooxdoo.org/${qxversion}/pages/desktop/ui_theming.html' target='_blank'>\n documentation of the theme system in the qooxdoo manual.</a></p>"
+            "body": "<p>Theme config\n Example:\n </p>\n<pre class='javascript'>\n qx.Theme.define(\"name\",\n {\n   aliases : {\n     \"aliasKey\" : \"resourceFolderOrUri\"\n   },\n   extend : otherTheme,\n   include : [MMixinTheme],\n   patch : [MMixinTheme],\n   colors : {},\n   decorations : {},\n   fonts : {},\n   widgets : {},\n   appearances : {},\n   meta : {},\n   boot : function(){}\n });\n </pre>\n<p>For more details, take a look at the\n <a href='http://qooxdoo.org/docs/#desktop/gui/theming.md' target='_blank'>\n documentation of the theme system in the qooxdoo manual.</a></p>"
           }
         ],
         "@param": [

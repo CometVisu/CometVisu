@@ -147,4 +147,4 @@
   qx.bom.element.BoxSizing.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BoxSizing.js.map?dt=1589400490941
+//# sourceMappingURL=BoxSizing.js.map?dt=1589726631555

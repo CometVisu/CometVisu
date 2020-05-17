@@ -206,4 +206,4 @@
   qx.ui.indicator.ProgressBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ProgressBar.js.map?dt=1589400509594
+//# sourceMappingURL=ProgressBar.js.map?dt=1589726648338

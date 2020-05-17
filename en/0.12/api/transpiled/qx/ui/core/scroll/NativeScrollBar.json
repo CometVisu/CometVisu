@@ -27,7 +27,7 @@
         },
         {
           "name": "@description",
-          "body": "<p>The scroll bar widget wraps the native browser scroll bars as a qooxdoo widget.\n It can be uses instead of the styled qooxdoo scroll bars.\n Scroll bars are used by the {@link qx.ui.container.Scroll} container. Usually\n a scroll bar is not used directly.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var scrollBar = new qx.ui.core.scroll.NativeScrollBar(\"horizontal\");\n   scrollBar.set({\n     maximum: 500\n   })\n   this.getRoot().add(scrollBar);\n </pre>\n<p>This example creates a horizontal scroll bar with a maximum value of 500.\n<em>External Documentation</em>\n <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget/scrollbar.html' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
+          "body": "<p>The scroll bar widget wraps the native browser scroll bars as a qooxdoo widget.\n It can be uses instead of the styled qooxdoo scroll bars.\n Scroll bars are used by the {@link qx.ui.container.Scroll} container. Usually\n a scroll bar is not used directly.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var scrollBar = new qx.ui.core.scroll.NativeScrollBar(\"horizontal\");\n   scrollBar.set({\n     maximum: 500\n   })\n   this.getRoot().add(scrollBar);\n </pre>\n<p>This example creates a horizontal scroll bar with a maximum value of 500.\n<em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
         }
       ]
     }

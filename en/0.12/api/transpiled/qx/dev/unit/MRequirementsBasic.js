@@ -47,9 +47,6 @@
        * {@link qx.core.Environment} will be checked for a key matching the given
        * feature name. Note that asynchronous environment checks are not supported!
        *
-       * See the manual for further details:
-       * <a href="http://manual.qooxdoo.org/current/pages/development/frame_apps_testrunner.html#defining-test-requirements">Defining Test Requirements</a>
-       *
        * @throws {qx.dev.unit.RequirementError} if any requirement check returned
        *   <code>false</code>
        * @throws {Error} if no valid check was found for a feature.
@@ -96,4 +93,4 @@
   qx.dev.unit.MRequirementsBasic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRequirementsBasic.js.map?dt=1589400495006
+//# sourceMappingURL=MRequirementsBasic.js.map?dt=1589726635066

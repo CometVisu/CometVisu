@@ -68,7 +68,7 @@
    *
    * To adjust the behavior of {@link #send} override
    * {@link #_getConfiguredUrl} and {@link #_getConfiguredRequestHeaders}.
-   *
+   * 
    * NOTE: Instances of this class must be disposed of after use
    *
    */
@@ -932,11 +932,10 @@
         }, 0);
       }
 
-      this._transport = null;
       this.__response = null;
     }
   });
   qx.io.request.AbstractRequest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractRequest.js.map?dt=1589401104958
+//# sourceMappingURL=AbstractRequest.js.map?dt=1589727218667

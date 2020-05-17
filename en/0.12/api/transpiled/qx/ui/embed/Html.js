@@ -70,7 +70,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget/html.html' target='_blank'>
+   * <a href='http://qooxdoo.org/docs/#desktop/widget/html.md' target='_blank'>
    * Documentation of this widget in the qooxdoo manual.</a>
    */
   qx.Class.define("qx.ui.embed.Html", {
@@ -214,4 +214,4 @@
   qx.ui.embed.Html.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Html.js.map?dt=1589400507338
+//# sourceMappingURL=Html.js.map?dt=1589726646366

@@ -1329,4 +1329,4 @@
   qx.data.SingleValueBinding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SingleValueBinding.js.map?dt=1589401107355
+//# sourceMappingURL=SingleValueBinding.js.map?dt=1589727220824

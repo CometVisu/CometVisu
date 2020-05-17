@@ -72,7 +72,7 @@
       } // create knob child control
 
 
-      if (this.getVisible()) {
+      if (this.isKnobVisible()) {
         this._createChildControl("knob");
       }
     },
@@ -95,14 +95,15 @@
       },
 
       /**
-       * The visibility of the splitter.
-       * Allows to remove the splitter in favor of other visual separation means like background color differences.
+       * The visibility of the splitter button.
+       * Allows to remove the splitter button in favor of other visual separation
+       * means like background color differences.
        */
-      visible: {
-        init: true,
+      knobVisible: {
         check: "Boolean",
+        init: true,
         themeable: true,
-        apply: "_applyVisible"
+        apply: "_applyKnobVisible"
       }
     },
 
@@ -128,12 +129,13 @@
 
         return control || qx.ui.splitpane.Splitter.prototype._createChildControlImpl.base.call(this, id);
       },
-      _applyVisible: function _applyVisible(visible, old) {
-        this.getChildControl("knob").setVisibility(visible ? "visible" : "excluded");
+      // property apply
+      _applyKnobVisible: function _applyKnobVisible(value, old) {
+        this.getChildControl("knob").setVisibility(value ? "visible" : "excluded");
       }
     }
   });
   qx.ui.splitpane.Splitter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Splitter.js.map?dt=1589400514602
+//# sourceMappingURL=Splitter.js.map?dt=1589726652763

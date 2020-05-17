@@ -20,9 +20,6 @@
         "css.gradient.legacywebkit": {
           "className": "qx.bom.client.Css"
         },
-        "css.gradient.filter": {
-          "className": "qx.bom.client.Css"
-        },
         "css.gradient.linear": {
           "className": "qx.bom.client.Css"
         },
@@ -75,7 +72,7 @@
    * as background image. Due to restrictions in the <code>background-image</code>
    * css property, we can not allow negative start values in that case.
    *
-   * It is possible to define multiple background gradients by setting an 
+   * It is possible to define multiple background gradients by setting an
    * array containing the needed values as the property value.
    * In case multiple values are specified, the values of the properties
    * are repeated until all match in length. It is not possible to define
@@ -177,9 +174,9 @@
 
         if (qx.core.Environment.get("css.gradient.legacywebkit")) {
           styleImpl = this.__styleLinearBackgroundGradientForLegacyWebkit;
-        } else if (qx.core.Environment.get("css.gradient.filter") && !qx.core.Environment.get("css.gradient.linear") && qx.core.Environment.get("css.borderradius")) {
+        } else if (!qx.core.Environment.get("css.gradient.linear") && qx.core.Environment.get("css.borderradius")) {
           styleImpl = this.__styleLinearBackgroundGradientWithCanvas;
-        } else if (qx.core.Environment.get("css.gradient.filter") && !qx.core.Environment.get("css.gradient.linear")) {
+        } else if (!qx.core.Environment.get("css.gradient.linear")) {
           styleImpl = this.__styleLinearBackgroundGradientWithMSFilter;
         }
 
@@ -218,7 +215,7 @@
        * Compute CSS rules to style the background with gradients.
        * This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.
        * Legacy implementation for old WebKit browsers (Chrome < 10).
-       * 
+       *
        * @param startColor {Color} The color to start the gradient with
        * @param endColor {Color} The color to end the gradient with
        * @param unit {Color} The unit in which startColorPosition and endColorPosition are measured
@@ -251,7 +248,7 @@
        * Compute CSS rules to style the background with gradients.
        * This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.
        * IE9 canvas solution.
-       * 
+       *
        * @param startColor {Color} The color to start the gradient with
        * @param endColor {Color} The color to end the gradient with
        * @param unit {Color} The unit in which startColorPosition and endColorPosition are measured
@@ -328,7 +325,7 @@
        * Compute CSS rules to style the background with gradients.
        * This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.
        * Old IE filter fallback.
-       * 
+       *
        * @param startColor {Color} The color to start the gradient with
        * @param endColor {Color} The color to end the gradient with
        * @param unit {Color} The unit in which startColorPosition and endColorPosition are measured
@@ -379,7 +376,7 @@
        * Compute CSS rules to style the background with gradients.
        * This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.
        * Default implementation (uses spec-compliant syntax).
-       * 
+       *
        * @param startColor {Color} The color to start the gradient with
        * @param endColor {Color} The color to end the gradient with
        * @param unit {Color} The unit in which startColorPosition and endColorPosition are measured
@@ -422,4 +419,4 @@
   qx.ui.decoration.MLinearBackgroundGradient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MLinearBackgroundGradient.js.map?dt=1589400507122
+//# sourceMappingURL=MLinearBackgroundGradient.js.map?dt=1589726646185

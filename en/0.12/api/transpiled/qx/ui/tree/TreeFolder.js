@@ -58,4 +58,4 @@
   qx.ui.tree.TreeFolder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TreeFolder.js.map?dt=1589400517328
+//# sourceMappingURL=TreeFolder.js.map?dt=1589726655090

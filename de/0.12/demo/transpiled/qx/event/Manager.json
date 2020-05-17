@@ -11,11 +11,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 25,
+        "line": 27,
         "column": 0
       },
       "end": {
-        "line": 989,
+        "line": 1040,
         "column": 3
       }
     },
@@ -23,7 +23,7 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Sebastian Werner (wpbasti)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Sebastian Werner (wpbasti)\n John Spackman (johnspackman)\n Christian Boulanger (cboulanger)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
         },
         {
           "name": "@description",
@@ -42,11 +42,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 42,
+        "line": 44,
         "column": 14
       },
       "end": {
-        "line": 78,
+        "line": 80,
         "column": 3
       }
     },
@@ -83,11 +83,11 @@
     "__lastUnique": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 94,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 94,
           "column": 20
         }
       },
@@ -111,11 +111,11 @@
     "getNextUniqueId": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 103,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 105,
           "column": 5
         }
       },
@@ -138,15 +138,15 @@
       "type": "function",
       "access": "public"
     },
-    "__globalEventMonitor": {
+    "__globalEventMonitors": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 111,
           "column": 4
         },
         "end": {
-          "line": 107,
-          "column": 30
+          "line": 111,
+          "column": 29
         }
       },
       "jsdoc": {
@@ -159,21 +159,21 @@
         "@type": [
           {
             "name": "@type",
-            "body": "{Function} global event monitor, called with parameters of target and event"
+            "body": "{Array} private list of global event monitor functions"
           }
         ]
       },
       "type": "variable",
       "access": "private"
     },
-    "getGlobalEventMonitor": {
+    "addGlobalEventMonitor": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 123,
           "column": 4
         },
         "end": {
-          "line": 117,
+          "line": 127,
           "column": 5
         }
       },
@@ -181,7 +181,105 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Returns the global event monitor</p>"
+            "body": "<p>Adds a global event monitor function which is called for each event fired\n anywhere in the application. The function is called with the signature\n (target: {@link qx.core.Object}, event: {@link qx.event.type.Event}).\n Since for performance reasons, the original event object is passed,\n the monitor function must not change this event in any way.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fn {Function} Monitor function",
+            "paramName": "fn",
+            "description": " Monitor function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object?} Optional execution context of the function",
+            "paramName": "context",
+            "description": " Optional execution context of the function",
+            "optional": true,
+            "type": "Object"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeGlobalEventMonitor": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4
+        },
+        "end": {
+          "line": 137,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a global event monitor function that had\n previously been added.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fn {Function} The global monitor function",
+            "paramName": "fn",
+            "description": " The global monitor function",
+            "type": "Function"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "resetGlobalEventMonitors": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all registered event monitors</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getGlobalEventMonitor": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4
+        },
+        "end": {
+          "line": 157,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the global event monitor. Not compatible with the {@link\n qx.event.Manager.addGlobalEventMonitor} API. Will be removed in v7.0.0</p>"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{6.0}"
           }
         ],
         "@return": [
@@ -199,11 +297,11 @@
     "setGlobalEventMonitor": {
       "location": {
         "start": {
-          "line": 125,
+          "line": 168,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 171,
           "column": 5
         }
       },
@@ -211,14 +309,20 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets the global event monitor</p>"
+            "body": "<p>Sets the global event monitor. Not compatible with the {@link\n qx.event.Manager.addGlobalEventMonitor} API. Will be removed in\n v7.0.0. Use {@link qx.event.Manager.addGlobalEventMonitor} instead.</p>"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{6.0}"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "cb {Function?} the global monitor function",
-            "paramName": "cb",
+            "body": "fn {Function?} the global monitor function",
+            "paramName": "fn",
             "description": " the global monitor function",
             "optional": true,
             "type": "Function"
@@ -233,11 +337,11 @@
     "__registration": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 185,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 185,
           "column": 25
         }
       },
@@ -247,11 +351,11 @@
     "__listeners": {
       "location": {
         "start": {
-          "line": 142,
+          "line": 186,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 186,
           "column": 22
         }
       },
@@ -261,11 +365,11 @@
     "__dispatchers": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 188,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 188,
           "column": 24
         }
       },
@@ -275,11 +379,11 @@
     "__disposeWrapper": {
       "location": {
         "start": {
-          "line": 145,
+          "line": 189,
           "column": 4
         },
         "end": {
-          "line": 145,
+          "line": 189,
           "column": 27
         }
       },
@@ -289,11 +393,11 @@
     "__handlers": {
       "location": {
         "start": {
-          "line": 147,
+          "line": 191,
           "column": 4
         },
         "end": {
-          "line": 147,
+          "line": 191,
           "column": 21
         }
       },
@@ -303,11 +407,11 @@
     "__handlerCache": {
       "location": {
         "start": {
-          "line": 148,
+          "line": 192,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 192,
           "column": 25
         }
       },
@@ -317,11 +421,11 @@
     "__window": {
       "location": {
         "start": {
-          "line": 149,
+          "line": 193,
           "column": 4
         },
         "end": {
-          "line": 149,
+          "line": 193,
           "column": 19
         }
       },
@@ -331,11 +435,11 @@
     "__windowId": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 194,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 194,
           "column": 21
         }
       },
@@ -345,11 +449,11 @@
     "__blacklist": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 196,
           "column": 4
         },
         "end": {
-          "line": 152,
+          "line": 196,
           "column": 22
         }
       },
@@ -359,11 +463,11 @@
     "__clearBlackList": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 197,
           "column": 4
         },
         "end": {
-          "line": 153,
+          "line": 197,
           "column": 27
         }
       },
@@ -373,11 +477,11 @@
     "getWindow": {
       "location": {
         "start": {
-          "line": 168,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 214,
           "column": 5
         }
       },
@@ -407,11 +511,11 @@
     "getWindowId": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 222,
           "column": 4
         },
         "end": {
-          "line": 180,
+          "line": 224,
           "column": 5
         }
       },
@@ -437,11 +541,11 @@
     "getHandler": {
       "location": {
         "start": {
-          "line": 189,
+          "line": 233,
           "column": 4
         },
         "end": {
-          "line": 198,
+          "line": 242,
           "column": 5
         }
       },
@@ -476,11 +580,11 @@
     "getDispatcher": {
       "location": {
         "start": {
-          "line": 207,
+          "line": 251,
           "column": 4
         },
         "end": {
-          "line": 216,
+          "line": 260,
           "column": 5
         }
       },
@@ -515,11 +619,11 @@
     "getListeners": {
       "location": {
         "start": {
-          "line": 240,
+          "line": 284,
           "column": 4
         },
         "end": {
-          "line": 253,
+          "line": 297,
           "column": 5
         }
       },
@@ -574,11 +678,11 @@
     "getAllListeners": {
       "location": {
         "start": {
-          "line": 263,
+          "line": 307,
           "column": 4
         },
         "end": {
-          "line": 265,
+          "line": 309,
           "column": 5
         }
       },
@@ -610,11 +714,11 @@
     "serializeListeners": {
       "location": {
         "start": {
-          "line": 275,
+          "line": 319,
           "column": 4
         },
         "end": {
-          "line": 306,
+          "line": 350,
           "column": 5
         }
       },
@@ -649,11 +753,11 @@
     "toggleAttachedEvents": {
       "location": {
         "start": {
-          "line": 322,
+          "line": 366,
           "column": 4
         },
         "end": {
-          "line": 344,
+          "line": 388,
           "column": 5
         }
       },
@@ -693,11 +797,11 @@
     "hasListener": {
       "location": {
         "start": {
-          "line": 357,
+          "line": 401,
           "column": 4
         },
         "end": {
-          "line": 379,
+          "line": 423,
           "column": 5
         }
       },
@@ -748,11 +852,11 @@
     "importListeners": {
       "location": {
         "start": {
-          "line": 397,
+          "line": 441,
           "column": 4
         },
         "end": {
-          "line": 437,
+          "line": 481,
           "column": 5
         }
       },
@@ -786,11 +890,11 @@
     "addListener": {
       "location": {
         "start": {
-          "line": 460,
+          "line": 504,
           "column": 4
         },
         "end": {
-          "line": 509,
+          "line": 553,
           "column": 5
         }
       },
@@ -865,11 +969,11 @@
     "findHandler": {
       "location": {
         "start": {
-          "line": 520,
+          "line": 564,
           "column": 4
         },
         "end": {
-          "line": 603,
+          "line": 647,
           "column": 5
         }
       },
@@ -911,11 +1015,11 @@
     "__registerAtHandler": {
       "location": {
         "start": {
-          "line": 616,
+          "line": 660,
           "column": 4
         },
         "end": {
-          "line": 634,
+          "line": 678,
           "column": 5
         }
       },
@@ -964,11 +1068,11 @@
     "removeListener": {
       "location": {
         "start": {
-          "line": 650,
+          "line": 694,
           "column": 4
         },
         "end": {
-          "line": 703,
+          "line": 747,
           "column": 5
         }
       },
@@ -1043,11 +1147,11 @@
     "removeListenerById": {
       "location": {
         "start": {
-          "line": 714,
+          "line": 758,
           "column": 4
         },
         "end": {
-          "line": 763,
+          "line": 807,
           "column": 5
         }
       },
@@ -1089,11 +1193,11 @@
     "removeAllListeners": {
       "location": {
         "start": {
-          "line": 772,
+          "line": 816,
           "column": 4
         },
         "end": {
-          "line": 802,
+          "line": 846,
           "column": 5
         }
       },
@@ -1128,11 +1232,11 @@
     "deleteAllListeners": {
       "location": {
         "start": {
-          "line": 814,
+          "line": 858,
           "column": 4
         },
         "end": {
-          "line": 816,
+          "line": 860,
           "column": 5
         }
       },
@@ -1165,11 +1269,11 @@
     "__unregisterAtHandler": {
       "location": {
         "start": {
-          "line": 830,
+          "line": 874,
           "column": 4
         },
         "end": {
-          "line": 848,
+          "line": 892,
           "column": 5
         }
       },
@@ -1218,11 +1322,11 @@
     "dispatchEvent": {
       "location": {
         "start": {
-          "line": 873,
+          "line": 917,
           "column": 4
         },
         "end": {
-          "line": 947,
+          "line": 998,
           "column": 5
         }
       },
@@ -1276,11 +1380,11 @@
     "dispose": {
       "location": {
         "start": {
-          "line": 953,
+          "line": 1004,
           "column": 4
         },
         "end": {
-          "line": 964,
+          "line": 1015,
           "column": 5
         }
       },
@@ -1302,11 +1406,11 @@
     "__addToBlacklist": {
       "location": {
         "start": {
-          "line": 971,
+          "line": 1022,
           "column": 4
         },
         "end": {
-          "line": 977,
+          "line": 1028,
           "column": 5
         }
       },
@@ -1333,11 +1437,11 @@
     "isBlacklisted": {
       "location": {
         "start": {
-          "line": 985,
+          "line": 1036,
           "column": 4
         },
         "end": {
-          "line": 987,
+          "line": 1038,
           "column": 5
         }
       },

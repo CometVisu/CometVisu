@@ -37,7 +37,7 @@
    * themes.
    *
    * For more details, take a look at the
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/desktop/ui_theming.html' target='_blank'>
+   * <a href='http://qooxdoo.org/docs/#desktop/gui/theming.md' target='_blank'>
    * documentation of the theme system in the qooxdoo manual.</a>
    */
   qx.Bootstrap.define("qx.Theme", {
@@ -72,7 +72,7 @@
        * </pre>
        *
        * For more details, take a look at the
-       * <a href='http://manual.qooxdoo.org/${qxversion}/pages/desktop/ui_theming.html' target='_blank'>
+       * <a href='http://qooxdoo.org/docs/#desktop/gui/theming.md' target='_blank'>
        * documentation of the theme system in the qooxdoo manual.</a>
        *
        * @param name {String} name of the mixin
@@ -366,4 +366,4 @@
   qx.Theme.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Theme.js.map?dt=1589401101968
+//# sourceMappingURL=Theme.js.map?dt=1589727215995

@@ -997,6 +997,12 @@
     "designs/discreet/images/gradient.png",
     "designs/discreet/images/head_bg.png",
     "designs/discreet/images/hr_bg.png",
+    "designs/discreet_sand/images/button_bg.png",
+    "designs/discreet_sand/images/dot_green.png",
+    "designs/discreet_sand/images/dot_red.png",
+    "designs/discreet_sand/images/gradient.png",
+    "designs/discreet_sand/images/hr_bg.png",
+    "designs/discreet_sand/images/nav_bg.png",
     "designs/discreet_sand/fonts/AUTHORS",
     "designs/discreet_sand/fonts/COPYING",
     "designs/discreet_sand/fonts/ChangeLog",
@@ -1005,12 +1011,6 @@
     "designs/discreet_sand/fonts/TODO",
     "designs/discreet_sand/fonts/liberationsans-bold.ttf",
     "designs/discreet_sand/fonts/liberationsans-regular.ttf",
-    "designs/discreet_sand/images/button_bg.png",
-    "designs/discreet_sand/images/dot_green.png",
-    "designs/discreet_sand/images/dot_red.png",
-    "designs/discreet_sand/images/gradient.png",
-    "designs/discreet_sand/images/hr_bg.png",
-    "designs/discreet_sand/images/nav_bg.png",
     "designs/discreet_slim/fonts/AUTHORS",
     "designs/discreet_slim/fonts/COPYING",
     "designs/discreet_slim/fonts/ChangeLog",
@@ -1172,8 +1172,8 @@
     "plugins/tr064/proxy.php",
     "plugins/tr064/soap.php",
     "plugins/tr064/tr064.css",
-    "plugins/upnpcontroller/mute.php",
     "plugins/upnpcontroller/next.php",
+    "plugins/upnpcontroller/mute.php",
     "plugins/upnpcontroller/pause.php",
     "plugins/upnpcontroller/play.php",
     "plugins/upnpcontroller/playlists.php",
@@ -1311,7 +1311,7 @@
     "qx.application": "cv.Application",
     "qx.revision": "",
     "qx.theme": "cv.theme.Dark",
-    "qx.version": "6.0.0-beta",
+    "qx.version": "6.0.0-beta-20200515-0957",
     "qx.libraryInfoMap": {
       "qx": {
         "name": "qooxdoo framework",
@@ -1370,13 +1370,29 @@
           {
             "name": "Martin Wittemann (wittemann)",
             "email": "martin DOT wittemann AT 1und1 DOT de"
+          },
+          {
+            "name": "John Spackman (johnspackman)",
+            "email": "john.spackman@zenesis.com"
+          },
+          {
+            "name": "Christian Boulanger (cboulanger)",
+            "email": "info@bibliograph.org"
+          },
+          {
+            "name": "Henner Kollmann (hkollmann)",
+            "email": "Henner.Kollmann.gmx.de"
+          },
+          {
+            "name": "Tobias Oetiker (oetiker)",
+            "email": "tobi@oetiker.ch"
+          },
+          {
+            "name": "Dietrich Streifert (level420)",
+            "email": "dietrich.streifert@visionet.de"
           }
         ],
-        "version": "6.0.0-beta",
-        "qooxdoo-versions": [
-          "6.0.0-beta"
-        ],
-        "sourceViewUri": "https://github.com/qooxdoo/qooxdoo/blob/%{qxGitBranch}/framework/source/class/%{classFilePath}#L%{lineNumber}"
+        "version": "6.0.0-beta-20200515-0957"
       },
       "cv": {
         "name": "cv",
@@ -1501,7 +1517,7 @@
     "qx.promise": false,
     "qx.promise.warnings": true,
     "qx.promise.longStackTraces": true,
-    "qx.compilerVersion": "1.0.0-beta.20200507-1713",
+    "qx.compilerVersion": "1.0.0-beta.20200515-1215",
     "cv.version": "stable",
     "cv.xhr": "qx",
     "cv.testMode": "resource/demo/media/demo_testmode_data.json",

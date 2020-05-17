@@ -58,7 +58,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget/atom.html' target='_blank'>
+   * <a href='http://qooxdoo.org/docs/#desktop/widget/atom.md' target='_blank'>
    * Documentation of this widget in the qooxdoo manual.</a>
    *
    *
@@ -318,4 +318,4 @@
   qx.ui.basic.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1589400504119
+//# sourceMappingURL=Atom.js.map?dt=1589726643453

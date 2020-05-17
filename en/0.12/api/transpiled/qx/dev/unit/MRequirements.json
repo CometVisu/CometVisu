@@ -616,7 +616,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Verifies a list of infrastructure requirements by checking for\n corresponding \"has\" methods. If no such method was found,\n {@link qx.core.Environment} will be checked for a key matching the given\n feature name. Note that asynchronous environment checks are not supported!\n See the manual for further details:\n <a href=\"http://manual.qooxdoo.org/current/pages/development/frame_apps_testrunner.html#defining-test-requirements\">Defining Test Requirements</a></p>"
+            "body": "<p>Verifies a list of infrastructure requirements by checking for\n corresponding \"has\" methods. If no such method was found,\n {@link qx.core.Environment} will be checked for a key matching the given\n feature name. Note that asynchronous environment checks are not supported!</p>"
           }
         ],
         "@throws": [

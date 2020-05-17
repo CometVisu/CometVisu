@@ -253,7 +253,7 @@
       _onTap: function _onTap(e) {
         if (e.isLeftPressed()) {
           this.execute();
-          qx.event.Timer.once(qx.ui.menu.Manager.getInstance().hideAll, this, 100);
+          qx.event.Timer.once(qx.ui.menu.Manager.getInstance().hideAll, qx.ui.menu.Manager.getInstance(), 0);
         } // right click
         else {
             // only prevent contextmenu event if button has no further context menu.
@@ -379,4 +379,4 @@
   qx.ui.menu.AbstractButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractButton.js.map?dt=1589400510527
+//# sourceMappingURL=AbstractButton.js.map?dt=1589726649163

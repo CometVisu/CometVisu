@@ -127,4 +127,4 @@
   cv.parser.widgets.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1589400480332
+//# sourceMappingURL=NavBar.js.map?dt=1589726621584

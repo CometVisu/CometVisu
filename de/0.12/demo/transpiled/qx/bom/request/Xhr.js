@@ -98,7 +98,7 @@
    *  req.responseType = "blob";
    *  req.send();
    * </pre>
-  
+   
    * </div>
    *
    * @ignore(XDomainRequest)
@@ -1201,4 +1201,4 @@
   qx.bom.request.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1589401105086
+//# sourceMappingURL=Xhr.js.map?dt=1589727218778

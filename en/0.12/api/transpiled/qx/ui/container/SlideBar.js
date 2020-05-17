@@ -83,7 +83,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget/slidebar.html' target='_blank'>
+   * <a href='http://qooxdoo.org/docs/#desktop/widget/slidebar.md' target='_blank'>
    * Documentation of this widget in the qooxdoo manual.</a>
    */
   qx.Class.define("qx.ui.container.SlideBar", {
@@ -472,4 +472,4 @@
   qx.ui.container.SlideBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SlideBar.js.map?dt=1589400504514
+//# sourceMappingURL=SlideBar.js.map?dt=1589726643805

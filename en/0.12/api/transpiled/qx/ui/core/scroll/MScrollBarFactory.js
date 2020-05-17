@@ -60,4 +60,4 @@
   qx.ui.core.scroll.MScrollBarFactory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MScrollBarFactory.js.map?dt=1589400506357
+//# sourceMappingURL=MScrollBarFactory.js.map?dt=1589726645504

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 334,
+        "line": 335,
         "column": 3
       }
     },
@@ -367,7 +367,7 @@
           "column": 4
         },
         "end": {
-          "line": 270,
+          "line": 271,
           "column": 5
         }
       },
@@ -397,11 +397,11 @@
     "_getMethod": {
       "location": {
         "start": {
-          "line": 273,
+          "line": 274,
           "column": 4
         },
         "end": {
-          "line": 275,
+          "line": 276,
           "column": 5
         }
       },
@@ -431,11 +431,11 @@
     "_isAsync": {
       "location": {
         "start": {
-          "line": 278,
+          "line": 279,
           "column": 4
         },
         "end": {
-          "line": 280,
+          "line": 281,
           "column": 5
         }
       },
@@ -465,11 +465,11 @@
     "_createResponseParser": {
       "location": {
         "start": {
-          "line": 293,
+          "line": 294,
           "column": 4
         },
         "end": {
-          "line": 295,
+          "line": 296,
           "column": 5
         }
       },
@@ -499,11 +499,11 @@
     "_getParsedResponse": {
       "location": {
         "start": {
-          "line": 302,
+          "line": 303,
           "column": 4
         },
         "end": {
-          "line": 319,
+          "line": 320,
           "column": 5
         }
       },
@@ -533,11 +533,11 @@
     "setParser": {
       "location": {
         "start": {
-          "line": 330,
+          "line": 331,
           "column": 4
         },
         "end": {
-          "line": 332,
+          "line": 333,
           "column": 5
         }
       },

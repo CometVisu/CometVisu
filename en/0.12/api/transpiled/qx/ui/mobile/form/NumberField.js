@@ -144,4 +144,4 @@
   qx.ui.mobile.form.NumberField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NumberField.js.map?dt=1589400512565
+//# sourceMappingURL=NumberField.js.map?dt=1589726650945

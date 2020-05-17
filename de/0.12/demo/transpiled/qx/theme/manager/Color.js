@@ -163,4 +163,4 @@
   qx.theme.manager.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1589401105641
+//# sourceMappingURL=Color.js.map?dt=1589727219271

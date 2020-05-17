@@ -93,9 +93,6 @@
    * (qx.io.remote.Rpc.callAsync) and async with results via an event listener
    * (qx.io.remote.Rpc.callAsyncListeners).
    * <p>
-   * You may also find the server writer's guide helpful:
-   *   http://manual.qooxdoo.org/${qxversion}/pages/communication/rpc_server_writer_guide.html
-   *
    * @ignore(qx.core.ServerSettings.*)
   */
   qx.Class.define("qx.io.remote.Rpc", {
@@ -927,4 +924,4 @@
   qx.io.remote.Rpc.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rpc.js.map?dt=1589400499754
+//# sourceMappingURL=Rpc.js.map?dt=1589726639523

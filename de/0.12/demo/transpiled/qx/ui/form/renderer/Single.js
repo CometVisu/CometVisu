@@ -223,4 +223,4 @@
   qx.ui.form.renderer.Single.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Single.js.map?dt=1589401117290
+//# sourceMappingURL=Single.js.map?dt=1589727229399

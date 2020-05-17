@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
+        "line": 29,
         "column": 0
       },
       "end": {
-        "line": 380,
+        "line": 431,
         "column": 3
       }
     },
@@ -21,11 +21,11 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007 Christian Boulanger\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christian Boulanger\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
+          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007 Christian Boulanger\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christian Boulanger (cboulanger)\n Sebastian Werner (wpbasti)\n Christian Hagendorn (chris_schmidt)\n Derrell Lipman (derrell)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
         },
         {
           "name": "@description",
-          "body": "<p>A simple message bus singleton.\n The message bus registers subscriptions and notifies subscribers when\n a matching message is dispatched</p>"
+          "body": "<p>A simple message bus singleton.\n The message bus registers subscriptions to topics and notifies subscribers when\n a matching message is dispatched. A topic acts as a filter to select only those\n messages which match the filter. It can be the name of a message, which can\n terminated with a trailing <code>*</code> as a wildcard, or a regular expression.</p>"
         }
       ]
     }
@@ -38,11 +38,11 @@
     "getSubscriptions": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 42,
           "column": 4
         },
         "end": {
-          "line": 42,
+          "line": 44,
           "column": 5
         }
       },
@@ -50,15 +50,15 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>gets the hash map of message subscriptions</p>"
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.getSubscription}</p>"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Map} with registered subscriptions. The key is the\n    <code>message</code> and the value is a map with <code>{subscriber: {Function},\n    context: {Object|null}}</code>.",
-            "type": "Map",
-            "description": " with registered subscriptions. The key is the\n    <code>message</code> and the value is a map with <code>{subscriber: {Function},\n    context: {Object|null}}</code>."
+            "body": "{Object}",
+            "type": "Object",
+            "description": ""
           }
         ]
       },
@@ -72,7 +72,7 @@
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 56,
           "column": 5
         }
       },
@@ -80,22 +80,69 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>subscribes to a message</p>"
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.subscribe}</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "message {String} name of message, can be truncated by *",
-            "paramName": "message",
-            "description": " name of message, can be truncated by *",
-            "type": "String"
+            "body": "topic {String|RegExp}"
           },
           {
             "name": "@param",
-            "body": "subscriber {Function} subscribing callback function",
+            "body": "subscriber {Function} Message handler function",
             "paramName": "subscriber",
-            "description": " subscribing callback function",
+            "description": " Message handler function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Success",
+            "type": "Boolean",
+            "description": " Success"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "subscribeOnce": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.subscribeOnce}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String|RegExp}"
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Message handler function",
+            "paramName": "subscriber",
+            "description": " Message handler function",
             "type": "Function"
           },
           {
@@ -121,11 +168,11 @@
     "checkSubscription": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 80,
           "column": 5
         }
       },
@@ -133,38 +180,41 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>checks if subscription is already present\n if you supply the callback function, match only the exact message monitor\n otherwise match all monitors that have the given message</p>"
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.checkSubscription}</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "message {String} Name of message, can be truncated by *",
-            "paramName": "message",
-            "description": " Name of message, can be truncated by *",
-            "type": "String"
+            "body": "topic {String|RegExp} The topic that has been used when subscribing",
+            "paramName": "topic",
+            "description": " The topic that has been used when subscribing",
+            "type": [
+              "String",
+              "RegExp"
+            ]
           },
           {
             "name": "@param",
-            "body": "subscriber {Function} Callback Function",
+            "body": "subscriber {Function} Message handler function",
             "paramName": "subscriber",
-            "description": " Callback Function",
+            "description": " Message handler function",
             "type": "Function"
           },
           {
             "name": "@param",
-            "body": "context {Object} execution context",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
             "paramName": "context",
-            "description": " execution context",
+            "description": " The execution context of the callback (i.e. \"this\")",
             "type": "Object"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} Whether monitor is present or not",
+            "body": "{Boolean} Whether a subscription was removed",
             "type": "Boolean",
-            "description": " Whether monitor is present or not"
+            "description": " Whether a subscription was removed"
           }
         ]
       },
@@ -174,11 +224,11 @@
     "unsubscribe": {
       "location": {
         "start": {
-          "line": 85,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 92,
           "column": 5
         }
       },
@@ -186,38 +236,41 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>unsubscribe a listening method\n if you supply the callback function and execution context,\n remove only this exact subscription\n otherwise remove all subscriptions</p>"
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.unsubscribe}</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "message {String} Name of message, can be truncated by *",
-            "paramName": "message",
-            "description": " Name of message, can be truncated by *",
-            "type": "String"
+            "body": "topic {String|RegExp} The topic that has been used when subscribing",
+            "paramName": "topic",
+            "description": " The topic that has been used when subscribing",
+            "type": [
+              "String",
+              "RegExp"
+            ]
           },
           {
             "name": "@param",
-            "body": "subscriber {Function} Callback Function",
+            "body": "subscriber {Function} Message handler function",
             "paramName": "subscriber",
-            "description": " Callback Function",
+            "description": " Message handler function",
             "type": "Function"
           },
           {
             "name": "@param",
-            "body": "context {Object} execution context",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
             "paramName": "context",
-            "description": " execution context",
+            "description": " The execution context of the callback (i.e. \"this\")",
             "type": "Object"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} Whether monitor was removed or not",
+            "body": "{Boolean} Whether a subscription was removed",
             "type": "Boolean",
-            "description": " Whether monitor was removed or not"
+            "description": " Whether a subscription was removed"
           }
         ]
       },
@@ -227,11 +280,11 @@
     "dispatch": {
       "location": {
         "start": {
-          "line": 97,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 100,
+          "line": 102,
           "column": 5
         }
       },
@@ -239,24 +292,24 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>dispatch message and call subscribed functions</p>"
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.dispatch}</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "msg {qx.event.message.Message} message which is being dispatched",
-            "paramName": "msg",
-            "description": " message which is being dispatched",
+            "body": "message {qx.event.message.Message} Message which is being dispatched",
+            "paramName": "message",
+            "description": " Message which is being dispatched",
             "type": "qx.event.message.Message"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise.",
+            "body": "{Boolean} If the message could be dispatched",
             "type": "Boolean",
-            "description": " <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise."
+            "description": " If the message could be dispatched"
           }
         ]
       },
@@ -266,11 +319,11 @@
     "dispatchByName": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 110,
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 113,
           "column": 5
         }
       },
@@ -278,7 +331,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Dispatches a new message by supplying the name of the\n message and its data.</p>"
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.dispatchByName}</p>"
           }
         ],
         "@param": [
@@ -300,9 +353,9 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise.",
+            "body": "{Boolean} If the message was dispatched",
             "type": "Boolean",
-            "description": " <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise."
+            "description": " If the message was dispatched"
           }
         ]
       },
@@ -313,11 +366,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 121,
+        "line": 119,
         "column": 14
       },
       "end": {
-        "line": 127,
+        "line": 123,
         "column": 3
       }
     },
@@ -342,17 +395,31 @@
           "column": 26
         }
       },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Subscriptions cache</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{Object}"
+          }
+        ]
+      },
       "type": "variable",
       "access": "private"
     },
     "getSubscriptions": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 143,
+          "line": 142,
           "column": 5
         }
       },
@@ -360,15 +427,15 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>gets the hash map of message subscriptions</p>"
+            "body": "<p>Returns the map of message subscriptions with registered subscriptions. The key is\n the topic and the value is a map with <code>{subscriber:\n {Function}, context: {Object|null}}</code>.</p>"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Map} with registered subscriptions. The key is the\n    <code>message</code> and the value is a map with <code>{subscriber: {Function},\n    context: {Object|null}}</code>.",
-            "type": "Map",
-            "description": " with registered subscriptions. The key is the\n    <code>message</code> and the value is a map with <code>{subscriber: {Function},\n    context: {Object|null}}</code>."
+            "body": "{Object}",
+            "type": "Object",
+            "description": ""
           }
         ]
       },
@@ -378,11 +445,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 154,
+          "line": 159,
           "column": 4
         },
         "end": {
-          "line": 192,
+          "line": 201,
           "column": 5
         }
       },
@@ -390,22 +457,81 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>subscribes to a message</p>"
+            "body": "<p>Subscribes to a topic</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "message {String} name of message, can be truncated by *",
-            "paramName": "message",
-            "description": " name of message, can be truncated by *",
-            "type": "String"
+            "body": "topic {String|RegExp} Either a string, which can be\n terminated with a trailing `*` as a wildcard to match all message\n names that start with the prefix, or a regular expression\n object, which the message name has to match. If you use regular\n expressions, you cannot use message names that start and end\n with a slash (\"/\") at the same time, because regular expressions\n are converted to their string representation when stored.",
+            "paramName": "topic",
+            "description": " Either a string, which can be\n terminated with a trailing `*` as a wildcard to match all message\n names that start with the prefix, or a regular expression\n object, which the message name has to match. If you use regular\n expressions, you cannot use message names that start and end\n with a slash (\"/\") at the same time, because regular expressions\n are converted to their string representation when stored.",
+            "type": [
+              "String",
+              "RegExp"
+            ]
           },
           {
             "name": "@param",
-            "body": "subscriber {Function} subscribing callback function",
+            "body": "subscriber {Function} Message handler function",
             "paramName": "subscriber",
-            "description": " subscribing callback function",
+            "description": " Message handler function",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Success",
+            "type": "Boolean",
+            "description": " Success"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "subscribeOnce": {
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4
+        },
+        "end": {
+          "line": 223,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Subscribes to a topic just for one dispatch and automatically unsubscribes\n after executing the message handler. This subscription cannot be unsubscribed\n from after it has been registered.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String|RegExp} Topic to subscribe to. see {@link qx.event.message.Bus#subscribe}\n for details",
+            "paramName": "topic",
+            "description": " Topic to subscribe to. see {@link qx.event.message.Bus#subscribe}\n for details",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Message handler function",
+            "paramName": "subscriber",
+            "description": " Message handler function",
             "type": "Function"
           },
           {
@@ -431,11 +557,11 @@
     "checkSubscription": {
       "location": {
         "start": {
-          "line": 205,
+          "line": 237,
           "column": 4
         },
         "end": {
-          "line": 226,
+          "line": 259,
           "column": 5
         }
       },
@@ -443,38 +569,41 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>checks if subscription is already present\n if you supply the callback function, match only the exact message monitor\n otherwise match all monitors that have the given message</p>"
+            "body": "<p>Checks if subscription is already present. If you supply\n the message handler function, match only this exact subscription,\n otherwise any topic subscription will match.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "message {String} Name of message, can be truncated by *",
-            "paramName": "message",
-            "description": " Name of message, can be truncated by *",
-            "type": "String"
+            "body": "topic {String|RegExp} Either a string, which can be truncated by `*`\n to match all message names that start with the prefix, or a regular expression\n object, which the message name has to match.",
+            "paramName": "topic",
+            "description": " Either a string, which can be truncated by `*`\n to match all message names that start with the prefix, or a regular expression\n object, which the message name has to match.",
+            "type": [
+              "String",
+              "RegExp"
+            ]
           },
           {
             "name": "@param",
-            "body": "subscriber {Function} Callback Function",
+            "body": "subscriber {Function} Message handler function",
             "paramName": "subscriber",
-            "description": " Callback Function",
+            "description": " Message handler function",
             "type": "Function"
           },
           {
             "name": "@param",
-            "body": "context {Object} execution context",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
             "paramName": "context",
-            "description": " execution context",
+            "description": " The execution context of the callback (i.e. \"this\")",
             "type": "Object"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} Whether monitor is present or not",
+            "body": "{Boolean} Whether a subscription exists for the topic",
             "type": "Boolean",
-            "description": " Whether monitor is present or not"
+            "description": " Whether a subscription exists for the topic"
           }
         ]
       },
@@ -484,11 +613,11 @@
     "unsubscribe": {
       "location": {
         "start": {
-          "line": 240,
+          "line": 280,
           "column": 4
         },
         "end": {
-          "line": 269,
+          "line": 310,
           "column": 5
         }
       },
@@ -496,38 +625,41 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>unsubscribe a listening method\n if you supply the callback function and execution context,\n remove only this exact subscription\n otherwise remove all subscriptions</p>"
+            "body": "<p>Unsubscribe from a topic.\n If a \"wildcard\" topic was subscribed to with a trailing asterisk,\n because the subscriber wanted to receive messages for any topic\n with the given prefix, that same \"wildcard\" topic should be used to\n unsubscribe. It is not possible to unsubscribe using any topic other\n than one exactly matching one that has previously been subscribed to.\n If you supply the callback function and execution context, only this\n exact subscription is removed. Otherwise, all subscriptions to this topic\n will be removed.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "message {String} Name of message, can be truncated by *",
-            "paramName": "message",
-            "description": " Name of message, can be truncated by *",
-            "type": "String"
+            "body": "topic {String|RegExp} The topic that has been used when subscribing",
+            "paramName": "topic",
+            "description": " The topic that has been used when subscribing",
+            "type": [
+              "String",
+              "RegExp"
+            ]
           },
           {
             "name": "@param",
-            "body": "subscriber {Function} Callback Function",
+            "body": "subscriber {Function} Message handler function",
             "paramName": "subscriber",
-            "description": " Callback Function",
+            "description": " Message handler function",
             "type": "Function"
           },
           {
             "name": "@param",
-            "body": "context {Object} execution context",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
             "paramName": "context",
-            "description": " execution context",
+            "description": " The execution context of the callback (i.e. \"this\")",
             "type": "Object"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} Whether monitor was removed or not",
+            "body": "{Boolean} Whether a subscription was removed",
             "type": "Boolean",
-            "description": " Whether monitor was removed or not"
+            "description": " Whether a subscription was removed"
           }
         ]
       },
@@ -537,11 +669,11 @@
     "dispatch": {
       "location": {
         "start": {
-          "line": 278,
+          "line": 319,
           "column": 4
         },
         "end": {
-          "line": 309,
+          "line": 353,
           "column": 5
         }
       },
@@ -549,24 +681,24 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>dispatch message and call subscribed functions</p>"
+            "body": "<p>Dispatch message, which calls subscribers</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "msg {qx.event.message.Message} message which is being dispatched",
-            "paramName": "msg",
-            "description": " message which is being dispatched",
+            "body": "message {qx.event.message.Message} Message which is being dispatched",
+            "paramName": "message",
+            "description": " Message which is being dispatched",
             "type": "qx.event.message.Message"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise.",
+            "body": "{Boolean} If the message could be dispatched, i.e. if subscribers\n exist which have received the message",
             "type": "Boolean",
-            "description": " <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise."
+            "description": " If the message could be dispatched, i.e. if subscribers\n exist which have received the message"
           }
         ]
       },
@@ -576,11 +708,11 @@
     "dispatchByName": {
       "location": {
         "start": {
-          "line": 321,
+          "line": 363,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 376,
           "column": 5
         }
       },
@@ -610,9 +742,31 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise.",
+            "body": "{Boolean} If the message was dispatched",
             "type": "Boolean",
-            "description": " <code>true</code> if the message was dispatched,\n    <code>false</code> otherwise."
+            "description": " If the message was dispatched"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "removeAllSubscriptions": {
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 4
+        },
+        "end": {
+          "line": 386,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all subscriptions</p>"
           }
         ]
       },
@@ -622,11 +776,11 @@
     "__callSubscribers": {
       "location": {
         "start": {
-          "line": 349,
+          "line": 400,
           "column": 4
         },
         "end": {
-          "line": 378,
+          "line": 429,
           "column": 5
         }
       },
@@ -647,8 +801,8 @@
           },
           {
             "name": "@param",
-            "body": "msg {qx.event.message.Message} message for subscribers",
-            "paramName": "msg",
+            "body": "message {qx.event.message.Message} message for subscribers",
+            "paramName": "message",
             "description": " message for subscribers",
             "type": "qx.event.message.Message"
           }

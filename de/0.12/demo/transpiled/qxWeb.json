@@ -25,7 +25,7 @@
         },
         {
           "name": "@description",
-          "body": "<p>The Core module's responsibility is to query the DOM for elements and offer\n these elements as a collection. The Core module itself does not offer any methods to\n work with the collection. These methods are added by the other included modules,\n such as Manipulating or Attributes.\n Core also provides the plugin API which allows modules to attach either\n static functions to the global <code>q</code> object or define methods on the\n collection it returns.\n By default, the core module is assigned to a global module named <code>q</code>.\n In case <code>q</code> is already defined, the name <code>qxWeb</code>\n is used instead.\n For further details, take a look at the documentation in the\n <a href='http://manual.qooxdoo.org/${qxversion}/pages/website.html' target='_blank'>user manual</a>.</p>"
+          "body": "<p>The Core module's responsibility is to query the DOM for elements and offer\n these elements as a collection. The Core module itself does not offer any methods to\n work with the collection. These methods are added by the other included modules,\n such as Manipulating or Attributes.\n Core also provides the plugin API which allows modules to attach either\n static functions to the global <code>q</code> object or define methods on the\n collection it returns.\n By default, the core module is assigned to a global module named <code>q</code>.\n In case <code>q</code> is already defined, the name <code>qxWeb</code>\n is used instead.\n For further details, take a look at the documentation in the\n <a href='http://qooxdoo.org/5.0.2/pages/website.html' target='_blank'>user manual</a>.</p>"
         }
       ],
       "@ignore": [

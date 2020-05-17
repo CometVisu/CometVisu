@@ -17,7 +17,7 @@
       "qx.bom.client.Browser": {}
     },
     "environment": {
-      "provided": ["css.textoverflow", "css.placeholder", "css.borderradius", "css.boxshadow", "css.gradient.linear", "css.gradient.filter", "css.gradient.radial", "css.gradient.legacywebkit", "css.boxmodel", "css.rgba", "css.borderimage", "css.borderimage.standardsyntax", "css.usermodify", "css.userselect", "css.userselect.none", "css.appearance", "css.float", "css.boxsizing", "css.inlineblock", "css.opacity", "css.textShadow", "css.textShadow.filter", "css.alphaimageloaderneeded", "css.pointerevents", "css.flexboxSyntax"],
+      "provided": ["css.textoverflow", "css.placeholder", "css.borderradius", "css.boxshadow", "css.gradient.linear", "css.gradient.radial", "css.gradient.legacywebkit", "css.boxmodel", "css.rgba", "css.borderimage", "css.borderimage.standardsyntax", "css.usermodify", "css.userselect", "css.userselect.none", "css.appearance", "css.float", "css.boxsizing", "css.inlineblock", "css.opacity", "css.textShadow", "css.alphaimageloaderneeded", "css.pointerevents", "css.flexboxSyntax"],
       "required": {
         "engine.name": {
           "className": "qx.bom.client.Engine"
@@ -277,19 +277,6 @@
       },
 
       /**
-       * Returns <code>true</code> if the browser supports setting gradients
-       * using the filter style. This usually only applies for IE browsers
-       * starting from IE5.5.
-       * http://msdn.microsoft.com/en-us/library/ms532997(v=vs.85).aspx
-       *
-       * @return {Boolean} <code>true</code> if supported.
-       * @internal
-       */
-      getFilterGradient: function getFilterGradient() {
-        return qx.bom.client.Css.__isFilterSupported("DXImageTransform.Microsoft.Gradient", "startColorStr=#550000FF, endColorStr=#55FFFF00");
-      },
-
-      /**
        * Returns the (possibly vendor-prefixed) name this client uses for
        * <code>radial-gradient</code>.
        *
@@ -411,40 +398,6 @@
       },
 
       /**
-       * Returns <code>true</code> if the browser supports setting text shadow
-       * using the filter style. This usually only applies for IE browsers
-       * starting from IE5.5.
-       *
-       * @internal
-       * @return {Boolean} <code>true</code> if textShadow is supported
-       */
-      getFilterTextShadow: function getFilterTextShadow() {
-        return qx.bom.client.Css.__isFilterSupported("DXImageTransform.Microsoft.Shadow", "color=#666666,direction=45");
-      },
-
-      /**
-       * Checks if the given filter is supported.
-       *
-       * @param filterClass {String} The name of the filter class
-       * @param initParams {String} Init values for the filter
-       * @return {Boolean} <code>true</code> if the given filter is supported
-       */
-      __isFilterSupported: function __isFilterSupported(filterClass, initParams) {
-        var supported = false;
-        var value = "progid:" + filterClass + "(" + initParams + ");";
-        var el = document.createElement("div");
-        document.body.appendChild(el);
-        el.style.filter = value;
-
-        if (el.filters && el.filters.length > 0 && el.filters.item(filterClass).enabled == true) {
-          supported = true;
-        }
-
-        document.body.removeChild(el);
-        return supported;
-      },
-
-      /**
        * Checks if the Alpha Image Loader must be used to display transparent PNGs.
        *
        * @return {Boolean} <code>true</code> if the Alpha Image Loader is required
@@ -522,7 +475,6 @@
       qx.core.Environment.add("css.borderradius", statics.getBorderRadius);
       qx.core.Environment.add("css.boxshadow", statics.getBoxShadow);
       qx.core.Environment.add("css.gradient.linear", statics.getLinearGradient);
-      qx.core.Environment.add("css.gradient.filter", statics.getFilterGradient);
       qx.core.Environment.add("css.gradient.radial", statics.getRadialGradient);
       qx.core.Environment.add("css.gradient.legacywebkit", statics.getLegacyWebkitGradient);
       qx.core.Environment.add("css.boxmodel", statics.getBoxModel);
@@ -538,7 +490,6 @@
       qx.core.Environment.add("css.inlineblock", statics.getInlineBlock);
       qx.core.Environment.add("css.opacity", statics.getOpacity);
       qx.core.Environment.add("css.textShadow", statics.getTextShadow);
-      qx.core.Environment.add("css.textShadow.filter", statics.getFilterTextShadow);
       qx.core.Environment.add("css.alphaimageloaderneeded", statics.getAlphaImageLoaderNeeded);
       qx.core.Environment.add("css.pointerevents", statics.getPointerEvents);
       qx.core.Environment.add("css.flexboxSyntax", statics.getFlexboxSyntax);
@@ -547,4 +498,4 @@
   qx.bom.client.Css.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Css.js.map?dt=1589401107481
+//# sourceMappingURL=Css.js.map?dt=1589727220931

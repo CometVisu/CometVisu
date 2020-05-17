@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 1048,
+        "line": 1051,
         "column": 3
       }
     },
@@ -940,7 +940,7 @@
           "column": 4
         },
         "end": {
-          "line": 521,
+          "line": 524,
           "column": 5
         }
       },
@@ -996,11 +996,11 @@
     "isExcluded": {
       "location": {
         "start": {
-          "line": 529,
+          "line": 532,
           "column": 4
         },
         "end": {
-          "line": 531,
+          "line": 534,
           "column": 5
         }
       },
@@ -1026,11 +1026,11 @@
     "hasValidLayout": {
       "location": {
         "start": {
-          "line": 540,
+          "line": 543,
           "column": 4
         },
         "end": {
-          "line": 542,
+          "line": 545,
           "column": 5
         }
       },
@@ -1056,11 +1056,11 @@
     "scheduleLayoutUpdate": {
       "location": {
         "start": {
-          "line": 550,
+          "line": 553,
           "column": 4
         },
         "end": {
-          "line": 552,
+          "line": 555,
           "column": 5
         }
       },
@@ -1078,11 +1078,11 @@
     "invalidateLayoutCache": {
       "location": {
         "start": {
-          "line": 559,
+          "line": 562,
           "column": 4
         },
         "end": {
-          "line": 565,
+          "line": 568,
           "column": 5
         }
       },
@@ -1100,11 +1100,11 @@
     "getSizeHint": {
       "location": {
         "start": {
-          "line": 597,
+          "line": 600,
           "column": 4
         },
         "end": {
-          "line": 651,
+          "line": 654,
           "column": 5
         }
       },
@@ -1141,11 +1141,11 @@
     "_computeSizeHint": {
       "location": {
         "start": {
-          "line": 660,
+          "line": 663,
           "column": 4
         },
         "end": {
-          "line": 679,
+          "line": 682,
           "column": 5
         }
       },
@@ -1171,11 +1171,11 @@
     "_hasHeightForWidth": {
       "location": {
         "start": {
-          "line": 687,
+          "line": 690,
           "column": 4
         },
         "end": {
-          "line": 694,
+          "line": 697,
           "column": 5
         }
       },
@@ -1201,11 +1201,11 @@
     "_getHeightForWidth": {
       "location": {
         "start": {
-          "line": 706,
+          "line": 709,
           "column": 4
         },
         "end": {
-          "line": 714,
+          "line": 717,
           "column": 5
         }
       },
@@ -1240,11 +1240,11 @@
     "_getLayout": {
       "location": {
         "start": {
-          "line": 722,
+          "line": 725,
           "column": 4
         },
         "end": {
-          "line": 724,
+          "line": 727,
           "column": 5
         }
       },
@@ -1270,11 +1270,11 @@
     "_applyMargin": {
       "location": {
         "start": {
-          "line": 728,
+          "line": 731,
           "column": 4
         },
         "end": {
-          "line": 736,
+          "line": 739,
           "column": 5
         }
       },
@@ -1298,11 +1298,11 @@
     "_applyAlign": {
       "location": {
         "start": {
-          "line": 740,
+          "line": 743,
           "column": 4
         },
         "end": {
-          "line": 746,
+          "line": 749,
           "column": 5
         }
       },
@@ -1324,11 +1324,11 @@
     "_applyDimension": {
       "location": {
         "start": {
-          "line": 750,
+          "line": 753,
           "column": 4
         },
         "end": {
-          "line": 752,
+          "line": 755,
           "column": 5
         }
       },
@@ -1354,11 +1354,11 @@
     "_applyStretching": {
       "location": {
         "start": {
-          "line": 756,
+          "line": 759,
           "column": 4
         },
         "end": {
-          "line": 758,
+          "line": 761,
           "column": 5
         }
       },
@@ -1382,11 +1382,11 @@
     "hasUserBounds": {
       "location": {
         "start": {
-          "line": 776,
+          "line": 779,
           "column": 4
         },
         "end": {
-          "line": 778,
+          "line": 781,
           "column": 5
         }
       },
@@ -1416,11 +1416,11 @@
     "setUserBounds": {
       "location": {
         "start": {
-          "line": 790,
+          "line": 793,
           "column": 4
         },
         "end": {
-          "line": 800,
+          "line": 803,
           "column": 5
         }
       },
@@ -1468,11 +1468,11 @@
     "resetUserBounds": {
       "location": {
         "start": {
-          "line": 808,
+          "line": 811,
           "column": 4
         },
         "end": {
-          "line": 812,
+          "line": 815,
           "column": 5
         }
       },
@@ -1490,11 +1490,11 @@
     "__emptyProperties": {
       "location": {
         "start": {
-          "line": 829,
+          "line": 832,
           "column": 4
         },
         "end": {
-          "line": 829,
+          "line": 832,
           "column": 26
         }
       },
@@ -1528,11 +1528,11 @@
     "setLayoutProperties": {
       "location": {
         "start": {
-          "line": 837,
+          "line": 840,
           "column": 4
         },
         "end": {
-          "line": 863,
+          "line": 866,
           "column": 5
         }
       },
@@ -1559,11 +1559,11 @@
     "getLayoutProperties": {
       "location": {
         "start": {
-          "line": 871,
+          "line": 874,
           "column": 4
         },
         "end": {
-          "line": 873,
+          "line": 876,
           "column": 5
         }
       },
@@ -1589,11 +1589,11 @@
     "clearLayoutProperties": {
       "location": {
         "start": {
-          "line": 880,
+          "line": 883,
           "column": 4
         },
         "end": {
-          "line": 882,
+          "line": 885,
           "column": 5
         }
       },
@@ -1611,11 +1611,11 @@
     "updateLayoutProperties": {
       "location": {
         "start": {
-          "line": 896,
+          "line": 899,
           "column": 4
         },
         "end": {
-          "line": 920,
+          "line": 923,
           "column": 5
         }
       },
@@ -1644,11 +1644,11 @@
     "getApplicationRoot": {
       "location": {
         "start": {
-          "line": 937,
+          "line": 940,
           "column": 4
         },
         "end": {
-          "line": 939,
+          "line": 942,
           "column": 5
         }
       },
@@ -1678,11 +1678,11 @@
     "getLayoutParent": {
       "location": {
         "start": {
-          "line": 949,
+          "line": 952,
           "column": 4
         },
         "end": {
-          "line": 951,
+          "line": 954,
           "column": 5
         }
       },
@@ -1708,11 +1708,11 @@
     "setLayoutParent": {
       "location": {
         "start": {
-          "line": 959,
+          "line": 962,
           "column": 4
         },
         "end": {
-          "line": 967,
+          "line": 970,
           "column": 5
         }
       },
@@ -1742,11 +1742,11 @@
     "isRootWidget": {
       "location": {
         "start": {
-          "line": 976,
+          "line": 979,
           "column": 4
         },
         "end": {
-          "line": 978,
+          "line": 981,
           "column": 5
         }
       },
@@ -1772,11 +1772,11 @@
     "_getRoot": {
       "location": {
         "start": {
-          "line": 988,
+          "line": 991,
           "column": 4
         },
         "end": {
-          "line": 1002,
+          "line": 1005,
           "column": 5
         }
       },
@@ -1802,11 +1802,11 @@
     "clone": {
       "location": {
         "start": {
-          "line": 1015,
+          "line": 1018,
           "column": 4
         },
         "end": {
-          "line": 1025,
+          "line": 1028,
           "column": 5
         }
       },
@@ -3311,11 +3311,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 1037,
+        "line": 1040,
         "column": 13
       },
       "end": {
-        "line": 1047,
+        "line": 1050,
         "column": 3
       }
     },

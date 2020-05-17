@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 627,
+        "line": 630,
         "column": 3
       }
     },
@@ -58,13 +58,21 @@
     "useTabNavigation": {
       "location": {
         "start": {
-          "line": 52,
+          "line": 55,
           "column": 4
         },
         "end": {
-          "line": 55,
+          "line": 58,
           "column": 5
         }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Activate changing focus with the tab key (default: true)</p>"
+          }
+        ]
       },
       "name": "useTabNavigation",
       "propertyType": "new",
@@ -93,11 +101,11 @@
     "__roots": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 70,
           "column": 4
         },
         "end": {
-          "line": 67,
+          "line": 70,
           "column": 18
         }
       },
@@ -107,11 +115,11 @@
     "__activeChild": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 71,
           "column": 24
         }
       },
@@ -121,11 +129,11 @@
     "__focusedChild": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 72,
           "column": 4
         },
         "end": {
-          "line": 69,
+          "line": 72,
           "column": 25
         }
       },
@@ -135,11 +143,11 @@
     "__currentRoot": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 73,
           "column": 24
         }
       },
@@ -149,11 +157,11 @@
     "connectTo": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 84,
           "column": 4
         },
         "end": {
-          "line": 89,
+          "line": 92,
           "column": 5
         }
       },
@@ -180,11 +188,11 @@
     "addRoot": {
       "location": {
         "start": {
-          "line": 97,
+          "line": 100,
           "column": 4
         },
         "end": {
-          "line": 101,
+          "line": 104,
           "column": 5
         }
       },
@@ -211,11 +219,11 @@
     "removeRoot": {
       "location": {
         "start": {
-          "line": 109,
+          "line": 112,
           "column": 4
         },
         "end": {
-          "line": 113,
+          "line": 116,
           "column": 5
         }
       },
@@ -242,11 +250,11 @@
     "getActiveWidget": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 125,
           "column": 4
         },
         "end": {
-          "line": 124,
+          "line": 127,
           "column": 5
         }
       },
@@ -272,11 +280,11 @@
     "isActive": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 136,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 138,
           "column": 5
         }
       },
@@ -311,11 +319,11 @@
     "getFocusedWidget": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 146,
+          "line": 149,
           "column": 5
         }
       },
@@ -341,11 +349,11 @@
     "isFocused": {
       "location": {
         "start": {
-          "line": 155,
+          "line": 158,
           "column": 4
         },
         "end": {
-          "line": 157,
+          "line": 160,
           "column": 5
         }
       },
@@ -380,11 +388,11 @@
     "isFocusRoot": {
       "location": {
         "start": {
-          "line": 166,
+          "line": 169,
           "column": 4
         },
         "end": {
-          "line": 168,
+          "line": 171,
           "column": 5
         }
       },
@@ -419,11 +427,11 @@
     "_onActivate": {
       "location": {
         "start": {
-          "line": 185,
+          "line": 188,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 198,
           "column": 5
         }
       },
@@ -454,11 +462,11 @@
     "_onDeactivate": {
       "location": {
         "start": {
-          "line": 203,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 209,
+          "line": 212,
           "column": 5
         }
       },
@@ -485,11 +493,11 @@
     "_onFocusIn": {
       "location": {
         "start": {
-          "line": 217,
+          "line": 220,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 228,
           "column": 5
         }
       },
@@ -516,11 +524,11 @@
     "_onFocusOut": {
       "location": {
         "start": {
-          "line": 233,
+          "line": 236,
           "column": 4
         },
         "end": {
-          "line": 241,
+          "line": 244,
           "column": 5
         }
       },
@@ -547,11 +555,11 @@
     "__onKeyPress": {
       "location": {
         "start": {
-          "line": 249,
+          "line": 252,
           "column": 4
         },
         "end": {
-          "line": 275,
+          "line": 278,
           "column": 5
         }
       },
@@ -578,11 +586,11 @@
     "__findFocusRoot": {
       "location": {
         "start": {
-          "line": 293,
+          "line": 296,
           "column": 4
         },
         "end": {
-          "line": 306,
+          "line": 309,
           "column": 5
         }
       },
@@ -621,11 +629,11 @@
     "__compareTabOrder": {
       "location": {
         "start": {
-          "line": 326,
+          "line": 329,
           "column": 4
         },
         "end": {
-          "line": 368,
+          "line": 371,
           "column": 5
         }
       },
@@ -671,11 +679,11 @@
     "__getFirstWidget": {
       "location": {
         "start": {
-          "line": 377,
+          "line": 380,
           "column": 4
         },
         "end": {
-          "line": 379,
+          "line": 382,
           "column": 5
         }
       },
@@ -701,11 +709,11 @@
     "__getLastWidget": {
       "location": {
         "start": {
-          "line": 388,
+          "line": 391,
           "column": 4
         },
         "end": {
-          "line": 390,
+          "line": 393,
           "column": 5
         }
       },
@@ -731,11 +739,11 @@
     "__getWidgetAfter": {
       "location": {
         "start": {
-          "line": 399,
+          "line": 402,
           "column": 4
         },
         "end": {
-          "line": 420,
+          "line": 423,
           "column": 5
         }
       },
@@ -770,11 +778,11 @@
     "__getWidgetBefore": {
       "location": {
         "start": {
-          "line": 429,
+          "line": 432,
           "column": 4
         },
         "end": {
-          "line": 450,
+          "line": 453,
           "column": 5
         }
       },
@@ -809,11 +817,11 @@
     "__collectAllAfter": {
       "location": {
         "start": {
-          "line": 472,
+          "line": 475,
           "column": 4
         },
         "end": {
-          "line": 495,
+          "line": 498,
           "column": 5
         }
       },
@@ -858,11 +866,11 @@
     "__collectAllBefore": {
       "location": {
         "start": {
-          "line": 507,
+          "line": 510,
           "column": 4
         },
         "end": {
-          "line": 530,
+          "line": 533,
           "column": 5
         }
       },
@@ -903,11 +911,11 @@
     "__getFirst": {
       "location": {
         "start": {
-          "line": 540,
+          "line": 543,
           "column": 4
         },
         "end": {
-          "line": 570,
+          "line": 573,
           "column": 5
         }
       },
@@ -951,11 +959,11 @@
     "__getLast": {
       "location": {
         "start": {
-          "line": 580,
+          "line": 583,
           "column": 4
         },
         "end": {
-          "line": 610,
+          "line": 613,
           "column": 5
         }
       },
@@ -1210,11 +1218,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 622,
+        "line": 625,
         "column": 13
       },
       "end": {
-        "line": 626,
+        "line": 629,
         "column": 3
       }
     },

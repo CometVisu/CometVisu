@@ -534,4 +534,4 @@
   qx.event.handler.Mouse.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mouse.js.map?dt=1589400497640
+//# sourceMappingURL=Mouse.js.map?dt=1589726637518

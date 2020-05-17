@@ -89,7 +89,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget.html' target='_blank'>
+   * <a href='http://qooxdoo.org/docs/#core/' target='_blank'>
    * Documentation of this widget in the qooxdoo manual.</a>
    *
    * NOTE: Instances of this class must be disposed of after use
@@ -1231,10 +1231,12 @@
 
         var contentWidth = width - insetX; // Compute height
 
+        var contentHeight = 0;
+
         var layout = this._getLayout();
 
         if (layout && layout.hasHeightForWidth()) {
-          var contentHeight = layout.getHeightForWidth(contentWidth);
+          contentHeight = layout.getHeightForWidth(contentWidth);
         } else {
           contentHeight = this._getContentHeightForWidth(contentWidth);
         } // Computed box height
@@ -3443,4 +3445,4 @@
   qx.ui.core.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1589401097139
+//# sourceMappingURL=Widget.js.map?dt=1589727211574

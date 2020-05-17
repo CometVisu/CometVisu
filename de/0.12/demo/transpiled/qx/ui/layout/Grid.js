@@ -87,7 +87,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/layout/grid.html'>
+   * <a href='http://qooxdoo.org/docs/#layout/grid.md'>
    * Extended documentation</a> and links to demos of this layout in the qooxdoo manual.
    */
   qx.Class.define("qx.ui.layout.Grid", {
@@ -145,9 +145,9 @@
 
       /**
        * Allow growing of spanning cells' widths beyond the accumulated widths of the columns.
-       * The default behavior (init value false) is that the width of the spanning cell is 
-       * determined by the accumulated width of the columns (plus spacing). 
-       * Setting this property to true lets the cell width grow as needed to show 
+       * The default behavior (init value false) is that the width of the spanning cell is
+       * determined by the accumulated width of the columns (plus spacing).
+       * Setting this property to true lets the cell width grow as needed to show
        * the widget in the spanning cell, which also enlarges the width of the spanned columns.
        */
       allowGrowSpannedCellWidth: {
@@ -1312,4 +1312,4 @@
   qx.ui.layout.Grid.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Grid.js.map?dt=1589401100945
+//# sourceMappingURL=Grid.js.map?dt=1589727215082

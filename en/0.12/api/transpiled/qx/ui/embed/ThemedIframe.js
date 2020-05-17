@@ -70,7 +70,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget/themediframe.html' target='_blank'>
+   * <a href='http://qooxdoo.org/docs/#desktop/widget/themediframe.md' target='_blank'>
    * Documentation of this widget in the qooxdoo manual.</a>
    */
   qx.Class.define("qx.ui.embed.ThemedIframe", {
@@ -503,4 +503,4 @@
   qx.ui.embed.ThemedIframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ThemedIframe.js.map?dt=1589400507450
+//# sourceMappingURL=ThemedIframe.js.map?dt=1589726646467

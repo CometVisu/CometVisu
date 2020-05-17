@@ -175,4 +175,4 @@
   qx.ui.popup.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1589400513655
+//# sourceMappingURL=Manager.js.map?dt=1589726651929

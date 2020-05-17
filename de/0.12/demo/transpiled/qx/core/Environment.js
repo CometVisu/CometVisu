@@ -41,14 +41,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * The most often used method should be {@link #get}, which returns the
    * current value for a given environment check.
    *
-   * All qooxdoo settings can be changed via the generator's config. See the manual
+   * All qooxdoo settings can be changed at compile time. See the manual
    * for more details about the environment key in the config. As you can see
    * from the methods API, there is no way to override an existing key. So if you
-   * need to change a qooxdoo setting, you have to use the generator to do so.
+   * need to change a qooxdoo setting, you have to use the compiler to do so.
    *
-   * The generator is also responsible for requiring the necessary implementation
+   * The compiler is also responsible for requiring the necessary implementation
    * classes for each check. When using a check of a new category, make sure to
-   * rebuild you application and let the generator include the necessary files.
+   * rebuild you application and let the compiler include the necessary files.
    *
    * The following table shows the available checks. If you are
    * interested in more details, check the reference to the implementation of
@@ -119,10 +119,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    *     <tr>
    *       <td>css.gradient.linear</td><td><i>String</i> or <i>null</i></td><td><code>-moz-linear-gradient</code></td>
    *       <td>{@link qx.bom.client.Css#getLinearGradient}</td>
-   *     </tr>
-   *     <tr>
-   *       <td>css.gradient.filter</td><td><i>Boolean</i></td><td><code>true</code></td>
-   *       <td>{@link qx.bom.client.Css#getFilterGradient}</td>
    *     </tr>
    *     <tr>
    *       <td>css.gradient.radial</td><td><i>String</i> or <i>null</i></td><td><code>-moz-radial-gradient</code></td>
@@ -199,10 +195,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    *     <tr>
    *       <td>css.textShadow</td><td><i>Boolean</i></td><td><code>true</code></td>
    *       <td>{@link qx.bom.client.Css#getTextShadow}</td>
-   *     </tr>
-   *     <tr>
-   *       <td>css.textShadow.filter</td><td><i>Boolean</i></td><td><code>true</code></td>
-   *       <td>{@link qx.bom.client.Css#getFilterTextShadow}</td>
    *     </tr>
    *     <tr>
    *       <td>css.alphaimageloaderneeded</td><td><i>Boolean</i></td><td><code>false</code></td>
@@ -973,7 +965,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         if (qx.Bootstrap.DEBUG) {
-          qx.Bootstrap.warn(key + " is not a valid key. Please see the API-doc of " + "qx.core.Environment for a list of predefined keys.");
+          qx.Bootstrap.warn("The environment key '" + key + "' is undefined.");
           qx.Bootstrap.trace(this);
         }
       },
@@ -1055,7 +1047,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         if (qx.Bootstrap.DEBUG) {
-          qx.Bootstrap.warn(key + " is not a valid key. Please see the API-doc of " + "qx.core.Environment for a list of predefined keys.");
+          qx.Bootstrap.warn("The environment key '" + key + "' is undefined.");
           qx.Bootstrap.trace(this);
         }
       },
@@ -1309,4 +1301,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.core.Environment.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Environment.js.map?dt=1589401092767
+//# sourceMappingURL=Environment.js.map?dt=1589727207553

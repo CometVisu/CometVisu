@@ -319,4 +319,4 @@
   qx.ui.mobile.core.Root.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Root.js.map?dt=1589400511946
+//# sourceMappingURL=Root.js.map?dt=1589726650389

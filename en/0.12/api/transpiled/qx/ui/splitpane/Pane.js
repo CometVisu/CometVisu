@@ -196,7 +196,7 @@
         splitter.addListener("resize", function (e) {
           var bounds = e.getData();
 
-          if (this.getChildControl("splitter").getVisible() && (bounds.height == 0 || bounds.width == 0)) {
+          if (this.getChildControl("splitter").isKnobVisible() && (bounds.height == 0 || bounds.width == 0)) {
             this.__blocker.hide();
           } else {
             this.__blocker.show();
@@ -302,7 +302,7 @@
 
           var left = bounds && bounds.left;
 
-          if (width || !this.getChildControl("splitter").getVisible()) {
+          if (width || !this.getChildControl("splitter").isKnobVisible()) {
             if (isNaN(left)) {
               left = qx.bom.element.Location.getPosition(splitterElem).left;
             }
@@ -324,7 +324,7 @@
 
           var top = bounds && bounds.top;
 
-          if (height || !this.getChildControl("splitter").getVisible()) {
+          if (height || !this.getChildControl("splitter").isKnobVisible()) {
             if (isNaN(top)) {
               top = qx.bom.element.Location.getPosition(splitterElem).top;
             }
@@ -607,4 +607,4 @@
   qx.ui.splitpane.Pane.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pane.js.map?dt=1589400514566
+//# sourceMappingURL=Pane.js.map?dt=1589726652725

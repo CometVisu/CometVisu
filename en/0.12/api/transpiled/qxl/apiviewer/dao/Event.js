@@ -68,4 +68,4 @@
   qxl.apiviewer.dao.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1589400527313
+//# sourceMappingURL=Event.js.map?dt=1589726664300

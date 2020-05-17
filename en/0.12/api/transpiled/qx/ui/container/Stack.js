@@ -86,7 +86,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget/stack.html' target='_blank'>
+   * <a href='http://qooxdoo.org/docs/#desktop/widget/stack.md' target='_blank'>
    * Documentation of this widget in the qooxdoo manual.</a>
    */
   qx.Class.define("qx.ui.container.Stack", {
@@ -274,4 +274,4 @@
   qx.ui.container.Stack.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stack.js.map?dt=1589400504549
+//# sourceMappingURL=Stack.js.map?dt=1589726643837

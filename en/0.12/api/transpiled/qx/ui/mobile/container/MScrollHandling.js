@@ -64,4 +64,4 @@
   qx.ui.mobile.container.MScrollHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MScrollHandling.js.map?dt=1589400511584
+//# sourceMappingURL=MScrollHandling.js.map?dt=1589726650006

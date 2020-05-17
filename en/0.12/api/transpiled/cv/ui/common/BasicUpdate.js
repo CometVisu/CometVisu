@@ -370,4 +370,4 @@
   cv.ui.common.BasicUpdate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BasicUpdate.js.map?dt=1589400523156
+//# sourceMappingURL=BasicUpdate.js.map?dt=1589726660394

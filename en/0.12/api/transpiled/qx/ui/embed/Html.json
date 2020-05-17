@@ -27,7 +27,7 @@
         },
         {
           "name": "@description",
-          "body": "<p>The Html widget embeds plain HTML code into the application\n<em>Example</em>\n Here is a little example of how to use the canvas widget.\n </p>\n<pre class='javascript'>\n var html = new qx.ui.embed.Html();\n html.setHtml(\"<h1>Hello World</h1>\");\n </pre>\n<p><em>External Documentation</em>\n <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget/html.html' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
+          "body": "<p>The Html widget embeds plain HTML code into the application\n<em>Example</em>\n Here is a little example of how to use the canvas widget.\n </p>\n<pre class='javascript'>\n var html = new qx.ui.embed.Html();\n html.setHtml(\"<h1>Hello World</h1>\");\n </pre>\n<p><em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/html.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
         }
       ]
     }

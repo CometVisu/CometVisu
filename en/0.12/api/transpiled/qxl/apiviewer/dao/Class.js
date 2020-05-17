@@ -788,4 +788,4 @@
   qxl.apiviewer.dao.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1589400526864
+//# sourceMappingURL=Class.js.map?dt=1589726663893

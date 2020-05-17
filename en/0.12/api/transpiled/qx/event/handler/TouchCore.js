@@ -479,4 +479,4 @@
   qx.event.handler.TouchCore.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TouchCore.js.map?dt=1589400497989
+//# sourceMappingURL=TouchCore.js.map?dt=1589726637838

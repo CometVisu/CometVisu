@@ -88,10 +88,10 @@
    *
    * *External Documentation*
    *
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget/iframe.html' target='_blank'>
+   * <a href='http://qooxdoo.org/docs/#desktop/widget/iframe.md' target='_blank'>
    * Documentation of this widget in the qooxdoo manual.</a>
-   * 
-   * 
+   *
+   *
    * *Notes*
    * When modifying this file, note that the test qx.test.ui.embed.Iframe.testSyncSourceAfterDOMMove
    * has been disabled under Chrome because of problems with Travis and Github.  Changes to this file
@@ -422,4 +422,4 @@
   qx.ui.embed.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1589401099759
+//# sourceMappingURL=Iframe.js.map?dt=1589727213948

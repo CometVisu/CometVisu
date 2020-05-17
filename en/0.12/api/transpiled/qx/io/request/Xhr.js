@@ -17,6 +17,7 @@
       "qx.bom.request.Xhr": {},
       "qx.util.Uri": {},
       "qx.util.Request": {},
+      "qx.Bootstrap": {},
       "qx.util.ResponseParser": {}
     },
     "environment": {
@@ -262,7 +263,8 @@
       // overridden
       _getConfiguredRequestHeaders: function _getConfiguredRequestHeaders() {
         var headers = {},
-            isAllowsBody = qx.util.Request.methodAllowsRequestBody(this.getMethod()); // Follow convention to include X-Requested-With header when same origin
+            isAllowsBody = qx.util.Request.methodAllowsRequestBody(this.getMethod()),
+            isFormData = qx.Bootstrap.getClass(this.getRequestData()) == "FormData"; // Follow convention to include X-Requested-With header when same origin
 
         if (!qx.util.Request.isCrossDomain(this.getUrl())) {
           headers["X-Requested-With"] = "XMLHttpRequest";
@@ -274,7 +276,7 @@
         } // By default, set content-type urlencoded for requests with body
 
 
-        if (this.getRequestData() && isAllowsBody) {
+        if (this.getRequestData() && isAllowsBody && !isFormData) {
           headers["Content-Type"] = "application/x-www-form-urlencoded";
         } // What representations to accept
 
@@ -354,4 +356,4 @@
   qx.io.request.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1589400500217
+//# sourceMappingURL=Xhr.js.map?dt=1589726639932

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 553,
+        "line": 493,
         "column": 3
       }
     },
@@ -532,50 +532,14 @@
       "type": "function",
       "access": "public"
     },
-    "getFilterGradient": {
-      "location": {
-        "start": {
-          "line": 275,
-          "column": 4
-        },
-        "end": {
-          "line": 279,
-          "column": 5
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns <code>true</code> if the browser supports setting gradients\n using the filter style. This usually only applies for IE browsers\n starting from IE5.5.\n http://msdn.microsoft.com/en-us/library/ms532997(v=vs.85).aspx</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} <code>true</code> if supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if supported."
-          }
-        ],
-        "@internal": [
-          {
-            "name": "@internal",
-            "body": ""
-          }
-        ]
-      },
-      "type": "function",
-      "access": "public"
-    },
     "getRadialGradient": {
       "location": {
         "start": {
-          "line": 290,
+          "line": 274,
           "column": 4
         },
         "end": {
-          "line": 300,
+          "line": 284,
           "column": 5
         }
       },
@@ -607,11 +571,11 @@
     "getLegacyWebkitGradient": {
       "location": {
         "start": {
-          "line": 311,
+          "line": 295,
           "column": 4
         },
         "end": {
-          "line": 317,
+          "line": 301,
           "column": 5
         }
       },
@@ -643,11 +607,11 @@
     "getRgba": {
       "location": {
         "start": {
-          "line": 326,
+          "line": 310,
           "column": 4
         },
         "end": {
-          "line": 343,
+          "line": 327,
           "column": 5
         }
       },
@@ -679,11 +643,11 @@
     "getBoxSizing": {
       "location": {
         "start": {
-          "line": 354,
+          "line": 338,
           "column": 4
         },
         "end": {
-          "line": 356,
+          "line": 340,
           "column": 5
         }
       },
@@ -715,11 +679,11 @@
     "getInlineBlock": {
       "location": {
         "start": {
-          "line": 366,
+          "line": 350,
           "column": 4
         },
         "end": {
-          "line": 377,
+          "line": 361,
           "column": 5
         }
       },
@@ -751,11 +715,11 @@
     "getOpacity": {
       "location": {
         "start": {
-          "line": 386,
+          "line": 370,
           "column": 4
         },
         "end": {
-          "line": 388,
+          "line": 372,
           "column": 5
         }
       },
@@ -787,11 +751,11 @@
     "getTextShadow": {
       "location": {
         "start": {
-          "line": 397,
+          "line": 381,
           "column": 4
         },
         "end": {
-          "line": 400,
+          "line": 384,
           "column": 5
         }
       },
@@ -820,96 +784,14 @@
       "type": "function",
       "access": "public"
     },
-    "getFilterTextShadow": {
-      "location": {
-        "start": {
-          "line": 411,
-          "column": 4
-        },
-        "end": {
-          "line": 416,
-          "column": 5
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns <code>true</code> if the browser supports setting text shadow\n using the filter style. This usually only applies for IE browsers\n starting from IE5.5.</p>"
-          }
-        ],
-        "@internal": [
-          {
-            "name": "@internal",
-            "body": ""
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} <code>true</code> if textShadow is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if textShadow is supported"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "__isFilterSupported": {
-      "location": {
-        "start": {
-          "line": 426,
-          "column": 4
-        },
-        "end": {
-          "line": 442,
-          "column": 5
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Checks if the given filter is supported.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "filterClass {String} The name of the filter class",
-            "paramName": "filterClass",
-            "description": " The name of the filter class",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "initParams {String} Init values for the filter",
-            "paramName": "initParams",
-            "description": " Init values for the filter",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} <code>true</code> if the given filter is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if the given filter is supported"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "private"
-    },
     "getAlphaImageLoaderNeeded": {
       "location": {
         "start": {
-          "line": 450,
+          "line": 392,
           "column": 4
         },
         "end": {
-          "line": 454,
+          "line": 396,
           "column": 5
         }
       },
@@ -935,11 +817,11 @@
     "getPointerEvents": {
       "location": {
         "start": {
-          "line": 463,
+          "line": 405,
           "column": 4
         },
         "end": {
-          "line": 479,
+          "line": 421,
           "column": 5
         }
       },
@@ -971,11 +853,11 @@
     "getFlexboxSyntax": {
       "location": {
         "start": {
-          "line": 490,
+          "line": 432,
           "column": 4
         },
         "end": {
-          "line": 521,
+          "line": 463,
           "column": 5
         }
       },
@@ -1008,11 +890,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 526,
+        "line": 468,
         "column": 10
       },
       "end": {
-        "line": 552,
+        "line": 492,
         "column": 3
       }
     },

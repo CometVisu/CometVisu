@@ -78,7 +78,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://manual.qooxdoo.org/${qxversion}/pages/widget/scrollbar.html' target='_blank'>
+   * <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>
    * Documentation of this widget in the qooxdoo manual.</a>
    */
   qx.Class.define("qx.ui.core.scroll.NativeScrollBar", {
@@ -381,4 +381,4 @@
   qx.ui.core.scroll.NativeScrollBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NativeScrollBar.js.map?dt=1589400506425
+//# sourceMappingURL=NativeScrollBar.js.map?dt=1589726645566

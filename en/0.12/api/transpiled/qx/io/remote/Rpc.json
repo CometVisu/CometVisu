@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 83,
+        "line": 80,
         "column": 0
       },
       "end": {
-        "line": 1080,
+        "line": 1077,
         "column": 3
       }
     },
@@ -25,7 +25,7 @@
         },
         {
           "name": "@description",
-          "body": "<p>Provides a Remote Procedure Call (RPC) implementation.\n Each instance of this class represents a \"Service\". These services can\n correspond to various concepts on the server side (depending on the\n programming language/environment being used), but usually, a service means\n a class on the server.\n In case multiple instances of the same service are needed, they can be\n distinguished by ids. If such an id is specified, the server routes all\n calls to a service that have the same id to the same server-side instance.\n When calling a server-side method, the parameters and return values are\n converted automatically. Supported types are int (and Integer), double\n (and Double), String, Date, Map, and JavaBeans. Beans must have a default\n constructor on the server side and are represented by simple JavaScript\n objects on the client side (used as associative arrays with keys matching\n the server-side properties). Beans can also be nested, but be careful not to\n create circular references! There are no checks to detect these (which would\n be expensive), so you as the user are responsible for avoiding them.\n A simple example:\n </p>\n<pre class='javascript'>\n   function callRpcServer ()\n   {\n     var rpc = new qx.io.remote.Rpc();\n     rpc.setTimeout(10000);\n     rpc.setUrl(\"http://127.0.0.1:8007\");\n     rpc.setServiceName(\"qooxdoo.admin\");\n\n     var that = this;\n     this.RpcRunning = rpc.callAsync(\n       function(result, ex, id)\n       {\n         that.RpcRunning = null;\n         if (ex == null) {\n             alert(result);\n         } else {\n             alert(\"Async(\" + id + \") exception: \" + ex);\n         }\n       },\n       \"fss.getBaseDir\");\n   }\n </pre>\n<p><strong>fss.getBaseDir</strong> is the remote procedure in this case, potential arguments\n would be listed after the procedure name.\n <p>\n Passing data from the client (qooxdoo) side is demonstrated in the\n qooxdoo-contrib project RpcExample. There are three ways to issue a remote\n procedure call: synchronously (qx.io.remote.Rpc.callSync -- dangerous\n because it blocks the whole browser, not just your application, so is\n highly discouraged); async with results via a callback function\n (qx.io.remote.Rpc.callAsync) and async with results via an event listener\n (qx.io.remote.Rpc.callAsyncListeners).\n <p>\n You may also find the server writer's guide helpful:\n   http://manual.qooxdoo.org/${qxversion}/pages/communication/rpc<em>server</em>writer_guide.html</p>"
+          "body": "<p>Provides a Remote Procedure Call (RPC) implementation.\n Each instance of this class represents a \"Service\". These services can\n correspond to various concepts on the server side (depending on the\n programming language/environment being used), but usually, a service means\n a class on the server.\n In case multiple instances of the same service are needed, they can be\n distinguished by ids. If such an id is specified, the server routes all\n calls to a service that have the same id to the same server-side instance.\n When calling a server-side method, the parameters and return values are\n converted automatically. Supported types are int (and Integer), double\n (and Double), String, Date, Map, and JavaBeans. Beans must have a default\n constructor on the server side and are represented by simple JavaScript\n objects on the client side (used as associative arrays with keys matching\n the server-side properties). Beans can also be nested, but be careful not to\n create circular references! There are no checks to detect these (which would\n be expensive), so you as the user are responsible for avoiding them.\n A simple example:\n </p>\n<pre class='javascript'>\n   function callRpcServer ()\n   {\n     var rpc = new qx.io.remote.Rpc();\n     rpc.setTimeout(10000);\n     rpc.setUrl(\"http://127.0.0.1:8007\");\n     rpc.setServiceName(\"qooxdoo.admin\");\n\n     var that = this;\n     this.RpcRunning = rpc.callAsync(\n       function(result, ex, id)\n       {\n         that.RpcRunning = null;\n         if (ex == null) {\n             alert(result);\n         } else {\n             alert(\"Async(\" + id + \") exception: \" + ex);\n         }\n       },\n       \"fss.getBaseDir\");\n   }\n </pre>\n<p><strong>fss.getBaseDir</strong> is the remote procedure in this case, potential arguments\n would be listed after the procedure name.\n <p>\n Passing data from the client (qooxdoo) side is demonstrated in the\n qooxdoo-contrib project RpcExample. There are three ways to issue a remote\n procedure call: synchronously (qx.io.remote.Rpc.callSync -- dangerous\n because it blocks the whole browser, not just your application, so is\n highly discouraged); async with results via a callback function\n (qx.io.remote.Rpc.callAsync) and async with results via an event listener\n (qx.io.remote.Rpc.callAsyncListeners).\n <p></p>"
         }
       ],
       "@ignore": [
@@ -40,11 +40,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 113,
+        "line": 110,
         "column": 14
       },
       "end": {
-        "line": 131,
+        "line": 128,
         "column": 3
       }
     },
@@ -81,11 +81,11 @@
     "completed": {
       "location": {
         "start": {
-          "line": 147,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 147,
+          "line": 144,
           "column": 39
         }
       },
@@ -103,11 +103,11 @@
     "aborted": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 152,
+          "line": 149,
           "column": 37
         }
       },
@@ -125,11 +125,11 @@
     "failed": {
       "location": {
         "start": {
-          "line": 157,
+          "line": 154,
           "column": 4
         },
         "end": {
-          "line": 157,
+          "line": 154,
           "column": 36
         }
       },
@@ -147,11 +147,11 @@
     "timeout": {
       "location": {
         "start": {
-          "line": 162,
+          "line": 159,
           "column": 4
         },
         "end": {
-          "line": 162,
+          "line": 159,
           "column": 37
         }
       },
@@ -171,11 +171,11 @@
     "origin": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 175,
           "column": 4
         },
         "end": {
-          "line": 184,
+          "line": 181,
           "column": 5
         }
       },
@@ -193,11 +193,11 @@
     "localError": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 187,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 192,
           "column": 5
         }
       },
@@ -215,11 +215,11 @@
     "CONVERT_DATES": {
       "location": {
         "start": {
-          "line": 220,
+          "line": 217,
           "column": 4
         },
         "end": {
-          "line": 220,
+          "line": 217,
           "column": 24
         }
       },
@@ -237,11 +237,11 @@
     "RESPONSE_JSON": {
       "location": {
         "start": {
-          "line": 240,
+          "line": 237,
           "column": 4
         },
         "end": {
-          "line": 240,
+          "line": 237,
           "column": 24
         }
       },
@@ -259,11 +259,11 @@
     "makeServerURL": {
       "location": {
         "start": {
-          "line": 259,
+          "line": 256,
           "column": 4
         },
         "end": {
-          "line": 277,
+          "line": 274,
           "column": 5
         }
       },
@@ -302,11 +302,11 @@
     "timeout": {
       "location": {
         "start": {
-          "line": 298,
+          "line": 295,
           "column": 4
         },
         "end": {
-          "line": 302,
+          "line": 299,
           "column": 5
         }
       },
@@ -331,11 +331,11 @@
     "crossDomain": {
       "location": {
         "start": {
-          "line": 314,
+          "line": 311,
           "column": 4
         },
         "end": {
-          "line": 318,
+          "line": 315,
           "column": 5
         }
       },
@@ -356,11 +356,11 @@
     "url": {
       "location": {
         "start": {
-          "line": 322,
+          "line": 319,
           "column": 4
         },
         "end": {
-          "line": 326,
+          "line": 323,
           "column": 5
         }
       },
@@ -381,11 +381,11 @@
     "serviceName": {
       "location": {
         "start": {
-          "line": 330,
+          "line": 327,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 331,
           "column": 5
         }
       },
@@ -406,11 +406,11 @@
     "serverData": {
       "location": {
         "start": {
-          "line": 345,
+          "line": 342,
           "column": 4
         },
         "end": {
-          "line": 349,
+          "line": 346,
           "column": 5
         }
       },
@@ -431,11 +431,11 @@
     "username": {
       "location": {
         "start": {
-          "line": 356,
+          "line": 353,
           "column": 4
         },
         "end": {
-          "line": 360,
+          "line": 357,
           "column": 5
         }
       },
@@ -456,11 +456,11 @@
     "password": {
       "location": {
         "start": {
-          "line": 367,
+          "line": 364,
           "column": 4
         },
         "end": {
-          "line": 371,
+          "line": 368,
           "column": 5
         }
       },
@@ -481,11 +481,11 @@
     "useBasicHttpAuth": {
       "location": {
         "start": {
-          "line": 377,
+          "line": 374,
           "column": 4
         },
         "end": {
-          "line": 381,
+          "line": 378,
           "column": 5
         }
       },
@@ -506,11 +506,11 @@
     "protocol": {
       "location": {
         "start": {
-          "line": 391,
+          "line": 388,
           "column": 4
         },
         "end": {
-          "line": 395,
+          "line": 392,
           "column": 5
         }
       },
@@ -548,11 +548,11 @@
     "__previousServerSuffix": {
       "location": {
         "start": {
-          "line": 409,
+          "line": 406,
           "column": 4
         },
         "end": {
-          "line": 409,
+          "line": 406,
           "column": 33
         }
       },
@@ -562,11 +562,11 @@
     "__currentServerSuffix": {
       "location": {
         "start": {
-          "line": 410,
+          "line": 407,
           "column": 4
         },
         "end": {
-          "line": 410,
+          "line": 407,
           "column": 32
         }
       },
@@ -576,11 +576,11 @@
     "createRequest": {
       "location": {
         "start": {
-          "line": 420,
+          "line": 417,
           "column": 4
         },
         "end": {
-          "line": 425,
+          "line": 422,
           "column": 5
         }
       },
@@ -606,11 +606,11 @@
     "createRpcData": {
       "location": {
         "start": {
-          "line": 450,
+          "line": 447,
           "column": 4
         },
         "end": {
-          "line": 498,
+          "line": 495,
           "column": 5
         }
       },
@@ -666,11 +666,11 @@
     "_callInternal": {
       "location": {
         "start": {
-          "line": 520,
+          "line": 517,
           "column": 4
         },
         "end": {
-          "line": 844,
+          "line": 841,
           "column": 5
         }
       },
@@ -733,11 +733,11 @@
     "fixUrl": {
       "location": {
         "start": {
-          "line": 854,
+          "line": 851,
           "column": 4
         },
         "end": {
-          "line": 874,
+          "line": 871,
           "column": 5
         }
       },
@@ -772,11 +772,11 @@
     "callSync": {
       "location": {
         "start": {
-          "line": 899,
+          "line": 896,
           "column": 4
         },
         "end": {
-          "line": 902,
+          "line": 899,
           "column": 5
         }
       },
@@ -818,11 +818,11 @@
     "callAsync": {
       "location": {
         "start": {
-          "line": 938,
+          "line": 935,
           "column": 4
         },
         "end": {
-          "line": 941,
+          "line": 938,
           "column": 5
         }
       },
@@ -871,11 +871,11 @@
     "callAsyncListeners": {
       "location": {
         "start": {
-          "line": 993,
+          "line": 990,
           "column": 4
         },
         "end": {
-          "line": 996,
+          "line": 993,
           "column": 5
         }
       },
@@ -924,11 +924,11 @@
     "refreshSession": {
       "location": {
         "start": {
-          "line": 1015,
+          "line": 1012,
           "column": 4
         },
         "end": {
-          "line": 1038,
+          "line": 1035,
           "column": 5
         }
       },
@@ -955,11 +955,11 @@
     "_isConvertDates": {
       "location": {
         "start": {
-          "line": 1049,
+          "line": 1046,
           "column": 4
         },
         "end": {
-          "line": 1051,
+          "line": 1048,
           "column": 5
         }
       },
@@ -985,11 +985,11 @@
     "_isResponseJson": {
       "location": {
         "start": {
-          "line": 1061,
+          "line": 1058,
           "column": 4
         },
         "end": {
-          "line": 1063,
+          "line": 1060,
           "column": 5
         }
       },
@@ -1015,11 +1015,11 @@
     "abort": {
       "location": {
         "start": {
-          "line": 1075,
+          "line": 1072,
           "column": 4
         },
         "end": {
-          "line": 1078,
+          "line": 1075,
           "column": 5
         }
       },

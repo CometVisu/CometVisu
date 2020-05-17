@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/external/qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/Boolean.js"
+    "/home/travis/build/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/Boolean.js"
   ],
   "names": [
     "qx",

@@ -983,7 +983,7 @@
         alias: "atom",
         style: function style(states) {
           return {
-            icon: "16/actions/window-close.png"
+            icon: "icon/16/actions/window-close.png"
           };
         }
       },
@@ -2283,4 +2283,4 @@
   qx.theme.modern.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1589400503581
+//# sourceMappingURL=Appearance.js.map?dt=1589726642950

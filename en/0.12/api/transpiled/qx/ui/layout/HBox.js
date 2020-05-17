@@ -92,7 +92,7 @@
    *
    * *External Documentation*
    *
-   * See <a href='http://manual.qooxdoo.org/${qxversion}/pages/layout/box.html'>extended documentation</a>
+   * See <a href='http://qooxdoo.org/docs/#layout/box.md'>extended documentation</a>
    * and links to demos for this layout.
    *
    */
@@ -468,4 +468,4 @@
   qx.ui.layout.HBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HBox.js.map?dt=1589400510108
+//# sourceMappingURL=HBox.js.map?dt=1589726648797

@@ -53,4 +53,4 @@
   qx.data.controller.ISelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ISelection.js.map?dt=1589400493832
+//# sourceMappingURL=ISelection.js.map?dt=1589726633984

@@ -188,7 +188,7 @@
                 var that = this;
 
                 var defaultTimeoutFunction = function defaultTimeoutFunction() {
-                  throw new qx.core.AssertionError("Asynchronous Test Error in setUp", "Timeout reached before resume() was called.");
+                  throw new qx.core.AssertionError("Asynchronous Test Error in setUp", "Timeout of " + ex.getDelay() + " ms reached before resume() was called.");
                 };
 
                 var timeoutFunc = ex.getDeferredFunction() ? ex.getDeferredFunction() : defaultTimeoutFunction;
@@ -246,7 +246,7 @@
               var that = this;
 
               var defaultTimeoutFunction = function defaultTimeoutFunction() {
-                throw new qx.core.AssertionError("Asynchronous Test Error", "Timeout reached before resume() was called.");
+                throw new qx.core.AssertionError("Asynchronous Test Error", "Timeout of " + ex.getDelay() + " ms reached before resume() was called.");
               };
 
               var timeoutFunc = ex.getDeferredFunction() ? ex.getDeferredFunction() : defaultTimeoutFunction;
@@ -421,4 +421,4 @@
   qx.dev.unit.TestResult.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestResult.js.map?dt=1589400495998
+//# sourceMappingURL=TestResult.js.map?dt=1589726636029

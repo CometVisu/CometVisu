@@ -37,7 +37,7 @@
    * through the methods provided by {@link qx.Class}.
    *
    * For a complete documentation of properties take a look at
-   * http://manual.qooxdoo.org/${qxversion}/pages/core.html#properties.
+   * http://qooxdoo.org/docs/#core/property_features.md.
    *
    *
    * *Normal properties*
@@ -1423,4 +1423,4 @@
   qx.core.Property.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Property.js.map?dt=1589401102553
+//# sourceMappingURL=Property.js.map?dt=1589727216524

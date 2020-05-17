@@ -182,4 +182,4 @@
   qx.data.store.Offline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Offline.js.map?dt=1589400494530
+//# sourceMappingURL=Offline.js.map?dt=1589726634589

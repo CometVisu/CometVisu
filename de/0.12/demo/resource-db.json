@@ -296,10 +296,14 @@
         "height": 512
       },
       "icon/comet_opt.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 210,
+        "height": 297
       },
       "icon/comet_opt_icon.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 450,
+        "height": 450
       },
       "icon/comet_webapp_icon.png": {
         "resourcePath": "resourcePath",
@@ -417,10 +421,14 @@
         "height": 96
       },
       "icon/cometvisu_icon_opt.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 487,
+        "height": 560
       },
       "icon/cometvisu_icon_raw.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 200,
+        "height": 200
       },
       "icon/iconlist.html": {
         "resourcePath": "resourcePath"
@@ -517,10 +525,14 @@
         "height": 633
       },
       "demo/media/demo_2d_backdrop_floorplan_inkscape.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 994,
+        "height": 633
       },
       "demo/media/demo_2d_backdrop_floorplan_viewbox.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 994,
+        "height": 633
       },
       "demo/media/demo_2d_backdrop_nikolaushaus.png": {
         "resourcePath": "resourcePath",
@@ -528,7 +540,9 @@
         "height": 498
       },
       "demo/media/demo_2d_backdrop_nikolaushaus.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 523,
+        "height": 773
       },
       "demo/media/demo_2d_backdrop_red_pot.js": {
         "resourcePath": "resourcePath"
@@ -539,10 +553,14 @@
         "height": 500
       },
       "demo/media/demo_2d_backdrop_red_pot.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 750,
+        "height": 500
       },
       "demo/media/demo_flat_circuit.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 239,
+        "height": 133
       },
       "demo/media/demo_flat_floorplan.png": {
         "resourcePath": "resourcePath",
@@ -550,13 +568,17 @@
         "height": 1000
       },
       "demo/media/demo_flat_floorplan.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 589,
+        "height": 810
       },
       "demo/media/demo_testmode_data.json": {
         "resourcePath": "resourcePath"
       },
       "demo/media/rollo.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
       },
       "demo/media/testmode.css": {
         "resourcePath": "resourcePath"
@@ -688,7 +710,9 @@
         "resourcePath": "resourcePath"
       },
       "plugins/clock/clock_pure.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 100,
+        "height": 100
       },
       "plugins/diagram/influxfetch.php": {
         "resourcePath": "resourcePath"
@@ -724,7 +748,9 @@
         "resourcePath": "resourcePath"
       },
       "plugins/svg/rollo.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
       },
       "plugins/tr064/proxy.php": {
         "resourcePath": "resourcePath"
@@ -735,10 +761,10 @@
       "plugins/tr064/tr064.css": {
         "resourcePath": "resourcePath"
       },
-      "plugins/upnpcontroller/mute.php": {
+      "plugins/upnpcontroller/next.php": {
         "resourcePath": "resourcePath"
       },
-      "plugins/upnpcontroller/next.php": {
+      "plugins/upnpcontroller/mute.php": {
         "resourcePath": "resourcePath"
       },
       "plugins/upnpcontroller/pause.php": {
@@ -828,30 +854,6 @@
         "width": 14,
         "height": 8
       },
-      "designs/discreet_sand/fonts/AUTHORS": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_sand/fonts/COPYING": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_sand/fonts/ChangeLog": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_sand/fonts/License.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_sand/fonts/README": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_sand/fonts/TODO": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_sand/fonts/liberationsans-bold.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet_sand/fonts/liberationsans-regular.ttf": {
-        "resourcePath": "resourcePath"
-      },
       "designs/discreet_sand/images/button_bg.png": {
         "resourcePath": "resourcePath",
         "width": 9,
@@ -881,6 +883,30 @@
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 6
+      },
+      "designs/discreet_sand/fonts/AUTHORS": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/COPYING": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/ChangeLog": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/License.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/README": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/TODO": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/liberationsans-bold.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet_sand/fonts/liberationsans-regular.ttf": {
+        "resourcePath": "resourcePath"
       },
       "designs/discreet_slim/fonts/AUTHORS": {
         "resourcePath": "resourcePath"
@@ -1316,11 +1342,6 @@
         "resourcePath": "resourcePath"
       }
     },
-    "cv.io": {
-      "lib/jquery.js": {
-        "resourcePath": "resourcePath"
-      }
-    },
     "qxl.versionlabel": {
       "dummy.txt": {
         "resourcePath": "resourcePath"
@@ -1505,25 +1526,8 @@
         "resourcePath": "resourcePath"
       }
     },
-    "dialog": {
-      "dialog/logo.gif": {
-        "resourcePath": "resourcePath",
-        "width": 272,
-        "height": 81
-      },
-      "dialog/icon/IcoMoonFree/264-warning.svg": {
-        "resourcePath": "resourcePath"
-      },
-      "dialog/icon/IcoMoonFree/269-info.svg": {
-        "resourcePath": "resourcePath"
-      },
-      "dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
-        "resourcePath": "resourcePath"
-      },
-      "dialog/icon/IcoMoonFree/272-cross.svg": {
-        "resourcePath": "resourcePath"
-      },
-      "dialog/icon/IcoMoonFree/273-checkmark.svg": {
+    "cv.io": {
+      "lib/jquery.js": {
         "resourcePath": "resourcePath"
       }
     },
@@ -2084,6 +2088,38 @@
         }
       }
     },
+    "dialog": {
+      "dialog/logo.gif": {
+        "resourcePath": "resourcePath",
+        "width": 272,
+        "height": 81
+      },
+      "dialog/icon/IcoMoonFree/264-warning.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "dialog/icon/IcoMoonFree/269-info.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "dialog/icon/IcoMoonFree/272-cross.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "dialog/icon/IcoMoonFree/273-checkmark.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      }
+    },
     "qx": {
       "source/readme.txt": {
         "resourcePath": "resourcePath"
@@ -2142,7 +2178,9 @@
         "resourcePath": "resourcePath"
       },
       "qx/test/bluebar.svg": {
-        "resourcePath": "resourcePath"
+        "resourcePath": "resourcePath",
+        "width": 192,
+        "height": 10
       },
       "qx/test/build.xml": {
         "resourcePath": "resourcePath"
@@ -2182,13 +2220,13 @@
       "qx/test/webworker.js": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/.gitignore": {
-        "resourcePath": "resourcePath"
-      },
-      "source/Modern/Assets.psd": {
+      "qx/website/.npmignore": {
         "resourcePath": "resourcePath"
       },
       "source/Modern/AssetsInvalid.psd": {
+        "resourcePath": "resourcePath"
+      },
+      "source/Modern/Assets.psd": {
         "resourcePath": "resourcePath"
       },
       "source/Modern/button-checked-focused.png": {
@@ -2206,12 +2244,12 @@
         "width": 80,
         "height": 60
       },
-      "source/Modern/button-focused.png": {
+      "source/Modern/button-hovered.png": {
         "resourcePath": "resourcePath",
         "width": 80,
         "height": 60
       },
-      "source/Modern/button-hovered.png": {
+      "source/Modern/button-focused.png": {
         "resourcePath": "resourcePath",
         "width": 80,
         "height": 60
@@ -6551,7 +6589,7 @@
       "qx/icon/Tango/LICENSE": {
         "resourcePath": "resourcePath"
       },
-      "qx/mobile/css/.gitignore": {
+      "qx/mobile/css/.npmignore": {
         "resourcePath": "resourcePath"
       },
       "qx/mobile/css/LICENSE": {
@@ -6710,7 +6748,7 @@
       "qx/test/xmlhttp/xml.php": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/.gitignore": {
+      "qx/website/scss/.npmignore": {
         "resourcePath": "resourcePath"
       },
       "qx/website/scss/indigo.scss": {
@@ -9070,7 +9108,7 @@
         "width": 8,
         "height": 8
       },
-      "qx/decoration/Modern/treevirtual/.gitignore": {
+      "qx/decoration/Modern/treevirtual/.npmignore": {
         "resourcePath": "resourcePath"
       },
       "qx/decoration/Modern/window/captionbar-active-b.png": {
@@ -10780,12 +10818,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/status/dialog-error.png": {
+      "qx/icon/Oxygen/128/status/dialog-information.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/status/dialog-information.png": {
+      "qx/icon/Oxygen/128/status/dialog-error.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -17500,11 +17538,6 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Tango/128/places/network-server.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Tango/128/places/network-workgroup.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -17949,6 +17982,11 @@
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
+      },
+      "qx/icon/Tango/128/places/network-server.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
       },
       "qx/icon/Tango/16/actions/media-playback-stop.png": {
         "resourcePath": "resourcePath",
@@ -20730,6 +20768,16 @@
         "width": 32,
         "height": 32
       },
+      "qx/icon/Tango/32/emblems/emblem-favorite.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Tango/32/emblems/emblem-important.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
       "qx/icon/Tango/32/emotes/face-angel.png": {
         "resourcePath": "resourcePath",
         "width": 32,
@@ -23205,16 +23253,6 @@
       },
       "qx/mobile/scss/theme/indigo/_styles.scss": {
         "resourcePath": "resourcePath"
-      },
-      "qx/icon/Tango/32/emblems/emblem-favorite.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/emblems/emblem-important.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
       }
     }
   }

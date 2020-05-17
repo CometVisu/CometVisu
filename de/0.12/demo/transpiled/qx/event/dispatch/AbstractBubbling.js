@@ -279,4 +279,4 @@
   qx.event.dispatch.AbstractBubbling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBubbling.js.map?dt=1589401113914
+//# sourceMappingURL=AbstractBubbling.js.map?dt=1589727226413

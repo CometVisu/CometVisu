@@ -40,4 +40,4 @@
   qx.ui.treevirtual.DefaultDataCellRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DefaultDataCellRenderer.js.map?dt=1589400517847
+//# sourceMappingURL=DefaultDataCellRenderer.js.map?dt=1589726655547
