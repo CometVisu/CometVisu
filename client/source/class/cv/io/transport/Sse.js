@@ -98,7 +98,7 @@ qx.Class.define('cv.io.transport.Sse', {
      */
     handleMessage: function (e) {
       this.client.record("read", e.data);
-      var json = cv.io.parser.Json.parse(e.data);
+      var json = JSON.parse(e.data);
       var data = json.d;
       this.client.update(data);
       this.client.setDataReceived(true);
