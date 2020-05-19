@@ -252,6 +252,29 @@ qx.Class.define('cv.ui.manager.Main', {
       }
     },
 
+    __findConfigFile: function (name) {
+      let file = null;
+      let demoFolder = null;
+      cv.ui.manager.model.FileItem.ROOT.getChildren().some(child => {
+        if (child.getName() === 'demo') {
+          demoFolder = child;
+        } else if (child.getName() === name) {
+          file = child;
+          return true;
+        }
+      });
+      if (!file && demoFolder) {
+        // check demo configs
+        demoFolder.getChildren().some(child => {
+          if (child.getName() === name) {
+            file = child;
+            return true;
+          }
+        })
+      }
+      return file;
+    },
+
     _onManagerEvent: function (ev) {
       var data = ev.getData();
       switch (ev.getName()) {
@@ -260,10 +283,18 @@ qx.Class.define('cv.ui.manager.Main', {
           break;
 
         case 'cv.manager.openWith':
+          if (typeof data.file === 'string') {
+            // this can only by a file in the root dir (a config)
+            data.file = this.__findConfigFile(data.file);
+          }
           this.openFile(data.file || this.getCurrentSelection(), false, data.handler);
           break;
 
         case 'cv.manager.open':
+          if (typeof data === 'string') {
+            // this can only by a file in the root dir (a config)
+            data = this.__findConfigFile(data);
+          }
           this.openFile(data || this.getCurrentSelection(), false);
           break;
       }
