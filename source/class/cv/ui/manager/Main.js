@@ -287,7 +287,7 @@ qx.Class.define('cv.ui.manager.Main', {
             // this can only by a file in the root dir (a config)
             data.file = this.__findConfigFile(data.file);
           }
-          this.openFile(data.file || this.getCurrentSelection(), false, data.handler);
+          this.openFile(data.file || this.getCurrentSelection(), false, data.handler, null, data.handlerOptions);
           break;
 
         case 'cv.manager.open':
@@ -380,6 +380,9 @@ qx.Class.define('cv.ui.manager.Main', {
         } else {
           editorConfig.instance.setFile(file);
         }
+        if (editorConfig.instance instanceof cv.ui.manager.editor.AbstractEditor) {
+          editorConfig.instance.setHandlerOptions(openFile.getHandlerOptions());
+        }
         this._stack.setSelection([editorConfig.instance]);
         this.__actionDispatcher.setFocusedWidget(editorConfig.instance);
 
@@ -396,7 +399,7 @@ qx.Class.define('cv.ui.manager.Main', {
      * @param handlerId {String} use this handler to open the file (classname as string)
      * @param handlerType {String} use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer
      */
-    openFile: function (file, preview, handlerId, handlerType) {
+    openFile: function (file, preview, handlerId, handlerType, handlerOptions) {
       var openFiles = this.getOpenFiles();
       var openFile;
       if (!handlerId) {
@@ -418,6 +421,11 @@ qx.Class.define('cv.ui.manager.Main', {
       });
       if (!openFile) {
         openFile = new cv.ui.manager.model.OpenFile(file, handlerId);
+      }
+      if (handlerOptions) {
+        openFile.setHandlerOptions(handlerOptions);
+      } else {
+        openFile.resetHandlerOptions();
       }
       if (preview === true) {
         if (!openFile.isPermanent()) {

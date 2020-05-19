@@ -66,7 +66,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         return /\.(xml|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(file.getFullPath().toLowerCase())
       }
     },
-    DEFAULT_FOR: /^visu_config.*\.xml/,
+    DEFAULT_FOR: /^(demo)?\/?visu_config.*\.xml/,
     ICON: cv.theme.dark.Images.getIcon('text', 18),
 
     load: function (callback, context) {
@@ -363,6 +363,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       if (!model) {
         return;
       }
+      let firstErrorLine = 0;
       // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
       if (errorList) {
 //            console.error(errorList);
@@ -379,6 +380,9 @@ qx.Class.define('cv.ui.manager.editor.Source', {
                 endColumn: model.getLineContent(currentMessage.line).length,
                 message: currentMessage.message
               });
+              if (currentMessage.line > firstErrorLine) {
+                firstErrorLine = currentMessage.line;
+              }
             }
             // add marker for completed message
             var parts = error.split(":");
@@ -399,6 +403,9 @@ qx.Class.define('cv.ui.manager.editor.Source', {
               message: parts.slice(-2).join(":"),
               file: file
             };
+            if (currentMessage.line > firstErrorLine) {
+              firstErrorLine = currentMessage.line;
+            }
           } else {
             currentMessage.message += "\n"+error;
           }
@@ -413,10 +420,20 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             endColumn: model.getLineContent(currentMessage.line).length,
             message: currentMessage.message
           });
+          if (currentMessage.line > firstErrorLine) {
+            firstErrorLine = currentMessage.line;
+          }
         }
       }
       if (this.getFile().getFullPath() === path) {
         window.monaco.editor.setModelMarkers(model, '', markers);
+        const options = this.getHandlerOptions();
+        if (options && options.jumpToError) {
+          // jump too first error (only when we are at the beginning
+          if (this._editor.getScrollTop() === 0) {
+            this._editor.revealLineInCenter(firstErrorLine);
+          }
+        }
       } else {
         // TODO: save errors for later
       }

@@ -312,7 +312,10 @@ qx.Class.define("cv.Application",
                   action: function () {
                     qx.core.Init.getApplication().showManager('openWith', {
                       file: `visu_config${configName}.xml`,
-                      handler: 'cv.ui.manager.editor.Source'
+                      handler: 'cv.ui.manager.editor.Source',
+                      handlerOptions: {
+                        jumpToError: true
+                      }
                     })
                   }
                 }]

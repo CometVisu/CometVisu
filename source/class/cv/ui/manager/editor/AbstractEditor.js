@@ -35,6 +35,11 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       nullable: true,
       event: 'changeContent',
       apply: '_applyContent'
+    },
+
+    handlerOptions: {
+      check: 'Map',
+      nullable: true
     }
   },
 
