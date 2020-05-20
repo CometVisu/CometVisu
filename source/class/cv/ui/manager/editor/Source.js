@@ -161,6 +161,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             dragAndDrop: true,
             formatOnPaste: true,
             formatOnType: true,
+            renderValidationDecorations: 'on',
             minimap: {
               enabled: true
             },
@@ -316,26 +317,6 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         this._editor.setValue(value);
       }
       this._editor.updateOptions({ readOnly: !file.isWriteable() });
-      this.enableMarkers(newModel);
-    },
-
-    // workaround for enabling markers in readonly files (from: https://github.com/microsoft/monaco-editor/issues/311#issuecomment-465139491)
-    enableMarkers: function (model) {
-      if (!model) {
-        return;
-      }
-      [
-        ['getLineDecorations', 2],
-        ['getLinesDecorations', 3],
-        ['getDecorationsInRange', 2],
-        ['getOverviewRulerDecorations', 1],
-        ['getAllDecorations', 1],
-      ].forEach(([functionName, maxArgs]) => {
-        const originalMethod = model[functionName];
-        model[functionName] = function() {
-          return originalMethod.apply(this, Array.from(arguments).slice(0, maxArgs));
-        };
-      });
     },
 
     getCurrentContent: function () {
@@ -363,7 +344,12 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       if (!model) {
         return;
       }
-      let firstErrorLine = 0;
+      let firstErrorLine = -1;
+      function check(line) {
+        if (firstErrorLine < 0 || firstErrorLine > line) {
+          firstErrorLine = line;
+        }
+      }
       // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
       if (errorList) {
 //            console.error(errorList);
@@ -380,9 +366,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
                 endColumn: model.getLineContent(currentMessage.line).length,
                 message: currentMessage.message
               });
-              if (currentMessage.line > firstErrorLine) {
-                firstErrorLine = currentMessage.line;
-              }
+              check(currentMessage.line);
             }
             // add marker for completed message
             var parts = error.split(":");
@@ -403,9 +387,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
               message: parts.slice(-2).join(":"),
               file: file
             };
-            if (currentMessage.line > firstErrorLine) {
-              firstErrorLine = currentMessage.line;
-            }
+            check(currentMessage.line);
           } else {
             currentMessage.message += "\n"+error;
           }
@@ -420,9 +402,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             endColumn: model.getLineContent(currentMessage.line).length,
             message: currentMessage.message
           });
-          if (currentMessage.line > firstErrorLine) {
-            firstErrorLine = currentMessage.line;
-          }
+          check(currentMessage.line);
         }
       }
       if (this.getFile().getFullPath() === path) {

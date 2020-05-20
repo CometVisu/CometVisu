@@ -173,7 +173,7 @@ qx.Class.define('cv.util.ConfigLoader', {
       var message = '';
       switch (textStatus) {
         case 'parsererror':
-          message = qx.locale.Manager.tr("Invalid config file!")+'<br/><a href="check_config.php?config=' + configSuffix + '">'+qx.locale.Manager.tr("Please check!")+'</a>';
+          message = qx.locale.Manager.tr("Invalid config file!")+'<br/><a href="#" onclick="showConfigErrors(\'' + configSuffix + '\')">'+qx.locale.Manager.tr("Please check!")+'</a>';
           break;
         case 'libraryerror':
           var link = window.location.href;

@@ -52,6 +52,7 @@ qx.Class.define("cv.Application",
 
     // install global shortcut for opening the manager
     window.showManager = this.showManager;
+    window.showConfigErrors = this.showConfigErrors;
   },
 
   /*
@@ -232,13 +233,13 @@ qx.Class.define("cv.Application",
 
     /**
      * @param action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()
-     * @param path {String} path of file that action should executed on
+     * @param data {String|Map} path of file that action should executed on or a Map of options
      */
-    showManager: function (action, path) {
+    showManager: function (action, data) {
       qx.io.PartLoader.require(['manager'], function (states) {
         // break dependency
         var engine = cv.TemplateEngine.getInstance();
-        if (!engine.isLoggedIn()) {
+        if (!engine.isLoggedIn() && !action) {
           // never start the manager before we are logged in, as the login response might contain information about the REST API URL
           engine.addListenerOnce('changeLoggedIn', this.showManager, this);
           return;
@@ -249,13 +250,29 @@ qx.Class.define("cv.Application",
         if (toggleVisibility) {
           manager.setVisible(!manager.getVisible());
         }
-        if (manager.getVisible() && action && path) {
+        if (manager.getVisible() && action && data) {
           // delay this a little bit, give the manager some time to settle
           qx.event.Timer.once(() => {
-            qx.event.message.Bus.dispatchByName('cv.manager.' + action, path);
+            qx.event.message.Bus.dispatchByName('cv.manager.' + action, data);
           }, this, 1000);
         }
       }, this);
+    },
+
+    showConfigErrors: function(configName) {
+      configName = configName ? 'visu_config_'+configName+'.xml' : 'visu_config.xml';
+      this.showManager('openWith', {
+        file: configName,
+        handlerId: 'cv.ui.manager.editor.Source',
+        handlerOptions: {
+          jumpToError: true
+        }
+      });
+      // remove any config error messages shown
+      cv.core.notifications.Router.dispatchMessage('cv.config.error', {
+        topic: 'cv.config.error',
+        condition: false
+      });
     },
 
     validateConfig: function (configName) {
@@ -310,13 +327,7 @@ qx.Class.define("cv.Application",
                 {
                   title: qx.locale.Manager.tr("Show errors"),
                   action: function () {
-                    qx.core.Init.getApplication().showManager('openWith', {
-                      file: `visu_config${configName}.xml`,
-                      handler: 'cv.ui.manager.editor.Source',
-                      handlerOptions: {
-                        jumpToError: true
-                      }
-                    })
+                    qx.core.Init.getApplication().showConfigErrors(configName);
                   }
                 }]
             },
