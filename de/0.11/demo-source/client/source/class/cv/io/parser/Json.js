@@ -1,5 +1,5 @@
 /**
- * Sometimes the backend returns invalid JSON (e.g. multiple JSON object in one string) or there are linefeeds in the values.
+ * Sometimes the openHAB1 backend returns invalid JSON (e.g. multiple JSON object in one string)
  * This parser can handle those strings
  */
 qx.Class.define('cv.io.parser.Json', {
@@ -15,7 +15,6 @@ qx.Class.define('cv.io.parser.Json', {
       "jquery": function(data) {
         var result = {};
         try {
-          data = data.replace(/\n/g, "\\n");
           result = JSON.parse(data);
         } catch (e) {
           data.split("}{").forEach(function(subData, i) {
@@ -32,7 +31,6 @@ qx.Class.define('cv.io.parser.Json', {
       "qx": function(data) {
         var result = {};
         try {
-          data = data.replace(/\n/g, "\\n");
           result = qx.lang.Json.parse(data);
         } catch (e) {
           data.split("}{").forEach(function(subData, i) {

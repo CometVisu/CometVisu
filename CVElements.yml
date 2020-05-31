@@ -33,13 +33,6 @@
     "en": "/en/develop/manual/config/widgets/plugins/link/index.html"
   "name": "Link"
 - "description":
-    "de": "Wettervorhersage"
-    "en": "Weather forecast"
-  "manual":
-    "de": "/de/develop/manual/config/widgets/plugins/openweathermap/index.html"
-    "en": "/en/develop/manual/config/widgets/plugins/openweathermap/index.html"
-  "name": "OpenweatherMap"
-- "description":
     "de": "Darstellung des Strom-Spektrums"
     "en": "Graph of the spectrum of a power source."
   "manual":
@@ -215,25 +208,18 @@
   "name": "RGB"
 - "description":
     "de": "Mit dem Widget refresh lassen sich die angezeigten Daten der Visu neu abrufen."
-    "en": "With the widget refresh, the visu shows a switch, which allows the visu to reload the displayed data."
+    "en": "With the widget refresh, the visu is added a switch, which allows the visu to reload the displayed data."
   "manual":
     "de": "/de/develop/manual/config/widgets/refresh/index.html"
     "en": "/en/develop/manual/config/widgets/refresh/index.html"
   "name": "Refresh"
 - "description":
     "de": "Mit dem Widget reload wird die Visu Seite komplett neu geladen."
-    "en": "With the reload widget, the visu shows a switch, which allows to reload the full visu in the browser."
+    "en": "With the reload widget, the visu is added a switch, which allows to reload the full visu in the browser."
   "manual":
     "de": "/de/develop/manual/config/widgets/reload/index.html"
     "en": "/en/develop/manual/config/widgets/reload/index.html"
   "name": "Reload"
-- "description":
-    "de": "Mit dem Widget roundbar wir ein oder mehrere Indikatoren für einen Wert angezeigt."
-    "en": "With the roundbar widget, the visu shows a round bar or indicator, which displays the value of one or more values graphically."
-  "manual":
-    "de": "/de/develop/manual/config/widgets/roundbar/index.html"
-    "en": "/en/develop/manual/config/widgets/roundbar/index.html"
-  "name": "Roundbar"
 - "description":
     "de": "Fügt der Visu einen horizontalen Schieberegler hinzu. Mit diesem kann z.B. gedimmt oder eine Temperatur eingestellt werden."
     "en": "Adds a horizontal slider to the visu. This can be used, for example, to dim a light or change temperature values."
