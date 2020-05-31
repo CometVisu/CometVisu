@@ -12,7 +12,7 @@ cache:
   - downloads
 before_install:
 - mkdir -p downloads
-- nvm install 6.9
+- nvm install --lts
 - mkdir cache
 install:
 - npm install -g grunt-cli
