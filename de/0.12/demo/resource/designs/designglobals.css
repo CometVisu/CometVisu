@@ -337,6 +337,7 @@ button.ui-slider-handle {
 
 #notification-center > .badge.normal, #toast-list .toast.normal {
   background-color: rgba(255, 244, 230, 0.9);
+  color: #000000;
 }
 
 #notification-center > .badge.low, #toast-list .toast.low {

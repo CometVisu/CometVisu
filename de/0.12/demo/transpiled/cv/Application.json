@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 673,
+        "line": 754,
         "column": 3
       }
     },
@@ -66,7 +66,7 @@
         "column": 13
       },
       "end": {
-        "line": 52,
+        "line": 55,
         "column": 3
       }
     },
@@ -83,11 +83,11 @@
     "HTML_STRUCT": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 60,
+          "line": 63,
           "column": 570
         }
       },
@@ -97,11 +97,11 @@
     "consoleCommands": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 64,
           "column": 4
         },
         "end": {
-          "line": 61,
+          "line": 64,
           "column": 23
         }
       },
@@ -111,11 +111,11 @@
     "__commandManager": {
       "location": {
         "start": {
-          "line": 62,
+          "line": 65,
           "column": 4
         },
         "end": {
-          "line": 62,
+          "line": 65,
           "column": 26
         }
       },
@@ -125,11 +125,11 @@
     "createClient": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 83,
           "column": 5
         }
       },
@@ -155,11 +155,11 @@
     "registerConsoleCommand": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 94,
+          "line": 97,
           "column": 5
         }
       },
@@ -202,11 +202,11 @@
     "root": {
       "location": {
         "start": {
-          "line": 103,
+          "line": 106,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 108,
           "column": 5
         }
       },
@@ -218,11 +218,11 @@
     "structureLoaded": {
       "location": {
         "start": {
-          "line": 110,
+          "line": 113,
           "column": 4
         },
         "end": {
-          "line": 114,
+          "line": 117,
           "column": 5
         }
       },
@@ -244,11 +244,11 @@
     "commandManager": {
       "location": {
         "start": {
-          "line": 116,
+          "line": 119,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 122,
           "column": 5
         }
       },
@@ -259,11 +259,11 @@
     "active": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 124,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 128,
           "column": 5
         }
       },
@@ -295,11 +295,11 @@
     "_blocker": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 137,
+          "line": 140,
           "column": 18
         }
       },
@@ -309,11 +309,11 @@
     "block": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 157,
           "column": 5
         }
       },
@@ -337,11 +337,11 @@
     "main": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 163,
           "column": 4
         },
         "end": {
-          "line": 228,
+          "line": 231,
           "column": 5
         }
       },
@@ -364,11 +364,49 @@
     "showManager": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 237,
           "column": 4
         },
         "end": {
-          "line": 246,
+          "line": 259,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()",
+            "paramName": "action",
+            "description": " manager event that can be handled by cv.ui.manager.Main._onManagerEvent()",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} path of file that action should executed on",
+            "paramName": "path",
+            "description": " path of file that action should executed on",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "validateConfig": {
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4
+        },
+        "end": {
+          "line": 327,
           "column": 5
         }
       },
@@ -378,11 +416,11 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 248,
+          "line": 329,
           "column": 4
         },
         "end": {
-          "line": 401,
+          "line": 482,
           "column": 5
         }
       },
@@ -392,11 +430,11 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 403,
+          "line": 484,
           "column": 4
         },
         "end": {
-          "line": 408,
+          "line": 489,
           "column": 6
         }
       },
@@ -406,11 +444,11 @@
     "__init": {
       "location": {
         "start": {
-          "line": 413,
+          "line": 494,
           "column": 4
         },
         "end": {
-          "line": 440,
+          "line": 521,
           "column": 5
         }
       },
@@ -428,11 +466,11 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 446,
+          "line": 527,
           "column": 4
         },
         "end": {
-          "line": 538,
+          "line": 619,
           "column": 5
         }
       },
@@ -459,11 +497,11 @@
     "loadIcons": {
       "location": {
         "start": {
-          "line": 543,
+          "line": 624,
           "column": 4
         },
         "end": {
-          "line": 547,
+          "line": 628,
           "column": 5
         }
       },
@@ -481,11 +519,11 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 553,
+          "line": 634,
           "column": 4
         },
         "end": {
-          "line": 560,
+          "line": 641,
           "column": 5
         }
       },
@@ -509,11 +547,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 566,
+          "line": 647,
           "column": 4
         },
         "end": {
-          "line": 573,
+          "line": 654,
           "column": 5
         }
       },
@@ -537,11 +575,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 578,
+          "line": 659,
           "column": 4
         },
         "end": {
-          "line": 638,
+          "line": 719,
           "column": 5
         }
       },
@@ -559,11 +597,11 @@
     "__detectInitialPage": {
       "location": {
         "start": {
-          "line": 640,
+          "line": 721,
           "column": 4
         },
         "end": {
-          "line": 671,
+          "line": 752,
           "column": 5
         }
       },

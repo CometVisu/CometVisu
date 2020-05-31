@@ -232,7 +232,45 @@
           }
 
           var text = elem.textContent;
-          var search;
+          var search; // compability change to make existing customer configurations work with the new manager links
+          // this replaces all document links to old manager tools with the new ones
+
+          var linkMatch;
+          var linkRegex = /href="([^"]+)"/gm;
+          var matches = [];
+
+          while (linkMatch = linkRegex.exec(text)) {
+            matches.push(linkMatch);
+          }
+
+          var handled = false;
+          search = window.location.search.replace(/\$/g, '$$$$');
+          search = search.replace(/.*config=([^&]*).*|.*/, '$1');
+          matches.forEach(function (match) {
+            switch (match[1]) {
+              case 'manager.php':
+                text = text.replace(match[0], 'href="#" onclick="showManager()"');
+                handled = true;
+                break;
+
+              case 'check_config.php':
+                text = text.replace(match[0], 'href="#" onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"');
+                handled = true;
+                break;
+
+              case 'editor/':
+              case 'editor':
+                var suffix = search ? '_' + search : '';
+                text = text.replace(match[0], 'href="#" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
+                handled = true;
+                break;
+            }
+          });
+
+          if (handled) {
+            // this overrides the extends
+            extend = null;
+          }
 
           switch (extend) {
             case 'all':
@@ -254,6 +292,30 @@
               }
 
               text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+              break;
+
+            case 'action':
+              search = window.location.search.replace(/\$/g, '$$$$');
+              search = search.replace(/.*config=([^&]*).*|.*/, '$1');
+              var match = /cv-action="([\w]+)"/.exec(text);
+
+              if (match) {
+                var replacement = 'href="#" ';
+
+                switch (match[1]) {
+                  case 'validate':
+                    replacement += 'onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"';
+                    break;
+
+                  case 'edit':
+                    var configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
+                    replacement += 'onclick="showManager(\'open\', \'' + configFile + '\')"';
+                    break;
+                }
+
+                text = text.replace(match[0], replacement);
+              }
+
               break;
           }
 
@@ -424,4 +486,4 @@
   cv.parser.MetaParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaParser.js.map?dt=1589726621129
+//# sourceMappingURL=MetaParser.js.map?dt=1590928171258

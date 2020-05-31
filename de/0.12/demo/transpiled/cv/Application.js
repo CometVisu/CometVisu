@@ -37,12 +37,16 @@
       "cv.log.appender.Native": {},
       "qx.bom.Stylesheet": {},
       "qx.util.ResourceManager": {},
+      "qx.event.Timer": {},
+      "qx.event.message.Bus": {},
+      "cv.data.FileWorker": {},
+      "cv.core.notifications.Router": {},
+      "qx.core.Init": {},
       "qx.core.WindowError": {},
       "qx.dev.StackTrace": {},
       "cv.ui.PopupHandler": {},
       "qx.util.Uri": {},
       "cv.util.Location": {},
-      "cv.core.notifications.Router": {},
       "qx.event.Registration": {},
       "cv.ui.layout.ResizeHandler": {},
       "qx.bom.Lifecycle": {},
@@ -53,9 +57,7 @@
       "cv.util.ScriptLoader": {},
       "cv.data.Model": {},
       "cv.ui.structure.WidgetFactory": {},
-      "qx.event.message.Bus": {},
       "cv.IconHandler": {},
-      "qx.event.Timer": {},
       "qx.Part": {},
       "qx.util.LibraryManager": {},
       "qx.bom.client.Html": {}
@@ -120,7 +122,9 @@
 
       qx.bom.PageVisibility.getInstance().addListener('change', function () {
         this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === "visible");
-      }, this);
+      }, this); // install global shortcut for opening the manager
+
+      window.showManager = this.showManager;
     },
 
     /*
@@ -269,7 +273,12 @@
 
         this.__init();
       },
-      showManager: function showManager() {
+
+      /**
+       * @param action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()
+       * @param path {String} path of file that action should executed on
+       */
+      showManager: function showManager(action, path) {
         qx.io.PartLoader.require(['manager'], function (states) {
           // break dependency
           var engine = cv.TemplateEngine.getInstance();
@@ -287,7 +296,88 @@
           if (toggleVisibility) {
             manager.setVisible(!manager.getVisible());
           }
+
+          if (manager.getVisible() && action && path) {
+            // delay this a little bit, give the manager some time to settle
+            qx.event.Timer.once(function () {
+              qx.event.message.Bus.dispatchByName('cv.manager.' + action, path);
+            }, this, 1000);
+          }
         }, this);
+      },
+      validateConfig: function validateConfig(configName) {
+        var _this = this;
+
+        var worker = cv.data.FileWorker.getInstance();
+        var displayConfigName = configName;
+
+        if (configName) {
+          configName = '_' + configName;
+        } else {
+          configName = '';
+          displayConfigName = 'default';
+        }
+
+        var notification = {
+          topic: 'cv.config.validation',
+          severity: "normal",
+          deletable: true,
+          unique: true
+        };
+        cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+          target: 'toast',
+          message: qx.locale.Manager.tr('Validating configuration file...')
+        }));
+        var res = qx.util.ResourceManager.getInstance();
+        var configPath = "config/visu_config".concat(configName, ".xml");
+        var url = '';
+
+        if (!res.has(configPath) && res.has("demo/visu_config".concat(configName, ".xml"))) {
+          url = res.toUri("demo/visu_config".concat(configName, ".xml"));
+        }
+
+        if (!url) {
+          url = res.toUri(configPath);
+        }
+
+        worker.validateConfig(url).then(function (res) {
+          // remove the toast information
+          cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+            target: 'toast',
+            condition: false
+          }));
+
+          if (res === true) {
+            // show result message as dialog
+            cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+              target: 'popup',
+              message: qx.locale.Manager.tr('The %1 configuration has no errors!', displayConfigName),
+              icon: 'message_ok'
+            }));
+          } else {
+            // show result message as dialog
+            console.error(res);
+            cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+              target: 'popup',
+              message: qx.locale.Manager.tr('The %1 configuration has %2 errors!', displayConfigName, res.length),
+              actions: {
+                link: [{
+                  title: qx.locale.Manager.tr("Show errors"),
+                  action: function action() {
+                    qx.core.Init.getApplication().showManager('openWith', {
+                      file: "visu_config".concat(configName, ".xml"),
+                      handler: 'cv.ui.manager.editor.Source'
+                    });
+                  }
+                }]
+              },
+              severity: 'high',
+              icon: 'message_attention'
+            }));
+          }
+        })["catch"](function (err) {
+          _this.error(err);
+        });
       },
       __globalErrorHandler: function __globalErrorHandler(ex) {
         // connect client data for Bug-Report
@@ -740,4 +830,4 @@
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1589727201571
+//# sourceMappingURL=Application.js.map?dt=1590928405944

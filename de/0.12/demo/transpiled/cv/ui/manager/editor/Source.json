@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 455,
+        "line": 476,
         "column": 3
       }
     },
@@ -232,14 +232,28 @@
       "type": "variable",
       "access": "protected"
     },
-    "_initWorker": {
+    "_onDidChangeContentGuard": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 137,
+          "line": 133,
+          "column": 31
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_initWorker": {
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4
+        },
+        "end": {
+          "line": 138,
           "column": 5
         }
       },
@@ -249,11 +263,11 @@
     "_getDefaultModelOptions": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 145,
+          "line": 146,
           "column": 5
         }
       },
@@ -263,11 +277,11 @@
     "_draw": {
       "location": {
         "start": {
-          "line": 147,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 196,
           "column": 5
         }
       },
@@ -277,11 +291,11 @@
     "handleAction": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 198,
           "column": 4
         },
         "end": {
-          "line": 216,
+          "line": 217,
           "column": 5
         }
       },
@@ -314,11 +328,11 @@
     "_loadFile": {
       "location": {
         "start": {
-          "line": 218,
+          "line": 219,
           "column": 4
         },
         "end": {
-          "line": 229,
+          "line": 230,
           "column": 5
         }
       },
@@ -332,11 +346,11 @@
     "_loadFromFs": {
       "location": {
         "start": {
-          "line": 231,
+          "line": 232,
           "column": 4
         },
         "end": {
-          "line": 244,
+          "line": 245,
           "column": 5
         }
       },
@@ -350,11 +364,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 246,
+          "line": 247,
           "column": 4
         },
         "end": {
-          "line": 263,
+          "line": 264,
           "column": 5
         }
       },
@@ -369,11 +383,11 @@
     "__saveHiddenConfig": {
       "location": {
         "start": {
-          "line": 265,
+          "line": 266,
           "column": 4
         },
         "end": {
-          "line": 274,
+          "line": 275,
           "column": 5
         }
       },
@@ -383,11 +397,11 @@
     "_applyContent": {
       "location": {
         "start": {
-          "line": 276,
+          "line": 277,
           "column": 4
         },
         "end": {
-          "line": 318,
+          "line": 320,
           "column": 5
         }
       },
@@ -398,14 +412,36 @@
         "cv.ui.manager.editor.AbstractEditor"
       ]
     },
-    "getCurrentContent": {
+    "enableMarkers": {
       "location": {
         "start": {
-          "line": 320,
+          "line": 323,
           "column": 4
         },
         "end": {
-          "line": 322,
+          "line": 339,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>workaround for enabling markers in readonly files (from: https://github.com/microsoft/monaco-editor/issues/311#issuecomment-465139491)</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getCurrentContent": {
+      "location": {
+        "start": {
+          "line": 341,
+          "column": 4
+        },
+        "end": {
+          "line": 343,
           "column": 5
         }
       },
@@ -420,11 +456,11 @@
     "_onContentChanged": {
       "location": {
         "start": {
-          "line": 324,
+          "line": 345,
           "column": 4
         },
         "end": {
-          "line": 328,
+          "line": 349,
           "column": 5
         }
       },
@@ -434,11 +470,11 @@
     "isSupported": {
       "location": {
         "start": {
-          "line": 330,
+          "line": 351,
           "column": 4
         },
         "end": {
-          "line": 337,
+          "line": 358,
           "column": 5
         }
       },
@@ -448,11 +484,11 @@
     "showErrors": {
       "location": {
         "start": {
-          "line": 339,
+          "line": 360,
           "column": 4
         },
         "end": {
-          "line": 402,
+          "line": 423,
           "column": 5
         }
       },
@@ -462,11 +498,11 @@
     "showDecorations": {
       "location": {
         "start": {
-          "line": 404,
+          "line": 425,
           "column": 4
         },
         "end": {
-          "line": 409,
+          "line": 430,
           "column": 5
         }
       },
@@ -476,11 +512,11 @@
     "_getLanguage": {
       "location": {
         "start": {
-          "line": 411,
+          "line": 432,
           "column": 4
         },
         "end": {
-          "line": 438,
+          "line": 459,
           "column": 5
         }
       },
@@ -4097,11 +4133,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 446,
+        "line": 467,
         "column": 12
       },
       "end": {
-        "line": 454,
+        "line": 475,
         "column": 3
       }
     },

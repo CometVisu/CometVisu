@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 386,
+        "line": 443,
         "column": 3
       }
     },
@@ -105,7 +105,7 @@
           "column": 4
         },
         "end": {
-          "line": 231,
+          "line": 288,
           "column": 5
         }
       },
@@ -115,11 +115,11 @@
     "parsePlugins": {
       "location": {
         "start": {
-          "line": 233,
+          "line": 290,
           "column": 4
         },
         "end": {
-          "line": 242,
+          "line": 299,
           "column": 5
         }
       },
@@ -129,11 +129,11 @@
     "__parseIconDefinition": {
       "location": {
         "start": {
-          "line": 244,
+          "line": 301,
           "column": 4
         },
         "end": {
-          "line": 255,
+          "line": 312,
           "column": 5
         }
       },
@@ -143,11 +143,11 @@
     "parseStateNotifications": {
       "location": {
         "start": {
-          "line": 257,
+          "line": 314,
           "column": 4
         },
         "end": {
-          "line": 319,
+          "line": 376,
           "column": 5
         }
       },
@@ -157,11 +157,11 @@
     "parseTemplates": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 382,
           "column": 4
         },
         "end": {
-          "line": 384,
+          "line": 441,
           "column": 5
         }
       },

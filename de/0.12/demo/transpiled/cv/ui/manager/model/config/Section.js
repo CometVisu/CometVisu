@@ -75,4 +75,4 @@
   cv.ui.manager.model.config.Section.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Section.js.map?dt=1589727206118
+//# sourceMappingURL=Section.js.map?dt=1590928410721

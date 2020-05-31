@@ -9,7 +9,7 @@
         "construct": true,
         "require": true
       },
-      "qx.util.ResourceManager": {
+      "cv.data.FileWorker": {
         "construct": true
       },
       "qx.xml.Document": {},
@@ -34,9 +34,9 @@
       qx.core.Object.constructor.call(this);
       this._files = {}; // create WebWorker
 
-      this._worker = new Worker(qx.util.ResourceManager.getInstance().toUri('manager/worker.js'));
-      this._worker.onmessage = this._onMessage.bind(this);
-      this._validationCallbacks = {};
+      this._worker = cv.data.FileWorker.getInstance();
+
+      this._worker.addListener('message', this._onMessage, this);
     },
 
     /*
@@ -59,7 +59,6 @@
     members: {
       _worker: null,
       _files: null,
-      _validationCallbacks: null,
       open: function open(file, code, schema) {
         this._worker.postMessage(["openFile", {
           path: file.getFullPath(),
@@ -84,28 +83,15 @@
       },
       validateConfig: function validateConfig(file) {
         if (file.isConfigFile()) {
-          return new Promise(function (resolve, reject) {
-            // check if there is already one validation request ongoing
-            var url = file.getServerPath();
-
-            if (!this._validationCallbacks.hasOwnProperty(url)) {
-              this._validationCallbacks[url] = [resolve];
-
-              this._worker.postMessage(["validateConfig", {
-                path: url
-              }]);
-            } else {
-              this._validationCallbacks[url].push(resolve);
-            }
-          }.bind(this));
+          return this._worker.validateConfig(file.getServerPath());
         } else {
           qx.log.Logger.error(this, file.getFullPath() + ' is no configuration file');
         }
       },
       _onMessage: function _onMessage(e) {
-        var topic = e.data.shift();
-        var data = e.data.shift();
-        var path = e.data.shift();
+        var topic = e.getData().topic;
+        var data = e.getData().data;
+        var path = e.getData().path;
         var file = this._files[path];
 
         if (!file && topic !== 'validationResult') {
@@ -140,17 +126,6 @@
             }
 
             break;
-
-          case 'validationResult':
-            if (this._validationCallbacks.hasOwnProperty(path)) {
-              var callbacks = this._validationCallbacks[path];
-              delete this._validationCallbacks[path];
-              callbacks.forEach(function (cb) {
-                cb(data);
-              });
-            }
-
-            break;
         }
       }
     },
@@ -169,4 +144,4 @@
   cv.ui.manager.editor.Worker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Worker.js.map?dt=1589727205491
+//# sourceMappingURL=Worker.js.map?dt=1590928409979

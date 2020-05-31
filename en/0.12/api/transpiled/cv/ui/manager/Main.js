@@ -335,6 +335,30 @@
           this.warn('unhandled file event', data.action);
         }
       },
+      __findConfigFile: function __findConfigFile(name) {
+        var file = null;
+        var demoFolder = null;
+        cv.ui.manager.model.FileItem.ROOT.getChildren().some(function (child) {
+          if (child.getName() === 'demo') {
+            demoFolder = child;
+          } else if (child.getName() === name) {
+            file = child;
+            return true;
+          }
+        });
+
+        if (!file && demoFolder) {
+          // check demo configs
+          demoFolder.getChildren().some(function (child) {
+            if (child.getName() === name) {
+              file = child;
+              return true;
+            }
+          });
+        }
+
+        return file;
+      },
       _onManagerEvent: function _onManagerEvent(ev) {
         var data = ev.getData();
 
@@ -344,10 +368,20 @@
             break;
 
           case 'cv.manager.openWith':
+            if (typeof data.file === 'string') {
+              // this can only by a file in the root dir (a config)
+              data.file = this.__findConfigFile(data.file);
+            }
+
             this.openFile(data.file || this.getCurrentSelection(), false, data.handler);
             break;
 
           case 'cv.manager.open':
+            if (typeof data === 'string') {
+              // this can only by a file in the root dir (a config)
+              data = this.__findConfigFile(data);
+            }
+
             this.openFile(data || this.getCurrentSelection(), false);
             break;
         }
@@ -972,4 +1006,4 @@
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1589726623619
+//# sourceMappingURL=Main.js.map?dt=1590928173724

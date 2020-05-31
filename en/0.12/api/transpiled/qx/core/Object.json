@@ -3852,6 +3852,7 @@
     "cv.io.Client",
     "cv.report.Record",
     "cv.TemplateEngine",
+    "cv.data.FileWorker",
     "cv.ui.NotificationCenter",
     "cv.ui.ToastManager",
     "cv.util.ConfigLoader",
