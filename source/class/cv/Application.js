@@ -49,6 +49,9 @@ qx.Class.define("cv.Application",
     qx.bom.PageVisibility.getInstance().addListener('change', function () {
       this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === "visible");
     }, this);
+
+    // install global shortcut for opening the manager
+    window.showManager = this.showManager;
   },
 
   /*
@@ -227,7 +230,11 @@ qx.Class.define("cv.Application",
       this.__init();
     },
 
-    showManager: function () {
+    /**
+     * @param action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()
+     * @param path {String} path of file that action should executed on
+     */
+    showManager: function (action, path) {
       qx.io.PartLoader.require(['manager'], function (states) {
         // break dependency
         var engine = cv.TemplateEngine.getInstance();
@@ -242,7 +249,81 @@ qx.Class.define("cv.Application",
         if (toggleVisibility) {
           manager.setVisible(!manager.getVisible());
         }
+        if (manager.getVisible() && action && path) {
+          // delay this a little bit, give the manager some time to settle
+          qx.event.Timer.once(() => {
+            qx.event.message.Bus.dispatchByName('cv.manager.' + action, path);
+          }, this, 1000);
+        }
       }, this);
+    },
+
+    validateConfig: function (configName) {
+      const worker = cv.data.FileWorker.getInstance();
+      let displayConfigName = configName;
+      if (configName) {
+        configName = '_' + configName;
+      } else {
+        configName = '';
+        displayConfigName = 'default';
+      }
+      let notification = {
+        topic: 'cv.config.validation',
+        severity: "normal",
+        deletable: true,
+        unique: true
+      }
+      cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+        target: 'toast',
+        message: qx.locale.Manager.tr('Validating configuration file...')
+      }));
+      const res = qx.util.ResourceManager.getInstance();
+      let configPath = `config/visu_config${configName}.xml`;
+      let url = '';
+      if (!res.has(configPath) && res.has(`demo/visu_config${configName}.xml`)) {
+        url = res.toUri(`demo/visu_config${configName}.xml`);
+      }
+      if (!url) {
+        url = res.toUri(configPath);
+      }
+      worker.validateConfig(url).then(res => {
+        // remove the toast information
+        cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+          target: 'toast',
+          condition: false
+        }));
+        if (res === true) {
+          // show result message as dialog
+          cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+            target: 'popup',
+            message: qx.locale.Manager.tr('The %1 configuration has no errors!', displayConfigName),
+            icon: 'message_ok'
+          }));
+        } else {
+          // show result message as dialog
+          console.error(res);
+          cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+            target: 'popup',
+            message: qx.locale.Manager.tr('The %1 configuration has %2 errors!', displayConfigName, res.length),
+            actions: {
+              link: [
+                {
+                  title: qx.locale.Manager.tr("Show errors"),
+                  action: function () {
+                    qx.core.Init.getApplication().showManager('openWith', {
+                      file: `visu_config${configName}.xml`,
+                      handler: 'cv.ui.manager.editor.Source'
+                    })
+                  }
+                }]
+            },
+            severity: 'high',
+            icon: 'message_attention'
+          }));
+        }
+      }).catch(err => {
+        this.error(err);
+      });
     },
 
     __globalErrorHandler: function(ex) {
