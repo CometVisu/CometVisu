@@ -6,6 +6,6 @@ qx.Class.define("cv.Version", {
     REV: "8a36a53d895666341dcf15e0e5e55a70417bf063",
     BRANCH: "HEAD",
     VERSION: "0.11.2",
-    DATE: "2020-05-31T13:37:31.482105"
+    DATE: "2020-06-01T08:40:35.638951"
   }
 });
