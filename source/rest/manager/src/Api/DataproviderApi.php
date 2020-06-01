@@ -187,7 +187,7 @@ class DataproviderApi extends AbstractDataproviderApi
     $arrData = array();
     try {
 
-      $databases = json_decode(query('show databases', NULL, $auth), true);
+      $databases = json_decode(\OpenAPIServer\query('show databases', NULL, $auth), true);
       foreach ($databases['results'][0]['series'][0]['values'] as $databaseEntry) {
         $database = $databaseEntry[0];
         if ('_internal' == $database)
@@ -196,7 +196,7 @@ class DataproviderApi extends AbstractDataproviderApi
         $resSeries = array();
         $measurements = array();
 
-        $seriesArr = json_decode(query('SHOW MEASUREMENTS', $database, $auth), true);
+        $seriesArr = json_decode(\OpenAPIServer\query('SHOW MEASUREMENTS', $database, $auth), true);
         $series = $seriesArr['results'][0]['series'][0]['values'];
         if (NULL != $series) {
           foreach ($series as $thisSeries) {
