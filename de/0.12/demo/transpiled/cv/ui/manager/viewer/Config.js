@@ -122,4 +122,4 @@
   cv.ui.manager.viewer.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1590928411041
+//# sourceMappingURL=Config.js.map?dt=1591014032747
