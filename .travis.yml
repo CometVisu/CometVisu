@@ -76,7 +76,10 @@ jobs:
     - source temp-python/bin/activate
     - "./generate.py build -sI"
     - deactivate
-    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
+    - export CHROME_VERSION=$(.bin/docker-run "google-chrome --version" | awk '{ print $3 }' | cut -d'.' -f 1,2,3)
+    - export DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
+    - echo "using chrome driver version $DRIVER_VERSION"
+    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false --versions.chrome=${DRIVER_VERSION}"
     - sudo apt-get install python-lxml python3-lxml
     - utils/travis/deploy.sh
   - name: "[NIGHTLY] - Build and push Nightly Build"
