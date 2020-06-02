@@ -67,4 +67,4 @@
   cv.parser.widgets.WidgetInfoAction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetInfoAction.js.map?dt=1591013390875
+//# sourceMappingURL=WidgetInfoAction.js.map?dt=1591114954209

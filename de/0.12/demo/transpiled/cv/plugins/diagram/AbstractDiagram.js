@@ -88,6 +88,7 @@
    * @author Michael Hausl [michael at hausl dot com]
    * @since 0.6.0
    *
+   * @asset(plugins/diagram/influxfetch.php)
    * @asset(plugins/diagram/dep/flot/jquery.flot.min.js)
    * @asset(plugins/diagram/dep/flot/jquery.flot.touch.min.js)
    * @asset(plugins/diagram/dep/flot/jquery.flot.canvas.min.js)
@@ -900,4 +901,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1591014029594
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1591115568178

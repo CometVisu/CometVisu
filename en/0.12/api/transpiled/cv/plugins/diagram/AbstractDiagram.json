@@ -12,11 +12,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 66,
+        "line": 67,
         "column": 0
       },
       "end": {
-        "line": 792,
+        "line": 793,
         "column": 3
       }
     },
@@ -40,6 +40,10 @@
         }
       ],
       "@asset": [
+        {
+          "name": "@asset",
+          "body": "plugins/diagram/influxfetch.php"
+        },
         {
           "name": "@asset",
           "body": "plugins/diagram/dep/flot/jquery.flot.min.js"
@@ -82,11 +86,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 76,
+        "line": 77,
         "column": 13
       },
       "end": {
-        "line": 79,
+        "line": 80,
         "column": 3
       }
     },
@@ -103,11 +107,11 @@
     "cache": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 87,
+          "line": 88,
           "column": 13
         }
       },
@@ -117,11 +121,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 97,
+          "line": 98,
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 113,
           "column": 5
         }
       },
@@ -169,11 +173,11 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 115,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 141,
           "column": 5
         }
       },
@@ -183,11 +187,11 @@
     "getDiagramElements": {
       "location": {
         "start": {
-          "line": 142,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 205,
           "column": 5
         }
       },
@@ -197,11 +201,11 @@
     "getInfluxFilter": {
       "location": {
         "start": {
-          "line": 210,
+          "line": 211,
           "column": 4
         },
         "end": {
-          "line": 248,
+          "line": 249,
           "column": 5
         }
       },
@@ -227,11 +231,11 @@
     "lookupTsCache": {
       "location": {
         "start": {
-          "line": 256,
+          "line": 257,
           "column": 4
         },
         "end": {
-          "line": 299,
+          "line": 300,
           "column": 5
         }
       },
@@ -272,11 +276,11 @@
     "_onSuccess": {
       "location": {
         "start": {
-          "line": 301,
+          "line": 302,
           "column": 4
         },
         "end": {
-          "line": 322,
+          "line": 323,
           "column": 5
         }
       },
@@ -286,11 +290,11 @@
     "_onStatusError": {
       "location": {
         "start": {
-          "line": 324,
+          "line": 325,
           "column": 4
         },
         "end": {
-          "line": 335,
+          "line": 336,
           "column": 5
         }
       },
@@ -302,11 +306,11 @@
     "content": {
       "location": {
         "start": {
-          "line": 344,
+          "line": 345,
           "column": 4
         },
         "end": {
-          "line": 347,
+          "line": 348,
           "column": 5
         }
       },
@@ -319,11 +323,11 @@
     "title": {
       "location": {
         "start": {
-          "line": 348,
+          "line": 349,
           "column": 4
         },
         "end": {
-          "line": 352,
+          "line": 353,
           "column": 5
         }
       },
@@ -337,11 +341,11 @@
     "series": {
       "location": {
         "start": {
-          "line": 353,
+          "line": 354,
           "column": 4
         },
         "end": {
-          "line": 356,
+          "line": 357,
           "column": 5
         }
       },
@@ -362,11 +366,11 @@
     "seriesStart": {
       "location": {
         "start": {
-          "line": 357,
+          "line": 358,
           "column": 4
         },
         "end": {
-          "line": 360,
+          "line": 361,
           "column": 5
         }
       },
@@ -379,11 +383,11 @@
     "seriesEnd": {
       "location": {
         "start": {
-          "line": 361,
+          "line": 362,
           "column": 4
         },
         "end": {
-          "line": 364,
+          "line": 365,
           "column": 5
         }
       },
@@ -396,11 +400,11 @@
     "seriesResolution": {
       "location": {
         "start": {
-          "line": 365,
+          "line": 366,
           "column": 4
         },
         "end": {
-          "line": 368,
+          "line": 369,
           "column": 5
         }
       },
@@ -413,11 +417,11 @@
     "period": {
       "location": {
         "start": {
-          "line": 369,
+          "line": 370,
           "column": 4
         },
         "end": {
-          "line": 372,
+          "line": 373,
           "column": 5
         }
       },
@@ -430,11 +434,11 @@
     "legendInline": {
       "location": {
         "start": {
-          "line": 373,
+          "line": 374,
           "column": 4
         },
         "end": {
-          "line": 376,
+          "line": 377,
           "column": 5
         }
       },
@@ -447,11 +451,11 @@
     "legendPopup": {
       "location": {
         "start": {
-          "line": 377,
+          "line": 378,
           "column": 4
         },
         "end": {
-          "line": 380,
+          "line": 381,
           "column": 5
         }
       },
@@ -464,11 +468,11 @@
     "legendposition": {
       "location": {
         "start": {
-          "line": 381,
+          "line": 382,
           "column": 4
         },
         "end": {
-          "line": 384,
+          "line": 385,
           "column": 5
         }
       },
@@ -486,11 +490,11 @@
     "timeformat": {
       "location": {
         "start": {
-          "line": 385,
+          "line": 386,
           "column": 4
         },
         "end": {
-          "line": 388,
+          "line": 389,
           "column": 5
         }
       },
@@ -503,11 +507,11 @@
     "timeformatTooltip": {
       "location": {
         "start": {
-          "line": 389,
+          "line": 390,
           "column": 4
         },
         "end": {
-          "line": 392,
+          "line": 393,
           "column": 5
         }
       },
@@ -520,11 +524,11 @@
     "zoomYAxis": {
       "location": {
         "start": {
-          "line": 393,
+          "line": 394,
           "column": 4
         },
         "end": {
-          "line": 396,
+          "line": 397,
           "column": 5
         }
       },
@@ -537,11 +541,11 @@
     "gridcolor": {
       "location": {
         "start": {
-          "line": 397,
+          "line": 398,
           "column": 4
         },
         "end": {
-          "line": 400,
+          "line": 401,
           "column": 5
         }
       },
@@ -554,11 +558,11 @@
     "previewlabels": {
       "location": {
         "start": {
-          "line": 401,
+          "line": 402,
           "column": 4
         },
         "end": {
-          "line": 404,
+          "line": 405,
           "column": 5
         }
       },
@@ -571,11 +575,11 @@
     "popup": {
       "location": {
         "start": {
-          "line": 405,
+          "line": 406,
           "column": 4
         },
         "end": {
-          "line": 408,
+          "line": 409,
           "column": 5
         }
       },
@@ -588,11 +592,11 @@
     "tooltip": {
       "location": {
         "start": {
-          "line": 409,
+          "line": 410,
           "column": 4
         },
         "end": {
-          "line": 412,
+          "line": 413,
           "column": 5
         }
       },
@@ -655,11 +659,11 @@
     "_init": {
       "location": {
         "start": {
-          "line": 422,
+          "line": 423,
           "column": 4
         },
         "end": {
-          "line": 422,
+          "line": 423,
           "column": 15
         }
       },
@@ -669,11 +673,11 @@
     "popupplot": {
       "location": {
         "start": {
-          "line": 423,
+          "line": 424,
           "column": 4
         },
         "end": {
-          "line": 423,
+          "line": 424,
           "column": 19
         }
       },
@@ -683,11 +687,11 @@
     "plot": {
       "location": {
         "start": {
-          "line": 424,
+          "line": 425,
           "column": 4
         },
         "end": {
-          "line": 424,
+          "line": 425,
           "column": 14
         }
       },
@@ -697,11 +701,11 @@
     "plotted": {
       "location": {
         "start": {
-          "line": 425,
+          "line": 426,
           "column": 4
         },
         "end": {
-          "line": 425,
+          "line": 426,
           "column": 17
         }
       },
@@ -711,11 +715,11 @@
     "_timerPopup": {
       "location": {
         "start": {
-          "line": 426,
+          "line": 427,
           "column": 4
         },
         "end": {
-          "line": 426,
+          "line": 427,
           "column": 21
         }
       },
@@ -725,11 +729,11 @@
     "__isPopup": {
       "location": {
         "start": {
-          "line": 427,
+          "line": 428,
           "column": 4
         },
         "end": {
-          "line": 427,
+          "line": 428,
           "column": 20
         }
       },
@@ -739,11 +743,11 @@
     "_applyTitle": {
       "location": {
         "start": {
-          "line": 430,
+          "line": 431,
           "column": 4
         },
         "end": {
-          "line": 435,
+          "line": 436,
           "column": 5
         }
       },
@@ -764,11 +768,11 @@
     "_setupRefreshAction": {
       "location": {
         "start": {
-          "line": 437,
+          "line": 438,
           "column": 4
         },
         "end": {
-          "line": 453,
+          "line": 454,
           "column": 5
         }
       },
@@ -778,11 +782,11 @@
     "_stopRefresh": {
       "location": {
         "start": {
-          "line": 461,
+          "line": 462,
           "column": 4
         },
         "end": {
-          "line": 465,
+          "line": 466,
           "column": 5
         }
       },
@@ -815,11 +819,11 @@
     "_startRefresh": {
       "location": {
         "start": {
-          "line": 474,
+          "line": 475,
           "column": 4
         },
         "end": {
-          "line": 483,
+          "line": 484,
           "column": 5
         }
       },
@@ -859,11 +863,11 @@
     "_action": {
       "location": {
         "start": {
-          "line": 485,
+          "line": 486,
           "column": 4
         },
         "end": {
-          "line": 517,
+          "line": 518,
           "column": 5
         }
       },
@@ -873,11 +877,11 @@
     "initDiagram": {
       "location": {
         "start": {
-          "line": 519,
+          "line": 520,
           "column": 4
         },
         "end": {
-          "line": 655,
+          "line": 656,
           "column": 5
         }
       },
@@ -887,11 +891,11 @@
     "getSeriesSettings": {
       "location": {
         "start": {
-          "line": 657,
+          "line": 658,
           "column": 4
         },
         "end": {
-          "line": 694,
+          "line": 695,
           "column": 5
         }
       },
@@ -901,11 +905,11 @@
     "loadDiagramData": {
       "location": {
         "start": {
-          "line": 696,
+          "line": 697,
           "column": 4
         },
         "end": {
-          "line": 765,
+          "line": 766,
           "column": 5
         }
       },
@@ -6964,11 +6968,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 773,
+        "line": 774,
         "column": 12
       },
       "end": {
-        "line": 777,
+        "line": 778,
         "column": 3
       }
     },
@@ -6984,11 +6988,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 779,
+        "line": 780,
         "column": 9
       },
       "end": {
-        "line": 791,
+        "line": 792,
         "column": 3
       }
     },
