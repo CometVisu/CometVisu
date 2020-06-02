@@ -2,12 +2,12 @@
 
 namespace OpenAPIServer;
 
-$apiConfig = include(getcwd() . '/src/config.php');
-require_once(realpath($apiConfig->configDir . '/hidden.php'));
+use Exception;
 
 function query( $q, $db = '', $auth )
 {
-  global $hidden;
+  $apiConfig = include(getcwd() . '/src/config.php');
+  require(realpath($apiConfig->configDir . '/hidden.php'));
 
   if( $db )
     $db = '&db=' . $db;

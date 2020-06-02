@@ -185,7 +185,8 @@ function getInfluxMeasurements( element ) {
     influxCache[auth]['#callback'] = [];
   }
 
-  $.ajax('editor/dataproviders/list_all_influxdbs.php' + (auth ? '?auth=' + auth : ''),
+  let uri = cvProvider ? baseRestPath + '/data/influxdbs' : 'editor/dataproviders/list_all_influxdbs.php';
+  $.ajax(uri + (auth ? '?auth=' + auth : ''),
     {
       dataType: 'json',
       async: true,

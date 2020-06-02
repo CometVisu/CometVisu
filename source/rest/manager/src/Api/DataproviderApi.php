@@ -187,7 +187,7 @@ class DataproviderApi extends AbstractDataproviderApi
     $arrData = array();
     try {
 
-      $databases = json_decode(query('show databases', NULL, $auth), true);
+      $databases = json_decode(\OpenAPIServer\query('show databases', NULL, $auth), true);
       foreach ($databases['results'][0]['series'][0]['values'] as $databaseEntry) {
         $database = $databaseEntry[0];
         if ('_internal' == $database)
@@ -196,34 +196,13 @@ class DataproviderApi extends AbstractDataproviderApi
         $resSeries = array();
         $measurements = array();
 
-        $seriesArr = json_decode(query('SHOW SERIES', $database, $auth), true);
+        $seriesArr = json_decode(\OpenAPIServer\query('SHOW MEASUREMENTS', $database, $auth), true);
         $series = $seriesArr['results'][0]['series'][0]['values'];
         if (NULL != $series) {
           foreach ($series as $thisSeries) {
-            $list = explode(',', $thisSeries[0]);
-            $measurement = array_shift($list);
-            if (!array_key_exists($measurement, $measurements))
-              $measurements[$measurement] = array();
-
-            foreach ($list as $tag) {
-              $tagKV = explode('=', $tag);
-              if (array_key_exists($tagKV[0], $measurements[$measurement])) {
-                $measurements[$measurement][$tagKV[0]][$tagKV[1]] = 1; // fake set operation
-              } else {
-                $measurements[$measurement][$tagKV[0]] = array($tagKV[1] => 1); // fake set operation
-              }
-            }
-          }
-          // translate fake set to real set/array
-          foreach ($measurements as $measurement => $measurementValues) {
-            foreach ($measurementValues as $tag => $tagValues)
-              $measurements[$measurement][$tag] = array_keys($tagValues);
-            $resSeries[$measurement] = $measurements[$measurement];
-
-            // now forget all the nice information and compact to the relevant one:
             $arrData[] = array(
-              'value' => $database . '/' . $measurement,
-              'label' => $database . '/' . $measurement
+              'value' => $database . '/' . $thisSeries[ 0 ],
+              'label' => $database . '/' . $thisSeries[ 0 ]
             );
           }
         }
