@@ -74,8 +74,10 @@ qx.Class.define('cv.util.ConfigLoader', {
           var xmlLibVersion = xml.querySelector('pages').getAttribute("lib_version");
           if (xmlLibVersion === undefined) {
             xmlLibVersion = -1;
+          } else {
+            xmlLibVersion = parseInt(xmlLibVersion);
           }
-          if (cv.Config.libraryCheck && xmlLibVersion < cv.Config.libraryVersion) {
+          if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
             this.configError("libraryerror");
           }
           else {
@@ -183,7 +185,7 @@ qx.Class.define('cv.util.ConfigLoader', {
           link = link + '&libraryCheck=false';
           message = qx.locale.Manager.tr('Config file has wrong library version!').translate().toString()+'<br/>' +
             qx.locale.Manager.tr('This can cause problems with your configuration').translate().toString()+'</br>' +
-            '<p>'+qx.locale.Manager.tr("You can run the %1Configuration Upgrader%2.", '<a href="./upgrade/index.php?config=' + configSuffix + '">', '</a>').translate().toString() +'</br>' +
+            '<p>'+qx.locale.Manager.tr("You can run the %1Configuration Upgrader%2.", '<a href="#" onclick="showConfigErrors(\'' + configSuffix + '\', {upgradeVersion: true})">', '</a>').translate().toString() +'</br>' +
             qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>').translate().toString()+'</p>';
           break;
         case 'filenotfound':

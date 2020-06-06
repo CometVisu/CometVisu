@@ -317,6 +317,28 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         this._editor.setValue(value);
       }
       this._editor.updateOptions({ readOnly: !file.isWriteable() });
+      this._processHandlerOptions(value);
+    },
+
+    _processHandlerOptions: function (content) {
+      var handlerOptions = this.getHandlerOptions();
+      if (handlerOptions.hasOwnProperty('upgradeVersion') && handlerOptions.upgradeVersion === true && content) {
+        const [err, res] = this._upgradeConfig(content);
+        if (err) {
+          this.error(err);
+        } else {
+          this._editor.setValue(this._convertToString(res));
+        }
+      }
+    },
+
+    _convertToString: function (xml) {
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + xml.documentElement.outerHTML;
+    },
+
+    _upgradeConfig: function (content) {
+      const upgrader = new cv.util.ConfigUpgrader();
+      return upgrader.upgrade(content);
     },
 
     getCurrentContent: function () {

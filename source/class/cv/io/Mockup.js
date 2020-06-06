@@ -312,6 +312,10 @@ qx.Class.define('cv.io.Mockup', {
 
     getLastError: function () {
       return null;
+    },
+
+    getBackend: function () {
+      return {};
     }
   }
 });

@@ -32,6 +32,7 @@ class AbstractCompileHandler {
       revision: revision,
       branch: branch,
       date: new Date().toISOString(),
+      libraryVersion: 0,
       tags: []
     }
     Object.keys(this._customSettings).forEach(key => {
@@ -43,7 +44,16 @@ class AbstractCompileHandler {
       data.tags[data.tags.length - 1].last = true
     }
     const packageData = JSON.parse(fs.readFileSync("package.json"));
-    data.version = packageData.version
+    data.version = packageData.version;
+
+    // get library version
+    const libVer = fs.readFileSync(path.join("source", "library_version.inc.php"));
+    const match = /LIBRARY_VERSION',\s?([\d]+)/gm.exec(libVer);
+
+    if (match) {
+      data.libraryVersion = match[1];
+    }
+
     const code = mustache.render(`
 qx.Class.define("cv.Version", {
   type: "static",
@@ -52,6 +62,7 @@ qx.Class.define("cv.Version", {
     REV: "{{ revision }}",
     BRANCH: "{{ branch }}",
     VERSION: "{{ version }}",
+    LIBRARY_VERSION: {{ libraryVersion }},
     DATE: "{{ date }}",
     TAGS: { {{#tags}}
       {{ name }}: "{{value}}"{{^last}},{{/last}}{{/tags}}

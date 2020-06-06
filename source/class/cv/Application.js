@@ -259,14 +259,15 @@ qx.Class.define("cv.Application",
       }, this);
     },
 
-    showConfigErrors: function(configName) {
+    showConfigErrors: function(configName, options) {
       configName = configName ? 'visu_config_'+configName+'.xml' : 'visu_config.xml';
+      const handlerId = options && options.upgradeVersion ? 'cv.ui.manager.editor.Diff' : 'cv.ui.manager.editor.Source';
       this.showManager('openWith', {
         file: configName,
-        handlerId: 'cv.ui.manager.editor.Source',
-        handlerOptions: {
+        handler: handlerId,
+        handlerOptions: Object.assign({
           jumpToError: true
-        }
+        }, options ? options : {})
       });
       // remove any config error messages shown
       cv.core.notifications.Router.dispatchMessage('cv.config.error', {
