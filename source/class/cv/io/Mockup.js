@@ -308,6 +308,10 @@ qx.Class.define('cv.io.Mockup', {
 
     getResourcePath: function (name) {
       return name;
+    },
+
+    getLastError: function () {
+      return null;
     }
   }
 });
