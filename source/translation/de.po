@@ -739,3 +739,7 @@ msgstr "Anwenden"
 #: cv/ui/manager/editor/Diff.js
 msgid "Check"
 msgstr "Prüfen"
+
+#: cv/ui/manager/editor/Diff.js
+msgid "No changes have been made"
+msgstr "Es wurden keine Änderungen vorgenommen"

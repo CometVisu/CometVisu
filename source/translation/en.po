@@ -747,3 +747,7 @@ msgstr ""
 #: cv/ui/manager/editor/Diff.js
 msgid "Check"
 msgstr ""
+
+#: cv/ui/manager/editor/Diff.js
+msgid "No changes have been made"
+msgstr ""
