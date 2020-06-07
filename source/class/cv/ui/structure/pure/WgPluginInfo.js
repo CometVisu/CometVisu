@@ -67,6 +67,10 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
       }
     },
 
+    getRequest: function () {
+      return this.__request;
+    },
+
     /**
      * Handle successful requests from {@link qx.io.request.Xhr}
      * @param ev {Event}

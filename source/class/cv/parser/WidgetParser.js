@@ -34,6 +34,10 @@ qx.Class.define('cv.parser.WidgetParser', {
     model: cv.data.Model.getInstance(),
     __templates: {},
 
+    getTemplates: function () {
+      return this.__templates;
+    },
+
     addTemplate: function(name, templateData) {
       this.__templates[name] = templateData;
     },

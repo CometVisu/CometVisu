@@ -51,6 +51,10 @@ qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
   members: {
     __xhr: null,
 
+    getXhr: function () {
+      return this.__xhr;
+    },
+
     // property apply
     _applyUrl: function(value) {
       if (value) {
