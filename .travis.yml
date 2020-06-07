@@ -81,7 +81,10 @@ jobs:
     script:
     - docker pull cometvisu/dev-helper
     - qx compile --t build # builds the cv for the screenshot generator
-    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
+    - export CHROME_VERSION=$(bin/docker-run "google-chrome --version" | tail -1 | awk '{ print $3 }' | cut -d'.' -f 1,2,3)
+    - export DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
+    - echo "using chrome driver version $DRIVER_VERSION"
+    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false --versions.chrome=${DRIVER_VERSION}"
     - sudo apt-get install python3-lxml
     - utils/travis/deploy.sh
   - name: "[NIGHTLY] - Build and push Nightly Build"
