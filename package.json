@@ -30,6 +30,9 @@
       "email": "tbraeutigam at gmail dot com"
     }
   ],
+  "org_cometvisu": {
+    "libraryVersion": 9
+  },
   "devDependencies": {
     "@babel/polyfill": "^7.8.7",
     "@qooxdoo/compiler": "^1.0.0-beta.20200605-1953",

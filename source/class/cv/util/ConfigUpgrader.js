@@ -76,7 +76,9 @@ qx.Class.define('cv.util.ConfigUpgrader', {
         c++;
       });
       this.__setVersion(source, 8);
-      this.__log.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (gweather)');
+      if (c > 0) {
+        this.__log.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (gweather)');
+      }
       return 8;
     },
 
@@ -122,7 +124,9 @@ qx.Class.define('cv.util.ConfigUpgrader', {
         }
       });
       this.__setVersion(source, 9);
-      this.__log.push('converted ' + c + ' \'multitrigger\'-nodes to new button configuration');
+      if (c > 0) {
+        this.__log.push('converted ' + c + ' \'multitrigger\'-nodes to new button configuration');
+      }
       return 9;
     },
 

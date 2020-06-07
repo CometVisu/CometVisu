@@ -47,12 +47,7 @@ class AbstractCompileHandler {
     data.version = packageData.version;
 
     // get library version
-    const libVer = fs.readFileSync(path.join("source", "library_version.inc.php"));
-    const match = /LIBRARY_VERSION',\s?([\d]+)/gm.exec(libVer);
-
-    if (match) {
-      data.libraryVersion = match[1];
-    }
+    data.libraryVersion = packageData.org_cometvisu.libraryVersion;
 
     const code = mustache.render(`
 qx.Class.define("cv.Version", {

@@ -141,10 +141,13 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
                 qx.event.message.Bus.dispatchByName('cv.manager.action.close');
               } else {
                 this.setModifiedContent(this._convertToString(upgradedContent));
-                let msg = '<h3>' + qx.locale.Manager.tr('Config file has been upgraded to the current library version.').translate().toString() + '</h3>' +
+                let changesText = changes.length > 0 ?
                   '<div>' + qx.locale.Manager.tr('The following changes have been made') + '</div>' +
                   '<ul><li>'+changes.join('</li><li>')+ '</li></ul>' +
-                  '<div>' + qx.locale.Manager.tr('You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.') + '</div>' +
+                  '<div>' + qx.locale.Manager.tr('You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.') + '</div>' :
+                  '<div><strong>' + qx.locale.Manager.tr('No changes have been made') + '</strong></div>';
+
+                let msg = '<h3>' + qx.locale.Manager.tr('Config file has been upgraded to the current library version.').translate().toString() + '</h3>' + changesText +
                   '<div>' + qx.locale.Manager.tr('Click "Apply" if you want to save the changes and reload the browser.') + '</div>' +
                   '<div>' + qx.locale.Manager.tr('Click "Check" if you want to check the changes. You have to save the changes and reload your browser yourself in this case.') + '</div>';
                 const d = dialog.Dialog.confirm(msg, function (ok) {
@@ -156,10 +159,10 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
                 }, this, qx.locale.Manager.tr('Upgrade successful'));
                 d.set({
                   width: Math.min(qx.bom.Viewport.getWidth(), 600),
-                  yesLabel: qx.locale.Manager.tr('Apply'),
-                  noLabel: qx.locale.Manager.tr('Check')
+                  yesButtonLabel: qx.locale.Manager.tr('Apply'),
+                  noButtonLabel: qx.locale.Manager.tr('Check')
                 });
-                file.setModified(changes.length > 0);
+                file.setModified(true);
               }
             }
           }, this);
