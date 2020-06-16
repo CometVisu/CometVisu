@@ -44,6 +44,10 @@ qx.Class.define('cv.ui.manager.Start', {
       check: 'cv.ui.manager.model.FileItem',
       nullable: true,
       apply: '_applySelectedItem'
+    },
+    external: {
+      check: 'Boolean',
+      init: false
     }
   },
 

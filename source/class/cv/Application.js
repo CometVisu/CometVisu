@@ -51,8 +51,16 @@ qx.Class.define("cv.Application",
     }, this);
 
     // install global shortcut for opening the manager
-    window.showManager = this.showManager;
-    window.showConfigErrors = this.showConfigErrors;
+    if (window.parent && typeof window.parent.showManager === 'function') {
+      window.showManager = window.parent.showManager;
+    } else {
+      window.showManager = this.showManager.bind(this);
+    }
+    if (window.parent && typeof window.parent.showConfigErrors === 'function') {
+      window.showConfigErrors = window.parent.showConfigErrors;
+    } else {
+      window.showConfigErrors = this.showConfigErrors.bind(this);
+    }
   },
 
   /*
@@ -126,6 +134,11 @@ qx.Class.define("cv.Application",
       check: "Boolean",
       init: true,
       event: "changeActive"
+    },
+
+    inManager: {
+      check: "Boolean",
+      init: false
     }
   },
 
@@ -245,11 +258,15 @@ qx.Class.define("cv.Application",
           return;
         }
         var ManagerMain = cv.ui['manager']['Main'];
-        var toggleVisibility = !!ManagerMain.constructor.$$instance;
+        const firstCall = !ManagerMain.constructor.$$instance;
         var manager = ManagerMain.getInstance();
-        if (toggleVisibility) {
+        if (!action && !firstCall) {
           manager.setVisible(!manager.getVisible());
+        } else if (firstCall) {
+          // initially bind manager visibility
+          manager.bind('visible', this, 'inManager');
         }
+
         if (manager.getVisible() && action && data) {
           // delay this a little bit, give the manager some time to settle
           qx.event.Timer.once(() => {
@@ -262,13 +279,18 @@ qx.Class.define("cv.Application",
     showConfigErrors: function(configName, options) {
       configName = configName ? 'visu_config_'+configName+'.xml' : 'visu_config.xml';
       const handlerId = options && options.upgradeVersion ? 'cv.ui.manager.editor.Diff' : 'cv.ui.manager.editor.Source';
-      this.showManager('openWith', {
+      const data = {
         file: configName,
         handler: handlerId,
         handlerOptions: Object.assign({
           jumpToError: true
         }, options ? options : {})
-      });
+      }
+      if (this.isInManager()) {
+        qx.event.message.Bus.dispatchByName('cv.manager.openWith', data);
+      } else {
+        this.showManager('openWith', data);
+      }
       // remove any config error messages shown
       cv.core.notifications.Router.dispatchMessage('cv.config.error', {
         topic: 'cv.config.error',

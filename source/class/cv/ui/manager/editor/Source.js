@@ -321,7 +321,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     _processHandlerOptions: function (content) {
-      var handlerOptions = this.getHandlerOptions();
+      var handlerOptions = this.getHandlerOptions() || {};
       if (handlerOptions.hasOwnProperty('upgradeVersion') && handlerOptions.upgradeVersion === true && content) {
         const [err, res] = this._upgradeConfig(content);
         if (err) {
