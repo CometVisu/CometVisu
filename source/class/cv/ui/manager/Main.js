@@ -380,9 +380,11 @@ qx.Class.define('cv.ui.manager.Main', {
         if (!editorConfig.instance) {
           editorConfig.instance = new editorConfig.Clazz();
           editorConfig.instance.setFile(file);
-          this._stack.add(editorConfig.instance);
         } else {
           editorConfig.instance.setFile(file);
+        }
+        if (this._stack.indexOf(editorConfig.instance) < 0) {
+          this._stack.add(editorConfig.instance);
         }
         if (editorConfig.instance instanceof cv.ui.manager.editor.AbstractEditor) {
           editorConfig.instance.setHandlerOptions(openFile.getHandlerOptions());
