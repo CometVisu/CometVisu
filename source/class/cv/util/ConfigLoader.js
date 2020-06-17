@@ -178,7 +178,7 @@ qx.Class.define('cv.util.ConfigLoader', {
           message = qx.locale.Manager.tr("Invalid config file!")+'<br/><a href="#" onclick="showConfigErrors(\'' + configSuffix + '\')">'+qx.locale.Manager.tr("Please check!")+'</a>';
           break;
         case 'libraryerror':
-          var link = window.location.href;
+          var link = window.location.href.split('#')[0];
           if (link.indexOf('?') <= 0) {
             link = link + '?';
           }
