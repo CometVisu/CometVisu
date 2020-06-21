@@ -76,44 +76,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "left {Integer} Any integer value for the left position,\n   always in pixels",
-            "paramName": "left",
-            "description": " Any integer value for the left position,\n   always in pixels",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "top {Integer} Any integer value for the top position,\n   always in pixels",
-            "paramName": "top",
-            "description": " Any integer value for the top position,\n   always in pixels",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "width {Integer} Any positive integer value for the width,\n   always in pixels",
-            "paramName": "width",
-            "description": " Any positive integer value for the width,\n   always in pixels",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "height {Integer} Any positive integer value for the height,\n   always in pixels",
-            "paramName": "height",
-            "description": " Any positive integer value for the height,\n   always in pixels",
-            "type": "Integer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} A map of which layout sizes changed.",
-            "type": "Map",
-            "description": " A map of which layout sizes changed."
-          }
         ]
       },
       "type": "function",
@@ -285,7 +247,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -344,7 +314,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMinWidth": {
       "type": "function",

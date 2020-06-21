@@ -112,24 +112,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "state {String} a string representing the state of the\n          application. This command will be delivered in the data property of\n          the \"request\" event.",
-            "paramName": "state",
-            "description": " a string representing the state of the\n          application. This command will be delivered in the data property of\n          the \"request\" event.",
-            "type": "qx.bom.String"
-          },
-          {
-            "name": "@param",
-            "body": "newTitle {String ? null} the page title to set after the history entry\n          is done. This title should represent the new state of the application.",
-            "paramName": "newTitle",
-            "description": " the page title to set after the history entry\n          is done. This title should represent the new state of the application.",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "String"
-          }
         ]
       },
       "type": "function",
@@ -582,7 +564,29 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.data.MBinding"
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings from the object.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      }
     },
     "getBindings": {
       "type": "function",
@@ -1399,7 +1403,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply owner</p>"
+          }
+        ]
+      }
     },
     "_applyQxObjectId": {
       "type": "function",
@@ -1408,7 +1420,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply objectId</p>"
+          }
+        ]
+      }
     },
     "__onOwnedObjectIdChange": {
       "type": "function",
@@ -1417,7 +1437,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a child's objectId changes</p>"
+          }
+        ]
+      }
     },
     "_cascadeQxObjectIdChanges": {
       "type": "function",
@@ -1426,7 +1454,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reflect changes to IDs or owners</p>"
+          }
+        ]
+      }
     },
     "getQxObject": {
       "type": "function",

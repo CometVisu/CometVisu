@@ -48,7 +48,7 @@
       this._setLayout(new qx.ui.layout.Grow());
 
       this._handledActions = ['save'];
-      this.__basePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/../editor/editor.html');
+      this.__P_31_0 = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get("cv", "resourceUri") + '/../editor/editor.html');
 
       this._draw();
     },
@@ -84,7 +84,7 @@
 
           if (match) {
             if (file.isWriteable()) {
-              this._iframe = new qx.ui.embed.Iframe(qx.util.Uri.appendParamsToUrl(this.__basePath, 'embed=1&config=' + match[1]) + '&demo=' + (file.getParentFolder() === 'demo/' ? 'true' : 'false'));
+              this._iframe = new qx.ui.embed.Iframe(qx.util.Uri.appendParamsToUrl(this.__P_31_0, 'embed=1&config=' + match[1]) + '&demo=' + (file.getParentFolder() === 'demo/' ? 'true' : 'false'));
 
               this._iframe.addListener('load', function () {
                 // inject save method
@@ -209,4 +209,4 @@
   cv.ui.manager.editor.Xml.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xml.js.map?dt=1591114956975
+//# sourceMappingURL=Xml.js.map?dt=1592777071765

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 520,
+        "line": 524,
         "column": 3
       }
     },
@@ -101,7 +101,7 @@
       "type": "variable",
       "access": "private"
     },
-    "addTemplate": {
+    "getTemplates": {
       "location": {
         "start": {
           "line": 37,
@@ -115,7 +115,7 @@
       "type": "function",
       "access": "public"
     },
-    "addHandler": {
+    "addTemplate": {
       "location": {
         "start": {
           "line": 41,
@@ -129,7 +129,7 @@
       "type": "function",
       "access": "public"
     },
-    "getHandler": {
+    "addHandler": {
       "location": {
         "start": {
           "line": 45,
@@ -143,14 +143,28 @@
       "type": "function",
       "access": "public"
     },
-    "renderTemplates": {
+    "getHandler": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 49,
           "column": 4
         },
         "end": {
-          "line": 76,
+          "line": 51,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "renderTemplates": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
           "column": 5
         }
       },
@@ -176,11 +190,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 107,
           "column": 5
         }
       },
@@ -236,11 +250,11 @@
     "parseBasicElement": {
       "location": {
         "start": {
-          "line": 105,
+          "line": 109,
           "column": 4
         },
         "end": {
-          "line": 111,
+          "line": 115,
           "column": 5
         }
       },
@@ -250,11 +264,11 @@
     "parseElement": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 148,
           "column": 5
         }
       },
@@ -317,11 +331,11 @@
     "__getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 156,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 158,
           "column": 5
         }
       },
@@ -356,21 +370,7 @@
     "getElementType": {
       "location": {
         "start": {
-          "line": 156,
-          "column": 4
-        },
-        "end": {
-          "line": 163,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "getDefaultClasses": {
-      "location": {
-        "start": {
-          "line": 165,
+          "line": 160,
           "column": 4
         },
         "end": {
@@ -381,14 +381,28 @@
       "type": "function",
       "access": "public"
     },
-    "createDefaultWidget": {
+    "getDefaultClasses": {
       "location": {
         "start": {
-          "line": 181,
+          "line": 169,
           "column": 4
         },
         "end": {
-          "line": 229,
+          "line": 171,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "createDefaultWidget": {
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4
+        },
+        "end": {
+          "line": 233,
           "column": 5
         }
       },
@@ -458,11 +472,11 @@
     "parseLayout": {
       "location": {
         "start": {
-          "line": 238,
+          "line": 242,
           "column": 4
         },
         "end": {
-          "line": 255,
+          "line": 259,
           "column": 5
         }
       },
@@ -504,11 +518,11 @@
     "__extractLayoutAttribute": {
       "location": {
         "start": {
-          "line": 257,
+          "line": 261,
           "column": 4
         },
         "end": {
-          "line": 264,
+          "line": 268,
           "column": 5
         }
       },
@@ -518,11 +532,11 @@
     "extractLayout": {
       "location": {
         "start": {
-          "line": 266,
+          "line": 270,
           "column": 4
         },
         "end": {
-          "line": 284,
+          "line": 288,
           "column": 5
         }
       },
@@ -532,11 +546,11 @@
     "extractLayout3d": {
       "location": {
         "start": {
-          "line": 286,
+          "line": 290,
           "column": 4
         },
         "end": {
-          "line": 308,
+          "line": 312,
           "column": 5
         }
       },
@@ -546,11 +560,11 @@
     "parseLabel": {
       "location": {
         "start": {
-          "line": 310,
+          "line": 314,
           "column": 4
         },
         "end": {
-          "line": 331,
+          "line": 335,
           "column": 5
         }
       },
@@ -560,11 +574,11 @@
     "setWidgetLayout": {
       "location": {
         "start": {
-          "line": 341,
+          "line": 345,
           "column": 4
         },
         "end": {
-          "line": 363,
+          "line": 367,
           "column": 5
         }
       },
@@ -603,11 +617,11 @@
     "parseFormat": {
       "location": {
         "start": {
-          "line": 370,
+          "line": 374,
           "column": 4
         },
         "end": {
-          "line": 376,
+          "line": 380,
           "column": 5
         }
       },
@@ -641,11 +655,11 @@
     "parseAddress": {
       "location": {
         "start": {
-          "line": 384,
+          "line": 388,
           "column": 4
         },
         "end": {
-          "line": 389,
+          "line": 393,
           "column": 5
         }
       },
@@ -687,11 +701,11 @@
     "makeAddressList": {
       "location": {
         "start": {
-          "line": 403,
+          "line": 407,
           "column": 4
         },
         "end": {
-          "line": 445,
+          "line": 449,
           "column": 5
         }
       },
@@ -749,11 +763,11 @@
     "parseRefresh": {
       "location": {
         "start": {
-          "line": 447,
+          "line": 451,
           "column": 4
         },
         "end": {
-          "line": 469,
+          "line": 473,
           "column": 5
         }
       },
@@ -763,11 +777,11 @@
     "parseStyling": {
       "location": {
         "start": {
-          "line": 471,
+          "line": 475,
           "column": 4
         },
         "end": {
-          "line": 474,
+          "line": 478,
           "column": 5
         }
       },
@@ -777,11 +791,11 @@
     "parseChildren": {
       "location": {
         "start": {
-          "line": 477,
+          "line": 481,
           "column": 4
         },
         "end": {
-          "line": 499,
+          "line": 503,
           "column": 5
         }
       },
@@ -799,11 +813,11 @@
     "getStoragePath": {
       "location": {
         "start": {
-          "line": 508,
+          "line": 512,
           "column": 4
         },
         "end": {
-          "line": 518,
+          "line": 522,
           "column": 5
         }
       },

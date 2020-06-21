@@ -81,8 +81,8 @@
         this.getContentElement().setStyle("text-shadow", "none");
       }
 
-      this.__servicePid = "org.openhab.cometvisu";
-      this.__uri = "ui:cometvisu";
+      this.__P_21_0 = "org.openhab.cometvisu";
+      this.__P_21_1 = "ui:cometvisu";
 
       this._initConfigRestClient();
     },
@@ -106,14 +106,14 @@
     *****************************************************************************
     */
     members: {
-      __servicePid: null,
-      __uri: null,
-      __configDescriptionResource: null,
-      __service: null,
-      __configDescription: null,
-      __inDom: false,
+      __P_21_0: null,
+      __P_21_1: null,
+      __P_21_2: null,
+      __P_21_3: null,
+      __P_21_4: null,
+      __P_21_5: false,
       _store: null,
-      __initialValues: null,
+      __P_21_6: null,
       _initStore: function _initStore(pid) {
         var serviceDesc = {
           "get": {
@@ -129,7 +129,7 @@
             url: "/rest/services/" + pid + "/config"
           }
         };
-        var service = this.__service = new qx.io.rest.Resource(serviceDesc);
+        var service = this.__P_21_3 = new qx.io.rest.Resource(serviceDesc);
         this._store = new qx.data.store.Rest(service, "get", {
           configureRequest: function configureRequest(req) {
             req.setRequestHeader("Content-Type", "application/json");
@@ -152,7 +152,7 @@
         service.get();
 
         this._store.addListenerOnce("changeModel", function () {
-          this.__initialValues = JSON.parse(qx.util.Serializer.toJson(this._store.getModel()));
+          this.__P_21_6 = JSON.parse(qx.util.Serializer.toJson(this._store.getModel()));
         }, this);
       },
       _saveConfig: function _saveConfig() {
@@ -160,18 +160,18 @@
         data = data.replace(/icons_mapping_/g, "icons.mapping>");
         data = JSON.parse(data.replace("icons_enableMapping", "icons>enableMapping"));
 
-        this.__service.put(null, data);
+        this.__P_21_3.put(null, data);
 
-        this.__service.addListenerOnce("putSuccess", this.close, this);
+        this.__P_21_3.addListenerOnce("putSuccess", this.close, this);
       },
       _initConfigRestClient: function _initConfigRestClient() {
         var description = {
           "get": {
             method: "GET",
-            url: "/rest/config-descriptions/" + this.__uri
+            url: "/rest/config-descriptions/" + this.__P_21_1
           }
         };
-        var config = this.__configDescriptionResource = new qx.io.rest.Resource(description);
+        var config = this.__P_21_2 = new qx.io.rest.Resource(description);
         config.addListener("getSuccess", function (ev) {
           this._createForm(ev.getRequest().getResponse());
         }, this);
@@ -180,7 +180,7 @@
         });
         config.get();
 
-        this._initStore(this.__servicePid);
+        this._initStore(this.__P_21_0);
       },
       _createForm: function _createForm(config) {
         this._createChildControl("title");
@@ -244,9 +244,9 @@
         var items = this.getChildControl("form").getItems();
         Object.getOwnPropertyNames(items).some(function (name) {
           // noinspection EqualityComparisonWithCoercionJS
-          if (this.__initialValues[name] != items[name].getValue()) {
+          if (this.__P_21_6[name] != items[name].getValue()) {
             // jshint ignore:line
-            this.debug(name + " has changed from " + this.__initialValues[name] + " to " + items[name].getValue());
+            this.debug(name + " has changed from " + this.__P_21_6[name] + " to " + items[name].getValue());
             modified = true;
             return true;
           }
@@ -300,10 +300,10 @@
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__configDescriptionResource", "__service", "__root", "_store", "_window");
+      this._disposeObjects("__P_21_2", "__P_21_3", "__P_21_7", "_store", "_window");
     }
   });
   cv.plugins.openhab.Settings.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Settings.js.map?dt=1591115568383
+//# sourceMappingURL=Settings.js.map?dt=1592778959352

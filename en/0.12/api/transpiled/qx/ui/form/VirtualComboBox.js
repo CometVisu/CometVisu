@@ -63,9 +63,9 @@
 
       var dropdown = this.getChildControl("dropdown");
       dropdown.getChildControl("list").setSelectionMode("single");
-      this.__selection = dropdown.getSelection();
+      this.__P_315_0 = dropdown.getSelection();
 
-      this.__selection.addListener("change", this.__onSelectionChange, this);
+      this.__P_315_0.addListener("change", this.__P_315_1, this);
 
       this.bind("value", textField, "value");
       textField.bind("value", this, "value"); // forward the focusin and focusout events to the textfield. The textfield
@@ -126,16 +126,16 @@
     },
     members: {
       /** @type {var} Binding id between local value and text field value. */
-      __localBindId: null,
+      __P_315_2: null,
 
       /** @type {var} Binding id between text field value and local value. */
-      __textFieldBindId: null,
+      __P_315_3: null,
 
       /** @type {qx.data.Array} the drop-down selection. */
-      __selection: null,
+      __P_315_0: null,
 
       /** @type {Boolean} Indicator to ignore selection changes from the list. */
-      __ignoreChangeSelection: null,
+      __P_315_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -247,7 +247,7 @@
       },
       // overridden
       _beforeOpen: function _beforeOpen() {
-        this.__selectFirstMatch();
+        this.__P_315_5();
       },
       // overridden
       _handleKeyboard: function _handleKeyboard(event) {
@@ -301,15 +301,15 @@
        *
        * @param event {qx.event.type.Data} The change event from the qx.data.Array.
        */
-      __onSelectionChange: function __onSelectionChange(event) {
-        if (this.__ignoreChangeSelection == true) {
+      __P_315_1: function __P_315_1(event) {
+        if (this.__P_315_4 == true) {
           return;
         }
 
-        var selected = this.__selection.getItem(0);
+        var selected = this.__P_315_0.getItem(0);
 
         if (selected) {
-          selected = this.__convertValue(selected);
+          selected = this.__P_315_6(selected);
           this.setValue(selected);
         }
       },
@@ -333,19 +333,19 @@
       /**
        * Selects the first list item that starts with the text field's value.
        */
-      __selectFirstMatch: function __selectFirstMatch() {
+      __P_315_5: function __P_315_5() {
         var value = this.getValue();
         var dropdown = this.getChildControl("dropdown");
         var selection = dropdown.getSelection();
         var selected = selection.getItem(0); // try to preselect the matching item even if there is no current selection
 
-        if (selected === undefined || this.__convertValue(selected) !== value) {
+        if (selected === undefined || this.__P_315_6(selected) !== value) {
           // only reset the old selection if there is one
           if (selected !== undefined) {
             // reset the old selection
-            this.__ignoreChangeSelection = true;
+            this.__P_315_4 = true;
             selection.removeAll();
-            this.__ignoreChangeSelection = false;
+            this.__P_315_4 = false;
           } // No calculation is needed when the value is empty
 
 
@@ -360,7 +360,7 @@
           for (var i = 0, l = lookupTable.length; i < l; i++) {
             var modelItem = model.getItem(lookupTable[i]);
 
-            var itemLabel = this.__convertValue(modelItem);
+            var itemLabel = this.__P_315_6(modelItem);
 
             if (itemLabel && itemLabel.indexOf(value) == 0) {
               dropdown.setPreselected(modelItem);
@@ -376,7 +376,7 @@
        * @param modelItem {var} The model item to convert.
        * @return {String} The converted value.
        */
-      __convertValue: function __convertValue(modelItem) {
+      __P_315_6: function __P_315_6(modelItem) {
         var labelOptions = this.getLabelOptions();
         var formatter = this.getDefaultFormat();
         var labelPath = this.getLabelPath();
@@ -406,12 +406,12 @@
       this.removeAllBindings();
       textField.removeAllBindings();
 
-      this.__selection.removeListener("change", this.__onSelectionChange, this);
+      this.__P_315_0.removeListener("change", this.__P_315_1, this);
 
-      this.__selection = null;
+      this.__P_315_0 = null;
     }
   });
   qx.ui.form.VirtualComboBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualComboBox.js.map?dt=1591114982783
+//# sourceMappingURL=VirtualComboBox.js.map?dt=1592777097902

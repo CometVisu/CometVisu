@@ -33,39 +33,141 @@
   "type": "mixin",
   "properties": {
     "contentPaddingTop": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Top padding of the content pane</p>"
+          }
+        ]
+      },
       "name": "contentPaddingTop",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "apply": "_applyContentPadding",
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
     },
     "contentPaddingRight": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Right padding of the content pane</p>"
+          }
+        ]
+      },
       "name": "contentPaddingRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "apply": "_applyContentPadding",
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
     },
     "contentPaddingBottom": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Bottom padding of the content pane</p>"
+          }
+        ]
+      },
       "name": "contentPaddingBottom",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "apply": "_applyContentPadding",
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
     },
     "contentPaddingLeft": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Left padding of the content pane</p>"
+          }
+        ]
+      },
       "name": "contentPaddingLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "apply": "_applyContentPadding",
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
     },
     "contentPadding": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',\n 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'\n at the same time.\n If four values are specified they apply to top, right, bottom and left respectively.\n If there is only one value, it applies to all sides, if there are two or three,\n the missing values are taken from the opposite side.</p>"
+          }
+        ]
+      },
       "name": "contentPadding",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "group": [
+        "contentPaddingTop",
+        "contentPaddingRight",
+        "contentPaddingBottom",
+        "contentPaddingLeft"
+      ]
     }
   },
   "members": {

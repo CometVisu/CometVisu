@@ -174,7 +174,7 @@
        * When qx.globalErrorHandling is enabled the callback will observed
        */
       _onNative: function _onNative() {
-        var callback = qx.event.GlobalError.observeMethod(this.__onNativeHandler);
+        var callback = qx.event.GlobalError.observeMethod(this.__P_168_0);
         callback.apply(this, arguments);
       },
 
@@ -184,7 +184,7 @@
        * @param e {Event} Native event
        * @return {String|undefined}
        */
-      __onNativeHandler: function __onNativeHandler(e) {
+      __P_168_0: function __P_168_0(e) {
         if (this.isDisposed()) {
           return;
         }
@@ -245,4 +245,4 @@
   qx.event.handler.Window.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Window.js.map?dt=1591115583232
+//# sourceMappingURL=Window.js.map?dt=1592778974562

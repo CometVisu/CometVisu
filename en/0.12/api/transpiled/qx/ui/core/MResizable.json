@@ -53,53 +53,182 @@
   },
   "properties": {
     "resizableTop": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the top edge is resizable</p>"
+          }
+        ]
+      },
       "name": "resizableTop",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
     },
     "resizableRight": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 77,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the right edge is resizable</p>"
+          }
+        ]
+      },
       "name": "resizableRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
     },
     "resizableBottom": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 84,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the bottom edge is resizable</p>"
+          }
+        ]
+      },
       "name": "resizableBottom",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
     },
     "resizableLeft": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the left edge is resizable</p>"
+          }
+        ]
+      },
       "name": "resizableLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
     },
     "resizable": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to configure the resize behaviour for all edges at once</p>"
+          }
+        ]
+      },
       "name": "resizable",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "group": [
+        "resizableTop",
+        "resizableRight",
+        "resizableBottom",
+        "resizableLeft"
+      ]
     },
     "resizeSensitivity": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The tolerance to activate resizing</p>"
+          }
+        ]
+      },
       "name": "resizeSensitivity",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": 5,
+      "check": "Integer",
+      "defaultValue": 5
     },
     "useResizeFrame": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether a frame replacement should be used during the resize sequence</p>"
+          }
+        ]
+      },
       "name": "useResizeFrame",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
     }
   },
   "members": {

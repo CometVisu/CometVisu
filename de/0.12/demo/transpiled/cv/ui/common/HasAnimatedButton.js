@@ -35,7 +35,7 @@
      ******************************************************
      */
     construct: function construct() {
-      this.addListenerOnce("domReady", this.__initListeners, this);
+      this.addListenerOnce("domReady", this.__P_142_0, this);
     },
 
     /*
@@ -44,11 +44,11 @@
     ******************************************************
     */
     members: {
-      __olid: null,
-      __ilid: null,
-      __downTarget: null,
-      __initListeners: function __initListeners() {
-        var actors = this.__getActors();
+      __P_142_1: null,
+      __P_142_2: null,
+      __P_142_3: null,
+      __P_142_0: function __P_142_0() {
+        var actors = this.__P_142_4();
 
         if (this.isBindClickToWidget()) {
           actors = [this.getInteractionElement()];
@@ -58,7 +58,7 @@
           qx.event.Registration.addListener(actor, "pointerdown", this.buttonPressed, this);
         }, this);
       },
-      __getActors: function __getActors() {
+      __P_142_4: function __P_142_4() {
         var actors = [this.getActor()];
 
         if (this.getActors) {
@@ -81,20 +81,20 @@
        */
       buttonPressed: function buttonPressed(event) {
         var actor = event.getCurrentTarget();
-        this.__downTarget = actor;
+        this.__P_142_3 = actor;
         qx.event.Registration.addListener(document, "pointerup", this.buttonReleased, this);
-        var buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
+        var buttons = this.isBindClickToWidget() ? this.__P_142_4() : [actor];
 
-        this.__updateButtons(buttons, true);
+        this.__P_142_5(buttons, true);
 
-        this.__olid = qx.event.Registration.addListener(actor, "pointerout", function () {
-          this.__updateButtons(buttons, false);
+        this.__P_142_1 = qx.event.Registration.addListener(actor, "pointerout", function () {
+          this.__P_142_5(buttons, false);
         }, this);
-        this.__ilid = qx.event.Registration.addListener(actor, "pointerover", function () {
-          this.__updateButtons(buttons, true);
+        this.__P_142_2 = qx.event.Registration.addListener(actor, "pointerover", function () {
+          this.__P_142_5(buttons, true);
         }, this);
       },
-      __updateButtons: function __updateButtons(buttons, pressed) {
+      __P_142_5: function __P_142_5(buttons, pressed) {
         if (pressed) {
           buttons.forEach(function (button) {
             if (button) {
@@ -121,22 +121,22 @@
        */
       buttonReleased: function buttonReleased(event) {
         qx.event.Registration.removeListener(document, "pointerup", this.buttonReleased, this);
-        var actor = this.__downTarget;
-        var buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
+        var actor = this.__P_142_3;
+        var buttons = this.isBindClickToWidget() ? this.__P_142_4() : [actor];
 
-        this.__updateButtons(buttons, false);
+        this.__P_142_5(buttons, false);
 
-        if (this.__olid) {
-          qx.event.Registration.removeListenerById(actor, this.__olid);
+        if (this.__P_142_1) {
+          qx.event.Registration.removeListenerById(actor, this.__P_142_1);
         }
 
-        if (this.__ilid) {
-          qx.event.Registration.removeListenerById(actor, this.__ilid);
+        if (this.__P_142_2) {
+          qx.event.Registration.removeListenerById(actor, this.__P_142_2);
         }
 
-        this.__olid = null;
-        this.__ilid = null;
-        this.__downTarget = null;
+        this.__P_142_1 = null;
+        this.__P_142_2 = null;
+        this.__P_142_3 = null;
       }
     },
 
@@ -152,4 +152,4 @@
   cv.ui.common.HasAnimatedButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasAnimatedButton.js.map?dt=1591115581118
+//# sourceMappingURL=HasAnimatedButton.js.map?dt=1592778972457

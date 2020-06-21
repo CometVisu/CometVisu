@@ -76,7 +76,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -84,7 +92,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "statics": {
@@ -403,23 +419,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "rowIndex {Integer} the model index of the row.",
-            "paramName": "rowIndex",
-            "description": " the model index of the row.",
-            "type": "Integer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Object} the row data as an object or null if the model does not support row data\n                    objects. The details on the object returned are determined by the model\n                    implementation only.",
-            "type": "Object",
-            "description": " the row data as an object or null if the model does not support row data\n                    objects. The details on the object returned are determined by the model\n                    implementation only."
-          }
         ]
       },
       "type": "function",
@@ -585,23 +584,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "columnIndex {Integer} the column to check.",
-            "paramName": "columnIndex",
-            "description": " the column to check.",
-            "type": "Integer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} whether the column is editable.",
-            "type": "Boolean",
-            "description": " whether the column is editable."
-          }
         ]
       },
       "type": "function",
@@ -667,23 +649,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "columnIndex {Integer} the column to check.",
-            "paramName": "columnIndex",
-            "description": " the column to check.",
-            "type": "Integer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} whether the column is sortable.",
-            "type": "Boolean",
-            "description": " whether the column is sortable."
-          }
         ]
       },
       "type": "function",
@@ -710,22 +675,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "columnIndex {Integer} the column to sort by.",
-            "paramName": "columnIndex",
-            "description": " the column to sort by.",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "ascending {Boolean} whether to sort ascending.",
-            "paramName": "ascending",
-            "description": " whether to sort ascending.",
-            "type": "Boolean"
           }
         ]
       },
@@ -856,14 +805,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Integer} the column index the model is sorted by.",
-            "type": "Integer",
-            "description": " the column index the model is sorted by."
-          }
         ]
       },
       "type": "function",
@@ -921,14 +862,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} whether the model is sorted ascending.",
-            "type": "Boolean",
-            "description": " whether the model is sorted ascending."
           }
         ]
       },
@@ -988,14 +921,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Integer} the number of rows.",
-            "type": "Integer",
-            "description": " the number of rows."
-          }
         ]
       },
       "type": "function",
@@ -1023,22 +948,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "columnIndex {Integer} the index of the column",
-            "paramName": "columnIndex",
-            "description": " the index of the column",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "rowIndex {Integer} the index of the row",
-            "paramName": "rowIndex",
-            "description": " the index of the row",
-            "type": "Integer"
-          }
         ]
       },
       "type": "function",
@@ -1065,29 +974,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "columnIndex {Integer} index of the column",
-            "paramName": "columnIndex",
-            "description": " index of the column",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "rowIndex {Integer} index of the row",
-            "paramName": "rowIndex",
-            "description": " index of the row",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "value {var} Value to be set",
-            "paramName": "value",
-            "description": " Value to be set",
-            "type": "var"
           }
         ]
       },
@@ -1586,7 +1472,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -1645,7 +1539,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getCaseSensitiveSorting": {
       "type": "function",

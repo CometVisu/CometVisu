@@ -2126,7 +2126,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -2134,7 +2142,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "statics": {
@@ -2397,14 +2413,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.layout.Abstract} The widget's layout manager",
-            "type": "qx.ui.layout.Abstract",
-            "description": " The widget's layout manager"
-          }
         ]
       },
       "type": "function",
@@ -2462,18 +2470,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "parent {qx.ui.core.Widget|null} The new parent.",
-            "paramName": "parent",
-            "description": " The new parent.",
-            "type": [
-              "qx.ui.core.Widget",
-              "null"
-            ]
-          }
         ]
       },
       "type": "function",
@@ -2527,44 +2523,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "left {Integer} Any integer value for the left position,\n   always in pixels",
-            "paramName": "left",
-            "description": " Any integer value for the left position,\n   always in pixels",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "top {Integer} Any integer value for the top position,\n   always in pixels",
-            "paramName": "top",
-            "description": " Any integer value for the top position,\n   always in pixels",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "width {Integer} Any positive integer value for the width,\n   always in pixels",
-            "paramName": "width",
-            "description": " Any positive integer value for the width,\n   always in pixels",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "height {Integer} Any positive integer value for the height,\n   always in pixels",
-            "paramName": "height",
-            "description": " Any positive integer value for the height,\n   always in pixels",
-            "type": "Integer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} A map of which layout sizes changed.",
-            "type": "Map",
-            "description": " A map of which layout sizes changed."
           }
         ]
       },
@@ -2640,25 +2598,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "separator {String|qx.ui.decoration.IDecorator} The separator to render",
-            "paramName": "separator",
-            "description": " The separator to render",
-            "type": [
-              "String",
-              "qx.ui.decoration.IDecorator"
-            ]
-          },
-          {
-            "name": "@param",
-            "body": "bounds {Map} Contains the left and top coordinate and the width and height\n    of the separator to render.",
-            "paramName": "bounds",
-            "description": " Contains the left and top coordinate and the width and height\n    of the separator to render.",
-            "type": "Map"
-          }
         ]
       },
       "type": "function",
@@ -2688,14 +2627,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} The map with the preferred width/height and the allowed\n   minimum and maximum values.",
-            "type": "Map",
-            "description": " The map with the preferred width/height and the allowed\n   minimum and maximum values."
           }
         ]
       },
@@ -2778,23 +2709,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "width {Integer} The computed width",
-            "paramName": "width",
-            "description": " The computed width",
-            "type": "Integer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Integer} The desired height",
-            "type": "Integer",
-            "description": " The desired height"
           }
         ]
       },
@@ -6568,14 +6482,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.core.Object} The clone",
-            "type": "qx.core.Object",
-            "description": " The clone"
-          }
         ]
       },
       "type": "function",
@@ -6889,7 +6795,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -6948,7 +6862,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMinWidth": {
       "type": "function",

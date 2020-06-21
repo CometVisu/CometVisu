@@ -37,7 +37,7 @@
   qx.Class.define("qx.ui.core.queue.Dispose", {
     statics: {
       /** @type {Array} This contains all the queued widgets for the next flush. */
-      __queue: [],
+      __P_278_0: [],
 
       /**
        * Adds a widget to the queue.
@@ -47,7 +47,7 @@
        * @param widget {qx.ui.core.Widget} The widget to add.
        */
       add: function add(widget) {
-        var queue = this.__queue;
+        var queue = this.__P_278_0;
 
         if (queue.includes(widget)) {
           return;
@@ -63,7 +63,7 @@
        * @internal
        */
       isEmpty: function isEmpty() {
-        return this.__queue.length == 0;
+        return this.__P_278_0.length == 0;
       },
 
       /**
@@ -73,7 +73,7 @@
        */
       flush: function flush() {
         // Dispose all registered objects
-        var queue = this.__queue;
+        var queue = this.__P_278_0;
 
         for (var i = queue.length - 1; i >= 0; i--) {
           var widget = queue[i];
@@ -87,11 +87,11 @@
         } // Recreate the array is cheaper compared to keep a sparse array over time
 
 
-        this.__queue = [];
+        this.__P_278_0 = [];
       }
     }
   });
   qx.ui.core.queue.Dispose.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dispose.js.map?dt=1591114979822
+//# sourceMappingURL=Dispose.js.map?dt=1592777094968

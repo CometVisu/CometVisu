@@ -49,81 +49,302 @@
   },
   "properties": {
     "innerWidthTop": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY: INNER WIDTH\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>top width of border</p>"
+          }
+        ]
+      },
       "name": "innerWidthTop",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyDoubleBorder",
+      "init": 0,
+      "check": "Number",
+      "defaultValue": 0
     },
     "innerWidthRight": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>right width of border</p>"
+          }
+        ]
+      },
       "name": "innerWidthRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyDoubleBorder",
+      "init": 0,
+      "check": "Number",
+      "defaultValue": 0
     },
     "innerWidthBottom": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>bottom width of border</p>"
+          }
+        ]
+      },
       "name": "innerWidthBottom",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyDoubleBorder",
+      "init": 0,
+      "check": "Number",
+      "defaultValue": 0
     },
     "innerWidthLeft": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 78,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>left width of border</p>"
+          }
+        ]
+      },
       "name": "innerWidthLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyDoubleBorder",
+      "init": 0,
+      "check": "Number",
+      "defaultValue": 0
     },
     "innerWidth": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4
+        },
+        "end": {
+          "line": 85,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to set the inner border width of all sides</p>"
+          }
+        ]
+      },
       "name": "innerWidth",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "group": [
+        "innerWidthTop",
+        "innerWidthRight",
+        "innerWidthBottom",
+        "innerWidthLeft"
+      ]
     },
     "innerColorTop": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 102,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY: INNER COLOR\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>top inner color of border</p>"
+          }
+        ]
+      },
       "name": "innerColorTop",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyDoubleBorder",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Color"
     },
     "innerColorRight": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4
+        },
+        "end": {
+          "line": 110,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>right inner color of border</p>"
+          }
+        ]
+      },
       "name": "innerColorRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyDoubleBorder",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Color"
     },
     "innerColorBottom": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>bottom inner color of border</p>"
+          }
+        ]
+      },
       "name": "innerColorBottom",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyDoubleBorder",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Color"
     },
     "innerColorLeft": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4
+        },
+        "end": {
+          "line": 126,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>left inner color of border</p>"
+          }
+        ]
+      },
       "name": "innerColorLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyDoubleBorder",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Color"
     },
     "innerColor": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4
+        },
+        "end": {
+          "line": 135,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group for the inner color properties.</p>"
+          }
+        ]
+      },
       "name": "innerColor",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "group": [
+        "innerColorTop",
+        "innerColorRight",
+        "innerColorBottom",
+        "innerColorLeft"
+      ]
     },
     "innerOpacity": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4
+        },
+        "end": {
+          "line": 145,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The opacity of the inner border.</p>"
+          }
+        ]
+      },
       "name": "innerOpacity",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyDoubleBorder",
+      "init": 1,
+      "check": "Number",
+      "defaultValue": 1
     },
     "widthTop": {
       "type": "property",
@@ -131,7 +352,19 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY: WIDTH\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>top width of border</p>"
+          }
+        ]
+      }
     },
     "widthRight": {
       "type": "property",
@@ -139,7 +372,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>right width of border</p>"
+          }
+        ]
+      }
     },
     "widthBottom": {
       "type": "property",
@@ -147,7 +388,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>bottom width of border</p>"
+          }
+        ]
+      }
     },
     "widthLeft": {
       "type": "property",
@@ -155,7 +404,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>left width of border</p>"
+          }
+        ]
+      }
     },
     "styleTop": {
       "type": "property",
@@ -163,7 +420,19 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY: STYLE\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>top style of border</p>"
+          }
+        ]
+      }
     },
     "styleRight": {
       "type": "property",
@@ -171,7 +440,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>right style of border</p>"
+          }
+        ]
+      }
     },
     "styleBottom": {
       "type": "property",
@@ -179,7 +456,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>bottom style of border</p>"
+          }
+        ]
+      }
     },
     "styleLeft": {
       "type": "property",
@@ -187,7 +472,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>left style of border</p>"
+          }
+        ]
+      }
     },
     "colorTop": {
       "type": "property",
@@ -195,7 +488,19 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY: COLOR\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>top color of border</p>"
+          }
+        ]
+      }
     },
     "colorRight": {
       "type": "property",
@@ -203,7 +508,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>right color of border</p>"
+          }
+        ]
+      }
     },
     "colorBottom": {
       "type": "property",
@@ -211,7 +524,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>bottom color of border</p>"
+          }
+        ]
+      }
     },
     "colorLeft": {
       "type": "property",
@@ -219,7 +540,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>left color of border</p>"
+          }
+        ]
+      }
     },
     "left": {
       "type": "property",
@@ -227,7 +556,19 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY GROUP: EDGE\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Property group to configure the left border</p>"
+          }
+        ]
+      }
     },
     "right": {
       "type": "property",
@@ -235,7 +576,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to configure the right border</p>"
+          }
+        ]
+      }
     },
     "top": {
       "type": "property",
@@ -243,7 +592,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to configure the top border</p>"
+          }
+        ]
+      }
     },
     "bottom": {
       "type": "property",
@@ -251,7 +608,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to configure the bottom border</p>"
+          }
+        ]
+      }
     },
     "width": {
       "type": "property",
@@ -259,7 +624,19 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY GROUP: TYPE\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Property group to set the border width of all sides</p>"
+          }
+        ]
+      }
     },
     "style": {
       "type": "property",
@@ -267,7 +644,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to set the border style of all sides</p>"
+          }
+        ]
+      }
     },
     "color": {
       "type": "property",
@@ -275,7 +660,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to set the border color of all sides</p>"
+          }
+        ]
+      }
     },
     "backgroundImage": {
       "type": "property",
@@ -283,7 +676,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The URL of the background image</p>"
+          }
+        ]
+      }
     },
     "backgroundRepeat": {
       "type": "property",
@@ -291,7 +692,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>How the background image should be repeated</p>"
+          }
+        ]
+      }
     },
     "backgroundPositionX": {
       "type": "property",
@@ -299,7 +708,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Either a string or a number, which defines the horizontal position\n of the background image.\n If the value is an integer it is interpreted as a pixel value, otherwise\n the value is taken to be a CSS value. For CSS, the values are \"center\",\n \"left\" and \"right\".</p>"
+          }
+        ]
+      }
     },
     "backgroundPositionY": {
       "type": "property",
@@ -307,7 +724,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Either a string or a number, which defines the vertical position\n of the background image.\n If the value is an integer it is interpreted as a pixel value, otherwise\n the value is taken to be a CSS value. For CSS, the values are \"top\",\n \"center\" and \"bottom\".</p>"
+          }
+        ]
+      }
     },
     "backgroundOrigin": {
       "type": "property",
@@ -315,7 +740,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Specifies where the background image is positioned.</p>"
+          }
+        ]
+      }
     },
     "backgroundPosition": {
       "type": "property",
@@ -323,7 +756,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to define the background position</p>"
+          }
+        ]
+      }
     },
     "orderGradientsFront": {
       "type": "property",
@@ -331,7 +772,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to order gradients before Image-URL-based background declarations\n if both qx.ui.decoration.MBackgroundImage and\n qx.ui.decoration.MLinearBackgroundGradient decorations are used.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -513,7 +962,19 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY APPLY ROUTINES\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "_applyStyle": {
       "type": "function",
@@ -522,7 +983,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getWidthTop": {
       "type": "function",
@@ -1811,7 +2280,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "_applyBackgroundPosition": {
       "type": "function",
@@ -1820,7 +2297,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getBackgroundImage": {
       "type": "function",
@@ -1881,7 +2366,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundImage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundImage}."
+          }
+        ]
+      }
     },
     "getBackgroundRepeat": {
       "type": "function",
@@ -1942,7 +2435,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundRepeat</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundRepeat}."
+          }
+        ]
+      }
     },
     "getBackgroundPositionX": {
       "type": "function",
@@ -2003,7 +2504,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundPositionX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPositionX}."
+          }
+        ]
+      }
     },
     "getBackgroundPositionY": {
       "type": "function",
@@ -2064,7 +2573,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundPositionY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPositionY}."
+          }
+        ]
+      }
     },
     "getBackgroundOrigin": {
       "type": "function",
@@ -2125,7 +2642,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundOrigin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundOrigin}."
+          }
+        ]
+      }
     },
     "getBackgroundPosition": {
       "type": "function",
@@ -2186,7 +2711,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundPosition</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPosition}."
+          }
+        ]
+      }
     },
     "getOrderGradientsFront": {
       "type": "function",
@@ -2272,7 +2805,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>orderGradientsFront</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
+          }
+        ]
+      }
     },
     "getInnerWidthTop": {
       "type": "function",

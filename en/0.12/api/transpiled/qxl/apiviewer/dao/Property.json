@@ -126,23 +126,6 @@
             "name": "@Override",
             "body": ""
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "ifaceNode {qxl.apiviewer.dao.Class} interface to check for",
-            "paramName": "ifaceNode",
-            "description": " interface to check for",
-            "type": "qxl.apiviewer.dao.Class"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} whether the item is required by the interface.",
-            "type": "Boolean",
-            "description": " whether the item is required by the interface."
-          }
         ]
       },
       "type": "function",
@@ -379,7 +362,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qxl.apiviewer.dao.Node",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -438,7 +429,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qxl.apiviewer.dao.Node",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "descendants": []

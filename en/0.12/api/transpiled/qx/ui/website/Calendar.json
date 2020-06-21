@@ -255,14 +255,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} <code>true</code> if the widget has been initialized",
-            "type": "Boolean",
-            "description": " <code>true</code> if the widget has been initialized"
-          }
         ]
       },
       "type": "function",
@@ -289,14 +281,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.website.Widget} The widget collection for chaining.",
-            "type": "qx.ui.website.Widget",
-            "description": " The widget collection for chaining."
-          }
         ]
       },
       "type": "function",
@@ -322,23 +306,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {Boolean} The enabled value.",
-            "paramName": "value",
-            "description": " The enabled value.",
-            "type": "Boolean"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.website.Widget} The collection for chaining",
-            "type": "qx.ui.website.Widget",
-            "description": " The collection for chaining"
           }
         ]
       },

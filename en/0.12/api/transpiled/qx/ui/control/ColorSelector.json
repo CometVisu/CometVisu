@@ -494,7 +494,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -502,7 +510,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -744,32 +760,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "id {String} ID of the child control. If a # is used, the id is\n   the part in front of the #.",
-            "paramName": "id",
-            "description": " ID of the child control. If a # is used, the id is\n   the part in front of the #.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "hash {String?undefined} If a child control name contains a #,\n   all text following the # will be the hash argument.",
-            "paramName": "hash",
-            "description": " If a child control name contains a #,\n   all text following the # will be the hash argument.",
-            "optional": true,
-            "defaultValue": "undefined",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.core.Widget} The created control or <code>null</code>",
-            "type": "qx.ui.core.Widget",
-            "description": " The created control or <code>null</code>"
           }
         ]
       },
@@ -2114,7 +2104,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -2173,7 +2171,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMinWidth": {
       "type": "function",

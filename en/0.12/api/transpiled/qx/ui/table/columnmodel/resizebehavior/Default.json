@@ -128,7 +128,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -136,7 +144,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -436,24 +452,6 @@
             "name": "@description",
             "body": "<p>overloaded</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "event {var} The <i>onappear</i> event object.",
-            "paramName": "event",
-            "description": " The <i>onappear</i> event object.",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "forceRefresh {Boolean?false} Whether a refresh should be forced",
-            "paramName": "forceRefresh",
-            "description": " Whether a refresh should be forced",
-            "optional": true,
-            "defaultValue": "false",
-            "type": "Boolean"
-          }
         ]
       },
       "type": "function",
@@ -479,15 +477,6 @@
           {
             "name": "@description",
             "body": "<p>overloaded</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "event {var} The <i>tableWidthChanged</i> event object.",
-            "paramName": "event",
-            "description": " The <i>tableWidthChanged</i> event object.",
-            "type": "var"
           }
         ]
       },
@@ -515,15 +504,6 @@
             "name": "@description",
             "body": "<p>overloaded</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "event {var} The <i>verticalScrollBarChanged</i> event object.  This event has data,\n     obtained via event.getValue(), which is a boolean indicating whether a\n     vertical scroll bar is now present.",
-            "paramName": "event",
-            "description": " The <i>verticalScrollBarChanged</i> event object.  This event has data,\n     obtained via event.getValue(), which is a boolean indicating whether a\n     vertical scroll bar is now present.",
-            "type": "var"
-          }
         ]
       },
       "type": "function",
@@ -549,15 +529,6 @@
           {
             "name": "@description",
             "body": "<p>overloaded</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "event {var} The <i>widthChanged</i> event object.  This event has data, obtained via\n     event.getValue(), which is an object with three properties: the column\n     which changed width (data.col), the old width (data.oldWidth) and the new\n     width (data.newWidth).",
-            "paramName": "event",
-            "description": " The <i>widthChanged</i> event object.  This event has data, obtained via\n     event.getValue(), which is an object with three properties: the column\n     which changed width (data.col), the old width (data.oldWidth) and the new\n     width (data.newWidth).",
-            "type": "var"
           }
         ]
       },
@@ -585,15 +556,6 @@
             "name": "@description",
             "body": "<p>overloaded</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "event {var} The <i>visibilityChanged</i> event object.  This event has data, obtained\n     via event.getValue(), which is an object with two properties: the column\n     which changed width (data.col) and the new visibility of the column\n     (data.visible).",
-            "paramName": "event",
-            "description": " The <i>visibilityChanged</i> event object.  This event has data, obtained\n     via event.getValue(), which is an object with two properties: the column\n     which changed width (data.col) and the new visibility of the column\n     (data.visible).",
-            "type": "var"
-          }
         ]
       },
       "type": "function",
@@ -619,15 +581,6 @@
           {
             "name": "@description",
             "body": "<p>overloaded</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "numColumns {Integer} The number of columns in use.",
-            "paramName": "numColumns",
-            "description": " The number of columns in use.",
-            "type": "Integer"
           }
         ]
       },
@@ -863,7 +816,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -922,7 +883,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getNewResizeBehaviorColumnData": {
       "type": "function",

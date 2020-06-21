@@ -136,7 +136,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -144,7 +152,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "statics": {
@@ -479,30 +495,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "target {var} The target to, which the event handler should\n     be attached",
-            "paramName": "target",
-            "description": " The target to, which the event handler should\n     be attached",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "type {String} event type",
-            "paramName": "type",
-            "description": " event type",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} Whether the event handler can handle events of the\n     given type.",
-            "type": "Boolean",
-            "description": " Whether the event handler can handle events of the\n     given type."
-          }
         ]
       },
       "type": "function",
@@ -529,29 +521,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "target {var} The target to, which the event handler should\n     be attached",
-            "paramName": "target",
-            "description": " The target to, which the event handler should\n     be attached",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "type {String} event type",
-            "paramName": "type",
-            "description": " event type",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
-            "paramName": "capture",
-            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
-            "type": "Boolean"
-          }
         ]
       },
       "type": "function",
@@ -577,29 +546,6 @@
           {
             "name": "@description",
             "body": "<p>interface implementation</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "target {var} The target from, which the event handler should\n     be removed",
-            "paramName": "target",
-            "description": " The target from, which the event handler should\n     be removed",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "type {String} event type",
-            "paramName": "type",
-            "description": " event type",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
-            "paramName": "capture",
-            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
-            "type": "Boolean"
           }
         ]
       },
@@ -1638,7 +1584,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -1697,7 +1651,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getActive": {
       "type": "function",

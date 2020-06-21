@@ -105,16 +105,16 @@
     *****************************************************************************
     */
     members: {
-      __columnCount: null,
-      __tableColumnModel: null,
+      __P_407_0: null,
+      __P_407_1: null,
       // property modifier
       _applyFirstColumnX: function _applyFirstColumnX(value, old) {
-        this.__columnCount = null;
+        this.__P_407_0 = null;
         this.fireEvent(qx.ui.table.pane.Model.EVENT_TYPE_MODEL_CHANGED);
       },
       // property modifier
       _applyMaxColumnCount: function _applyMaxColumnCount(value, old) {
-        this.__columnCount = null;
+        this.__P_407_0 = null;
         this.fireEvent(qx.ui.table.pane.Model.EVENT_TYPE_MODEL_CHANGED);
       },
 
@@ -124,19 +124,19 @@
        * @param tableColumnModel {qx.ui.table.columnmodel.Basic} the column model
        */
       setTableColumnModel: function setTableColumnModel(tableColumnModel) {
-        if (this.__tableColumnModel) {
-          this.__tableColumnModel.removeListener("visibilityChangedPre", this._onColVisibilityChanged, this);
+        if (this.__P_407_1) {
+          this.__P_407_1.removeListener("visibilityChangedPre", this._onColVisibilityChanged, this);
 
-          this.__tableColumnModel.removeListener("headerCellRendererChanged", this._onHeaderCellRendererChanged, this);
+          this.__P_407_1.removeListener("headerCellRendererChanged", this._onHeaderCellRendererChanged, this);
         }
 
-        this.__tableColumnModel = tableColumnModel;
+        this.__P_407_1 = tableColumnModel;
 
-        this.__tableColumnModel.addListener("visibilityChangedPre", this._onColVisibilityChanged, this);
+        this.__P_407_1.addListener("visibilityChangedPre", this._onColVisibilityChanged, this);
 
-        this.__tableColumnModel.addListener("headerCellRendererChanged", this._onHeaderCellRendererChanged, this);
+        this.__P_407_1.addListener("headerCellRendererChanged", this._onHeaderCellRendererChanged, this);
 
-        this.__columnCount = null;
+        this.__P_407_0 = null;
       },
 
       /**
@@ -145,7 +145,7 @@
        * @param evt {Map} the event.
        */
       _onColVisibilityChanged: function _onColVisibilityChanged(evt) {
-        this.__columnCount = null;
+        this.__P_407_0 = null;
         this.fireEvent(qx.ui.table.pane.Model.EVENT_TYPE_MODEL_CHANGED);
       },
 
@@ -164,20 +164,20 @@
        * @return {Integer} the number of columns in this model.
        */
       getColumnCount: function getColumnCount() {
-        if (this.__columnCount == null) {
+        if (this.__P_407_0 == null) {
           var firstX = this.getFirstColumnX();
           var maxColCount = this.getMaxColumnCount();
 
-          var totalColCount = this.__tableColumnModel.getVisibleColumnCount();
+          var totalColCount = this.__P_407_1.getVisibleColumnCount();
 
           if (maxColCount == -1 || firstX + maxColCount > totalColCount) {
-            this.__columnCount = totalColCount - firstX;
+            this.__P_407_0 = totalColCount - firstX;
           } else {
-            this.__columnCount = maxColCount;
+            this.__P_407_0 = maxColCount;
           }
         }
 
-        return this.__columnCount;
+        return this.__P_407_0;
       },
 
       /**
@@ -188,7 +188,7 @@
        */
       getColumnAtX: function getColumnAtX(xPos) {
         var firstX = this.getFirstColumnX();
-        return this.__tableColumnModel.getVisibleColumnAtX(firstX + xPos);
+        return this.__P_407_1.getVisibleColumnAtX(firstX + xPos);
       },
 
       /**
@@ -200,7 +200,7 @@
       getX: function getX(col) {
         var firstX = this.getFirstColumnX();
         var maxColCount = this.getMaxColumnCount();
-        var x = this.__tableColumnModel.getVisibleX(col) - firstX;
+        var x = this.__P_407_1.getVisibleX(col) - firstX;
 
         if (x >= 0 && (maxColCount == -1 || x < maxColCount)) {
           return x;
@@ -230,7 +230,7 @@
             return left;
           }
 
-          left += this.__tableColumnModel.getColumnWidth(currCol);
+          left += this.__P_407_1.getColumnWidth(currCol);
         }
 
         return -1;
@@ -247,7 +247,7 @@
 
         for (var x = 0; x < colCount; x++) {
           var col = this.getColumnAtX(x);
-          totalWidth += this.__tableColumnModel.getColumnWidth(col);
+          totalWidth += this.__P_407_1.getColumnWidth(col);
         }
 
         return totalWidth;
@@ -260,16 +260,16 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__tableColumnModel) {
-        this.__tableColumnModel.removeListener("visibilityChangedPre", this._onColVisibilityChanged, this);
+      if (this.__P_407_1) {
+        this.__P_407_1.removeListener("visibilityChangedPre", this._onColVisibilityChanged, this);
 
-        this.__tableColumnModel.removeListener("headerCellRendererChanged", this._onHeaderCellRendererChanged, this);
+        this.__P_407_1.removeListener("headerCellRendererChanged", this._onHeaderCellRendererChanged, this);
       }
 
-      this.__tableColumnModel = null;
+      this.__P_407_1 = null;
     }
   });
   qx.ui.table.pane.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1591114990018
+//# sourceMappingURL=Model.js.map?dt=1592777105189

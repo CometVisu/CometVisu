@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 226,
+        "line": 228,
         "column": 3
       }
     },
@@ -117,7 +117,7 @@
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 117,
           "column": 5
         }
       },
@@ -135,11 +135,11 @@
     "loadInclude": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 123,
           "column": 4
         },
         "end": {
-          "line": 152,
+          "line": 154,
           "column": 5
         }
       },
@@ -163,11 +163,11 @@
     "_checkQueue": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 160,
           "column": 4
         },
         "end": {
-          "line": 163,
+          "line": 165,
           "column": 5
         }
       },
@@ -191,11 +191,11 @@
     "configError": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 172,
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 214,
           "column": 5
         }
       },
@@ -429,7 +429,29 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.data.MBinding"
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings from the object.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      }
     },
     "getBindings": {
       "type": "function",
@@ -1246,7 +1268,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply owner</p>"
+          }
+        ]
+      }
     },
     "_applyQxObjectId": {
       "type": "function",
@@ -1255,7 +1285,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply objectId</p>"
+          }
+        ]
+      }
     },
     "__onOwnedObjectIdChange": {
       "type": "function",
@@ -1264,7 +1302,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a child's objectId changes</p>"
+          }
+        ]
+      }
     },
     "_cascadeQxObjectIdChanges": {
       "type": "function",
@@ -1273,7 +1319,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reflect changes to IDs or owners</p>"
+          }
+        ]
+      }
     },
     "getQxObject": {
       "type": "function",
@@ -3285,11 +3339,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 220,
+        "line": 222,
         "column": 12
       },
       "end": {
-        "line": 225,
+        "line": 227,
         "column": 3
       }
     },

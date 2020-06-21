@@ -51,7 +51,7 @@
       var layout = this._getLayout();
 
       if (!(layout instanceof qx.ui.layout.Grow) && !(layout instanceof qx.ui.layout.Canvas)) {
-        this.addListener('resize', this.__syncBounds, this);
+        this.addListener('resize', this.__P_41_0, this);
       }
     },
 
@@ -64,7 +64,7 @@
       uploadMode: {
         check: "Boolean",
         init: false,
-        apply: "__applyUploadMode"
+        apply: "__P_41_1"
       },
       uploadHint: {
         check: "String",
@@ -164,9 +164,9 @@
     *****************************************************************************
     */
     members: {
-      __hasEmptyInfo: null,
+      __P_41_2: null,
       _boundOnStop: null,
-      __syncBounds: function __syncBounds() {
+      __P_41_0: function __P_41_0() {
         var bounds = this.getBounds();
         this.getChildControl('upload-overlay').setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
         this.getChildControl('upload-dropbox').setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
@@ -311,20 +311,20 @@
         }
       },
       // property apply
-      __applyUploadMode: function __applyUploadMode(value) {
+      __P_41_1: function __P_41_1(value) {
         if (value === true) {
           this.getChildControl("upload-dropbox").show();
 
           if (this.hasChildControl("empty-info") && this.getChildControl("empty-info").isVisible()) {
             this.getChildControl("empty-info").exclude();
-            this.__hasEmptyInfo = true;
+            this.__P_41_2 = true;
           } else {
-            this.__hasEmptyInfo = false;
+            this.__P_41_2 = false;
           }
         } else {
           this.getChildControl("upload-dropbox").exclude();
 
-          if (this.__hasEmptyInfo === true) {
+          if (this.__P_41_2 === true) {
             this.getChildControl("empty-info").show();
           }
         }
@@ -334,4 +334,4 @@
   cv.ui.manager.upload.MDragUpload.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDragUpload.js.map?dt=1591114957942
+//# sourceMappingURL=MDragUpload.js.map?dt=1592777072821

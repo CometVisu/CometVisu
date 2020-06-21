@@ -67,14 +67,14 @@
      * ****************************************************************************
      */
     members: {
-      __ownedQxObjects: null,
-      __changingQxOwner: false,
+      __P_183_0: null,
+      __P_183_1: false,
 
       /**
        * Apply owner
        */
       _applyQxOwner: function _applyQxOwner(value, oldValue) {
-        if (!this.__changingQxOwner) {
+        if (!this.__P_183_1) {
           throw new Error("Please use API methods to change owner, not the property");
         }
       },
@@ -83,11 +83,11 @@
        * Apply objectId
        */
       _applyQxObjectId: function _applyQxObjectId(value, oldValue) {
-        if (!this.__changingQxOwner) {
+        if (!this.__P_183_1) {
           var owner = this.getQxOwner();
 
           if (owner) {
-            owner.__onOwnedObjectIdChange(this, value, oldValue);
+            owner.__P_183_2(this, value, oldValue);
           }
 
           this._cascadeQxObjectIdChanges();
@@ -97,9 +97,9 @@
       /**
        * Called when a child's objectId changes
        */
-      __onOwnedObjectIdChange: function __onOwnedObjectIdChange(obj, newId, oldId) {
-        delete this.__ownedQxObjects[oldId];
-        this.__ownedQxObjects[newId] = obj;
+      __P_183_2: function __P_183_2(obj, newId, oldId) {
+        delete this.__P_183_0[oldId];
+        this.__P_183_0[newId] = obj;
       },
 
       /**
@@ -114,9 +114,9 @@
           }
         }
 
-        if (this.__ownedQxObjects) {
-          for (var name in this.__ownedQxObjects) {
-            var obj = this.__ownedQxObjects[name];
+        if (this.__P_183_0) {
+          for (var name in this.__P_183_0) {
+            var obj = this.__P_183_0[name];
 
             if (obj instanceof qx.core.Object) {
               obj._cascadeQxObjectIdChanges();
@@ -133,8 +133,8 @@
        * @return {qx.core.Object?} the found object
        */
       getQxObject: function getQxObject(id) {
-        if (this.__ownedQxObjects) {
-          var obj = this.__ownedQxObjects[id];
+        if (this.__P_183_0) {
+          var obj = this.__P_183_0[id];
 
           if (obj !== undefined) {
             return obj;
@@ -225,8 +225,8 @@
        * @param id {String?} the id to set when registering the object
        */
       addOwnedQxObject: function addOwnedQxObject(obj, id) {
-        if (!this.__ownedQxObjects) {
-          this.__ownedQxObjects = {};
+        if (!this.__P_183_0) {
+          this.__P_183_0 = {};
         }
 
         if (!(obj instanceof qx.core.Object)) {
@@ -234,11 +234,11 @@
             throw new Error("Cannot register an object that has no ID, obj=" + obj);
           }
 
-          if (this.__ownedQxObjects[id]) {
+          if (this.__P_183_0[id]) {
             throw new Error("Cannot register an object with ID '" + id + "' because that ID is already in use, this=" + this + ", obj=" + obj);
           }
 
-          this.__ownedQxObjects[id] = obj;
+          this.__P_183_0[id] = obj;
           return;
         }
 
@@ -248,11 +248,11 @@
           return;
         }
 
-        obj.__changingQxOwner = true;
+        obj.__P_183_1 = true;
 
         try {
           if (thatOwner) {
-            thatOwner.__removeOwnedQxObjectImpl(obj);
+            thatOwner.__P_183_3(obj);
           }
 
           if (id === undefined) {
@@ -263,7 +263,7 @@
             throw new Error("Cannot register an object that has no ID, obj=" + obj);
           }
 
-          if (this.__ownedQxObjects[id]) {
+          if (this.__P_183_0[id]) {
             throw new Error("Cannot register an object with ID '" + id + "' because that ID is already in use, this=" + this + ", obj=" + obj);
           }
 
@@ -276,10 +276,10 @@
 
           obj._cascadeQxObjectIdChanges();
         } finally {
-          obj.__changingQxOwner = false;
+          obj.__P_183_1 = false;
         }
 
-        this.__ownedQxObjects[id] = obj;
+        this.__P_183_0[id] = obj;
       },
 
       /**
@@ -289,7 +289,7 @@
        * @param args {String|Object} the ID of the object to discard, or the object itself
        */
       removeOwnedQxObject: function removeOwnedQxObject(args) {
-        if (!this.__ownedQxObjects) {
+        if (!this.__P_183_0) {
           throw new Error("Cannot discard object because it is not owned by this, this=" + this + ", object=" + obj);
         }
 
@@ -302,7 +302,7 @@
           }
 
           id = args;
-          obj = this.__ownedQxObjects[id];
+          obj = this.__P_183_0[id];
 
           if (obj === undefined) {
             return;
@@ -316,25 +316,25 @@
 
           id = obj.getQxObjectId();
 
-          if (this.__ownedQxObjects[id] !== obj) {
+          if (this.__P_183_0[id] !== obj) {
             throw new Error("Cannot discard object because it is not owned by this, this=" + this + ", object=" + obj);
           }
         }
 
         if (obj !== null) {
           if (!(obj instanceof qx.core.Object)) {
-            this.__removeOwnedQxObjectImpl(obj);
+            this.__P_183_3(obj);
 
-            delete this.__ownedQxObjects[id];
+            delete this.__P_183_0[id];
           } else {
-            obj.__changingQxOwner = true;
+            obj.__P_183_1 = true;
 
             try {
-              this.__removeOwnedQxObjectImpl(obj);
+              this.__P_183_3(obj);
 
               obj._cascadeQxObjectIdChanges();
             } finally {
-              obj.__changingQxOwner = false;
+              obj.__P_183_1 = false;
             }
           }
         }
@@ -345,11 +345,11 @@
        * 
        * @param obj {qx.core.Object} the object
        */
-      __removeOwnedQxObjectImpl: function __removeOwnedQxObjectImpl(obj) {
+      __P_183_3: function __P_183_3(obj) {
         if (obj !== null) {
           var id = obj.getQxObjectId();
           obj.setQxOwner(null);
-          delete this.__ownedQxObjects[id];
+          delete this.__P_183_0[id];
         }
       },
 
@@ -360,11 +360,11 @@
        * @return {Array}
        */
       getOwnedQxObjects: function getOwnedQxObjects() {
-        return this.__ownedQxObjects ? Object.values(this.__ownedQxObjects) : [];
+        return this.__P_183_0 ? Object.values(this.__P_183_0) : [];
       }
     }
   });
   qx.core.MObjectId.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MObjectId.js.map?dt=1591115584091
+//# sourceMappingURL=MObjectId.js.map?dt=1592778975406

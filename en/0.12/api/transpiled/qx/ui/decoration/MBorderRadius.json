@@ -33,39 +33,136 @@
   "type": "mixin",
   "properties": {
     "radiusTopLeft": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>top left corner radius</p>"
+          }
+        ]
+      },
       "name": "radiusTopLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderRadius",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
     },
     "radiusTopRight": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>top right corner radius</p>"
+          }
+        ]
+      },
       "name": "radiusTopRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderRadius",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
     },
     "radiusBottomLeft": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>bottom left corner radius</p>"
+          }
+        ]
+      },
       "name": "radiusBottomLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderRadius",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
     },
     "radiusBottomRight": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>bottom right corner radius</p>"
+          }
+        ]
+      },
       "name": "radiusBottomRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderRadius",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
     },
     "radius": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to set the corner radius of all sides</p>"
+          }
+        ]
+      },
       "name": "radius",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "group": [
+        "radiusTopLeft",
+        "radiusTopRight",
+        "radiusBottomRight",
+        "radiusBottomLeft"
+      ]
     }
   },
   "members": {

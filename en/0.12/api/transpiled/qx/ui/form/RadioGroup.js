@@ -84,9 +84,9 @@
     construct: function construct(varargs) {
       qx.core.Object.constructor.call(this); // create item array
 
-      this.__items = []; // add listener before call add!!!
+      this.__P_307_0 = []; // add listener before call add!!!
 
-      this.addListener("changeSelection", this.__onChangeSelection, this);
+      this.addListener("changeSelection", this.__P_307_1, this);
 
       if (varargs != null) {
         this.add.apply(this, arguments);
@@ -196,7 +196,7 @@
     */
     members: {
       /** @type {qx.ui.form.IRadioItem[]} The items of the radio group */
-      __items: null,
+      __P_307_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -210,7 +210,7 @@
        * @return {qx.ui.form.IRadioItem[]} All managed items.
        */
       getItems: function getItems() {
-        return this.__items;
+        return this.__P_307_0;
       },
 
       /*
@@ -225,7 +225,7 @@
        * @param varargs {qx.ui.form.IRadioItem} A variable number of items to add.
        */
       add: function add(varargs) {
-        var items = this.__items;
+        var items = this.__P_307_0;
         var item;
         var groupedProperty = this.getGroupedProperty();
         var groupedPropertyUp = qx.lang.String.firstUp(groupedProperty);
@@ -261,7 +261,7 @@
        * @param item {qx.ui.form.IRadioItem} The item to remove.
        */
       remove: function remove(item) {
-        var items = this.__items;
+        var items = this.__P_307_0;
         var groupedProperty = this.getGroupedProperty();
         var groupedPropertyUp = qx.lang.String.firstUp(groupedProperty);
 
@@ -288,7 +288,7 @@
        * @return {qx.ui.form.IRadioItem[]} The item array
        */
       getChildren: function getChildren() {
-        return this.__items;
+        return this.__P_307_0;
       },
 
       /*
@@ -324,8 +324,8 @@
         var oldFirstUp = qx.lang.String.firstUp(old);
         var newFirstUp = qx.lang.String.firstUp(value);
 
-        for (var i = 0; i < this.__items.length; i++) {
-          item = this.__items[i]; // remove the listener for the old change event
+        for (var i = 0; i < this.__P_307_0.length; i++) {
+          item = this.__P_307_0[i]; // remove the listener for the old change event
 
           item.removeListener("change" + oldFirstUp, this._onItemChangeChecked, this); // add the listener for the new change event
 
@@ -334,19 +334,19 @@
       },
       // property apply
       _applyInvalidMessage: function _applyInvalidMessage(value, old) {
-        for (var i = 0; i < this.__items.length; i++) {
-          this.__items[i].setInvalidMessage(value);
+        for (var i = 0; i < this.__P_307_0.length; i++) {
+          this.__P_307_0[i].setInvalidMessage(value);
         }
       },
       // property apply
       _applyValid: function _applyValid(value, old) {
-        for (var i = 0; i < this.__items.length; i++) {
-          this.__items[i].setValid(value);
+        for (var i = 0; i < this.__P_307_0.length; i++) {
+          this.__P_307_0[i].setValid(value);
         }
       },
       // property apply
       _applyEnabled: function _applyEnabled(value, old) {
-        var items = this.__items;
+        var items = this.__P_307_0;
 
         if (value == null) {
           for (var i = 0, l = items.length; i < l; i++) {
@@ -376,7 +376,7 @@
        */
       selectNext: function selectNext() {
         var item = this.getSelection()[0];
-        var items = this.__items;
+        var items = this.__P_307_0;
         var index = items.indexOf(item);
 
         if (index == -1) {
@@ -405,7 +405,7 @@
        */
       selectPrevious: function selectPrevious() {
         var item = this.getSelection()[0];
-        var items = this.__items;
+        var items = this.__P_307_0;
         var index = items.indexOf(item);
 
         if (index == -1) {
@@ -464,7 +464,7 @@
        *    <code>false</code> otherwise.
        */
       _isItemSelectable: function _isItemSelectable(item) {
-        return this.__items.indexOf(item) != -1;
+        return this.__P_307_0.indexOf(item) != -1;
       },
 
       /**
@@ -472,7 +472,7 @@
        *
        * @param e {qx.event.type.Data} Data event.
        */
-      __onChangeSelection: function __onChangeSelection(e) {
+      __P_307_1: function __P_307_1(e) {
         var value = e.getData()[0];
         var old = e.getOldData()[0];
         var groupedProperty = this.getGroupedProperty();
@@ -493,10 +493,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeArray("__items");
+      this._disposeArray("__P_307_0");
     }
   });
   qx.ui.form.RadioGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioGroup.js.map?dt=1591114982184
+//# sourceMappingURL=RadioGroup.js.map?dt=1592777097339

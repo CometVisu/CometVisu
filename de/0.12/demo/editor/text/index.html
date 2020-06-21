@@ -21,7 +21,7 @@
     <script src="../lib/Messages.js"></script>
     <script src="../lib/Schema.js"></script>
     <script src="./utils.js"></script>
-    <script src="../../../node_modules/monaco-editor/dev/vs/loader.js"></script>
+    <script src="../../node_modules/monaco-editor/min/vs/loader.js"></script>
     <script src="./monaco/completion-provider.js"></script>
     <script>
 
@@ -66,7 +66,7 @@
 
       require.config({
         paths: {
-          'vs': '../../../node_modules/monaco-editor/dev/vs'
+          'vs': '../../node_modules/monaco-editor/min/vs'
         }
       });
       require.config({

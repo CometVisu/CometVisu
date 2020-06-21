@@ -135,23 +135,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellInfo {Map} The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "paramName": "cellInfo",
-            "description": " The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} A map having the following attributes:\n           <ul>\n           <li>\n             \"url\": (type string) must be the URL of the image to show.\n             The url given must either be managed by the {@link qx.util.ResourceManager}\n             or pre-loaded with {@link qx.io.ImageLoader}. This is to make sure that\n             the renderer knows the dimensions and the format of the image.\n           </li>\n           <li>\"imageWidth\": (type int) the width of the image in pixels.</li>\n           <li>\"imageHeight\": (type int) the height of the image in pixels.</li>\n           <li>\"tooltip\": (type string) must be the image tooltip text.</li>\n           </ul>",
-            "type": "Map",
-            "description": " A map having the following attributes:\n           <ul>\n           <li>\n             \"url\": (type string) must be the URL of the image to show.\n             The url given must either be managed by the {@link qx.util.ResourceManager}\n             or pre-loaded with {@link qx.io.ImageLoader}. This is to make sure that\n             the renderer knows the dimensions and the format of the image.\n           </li>\n           <li>\"imageWidth\": (type int) the width of the image in pixels.</li>\n           <li>\"imageHeight\": (type int) the height of the image in pixels.</li>\n           <li>\"tooltip\": (type string) must be the image tooltip text.</li>\n           </ul>"
-          }
         ]
       },
       "type": "function",
@@ -220,7 +203,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.cellrenderer.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -279,7 +270,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.cellrenderer.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getDefaultCellStyle": {
       "type": "function",
@@ -340,7 +339,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.cellrenderer.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>defaultCellStyle</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
+          }
+        ]
+      }
     },
     "getRepeat": {
       "type": "function",
@@ -399,7 +406,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.cellrenderer.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>repeat</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #repeat}."
+          }
+        ]
+      }
     }
   },
   "destruct": {

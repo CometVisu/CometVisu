@@ -198,7 +198,15 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.ISingleSelection"
+      "overriddenFrom": "qx.ui.core.ISingleSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears the whole selection at once.</p>"
+          }
+        ]
+      }
     },
     "isSelected": {
       "type": "function",

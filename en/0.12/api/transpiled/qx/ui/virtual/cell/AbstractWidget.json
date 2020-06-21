@@ -134,22 +134,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "widget {qx.ui.core.LayoutItem} The cell widget to update",
-            "paramName": "widget",
-            "description": " The cell widget to update",
-            "type": "qx.ui.core.LayoutItem"
-          },
-          {
-            "name": "@param",
-            "body": "data {var} The data to display",
-            "paramName": "data",
-            "description": " The data to display",
-            "type": "var"
-          }
         ]
       },
       "type": "function",
@@ -175,22 +159,6 @@
           {
             "name": "@description",
             "body": "<p>interface implementation</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "widget {qx.ui.core.LayoutItem} The cell widget to update",
-            "paramName": "widget",
-            "description": " The cell widget to update",
-            "type": "qx.ui.core.LayoutItem"
-          },
-          {
-            "name": "@param",
-            "body": "states {Map} The cell widget's states",
-            "paramName": "states",
-            "description": " The cell widget's states",
-            "type": "Map"
           }
         ]
       },
@@ -218,30 +186,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "data {var} Data needed for the cell to render.",
-            "paramName": "data",
-            "description": " Data needed for the cell to render.",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "states {Map} The states set on the cell (e.g. <i>selected</i>,\n <i>focused</i>, <i>editable</i>).",
-            "paramName": "states",
-            "description": " The states set on the cell (e.g. <i>selected</i>,\n <i>focused</i>, <i>editable</i>).",
-            "type": "Map"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.core.LayoutItem} The cell widget",
-            "type": "qx.ui.core.LayoutItem",
-            "description": " The cell widget"
-          }
         ]
       },
       "type": "function",
@@ -267,15 +211,6 @@
           {
             "name": "@description",
             "body": "<p>interface implementation</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "widget {qx.ui.core.LayoutItem} The cell widget to pool",
-            "paramName": "widget",
-            "description": " The cell widget to pool",
-            "type": "qx.ui.core.LayoutItem"
           }
         ]
       },
@@ -397,7 +332,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -456,7 +399,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "destruct": {

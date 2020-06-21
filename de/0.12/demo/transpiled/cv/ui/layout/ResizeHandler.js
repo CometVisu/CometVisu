@@ -66,8 +66,8 @@
       $navbarBottom: null,
       width: 0,
       height: 0,
-      __initial: true,
-      __backdropRetries: 0,
+      __P_71_0: true,
+      __P_71_1: 0,
       validationQueue: [],
       reset: function reset() {
         this.states.resetAll();
@@ -77,7 +77,7 @@
         this.width = 0;
         this.height = 0;
       },
-      __request: null,
+      __P_71_2: null,
       getPageSize: function getPageSize(noCache) {
         if (!this.$pageSize || noCache === true) {
           this.$pageSize = document.querySelector('#pageSize');
@@ -104,8 +104,8 @@
           this.validationQueue.push(name);
         }
 
-        if (!this.__request) {
-          this.__request = qx.bom.AnimationFrame.request(this.flush, this);
+        if (!this.__P_71_2) {
+          this.__P_71_2 = qx.bom.AnimationFrame.request(this.flush, this);
         }
       },
       flush: function flush() {
@@ -114,7 +114,7 @@
           this[job].apply(this);
         }
 
-        this.__request = null;
+        this.__P_71_2 = null;
       },
       makeAllSizesValid: function makeAllSizesValid() {
         if (this.states.isPageSizeInvalid()) {
@@ -135,9 +135,9 @@
         }
       },
       makeBackdropValid: function makeBackdropValid() {
-        this.queueJob("__makeBackdropValid");
+        this.queueJob("__P_71_3");
       },
-      __makeBackdropValid: function __makeBackdropValid() {
+      __P_71_3: function __P_71_3() {
         qx.log.Logger.debug(this, "makeBackdropValid"); // TODO: this is structure.pure specific and should be handled by the structure itself
 
         var templateEngine = cv.TemplateEngine.getInstance();
@@ -233,12 +233,12 @@
                 }
               }
             }, this);
-            this.__backdropRetries = 0;
+            this.__P_71_1 = 0;
           } catch (e) {
             if (e.name === 'NotSupportedError') {
-              if (this.__backdropRetries <= 5) {
-                qx.bom.AnimationFrame.request(this.__makeBackdropValid, this);
-                this.__backdropRetries++;
+              if (this.__P_71_1 <= 5) {
+                qx.bom.AnimationFrame.request(this.__P_71_3, this);
+                this.__P_71_1++;
               }
             }
 
@@ -249,9 +249,9 @@
         this.states.setBackdropInvalid(false);
       },
       makeNavbarValid: function makeNavbarValid() {
-        this.queueJob("__makeNavbarValid");
+        this.queueJob("__P_71_4");
       },
-      __makeNavbarValid: function __makeNavbarValid() {
+      __P_71_4: function __P_71_4() {
         if (cv.Config.mobileDevice) {//do nothing
         } else {
           var navbarTop = this.getNavbarTop(),
@@ -262,7 +262,7 @@
           if (window.getComputedStyle(navbarTop)['display'] !== 'none' && Math.round(navbarTopRect.bottom - navbarTopRect.top) <= 2 || window.getComputedStyle(navbarBottom)['display'] !== 'none' && Math.round(navbarBottomRect.bottom - navbarBottomRect.top) <= 2) {
             // Top/Bottom-Navbar is not initialized yet, re-queue the job
             new qx.util.DeferredCall(function () {
-              this.queueJob("__makeNavbarValid");
+              this.queueJob("__P_71_4");
             }, this).schedule();
             return;
           }
@@ -278,16 +278,16 @@
         this.states.setNavbarInvalid(false);
       },
       makePagesizeValid: function makePagesizeValid() {
-        if (this.__initial === true) {
+        if (this.__P_71_0 === true) {
           // do not queue -> call now
-          this.__initial = false;
+          this.__P_71_0 = false;
 
-          this.__makePagesizeValid();
+          this.__P_71_5();
         } else {
-          this.queueJob("__makePagesizeValid");
+          this.queueJob("__P_71_5");
         }
       },
-      __makePagesizeValid: function __makePagesizeValid() {
+      __P_71_5: function __P_71_5() {
         if (!cv.Config.currentPageId) {
           return;
         }
@@ -296,7 +296,7 @@
         var page = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.currentPageId);
 
         if (page && !page.isInitialized()) {
-          page.addListenerOnce("changeInitialized", this.__makePagesizeValid, this);
+          page.addListenerOnce("changeInitialized", this.__P_71_5, this);
           return;
         }
 
@@ -311,9 +311,9 @@
         this.states.setPageSizeInvalid(false);
       },
       makeRowspanValid: function makeRowspanValid() {
-        this.queueJob("__makeRowspanValid");
+        this.queueJob("__P_71_6");
       },
-      __makeRowspanValid: function __makeRowspanValid() {
+      __P_71_6: function __P_71_6() {
         qx.log.Logger.debug(this, "makeRowspanValid");
         var elem = document.querySelector("#calcrowspan");
 
@@ -327,9 +327,9 @@
         } // use the internal div for height as in mobile view the elem uses the full screen height
 
 
-        this.__updateRowHeight(elem.querySelector("#containerDiv"));
+        this.__P_71_7(elem.querySelector("#containerDiv"));
       },
-      __updateRowHeight: function __updateRowHeight(elem) {
+      __P_71_7: function __P_71_7(elem) {
         var rect = elem.getBoundingClientRect(),
             height = Math.round(rect.bottom - rect.top);
 
@@ -337,7 +337,7 @@
           // not ready try again
           var self = this;
           qx.bom.AnimationFrame.request(function () {
-            self.__updateRowHeight(elem);
+            self.__P_71_7(elem);
           }, this);
           return;
         }
@@ -393,4 +393,4 @@
   cv.ui.layout.ResizeHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResizeHandler.js.map?dt=1591115573857
+//# sourceMappingURL=ResizeHandler.js.map?dt=1592778964686

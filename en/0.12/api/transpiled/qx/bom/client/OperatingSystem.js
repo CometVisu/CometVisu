@@ -85,7 +85,7 @@
       },
 
       /** Maps user agent names to system IDs */
-      __ids: {
+      __P_91_0: {
         // Windows
         "Windows NT 10.0": "10",
         "Windows NT 6.3": "8.1",
@@ -142,10 +142,10 @@
        *   could not be detected.
        */
       getVersion: function getVersion() {
-        var version = qx.bom.client.OperatingSystem.__getVersionForDesktopOs(navigator.userAgent);
+        var version = qx.bom.client.OperatingSystem.__P_91_1(navigator.userAgent);
 
         if (version == null) {
-          version = qx.bom.client.OperatingSystem.__getVersionForMobileOs(navigator.userAgent);
+          version = qx.bom.client.OperatingSystem.__P_91_2(navigator.userAgent);
         }
 
         if (version != null) {
@@ -160,10 +160,10 @@
        * @param userAgent {String} userAgent parameter, needed for detection.
        * @return {String} version number as string or null.
        */
-      __getVersionForDesktopOs: function __getVersionForDesktopOs(userAgent) {
+      __P_91_1: function __P_91_1(userAgent) {
         var str = [];
 
-        for (var key in qx.bom.client.OperatingSystem.__ids) {
+        for (var key in qx.bom.client.OperatingSystem.__P_91_0) {
           str.push(key);
         }
 
@@ -171,7 +171,7 @@
         var match = reg.exec(userAgent);
 
         if (match && match[1]) {
-          return qx.bom.client.OperatingSystem.__ids[match[1]];
+          return qx.bom.client.OperatingSystem.__P_91_0[match[1]];
         }
 
         return null;
@@ -182,7 +182,7 @@
        * @param userAgent {String} userAgent parameter, needed for detection.
        * @return {String} version number as string or null.
        */
-      __getVersionForMobileOs: function __getVersionForMobileOs(userAgent) {
+      __P_91_2: function __P_91_2(userAgent) {
         var windows = userAgent.indexOf("Windows Phone") != -1;
         var android = userAgent.indexOf("Android") != -1;
         var iOs = userAgent.match(/(iPad|iPhone|iPod)/i) ? true : false;
@@ -225,4 +225,4 @@
   qx.bom.client.OperatingSystem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OperatingSystem.js.map?dt=1591114963571
+//# sourceMappingURL=OperatingSystem.js.map?dt=1592777078615

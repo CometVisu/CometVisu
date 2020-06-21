@@ -52,53 +52,176 @@
   },
   "properties": {
     "labelPath": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the property which holds the information that should be\n shown as a label. This is only needed if objects are stored in the model.</p>"
+          }
+        ]
+      },
       "name": "labelPath",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     },
     "iconPath": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the property which holds the information that should be\n shown as an icon. This is only needed if objects are stored in the model\n and if the icon should be shown.</p>"
+          }
+        ]
+      },
       "name": "iconPath",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     },
     "groupLabelPath": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the property which holds the information that should be\n displayed as a group label. This is only needed if objects are stored in the\n model.</p>"
+          }
+        ]
+      },
       "name": "groupLabelPath",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     },
     "labelOptions": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the label binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
       "name": "labelOptions",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
     },
     "iconOptions": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the icon binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
       "name": "iconOptions",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
     },
     "groupLabelOptions": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 96,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the group label binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
       "name": "groupLabelOptions",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
     },
     "delegate": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 108,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delegation object, which can have one or more functions defined by the\n {@link qx.ui.list.core.IListDelegate} interface.</p>"
+          }
+        ]
+      },
       "name": "delegate",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changeDelegate",
+      "nullable": true,
+      "allowNull": true
     }
   },
   "members": {

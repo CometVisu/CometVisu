@@ -36,11 +36,11 @@ describe("testing a urltrigger widget", function() {
 
   it("should test the urltrigger action", function() {
     var res = this.createTestElement("urltrigger", {url: "/test/test.txt", align: "center"});
-    spyOn(res.__xhr, "send");
+    spyOn(res.getXhr(), "send");
     expect(res.getActor()).toHaveClass("center");
     this.initWidget(res);
 
     res._action();
-    expect(res.__xhr.send).toHaveBeenCalled();
+    expect(res.getXhr().send).toHaveBeenCalled();
   });
 });

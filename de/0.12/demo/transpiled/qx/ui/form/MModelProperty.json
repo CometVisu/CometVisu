@@ -33,11 +33,30 @@
   "type": "mixin",
   "properties": {
     "model": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Model property for storing additional information for the including\n object. It can act as value property on form items for example.\n Be careful using that property as this is used for the\n {@link qx.ui.form.MModelSelection} it has some restrictions:</p>\n<ul>\n<li>Don't use equal models in one widget using the\n {@link qx.ui.form.MModelSelection}.</li>\n<li>Avoid setting only some model properties if the widgets are added to\n a {@link qx.ui.form.MModelSelection} widget.\nBoth restrictions result of the fact, that the set models are deputies\nfor their widget.</li>\n</ul>"
+          }
+        ]
+      },
       "name": "model",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changeModel",
+      "apply": "_applyModel",
+      "nullable": true,
+      "allowNull": true
     }
   },
   "members": {

@@ -83,10 +83,10 @@
     */
     statics: {
       /** @type {Map} the shared image registry */
-      __registry: qx.$$resources || {},
+      __P_463_0: qx.$$resources || {},
 
       /** @type {Map} prefix per library used in HTTPS mode for IE */
-      __urlPrefix: {}
+      __P_463_1: {}
     },
 
     /*
@@ -173,7 +173,7 @@
        * @return {Array|null} an array containing the IDs or null if the registry is not initialized
        */
       getIds: function getIds(pathfragment) {
-        var registry = qx.util.ResourceManager.__registry;
+        var registry = qx.util.ResourceManager.__P_463_0;
 
         if (!registry) {
           return null;
@@ -201,7 +201,7 @@
        * @return {Boolean} <code>true</code> when the resource is known.
        */
       has: function has(id) {
-        return !!qx.util.ResourceManager.__registry[id];
+        return !!qx.util.ResourceManager.__P_463_0[id];
       },
 
       /**
@@ -211,7 +211,7 @@
        * @return {Array} Registered data or <code>null</code>
        */
       getData: function getData(id) {
-        return qx.util.ResourceManager.__registry[id] || null;
+        return qx.util.ResourceManager.__P_463_0[id] || null;
       },
 
       /**
@@ -234,7 +234,7 @@
           }
         }
 
-        var entry = qx.util.ResourceManager.__registry[id]; // [ width, height, codepoint ]
+        var entry = qx.util.ResourceManager.__P_463_0[id]; // [ width, height, codepoint ]
 
         if (size && entry) {
           var width = Math.ceil(size / entry[1] * entry[0]);
@@ -262,7 +262,7 @@
           }
         }
 
-        var entry = qx.util.ResourceManager.__registry[id];
+        var entry = qx.util.ResourceManager.__P_463_0[id];
         return entry ? entry[1] : null;
       },
 
@@ -279,7 +279,7 @@
           return "font";
         }
 
-        var entry = qx.util.ResourceManager.__registry[id];
+        var entry = qx.util.ResourceManager.__P_463_0[id];
         return entry ? entry[2] : null;
       },
 
@@ -293,12 +293,12 @@
        */
       getCombinedFormat: function getCombinedFormat(id) {
         var clippedtype = "";
-        var entry = qx.util.ResourceManager.__registry[id];
-        var isclipped = entry && entry.length > 4 && typeof entry[4] == "string" && this.constructor.__registry[entry[4]];
+        var entry = qx.util.ResourceManager.__P_463_0[id];
+        var isclipped = entry && entry.length > 4 && typeof entry[4] == "string" && this.constructor.__P_463_0[entry[4]];
 
         if (isclipped) {
           var combId = entry[4];
-          var combImg = this.constructor.__registry[combId];
+          var combImg = this.constructor.__P_463_0[combId];
           clippedtype = combImg[2];
         }
 
@@ -316,7 +316,7 @@
           return id;
         }
 
-        var entry = qx.util.ResourceManager.__registry[id];
+        var entry = qx.util.ResourceManager.__P_463_0[id];
 
         if (!entry) {
           return id;
@@ -336,7 +336,7 @@
         var urlPrefix = "";
 
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("io.ssl")) {
-          urlPrefix = qx.util.ResourceManager.__urlPrefix[lib];
+          urlPrefix = qx.util.ResourceManager.__P_463_1[lib];
         }
 
         return urlPrefix + qx.util.LibraryManager.getInstance().get(lib, "resourceUri") + "/" + id;
@@ -354,8 +354,8 @@
        * @return {String} "data:" or "http:" URI
        */
       toDataUri: function toDataUri(resid) {
-        var resentry = this.constructor.__registry[resid];
-        var combined = resentry ? this.constructor.__registry[resentry[4]] : null;
+        var resentry = this.constructor.__P_463_0[resid];
+        var combined = resentry ? this.constructor.__P_463_0[resentry[4]] : null;
         var uri;
 
         if (combined) {
@@ -394,7 +394,7 @@
               resourceUri = qx.util.LibraryManager.getInstance().get(lib, "resourceUri");
             } else {
               // default for libraries without a resourceUri set
-              statics.__urlPrefix[lib] = "";
+              statics.__P_463_1[lib] = "";
               continue;
             }
 
@@ -410,24 +410,24 @@
 
 
             if (resourceUri.match(/^\/\//) != null) {
-              statics.__urlPrefix[lib] = window.location.protocol;
+              statics.__P_463_1[lib] = window.location.protocol;
             } // If the resourceUri begins with a single slash, include the current
             // hostname
             else if (resourceUri.match(/^\//) != null) {
                 if (href) {
-                  statics.__urlPrefix[lib] = href;
+                  statics.__P_463_1[lib] = href;
                 } else {
-                  statics.__urlPrefix[lib] = window.location.protocol + "//" + window.location.host;
+                  statics.__P_463_1[lib] = window.location.protocol + "//" + window.location.host;
                 }
               } // If the resolved URL begins with "./" the final URL has to be
               // put together using the document.URL property.
               // IMPORTANT: this is only applicable for the source version
               else if (resourceUri.match(/^\.\//) != null) {
                   var url = document.URL;
-                  statics.__urlPrefix[lib] = url.substring(0, url.lastIndexOf("/") + 1);
+                  statics.__P_463_1[lib] = url.substring(0, url.lastIndexOf("/") + 1);
                 } else if (resourceUri.match(/^http/) != null) {
                   // Let absolute URLs pass through
-                  statics.__urlPrefix[lib] = "";
+                  statics.__P_463_1[lib] = "";
                 } else {
                   if (!href) {
                     // check for parameters with URLs as value
@@ -440,7 +440,7 @@
                     }
                   }
 
-                  statics.__urlPrefix[lib] = href.substring(0, href.lastIndexOf("/") + 1);
+                  statics.__P_463_1[lib] = href.substring(0, href.lastIndexOf("/") + 1);
                 }
           }
         }
@@ -450,4 +450,4 @@
   qx.util.ResourceManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResourceManager.js.map?dt=1591114994748
+//# sourceMappingURL=ResourceManager.js.map?dt=1592777109925

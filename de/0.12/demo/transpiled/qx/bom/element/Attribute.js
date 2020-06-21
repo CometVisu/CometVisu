@@ -110,7 +110,7 @@
     */
     statics: {
       /** Internal map of attribute conversions */
-      __hints: {
+      __P_158_0: {
         // Name translation table (camelcase is important for some attributes)
         names: {
           "class": "className",
@@ -220,7 +220,7 @@
        */
       compile: function compile(map) {
         var html = [];
-        var runtime = this.__hints.runtime;
+        var runtime = this.__P_158_0.runtime;
 
         for (var key in map) {
           if (!runtime[key]) {
@@ -239,7 +239,7 @@
        * @return {var} The value of the attribute
        */
       get: function get(element, name) {
-        var hints = this.__hints;
+        var hints = this.__P_158_0;
         var value; // normalize name
 
         name = hints.names[name] || name; // respect properties
@@ -283,7 +283,7 @@
           return;
         }
 
-        var hints = this.__hints; // normalize name
+        var hints = this.__P_158_0; // normalize name
 
         name = hints.names[name] || name; // respect booleans
 
@@ -340,4 +340,4 @@
   qx.bom.element.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1591115582549
+//# sourceMappingURL=Attribute.js.map?dt=1592778973897

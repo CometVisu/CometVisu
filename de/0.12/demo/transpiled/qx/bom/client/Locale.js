@@ -59,7 +59,7 @@
        * @internal
        */
       getLocale: function getLocale() {
-        var locale = qx.bom.client.Locale.__getNavigatorLocale();
+        var locale = qx.bom.client.Locale.__P_149_0();
 
         var index = locale.indexOf("-");
 
@@ -78,7 +78,7 @@
        * @internal
        */
       getVariant: function getVariant() {
-        var locale = qx.bom.client.Locale.__getNavigatorLocale();
+        var locale = qx.bom.client.Locale.__P_149_0();
 
         var variant = "";
         var index = locale.indexOf("-");
@@ -95,7 +95,7 @@
        *
        * @return {String} The language set by the navigator.
        */
-      __getNavigatorLocale: function __getNavigatorLocale() {
+      __P_149_0: function __P_149_0() {
         var locale = navigator.userLanguage || navigator.language || ""; // Android Bug: Android does not return the system language from the
         // navigator language before version 4.4.x. Try to parse the language
         // from the userAgent.
@@ -127,4 +127,4 @@
   qx.bom.client.Locale.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Locale.js.map?dt=1591115582096
+//# sourceMappingURL=Locale.js.map?dt=1592778973434

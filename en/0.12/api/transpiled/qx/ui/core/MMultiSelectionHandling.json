@@ -99,25 +99,87 @@
   },
   "properties": {
     "selectionMode": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The selection mode to use.\n For further details please have a look at:\n {@link qx.ui.core.selection.Abstract#mode}</p>"
+          }
+        ]
+      },
       "name": "selectionMode",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applySelectionMode",
+      "init": "single",
+      "possibleValues": [
+        "single",
+        "multi",
+        "additive",
+        "one"
+      ],
+      "defaultValue": "single"
     },
     "dragSelection": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Enable drag selection (multi selection of items through\n dragging the pointer in pressed states).\n Only possible for the selection modes <code>multi</code> and <code>additive</code></p>"
+          }
+        ]
+      },
       "name": "dragSelection",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyDragSelection",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     },
     "quickSelection": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 115,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Enable quick selection mode, where no tap is needed to change the selection.\n Only possible for the modes <code>single</code> and <code>one</code>.</p>"
+          }
+        ]
+      },
       "name": "quickSelection",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyQuickSelection",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     }
   },
   "members": {

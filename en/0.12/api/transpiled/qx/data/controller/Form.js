@@ -83,7 +83,7 @@
     construct: function construct(model, target, selfUpdate) {
       qx.core.Object.constructor.call(this);
       this._selfUpdate = !!selfUpdate;
-      this.__bindingOptions = {};
+      this.__P_138_0 = {};
 
       if (model != null) {
         this.setModel(model);
@@ -114,8 +114,8 @@
       }
     },
     members: {
-      __objectController: null,
-      __bindingOptions: null,
+      __P_138_1: null,
+      __P_138_0: null,
 
       /**
        * The form controller uses for setting up the bindings the fundamental
@@ -133,7 +133,7 @@
        *   {@link qx.data.SingleValueBinding} class.
        */
       addBindingOptions: function addBindingOptions(name, model2target, target2model) {
-        this.__bindingOptions[name] = [model2target, target2model]; // return if not both, model and target are given
+        this.__P_138_0[name] = [model2target, target2model]; // return if not both, model and target are given
 
         if (this.getModel() == null || this.getTarget() == null) {
           return;
@@ -141,12 +141,12 @@
 
 
         var item = this.getTarget().getItems()[name];
-        var targetProperty = this.__isModelSelectable(item) ? "modelSelection[0]" : "value"; // remove the binding
+        var targetProperty = this.__P_138_2(item) ? "modelSelection[0]" : "value"; // remove the binding
 
-        this.__objectController.removeTarget(item, targetProperty, name); // set up the new binding with the options
+        this.__P_138_1.removeTarget(item, targetProperty, name); // set up the new binding with the options
 
 
-        this.__objectController.addTarget(item, targetProperty, name, !this._selfUpdate, model2target, target2model);
+        this.__P_138_1.addTarget(item, targetProperty, name, !this._selfUpdate, model2target, target2model);
       },
 
       /**
@@ -189,8 +189,8 @@
               } // call the converter if available [BUG #4382]
 
 
-              if (this.__bindingOptions[name] && this.__bindingOptions[name][1]) {
-                itemValue = this.__bindingOptions[name][1].converter(itemValue);
+              if (this.__P_138_0[name] && this.__P_138_0[name][1]) {
+                itemValue = this.__P_138_0[name][1].converter(itemValue);
               }
 
               currentData[names[i]] = itemValue;
@@ -227,9 +227,9 @@
 
         for (var name in items) {
           var item = items[name];
-          var sourceProperty = this.__isModelSelectable(item) ? "modelSelection[0]" : "value";
-          var options = this.__bindingOptions[name];
-          options = options && this.__bindingOptions[name][1];
+          var sourceProperty = this.__P_138_2(item) ? "modelSelection[0]" : "value";
+          var options = this.__P_138_0[name];
+          options = options && this.__P_138_0[name][1];
           qx.data.SingleValueBinding.updateTarget(item, sourceProperty, this.getModel(), name, options);
         }
       },
@@ -237,7 +237,7 @@
       _applyTarget: function _applyTarget(value, old) {
         // if an old target is given, remove the binding
         if (old != null) {
-          this.__tearDownBinding(old);
+          this.__P_138_3(old);
         } // do nothing if no target is set
 
 
@@ -247,31 +247,31 @@
 
 
         if (value != null) {
-          this.__setUpBinding();
+          this.__P_138_4();
         }
       },
       // apply method
       _applyModel: function _applyModel(value, old) {
         // set the model to null to reset all items before removing them
-        if (this.__objectController != null && value == null) {
-          this.__objectController.setModel(null);
+        if (this.__P_138_1 != null && value == null) {
+          this.__P_138_1.setModel(null);
         } // first, get rid off all bindings (avoids wrong data population)
 
 
-        if (this.__objectController != null && this.getTarget() != null) {
+        if (this.__P_138_1 != null && this.getTarget() != null) {
           var items = this.getTarget().getItems();
 
           for (var name in items) {
             var item = items[name];
-            var targetProperty = this.__isModelSelectable(item) ? "modelSelection[0]" : "value";
+            var targetProperty = this.__P_138_2(item) ? "modelSelection[0]" : "value";
 
-            this.__objectController.removeTarget(item, targetProperty, name);
+            this.__P_138_1.removeTarget(item, targetProperty, name);
           }
         } // set the model of the object controller if available
 
 
-        if (this.__objectController != null) {
-          this.__objectController.setModel(value);
+        if (this.__P_138_1 != null) {
+          this.__P_138_1.setModel(value);
         } // do nothing is no target is set
 
 
@@ -285,7 +285,7 @@
 
 
         if (value != null) {
-          this.__setUpBinding();
+          this.__P_138_4();
         }
       },
 
@@ -294,10 +294,10 @@
        * {@link qx.data.controller.Object#addTarget}. All bindings are set
        * up bidirectional.
        */
-      __setUpBinding: function __setUpBinding() {
+      __P_138_4: function __P_138_4() {
         // create the object controller
-        if (this.__objectController == null) {
-          this.__objectController = new qx.data.controller.Object(this.getModel());
+        if (this.__P_138_1 == null) {
+          this.__P_138_1 = new qx.data.controller.Object(this.getModel());
         } // get the form items
 
 
@@ -305,14 +305,14 @@
 
         for (var name in items) {
           var item = items[name];
-          var targetProperty = this.__isModelSelectable(item) ? "modelSelection[0]" : "value";
-          var options = this.__bindingOptions[name]; // try to bind all given items in the form
+          var targetProperty = this.__P_138_2(item) ? "modelSelection[0]" : "value";
+          var options = this.__P_138_0[name]; // try to bind all given items in the form
 
           try {
             if (options == null) {
-              this.__objectController.addTarget(item, targetProperty, name, !this._selfUpdate);
+              this.__P_138_1.addTarget(item, targetProperty, name, !this._selfUpdate);
             } else {
-              this.__objectController.addTarget(item, targetProperty, name, !this._selfUpdate, options[0], options[1]);
+              this.__P_138_1.addTarget(item, targetProperty, name, !this._selfUpdate, options[0], options[1]);
             } // ignore not working items
 
           } catch (ex) {}
@@ -328,9 +328,9 @@
        *
        * @param oldTarget {qx.ui.form.Form} The form which has been removed.
        */
-      __tearDownBinding: function __tearDownBinding(oldTarget) {
+      __P_138_3: function __P_138_3(oldTarget) {
         // do nothing if the object controller has not been created
-        if (this.__objectController == null) {
+        if (this.__P_138_1 == null) {
           return;
         } // get the items
 
@@ -339,9 +339,9 @@
 
         for (var name in items) {
           var item = items[name];
-          var targetProperty = this.__isModelSelectable(item) ? "modelSelection[0]" : "value";
+          var targetProperty = this.__P_138_2(item) ? "modelSelection[0]" : "value";
 
-          this.__objectController.removeTarget(item, targetProperty, name);
+          this.__P_138_1.removeTarget(item, targetProperty, name);
         }
       },
 
@@ -354,7 +354,7 @@
        *
        * @return {Boolean} true, if given item fits.
        */
-      __isModelSelectable: function __isModelSelectable(item) {
+      __P_138_2: function __P_138_2(item) {
         return qx.Class.hasInterface(item.constructor, qx.ui.core.ISingleSelection) && qx.Class.hasInterface(item.constructor, qx.ui.form.IModelSelection);
       }
     },
@@ -366,12 +366,12 @@
      */
     destruct: function destruct() {
       // dispose the object controller because the bindings need to be removed
-      if (this.__objectController) {
-        this.__objectController.dispose();
+      if (this.__P_138_1) {
+        this.__P_138_1.dispose();
       }
     }
   });
   qx.data.controller.Form.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Form.js.map?dt=1591114967285
+//# sourceMappingURL=Form.js.map?dt=1592777082477

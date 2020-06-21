@@ -43,11 +43,31 @@
   "type": "mixin",
   "properties": {
     "activeWindow": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The currently active window</p>"
+          }
+        ]
+      },
       "name": "activeWindow",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changeActiveWindow",
+      "apply": "_applyActiveWindow",
+      "nullable": true,
+      "allowNull": true,
+      "check": "qx.ui.window.Window"
     }
   },
   "events": {

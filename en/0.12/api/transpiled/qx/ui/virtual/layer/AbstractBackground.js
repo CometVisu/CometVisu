@@ -60,8 +60,8 @@
         this.setColorOdd(colorOdd);
       }
 
-      this.__customColors = {};
-      this.__decorators = {};
+      this.__P_435_0 = {};
+      this.__P_435_1 = {};
     },
 
     /*
@@ -93,10 +93,10 @@
     *****************************************************************************
     */
     members: {
-      __colorEven: null,
-      __colorOdd: null,
-      __customColors: null,
-      __decorators: null,
+      __P_435_2: null,
+      __P_435_3: null,
+      __P_435_0: null,
+      __P_435_1: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -113,9 +113,9 @@
        */
       setColor: function setColor(index, color) {
         if (color) {
-          this.__customColors[index] = qx.theme.manager.Color.getInstance().resolve(color);
+          this.__P_435_0[index] = qx.theme.manager.Color.getInstance().resolve(color);
         } else {
-          delete this.__customColors[index];
+          delete this.__P_435_0[index];
         }
       },
 
@@ -123,7 +123,7 @@
        * Clear all colors set using {@link #setColor}.
        */
       clearCustomColors: function clearCustomColors() {
-        this.__customColors = {};
+        this.__P_435_0 = {};
         this.updateLayerData();
       },
 
@@ -134,20 +134,20 @@
        * @return {Color} The color at the given index
        */
       getColor: function getColor(index) {
-        var customColor = this.__customColors[index];
+        var customColor = this.__P_435_0[index];
 
         if (customColor) {
           return customColor;
         } else {
-          return index % 2 == 0 ? this.__colorEven : this.__colorOdd;
+          return index % 2 == 0 ? this.__P_435_2 : this.__P_435_3;
         }
       },
       // property apply
       _applyColorEven: function _applyColorEven(value, old) {
         if (value) {
-          this.__colorEven = qx.theme.manager.Color.getInstance().resolve(value);
+          this.__P_435_2 = qx.theme.manager.Color.getInstance().resolve(value);
         } else {
-          this.__colorEven = null;
+          this.__P_435_2 = null;
         }
 
         this.updateLayerData();
@@ -155,9 +155,9 @@
       // property apply
       _applyColorOdd: function _applyColorOdd(value, old) {
         if (value) {
-          this.__colorOdd = qx.theme.manager.Color.getInstance().resolve(value);
+          this.__P_435_3 = qx.theme.manager.Color.getInstance().resolve(value);
         } else {
-          this.__colorOdd = null;
+          this.__P_435_3 = null;
         }
 
         this.updateLayerData();
@@ -172,9 +172,9 @@
        */
       setBackground: function setBackground(index, decorator) {
         if (decorator) {
-          this.__decorators[index] = qx.theme.manager.Decoration.getInstance().resolve(decorator);
+          this.__P_435_1[index] = qx.theme.manager.Decoration.getInstance().resolve(decorator);
         } else {
-          delete this.__decorators[index];
+          delete this.__P_435_1[index];
         }
 
         this.updateLayerData();
@@ -187,7 +187,7 @@
        * @return {qx.ui.decoration.IDecorator} The decorator at the given index
        */
       getBackground: function getBackground(index) {
-        return this.__decorators[index];
+        return this.__P_435_1[index];
       }
     },
 
@@ -197,10 +197,10 @@
      *****************************************************************************
      */
     destruct: function destruct() {
-      this.__customColors = this.__decorators = null;
+      this.__P_435_0 = this.__P_435_1 = null;
     }
   });
   qx.ui.virtual.layer.AbstractBackground.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBackground.js.map?dt=1591114992676
+//# sourceMappingURL=AbstractBackground.js.map?dt=1592777107908

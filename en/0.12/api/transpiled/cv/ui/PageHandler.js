@@ -134,7 +134,7 @@
           var currentDepth = currentPath.split("_").length;
           var targetDepth = target.split("_").length;
           direction = currentDepth <= targetDepth ? "down" : "up";
-          animationConfig = this.__getAnimationConfig(direction); // show the new page (because animations do not work on hidden elements) + hide scrollbar
+          animationConfig = this.__P_509_0(direction); // show the new page (because animations do not work on hidden elements) + hide scrollbar
 
           Object.entries({
             "display": "block",
@@ -146,20 +146,18 @@
           pageWidget.setVisible(true);
         }
 
-        console.log(speed, animationEnabled, animationConfig);
-
         if (!animationEnabled) {
           if (oldPageWidget) {
-            this.__onLeavePage(oldPageWidget);
+            this.__P_509_1(oldPageWidget);
           }
 
-          this.__onEnterPage(pageWidget, 0, true);
+          this.__P_509_2(pageWidget, 0, true);
         } else {
           if (oldPageWidget) {
             var outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.leavePage, speed);
             oldPageWidget.getDomElement().style["overflow-y"] = "hidden";
             outAnim.addListenerOnce("end", function () {
-              this.__onLeavePage(oldPageWidget);
+              this.__P_509_1(oldPageWidget);
             }, this);
           }
 
@@ -168,7 +166,7 @@
           qx.bom.AnimationFrame.request(function () {
             var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig.enterPage, speed);
             animation.addListenerOnce("end", function () {
-              this.__onEnterPage(pageWidget, oldPos);
+              this.__P_509_2(pageWidget, oldPos);
             }, this);
           }, this);
         }
@@ -178,7 +176,7 @@
        * Get the animation configs for the current animationType setting
        * @param direction {String} "up" or "down"
        */
-      __getAnimationConfig: function __getAnimationConfig(direction) {
+      __P_509_0: function __P_509_0(direction) {
         var inAnim, outAnim; // try to find existing animation configuration
 
         var type = this.getAnimationType().toUpperCase();
@@ -225,7 +223,7 @@
        * Cleanup after page has been left
        * @param oldPageWidget {cv.ui.structure.pure.Page}
        */
-      __onLeavePage: function __onLeavePage(oldPageWidget) {
+      __P_509_1: function __P_509_1(oldPageWidget) {
         oldPageWidget.getDomElement().classList.remove('pageActive', 'activePage');
         oldPageWidget.getDomElement().style.overflow = null;
         qx.event.message.Bus.dispatchByName("path." + oldPageWidget.getPath() + ".afterPageChange", oldPageWidget.getPath());
@@ -239,7 +237,7 @@
        * @param oldPos {String} CSS-position value to set
        * @param updateVisibility {Boolean} set the visibility property of the page to true or do not change it
        */
-      __onEnterPage: function __onEnterPage(pageWidget, oldPos, updateVisibility) {
+      __P_509_2: function __P_509_2(pageWidget, oldPos, updateVisibility) {
         var page = pageWidget.getDomElement();
         var target = pageWidget.getPath();
         page.classList.add('pageActive', 'activePage'); // show new page
@@ -273,4 +271,4 @@
   cv.ui.PageHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageHandler.js.map?dt=1591114999201
+//# sourceMappingURL=PageHandler.js.map?dt=1592777114748

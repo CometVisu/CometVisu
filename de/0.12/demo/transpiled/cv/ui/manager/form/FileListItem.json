@@ -17,7 +17,7 @@
         "column": 0
       },
       "end": {
-        "line": 465,
+        "line": 481,
         "column": 3
       }
     },
@@ -387,7 +387,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -395,7 +403,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -586,7 +602,7 @@
           "column": 4
         },
         "end": {
-          "line": 332,
+          "line": 337,
           "column": 5
         }
       },
@@ -599,11 +615,11 @@
     "__scaleWithAspect": {
       "location": {
         "start": {
-          "line": 334,
+          "line": 339,
           "column": 4
         },
         "end": {
-          "line": 351,
+          "line": 356,
           "column": 5
         }
       },
@@ -613,11 +629,11 @@
     "_maintainFileTypePosition": {
       "location": {
         "start": {
-          "line": 353,
+          "line": 358,
           "column": 4
         },
         "end": {
-          "line": 362,
+          "line": 367,
           "column": 5
         }
       },
@@ -627,11 +643,11 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 365,
+          "line": 370,
           "column": 4
         },
         "end": {
-          "line": 434,
+          "line": 450,
           "column": 5
         }
       },
@@ -640,32 +656,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "id {String} ID of the child control. If a # is used, the id is\n   the part in front of the #.",
-            "paramName": "id",
-            "description": " ID of the child control. If a # is used, the id is\n   the part in front of the #.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "hash {String?undefined} If a child control name contains a #,\n   all text following the # will be the hash argument.",
-            "paramName": "hash",
-            "description": " If a child control name contains a #,\n   all text following the # will be the hash argument.",
-            "optional": true,
-            "defaultValue": "undefined",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.core.Widget} The created control or <code>null</code>",
-            "type": "qx.ui.core.Widget",
-            "description": " The created control or <code>null</code>"
           }
         ]
       },
@@ -679,11 +669,11 @@
     "capture": {
       "location": {
         "start": {
-          "line": 437,
+          "line": 453,
           "column": 4
         },
         "end": {
-          "line": 442,
+          "line": 458,
           "column": 5
         }
       },
@@ -692,17 +682,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "capture {Boolean?true} If true all events originating in\n   the container are captured. If false events originating in the container\n   are not captured.",
-            "paramName": "capture",
-            "description": " If true all events originating in\n   the container are captured. If false events originating in the container\n   are not captured.",
-            "optional": true,
-            "defaultValue": "true",
-            "type": "Boolean"
           }
         ]
       },
@@ -716,11 +695,11 @@
     "releaseCapture": {
       "location": {
         "start": {
-          "line": 445,
+          "line": 461,
           "column": 4
         },
         "end": {
-          "line": 450,
+          "line": 466,
           "column": 5
         }
       },
@@ -821,7 +800,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "cv.ui.manager.upload.MDragUpload"
+      "overriddenFrom": "cv.ui.manager.upload.MDragUpload",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>overridden</p>"
+          }
+        ]
+      }
     },
     "_onStopDragging": {
       "type": "function",
@@ -839,7 +826,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "cv.ui.manager.upload.MDragUpload"
+      "overriddenFrom": "cv.ui.manager.upload.MDragUpload",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&amp;Drop</p>"
+          }
+        ]
+      }
     },
     "_applyDragListeners": {
       "type": "function",
@@ -848,7 +843,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "cv.ui.manager.upload.MDragUpload"
+      "overriddenFrom": "cv.ui.manager.upload.MDragUpload",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&amp;Drop</p>"
+          }
+        ]
+      }
     },
     "__applyUploadMode": {
       "type": "function",
@@ -857,7 +860,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "cv.ui.manager.upload.MDragUpload"
+      "overriddenFrom": "cv.ui.manager.upload.MDragUpload",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getUploadMode": {
       "type": "function",
@@ -1462,7 +1473,29 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.data.MBinding"
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings from the object.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      }
     },
     "getBindings": {
       "type": "function",
@@ -2279,7 +2312,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply owner</p>"
+          }
+        ]
+      }
     },
     "_applyQxObjectId": {
       "type": "function",
@@ -2288,7 +2329,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply objectId</p>"
+          }
+        ]
+      }
     },
     "__onOwnedObjectIdChange": {
       "type": "function",
@@ -2297,7 +2346,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a child's objectId changes</p>"
+          }
+        ]
+      }
     },
     "_cascadeQxObjectIdChanges": {
       "type": "function",
@@ -2306,7 +2363,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reflect changes to IDs or owners</p>"
+          }
+        ]
+      }
     },
     "getQxObject": {
       "type": "function",
@@ -8554,11 +8619,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 458,
+        "line": 474,
         "column": 12
       },
       "end": {
-        "line": 464,
+        "line": 480,
         "column": 3
       }
     },

@@ -36,7 +36,7 @@
    */
   qx.Mixin.define("qx.ui.list.core.MWidgetController", {
     construct: function construct() {
-      this.__boundItems = [];
+      this.__P_329_0 = [];
     },
     properties: {
       /**
@@ -104,7 +104,7 @@
     },
     members: {
       /** @type {Array} which contains the bounded items */
-      __boundItems: null,
+      __P_329_0: null,
 
       /**
        * Helper-Method for binding the default properties from
@@ -153,7 +153,7 @@
       bindProperty: function bindProperty(sourcePath, targetProperty, options, targetWidget, index) {
         var type = targetWidget.getUserData("cell.type");
 
-        var bindPath = this.__getBindPath(index, sourcePath, type);
+        var bindPath = this.__P_329_1(index, sourcePath, type);
 
         if (options) {
           options.ignoreConverter = "model";
@@ -161,7 +161,7 @@
 
         var id = this._list.bind(bindPath, targetWidget, targetProperty, options);
 
-        this.__addBinding(targetWidget, id);
+        this.__P_329_2(targetWidget, id);
       },
 
       /**
@@ -180,19 +180,19 @@
       bindPropertyReverse: function bindPropertyReverse(targetPath, sourceProperty, options, sourceWidget, index) {
         var type = sourceWidget.getUserData("cell.type");
 
-        var bindPath = this.__getBindPath(index, targetPath, type);
+        var bindPath = this.__P_329_1(index, targetPath, type);
 
         var id = sourceWidget.bind(sourceProperty, this._list, bindPath, options);
 
-        this.__addBinding(sourceWidget, id);
+        this.__P_329_2(sourceWidget, id);
       },
 
       /**
        * Remove all bindings from all bounded items.
        */
       removeBindings: function removeBindings() {
-        while (this.__boundItems.length > 0) {
-          var item = this.__boundItems.pop();
+        while (this.__P_329_0.length > 0) {
+          var item = this.__P_329_0.pop();
 
           this._removeBindingsFrom(item);
         }
@@ -265,7 +265,7 @@
        *   be removed.
        */
       _removeBindingsFrom: function _removeBindingsFrom(item) {
-        var bindings = this.__getBindings(item);
+        var bindings = this.__P_329_3(item);
 
         while (bindings.length > 0) {
           var id = bindings.pop();
@@ -277,8 +277,8 @@
           }
         }
 
-        if (this.__boundItems.includes(item)) {
-          qx.lang.Array.remove(this.__boundItems, item);
+        if (this.__P_329_0.includes(item)) {
+          qx.lang.Array.remove(this.__P_329_0, item);
         }
       },
 
@@ -290,7 +290,7 @@
        * @param type {String} The type <code>["item", "group"]</code>.
        * @return {String} The binding path
        */
-      __getBindPath: function __getBindPath(index, path, type) {
+      __P_329_1: function __P_329_1(index, path, type) {
         var bindPath = "model[" + index + "]";
 
         if (type == "group") {
@@ -310,15 +310,15 @@
        * @param widget {qx.ui.core.Widget} widget to save binding.
        * @param id {var} the id from the binding.
        */
-      __addBinding: function __addBinding(widget, id) {
-        var bindings = this.__getBindings(widget);
+      __P_329_2: function __P_329_2(widget, id) {
+        var bindings = this.__P_329_3(widget);
 
         if (!bindings.includes(id)) {
           bindings.push(id);
         }
 
-        if (!this.__boundItems.includes(widget)) {
-          this.__boundItems.push(widget);
+        if (!this.__P_329_0.includes(widget)) {
+          this.__P_329_0.push(widget);
         }
       },
 
@@ -328,7 +328,7 @@
        * @param widget {qx.ui.core.Widget} widget to get all binding.
        * @return {Array} all bound id's.
        */
-      __getBindings: function __getBindings(widget) {
+      __P_329_3: function __P_329_3(widget) {
         var bindings = widget.getUserData("BindingIds");
 
         if (bindings == null) {
@@ -340,10 +340,10 @@
       }
     },
     destruct: function destruct() {
-      this.__boundItems = null;
+      this.__P_329_0 = null;
     }
   });
   qx.ui.list.core.MWidgetController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MWidgetController.js.map?dt=1591114984141
+//# sourceMappingURL=MWidgetController.js.map?dt=1592777099246

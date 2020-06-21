@@ -58,8 +58,8 @@
       this._setLayout(new qx.ui.layout.HBox()); // add blocker
 
 
-      this.__blocker = new qx.ui.core.Blocker(this);
-      this.__paneScroller = paneScroller;
+      this.__P_406_0 = new qx.ui.core.Blocker(this);
+      this.__P_406_1 = paneScroller;
     },
 
     /*
@@ -68,10 +68,10 @@
     *****************************************************************************
     */
     members: {
-      __paneScroller: null,
-      __moveFeedback: null,
-      __lastPointerOverColumn: null,
-      __blocker: null,
+      __P_406_1: null,
+      __P_406_2: null,
+      __P_406_3: null,
+      __P_406_0: null,
 
       /**
        * Returns the TablePaneScroller this header belongs to.
@@ -79,7 +79,7 @@
        * @return {qx.ui.table.pane.Scroller} the TablePaneScroller.
        */
       getPaneScroller: function getPaneScroller() {
-        return this.__paneScroller;
+        return this.__P_406_1;
       },
 
       /**
@@ -88,7 +88,7 @@
        * @return {qx.ui.table.Table} the table.
        */
       getTable: function getTable() {
-        return this.__paneScroller.getTable();
+        return this.__P_406_1.getTable();
       },
 
       /**
@@ -97,7 +97,7 @@
        * @return {qx.ui.core.Blocker} the blocker.
        */
       getBlocker: function getBlocker() {
-        return this.__blocker;
+        return this.__P_406_0;
       },
 
       /**
@@ -152,9 +152,9 @@
        *      null if the pointer is over no column.
        */
       setPointerOverColumn: function setPointerOverColumn(col) {
-        if (col != this.__lastPointerOverColumn) {
-          if (this.__lastPointerOverColumn != null) {
-            var widget = this.getHeaderWidgetAtColumn(this.__lastPointerOverColumn);
+        if (col != this.__P_406_3) {
+          if (this.__P_406_3 != null) {
+            var widget = this.getHeaderWidgetAtColumn(this.__P_406_3);
 
             if (widget != null) {
               widget.removeState("hovered");
@@ -165,7 +165,7 @@
             this.getHeaderWidgetAtColumn(col).addState("hovered");
           }
 
-          this.__lastPointerOverColumn = col;
+          this.__P_406_3 = col;
         }
       },
 
@@ -190,7 +190,7 @@
       showColumnMoveFeedback: function showColumnMoveFeedback(col, x) {
         var pos = this.getContentLocation();
 
-        if (this.__moveFeedback == null) {
+        if (this.__P_406_2 == null) {
           var table = this.getTable();
           var xPos = this.getPaneScroller().getTablePaneModel().getX(col);
 
@@ -216,24 +216,24 @@
             top: pos.top
           });
           this.getApplicationRoot().add(feedback);
-          this.__moveFeedback = feedback;
+          this.__P_406_2 = feedback;
         }
 
-        this.__moveFeedback.setLayoutProperties({
+        this.__P_406_2.setLayoutProperties({
           left: pos.left + x
         });
 
-        this.__moveFeedback.show();
+        this.__P_406_2.show();
       },
 
       /**
        * Hides the feedback shown while a column is moved by the user.
        */
       hideColumnMoveFeedback: function hideColumnMoveFeedback() {
-        if (this.__moveFeedback != null) {
-          this.__moveFeedback.destroy();
+        if (this.__P_406_2 != null) {
+          this.__P_406_2.destroy();
 
-          this.__moveFeedback = null;
+          this.__P_406_2 = null;
         }
       },
 
@@ -244,7 +244,7 @@
        *    currently shown, <code>false</code> otherwise.
        */
       isShowingColumnMoveFeedback: function isShowingColumnMoveFeedback() {
-        return this.__moveFeedback != null;
+        return this.__P_406_2 != null;
       },
 
       /**
@@ -337,12 +337,12 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__blocker.dispose();
+      this.__P_406_0.dispose();
 
-      this._disposeObjects("__paneScroller");
+      this._disposeObjects("__P_406_1");
     }
   });
   qx.ui.table.pane.Header.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Header.js.map?dt=1591114989977
+//# sourceMappingURL=Header.js.map?dt=1592777105150

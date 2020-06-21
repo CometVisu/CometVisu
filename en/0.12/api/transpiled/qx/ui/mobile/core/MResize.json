@@ -33,11 +33,29 @@
   "type": "mixin",
   "properties": {
     "fireDomUpdatedOnResize": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the resize should fire the \"domupdated\" event. Set this to \"true\"\n  whenever other elements should react on this size change (e.g. when the size\n  change does not infect the size of the application, but other widgets should\n  react).</p>"
+          }
+        ]
+      },
       "name": "fireDomUpdatedOnResize",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     }
   },
   "members": {

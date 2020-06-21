@@ -536,7 +536,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.ui.common.BasicUpdate",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>address</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #address}."
+          }
+        ]
+      }
     },
     "getValue": {
       "type": "function",
@@ -597,7 +605,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.ui.common.BasicUpdate",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>value</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #value}."
+          }
+        ]
+      }
     },
     "getBasicValue": {
       "type": "function",
@@ -658,7 +674,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.ui.common.BasicUpdate",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>basicValue</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #basicValue}."
+          }
+        ]
+      }
     },
     "getFormat": {
       "type": "function",
@@ -719,7 +743,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.ui.common.BasicUpdate",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>format</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #format}."
+          }
+        ]
+      }
     }
   },
   "descendants": []

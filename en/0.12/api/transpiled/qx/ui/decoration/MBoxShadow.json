@@ -33,53 +33,180 @@
   "type": "mixin",
   "properties": {
     "shadowHorizontalLength": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Horizontal length of the shadow.</p>"
+          }
+        ]
+      },
       "name": "shadowHorizontalLength",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBoxShadow",
+      "nullable": true,
+      "allowNull": true
     },
     "shadowVerticalLength": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Vertical length of the shadow.</p>"
+          }
+        ]
+      },
       "name": "shadowVerticalLength",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBoxShadow",
+      "nullable": true,
+      "allowNull": true
     },
     "shadowBlurRadius": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The blur radius of the shadow.</p>"
+          }
+        ]
+      },
       "name": "shadowBlurRadius",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBoxShadow",
+      "nullable": true,
+      "allowNull": true
     },
     "shadowSpreadRadius": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The spread radius of the shadow.</p>"
+          }
+        ]
+      },
       "name": "shadowSpreadRadius",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBoxShadow",
+      "nullable": true,
+      "allowNull": true
     },
     "shadowColor": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4
+        },
+        "end": {
+          "line": 93,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The color of the shadow.</p>"
+          }
+        ]
+      },
       "name": "shadowColor",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBoxShadow",
+      "nullable": true,
+      "allowNull": true
     },
     "inset": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4
+        },
+        "end": {
+          "line": 100,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Inset shadows are drawn inside the border.</p>"
+          }
+        ]
+      },
       "name": "inset",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBoxShadow",
+      "init": false,
+      "defaultValue": false
     },
     "shadowLength": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to set the shadow length.</p>"
+          }
+        ]
+      },
       "name": "shadowLength",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "group": [
+        "shadowHorizontalLength",
+        "shadowVerticalLength"
+      ]
     }
   },
   "members": {

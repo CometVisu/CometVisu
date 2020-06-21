@@ -240,7 +240,15 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.IDisposable"
+      "overriddenFrom": "qx.core.IDisposable",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispose this object</p>"
+          }
+        ]
+      }
     }
   },
   "destruct": {

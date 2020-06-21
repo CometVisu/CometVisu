@@ -49,30 +49,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "nativeEvent {Event} The native browser event",
-            "paramName": "nativeEvent",
-            "description": " The native browser event",
-            "type": "qx.event.type.Event"
-          },
-          {
-            "name": "@param",
-            "body": "clone {Object} The initialized clone.",
-            "paramName": "clone",
-            "description": " The initialized clone.",
-            "type": "Object"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Object} The cloned event",
-            "type": "Object",
-            "description": " The cloned event"
-          }
         ]
       },
       "type": "function",
@@ -101,14 +77,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Integer} The horizontal mouse position in the document.",
-            "type": "Integer",
-            "description": " The horizontal mouse position in the document."
-          }
         ]
       },
       "type": "function",
@@ -134,14 +102,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Integer} The vertical mouse position in the document.",
-            "type": "Integer",
-            "description": " The vertical mouse position in the document."
           }
         ]
       },
@@ -349,14 +309,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Element} The original target",
-            "type": "Element",
-            "description": " The original target"
-          }
         ]
       },
       "type": "function",
@@ -485,7 +437,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.event.type.Mouse",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -544,7 +504,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.event.type.Mouse",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "descendants": [

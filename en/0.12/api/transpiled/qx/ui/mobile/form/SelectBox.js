@@ -111,10 +111,10 @@
       this.addListener("focus", this.blur);
       this.addListener("tap", this._onTap, this); // Selection dialog creation.
 
-      this.__selectionDialog = this._createSelectionDialog();
+      this.__P_355_0 = this._createSelectionDialog();
       this.addCssClass("gap"); // When selectionDialogs changes selection, get chosen selectedIndex from it.
 
-      this.__selectionDialog.addListener("changeSelection", this._onChangeSelection, this);
+      this.__P_355_0.addListener("changeSelection", this._onChangeSelection, this);
     },
 
     /*
@@ -177,7 +177,7 @@
       }
     },
     members: {
-      __selectionDialog: null,
+      __P_355_0: null,
       // overridden
       _getTagName: function _getTagName() {
         // No select here, see BUG #6054
@@ -204,7 +204,7 @@
        * @return {qx.ui.mobile.dialog.Menu} the SelectionDialog.
        */
       getSelectionDialog: function getSelectionDialog() {
-        return this.__selectionDialog;
+        return this.__P_355_0;
       },
 
       /**
@@ -212,7 +212,7 @@
        * @param title {String} the title to set on selection dialog.
        */
       setDialogTitle: function setDialogTitle(title) {
-        this.__selectionDialog.setTitle(title);
+        this.__P_355_0.setTitle(title);
       },
 
       /**
@@ -220,7 +220,7 @@
        * @param value {String} the value to set on the ClearButton at selection dialog.
        */
       setClearButtonLabel: function setClearButtonLabel(value) {
-        this.__selectionDialog.setClearButtonLabel(value);
+        this.__P_355_0.setClearButtonLabel(value);
       },
 
       /**
@@ -286,14 +286,14 @@
       /**
        * Refreshs selection dialogs model, and shows it.
        */
-      __showSelectionDialog: function __showSelectionDialog() {
+      __P_355_1: function __P_355_1() {
         if (this.isEnabled() == true) {
           // Set index before items, because setItems() triggers rendering.
-          this.__selectionDialog.setSelectedIndex(this.getSelection());
+          this.__P_355_0.setSelectedIndex(this.getSelection());
 
-          this.__selectionDialog.setItems(this.getModel());
+          this.__P_355_0.setItems(this.getModel());
 
-          this.__selectionDialog.show();
+          this.__P_355_0.show();
         }
       },
 
@@ -312,7 +312,7 @@
       * @param evt {qx.event.type.Tap} the handling tap event.
       */
       _onTap: function _onTap(evt) {
-        this.__showSelectionDialog(); // request focus so that it leaves previous widget
+        this.__P_355_1(); // request focus so that it leaves previous widget
         // such as text field and hide virtual keyboard.
 
 
@@ -353,13 +353,13 @@
       // property apply
       _applyNullable: function _applyNullable(value, old) {
         // Delegate nullable property.
-        this.__selectionDialog.setNullable(value);
+        this.__P_355_0.setNullable(value);
       }
     },
     destruct: function destruct() {
-      this.__selectionDialog.removeListener("changeSelection", this._onChangeSelection, this);
+      this.__P_355_0.removeListener("changeSelection", this._onChangeSelection, this);
 
-      this._disposeObjects("__selectionDialog", "__selectionDialogTitle");
+      this._disposeObjects("__P_355_0", "__P_355_2");
 
       this.removeListener("focus", this.blur);
       this.removeListener("tap", this._onTap, this);
@@ -368,4 +368,4 @@
   qx.ui.mobile.form.SelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectBox.js.map?dt=1591114986393
+//# sourceMappingURL=SelectBox.js.map?dt=1592777101316

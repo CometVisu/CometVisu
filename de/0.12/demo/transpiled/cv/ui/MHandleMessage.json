@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 359,
+        "line": 363,
         "column": 3
       }
     },
@@ -65,46 +65,154 @@
   },
   "properties": {
     "maxEntries": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximum allowed messages</p>"
+          }
+        ]
+      },
       "name": "maxEntries",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "_applyMaxEntries",
+      "init": 50,
+      "check": "Number",
+      "defaultValue": 50
     },
     "counter": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Current amount of messages</p>"
+          }
+        ]
+      },
       "name": "counter",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changedCounter",
+      "init": 0,
+      "check": "Number",
+      "defaultValue": 0
     },
     "globalSeverity": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 73,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Highest severity of the messages</p>"
+          }
+        ]
+      },
       "name": "globalSeverity",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changedGlobalSeverity",
+      "init": "normal",
+      "possibleValues": [
+        "low",
+        "normal",
+        "high",
+        "urgent"
+      ],
+      "defaultValue": "normal"
     },
     "rootElementId": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 81,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>ID of the root element of this message handler (HTML attribute 'id' value)</p>"
+          }
+        ]
+      },
       "name": "rootElementId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     },
     "messageElementId": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pattern id the message elements IDs (suffix without is,\n e.g. messages get mes<em>1, mes</em>2, … mes_ is the messageElementId)</p>"
+          }
+        ]
+      },
       "name": "messageElementId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     },
     "delegate": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      },
       "name": "delegate",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Object"
     }
   },
   "members": {
@@ -136,7 +244,7 @@
       "type": "variable",
       "access": "protected"
     },
-    "__idCounter": {
+    "_idCounter": {
       "location": {
         "start": {
           "line": 106,
@@ -144,13 +252,13 @@
         },
         "end": {
           "line": 106,
-          "column": 18
+          "column": 17
         }
       },
       "type": "variable",
-      "access": "private"
+      "access": "protected"
     },
-    "getSeverities": {
+    "getIdCounter": {
       "location": {
         "start": {
           "line": 108,
@@ -164,14 +272,28 @@
       "type": "function",
       "access": "public"
     },
-    "_updateHighestSeverity": {
+    "getSeverities": {
       "location": {
         "start": {
           "line": 112,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 114,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_updateHighestSeverity": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4
+        },
+        "end": {
+          "line": 129,
           "column": 5
         }
       },
@@ -181,11 +303,11 @@
     "getSeverityColor": {
       "location": {
         "start": {
-          "line": 127,
+          "line": 131,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 140,
           "column": 5
         }
       },
@@ -195,11 +317,11 @@
     "_applyMaxEntries": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 148,
           "column": 5
         }
       },
@@ -217,11 +339,11 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 151,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 218,
           "column": 5
         }
       },
@@ -253,11 +375,11 @@
     "getMessageIdFromEvent": {
       "location": {
         "start": {
-          "line": 223,
+          "line": 227,
           "column": 4
         },
         "end": {
-          "line": 247,
+          "line": 251,
           "column": 5
         }
       },
@@ -289,11 +411,11 @@
     "_onListTap": {
       "location": {
         "start": {
-          "line": 249,
+          "line": 253,
           "column": 4
         },
         "end": {
-          "line": 258,
+          "line": 262,
           "column": 5
         }
       },
@@ -303,11 +425,11 @@
     "_getTooltip": {
       "location": {
         "start": {
-          "line": 260,
+          "line": 264,
           "column": 4
         },
         "end": {
-          "line": 270,
+          "line": 274,
           "column": 5
         }
       },
@@ -317,11 +439,11 @@
     "clear": {
       "location": {
         "start": {
-          "line": 277,
+          "line": 281,
           "column": 4
         },
         "end": {
-          "line": 289,
+          "line": 293,
           "column": 5
         }
       },
@@ -348,20 +470,6 @@
     "getMessage": {
       "location": {
         "start": {
-          "line": 291,
-          "column": 4
-        },
-        "end": {
-          "line": 293,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "getMessages": {
-      "location": {
-        "start": {
           "line": 295,
           "column": 4
         },
@@ -373,14 +481,28 @@
       "type": "function",
       "access": "public"
     },
-    "deleteMessage": {
+    "getMessages": {
       "location": {
         "start": {
-          "line": 304,
+          "line": 299,
           "column": 4
         },
         "end": {
-          "line": 320,
+          "line": 301,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "deleteMessage": {
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4
+        },
+        "end": {
+          "line": 324,
           "column": 5
         }
       },
@@ -408,11 +530,11 @@
     "performAction": {
       "location": {
         "start": {
-          "line": 322,
+          "line": 326,
           "column": 4
         },
         "end": {
-          "line": 348,
+          "line": 352,
           "column": 5
         }
       },
@@ -819,11 +941,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 356,
+        "line": 360,
         "column": 12
       },
       "end": {
-        "line": 358,
+        "line": 362,
         "column": 3
       }
     },

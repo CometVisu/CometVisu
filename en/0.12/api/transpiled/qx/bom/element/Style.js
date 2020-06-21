@@ -154,13 +154,13 @@
     *****************************************************************************
     */
     statics: {
-      __styleNames: null,
-      __cssNames: null,
+      __P_108_0: null,
+      __P_108_1: null,
 
       /**
        * Detect vendor specific properties.
        */
-      __detectVendorProperties: function __detectVendorProperties() {
+      __P_108_2: function __P_108_2() {
         var styleNames = {
           "appearance": qx.core.Environment.get("css.appearance"),
           "userSelect": qx.core.Environment.get("css.userselect"),
@@ -170,21 +170,21 @@
           "userModify": qx.core.Environment.get("css.usermodify"),
           "boxSizing": qx.core.Environment.get("css.boxsizing")
         };
-        this.__cssNames = {};
+        this.__P_108_1 = {};
 
         for (var key in qx.lang.Object.clone(styleNames)) {
           if (!styleNames[key]) {
             delete styleNames[key];
           } else {
             if (key === 'float') {
-              this.__cssNames['cssFloat'] = key;
+              this.__P_108_1['cssFloat'] = key;
             } else {
-              this.__cssNames[key] = qx.bom.Style.getCssName(styleNames[key]);
+              this.__P_108_1[key] = qx.bom.Style.getCssName(styleNames[key]);
             }
           }
         }
 
-        this.__styleNames = styleNames;
+        this.__P_108_0 = styleNames;
       },
 
       /**
@@ -195,11 +195,11 @@
        * @return {String|null} The client-specific name of the property, or
        * <code>null</code> if it's not supported.
        */
-      __getStyleName: function __getStyleName(name) {
+      __P_108_3: function __P_108_3(name) {
         var styleName = qx.bom.Style.getPropertyName(name);
 
         if (styleName) {
-          this.__styleNames[name] = styleName;
+          this.__P_108_0[name] = styleName;
         }
 
         return styleName;
@@ -211,7 +211,7 @@
        *
        * @internal
        */
-      __mshtmlPixel: {
+      __P_108_4: {
         width: "pixelWidth",
         height: "pixelHeight",
         left: "pixelLeft",
@@ -225,7 +225,7 @@
        *
        * @internal
        */
-      __special: {
+      __P_108_5: {
         clip: qx.bom.element.Clip,
         cursor: qx.bom.element.Cursor,
         opacity: qx.bom.element.Opacity,
@@ -247,8 +247,8 @@
        */
       compile: function compile(map) {
         var html = [];
-        var special = this.__special;
-        var cssNames = this.__cssNames;
+        var special = this.__P_108_5;
+        var cssNames = this.__P_108_1;
         var name, value;
 
         for (name in map) {
@@ -260,7 +260,7 @@
           } // normalize name
 
 
-          name = this.__cssNames[name] || name; // process special properties
+          name = this.__P_108_1[name] || name; // process special properties
 
           if (special[name]) {
             html.push(special[name].compile(value));
@@ -316,7 +316,7 @@
        * @return {Boolean} Whether the property id supported
        */
       isPropertySupported: function isPropertySupported(propertyName) {
-        return this.__special[propertyName] || this.__styleNames[propertyName] || propertyName in document.documentElement.style;
+        return this.__P_108_5[propertyName] || this.__P_108_0[propertyName] || propertyName in document.documentElement.style;
       },
 
       /** @type {Integer} Computed value of a style property. Compared to the cascaded style,
@@ -345,12 +345,12 @@
        */
       set: function set(element, name, value, smart) {
         // normalize name
-        name = this.__styleNames[name] || this.__getStyleName(name) || name; // special handling for specific properties
+        name = this.__P_108_0[name] || this.__P_108_3(name) || name; // special handling for specific properties
         // through this good working switch this part costs nothing when
         // processing non-smart properties
 
-        if (smart !== false && this.__special[name]) {
-          this.__special[name].set(element, value);
+        if (smart !== false && this.__P_108_5[name]) {
+          this.__P_108_5[name].set(element, value);
         } else {
           element.style[name] = value !== null ? value : "";
         }
@@ -368,13 +368,13 @@
       setStyles: function setStyles(element, styles, smart) {
         // inline calls to "set" and "reset" because this method is very
         // performance critical!
-        var styleNames = this.__styleNames;
-        var special = this.__special;
+        var styleNames = this.__P_108_0;
+        var special = this.__P_108_5;
         var style = element.style;
 
         for (var key in styles) {
           var value = styles[key];
-          var name = styleNames[key] || this.__getStyleName(key) || key;
+          var name = styleNames[key] || this.__P_108_3(key) || key;
 
           if (value === undefined) {
             if (smart !== false && special[name]) {
@@ -402,10 +402,10 @@
        */
       reset: function reset(element, name, smart) {
         // normalize name
-        name = this.__styleNames[name] || this.__getStyleName(name) || name; // special handling for specific properties
+        name = this.__P_108_0[name] || this.__P_108_3(name) || name; // special handling for specific properties
 
-        if (smart !== false && this.__special[name]) {
-          this.__special[name].reset(element);
+        if (smart !== false && this.__P_108_5[name]) {
+          this.__P_108_5[name].reset(element);
         } else {
           element.style[name] = "";
         }
@@ -439,10 +439,10 @@
        */
       get: function get(element, name, mode, smart) {
         // normalize name
-        name = this.__styleNames[name] || this.__getStyleName(name) || name; // special handling
+        name = this.__P_108_0[name] || this.__P_108_3(name) || name; // special handling
 
-        if (smart !== false && this.__special[name]) {
-          return this.__special[name].get(element, mode);
+        if (smart !== false && this.__P_108_5[name]) {
+          return this.__P_108_5[name].get(element, mode);
         } // switch to right mode
 
 
@@ -499,7 +499,7 @@
               } // Try to convert non-pixel values
 
 
-              var pixel = this.__mshtmlPixel[name];
+              var pixel = this.__P_108_4[name];
 
               if (pixel && pixel in element.style) {
                 // Backup local and runtime style
@@ -524,10 +524,10 @@
       }
     },
     defer: function defer(statics) {
-      statics.__detectVendorProperties();
+      statics.__P_108_2();
     }
   });
   qx.bom.element.Style.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Style.js.map?dt=1591114964844
+//# sourceMappingURL=Style.js.map?dt=1592777079922

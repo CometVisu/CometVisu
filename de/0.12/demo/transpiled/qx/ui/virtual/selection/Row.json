@@ -83,23 +83,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "event {qx.event.type.Pointer} The pointer event",
-            "paramName": "event",
-            "description": " The pointer event",
-            "type": "qx.event.type.Pointer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Object|null} The resulting selectable",
-            "type": "Object|null",
-            "description": " The resulting selectable"
-          }
         ]
       },
       "type": "function",
@@ -125,23 +108,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "all {Boolean} true for all selectables, false for the\n   selectables the user can interactively select",
-            "paramName": "all",
-            "description": " true for all selectables, false for the\n   selectables the user can interactively select",
-            "type": "Boolean"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Array} A list of items",
-            "type": "Array",
-            "description": " A list of items"
           }
         ]
       },
@@ -169,30 +135,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "item1 {var} First item",
-            "paramName": "item1",
-            "description": " First item",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "item2 {var} Second item",
-            "paramName": "item2",
-            "description": " Second item",
-            "type": "var"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Array} List of items",
-            "type": "Array",
-            "description": " List of items"
-          }
         ]
       },
       "type": "function",
@@ -218,14 +160,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var} The first selectable item",
-            "type": "var",
-            "description": " The first selectable item"
           }
         ]
       },
@@ -253,14 +187,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var} The last selectable item",
-            "type": "var",
-            "description": " The last selectable item"
-          }
         ]
       },
       "type": "function",
@@ -286,30 +212,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "item {var} Any item",
-            "paramName": "item",
-            "description": " Any item",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "relation {String} A valid relation: <code>above</code>,\n    <code>right</code>, <code>under</code> or <code>left</code>",
-            "paramName": "relation",
-            "description": " A valid relation: <code>above</code>,\n    <code>right</code>, <code>under</code> or <code>left</code>",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var} The related item",
-            "type": "var",
-            "description": " The related item"
           }
         ]
       },
@@ -337,24 +239,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "lead {var} The current lead item",
-            "paramName": "lead",
-            "description": " The current lead item",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "up {Boolean?false} Which page key was pressed:\n   <code>up</code> or <code>down</code>.",
-            "paramName": "up",
-            "description": " Which page key was pressed:\n   <code>up</code> or <code>down</code>.",
-            "optional": true,
-            "defaultValue": "false",
-            "type": "Boolean"
-          }
         ]
       },
       "type": "function",
@@ -380,23 +264,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "item {var} Any item",
-            "paramName": "item",
-            "description": " Any item",
-            "type": "var"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} A valid hashcode",
-            "type": "String",
-            "description": " A valid hashcode"
           }
         ]
       },
@@ -424,15 +291,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "item {var} Any item",
-            "paramName": "item",
-            "description": " Any item",
-            "type": "var"
-          }
         ]
       },
       "type": "function",
@@ -459,23 +317,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "item {var} Any item",
-            "paramName": "item",
-            "description": " Any item",
-            "type": "var"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} A map with the keys <code>left</code> and <code>right</code>.",
-            "type": "Map",
-            "description": " A map with the keys <code>left</code> and <code>right</code>."
-          }
         ]
       },
       "type": "function",
@@ -501,23 +342,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "item {var} Any item",
-            "paramName": "item",
-            "description": " Any item",
-            "type": "var"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} A map with the keys <code>top</code> and <code>bottom</code>.",
-            "type": "Map",
-            "description": " A map with the keys <code>top</code> and <code>bottom</code>."
           }
         ]
       },
@@ -587,7 +411,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -646,7 +478,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMode": {
       "type": "function",

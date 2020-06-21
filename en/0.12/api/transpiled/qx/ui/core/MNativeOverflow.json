@@ -33,25 +33,92 @@
   "type": "mixin",
   "properties": {
     "overflowX": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should have horizontal scrollbars.</p>"
+          }
+        ]
+      },
       "name": "overflowX",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyOverflowX",
+      "nullable": true,
+      "allowNull": true,
+      "possibleValues": [
+        "hidden",
+        "visible",
+        "scroll",
+        "auto"
+      ]
     },
     "overflowY": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 52,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should have vertical scrollbars.</p>"
+          }
+        ]
+      },
       "name": "overflowY",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyOverflowY",
+      "nullable": true,
+      "allowNull": true,
+      "possibleValues": [
+        "hidden",
+        "visible",
+        "scroll",
+        "auto"
+      ]
     },
     "overflow": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Overflow group property</p>"
+          }
+        ]
+      },
       "name": "overflow",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "group": [
+        "overflowX",
+        "overflowY"
+      ]
     }
   },
   "members": {

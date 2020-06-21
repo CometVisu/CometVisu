@@ -17,6 +17,7 @@
       "qx.io.request.Xhr": {},
       "qx.core.Init": {},
       "qx.xml.Document": {},
+      "cv.Version": {},
       "qx.util.Request": {},
       "qx.util.LibraryManager": {},
       "qx.locale.Manager": {},
@@ -42,7 +43,7 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__loadQueue = new qx.data.Array();
+      this.__P_74_0 = new qx.data.Array();
     },
 
     /*
@@ -51,17 +52,17 @@
     ******************************************************
     */
     members: {
-      __loadQueue: null,
-      __doneCallback: null,
-      __doneCallbackContext: null,
-      __xml: null,
+      __P_74_0: null,
+      __P_74_1: null,
+      __P_74_2: null,
+      __P_74_3: null,
 
       /**
        * Load a config file
        */
       load: function load(callback, context) {
-        this.__doneCallback = callback;
-        this.__doneCallbackContext = context; // get the data once the page was loaded
+        this.__P_74_1 = callback;
+        this.__P_74_2 = context; // get the data once the page was loaded
 
         var uri = qx.util.ResourceManager.getInstance().toUri('config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml');
 
@@ -76,7 +77,7 @@
         this.debug("Requesting " + uri);
         var ajaxRequest = new qx.io.request.Xhr(uri);
 
-        this.__loadQueue.push(uri);
+        this.__P_74_0.push(uri);
 
         ajaxRequest.set({
           accept: "application/xml",
@@ -94,10 +95,10 @@
             xml = qx.xml.Document.fromString(xml);
           }
 
-          this.__xml = xml;
+          this.__P_74_3 = xml;
           xml.querySelectorAll('include').forEach(this.loadInclude, this);
 
-          this.__loadQueue.remove(ajaxRequest.getUrl());
+          this.__P_74_0.remove(ajaxRequest.getUrl());
 
           if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
             this.configError("parsererror");
@@ -107,9 +108,11 @@
 
             if (xmlLibVersion === undefined) {
               xmlLibVersion = -1;
+            } else {
+              xmlLibVersion = parseInt(xmlLibVersion);
             }
 
-            if (cv.Config.libraryCheck && xmlLibVersion < cv.Config.libraryVersion) {
+            if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
               this.configError("libraryerror");
             } else {
               if (req.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
@@ -135,12 +138,12 @@
             ajaxRequest.setUserData("noDemo", false);
             ajaxRequest.setUserData("origUrl", ajaxRequest.getUrl());
 
-            this.__loadQueue.remove(ajaxRequest.getUrl());
+            this.__P_74_0.remove(ajaxRequest.getUrl());
 
             var demoUrl = ajaxRequest.getUrl().replace('config/', 'demo/');
             ajaxRequest.setUrl(demoUrl);
 
-            this.__loadQueue.push(demoUrl);
+            this.__P_74_0.push(demoUrl);
 
             ajaxRequest.send();
           } else if (!qx.util.Request.isSuccessful(status)) {
@@ -163,7 +166,7 @@
           url = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + url;
         }
 
-        this.__loadQueue.push(url);
+        this.__P_74_0.push(url);
 
         var xhr = new qx.io.request.Xhr(url);
         xhr.set({
@@ -179,7 +182,7 @@
             parent.appendChild(child);
           });
 
-          this.__loadQueue.remove(url);
+          this.__P_74_0.remove(url);
 
           this._checkQueue();
         }, this);
@@ -200,8 +203,8 @@
        * @private
        */
       _checkQueue: function _checkQueue() {
-        if (this.__loadQueue.length === 0) {
-          this.__doneCallback.call(this.__doneCallbackContext, this.__xml);
+        if (this.__P_74_0.length === 0) {
+          this.__P_74_1.call(this.__P_74_2, this.__P_74_3);
 
           this.dispose();
         }
@@ -219,18 +222,18 @@
 
         switch (textStatus) {
           case 'parsererror':
-            message = qx.locale.Manager.tr("Invalid config file!") + '<br/><a href="check_config.php?config=' + configSuffix + '">' + qx.locale.Manager.tr("Please check!") + '</a>';
+            message = qx.locale.Manager.tr("Invalid config file!") + '<br/><a href="#" onclick="showConfigErrors(\'' + configSuffix + '\')">' + qx.locale.Manager.tr("Please check!") + '</a>';
             break;
 
           case 'libraryerror':
-            var link = window.location.href;
+            var link = window.location.href.split('#')[0];
 
             if (link.indexOf('?') <= 0) {
               link = link + '?';
             }
 
             link = link + '&libraryCheck=false';
-            message = qx.locale.Manager.tr('Config file has wrong library version!').translate().toString() + '<br/>' + qx.locale.Manager.tr('This can cause problems with your configuration').translate().toString() + '</br>' + '<p>' + qx.locale.Manager.tr("You can run the %1Configuration Upgrader%2.", '<a href="./upgrade/index.php?config=' + configSuffix + '">', '</a>').translate().toString() + '</br>' + qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>').translate().toString() + '</p>';
+            message = qx.locale.Manager.tr('Config file has wrong library version!').translate().toString() + '<br/>' + qx.locale.Manager.tr('This can cause problems with your configuration').translate().toString() + '</br>' + '<p>' + qx.locale.Manager.tr("You can run the %1Configuration Upgrader%2.", '<a href="#" onclick="showConfigErrors(\'' + configSuffix + '\', {upgradeVersion: true})">', '</a>').translate().toString() + '</br>' + qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>').translate().toString() + '</p>';
             break;
 
           case 'filenotfound':
@@ -269,12 +272,12 @@
     */
     destruct: function destruct() {
       // remove references
-      this.__xml = null;
-      this.__doneCallback = null;
-      this.__doneCallbackContext = null;
+      this.__P_74_3 = null;
+      this.__P_74_1 = null;
+      this.__P_74_2 = null;
     }
   });
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1591115574056
+//# sourceMappingURL=ConfigLoader.js.map?dt=1592778964886

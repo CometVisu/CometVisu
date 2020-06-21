@@ -114,27 +114,27 @@
     ******************************************************
     */
     members: {
-      __domElement: null,
-      __timer: null,
-      __opened: false,
+      __P_73_0: null,
+      __P_73_1: null,
+      __P_73_2: false,
 
       /**
        * Attach to dom element and style it
        */
       _init: function _init() {
-        if (!this.__domElement) {
+        if (!this.__P_73_0) {
           // check if there is one (might be restored from cache)
-          this.__domElement = document.querySelector(this.getRootElementId());
+          this.__P_73_0 = document.querySelector(this.getRootElementId());
 
-          if (!this.__domElement) {
-            this.__domElement = qx.dom.Element.create("div", {
+          if (!this.__P_73_0) {
+            this.__P_73_0 = qx.dom.Element.create("div", {
               "id": this.getRootElementId()
             });
           }
         }
 
         if (document.querySelectorAll(this.getRootElementId()).length === 0) {
-          document.body.appendChild(this.__domElement);
+          document.body.appendChild(this.__P_73_0);
         }
 
         if (document.querySelectorAll("#ToastTemplate").length === 0) {
@@ -146,8 +146,8 @@
           document.body.appendChild(template);
         }
 
-        this._list = new qx.data.controller.website.List(this._messages, this.__domElement, "ToastTemplate");
-        qx.event.Registration.addListener(this.__domElement, "tap", this._onListTap, this);
+        this._list = new qx.data.controller.website.List(this._messages, this.__P_73_0, "ToastTemplate");
+        qx.event.Registration.addListener(this.__P_73_0, "tap", this._onListTap, this);
       },
       _performAction: function _performAction(message) {
         if (message.actions) {
@@ -165,20 +165,20 @@
     ******************************************************
     */
     destruct: function destruct() {
-      if (this.__timer) {
-        this.__timer.stop();
+      if (this.__P_73_1) {
+        this.__P_73_1.stop();
 
-        this.__timer = null;
+        this.__P_73_1 = null;
       }
 
-      if (this.__domElement) {
-        this.__domElement.parentNode.removeChild(this.__domElement);
+      if (this.__P_73_0) {
+        this.__P_73_0.parentNode.removeChild(this.__P_73_0);
 
-        this.__domElement = null;
+        this.__P_73_0 = null;
       }
     }
   });
   cv.ui.ToastManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToastManager.js.map?dt=1591115574006
+//# sourceMappingURL=ToastManager.js.map?dt=1592778964836

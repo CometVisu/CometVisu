@@ -33,81 +33,303 @@
   "type": "mixin",
   "properties": {
     "borderImage": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Base image URL.</p>"
+          }
+        ]
+      },
       "name": "borderImage",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderImage",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     },
     "sliceTop": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The top slice line of the base image. The slice properties divide the\n image into nine regions, which define the corner, edge and the center\n images.</p>"
+          }
+        ]
+      },
       "name": "sliceTop",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderImage",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
     },
     "sliceRight": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The right slice line of the base image. The slice properties divide the\n image into nine regions, which define the corner, edge and the center\n images.</p>"
+          }
+        ]
+      },
       "name": "sliceRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderImage",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
     },
     "sliceBottom": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The bottom slice line of the base image. The slice properties divide the\n image into nine regions, which define the corner, edge and the center\n images.</p>"
+          }
+        ]
+      },
       "name": "sliceBottom",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderImage",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
     },
     "sliceLeft": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The left slice line of the base image. The slice properties divide the\n image into nine regions, which define the corner, edge and the center\n images.</p>"
+          }
+        ]
+      },
       "name": "sliceLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderImage",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
     },
     "slice": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4
+        },
+        "end": {
+          "line": 101,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The slice properties divide the image into nine regions, which define the\n corner, edge and the center images.</p>"
+          }
+        ]
+      },
       "name": "slice",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "group": [
+        "sliceTop",
+        "sliceRight",
+        "sliceBottom",
+        "sliceLeft"
+      ]
     },
     "repeatX": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4
+        },
+        "end": {
+          "line": 122,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This property specifies how the images for the sides and the middle part\n of the border image are scaled and tiled horizontally.\n Values have the following meanings:\n </p>\n<ul>\n   <li><strong>stretch</strong>: The image is stretched to fill the area.</li>\n   <li><strong>repeat</strong>: The image is tiled (repeated) to fill the area.</li>\n   <li><strong>round</strong>: The image is tiled (repeated) to fill the area. If it does not\n    fill the area with a whole number of tiles, the image is rescaled so\n    that it does.</li>\n </ul>"
+          }
+        ]
+      },
       "name": "repeatX",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderImage",
+      "init": "stretch",
+      "possibleValues": [
+        "stretch",
+        "repeat",
+        "round"
+      ],
+      "defaultValue": "stretch"
     },
     "repeatY": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4
+        },
+        "end": {
+          "line": 143,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This property specifies how the images for the sides and the middle part\n of the border image are scaled and tiled vertically.\n Values have the following meanings:\n </p>\n<ul>\n   <li><strong>stretch</strong>: The image is stretched to fill the area.</li>\n   <li><strong>repeat</strong>: The image is tiled (repeated) to fill the area.</li>\n   <li><strong>round</strong>: The image is tiled (repeated) to fill the area. If it does not\n    fill the area with a whole number of tiles, the image is rescaled so\n    that it does.</li>\n </ul>"
+          }
+        ]
+      },
       "name": "repeatY",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderImage",
+      "init": "stretch",
+      "possibleValues": [
+        "stretch",
+        "repeat",
+        "round"
+      ],
+      "defaultValue": "stretch"
     },
     "repeat": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4
+        },
+        "end": {
+          "line": 154,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This property specifies how the images for the sides and the middle part\n of the border image are scaled and tiled.</p>"
+          }
+        ]
+      },
       "name": "repeat",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "group": [
+        "repeatX",
+        "repeatY"
+      ]
     },
     "fill": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4
+        },
+        "end": {
+          "line": 166,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If set to <code>false</code>, the center image will be omitted and only\n the border will be drawn.</p>"
+          }
+        ]
+      },
       "name": "fill",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBorderImage",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
     },
     "borderImageMode": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4
+        },
+        "end": {
+          "line": 181,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configures the border image mode. Supported values:\n </p>\n<ul>\n   <li>horizontal: left and right border images</li>\n   <li>vertical: top and bottom border images</li>\n   <li>grid: border images for all edges</li>\n </ul>"
+          }
+        ]
+      },
       "name": "borderImageMode",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": "grid",
+      "possibleValues": [
+        "horizontal",
+        "vertical",
+        "grid"
+      ],
+      "defaultValue": "grid"
     }
   },
   "members": {

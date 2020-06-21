@@ -33,18 +33,55 @@
   "type": "mixin",
   "properties": {
     "qxOwner": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      },
       "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyQxOwner",
+      "nullable": true,
+      "allowNull": true,
+      "check": "qx.core.Object"
     },
     "qxObjectId": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 51,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      },
       "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyQxObjectId",
+      "nullable": true,
+      "allowNull": true
     }
   },
   "members": {

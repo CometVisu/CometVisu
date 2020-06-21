@@ -250,13 +250,13 @@
     */
     members: {
       /** Saved last value in case invalid text is entered */
-      __lastValidValue: null,
+      __P_299_0: null,
 
       /** Whether the page-up button has been pressed */
-      __pageUpMode: false,
+      __P_299_1: false,
 
       /** Whether the page-down button has been pressed */
-      __pageDownMode: false,
+      __P_299_2: false,
 
       /*
       ---------------------------------------------------------------------------
@@ -444,7 +444,7 @@
         this._updateButtons(); // save the last valid value of the spinner
 
 
-        this.__lastValidValue = value; // write the value of the spinner to the textfield
+        this.__P_299_0 = value; // write the value of the spinner to the textfield
 
         if (value !== null) {
           if (this.getNumberFormat()) {
@@ -505,7 +505,7 @@
           numberFormat.addListener("changeNumberFormat", this._onChangeNumberFormat, this);
         }
 
-        this._applyValue(this.__lastValidValue, undefined);
+        this._applyValue(this.__P_299_0, undefined);
       },
 
       /**
@@ -572,7 +572,7 @@
         switch (e.getKeyIdentifier()) {
           case "PageUp":
             // mark that the spinner is in page mode and process further
-            this.__pageUpMode = true;
+            this.__P_299_1 = true;
 
           case "Up":
             this.getChildControl("upbutton").press();
@@ -580,7 +580,7 @@
 
           case "PageDown":
             // mark that the spinner is in page mode and process further
-            this.__pageDownMode = true;
+            this.__P_299_2 = true;
 
           case "Down":
             this.getChildControl("downbutton").press();
@@ -606,7 +606,7 @@
         switch (e.getKeyIdentifier()) {
           case "PageUp":
             this.getChildControl("upbutton").release();
-            this.__pageUpMode = false;
+            this.__P_299_1 = false;
             break;
 
           case "Up":
@@ -615,7 +615,7 @@
 
           case "PageDown":
             this.getChildControl("downbutton").release();
-            this.__pageDownMode = false;
+            this.__P_299_2 = false;
             break;
 
           case "Down":
@@ -685,14 +685,14 @@
           } // If value is the same than before, call directly _applyValue()
 
 
-          if (value === this.__lastValidValue) {
-            this._applyValue(this.__lastValidValue);
+          if (value === this.__P_299_0) {
+            this._applyValue(this.__P_299_0);
           } else {
             this.setValue(value);
           }
         } else {
           // otherwise, reset the last valid value
-          this._applyValue(this.__lastValidValue, undefined);
+          this._applyValue(this.__P_299_0, undefined);
         }
       },
 
@@ -733,7 +733,7 @@
        *
        */
       _countUp: function _countUp() {
-        if (this.__pageUpMode) {
+        if (this.__P_299_1) {
           var newValue = this.getValue() + this.getPageStep();
         } else {
           var newValue = this.getValue() + this.getSingleStep();
@@ -756,7 +756,7 @@
        *
        */
       _countDown: function _countDown() {
-        if (this.__pageDownMode) {
+        if (this.__P_299_2) {
           var newValue = this.getValue() - this.getPageStep();
         } else {
           var newValue = this.getValue() - this.getSingleStep();
@@ -804,4 +804,4 @@
   qx.ui.form.Spinner.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spinner.js.map?dt=1591115593692
+//# sourceMappingURL=Spinner.js.map?dt=1592778984898

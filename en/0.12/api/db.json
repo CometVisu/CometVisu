@@ -5,16 +5,16 @@
     "qxl.versionlabel": "1.0.0-beta.3",
     "osparc.theme": "0.4.13",
     "iconfont.material": "0.1.4",
+    "com.zenesis.qx.upload": "1.0.4",
     "dialog": "2.1.1",
     "qxl.apiviewer": "1.0.0-beta.7",
-    "com.zenesis.qx.upload": "1.0.4",
     "qx": "6.0.0-beta-20200515-0957"
   },
-  "environmentHash": "2ac162bbe7a78d518a76ad94ad3419824e5c2835",
-  "compilerVersion": "1.0.0-beta.20200515-1215",
+  "environmentHash": "d2ac698c1e0d9dd5e34a72e75b107532662176aa",
+  "compilerVersion": "1.0.0-beta.20200605-1953",
   "classInfo": {
     "cv.Application": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -55,8 +55,8 @@
         "qx.util.ResourceManager": {},
         "qx.event.Timer": {},
         "qx.event.message.Bus": {},
-        "cv.data.FileWorker": {},
         "cv.core.notifications.Router": {},
+        "cv.data.FileWorker": {},
         "qx.core.Init": {},
         "qx.core.WindowError": {},
         "qx.dev.StackTrace": {},
@@ -100,56 +100,56 @@
       "translations": [
         {
           "msgid": "Validating configuration file...",
-          "lineNo": 278
+          "lineNo": 318
         },
         {
           "msgid": "The %1 configuration has no errors!",
-          "lineNo": 299
+          "lineNo": 339
         },
         {
           "msgid": "The %1 configuration has %2 errors!",
-          "lineNo": 307
+          "lineNo": 347
         },
         {
           "msgid": "Show errors",
-          "lineNo": 311
+          "lineNo": 351
         },
         {
           "msgid": "Please describe what you have done until the error occured?",
-          "lineNo": 332
+          "lineNo": 369
         },
         {
           "msgid": "An error occured",
-          "lineNo": 399
+          "lineNo": 436
         },
         {
           "msgid": "Enable on reload:",
-          "lineNo": 405
-        },
-        {
-          "msgid": "Reload",
-          "lineNo": 410
-        },
-        {
-          "msgid": "Please do not forget to attach the downloaded Logfile to this ticket.",
           "lineNo": 442
         },
         {
+          "msgid": "Reload",
+          "lineNo": 447
+        },
+        {
+          "msgid": "Please do not forget to attach the downloaded Logfile to this ticket.",
+          "lineNo": 479
+        },
+        {
           "msgid": "Action recording",
-          "lineNo": 449
+          "lineNo": 486
         },
         {
           "msgid": "Send error to sentry.io",
-          "lineNo": 460
+          "lineNo": 497
         },
         {
           "msgid": "Error reporting (on sentry.io)",
-          "lineNo": 474
+          "lineNo": 511
         }
       ]
     },
     "cv.core.notifications.ActionRegistry": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -164,7 +164,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.IActionHandler": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -178,7 +178,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.IHandler": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -192,7 +192,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.Router": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -226,7 +226,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.SpeechHandler": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -251,7 +251,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.actions.AbstractActionHandler": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -268,7 +268,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.actions.Link": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -298,7 +298,7 @@
       "hasDefer": true
     },
     "cv.core.notifications.actions.Option": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -325,7 +325,7 @@
       "hasDefer": true
     },
     "cv.core.notifications.actions.OptionGroup": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -352,7 +352,7 @@
       "hasDefer": true
     },
     "cv.parser.MetaParser": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -390,7 +390,7 @@
       ]
     },
     "cv.parser.WidgetParser": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -414,7 +414,7 @@
       "hasDefer": null
     },
     "cv.parser.widgets.Audio": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -431,7 +431,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Break": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -448,7 +448,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.DesignToggle": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -465,7 +465,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Group": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -482,7 +482,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Image": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -499,7 +499,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.ImageTrigger": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -516,7 +516,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Info": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -533,7 +533,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.InfoAction": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -550,7 +550,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.InfoTrigger": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -567,7 +567,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Line": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -584,7 +584,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.MultiTrigger": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -601,7 +601,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.NavBar": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -619,7 +619,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.NotificationCenterBadge": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -636,7 +636,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Page": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -655,7 +655,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.PageJump": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -672,7 +672,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.PushButton": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -689,7 +689,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Refresh": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -706,7 +706,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Reload": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -723,7 +723,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Rgb": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -740,7 +740,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Roundbar": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -757,7 +757,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Slide": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -775,7 +775,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Switch": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -792,7 +792,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Text": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -809,7 +809,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Toggle": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -826,7 +826,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Trigger": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -843,7 +843,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Unknown": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -861,7 +861,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.UrlTrigger": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -878,7 +878,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Video": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -895,7 +895,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.Web": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -914,7 +914,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.WgPluginInfo": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -931,7 +931,7 @@
       "hasDefer": true
     },
     "cv.parser.widgets.WidgetInfoAction": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -948,7 +948,7 @@
       "hasDefer": true
     },
     "cv.plugins.CalendarList": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1000,7 +1000,7 @@
       ]
     },
     "cv.plugins.Clock": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1057,7 +1057,7 @@
       ]
     },
     "cv.plugins.ColorChooser": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1121,7 +1121,7 @@
       ]
     },
     "cv.plugins.Gauge": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1181,7 +1181,7 @@
       ]
     },
     "cv.plugins.Link": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1223,7 +1223,7 @@
       "hasDefer": true
     },
     "cv.plugins.MobileMenu": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1282,7 +1282,7 @@
       ]
     },
     "cv.plugins.OpenweatherMap": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1341,7 +1341,7 @@
       ]
     },
     "cv.plugins.PowerSpectrum": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1400,7 +1400,7 @@
       ]
     },
     "cv.plugins.Rss": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1455,7 +1455,7 @@
       ]
     },
     "cv.plugins.RssLog": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1527,7 +1527,7 @@
       ]
     },
     "cv.plugins.Speech": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1560,7 +1560,7 @@
       "hasDefer": true
     },
     "cv.plugins.Strftime": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1609,7 +1609,7 @@
       ]
     },
     "cv.plugins.Svg": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1661,7 +1661,7 @@
       ]
     },
     "cv.plugins.Timeout": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1692,7 +1692,7 @@
       "hasDefer": true
     },
     "cv.plugins.UpnpController": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1750,7 +1750,7 @@
       ]
     },
     "cv.plugins.diagram.AbstractDiagram": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1822,7 +1822,7 @@
       ]
     },
     "cv.plugins.diagram.Diagram": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1854,7 +1854,7 @@
       "hasDefer": true
     },
     "cv.plugins.diagram.Info": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1889,7 +1889,7 @@
       "hasDefer": true
     },
     "cv.plugins.openhab.Openhab": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.ui.root.Inline": {
@@ -1929,7 +1929,7 @@
       "hasDefer": true
     },
     "cv.plugins.openhab.Settings": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -1983,7 +1983,7 @@
       ]
     },
     "cv.plugins.openhab.renderer.Single": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2014,7 +2014,7 @@
       "hasDefer": null
     },
     "cv.plugins.tr064.CallList": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2073,7 +2073,7 @@
       ]
     },
     "cv.transforms.Knx": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2090,7 +2090,7 @@
       "hasDefer": true
     },
     "cv.transforms.OpenHab": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2110,7 +2110,7 @@
       "hasDefer": true
     },
     "cv.ui.manager.IActionHandler": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -2124,7 +2124,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.Main": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2171,6 +2171,7 @@
         "cv.ui.manager.model.FileItem": {},
         "cv.ui.manager.model.Preferences": {},
         "cv.ui.manager.control.FileHandlerRegistry": {},
+        "cv.ui.manager.editor.AbstractEditor": {},
         "cv.ui.manager.core.GlobalState": {},
         "cv.ui.manager.model.OpenFile": {},
         "dialog.Dialog": {},
@@ -2239,60 +2240,60 @@
         },
         {
           "msgid": "Cannot load config template",
-          "lineNo": 197
+          "lineNo": 201
         },
         {
           "msgid": "Cannot load file content",
-          "lineNo": 207
+          "lineNo": 211
         },
         {
           "msgid": "Cannot open file: \"%1\"",
-          "lineNo": 407
+          "lineNo": 416
         },
         {
           "msgid": "This file has unsaved changes that will be lost when you close it. Do you really want to close the file?",
-          "lineNo": 452
+          "lineNo": 488
         },
         {
           "msgid": "This file has not been saved on the backend yet. It will be lost when you close it. Do you really want to close the file?",
-          "lineNo": 454
+          "lineNo": 490
         },
         {
           "msgid": "Unsaved changes",
-          "lineNo": 466
+          "lineNo": 502
         },
         {
           "msgid": "Please enter the name of the new configuration (without \"visu_config_\" at the beginning and \".xml\" at the end)",
-          "lineNo": 606
+          "lineNo": 644
         },
         {
           "msgid": "A configuration with this name already exists.",
-          "lineNo": 607
+          "lineNo": 645
         },
         {
           "msgid": "Please enter the file name.",
-          "lineNo": 609
+          "lineNo": 647
         },
         {
           "msgid": "A file with this name already exists.",
-          "lineNo": 610
+          "lineNo": 648
         },
         {
           "msgid": "Please enter the folder name.",
-          "lineNo": 612
+          "lineNo": 650
         },
         {
           "msgid": "A folder with this name already exists.",
-          "lineNo": 613
+          "lineNo": 651
         },
         {
           "msgid": "Folder has been created",
-          "lineNo": 660
+          "lineNo": 698
         }
       ]
     },
     "cv.ui.manager.MenuBar": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2437,7 +2438,7 @@
       ]
     },
     "cv.ui.manager.Start": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2485,36 +2486,36 @@
       "translations": [
         {
           "msgid": "List mode",
-          "lineNo": 157
+          "lineNo": 161
         },
         {
           "msgid": "Preview mode",
-          "lineNo": 163
+          "lineNo": 167
         },
         {
           "msgid": "Configurations",
-          "lineNo": 180
+          "lineNo": 184
         },
         {
           "msgid": "Demo configurations",
-          "lineNo": 223
+          "lineNo": 227
         },
         {
           "msgid": "Media files",
-          "lineNo": 248
+          "lineNo": 252
         },
         {
           "msgid": "Miscellaneous",
-          "lineNo": 278
+          "lineNo": 282
         },
         {
           "msgid": "Hidden configuration",
-          "lineNo": 313
+          "lineNo": 317
         }
       ]
     },
     "cv.ui.manager.ToolBar": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2565,7 +2566,7 @@
       ]
     },
     "cv.ui.manager.contextmenu.FileItem": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2686,7 +2687,7 @@
       ]
     },
     "cv.ui.manager.contextmenu.GlobalFileItem": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2715,7 +2716,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.ActionDispatcher": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2737,7 +2738,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.FileController": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2857,12 +2858,12 @@
         {
           "msgid": "%1 error found in %2!",
           "msgid_plural": "%1 errors found in %2!",
-          "lineNo": 269
+          "lineNo": 272
         }
       ]
     },
     "cv.ui.manager.control.FileHandlerRegistry": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2914,7 +2915,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.IFileEventHandler": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -2928,7 +2929,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.MFileEventHandler": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -2945,7 +2946,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.core.GlobalState": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2963,7 +2964,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.core.IconAtom": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -2987,7 +2988,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.AbstractEditor": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3022,16 +3023,16 @@
       "translations": [
         {
           "msgid": "File has been created",
-          "lineNo": 114
+          "lineNo": 127
         },
         {
           "msgid": "File has been saved",
-          "lineNo": 114
+          "lineNo": 127
         }
       ]
     },
     "cv.ui.manager.editor.Config": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3101,7 +3102,7 @@
       ]
     },
     "cv.ui.manager.editor.Diff": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3120,7 +3121,11 @@
           "usage": "dynamic"
         },
         "cv.ui.manager.model.CompareFiles": {},
+        "cv.ui.manager.model.FileItem": {},
+        "qx.event.message.Bus": {},
         "cv.ui.manager.snackbar.Controller": {},
+        "dialog.Dialog": {},
+        "qx.bom.Viewport": {},
         "cv.ui.manager.editor.AbstractEditor": {
           "load": true
         },
@@ -3142,11 +3147,47 @@
         {
           "msgid": "File compare",
           "lineNo": 24
+        },
+        {
+          "msgid": "The following changes have been made",
+          "lineNo": 145
+        },
+        {
+          "msgid": "You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.",
+          "lineNo": 147
+        },
+        {
+          "msgid": "No changes have been made",
+          "lineNo": 148
+        },
+        {
+          "msgid": "Config file has been upgraded to the current library version.",
+          "lineNo": 150
+        },
+        {
+          "msgid": "Click \"Apply\" if you want to save the changes and reload the browser.",
+          "lineNo": 151
+        },
+        {
+          "msgid": "Click \"Check\" if you want to check the changes. You have to save the changes and reload your browser yourself in this case.",
+          "lineNo": 152
+        },
+        {
+          "msgid": "Upgrade successful",
+          "lineNo": 159
+        },
+        {
+          "msgid": "Apply",
+          "lineNo": 162
+        },
+        {
+          "msgid": "Check",
+          "lineNo": 163
         }
       ]
     },
     "cv.ui.manager.editor.IEditor": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -3160,7 +3201,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.Source": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3197,6 +3238,7 @@
         "cv.ui.manager.snackbar.Controller": {},
         "dialog.Dialog": {},
         "qx.xml.Document": {},
+        "cv.util.ConfigUpgrader": {},
         "qx.ui.core.Widget": {
           "load": true
         },
@@ -3215,28 +3257,28 @@
         },
         {
           "msgid": "Hidden config is invalid, please correct the errors",
-          "lineNo": 250
+          "lineNo": 251
         },
         {
           "msgid": "Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?",
-          "lineNo": 253
+          "lineNo": 254
         },
         {
           "msgid": "Confirm saving with warnings",
-          "lineNo": 257
+          "lineNo": 258
         },
         {
           "msgid": "Saving hidden config failed with error %1 (%2)",
-          "lineNo": 269
+          "lineNo": 270
         },
         {
           "msgid": "Hidden config has been saved",
-          "lineNo": 271
+          "lineNo": 272
         }
       ]
     },
     "cv.ui.manager.editor.Worker": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3259,7 +3301,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.Xml": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3311,7 +3353,7 @@
       ]
     },
     "cv.ui.manager.editor.completion.CometVisu": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3331,7 +3373,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.completion.Config": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3360,7 +3402,7 @@
       ]
     },
     "cv.ui.manager.editor.data.Provider": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3386,7 +3428,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.FileListItem": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3454,16 +3496,16 @@
         },
         {
           "msgid": "Download file",
-          "lineNo": 402
+          "lineNo": 407
         },
         {
           "msgid": "Other file actions",
-          "lineNo": 411
+          "lineNo": 416
         }
       ]
     },
     "cv.ui.manager.form.FileTabItem": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3500,7 +3542,7 @@
       ]
     },
     "cv.ui.manager.form.OptionListItem": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3546,7 +3588,7 @@
       ]
     },
     "cv.ui.manager.form.SectionListItem": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3588,7 +3630,7 @@
       ]
     },
     "cv.ui.manager.model.BackupFolder": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3615,7 +3657,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.CompareFiles": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3640,7 +3682,7 @@
       ]
     },
     "cv.ui.manager.model.FileItem": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3690,7 +3732,7 @@
       ]
     },
     "cv.ui.manager.model.Message": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3707,7 +3749,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.OpenFile": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3725,7 +3767,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.Preferences": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3745,7 +3787,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.config.Option": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3763,7 +3805,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.config.Section": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3785,7 +3827,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.snackbar.Controller": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3821,7 +3863,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.snackbar.Message": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3849,7 +3891,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.tree.FileSystem": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3890,7 +3932,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.tree.VirtualFsItem": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3916,7 +3958,7 @@
       ]
     },
     "cv.ui.manager.upload.MDragUpload": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -3942,7 +3984,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.upload.UploadMgr": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -3997,7 +4039,7 @@
       ]
     },
     "cv.ui.manager.viewer.AbstractViewer": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4032,7 +4074,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.viewer.Config": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4060,6 +4102,7 @@
         "qx.util.LibraryManager": {},
         "cv.ui.manager.snackbar.Controller": {},
         "qx.ui.embed.Iframe": {},
+        "qx.ui.basic.Atom": {},
         "qx.ui.core.Widget": {
           "load": true
         },
@@ -4074,16 +4117,20 @@
       "translations": [
         {
           "msgid": "Config viewer",
-          "lineNo": 37
+          "lineNo": 53
         },
         {
           "msgid": "%1 is no configuration file",
-          "lineNo": 61
+          "lineNo": 105
+        },
+        {
+          "msgid": "This configuration has been opened in another window. When you close this file, the window will also be closed. Click here top jump the the window.",
+          "lineNo": 150
         }
       ]
     },
     "cv.ui.manager.viewer.Folder": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4191,7 +4238,7 @@
       ]
     },
     "cv.ui.manager.viewer.Icons": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4250,7 +4297,7 @@
       ]
     },
     "cv.ui.manager.viewer.Image": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4291,7 +4338,7 @@
       ]
     },
     "cv.ui.manager.viewer.SvgIcon": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4314,7 +4361,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Audio": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4358,7 +4405,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Break": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4381,7 +4428,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.DesignToggle": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4438,7 +4485,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Group": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4485,7 +4532,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Image": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4531,7 +4578,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.ImageTrigger": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4590,7 +4637,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Info": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4633,7 +4680,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.InfoAction": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4680,7 +4727,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.InfoTrigger": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4737,7 +4784,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Line": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4775,7 +4822,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.MultiTrigger": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4828,7 +4875,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.NavBar": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4876,7 +4923,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.NotificationCenterBadge": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4917,7 +4964,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Page": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -4979,7 +5026,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PageJump": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5032,7 +5079,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PageLink": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5072,7 +5119,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PushButton": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5120,7 +5167,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Refresh": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5171,7 +5218,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Reload": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5215,7 +5262,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Rgb": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5260,7 +5307,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Roundbar": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5305,7 +5352,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Slide": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5362,7 +5409,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Switch": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5409,7 +5456,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Text": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5447,7 +5494,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Toggle": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5498,7 +5545,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Trigger": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5553,7 +5600,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Unknown": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5580,7 +5627,7 @@
       ]
     },
     "cv.ui.structure.pure.UrlTrigger": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5634,7 +5681,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Video": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5672,7 +5719,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Web": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5720,7 +5767,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.WgPluginInfo": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5765,7 +5812,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.WidgetInfoAction": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -5812,7 +5859,7 @@
       "hasDefer": true
     },
     "cv.theme.Dark": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -29926,7 +29973,7 @@
       }
     },
     "cv.Config": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -29973,7 +30020,7 @@
       "hasDefer": true
     },
     "cv.io.Mockup": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30003,7 +30050,7 @@
       "hasDefer": null
     },
     "cv.io.Client": {
-      "mtime": "2020-06-02T16:18:28.386Z",
+      "mtime": "2020-06-21T22:00:17.286Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -30027,7 +30074,7 @@
       "hasDefer": null
     },
     "cv.report.Record": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30056,7 +30103,7 @@
       "hasDefer": null
     },
     "cv.Version": {
-      "mtime": "2020-06-02T16:20:32.200Z",
+      "mtime": "2020-06-21T22:02:29.508Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30070,7 +30117,7 @@
       "hasDefer": null
     },
     "cv.TemplateEngine": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -30184,7 +30231,7 @@
       ]
     },
     "cv.log.appender.Native": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.log.appender.Util": {
@@ -30210,7 +30257,7 @@
       "hasDefer": true
     },
     "cv.data.FileWorker": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30231,7 +30278,7 @@
       "hasDefer": null
     },
     "cv.ui.PopupHandler": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30249,7 +30296,7 @@
       "hasDefer": true
     },
     "cv.util.Location": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30263,7 +30310,7 @@
       "hasDefer": null
     },
     "cv.ui.layout.ResizeHandler": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30290,7 +30337,7 @@
       "hasDefer": null
     },
     "cv.ConfigCache": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -30323,7 +30370,7 @@
       "hasDefer": null
     },
     "cv.ui.NotificationCenter": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30389,7 +30436,7 @@
       ]
     },
     "cv.ui.ToastManager": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30432,7 +30479,7 @@
       "hasDefer": null
     },
     "cv.util.ConfigLoader": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30451,6 +30498,7 @@
         "qx.io.request.Xhr": {},
         "qx.core.Init": {},
         "qx.xml.Document": {},
+        "cv.Version": {},
         "qx.util.Request": {},
         "qx.util.LibraryManager": {},
         "qx.locale.Manager": {},
@@ -30463,44 +30511,44 @@
       "translations": [
         {
           "msgid": "Config-File Error!",
-          "lineNo": 172
+          "lineNo": 174
         },
         {
           "msgid": "Invalid config file!",
-          "lineNo": 176
+          "lineNo": 178
         },
         {
           "msgid": "Please check!",
-          "lineNo": 176
+          "lineNo": 178
         },
         {
           "msgid": "Config file has wrong library version!",
-          "lineNo": 184
-        },
-        {
-          "msgid": "This can cause problems with your configuration",
-          "lineNo": 185
-        },
-        {
-          "msgid": "You can run the %1Configuration Upgrader%2.",
           "lineNo": 186
         },
         {
-          "msgid": "Or you can start without upgrading %1with possible configuration problems%2",
+          "msgid": "This can cause problems with your configuration",
           "lineNo": 187
         },
         {
+          "msgid": "You can run the %1Configuration Upgrader%2.",
+          "lineNo": 188
+        },
+        {
+          "msgid": "Or you can start without upgrading %1with possible configuration problems%2",
+          "lineNo": 189
+        },
+        {
           "msgid": "404: Config file not found. Neither as normal config (%1) nor as demo config (%2).",
-          "lineNo": 190
+          "lineNo": 192
         },
         {
           "msgid": "Unhandled error of type \"%1\"",
-          "lineNo": 193
+          "lineNo": 195
         }
       ]
     },
     "cv.util.ScriptLoader": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30545,7 +30593,7 @@
       ]
     },
     "cv.data.Model": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30562,7 +30610,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.WidgetFactory": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30579,7 +30627,7 @@
       "hasDefer": null
     },
     "cv.IconHandler": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30601,7 +30649,7 @@
       "hasDefer": null
     },
     "cv.Transform": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30616,7 +30664,7 @@
       "hasDefer": null
     },
     "cv.ui.common.BasicUpdate": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -30639,7 +30687,7 @@
       "hasDefer": null
     },
     "cv.ui.layout.Manager": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30657,7 +30705,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.AbstractWidget": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30705,7 +30753,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Refresh": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -30727,7 +30775,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Update": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -30750,7 +30798,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Operate": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -30767,7 +30815,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasChildren": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -30790,7 +30838,7 @@
       "hasDefer": null
     },
     "cv.util.String": {
-      "mtime": "2020-06-02T16:18:28.558Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30804,7 +30852,7 @@
       "hasDefer": null
     },
     "cv.util.Tree": {
-      "mtime": "2020-06-02T16:18:28.558Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30819,7 +30867,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.AbstractBasicWidget": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30842,7 +30890,7 @@
       "hasDefer": null
     },
     "cv.util.IconTools": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -30878,7 +30926,7 @@
       ]
     },
     "cv.io.rest.Client": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31037,7 +31085,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Images": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31075,8 +31123,34 @@
       "implement": [],
       "hasDefer": null
     },
+    "cv.util.ConfigUpgrader": {
+      "mtime": "2020-06-21T22:00:17.454Z",
+      "libraryName": "cv",
+      "dependsOn": {
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "qx.core.Object": {
+          "load": true
+        },
+        "qx.xml.Document": {},
+        "cv.Version": {},
+        "qx.locale.Manager": {}
+      },
+      "extends": "qx.core.Object",
+      "include": [],
+      "implement": [],
+      "hasDefer": null,
+      "translations": [
+        {
+          "msgid": "Upgrader from version %1 not implemented",
+          "lineNo": 59
+        }
+      ]
+    },
     "cv.IconConfig": {
-      "mtime": "2020-06-02T16:18:28.546Z",
+      "mtime": "2020-06-21T22:00:17.446Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31184,7 +31258,7 @@
       "hasDefer": null
     },
     "cv.svg.Element": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31205,7 +31279,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasAnimatedButton": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -31220,7 +31294,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HandleLongpress": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -31234,7 +31308,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.IPage": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Interface": {
@@ -31248,7 +31322,7 @@
       "hasDefer": null
     },
     "cv.util.LimitedRateUpdateAnimator": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31266,7 +31340,7 @@
       "hasDefer": null
     },
     "cv.util.Function": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31280,7 +31354,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Color": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -31297,7 +31371,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Decoration": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -31314,7 +31388,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Font": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -31331,7 +31405,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Icon": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -31352,7 +31426,7 @@
       }
     },
     "cv.theme.dark.Appearance": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Theme": {
@@ -31626,7 +31700,7 @@
       "hasDefer": null
     },
     "cv.io.transport.LongPolling": {
-      "mtime": "2020-06-02T16:18:28.386Z",
+      "mtime": "2020-06-21T22:00:17.286Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -31648,7 +31722,7 @@
       "hasDefer": null
     },
     "cv.io.transport.Sse": {
-      "mtime": "2020-06-02T16:18:28.386Z",
+      "mtime": "2020-06-21T22:00:17.286Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -31666,7 +31740,7 @@
       "hasDefer": null
     },
     "cv.io.parser.Json": {
-      "mtime": "2020-06-02T16:18:28.386Z",
+      "mtime": "2020-06-21T22:00:17.286Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -31681,7 +31755,7 @@
       "hasDefer": null
     },
     "cv.report.utils.MXhrHook": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -31697,7 +31771,7 @@
       "hasDefer": null
     },
     "cv.ui.PagePartsHandler": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31719,7 +31793,7 @@
       "hasDefer": null
     },
     "cv.ui.PageHandler": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.core.Environment": {
@@ -31758,7 +31832,7 @@
       "hasDefer": null
     },
     "cv.ui.TrickOMatic": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31774,7 +31848,7 @@
       "hasDefer": null
     },
     "cv.ui.Popup": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31806,7 +31880,7 @@
       ]
     },
     "cv.ui.layout.States": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31823,7 +31897,7 @@
       "hasDefer": null
     },
     "cv.ui.MHandleMessage": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -31842,7 +31916,7 @@
       "hasDefer": null
     },
     "cv.ui.BodyBlocker": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -31863,7 +31937,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasAddress": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -31877,7 +31951,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasStyling": {
-      "mtime": "2020-06-02T16:18:28.550Z",
+      "mtime": "2020-06-21T22:00:17.450Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Mixin": {
@@ -32670,7 +32744,7 @@
       "hasDefer": null
     },
     "cv.io.Watchdog": {
-      "mtime": "2020-06-02T16:18:28.386Z",
+      "mtime": "2020-06-21T22:00:17.286Z",
       "libraryName": "cv.io",
       "dependsOn": {
         "qx.Class": {
@@ -32687,7 +32761,7 @@
       "hasDefer": null
     },
     "cv.ui.util.ProgressBar": {
-      "mtime": "2020-06-02T16:18:28.554Z",
+      "mtime": "2020-06-21T22:00:17.454Z",
       "libraryName": "cv",
       "dependsOn": {
         "qx.Class": {
@@ -33571,6 +33645,542 @@
       "include": [],
       "implement": [],
       "hasDefer": null
+    }
+  },
+  "manglePrefixes": {
+    "nextPrefix": 532,
+    "classPrefixes": {
+      "cv.Application": "__P_2_",
+      "cv.core.notifications.ActionRegistry": "__P_3_",
+      "cv.core.notifications.Router": "__P_4_",
+      "cv.core.notifications.SpeechHandler": "__P_5_",
+      "cv.parser.MetaParser": "__P_6_",
+      "cv.parser.WidgetParser": "__P_7_",
+      "cv.plugins.ColorChooser": "__P_8_",
+      "cv.plugins.Gauge": "__P_9_",
+      "cv.plugins.MobileMenu": "__P_10_",
+      "cv.plugins.OpenweatherMap": "__P_11_",
+      "cv.plugins.PowerSpectrum": "__P_12_",
+      "cv.plugins.RssLog": "__P_13_",
+      "cv.plugins.Speech": "__P_14_",
+      "cv.plugins.Strftime": "__P_15_",
+      "cv.plugins.Timeout": "__P_16_",
+      "cv.plugins.UpnpController": "__P_17_",
+      "cv.plugins.diagram.AbstractDiagram": "__P_18_",
+      "cv.plugins.diagram.Diagram": "__P_19_",
+      "cv.plugins.openhab.Openhab": "__P_20_",
+      "cv.plugins.openhab.Settings": "__P_21_",
+      "cv.plugins.tr064.CallList": "__P_22_",
+      "cv.ui.manager.Main": "__P_23_",
+      "cv.ui.manager.MenuBar": "__P_24_",
+      "cv.ui.manager.Start": "__P_25_",
+      "cv.ui.manager.ToolBar": "__P_26_",
+      "cv.ui.manager.control.FileController": "__P_27_",
+      "cv.ui.manager.control.FileHandlerRegistry": "__P_28_",
+      "cv.ui.manager.editor.Config": "__P_29_",
+      "cv.ui.manager.editor.Source": "__P_30_",
+      "cv.ui.manager.editor.Xml": "__P_31_",
+      "cv.ui.manager.editor.completion.Config": "__P_32_",
+      "cv.ui.manager.editor.data.Provider": "__P_33_",
+      "cv.ui.manager.form.FileListItem": "__P_34_",
+      "cv.ui.manager.form.OptionListItem": "__P_35_",
+      "cv.ui.manager.form.SectionListItem": "__P_36_",
+      "cv.ui.manager.model.FileItem": "__P_37_",
+      "cv.ui.manager.model.OpenFile": "__P_38_",
+      "cv.ui.manager.tree.FileSystem": "__P_39_",
+      "cv.ui.manager.tree.VirtualFsItem": "__P_40_",
+      "cv.ui.manager.upload.MDragUpload": "__P_41_",
+      "cv.ui.manager.viewer.SvgIcon": "__P_42_",
+      "cv.ui.structure.pure.Image": "__P_43_",
+      "cv.ui.structure.pure.ImageTrigger": "__P_44_",
+      "cv.ui.structure.pure.InfoTrigger": "__P_45_",
+      "cv.ui.structure.pure.NotificationCenterBadge": "__P_46_",
+      "cv.ui.structure.pure.Page": "__P_47_",
+      "cv.ui.structure.pure.Roundbar": "__P_48_",
+      "cv.ui.structure.pure.Slide": "__P_49_",
+      "cv.ui.structure.pure.UrlTrigger": "__P_50_",
+      "cv.ui.structure.pure.WgPluginInfo": "__P_51_",
+      "qx.Annotation": "__P_52_",
+      "qx.Bootstrap": "__P_53_",
+      "qx.Class": "__P_54_",
+      "qx.Interface": "__P_55_",
+      "qx.Mixin": "__P_56_",
+      "qx.Part": "__P_57_",
+      "qx.Promise": "__P_58_",
+      "qx.Theme": "__P_59_",
+      "qx.application.AbstractGui": "__P_60_",
+      "qx.application.Mobile": "__P_61_",
+      "qx.application.Routing": "__P_62_",
+      "qx.bom.AnimationFrame": "__P_63_",
+      "qx.bom.Blocker": "__P_64_",
+      "qx.bom.Flash": "__P_65_",
+      "qx.bom.Font": "__P_66_",
+      "qx.bom.FullScreen": "__P_67_",
+      "qx.bom.HashHistory": "__P_68_",
+      "qx.bom.Html": "__P_69_",
+      "qx.bom.Iframe": "__P_70_",
+      "qx.bom.IframeHistory": "__P_71_",
+      "qx.bom.Input": "__P_72_",
+      "qx.bom.Label": "__P_73_",
+      "qx.bom.MediaQuery": "__P_74_",
+      "qx.bom.NativeHistory": "__P_75_",
+      "qx.bom.Notification": "__P_76_",
+      "qx.bom.PageVisibility": "__P_77_",
+      "qx.bom.Selection": "__P_78_",
+      "qx.bom.Shortcut": "__P_79_",
+      "qx.bom.Storage": "__P_80_",
+      "qx.bom.Style": "__P_81_",
+      "qx.bom.Viewport": "__P_82_",
+      "qx.bom.WebWorker": "__P_83_",
+      "qx.bom.Window": "__P_84_",
+      "qx.bom.client.Browser": "__P_85_",
+      "qx.bom.client.Css": "__P_86_",
+      "qx.bom.client.Device": "__P_87_",
+      "qx.bom.client.Engine": "__P_88_",
+      "qx.bom.client.Flash": "__P_89_",
+      "qx.bom.client.Locale": "__P_90_",
+      "qx.bom.client.OperatingSystem": "__P_91_",
+      "qx.bom.client.Pdfjs": "__P_92_",
+      "qx.bom.client.Plugin": "__P_93_",
+      "qx.bom.client.Stylesheet": "__P_94_",
+      "qx.bom.element.Animation": "__P_95_",
+      "qx.bom.element.AnimationCss": "__P_96_",
+      "qx.bom.element.AnimationHandle": "__P_97_",
+      "qx.bom.element.AnimationJs": "__P_98_",
+      "qx.bom.element.Attribute": "__P_99_",
+      "qx.bom.element.Background": "__P_100_",
+      "qx.bom.element.BoxSizing": "__P_101_",
+      "qx.bom.element.Class": "__P_102_",
+      "qx.bom.element.Cursor": "__P_103_",
+      "qx.bom.element.Decoration": "__P_104_",
+      "qx.bom.element.Dimension": "__P_105_",
+      "qx.bom.element.Location": "__P_106_",
+      "qx.bom.element.Scroll": "__P_107_",
+      "qx.bom.element.Style": "__P_108_",
+      "qx.bom.element.Transform": "__P_109_",
+      "qx.bom.request.Jsonp": "__P_110_",
+      "qx.bom.request.Script": "__P_111_",
+      "qx.bom.request.SimpleXhr": "__P_112_",
+      "qx.bom.request.Xhr": "__P_113_",
+      "qx.bom.rest.Resource": "__P_114_",
+      "qx.bom.storage.Memory": "__P_115_",
+      "qx.bom.storage.UserData": "__P_116_",
+      "qx.bom.storage.Web": "__P_117_",
+      "qx.bom.webfonts.Manager": "__P_118_",
+      "qx.bom.webfonts.Validator": "__P_119_",
+      "qx.bom.webfonts.WebFont": "__P_120_",
+      "qx.core.Aspect": "__P_121_",
+      "qx.core.Assert": "__P_122_",
+      "qx.core.AssertionError": "__P_123_",
+      "qx.core.BaseInit": "__P_124_",
+      "qx.core.Environment": "__P_125_",
+      "qx.core.GlobalError": "__P_126_",
+      "qx.core.Id": "__P_127_",
+      "qx.core.Init": "__P_128_",
+      "qx.core.MEvent": "__P_129_",
+      "qx.core.MLogging": "__P_130_",
+      "qx.core.MObjectId": "__P_131_",
+      "qx.core.Object": "__P_132_",
+      "qx.core.ObjectRegistry": "__P_133_",
+      "qx.core.Property": "__P_134_",
+      "qx.core.WindowError": "__P_135_",
+      "qx.data.Array": "__P_136_",
+      "qx.data.SingleValueBinding": "__P_137_",
+      "qx.data.controller.Form": "__P_138_",
+      "qx.data.controller.List": "__P_139_",
+      "qx.data.controller.MSelection": "__P_140_",
+      "qx.data.controller.Object": "__P_141_",
+      "qx.data.controller.Tree": "__P_142_",
+      "qx.data.controller.website.List": "__P_143_",
+      "qx.data.marshal.Json": "__P_144_",
+      "qx.data.marshal.MEventBubbling": "__P_145_",
+      "qx.data.store.Json": "__P_146_",
+      "qx.data.store.Offline": "__P_147_",
+      "qx.data.store.Rest": "__P_148_",
+      "qx.dev.FakeServer": "__P_149_",
+      "qx.dev.Profile": "__P_150_",
+      "qx.dev.StackTrace": "__P_151_",
+      "qx.dev.unit.JsUnitTestResult": "__P_152_",
+      "qx.dev.unit.MMock": "__P_153_",
+      "qx.dev.unit.MRequirements": "__P_154_",
+      "qx.dev.unit.MTestLoader": "__P_155_",
+      "qx.dev.unit.MeasurementResult": "__P_156_",
+      "qx.dev.unit.RequirementError": "__P_157_",
+      "qx.dev.unit.TestCase": "__P_158_",
+      "qx.dev.unit.TestLoader": "__P_159_",
+      "qx.dev.unit.TestLoaderMobile": "__P_160_",
+      "qx.dev.unit.TestResult": "__P_161_",
+      "qx.dom.Element": "__P_162_",
+      "qx.event.AcceleratingTimer": "__P_163_",
+      "qx.event.Emitter": "__P_164_",
+      "qx.event.GlobalError": "__P_165_",
+      "qx.event.Idle": "__P_166_",
+      "qx.event.Manager": "__P_167_",
+      "qx.event.Messaging": "__P_168_",
+      "qx.event.Registration": "__P_169_",
+      "qx.event.Timer": "__P_170_",
+      "qx.event.Utils": "__P_171_",
+      "qx.event.dispatch.AbstractBubbling": "__P_172_",
+      "qx.event.dispatch.MouseCapture": "__P_173_",
+      "qx.event.handler.Appear": "__P_174_",
+      "qx.event.handler.Application": "__P_175_",
+      "qx.event.handler.DragDrop": "__P_176_",
+      "qx.event.handler.ElementResize": "__P_177_",
+      "qx.event.handler.Focus": "__P_178_",
+      "qx.event.handler.Gesture": "__P_179_",
+      "qx.event.handler.GestureCore": "__P_180_",
+      "qx.event.handler.Input": "__P_181_",
+      "qx.event.handler.Keyboard": "__P_182_",
+      "qx.event.handler.Mouse": "__P_183_",
+      "qx.event.handler.Offline": "__P_184_",
+      "qx.event.handler.Orientation": "__P_185_",
+      "qx.event.handler.OrientationCore": "__P_186_",
+      "qx.event.handler.Pointer": "__P_187_",
+      "qx.event.handler.PointerCore": "__P_188_",
+      "qx.event.handler.Touch": "__P_189_",
+      "qx.event.handler.TouchCore": "__P_190_",
+      "qx.event.handler.Transition": "__P_191_",
+      "qx.event.handler.UserAction": "__P_192_",
+      "qx.event.handler.Window": "__P_193_",
+      "qx.event.message.Bus": "__P_194_",
+      "qx.event.type.Data": "__P_195_",
+      "qx.event.type.Mouse": "__P_196_",
+      "qx.event.type.Orientation": "__P_197_",
+      "qx.event.type.Touch": "__P_198_",
+      "qx.html.Blocker": "__P_199_",
+      "qx.html.Canvas": "__P_200_",
+      "qx.html.Element": "__P_201_",
+      "qx.html.Flash": "__P_202_",
+      "qx.html.Iframe": "__P_203_",
+      "qx.html.Image": "__P_204_",
+      "qx.html.Input": "__P_205_",
+      "qx.html.Label": "__P_206_",
+      "qx.io.ImageLoader": "__P_207_",
+      "qx.io.part.ClosurePart": "__P_208_",
+      "qx.io.part.Package": "__P_209_",
+      "qx.io.part.Part": "__P_210_",
+      "qx.io.remote.Exchange": "__P_211_",
+      "qx.io.remote.Request": "__P_212_",
+      "qx.io.remote.RequestQueue": "__P_213_",
+      "qx.io.remote.Response": "__P_214_",
+      "qx.io.remote.Rpc": "__P_215_",
+      "qx.io.remote.transport.Iframe": "__P_216_",
+      "qx.io.remote.transport.Script": "__P_217_",
+      "qx.io.remote.transport.XmlHttp": "__P_218_",
+      "qx.io.request.AbstractRequest": "__P_219_",
+      "qx.io.request.authentication.Basic": "__P_220_",
+      "qx.io.rest.Resource": "__P_221_",
+      "qx.lang.Object": "__P_222_",
+      "qx.lang.String": "__P_223_",
+      "qx.locale.Date": "__P_224_",
+      "qx.locale.LocalizedString": "__P_225_",
+      "qx.locale.Manager": "__P_226_",
+      "qx.log.Logger": "__P_227_",
+      "qx.log.appender.Console": "__P_228_",
+      "qx.log.appender.Element": "__P_229_",
+      "qx.log.appender.Formatter": "__P_230_",
+      "qx.log.appender.NodeConsole": "__P_231_",
+      "qx.log.appender.RhinoConsole": "__P_232_",
+      "qx.log.appender.RhinoFile": "__P_233_",
+      "qx.module.Css": "__P_234_",
+      "qx.module.Event": "__P_235_",
+      "qx.module.Manipulating": "__P_236_",
+      "qx.module.MatchMedia": "__P_237_",
+      "qx.module.Placeholder": "__P_238_",
+      "qx.module.Template": "__P_239_",
+      "qx.module.TextSelection": "__P_240_",
+      "qx.module.Traversing": "__P_241_",
+      "qx.module.event.Keyboard": "__P_242_",
+      "qx.module.event.OrientationHandler": "__P_243_",
+      "qx.module.event.TouchHandler": "__P_244_",
+      "qx.theme.manager.Appearance": "__P_245_",
+      "qx.theme.manager.Color": "__P_246_",
+      "qx.theme.manager.Decoration": "__P_247_",
+      "qx.theme.manager.Font": "__P_248_",
+      "qx.theme.manager.Meta": "__P_249_",
+      "qx.type.Array": "__P_250_",
+      "qx.type.BaseError": "__P_251_",
+      "qx.type.BaseString": "__P_252_",
+      "qx.ui.basic.Image": "__P_253_",
+      "qx.ui.basic.Label": "__P_254_",
+      "qx.ui.command.GroupManager": "__P_255_",
+      "qx.ui.container.Stack": "__P_256_",
+      "qx.ui.control.ColorPopup": "__P_257_",
+      "qx.ui.control.ColorSelector": "__P_258_",
+      "qx.ui.control.DateChooser": "__P_259_",
+      "qx.ui.core.Blocker": "__P_260_",
+      "qx.ui.core.ColumnData": "__P_261_",
+      "qx.ui.core.EventHandler": "__P_262_",
+      "qx.ui.core.FocusHandler": "__P_263_",
+      "qx.ui.core.LayoutItem": "__P_264_",
+      "qx.ui.core.MBlocker": "__P_265_",
+      "qx.ui.core.MContentPadding": "__P_266_",
+      "qx.ui.core.MDragDropScrolling": "__P_267_",
+      "qx.ui.core.MExecutable": "__P_268_",
+      "qx.ui.core.MMovable": "__P_269_",
+      "qx.ui.core.MMultiSelectionHandling": "__P_270_",
+      "qx.ui.core.MPlacement": "__P_271_",
+      "qx.ui.core.MRemoteChildrenHandling": "__P_272_",
+      "qx.ui.core.MResizable": "__P_273_",
+      "qx.ui.core.MSingleSelectionHandling": "__P_274_",
+      "qx.ui.core.SingleSelectionManager": "__P_275_",
+      "qx.ui.core.Widget": "__P_276_",
+      "qx.ui.core.queue.Appearance": "__P_277_",
+      "qx.ui.core.queue.Dispose": "__P_278_",
+      "qx.ui.core.queue.Layout": "__P_279_",
+      "qx.ui.core.queue.Manager": "__P_280_",
+      "qx.ui.core.queue.Visibility": "__P_281_",
+      "qx.ui.core.queue.Widget": "__P_282_",
+      "qx.ui.core.scroll.NativeScrollBar": "__P_283_",
+      "qx.ui.core.scroll.ScrollBar": "__P_284_",
+      "qx.ui.core.scroll.ScrollPane": "__P_285_",
+      "qx.ui.core.selection.Abstract": "__P_286_",
+      "qx.ui.core.selection.Widget": "__P_287_",
+      "qx.ui.decoration.Abstract": "__P_288_",
+      "qx.ui.decoration.Decorator": "__P_289_",
+      "qx.ui.decoration.MBorderImage": "__P_290_",
+      "qx.ui.decoration.MDoubleBorder": "__P_291_",
+      "qx.ui.decoration.MLinearBackgroundGradient": "__P_292_",
+      "qx.ui.embed.AbstractIframe": "__P_293_",
+      "qx.ui.embed.Canvas": "__P_294_",
+      "qx.ui.embed.Flash": "__P_295_",
+      "qx.ui.embed.Iframe": "__P_296_",
+      "qx.ui.embed.ThemedIframe": "__P_297_",
+      "qx.ui.form.AbstractField": "__P_298_",
+      "qx.ui.form.ComboBox": "__P_299_",
+      "qx.ui.form.DateField": "__P_300_",
+      "qx.ui.form.Form": "__P_301_",
+      "qx.ui.form.HoverButton": "__P_302_",
+      "qx.ui.form.List": "__P_303_",
+      "qx.ui.form.MForm": "__P_304_",
+      "qx.ui.form.MModelSelection": "__P_305_",
+      "qx.ui.form.RadioButtonGroup": "__P_306_",
+      "qx.ui.form.RadioGroup": "__P_307_",
+      "qx.ui.form.RepeatButton": "__P_308_",
+      "qx.ui.form.Resetter": "__P_309_",
+      "qx.ui.form.SelectBox": "__P_310_",
+      "qx.ui.form.Slider": "__P_311_",
+      "qx.ui.form.Spinner": "__P_312_",
+      "qx.ui.form.SplitButton": "__P_313_",
+      "qx.ui.form.TextArea": "__P_314_",
+      "qx.ui.form.VirtualComboBox": "__P_315_",
+      "qx.ui.form.VirtualSelectBox": "__P_316_",
+      "qx.ui.form.core.AbstractVirtualBox": "__P_317_",
+      "qx.ui.form.core.VirtualDropDownList": "__P_318_",
+      "qx.ui.form.validation.AsyncValidator": "__P_319_",
+      "qx.ui.form.validation.Manager": "__P_320_",
+      "qx.ui.layout.Abstract": "__P_321_",
+      "qx.ui.layout.Dock": "__P_322_",
+      "qx.ui.layout.Flow": "__P_323_",
+      "qx.ui.layout.Grid": "__P_324_",
+      "qx.ui.layout.HBox": "__P_325_",
+      "qx.ui.layout.LineSizeIterator": "__P_326_",
+      "qx.ui.layout.VBox": "__P_327_",
+      "qx.ui.list.List": "__P_328_",
+      "qx.ui.list.core.MWidgetController": "__P_329_",
+      "qx.ui.list.provider.WidgetProvider": "__P_330_",
+      "qx.ui.menu.ButtonLayout": "__P_331_",
+      "qx.ui.menu.Layout": "__P_332_",
+      "qx.ui.menu.Manager": "__P_333_",
+      "qx.ui.menu.Menu": "__P_334_",
+      "qx.ui.mobile.basic.Atom": "__P_335_",
+      "qx.ui.mobile.basic.Image": "__P_336_",
+      "qx.ui.mobile.container.Carousel": "__P_337_",
+      "qx.ui.mobile.container.Drawer": "__P_338_",
+      "qx.ui.mobile.container.MIScroll": "__P_339_",
+      "qx.ui.mobile.container.Navigation": "__P_340_",
+      "qx.ui.mobile.core.Blocker": "__P_341_",
+      "qx.ui.mobile.core.DomUpdatedHandler": "__P_342_",
+      "qx.ui.mobile.core.EventHandler": "__P_343_",
+      "qx.ui.mobile.core.MResize": "__P_344_",
+      "qx.ui.mobile.core.Root": "__P_345_",
+      "qx.ui.mobile.core.Widget": "__P_346_",
+      "qx.ui.mobile.dialog.BusyIndicator": "__P_347_",
+      "qx.ui.mobile.dialog.Manager": "__P_348_",
+      "qx.ui.mobile.dialog.Menu": "__P_349_",
+      "qx.ui.mobile.dialog.Popup": "__P_350_",
+      "qx.ui.mobile.form.Form": "__P_351_",
+      "qx.ui.mobile.form.Label": "__P_352_",
+      "qx.ui.mobile.form.MState": "__P_353_",
+      "qx.ui.mobile.form.MValue": "__P_354_",
+      "qx.ui.mobile.form.SelectBox": "__P_355_",
+      "qx.ui.mobile.form.Slider": "__P_356_",
+      "qx.ui.mobile.form.TextArea": "__P_357_",
+      "qx.ui.mobile.form.ToggleButton": "__P_358_",
+      "qx.ui.mobile.form.renderer.Single": "__P_359_",
+      "qx.ui.mobile.layout.Abstract": "__P_360_",
+      "qx.ui.mobile.layout.Card": "__P_361_",
+      "qx.ui.mobile.list.List": "__P_362_",
+      "qx.ui.mobile.list.provider.Provider": "__P_363_",
+      "qx.ui.mobile.list.renderer.Default": "__P_364_",
+      "qx.ui.mobile.list.renderer.group.Default": "__P_365_",
+      "qx.ui.mobile.page.Manager": "__P_366_",
+      "qx.ui.mobile.page.NavigationPage": "__P_367_",
+      "qx.ui.mobile.page.Page": "__P_368_",
+      "qx.ui.mobile.toolbar.ToolBar": "__P_369_",
+      "qx.ui.popup.Manager": "__P_370_",
+      "qx.ui.progressive.Progressive": "__P_371_",
+      "qx.ui.progressive.headfoot.Abstract": "__P_372_",
+      "qx.ui.progressive.headfoot.Progress": "__P_373_",
+      "qx.ui.progressive.headfoot.TableHeading": "__P_374_",
+      "qx.ui.progressive.model.Default": "__P_375_",
+      "qx.ui.progressive.renderer.table.Row": "__P_376_",
+      "qx.ui.progressive.renderer.table.Widths": "__P_377_",
+      "qx.ui.progressive.renderer.table.cell.Boolean": "__P_378_",
+      "qx.ui.progressive.renderer.table.cell.Conditional": "__P_379_",
+      "qx.ui.progressive.renderer.table.cell.Icon": "__P_380_",
+      "qx.ui.progressive.renderer.table.cell.Image": "__P_381_",
+      "qx.ui.progressive.structure.Abstract": "__P_382_",
+      "qx.ui.progressive.structure.Default": "__P_383_",
+      "qx.ui.root.Abstract": "__P_384_",
+      "qx.ui.root.Application": "__P_385_",
+      "qx.ui.root.Inline": "__P_386_",
+      "qx.ui.root.Page": "__P_387_",
+      "qx.ui.splitpane.Pane": "__P_388_",
+      "qx.ui.style.Stylesheet": "__P_389_",
+      "qx.ui.table.MTableContextMenu": "__P_390_",
+      "qx.ui.table.Table": "__P_391_",
+      "qx.ui.table.celleditor.Dynamic": "__P_392_",
+      "qx.ui.table.cellrenderer.Abstract": "__P_393_",
+      "qx.ui.table.cellrenderer.AbstractImage": "__P_394_",
+      "qx.ui.table.cellrenderer.Boolean": "__P_395_",
+      "qx.ui.table.cellrenderer.Conditional": "__P_396_",
+      "qx.ui.table.cellrenderer.Image": "__P_397_",
+      "qx.ui.table.columnmenu.Button": "__P_398_",
+      "qx.ui.table.columnmodel.Basic": "__P_399_",
+      "qx.ui.table.columnmodel.Resize": "__P_400_",
+      "qx.ui.table.columnmodel.resizebehavior.Default": "__P_401_",
+      "qx.ui.table.model.Abstract": "__P_402_",
+      "qx.ui.table.model.Filtered": "__P_403_",
+      "qx.ui.table.model.Simple": "__P_404_",
+      "qx.ui.table.pane.FocusIndicator": "__P_405_",
+      "qx.ui.table.pane.Header": "__P_406_",
+      "qx.ui.table.pane.Model": "__P_407_",
+      "qx.ui.table.pane.Pane": "__P_408_",
+      "qx.ui.table.pane.Scroller": "__P_409_",
+      "qx.ui.table.selection.Manager": "__P_410_",
+      "qx.ui.table.selection.Model": "__P_411_",
+      "qx.ui.tabview.TabView": "__P_412_",
+      "qx.ui.toolbar.Part": "__P_413_",
+      "qx.ui.toolbar.ToolBar": "__P_414_",
+      "qx.ui.tooltip.Manager": "__P_415_",
+      "qx.ui.tree.Tree": "__P_416_",
+      "qx.ui.tree.VirtualTree": "__P_417_",
+      "qx.ui.tree.core.AbstractItem": "__P_418_",
+      "qx.ui.tree.core.AbstractTreeItem": "__P_419_",
+      "qx.ui.tree.core.MWidgetController": "__P_420_",
+      "qx.ui.tree.provider.WidgetProvider": "__P_421_",
+      "qx.ui.treevirtual.SelectionManager": "__P_422_",
+      "qx.ui.treevirtual.SimpleTreeDataCellRenderer": "__P_423_",
+      "qx.ui.treevirtual.SimpleTreeDataModel": "__P_424_",
+      "qx.ui.virtual.behavior.Prefetch": "__P_425_",
+      "qx.ui.virtual.cell.AbstractImage": "__P_426_",
+      "qx.ui.virtual.cell.AbstractWidget": "__P_427_",
+      "qx.ui.virtual.cell.Boolean": "__P_428_",
+      "qx.ui.virtual.cell.Cell": "__P_429_",
+      "qx.ui.virtual.cell.CellStylesheet": "__P_430_",
+      "qx.ui.virtual.core.Axis": "__P_431_",
+      "qx.ui.virtual.core.Pane": "__P_432_",
+      "qx.ui.virtual.core.Scroller": "__P_433_",
+      "qx.ui.virtual.layer.Abstract": "__P_434_",
+      "qx.ui.virtual.layer.AbstractBackground": "__P_435_",
+      "qx.ui.virtual.layer.CellSpanManager": "__P_436_",
+      "qx.ui.virtual.layer.GridLines": "__P_437_",
+      "qx.ui.virtual.layer.HtmlCellSpan": "__P_438_",
+      "qx.ui.virtual.layer.Row": "__P_439_",
+      "qx.ui.virtual.layer.WidgetCell": "__P_440_",
+      "qx.ui.virtual.layer.WidgetCellSpan": "__P_441_",
+      "qx.ui.virtual.selection.MModel": "__P_442_",
+      "qx.ui.website.Calendar": "__P_443_",
+      "qx.ui.website.Carousel": "__P_444_",
+      "qx.ui.website.DatePicker": "__P_445_",
+      "qx.ui.website.Slider": "__P_446_",
+      "qx.ui.website.Table": "__P_447_",
+      "qx.ui.website.Tabs": "__P_448_",
+      "qx.ui.website.Widget": "__P_449_",
+      "qx.ui.window.MDesktop": "__P_450_",
+      "qx.ui.window.Manager": "__P_451_",
+      "qx.ui.window.Window": "__P_452_",
+      "qx.util.AliasManager": "__P_453_",
+      "qx.util.Base64": "__P_454_",
+      "qx.util.ColorUtil": "__P_455_",
+      "qx.util.DeferredCall": "__P_456_",
+      "qx.util.DeferredCallManager": "__P_457_",
+      "qx.util.DisposeUtil": "__P_458_",
+      "qx.util.DynamicScriptLoader": "__P_459_",
+      "qx.util.EditDistance": "__P_460_",
+      "qx.util.LibraryManager": "__P_461_",
+      "qx.util.ObjectPool": "__P_462_",
+      "qx.util.ResourceManager": "__P_463_",
+      "qx.util.ResponseParser": "__P_464_",
+      "qx.util.RingBuffer": "__P_465_",
+      "qx.util.Serializer": "__P_466_",
+      "qx.util.TimerManager": "__P_467_",
+      "qx.util.Uri": "__P_468_",
+      "qx.util.Wheel": "__P_469_",
+      "qx.util.format.DateFormat": "__P_470_",
+      "qx.util.fsm.FiniteStateMachine": "__P_471_",
+      "qx.util.fsm.State": "__P_472_",
+      "qx.util.fsm.Transition": "__P_473_",
+      "qx.util.placement.Placement": "__P_474_",
+      "qx.xml.Element": "__P_475_",
+      "cv.io.Mockup": "__P_476_",
+      "cv.io.Client": "__P_477_",
+      "cv.report.Record": "__P_478_",
+      "cv.TemplateEngine": "__P_479_",
+      "cv.ui.layout.ResizeHandler": "__P_480_",
+      "cv.ui.NotificationCenter": "__P_481_",
+      "cv.ui.ToastManager": "__P_482_",
+      "cv.util.ConfigLoader": "__P_483_",
+      "cv.util.ScriptLoader": "__P_484_",
+      "cv.data.Model": "__P_485_",
+      "cv.ui.structure.WidgetFactory": "__P_486_",
+      "cv.IconHandler": "__P_487_",
+      "cv.ui.layout.Manager": "__P_488_",
+      "cv.ui.structure.AbstractWidget": "__P_489_",
+      "cv.ui.common.Refresh": "__P_490_",
+      "cv.ui.common.Update": "__P_491_",
+      "cv.util.String": "__P_492_",
+      "cv.ui.structure.AbstractBasicWidget": "__P_493_",
+      "cv.io.rest.Client": "__P_494_",
+      "dialog.Dialog": "__P_495_",
+      "cv.util.ConfigUpgrader": "__P_496_",
+      "com.zenesis.qx.upload.UploadMgr": "__P_497_",
+      "com.zenesis.qx.upload.File": "__P_498_",
+      "cv.svg.Element": "__P_499_",
+      "cv.ui.common.HasAnimatedButton": "__P_500_",
+      "cv.util.LimitedRateUpdateAnimator": "__P_501_",
+      "qxWeb": "__P_502_",
+      "qxl.apiviewer.MWidgetRegistry": "__P_503_",
+      "qxl.apiviewer.Viewer": "__P_504_",
+      "qxl.apiviewer.Controller": "__P_505_",
+      "cv.io.transport.LongPolling": "__P_506_",
+      "cv.io.transport.Sse": "__P_507_",
+      "cv.report.utils.MXhrHook": "__P_508_",
+      "cv.ui.PageHandler": "__P_509_",
+      "cv.ui.Popup": "__P_510_",
+      "cv.ui.BodyBlocker": "__P_511_",
+      "dialog.Form": "__P_512_",
+      "com.zenesis.qx.upload.MParameters": "__P_513_",
+      "com.zenesis.qx.upload.InputElement": "__P_514_",
+      "com.zenesis.qx.upload.XhrHandler": "__P_515_",
+      "qxl.apiviewer.ui.PackageTree": "__P_516_",
+      "qxl.apiviewer.ui.SearchView": "__P_517_",
+      "qxl.apiviewer.ui.LegendView": "__P_518_",
+      "qxl.apiviewer.ClassLoader": "__P_519_",
+      "qxl.apiviewer.TabViewController": "__P_520_",
+      "qxl.apiviewer.dao.Package": "__P_521_",
+      "qxl.apiviewer.LoadingIndicator": "__P_522_",
+      "cv.io.Watchdog": "__P_523_",
+      "cv.ui.util.ProgressBar": "__P_524_",
+      "com.zenesis.qx.upload.AbstractHandler": "__P_525_",
+      "qxl.apiviewer.ui.tabview.AbstractPage": "__P_526_",
+      "qxl.apiviewer.ui.ClassViewer": "__P_527_",
+      "qxl.apiviewer.ui.AbstractViewer": "__P_528_",
+      "qxl.apiviewer.ui.panels.InfoPanel": "__P_529_",
+      "qxl.apiviewer.ui.panels.ConstantPanel": "__P_530_",
+      "qxl.apiviewer.ui.panels.PropertyPanel": "__P_531_",
+      "qxl.apiviewer.ObjectRegistry": "__P_532_"
     }
   }
 }

@@ -57,11 +57,31 @@
   },
   "properties": {
     "command": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A command called if the {@link #execute} method is called, e.g. on a\n button tap.</p>"
+          }
+        ]
+      },
       "name": "command",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changeCommand",
+      "apply": "_applyCommand",
+      "nullable": true,
+      "allowNull": true,
+      "check": "qx.ui.command.Command"
     }
   },
   "members": {

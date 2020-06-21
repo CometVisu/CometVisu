@@ -784,7 +784,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>dragScrollThresholdX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #dragScrollThresholdX}."
+          }
+        ]
+      }
     },
     "getDragScrollThresholdY": {
       "type": "function",
@@ -845,7 +853,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>dragScrollThresholdY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #dragScrollThresholdY}."
+          }
+        ]
+      }
     },
     "getDragScrollSlowDownFactor": {
       "type": "function",
@@ -906,7 +922,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>dragScrollSlowDownFactor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #dragScrollSlowDownFactor}."
+          }
+        ]
+      }
     },
     "getQxOwner": {
       "type": "function",
@@ -967,7 +991,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -1026,7 +1058,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMinWidth": {
       "type": "function",
@@ -1087,7 +1127,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>minWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minWidth}."
+          }
+        ]
+      }
     },
     "getWidth": {
       "type": "function",
@@ -1148,7 +1196,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
+          }
+        ]
+      }
     },
     "getMaxWidth": {
       "type": "function",
@@ -1209,7 +1265,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
+          }
+        ]
+      }
     },
     "getMinHeight": {
       "type": "function",
@@ -1270,7 +1334,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>minHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minHeight}."
+          }
+        ]
+      }
     },
     "getHeight": {
       "type": "function",
@@ -1331,7 +1403,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
+          }
+        ]
+      }
     },
     "getMaxHeight": {
       "type": "function",
@@ -1392,7 +1472,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
+          }
+        ]
+      }
     },
     "getAllowGrowX": {
       "type": "function",
@@ -1478,7 +1566,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowGrowX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
+          }
+        ]
+      }
     },
     "getAllowShrinkX": {
       "type": "function",
@@ -1564,7 +1660,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowShrinkX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
+          }
+        ]
+      }
     },
     "getAllowGrowY": {
       "type": "function",
@@ -1650,7 +1754,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowGrowY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
+          }
+        ]
+      }
     },
     "getAllowShrinkY": {
       "type": "function",
@@ -1736,7 +1848,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowShrinkY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
+          }
+        ]
+      }
     },
     "getAllowStretchX": {
       "type": "function",
@@ -1797,7 +1917,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
+          }
+        ]
+      }
     },
     "getAllowStretchY": {
       "type": "function",
@@ -1858,7 +1986,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowStretchY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
+          }
+        ]
+      }
     },
     "getMarginTop": {
       "type": "function",
@@ -1919,7 +2055,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginTop}."
+          }
+        ]
+      }
     },
     "getMarginRight": {
       "type": "function",
@@ -1980,7 +2124,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginRight}."
+          }
+        ]
+      }
     },
     "getMarginBottom": {
       "type": "function",
@@ -2041,7 +2193,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
+          }
+        ]
+      }
     },
     "getMarginLeft": {
       "type": "function",
@@ -2102,7 +2262,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
+          }
+        ]
+      }
     },
     "getMargin": {
       "type": "function",
@@ -2163,7 +2331,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>margin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #margin}."
+          }
+        ]
+      }
     },
     "getAlignX": {
       "type": "function",
@@ -2224,7 +2400,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ]
+      }
     },
     "getAlignY": {
       "type": "function",
@@ -2285,7 +2469,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ]
+      }
     },
     "getPaddingTop": {
       "type": "function",
@@ -2346,7 +2538,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
+          }
+        ]
+      }
     },
     "getPaddingRight": {
       "type": "function",
@@ -2407,7 +2607,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
+          }
+        ]
+      }
     },
     "getPaddingBottom": {
       "type": "function",
@@ -2468,7 +2676,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
+          }
+        ]
+      }
     },
     "getPaddingLeft": {
       "type": "function",
@@ -2529,7 +2745,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
+          }
+        ]
+      }
     },
     "getPadding": {
       "type": "function",
@@ -2590,7 +2814,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>padding</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #padding}."
+          }
+        ]
+      }
     },
     "getZIndex": {
       "type": "function",
@@ -2651,7 +2883,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>zIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #zIndex}."
+          }
+        ]
+      }
     },
     "getDecorator": {
       "type": "function",
@@ -2712,7 +2952,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>decorator</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #decorator}."
+          }
+        ]
+      }
     },
     "getBackgroundColor": {
       "type": "function",
@@ -2773,7 +3021,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ]
+      }
     },
     "getTextColor": {
       "type": "function",
@@ -2834,7 +3090,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>textColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #textColor}."
+          }
+        ]
+      }
     },
     "getFont": {
       "type": "function",
@@ -2895,7 +3159,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>font</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #font}."
+          }
+        ]
+      }
     },
     "getOpacity": {
       "type": "function",
@@ -2956,7 +3228,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>opacity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #opacity}."
+          }
+        ]
+      }
     },
     "getCursor": {
       "type": "function",
@@ -3017,7 +3297,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>cursor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cursor}."
+          }
+        ]
+      }
     },
     "getToolTip": {
       "type": "function",
@@ -3078,7 +3366,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTip}."
+          }
+        ]
+      }
     },
     "getToolTipText": {
       "type": "function",
@@ -3139,7 +3435,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTipText</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
+          }
+        ]
+      }
     },
     "getToolTipIcon": {
       "type": "function",
@@ -3200,7 +3504,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTipIcon</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
+          }
+        ]
+      }
     },
     "getBlockToolTip": {
       "type": "function",
@@ -3286,7 +3598,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>blockToolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
+          }
+        ]
+      }
     },
     "getShowToolTipWhenDisabled": {
       "type": "function",
@@ -3372,7 +3692,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
+          }
+        ]
+      }
     },
     "getVisibility": {
       "type": "function",
@@ -3433,7 +3761,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ]
+      }
     },
     "getEnabled": {
       "type": "function",
@@ -3519,7 +3855,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ]
+      }
     },
     "getAnonymous": {
       "type": "function",
@@ -3605,7 +3949,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ]
+      }
     },
     "getTabIndex": {
       "type": "function",
@@ -3666,7 +4018,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>tabIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
+          }
+        ]
+      }
     },
     "getFocusable": {
       "type": "function",
@@ -3752,7 +4112,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>focusable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #focusable}."
+          }
+        ]
+      }
     },
     "getKeepFocus": {
       "type": "function",
@@ -3838,7 +4206,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>keepFocus</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
+          }
+        ]
+      }
     },
     "getKeepActive": {
       "type": "function",
@@ -3924,7 +4300,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>keepActive</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepActive}."
+          }
+        ]
+      }
     },
     "getDraggable": {
       "type": "function",
@@ -4010,7 +4394,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>draggable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #draggable}."
+          }
+        ]
+      }
     },
     "getDroppable": {
       "type": "function",
@@ -4096,7 +4488,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>droppable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #droppable}."
+          }
+        ]
+      }
     },
     "getSelectable": {
       "type": "function",
@@ -4182,7 +4582,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>selectable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selectable}."
+          }
+        ]
+      }
     },
     "getContextMenu": {
       "type": "function",
@@ -4243,7 +4651,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>contextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
+          }
+        ]
+      }
     },
     "getNativeContextMenu": {
       "type": "function",
@@ -4329,7 +4745,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>nativeContextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
+          }
+        ]
+      }
     },
     "getAppearance": {
       "type": "function",
@@ -4390,7 +4814,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>appearance</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #appearance}."
+          }
+        ]
+      }
     },
     "getInitiallyHiddenColumns": {
       "type": "function",
@@ -4451,7 +4883,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>initiallyHiddenColumns</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #initiallyHiddenColumns}."
+          }
+        ]
+      }
     },
     "getSelectionModel": {
       "type": "function",
@@ -4512,7 +4952,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>selectionModel</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selectionModel}."
+          }
+        ]
+      }
     },
     "getTableModel": {
       "type": "function",
@@ -4573,7 +5021,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>tableModel</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tableModel}."
+          }
+        ]
+      }
     },
     "getRowHeight": {
       "type": "function",
@@ -4634,7 +5090,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>rowHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rowHeight}."
+          }
+        ]
+      }
     },
     "getForceLineHeight": {
       "type": "function",
@@ -4720,7 +5184,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>forceLineHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #forceLineHeight}."
+          }
+        ]
+      }
     },
     "getHeaderCellsVisible": {
       "type": "function",
@@ -4806,7 +5278,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>headerCellsVisible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #headerCellsVisible}."
+          }
+        ]
+      }
     },
     "getHeaderCellHeight": {
       "type": "function",
@@ -4867,7 +5347,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>headerCellHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #headerCellHeight}."
+          }
+        ]
+      }
     },
     "getStatusBarVisible": {
       "type": "function",
@@ -4953,7 +5441,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>statusBarVisible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #statusBarVisible}."
+          }
+        ]
+      }
     },
     "getAdditionalStatusBarText": {
       "type": "function",
@@ -5014,7 +5510,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>additionalStatusBarText</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #additionalStatusBarText}."
+          }
+        ]
+      }
     },
     "getColumnVisibilityButtonVisible": {
       "type": "function",
@@ -5100,7 +5604,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>columnVisibilityButtonVisible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #columnVisibilityButtonVisible}."
+          }
+        ]
+      }
     },
     "getMetaColumnCounts": {
       "type": "function",
@@ -5161,7 +5673,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>metaColumnCounts</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #metaColumnCounts}."
+          }
+        ]
+      }
     },
     "getFocusCellOnPointerMove": {
       "type": "function",
@@ -5247,7 +5767,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>focusCellOnPointerMove</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #focusCellOnPointerMove}."
+          }
+        ]
+      }
     },
     "getRowFocusChangeModifiesSelection": {
       "type": "function",
@@ -5333,7 +5861,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>rowFocusChangeModifiesSelection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rowFocusChangeModifiesSelection}."
+          }
+        ]
+      }
     },
     "getShowCellFocusIndicator": {
       "type": "function",
@@ -5419,7 +5955,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showCellFocusIndicator</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showCellFocusIndicator}."
+          }
+        ]
+      }
     },
     "getContextMenuFromDataCellsOnly": {
       "type": "function",
@@ -5505,7 +6049,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>contextMenuFromDataCellsOnly</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contextMenuFromDataCellsOnly}."
+          }
+        ]
+      }
     },
     "getKeepFirstVisibleRowComplete": {
       "type": "function",
@@ -5591,7 +6143,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>keepFirstVisibleRowComplete</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepFirstVisibleRowComplete}."
+          }
+        ]
+      }
     },
     "getAlwaysUpdateCells": {
       "type": "function",
@@ -5677,7 +6237,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alwaysUpdateCells</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alwaysUpdateCells}."
+          }
+        ]
+      }
     },
     "getResetSelectionOnHeaderTap": {
       "type": "function",
@@ -5763,7 +6331,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>resetSelectionOnHeaderTap</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resetSelectionOnHeaderTap}."
+          }
+        ]
+      }
     },
     "getDataRowRenderer": {
       "type": "function",
@@ -5824,7 +6400,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>dataRowRenderer</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #dataRowRenderer}."
+          }
+        ]
+      }
     },
     "getModalCellEditorPreOpenFunction": {
       "type": "function",
@@ -5885,7 +6469,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>modalCellEditorPreOpenFunction</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #modalCellEditorPreOpenFunction}."
+          }
+        ]
+      }
     },
     "getExcludeScrollerScrollbarsIfNotNeeded": {
       "type": "function",
@@ -5971,7 +6563,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>excludeScrollerScrollbarsIfNotNeeded</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #excludeScrollerScrollbarsIfNotNeeded}."
+          }
+        ]
+      }
     },
     "getNewColumnMenu": {
       "type": "function",
@@ -6032,7 +6632,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>newColumnMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #newColumnMenu}."
+          }
+        ]
+      }
     },
     "getNewSelectionManager": {
       "type": "function",
@@ -6093,7 +6701,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>newSelectionManager</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #newSelectionManager}."
+          }
+        ]
+      }
     },
     "getNewSelectionModel": {
       "type": "function",
@@ -6154,7 +6770,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>newSelectionModel</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #newSelectionModel}."
+          }
+        ]
+      }
     },
     "getNewTableColumnModel": {
       "type": "function",
@@ -6215,7 +6839,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>newTableColumnModel</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #newTableColumnModel}."
+          }
+        ]
+      }
     },
     "getNewTablePane": {
       "type": "function",
@@ -6276,7 +6908,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>newTablePane</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #newTablePane}."
+          }
+        ]
+      }
     },
     "getNewTablePaneHeader": {
       "type": "function",
@@ -6337,7 +6977,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>newTablePaneHeader</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #newTablePaneHeader}."
+          }
+        ]
+      }
     },
     "getNewTablePaneScroller": {
       "type": "function",
@@ -6398,7 +7046,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>newTablePaneScroller</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #newTablePaneScroller}."
+          }
+        ]
+      }
     },
     "getNewTablePaneModel": {
       "type": "function",
@@ -6459,7 +7115,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.Table",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>newTablePaneModel</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #newTablePaneModel}."
+          }
+        ]
+      }
     },
     "getOpenCloseClickSelectsRow": {
       "type": "function",

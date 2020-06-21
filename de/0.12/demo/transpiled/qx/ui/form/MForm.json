@@ -46,32 +46,109 @@
   },
   "properties": {
     "valid": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 44,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
+          }
+        ]
+      },
       "name": "valid",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changeValid",
+      "apply": "_applyValid",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
     },
     "required": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is required.</p>"
+          }
+        ]
+      },
       "name": "required",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changeRequired",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     },
     "invalidMessage": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+          }
+        ]
+      },
       "name": "invalidMessage",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changeInvalidMessage",
+      "init": "",
+      "check": "String",
+      "defaultValue": ""
     },
     "requiredInvalidMessage": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+          }
+        ]
+      },
       "name": "requiredInvalidMessage",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changeInvalidMessage",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     }
   },
   "members": {

@@ -48,14 +48,14 @@
       qx.core.Object.constructor.call(this); // Create an array of the specified number of columns, and use the default
       // column data.
 
-      this.__columnData = [];
+      this.__P_377_0 = [];
 
       for (var i = 0; i < numColumns; i++) {
-        this.__columnData[i] = new qx.ui.core.ColumnData();
+        this.__P_377_0[i] = new qx.ui.core.ColumnData();
       }
     },
     members: {
-      __columnData: null,
+      __P_377_0: null,
 
       /**
        * Get the array of column data.
@@ -65,7 +65,7 @@
        *
        */
       getData: function getData() {
-        return this.__columnData;
+        return this.__P_377_0;
       },
 
       /**
@@ -120,11 +120,11 @@
        *   Error is thrown if the provided column number is out of the range.
        */
       setWidth: function setWidth(column, width) {
-        if (column > this.__columnData.length - 1 || column < 0) {
+        if (column > this.__P_377_0.length - 1 || column < 0) {
           throw new Error("Column number out of range");
         }
 
-        this.__columnData[column].setColumnWidth(width);
+        this.__P_377_0[column].setColumnWidth(width);
       },
 
       /**
@@ -142,11 +142,11 @@
        *   Error is thrown if the provided column number is out of the range.
        */
       setMinWidth: function setMinWidth(column, width) {
-        if (column > this.__columnData.length - 1 || column < 0) {
+        if (column > this.__P_377_0.length - 1 || column < 0) {
           throw new Error("Column number out of range");
         }
 
-        this.__columnData[column].setMinWidth(width);
+        this.__P_377_0[column].setMinWidth(width);
       },
 
       /**
@@ -164,15 +164,15 @@
        *   Error is thrown if the provided column number is out of the range.
        */
       setMaxWidth: function setMaxWidth(column, width) {
-        if (column > this.__columnData.length - 1 || column < 0) {
+        if (column > this.__P_377_0.length - 1 || column < 0) {
           throw new Error("Column number out of range");
         }
 
-        this.__columnData[column].setMaxWidth(width);
+        this.__P_377_0[column].setMaxWidth(width);
       }
     }
   });
   qx.ui.progressive.renderer.table.Widths.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widths.js.map?dt=1591114987792
+//# sourceMappingURL=Widths.js.map?dt=1592777102877

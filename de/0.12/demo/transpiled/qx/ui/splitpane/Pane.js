@@ -65,7 +65,7 @@
      */
     construct: function construct(orientation) {
       qx.ui.core.Widget.constructor.call(this);
-      this.__children = []; // Initialize orientation
+      this.__P_114_0 = []; // Initialize orientation
 
       if (orientation) {
         this.setOrientation(orientation);
@@ -74,15 +74,15 @@
       } // add all pointer listener to the blocker
 
 
-      this.__blocker.addListener("pointerdown", this._onPointerDown, this);
+      this.__P_114_1.addListener("pointerdown", this._onPointerDown, this);
 
-      this.__blocker.addListener("pointerup", this._onPointerUp, this);
+      this.__P_114_1.addListener("pointerup", this._onPointerUp, this);
 
-      this.__blocker.addListener("pointermove", this._onPointerMove, this);
+      this.__P_114_1.addListener("pointermove", this._onPointerMove, this);
 
-      this.__blocker.addListener("pointerout", this._onPointerOut, this);
+      this.__P_114_1.addListener("pointerout", this._onPointerOut, this);
 
-      this.__blocker.addListener("losecapture", this._onPointerUp, this);
+      this.__P_114_1.addListener("losecapture", this._onPointerUp, this);
     },
 
     /*
@@ -123,15 +123,15 @@
     *****************************************************************************
     */
     members: {
-      __splitterOffset: null,
-      __activeDragSession: false,
-      __lastPointerX: null,
-      __lastPointerY: null,
-      __isHorizontal: null,
-      __beginSize: null,
-      __endSize: null,
-      __children: null,
-      __blocker: null,
+      __P_114_2: null,
+      __P_114_3: false,
+      __P_114_4: null,
+      __P_114_5: null,
+      __P_114_6: null,
+      __P_114_7: null,
+      __P_114_8: null,
+      __P_114_0: null,
+      __P_114_1: null,
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
@@ -156,7 +156,7 @@
               type: id
             });
 
-            control.addListener("move", this.__onSplitterMove, this);
+            control.addListener("move", this.__P_114_9, this);
             break;
         }
 
@@ -169,8 +169,8 @@
        *
        * @param e {qx.event.type.Data} The data even of move.
        */
-      __onSplitterMove: function __onSplitterMove(e) {
-        this.__setBlockerPosition(e.getData());
+      __P_114_9: function __P_114_9(e) {
+        this.__P_114_10(e.getData());
       },
 
       /**
@@ -179,15 +179,15 @@
        *
        * @param orientation {String} The orientation of the pane.
        */
-      __createBlocker: function __createBlocker(orientation) {
-        this.__blocker = new qx.ui.splitpane.Blocker(orientation);
-        this.getContentElement().add(this.__blocker);
+      __P_114_11: function __P_114_11(orientation) {
+        this.__P_114_1 = new qx.ui.splitpane.Blocker(orientation);
+        this.getContentElement().add(this.__P_114_1);
         var splitter = this.getChildControl("splitter");
         var splitterWidth = splitter.getWidth();
 
         if (!splitterWidth) {
           splitter.addListenerOnce("appear", function () {
-            this.__setBlockerPosition();
+            this.__P_114_10();
           }, this);
         } // resize listener to remove the blocker in case the splitter
         // is removed.
@@ -197,9 +197,9 @@
           var bounds = e.getData();
 
           if (this.getChildControl("splitter").isKnobVisible() && (bounds.height == 0 || bounds.width == 0)) {
-            this.__blocker.hide();
+            this.__P_114_1.hide();
           } else {
-            this.__blocker.show();
+            this.__P_114_1.show();
           }
         }, this);
       },
@@ -213,7 +213,7 @@
        * @internal
        */
       getBlocker: function getBlocker() {
-        return this.__blocker;
+        return this.__P_114_1;
       },
 
       /*
@@ -234,14 +234,14 @@
         var slider = this.getChildControl("slider");
         var splitter = this.getChildControl("splitter"); // Store boolean flag for faster access
 
-        this.__isHorizontal = value === "horizontal";
+        this.__P_114_6 = value === "horizontal";
 
-        if (!this.__blocker) {
-          this.__createBlocker(value);
+        if (!this.__P_114_1) {
+          this.__P_114_11(value);
         } // update the blocker
 
 
-        this.__blocker.setOrientation(value); // Dispose old layout
+        this.__P_114_1.setOrientation(value); // Dispose old layout
 
 
         var oldLayout = this._getLayout();
@@ -265,11 +265,11 @@
 
         qx.ui.core.queue.Manager.flush();
 
-        this.__setBlockerPosition();
+        this.__P_114_10();
       },
       // property apply
       _applyOffset: function _applyOffset(value, old) {
-        this.__setBlockerPosition();
+        this.__P_114_10();
       },
 
       /**
@@ -279,7 +279,7 @@
        * @param bounds {Map?null} If the bounds of the splitter are known,
        *   they can be added.
        */
-      __setBlockerPosition: function __setBlockerPosition(bounds) {
+      __P_114_10: function __P_114_10(bounds) {
         var splitter = this.getChildControl("splitter");
         var offset = this.getOffset();
         var splitterBounds = splitter.getBounds();
@@ -290,7 +290,7 @@
         } // recalculate the dimensions of the blocker
 
 
-        if (this.__isHorizontal) {
+        if (this.__P_114_6) {
           // get the width either of the given bounds or of the read bounds
           var width = null;
 
@@ -307,9 +307,9 @@
               left = qx.bom.element.Location.getPosition(splitterElem).left;
             }
 
-            this.__blocker.setWidth(offset, width || 6);
+            this.__P_114_1.setWidth(offset, width || 6);
 
-            this.__blocker.setLeft(offset, left);
+            this.__P_114_1.setLeft(offset, left);
           } // vertical case
 
         } else {
@@ -329,9 +329,9 @@
               top = qx.bom.element.Location.getPosition(splitterElem).top;
             }
 
-            this.__blocker.setHeight(offset, height || 6);
+            this.__P_114_1.setHeight(offset, height || 6);
 
-            this.__blocker.setTop(offset, top);
+            this.__P_114_1.setTop(offset, top);
           }
         }
       },
@@ -362,7 +362,7 @@
           });
         }
 
-        this.__children.push(widget);
+        this.__P_114_0.push(widget);
       },
 
       /**
@@ -373,7 +373,7 @@
       remove: function remove(widget) {
         this._remove(widget);
 
-        qx.lang.Array.remove(this.__children, widget);
+        qx.lang.Array.remove(this.__P_114_0, widget);
       },
 
       /**
@@ -382,7 +382,7 @@
        * @return {qx.ui.core.Widget[]} The pane's child widgets
        */
       getChildren: function getChildren() {
-        return this.__children;
+        return this.__P_114_0;
       },
 
       /*
@@ -408,7 +408,7 @@
 
         var splitterLocation = splitter.getContentLocation();
         var paneLocation = this.getContentLocation();
-        this.__splitterOffset = this.__isHorizontal ? e.getDocumentLeft() - splitterLocation.left + paneLocation.left : e.getDocumentTop() - splitterLocation.top + paneLocation.top; // Synchronize slider to splitter size and show it
+        this.__P_114_2 = this.__P_114_6 ? e.getDocumentLeft() - splitterLocation.left + paneLocation.left : e.getDocumentTop() - splitterLocation.top + paneLocation.top; // Synchronize slider to splitter size and show it
 
         var slider = this.getChildControl("slider");
         var splitterBounds = splitter.getBounds();
@@ -416,9 +416,9 @@
         slider.setZIndex(splitter.getZIndex() + 1);
         slider.show(); // Enable session
 
-        this.__activeDragSession = true;
+        this.__P_114_3 = true;
 
-        this.__blocker.capture();
+        this.__P_114_1.capture();
 
         e.stop();
       },
@@ -432,22 +432,22 @@
         this._setLastPointerPosition(e.getDocumentLeft(), e.getDocumentTop()); // Check if slider is already being dragged
 
 
-        if (this.__activeDragSession) {
+        if (this.__P_114_3) {
           // Compute new children sizes
-          this.__computeSizes(); // Update slider position
+          this.__P_114_12(); // Update slider position
 
 
           var slider = this.getChildControl("slider");
-          var pos = this.__beginSize;
+          var pos = this.__P_114_7;
 
-          if (this.__isHorizontal) {
+          if (this.__P_114_6) {
             slider.setDomLeft(pos);
 
-            this.__blocker.setStyle("left", pos - this.getOffset() + "px");
+            this.__P_114_1.setStyle("left", pos - this.getOffset() + "px");
           } else {
             slider.setDomTop(pos);
 
-            this.__blocker.setStyle("top", pos - this.getOffset() + "px");
+            this.__P_114_1.setStyle("top", pos - this.getOffset() + "px");
           }
 
           e.stop();
@@ -471,7 +471,7 @@
        * @param e {qx.event.type.Pointer} pointerup event
        */
       _onPointerUp: function _onPointerUp(e) {
-        if (!this.__activeDragSession) {
+        if (!this.__P_114_3) {
           return;
         } // Set sizes to both widgets
 
@@ -482,7 +482,7 @@
         var slider = this.getChildControl("slider");
         slider.exclude(); // Cleanup
 
-        this.__activeDragSession = false;
+        this.__P_114_3 = false;
         this.releaseCapture();
         e.stop();
       },
@@ -497,8 +497,8 @@
        * Updates widgets' sizes based on the slider position.
        */
       _finalizeSizes: function _finalizeSizes() {
-        var beginSize = this.__beginSize;
-        var endSize = this.__endSize;
+        var beginSize = this.__P_114_7;
+        var endSize = this.__P_114_8;
 
         if (beginSize == null) {
           return;
@@ -522,7 +522,7 @@
         } // Update both sizes
         else {
             // Set widths to static widgets
-            if (this.__isHorizontal) {
+            if (this.__P_114_6) {
               firstWidget.setWidth(beginSize);
               secondWidget.setWidth(endSize);
             } else {
@@ -535,17 +535,17 @@
       /**
        * Computes widgets' sizes based on the pointer coordinate.
        */
-      __computeSizes: function __computeSizes() {
-        if (this.__isHorizontal) {
+      __P_114_12: function __P_114_12() {
+        if (this.__P_114_6) {
           var min = "minWidth",
               size = "width",
               max = "maxWidth",
-              pointer = this.__lastPointerX;
+              pointer = this.__P_114_4;
         } else {
           var min = "minHeight",
               size = "height",
               max = "maxHeight",
-              pointer = this.__lastPointerY;
+              pointer = this.__P_114_5;
         }
 
         var children = this._getChildren();
@@ -555,7 +555,7 @@
 
         var allocatedSize = children[2].getBounds()[size] + children[3].getBounds()[size]; // Calculate widget sizes
 
-        var beginSize = pointer - this.__splitterOffset;
+        var beginSize = pointer - this.__P_114_2;
         var endSize = allocatedSize - beginSize; // Respect minimum limits
 
         if (beginSize < beginHint[min]) {
@@ -576,8 +576,8 @@
         } // Store sizes
 
 
-        this.__beginSize = beginSize;
-        this.__endSize = endSize;
+        this.__P_114_7 = beginSize;
+        this.__P_114_8 = endSize;
       },
 
       /**
@@ -586,7 +586,7 @@
        * @return {Boolean} True if active drag session, otherwise false.
        */
       _isActiveDragSession: function _isActiveDragSession() {
-        return this.__activeDragSession;
+        return this.__P_114_3;
       },
 
       /**
@@ -596,15 +596,15 @@
        * @param y {Integer} the y position of the pointer.
        */
       _setLastPointerPosition: function _setLastPointerPosition(x, y) {
-        this.__lastPointerX = x;
-        this.__lastPointerY = y;
+        this.__P_114_4 = x;
+        this.__P_114_5 = y;
       }
     },
     destruct: function destruct() {
-      this.__children = null;
+      this.__P_114_0 = null;
     }
   });
   qx.ui.splitpane.Pane.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pane.js.map?dt=1591115577713
+//# sourceMappingURL=Pane.js.map?dt=1592778968533

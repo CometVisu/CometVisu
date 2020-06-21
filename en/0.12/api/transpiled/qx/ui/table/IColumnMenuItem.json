@@ -37,7 +37,15 @@
       "name": "columnVisible",
       "abstract": true,
       "mixin": false,
-      "access": "public"
+      "access": "public",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the table column associated with this menu item is visible\n Should be of type {Boolean}!</p>"
+          }
+        ]
+      }
     }
   },
   "events": {

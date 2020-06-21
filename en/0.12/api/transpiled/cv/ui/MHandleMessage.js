@@ -115,7 +115,10 @@
     members: {
       _messages: null,
       _severities: null,
-      __idCounter: 0,
+      _idCounter: 0,
+      getIdCounter: function getIdCounter() {
+        return this._idCounter;
+      },
       getSeverities: function getSeverities() {
         return this._severities;
       },
@@ -213,8 +216,8 @@
 
         if (!found) {
           if (cv.core.notifications.Router.evaluateCondition(message)) {
-            message.id = this.__idCounter;
-            this.__idCounter++;
+            message.id = this._idCounter;
+            this._idCounter++;
             message.tooltip = this._getTooltip(message);
 
             if (!message.hasOwnProperty("deletable")) {
@@ -317,7 +320,7 @@
         if (force) {
           this._messages.removeAll();
 
-          this.__idCounter = 0;
+          this._idCounter = 0;
         } else {
           // collect all deletable messages
           var deletable = this._messages.filter(function (message) {
@@ -410,4 +413,4 @@
   cv.ui.MHandleMessage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MHandleMessage.js.map?dt=1591114999368
+//# sourceMappingURL=MHandleMessage.js.map?dt=1592777114909

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 37,
+        "line": 45,
         "column": 3
       }
     },
@@ -34,17 +34,32 @@
       "abstract": true,
       "mixin": false,
       "access": "public"
+    },
+    "external": {
+      "type": "property",
+      "name": "external",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file</p>"
+          }
+        ]
+      }
     }
   },
   "statics": {
     "TITLE": {
       "location": {
         "start": {
-          "line": 24,
+          "line": 32,
           "column": 4
         },
         "end": {
-          "line": 24,
+          "line": 32,
           "column": 13
         }
       },
@@ -56,11 +71,11 @@
     "save": {
       "location": {
         "start": {
-          "line": 33,
+          "line": 41,
           "column": 4
         },
         "end": {
-          "line": 33,
+          "line": 41,
           "column": 24
         }
       },
@@ -70,11 +85,11 @@
     "getCurrentContent": {
       "location": {
         "start": {
-          "line": 35,
+          "line": 43,
           "column": 4
         },
         "end": {
-          "line": 35,
+          "line": 43,
           "column": 37
         }
       },
@@ -143,6 +158,96 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>file</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #file}."
+          }
+        ]
+      }
+    },
+    "getExternal": {
+      "type": "function",
+      "name": "getExternal",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>external</code>.\n\nFor further details take a look at the property definition: {@link #external}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for external"
+          }
+        ]
+      }
+    },
+    "isExternal": {
+      "type": "function",
+      "name": "isExternal",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>external</code>.\n\nFor further details take a look at the property definition: {@link #external}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for external"
+          }
+        ]
+      }
+    },
+    "setExternal": {
+      "type": "function",
+      "name": "setExternal",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>external</code>.\n\nFor further details take a look at the property definition: {@link #external}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for external"
+          }
+        ]
+      }
+    },
+    "resetExternal": {
+      "type": "function",
+      "name": "resetExternal",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>external</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #external}."
           }
         ]
       }

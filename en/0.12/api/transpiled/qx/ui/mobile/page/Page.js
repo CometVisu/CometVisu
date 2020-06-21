@@ -210,7 +210,7 @@
      *****************************************************************************
      */
     members: {
-      __initialized: false,
+      __P_368_0: false,
       // overridden
       show: function show(properties) {
         if (qx.ui.mobile.page.Page._currentPage) {
@@ -292,7 +292,7 @@
         if (!this.isInitialized()) {
           this._initialize();
 
-          this.__initialized = true;
+          this.__P_368_0 = true;
           this.setLifeCycleState("initialize");
         }
       },
@@ -311,7 +311,7 @@
        * @return {Boolean} Whether the page is already initialized or not
        */
       isInitialized: function isInitialized() {
-        return this.__initialized;
+        return this.__P_368_0;
       },
 
       /**
@@ -438,4 +438,4 @@
   qx.ui.mobile.page.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1591114987284
+//# sourceMappingURL=Page.js.map?dt=1592777102379

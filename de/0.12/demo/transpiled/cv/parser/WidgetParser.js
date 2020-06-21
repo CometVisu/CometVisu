@@ -47,19 +47,22 @@
      ******************************************************
      */
     statics: {
-      __handlers: {},
+      __P_7_0: {},
       lookupM: [0, 2, 4, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12],
       lookupS: [0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
       model: cv.data.Model.getInstance(),
-      __templates: {},
+      __P_7_1: {},
+      getTemplates: function getTemplates() {
+        return this.__P_7_1;
+      },
       addTemplate: function addTemplate(name, templateData) {
-        this.__templates[name] = templateData;
+        this.__P_7_1[name] = templateData;
       },
       addHandler: function addHandler(tagName, handler) {
-        this.__handlers[tagName.toLowerCase()] = handler;
+        this.__P_7_0[tagName.toLowerCase()] = handler;
       },
       getHandler: function getHandler(tagName) {
-        return this.__handlers[tagName.toLowerCase()] || this.__handlers.unknown;
+        return this.__P_7_0[tagName.toLowerCase()] || this.__P_7_0.unknown;
       },
 
       /**
@@ -74,8 +77,8 @@
             variables[variable.getAttribute('name')] = variable.innerHTML;
           });
 
-          if (this.__templates.hasOwnProperty(templateName)) {
-            var renderedString = qx.bom.Template.render(this.__templates[templateName], variables).replace('\n', '').trim();
+          if (this.__P_7_1.hasOwnProperty(templateName)) {
+            var renderedString = qx.bom.Template.render(this.__P_7_1[templateName], variables).replace('\n', '').trim();
             var helperNode = elem.ownerDocument.createElement('template');
             helperNode.innerHTML = renderedString.substring(6, renderedString.length - 7).trim(); // replace existing element with the rendered templates child
 
@@ -174,7 +177,7 @@
        * @param handler {Class} parser handler
        * @return {Map} parser configuration: describes how Attributes are mapped to properties
        */
-      __getAttributeToPropertyMappings: function __getAttributeToPropertyMappings(handler) {
+      __P_7_2: function __P_7_2(handler) {
         return handler && handler.getAttributeToPropertyMappings ? handler.getAttributeToPropertyMappings() : {};
       },
       getElementType: function getElementType(element) {
@@ -278,15 +281,15 @@
         }
 
         ['x', 'y', 'width', 'height', 'scale'].forEach(function (prop) {
-          this.__extractLayoutAttribute(ret_val, prop, layout, defaultValues);
+          this.__P_7_3(ret_val, prop, layout, defaultValues);
 
-          this.__extractLayoutAttribute(ret_val, prop + '-m', layout, defaultValues);
+          this.__P_7_3(ret_val, prop + '-m', layout, defaultValues);
 
-          this.__extractLayoutAttribute(ret_val, prop + '-s', layout, defaultValues);
+          this.__P_7_3(ret_val, prop + '-s', layout, defaultValues);
         }, this);
         return ret_val;
       },
-      __extractLayoutAttribute: function __extractLayoutAttribute(ret_val, property, layout, defaultValues) {
+      __P_7_3: function __P_7_3(ret_val, property, layout, defaultValues) {
         if (layout.getAttribute(property)) {
           ret_val[property] = layout.getAttribute(property);
         } else if (defaultValues[property]) {
@@ -565,4 +568,4 @@
   cv.parser.WidgetParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetParser.js.map?dt=1591115566367
+//# sourceMappingURL=WidgetParser.js.map?dt=1592778957414

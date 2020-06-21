@@ -185,74 +185,290 @@
   },
   "properties": {
     "position": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 118,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Position of the aligned object in relation to the opener.\n Please note than changes to this property are only applied\n when re-aligning the widget.\n The first part of the value is the edge to attach to. The second\n part the alignment of the orthogonal edge after the widget\n has been attached.\n The default value \"bottom-left\" for example means that the\n widget should be shown directly under the given target and\n then should be aligned to be left edge:\n </p>\n<pre>\n +--------+\n | target |\n +--------+\n +-------------+\n |   widget    |\n +-------------+\n </pre>"
+          }
+        ]
+      },
       "name": "position",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "init": "bottom-left",
+      "possibleValues": [
+        "top-left",
+        "top-center",
+        "top-right",
+        "bottom-left",
+        "bottom-center",
+        "bottom-right",
+        "left-top",
+        "left-middle",
+        "left-bottom",
+        "right-top",
+        "right-middle",
+        "right-bottom"
+      ],
+      "defaultValue": "bottom-left"
     },
     "placeMethod": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 129,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should be placed relative to an other widget or to\n the pointer.</p>"
+          }
+        ]
+      },
       "name": "placeMethod",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "init": "pointer",
+      "possibleValues": [
+        "widget",
+        "pointer"
+      ],
+      "defaultValue": "pointer"
     },
     "domMove": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4
+        },
+        "end": {
+          "line": 136,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should moved using DOM methods.</p>"
+          }
+        ]
+      },
       "name": "domMove",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     },
     "placementModeX": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4
+        },
+        "end": {
+          "line": 149,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects the algorithm to place the widget horizontally. <code>direct</code>\n uses {@link qx.util.placement.DirectAxis}, <code>keep-align</code>\n uses {@link qx.util.placement.KeepAlignAxis} and <code>best-fit</code>\n uses {@link qx.util.placement.BestFitAxis}.</p>"
+          }
+        ]
+      },
       "name": "placementModeX",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "init": "keep-align",
+      "possibleValues": [
+        "direct",
+        "keep-align",
+        "best-fit"
+      ],
+      "defaultValue": "keep-align"
     },
     "placementModeY": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4
+        },
+        "end": {
+          "line": 162,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects the algorithm to place the widget vertically. <code>direct</code>\n uses {@link qx.util.placement.DirectAxis}, <code>keep-align</code>\n uses {@link qx.util.placement.KeepAlignAxis} and <code>best-fit</code>\n uses {@link qx.util.placement.BestFitAxis}.</p>"
+          }
+        ]
+      },
       "name": "placementModeY",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "init": "keep-align",
+      "possibleValues": [
+        "direct",
+        "keep-align",
+        "best-fit"
+      ],
+      "defaultValue": "keep-align"
     },
     "offsetLeft": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4
+        },
+        "end": {
+          "line": 170,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Left offset of the pointer (in pixel)</p>"
+          }
+        ]
+      },
       "name": "offsetLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
     },
     "offsetTop": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4
+        },
+        "end": {
+          "line": 178,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Top offset of the pointer (in pixel)</p>"
+          }
+        ]
+      },
       "name": "offsetTop",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
     },
     "offsetRight": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4
+        },
+        "end": {
+          "line": 186,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Right offset of the pointer (in pixel)</p>"
+          }
+        ]
+      },
       "name": "offsetRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
     },
     "offsetBottom": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4
+        },
+        "end": {
+          "line": 194,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Bottom offset of the pointer (in pixel)</p>"
+          }
+        ]
+      },
       "name": "offsetBottom",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "init": 0,
+      "check": "Integer",
+      "defaultValue": 0
     },
     "offset": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4
+        },
+        "end": {
+          "line": 202,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Offsets in one group</p>"
+          }
+        ]
+      },
       "name": "offset",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "group": [
+        "offsetTop",
+        "offsetRight",
+        "offsetBottom",
+        "offsetLeft"
+      ]
     }
   },
   "members": {

@@ -23,6 +23,14 @@
         check: 'cv.ui.manager.model.FileItem',
         nullable: true,
         apply: '_loadFile'
+      },
+
+      /**
+       * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file
+       */
+      external: {
+        check: 'Boolean',
+        init: false
       }
     },
 
@@ -48,4 +56,4 @@
   cv.ui.manager.editor.IEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IEditor.js.map?dt=1591114956617
+//# sourceMappingURL=IEditor.js.map?dt=1592777071536

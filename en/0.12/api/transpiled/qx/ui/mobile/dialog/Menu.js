@@ -69,21 +69,21 @@
     construct: function construct(itemsModel, anchor) {
       // Create the list with a delegate that
       // configures the list item.
-      this.__selectionList = this._createSelectionList();
+      this.__P_349_0 = this._createSelectionList();
 
       if (itemsModel) {
-        this.__selectionList.setModel(itemsModel);
+        this.__P_349_0.setModel(itemsModel);
       }
 
-      this.__menuContainer = new qx.ui.mobile.container.Composite();
-      this.__clearButton = this._createClearButton();
-      this.__listScroller = this._createListScroller(this.__selectionList);
+      this.__P_349_1 = new qx.ui.mobile.container.Composite();
+      this.__P_349_2 = this._createClearButton();
+      this.__P_349_3 = this._createListScroller(this.__P_349_0);
 
-      this.__menuContainer.add(this.__listScroller);
+      this.__P_349_1.add(this.__P_349_3);
 
-      this.__menuContainer.add(this.__clearButton);
+      this.__P_349_1.add(this.__P_349_2);
 
-      qx.ui.mobile.dialog.Popup.constructor.call(this, this.__menuContainer, anchor);
+      qx.ui.mobile.dialog.Popup.constructor.call(this, this.__P_349_1, anchor);
 
       if (anchor) {
         this.setModal(false);
@@ -177,10 +177,10 @@
     *****************************************************************************
     */
     members: {
-      __selectionList: null,
-      __clearButton: null,
-      __listScroller: null,
-      __menuContainer: null,
+      __P_349_0: null,
+      __P_349_2: null,
+      __P_349_3: null,
+      __P_349_1: null,
       // overridden
       show: function show() {
         qx.ui.mobile.dialog.Menu.prototype.show.base.call(this);
@@ -194,7 +194,7 @@
        */
       _createClearButton: function _createClearButton() {
         var clearButton = new qx.ui.mobile.form.Button(this.getClearButtonLabel());
-        clearButton.addListener("tap", this.__onClearButtonTap, this);
+        clearButton.addListener("tap", this.__P_349_4, this);
         clearButton.exclude();
         return clearButton;
       },
@@ -220,7 +220,7 @@
       * @return {qx.ui.mobile.container.Scroll} the scroll container which contains the selectionList of this menu.
       */
       _getListScroller: function _getListScroller() {
-        return this.__listScroller;
+        return this.__P_349_3;
       },
       // overridden
       _updatePosition: function _updatePosition() {
@@ -229,11 +229,11 @@
         listScrollerHeight = parseInt(listScrollerHeight, 10);
 
         if (this.getVisibleListItems() !== null) {
-          var newListScrollerHeight = this.__selectionList.getListItemHeight() * this.getVisibleListItems();
+          var newListScrollerHeight = this.__P_349_0.getListItemHeight() * this.getVisibleListItems();
           listScrollerHeight = Math.min(newListScrollerHeight, listScrollerHeight);
         }
 
-        qx.bom.element.Style.set(this.__listScroller.getContainerElement(), "maxHeight", listScrollerHeight + "px");
+        qx.bom.element.Style.set(this.__P_349_3.getContainerElement(), "maxHeight", listScrollerHeight + "px");
 
         qx.ui.mobile.dialog.Menu.prototype._updatePosition.base.call(this);
       },
@@ -261,7 +261,7 @@
           }
         }); // Add an changeSelection event
 
-        selectionList.addListener("changeSelection", this.__onListChangeSelection, this);
+        selectionList.addListener("changeSelection", this.__P_349_5, this);
         selectionList.addListener("tap", this._onSelectionListTap, this);
         return selectionList;
       },
@@ -271,7 +271,7 @@
       * @return {qx.ui.mobile.list.List} The selectionList of this menu.
       */
       getSelectionList: function getSelectionList() {
-        return this.__selectionList;
+        return this.__P_349_0;
       },
 
       /** Handler for tap event on selection list. */
@@ -284,10 +284,10 @@
        * @param itemsModel {qx.data.Array}, the model of choosable items in the menu.
        */
       setItems: function setItems(itemsModel) {
-        if (this.__selectionList) {
-          this.__selectionList.setModel(null);
+        if (this.__P_349_0) {
+          this.__P_349_0.setModel(null);
 
-          this.__selectionList.setModel(itemsModel);
+          this.__P_349_0.setModel(itemsModel);
         }
       },
 
@@ -295,14 +295,14 @@
        * Fires an event which contains index and data.
        * @param evt {qx.event.type.Data}, contains the selected index number.
        */
-      __onListChangeSelection: function __onListChangeSelection(evt) {
+      __P_349_5: function __P_349_5(evt) {
         this.setSelectedIndex(evt.getData());
       },
 
       /**
        * Event handler for tap on clear button.
        */
-      __onClearButtonTap: function __onClearButtonTap() {
+      __P_349_4: function __P_349_4() {
         this.fireDataEvent("changeSelection", {
           index: null,
           item: null
@@ -311,7 +311,7 @@
       },
       // property apply
       _applySelectedIndex: function _applySelectedIndex(value, old) {
-        var listModel = this.__selectionList.getModel();
+        var listModel = this.__P_349_0.getModel();
 
         if (listModel !== null) {
           var selectedItem = listModel.getItem(value);
@@ -326,25 +326,25 @@
       // property apply
       _applyNullable: function _applyNullable(value, old) {
         if (value) {
-          this.__clearButton.setVisibility("visible");
+          this.__P_349_2.setVisibility("visible");
         } else {
-          this.__clearButton.setVisibility("excluded");
+          this.__P_349_2.setVisibility("excluded");
         }
       },
       // property apply
       _applyClearButtonLabel: function _applyClearButtonLabel(value, old) {
-        this.__clearButton.setValue(value);
+        this.__P_349_2.setValue(value);
       },
 
       /**
        * Triggers (re-)rendering of menu items.
        */
       _render: function _render() {
-        var tmpModel = this.__selectionList.getModel();
+        var tmpModel = this.__P_349_0.getModel();
 
-        this.__selectionList.setModel(null);
+        this.__P_349_0.setModel(null);
 
-        this.__selectionList.setModel(tmpModel);
+        this.__P_349_0.setModel(tmpModel);
       },
 
       /**
@@ -352,21 +352,21 @@
        * @param index {Integer}, the index of the listItem to which the listScroller should scroll to.
        */
       scrollToItem: function scrollToItem(index) {
-        if (index !== null && this.__selectionList.getModel() != null) {
-          var listItems = qxWeb("#" + this.__listScroller.getId() + " .list-item");
+        if (index !== null && this.__P_349_0.getModel() != null) {
+          var listItems = qxWeb("#" + this.__P_349_3.getId() + " .list-item");
           var targetListItemElement = listItems[index];
 
-          this.__listScroller.scrollToElement(targetListItemElement);
+          this.__P_349_3.scrollToElement(targetListItemElement);
         }
       }
     },
     destruct: function destruct() {
-      this.__selectionList.removeListener("tap", this._onSelectionListTap, this);
+      this.__P_349_0.removeListener("tap", this._onSelectionListTap, this);
 
-      this._disposeObjects("__selectionList", "__clearButton", "__listScroller", "__menuContainer");
+      this._disposeObjects("__P_349_0", "__P_349_2", "__P_349_3", "__P_349_1");
     }
   });
   qx.ui.mobile.dialog.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1591114985913
+//# sourceMappingURL=Menu.js.map?dt=1592777100831

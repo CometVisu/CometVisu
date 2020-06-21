@@ -199,15 +199,15 @@
     ******************************************************
     */
     members: {
-      __request: null,
-      __html: null,
-      __wrapper: null,
-      __fixedRequestData: null,
-      __external: false,
-      __separatordate: null,
-      __separatoradd: null,
-      __isFuture: null,
-      __separatorprevday: null,
+      __P_13_0: null,
+      __P_13_1: null,
+      __P_13_2: null,
+      __P_13_3: null,
+      __P_13_4: false,
+      __P_13_5: null,
+      __P_13_6: null,
+      __P_13_7: null,
+      __P_13_8: null,
 
       /**
        * Strip querystring from URL and store is as Map
@@ -215,19 +215,19 @@
        * @return {String} normalized URL
        */
       normalizeUrl: function normalizeUrl(value) {
-        this.__fixedRequestData = {};
+        this.__P_13_3 = {};
 
         if (value && value.indexOf("?") > 0) {
           var parts = qx.util.Uri.parseUri(value);
           value = value.substring(0, value.indexOf("?"));
-          this.__fixedRequestData = parts.queryKey;
+          this.__P_13_3 = parts.queryKey;
         }
 
         return value;
       },
       // property apply
       _applySrc: function _applySrc(value) {
-        this.__external = !value.match(/rsslog\.php/) && !value.match(/rsslog_mysql\.php/) && !value.match(/rsslog_oh\.php/);
+        this.__P_13_4 = !value.match(/rsslog\.php/) && !value.match(/rsslog_mysql\.php/) && !value.match(/rsslog_oh\.php/);
       },
       _getInnerDomString: function _getInnerDomString() {
         var style = '';
@@ -256,13 +256,13 @@
           cv.plugins.RssLog.prototype._onDomReady.base.call(this);
 
           qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
-          this.__html = '<span class="mappedValue"></span><span>{text}</span>';
+          this.__P_13_1 = '<span class="mappedValue"></span><span>{text}</span>';
 
           if (this.getDatetime()) {
-            this.__html = '{date}: ' + this.__html;
+            this.__P_13_1 = '{date}: ' + this.__P_13_1;
           }
 
-          this.__wrapper = 'li';
+          this.__P_13_2 = 'li';
 
           if (cv.Config.currentPageId === this.getParentPage().getPath()) {
             this.refreshRSSlog();
@@ -327,20 +327,20 @@
           return;
         }
 
-        if (!this.__request) {
-          if (!this.__external) {
-            this.__refreshRss();
+        if (!this.__P_13_0) {
+          if (!this.__P_13_4) {
+            this.__P_13_9();
           } else {
-            this.__refreshYql();
+            this.__P_13_10();
           }
         }
 
-        this.__request.setUserData("big", isBig);
+        this.__P_13_0.setUserData("big", isBig);
 
-        if (this.__request instanceof qx.io.request.Xhr) {
-          this.__request.send();
-        } else if (this.__request instanceof qx.data.store.Yql) {
-          this.__request.reload();
+        if (this.__P_13_0 instanceof qx.io.request.Xhr) {
+          this.__P_13_0.send();
+        } else if (this.__P_13_0 instanceof qx.data.store.Yql) {
+          this.__P_13_0.reload();
         }
 
         var refresh = this.getRefresh();
@@ -356,9 +356,9 @@
       /**
        * Fetch data from builtin PHP script
        */
-      __refreshRss: function __refreshRss() {
+      __P_13_9: function __P_13_9() {
         var src = this.getSrc();
-        var requestData = Object.assign({}, this.__fixedRequestData);
+        var requestData = Object.assign({}, this.__P_13_3);
 
         if (this.getFilter()) {
           requestData.f = this.getFilter();
@@ -373,17 +373,17 @@
         }
 
         requestData.j = 1;
-        this.__request = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(src));
+        this.__P_13_0 = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(src));
 
-        this.__request.set({
+        this.__P_13_0.set({
           accept: "application/json",
           requestData: requestData,
           method: "GET"
         });
 
-        this.__request.addListener("success", this.__updateRssContent, this);
+        this.__P_13_0.addListener("success", this.__P_13_11, this);
 
-        this.__request.addListener("error", function (ev) {
+        this.__P_13_0.addListener("error", function (ev) {
           this.error('C: #rss_%s, Error: %s, Feed: %s', this.getPath(), ev.getTarget().getResponse(), src);
         }, this);
       },
@@ -391,9 +391,9 @@
       /**
        * Fetch data from YQL Service
        */
-      __refreshYql: function __refreshYql() {
-        if (!this.__request) {
-          this.__request = new qx.data.store.Yql("SELECT * FROM rss WHERE url='" + this.getSrc() + "'", {
+      __P_13_10: function __P_13_10() {
+        if (!this.__P_13_0) {
+          this.__P_13_0 = new qx.data.store.Yql("SELECT * FROM rss WHERE url='" + this.getSrc() + "'", {
             manipulateData: function manipulateData(data) {
               if (data.query.results) {
                 return data.query.results.item || data.query.results.entry;
@@ -403,21 +403,21 @@
             }
           });
 
-          this.__request.bind("model", this, "model");
+          this.__P_13_0.bind("model", this, "model");
         }
       },
       _applyModel: function _applyModel(value, old) {
         if (old) {
-          old.removeListener("change", this.__updateYqlContent, this);
+          old.removeListener("change", this.__P_13_12, this);
         }
 
         if (value) {
-          this.__updateYqlContent();
+          this.__P_13_12();
 
-          value.addListener("change", this.__updateYqlContent, this);
+          value.addListener("change", this.__P_13_12, this);
         }
       },
-      __prepareContentElement: function __prepareContentElement(ul, c) {
+      __P_13_13: function __P_13_13(ul, c) {
         c.innerHTML = '';
         c.appendChild(ul); // get height of one entry, calc max num of display items in widget
 
@@ -447,7 +447,7 @@
         c.dataset["last_rowcount"] = displayrows;
         return displayrows;
       },
-      __updateRssContent: function __updateRssContent(ev) {
+      __P_13_11: function __P_13_11(ev) {
         var result = ev.getTarget().getResponse();
 
         if (typeof result === 'string') {
@@ -456,13 +456,13 @@
           return;
         }
 
-        this.__updateContent(result.responseData.feed.entries);
+        this.__P_13_14(result.responseData.feed.entries);
       },
-      __updateYqlContent: function __updateYqlContent() {
-        this.__updateContent(this.getModel().toArray());
+      __P_13_12: function __P_13_12() {
+        this.__P_13_14(this.getModel().toArray());
       },
-      __updateContent: function __updateContent(items) {
-        var isBig = this.__request.getUserData("big");
+      __P_13_14: function __P_13_14(items) {
+        var isBig = this.__P_13_0.getUserData("big");
 
         var selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
         var c = document.querySelector(selector);
@@ -470,7 +470,7 @@
         this.debug("ID: " + c.getAttribute("id") + ", Feed: " + this.getSrc());
         var ul = document.createElement("ul");
 
-        var displayrows = this.__prepareContentElement(ul, c);
+        var displayrows = this.__P_13_13(ul, c);
 
         var itemnum = items.length;
         this.debug('C: #' + this.getPath() + ', ' + itemnum + ' element(s) found, ' + displayrows + ' displayrow(s) available');
@@ -496,10 +496,10 @@
         var row = 'rsslogodd';
         var last = itemoffset + displayrows;
         last = last > itemnum ? itemnum : last;
-        this.__separatordate = new Date().strftime('%d');
-        this.__separatoradd = false;
-        this.__separatorprevday = false;
-        this.__isFuture = false;
+        this.__P_13_5 = new Date().strftime('%d');
+        this.__P_13_6 = false;
+        this.__P_13_8 = false;
+        this.__P_13_7 = false;
 
         for (var i = itemoffset; i < last; i++) {
           this.debug('C: #' + this.getPath() + ', processing item: ' + i + ' of ' + itemnum);
@@ -507,7 +507,7 @@
           idx = i >= itemnum ? idx = idx - itemnum : idx;
           var item = items[idx];
 
-          var itemHtml = this.__getItemHtml(item, isBig);
+          var itemHtml = this.__P_13_15(item, isBig);
 
           var rowElem = qx.dom.Element.create('li', {
             'class': 'rsslogRow ' + row
@@ -523,18 +523,18 @@
             });
           }
 
-          if (this.__separatoradd && idx !== 0) {
+          if (this.__P_13_6 && idx !== 0) {
             rowElem.classList.add('rsslog_separator');
-            this.__separatorprevday = true;
+            this.__P_13_8 = true;
           } else {
-            this.__separatorprevday = false;
+            this.__P_13_8 = false;
           }
 
-          if (this.__separatorprevday === true) {
+          if (this.__P_13_8 === true) {
             rowElem.classList.add('rsslog_prevday');
           }
 
-          if (this.__isFuture) {
+          if (this.__P_13_7) {
             rowElem.classList.add(row === 'rsslogodd' ? 'rsslog_futureeven' : 'rsslog_futureodd');
           }
 
@@ -564,20 +564,20 @@
           row = row === 'rsslogodd' ? 'rsslogeven' : 'rsslogodd';
         }
       },
-      __getItemHtml: function __getItemHtml(item, isBig) {
+      __P_13_15: function __P_13_15(item, isBig) {
         var itemHtml = "";
 
-        if (!this.__external) {
-          itemHtml = this.__html;
+        if (!this.__P_13_4) {
+          itemHtml = this.__P_13_1;
           itemHtml = itemHtml.replace(/\{text\}/, item.content);
           var entryDate = new Date(item.publishedDate);
 
           if (entryDate) {
             itemHtml = this.getTimeformat() ? itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + '&nbsp;') : itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;');
             var thisday = entryDate.strftime('%d');
-            this.__separatoradd = this.__separatordate > 0 && this.__separatordate !== thisday;
-            this.__separatordate = thisday;
-            this.__isFuture = entryDate > new Date();
+            this.__P_13_6 = this.__P_13_5 > 0 && this.__P_13_5 !== thisday;
+            this.__P_13_5 = thisday;
+            this.__P_13_7 = entryDate > new Date();
           } else {
             itemHtml = itemHtml.replace(/\{date\}/, '');
           }
@@ -608,10 +608,10 @@
           });
         }
 
-        var req = new qx.io.request.Xhr(this.__request.getUrl());
+        var req = new qx.io.request.Xhr(this.__P_13_0.getUrl());
         req.set({
           method: "GET",
-          requestData: Object.assign({}, this.__fixedRequestData, {
+          requestData: Object.assign({}, this.__P_13_3, {
             'u': id,
             'state': state
           }),
@@ -630,4 +630,4 @@
   cv.plugins.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1591115567822
+//# sourceMappingURL=RssLog.js.map?dt=1592778958811

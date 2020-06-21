@@ -124,14 +124,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} <code>true</code> if the widget has been initialized",
-            "type": "Boolean",
-            "description": " <code>true</code> if the widget has been initialized"
-          }
         ]
       },
       "type": "function",

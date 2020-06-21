@@ -173,7 +173,7 @@
           qx.event.Registration.addListener(actor, "pointerdown", this._onPointerDown, this);
         }, this);
       },
-      __findActor: function __findActor(element) {
+      __P_45_0: function __P_45_0(element) {
         while (!element.classList.contains('actor')) {
           element = element.parentNode;
 
@@ -186,12 +186,12 @@
         return element;
       },
       _onLongTap: function _onLongTap(event) {
-        this.__action(false, this.__findActor(event.getCurrentTarget()).classList.contains('downlabel'));
+        this.__P_45_1(false, this.__P_45_0(event.getCurrentTarget()).classList.contains('downlabel'));
       },
       _action: function _action(event) {
-        this.__action(true, this.__findActor(event.getCurrentTarget()).classList.contains('downlabel'));
+        this.__P_45_1(true, this.__P_45_0(event.getCurrentTarget()).classList.contains('downlabel'));
       },
-      __action: function __action(isShort, isDown) {
+      __P_45_1: function __P_45_1(isShort, isDown) {
         var value;
 
         if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
@@ -235,4 +235,4 @@
   cv.ui.structure.pure.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1591114958421
+//# sourceMappingURL=InfoTrigger.js.map?dt=1592777073331

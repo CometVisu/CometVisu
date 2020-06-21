@@ -100,7 +100,7 @@
       this.addListener("pointerout", this._onPointerOut, this);
       this.addListener("tap", this._onTap, this);
       this.addListener("keyinput", this._onKeyInput, this);
-      this.addListener("changeSelection", this.__onChangeSelection, this);
+      this.addListener("changeSelection", this.__P_298_0, this);
     },
 
     /*
@@ -128,7 +128,7 @@
     */
     members: {
       /** @type {qx.ui.form.ListItem} instance */
-      __preSelectedItem: null,
+      __P_298_1: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -225,7 +225,7 @@
        *
        * @param e {qx.event.type.Data} Data event.
        */
-      __onChangeSelection: function __onChangeSelection(e) {
+      __P_298_0: function __P_298_0(e) {
         var listItem = e.getData()[0];
         var list = this.getChildControl("list");
 
@@ -237,15 +237,15 @@
           }
         }
 
-        this.__updateIcon();
+        this.__P_298_2();
 
-        this.__updateLabel();
+        this.__P_298_3();
       },
 
       /**
        * Sets the icon inside the list to match the selected ListItem.
        */
-      __updateIcon: function __updateIcon() {
+      __P_298_2: function __P_298_2() {
         var listItem = this.getChildControl("list").getSelection()[0];
         var atom = this.getChildControl("atom");
         var icon = listItem ? listItem.getIcon() : "";
@@ -255,7 +255,7 @@
       /**
        * Sets the label inside the list to match the selected ListItem.
        */
-      __updateLabel: function __updateLabel() {
+      __P_298_3: function __P_298_3() {
         var listItem = this.getChildControl("list").getSelection()[0];
         var atom = this.getChildControl("atom");
         var label = listItem ? listItem.getLabel() : "";
@@ -337,9 +337,9 @@
 
         if (iden == "Enter" || iden == "Space") {
           // Apply pre-selected item (translate quick selection to real selection)
-          if (this.__preSelectedItem) {
-            this.setSelection([this.__preSelectedItem]);
-            this.__preSelectedItem = null;
+          if (this.__P_298_1) {
+            this.setSelection([this.__P_298_1]);
+            this.__P_298_1 = null;
           }
 
           this.toggle();
@@ -364,9 +364,9 @@
       // overridden
       _onListPointerDown: function _onListPointerDown(e) {
         // Apply pre-selected item (translate quick selection to real selection)
-        if (this.__preSelectedItem) {
-          this.setSelection([this.__preSelectedItem]);
-          this.__preSelectedItem = null;
+        if (this.__P_298_1) {
+          this.setSelection([this.__P_298_1]);
+          this.__P_298_1 = null;
         }
       },
       // overridden
@@ -375,8 +375,8 @@
         var old = e.getOldData(); // Remove old listeners for icon and label changes.
 
         if (old && old.length > 0) {
-          old[0].removeListener("changeIcon", this.__updateIcon, this);
-          old[0].removeListener("changeLabel", this.__updateLabel, this);
+          old[0].removeListener("changeIcon", this.__P_298_2, this);
+          old[0].removeListener("changeLabel", this.__P_298_3, this);
         }
 
         if (current.length > 0) {
@@ -387,15 +387,15 @@
           var context = list.getSelectionContext();
 
           if (popup.isVisible() && (context == "quick" || context == "key")) {
-            this.__preSelectedItem = current[0];
+            this.__P_298_1 = current[0];
           } else {
             this.setSelection([current[0]]);
-            this.__preSelectedItem = null;
+            this.__P_298_1 = null;
           } // Add listeners for icon and label changes
 
 
-          current[0].addListener("changeIcon", this.__updateIcon, this);
-          current[0].addListener("changeLabel", this.__updateLabel, this);
+          current[0].addListener("changeIcon", this.__P_298_2, this);
+          current[0].addListener("changeLabel", this.__P_298_3, this);
         } else {
           this.resetSelection();
         }
@@ -443,10 +443,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__preSelectedItem = null;
+      this.__P_298_1 = null;
     }
   });
   qx.ui.form.SelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectBox.js.map?dt=1591115593569
+//# sourceMappingURL=SelectBox.js.map?dt=1592778984782

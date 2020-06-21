@@ -38,7 +38,7 @@
    */
   qx.Mixin.define("com.zenesis.qx.upload.MParameters", {
     members: {
-      __params: null,
+      __P_254_0: null,
 
       /**
        * Sets a parameter value to be sent with the file
@@ -51,8 +51,8 @@
        */
       setParam: function setParam(name, value) {
         if (value !== null && typeof value != "string") value = "" + value;
-        if (!this.__params) this.__params = {};
-        this.__params[name] = value;
+        if (!this.__P_254_0) this.__P_254_0 = {};
+        this.__P_254_0[name] = value;
       },
 
       /**
@@ -62,7 +62,7 @@
        * @returns {Boolean}
        */
       getParam: function getParam(name) {
-        return this.__params && this.__params[name];
+        return this.__P_254_0 && this.__P_254_0[name];
       },
 
       /**
@@ -72,7 +72,7 @@
        */
       getParamNames: function getParamNames() {
         var result = [];
-        if (this.__params) for (var name in this.__params) {
+        if (this.__P_254_0) for (var name in this.__P_254_0) {
           result.push(name);
         }
         return result;
@@ -82,4 +82,4 @@
   com.zenesis.qx.upload.MParameters.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MParameters.js.map?dt=1591115589865
+//# sourceMappingURL=MParameters.js.map?dt=1592778981049

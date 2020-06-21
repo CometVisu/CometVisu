@@ -120,11 +120,29 @@
   },
   "properties": {
     "liveUpdate": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the {@link #changeValue} event should be fired on every key\n input. If set to true, the changeValue event is equal to the\n {@link #input} event.</p>"
+          }
+        ]
+      },
       "name": "liveUpdate",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     }
   },
   "members": {

@@ -502,24 +502,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "rowArr {var[][]} An array containing an array for each row. Each\n          row-array contains the values in that row in the order of the columns\n          in this model.",
-            "paramName": "rowArr",
-            "description": " An array containing an array for each row. Each\n          row-array contains the values in that row in the order of the columns\n          in this model.",
-            "type": "var[][]"
-          },
-          {
-            "name": "@param",
-            "body": "clearSorting {Boolean ? true} Whether to clear the sort state.",
-            "paramName": "clearSorting",
-            "description": " Whether to clear the sort state.",
-            "optional": true,
-            "defaultValue": "true",
-            "type": "Boolean"
-          }
         ]
       },
       "type": "function",
@@ -588,7 +570,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -647,7 +637,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getCaseSensitiveSorting": {
       "type": "function",

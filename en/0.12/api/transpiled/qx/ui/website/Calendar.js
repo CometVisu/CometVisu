@@ -289,7 +289,7 @@
       "rendered": ""
     },
     members: {
-      __range: null,
+      __P_443_0: null,
       _value: null,
       _shownValue: null,
       // overridden
@@ -298,7 +298,7 @@
           return false;
         }
 
-        this.__range = [];
+        this.__P_443_0 = [];
         var today = new Date();
         today = this._getNormalizedDate(today);
         this.showValue(today);
@@ -369,8 +369,8 @@
             }
           }
         } else if (this.getConfig("selectionMode") == "range") {
-          if (!this.__range) {
-            this.__range = value.map(function (val) {
+          if (!this.__P_443_0) {
+            this.__P_443_0 = value.map(function (val) {
               return val.toDateString();
             });
           }
@@ -463,14 +463,14 @@
         var newValue = new Date(newStr);
 
         if (this.getConfig("selectionMode") == "range") {
-          var range = this.__range.slice(0);
+          var range = this.__P_443_0.slice(0);
 
           if (range.length == 2) {
             range = [];
           }
 
           range.push(newStr);
-          this.__range = range;
+          this.__P_443_0 = range;
           range = range.map(function (item) {
             return new Date(item);
           });
@@ -623,7 +623,7 @@
                 cssClasses += " " + cssPrefix + "-selected";
               }
             } else {
-              var range = this.__range;
+              var range = this.__P_443_0;
 
               if (this._value) {
                 value = this.getConfig("selectionMode") == "range" ? new Date(range[range.length - 1]) : this._value;
@@ -886,4 +886,4 @@
   qx.ui.website.Calendar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Calendar.js.map?dt=1591114993349
+//# sourceMappingURL=Calendar.js.map?dt=1592777108529

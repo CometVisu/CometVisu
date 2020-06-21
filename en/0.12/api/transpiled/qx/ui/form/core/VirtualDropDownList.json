@@ -196,7 +196,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Position of the aligned object in relation to the opener.\n Please note than changes to this property are only applied\n when re-aligning the widget.\n The first part of the value is the edge to attach to. The second\n part the alignment of the orthogonal edge after the widget\n has been attached.\n The default value \"bottom-left\" for example means that the\n widget should be shown directly under the given target and\n then should be aligned to be left edge:\n </p>\n<pre>\n +--------+\n | target |\n +--------+\n +-------------+\n |   widget    |\n +-------------+\n </pre>"
+          }
+        ]
+      }
     },
     "placeMethod": {
       "type": "property",
@@ -204,7 +212,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should be placed relative to an other widget or to\n the pointer.</p>"
+          }
+        ]
+      }
     },
     "domMove": {
       "type": "property",
@@ -212,7 +228,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should moved using DOM methods.</p>"
+          }
+        ]
+      }
     },
     "placementModeX": {
       "type": "property",
@@ -220,7 +244,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects the algorithm to place the widget horizontally. <code>direct</code>\n uses {@link qx.util.placement.DirectAxis}, <code>keep-align</code>\n uses {@link qx.util.placement.KeepAlignAxis} and <code>best-fit</code>\n uses {@link qx.util.placement.BestFitAxis}.</p>"
+          }
+        ]
+      }
     },
     "placementModeY": {
       "type": "property",
@@ -228,7 +260,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects the algorithm to place the widget vertically. <code>direct</code>\n uses {@link qx.util.placement.DirectAxis}, <code>keep-align</code>\n uses {@link qx.util.placement.KeepAlignAxis} and <code>best-fit</code>\n uses {@link qx.util.placement.BestFitAxis}.</p>"
+          }
+        ]
+      }
     },
     "offsetLeft": {
       "type": "property",
@@ -236,7 +276,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Left offset of the pointer (in pixel)</p>"
+          }
+        ]
+      }
     },
     "offsetTop": {
       "type": "property",
@@ -244,7 +292,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Top offset of the pointer (in pixel)</p>"
+          }
+        ]
+      }
     },
     "offsetRight": {
       "type": "property",
@@ -252,7 +308,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Right offset of the pointer (in pixel)</p>"
+          }
+        ]
+      }
     },
     "offsetBottom": {
       "type": "property",
@@ -260,7 +324,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Bottom offset of the pointer (in pixel)</p>"
+          }
+        ]
+      }
     },
     "offset": {
       "type": "property",
@@ -268,7 +340,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Offsets in one group</p>"
+          }
+        ]
+      }
     }
   },
   "events": {
@@ -563,32 +643,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "id {String} ID of the child control. If a # is used, the id is\n   the part in front of the #.",
-            "paramName": "id",
-            "description": " ID of the child control. If a # is used, the id is\n   the part in front of the #.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "hash {String?undefined} If a child control name contains a #,\n   all text following the # will be the hash argument.",
-            "paramName": "hash",
-            "description": " If a child control name contains a #,\n   all text following the # will be the hash argument.",
-            "optional": true,
-            "defaultValue": "undefined",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.core.Widget} The created control or <code>null</code>",
-            "type": "qx.ui.core.Widget",
-            "description": " The created control or <code>null</code>"
           }
         ]
       },
@@ -1231,7 +1285,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all resources allocated by the last run of placeToWidget with liveupdate=true</p>"
+          }
+        ]
+      }
     },
     "placeToPointer": {
       "type": "function",
@@ -1454,7 +1516,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.core.MPlacement",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>position</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #position}."
+          }
+        ]
+      }
     },
     "getPlaceMethod": {
       "type": "function",
@@ -1515,7 +1585,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.core.MPlacement",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>placeMethod</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #placeMethod}."
+          }
+        ]
+      }
     },
     "getDomMove": {
       "type": "function",
@@ -1601,7 +1679,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.core.MPlacement",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>domMove</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #domMove}."
+          }
+        ]
+      }
     },
     "getPlacementModeX": {
       "type": "function",
@@ -1662,7 +1748,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.core.MPlacement",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>placementModeX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #placementModeX}."
+          }
+        ]
+      }
     },
     "getPlacementModeY": {
       "type": "function",
@@ -1723,7 +1817,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.core.MPlacement",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>placementModeY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #placementModeY}."
+          }
+        ]
+      }
     },
     "getOffsetLeft": {
       "type": "function",
@@ -1784,7 +1886,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.core.MPlacement",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>offsetLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #offsetLeft}."
+          }
+        ]
+      }
     },
     "getOffsetTop": {
       "type": "function",
@@ -1845,7 +1955,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.core.MPlacement",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>offsetTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #offsetTop}."
+          }
+        ]
+      }
     },
     "getOffsetRight": {
       "type": "function",
@@ -1906,7 +2024,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.core.MPlacement",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>offsetRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #offsetRight}."
+          }
+        ]
+      }
     },
     "getOffsetBottom": {
       "type": "function",
@@ -1967,7 +2093,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.core.MPlacement",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>offsetBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #offsetBottom}."
+          }
+        ]
+      }
     },
     "getOffset": {
       "type": "function",
@@ -2028,7 +2162,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.core.MPlacement",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>offset</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #offset}."
+          }
+        ]
+      }
     },
     "getQxOwner": {
       "type": "function",
@@ -2089,7 +2231,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -2148,7 +2298,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMinWidth": {
       "type": "function",
@@ -2209,7 +2367,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>minWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minWidth}."
+          }
+        ]
+      }
     },
     "getWidth": {
       "type": "function",
@@ -2270,7 +2436,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
+          }
+        ]
+      }
     },
     "getMaxWidth": {
       "type": "function",
@@ -2331,7 +2505,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
+          }
+        ]
+      }
     },
     "getMinHeight": {
       "type": "function",
@@ -2392,7 +2574,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>minHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minHeight}."
+          }
+        ]
+      }
     },
     "getHeight": {
       "type": "function",
@@ -2453,7 +2643,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
+          }
+        ]
+      }
     },
     "getMaxHeight": {
       "type": "function",
@@ -2514,7 +2712,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
+          }
+        ]
+      }
     },
     "getAllowGrowX": {
       "type": "function",
@@ -2600,7 +2806,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowGrowX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
+          }
+        ]
+      }
     },
     "getAllowShrinkX": {
       "type": "function",
@@ -2686,7 +2900,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowShrinkX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
+          }
+        ]
+      }
     },
     "getAllowGrowY": {
       "type": "function",
@@ -2772,7 +2994,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowGrowY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
+          }
+        ]
+      }
     },
     "getAllowShrinkY": {
       "type": "function",
@@ -2858,7 +3088,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowShrinkY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
+          }
+        ]
+      }
     },
     "getAllowStretchX": {
       "type": "function",
@@ -2919,7 +3157,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
+          }
+        ]
+      }
     },
     "getAllowStretchY": {
       "type": "function",
@@ -2980,7 +3226,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowStretchY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
+          }
+        ]
+      }
     },
     "getMarginTop": {
       "type": "function",
@@ -3041,7 +3295,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginTop}."
+          }
+        ]
+      }
     },
     "getMarginRight": {
       "type": "function",
@@ -3102,7 +3364,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginRight}."
+          }
+        ]
+      }
     },
     "getMarginBottom": {
       "type": "function",
@@ -3163,7 +3433,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
+          }
+        ]
+      }
     },
     "getMarginLeft": {
       "type": "function",
@@ -3224,7 +3502,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
+          }
+        ]
+      }
     },
     "getMargin": {
       "type": "function",
@@ -3285,7 +3571,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>margin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #margin}."
+          }
+        ]
+      }
     },
     "getAlignX": {
       "type": "function",
@@ -3346,7 +3640,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ]
+      }
     },
     "getAlignY": {
       "type": "function",
@@ -3407,7 +3709,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ]
+      }
     },
     "getPaddingTop": {
       "type": "function",
@@ -3468,7 +3778,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
+          }
+        ]
+      }
     },
     "getPaddingRight": {
       "type": "function",
@@ -3529,7 +3847,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
+          }
+        ]
+      }
     },
     "getPaddingBottom": {
       "type": "function",
@@ -3590,7 +3916,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
+          }
+        ]
+      }
     },
     "getPaddingLeft": {
       "type": "function",
@@ -3651,7 +3985,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
+          }
+        ]
+      }
     },
     "getPadding": {
       "type": "function",
@@ -3712,7 +4054,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>padding</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #padding}."
+          }
+        ]
+      }
     },
     "getZIndex": {
       "type": "function",
@@ -3773,7 +4123,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>zIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #zIndex}."
+          }
+        ]
+      }
     },
     "getDecorator": {
       "type": "function",
@@ -3834,7 +4192,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>decorator</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #decorator}."
+          }
+        ]
+      }
     },
     "getBackgroundColor": {
       "type": "function",
@@ -3895,7 +4261,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ]
+      }
     },
     "getTextColor": {
       "type": "function",
@@ -3956,7 +4330,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>textColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #textColor}."
+          }
+        ]
+      }
     },
     "getFont": {
       "type": "function",
@@ -4017,7 +4399,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>font</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #font}."
+          }
+        ]
+      }
     },
     "getOpacity": {
       "type": "function",
@@ -4078,7 +4468,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>opacity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #opacity}."
+          }
+        ]
+      }
     },
     "getCursor": {
       "type": "function",
@@ -4139,7 +4537,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>cursor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cursor}."
+          }
+        ]
+      }
     },
     "getToolTip": {
       "type": "function",
@@ -4200,7 +4606,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTip}."
+          }
+        ]
+      }
     },
     "getToolTipText": {
       "type": "function",
@@ -4261,7 +4675,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTipText</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
+          }
+        ]
+      }
     },
     "getToolTipIcon": {
       "type": "function",
@@ -4322,7 +4744,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTipIcon</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
+          }
+        ]
+      }
     },
     "getBlockToolTip": {
       "type": "function",
@@ -4408,7 +4838,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>blockToolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
+          }
+        ]
+      }
     },
     "getShowToolTipWhenDisabled": {
       "type": "function",
@@ -4494,7 +4932,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
+          }
+        ]
+      }
     },
     "getVisibility": {
       "type": "function",
@@ -4555,7 +5001,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ]
+      }
     },
     "getEnabled": {
       "type": "function",
@@ -4641,7 +5095,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ]
+      }
     },
     "getAnonymous": {
       "type": "function",
@@ -4727,7 +5189,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ]
+      }
     },
     "getTabIndex": {
       "type": "function",
@@ -4788,7 +5258,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>tabIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
+          }
+        ]
+      }
     },
     "getFocusable": {
       "type": "function",
@@ -4874,7 +5352,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>focusable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #focusable}."
+          }
+        ]
+      }
     },
     "getKeepFocus": {
       "type": "function",
@@ -4960,7 +5446,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>keepFocus</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
+          }
+        ]
+      }
     },
     "getKeepActive": {
       "type": "function",
@@ -5046,7 +5540,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>keepActive</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepActive}."
+          }
+        ]
+      }
     },
     "getDraggable": {
       "type": "function",
@@ -5132,7 +5634,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>draggable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #draggable}."
+          }
+        ]
+      }
     },
     "getDroppable": {
       "type": "function",
@@ -5218,7 +5728,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>droppable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #droppable}."
+          }
+        ]
+      }
     },
     "getSelectable": {
       "type": "function",
@@ -5304,7 +5822,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>selectable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selectable}."
+          }
+        ]
+      }
     },
     "getContextMenu": {
       "type": "function",
@@ -5365,7 +5891,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>contextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
+          }
+        ]
+      }
     },
     "getNativeContextMenu": {
       "type": "function",
@@ -5451,7 +5985,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>nativeContextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
+          }
+        ]
+      }
     },
     "getAppearance": {
       "type": "function",
@@ -5512,7 +6054,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>appearance</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #appearance}."
+          }
+        ]
+      }
     },
     "getAutoHide": {
       "type": "function",

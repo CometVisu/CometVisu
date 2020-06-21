@@ -24,14 +24,14 @@
     implement: [qx.ui.virtual.cell.IWidgetCell],
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__pool = [];
+      this.__P_427_0 = [];
     },
     events: {
       /** Fired when a new <code>LayoutItem</code> is created. */
       "created": "qx.event.type.Data"
     },
     members: {
-      __pool: null,
+      __P_427_0: null,
 
       /**
        * Creates the widget instance.
@@ -75,7 +75,7 @@
       },
       // interface implementation
       getCellWidget: function getCellWidget(data, states) {
-        var widget = this.__getWidgetFromPool();
+        var widget = this.__P_427_1();
 
         this.updateStates(widget, states);
         this.updateData(widget, data);
@@ -83,18 +83,18 @@
       },
       // interface implementation
       pool: function pool(widget) {
-        this.__pool.push(widget);
+        this.__P_427_0.push(widget);
       },
 
       /**
        * Cleanup all <code>LayoutItem</code> and destroy them.
        */
       _cleanupPool: function _cleanupPool() {
-        var widget = this.__pool.pop();
+        var widget = this.__P_427_0.pop();
 
         while (widget) {
           widget.destroy();
-          widget = this.__pool.pop();
+          widget = this.__P_427_0.pop();
         }
       },
 
@@ -104,8 +104,8 @@
        *
        * @return {qx.ui.core.LayoutItem} The cell widget
        */
-      __getWidgetFromPool: function __getWidgetFromPool() {
-        var widget = this.__pool.shift();
+      __P_427_1: function __P_427_1() {
+        var widget = this.__P_427_0.shift();
 
         if (widget == null) {
           widget = this._createWidget();
@@ -124,10 +124,10 @@
     destruct: function destruct() {
       this._cleanupPool();
 
-      this.__pool = null;
+      this.__P_427_0 = null;
     }
   });
   qx.ui.virtual.cell.AbstractWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractWidget.js.map?dt=1591114992097
+//# sourceMappingURL=AbstractWidget.js.map?dt=1592777107360

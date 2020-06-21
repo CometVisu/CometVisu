@@ -121,10 +121,10 @@
      */
     construct: function construct(manager) {
       // Define shorthands
-      this.__manager = manager;
-      this.__window = manager.getWindow();
-      this.__root = this.__window.document;
-      qx.event.handler.TouchCore.apply(this, [this.__root]);
+      this.__P_264_0 = manager;
+      this.__P_264_1 = manager.getWindow();
+      this.__P_264_2 = this.__P_264_1.document;
+      qx.event.handler.TouchCore.apply(this, [this.__P_264_2]);
     },
 
     /*
@@ -168,11 +168,11 @@
     *****************************************************************************
     */
     members: {
-      __manager: null,
-      __window: null,
-      __root: null,
+      __P_264_0: null,
+      __P_264_1: null,
+      __P_264_2: null,
       // Checks if the mouse movement is happening while simulating a touch event
-      __isInTouch: false,
+      __P_264_3: false,
 
       /*
       ---------------------------------------------------------------------------
@@ -214,7 +214,7 @@
         } // Fire user action event
 
 
-        qx.event.Registration.fireEvent(this.__window, "useraction", qx.event.type.Data, [type]);
+        qx.event.Registration.fireEvent(this.__P_264_1, "useraction", qx.event.type.Data, [type]);
       },
 
       /*
@@ -237,9 +237,9 @@
        * Dispose this object
        */
       dispose: function dispose() {
-        this.__callBase("dispose");
+        this.__P_264_4("dispose");
 
-        this.__manager = this.__window = this.__root = null;
+        this.__P_264_0 = this.__P_264_1 = this.__P_264_2 = null;
       },
 
       /**
@@ -248,7 +248,7 @@
        * @param method {String} Name of the overridden method.
        * @param args {Array} Arguments.
        */
-      __callBase: function __callBase(method, args) {
+      __P_264_4: function __P_264_4(method, args) {
         qx.event.handler.TouchCore.prototype[method].apply(this, args || []);
       }
     },
@@ -270,4 +270,4 @@
   qx.event.handler.Touch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Touch.js.map?dt=1591115591436
+//# sourceMappingURL=Touch.js.map?dt=1592778982659

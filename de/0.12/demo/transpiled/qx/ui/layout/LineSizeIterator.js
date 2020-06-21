@@ -41,16 +41,16 @@
      * @param spacing {Integer} The horizontal spacing between the children
      */
     construct: function construct(children, spacing) {
-      this.__children = children;
-      this.__spacing = spacing;
-      this.__hasMoreLines = children.length > 0;
-      this.__childIndex = 0;
+      this.__P_258_0 = children;
+      this.__P_258_1 = spacing;
+      this.__P_258_2 = children.length > 0;
+      this.__P_258_3 = 0;
     },
     members: {
-      __children: null,
-      __spacing: null,
-      __hasMoreLines: null,
-      __childIndex: null,
+      __P_258_0: null,
+      __P_258_1: null,
+      __P_258_2: null,
+      __P_258_3: null,
 
       /**
        * Computes the properties of the next line taking the available width into
@@ -62,27 +62,27 @@
       computeNextLine: function computeNextLine(availWidth) {
         var availWidth = availWidth || Infinity;
 
-        if (!this.__hasMoreLines) {
+        if (!this.__P_258_2) {
           throw new Error("No more lines to compute");
         }
 
-        var children = this.__children;
+        var children = this.__P_258_0;
         var lineHeight = 0;
         var lineWidth = 0;
         var lineChildren = [];
         var gapsBefore = [];
 
-        for (var i = this.__childIndex; i < children.length; i++) {
+        for (var i = this.__P_258_3; i < children.length; i++) {
           var child = children[i];
           var size = child.getSizeHint();
 
-          var gapBefore = this.__computeGapBeforeChild(i);
+          var gapBefore = this.__P_258_4(i);
 
           var childWidth = size.width + gapBefore;
-          var isFirstChild = i == this.__childIndex;
+          var isFirstChild = i == this.__P_258_3;
 
           if (!isFirstChild && lineWidth + childWidth > availWidth) {
-            this.__childIndex = i;
+            this.__P_258_3 = i;
             break;
           }
 
@@ -93,13 +93,13 @@
           lineHeight = Math.max(lineHeight, childHeight);
 
           if (child.getLayoutProperties().lineBreak) {
-            this.__childIndex = i + 1;
+            this.__P_258_3 = i + 1;
             break;
           }
         }
 
         if (i >= children.length) {
-          this.__hasMoreLines = false;
+          this.__P_258_2 = false;
         }
 
         return {
@@ -116,13 +116,13 @@
        * @param childIndex {Integer} The index of the child widget
        * @return {Integer} The gap before the given child
        */
-      __computeGapBeforeChild: function __computeGapBeforeChild(childIndex) {
-        var isFirstInLine = childIndex == this.__childIndex;
+      __P_258_4: function __P_258_4(childIndex) {
+        var isFirstInLine = childIndex == this.__P_258_3;
 
         if (isFirstInLine) {
-          return this.__children[childIndex].getMarginLeft();
+          return this.__P_258_0[childIndex].getMarginLeft();
         } else {
-          return Math.max(this.__children[childIndex - 1].getMarginRight(), this.__children[childIndex].getMarginLeft(), this.__spacing);
+          return Math.max(this.__P_258_0[childIndex - 1].getMarginRight(), this.__P_258_0[childIndex].getMarginLeft(), this.__P_258_1);
         }
       },
 
@@ -132,11 +132,11 @@
        * @return {Boolean} Whether there are more lines
        */
       hasMoreLines: function hasMoreLines() {
-        return this.__hasMoreLines;
+        return this.__P_258_2;
       }
     }
   });
   qx.ui.layout.LineSizeIterator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LineSizeIterator.js.map?dt=1591115590052
+//# sourceMappingURL=LineSizeIterator.js.map?dt=1592778981248

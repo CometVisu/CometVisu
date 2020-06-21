@@ -133,7 +133,7 @@
       }
 
       if (qx.core.ServerSettings) {
-        this.__currentServerSuffix = qx.core.ServerSettings.serverPathSuffix;
+        this.__P_215_0 = qx.core.ServerSettings.serverPathSuffix;
       }
     },
 
@@ -368,8 +368,8 @@
     *****************************************************************************
     */
     members: {
-      __previousServerSuffix: null,
-      __currentServerSuffix: null,
+      __P_215_1: null,
+      __P_215_0: null,
 
       /**
        * Factory method to create a request object. By default, a POST request
@@ -659,9 +659,9 @@
               result = eval("(" + result + ")");
               var newSuffix = qx.core.ServerSettings.serverPathSuffix;
 
-              if (self.__currentServerSuffix != newSuffix) {
-                self.__previousServerSuffix = self.__currentServerSuffix;
-                self.__currentServerSuffix = newSuffix;
+              if (self.__P_215_0 != newSuffix) {
+                self.__P_215_1 = self.__P_215_0;
+                self.__P_215_0 = newSuffix;
               }
 
               self.setUrl(self.fixUrl(self.getUrl()));
@@ -724,17 +724,17 @@
        * @return {String} the (possibly re-written) URL.
        */
       fixUrl: function fixUrl(url) {
-        if (this.__previousServerSuffix == null || this.__currentServerSuffix == null || this.__previousServerSuffix == "" || this.__previousServerSuffix == this.__currentServerSuffix) {
+        if (this.__P_215_1 == null || this.__P_215_0 == null || this.__P_215_1 == "" || this.__P_215_1 == this.__P_215_0) {
           return url;
         }
 
-        var index = url.indexOf(this.__previousServerSuffix);
+        var index = url.indexOf(this.__P_215_1);
 
         if (index == -1) {
           return url;
         }
 
-        return url.substring(0, index) + this.__currentServerSuffix + url.substring(index + this.__previousServerSuffix.length);
+        return url.substring(0, index) + this.__P_215_0 + url.substring(index + this.__P_215_1.length);
       },
 
       /**
@@ -924,4 +924,4 @@
   qx.io.remote.Rpc.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rpc.js.map?dt=1591114973289
+//# sourceMappingURL=Rpc.js.map?dt=1592777088514

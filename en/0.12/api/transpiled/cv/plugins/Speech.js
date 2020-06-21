@@ -95,7 +95,7 @@
       this._initOnCreate = true;
       qx.core.Object.constructor.call(this);
       this.set(props);
-      this.__lastSpeech = {};
+      this.__P_14_0 = {};
     },
 
     /*
@@ -162,7 +162,7 @@
      ******************************************************
      */
     members: {
-      __lastSpeech: null,
+      __P_14_0: null,
       getDomString: function getDomString() {
         return undefined;
       },
@@ -175,7 +175,7 @@
       handleUpdate: function handleUpdate(text, address) {
         if (!cv.TemplateEngine.getInstance().visu.getDataReceived()) {
           // first call -> skipping
-          this.__lastSpeech[address] = {
+          this.__P_14_0[address] = {
             text: text,
             time: Date.now()
           };
@@ -194,17 +194,17 @@
           text = text.substring(1);
         } else if (this.getRepeatTimeout() >= 0) {
           // do not repeat (within timeout when this.repeatTimeout > 0)
-          if (this.__lastSpeech[address] && this.__lastSpeech[address].text === text && (this.getRepeatTimeout() === 0 || this.getRepeatTimeout() >= Math.round((Date.now() - this.__lastSpeech[address].time) / 1000))) {
+          if (this.__P_14_0[address] && this.__P_14_0[address].text === text && (this.getRepeatTimeout() === 0 || this.getRepeatTimeout() >= Math.round((Date.now() - this.__P_14_0[address].time) / 1000))) {
             // update time
-            this.__lastSpeech[address].time = Date.now(); // do not repeat
+            this.__P_14_0[address].time = Date.now(); // do not repeat
 
             this.debug("skipping TTS because of repetition " + text);
             return;
           }
         }
 
-        this.debug("changing lastSpeech from '%s' to '%s'", this.__lastSpeech[address] ? this.__lastSpeech[address].text : "", text);
-        this.__lastSpeech[address] = {
+        this.debug("changing lastSpeech from '%s' to '%s'", this.__P_14_0[address] ? this.__P_14_0[address].text : "", text);
+        this.__P_14_0[address] = {
           text: text,
           time: Date.now()
         };
@@ -220,4 +220,4 @@
   cv.plugins.Speech.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Speech.js.map?dt=1591114954822
+//# sourceMappingURL=Speech.js.map?dt=1592777069642

@@ -43,7 +43,7 @@
     */
     construct: function construct() {
       qx.bom.Blocker.constructor.call(this);
-      this.__counters = {};
+      this.__P_176_0 = {};
       this.setBlockerOpacity(0.5);
       this.setBlockerColor("#000000");
     },
@@ -54,21 +54,21 @@
     ******************************************************
     */
     members: {
-      __body: null,
-      __counters: null,
-      __uniques: [],
+      __P_176_1: null,
+      __P_176_0: null,
+      __P_176_2: [],
 
       /**
        * @param topic {String} topic of the message related to this blocker
        * @param unique {Boolean} true if it is a unique message
        */
       block: function block(topic, unique) {
-        cv.ui.BodyBlocker.prototype.block.base.call(this, this.__getBody());
+        cv.ui.BodyBlocker.prototype.block.base.call(this, this.__P_176_3());
 
-        if (!this.__counters.hasOwnProperty(topic)) {
-          this.__counters[topic] = 1;
+        if (!this.__P_176_0.hasOwnProperty(topic)) {
+          this.__P_176_0[topic] = 1;
         } else if (!unique) {
-          this.__counters[topic]++;
+          this.__P_176_0[topic]++;
         }
 
         document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
@@ -77,13 +77,13 @@
       },
       unblock: function unblock(topic) {
         if (topic) {
-          if (this.__counters.hasOwnProperty(topic)) {
-            this.__counters[topic]--;
+          if (this.__P_176_0.hasOwnProperty(topic)) {
+            this.__P_176_0[topic]--;
 
-            if (this.__counters[topic] === 0) {
-              delete this.__counters[topic];
+            if (this.__P_176_0[topic] === 0) {
+              delete this.__P_176_0[topic];
 
-              if (Object.keys(this.__counters).length === 0) {
+              if (Object.keys(this.__P_176_0).length === 0) {
                 cv.ui.BodyBlocker.prototype.unblock.base.call(this);
                 document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
                   elem.classList.remove("blurred");
@@ -93,23 +93,23 @@
           }
         } else {
           // not topic given unblock all
-          this.__counters = {};
+          this.__P_176_0 = {};
           cv.ui.BodyBlocker.prototype.unblock.base.call(this);
           document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
             elem.classList.remove("blurred");
           });
         }
       },
-      __getBody: function __getBody() {
-        if (!this.__body) {
-          this.__body = document.querySelector("body");
+      __P_176_3: function __P_176_3() {
+        if (!this.__P_176_1) {
+          this.__P_176_1 = document.querySelector("body");
         }
 
-        return this.__body;
+        return this.__P_176_1;
       }
     }
   });
   cv.ui.BodyBlocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BodyBlocker.js.map?dt=1591115583776
+//# sourceMappingURL=BodyBlocker.js.map?dt=1592778975099

@@ -61,40 +61,40 @@
       qx.ui.progressive.structure.Abstract.constructor.call(this, pane); // If no header was specified, use null header
 
       if (!header) {
-        this.__nullHeader = new qx.ui.progressive.headfoot.Null();
-        this.__header = this.__nullHeader;
+        this.__P_383_0 = new qx.ui.progressive.headfoot.Null();
+        this.__P_383_1 = this.__P_383_0;
       } else {
-        this.__nullHeader = null;
-        this.__header = header;
+        this.__P_383_0 = null;
+        this.__P_383_1 = header;
       } // If no footer was specified, use a null footer
 
 
       if (!footer) {
-        this.__nullFooter = new qx.ui.progressive.headfoot.Null();
-        this.__footer = this.__nullFooter;
+        this.__P_383_2 = new qx.ui.progressive.headfoot.Null();
+        this.__P_383_3 = this.__P_383_2;
       } else {
-        this.__nullFooter = null;
-        this.__footer = footer;
+        this.__P_383_2 = null;
+        this.__P_383_3 = footer;
       }
     },
     members: {
-      __header: null,
-      __footer: null,
-      __nullHeader: null,
-      __nullFooter: null,
+      __P_383_1: null,
+      __P_383_3: null,
+      __P_383_0: null,
+      __P_383_2: null,
       // overridden
       applyStructure: function applyStructure(progressive) {
         // Tell the header/footer components who their Progressive is
-        this.__header.join(progressive);
+        this.__P_383_1.join(progressive);
 
-        this.__footer.join(progressive); // Add the header, pane, and footer to the Progressive.
+        this.__P_383_3.join(progressive); // Add the header, pane, and footer to the Progressive.
 
 
-        progressive.add(this.__header);
+        progressive.add(this.__P_383_1);
         progressive.add(this.getPane(), {
           flex: 1
         });
-        progressive.add(this.__footer);
+        progressive.add(this.__P_383_3);
       },
 
       /**
@@ -103,7 +103,7 @@
        * @return {qx.ui.progressive.headfoot.Abstract}
        */
       getHeader: function getHeader() {
-        return this.__header;
+        return this.__P_383_1;
       },
 
       /**
@@ -112,26 +112,26 @@
        * @return {qx.ui.progressive.headfoot.Abstract}
        */
       getFooter: function getFooter() {
-        return this.__footer;
+        return this.__P_383_3;
       }
     },
     destruct: function destruct() {
-      if (this.__nullHeader) {
-        this.__nullHeader.dispose();
+      if (this.__P_383_0) {
+        this.__P_383_0.dispose();
 
-        this.__nullHeader = null;
+        this.__P_383_0 = null;
       }
 
-      if (this.__nullFooter) {
-        this.__nullFooter.dispose();
+      if (this.__P_383_2) {
+        this.__P_383_2.dispose();
 
-        this.__nullFooter = null;
+        this.__P_383_2 = null;
       }
 
-      this.__header = this.__footer = null;
+      this.__P_383_1 = this.__P_383_3 = null;
     }
   });
   qx.ui.progressive.structure.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1591114988036
+//# sourceMappingURL=Default.js.map?dt=1592777103103

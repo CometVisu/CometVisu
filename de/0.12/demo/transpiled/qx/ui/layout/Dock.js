@@ -200,8 +200,8 @@
     *****************************************************************************
     */
     members: {
-      __children: null,
-      __edges: null,
+      __P_113_0: null,
+      __P_113_1: null,
       // overridden
       verifyLayoutProperty: null,
       // property apply
@@ -217,7 +217,7 @@
        *
        * @lint ignoreReferenceField(__edgeMap)
        */
-      __edgeMap: {
+      __P_113_2: {
         north: 1,
         south: 2,
         west: 3,
@@ -230,7 +230,7 @@
        *
        * @lint ignoreReferenceField(__alignMap)
        */
-      __alignMap: {
+      __P_113_3: {
         1: "top",
         2: "bottom",
         3: "left",
@@ -241,7 +241,7 @@
        * Rebuilds cache for sorted children list.
        *
        */
-      __rebuildCache: function __rebuildCache() {
+      __P_113_4: function __P_113_4() {
         var all = this._getLayoutChildren();
 
         var child, center;
@@ -280,16 +280,16 @@
           result.push(center);
         }
 
-        this.__children = result; // Cache edges for faster access
+        this.__P_113_0 = result; // Cache edges for faster access
 
         var edges = [];
 
         for (var i = 0; i < length; i++) {
           edge = result[i].getLayoutProperties().edge;
-          edges[i] = this.__edgeMap[edge] || 5;
+          edges[i] = this.__P_113_2[edge] || 5;
         }
 
-        this.__edges = edges; // Clear invalidation marker
+        this.__P_113_1 = edges; // Clear invalidation marker
 
         delete this._invalidChildrenCache;
       },
@@ -303,12 +303,12 @@
       renderLayout: function renderLayout(availWidth, availHeight, padding) {
         // Rebuild flex/width caches
         if (this._invalidChildrenCache) {
-          this.__rebuildCache();
+          this.__P_113_4();
         }
 
         var util = qx.ui.layout.Util;
-        var children = this.__children;
-        var edges = this.__edges;
+        var children = this.__P_113_0;
+        var edges = this.__P_113_1;
         var length = children.length;
         var flexibles, child, hint, props, flex, grow, width, height, offset;
         var widths = [];
@@ -501,7 +501,7 @@
         var left, top, width, height, used, edge;
         var separatorLeft, separatorTop, separatorWidth, separatorHeight;
         var marginTop, marginBottom, marginLeft, marginRight;
-        var alignMap = this.__alignMap;
+        var alignMap = this.__P_113_3;
 
         for (var i = 0; i < length; i++) {
           // Cache child data
@@ -696,11 +696,11 @@
       _computeSizeHint: function _computeSizeHint() {
         // Rebuild flex/width caches
         if (this._invalidChildrenCache) {
-          this.__rebuildCache();
+          this.__P_113_4();
         }
 
-        var children = this.__children;
-        var edges = this.__edges;
+        var children = this.__P_113_0;
+        var edges = this.__P_113_1;
         var length = children.length;
         var hint, child;
         var marginX, marginY;
@@ -818,10 +818,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__edges = this.__children = null;
+      this.__P_113_1 = this.__P_113_0 = null;
     }
   });
   qx.ui.layout.Dock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dock.js.map?dt=1591115577635
+//# sourceMappingURL=Dock.js.map?dt=1592778968452

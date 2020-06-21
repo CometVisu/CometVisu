@@ -92,12 +92,12 @@
     ******************************************************
     */
     members: {
-      __parentWidget: null,
+      __P_493_0: null,
       setParentWidget: function setParentWidget(value) {
-        this.__parentWidget = value;
+        this.__P_493_0 = value;
       },
       getParentWidget: function getParentWidget() {
-        if (cv.Config.lazyLoading === true && this.__parentWidget === null && this.getPath() !== "id_") {
+        if (cv.Config.lazyLoading === true && this.__P_493_0 === null && this.getPath() !== "id_") {
           // creating parent widget on demand
           var parentData = cv.util.Tree.getParentData(this.getPath()); // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + this.get$$type() + " (" + this.getPath() + ")");
 
@@ -105,7 +105,7 @@
           this.setParentWidget(parent);
         }
 
-        return this.__parentWidget;
+        return this.__P_493_0;
       },
 
       /**
@@ -175,4 +175,4 @@
   cv.ui.structure.AbstractBasicWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1591114997317
+//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1592777112368

@@ -346,7 +346,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -405,7 +413,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getGroupedProperty": {
       "type": "function",
@@ -466,7 +482,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>groupedProperty</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #groupedProperty}."
+          }
+        ]
+      }
     },
     "getGroupProperty": {
       "type": "function",
@@ -527,7 +551,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>groupProperty</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #groupProperty}."
+          }
+        ]
+      }
     },
     "isEnabled": {
       "type": "function",
@@ -562,7 +594,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ]
+      }
     },
     "getWrap": {
       "type": "function",
@@ -648,7 +688,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>wrap</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #wrap}."
+          }
+        ]
+      }
     },
     "getAllowEmptySelection": {
       "type": "function",
@@ -734,7 +782,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowEmptySelection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowEmptySelection}."
+          }
+        ]
+      }
     },
     "isValid": {
       "type": "function",
@@ -769,7 +825,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>valid</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #valid}."
+          }
+        ]
+      }
     },
     "isRequired": {
       "type": "function",
@@ -804,7 +868,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>required</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #required}."
+          }
+        ]
+      }
     },
     "resetInvalidMessage": {
       "type": "function",
@@ -814,7 +886,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>invalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
+          }
+        ]
+      }
     },
     "resetRequiredInvalidMessage": {
       "type": "function",
@@ -824,7 +904,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.RadioGroup",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>requiredInvalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
+          }
+        ]
+      }
     }
   },
   "descendants": []

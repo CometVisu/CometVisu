@@ -55,7 +55,7 @@
      */
     construct: function construct(size, family) {
       qx.core.Object.constructor.call(this);
-      this.__lookupMap = {
+      this.__P_220_0 = {
         fontFamily: "",
         fontSize: null,
         fontWeight: null,
@@ -142,7 +142,7 @@
       },
 
       /** @type {Map} Default (empty) CSS styles */
-      __defaultStyles: {
+      __P_220_1: {
         fontFamily: "",
         fontSize: "",
         fontWeight: "",
@@ -162,7 +162,7 @@
        * @return {Map} Default styles
        */
       getDefaultStyles: function getDefaultStyles() {
-        return this.__defaultStyles;
+        return this.__P_220_1;
       }
     },
 
@@ -276,13 +276,13 @@
     *****************************************************************************
     */
     members: {
-      __lookupMap: null,
+      __P_220_0: null,
       // property apply
       _applySize: function _applySize(value, old) {
-        this.__lookupMap.fontSize = value === null ? null : value + "px";
+        this.__P_220_0.fontSize = value === null ? null : value + "px";
       },
       _applyLineHeight: function _applyLineHeight(value, old) {
-        this.__lookupMap.lineHeight = value === null ? null : value;
+        this.__P_220_0.lineHeight = value === null ? null : value;
       },
       // property apply
       _applyFamily: function _applyFamily(value, old) {
@@ -305,35 +305,35 @@
         // the browser from applying the element style
 
 
-        this.__lookupMap.fontFamily = family;
+        this.__P_220_0.fontFamily = family;
       },
       // property apply
       _applyBold: function _applyBold(value, old) {
-        this.__lookupMap.fontWeight = value == null ? null : value ? "bold" : "normal";
+        this.__P_220_0.fontWeight = value == null ? null : value ? "bold" : "normal";
       },
       // property apply
       _applyItalic: function _applyItalic(value, old) {
-        this.__lookupMap.fontStyle = value == null ? null : value ? "italic" : "normal";
+        this.__P_220_0.fontStyle = value == null ? null : value ? "italic" : "normal";
       },
       // property apply
       _applyDecoration: function _applyDecoration(value, old) {
-        this.__lookupMap.textDecoration = value == null ? null : value;
+        this.__P_220_0.textDecoration = value == null ? null : value;
       },
       // property apply
       _applyColor: function _applyColor(value, old) {
-        this.__lookupMap.color = null;
+        this.__P_220_0.color = null;
 
         if (value) {
-          this.__lookupMap.color = qx.theme.manager.Color.getInstance().resolve(value);
+          this.__P_220_0.color = qx.theme.manager.Color.getInstance().resolve(value);
         }
       },
       // property apply
       _applyWeight: function _applyWeight(value, old) {
-        this.__lookupMap.fontWeight = value;
+        this.__P_220_0.fontWeight = value;
       },
       // property apply
       _applyTextShadow: function _applyTextShadow(value, old) {
-        this.__lookupMap.textShadow = value == null ? null : value;
+        this.__P_220_0.textShadow = value == null ? null : value;
       },
 
       /**
@@ -345,11 +345,11 @@
        * widget.
        */
       getStyles: function getStyles() {
-        return this.__lookupMap;
+        return this.__P_220_0;
       }
     }
   });
   qx.bom.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1591115586874
+//# sourceMappingURL=Font.js.map?dt=1592778978197

@@ -57,4 +57,4 @@
   cv.ui.common.HandleLongpress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HandleLongpress.js.map?dt=1591114998507
+//# sourceMappingURL=HandleLongpress.js.map?dt=1592777114060

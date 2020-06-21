@@ -185,7 +185,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.mobile.form.MValue"
+      "overriddenFrom": "qx.ui.mobile.form.MValue",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the {@link #changeValue} event should be fired on every key\n input. If set to true, the changeValue event is equal to the\n {@link #input} event.</p>"
+          }
+        ]
+      }
     },
     "maxLength": {
       "type": "property",
@@ -193,7 +201,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.mobile.form.MText"
+      "overriddenFrom": "qx.ui.mobile.form.MText",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximal number of characters that can be entered in the input field.</p>"
+          }
+        ]
+      }
     },
     "placeholder": {
       "type": "property",
@@ -201,7 +217,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.mobile.form.MText"
+      "overriddenFrom": "qx.ui.mobile.form.MText",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>String value which will be shown as a hint if the field is all of:\n unset, unfocused and enabled. Set to <code>null</code> to not show a placeholder\n text.</p>"
+          }
+        ]
+      }
     },
     "readOnly": {
       "type": "property",
@@ -209,7 +233,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.mobile.form.MText"
+      "overriddenFrom": "qx.ui.mobile.form.MText",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the field is read only</p>"
+          }
+        ]
+      }
     },
     "valid": {
       "type": "property",
@@ -217,7 +249,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.MForm"
+      "overriddenFrom": "qx.ui.form.MForm",
+      "event": "changeValid",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
+          }
+        ]
+      }
     },
     "required": {
       "type": "property",
@@ -225,7 +266,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.MForm"
+      "overriddenFrom": "qx.ui.form.MForm",
+      "event": "changeRequired",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is required.</p>"
+          }
+        ]
+      }
     },
     "invalidMessage": {
       "type": "property",
@@ -233,7 +283,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.MForm"
+      "overriddenFrom": "qx.ui.form.MForm",
+      "event": "changeInvalidMessage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+          }
+        ]
+      }
     },
     "requiredInvalidMessage": {
       "type": "property",
@@ -241,7 +300,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.MForm"
+      "overriddenFrom": "qx.ui.form.MForm",
+      "event": "changeInvalidMessage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+          }
+        ]
+      }
     },
     "model": {
       "type": "property",
@@ -249,7 +317,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.MModelProperty"
+      "overriddenFrom": "qx.ui.form.MModelProperty",
+      "event": "changeModel",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Model property for storing additional information for the including\n object. It can act as value property on form items for example.\n Be careful using that property as this is used for the\n {@link qx.ui.form.MModelSelection} it has some restrictions:</p>\n<ul>\n<li>Don't use equal models in one widget using the\n {@link qx.ui.form.MModelSelection}.</li>\n<li>Avoid setting only some model properties if the widgets are added to\n a {@link qx.ui.form.MModelSelection} widget.\nBoth restrictions result of the fact, that the set models are deputies\nfor their widget.</li>\n</ul>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -394,7 +471,15 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.form.IStringForm"
+      "overriddenFrom": "qx.ui.form.IStringForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the element's value to its initial value.</p>"
+          }
+        ]
+      }
     },
     "getValue": {
       "type": "function",
@@ -462,7 +547,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.mobile.form.MValue"
+      "overriddenFrom": "qx.ui.mobile.form.MValue",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for <code>focus</code> event.</p>"
+          }
+        ]
+      }
     },
     "_onBlur": {
       "type": "function",
@@ -471,7 +564,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.mobile.form.MValue"
+      "overriddenFrom": "qx.ui.mobile.form.MValue",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for <code>blur</code> event.</p>"
+          }
+        ]
+      }
     },
     "hasFocus": {
       "type": "function",
@@ -711,7 +812,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.MValue",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>liveUpdate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #liveUpdate}."
+          }
+        ]
+      }
     },
     "_applyMaxLength": {
       "type": "function",
@@ -720,7 +829,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.mobile.form.MText"
+      "overriddenFrom": "qx.ui.mobile.form.MText",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "_applyPlaceholder": {
       "type": "function",
@@ -729,7 +846,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.mobile.form.MText"
+      "overriddenFrom": "qx.ui.mobile.form.MText",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "focus": {
       "type": "function",
@@ -738,7 +863,15 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.mobile.form.MText"
+      "overriddenFrom": "qx.ui.mobile.form.MText",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Points the focus of the form to this widget.</p>"
+          }
+        ]
+      }
     },
     "blur": {
       "type": "function",
@@ -747,7 +880,15 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.mobile.form.MText"
+      "overriddenFrom": "qx.ui.mobile.form.MText",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the focus from this widget.</p>"
+          }
+        ]
+      }
     },
     "getMaxLength": {
       "type": "function",
@@ -808,7 +949,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.MText",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxLength</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxLength}."
+          }
+        ]
+      }
     },
     "getPlaceholder": {
       "type": "function",
@@ -869,7 +1018,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.MText",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>placeholder</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #placeholder}."
+          }
+        ]
+      }
     },
     "getReadOnly": {
       "type": "function",
@@ -955,7 +1112,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.MText",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>readOnly</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #readOnly}."
+          }
+        ]
+      }
     },
     "setEnabled": {
       "type": "function",
@@ -1303,7 +1468,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the representative data to null.</p>"
+          }
+        ]
+      }
     },
     "isValid": {
       "type": "function",
@@ -1338,7 +1511,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>valid</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #valid}."
+          }
+        ]
+      }
     },
     "isRequired": {
       "type": "function",
@@ -1373,7 +1554,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>required</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #required}."
+          }
+        ]
+      }
     },
     "resetInvalidMessage": {
       "type": "function",
@@ -1383,7 +1572,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>invalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
+          }
+        ]
+      }
     },
     "resetRequiredInvalidMessage": {
       "type": "function",
@@ -1393,7 +1590,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>requiredInvalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
+          }
+        ]
+      }
     },
     "getQxOwner": {
       "type": "function",
@@ -1454,7 +1659,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -1513,7 +1726,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getDefaultCssClass": {
       "type": "function",
@@ -1574,7 +1795,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>defaultCssClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
+          }
+        ]
+      }
     },
     "isEnabled": {
       "type": "function",
@@ -1609,7 +1838,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ]
+      }
     },
     "getName": {
       "type": "function",
@@ -1670,7 +1907,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
+          }
+        ]
+      }
     },
     "getAnonymous": {
       "type": "function",
@@ -1756,7 +2001,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ]
+      }
     },
     "getId": {
       "type": "function",
@@ -1817,7 +2070,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>id</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #id}."
+          }
+        ]
+      }
     },
     "getVisibility": {
       "type": "function",
@@ -1878,7 +2139,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ]
+      }
     },
     "getActivatable": {
       "type": "function",
@@ -1964,7 +2233,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>activatable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #activatable}."
+          }
+        ]
+      }
     },
     "getRotation": {
       "type": "function",
@@ -2025,7 +2302,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>rotation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rotation}."
+          }
+        ]
+      }
     },
     "getTransformUnit": {
       "type": "function",
@@ -2086,7 +2371,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>transformUnit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
+          }
+        ]
+      }
     },
     "getScaleX": {
       "type": "function",
@@ -2147,7 +2440,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>scaleX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleX}."
+          }
+        ]
+      }
     },
     "getScaleY": {
       "type": "function",
@@ -2208,7 +2509,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>scaleY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleY}."
+          }
+        ]
+      }
     },
     "getTranslateX": {
       "type": "function",
@@ -2269,7 +2578,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>translateX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateX}."
+          }
+        ]
+      }
     },
     "getTranslateY": {
       "type": "function",
@@ -2330,7 +2647,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>translateY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateY}."
+          }
+        ]
+      }
     },
     "getTranslateZ": {
       "type": "function",
@@ -2391,7 +2716,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.form.Input",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>translateZ</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateZ}."
+          }
+        ]
+      }
     },
     "getMinimum": {
       "type": "function",

@@ -83,9 +83,9 @@
     *****************************************************************************
     */
     members: {
-      __executableBindingIds: null,
-      __semaphore: false,
-      __executeListenerId: null,
+      __P_268_0: null,
+      __P_268_1: false,
+      __P_268_2: null,
 
       /**
        * @type {Map} Set of properties, which will by synced from the command to the
@@ -105,10 +105,10 @@
         var cmd = this.getCommand();
 
         if (cmd) {
-          if (this.__semaphore) {
-            this.__semaphore = false;
+          if (this.__P_268_1) {
+            this.__P_268_1 = false;
           } else {
-            this.__semaphore = true;
+            this.__P_268_1 = true;
             cmd.execute(this);
           }
         }
@@ -121,15 +121,15 @@
        *
        * @param e {qx.event.type.Event} The execute event of the command.
        */
-      __onCommandExecute: function __onCommandExecute(e) {
+      __P_268_3: function __P_268_3(e) {
         if (this.isEnabled()) {
-          if (this.__semaphore) {
-            this.__semaphore = false;
+          if (this.__P_268_1) {
+            this.__P_268_1 = false;
             return;
           }
 
           if (this.isEnabled()) {
-            this.__semaphore = true;
+            this.__P_268_1 = true;
             this.execute();
           }
         }
@@ -138,18 +138,18 @@
       _applyCommand: function _applyCommand(value, old) {
         // execute forwarding
         if (old != null) {
-          old.removeListenerById(this.__executeListenerId);
+          old.removeListenerById(this.__P_268_2);
         }
 
         if (value != null) {
-          this.__executeListenerId = value.addListener("execute", this.__onCommandExecute, this);
+          this.__P_268_2 = value.addListener("execute", this.__P_268_3, this);
         } // binding stuff
 
 
-        var ids = this.__executableBindingIds;
+        var ids = this.__P_268_0;
 
         if (ids == null) {
-          this.__executableBindingIds = ids = {};
+          this.__P_268_0 = ids = {};
         }
 
         var selfPropertyValue;
@@ -194,10 +194,10 @@
     destruct: function destruct() {
       this._applyCommand(null, this.getCommand());
 
-      this.__executableBindingIds = null;
+      this.__P_268_0 = null;
     }
   });
   qx.ui.core.MExecutable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MExecutable.js.map?dt=1591114979040
+//# sourceMappingURL=MExecutable.js.map?dt=1592777094148

@@ -57,16 +57,16 @@
     ***********************************************
     */
     members: {
-      __spriteUrl: null,
-      __useElement: null,
+      __P_42_0: null,
+      __P_42_1: null,
       _applyName: function _applyName(value) {
         if (value) {
-          if (!this.__spriteUrl) {
-            this.__spriteUrl = qx.util.ResourceManager.getInstance().toUri('icon/knx-uf-iconset.svg');
+          if (!this.__P_42_0) {
+            this.__P_42_0 = qx.util.ResourceManager.getInstance().toUri('icon/knx-uf-iconset.svg');
           }
 
-          if (!this.__useElement.getDomElement()) {
-            this.__useElement.addListenerOnce('appear', function () {
+          if (!this.__P_42_1.getDomElement()) {
+            this.__P_42_1.addListenerOnce('appear', function () {
               this._applyName(value);
             }, this);
 
@@ -74,17 +74,17 @@
           } // qx.xml.Element.setAttributeNS(document, this.__useElement.getDomElement(), 'http://www.w3.org/1999/xlink', 'xlink:href', this.__spriteUrl + '#kuf-' + value);
 
 
-          this.__useElement.getDomElement().setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.__spriteUrl + '#kuf-' + value);
+          this.__P_42_1.getDomElement().setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.__P_42_0 + '#kuf-' + value);
         } else {
-          this.__useElement.removeAttribute('xlink:href');
+          this.__P_42_1.removeAttribute('xlink:href');
         }
       },
       // overridden
       _createContentElement: function _createContentElement() {
         var svgElem = new cv.svg.Element('svg');
-        this.__useElement = new cv.svg.Element('use');
+        this.__P_42_1 = new cv.svg.Element('use');
         svgElem.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
-        svgElem.add(this.__useElement);
+        svgElem.add(this.__P_42_1);
         return svgElem;
       }
     },
@@ -95,10 +95,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__useElement = null;
+      this.__P_42_1 = null;
     }
   });
   cv.ui.manager.viewer.SvgIcon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SvgIcon.js.map?dt=1591115571224
+//# sourceMappingURL=SvgIcon.js.map?dt=1592778962109

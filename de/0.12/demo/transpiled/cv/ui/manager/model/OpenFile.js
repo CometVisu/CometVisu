@@ -53,6 +53,10 @@
         nullable: true,
         apply: '_maintainIcon'
       },
+      handlerOptions: {
+        check: 'Map',
+        nullable: true
+      },
 
       /**
        * The opening state: permanent false behaves like a quick preview, where
@@ -86,12 +90,12 @@
     ***********************************************
     */
     members: {
-      __ibid: null,
+      __P_38_0: null,
       _applyFile: function _applyFile(value, old) {
         if (old) {
           old.removeListener('changeModified', this._maintainPermanent, this);
           old.removeRelatedBindings(this);
-          this.__ibid = null;
+          this.__P_38_0 = null;
         }
 
         if (value) {
@@ -110,12 +114,12 @@
           if (handlerClass && handlerClass.ICON) {
             this.setIcon(handlerClass.ICON);
 
-            if (this.__ibid) {
-              file.removeBinding(this.__ibid);
-              this.__ibid = null;
+            if (this.__P_38_0) {
+              file.removeBinding(this.__P_38_0);
+              this.__P_38_0 = null;
             }
           } else {
-            this.__ibid = file.bind('icon', this, 'icon');
+            this.__P_38_0 = file.bind('icon', this, 'icon');
           }
         } else {
           this.resetIcon();
@@ -132,4 +136,4 @@
   cv.ui.manager.model.OpenFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenFile.js.map?dt=1591115570662
+//# sourceMappingURL=OpenFile.js.map?dt=1592778961588

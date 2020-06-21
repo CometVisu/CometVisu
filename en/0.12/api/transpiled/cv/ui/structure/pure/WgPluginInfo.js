@@ -72,25 +72,28 @@
     ******************************************************
     */
     members: {
-      __request: null,
+      __P_51_0: null,
       // property apply
       _applyVariable: function _applyVariable(value) {
         if (value) {
-          if (!this.__request) {
+          if (!this.__P_51_0) {
             // create the request
-            this.__request = new qx.io.request.Xhr('/wg-plugindb.php?name=' + value);
+            this.__P_51_0 = new qx.io.request.Xhr('/wg-plugindb.php?name=' + value);
 
-            this.__request.set({
+            this.__P_51_0.set({
               accept: "application/json"
             });
 
-            this.__request.addListener("success", this._onSuccess, this);
+            this.__P_51_0.addListener("success", this._onSuccess, this);
           } else {
-            this.__request.setUrl('/wg-plugindb.php?name=' + value);
+            this.__P_51_0.setUrl('/wg-plugindb.php?name=' + value);
           }
 
-          cv.TemplateEngine.getInstance().executeWhenDomFinished(this.__request.send, this.__request);
+          cv.TemplateEngine.getInstance().executeWhenDomFinished(this.__P_51_0.send, this.__P_51_0);
         }
+      },
+      getRequest: function getRequest() {
+        return this.__P_51_0;
       },
 
       /**
@@ -111,8 +114,8 @@
        * Triggers an {@link qx.io.request.Xhr} request to query the plugin value
        */
       handleUpdate: function handleUpdate() {
-        if (this.__request) {
-          this.__request.send();
+        if (this.__P_51_0) {
+          this.__P_51_0.send();
         }
       }
     },
@@ -123,7 +126,7 @@
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__request");
+      this._disposeObjects("__P_51_0");
     },
     defer: function defer(statics) {
       cv.ui.structure.WidgetFactory.registerClass("wgplugin_info", statics);
@@ -132,4 +135,4 @@
   cv.ui.structure.pure.WgPluginInfo.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WgPluginInfo.js.map?dt=1591114959198
+//# sourceMappingURL=WgPluginInfo.js.map?dt=1592777074108

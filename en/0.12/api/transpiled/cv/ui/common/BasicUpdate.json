@@ -31,25 +31,92 @@
   "type": "mixin",
   "properties": {
     "value": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4
+        },
+        "end": {
+          "line": 41,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{var} the incoming value after transformation, mapping and formatting"
+          }
+        ]
+      },
       "name": "value",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changeValue",
+      "nullable": true,
+      "allowNull": true
     },
     "basicValue": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{var} the incoming value after transformation"
+          }
+        ]
+      },
       "name": "basicValue",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true
     },
     "format": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 58,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Format to apply to incoming values</p>"
+          }
+        ]
+      },
       "name": "format",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "init": "",
+      "allowNull": true,
+      "check": "String",
+      "defaultValue": ""
     },
     "address": {
       "type": "property",
@@ -57,7 +124,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.common.HasAddress"
+      "overriddenFrom": "cv.ui.common.HasAddress",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Map of addresses (KNX-GA's or openHAB item names) this widget communicates with</p>"
+          }
+        ]
+      }
     }
   },
   "statics": {

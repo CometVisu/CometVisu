@@ -33,11 +33,29 @@
   "type": "mixin",
   "properties": {
     "suite": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4
+        },
+        "end": {
+          "line": 40,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The test suite</p>"
+          }
+        ]
+      },
       "name": "suite",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "qx.dev.unit.TestSuite"
     }
   },
   "members": {

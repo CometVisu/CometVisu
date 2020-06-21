@@ -318,7 +318,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -326,7 +334,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -503,15 +519,6 @@
             "name": "@description",
             "body": "<p>Shows the drawer.</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "properties {Map} The animation properties to set. Key / value pairs.",
-            "paramName": "properties",
-            "description": " The animation properties to set. Key / value pairs.",
-            "type": "Map"
-          }
         ]
       },
       "type": "function",
@@ -537,15 +544,6 @@
           {
             "name": "@description",
             "body": "<p>Hides the drawer.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "properties {Map} The animation properties to set. Key / value pairs.",
-            "paramName": "properties",
-            "description": " The animation properties to set. Key / value pairs.",
-            "type": "Map"
           }
         ]
       },
@@ -594,14 +592,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} Returns <code>true</code> when the widget is hidden",
-            "type": "Boolean",
-            "description": " Returns <code>true</code> when the widget is hidden"
           }
         ]
       },
@@ -868,7 +858,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -927,7 +925,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getDefaultCssClass": {
       "type": "function",
@@ -988,7 +994,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>defaultCssClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
+          }
+        ]
+      }
     },
     "getEnabled": {
       "type": "function",
@@ -1074,7 +1088,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ]
+      }
     },
     "getName": {
       "type": "function",
@@ -1135,7 +1157,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
+          }
+        ]
+      }
     },
     "getAnonymous": {
       "type": "function",
@@ -1221,7 +1251,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ]
+      }
     },
     "getId": {
       "type": "function",
@@ -1282,7 +1320,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>id</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #id}."
+          }
+        ]
+      }
     },
     "getVisibility": {
       "type": "function",
@@ -1343,7 +1389,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ]
+      }
     },
     "getActivatable": {
       "type": "function",
@@ -1429,7 +1483,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>activatable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #activatable}."
+          }
+        ]
+      }
     },
     "getRotation": {
       "type": "function",
@@ -1490,7 +1552,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>rotation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rotation}."
+          }
+        ]
+      }
     },
     "getTransformUnit": {
       "type": "function",
@@ -1551,7 +1621,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>transformUnit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
+          }
+        ]
+      }
     },
     "getScaleX": {
       "type": "function",
@@ -1612,7 +1690,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>scaleX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleX}."
+          }
+        ]
+      }
     },
     "getScaleY": {
       "type": "function",
@@ -1673,7 +1759,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>scaleY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleY}."
+          }
+        ]
+      }
     },
     "getTranslateX": {
       "type": "function",
@@ -1734,7 +1828,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>translateX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateX}."
+          }
+        ]
+      }
     },
     "getTranslateY": {
       "type": "function",
@@ -1795,7 +1897,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>translateY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateY}."
+          }
+        ]
+      }
     },
     "getTranslateZ": {
       "type": "function",
@@ -1856,7 +1966,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>translateZ</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateZ}."
+          }
+        ]
+      }
     },
     "getOrientation": {
       "type": "function",

@@ -108,66 +108,66 @@
       root = root || qx.core.Init.getApplication().getRoot();
 
       if (typeof isTablet !== "undefined" && isTablet !== null) {
-        this.__isTablet = isTablet;
+        this.__P_366_0 = isTablet;
       } else {
         // If isTablet is undefined, call environment variable "device.type".
         // When "tablet" or "desktop" type >> do tablet layouting.
-        this.__isTablet = qx.core.Environment.get("device.type") == "desktop" || qx.core.Environment.get("device.type") == "tablet";
+        this.__P_366_0 = qx.core.Environment.get("device.type") == "desktop" || qx.core.Environment.get("device.type") == "tablet";
       }
 
-      this.__detailNavigation = this._createDetailNavigation();
+      this.__P_366_1 = this._createDetailNavigation();
 
-      this.__detailNavigation.getNavigationBar().hide();
+      this.__P_366_1.getNavigationBar().hide();
 
-      if (this.__isTablet) {
-        this.__masterNavigation = this._createMasterNavigation();
+      if (this.__P_366_0) {
+        this.__P_366_2 = this._createMasterNavigation();
 
-        this.__masterNavigation.getNavigationBar().hide();
+        this.__P_366_2.getNavigationBar().hide();
 
-        this.__masterContainer = this._createMasterContainer();
-        this.__detailContainer = this._createDetailContainer();
-        this.__masterButton = this._createMasterButton();
+        this.__P_366_3 = this._createMasterContainer();
+        this.__P_366_4 = this._createDetailContainer();
+        this.__P_366_5 = this._createMasterButton();
 
-        this.__masterButton.addListener("tap", this._onMasterButtonTap, this);
+        this.__P_366_5.addListener("tap", this._onMasterButtonTap, this);
 
-        this.__hideMasterButton = this._createHideMasterButton();
+        this.__P_366_6 = this._createHideMasterButton();
 
-        this.__hideMasterButton.addListener("tap", this._onHideMasterButtonTap, this);
+        this.__P_366_6.addListener("tap", this._onHideMasterButtonTap, this);
 
-        this.__masterNavigation.addListener("update", this._onMasterContainerUpdate, this);
+        this.__P_366_2.addListener("update", this._onMasterContainerUpdate, this);
 
-        this.__detailNavigation.addListener("update", this._onDetailContainerUpdate, this);
+        this.__P_366_1.addListener("update", this._onDetailContainerUpdate, this);
 
-        root.add(this.__detailContainer, {
+        root.add(this.__P_366_4, {
           flex: 1
         });
 
-        this.__masterContainer.add(this.__masterNavigation, {
+        this.__P_366_3.add(this.__P_366_2, {
           flex: 1
         });
 
-        this.__detailContainer.add(this.__detailNavigation, {
+        this.__P_366_4.add(this.__P_366_1, {
           flex: 1
         });
 
         qx.event.Registration.addListener(window, "orientationchange", this._onLayoutChange, this);
 
-        this.__masterContainer.addListener("resize", this._onLayoutChange, this); // On Tablet Mode, no Animation should be shown by default.
+        this.__P_366_3.addListener("resize", this._onLayoutChange, this); // On Tablet Mode, no Animation should be shown by default.
 
 
-        this.__masterNavigation.getLayout().setShowAnimation(false);
+        this.__P_366_2.getLayout().setShowAnimation(false);
 
-        this.__detailNavigation.getLayout().setShowAnimation(false);
+        this.__P_366_1.getLayout().setShowAnimation(false);
 
-        this.__masterContainer.forceHide();
+        this.__P_366_3.forceHide();
 
         setTimeout(function () {
           if (qx.bom.Viewport.isLandscape()) {
-            this.__masterContainer.show();
+            this.__P_366_3.show();
           }
         }.bind(this), 300);
       } else {
-        root.add(this.__detailNavigation, {
+        root.add(this.__P_366_1, {
           flex: 1
         });
       }
@@ -215,15 +215,15 @@
     *****************************************************************************
     */
     members: {
-      __isTablet: null,
-      __detailNavigation: null,
-      __masterNavigation: null,
-      __masterButton: null,
-      __hideMasterButton: null,
-      __masterPages: null,
-      __detailPages: null,
-      __masterContainer: null,
-      __detailContainer: null,
+      __P_366_0: null,
+      __P_366_1: null,
+      __P_366_2: null,
+      __P_366_5: null,
+      __P_366_6: null,
+      __P_366_7: null,
+      __P_366_8: null,
+      __P_366_3: null,
+      __P_366_4: null,
 
       /**
        * Creates the master container.
@@ -256,7 +256,7 @@
        * @return {qx.ui.mobile.container.Drawer} The Master Container.
        */
       getMasterContainer: function getMasterContainer() {
-        return this.__masterContainer;
+        return this.__P_366_3;
       },
 
       /**
@@ -264,7 +264,7 @@
        * @return {qx.ui.mobile.container.Composite} The Detail Container.
        */
       getDetailContainer: function getDetailContainer() {
-        return this.__detailContainer;
+        return this.__P_366_4;
       },
 
       /**
@@ -272,7 +272,7 @@
        * @return {qx.ui.mobile.navigationbar.Button}
        */
       getMasterButton: function getMasterButton() {
-        return this.__masterButton;
+        return this.__P_366_5;
       },
 
       /**
@@ -280,7 +280,7 @@
        * @return {qx.ui.mobile.container.Navigation}
        */
       getMasterNavigation: function getMasterNavigation() {
-        return this.__masterNavigation;
+        return this.__P_366_2;
       },
 
       /**
@@ -288,7 +288,7 @@
        * @return {qx.ui.mobile.container.Navigation}
        */
       getDetailNavigation: function getDetailNavigation() {
-        return this.__detailNavigation;
+        return this.__P_366_1;
       },
 
       /**
@@ -328,7 +328,7 @@
        * @param pages {qx.ui.mobile.page.NavigationPage[]|qx.ui.mobile.page.NavigationPage} Array of NavigationPages or single NavigationPage.
        */
       addMaster: function addMaster(pages) {
-        if (this.__isTablet) {
+        if (this.__P_366_0) {
           if (pages) {
             if (!qx.lang.Type.isArray(pages)) {
               pages = [pages];
@@ -339,13 +339,13 @@
               masterPage.addListener("start", this._onMasterPageStart, this);
             }
 
-            if (this.__masterPages) {
-              this.__masterPages.concat(pages);
+            if (this.__P_366_7) {
+              this.__P_366_7.concat(pages);
             } else {
-              this.__masterPages = pages;
+              this.__P_366_7 = pages;
             }
 
-            this._add(pages, this.__masterNavigation);
+            this._add(pages, this.__P_366_2);
           }
         } else {
           this.addDetail(pages);
@@ -357,9 +357,9 @@
        * @param pages {qx.ui.mobile.page.NavigationPage[]|qx.ui.mobile.page.NavigationPage} Array of NavigationPages or single NavigationPage.
        */
       addDetail: function addDetail(pages) {
-        this._add(pages, this.__detailNavigation);
+        this._add(pages, this.__P_366_1);
 
-        if (pages && this.__isTablet) {
+        if (pages && this.__P_366_0) {
           if (!qx.lang.Type.isArray(pages)) {
             pages = [pages];
           }
@@ -369,10 +369,10 @@
             detailPage.addListener("start", this._onDetailPageStart, this);
           }
 
-          if (this.__detailPages) {
-            this.__detailPages.concat(pages);
+          if (this.__P_366_8) {
+            this.__P_366_8.concat(pages);
           } else {
-            this.__detailPages = pages;
+            this.__P_366_8 = pages;
           }
         }
       },
@@ -383,7 +383,7 @@
        */
       _onDetailPageStart: function _onDetailPageStart(evt) {
         if (qx.bom.Viewport.isPortrait() && this.isHideMasterOnDetailStart()) {
-          this.__masterContainer.hide();
+          this.__P_366_3.hide();
         }
       },
 
@@ -410,11 +410,11 @@
         for (var i = 0; i < pages.length; i++) {
           var page = pages[i];
 
-          if (this.__isTablet && !page.getShowBackButtonOnTablet()) {
+          if (this.__P_366_0 && !page.getShowBackButtonOnTablet()) {
             page.setShowBackButton(false);
           }
 
-          page.setIsTablet(this.__isTablet);
+          page.setIsTablet(this.__P_366_0);
           target.add(page);
         }
       },
@@ -425,8 +425,8 @@
        */
       _onMasterContainerUpdate: function _onMasterContainerUpdate(evt) {
         var widget = evt.getData();
-        widget.getRightContainer().remove(this.__hideMasterButton);
-        widget.getRightContainer().add(this.__hideMasterButton);
+        widget.getRightContainer().remove(this.__P_366_6);
+        widget.getRightContainer().add(this.__P_366_6);
       },
 
       /**
@@ -435,15 +435,15 @@
        */
       _onDetailContainerUpdate: function _onDetailContainerUpdate(evt) {
         var widget = evt.getData();
-        widget.getLeftContainer().remove(this.__masterButton);
-        widget.getLeftContainer().add(this.__masterButton);
+        widget.getLeftContainer().remove(this.__P_366_5);
+        widget.getLeftContainer().add(this.__P_366_5);
       },
 
       /**
       * Called when user taps on masterButton.
       */
       _onMasterButtonTap: function _onMasterButtonTap() {
-        this.__masterContainer.show();
+        this.__P_366_3.show();
       },
 
       /**
@@ -452,7 +452,7 @@
       _onHideMasterButtonTap: function _onHideMasterButtonTap() {
         this._removeDetailContainerGap();
 
-        this.__masterContainer.hide();
+        this.__P_366_3.hide();
       },
 
       /**
@@ -467,25 +467,25 @@
             if (isMasterVisible) {
               this._createDetailContainerGap();
 
-              this.__masterButton.exclude();
+              this.__P_366_5.exclude();
 
-              this.__hideMasterButton.show();
+              this.__P_366_6.show();
             } else {
-              this.__masterButton.show();
+              this.__P_366_5.show();
 
-              this.__hideMasterButton.show();
+              this.__P_366_6.show();
             }
           } else {
-            this.__masterButton.exclude();
+            this.__P_366_5.exclude();
 
-            this.__hideMasterButton.exclude();
+            this.__P_366_6.exclude();
           }
         } else {
           this._removeDetailContainerGap();
 
-          this.__masterButton.show();
+          this.__P_366_5.show();
 
-          this.__hideMasterButton.show();
+          this.__P_366_6.show();
         }
       },
 
@@ -493,23 +493,23 @@
       * Called when layout of masterDetailContainer changes.
       */
       _onLayoutChange: function _onLayoutChange() {
-        if (this.__isTablet) {
+        if (this.__P_366_0) {
           if (qx.bom.Viewport.isLandscape()) {
-            this.__masterContainer.setHideOnParentTap(false);
+            this.__P_366_3.setHideOnParentTap(false);
 
-            if (this.__masterContainer.isHidden()) {
-              this.__masterContainer.show();
+            if (this.__P_366_3.isHidden()) {
+              this.__P_366_3.show();
             } else {
               this._removeDetailContainerGap();
 
-              this.__masterContainer.hide();
+              this.__P_366_3.hide();
             }
           } else {
             this._removeDetailContainerGap();
 
-            this.__masterContainer.setHideOnParentTap(true);
+            this.__P_366_3.setHideOnParentTap(true);
 
-            this.__masterContainer.hide();
+            this.__P_366_3.hide();
           }
         }
       },
@@ -519,7 +519,7 @@
       * @return {String} the CSS property key.
       */
       _getGapPropertyKey: function _getGapPropertyKey() {
-        return "padding" + qx.lang.String.capitalize(this.__masterContainer.getOrientation());
+        return "padding" + qx.lang.String.capitalize(this.__P_366_3.getOrientation());
       },
 
       /**
@@ -527,7 +527,7 @@
        * Creates spaces for aligning master and detail container aside each other.
        */
       _createDetailContainerGap: function _createDetailContainerGap() {
-        qx.bom.element.Style.set(this.__detailContainer.getContainerElement(), this._getGapPropertyKey(), this.__masterContainer.getSize() / 16 + "rem");
+        qx.bom.element.Style.set(this.__P_366_4.getContainerElement(), this._getGapPropertyKey(), this.__P_366_3.getSize() / 16 + "rem");
         qx.event.Registration.fireEvent(window, "resize");
       },
 
@@ -535,7 +535,7 @@
        * Moves detailContainer to the left edge of viewport.
        */
       _removeDetailContainerGap: function _removeDetailContainerGap() {
-        qx.bom.element.Style.set(this.__detailContainer.getContainerElement(), this._getGapPropertyKey(), null);
+        qx.bom.element.Style.set(this.__P_366_4.getContainerElement(), this._getGapPropertyKey(), null);
         qx.event.Registration.fireEvent(window, "resize");
       },
 
@@ -545,8 +545,8 @@
       * @param old {String} previous caption
       */
       _applyHideMasterButtonCaption: function _applyHideMasterButtonCaption(value, old) {
-        if (this.__isTablet) {
-          this.__hideMasterButton.setLabel(value);
+        if (this.__P_366_0) {
+          this.__P_366_6.setLabel(value);
         }
       },
 
@@ -556,8 +556,8 @@
       * @param old {String} previous title
       */
       _applyMasterTitle: function _applyMasterTitle(value, old) {
-        if (this.__isTablet) {
-          this.__masterButton.setLabel(value);
+        if (this.__P_366_0) {
+          this.__P_366_5.setLabel(value);
         }
       }
     },
@@ -568,34 +568,34 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__masterPages) {
-        for (var i = 0; i < this.__masterPages.length; i++) {
-          var masterPage = this.__masterPages[i];
+      if (this.__P_366_7) {
+        for (var i = 0; i < this.__P_366_7.length; i++) {
+          var masterPage = this.__P_366_7[i];
           masterPage.removeListener("start", this._onMasterPageStart, this);
         }
       }
 
-      if (this.___detailPages) {
-        for (var j = 0; j < this.___detailPages.length; j++) {
-          var detailPage = this.___detailPages[j];
+      if (this.__P_366_9) {
+        for (var j = 0; j < this.__P_366_9.length; j++) {
+          var detailPage = this.__P_366_9[j];
           detailPage.removeListener("start", this._onDetailPageStart, this);
         }
       }
 
-      if (this.__isTablet) {
-        this.__masterContainer.removeListener("changeVisibility", this._onMasterChangeVisibility, this);
+      if (this.__P_366_0) {
+        this.__P_366_3.removeListener("changeVisibility", this._onMasterChangeVisibility, this);
 
-        this.__masterContainer.removeListener("resize", this._onLayoutChange, this);
+        this.__P_366_3.removeListener("resize", this._onLayoutChange, this);
 
         qx.event.Registration.removeListener(window, "orientationchange", this._onLayoutChange, this);
       }
 
-      this.__masterPages = this.__detailPages = null;
+      this.__P_366_7 = this.__P_366_8 = null;
 
-      this._disposeObjects("__detailNavigation", "__masterNavigation", "__masterButton");
+      this._disposeObjects("__P_366_1", "__P_366_2", "__P_366_5");
     }
   });
   qx.ui.mobile.page.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1591114987186
+//# sourceMappingURL=Manager.js.map?dt=1592777102272

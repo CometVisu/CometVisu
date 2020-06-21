@@ -246,7 +246,7 @@
         while (lineCalculator.hasMoreLines()) {
           var line = lineCalculator.computeNextLine(availWidth);
 
-          this.__renderLine(line, lineTop, availWidth, padding);
+          this.__P_323_0(line, lineTop, availWidth, padding);
 
           lineTop += line.height + this.getSpacingY();
         }
@@ -262,7 +262,7 @@
        * @param padding {Map} Map containing the padding values. Keys:
        * <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>
        */
-      __renderLine: function __renderLine(line, lineTop, availWidth, padding) {
+      __P_323_0: function __P_323_0(line, lineTop, availWidth, padding) {
         var util = qx.ui.layout.Util;
         var left = padding.left;
 
@@ -292,7 +292,7 @@
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
-        return this.__computeSize(Infinity);
+        return this.__P_323_1(Infinity);
       },
       // overridden
       hasHeightForWidth: function hasHeightForWidth() {
@@ -300,7 +300,7 @@
       },
       // overridden
       getHeightForWidth: function getHeightForWidth(width) {
-        return this.__computeSize(width).height;
+        return this.__P_323_1(width).height;
       },
 
       /**
@@ -325,7 +325,7 @@
        * @param availWidth {Integer} The available width
        * @return {Map} Map containing the preferred height and width of the layout
        */
-      __computeSize: function __computeSize(availWidth) {
+      __P_323_1: function __P_323_1(availWidth) {
         var lineCalculator = new qx.ui.layout.LineSizeIterator(this._getLayoutChildren(), this.getSpacingX());
         var height = 0;
         var width = 0;
@@ -348,4 +348,4 @@
   qx.ui.layout.Flow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flow.js.map?dt=1591114983621
+//# sourceMappingURL=Flow.js.map?dt=1592777098734

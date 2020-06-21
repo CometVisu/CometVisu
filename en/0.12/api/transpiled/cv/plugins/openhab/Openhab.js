@@ -82,7 +82,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       qx.core.Object.constructor.call(this);
 
       if (!cv.Config.request.queryKey.hasOwnProperty('preview')) {
-        this.__notificationRouter = cv.core.notifications.Router.getInstance(); // listen to notifications
+        this.__P_20_0 = cv.core.notifications.Router.getInstance(); // listen to notifications
 
         var client = cv.TemplateEngine.getInstance().visu;
         var sse = client.getCurrentTransport && client.getCurrentTransport();
@@ -101,8 +101,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     *****************************************************************************
     */
     members: {
-      __notificationRouter: null,
-      __settings: null,
+      __P_20_0: null,
+      __P_20_1: null,
       _openSettings: null,
       _createSettings: function _createSettings() {
         // add element structure to notification-center
@@ -121,13 +121,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         this._openSettings.addListener("execute", function () {
           cv.ui.NotificationCenter.getInstance().show();
 
-          this.__settings.show();
+          this.__P_20_1.show();
         }, this);
 
         cv.TemplateEngine.getInstance().getCommands().add("open-settings", this._openSettings);
         qx.dom.Element.insertBegin(button, document.querySelector("#notification-center footer"));
         qx.event.Registration.addListener(button, "tap", function () {
-          this.__settings.show();
+          this.__P_20_1.show();
         }, this); //add to DOM
 
         qx.theme.manager.Meta.getInstance().setTheme(cv.theme.Dark); // Initialize tooltip manager (currently disable as it requires a root with basic layout
@@ -138,11 +138,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         this._inline.setLayout(new qx.ui.layout.VBox());
 
-        this.__settings = new cv.plugins.openhab.Settings();
+        this.__P_20_1 = new cv.plugins.openhab.Settings();
 
-        this.__settings.exclude();
+        this.__P_20_1.exclude();
 
-        this._inline.add(this.__settings, {
+        this._inline.add(this.__P_20_1, {
           flex: 1
         });
       },
@@ -159,7 +159,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var json = _typeof(e.data) === 'object' ? e.data : JSON.parse(e.data);
 
-        this.__notificationRouter.dispatchMessage(json.topic || "cv.backend", json);
+        this.__P_20_0.dispatchMessage(json.topic || "cv.backend", json);
       }
     },
 
@@ -169,9 +169,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__settings", "_openSettings");
+      this._disposeObjects("__P_20_1", "_openSettings");
 
-      this.__notificationRouter = null;
+      this.__P_20_0 = null;
     },
     defer: function defer(statics) {
       // initialize on load
@@ -181,4 +181,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.plugins.openhab.Openhab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Openhab.js.map?dt=1591114955258
+//# sourceMappingURL=Openhab.js.map?dt=1592777070081

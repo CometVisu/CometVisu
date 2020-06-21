@@ -51,10 +51,10 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__scriptQueue = new qx.data.Array();
-      this.__loaders = new qx.data.Array();
-      this.__delayedScriptQueue = new qx.data.Array();
-      this.__markedAsLoaded = [];
+      this.__P_484_0 = new qx.data.Array();
+      this.__P_484_1 = new qx.data.Array();
+      this.__P_484_2 = new qx.data.Array();
+      this.__P_484_3 = [];
     },
 
     /*
@@ -101,10 +101,10 @@
     ******************************************************
     */
     members: {
-      __scriptQueue: null,
-      __loaders: null,
-      __listener: null,
-      __markedAsLoaded: null,
+      __P_484_0: null,
+      __P_484_1: null,
+      __P_484_4: null,
+      __P_484_3: null,
       addStyles: function addStyles(styleArr) {
         var queue = typeof styleArr === 'string' ? [styleArr] : styleArr.concat();
         var suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
@@ -113,14 +113,14 @@
         }, this);
       },
       markAsLoaded: function markAsLoaded(path) {
-        if (!this.__markedAsLoaded.includes(path)) {
+        if (!this.__P_484_3.includes(path)) {
           this.debug('marking ' + path + ' as loaded');
 
-          this.__markedAsLoaded.push(path);
+          this.__P_484_3.push(path);
         }
       },
       isMarkedAsLoaded: function isMarkedAsLoaded(path) {
-        return this.__markedAsLoaded.includes(path);
+        return this.__P_484_3.includes(path);
       },
       addScripts: function addScripts(scriptArr, order) {
         var queue = typeof scriptArr === 'string' ? [scriptArr] : scriptArr; // make sure that no cached scripts are loaded
@@ -129,7 +129,7 @@
         var realQueue = [];
 
         for (var i = 0, l = queue.length; i < l; i++) {
-          if (!this.__markedAsLoaded.includes(queue[i])) {
+          if (!this.__P_484_3.includes(queue[i])) {
             realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
           }
         }
@@ -140,7 +140,7 @@
 
         this.debug("queueing " + realQueue.length + " scripts");
 
-        this.__scriptQueue.append(realQueue);
+        this.__P_484_0.append(realQueue);
 
         if (order) {
           var processQueue = function () {
@@ -148,11 +148,11 @@
               var loadIndex = order.shift();
               var script = realQueue.splice(loadIndex, 1)[0];
 
-              var loader = this.__loadSingleScript(script);
+              var loader = this.__P_484_5(script);
 
               loader.addListener("ready", processQueue, this);
             } else {
-              realQueue.forEach(this.__loadSingleScript, this);
+              realQueue.forEach(this.__P_484_5, this);
             }
           }.bind(this);
 
@@ -161,7 +161,7 @@
           // use an extra DynamicScriptLoader for every single script because loading errors stop the process
           // and the loader would not try to load the other scripts
           // queue.forEach(this.__loadSingleScript, this);
-          this.__loadSingleScript(realQueue);
+          this.__P_484_5(realQueue);
         }
       },
 
@@ -170,15 +170,15 @@
        *
        * @param script {String} path to script
        */
-      __loadSingleScript: function __loadSingleScript(script) {
+      __P_484_5: function __P_484_5(script) {
         var loader = new qx.util.DynamicScriptLoader(script);
 
-        this.__loaders.push(loader);
+        this.__P_484_1.push(loader);
 
         loader.addListener("loaded", this._onLoaded, this);
         loader.addListener("failed", this._onFailed, this);
         loader.addListenerOnce("ready", function () {
-          this.__loaders.remove(loader);
+          this.__P_484_1.remove(loader);
 
           loader.removeListener("loaded", this._onLoaded, this);
           loader.removeListener("failed", this._onFailed, this);
@@ -189,7 +189,7 @@
       _onLoaded: function _onLoaded(ev) {
         var data = ev.getData();
 
-        this.__scriptQueue.remove(data.script);
+        this.__P_484_0.remove(data.script);
 
         this.debug(data.script + " loaded");
 
@@ -198,7 +198,7 @@
       _onFailed: function _onFailed(ev) {
         var data = ev.getData();
 
-        this.__scriptQueue.remove(data.script);
+        this.__P_484_0.remove(data.script);
 
         if (data.script.startsWith("design")) {
           var failedDesign = data.script.split("/")[1];
@@ -227,26 +227,26 @@
       },
       // property apply
       _checkQueue: function _checkQueue() {
-        if (this.__scriptQueue.length === 0) {
+        if (this.__P_484_0.length === 0) {
           if (this.isAllQueued()) {
             this.debug("script loader finished");
             this.fireEvent("finished");
-          } else if (!this.__listener) {
+          } else if (!this.__P_484_4) {
             this.debug("script loader waiting for all scripts beeing queued");
-            this.__listener = this.addListener("changeAllQueued", function (ev) {
+            this.__P_484_4 = this.addListener("changeAllQueued", function (ev) {
               if (ev.getData() === true) {
-                if (this.__scriptQueue.length === 0) {
+                if (this.__P_484_0.length === 0) {
                   this.debug("script loader finished");
                   this.fireEvent("finished");
                 }
 
-                this.removeListenerById(this.__listener);
-                this.__listener = null;
+                this.removeListenerById(this.__P_484_4);
+                this.__P_484_4 = null;
               }
             }, this);
           }
         } else {
-          this.debug(this.__scriptQueue.length + " scripts remaining");
+          this.debug(this.__P_484_0.length + " scripts remaining");
         }
       }
     }
@@ -254,4 +254,4 @@
   cv.util.ScriptLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScriptLoader.js.map?dt=1591114996617
+//# sourceMappingURL=ScriptLoader.js.map?dt=1592777111843

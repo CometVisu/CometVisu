@@ -198,7 +198,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.core.MContentPadding"
+      "overriddenFrom": "qx.ui.core.MContentPadding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getContentPaddingTop": {
       "type": "function",
@@ -573,7 +581,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.core.scroll.MRoll"
+      "overriddenFrom": "qx.ui.core.scroll.MRoll",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Responsible for adding the event listener needed for scroll handling.</p>"
+          }
+        ]
+      }
     },
     "_removeRollHandling": {
       "type": "function",
@@ -582,7 +598,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.core.scroll.MRoll"
+      "overriddenFrom": "qx.ui.core.scroll.MRoll",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Responsible for removing the event listener needed for scroll handling.</p>"
+          }
+        ]
+      }
     },
     "_onPointerDownForRoll": {
       "type": "function",
@@ -1630,7 +1654,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -1689,7 +1721,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMinWidth": {
       "type": "function",

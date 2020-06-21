@@ -63,7 +63,7 @@
     *****************************************************************************
     */
     statics: {
-      __application: null,
+      __P_169_0: null,
 
       /**
        * Returns the instantiated qooxdoo application.
@@ -71,7 +71,7 @@
        * @return {qx.core.Object} The application instance.
        */
       getApplication: function getApplication() {
-        return this.__application || null;
+        return this.__P_169_0 || null;
       },
 
       /**
@@ -80,7 +80,7 @@
        *
        */
       ready: function ready() {
-        if (this.__application) {
+        if (this.__P_169_0) {
           return;
         }
 
@@ -101,15 +101,15 @@
         var clazz = qx.Class.getByName(app);
 
         if (clazz) {
-          this.__application = new clazz();
+          this.__P_169_0 = new clazz();
           var start = new Date();
 
-          this.__application.main();
+          this.__P_169_0.main();
 
           qx.log.Logger.debug(this, "Main runtime: " + (new Date() - start) + "ms");
           var start = new Date();
 
-          this.__application.finalize();
+          this.__P_169_0.finalize();
 
           qx.log.Logger.debug(this, "Finalize runtime: " + (new Date() - start) + "ms");
           qx.event.handler.Application.onAppInstanceInitialized();
@@ -124,8 +124,8 @@
        *
        * @param e {qx.event.type.Native} Incoming beforeunload event.
        */
-      __close: function __close(e) {
-        var app = this.__application;
+      __P_169_1: function __P_169_1(e) {
+        var app = this.__P_169_0;
 
         if (app) {
           app.close();
@@ -137,8 +137,8 @@
        * created application instance.
        *
        */
-      __shutdown: function __shutdown() {
-        var app = this.__application;
+      __P_169_2: function __P_169_2() {
+        var app = this.__P_169_0;
 
         if (app) {
           app.terminate();
@@ -149,4 +149,4 @@
   qx.core.BaseInit.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseInit.js.map?dt=1591115583259
+//# sourceMappingURL=BaseInit.js.map?dt=1592778974583

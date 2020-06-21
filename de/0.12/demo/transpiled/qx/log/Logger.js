@@ -88,7 +88,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         CONFIGURATION
       ---------------------------------------------------------------------------
       */
-      __level: "debug",
+      __P_81_0: "debug",
 
       /**
        * Configures the minimum log level required for new messages.
@@ -96,7 +96,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {String} One of "debug", "info", "warn" or "error".
        */
       setLevel: function setLevel(value) {
-        this.__level = value;
+        this.__P_81_0 = value;
       },
 
       /**
@@ -106,7 +106,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} Debug level
        */
       getLevel: function getLevel() {
-        return this.__level;
+        return this.__P_81_0;
       },
 
       /**
@@ -115,7 +115,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {Integer} Any positive integer
        */
       setTreshold: function setTreshold(value) {
-        this.__buffer.setMaxMessages(value);
+        this.__P_81_1.setMaxMessages(value);
       },
 
       /**
@@ -125,7 +125,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Integer} Treshold value
        */
       getTreshold: function getTreshold() {
-        return this.__buffer.getMaxMessages();
+        return this.__P_81_1.getMaxMessages();
       },
 
       /*
@@ -135,16 +135,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
 
       /** @type {Map} Map of all known appenders by ID */
-      __appenders: [],
+      __P_81_2: [],
 
       /** @type {Map} Map of all known appenders by name */
-      __appendersByName: {},
+      __P_81_3: {},
 
       /** @type {Array} Array of filters to apply when selecting appenders to append to */
-      __filters: [],
+      __P_81_4: [],
 
       /** @type {Integer} Last free appender ID */
-      __id: 0,
+      __P_81_5: 0,
 
       /**
        * Registers the given appender and inserts the last cached messages.
@@ -161,18 +161,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Register appender
 
 
-        var id = this.__id++;
+        var id = this.__P_81_5++;
         var appenderName = appender.appenderName || appender.classname;
-        this.__appenders[id] = appender;
-        this.__appendersByName[appenderName] = appender;
+        this.__P_81_2[id] = appender;
+        this.__P_81_3[appenderName] = appender;
         appender.$$id = id; // Insert previous messages
 
-        var entries = this.__buffer.getAllLogEvents();
+        var entries = this.__P_81_1.getAllLogEvents();
 
         for (var i = 0, l = entries.length; i < l; i++) {
           var entry = entries[i];
 
-          var appenders = this.__getAppenders(entry.loggerName, entry.level);
+          var appenders = this.__P_81_6(entry.loggerName, entry.level);
 
           if (appenders[appenderName]) {
             appender.process(entry);
@@ -193,8 +193,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         var appenderName = appender.appenderName || appender.classname;
-        delete this.__appendersByName[appenderName];
-        delete this.__appenders[id];
+        delete this.__P_81_3[appenderName];
+        delete this.__P_81_2[id];
         delete appender.$$id;
       },
 
@@ -246,9 +246,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           logger = new RegExp(logger);
         }
 
-        this.__filters.push({
+        this.__P_81_4.push({
           loggerMatch: logger,
-          level: level || this.__level,
+          level: level || this.__P_81_0,
           appenderName: appenderName
         });
       },
@@ -257,7 +257,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Reset all filters
        */
       resetFilters: function resetFilters() {
-        this.__filters = [];
+        this.__P_81_4 = [];
       },
 
       /*
@@ -275,7 +275,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   does not keep references to other objects.
        */
       debug: function debug(object, message) {
-        qx.log.Logger.__log("debug", arguments);
+        qx.log.Logger.__P_81_7("debug", arguments);
       },
 
       /**
@@ -287,7 +287,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   does not keep references to other objects.
        */
       info: function info(object, message) {
-        qx.log.Logger.__log("info", arguments);
+        qx.log.Logger.__P_81_7("info", arguments);
       },
 
       /**
@@ -299,7 +299,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   does not keep references to other objects.
        */
       warn: function warn(object, message) {
-        qx.log.Logger.__log("warn", arguments);
+        qx.log.Logger.__P_81_7("warn", arguments);
       },
 
       /**
@@ -311,7 +311,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   does not keep references to other objects.
        */
       error: function error(object, message) {
-        qx.log.Logger.__log("error", arguments);
+        qx.log.Logger.__P_81_7("error", arguments);
       },
 
       /**
@@ -328,7 +328,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var args = qx.lang.Array.fromArguments(arguments);
           args.push(trace.join("\n"));
 
-          qx.log.Logger.__log("trace", args);
+          qx.log.Logger.__P_81_7("trace", args);
         }
       },
 
@@ -400,7 +400,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        */
       clear: function clear() {
-        this.__buffer.clearHistory();
+        this.__P_81_1.clearHistory();
       },
 
       /*
@@ -410,10 +410,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
 
       /** @type {qx.log.appender.RingBuffer} Message buffer of previously fired messages. */
-      __buffer: new qx.log.appender.RingBuffer(50),
+      __P_81_1: new qx.log.appender.RingBuffer(50),
 
       /** @type {Map} Numeric translation of log levels */
-      __levels: {
+      __P_81_8: {
         trace: 0,
         debug: 1,
         info: 2,
@@ -422,7 +422,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** @type {Map} cache of appenders for a given logger and level */
-      __appendersCache: {},
+      __P_81_9: {},
 
       /**
        * Detects the name of the logger to use for an object
@@ -430,7 +430,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param object {Object} Contextual object (either instance or static class)
        * @return {String} Logger name
        */
-      __getLoggerName: function __getLoggerName(object) {
+      __P_81_10: function __P_81_10(object) {
         if (object) {
           if (object.classname) {
             return object.classname;
@@ -452,9 +452,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} True if the logger is enabled
        */
       isLoggerEnabled: function isLoggerEnabled(level, object) {
-        var loggerName = this.__getLoggerName(object);
+        var loggerName = this.__P_81_10(object);
 
-        var appenders = this.__getAppenders(loggerName, level);
+        var appenders = this.__P_81_6(loggerName, level);
 
         return !!Object.keys(appenders).length;
       },
@@ -466,13 +466,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param args {Array} List of other arguments, where the first is
        *   taken as the context object.
        */
-      __log: function __log(level, args) {
+      __P_81_7: function __P_81_7(level, args) {
         // Get object and determine appenders
         var object = args.length < 2 ? null : args[0];
 
-        var loggerName = this.__getLoggerName(object);
+        var loggerName = this.__P_81_10(object);
 
-        var appenders = this.__getAppenders(loggerName, level);
+        var appenders = this.__P_81_6(loggerName, level);
 
         if (!Object.keys(appenders).length) {
           return;
@@ -483,7 +483,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var items = [];
 
         for (var i = start, l = args.length; i < l; i++) {
-          items.push(this.__serialize(args[i], true));
+          items.push(this.__P_81_11(args[i], true));
         } // Build entry
 
 
@@ -510,7 +510,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
 
-        this.__buffer.process(entry); // Send to appenders
+        this.__P_81_1.process(entry); // Send to appenders
 
 
         for (var classname in appenders) {
@@ -525,21 +525,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param level {String} the minimum logging level to use the appender
        * @return {Array} list of appenders
        */
-      __getAppenders: function __getAppenders(className, level) {
-        var levels = this.__levels; // If no filters, then all appenders apply
+      __P_81_6: function __P_81_6(className, level) {
+        var levels = this.__P_81_8; // If no filters, then all appenders apply
 
-        if (!this.__filters.length) {
+        if (!this.__P_81_4.length) {
           // Check the default level
-          if (levels[level] < levels[this.__level]) {
+          if (levels[level] < levels[this.__P_81_0]) {
             return [];
           }
 
-          return this.__appendersByName;
+          return this.__P_81_3;
         } // Check the cache
 
 
         var cacheId = className + "|" + level;
-        var appenders = this.__appendersCache[cacheId];
+        var appenders = this.__P_81_9[cacheId];
 
         if (appenders !== undefined) {
           return appenders;
@@ -547,8 +547,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var appenders = {};
 
-        for (var i = 0; i < this.__filters.length; i++) {
-          var filter = this.__filters[i]; // Filters only apply to certain levels
+        for (var i = 0; i < this.__P_81_4.length; i++) {
+          var filter = this.__P_81_4[i]; // Filters only apply to certain levels
 
           if (levels[level] < levels[filter.level]) {
             continue;
@@ -562,14 +562,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           if (!filter.loggerMatch || filter.loggerMatch.test(className)) {
             if (filter.appenderName) {
-              appenders[filter.appenderName] = this.__appendersByName[filter.appenderName];
+              appenders[filter.appenderName] = this.__P_81_3[filter.appenderName];
             } else {
-              return this.__appendersCache[cacheId] = this.__appendersByName;
+              return this.__P_81_9[cacheId] = this.__P_81_3;
             }
           }
         }
 
-        return this.__appendersCache[cacheId] = appenders;
+        return this.__P_81_9[cacheId] = appenders;
       },
 
       /**
@@ -581,7 +581,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   "function", "array", "error", "map",
        *   "class", "instance", "node", "stringify", "unknown"
        */
-      __detect: function __detect(value) {
+      __P_81_12: function __P_81_12(value) {
         if (value === undefined) {
           return "undefined";
         } else if (value === null) {
@@ -630,8 +630,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Map} Contains the keys <code>type</code>, <code>text</code> and
        * <code>trace</code>.
        */
-      __serialize: function __serialize(value, deep) {
-        var type = this.__detect(value);
+      __P_81_11: function __P_81_11(value, deep) {
+        var type = this.__P_81_12(value);
 
         var text = "unknown";
         var trace = [];
@@ -691,7 +691,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   break;
                 }
 
-                text.push(this.__serialize(value[i], false));
+                text.push(this.__P_81_11(value[i], false));
               }
             } else {
               text = "[...(" + value.length + ")]";
@@ -721,7 +721,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
                 key = sorted[i];
-                temp = this.__serialize(value[key], false);
+                temp = this.__P_81_11(value[key], false);
                 temp.key = key;
                 text.push(temp);
               }
@@ -749,7 +749,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       var logs = qx.Bootstrap.$$logs;
 
       for (var i = 0; i < logs.length; i++) {
-        statics.__log(logs[i][0], logs[i][1]);
+        statics.__P_81_7(logs[i][0], logs[i][1]);
       }
 
       qx.Bootstrap.debug = statics.debug;
@@ -762,4 +762,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.log.Logger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Logger.js.map?dt=1591115574461
+//# sourceMappingURL=Logger.js.map?dt=1592778965285

@@ -150,14 +150,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} the desired inset as a map with the keys <code>top</code>,\n     <code>right</code>, <code>bottom</code>, <code>left</code>.",
-            "type": "Map",
-            "description": " the desired inset as a map with the keys <code>top</code>,\n     <code>right</code>, <code>bottom</code>, <code>left</code>."
-          }
         ]
       },
       "type": "function",
@@ -276,7 +268,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -335,7 +335,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "destruct": {

@@ -83,8 +83,8 @@
           var config = {};
         }
 
-        config.include = this.__normalizeArray(config.include);
-        config.patch = this.__normalizeArray(config.patch); // Validate incoming data
+        config.include = this.__P_59_0(config.include);
+        config.patch = this.__P_59_0(config.patch); // Validate incoming data
 
         // Create alias
         var theme = {
@@ -102,9 +102,9 @@
 
         theme.basename = qx.Bootstrap.createNamespace(name, theme); // Convert theme entry from Object to Function (for prototype inheritance)
 
-        this.__convert(theme, config);
+        this.__P_59_1(theme, config);
 
-        this.__initializeAliases(theme, config); // Store class reference in global class registry
+        this.__P_59_2(theme, config); // Store class reference in global class registry
 
 
         this.$$registry[name] = theme; // Include mixin themes
@@ -132,7 +132,7 @@
        * @return {Array} Either an array that has the original object as its
        *   single item, or the original array itself
        */
-      __normalizeArray: function __normalizeArray(objectOrArray) {
+      __P_59_0: function __P_59_0(objectOrArray) {
         if (!objectOrArray) {
           return [];
         }
@@ -150,7 +150,7 @@
        * @param theme {Map} The theme
        * @param config {Map} config structure
        */
-      __initializeAliases: function __initializeAliases(theme, config) {
+      __P_59_2: function __P_59_2(theme, config) {
         var aliases = config.aliases || {};
 
         if (config.extend && config.extend.aliases) {
@@ -221,8 +221,8 @@
        * @param config {Map} The map from where to extract the key
        * @return {String} the key which was found
        */
-      __extractType: function __extractType(config) {
-        for (var i = 0, keys = this.__inheritableKeys, l = keys.length; i < l; i++) {
+      __P_59_3: function __P_59_3(config) {
+        for (var i = 0, keys = this.__P_59_4, l = keys.length; i < l; i++) {
           if (config[keys[i]]) {
             return keys[i];
           }
@@ -235,8 +235,8 @@
        * @param theme {Theme} newly created theme object
        * @param config {Map} incoming theme configuration
        */
-      __convert: function __convert(theme, config) {
-        var type = this.__extractType(config); // Use theme key from extended theme if own one is not available
+      __P_59_1: function __P_59_1(theme, config) {
+        var type = this.__P_59_3(config); // Use theme key from extended theme if own one is not available
 
 
         if (config.extend && !type) {
@@ -275,13 +275,13 @@
       $$registry: {},
 
       /** @type {Array} Keys which support inheritance */
-      __inheritableKeys: ["colors", "borders", "decorations", "fonts", "icons", "widgets", "appearances", "meta"],
+      __P_59_4: ["colors", "borders", "decorations", "fonts", "icons", "widgets", "appearances", "meta"],
 
       /** @type {Map} allowed keys in theme definition */
-      __allowedKeys: null,
+      __P_59_5: null,
 
       /** @type {Map} allowed keys inside a meta theme block */
-      __metaKeys: null,
+      __P_59_6: null,
 
       /**
        * Validates incoming configuration and checks keys and values
@@ -291,7 +291,7 @@
        * @param config {Map} Configuration map
        * @throws {Error} if the given config is not valid (e.g. wrong key or wrong key value)
        */
-      __validateConfig: function __validateConfig() {},
+      __P_59_7: function __P_59_7() {},
 
       /**
        * Include all keys of the given mixin theme into the theme. The mixin may
@@ -302,11 +302,11 @@
        * @param mixinTheme {Theme} The theme to be included.
        */
       patch: function patch(theme, mixinTheme) {
-        this.__checkForInvalidTheme(mixinTheme);
+        this.__P_59_8(mixinTheme);
 
-        var type = this.__extractType(mixinTheme);
+        var type = this.__P_59_3(mixinTheme);
 
-        if (type !== this.__extractType(theme)) {
+        if (type !== this.__P_59_3(theme)) {
           throw new Error("The mixins '" + theme.name + "' are not compatible '" + mixinTheme.name + "'!");
         }
 
@@ -328,7 +328,7 @@
        * @param mixinTheme {Theme} The theme to be included.
        */
       include: function include(theme, mixinTheme) {
-        this.__checkForInvalidTheme(mixinTheme);
+        this.__P_59_8(mixinTheme);
 
         var type = mixinTheme.type;
 
@@ -355,7 +355,7 @@
        * @param mixinTheme {qx.Theme?null} theme to check
        * @throws {Error} if the theme is not valid
        */
-      __checkForInvalidTheme: function __checkForInvalidTheme(mixinTheme) {
+      __P_59_8: function __P_59_8(mixinTheme) {
         if (typeof mixinTheme === "undefined" || mixinTheme == null) {
           var errorObj = new Error("Mixin theme is not a valid theme!");
           throw errorObj;
@@ -366,4 +366,4 @@
   qx.Theme.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Theme.js.map?dt=1591114960924
+//# sourceMappingURL=Theme.js.map?dt=1592777075820

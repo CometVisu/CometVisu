@@ -109,7 +109,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -168,7 +176,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMinWidth": {
       "type": "function",
@@ -229,7 +245,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>minWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minWidth}."
+          }
+        ]
+      }
     },
     "getWidth": {
       "type": "function",
@@ -290,7 +314,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
+          }
+        ]
+      }
     },
     "getMaxWidth": {
       "type": "function",
@@ -351,7 +383,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
+          }
+        ]
+      }
     },
     "getMinHeight": {
       "type": "function",
@@ -412,7 +452,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>minHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minHeight}."
+          }
+        ]
+      }
     },
     "getHeight": {
       "type": "function",
@@ -473,7 +521,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
+          }
+        ]
+      }
     },
     "getMaxHeight": {
       "type": "function",
@@ -534,7 +590,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
+          }
+        ]
+      }
     },
     "getAllowGrowX": {
       "type": "function",
@@ -620,7 +684,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowGrowX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
+          }
+        ]
+      }
     },
     "getAllowShrinkX": {
       "type": "function",
@@ -706,7 +778,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowShrinkX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
+          }
+        ]
+      }
     },
     "getAllowGrowY": {
       "type": "function",
@@ -792,7 +872,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowGrowY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
+          }
+        ]
+      }
     },
     "getAllowShrinkY": {
       "type": "function",
@@ -878,7 +966,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowShrinkY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
+          }
+        ]
+      }
     },
     "getAllowStretchX": {
       "type": "function",
@@ -939,7 +1035,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
+          }
+        ]
+      }
     },
     "getAllowStretchY": {
       "type": "function",
@@ -1000,7 +1104,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowStretchY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
+          }
+        ]
+      }
     },
     "getMarginTop": {
       "type": "function",
@@ -1061,7 +1173,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginTop}."
+          }
+        ]
+      }
     },
     "getMarginRight": {
       "type": "function",
@@ -1122,7 +1242,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginRight}."
+          }
+        ]
+      }
     },
     "getMarginBottom": {
       "type": "function",
@@ -1183,7 +1311,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
+          }
+        ]
+      }
     },
     "getMarginLeft": {
       "type": "function",
@@ -1244,7 +1380,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
+          }
+        ]
+      }
     },
     "getMargin": {
       "type": "function",
@@ -1305,7 +1449,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>margin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #margin}."
+          }
+        ]
+      }
     },
     "getAlignX": {
       "type": "function",
@@ -1366,7 +1518,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ]
+      }
     },
     "getAlignY": {
       "type": "function",
@@ -1427,7 +1587,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ]
+      }
     },
     "getPaddingTop": {
       "type": "function",
@@ -1488,7 +1656,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
+          }
+        ]
+      }
     },
     "getPaddingRight": {
       "type": "function",
@@ -1549,7 +1725,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
+          }
+        ]
+      }
     },
     "getPaddingBottom": {
       "type": "function",
@@ -1610,7 +1794,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
+          }
+        ]
+      }
     },
     "getPaddingLeft": {
       "type": "function",
@@ -1671,7 +1863,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
+          }
+        ]
+      }
     },
     "getPadding": {
       "type": "function",
@@ -1732,7 +1932,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>padding</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #padding}."
+          }
+        ]
+      }
     },
     "getZIndex": {
       "type": "function",
@@ -1793,7 +2001,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>zIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #zIndex}."
+          }
+        ]
+      }
     },
     "getDecorator": {
       "type": "function",
@@ -1854,7 +2070,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>decorator</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #decorator}."
+          }
+        ]
+      }
     },
     "getBackgroundColor": {
       "type": "function",
@@ -1915,7 +2139,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ]
+      }
     },
     "getTextColor": {
       "type": "function",
@@ -1976,7 +2208,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>textColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #textColor}."
+          }
+        ]
+      }
     },
     "getFont": {
       "type": "function",
@@ -2037,7 +2277,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>font</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #font}."
+          }
+        ]
+      }
     },
     "getOpacity": {
       "type": "function",
@@ -2098,7 +2346,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>opacity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #opacity}."
+          }
+        ]
+      }
     },
     "getCursor": {
       "type": "function",
@@ -2159,7 +2415,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>cursor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cursor}."
+          }
+        ]
+      }
     },
     "getToolTip": {
       "type": "function",
@@ -2220,7 +2484,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTip}."
+          }
+        ]
+      }
     },
     "getToolTipText": {
       "type": "function",
@@ -2281,7 +2553,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTipText</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
+          }
+        ]
+      }
     },
     "getToolTipIcon": {
       "type": "function",
@@ -2342,7 +2622,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>toolTipIcon</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
+          }
+        ]
+      }
     },
     "getBlockToolTip": {
       "type": "function",
@@ -2428,7 +2716,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>blockToolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
+          }
+        ]
+      }
     },
     "getShowToolTipWhenDisabled": {
       "type": "function",
@@ -2514,7 +2810,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
+          }
+        ]
+      }
     },
     "getVisibility": {
       "type": "function",
@@ -2575,7 +2879,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
+          }
+        ]
+      }
     },
     "getEnabled": {
       "type": "function",
@@ -2661,7 +2973,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
+          }
+        ]
+      }
     },
     "getAnonymous": {
       "type": "function",
@@ -2747,7 +3067,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ]
+      }
     },
     "getTabIndex": {
       "type": "function",
@@ -2808,7 +3136,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>tabIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
+          }
+        ]
+      }
     },
     "getFocusable": {
       "type": "function",
@@ -2894,7 +3230,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>focusable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #focusable}."
+          }
+        ]
+      }
     },
     "getKeepFocus": {
       "type": "function",
@@ -2980,7 +3324,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>keepFocus</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
+          }
+        ]
+      }
     },
     "getKeepActive": {
       "type": "function",
@@ -3066,7 +3418,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>keepActive</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepActive}."
+          }
+        ]
+      }
     },
     "getDraggable": {
       "type": "function",
@@ -3152,7 +3512,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>draggable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #draggable}."
+          }
+        ]
+      }
     },
     "getDroppable": {
       "type": "function",
@@ -3238,7 +3606,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>droppable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #droppable}."
+          }
+        ]
+      }
     },
     "getSelectable": {
       "type": "function",
@@ -3324,7 +3700,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>selectable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selectable}."
+          }
+        ]
+      }
     },
     "getContextMenu": {
       "type": "function",
@@ -3385,7 +3769,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>contextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
+          }
+        ]
+      }
     },
     "getNativeContextMenu": {
       "type": "function",
@@ -3471,7 +3863,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>nativeContextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
+          }
+        ]
+      }
     },
     "getAppearance": {
       "type": "function",
@@ -3532,7 +3932,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>appearance</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #appearance}."
+          }
+        ]
+      }
     },
     "getLabel": {
       "type": "function",
@@ -3593,7 +4001,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>label</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #label}."
+          }
+        ]
+      }
     },
     "getIcon": {
       "type": "function",
@@ -3654,7 +4070,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>icon</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #icon}."
+          }
+        ]
+      }
     },
     "getShowCloseButton": {
       "type": "function",
@@ -3740,7 +4164,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tabview.Page",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>showCloseButton</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showCloseButton}."
+          }
+        ]
+      }
     },
     "getClassNode": {
       "type": "function",

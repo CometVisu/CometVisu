@@ -286,14 +286,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.website.Widget} The widget collection for chaining.",
-            "type": "qx.ui.website.Widget",
-            "description": " The widget collection for chaining."
-          }
         ]
       },
       "type": "function",
@@ -319,30 +311,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "name {String} The name of the config setting.",
-            "paramName": "name",
-            "description": " The name of the config setting.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "config {var} The value of the config setting.",
-            "paramName": "config",
-            "description": " The value of the config setting.",
-            "type": "var"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.website.Widget} The widget instance for chaining.",
-            "type": "qx.ui.website.Widget",
-            "description": " The widget instance for chaining."
           }
         ]
       },
@@ -586,14 +554,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qxWeb} Plain qxWeb collection",
-            "type": "qxWeb",
-            "description": " Plain qxWeb collection"
           }
         ]
       },

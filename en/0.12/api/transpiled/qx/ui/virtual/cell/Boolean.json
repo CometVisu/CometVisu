@@ -125,7 +125,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -133,7 +141,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -246,23 +262,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} The cell's data value",
-            "paramName": "value",
-            "description": " The cell's data value",
-            "type": "var"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} A map having the following attributes:\n           <ul>\n           <li>\"url\": (type string) must be the URL of the image to show.</li>\n           <li>\"width\": (type int) the width of the image in pixels.</li>\n           <li>\"height\": (type int) the height of the image in pixels.</li>\n           <li>\"tooltip\": (type string) must be the image tooltip text.</li>\n           </ul>",
-            "type": "Map",
-            "description": " A map having the following attributes:\n           <ul>\n           <li>\"url\": (type string) must be the URL of the image to show.</li>\n           <li>\"width\": (type int) the width of the image in pixels.</li>\n           <li>\"height\": (type int) the height of the image in pixels.</li>\n           <li>\"tooltip\": (type string) must be the image tooltip text.</li>\n           </ul>"
-          }
         ]
       },
       "type": "function",
@@ -331,7 +330,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -390,7 +397,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getAppearance": {
       "type": "function",
@@ -451,7 +466,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>appearance</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #appearance}."
+          }
+        ]
+      }
     },
     "getBackgroundColor": {
       "type": "function",
@@ -512,7 +535,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>backgroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
+          }
+        ]
+      }
     },
     "getTextColor": {
       "type": "function",
@@ -573,7 +604,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>textColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #textColor}."
+          }
+        ]
+      }
     },
     "getTextAlign": {
       "type": "function",
@@ -634,7 +673,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>textAlign</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #textAlign}."
+          }
+        ]
+      }
     },
     "getFont": {
       "type": "function",
@@ -695,7 +742,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>font</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #font}."
+          }
+        ]
+      }
     },
     "getPaddingTop": {
       "type": "function",
@@ -756,7 +811,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
+          }
+        ]
+      }
     },
     "getPaddingRight": {
       "type": "function",
@@ -817,7 +880,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
+          }
+        ]
+      }
     },
     "getPaddingBottom": {
       "type": "function",
@@ -878,7 +949,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
+          }
+        ]
+      }
     },
     "getPaddingLeft": {
       "type": "function",
@@ -939,7 +1018,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
+          }
+        ]
+      }
     },
     "getPadding": {
       "type": "function",
@@ -1000,7 +1087,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.virtual.cell.AbstractImage",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>padding</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #padding}."
+          }
+        ]
+      }
     },
     "getIconTrue": {
       "type": "function",

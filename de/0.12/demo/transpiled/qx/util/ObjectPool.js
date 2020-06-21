@@ -60,7 +60,7 @@
      */
     construct: function construct(size) {
       qx.core.Object.constructor.call(this);
-      this.__pool = {};
+      this.__P_202_0 = {};
 
       if (size != null) {
         this.setSize(size);
@@ -97,7 +97,7 @@
     */
     members: {
       /** @type {Map} Stores arrays of instances for all managed classes */
-      __pool: null,
+      __P_202_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -125,7 +125,7 @@
         }
 
         var obj = null;
-        var pool = this.__pool[clazz.classname];
+        var pool = this.__P_202_0[clazz.classname];
 
         if (pool) {
           obj = pool.pop();
@@ -153,19 +153,19 @@
        */
       poolObject: function poolObject(obj) {
         // Dispose check
-        if (!this.__pool) {
+        if (!this.__P_202_0) {
           return;
         }
 
         var classname = obj.classname;
-        var pool = this.__pool[classname];
+        var pool = this.__P_202_0[classname];
 
         if (obj.$$pooled) {
           throw new Error("Object is already pooled: " + obj);
         }
 
         if (!pool) {
-          this.__pool[classname] = pool = [];
+          this.__P_202_0[classname] = pool = [];
         } // Check to see whether the pool for this type is already full
 
 
@@ -192,7 +192,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      var pool = this.__pool;
+      var pool = this.__P_202_0;
       var classname, list, i, l;
 
       for (classname in pool) {
@@ -203,10 +203,10 @@
         }
       }
 
-      delete this.__pool;
+      delete this.__P_202_0;
     }
   });
   qx.util.ObjectPool.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ObjectPool.js.map?dt=1591115585553
+//# sourceMappingURL=ObjectPool.js.map?dt=1592778976850

@@ -188,7 +188,7 @@
         this.traceLog("playerIp  : " + playerIp);
         this.traceLog("playerPort: " + playerPort);
 
-        this.__callRemote('status', {}, function (ev) {
+        this.__P_17_0('status', {}, function (ev) {
           var data = ev.getTarget().getResponse();
 
           try {
@@ -201,13 +201,13 @@
             this.traceLog("durationResponse: " + data.durationResponse);
             this.traceLog("title           : " + data.title);
 
-            this.__updateController(data.volume, data.muteState, data.transportState, data.title, data.reltimeResponse, data.durationResponse, data.artist, data.album);
+            this.__P_17_1(data.volume, data.muteState, data.transportState, data.title, data.reltimeResponse, data.durationResponse, data.artist, data.album);
           } catch (e) {
             this.error(e);
           }
         });
       },
-      __updateController: function __updateController(volume, mute, playMode, title, reltime, duration, artist, album) {
+      __P_17_1: function __P_17_1(volume, mute, playMode, title, reltime, duration, artist, album) {
         var id = this.upnpcontroller_uid;
 
         if (mute === 0) {
@@ -240,7 +240,7 @@
        * @param data {Map|null} additional data to send to the backend
        * @param callback {Function} callback that should be called in success
        */
-      __callRemote: function __callRemote(type, data, callback) {
+      __P_17_0: function __P_17_0(type, data, callback) {
         var req = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("plugins/upnpcontroller/" + type + ".php"));
 
         if (!data) {
@@ -282,7 +282,7 @@
         this.traceLog("currentValue: " + currentValue);
         this.traceLog("playerPort  : " + playerPort);
 
-        this.__callRemote('playlists', {}, function (ev) {
+        this.__P_17_0('playlists', {}, function (ev) {
           var data = ev.getTarget().getResponse();
 
           try {
@@ -323,7 +323,7 @@
         this.traceLog("currentVolume: " + currentVolume);
         var volume = Number(currentVolume) - 5;
 
-        this.__callRemote('volume', {
+        this.__P_17_0('volume', {
           volume: volume
         }, function (data) {
           this.traceLog("data: " + data);
@@ -335,7 +335,7 @@
         this.traceLog("currentVolume: " + currentVolume);
         var volume = Number(currentVolume) + 5;
 
-        this.__callRemote('volume', {
+        this.__P_17_0('volume', {
           volume: volume
         }, function (data) {
           this.traceLog("data: " + data);
@@ -344,14 +344,14 @@
       callNext: function callNext() {
         this.traceLog("click next");
 
-        this.__callRemote('next', {}, function (data) {
+        this.__P_17_0('next', {}, function (data) {
           this.traceLog("data: " + data);
         });
       },
       callPrev: function callPrev() {
         this.traceLog("click prev");
 
-        this.__callRemote('prev', {}, function (data) {
+        this.__P_17_0('prev', {}, function (data) {
           this.traceLog("data: " + data);
         });
       },
@@ -369,7 +369,7 @@
           muteButton.classList.replace('switchPressed', 'switchUnpressed');
         }
 
-        this.__callRemote('mute', {
+        this.__P_17_0('mute', {
           mute: muteValue
         }, function (data) {
           this.traceLog("data: " + data);
@@ -392,7 +392,7 @@
           playButton.classList.replace('switchPressed', 'switchUnpressed');
         }
 
-        this.__callRemote(cmd, {}, function (ev) {
+        this.__P_17_0(cmd, {}, function (ev) {
           this.traceLog("data: " + ev.getTarget().getResponse());
         });
 
@@ -414,4 +414,4 @@
   cv.plugins.UpnpController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UpnpController.js.map?dt=1591114955009
+//# sourceMappingURL=UpnpController.js.map?dt=1592777069828

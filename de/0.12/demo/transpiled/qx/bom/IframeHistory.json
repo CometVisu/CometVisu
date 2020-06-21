@@ -166,15 +166,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {String} the fragment identifier",
-            "paramName": "value",
-            "description": " the fragment identifier",
-            "type": "qx.bom.String"
-          }
         ]
       },
       "type": "function",
@@ -201,24 +192,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "state {String} a string representing the state of the\n          application. This command will be delivered in the data property of\n          the \"request\" event.",
-            "paramName": "state",
-            "description": " a string representing the state of the\n          application. This command will be delivered in the data property of\n          the \"request\" event.",
-            "type": "qx.bom.String"
-          },
-          {
-            "name": "@param",
-            "body": "newTitle {String ? null} the page title to set after the history entry\n          is done. This title should represent the new state of the application.",
-            "paramName": "newTitle",
-            "description": " the page title to set after the history entry\n          is done. This title should represent the new state of the application.",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "String"
-          }
         ]
       },
       "type": "function",
@@ -244,15 +217,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "state {String} new state of the history",
-            "paramName": "state",
-            "description": " new state of the history",
-            "type": "qx.bom.String"
           }
         ]
       },
@@ -711,7 +675,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.History",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -770,7 +742,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.History",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getTitle": {
       "type": "function",
@@ -831,7 +811,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.History",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>title</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #title}."
+          }
+        ]
+      }
     },
     "getState": {
       "type": "function",
@@ -892,7 +880,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.History",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>state</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #state}."
+          }
+        ]
+      }
     }
   },
   "destruct": {

@@ -300,30 +300,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellInfo {Map} A map containing the information about the cell to\n     create.",
-            "paramName": "cellInfo",
-            "description": " A map containing the information about the cell to\n     create.",
-            "type": "Map"
-          },
-          {
-            "name": "@param",
-            "body": "htmlArr {String[]} Target string container. The HTML of the data\n     cell should be appended to this array.",
-            "paramName": "htmlArr",
-            "description": " Target string container. The HTML of the data\n     cell should be appended to this array.",
-            "type": "String[]"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean|undefined}\n   A return value of <i>true</i> specifies that no additional cells in\n   the row shall be rendered. This may be used, for example, for\n   separator rows or for other special rendering purposes. Traditional\n   cell renderers had no defined return value, so returned nothing\n   (undefined). If this method returns either false or nothing, then\n   rendering continues with the next cell in the row, which the normal\n   mode of operation.",
-            "type": "Boolean|undefined",
-            "description": "\n   A return value of <i>true</i> specifies that no additional cells in\n   the row shall be rendered. This may be used, for example, for\n   separator rows or for other special rendering purposes. Traditional\n   cell renderers had no defined return value, so returned nothing\n   (undefined). If this method returns either false or nothing, then\n   rendering continues with the next cell in the row, which the normal\n   mode of operation."
-          }
         ]
       },
       "type": "function",
@@ -351,23 +327,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellInfo {Map} cellInfo of the cell",
-            "paramName": "cellInfo",
-            "description": " cellInfo of the cell",
-            "type": "Map"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} The table cell HTML classes as string.",
-            "type": "qx.ui.table.cellrenderer.String",
-            "description": " The table cell HTML classes as string."
-          }
         ]
       },
       "type": "function",
@@ -394,23 +353,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellInfo {Map} The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "paramName": "cellInfo",
-            "description": " The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} the inner HTML of the cell.",
-            "type": "qx.ui.table.cellrenderer.String",
-            "description": " the inner HTML of the cell."
-          }
         ]
       },
       "type": "function",
@@ -436,23 +378,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellInfo {Map} The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "paramName": "cellInfo",
-            "description": " The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String}\n   The extra attributes to be applied to this cell.",
-            "type": "qx.ui.table.cellrenderer.String",
-            "description": "\n   The extra attributes to be applied to this cell."
           }
         ]
       },
@@ -522,7 +447,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -581,7 +514,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getDefaultCellStyle": {
       "type": "function",
@@ -642,7 +583,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>defaultCellStyle</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
+          }
+        ]
+      }
     },
     "getRepeat": {
       "type": "function",

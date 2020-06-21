@@ -102,7 +102,7 @@
         }
       },
       parseIcons: function parseIcons(elem) {
-        cv.Config.configSettings.iconsFromConfig.push(this.__parseIconDefinition(elem));
+        cv.Config.configSettings.iconsFromConfig.push(this.__P_6_0(elem));
         qx.core.Init.getApplication().loadIcons();
       },
       parseMappings: function parseMappings(elem) {
@@ -124,7 +124,7 @@
             var v = origin[i];
 
             if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === 'icon') {
-              var icon = this.__parseIconDefinition(v);
+              var icon = this.__P_6_0(v);
 
               value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon["class"]));
             } else if (v && v.nodeType === 3 && v.textContent.trim().length) {
@@ -335,7 +335,7 @@
         });
         return pluginsToLoad;
       },
-      __parseIconDefinition: function __parseIconDefinition(elem) {
+      __P_6_0: function __P_6_0(elem) {
         return {
           name: elem.getAttribute('name'),
           uri: elem.getAttribute('uri'),
@@ -422,10 +422,10 @@
        * @param xml {HTMLElement}
        */
       parseTemplates: function parseTemplates(xml, done) {
-        var __loadQueue = new qx.data.Array();
+        var __P_6_1 = new qx.data.Array();
 
         var check = function check() {
-          if (__loadQueue.length === 0 && done) {
+          if (__P_6_1.length === 0 && done) {
             done();
           }
         };
@@ -444,7 +444,7 @@
               // load template fom external file
               var areq = new qx.io.request.Xhr(ref);
 
-              __loadQueue.push(ref);
+              __P_6_1.push(ref);
 
               qx.log.Logger.debug(this, 'loading template from file:', ref);
               areq.set({
@@ -456,7 +456,7 @@
                 cv.parser.WidgetParser.addTemplate(templateName, // templates can only have one single root element, so we wrap it here
                 '<root>' + req.getResponseText() + '</root>');
 
-                __loadQueue.remove(areq.getUrl());
+                __P_6_1.remove(areq.getUrl());
 
                 qx.log.Logger.debug(this, 'DONE loading template from file:', ref);
                 check();
@@ -486,4 +486,4 @@
   cv.parser.MetaParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaParser.js.map?dt=1591114953203
+//# sourceMappingURL=MetaParser.js.map?dt=1592777068027

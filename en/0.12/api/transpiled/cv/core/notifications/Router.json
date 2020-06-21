@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 325,
+        "line": 329,
         "column": 3
       }
     },
@@ -218,14 +218,28 @@
       "type": "variable",
       "access": "private"
     },
-    "registerStateUpdateHandler": {
+    "getStateMessageConfig": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 115,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 117,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "registerStateUpdateHandler": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4
+        },
+        "end": {
+          "line": 148,
           "column": 5
         }
       },
@@ -249,11 +263,11 @@
     "unregisterStateUpdatehandler": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 154,
           "column": 4
         },
         "end": {
-          "line": 157,
+          "line": 161,
           "column": 5
         }
       },
@@ -277,11 +291,11 @@
     "registerMessageHandler": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 168,
           "column": 4
         },
         "end": {
-          "line": 185,
+          "line": 189,
           "column": 5
         }
       },
@@ -312,11 +326,11 @@
     "_onIncomingData": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 199,
           "column": 4
         },
         "end": {
-          "line": 251,
+          "line": 255,
           "column": 5
         }
       },
@@ -370,11 +384,11 @@
     "__collectHandlers": {
       "location": {
         "start": {
-          "line": 253,
+          "line": 257,
           "column": 4
         },
         "end": {
-          "line": 283,
+          "line": 287,
           "column": 5
         }
       },
@@ -384,11 +398,11 @@
     "__collectAllFromSegment": {
       "location": {
         "start": {
-          "line": 285,
+          "line": 289,
           "column": 4
         },
         "end": {
-          "line": 293,
+          "line": 297,
           "column": 5
         }
       },
@@ -398,11 +412,11 @@
     "dispatchMessage": {
       "location": {
         "start": {
-          "line": 295,
+          "line": 299,
           "column": 4
         },
         "end": {
-          "line": 308,
+          "line": 312,
           "column": 5
         }
       },
@@ -412,11 +426,11 @@
     "clear": {
       "location": {
         "start": {
-          "line": 310,
+          "line": 314,
           "column": 4
         },
         "end": {
-          "line": 313,
+          "line": 317,
           "column": 5
         }
       },
@@ -563,7 +577,29 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.data.MBinding"
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings from the object.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      }
     },
     "getBindings": {
       "type": "function",
@@ -1380,7 +1416,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply owner</p>"
+          }
+        ]
+      }
     },
     "_applyQxObjectId": {
       "type": "function",
@@ -1389,7 +1433,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply objectId</p>"
+          }
+        ]
+      }
     },
     "__onOwnedObjectIdChange": {
       "type": "function",
@@ -1398,7 +1450,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a child's objectId changes</p>"
+          }
+        ]
+      }
     },
     "_cascadeQxObjectIdChanges": {
       "type": "function",
@@ -1407,7 +1467,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reflect changes to IDs or owners</p>"
+          }
+        ]
+      }
     },
     "getQxObject": {
       "type": "function",
@@ -3419,11 +3487,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 321,
+        "line": 325,
         "column": 12
       },
       "end": {
-        "line": 324,
+        "line": 328,
         "column": 3
       }
     },

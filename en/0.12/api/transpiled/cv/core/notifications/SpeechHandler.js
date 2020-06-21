@@ -57,7 +57,7 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__lastSpeech = {};
+      this.__P_5_0 = {};
     },
 
     /*
@@ -66,12 +66,12 @@
     ******************************************************
     */
     members: {
-      __lastSpeech: null,
+      __P_5_0: null,
       handleMessage: function handleMessage(message, config) {
         var text = message.message || message.title;
 
-        if (config.skipInitial && !this.__lastSpeech[message.topic]) {
-          this.__lastSpeech[message.topic] = {
+        if (config.skipInitial && !this.__P_5_0[message.topic]) {
+          this.__P_5_0[message.topic] = {
             text: text,
             time: Date.now()
           };
@@ -90,16 +90,16 @@
             text = text.substring(1);
           } else if (config.repeatTimeout >= 0) {
             // do not repeat (within timeout when this.repeatTimeout > 0)
-            if (this.__lastSpeech[message.topic] && this.__lastSpeech[message.topic].text === text && (config.repeatTimeout === 0 || config.repeatTimeout >= Math.round((Date.now() - this.__lastSpeech[message.topic].time) / 1000))) {
+            if (this.__P_5_0[message.topic] && this.__P_5_0[message.topic].text === text && (config.repeatTimeout === 0 || config.repeatTimeout >= Math.round((Date.now() - this.__P_5_0[message.topic].time) / 1000))) {
               // update time
-              this.__lastSpeech[message.topic].time = Date.now(); // do not repeat
+              this.__P_5_0[message.topic].time = Date.now(); // do not repeat
 
               this.debug("skipping TTS because of repetition " + text);
               return;
             }
           }
 
-          this.__lastSpeech[message.topic] = {
+          this.__P_5_0[message.topic] = {
             text: text,
             time: Date.now()
           };
@@ -158,4 +158,4 @@
   cv.core.notifications.SpeechHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SpeechHandler.js.map?dt=1591114952894
+//# sourceMappingURL=SpeechHandler.js.map?dt=1592777067723

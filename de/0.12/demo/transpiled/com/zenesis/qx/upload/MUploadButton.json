@@ -35,11 +35,29 @@
   "type": "mixin",
   "properties": {
     "acceptUpload": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 3
+        },
+        "end": {
+          "line": 50,
+          "column": 4
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>File types which are acceptable for upload; note that this is not guaranteed\n because not all (older) browsers support it, but where available it will\n restrict the file open dialog to only allow these file types.\n This value is passed directly through to the input tag's accept attribute, so\n the format can be seen here: {@link http://www.w3schools.com/tags/att<em>input</em>accept.asp};\n in summary, it is a comma separated list of file extensions (with the dot) and/or\n MIME types; EG:\n     .jpg,.png,.gif          -- Images\n     image/*,.mp4                -- Images and *.mp4</p>"
+          }
+        ]
+      },
       "name": "acceptUpload",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     }
   },
   "members": {

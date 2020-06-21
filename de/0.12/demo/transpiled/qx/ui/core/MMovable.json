@@ -33,18 +33,54 @@
   "type": "mixin",
   "properties": {
     "movable": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget is movable</p>"
+          }
+        ]
+      },
       "name": "movable",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
     },
     "useMoveFrame": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to use a frame instead of the original widget during move sequences</p>"
+          }
+        ]
+      },
       "name": "useMoveFrame",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     }
   },
   "members": {

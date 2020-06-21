@@ -841,7 +841,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -900,7 +908,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getUrl": {
       "type": "function",
@@ -961,7 +977,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>url</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #url}."
+          }
+        ]
+      }
     },
     "getMethod": {
       "type": "function",
@@ -1022,7 +1046,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>method</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #method}."
+          }
+        ]
+      }
     },
     "getAsynchronous": {
       "type": "function",
@@ -1108,7 +1140,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>asynchronous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #asynchronous}."
+          }
+        ]
+      }
     },
     "getData": {
       "type": "function",
@@ -1169,7 +1209,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>data</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #data}."
+          }
+        ]
+      }
     },
     "getUsername": {
       "type": "function",
@@ -1230,7 +1278,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>username</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #username}."
+          }
+        ]
+      }
     },
     "getPassword": {
       "type": "function",
@@ -1291,7 +1347,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>password</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #password}."
+          }
+        ]
+      }
     },
     "getState": {
       "type": "function",
@@ -1352,7 +1416,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>state</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #state}."
+          }
+        ]
+      }
     },
     "getRequestHeaders": {
       "type": "function",
@@ -1413,7 +1485,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>requestHeaders</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #requestHeaders}."
+          }
+        ]
+      }
     },
     "getParameters": {
       "type": "function",
@@ -1474,7 +1554,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>parameters</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #parameters}."
+          }
+        ]
+      }
     },
     "getFormFields": {
       "type": "function",
@@ -1535,7 +1623,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>formFields</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #formFields}."
+          }
+        ]
+      }
     },
     "getResponseType": {
       "type": "function",
@@ -1596,7 +1692,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>responseType</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #responseType}."
+          }
+        ]
+      }
     },
     "getUseBasicHttpAuth": {
       "type": "function",
@@ -1682,7 +1786,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.io.remote.transport.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>useBasicHttpAuth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
+          }
+        ]
+      }
     }
   },
   "defer": {

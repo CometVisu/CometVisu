@@ -53,11 +53,29 @@
   },
   "properties": {
     "selection": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Data array containing the selected model objects. This property can be\n manipulated directly which means that a push to the selection will also\n select the corresponding element in the target.</p>"
+          }
+        ]
+      },
       "name": "selection",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "event": "changeSelection",
+      "apply": "_applySelection",
+      "check": "qx.data.Array"
     }
   },
   "events": {

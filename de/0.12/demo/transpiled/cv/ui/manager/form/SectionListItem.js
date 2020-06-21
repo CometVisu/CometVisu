@@ -93,18 +93,18 @@
       _applyModel: function _applyModel(value, old) {
         var nameField = this.getChildControl('name');
 
-        this.__unbindModel(old);
+        this.__P_36_0(old);
 
         if (value) {
           value.bind('name', nameField, 'value');
           this._originalName = value.getName();
           this._originalOptions = {};
           value.getOptions().forEach(function (option) {
-            option.addListener('change', this.__checkForModification, this);
+            option.addListener('change', this.__P_36_1, this);
             this._originalOptions[option.getKey()] = option.getValue();
           }, this);
           nameField.bind('value', value, 'name');
-          value.addListener('changeName', this.__checkForModification, this);
+          value.addListener('changeName', this.__P_36_1, this);
           value.bind('options', this._listController, 'model'); // add at least one empty entry, when there are no options
 
           if (value.getOptions().length === 0) {
@@ -116,7 +116,7 @@
           this._originalOptions = null;
         }
       },
-      __unbindModel: function __unbindModel(model) {
+      __P_36_0: function __P_36_0(model) {
         if (model) {
           var nameField = this.getChildControl('name');
 
@@ -124,15 +124,15 @@
             model.removeRelatedBindings(this._listController);
           }
 
-          model.removeListener('changeName', this.__checkForModification, this);
+          model.removeListener('changeName', this.__P_36_1, this);
           model.removeRelatedBindings(nameField);
           nameField.removeRelatedBindings(model);
           model.getOptions().forEach(function (option) {
-            option.removeListener('change', this.__checkForModification, this);
+            option.removeListener('change', this.__P_36_1, this);
           }, this);
         }
       },
-      __checkForModification: function __checkForModification() {
+      __P_36_1: function __P_36_1() {
         if (this._originalName !== this.getModel().getName()) {
           this.setModified(true);
           return;
@@ -162,18 +162,18 @@
           var removed = this.getModel().getOptions().remove(option);
 
           if (removed) {
-            removed.removeListener('change', this.__checkForModification, this);
+            removed.removeListener('change', this.__P_36_1, this);
           }
         }
 
-        this.__checkForModification();
+        this.__P_36_1();
       },
       _onAddOption: function _onAddOption() {
         var option = new cv.ui.manager.model.config.Option('', '');
-        option.addListener('change', this.__checkForModification, this);
+        option.addListener('change', this.__P_36_1, this);
         this.getModel().getOptions().push(option);
 
-        this.__checkForModification();
+        this.__P_36_1();
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
@@ -264,4 +264,4 @@
   cv.ui.manager.form.SectionListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SectionListItem.js.map?dt=1591115570473
+//# sourceMappingURL=SectionListItem.js.map?dt=1592778961401

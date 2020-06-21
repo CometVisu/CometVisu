@@ -35,7 +35,7 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__fsClient = cv.io.rest.Client.getFsClient();
+      this.__P_27_0 = cv.io.rest.Client.getFsClient();
     },
 
     /*
@@ -44,7 +44,7 @@
     ***********************************************
     */
     members: {
-      __fsClient: null,
+      __P_27_0: null,
       rename: function rename(file, newName) {
         var newPath = file.getPath() || '';
 
@@ -56,7 +56,7 @@
 
         if (file.isTemporary()) {
           // create new item
-          this.__fsClient.createSync({
+          this.__P_27_0.createSync({
             path: newPath,
             type: file.getType()
           }, function (err) {
@@ -71,7 +71,7 @@
             }
           }, this);
         } else if (file.getFullPath() !== newPath) {
-          this.__fsClient.moveSync({
+          this.__P_27_0.moveSync({
             src: file.getFullPath(),
             target: newPath
           }, function (err) {
@@ -95,7 +95,7 @@
        * @param target {String} new path of the file
        */
       move: function move(file, target) {
-        this.__fsClient.moveSync({
+        this.__P_27_0.moveSync({
           src: file.getFullPath(),
           target: target
         }, function (err) {
@@ -119,7 +119,7 @@
         if (file.isInTrash()) {
           var target = file.getFullPath().replace('.trash/', '');
 
-          this.__moveFile(file, target);
+          this.__P_27_1(file, target);
         } else if (file.getType() === 'file' && !file.isTemporary()) {
           var match = /^\/?backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(file.getFullPath());
 
@@ -136,14 +136,14 @@
               }
             }); // load the backup content
 
-            this.__fsClient.readSync({
+            this.__P_27_0.readSync({
               path: file.getFullPath()
             }, function (err, res) {
               if (err) {
                 cv.ui.manager.snackbar.Controller.error(err);
               } else {
                 if (targetFile) {
-                  this.__fsClient.updateSync({
+                  this.__P_27_0.updateSync({
                     path: targetFile.getFullPath(),
                     hash: 'ignore'
                   }, res, function (err) {
@@ -162,7 +162,7 @@
                   }, this);
                 } else {
                   // target file does not exist copy to a new file
-                  this.__fsClient.createSync({
+                  this.__P_27_0.createSync({
                     path: targetFileName,
                     hash: 'ignore'
                   }, res, function (err) {
@@ -178,8 +178,8 @@
           }
         }
       },
-      __moveFile: function __moveFile(file, target) {
-        this.__fsClient.moveSync({
+      __P_27_1: function __P_27_1(file, target) {
+        this.__P_27_0.moveSync({
           src: file.getFullPath(),
           target: target
         }, function (err) {
@@ -214,7 +214,7 @@
 
             dialog.Dialog.confirm(message, function (confirmed) {
               if (confirmed) {
-                this.__doDelete(file, callback, context);
+                this.__P_27_2(file, callback, context);
               } else if (callback) {
                 callback.apply(context, false);
               }
@@ -222,8 +222,8 @@
           }
         }
       },
-      __doDelete: function __doDelete(file, callback, context) {
-        this.__fsClient.deleteSync({
+      __P_27_2: function __P_27_2(file, callback, context) {
+        this.__P_27_0.deleteSync({
           path: file.getFullPath(),
           force: file.isTrash()
         }, null, function (err) {
@@ -269,12 +269,12 @@
       },
       validate: function validate(file) {
         if (file.isConfigFile()) {
-          this.__validateConfig(file);
+          this.__P_27_3(file);
         } else {
           this.info('no validation available for file: ' + file.getFullPath());
         }
       },
-      __validateConfig: function __validateConfig(file) {
+      __P_27_3: function __P_27_3(file) {
         var d = dialog.Dialog.alert(qx.locale.Manager.tr('Validating %1', file.getFullPath()));
         cv.ui.manager.editor.Worker.getInstance().validateConfig(file).then(function (res) {
           d.close();
@@ -286,7 +286,10 @@
             file.setValid(false);
             qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
               file: file,
-              handler: 'cv.ui.manager.editor.Source'
+              handler: 'cv.ui.manager.editor.Source',
+              handlerOptions: {
+                jumpToError: true
+              }
             });
             cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.trn('%1 error found in %2!', '%1 errors found in %2!', res.length, res.length, file.getFullPath()));
           }
@@ -300,10 +303,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__fsClient = null;
+      this.__P_27_0 = null;
     }
   });
   cv.ui.manager.control.FileController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileController.js.map?dt=1591114956322
+//# sourceMappingURL=FileController.js.map?dt=1592777071156

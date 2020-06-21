@@ -251,7 +251,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -310,7 +318,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getSize": {
       "type": "function",
@@ -371,7 +387,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>size</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #size}."
+          }
+        ]
+      }
     },
     "getLineHeight": {
       "type": "function",
@@ -432,7 +456,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>lineHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #lineHeight}."
+          }
+        ]
+      }
     },
     "getComparisonString": {
       "type": "function",
@@ -493,7 +525,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>comparisonString</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #comparisonString}."
+          }
+        ]
+      }
     },
     "getVersion": {
       "type": "function",
@@ -552,7 +592,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>version</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #version}."
+          }
+        ]
+      }
     },
     "getFamily": {
       "type": "function",
@@ -613,7 +661,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>family</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #family}."
+          }
+        ]
+      }
     },
     "getBold": {
       "type": "function",
@@ -699,7 +755,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>bold</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #bold}."
+          }
+        ]
+      }
     },
     "getItalic": {
       "type": "function",
@@ -785,7 +849,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>italic</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #italic}."
+          }
+        ]
+      }
     },
     "getDecoration": {
       "type": "function",
@@ -846,7 +918,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>decoration</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #decoration}."
+          }
+        ]
+      }
     },
     "getColor": {
       "type": "function",
@@ -907,7 +987,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>color</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #color}."
+          }
+        ]
+      }
     },
     "getTextShadow": {
       "type": "function",
@@ -968,7 +1056,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>textShadow</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #textShadow}."
+          }
+        ]
+      }
     },
     "getWeight": {
       "type": "function",
@@ -1029,7 +1125,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.bom.Font",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>weight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #weight}."
+          }
+        ]
+      }
     },
     "getSources": {
       "type": "function",

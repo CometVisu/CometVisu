@@ -66,13 +66,13 @@
       var aliasManager = qx.util.AliasManager.getInstance();
       var resourceManager = qx.util.ResourceManager.getInstance();
       var blankImg = aliasManager.resolve("qx/static/blank.gif");
-      this.__imageBlank = resourceManager.toUri(blankImg);
+      this.__P_380_0 = resourceManager.toUri(blankImg);
     },
     members: {
       /**
        * A blank image for use as a spacer in place of another image
        */
-      __imageBlank: null,
+      __P_380_0: null,
 
       /**
        * Retrieve the URI for a blank image
@@ -81,7 +81,7 @@
        *   The URI of the blank image.
        */
       getBlankImage: function getBlankImage() {
-        return this.__imageBlank;
+        return this.__P_380_0;
       },
 
       /**
@@ -145,13 +145,13 @@
       _getContentHtml: function _getContentHtml(cellInfo) {
         var html = [];
 
-        var imageData = this.__getImageData(cellInfo); // Start the image tag
+        var imageData = this.__P_380_1(cellInfo); // Start the image tag
 
 
         html.push('<img '); // Add magic to make png images work in IE
 
         if (qx.core.Environment.get("css.alphaimageloaderneeded") && /\.png$/i.test(imageData.url)) {
-          html.push('src="', this.__imageBlank, '" style="filter:', "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='", imageData.url, "',sizingMethod='scale')", '" ');
+          html.push('src="', this.__P_380_0, '" style="filter:', "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='", imageData.url, "',sizingMethod='scale')", '" ');
         } else {
           html.push('src="', imageData.url, '" ');
         } // If image width is specified...
@@ -205,7 +205,7 @@
        * @return {Map}
        *   See {@link #_identifyImage}
        */
-      __getImageData: function __getImageData(cellInfo) {
+      __P_380_1: function __P_380_1(cellInfo) {
         // Query the subclass about image and tooltip
         var imageData = this._identifyImage(cellInfo); // If subclass refuses to give map, construct it
 
@@ -219,7 +219,7 @@
 
 
         if (imageData.url == null) {
-          imageData.url = this.__imageBlank;
+          imageData.url = this.__P_380_0;
         }
 
         return imageData;
@@ -229,4 +229,4 @@
   qx.ui.progressive.renderer.table.cell.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1591114987939
+//# sourceMappingURL=Icon.js.map?dt=1592777103024

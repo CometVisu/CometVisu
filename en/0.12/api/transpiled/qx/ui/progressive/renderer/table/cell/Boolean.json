@@ -76,7 +76,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -84,7 +92,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -239,23 +255,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellInfo {Map}\n   Information about the cell being renderered, including:\n   <ul>\n     <li>state</li>\n     <li>rowDiv</li>\n     <li>stylesheet</li>\n     <li>element</li>\n     <li>dataIndex</li>\n     <li>cellData</li>\n     <li>height</li>\n   </ul>",
-            "paramName": "cellInfo",
-            "description": "\n   Information about the cell being renderered, including:\n   <ul>\n     <li>state</li>\n     <li>rowDiv</li>\n     <li>stylesheet</li>\n     <li>element</li>\n     <li>dataIndex</li>\n     <li>cellData</li>\n     <li>height</li>\n   </ul>",
-            "type": "Map"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map}\n   The returned map should contain at least the <i>url</i> field, but\n   may contain any others of these:\n   <dl>\n     <dt>\n       url\n     </dt>\n     <dd>\n       The URL of the image to be displayed\n     </dd>\n     <dt>\n       imageWidth\n     </dt>\n     <dd>\n       The width at which the image should be displayed\n     </dd>\n     <dt>\n       imageHeight\n     </dt>\n     <dd>\n       The height at which the image should be displayed\n     </dd>\n     <dt>\n       extras\n     </dt>\n     <dd>\n       Any extra attributes to be include in the 'image' tag.\n     </dd>\n   </dl>",
-            "type": "Map",
-            "description": "\n   The returned map should contain at least the <i>url</i> field, but\n   may contain any others of these:\n   <dl>\n     <dt>\n       url\n     </dt>\n     <dd>\n       The URL of the image to be displayed\n     </dd>\n     <dt>\n       imageWidth\n     </dt>\n     <dd>\n       The width at which the image should be displayed\n     </dd>\n     <dt>\n       imageHeight\n     </dt>\n     <dd>\n       The height at which the image should be displayed\n     </dd>\n     <dt>\n       extras\n     </dt>\n     <dd>\n       Any extra attributes to be include in the 'image' tag.\n     </dd>\n   </dl>"
-          }
         ]
       },
       "type": "function",
@@ -281,23 +280,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellInfo {Object}\n   See {@link qx.ui.progressive.renderer.table.cell.Abstract} class\n   description for details",
-            "paramName": "cellInfo",
-            "description": "\n   See {@link qx.ui.progressive.renderer.table.cell.Abstract} class\n   description for details",
-            "type": "Object"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String}\n   The style characteristics to be applied to this cell.",
-            "type": "qx.ui.progressive.renderer.table.cell.String",
-            "description": "\n   The style characteristics to be applied to this cell."
           }
         ]
       },
@@ -368,7 +350,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.progressive.renderer.table.cell.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -427,7 +417,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.progressive.renderer.table.cell.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getAllowToggle": {
       "type": "function",

@@ -53,11 +53,11 @@
     construct: function construct() {
       // Register listeners to the content
       var content = this.getContentElement();
-      content.addListener("pointerdown", this.__onResizePointerDown, this, true);
-      content.addListener("pointerup", this.__onResizePointerUp, this);
-      content.addListener("pointermove", this.__onResizePointerMove, this);
-      content.addListener("pointerout", this.__onResizePointerOut, this);
-      content.addListener("losecapture", this.__onResizeLoseCapture, this); // Get a reference of the drag and drop handler
+      content.addListener("pointerdown", this.__P_273_0, this, true);
+      content.addListener("pointerup", this.__P_273_1, this);
+      content.addListener("pointermove", this.__P_273_2, this);
+      content.addListener("pointerout", this.__P_273_3, this);
+      content.addListener("losecapture", this.__P_273_4, this); // Get a reference of the drag and drop handler
 
       var domElement = content.getDomElement();
 
@@ -65,7 +65,7 @@
         domElement = window;
       }
 
-      this.__dragDropHandler = qx.event.Registration.getManager(domElement).getHandler(qx.event.handler.DragDrop);
+      this.__P_273_5 = qx.event.Registration.getManager(domElement).getHandler(qx.event.handler.DragDrop);
     },
 
     /*
@@ -125,13 +125,13 @@
     *****************************************************************************
     */
     members: {
-      __dragDropHandler: null,
-      __resizeFrame: null,
-      __resizeActive: null,
-      __resizeLeft: null,
-      __resizeTop: null,
-      __resizeStart: null,
-      __resizeRange: null,
+      __P_273_5: null,
+      __P_273_6: null,
+      __P_273_7: null,
+      __P_273_8: null,
+      __P_273_9: null,
+      __P_273_10: null,
+      __P_273_11: null,
       RESIZE_TOP: 1,
       RESIZE_BOTTOM: 2,
       RESIZE_LEFT: 4,
@@ -150,10 +150,10 @@
        * @return {qx.ui.core.Widget} The resize frame
        */
       _getResizeFrame: function _getResizeFrame() {
-        var frame = this.__resizeFrame;
+        var frame = this.__P_273_6;
 
         if (!frame) {
-          frame = this.__resizeFrame = new qx.ui.core.Widget();
+          frame = this.__P_273_6 = new qx.ui.core.Widget();
           frame.setAppearance("resize-frame");
           frame.exclude();
           qx.core.Init.getApplication().getRoot().add(frame);
@@ -165,7 +165,7 @@
       /**
        * Creates, shows and syncs the frame with the widget.
        */
-      __showResizeFrame: function __showResizeFrame() {
+      __P_273_12: function __P_273_12() {
         var location = this.getContentLocation();
 
         var frame = this._getResizeFrame();
@@ -188,14 +188,14 @@
        * @param e {qx.event.type.Pointer} Last pointer event
        * @return {Map} A map with the computed boundaries
        */
-      __computeResizeResult: function __computeResizeResult(e) {
+      __P_273_13: function __P_273_13(e) {
         // Detect mode
-        var resizeActive = this.__resizeActive; // Read size hint
+        var resizeActive = this.__P_273_7; // Read size hint
 
         var hint = this.getSizeHint();
-        var range = this.__resizeRange; // Read original values
+        var range = this.__P_273_11; // Read original values
 
-        var start = this.__resizeStart;
+        var start = this.__P_273_10;
         var width = start.width;
         var height = start.height;
         var left = start.left;
@@ -203,7 +203,7 @@
         var diff;
 
         if (resizeActive & this.RESIZE_TOP || resizeActive & this.RESIZE_BOTTOM) {
-          diff = Math.max(range.top, Math.min(range.bottom, e.getDocumentTop())) - this.__resizeTop;
+          diff = Math.max(range.top, Math.min(range.bottom, e.getDocumentTop())) - this.__P_273_9;
 
           if (resizeActive & this.RESIZE_TOP) {
             height -= diff;
@@ -223,7 +223,7 @@
         }
 
         if (resizeActive & this.RESIZE_LEFT || resizeActive & this.RESIZE_RIGHT) {
-          diff = Math.max(range.left, Math.min(range.right, e.getDocumentLeft())) - this.__resizeLeft;
+          diff = Math.max(range.left, Math.min(range.right, e.getDocumentLeft())) - this.__P_273_8;
 
           if (resizeActive & this.RESIZE_LEFT) {
             width -= diff;
@@ -259,7 +259,7 @@
        *
        * @lint ignoreReferenceField(__resizeCursors)
        */
-      __resizeCursors: {
+      __P_273_14: {
         1: "n-resize",
         2: "s-resize",
         4: "w-resize",
@@ -275,21 +275,21 @@
        *
        * @param e {qx.event.type.Pointer} Last pointer event
        */
-      __computeResizeMode: function __computeResizeMode(e) {
+      __P_273_15: function __P_273_15(e) {
         var location = this.getContentLocation();
         var pointerTolerance = this.getResizeSensitivity();
         var pointerLeft = e.getDocumentLeft();
         var pointerTop = e.getDocumentTop();
 
-        var resizeActive = this.__computeResizeActive(location, pointerLeft, pointerTop, pointerTolerance); // check again in case we have a corner [BUG #1200]
+        var resizeActive = this.__P_273_16(location, pointerLeft, pointerTop, pointerTolerance); // check again in case we have a corner [BUG #1200]
 
 
         if (resizeActive > 0) {
           // this is really a | (or)!
-          resizeActive = resizeActive | this.__computeResizeActive(location, pointerLeft, pointerTop, pointerTolerance * 2);
+          resizeActive = resizeActive | this.__P_273_16(location, pointerLeft, pointerTop, pointerTolerance * 2);
         }
 
-        this.__resizeActive = resizeActive;
+        this.__P_273_7 = resizeActive;
       },
 
       /**
@@ -302,7 +302,7 @@
        * @param pointerTolerance {Integer} The desired distance to the edge.
        * @return {Integer} The resize active number.
        */
-      __computeResizeActive: function __computeResizeActive(location, pointerLeft, pointerTop, pointerTolerance) {
+      __P_273_16: function __P_273_16(location, pointerLeft, pointerTop, pointerTolerance) {
         var resizeActive = 0; // TOP
 
         if (this.getResizableTop() && Math.abs(location.top - pointerTop) < pointerTolerance && pointerLeft > location.left - pointerTolerance && pointerLeft < location.right + pointerTolerance) {
@@ -332,21 +332,21 @@
        *
        * @param e {qx.event.type.Pointer} The pointer event instance
        */
-      __onResizePointerDown: function __onResizePointerDown(e) {
+      __P_273_0: function __P_273_0(e) {
         // Check for active resize
-        if (!this.__resizeActive || !this.getEnabled() || e.getPointerType() == "touch") {
+        if (!this.__P_273_7 || !this.getEnabled() || e.getPointerType() == "touch") {
           return;
         } // Add resize state
 
 
         this.addState("resize"); // Store pointer coordinates
 
-        this.__resizeLeft = e.getDocumentLeft();
-        this.__resizeTop = e.getDocumentTop(); // Cache bounds
+        this.__P_273_8 = e.getDocumentLeft();
+        this.__P_273_9 = e.getDocumentTop(); // Cache bounds
 
         var location = this.getContentLocation();
         var bounds = this.getBounds();
-        this.__resizeStart = {
+        this.__P_273_10 = {
           top: location.top,
           left: location.left,
           width: location.right - location.left,
@@ -357,7 +357,7 @@
         var parent = this.getLayoutParent();
         var parentLocation = parent.getContentLocation();
         var parentBounds = parent.getBounds();
-        this.__resizeRange = {
+        this.__P_273_11 = {
           left: parentLocation.left,
           top: parentLocation.top,
           right: parentLocation.left + parentBounds.width,
@@ -365,7 +365,7 @@
         }; // Show frame if configured this way
 
         if (this.getUseResizeFrame()) {
-          this.__showResizeFrame();
+          this.__P_273_12();
         } // Enable capturing
 
 
@@ -379,7 +379,7 @@
        *
        * @param e {qx.event.type.Pointer} The pointer event instance
        */
-      __onResizePointerUp: function __onResizePointerUp(e) {
+      __P_273_1: function __P_273_1(e) {
         // Check for active resize
         if (!this.hasState("resize") || !this.getEnabled() || e.getPointerType() == "touch") {
           return;
@@ -391,7 +391,7 @@
         } // Compute bounds
 
 
-        var bounds = this.__computeResizeResult(e); // Sync with widget
+        var bounds = this.__P_273_13(e); // Sync with widget
 
 
         this.setWidth(bounds.width);
@@ -405,7 +405,7 @@
         } // Clear mode
 
 
-        this.__resizeActive = 0; // Remove resize state
+        this.__P_273_7 = 0; // Remove resize state
 
         this.removeState("resize"); // Reset cursor
 
@@ -421,9 +421,9 @@
        *
        * @param e {qx.event.type.Event} Lose capture event
        */
-      __onResizeLoseCapture: function __onResizeLoseCapture(e) {
+      __P_273_4: function __P_273_4(e) {
         // Check for active resize
-        if (!this.__resizeActive) {
+        if (!this.__P_273_7) {
           return;
         } // Reset cursor
 
@@ -443,13 +443,13 @@
        *
        * @param e {qx.event.type.Pointer} The pointer event instance
        */
-      __onResizePointerMove: function __onResizePointerMove(e) {
+      __P_273_2: function __P_273_2(e) {
         if (!this.getEnabled() || e.getPointerType() == "touch") {
           return;
         }
 
         if (this.hasState("resize")) {
-          var bounds = this.__computeResizeResult(e); // Update widget
+          var bounds = this.__P_273_13(e); // Update widget
 
 
           if (this.getUseResizeFrame()) {
@@ -472,14 +472,14 @@
 
 
           e.stopPropagation();
-        } else if (!this.hasState("maximized") && !this.__dragDropHandler.isSessionActive()) {
-          this.__computeResizeMode(e);
+        } else if (!this.hasState("maximized") && !this.__P_273_5.isSessionActive()) {
+          this.__P_273_15(e);
 
-          var resizeActive = this.__resizeActive;
+          var resizeActive = this.__P_273_7;
           var root = this.getApplicationRoot();
 
           if (resizeActive) {
-            var cursor = this.__resizeCursors[resizeActive];
+            var cursor = this.__P_273_14[resizeActive];
             this.setCursor(cursor);
             root.setGlobalCursor(cursor);
           } else if (this.getCursor()) {
@@ -494,7 +494,7 @@
        *
        * @param e {qx.event.type.Pointer} The pointer event instance
        */
-      __onResizePointerOut: function __onResizePointerOut(e) {
+      __P_273_3: function __P_273_3(e) {
         if (e.getPointerType() == "touch") {
           return;
         } // When the pointer left the window and resizing is not yet
@@ -519,16 +519,16 @@
         this.getApplicationRoot().resetGlobalCursor();
       }
 
-      if (this.__resizeFrame != null && !qx.core.ObjectRegistry.inShutDown) {
-        this.__resizeFrame.destroy();
+      if (this.__P_273_6 != null && !qx.core.ObjectRegistry.inShutDown) {
+        this.__P_273_6.destroy();
 
-        this.__resizeFrame = null;
+        this.__P_273_6 = null;
       }
 
-      this.__dragDropHandler = null;
+      this.__P_273_5 = null;
     }
   });
   qx.ui.core.MResizable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MResizable.js.map?dt=1591114979348
+//# sourceMappingURL=MResizable.js.map?dt=1592777094465

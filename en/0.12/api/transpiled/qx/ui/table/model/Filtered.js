@@ -93,7 +93,7 @@
     extend: qx.ui.table.model.Simple,
     construct: function construct() {
       qx.ui.table.model.Simple.constructor.call(this);
-      this.__filterTypes = {
+      this.__P_403_0 = {
         "==": "numeric",
         "!=": "numeric",
         ">": "numeric",
@@ -103,20 +103,20 @@
         "between": "between",
         "!between": "between"
       };
-      this.__applyingFilters = false;
+      this.__P_403_1 = false;
       this.Filters = [];
     },
     members: {
-      __fullArr: null,
-      __applyingFilters: null,
-      __filterTypes: null,
+      __P_403_2: null,
+      __P_403_1: null,
+      __P_403_0: null,
 
       /**
        * Function to get the full array of the filtered model
        * @return {Array} the full array of model (with no changes)
        */
       getFullArray: function getFullArray() {
-        return this.__fullArr;
+        return this.__P_403_2;
       },
 
       /**
@@ -160,7 +160,7 @@
        * is null.
        */
       addBetweenFilter: function addBetweenFilter(filter, value1, value2, target) {
-        if (this.__filterTypes[filter] === "between" && target != null) {
+        if (this.__P_403_0[filter] === "between" && target != null) {
           if (value1 != null && value2 != null) {
             var temp = new Array(filter, value1, value2, target);
           }
@@ -193,7 +193,7 @@
       addNumericFilter: function addNumericFilter(filter, value1, target) {
         var temp = null;
 
-        if (this.__filterTypes[filter] === "numeric" && target != null) {
+        if (this.__P_403_0[filter] === "numeric" && target != null) {
           if (value1 != null) {
             temp = [filter, value1, target];
           }
@@ -293,7 +293,7 @@
           filter_test = false;
 
           for (i in this.Filters) {
-            if (this.__filterTypes[this.Filters[i][0]] === "numeric") {
+            if (this.__P_403_0[this.Filters[i][0]] === "numeric") {
               compareValue = this.getValueById(this.Filters[i][2], row);
 
               switch (this.Filters[i][0]) {
@@ -339,7 +339,7 @@
 
                   break;
               }
-            } else if (this.__filterTypes[this.Filters[i][0]] === "between") {
+            } else if (this.__P_403_0[this.Filters[i][0]] === "between") {
               compareValue = this.getValueById(this.Filters[i][3], row);
 
               switch (this.Filters[i][0]) {
@@ -378,9 +378,9 @@
           }
         }
 
-        if (!this.__applyingFilters) {
-          this.__fullArr = rowArr.slice(0);
-          this.__applyingFilters = true;
+        if (!this.__P_403_1) {
+          this.__P_403_2 = rowArr.slice(0);
+          this.__P_403_1 = true;
         }
 
         rowArr = rowArr.filter(function (row, index) {
@@ -414,9 +414,9 @@
         var rowArr = this.getData();
         dispatchEvent = dispatchEvent != null ? dispatchEvent : true;
 
-        if (!this.__applyingFilters) {
-          this.__fullArr = rowArr.slice(0);
-          this.__applyingFilters = true;
+        if (!this.__P_403_1) {
+          this.__P_403_2 = rowArr.slice(0);
+          this.__P_403_1 = true;
         }
 
         if (numOfRows == null || numOfRows < 1) {
@@ -446,26 +446,26 @@
        *
        */
       resetHiddenRows: function resetHiddenRows() {
-        if (!this.__fullArr) {
+        if (!this.__P_403_2) {
           // nothing to reset
           return;
         }
 
         this.Filters = [];
-        this.setData(qx.lang.Array.clone(this.__fullArr));
+        this.setData(qx.lang.Array.clone(this.__P_403_2));
       },
       // overridden
       setData: function setData(rowArr, clearSorting) {
-        this.__fullArr = qx.lang.Array.clone(rowArr);
+        this.__P_403_2 = qx.lang.Array.clone(rowArr);
         this.Filters = [];
         qx.ui.table.model.Filtered.prototype.setData.base.call(this, rowArr, clearSorting);
       }
     },
     destruct: function destruct() {
-      this.__fullArr = this.__filterTypes = this.Filters = null;
+      this.__P_403_2 = this.__P_403_0 = this.Filters = null;
     }
   });
   qx.ui.table.model.Filtered.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Filtered.js.map?dt=1591114989700
+//# sourceMappingURL=Filtered.js.map?dt=1592777104813

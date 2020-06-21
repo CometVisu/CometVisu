@@ -49,25 +49,56 @@
   },
   "properties": {
     "refresh": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 5
+        }
+      },
       "name": "refresh",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": 0,
+      "check": "Number",
+      "defaultValue": 0
     },
     "cachecontrol": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 53,
+          "column": 5
+        }
+      },
       "name": "cachecontrol",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": "full",
+      "check": "String",
+      "defaultValue": "full"
     },
     "restartOnVisible": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 58,
+          "column": 5
+        }
+      },
       "name": "restartOnVisible",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyRestartOnVisible",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     }
   },
   "members": {

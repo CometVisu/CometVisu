@@ -49,18 +49,39 @@
   },
   "properties": {
     "uploadMode": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 5
+        }
+      },
       "name": "uploadMode",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "__P_41_1",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     },
     "uploadHint": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 5
+        }
+      },
       "name": "uploadHint",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": "",
+      "check": "String",
+      "defaultValue": ""
     }
   },
   "statics": {
@@ -320,10 +341,7 @@
         ]
       },
       "type": "function",
-      "access": "private",
-      "applyFor": [
-        "uploadMode"
-      ]
+      "access": "private"
     },
     "getUploadMode": {
       "type": "function",

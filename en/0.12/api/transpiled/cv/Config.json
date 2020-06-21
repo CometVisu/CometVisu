@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 373,
+        "line": 368,
         "column": 3
       }
     },
@@ -109,42 +109,14 @@
       "type": "variable",
       "access": "public"
     },
-    "libraryVersion": {
-      "location": {
-        "start": {
-          "line": 53,
-          "column": 4
-        },
-        "end": {
-          "line": 53,
-          "column": 21
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Config file version</p>"
-          }
-        ],
-        "@type": [
-          {
-            "name": "@type",
-            "body": "{Number}"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "public"
-    },
     "libraryCheck": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 52,
           "column": 22
         }
       },
@@ -168,11 +140,11 @@
     "maxMobileScreenWidth": {
       "location": {
         "start": {
-          "line": 62,
+          "line": 57,
           "column": 4
         },
         "end": {
-          "line": 62,
+          "line": 57,
           "column": 29
         }
       },
@@ -196,11 +168,11 @@
     "maxScreenWidthColspanS": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 62,
           "column": 4
         },
         "end": {
-          "line": 67,
+          "line": 62,
           "column": 31
         }
       },
@@ -224,11 +196,11 @@
     "maxScreenWidthColspanM": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 67,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 67,
           "column": 31
         }
       },
@@ -252,11 +224,11 @@
     "scrollSpeed": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 72,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 72,
           "column": 21
         }
       },
@@ -280,11 +252,11 @@
     "defaultColumns": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 83,
+          "line": 78,
           "column": 23
         }
       },
@@ -308,11 +280,11 @@
     "minColumnWidth": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 83,
           "column": 24
         }
       },
@@ -336,11 +308,11 @@
     "enableAddressQueue": {
       "location": {
         "start": {
-          "line": 95,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 95,
+          "line": 90,
           "column": 30
         }
       },
@@ -364,11 +336,11 @@
     "backend": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 96,
           "column": 4
         },
         "end": {
-          "line": 101,
+          "line": 96,
           "column": 23
         }
       },
@@ -392,11 +364,11 @@
     "backendUrl": {
       "location": {
         "start": {
-          "line": 106,
+          "line": 101,
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 101,
           "column": 21
         }
       },
@@ -420,11 +392,11 @@
     "configSuffix": {
       "location": {
         "start": {
-          "line": 110,
+          "line": 105,
           "column": 4
         },
         "end": {
-          "line": 110,
+          "line": 105,
           "column": 23
         }
       },
@@ -448,11 +420,11 @@
     "clientDesign": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 110,
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 110,
           "column": 21
         }
       },
@@ -476,11 +448,11 @@
     "use_maturity": {
       "location": {
         "start": {
-          "line": 120,
+          "line": 115,
           "column": 4
         },
         "end": {
-          "line": 120,
+          "line": 115,
           "column": 24
         }
       },
@@ -504,11 +476,11 @@
     "configSettings": {
       "location": {
         "start": {
-          "line": 126,
+          "line": 121,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 136,
           "column": 5
         }
       },
@@ -526,11 +498,11 @@
     "rememberLastPage": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 146,
+          "line": 141,
           "column": 27
         }
       },
@@ -548,11 +520,11 @@
     "lazyLoading": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 153,
+          "line": 148,
           "column": 22
         }
       },
@@ -576,11 +548,11 @@
     "designStructureMap": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 153,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 155,
           "column": 5
         }
       },
@@ -598,11 +570,11 @@
     "sentryEnabled": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 160,
           "column": 4
         },
         "end": {
-          "line": 165,
+          "line": 160,
           "column": 24
         }
       },
@@ -620,11 +592,11 @@
     "reporting": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 165,
           "column": 20
         }
       },
@@ -642,11 +614,11 @@
     "enableLogging": {
       "location": {
         "start": {
-          "line": 175,
+          "line": 170,
           "column": 4
         },
         "end": {
-          "line": 175,
+          "line": 170,
           "column": 23
         }
       },
@@ -664,11 +636,11 @@
     "configServer": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 175,
           "column": 4
         },
         "end": {
-          "line": 180,
+          "line": 175,
           "column": 22
         }
       },
@@ -686,11 +658,11 @@
     "initialDemoData": {
       "location": {
         "start": {
-          "line": 185,
+          "line": 180,
           "column": 4
         },
         "end": {
-          "line": 185,
+          "line": 180,
           "column": 25
         }
       },
@@ -708,11 +680,11 @@
     "getStructure": {
       "location": {
         "start": {
-          "line": 192,
+          "line": 187,
           "column": 4
         },
         "end": {
-          "line": 205,
+          "line": 200,
           "column": 5
         }
       },
@@ -748,11 +720,11 @@
     "guessIfProxied": {
       "location": {
         "start": {
-          "line": 212,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 217,
+          "line": 212,
           "column": 5
         }
       },
@@ -770,11 +742,11 @@
     "addMapping": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 221,
+          "line": 216,
           "column": 5
         }
       },
@@ -784,11 +756,11 @@
     "getMapping": {
       "location": {
         "start": {
-          "line": 223,
+          "line": 218,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 220,
           "column": 5
         }
       },
@@ -798,11 +770,11 @@
     "hasMapping": {
       "location": {
         "start": {
-          "line": 227,
+          "line": 222,
           "column": 4
         },
         "end": {
-          "line": 229,
+          "line": 224,
           "column": 5
         }
       },
@@ -812,11 +784,11 @@
     "clearMappings": {
       "location": {
         "start": {
-          "line": 231,
+          "line": 226,
           "column": 4
         },
         "end": {
-          "line": 233,
+          "line": 228,
           "column": 5
         }
       },
@@ -826,11 +798,11 @@
     "addStyling": {
       "location": {
         "start": {
-          "line": 235,
+          "line": 230,
           "column": 4
         },
         "end": {
-          "line": 237,
+          "line": 232,
           "column": 5
         }
       },
@@ -840,11 +812,11 @@
     "getStyling": {
       "location": {
         "start": {
-          "line": 239,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 241,
+          "line": 236,
           "column": 5
         }
       },
@@ -854,11 +826,11 @@
     "hasStyling": {
       "location": {
         "start": {
-          "line": 243,
+          "line": 238,
           "column": 4
         },
         "end": {
-          "line": 245,
+          "line": 240,
           "column": 5
         }
       },
@@ -868,11 +840,11 @@
     "getDesign": {
       "location": {
         "start": {
-          "line": 247,
+          "line": 242,
           "column": 4
         },
         "end": {
-          "line": 249,
+          "line": 244,
           "column": 5
         }
       },
@@ -883,11 +855,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 252,
+        "line": 247,
         "column": 9
       },
       "end": {
-        "line": 372,
+        "line": 367,
         "column": 3
       }
     },

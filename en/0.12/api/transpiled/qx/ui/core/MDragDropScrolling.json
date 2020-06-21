@@ -53,25 +53,79 @@
   },
   "properties": {
     "dragScrollThresholdX": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 58,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The threshold for the x-axis (in pixel) to activate scrolling at the edges.</p>"
+          }
+        ]
+      },
       "name": "dragScrollThresholdX",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": 30,
+      "check": "Integer",
+      "defaultValue": 30
     },
     "dragScrollThresholdY": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The threshold for the y-axis (in pixel) to activate scrolling at the edges.</p>"
+          }
+        ]
+      },
       "name": "dragScrollThresholdY",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": 30,
+      "check": "Integer",
+      "defaultValue": 30
     },
     "dragScrollSlowDownFactor": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The factor for slowing down the scrolling.</p>"
+          }
+        ]
+      },
       "name": "dragScrollSlowDownFactor",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": 0.1,
+      "check": "Float",
+      "defaultValue": 0.1
     }
   },
   "members": {

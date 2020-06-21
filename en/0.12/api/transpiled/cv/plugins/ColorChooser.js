@@ -133,7 +133,7 @@
     ******************************************************
     */
     members: {
-      __skipSending: false,
+      __P_8_0: false,
       _onDomReady: function _onDomReady() {
         cv.plugins.ColorChooser.prototype._onDomReady.base.call(this);
 
@@ -143,7 +143,7 @@
           this.setValueG(parseInt(color.substring(3, 5), 16) * 100 / 255.0);
           this.setValueB(parseInt(color.substring(5, 7), 16) * 100 / 255.0);
 
-          if (this.getRateLimiter() === false && this.__skipSending === false) {
+          if (this.getRateLimiter() === false && this.__P_8_0 === false) {
             // already requests going?
             this._rateLimitedSend($actor);
           }
@@ -218,7 +218,7 @@
           this.setBusG(this.getValueG());
           this.setBusB(this.getValueB());
           this.setRateLimiter(true);
-          this.__timer = qx.event.Timer.once(this._rateLimitedSend, this, 250); // next call in 250ms
+          this.__P_8_1 = qx.event.Timer.once(this._rateLimitedSend, this, 250); // next call in 250ms
         } else {
           this.setRateLimiter(false);
         }
@@ -264,17 +264,17 @@
             break;
         }
 
-        this.__skipSending = true;
+        this.__P_8_0 = true;
 
-        if (this.__timer) {
-          this.__timer.stop();
+        if (this.__P_8_1) {
+          this.__P_8_1.stop();
 
-          this.__timer = null;
+          this.__P_8_1 = null;
           this.setRateLimiter(false);
         }
 
         farbtastic.setColor(color);
-        this.__skipSending = false;
+        this.__P_8_0 = false;
       }
     },
     defer: function defer(statics) {
@@ -292,10 +292,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__farbtastic = null;
+      this.__P_8_2 = null;
     }
   });
   cv.plugins.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1591114954389
+//# sourceMappingURL=ColorChooser.js.map?dt=1592777069168

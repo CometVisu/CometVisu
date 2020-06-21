@@ -67,8 +67,8 @@
       this.setZIndex(12);
       this._spanManager = new qx.ui.virtual.layer.CellSpanManager(rowConfig, columnConfig);
       this._cellProvider = widgetCellProvider;
-      this.__spacerPool = [];
-      this._cellLayer = new qx.ui.virtual.layer.WidgetCell(this.__getCellProviderForNonSpanningCells());
+      this.__P_441_0 = [];
+      this._cellLayer = new qx.ui.virtual.layer.WidgetCell(this.__P_441_1());
 
       this._cellLayer.setZIndex(0);
 
@@ -135,7 +135,7 @@
 
         return widget;
       },
-      __spacerPool: null,
+      __P_441_0: null,
 
       /**
        * Set the row and column span for a specific cell
@@ -163,7 +163,7 @@
        * @return {qx.ui.core.Spacer} The spacer widget.
        */
       _getSpacer: function _getSpacer() {
-        var spacer = this.__spacerPool.pop();
+        var spacer = this.__P_441_0.pop();
 
         if (!spacer) {
           spacer = new qx.ui.core.Spacer();
@@ -179,10 +179,10 @@
        *
        * @return {qx.ui.virtual.core.IWidgetCellProvider} the cell provider
        */
-      __getCellProviderForNonSpanningCells: function __getCellProviderForNonSpanningCells() {
+      __P_441_1: function __P_441_1() {
         var self = this;
         var cellProvider = this._cellProvider;
-        var spacerPool = this.__spacerPool;
+        var spacerPool = this.__P_441_0;
         var nonSpanningCellProvider = {
           getCellWidget: function getCellWidget(row, column) {
             if (!self._spanMap[row][column]) {
@@ -213,7 +213,7 @@
        * @param rowCount {PositiveInteger} number of rows to update
        * @param columnCount {PositiveInteger} number columns to update
        */
-      __updateCellSpanData: function __updateCellSpanData(firstRow, firstColumn, rowCount, columnCount) {
+      __P_441_2: function __P_441_2(firstRow, firstColumn, rowCount, columnCount) {
         this._cells = this._spanManager.findCellsInWindow(firstRow, firstColumn, rowCount, columnCount);
 
         if (this._cells.length > 0) {
@@ -236,7 +236,7 @@
        * Note: The method {@link #__updateCellSpanData} must be called before
        * this method is called:
        */
-      __updateCellSpanWidgets: function __updateCellSpanWidgets() {
+      __P_441_3: function __P_441_3() {
         // remove and pool existing cells
         var children = this.getChildren();
 
@@ -269,17 +269,17 @@
       },
       // overridden
       _fullUpdate: function _fullUpdate(firstRow, firstColumn, rowSizes, columnSizes) {
-        this.__updateCellSpanData(firstRow, firstColumn, rowSizes.length, columnSizes.length);
+        this.__P_441_2(firstRow, firstColumn, rowSizes.length, columnSizes.length);
 
-        this.__updateCellSpanWidgets();
+        this.__P_441_3();
 
         this._cellLayer.fullUpdate(firstRow, firstColumn, rowSizes, columnSizes);
       },
       // overridden
       _updateLayerWindow: function _updateLayerWindow(firstRow, firstColumn, rowSizes, columnSizes) {
-        this.__updateCellSpanData(firstRow, firstColumn, rowSizes.length, columnSizes.length);
+        this.__P_441_2(firstRow, firstColumn, rowSizes.length, columnSizes.length);
 
-        this.__updateCellSpanWidgets();
+        this.__P_441_3();
 
         this._cellLayer.updateLayerWindow(firstRow, firstColumn, rowSizes, columnSizes);
       }
@@ -293,10 +293,10 @@
 
       this._disposeObjects("_spanManager", "_cellLayer");
 
-      this._cellProvider = this.__spacerPool = this._cells = this._bounds = this._spanMap = null;
+      this._cellProvider = this.__P_441_0 = this._cells = this._bounds = this._spanMap = null;
     }
   });
   qx.ui.virtual.layer.WidgetCellSpan.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetCellSpan.js.map?dt=1591114992975
+//# sourceMappingURL=WidgetCellSpan.js.map?dt=1592777108182

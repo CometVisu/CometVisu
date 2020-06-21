@@ -88,7 +88,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -96,7 +104,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -182,25 +198,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "embryo {qx.event.type.Event?null} Optional event class, which will\n     be configured using the data of this event instance. The event must be\n     an instance of this event class. If the value is <code>null</code>,\n     a new pooled instance is created.",
-            "paramName": "embryo",
-            "description": " Optional event class, which will\n     be configured using the data of this event instance. The event must be\n     an instance of this event class. If the value is <code>null</code>,\n     a new pooled instance is created.",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "qx.event.type.Event"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.event.type.Event} a clone of this class.",
-            "type": "qx.event.type.Event",
-            "description": " a clone of this class."
-          }
         ]
       },
       "type": "function",
@@ -271,7 +268,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.event.type.Pointer",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -330,7 +335,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.event.type.Pointer",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getRow": {
       "type": "function",

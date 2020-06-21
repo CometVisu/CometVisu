@@ -46,7 +46,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       "cv.io.rest.Client": {},
       "cv.ui.manager.snackbar.Controller": {},
       "dialog.Dialog": {},
-      "qx.xml.Document": {}
+      "qx.xml.Document": {},
+      "cv.util.ConfigUpgrader": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -124,7 +125,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           return /\.(xml|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(file.getFullPath().toLowerCase());
         }
       },
-      DEFAULT_FOR: /^visu_config.*\.xml/,
+      DEFAULT_FOR: /^(demo)?\/?visu_config.*\.xml/,
       ICON: cv.theme.dark.Images.getIcon('text', 18),
       load: function load(callback, context) {
         var version = false ? 'dev' : 'min';
@@ -151,7 +152,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           window.require(['xml!./resource/visu_config.xsd' + noCacheSuffix, 'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
           'vs/editor/editor.main'], function (schema, qxLib) {
-            this.__schema = schema;
+            this.__P_30_0 = schema;
             callback.apply(context);
             window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
             var parsedSchema = new window.Schema("visu_config.xsd", schema); // jshint ignore:line
@@ -175,7 +176,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     ***********************************************
     */
     members: {
-      __schema: null,
+      __P_30_0: null,
       _editor: null,
       _basePath: null,
       _workerWrapper: null,
@@ -211,6 +212,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               dragAndDrop: true,
               formatOnPaste: true,
               formatOnType: true,
+              renderValidationDecorations: 'on',
               minimap: {
                 enabled: true
               },
@@ -309,17 +311,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             // ask user if he really want to save a file with warnings
             dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
               if (confirmed) {
-                this.__saveHiddenConfig();
+                this.__P_30_1();
               }
             }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
           } else {
-            this.__saveHiddenConfig();
+            this.__P_30_1();
           }
         } else {
           cv.ui.manager.editor.Source.prototype.save.base.call(this, callback, overrideHash);
         }
       },
-      __saveHiddenConfig: function __saveHiddenConfig() {
+      __P_30_1: function __P_30_1() {
         this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
@@ -384,25 +386,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           readOnly: !file.isWriteable()
         });
 
-        this.enableMarkers(newModel);
+        this._processHandlerOptions(value);
       },
-      // workaround for enabling markers in readonly files (from: https://github.com/microsoft/monaco-editor/issues/311#issuecomment-465139491)
-      enableMarkers: function enableMarkers(model) {
-        if (!model) {
-          return;
+      _processHandlerOptions: function _processHandlerOptions(content) {
+        var handlerOptions = this.getHandlerOptions() || {};
+
+        if (handlerOptions.hasOwnProperty('upgradeVersion') && handlerOptions.upgradeVersion === true && content) {
+          var _this$_upgradeConfig = this._upgradeConfig(content),
+              _this$_upgradeConfig2 = _slicedToArray(_this$_upgradeConfig, 2),
+              err = _this$_upgradeConfig2[0],
+              res = _this$_upgradeConfig2[1];
+
+          if (err) {
+            this.error(err);
+          } else {
+            this._editor.setValue(this._convertToString(res));
+          }
         }
-
-        [['getLineDecorations', 2], ['getLinesDecorations', 3], ['getDecorationsInRange', 2], ['getOverviewRulerDecorations', 1], ['getAllDecorations', 1]].forEach(function (_ref) {
-          var _ref2 = _slicedToArray(_ref, 2),
-              functionName = _ref2[0],
-              maxArgs = _ref2[1];
-
-          var originalMethod = model[functionName];
-
-          model[functionName] = function () {
-            return originalMethod.apply(this, Array.from(arguments).slice(0, maxArgs));
-          };
-        });
+      },
+      _convertToString: function _convertToString(xml) {
+        return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + xml.documentElement.outerHTML;
+      },
+      _upgradeConfig: function _upgradeConfig(content) {
+        var upgrader = new cv.util.ConfigUpgrader();
+        return upgrader.upgrade(content);
       },
       getCurrentContent: function getCurrentContent() {
         return this._editor.getValue();
@@ -427,6 +434,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
         if (!model) {
           return;
+        }
+
+        var firstErrorLine = -1;
+
+        function check(line) {
+          if (firstErrorLine < 0 || firstErrorLine > line) {
+            firstErrorLine = line;
+          }
         } // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
 
 
@@ -445,6 +460,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                   endColumn: model.getLineContent(currentMessage.line).length,
                   message: currentMessage.message
                 });
+                check(currentMessage.line);
               } // add marker for completed message
 
 
@@ -468,6 +484,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                 message: parts.slice(-2).join(":"),
                 file: file
               };
+              check(currentMessage.line);
             } else {
               currentMessage.message += "\n" + error;
             }
@@ -483,11 +500,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               endColumn: model.getLineContent(currentMessage.line).length,
               message: currentMessage.message
             });
+            check(currentMessage.line);
           }
         }
 
         if (this.getFile().getFullPath() === path) {
           window.monaco.editor.setModelMarkers(model, '', markers);
+          var options = this.getHandlerOptions();
+
+          if (options && options.jumpToError) {
+            // jump too first error (only when we are at the beginning
+            if (this._editor.getScrollTop() === 0) {
+              this._editor.revealLineInCenter(firstErrorLine);
+            }
+          }
         } else {// TODO: save errors for later
         }
       },
@@ -557,4 +583,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1591114956816
+//# sourceMappingURL=Source.js.map?dt=1592777071684

@@ -59,15 +59,15 @@
     ******************************************************
     */
     construct: function construct() {
-      this.__log = [];
-      this.__listeners = {};
-      this.__start = Date.now();
-      this.__xhr = {
+      this.__P_61_0 = [];
+      this.__P_61_1 = {};
+      this.__P_61_2 = Date.now();
+      this.__P_61_3 = {
         response: [],
         request: []
       };
-      this.__data = {};
-      this.__deltas = {};
+      this.__P_61_4 = {};
+      this.__P_61_5 = {};
     },
 
     /*
@@ -193,50 +193,50 @@
     ******************************************************
     */
     members: {
-      __start: null,
-      __log: null,
-      __xhr: null,
-      __listeners: null,
-      __data: null,
-      __delta: 50,
-      __minDelta: 1,
-      __maxDelta: 50,
-      __deltas: null,
-      __ID: 0,
+      __P_61_2: null,
+      __P_61_0: null,
+      __P_61_3: null,
+      __P_61_1: null,
+      __P_61_4: null,
+      __P_61_6: 50,
+      __P_61_7: 1,
+      __P_61_8: 50,
+      __P_61_5: null,
+      __P_61_9: 0,
       record: function record(category, path, data, options) {
         switch (category) {
           case cv.report.Record.XHR:
             data.t = Date.now();
 
-            this.__xhr[path].push(data);
+            this.__P_61_3[path].push(data);
 
             break;
 
           case cv.report.Record.CACHE:
           case cv.report.Record.RUNTIME:
-            this.__data[category] = data;
+            this.__P_61_4[category] = data;
             break;
 
           default:
-            this.__log.push({
+            this.__P_61_0.push({
               c: category,
               t: Date.now(),
               i: path,
               d: data,
               o: options,
-              ID: this.__ID
+              ID: this.__P_61_9
             });
 
         }
 
-        this.__ID++;
+        this.__P_61_9++;
       },
 
       /**
        * Extract useful data we need from every event
        * @param nativeEvent {Event}
        */
-      __extractDataFromEvent: function __extractDataFromEvent(nativeEvent) {
+      __P_61_10: function __P_61_10(nativeEvent) {
         var data = {
           eventClass: nativeEvent.constructor.name,
           "native": {
@@ -244,8 +244,8 @@
             button: nativeEvent.button,
             clientX: Math.round(nativeEvent.clientX),
             clientY: Math.round(nativeEvent.clientY),
-            currentTarget: nativeEvent.currentTarget ? this.__getDomPath(nativeEvent.currentTarget) : undefined,
-            relatedTarget: nativeEvent.relatedTarget ? this.__getDomPath(nativeEvent.relatedTarget) : undefined,
+            currentTarget: nativeEvent.currentTarget ? this.__P_61_11(nativeEvent.currentTarget) : undefined,
+            relatedTarget: nativeEvent.relatedTarget ? this.__P_61_11(nativeEvent.relatedTarget) : undefined,
             pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
             pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
             returnValue: nativeEvent.returnValue,
@@ -303,29 +303,29 @@
           return;
         }
 
-        ev.$$RID = this.__ID;
+        ev.$$RID = this.__P_61_9;
 
         if (ev.type.endsWith("down") || ev.type.endsWith("start")) {
-          this.__delta = this.__minDelta;
+          this.__P_61_6 = this.__P_61_7;
         } else if (ev.type.endsWith("up") || ev.type.endsWith("end")) {
-          this.__delta = this.__maxDelta;
+          this.__P_61_6 = this.__P_61_8;
         }
 
         if (/.+(move|over|out)/.test(ev.type)) {
-          if (!this.__deltas[ev.type]) {
-            this.__deltas[ev.type] = {
+          if (!this.__P_61_5[ev.type]) {
+            this.__P_61_5[ev.type] = {
               x: ev.clientX,
               y: ev.clientY
             };
           } else {
-            var lastDelta = this.__deltas[ev.type];
+            var lastDelta = this.__P_61_5[ev.type];
 
-            if (Math.abs(lastDelta.x - ev.clientX) <= this.__delta || Math.abs(lastDelta.y - ev.clientY) <= this.__delta) {
+            if (Math.abs(lastDelta.x - ev.clientX) <= this.__P_61_6 || Math.abs(lastDelta.y - ev.clientY) <= this.__P_61_6) {
               // below delta -> skip this event
               return;
             }
 
-            this.__deltas[ev.type] = {
+            this.__P_61_5[ev.type] = {
               x: ev.clientX,
               y: ev.clientY
             };
@@ -333,7 +333,7 @@
         } // get path
 
 
-        var path = this.__getDomPath(ev.target);
+        var path = this.__P_61_11(ev.target);
 
         if (!path) {
           return;
@@ -341,7 +341,7 @@
 
         this.debug("recording " + ev.type + " on " + path);
 
-        var data = this.__extractDataFromEvent(ev);
+        var data = this.__P_61_10(ev);
 
         this.record(cv.report.Record.USER, path, data);
       },
@@ -356,7 +356,7 @@
         };
         this.record(cv.report.Record.USER, "scroll", data);
       },
-      __getDomPath: function __getDomPath(el) {
+      __P_61_11: function __P_61_11(el) {
         if (el === window) {
           return "Window";
         } else if (el === document) {
@@ -401,10 +401,10 @@
        */
       download: function download() {
         var data = {
-          data: this.__data,
-          start: this.__start,
-          xhr: this.__xhr,
-          log: this.__log,
+          data: this.__P_61_4,
+          start: this.__P_61_2,
+          xhr: this.__P_61_3,
+          log: this.__P_61_0,
           configSuffix: cv.Config.configSuffix,
           end: Date.now()
         }; // show the user what he gets
@@ -429,4 +429,4 @@
   cv.report.Record.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Record.js.map?dt=1591115573077
+//# sourceMappingURL=Record.js.map?dt=1592778963901

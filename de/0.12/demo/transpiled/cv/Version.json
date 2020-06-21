@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 14,
+        "line": 15,
         "column": 3
       }
     }
@@ -65,7 +65,7 @@
       "type": "variable",
       "access": "public"
     },
-    "DATE": {
+    "LIBRARY_VERSION": {
       "location": {
         "start": {
           "line": 9,
@@ -73,6 +73,20 @@
         },
         "end": {
           "line": 9,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "DATE": {
+      "location": {
+        "start": {
+          "line": 10,
+          "column": 4
+        },
+        "end": {
+          "line": 10,
           "column": 36
         }
       },
@@ -82,11 +96,11 @@
     "TAGS": {
       "location": {
         "start": {
-          "line": 10,
+          "line": 11,
           "column": 4
         },
         "end": {
-          "line": 12,
+          "line": 13,
           "column": 5
         }
       },

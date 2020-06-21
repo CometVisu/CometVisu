@@ -107,9 +107,9 @@
     *****************************************************************************
     */
     members: {
-      __defaultWidth: 16,
-      __defaultHeight: 16,
-      __imageData: null,
+      __P_394_0: 16,
+      __P_394_1: 16,
+      __P_394_2: null,
       // overridden
       _insetY: 2,
 
@@ -165,7 +165,7 @@
 
 
         if (!imageData.imageWidth || !imageData.imageHeight) {
-          var sizes = this.__getImageSize(imageData.url);
+          var sizes = this.__P_394_3(imageData.url);
 
           imageData.imageWidth = sizes.width;
           imageData.imageHeight = sizes.height;
@@ -186,7 +186,7 @@
        * @return {Map} A map containing the image's <code>width</code> and
        *    <code>height</code>
        */
-      __getImageSize: function __getImageSize(source) {
+      __P_394_3: function __P_394_3(source) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var ImageLoader = qx.io.ImageLoader;
         var width, height; // Detect if the image registry knows this image
@@ -198,8 +198,8 @@
           width = ImageLoader.getWidth(source);
           height = ImageLoader.getHeight(source);
         } else {
-          width = this.__defaultWidth;
-          height = this.__defaultHeight;
+          width = this.__P_394_0;
+          height = this.__P_394_1;
         }
 
         return {
@@ -209,7 +209,7 @@
       },
       // overridden
       createDataCellHtml: function createDataCellHtml(cellInfo, htmlArr) {
-        this.__imageData = this._getImageInfos(cellInfo);
+        this.__P_394_2 = this._getImageInfos(cellInfo);
         return qx.ui.table.cellrenderer.AbstractImage.prototype.createDataCellHtml.base.call(this, cellInfo, htmlArr);
       },
       // overridden
@@ -220,25 +220,25 @@
       _getContentHtml: function _getContentHtml(cellInfo) {
         var content = "<div></div>"; // set image
 
-        if (this.__imageData.url) {
-          var srcUrl = this.__imageData.url;
-          var highResolutionSource = qx.util.ResourceManager.getInstance().findHighResolutionSource(this.__imageData.url);
+        if (this.__P_394_2.url) {
+          var srcUrl = this.__P_394_2.url;
+          var highResolutionSource = qx.util.ResourceManager.getInstance().findHighResolutionSource(this.__P_394_2.url);
 
           if (highResolutionSource) {
             srcUrl = highResolutionSource;
           }
 
           var style = {
-            width: this.__imageData.width + "px",
-            height: this.__imageData.height + "px",
+            width: this.__P_394_2.width + "px",
+            height: this.__P_394_2.height + "px",
             display: qx.core.Environment.get("css.inlineblock"),
             verticalAlign: "top",
             position: "static"
           };
 
-          if (qx.util.ResourceManager.getInstance().getCombinedFormat(this.__imageData.url) === "") {
+          if (qx.util.ResourceManager.getInstance().getCombinedFormat(this.__P_394_2.url) === "") {
             // background size is critical for high-resolution images but breaks combined images
-            style["background-size"] = this.__imageData.width + "px " + this.__imageData.height + "px";
+            style["background-size"] = this.__P_394_2.width + "px " + this.__P_394_2.height + "px";
           }
 
           content = qx.bom.element.Decoration.create(srcUrl, this.getRepeat(), style);
@@ -248,7 +248,7 @@
       },
       // overridden
       _getCellAttributes: function _getCellAttributes(cellInfo) {
-        var tooltip = this.__imageData.tooltip;
+        var tooltip = this.__P_394_2.tooltip;
 
         if (tooltip) {
           return "title='" + tooltip + "'";
@@ -264,10 +264,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__imageData = null;
+      this.__P_394_2 = null;
     }
   });
   qx.ui.table.cellrenderer.AbstractImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractImage.js.map?dt=1591114989011
+//# sourceMappingURL=AbstractImage.js.map?dt=1592777104066

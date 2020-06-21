@@ -119,7 +119,15 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.dev.unit.MTestLoader"
+      "overriddenFrom": "qx.dev.unit.MTestLoader",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Run all tests and export the results to JSUnit</p>"
+          }
+        ]
+      }
     },
     "runStandAlone": {
       "type": "function",
@@ -128,7 +136,15 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.dev.unit.MTestLoader"
+      "overriddenFrom": "qx.dev.unit.MTestLoader",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Run tests as standalone application</p>"
+          }
+        ]
+      }
     },
     "getTestDescriptions": {
       "type": "function",
@@ -287,7 +303,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.dev.unit.MTestLoader",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>suite</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #suite}."
+          }
+        ]
+      }
     },
     "getQxOwner": {
       "type": "function",
@@ -348,7 +372,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.application.Standalone",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -407,7 +439,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.application.Standalone",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "descendants": []

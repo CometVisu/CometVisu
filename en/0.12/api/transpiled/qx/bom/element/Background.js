@@ -54,10 +54,10 @@
   qx.Class.define("qx.bom.element.Background", {
     statics: {
       /** @type {Array} Internal helper to improve compile performance */
-      __tmpl: ["background-image:url(", null, ");", "background-position:", null, ";", "background-repeat:", null, ";"],
+      __P_100_0: ["background-image:url(", null, ");", "background-position:", null, ";", "background-repeat:", null, ";"],
 
       /** @type {Map} Empty styles when no image is given */
-      __emptyStyles: {
+      __P_100_1: {
         backgroundImage: null,
         backgroundPosition: null,
         backgroundRepeat: null
@@ -72,7 +72,7 @@
        *    string value
        * @return {String} The background position CSS value
        */
-      __computePosition: function __computePosition(left, top) {
+      __P_100_2: function __P_100_2(left, top) {
         // Correcting buggy Firefox background-position implementation
         // Have problems with identical values
         var engine = qx.core.Environment.get("engine.name");
@@ -115,11 +115,11 @@
        * @return {String} CSS string
        */
       compile: function compile(source, repeat, left, top) {
-        var position = this.__computePosition(left, top);
+        var position = this.__P_100_2(left, top);
 
         var backgroundImageUrl = qx.util.ResourceManager.getInstance().toUri(source); // Updating template
 
-        var tmpl = this.__tmpl;
+        var tmpl = this.__P_100_0;
         tmpl[1] = "'" + backgroundImageUrl + "'"; // Put in quotes so spaces work
 
         tmpl[4] = position;
@@ -146,10 +146,10 @@
        */
       getStyles: function getStyles(source, repeat, left, top) {
         if (!source) {
-          return this.__emptyStyles;
+          return this.__P_100_1;
         }
 
-        var position = this.__computePosition(left, top);
+        var position = this.__P_100_2(left, top);
 
         var backgroundImageUrl = qx.util.ResourceManager.getInstance().toUri(source);
         var backgroundImageCssString = "url('" + backgroundImageUrl + "')"; // Put in quotes so spaces work
@@ -191,4 +191,4 @@
   qx.bom.element.Background.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Background.js.map?dt=1591114964334
+//# sourceMappingURL=Background.js.map?dt=1592777079350

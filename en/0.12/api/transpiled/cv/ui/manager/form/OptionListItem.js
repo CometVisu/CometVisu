@@ -92,7 +92,7 @@
         var keyTitleField = this.getChildControl('key-title');
         var valueTitleField = this.getChildControl('value-title');
 
-        this.__unbindModel(old);
+        this.__P_35_0(old);
 
         if (value) {
           // bi-directional bind
@@ -115,7 +115,7 @@
           this.getChildControl('add').hide();
         }
       },
-      __unbindModel: function __unbindModel(model) {
+      __P_35_0: function __P_35_0(model) {
         if (model) {
           var keyField = this.getChildControl('key');
           var valueField = this.getChildControl('value');
@@ -211,10 +211,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__unbindModel(this.getModel());
+      this.__P_35_0(this.getModel());
     }
   });
   cv.ui.manager.form.OptionListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OptionListItem.js.map?dt=1591114957390
+//# sourceMappingURL=OptionListItem.js.map?dt=1592777072254

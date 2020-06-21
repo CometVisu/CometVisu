@@ -230,14 +230,6 @@
             "type": "Error",
             "description": " An error if this method is called."
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Integer} the number of rows.",
-            "type": "Integer",
-            "description": " the number of rows."
-          }
         ]
       },
       "type": "function",
@@ -697,14 +689,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Integer} the number of columns.",
-            "type": "Integer",
-            "description": " the number of columns."
-          }
         ]
       },
       "type": "function",
@@ -730,23 +714,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "columnId {String} the ID of the column.",
-            "paramName": "columnId",
-            "description": " the ID of the column.",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Integer} the index of the column.",
-            "type": "Integer",
-            "description": " the index of the column."
           }
         ]
       },
@@ -774,23 +741,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "columnIndex {Integer} the index of the column.",
-            "paramName": "columnIndex",
-            "description": " the index of the column.",
-            "type": "Integer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} the ID of the column.",
-            "type": "String",
-            "description": " the ID of the column."
-          }
         ]
       },
       "type": "function",
@@ -816,23 +766,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "columnIndex {Integer} the index of the column.",
-            "paramName": "columnIndex",
-            "description": " the index of the column.",
-            "type": "Integer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} the name of the column.",
-            "type": "String",
-            "description": " the name of the column."
           }
         ]
       },
@@ -1069,7 +1002,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -1128,7 +1069,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "destruct": {

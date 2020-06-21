@@ -33,11 +33,30 @@
   "type": "mixin",
   "properties": {
     "backgroundColor": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4
+        },
+        "end": {
+          "line": 32,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Color of the background</p>"
+          }
+        ]
+      },
       "name": "backgroundColor",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBackgroundColor",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Color"
     }
   },
   "members": {

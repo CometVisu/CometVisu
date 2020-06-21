@@ -200,7 +200,7 @@
           // if the end-user navigates in the Iframe.
 
 
-          this.__rememberUrl(iframe);
+          this.__P_70_0(iframe);
         } catch (ex) {
           qx.log.Logger.warn("Iframe source could not be set!");
         }
@@ -230,7 +230,7 @@
       *
       * @param iframe {Element} DOM element of the iframe.
       */
-      __rememberUrl: function __rememberUrl(iframe) {
+      __P_70_0: function __P_70_0(iframe) {
         // URL can only be detected after load. Retrieve and store URL once.
         var callback = function callback() {
           qx.bom.Event.removeNativeListener(iframe, "load", callback);
@@ -244,4 +244,4 @@
   qx.bom.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1591114961752
+//# sourceMappingURL=Iframe.js.map?dt=1592777076659

@@ -45,7 +45,7 @@
     construct: function construct() {
       qx.ui.menubar.MenuBar.constructor.call(this);
       this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
-      this.__buttons = {};
+      this.__P_24_0 = {};
 
       this._draw();
     },
@@ -57,9 +57,9 @@
     */
     members: {
       _commandGroup: null,
-      __buttons: null,
-      __defaultButtonConfiguration: null,
-      __buttonConfiguration: null,
+      __P_24_0: null,
+      __P_24_1: null,
+      __P_24_2: null,
       _draw: function _draw() {
         this._createChildControl('file');
 
@@ -77,7 +77,7 @@
           flex: 1
         });
         var editorGroup = new qx.ui.form.RadioGroup();
-        this.__defaultButtonConfiguration = {
+        this.__P_24_1 = {
           'new-file': {
             menu: 'new-menu',
             args: [this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file')],
@@ -200,11 +200,11 @@
           prefs.setDefaultConfigEditor(editorGroup.getModelSelection().getItem(0));
         }, this);
 
-        this.__bindToPreference('quick-preview', 'quickPreview');
+        this.__P_24_3('quick-preview', 'quickPreview');
 
-        this.__bindToPreference('expert-mode', 'expertMode');
+        this.__P_24_3('expert-mode', 'expertMode');
       },
-      __bindToPreference: function __bindToPreference(buttonName, preferenceName) {
+      __P_24_3: function __P_24_3(buttonName, preferenceName) {
         var button = this.getButton(buttonName);
         var prefs = cv.ui.manager.model.Preferences.getInstance();
         prefs.bind(preferenceName, button, 'value');
@@ -212,17 +212,17 @@
       },
       maintainButtons: function maintainButtons(config) {
         if (!config) {
-          config = this.__defaultButtonConfiguration;
+          config = this.__P_24_1;
         } else {
-          config = Object.merge(this.__defaultButtonConfiguration, config);
-          this.__buttonConfiguration = config;
+          config = Object.merge(this.__P_24_1, config);
+          this.__P_24_2 = config;
         }
 
         Object.keys(config).forEach(function (id) {
           var button;
           var buttonConf = config[id];
 
-          if (!this.__buttons.hasOwnProperty(id)) {
+          if (!this.__P_24_0.hasOwnProperty(id)) {
             // create button
             var label = buttonConf.args[0];
             var icon = buttonConf.args[1];
@@ -263,13 +263,13 @@
               }
             }
 
-            this.__buttons[id] = button;
+            this.__P_24_0[id] = button;
 
             if (buttonConf.hasOwnProperty('onAfterCreate')) {
               buttonConf.onAfterCreate(button);
             }
           } else {
-            button = this.__buttons[id];
+            button = this.__P_24_0[id];
           }
 
           button.setEnabled(buttonConf.enabled);
@@ -280,10 +280,10 @@
         }, this);
       },
       getButton: function getButton(id) {
-        return this.__buttons[id];
+        return this.__P_24_0[id];
       },
       getButtonConfiguration: function getButtonConfiguration() {
-        return this.__buttonConfiguration || this.__defaultButtonConfiguration;
+        return this.__P_24_2 || this.__P_24_1;
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
@@ -348,4 +348,4 @@
   cv.ui.manager.MenuBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuBar.js.map?dt=1591115569005
+//# sourceMappingURL=MenuBar.js.map?dt=1592778959931

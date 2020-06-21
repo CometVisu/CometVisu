@@ -57,7 +57,7 @@
      */
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
-      this.__jobs = {};
+      this.__P_434_0 = {};
     },
 
     /*
@@ -79,12 +79,12 @@
     *****************************************************************************
     */
     members: {
-      __jobs: null,
-      __arguments: null,
-      __firstRow: null,
-      __firstColumn: null,
-      __rowSizes: null,
-      __columnSizes: null,
+      __P_434_0: null,
+      __P_434_1: null,
+      __P_434_2: null,
+      __P_434_3: null,
+      __P_434_4: null,
+      __P_434_5: null,
 
       /**
        * Get the first rendered row
@@ -92,7 +92,7 @@
        * @return {Integer} The first rendered row
        */
       getFirstRow: function getFirstRow() {
-        return this.__firstRow;
+        return this.__P_434_2;
       },
 
       /**
@@ -101,7 +101,7 @@
        * @return {Integer} The first rendered column
        */
       getFirstColumn: function getFirstColumn() {
-        return this.__firstColumn;
+        return this.__P_434_3;
       },
 
       /**
@@ -110,7 +110,7 @@
        * @return {Integer[]} List of row heights
        */
       getRowSizes: function getRowSizes() {
-        return this.__rowSizes || [];
+        return this.__P_434_4 || [];
       },
 
       /**
@@ -119,7 +119,7 @@
        * @return {Integer[]} List of column widths
        */
       getColumnSizes: function getColumnSizes() {
-        return this.__columnSizes || [];
+        return this.__P_434_5 || [];
       },
       // overridden
       syncWidget: function syncWidget(jobs) {
@@ -129,23 +129,23 @@
           return;
         }
 
-        if (this.__jobs.fullUpdate || this.__jobs.updateLayerWindow && this.__jobs.updateLayerData) {
-          this._fullUpdate.apply(this, this.__arguments);
-        } else if (this.__jobs.updateLayerWindow) {
-          this._updateLayerWindow.apply(this, this.__arguments);
-        } else if (this.__jobs.updateLayerData && this.__rowSizes) {
+        if (this.__P_434_0.fullUpdate || this.__P_434_0.updateLayerWindow && this.__P_434_0.updateLayerData) {
+          this._fullUpdate.apply(this, this.__P_434_1);
+        } else if (this.__P_434_0.updateLayerWindow) {
+          this._updateLayerWindow.apply(this, this.__P_434_1);
+        } else if (this.__P_434_0.updateLayerData && this.__P_434_4) {
           this._updateLayerData();
         }
 
-        if (this.__jobs.fullUpdate || this.__jobs.updateLayerWindow) {
-          var args = this.__arguments;
-          this.__firstRow = args[0];
-          this.__firstColumn = args[1];
-          this.__rowSizes = args[2];
-          this.__columnSizes = args[3];
+        if (this.__P_434_0.fullUpdate || this.__P_434_0.updateLayerWindow) {
+          var args = this.__P_434_1;
+          this.__P_434_2 = args[0];
+          this.__P_434_3 = args[1];
+          this.__P_434_4 = args[2];
+          this.__P_434_5 = args[3];
         }
 
-        this.__jobs = {};
+        this.__P_434_0 = {};
       },
 
       /**
@@ -155,7 +155,7 @@
        * has been rendered.
        */
       _updateLayerData: function _updateLayerData() {
-        this._fullUpdate(this.__firstRow, this.__firstColumn, this.__rowSizes, this.__columnSizes);
+        this._fullUpdate(this.__P_434_2, this.__P_434_3, this.__P_434_4, this.__P_434_5);
       },
 
       /**
@@ -195,19 +195,19 @@
       },
       // interface implementation
       updateLayerData: function updateLayerData() {
-        this.__jobs.updateLayerData = true;
+        this.__P_434_0.updateLayerData = true;
         qx.ui.core.queue.Widget.add(this);
       },
       // interface implementation
       fullUpdate: function fullUpdate(firstRow, firstColumn, rowSizes, columnSizes) {
-        this.__arguments = arguments;
-        this.__jobs.fullUpdate = true;
+        this.__P_434_1 = arguments;
+        this.__P_434_0.fullUpdate = true;
         qx.ui.core.queue.Widget.add(this);
       },
       // interface implementation
       updateLayerWindow: function updateLayerWindow(firstRow, firstColumn, rowSizes, columnSizes) {
-        this.__arguments = arguments;
-        this.__jobs.updateLayerWindow = true;
+        this.__P_434_1 = arguments;
+        this.__P_434_0.updateLayerWindow = true;
         qx.ui.core.queue.Widget.add(this);
       }
     },
@@ -218,10 +218,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__jobs = this.__arguments = this.__rowSizes = this.__columnSizes = null;
+      this.__P_434_0 = this.__P_434_1 = this.__P_434_4 = this.__P_434_5 = null;
     }
   });
   qx.ui.virtual.layer.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1591114992643
+//# sourceMappingURL=Abstract.js.map?dt=1592777107872

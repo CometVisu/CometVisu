@@ -139,7 +139,7 @@
       _onDrop: function _onDrop(ev) {
         console.log(ev.getRelatedTarget());
       },
-      __cancelEditing: function __cancelEditing() {
+      __P_40_0: function __P_40_0() {
         this.getChildControl('edit').setValue(this.getName());
         this.setEditing(false);
       },
@@ -147,7 +147,7 @@
         if (ev.getKeyIdentifier() === 'Enter') {
           this.setEditing(false);
         } else if (ev.getKeyIdentifier() === 'Esc') {
-          this.__cancelEditing();
+          this.__P_40_0();
         }
       },
       // overridden
@@ -182,4 +182,4 @@
   cv.ui.manager.tree.VirtualFsItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualFsItem.js.map?dt=1591115570920
+//# sourceMappingURL=VirtualFsItem.js.map?dt=1592778961806

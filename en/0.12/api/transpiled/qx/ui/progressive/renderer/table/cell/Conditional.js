@@ -54,22 +54,22 @@
      */
     construct: function construct(align, color, style, weight) {
       qx.ui.progressive.renderer.table.cell.Abstract.constructor.call(this);
-      this.__numericAllowed = ["==", "!=", ">", "<", ">=", "<="];
-      this.__betweenAllowed = ["between", "!between"];
-      this.__conditions = [];
-      this.__defaultTextAlign = align || "";
-      this.__defaultColor = color || "";
-      this.__defaultFontStyle = style || "";
-      this.__defaultFontWeight = weight || "";
+      this.__P_379_0 = ["==", "!=", ">", "<", ">=", "<="];
+      this.__P_379_1 = ["between", "!between"];
+      this.__P_379_2 = [];
+      this.__P_379_3 = align || "";
+      this.__P_379_4 = color || "";
+      this.__P_379_5 = style || "";
+      this.__P_379_6 = weight || "";
     },
     members: {
-      __numericAllowed: null,
-      __betweenAllowed: null,
-      __conditions: null,
-      __defaultTextAlign: null,
-      __defaultColor: null,
-      __defaultFontStyle: null,
-      __defaultFontWeight: null,
+      __P_379_0: null,
+      __P_379_1: null,
+      __P_379_2: null,
+      __P_379_3: null,
+      __P_379_4: null,
+      __P_379_5: null,
+      __P_379_6: null,
 
       /**
        * Applies the cell styles to the style map.
@@ -80,7 +80,7 @@
        * @param style {Map}
        *   map of already applied styles.
        */
-      __applyFormatting: function __applyFormatting(condition, style) {
+      __P_379_7: function __P_379_7(condition, style) {
         if (condition.align) {
           style["text-align"] = condition.align;
         }
@@ -136,11 +136,11 @@
        * is null.
        */
       addNumericCondition: function addNumericCondition(condition, value1, align, color, style, weight, target) {
-        if (!this.__numericAllowed.includes(condition) || value1 == null) {
+        if (!this.__P_379_0.includes(condition) || value1 == null) {
           throw new Error("Condition not recognized or value is null!");
         }
 
-        this.__conditions.push({
+        this.__P_379_2.push({
           condition: condition,
           align: align,
           color: color,
@@ -192,11 +192,11 @@
        * values is null.
        */
       addBetweenCondition: function addBetweenCondition(condition, value1, value2, align, color, style, weight, target) {
-        if (!this.__betweenAllowed.includes(condition) || value1 == null || value2 == null) {
+        if (!this.__P_379_1.includes(condition) || value1 == null || value2 == null) {
           throw new Error("Condition not recognized or value1/value2 is null!");
         }
 
-        this.__conditions.push({
+        this.__P_379_2.push({
           condition: condition,
           align: align,
           color: color,
@@ -245,7 +245,7 @@
           throw new Error("regex cannot be null!");
         }
 
-        this.__conditions.push({
+        this.__P_379_2.push({
           condition: "regex",
           align: align,
           color: color,
@@ -270,7 +270,7 @@
        * @return {String}
        */
       _getCellStyle: function _getCellStyle(cellInfo) {
-        if (this.__conditions.length == 0) {
+        if (this.__P_379_2.length == 0) {
           return cellInfo.style || "";
         }
 
@@ -278,17 +278,17 @@
         var bTestPassed;
         var compareValue;
         var style = {
-          "text-align": this.__defaultTextAlign,
-          "color": this.__defaultColor,
-          "font-style": this.__defaultFontStyle,
-          "font-weight": this.__defaultFontWeight
+          "text-align": this.__P_379_3,
+          "color": this.__P_379_4,
+          "font-style": this.__P_379_5,
+          "font-weight": this.__P_379_6
         };
 
-        for (i = 0; i < this.__conditions.length; i++) {
-          var test = this.__conditions[i];
+        for (i = 0; i < this.__P_379_2.length; i++) {
+          var test = this.__P_379_2[i];
           bTestPassed = false;
 
-          if (this.__numericAllowed.includes(test.condition)) {
+          if (this.__P_379_0.includes(test.condition)) {
             if (test.target == null) {
               compareValue = cellInfo.cellData;
             } else {
@@ -338,7 +338,7 @@
 
                 break;
             }
-          } else if (this.__betweenAllowed.includes(test.condition)) {
+          } else if (this.__P_379_1.includes(test.condition)) {
             if (test.target == null) {
               compareValue = cellInfo.cellData;
             } else {
@@ -373,7 +373,7 @@
 
 
           if (bTestPassed) {
-            this.__applyFormatting(test, style);
+            this.__P_379_7(test, style);
           }
 
           var styleString = [];
@@ -389,10 +389,10 @@
       }
     },
     destruct: function destruct() {
-      this.__numericAllowed = this.__betweenAllowed = this.__conditions = null;
+      this.__P_379_0 = this.__P_379_1 = this.__P_379_2 = null;
     }
   });
   qx.ui.progressive.renderer.table.cell.Conditional.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Conditional.js.map?dt=1591114987882
+//# sourceMappingURL=Conditional.js.map?dt=1592777102959

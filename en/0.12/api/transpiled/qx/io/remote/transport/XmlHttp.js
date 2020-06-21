@@ -143,7 +143,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
 
       /** The timeout for Xhr requests */
-      __timeout: 0,
+      __P_218_0: 0,
 
       /**
        * Sets the timeout for requests
@@ -153,14 +153,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *  for code which has not made the transition to asynchronous I/O   
        */
       setTimeout: function setTimeout(timeout) {
-        this.__timeout = timeout;
+        this.__P_218_0 = timeout;
       },
 
       /**
        * Returns the timeout for requests
        */
       getTimeout: function getTimeout() {
-        return this.__timeout;
+        return this.__P_218_0;
       }
     },
 
@@ -194,9 +194,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         CORE METHODS
       ---------------------------------------------------------------------------
       */
-      __localRequest: false,
-      __lastReadyState: 0,
-      __request: null,
+      __P_218_1: false,
+      __P_218_2: 0,
+      __P_218_3: null,
 
       /**
        * Returns the native request object
@@ -204,12 +204,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Object} native XmlHTTPRequest object
        */
       getRequest: function getRequest() {
-        if (this.__request === null) {
-          this.__request = qx.io.remote.transport.XmlHttp.createRequestObject();
-          this.__request.onreadystatechange = qx.lang.Function.bind(this._onreadystatechange, this);
+        if (this.__P_218_3 === null) {
+          this.__P_218_3 = qx.io.remote.transport.XmlHttp.createRequestObject();
+          this.__P_218_3.onreadystatechange = qx.lang.Function.bind(this._onreadystatechange, this);
         }
 
-        return this.__request;
+        return this.__P_218_3;
       },
 
       /*
@@ -223,7 +223,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        */
       send: function send() {
-        this.__lastReadyState = 0;
+        this.__P_218_2 = 0;
         var vRequest = this.getRequest();
         var vMethod = this.getMethod();
         var vAsynchronous = this.getAsynchronous();
@@ -232,7 +232,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // --------------------------------------
 
         var vLocalRequest = window.location.protocol === "file:" && !/^http(s){0,1}\:/.test(vUrl);
-        this.__localRequest = vLocalRequest; // --------------------------------------
+        this.__P_218_1 = vLocalRequest; // --------------------------------------
         //   Adding URL parameters
         // --------------------------------------
 
@@ -425,7 +425,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // The status code is only meaningful when we reach ready state 4.
           // (Important for Opera since it goes through other states before
           // reaching 4, and the status code is not valid before 4 is reached.)
-          if (!qx.io.remote.Exchange.wasSuccessful(this.getStatusCode(), vReadyState, this.__localRequest)) {
+          if (!qx.io.remote.Exchange.wasSuccessful(this.getStatusCode(), vReadyState, this.__P_218_1)) {
             // Fix for bug #2272
             // The IE doesn't set the state to 'sending' even though the send method
             // is called. This only occurs if the server (which is called) goes
@@ -440,13 +440,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } // Sometimes the xhr call skips the send state
 
 
-        if (vReadyState == 3 && this.__lastReadyState == 1) {
-          this.setState(qx.io.remote.Exchange._nativeMap[++this.__lastReadyState]);
+        if (vReadyState == 3 && this.__P_218_2 == 1) {
+          this.setState(qx.io.remote.Exchange._nativeMap[++this.__P_218_2]);
         } // Updating internal state
 
 
-        while (this.__lastReadyState < vReadyState) {
-          this.setState(qx.io.remote.Exchange._nativeMap[++this.__lastReadyState]);
+        while (this.__P_218_2 < vReadyState) {
+          this.setState(qx.io.remote.Exchange._nativeMap[++this.__P_218_2]);
         }
       }),
 
@@ -645,7 +645,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var vStatus = this.getStatusCode();
         var vReadyState = this.getReadyState();
 
-        if (qx.io.remote.Exchange.wasSuccessful(vStatus, vReadyState, this.__localRequest)) {
+        if (qx.io.remote.Exchange.wasSuccessful(vStatus, vReadyState, this.__P_218_1)) {
           try {
             vResponseXML = this.getRequest().responseXML;
           } catch (ex) {}
@@ -842,10 +842,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
       }
 
-      this.__request = null;
+      this.__P_218_3 = null;
     }
   });
   qx.io.remote.transport.XmlHttp.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlHttp.js.map?dt=1591114973579
+//# sourceMappingURL=XmlHttp.js.map?dt=1592777088811

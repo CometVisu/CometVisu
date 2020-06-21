@@ -29,25 +29,67 @@
   "type": "mixin",
   "properties": {
     "shortThreshold": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4
+        },
+        "end": {
+          "line": 29,
+          "column": 47
+        }
+      },
       "name": "shortThreshold",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": -1,
+      "check": "Number",
+      "defaultValue": -1
     },
     "shortDefault": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 49
+        }
+      },
       "name": "shortDefault",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     },
     "sendLongOnRelease": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>is true use short value if no threshold is set, otherwise use long</p>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>true: send the long value after the mouse button is released\n false: send the long value when the time since the button is pressed is greater than shortThreshold before the button is released</p>"
+          }
+        ]
+      },
       "name": "sendLongOnRelease",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
     }
   },
   "members": {

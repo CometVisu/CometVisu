@@ -59,11 +59,11 @@
     construct: function construct(columnWidths, labelArr) {
       qx.ui.progressive.headfoot.Abstract.constructor.call(this); // Save the Widths object containing all of our column widths
 
-      this.__columnWidths = columnWidths; // Get the array of column width data
+      this.__P_374_0 = columnWidths; // Get the array of column width data
 
       var columnData = columnWidths.getData(); // Create a place to put labels
 
-      this.__labels = []; // For each label...
+      this.__P_374_1 = []; // For each label...
 
       for (var i = 0; i < columnData.length; i++) {
         // ... create an atom to hold the label
@@ -72,7 +72,7 @@
 
         this.add(label); // Save this label so we can resize it later
 
-        this.__labels[i] = label;
+        this.__P_374_1[i] = label;
       } // Add a spacer to take up the scroll-bar width
 
 
@@ -96,9 +96,9 @@
       // manager is that the semantics of flex and percent are exactly the same
       // as in the widget code.
 
-      this.__layout = new qx.ui.layout.HBox();
+      this.__P_374_2 = new qx.ui.layout.HBox();
 
-      this.__layout.connectToWidget(this);
+      this.__P_374_2.connectToWidget(this);
     },
     properties: {
       appearance: {
@@ -107,10 +107,10 @@
       }
     },
     members: {
-      __columnWidths: null,
-      __bCalculateWidths: null,
-      __labels: null,
-      __layout: null,
+      __P_374_0: null,
+      __P_374_3: null,
+      __P_374_1: null,
+      __P_374_2: null,
       // overridden
       join: function join(progressive) {
         // Save the progressive handle
@@ -123,8 +123,8 @@
        * @return {Array} List of child items
        */
       getLayoutChildren: function getLayoutChildren() {
-        if (this.__bCalculateWidths) {
-          return this.__columnWidths.getData();
+        if (this.__P_374_3) {
+          return this.__P_374_0.getData();
         } else {
           return qx.ui.progressive.headfoot.TableHeading.prototype.getLayoutChildren.base.call(this);
         }
@@ -141,7 +141,7 @@
       _resizeColumns: function _resizeColumns(e) {
         var width = this.getBounds().width - qx.bom.element.Scroll.getScrollbarWidth(); // Compute the column widths
 
-        this.__bCalculateWidths = true;
+        this.__P_374_3 = true;
         var padding = {
           top: this.getPaddingTop(),
           right: this.getPaddingRight(),
@@ -149,21 +149,21 @@
           left: this.getPaddingLeft()
         };
 
-        this.__layout.renderLayout(width, 100, padding);
+        this.__P_374_2.renderLayout(width, 100, padding);
 
-        this.__bCalculateWidths = false; // Get the column data
+        this.__P_374_3 = false; // Get the column data
 
-        var columnData = this.__columnWidths.getData(); // Get the column width data.  For each label...
+        var columnData = this.__P_374_0.getData(); // Get the column width data.  For each label...
 
 
         for (var i = 0; i < columnData.length; i++) {
           // ... reset the width of the corresponding column (label)
-          this.__labels[i].setWidth(columnData[i].getComputedWidth());
+          this.__P_374_1[i].setWidth(columnData[i].getComputedWidth());
         }
       }
     },
     destruct: function destruct() {
-      this.__columnWidths = this.__labels = null;
+      this.__P_374_0 = this.__P_374_1 = null;
 
       this._disposeObjects("_layout");
     }
@@ -171,4 +171,4 @@
   qx.ui.progressive.headfoot.TableHeading.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TableHeading.js.map?dt=1591114987619
+//# sourceMappingURL=TableHeading.js.map?dt=1592777102699

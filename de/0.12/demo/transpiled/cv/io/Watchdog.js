@@ -68,7 +68,7 @@
     members: {
       last: null,
       hardLast: null,
-      __id: null,
+      __P_260_0: null,
       aliveCheckFunction: function aliveCheckFunction() {
         var now = new Date();
 
@@ -80,20 +80,20 @@
         this.last = now;
       },
       start: function start(watchdogTimer) {
-        if (this.__id) {
+        if (this.__P_260_0) {
           this.stop();
         }
 
-        this.__id = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
+        this.__P_260_0 = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
       },
       stop: function stop() {
-        if (this.__id) {
-          clearInterval(this.__id);
-          this.__id = null;
+        if (this.__P_260_0) {
+          clearInterval(this.__P_260_0);
+          this.__P_260_0 = null;
         }
       },
       isActive: function isActive() {
-        return !!this.__id;
+        return !!this.__P_260_0;
       },
       ping: function ping(fullReload) {
         this.last = new Date();
@@ -107,4 +107,4 @@
   cv.io.Watchdog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Watchdog.js.map?dt=1591115591145
+//# sourceMappingURL=Watchdog.js.map?dt=1592778982367

@@ -82,7 +82,7 @@
             iconPosition: states.list ? 'left' : 'top',
             show: states.list ? 'label' : 'both',
             font: states.list ? 'default' : 'small',
-            width: states.list ? 500 : 130,
+            width: states.list ? 500 : 160,
             backgroundColor: states.hovered ? 'rgba(255, 255, 255, 0.1)' : 'transparent'
           };
         }
@@ -119,6 +119,7 @@
       },
       'cv-file-item/action-button': 'cv-file-item/download-button',
       'cv-file-item/open-button': 'cv-file-item/download-button',
+      'cv-file-item/edit-button': 'cv-file-item/download-button',
       'cv-icon': 'cv-file-item',
       'cv-icon/icon': {
         include: 'atom/icon',
@@ -389,4 +390,4 @@
   cv.theme.dark.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1591114998668
+//# sourceMappingURL=Appearance.js.map?dt=1592777114211

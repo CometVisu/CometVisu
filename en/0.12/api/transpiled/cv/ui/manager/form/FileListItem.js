@@ -349,9 +349,9 @@
 
           if (!cv.ui.manager.viewer.Image.getImageData(value)) {
             // wait for image to be loaded
-            control.addListenerOnce('loaded', this.__scaleWithAspect, this);
+            control.addListenerOnce('loaded', this.__P_34_0, this);
           } else {
-            this.__scaleWithAspect();
+            this.__P_34_0();
           }
         }
       },
@@ -364,33 +364,39 @@
           var editorConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, 'edit');
           var viewerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, 'view');
           var openButton = this.getChildControl('open-button');
+          var editButton = this.getChildControl('edit-button');
 
           if (file.isWriteable() && editorConf) {
-            openButton.setUserData('handlerId', editorConf.Clazz.classname);
-            openButton.set({
+            editButton.setUserData('handlerId', editorConf.Clazz.classname);
+            editButton.set({
               icon: editorConf.Clazz.ICON || cv.theme.dark.Images.getIcon('edit', 18),
               enabled: true,
-              toolTipText: editorConf.Clazz.TITLE
+              toolTipText: editorConf.Clazz.TITLE ? editorConf.Clazz.TITLE.translate().toString() : ""
             });
-          } else if (viewerConf) {
+            editButton.show();
+          } else {
+            editButton.exclude();
+          }
+
+          if (viewerConf) {
             openButton.setUserData('handlerId', viewerConf.Clazz.classname);
             openButton.set({
               icon: viewerConf.Clazz.ICON || cv.theme.dark.Images.getIcon('preview', 18),
               enabled: true,
-              toolTipText: viewerConf.Clazz.TITLE
+              toolTipText: viewerConf.Clazz.TITLE ? viewerConf.Clazz.TITLE.translate().toString() : ""
             });
+            openButton.show();
           } else {
-            openButton.setEnabled(false);
+            openButton.exclude();
           }
 
-          this.getChildControl('open-button');
           this.getChildControl('action-button');
           this.getChildControl('bottom-bar').show();
         } else {
           this.getChildControl('bottom-bar').exclude();
         }
       },
-      __scaleWithAspect: function __scaleWithAspect() {
+      __P_34_0: function __P_34_0() {
         var data = cv.ui.manager.viewer.Image.getImageData(this.getIcon());
         var control = this.getChildControl('atom').getChildControl('icon');
         var sizeHint = control.getSizeHint();
@@ -501,6 +507,17 @@
             }, this);
             this.getChildControl('bottom-bar').add(control);
             break;
+
+          case 'edit-button':
+            control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('preview', 18));
+            control.addListener('execute', function () {
+              qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
+                file: this.getModel(),
+                handler: control.getUserData('handlerId')
+              });
+            }, this);
+            this.getChildControl('bottom-bar').add(control);
+            break;
         }
 
         if (!control) {
@@ -542,4 +559,4 @@
   cv.ui.manager.form.FileListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileListItem.js.map?dt=1591114957314
+//# sourceMappingURL=FileListItem.js.map?dt=1592777072177

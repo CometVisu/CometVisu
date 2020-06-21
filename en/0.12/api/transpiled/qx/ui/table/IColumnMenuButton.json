@@ -37,7 +37,15 @@
       "name": "menu",
       "abstract": true,
       "mixin": false,
-      "access": "public"
+      "access": "public",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The menu which is displayed when this button is pressed.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {

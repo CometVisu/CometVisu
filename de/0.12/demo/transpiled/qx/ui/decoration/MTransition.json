@@ -33,32 +33,104 @@
   "type": "mixin",
   "properties": {
     "transitionProperty": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transition property</p>"
+          }
+        ]
+      },
       "name": "transitionProperty",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyTransition",
+      "nullable": true,
+      "allowNull": true
     },
     "transitionDuration": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transition duration</p>"
+          }
+        ]
+      },
       "name": "transitionDuration",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyTransition",
+      "nullable": true,
+      "allowNull": true
     },
     "transitionTimingFunction": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transition delay</p>"
+          }
+        ]
+      },
       "name": "transitionTimingFunction",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyTransition",
+      "nullable": true,
+      "allowNull": true
     },
     "transitionDelay": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 73,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transition delay</p>"
+          }
+        ]
+      },
       "name": "transitionDelay",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyTransition",
+      "nullable": true,
+      "allowNull": true
     }
   },
   "members": {

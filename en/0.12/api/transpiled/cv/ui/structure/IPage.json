@@ -45,14 +45,42 @@
       "name": "path",
       "abstract": true,
       "mixin": false,
-      "access": "public"
+      "access": "public",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The internal path to the widget</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      }
     },
     "pageType": {
       "type": "property",
       "name": "pageType",
       "abstract": true,
       "mixin": false,
-      "access": "public"
+      "access": "public",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The page type (text, 2d, 3d)</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      }
     },
     "backdropAlign": {
       "type": "property",

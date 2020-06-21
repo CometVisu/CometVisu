@@ -104,12 +104,12 @@
     construct: function construct(model, target, labelPath) {
       qx.core.Object.constructor.call(this); // lookup table for filtering and sorting
 
-      this.__lookupTable = []; // register for bound target properties and onUpdate methods
+      this.__P_116_0 = []; // register for bound target properties and onUpdate methods
       // from the binding options
 
-      this.__boundProperties = [];
-      this.__boundPropertiesReverse = [];
-      this.__onUpdate = {};
+      this.__P_116_1 = [];
+      this.__P_116_2 = [];
+      this.__P_116_3 = {};
 
       if (labelPath != null) {
         this.setLabelPath(labelPath);
@@ -239,13 +239,13 @@
     */
     members: {
       // private members
-      __changeModelListenerId: null,
-      __lookupTable: null,
-      __onUpdate: null,
-      __boundProperties: null,
-      __boundPropertiesReverse: null,
-      __syncTargetSelection: null,
-      __syncModelSelection: null,
+      __P_116_4: null,
+      __P_116_0: null,
+      __P_116_3: null,
+      __P_116_1: null,
+      __P_116_2: null,
+      __P_116_5: null,
+      __P_116_6: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -258,9 +258,9 @@
        * uses an additional parameter which changes the filter result.
        */
       update: function update() {
-        this.__changeModelLength();
+        this.__P_116_7();
 
-        this.__renewBindings();
+        this.__P_116_8();
 
         this._updateSelection();
       },
@@ -296,7 +296,7 @@
        * @param old {Map|null} The old icon options.
        */
       _applyIconOptions: function _applyIconOptions(value, old) {
-        this.__renewBindings();
+        this.__P_116_8();
       },
 
       /**
@@ -307,7 +307,7 @@
        * @param old {Map|null} The old label options.
        */
       _applyLabelOptions: function _applyLabelOptions(value, old) {
-        this.__renewBindings();
+        this.__P_116_8();
       },
 
       /**
@@ -318,7 +318,7 @@
        * @param old {String|null} The old icon path.
        */
       _applyIconPath: function _applyIconPath(value, old) {
-        this.__renewBindings();
+        this.__P_116_8();
       },
 
       /**
@@ -329,35 +329,35 @@
        * @param old {String|null} The old label path.
        */
       _applyLabelPath: function _applyLabelPath(value, old) {
-        this.__renewBindings();
+        this.__P_116_8();
       },
 
       /**
        * Apply method for the `allowNull` property 
        */
       _applyAllowNull: function _applyAllowNull(value, oldValue) {
-        this.__refreshModel();
+        this.__P_116_9();
       },
 
       /**
        * Apply method for the `allowNull` property 
        */
       _applyNullValueTitle: function _applyNullValueTitle(value, oldValue) {
-        this.__refreshModel();
+        this.__P_116_9();
       },
 
       /**
        * Apply method for the `allowNull` property 
        */
       _applyNullValueIcon: function _applyNullValueIcon(value, oldValue) {
-        this.__refreshModel();
+        this.__P_116_9();
       },
 
       /**
        * Refreshes the model, uses when the model and target are not changing but the appearance
        * and bindings may need to be updated
        */
-      __refreshModel: function __refreshModel() {
+      __P_116_9: function __P_116_9() {
         if (this.getModel() && this.getTarget()) {
           this.update();
         }
@@ -375,8 +375,8 @@
       _applyModel: function _applyModel(value, old) {
         // remove the old listener
         if (old != undefined) {
-          if (this.__changeModelListenerId != undefined) {
-            old.removeListenerById(this.__changeModelListenerId);
+          if (this.__P_116_4 != undefined) {
+            old.removeListenerById(this.__P_116_4);
           }
         } // erase the selection if there is something selected
 
@@ -388,12 +388,12 @@
 
         if (value != null) {
           // add a new listener
-          this.__changeModelListenerId = value.addListener("change", this.__changeModel, this); // renew the index lookup table
+          this.__P_116_4 = value.addListener("change", this.__P_116_10, this); // renew the index lookup table
 
-          this.__buildUpLookupTable(); // check for the new length
+          this.__P_116_11(); // check for the new length
 
 
-          this.__changeModelLength(); // as we only change the labels of the items, the selection change event
+          this.__P_116_7(); // as we only change the labels of the items, the selection change event
           // may be missing so we invoke it here
 
 
@@ -401,7 +401,7 @@
             this._changeTargetSelection();
           } else {
             // update the selection asynchronously
-            this.__syncTargetSelection = true;
+            this.__P_116_5 = true;
             qx.ui.core.queue.Widget.add(this);
           }
         } else {
@@ -413,7 +413,7 @@
             var length = target.getChildren().length;
 
             for (var i = 0; i < length; i++) {
-              this.__removeItem();
+              this.__P_116_12();
             }
 
             ;
@@ -450,8 +450,8 @@
         if (value != null) {
           if (this.getModel() != null) {
             // add a binding for all elements in the model
-            for (var i = 0; i < this.__lookupTable.length; i++) {
-              this.__addItem(this.__lookup(i));
+            for (var i = 0; i < this.__P_116_0.length; i++) {
+              this.__P_116_13(this.__P_116_14(i));
             }
           }
         }
@@ -468,25 +468,25 @@
        * Only the selection needs to be changed. The change of the data will
        * be done by the binding.
        */
-      __inChangeModel: false,
+      __P_116_15: false,
 
       /**
        * Event handler for the changeModel of the model. Updates the controller.
        */
-      __changeModel: function __changeModel() {
-        if (this.__inChangeModel) {
+      __P_116_10: function __P_116_10() {
+        if (this.__P_116_15) {
           return;
         }
 
-        this.__inChangeModel = true; // need an asynchronous selection update because the bindings have to be
+        this.__P_116_15 = true; // need an asynchronous selection update because the bindings have to be
         // executed to update the selection probably (using the widget queue)
         // this.__syncTargetSelection = true;
 
-        this.__syncModelSelection = true;
+        this.__P_116_6 = true;
         qx.ui.core.queue.Widget.add(this); // update on filtered lists... (bindings need to be renewed)
 
         this.update();
-        this.__inChangeModel = false;
+        this.__P_116_15 = false;
       },
 
       /**
@@ -497,53 +497,53 @@
        * @internal
        */
       syncWidget: function syncWidget() {
-        if (this.__syncTargetSelection) {
+        if (this.__P_116_5) {
           this._changeTargetSelection();
         }
 
-        if (this.__syncModelSelection) {
+        if (this.__P_116_6) {
           this._updateSelection();
         }
 
-        this.__syncModelSelection = this.__syncTargetSelection = null;
+        this.__P_116_6 = this.__P_116_5 = null;
       },
 
       /**
        * Event handler for the changeLength of the model. If the length changes
        * of the model, either ListItems need to be removed or added to the target.
        */
-      __changeModelLength: function __changeModelLength() {
+      __P_116_7: function __P_116_7() {
         // only do something if there is a target
         if (this.getTarget() == null) {
           return;
         } // build up the look up table
 
 
-        this.__buildUpLookupTable(); // get the length
+        this.__P_116_11(); // get the length
 
 
-        var newLength = this.__lookupTable.length;
+        var newLength = this.__P_116_0.length;
         var currentLength = this.getTarget().getChildren().length; // if there are more item
 
         if (newLength > currentLength) {
           // add the new elements
           for (var j = currentLength; j < newLength; j++) {
-            this.__addItem(this.__lookup(j));
+            this.__P_116_13(this.__P_116_14(j));
           } // if there are less elements
 
         } else if (newLength < currentLength) {
           // remove the unnecessary items
           for (var j = currentLength; j > newLength; j--) {
-            this.__removeItem();
+            this.__P_116_12();
           }
         } // build up the look up table
 
 
-        this.__buildUpLookupTable(); // sync the target selection in case someone deleted a item in
+        this.__P_116_11(); // sync the target selection in case someone deleted a item in
         // selection mode "one" [BUG #4839]
 
 
-        this.__syncTargetSelection = true;
+        this.__P_116_5 = true;
         qx.ui.core.queue.Widget.add(this);
       },
 
@@ -552,13 +552,13 @@
        * controller to the model. This is sometimes necessary to ensure that the
        * listener of the controller is executed as the last listener of the chain.
        */
-      __moveChangeListenerAtTheEnd: function __moveChangeListenerAtTheEnd() {
+      __P_116_16: function __P_116_16() {
         var model = this.getModel(); // it can be that the bindings has been reset without the model so
         // maybe there is no model in some scenarios
 
         if (model != null) {
-          model.removeListenerById(this.__changeModelListenerId);
-          this.__changeModelListenerId = model.addListener("change", this.__changeModel, this);
+          model.removeListenerById(this.__P_116_4);
+          this.__P_116_4 = model.addListener("change", this.__P_116_10, this);
         }
       },
 
@@ -597,7 +597,7 @@
        *
        * @param index {Number} The index of the item to add.
        */
-      __addItem: function __addItem(index) {
+      __P_116_13: function __P_116_13(index) {
         // create a new ListItem
         var listItem = this._createItem(); // set up the binding
 
@@ -612,7 +612,7 @@
        * Internal helper to remove ListItems from the target. Also the binding
        * will be removed properly.
        */
-      __removeItem: function __removeItem() {
+      __P_116_12: function __P_116_12() {
         this._startSelectionModification();
 
         var children = this.getTarget().getChildren(); // get the last binding id
@@ -729,11 +729,11 @@
         // including the old onUpdate function
         if (options != null) {
           var options = qx.lang.Object.clone(options);
-          this.__onUpdate[targetProperty] = options.onUpdate;
+          this.__P_116_3[targetProperty] = options.onUpdate;
           delete options.onUpdate;
         } else {
           options = {};
-          this.__onUpdate[targetProperty] = null;
+          this.__P_116_3[targetProperty] = null;
         }
 
         options.onUpdate = qx.lang.Function.bind(this._onBindingSet, this, index);
@@ -749,8 +749,8 @@
         var id = this.bind(bindPath, targetWidget, targetProperty, options);
         targetWidget.setUserData(targetProperty + "BindingId", id); // save the bound property
 
-        if (!this.__boundProperties.includes(targetProperty)) {
-          this.__boundProperties.push(targetProperty);
+        if (!this.__P_116_1.includes(targetProperty)) {
+          this.__P_116_1.push(targetProperty);
         }
       },
 
@@ -780,8 +780,8 @@
         var id = sourceWidget.bind(sourcePath, this, targetBindPath, options);
         sourceWidget.setUserData(targetPath + "ReverseBindingId", id); // save the bound property
 
-        if (!this.__boundPropertiesReverse.includes(targetPath)) {
-          this.__boundPropertiesReverse.push(targetPath);
+        if (!this.__P_116_2.includes(targetPath)) {
+          this.__P_116_2.push(targetPath);
         }
       },
 
@@ -800,10 +800,10 @@
         } // go through all bound target properties
 
 
-        for (var i = 0; i < this.__boundProperties.length; i++) {
+        for (var i = 0; i < this.__P_116_1.length; i++) {
           // if there is an onUpdate for one of it, invoke it
-          if (this.__onUpdate[this.__boundProperties[i]] != null) {
-            this.__onUpdate[this.__boundProperties[i]]();
+          if (this.__P_116_3[this.__P_116_1[i]] != null) {
+            this.__P_116_3[this.__P_116_1[i]]();
           }
         }
       },
@@ -816,24 +816,24 @@
        */
       _removeBindingsFrom: function _removeBindingsFrom(item) {
         // go through all bound target properties
-        for (var i = 0; i < this.__boundProperties.length; i++) {
+        for (var i = 0; i < this.__P_116_1.length; i++) {
           // get the binding id and remove it, if possible
-          var id = item.getUserData(this.__boundProperties[i] + "BindingId");
+          var id = item.getUserData(this.__P_116_1[i] + "BindingId");
 
           if (id != null) {
             this.removeBinding(id);
-            item.setUserData(this.__boundProperties[i] + "BindingId", null);
+            item.setUserData(this.__P_116_1[i] + "BindingId", null);
           }
         } // go through all reverse bound properties
 
 
-        for (var i = 0; i < this.__boundPropertiesReverse.length; i++) {
+        for (var i = 0; i < this.__P_116_2.length; i++) {
           // get the binding id and remove it, if possible
-          var id = item.getUserData(this.__boundPropertiesReverse[i] + "ReverseBindingId");
+          var id = item.getUserData(this.__P_116_2[i] + "ReverseBindingId");
 
           if (id != null) {
             item.removeBinding(id);
-            item.getUserData(this.__boundPropertiesReverse[i] + "ReverseBindingId", null);
+            item.getUserData(this.__P_116_2[i] + "ReverseBindingId", null);
           }
         }
 
@@ -843,7 +843,7 @@
       /**
        * Internal helper method to renew all set bindings.
        */
-      __renewBindings: function __renewBindings() {
+      __P_116_8: function __P_116_8() {
         // ignore, if no target is set (startup)
         if (this.getTarget() == null || this.getModel() == null) {
           return;
@@ -856,12 +856,12 @@
           this._removeBindingsFrom(items[i]); // add the new binding
 
 
-          this._bindListItem(items[i], this.__lookup(i));
+          this._bindListItem(items[i], this.__P_116_14(i));
         } // move the controllers change handler for the model to the end of the
         // listeners queue
 
 
-        this.__moveChangeListenerAtTheEnd();
+        this.__P_116_16();
       },
 
       /*
@@ -902,7 +902,7 @@
             return;
           }
 
-          this.__renewBindings();
+          this.__P_116_8();
         }
       },
 
@@ -954,7 +954,7 @@
       _setFilter: function _setFilter(value, old) {
         // update the filter if it has been removed
         if ((value == null || value.filter == null) && old != null && old.filter != null) {
-          this.__removeFilter();
+          this.__P_116_17();
         } // check if it is necessary to do anything
 
 
@@ -973,20 +973,20 @@
         } // store the old lookup table
 
 
-        var oldTable = this.__lookupTable; // generate a new lookup table
+        var oldTable = this.__P_116_0; // generate a new lookup table
 
-        this.__buildUpLookupTable(); // if there are lesser items
+        this.__P_116_11(); // if there are lesser items
 
 
-        if (oldTable.length > this.__lookupTable.length) {
+        if (oldTable.length > this.__P_116_0.length) {
           // remove the unnecessary items
-          for (var j = oldTable.length; j > this.__lookupTable.length; j--) {
+          for (var j = oldTable.length; j > this.__P_116_0.length; j--) {
             this.getTarget().removeAt(j - 1).destroy();
           } // if there are more items
 
-        } else if (oldTable.length < this.__lookupTable.length) {
+        } else if (oldTable.length < this.__P_116_0.length) {
           // add the new elements
-          for (var j = oldTable.length; j < this.__lookupTable.length; j++) {
+          for (var j = oldTable.length; j < this.__P_116_0.length; j++) {
             var tempItem = this._createItem();
 
             this.getTarget().add(tempItem);
@@ -997,12 +997,12 @@
         var listItems = this.getTarget().getChildren();
 
         for (var i = 0; i < listItems.length; i++) {
-          this._bindListItem(listItems[i], this.__lookup(i));
+          this._bindListItem(listItems[i], this.__P_116_14(i));
         } // move the controllers change handler for the model to the end of the
         // listeners queue
 
 
-        this.__moveChangeListenerAtTheEnd();
+        this.__P_116_16();
 
         this._endSelectionModification();
 
@@ -1013,19 +1013,19 @@
        * This helper is responsible for removing the filter and setting the
        * controller to a valid state without a filtering.
        */
-      __removeFilter: function __removeFilter() {
+      __P_116_17: function __P_116_17() {
         // renew the index lookup table
-        this.__buildUpLookupTable(); // check for the new length
+        this.__P_116_11(); // check for the new length
 
 
-        this.__changeModelLength(); // renew the bindings
+        this.__P_116_7(); // renew the bindings
 
 
-        this.__renewBindings(); // need an asynchronous selection update because the bindings have to be
+        this.__P_116_8(); // need an asynchronous selection update because the bindings have to be
         // executed to update the selection probably (using the widget queue)
 
 
-        this.__syncModelSelection = true;
+        this.__P_116_6 = true;
         qx.ui.core.queue.Widget.add(this);
       },
 
@@ -1039,7 +1039,7 @@
        * Helper-Method which builds up the index lookup for the filter feature.
        * If no filter is set, the lookup table will be a 1:1 mapping.
        */
-      __buildUpLookupTable: function __buildUpLookupTable() {
+      __P_116_11: function __P_116_11() {
         var model = this.getModel();
 
         if (model == null) {
@@ -1052,15 +1052,15 @@
           var filter = delegate.filter;
         }
 
-        this.__lookupTable = []; // -1 is a special lookup value, to represent the "null" option 
+        this.__P_116_0 = []; // -1 is a special lookup value, to represent the "null" option 
 
         if (this.isAllowNull()) {
-          this.__lookupTable.push(-1);
+          this.__P_116_0.push(-1);
         }
 
         for (var i = 0; i < model.getLength(); i++) {
           if (filter == null || filter(model.getItem(i))) {
-            this.__lookupTable.push(i);
+            this.__P_116_0.push(i);
           }
         }
       },
@@ -1071,8 +1071,8 @@
        * @param index {Integer} The index of the lookup table.
        * @return {Number} Item index from lookup table
        */
-      __lookup: function __lookup(index) {
-        return this.__lookupTable[index];
+      __P_116_14: function __P_116_14(index) {
+        return this.__P_116_0[index];
       }
     },
 
@@ -1082,8 +1082,8 @@
      *****************************************************************************
      */
     destruct: function destruct() {
-      this.__lookupTable = this.__onUpdate = this.__boundProperties = null;
-      this.__boundPropertiesReverse = null; // remove yourself from the widget queue
+      this.__P_116_0 = this.__P_116_3 = this.__P_116_1 = null;
+      this.__P_116_2 = null; // remove yourself from the widget queue
 
       qx.ui.core.queue.Widget.remove(this);
     }
@@ -1091,4 +1091,4 @@
   qx.data.controller.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1591115577957
+//# sourceMappingURL=List.js.map?dt=1592778968755

@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 226,
+        "line": 225,
         "column": 3
       }
     },
@@ -153,7 +153,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -161,7 +169,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -172,7 +188,7 @@
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 140,
           "column": 5
         }
       },
@@ -182,11 +198,11 @@
     "__getAnimationConfig": {
       "location": {
         "start": {
-          "line": 147,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 184,
+          "line": 183,
           "column": 5
         }
       },
@@ -213,11 +229,11 @@
     "__onLeavePage": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 189,
           "column": 4
         },
         "end": {
-          "line": 196,
+          "line": 195,
           "column": 5
         }
       },
@@ -241,11 +257,11 @@
     "__onEnterPage": {
       "location": {
         "start": {
-          "line": 204,
+          "line": 203,
           "column": 4
         },
         "end": {
-          "line": 224,
+          "line": 223,
           "column": 5
         }
       },
@@ -339,7 +355,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -398,7 +422,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getSpeed": {
       "type": "function",

@@ -126,27 +126,27 @@
     extend: Object,
     implement: [qx.core.IDisposable],
     construct: function construct() {
-      var boundFunc = qx.Bootstrap.bind(this.__onNativeReadyStateChange, this); // GlobalError shouldn't be included in qx.Website builds so use it
+      var boundFunc = qx.Bootstrap.bind(this.__P_186_0, this); // GlobalError shouldn't be included in qx.Website builds so use it
       // if it's available but otherwise ignore it (see ignore stated above).
 
       if (qx.event && qx.event.GlobalError && qx.event.GlobalError.observeMethod) {
-        this.__onNativeReadyStateChangeBound = qx.event.GlobalError.observeMethod(boundFunc);
+        this.__P_186_1 = qx.event.GlobalError.observeMethod(boundFunc);
       } else {
-        this.__onNativeReadyStateChangeBound = boundFunc;
+        this.__P_186_1 = boundFunc;
       }
 
-      this.__onNativeAbortBound = qx.Bootstrap.bind(this.__onNativeAbort, this);
-      this.__onNativeProgressBound = qx.Bootstrap.bind(this.__onNativeProgress, this);
-      this.__onTimeoutBound = qx.Bootstrap.bind(this.__onTimeout, this);
+      this.__P_186_2 = qx.Bootstrap.bind(this.__P_186_3, this);
+      this.__P_186_4 = qx.Bootstrap.bind(this.__P_186_5, this);
+      this.__P_186_6 = qx.Bootstrap.bind(this.__P_186_7, this);
 
-      this.__initNativeXhr();
+      this.__P_186_8();
 
       this._emitter = new qx.event.Emitter(); // BUGFIX: IE
       // IE keeps connections alive unless aborted on unload
 
       if (window.attachEvent) {
-        this.__onUnloadBound = qx.Bootstrap.bind(this.__onUnload, this);
-        window.attachEvent("onunload", this.__onUnloadBound);
+        this.__P_186_9 = qx.Bootstrap.bind(this.__P_186_10, this);
+        window.attachEvent("onunload", this.__P_186_9);
       }
     },
     statics: {
@@ -257,7 +257,7 @@
        *  Optional password to use for authentication purposes.
        */
       open: function open(method, url, async, user, password) {
-        this.__checkDisposed(); // Mimick native behavior
+        this.__P_186_11(); // Mimick native behavior
 
 
         if (typeof url === "undefined") {
@@ -267,17 +267,17 @@
         } // Reset flags that may have been set on previous request
 
 
-        this.__abort = false;
-        this.__send = false;
-        this.__conditional = false; // Store URL for later checks
+        this.__P_186_12 = false;
+        this.__P_186_13 = false;
+        this.__P_186_14 = false; // Store URL for later checks
 
-        this.__url = url;
+        this.__P_186_15 = url;
 
         if (typeof async == "undefined") {
           async = true;
         }
 
-        this.__async = async; // Default values according to spec.
+        this.__P_186_16 = async; // Default values according to spec.
 
         this.status = 0;
         this.statusText = this.responseText = "";
@@ -285,7 +285,7 @@
         this.response = null; // BUGFIX
         // IE < 9 and FF < 3.5 cannot reuse the native XHR to issue many requests
 
-        if (!this.__supportsManyRequests() && this.readyState > qx.bom.request.Xhr.UNSENT) {
+        if (!this.__P_186_17() && this.readyState > qx.bom.request.Xhr.UNSENT) {
           // XmlHttpRequest Level 1 requires open() to abort any pending requests
           // associated to the object. Since we're dealing with a new object here,
           // we have to emulate this behavior. Moreover, allow old native XHR to be garbage collected
@@ -295,18 +295,18 @@
           this.dispose(); // Replace the underlying native XHR with a new one that can
           // be used to issue new requests.
 
-          this.__initNativeXhr();
+          this.__P_186_8();
         } // Restore handler in case it was removed before
 
 
-        this.__nativeXhr.onreadystatechange = this.__onNativeReadyStateChangeBound;
+        this.__P_186_18.onreadystatechange = this.__P_186_1;
 
         try {
           if (qx.core.Environment.get("qx.debug.io")) {
             qx.Bootstrap.debug(qx.bom.request.Xhr, "Open native request with method: " + method + ", url: " + url + ", async: " + async);
           }
 
-          this.__nativeXhr.open(method, url, async, user, password); // BUGFIX: IE, Firefox < 3.5
+          this.__P_186_18.open(method, url, async, user, password); // BUGFIX: IE, Firefox < 3.5
           // Some browsers do not support Cross-Origin Resource Sharing (CORS)
           // for XMLHttpRequest. Instead, an exception is thrown even for async requests
           // if URL is cross-origin (as per XHR level 1). Use the proprietary XDomainRequest
@@ -322,18 +322,18 @@
             throw OpenError;
           }
 
-          if (!this.__async) {
-            this.__openError = OpenError;
+          if (!this.__P_186_16) {
+            this.__P_186_19 = OpenError;
           }
 
-          if (this.__async) {
+          if (this.__P_186_16) {
             // Try again with XDomainRequest
             // (Success case not handled on purpose)
             // - IE 9
             if (window.XDomainRequest) {
               this.readyState = 4;
-              this.__nativeXhr = new XDomainRequest();
-              this.__nativeXhr.onerror = qx.Bootstrap.bind(function () {
+              this.__P_186_18 = new XDomainRequest();
+              this.__P_186_18.onerror = qx.Bootstrap.bind(function () {
                 this._emit("readystatechange");
 
                 this._emit("error");
@@ -345,7 +345,7 @@
                 qx.Bootstrap.debug(qx.bom.request.Xhr, "Retry open native request with method: " + method + ", url: " + url + ", async: " + async);
               }
 
-              this.__nativeXhr.open(method, url, async, user, password);
+              this.__P_186_18.open(method, url, async, user, password);
 
               return;
             } // Access denied
@@ -355,7 +355,7 @@
 
 
             window.setTimeout(qx.Bootstrap.bind(function () {
-              if (this.__disposed) {
+              if (this.__P_186_20) {
                 return;
               }
 
@@ -373,13 +373,13 @@
         // representations. Force validating freshness of cached representation.
 
 
-        if (qx.core.Environment.get("engine.name") === "mshtml" && qx.core.Environment.get("browser.documentmode") < 9 && this.__nativeXhr.readyState > 0) {
-          this.__nativeXhr.setRequestHeader("If-Modified-Since", "-1");
+        if (qx.core.Environment.get("engine.name") === "mshtml" && qx.core.Environment.get("browser.documentmode") < 9 && this.__P_186_18.readyState > 0) {
+          this.__P_186_18.setRequestHeader("If-Modified-Since", "-1");
         } // BUGFIX: Firefox
         // Firefox < 4 fails to trigger onreadystatechange OPENED for sync requests
 
 
-        if (qx.core.Environment.get("engine.name") === "gecko" && parseInt(qx.core.Environment.get("engine.version"), 10) < 2 && !this.__async) {
+        if (qx.core.Environment.get("engine.name") === "gecko" && parseInt(qx.core.Environment.get("engine.version"), 10) < 2 && !this.__P_186_16) {
           // Native XHR is already set to readyState DONE. Fake readyState
           // and call onreadystatechange manually.
           this.readyState = qx.bom.request.Xhr.OPENED;
@@ -400,14 +400,14 @@
        * @return {qx.bom.request.Xhr} Self for chaining.
        */
       setRequestHeader: function setRequestHeader(key, value) {
-        this.__checkDisposed(); // Detect conditional requests
+        this.__P_186_11(); // Detect conditional requests
 
 
         if (key == "If-Match" || key == "If-Modified-Since" || key == "If-None-Match" || key == "If-Range") {
-          this.__conditional = true;
+          this.__P_186_14 = true;
         }
 
-        this.__nativeXhr.setRequestHeader(key, value);
+        this.__P_186_18.setRequestHeader(key, value);
 
         return this;
       },
@@ -420,14 +420,14 @@
        * @return {qx.bom.request.Xhr} Self for chaining.
        */
       send: function send(data) {
-        this.__checkDisposed(); // BUGFIX: IE & Firefox < 3.5
+        this.__P_186_11(); // BUGFIX: IE & Firefox < 3.5
         // For sync requests, some browsers throw error on open()
         // while it should be on send()
         //
 
 
-        if (!this.__async && this.__openError) {
-          throw this.__openError;
+        if (!this.__P_186_16 && this.__P_186_19) {
+          throw this.__P_186_19;
         } // BUGFIX: Opera
         // On network error, Opera stalls at readyState HEADERS_RECEIVED
         // This violates the spec. See here http://www.w3.org/TR/XMLHttpRequest2/#send
@@ -447,7 +447,7 @@
 
 
         if (this.timeout > 0) {
-          this.__timerId = window.setTimeout(this.__onTimeoutBound, this.timeout);
+          this.__P_186_21 = window.setTimeout(this.__P_186_6, this.timeout);
         } // BUGFIX: Firefox 2
         // "NS_ERROR_XPC_NOT_ENOUGH_ARGS" when calling send() without arguments
 
@@ -459,7 +459,7 @@
         // behaviour of all other browsers (Chrome, IE and Safari)
 
         var dataType = qx.Bootstrap.getClass(data);
-        data = data !== null && this.__dataTypeWhiteList.indexOf(dataType) === -1 ? data.toString() : data; // Some browsers may throw an error when sending of async request fails.
+        data = data !== null && this.__P_186_22.indexOf(dataType) === -1 ? data.toString() : data; // Some browsers may throw an error when sending of async request fails.
         // This violates the spec which states only sync requests should.
 
         try {
@@ -467,13 +467,13 @@
             qx.Bootstrap.debug(qx.bom.request.Xhr, "Send native request");
           }
 
-          if (this.__async) {
-            this.__nativeXhr.responseType = this.responseType;
+          if (this.__P_186_16) {
+            this.__P_186_18.responseType = this.responseType;
           }
 
-          this.__nativeXhr.send(data);
+          this.__P_186_18.send(data);
         } catch (SendError) {
-          if (!this.__async) {
+          if (!this.__P_186_16) {
             throw SendError;
           } // BUGFIX
           // Some browsers throws error when file not found via file:// protocol.
@@ -483,34 +483,34 @@
           if (this._getProtocol() === "file:") {
             this.readyState = 2;
 
-            this.__readyStateChange();
+            this.__P_186_23();
 
             var that = this;
             window.setTimeout(function () {
-              if (that.__disposed) {
+              if (that.__P_186_20) {
                 return;
               }
 
               that.readyState = 3;
 
-              that.__readyStateChange();
+              that.__P_186_23();
 
               that.readyState = 4;
 
-              that.__readyStateChange();
+              that.__P_186_23();
             });
           }
         } // BUGFIX: Firefox
         // Firefox fails to trigger onreadystatechange DONE for sync requests
 
 
-        if (qx.core.Environment.get("engine.name") === "gecko" && !this.__async) {
+        if (qx.core.Environment.get("engine.name") === "gecko" && !this.__P_186_16) {
           // Properties all set, only missing native readystatechange event
-          this.__onNativeReadyStateChange();
+          this.__P_186_0();
         } // Set send flag
 
 
-        this.__send = true;
+        this.__P_186_13 = true;
         return this;
       },
 
@@ -528,14 +528,14 @@
        * @return {qx.bom.request.Xhr} Self for chaining.
        */
       abort: function abort() {
-        this.__checkDisposed();
+        this.__P_186_11();
 
-        this.__abort = true;
+        this.__P_186_12 = true;
 
-        this.__nativeXhr.abort();
+        this.__P_186_18.abort();
 
-        if (this.__nativeXhr && this.readyState !== qx.bom.request.Xhr.DONE) {
-          this.readyState = this.__nativeXhr.readyState;
+        if (this.__P_186_18 && this.readyState !== qx.bom.request.Xhr.DONE) {
+          this.readyState = this.__P_186_18.readyState;
         }
 
         return this;
@@ -632,13 +632,13 @@
        *  Response header.
        */
       getResponseHeader: function getResponseHeader(header) {
-        this.__checkDisposed();
+        this.__P_186_11();
 
-        if (qx.core.Environment.get("browser.documentmode") === 9 && this.__nativeXhr.aborted) {
+        if (qx.core.Environment.get("browser.documentmode") === 9 && this.__P_186_18.aborted) {
           return "";
         }
 
-        return this.__nativeXhr.getResponseHeader(header);
+        return this.__P_186_18.getResponseHeader(header);
       },
 
       /**
@@ -647,13 +647,13 @@
        * @return {String} All response headers.
        */
       getAllResponseHeaders: function getAllResponseHeaders() {
-        this.__checkDisposed();
+        this.__P_186_11();
 
-        if (qx.core.Environment.get("browser.documentmode") === 9 && this.__nativeXhr.aborted) {
+        if (qx.core.Environment.get("browser.documentmode") === 9 && this.__P_186_18.aborted) {
           return "";
         }
 
-        return this.__nativeXhr.getAllResponseHeaders();
+        return this.__P_186_18.getAllResponseHeaders();
       },
 
       /**
@@ -672,10 +672,10 @@
        * @return {qx.bom.request.Xhr} Self for chaining.
        */
       overrideMimeType: function overrideMimeType(mimeType) {
-        this.__checkDisposed();
+        this.__P_186_11();
 
-        if (this.__nativeXhr.overrideMimeType) {
-          this.__nativeXhr.overrideMimeType(mimeType);
+        if (this.__P_186_18.overrideMimeType) {
+          this.__P_186_18.overrideMimeType(mimeType);
         } else {
           throw new Error("Native XHR object doesn't support overrideMimeType.");
         }
@@ -691,7 +691,7 @@
        * @return {Object} XMLHttpRequest or equivalent.
        */
       getRequest: function getRequest() {
-        return this.__nativeXhr;
+        return this.__P_186_18;
       },
 
       /*
@@ -705,20 +705,20 @@
        * @return {Boolean} <code>true</code> if the object was successfully disposed
        */
       dispose: function dispose() {
-        if (this.__disposed) {
+        if (this.__P_186_20) {
           return false;
         }
 
-        window.clearTimeout(this.__timerId); // Remove unload listener in IE. Aborting on unload is no longer required
+        window.clearTimeout(this.__P_186_21); // Remove unload listener in IE. Aborting on unload is no longer required
         // for this instance.
 
         if (window.detachEvent) {
-          window.detachEvent("onunload", this.__onUnloadBound);
+          window.detachEvent("onunload", this.__P_186_9);
         } // May fail in IE
 
 
         try {
-          this.__nativeXhr.onreadystatechange;
+          this.__P_186_18.onreadystatechange;
         } catch (PropertiesNotAccessable) {
           return false;
         } // Clear out listeners
@@ -726,16 +726,16 @@
 
         var noop = function noop() {};
 
-        this.__nativeXhr.onreadystatechange = noop;
-        this.__nativeXhr.onload = noop;
-        this.__nativeXhr.onerror = noop;
-        this.__nativeXhr.onprogress = noop; // Abort any network activity
+        this.__P_186_18.onreadystatechange = noop;
+        this.__P_186_18.onload = noop;
+        this.__P_186_18.onerror = noop;
+        this.__P_186_18.onprogress = noop; // Abort any network activity
 
         this.abort(); // Remove reference to native XHR
 
-        this.__nativeXhr = null;
+        this.__P_186_18 = null;
         this.responseText = null;
-        this.__disposed = true;
+        this.__P_186_20 = true;
         return true;
       },
 
@@ -744,7 +744,7 @@
        * @return {Boolean} <code>true</code>, if the request has been disposed.
        */
       isDisposed: function isDisposed() {
-        return !!this.__disposed;
+        return !!this.__P_186_20;
       },
 
       /*
@@ -780,7 +780,7 @@
        * @return {String} The used protocol.
        */
       _getProtocol: function _getProtocol() {
-        var url = this.__url;
+        var url = this.__P_186_15;
         var protocolRe = /^(\w+:)\/\//; // Could be http:// from file://
 
         if (url !== null && url.match) {
@@ -803,99 +803,99 @@
       /**
        * @type {Object} XMLHttpRequest or equivalent.
        */
-      __nativeXhr: null,
+      __P_186_18: null,
 
       /**
        * @type {Boolean} Whether request is async.
        */
-      __async: null,
+      __P_186_16: null,
 
       /**
        * @type {Function} Bound __onNativeReadyStateChange handler.
        */
-      __onNativeReadyStateChangeBound: null,
+      __P_186_1: null,
 
       /**
        * @type {Function} Bound __onNativeAbort handler.
        */
-      __onNativeAbortBound: null,
+      __P_186_2: null,
 
       /**
        * @type {Function} Bound __onNativeProgress handler.
        */
-      __onNativeProgressBound: null,
+      __P_186_4: null,
 
       /**
        * @type {Function} Bound __onUnload handler.
        */
-      __onUnloadBound: null,
+      __P_186_9: null,
 
       /**
        * @type {Function} Bound __onTimeout handler.
        */
-      __onTimeoutBound: null,
+      __P_186_6: null,
 
       /**
        * @type {Boolean} Send flag
        */
-      __send: null,
+      __P_186_13: null,
 
       /**
        * @type {String} Requested URL
        */
-      __url: null,
+      __P_186_15: null,
 
       /**
        * @type {Boolean} Abort flag
        */
-      __abort: null,
+      __P_186_12: null,
 
       /**
        * @type {Boolean} Timeout flag
        */
-      __timeout: null,
+      __P_186_24: null,
 
       /**
        * @type {Boolean} Whether object has been disposed.
        */
-      __disposed: null,
+      __P_186_20: null,
 
       /**
        * @type {Number} ID of timeout timer.
        */
-      __timerId: null,
+      __P_186_21: null,
 
       /**
        * @type {Error} Error thrown on open, if any.
        */
-      __openError: null,
+      __P_186_19: null,
 
       /**
        * @type {Boolean} Conditional get flag
        */
-      __conditional: null,
+      __P_186_14: null,
 
       /**
        * @type {Array} Whitelist with all allowed data types for the request payload
        */
-      __dataTypeWhiteList: null,
+      __P_186_22: null,
 
       /**
        * Init native XHR.
        */
-      __initNativeXhr: function __initNativeXhr() {
+      __P_186_8: function __P_186_8() {
         // Create native XHR or equivalent and hold reference
-        this.__nativeXhr = this._createNativeXhr(); // Track native ready state changes
+        this.__P_186_18 = this._createNativeXhr(); // Track native ready state changes
 
-        this.__nativeXhr.onreadystatechange = this.__onNativeReadyStateChangeBound; // Track native abort, when supported
+        this.__P_186_18.onreadystatechange = this.__P_186_1; // Track native abort, when supported
 
-        if (qx.Bootstrap.getClass(this.__nativeXhr.onabort) !== "Undefined") {
-          this.__nativeXhr.onabort = this.__onNativeAbortBound;
+        if (qx.Bootstrap.getClass(this.__P_186_18.onabort) !== "Undefined") {
+          this.__P_186_18.onabort = this.__P_186_2;
         } // Track native progress, when supported
 
 
-        if (qx.Bootstrap.getClass(this.__nativeXhr.onprogress) !== "Undefined") {
-          this.__nativeXhr.onprogress = this.__onNativeProgressBound;
+        if (qx.Bootstrap.getClass(this.__P_186_18.onprogress) !== "Undefined") {
+          this.__P_186_18.onprogress = this.__P_186_4;
           this.progress = {
             lengthComputable: false,
             loaded: 0,
@@ -904,9 +904,9 @@
         } // Reset flags
 
 
-        this.__disposed = this.__send = this.__abort = false; // Initialize data white list
+        this.__P_186_20 = this.__P_186_13 = this.__P_186_12 = false; // Initialize data white list
 
-        this.__dataTypeWhiteList = ["ArrayBuffer", "Blob", "File", "HTMLDocument", "String", "FormData"];
+        this.__P_186_22 = ["ArrayBuffer", "Blob", "File", "HTMLDocument", "String", "FormData"];
       },
 
       /**
@@ -915,10 +915,10 @@
        * In case the end user cancels the request by other
        * means than calling abort().
        */
-      __onNativeAbort: function __onNativeAbort() {
+      __P_186_3: function __P_186_3() {
         // When the abort that triggered this method was not a result from
         // calling abort()
-        if (!this.__abort) {
+        if (!this.__P_186_12) {
           this.abort();
         }
       },
@@ -927,7 +927,7 @@
        * Track native progress event.
        @param e {Event} The native progress event.
        */
-      __onNativeProgress: function __onNativeProgress(e) {
+      __P_186_5: function __P_186_5(e) {
         this.progress.lengthComputable = e.lengthComputable;
         this.progress.loaded = e.loaded;
         this.progress.total = e.total;
@@ -941,8 +941,8 @@
        * Calls user-defined function onreadystatechange on each
        * state change and syncs the XHR status properties.
        */
-      __onNativeReadyStateChange: function __onNativeReadyStateChange() {
-        var nxhr = this.__nativeXhr,
+      __P_186_0: function __P_186_0() {
+        var nxhr = this.__P_186_18,
             propertiesReadable = true;
 
         if (qx.core.Environment.get("qx.debug.io")) {
@@ -962,7 +962,7 @@
         // Superfluous onreadystatechange DONE when aborting OPENED
         // without send flag
 
-        if (this.readyState === qx.bom.request.Xhr.DONE && this.__abort && !this.__send) {
+        if (this.readyState === qx.bom.request.Xhr.DONE && this.__P_186_12 && !this.__P_186_13) {
           return;
         } // BUGFIX: IE
         // IE fires onreadystatechange HEADERS_RECEIVED and LOADING when sync
@@ -971,7 +971,7 @@
         // be fired.
 
 
-        if (!this.__async && (nxhr.readyState == 2 || nxhr.readyState == 3)) {
+        if (!this.__P_186_16 && (nxhr.readyState == 2 || nxhr.readyState == 3)) {
           return;
         } // Default values according to spec.
 
@@ -1001,13 +1001,13 @@
           }
 
           if (propertiesReadable) {
-            this.__normalizeStatus();
+            this.__P_186_25();
 
-            this.__normalizeResponseXML();
+            this.__P_186_26();
           }
         }
 
-        this.__readyStateChange(); // BUGFIX: IE
+        this.__P_186_23(); // BUGFIX: IE
         // Memory leak in XMLHttpRequest (on-page)
 
 
@@ -1022,18 +1022,18 @@
       /**
        * Handle readystatechange. Called internally when readyState is changed.
        */
-      __readyStateChange: function __readyStateChange() {
+      __P_186_23: function __P_186_23() {
         // Cancel timeout before invoking handlers because they may throw
         if (this.readyState === qx.bom.request.Xhr.DONE) {
           // Request determined DONE. Cancel timeout.
-          window.clearTimeout(this.__timerId);
+          window.clearTimeout(this.__P_186_21);
         } // Always fire "readystatechange"
 
 
         this._emit("readystatechange");
 
         if (this.readyState === qx.bom.request.Xhr.DONE) {
-          this.__readyStateChangeDone();
+          this.__P_186_27();
         }
       },
 
@@ -1041,9 +1041,9 @@
        * Handle readystatechange. Called internally by
        * {@link #__readyStateChange} when readyState is DONE.
        */
-      __readyStateChangeDone: function __readyStateChangeDone() {
+      __P_186_27: function __P_186_27() {
         // Fire "timeout" if timeout flag is set
-        if (this.__timeout) {
+        if (this.__P_186_24) {
           this._emit("timeout"); // BUGFIX: Opera
           // Since Opera does not fire "error" on network error, fire additional
           // "error" on timeout (may well be related to network error)
@@ -1053,12 +1053,12 @@
             this._emit("error");
           }
 
-          this.__timeout = false; // Fire either "abort", "load" or "error"
+          this.__P_186_24 = false; // Fire either "abort", "load" or "error"
         } else {
-          if (this.__abort) {
+          if (this.__P_186_12) {
             this._emit("abort");
           } else {
-            if (this.__isNetworkError()) {
+            if (this.__P_186_28()) {
               this._emit("error");
             } else {
               this._emit("load");
@@ -1075,7 +1075,7 @@
        *
        * @return {Boolean} Whether a network error occurred.
        */
-      __isNetworkError: function __isNetworkError() {
+      __P_186_28: function __P_186_28() {
         var error; // Infer the XHR internal error flag from statusText when not aborted.
         // See http://www.w3.org/TR/XMLHttpRequest2/#error-flag and
         // http://www.w3.org/TR/XMLHttpRequest2/#the-statustext-attribute
@@ -1095,30 +1095,30 @@
       /**
        * Handle faked timeout.
        */
-      __onTimeout: function __onTimeout() {
+      __P_186_7: function __P_186_7() {
         // Basically, mimick http://www.w3.org/TR/XMLHttpRequest2/#timeout-error
-        var nxhr = this.__nativeXhr;
+        var nxhr = this.__P_186_18;
         this.readyState = qx.bom.request.Xhr.DONE; // Set timeout flag
 
-        this.__timeout = true; // No longer consider request. Abort.
+        this.__P_186_24 = true; // No longer consider request. Abort.
 
         nxhr.aborted = true;
         nxhr.abort();
         this.responseText = "";
         this.responseXML = null; // Signal readystatechange
 
-        this.__readyStateChange();
+        this.__P_186_23();
       },
 
       /**
        * Normalize status property across browsers.
        */
-      __normalizeStatus: function __normalizeStatus() {
+      __P_186_25: function __P_186_25() {
         var isDone = this.readyState === qx.bom.request.Xhr.DONE; // BUGFIX: Most browsers
         // Most browsers tell status 0 when it should be 200 for local files
 
         if (this._getProtocol() === "file:" && this.status === 0 && isDone) {
-          if (!this.__isNetworkError()) {
+          if (!this.__P_186_28()) {
             this.status = 200;
           }
         } // BUGFIX: IE
@@ -1135,8 +1135,8 @@
 
         if (qx.core.Environment.get("engine.name") === "opera") {
           if (isDone && // Done
-          this.__conditional && // Conditional request
-          !this.__abort && // Not aborted
+          this.__P_186_14 && // Conditional request
+          !this.__P_186_12 && // Not aborted
           this.status === 0 // But status 0!
           ) {
               this.status = 304;
@@ -1147,7 +1147,7 @@
       /**
        * Normalize responseXML property across browsers.
        */
-      __normalizeResponseXML: function __normalizeResponseXML() {
+      __P_186_26: function __P_186_26() {
         // BUGFIX: IE
         // IE does not recognize +xml extension, resulting in empty responseXML.
         //
@@ -1165,7 +1165,7 @@
       /**
        * Handler for native unload event.
        */
-      __onUnload: function __onUnload() {
+      __P_186_10: function __P_186_10() {
         try {
           // Abort and dispose
           if (this) {
@@ -1179,7 +1179,7 @@
        * same native XHR to send more requests.
        * @return {Boolean} <code>true</code> if request object reuse is supported
        */
-      __supportsManyRequests: function __supportsManyRequests() {
+      __P_186_17: function __P_186_17() {
         var name = qx.core.Environment.get("engine.name");
         var version = qx.core.Environment.get("browser.version");
         return !(name == "mshtml" && version < 9 || name == "gecko" && version < 3.5);
@@ -1188,8 +1188,8 @@
       /**
        * Throw when already disposed.
        */
-      __checkDisposed: function __checkDisposed() {
-        if (this.__disposed) {
+      __P_186_11: function __P_186_11() {
+        if (this.__P_186_20) {
           throw new Error("Already disposed");
         }
       }
@@ -1201,4 +1201,4 @@
   qx.bom.request.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1591115584482
+//# sourceMappingURL=Xhr.js.map?dt=1592778975796

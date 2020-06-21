@@ -43,12 +43,12 @@
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__sheet = qx.bom.Stylesheet.createElement();
-      this.__rules = [];
+      this.__P_281_0 = qx.bom.Stylesheet.createElement();
+      this.__P_281_1 = [];
     },
     members: {
-      __rules: null,
-      __sheet: null,
+      __P_281_1: null,
+      __P_281_0: null,
 
       /**
        * Adds a rule to the global stylesheet.
@@ -60,9 +60,9 @@
           return;
         }
 
-        qx.bom.Stylesheet.addRule(this.__sheet, selector, css);
+        qx.bom.Stylesheet.addRule(this.__P_281_0, selector, css);
 
-        this.__rules.push(selector);
+        this.__P_281_1.push(selector);
       },
 
       /**
@@ -71,7 +71,7 @@
        * @return {Boolean} <code>true</code> if the rule exists
        */
       hasRule: function hasRule(selector) {
-        return this.__rules.indexOf(selector) != -1;
+        return this.__P_281_1.indexOf(selector) != -1;
       },
 
       /**
@@ -79,12 +79,12 @@
        * @param selector {String} The selector to identify the rule.
        */
       removeRule: function removeRule(selector) {
-        delete this.__rules[this.__rules.indexOf(selector)];
-        qx.bom.Stylesheet.removeRule(this.__sheet, selector);
+        delete this.__P_281_1[this.__P_281_1.indexOf(selector)];
+        qx.bom.Stylesheet.removeRule(this.__P_281_0, selector);
       }
     }
   });
   qx.ui.style.Stylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stylesheet.js.map?dt=1591115592394
+//# sourceMappingURL=Stylesheet.js.map?dt=1592778983591

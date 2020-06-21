@@ -48,10 +48,10 @@
     ******************************************************
     */
     construct: function construct() {
-      this.__states = {};
-      this.__stateListeners = {};
-      this.__addressList = {};
-      this.__widgetData = {};
+      this.__P_485_0 = {};
+      this.__P_485_1 = {};
+      this.__P_485_2 = {};
+      this.__P_485_3 = {};
     },
 
     /*
@@ -76,10 +76,13 @@
     ******************************************************
     */
     members: {
-      __states: null,
-      __stateListeners: null,
-      __addressList: null,
-      __widgetData: null,
+      __P_485_0: null,
+      __P_485_1: null,
+      __P_485_2: null,
+      __P_485_3: null,
+      getStateListener: function getStateListener() {
+        return this.__P_485_1;
+      },
 
       /**
        * Updates the state of a single address
@@ -88,12 +91,12 @@
        * @param state {var} new state
        */
       onUpdate: function onUpdate(address, state) {
-        var initial = !this.__states.hasOwnProperty(address);
-        var changed = initial || this.__states[address] !== state;
-        this.__states[address] = state; // notify listeners
+        var initial = !this.__P_485_0.hasOwnProperty(address);
+        var changed = initial || this.__P_485_0[address] !== state;
+        this.__P_485_0[address] = state; // notify listeners
 
-        if (this.__stateListeners[address]) {
-          this.__stateListeners[address].forEach(function (listener) {
+        if (this.__P_485_1[address]) {
+          this.__P_485_1[address].forEach(function (listener) {
             listener[0].call(listener[1], address, state, initial, changed);
           }, this);
         }
@@ -108,7 +111,7 @@
           return;
         }
 
-        var addressList = this.__addressList;
+        var addressList = this.__P_485_2;
         Object.getOwnPropertyNames(data).forEach(function (address) {
           if (addressList.hasOwnProperty(address)) {
             this.onUpdate(address, data[address]);
@@ -123,7 +126,7 @@
        * @return {var}
        */
       getState: function getState(address) {
-        return this.__states[address];
+        return this.__P_485_0[address];
       },
 
       /**
@@ -134,11 +137,11 @@
        * @param context {Object} context of the callback
        */
       addUpdateListener: function addUpdateListener(address, callback, context) {
-        if (!this.__stateListeners[address]) {
-          this.__stateListeners[address] = [];
+        if (!this.__P_485_1[address]) {
+          this.__P_485_1[address] = [];
         }
 
-        this.__stateListeners[address].push([callback, context]);
+        this.__P_485_1[address].push([callback, context]);
       },
 
       /**
@@ -149,10 +152,10 @@
        * @param context {Object} context of the callback
        */
       removeUpdateListener: function removeUpdateListener(address, callback, context) {
-        if (this.__stateListeners[address]) {
+        if (this.__P_485_1[address]) {
           var removeIndex = -1;
 
-          this.__stateListeners[address].some(function (entry, i) {
+          this.__P_485_1[address].some(function (entry, i) {
             if (entry[0] === callback && entry[1] === context) {
               removeIndex = i;
               return true;
@@ -160,10 +163,10 @@
           });
 
           if (removeIndex >= 0) {
-            this.__stateListeners[address].splice(removeIndex, 1);
+            this.__P_485_1[address].splice(removeIndex, 1);
 
-            if (this.__stateListeners[address].length === 0) {
-              delete this.__stateListeners[address];
+            if (this.__P_485_1[address].length === 0) {
+              delete this.__P_485_1[address];
             }
           }
         }
@@ -175,7 +178,7 @@
        * @param id {String} path to the widget
        */
       addAddress: function addAddress(address, id) {
-        var list = this.__addressList;
+        var list = this.__P_485_2;
 
         if (address in list) {
           list[address].push(id);
@@ -189,7 +192,7 @@
        * @return {Map} Address -> path mapping
        */
       getAddresses: function getAddresses() {
-        return Object.keys(this.__addressList);
+        return Object.keys(this.__P_485_2);
       },
 
       /**
@@ -197,7 +200,7 @@
        * @param value {Map} Address -> path mapping
        */
       setAddressList: function setAddressList(value) {
-        this.__addressList = value;
+        this.__P_485_2 = value;
       },
 
       /**
@@ -205,7 +208,7 @@
        * @return {Map} Address -> path mapping
        */
       getAddressList: function getAddressList() {
-        return this.__addressList;
+        return this.__P_485_2;
       },
 
       /**
@@ -213,7 +216,7 @@
        * @internal
        */
       resetAddressList: function resetAddressList() {
-        this.__addressList = {};
+        this.__P_485_2 = {};
       },
 
       /**
@@ -222,7 +225,7 @@
        * @return {Map} widget data map
        */
       getWidgetData: function getWidgetData(path) {
-        return this.__widgetData[path] || (this.__widgetData[path] = {});
+        return this.__P_485_3[path] || (this.__P_485_3[path] = {});
       },
 
       /**
@@ -261,7 +264,7 @@
        * @param value {Map} path -> widget data map
        */
       setWidgetDataModel: function setWidgetDataModel(value) {
-        this.__widgetData = value;
+        this.__P_485_3 = value;
       },
 
       /**
@@ -269,7 +272,7 @@
        * @return {Map} path -> widget data map
        */
       getWidgetDataModel: function getWidgetDataModel() {
-        return this.__widgetData;
+        return this.__P_485_3;
       },
 
       /**
@@ -277,7 +280,7 @@
        * @internal
        */
       resetWidgetDataModel: function resetWidgetDataModel() {
-        this.__widgetData = {};
+        this.__P_485_3 = {};
       },
 
       /**
@@ -285,14 +288,14 @@
        * @internal
        */
       clear: function clear() {
-        this.__addressList = {};
-        this.__widgetData = {};
-        this.__states = {};
-        this.__stateListeners = {};
+        this.__P_485_2 = {};
+        this.__P_485_3 = {};
+        this.__P_485_0 = {};
+        this.__P_485_1 = {};
       }
     }
   });
   cv.data.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1591114996650
+//# sourceMappingURL=Model.js.map?dt=1592777111883

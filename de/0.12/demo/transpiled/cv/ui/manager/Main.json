@@ -18,7 +18,7 @@
         "column": 0
       },
       "end": {
-        "line": 875,
+        "line": 913,
         "column": 3
       }
     },
@@ -230,7 +230,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -238,7 +246,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -463,7 +479,7 @@
           "column": 4
         },
         "end": {
-          "line": 235,
+          "line": 239,
           "column": 5
         }
       },
@@ -495,11 +511,11 @@
     "_handleFileEvent": {
       "location": {
         "start": {
-          "line": 237,
+          "line": 241,
           "column": 4
         },
         "end": {
-          "line": 253,
+          "line": 257,
           "column": 5
         }
       },
@@ -513,11 +529,11 @@
     "__findConfigFile": {
       "location": {
         "start": {
-          "line": 255,
+          "line": 259,
           "column": 4
         },
         "end": {
-          "line": 276,
+          "line": 280,
           "column": 5
         }
       },
@@ -527,11 +543,11 @@
     "_onManagerEvent": {
       "location": {
         "start": {
-          "line": 278,
+          "line": 282,
           "column": 4
         },
         "end": {
-          "line": 301,
+          "line": 305,
           "column": 5
         }
       },
@@ -541,11 +557,11 @@
     "_onChangeTreeSelection": {
       "location": {
         "start": {
-          "line": 307,
+          "line": 311,
           "column": 4
         },
         "end": {
-          "line": 324,
+          "line": 328,
           "column": 5
         }
       },
@@ -569,11 +585,11 @@
     "__openSelectedFile": {
       "location": {
         "start": {
-          "line": 326,
+          "line": 330,
           "column": 4
         },
         "end": {
-          "line": 335,
+          "line": 339,
           "column": 5
         }
       },
@@ -583,11 +599,11 @@
     "_applyCurrentFolder": {
       "location": {
         "start": {
-          "line": 337,
+          "line": 341,
           "column": 4
         },
         "end": {
-          "line": 346,
+          "line": 350,
           "column": 5
         }
       },
@@ -600,11 +616,11 @@
     "_applyCurrentSelection": {
       "location": {
         "start": {
-          "line": 348,
+          "line": 352,
           "column": 4
         },
         "end": {
-          "line": 362,
+          "line": 366,
           "column": 5
         }
       },
@@ -617,11 +633,11 @@
     "_onChangeFileSelection": {
       "location": {
         "start": {
-          "line": 364,
+          "line": 368,
           "column": 4
         },
         "end": {
-          "line": 390,
+          "line": 399,
           "column": 5
         }
       },
@@ -631,11 +647,11 @@
     "openFile": {
       "location": {
         "start": {
-          "line": 399,
+          "line": 408,
           "column": 4
         },
         "end": {
-          "line": 441,
+          "line": 465,
           "column": 5
         }
       },
@@ -683,11 +699,11 @@
     "closeFile": {
       "location": {
         "start": {
-          "line": 443,
+          "line": 467,
           "column": 4
         },
         "end": {
-          "line": 510,
+          "line": 548,
           "column": 5
         }
       },
@@ -697,11 +713,11 @@
     "closeCurrentFile": {
       "location": {
         "start": {
-          "line": 512,
+          "line": 550,
           "column": 4
         },
         "end": {
-          "line": 517,
+          "line": 555,
           "column": 5
         }
       },
@@ -711,11 +727,11 @@
     "_onCloseFile": {
       "location": {
         "start": {
-          "line": 519,
+          "line": 557,
           "column": 4
         },
         "end": {
-          "line": 521,
+          "line": 559,
           "column": 5
         }
       },
@@ -725,11 +741,11 @@
     "__getRoot": {
       "location": {
         "start": {
-          "line": 523,
+          "line": 561,
           "column": 4
         },
         "end": {
-          "line": 533,
+          "line": 571,
           "column": 5
         }
       },
@@ -739,11 +755,11 @@
     "__initCommands": {
       "location": {
         "start": {
-          "line": 535,
+          "line": 573,
           "column": 4
         },
         "end": {
-          "line": 561,
+          "line": 599,
           "column": 5
         }
       },
@@ -753,11 +769,11 @@
     "_onDelete": {
       "location": {
         "start": {
-          "line": 563,
+          "line": 601,
           "column": 4
         },
         "end": {
-          "line": 568,
+          "line": 606,
           "column": 5
         }
       },
@@ -767,11 +783,11 @@
     "_onChangeStackSelection": {
       "location": {
         "start": {
-          "line": 570,
+          "line": 608,
           "column": 4
         },
         "end": {
-          "line": 584,
+          "line": 622,
           "column": 5
         }
       },
@@ -781,11 +797,11 @@
     "__getFileNamePrompt": {
       "location": {
         "start": {
-          "line": 586,
+          "line": 624,
           "column": 4
         },
         "end": {
-          "line": 597,
+          "line": 635,
           "column": 5
         }
       },
@@ -795,11 +811,11 @@
     "_onCreate": {
       "location": {
         "start": {
-          "line": 599,
+          "line": 637,
           "column": 4
         },
         "end": {
-          "line": 687,
+          "line": 725,
           "column": 5
         }
       },
@@ -809,11 +825,11 @@
     "__findDroppable": {
       "location": {
         "start": {
-          "line": 697,
+          "line": 735,
           "column": 4
         },
         "end": {
-          "line": 707,
+          "line": 745,
           "column": 5
         }
       },
@@ -848,11 +864,11 @@
     "_draw": {
       "location": {
         "start": {
-          "line": 710,
+          "line": 748,
           "column": 4
         },
         "end": {
-          "line": 843,
+          "line": 881,
           "column": 5
         }
       },
@@ -1070,7 +1086,29 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.data.MBinding"
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings from the object.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      }
     },
     "getBindings": {
       "type": "function",
@@ -1887,7 +1925,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply owner</p>"
+          }
+        ]
+      }
     },
     "_applyQxObjectId": {
       "type": "function",
@@ -1896,7 +1942,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply objectId</p>"
+          }
+        ]
+      }
     },
     "__onOwnedObjectIdChange": {
       "type": "function",
@@ -1905,7 +1959,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a child's objectId changes</p>"
+          }
+        ]
+      }
     },
     "_cascadeQxObjectIdChanges": {
       "type": "function",
@@ -1914,7 +1976,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reflect changes to IDs or owners</p>"
+          }
+        ]
+      }
     },
     "getQxObject": {
       "type": "function",
@@ -4484,11 +4554,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 851,
+        "line": 889,
         "column": 12
       },
       "end": {
-        "line": 874,
+        "line": 912,
         "column": 3
       }
     },

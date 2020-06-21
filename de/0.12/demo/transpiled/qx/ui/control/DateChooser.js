@@ -227,9 +227,9 @@
     *****************************************************************************
     */
     members: {
-      __weekdayLabelArr: null,
-      __dayLabelArr: null,
-      __weekLabelArr: null,
+      __P_330_0: null,
+      __P_330_1: null,
+      __P_330_2: null,
       // overridden
 
       /**
@@ -366,7 +366,7 @@
               column: 0,
               row: 0
             });
-            this.__weekdayLabelArr = [];
+            this.__P_330_0 = [];
 
             for (var i = 0; i < 7; i++) {
               label = this.getChildControl("weekday#" + i);
@@ -375,12 +375,12 @@
                 row: 0
               });
 
-              this.__weekdayLabelArr.push(label);
+              this.__P_330_0.push(label);
             } // Add the days
 
 
-            this.__dayLabelArr = [];
-            this.__weekLabelArr = [];
+            this.__P_330_1 = [];
+            this.__P_330_2 = [];
 
             for (var y = 0; y < 6; y++) {
               // Add the week label
@@ -390,7 +390,7 @@
                 row: y + 1
               });
 
-              this.__weekLabelArr.push(label); // Add the day labels
+              this.__P_330_2.push(label); // Add the day labels
 
 
               for (var x = 0; x < 7; x++) {
@@ -400,7 +400,7 @@
                   row: y + 1
                 });
 
-                this.__dayLabelArr.push(label);
+                this.__P_330_1.push(label);
               }
             }
 
@@ -421,7 +421,7 @@
           var newDay = value == null ? -1 : value.getDate();
 
           for (var i = 0; i < 42; i++) {
-            var dayLabel = this.__dayLabelArr[i];
+            var dayLabel = this.__P_330_1[i];
 
             if (dayLabel.hasState("otherMonth")) {
               if (dayLabel.hasState("selected")) {
@@ -669,7 +669,7 @@
 
         for (var i = 0; i < 7; i++) {
           var day = (i + startOfWeek) % 7;
-          var dayLabel = this.__weekdayLabelArr[i];
+          var dayLabel = this.__P_330_0[i];
           helpDate.setDate(firstSundayInMonth + day);
           dayLabel.setValue(weekDayFormat.format(helpDate));
 
@@ -687,10 +687,10 @@
         var weekFormat = new qx.util.format.DateFormat(DateChooser.WEEK_FORMAT);
 
         for (var week = 0; week < 6; week++) {
-          this.__weekLabelArr[week].setValue(weekFormat.format(helpDate));
+          this.__P_330_2[week].setValue(weekFormat.format(helpDate));
 
           for (var i = 0; i < 7; i++) {
-            var dayLabel = this.__dayLabelArr[week * 7 + i];
+            var dayLabel = this.__P_330_1[week * 7 + i];
             var year = helpDate.getFullYear();
             var month = helpDate.getMonth();
             var dayOfMonth = helpDate.getDate();
@@ -738,10 +738,10 @@
       {
         qx.locale.Manager.getInstance().removeListener("changeLocale", this._updateDatePane, this);
       }
-      this.__weekdayLabelArr = this.__dayLabelArr = this.__weekLabelArr = null;
+      this.__P_330_0 = this.__P_330_1 = this.__P_330_2 = null;
     }
   });
   qx.ui.control.DateChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateChooser.js.map?dt=1591115596179
+//# sourceMappingURL=DateChooser.js.map?dt=1592778987360

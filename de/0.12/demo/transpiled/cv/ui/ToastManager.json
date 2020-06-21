@@ -90,7 +90,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "event": "_applyMaxEntries",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximum allowed messages</p>"
+          }
+        ]
+      }
     },
     "counter": {
       "type": "property",
@@ -98,7 +107,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "event": "changedCounter",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Current amount of messages</p>"
+          }
+        ]
+      }
     },
     "globalSeverity": {
       "type": "property",
@@ -106,7 +124,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "event": "changedGlobalSeverity",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Highest severity of the messages</p>"
+          }
+        ]
+      }
     },
     "rootElementId": {
       "type": "property",
@@ -114,7 +141,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>ID of the root element of this message handler (HTML attribute 'id' value)</p>"
+          }
+        ]
+      }
     },
     "messageElementId": {
       "type": "property",
@@ -122,7 +157,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pattern id the message elements IDs (suffix without is,\n e.g. messages get mes<em>1, mes</em>2, … mes_ is the messageElementId)</p>"
+          }
+        ]
+      }
     },
     "delegate": {
       "type": "property",
@@ -138,7 +181,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -146,7 +197,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -259,6 +318,15 @@
         ]
       }
     },
+    "getIdCounter": {
+      "type": "function",
+      "name": "getIdCounter",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.MHandleMessage"
+    },
     "getSeverities": {
       "type": "function",
       "name": "getSeverities",
@@ -293,7 +361,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getMessageIdFromEvent": {
       "type": "function",
@@ -1023,7 +1099,29 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.data.MBinding"
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings from the object.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      }
     },
     "getBindings": {
       "type": "function",
@@ -1840,7 +1938,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply owner</p>"
+          }
+        ]
+      }
     },
     "_applyQxObjectId": {
       "type": "function",
@@ -1849,7 +1955,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply objectId</p>"
+          }
+        ]
+      }
     },
     "__onOwnedObjectIdChange": {
       "type": "function",
@@ -1858,7 +1972,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a child's objectId changes</p>"
+          }
+        ]
+      }
     },
     "_cascadeQxObjectIdChanges": {
       "type": "function",
@@ -1867,7 +1989,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reflect changes to IDs or owners</p>"
+          }
+        ]
+      }
     },
     "getQxObject": {
       "type": "function",

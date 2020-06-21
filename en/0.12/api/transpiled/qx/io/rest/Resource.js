@@ -163,14 +163,14 @@
      */
     construct: function construct(description) {
       qx.core.Object.constructor.call(this);
-      this.__longPollHandlers = {};
-      this.__pollTimers = {};
-      this.__routes = {};
+      this.__P_221_0 = {};
+      this.__P_221_1 = {};
+      this.__P_221_2 = {};
       this._resource = this._tailorResource(this._getResource());
 
       try {
         if (typeof description !== "undefined") {
-          this.__mapFromDescription(description);
+          this.__P_221_3(description);
         }
       } catch (e) {
         this.dispose();
@@ -242,9 +242,9 @@
     },
     members: {
       _resource: null,
-      __longPollHandlers: null,
-      __pollTimers: null,
-      __routes: null,
+      __P_221_0: null,
+      __P_221_1: null,
+      __P_221_2: null,
 
       /**
        * Get resource.
@@ -356,7 +356,7 @@
        */
       map: function map(action, method, url, check) {
         // add dynamic methods also on ourself to allow 'invoke()' delegation
-        this.__addAction(action, method, url, check);
+        this.__P_221_4(action, method, url, check);
 
         this._resource.map(action, method, url, check);
       },
@@ -374,8 +374,8 @@
        *   the URL parameter and the value a regular expression (to match string) or
        *   <code>qx.io.rest.Resource.REQUIRED</code> (to verify existence).
        */
-      __addAction: function __addAction(action, method, url, check) {
-        this.__routes[action] = [method, url, check]; // Undefine generic getter when action is named "get"
+      __P_221_4: function __P_221_4(action, method, url, check) {
+        this.__P_221_2[action] = [method, url, check]; // Undefine generic getter when action is named "get"
 
         if (action == "get") {
           this[action] = undefined;
@@ -387,9 +387,9 @@
           throw new Error("Method with name of action (" + action + ") already exists");
         }
 
-        this.__declareEvent(action + "Success");
+        this.__P_221_5(action + "Success");
 
-        this.__declareEvent(action + "Error");
+        this.__P_221_5(action + "Error");
 
         this[action] = qx.lang.Function.bind(function () {
           Array.prototype.unshift.call(arguments, action);
@@ -418,7 +418,7 @@
       invoke: function invoke(action, params, data) {
         var params = params == null ? {} : params; // Cache parameters
 
-        this.__routes[action].params = params;
+        this.__P_221_2[action].params = params;
         return this._resource.invoke(action, params, data);
       },
 
@@ -496,13 +496,13 @@
        */
       poll: function poll(action, interval, params, immediately) {
         // Dispose timer previously created for action
-        if (this.__pollTimers[action]) {
-          this.__pollTimers[action].dispose();
+        if (this.__P_221_1[action]) {
+          this.__P_221_1[action].dispose();
         } // Fallback to previous params
 
 
         if (typeof params == "undefined") {
-          params = this.__routes[action].params;
+          params = this.__P_221_2[action].params;
         } // Invoke immediately
 
 
@@ -524,7 +524,7 @@
           }
         };
 
-        var timer = this.__pollTimers[action] = new qx.event.Timer(interval);
+        var timer = this.__P_221_1[action] = new qx.event.Timer(interval);
         timer.addListener("interval", intervalListener, this._resource);
         timer.start();
         return timer;
@@ -578,7 +578,7 @@
           return false;
         }
 
-        var handlerId = this.__longPollHandlers[action] = this.addListener(action + "Success", function longPollHandler() {
+        var handlerId = this.__P_221_0[action] = this.addListener(action + "Success", function longPollHandler() {
           if (res.isDisposed()) {
             return;
           }
@@ -629,7 +629,7 @@
        *
        * @param description {Map} Map that defines the routes.
        */
-      __mapFromDescription: function __mapFromDescription(description) {
+      __P_221_3: function __P_221_3(description) {
         Object.keys(description).forEach(function (action) {
           var route = description[action],
               method = route.method,
@@ -644,7 +644,7 @@
        *
        * @param type {String} Type of event.
        */
-      __declareEvent: function __declareEvent(type) {
+      __P_221_5: function __P_221_5(type) {
         if (!this.constructor.$$events) {
           this.constructor.$$events = {};
         }
@@ -663,27 +663,27 @@
     destruct: function destruct() {
       var action;
 
-      if (this.__pollTimers) {
-        for (action in this.__pollTimers) {
-          var timer = this.__pollTimers[action];
+      if (this.__P_221_1) {
+        for (action in this.__P_221_1) {
+          var timer = this.__P_221_1[action];
           timer.stop();
           timer.dispose();
         }
       }
 
-      if (this.__longPollHandlers) {
-        for (action in this.__longPollHandlers) {
-          var id = this.__longPollHandlers[action];
+      if (this.__P_221_0) {
+        for (action in this.__P_221_0) {
+          var id = this.__P_221_0[action];
           this.removeListenerById(id);
         }
       }
 
       this._resource.destruct();
 
-      this._resource = this.__routes = this.__pollTimers = this.__longPollHandlers = null;
+      this._resource = this.__P_221_2 = this.__P_221_1 = this.__P_221_0 = null;
     }
   });
   qx.io.rest.Resource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resource.js.map?dt=1591114973847
+//# sourceMappingURL=Resource.js.map?dt=1592777089068

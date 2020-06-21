@@ -112,23 +112,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "callback {Function} Callback for the preload.",
-            "paramName": "callback",
-            "description": " Callback for the preload.",
-            "type": "Function"
-          },
-          {
-            "name": "@param",
-            "body": "self {Object?} The context of the callback.",
-            "paramName": "self",
-            "description": " The context of the callback.",
-            "optional": true,
-            "type": "Object"
-          }
         ]
       },
       "type": "function",

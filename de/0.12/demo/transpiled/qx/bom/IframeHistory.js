@@ -75,25 +75,25 @@
     construct: function construct() {
       qx.bom.History.constructor.call(this);
 
-      this.__initTimer();
+      this.__P_270_0();
     },
     members: {
-      __iframe: null,
-      __iframeReady: false,
-      __writeStateTimner: null,
-      __dontApplyState: null,
-      __locationState: null,
+      __P_270_1: null,
+      __P_270_2: false,
+      __P_270_3: null,
+      __P_270_4: null,
+      __P_270_5: null,
       // overridden
       _setInitialState: function _setInitialState() {
         qx.bom.IframeHistory.prototype._setInitialState.base.call(this);
 
-        this.__locationState = this._getHash();
+        this.__P_270_5 = this._getHash();
       },
       //overridden
       _setHash: function _setHash(value) {
         qx.bom.IframeHistory.prototype._setHash.base.call(this, value);
 
-        this.__locationState = this._encode(value);
+        this.__P_270_5 = this._encode(value);
       },
       //overridden
       addToHistory: function addToHistory(state, newTitle) {
@@ -129,13 +129,13 @@
        * @param state {String} State loaded from history
        */
       _setState: function _setState(state) {
-        this.__dontApplyState = true;
+        this.__P_270_4 = true;
         this.setState(state);
-        this.__dontApplyState = false;
+        this.__P_270_4 = false;
       },
       //overridden
       _applyState: function _applyState(value, old) {
-        if (this.__dontApplyState) {
+        if (this.__P_270_4) {
           return;
         }
 
@@ -148,11 +148,11 @@
        * @return {String} current state of the browser history
        */
       _readState: function _readState() {
-        if (!this.__iframeReady) {
+        if (!this.__P_270_2) {
           return this._decode(this._getHash());
         }
 
-        var doc = this.__iframe.contentWindow.document;
+        var doc = this.__P_270_1.contentWindow.document;
         var elem = doc.getElementById("state");
         return elem ? this._decode(elem.innerText) : "";
       },
@@ -163,16 +163,16 @@
        * @param state {String} state to save
        */
       _writeState: function _writeState(state) {
-        if (!this.__iframeReady) {
-          this.__clearWriteSateTimer();
+        if (!this.__P_270_2) {
+          this.__P_270_6();
 
-          this.__writeStateTimner = qx.event.Timer.once(function () {
+          this.__P_270_3 = qx.event.Timer.once(function () {
             this._writeState(state);
           }, this, 50);
           return;
         }
 
-        this.__clearWriteSateTimer();
+        this.__P_270_6();
 
         var state = this._encode(state); // IE8 is sometimes recognizing a hash change as history entry. Cause of sporadic surface of this behavior, we have to prevent setting hash.
 
@@ -181,7 +181,7 @@
           this._setHash(state);
         }
 
-        var doc = this.__iframe.contentWindow.document;
+        var doc = this.__P_270_1.contentWindow.document;
         doc.open();
         doc.write('<html><body><div id="state">' + state + '</div></body></html>');
         doc.close();
@@ -190,20 +190,20 @@
       /**
        * Helper function to clear the write state timer.
        */
-      __clearWriteSateTimer: function __clearWriteSateTimer() {
-        if (this.__writeStateTimner) {
-          this.__writeStateTimner.stop();
+      __P_270_6: function __P_270_6() {
+        if (this.__P_270_3) {
+          this.__P_270_3.stop();
 
-          this.__writeStateTimner.dispose();
+          this.__P_270_3.dispose();
         }
       },
 
       /**
        * Initialize the polling timer
        */
-      __initTimer: function __initTimer() {
-        this.__initIframe(function () {
-          qx.event.Idle.getInstance().addListener("interval", this.__onHashChange, this);
+      __P_270_0: function __P_270_0() {
+        this.__P_270_7(function () {
+          qx.event.Idle.getInstance().addListener("interval", this.__P_270_8, this);
         });
       },
 
@@ -212,15 +212,15 @@
        *
        * @param e {qx.event.type.Event} event instance
        */
-      __onHashChange: function __onHashChange(e) {
+      __P_270_8: function __P_270_8(e) {
         // the location only changes if the user manually changes the fragment
         // identifier.
         var currentState = null;
 
         var locationState = this._getHash();
 
-        if (!this.__isCurrentLocationState(locationState)) {
-          currentState = this.__storeLocationState(locationState);
+        if (!this.__P_270_9(locationState)) {
+          currentState = this.__P_270_10(locationState);
         } else {
           currentState = this._readState();
         }
@@ -236,7 +236,7 @@
        * @param locationState {String} location state
        * @return {String}
        */
-      __storeLocationState: function __storeLocationState(locationState) {
+      __P_270_10: function __P_270_10(locationState) {
         locationState = this._decode(locationState);
 
         this._writeState(locationState);
@@ -250,8 +250,8 @@
        * @param locationState {String} location state to check
        * @return {Boolean}
        */
-      __isCurrentLocationState: function __isCurrentLocationState(locationState) {
-        return qx.lang.Type.isString(locationState) && locationState == this.__locationState;
+      __P_270_9: function __P_270_9(locationState) {
+        return qx.lang.Type.isString(locationState) && locationState == this.__P_270_5;
       },
 
       /**
@@ -259,11 +259,11 @@
        *
        * @param handler {Function?null} if given this callback is executed after iframe is ready to use
        */
-      __initIframe: function __initIframe(handler) {
-        this.__iframe = this.__createIframe();
-        document.body.appendChild(this.__iframe);
+      __P_270_7: function __P_270_7(handler) {
+        this.__P_270_1 = this.__P_270_11();
+        document.body.appendChild(this.__P_270_1);
 
-        this.__waitForIFrame(function () {
+        this.__P_270_12(function () {
           this._writeState(this.getState());
 
           if (handler) {
@@ -279,7 +279,7 @@
        *
        * @return {qx.bom.Iframe}
        */
-      __createIframe: function __createIframe() {
+      __P_270_11: function __P_270_11() {
         var iframe = qx.bom.Iframe.create({
           src: qx.util.ResourceManager.getInstance().toUri("qx/static/blank.html")
         });
@@ -298,39 +298,39 @@
        * @param context {Object?window} The context for the callback.
        * @param retry {Integer} number of tries to initialize the iframe
        */
-      __waitForIFrame: function __waitForIFrame(callback, context, retry) {
+      __P_270_12: function __P_270_12(callback, context, retry) {
         if (typeof retry === "undefined") {
           retry = 0;
         }
 
-        if (!this.__iframe.contentWindow || !this.__iframe.contentWindow.document) {
+        if (!this.__P_270_1.contentWindow || !this.__P_270_1.contentWindow.document) {
           if (retry > 20) {
             throw new Error("can't initialize iframe");
           }
 
           qx.event.Timer.once(function () {
-            this.__waitForIFrame(callback, context, ++retry);
+            this.__P_270_12(callback, context, ++retry);
           }, this, 10);
           return;
         }
 
-        this.__iframeReady = true;
+        this.__P_270_2 = true;
         callback.call(context || window);
       }
     },
     destruct: function destruct() {
-      this.__iframe = null;
+      this.__P_270_1 = null;
 
-      if (this.__writeStateTimner) {
-        this.__writeStateTimner.dispose();
+      if (this.__P_270_3) {
+        this.__P_270_3.dispose();
 
-        this.__writeStateTimner = null;
+        this.__P_270_3 = null;
       }
 
-      qx.event.Idle.getInstance().removeListener("interval", this.__onHashChange, this);
+      qx.event.Idle.getInstance().removeListener("interval", this.__P_270_8, this);
     }
   });
   qx.bom.IframeHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IframeHistory.js.map?dt=1591115591956
+//# sourceMappingURL=IframeHistory.js.map?dt=1592778983158

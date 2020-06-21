@@ -22,7 +22,7 @@
     */
     construct: function construct(tagName) {
       qx.html.Element.constructor.call(this);
-      this.__svgElement = document.createElementNS("http://www.w3.org/2000/svg", tagName);
+      this.__P_141_0 = document.createElementNS("http://www.w3.org/2000/svg", tagName);
     },
 
     /*
@@ -32,18 +32,18 @@
     */
     members: {
       _createDomElement: function _createDomElement() {
-        return this.__svgElement;
+        return this.__P_141_0;
       },
       getDomElement: function getDomElement() {
-        return this.__svgElement;
+        return this.__P_141_0;
       }
     },
     destruct: function destruct() {
-      this.__svgElement.$$widget = null;
-      this.__svgElement = null;
+      this.__P_141_0.$$widget = null;
+      this.__P_141_0 = null;
     }
   });
   cv.svg.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1591115581086
+//# sourceMappingURL=Element.js.map?dt=1592778972426

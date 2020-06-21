@@ -66,13 +66,13 @@
     construct: function construct(validator) {
       qx.core.Object.constructor.call(this); // save the validator function
 
-      this.__validatorFunction = validator;
+      this.__P_319_0 = validator;
     },
     members: {
-      __validatorFunction: null,
-      __item: null,
-      __manager: null,
-      __usedForForm: null,
+      __P_319_0: null,
+      __P_319_1: null,
+      __P_319_2: null,
+      __P_319_3: null,
 
       /**
        * The validate function should only be called by
@@ -92,12 +92,12 @@
        */
       validate: function validate(item, value, manager, context) {
         // mark as item validator
-        this.__usedForForm = false; // store the item and the manager
+        this.__P_319_3 = false; // store the item and the manager
 
-        this.__item = item;
-        this.__manager = manager; // invoke the user set validator function
+        this.__P_319_1 = item;
+        this.__P_319_2 = manager; // invoke the user set validator function
 
-        this.__validatorFunction.call(context || this, this, value);
+        this.__P_319_0.call(context || this, this, value);
       },
 
       /**
@@ -116,10 +116,10 @@
        * @internal
        */
       validateForm: function validateForm(items, manager, context) {
-        this.__usedForForm = true;
-        this.__manager = manager;
+        this.__P_319_3 = true;
+        this.__P_319_2 = manager;
 
-        this.__validatorFunction.call(context, items, this);
+        this.__P_319_0.call(context, items, this);
       },
 
       /**
@@ -131,20 +131,20 @@
        */
       setValid: function setValid(valid, message) {
         // valid processing
-        if (this.__usedForForm) {
+        if (this.__P_319_3) {
           // message processing
           if (message !== undefined) {
-            this.__manager.setInvalidMessage(message);
+            this.__P_319_2.setInvalidMessage(message);
           }
 
-          this.__manager.setFormValid(valid);
+          this.__P_319_2.setFormValid(valid);
         } else {
           // message processing
           if (message !== undefined) {
-            this.__item.setInvalidMessage(message);
+            this.__P_319_1.setInvalidMessage(message);
           }
 
-          this.__manager.setItemValid(this.__item, valid);
+          this.__P_319_2.setItemValid(this.__P_319_1, valid);
         }
       }
     },
@@ -155,10 +155,10 @@
      *****************************************************************************
      */
     destruct: function destruct() {
-      this.__manager = this.__item = null;
+      this.__P_319_2 = this.__P_319_1 = null;
     }
   });
   qx.ui.form.validation.AsyncValidator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AsyncValidator.js.map?dt=1591114983130
+//# sourceMappingURL=AsyncValidator.js.map?dt=1592777098242

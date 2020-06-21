@@ -56,7 +56,7 @@
     construct: function construct(url, styles, attributes) {
       qx.html.Element.constructor.call(this, "iframe", styles, attributes);
       this.setSource(url);
-      this.addListener("navigate", this.__onNavigate, this); // add yourself to the element queue to enforce the creation of DOM element
+      this.addListener("navigate", this.__P_203_0, this); // add yourself to the element queue to enforce the creation of DOM element
 
       qx.html.Element._modified[this.toHashCode()] = this;
 
@@ -237,7 +237,7 @@
       *
       * @param e {qx.event.type.Data} navigate event
       */
-      __onNavigate: function __onNavigate(e) {
+      __P_203_0: function __P_203_0(e) {
         var actualUrl = e.getData();
 
         if (actualUrl) {
@@ -249,4 +249,4 @@
   qx.html.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1591114972661
+//# sourceMappingURL=Iframe.js.map?dt=1592777087914

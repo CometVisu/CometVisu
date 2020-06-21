@@ -45,18 +45,18 @@
      * @param loaded {Boolean?false} Whether the package is already loaded
      */
     construct: function construct(urls, id, loaded) {
-      this.__readyState = loaded ? "complete" : "initialized";
-      this.__urls = urls;
-      this.__id = id;
+      this.__P_178_0 = loaded ? "complete" : "initialized";
+      this.__P_178_1 = urls;
+      this.__P_178_2 = id;
     },
     members: {
-      __readyState: null,
-      __urls: null,
-      __id: null,
-      __closure: null,
-      __loadWithClosure: null,
-      __timeoutId: null,
-      __notifyPackageResult: null,
+      __P_178_0: null,
+      __P_178_1: null,
+      __P_178_2: null,
+      __P_178_3: null,
+      __P_178_4: null,
+      __P_178_5: null,
+      __P_178_6: null,
 
       /**
        * Get the package ID.
@@ -64,7 +64,7 @@
        * @return {String} The package id
        */
       getId: function getId() {
-        return this.__id;
+        return this.__P_178_2;
       },
 
       /**
@@ -83,7 +83,7 @@
        * @return {String} The ready state.
        */
       getReadyState: function getReadyState() {
-        return this.__readyState;
+        return this.__P_178_0;
       },
 
       /**
@@ -93,7 +93,7 @@
        * @return {String[]} An array of urls of this package.
        */
       getUrls: function getUrls() {
-        return this.__urls;
+        return this.__P_178_1;
       },
 
       /**
@@ -103,19 +103,19 @@
        * @param closure {Function} The code of this package wrapped in a closure.
        */
       saveClosure: function saveClosure(closure) {
-        if (this.__readyState == "error") {
+        if (this.__P_178_0 == "error") {
           return;
         }
 
-        this.__closure = closure;
+        this.__P_178_3 = closure;
 
-        if (!this.__loadWithClosure) {
+        if (!this.__P_178_4) {
           this.execute();
         } else {
-          clearTimeout(this.__timeoutId);
-          this.__readyState = "cached";
+          clearTimeout(this.__P_178_5);
+          this.__P_178_0 = "cached";
 
-          this.__notifyPackageResult(this);
+          this.__P_178_6(this);
         }
       },
 
@@ -124,19 +124,19 @@
        * {@link qx.io.part.ClosurePart} is used.
        */
       execute: function execute() {
-        if (this.__closure) {
-          this.__closure();
+        if (this.__P_178_3) {
+          this.__P_178_3();
 
-          delete this.__closure;
+          delete this.__P_178_3;
         }
 
-        if (qx.$$packageData[this.__id]) {
-          this.__importPackageData(qx.$$packageData[this.__id]);
+        if (qx.$$packageData[this.__P_178_2]) {
+          this.__P_178_7(qx.$$packageData[this.__P_178_2]);
 
-          delete qx.$$packageData[this.__id];
+          delete qx.$$packageData[this.__P_178_2];
         }
 
-        this.__readyState = "complete";
+        this.__P_178_0 = "complete";
       },
 
       /**
@@ -148,22 +148,22 @@
        * @param self {Object?} The context of the callback.
        */
       loadClosure: function loadClosure(notifyPackageResult, self) {
-        if (this.__readyState !== "initialized") {
+        if (this.__P_178_0 !== "initialized") {
           return;
         }
 
-        this.__loadWithClosure = true;
-        this.__readyState = "loading";
-        this.__notifyPackageResult = qx.Bootstrap.bind(notifyPackageResult, self);
+        this.__P_178_4 = true;
+        this.__P_178_0 = "loading";
+        this.__P_178_6 = qx.Bootstrap.bind(notifyPackageResult, self);
 
-        this.__loadScriptList(this.__urls, function () {}, function () {
-          this.__readyState = "error";
+        this.__P_178_8(this.__P_178_1, function () {}, function () {
+          this.__P_178_0 = "error";
           notifyPackageResult.call(self, this);
         }, this);
 
         var pkg = this;
-        this.__timeoutId = setTimeout(function () {
-          pkg.__readyState = "error";
+        this.__P_178_5 = setTimeout(function () {
+          pkg.__P_178_0 = "error";
           notifyPackageResult.call(self, pkg);
         }, qx.Part.TIMEOUT);
       },
@@ -176,19 +176,19 @@
        * @param self {Object?} The context of the callback.
        */
       load: function load(notifyPackageResult, self) {
-        if (this.__readyState !== "initialized") {
+        if (this.__P_178_0 !== "initialized") {
           return;
         }
 
-        this.__loadWithClosure = false;
-        this.__readyState = "loading";
+        this.__P_178_4 = false;
+        this.__P_178_0 = "loading";
 
-        this.__loadScriptList(this.__urls, function () {
-          this.__readyState = "complete";
+        this.__P_178_8(this.__P_178_1, function () {
+          this.__P_178_0 = "complete";
           this.execute();
           notifyPackageResult.call(self, this);
         }, function () {
-          this.__readyState = "error";
+          this.__P_178_0 = "error";
           notifyPackageResult.call(self, this);
         }, this);
       },
@@ -201,7 +201,7 @@
        * @param errBack {Function} Function to execute on error
        * @param self {Object?window} Context to execute the given function in
        */
-      __loadScriptList: function __loadScriptList(urlList, callback, errBack, self) {
+      __P_178_8: function __P_178_8(urlList, callback, errBack, self) {
         if (urlList.length == 0) {
           callback.call(self);
           return;
@@ -237,8 +237,8 @@
           };
 
           loader.onerror = function () {
-            if (self.__readyState == "loading") {
-              clearTimeout(self.__timeoutId);
+            if (self.__P_178_0 == "loading") {
+              clearTimeout(self.__P_178_5);
               loader.dispose();
               return errBack.call(self);
             }
@@ -260,10 +260,10 @@
        * @signature function(packageData)
        * @param packageData {Map} Map of package data categories ("resources",...)
        */
-      __importPackageData: qx.$$loader.importPackageData
+      __P_178_7: qx.$$loader.importPackageData
     }
   });
   qx.io.part.Package.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Package.js.map?dt=1591115583873
+//# sourceMappingURL=Package.js.map?dt=1592778975194

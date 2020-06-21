@@ -183,14 +183,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} The size hint.",
-            "type": "Map",
-            "description": " The size hint."
-          }
         ]
       },
       "type": "function",
@@ -294,7 +286,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.layout.VBox",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -353,7 +353,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.layout.VBox",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getAlignY": {
       "type": "function",
@@ -414,7 +422,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.layout.VBox",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
+          }
+        ]
+      }
     },
     "getAlignX": {
       "type": "function",
@@ -475,7 +491,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.layout.VBox",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
+          }
+        ]
+      }
     },
     "getSpacing": {
       "type": "function",
@@ -536,7 +560,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.layout.VBox",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>spacing</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #spacing}."
+          }
+        ]
+      }
     },
     "getSeparator": {
       "type": "function",
@@ -597,7 +629,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.layout.VBox",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>separator</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #separator}."
+          }
+        ]
+      }
     },
     "getReversed": {
       "type": "function",
@@ -683,7 +723,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.layout.VBox",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>reversed</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #reversed}."
+          }
+        ]
+      }
     },
     "getColumnSpacing": {
       "type": "function",

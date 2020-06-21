@@ -86,7 +86,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "event": "_applyMaxEntries",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximum allowed messages</p>"
+          }
+        ]
+      }
     },
     "counter": {
       "type": "property",
@@ -94,7 +103,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "event": "changedCounter",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Current amount of messages</p>"
+          }
+        ]
+      }
     },
     "globalSeverity": {
       "type": "property",
@@ -102,7 +120,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "event": "changedGlobalSeverity",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Highest severity of the messages</p>"
+          }
+        ]
+      }
     },
     "rootElementId": {
       "type": "property",
@@ -110,7 +137,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>ID of the root element of this message handler (HTML attribute 'id' value)</p>"
+          }
+        ]
+      }
     },
     "messageElementId": {
       "type": "property",
@@ -118,7 +153,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pattern id the message elements IDs (suffix without is,\n e.g. messages get mes<em>1, mes</em>2, … mes_ is the messageElementId)</p>"
+          }
+        ]
+      }
     },
     "delegate": {
       "type": "property",
@@ -134,7 +177,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -142,7 +193,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -255,6 +314,15 @@
         ]
       }
     },
+    "getIdCounter": {
+      "type": "function",
+      "name": "getIdCounter",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.MHandleMessage"
+    },
     "getSeverities": {
       "type": "function",
       "name": "getSeverities",
@@ -289,7 +357,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "overriddenFrom": "cv.ui.MHandleMessage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getMessageIdFromEvent": {
       "type": "function",
@@ -875,7 +951,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -934,7 +1018,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMessageDuration": {
       "type": "function",

@@ -58,10 +58,10 @@
     construct: function construct(uploader) {
       qx.core.Object.constructor.call(this);
       qx.core.Assert.assertNotNull(uploader);
-      this.__queue = [];
-      this.__current = [];
-      this.__params = {};
-      this.__uploader = uploader;
+      this.__P_312_0 = [];
+      this.__P_312_1 = [];
+      this.__P_312_2 = {};
+      this.__P_312_3 = uploader;
     },
     properties: {
       /**
@@ -76,15 +76,15 @@
     },
     members: {
       // Last unique ID used
-      __lastId: 0,
+      __P_312_4: 0,
       // Uploader instance
-      __uploader: null,
+      __P_312_3: null,
       // Queue of com.zenesis.qx.upload.File's to send
-      __queue: null,
+      __P_312_0: null,
       // List of com.zenesis.qx.upload.File's currently being sent
-      __current: null,
+      __P_312_1: null,
       // Parameters to post with the file
-      __params: null,
+      __P_312_2: null,
 
       /**
        * Adds a file to the upload queue; this does not start uploading until
@@ -128,19 +128,19 @@
        *          {com.zenesis.qx.upload.File} the file to add
        */
       _addFile: function _addFile(file) {
-        if (this.__uploader.fireDataEvent("addFile", file, null, true)) this.__queue.push(file);
+        if (this.__P_312_3.fireDataEvent("addFile", file, null, true)) this.__P_312_0.push(file);
       },
 
       /**
        * Begins spooling uploads to the server, up to the maxConnections
        */
       beginUploads: function beginUploads() {
-        while (this.__queue.length > 0 && this.__current.length < this.getMaxConnections()) {
-          var file = this.__queue.shift();
+        while (this.__P_312_0.length > 0 && this.__P_312_1.length < this.getMaxConnections()) {
+          var file = this.__P_312_0.shift();
 
-          this.__current.push(file);
+          this.__P_312_1.push(file);
 
-          this.__uploader.fireDataEvent("beginUpload", file);
+          this.__P_312_3.fireDataEvent("beginUpload", file);
 
           file.setState("uploading");
 
@@ -155,25 +155,25 @@
        *          {com.zenesis.qx.upload.File} the file to cancel
        */
       cancel: function cancel(file) {
-        var wasUploading = this.__current.length > 0; // this.debug("cancelled: id=" + file.getId() + ", fileName=" +
+        var wasUploading = this.__P_312_1.length > 0; // this.debug("cancelled: id=" + file.getId() + ", fileName=" +
         // file.getFilename());
 
         this._cancel(file);
 
-        if (wasUploading && this.__uploader.getAutoUpload()) this.beginUploads();
+        if (wasUploading && this.__P_312_3.getAutoUpload()) this.beginUploads();
       },
 
       /**
        * Cancels all uploads
        */
       cancelAll: function cancelAll() {
-        for (var current = this.__current, i = 0; i < current.length; i++) {
+        for (var current = this.__P_312_1, i = 0; i < current.length; i++) {
           this._cancel(current[i]);
         }
 
-        this.__current.splice(0, this.__current.length);
+        this.__P_312_1.splice(0, this.__P_312_1.length);
 
-        this.__queue.splice(0, this.__queue.length);
+        this.__P_312_0.splice(0, this.__P_312_0.length);
       },
 
       /**
@@ -185,7 +185,7 @@
       _cancel: function _cancel(file) {
         var inCurrent = false;
 
-        for (var current = this.__current, i = 0; i < current.length; i++) {
+        for (var current = this.__P_312_1, i = 0; i < current.length; i++) {
           if (current[i] == file) {
             current.splice(i, 1);
             inCurrent = true;
@@ -193,7 +193,7 @@
           }
         }
 
-        for (var queue = this.__queue, i = 0; i < queue.length; i++) {
+        for (var queue = this.__P_312_0, i = 0; i < queue.length; i++) {
           if (queue[i] == file) {
             queue.splice(i, 1);
             break;
@@ -203,7 +203,7 @@
         file.setState("cancelled");
         if (inCurrent) this._doCancel(file);
 
-        this.__uploader.fireDataEvent("cancelUpload", file);
+        this.__P_312_3.fireDataEvent("cancelUpload", file);
       },
 
       /**
@@ -218,7 +218,7 @@
       _onCompleted: function _onCompleted(file, response) {
         // this.debug("completed: id=" + file.getId() + ", fileName=" +
         // file.getFilename() + ", response=" + response);
-        var current = this.__current;
+        var current = this.__P_312_1;
 
         for (var i = 0; i < current.length; i++) {
           if (current[i] == file) {
@@ -232,7 +232,7 @@
         if (file.getState() == "uploading") {
           file.setState("uploaded");
 
-          this.__uploader.fireDataEvent("completeUpload", file);
+          this.__P_312_3.fireDataEvent("completeUpload", file);
         } // Start the next one
 
 
@@ -245,7 +245,7 @@
        * @returns {com.zenesis.qx.upload.UploadMgr}
        */
       _getUploader: function _getUploader() {
-        return this.__uploader;
+        return this.__P_312_3;
       },
 
       /**
@@ -254,7 +254,7 @@
        * @returns {Number}
        */
       _getUniqueFileId: function _getUniqueFileId() {
-        return ++this.__lastId;
+        return ++this.__P_312_4;
       },
 
       /**
@@ -269,7 +269,7 @@
        */
       addParam: function addParam(key, value) {
         qx.log.Logger.deprecatedMethodWarning(arguments.callee, "see com.zenesis.qx.upload.UploadMgr.setParam or com.zenesis.qx.upload.File.setParam");
-        this.__params[key] = value;
+        this.__P_312_2[key] = value;
       },
 
       /**
@@ -280,7 +280,7 @@
        */
       getParams: function getParams() {
         qx.log.Logger.deprecatedMethodWarning(arguments.callee, "see com.zenesis.qx.upload.UploadMgr.getParam or com.zenesis.qx.upload.File.getParam");
-        return this.__params;
+        return this.__P_312_2;
       },
 
       /**
@@ -294,8 +294,8 @@
       _getMergedParams: function _getMergedParams(file) {
         var result = {};
 
-        for (var name in this.__params) {
-          var value = this.__params[name];
+        for (var name in this.__P_312_2) {
+          var value = this.__P_312_2[name];
           if (value !== null) result[name] = value;
         }
 
@@ -309,7 +309,7 @@
           }
         }
 
-        merge(this.__uploader);
+        merge(this.__P_312_3);
         var widget = file.getUploadWidget();
         if (widget && typeof widget.getParamNames == "function") merge(widget);
         if (typeof file.getParamNames == "function") merge(file);
@@ -352,4 +352,4 @@
   com.zenesis.qx.upload.AbstractHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractHandler.js.map?dt=1591115594548
+//# sourceMappingURL=AbstractHandler.js.map?dt=1592778985725

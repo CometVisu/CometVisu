@@ -163,23 +163,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellInfo {Object}\n   See {@link qx.ui.progressive.renderer.table.cell.Abstract} class\n   description for details",
-            "paramName": "cellInfo",
-            "description": "\n   See {@link qx.ui.progressive.renderer.table.cell.Abstract} class\n   description for details",
-            "type": "Object"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String}\n   The style characteristics to be applied to this cell.",
-            "type": "qx.ui.progressive.renderer.table.cell.String",
-            "description": "\n   The style characteristics to be applied to this cell."
-          }
         ]
       },
       "type": "function",
@@ -205,23 +188,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellInfo {Object}\n   See {@link qx.ui.progressive.renderer.table.cell.Abstract} class\n   description for details",
-            "paramName": "cellInfo",
-            "description": "\n   See {@link qx.ui.progressive.renderer.table.cell.Abstract} class\n   description for details",
-            "type": "Object"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String}\n   The HTML content to be added to the cell div.",
-            "type": "qx.ui.progressive.renderer.table.cell.String",
-            "description": "\n   The HTML content to be added to the cell div."
           }
         ]
       },
@@ -330,7 +296,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.progressive.renderer.table.cell.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -389,7 +363,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.progressive.renderer.table.cell.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "descendants": [

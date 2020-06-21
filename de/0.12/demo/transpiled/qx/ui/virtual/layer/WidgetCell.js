@@ -54,7 +54,7 @@
       qx.ui.virtual.layer.Abstract.constructor.call(this);
       this.setZIndex(12);
       this._cellProvider = widgetCellProvider;
-      this.__spacerPool = [];
+      this.__P_311_0 = [];
     },
 
     /*
@@ -83,7 +83,7 @@
     *****************************************************************************
     */
     members: {
-      __spacerPool: null,
+      __P_311_0: null,
 
       /**
       * Returns the widget used to render the given cell. May return null if the
@@ -125,7 +125,7 @@
        * @return {qx.ui.core.Spacer} The spacer widget.
        */
       _getSpacer: function _getSpacer() {
-        var spacer = this.__spacerPool.pop();
+        var spacer = this.__P_311_0.pop();
 
         if (!spacer) {
           spacer = new qx.ui.core.Spacer();
@@ -167,7 +167,7 @@
           var child = children[i];
 
           if (child.getUserData("cell.empty")) {
-            this.__spacerPool.push(child);
+            this.__P_311_0.push(child);
           } else {
             this._activateNotEmptyChild(child);
 
@@ -261,7 +261,7 @@
             var child = children[i];
 
             if (child.getUserData("cell.empty")) {
-              this.__spacerPool.push(child);
+              this.__P_311_0.push(child);
             } else {
               this._activateNotEmptyChild(child);
 
@@ -310,10 +310,10 @@
         children[i].dispose();
       }
 
-      this._cellProvider = this.__spacerPool = null;
+      this._cellProvider = this.__P_311_0 = null;
     }
   });
   qx.ui.virtual.layer.WidgetCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetCell.js.map?dt=1591115594465
+//# sourceMappingURL=WidgetCell.js.map?dt=1592778985641

@@ -79,23 +79,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "target {var} The target which parent should be found",
-            "paramName": "target",
-            "description": " The target which parent should be found",
-            "type": "var"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var} The parent of the given target",
-            "type": "var",
-            "description": " The parent of the given target"
-          }
         ]
       },
       "type": "function",
@@ -121,40 +104,6 @@
           {
             "name": "@description",
             "body": "<p>interface implementation</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "target {Element|Event} The event dispatch target",
-            "paramName": "target",
-            "description": " The event dispatch target",
-            "type": [
-              "Element",
-              "Event"
-            ]
-          },
-          {
-            "name": "@param",
-            "body": "event {qx.event.type.Event} The event object",
-            "paramName": "event",
-            "description": " The event object",
-            "type": "qx.event.type.Event"
-          },
-          {
-            "name": "@param",
-            "body": "type {String} the event type",
-            "paramName": "type",
-            "description": " the event type",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} Whether the event dispatcher is responsible for the this event",
-            "type": "Boolean",
-            "description": " Whether the event dispatcher is responsible for the this event"
           }
         ]
       },
@@ -225,7 +174,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.event.dispatch.AbstractBubbling",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -284,7 +241,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.event.dispatch.AbstractBubbling",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "defer": {

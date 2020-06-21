@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 107,
+        "line": 111,
         "column": 3
       }
     },
@@ -70,7 +70,22 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.common.BasicUpdate"
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "event": "changeValue",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{var} the incoming value after transformation, mapping and formatting"
+          }
+        ]
+      }
     },
     "basicValue": {
       "type": "property",
@@ -78,7 +93,21 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.common.BasicUpdate"
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{var} the incoming value after transformation"
+          }
+        ]
+      }
     },
     "format": {
       "type": "property",
@@ -86,7 +115,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.common.BasicUpdate"
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Format to apply to incoming values</p>"
+          }
+        ]
+      }
     },
     "address": {
       "type": "property",
@@ -94,7 +131,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.common.HasAddress"
+      "overriddenFrom": "cv.ui.common.HasAddress",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Map of addresses (KNX-GA's or openHAB item names) this widget communicates with</p>"
+          }
+        ]
+      }
     },
     "styling": {
       "type": "property",
@@ -110,7 +155,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -118,7 +171,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -161,14 +222,28 @@
         "variable"
       ]
     },
-    "_onSuccess": {
+    "getRequest": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 70,
           "column": 4
         },
         "end": {
+          "line": 72,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_onSuccess": {
+      "location": {
+        "start": {
           "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 82,
           "column": 5
         }
       },
@@ -192,11 +267,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 83,
+          "line": 87,
           "column": 5
         }
       },
@@ -205,14 +280,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} HTML code as string",
-            "type": "String",
-            "description": " HTML code as string"
           }
         ]
       },
@@ -226,11 +293,11 @@
     "handleUpdate": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 96,
           "column": 5
         }
       },
@@ -1189,7 +1256,29 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.data.MBinding"
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings from the object.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      }
     },
     "getBindings": {
       "type": "function",
@@ -2006,7 +2095,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply owner</p>"
+          }
+        ]
+      }
     },
     "_applyQxObjectId": {
       "type": "function",
@@ -2015,7 +2112,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply objectId</p>"
+          }
+        ]
+      }
     },
     "__onOwnedObjectIdChange": {
       "type": "function",
@@ -2024,7 +2129,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a child's objectId changes</p>"
+          }
+        ]
+      }
     },
     "_cascadeQxObjectIdChanges": {
       "type": "function",
@@ -2033,7 +2146,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reflect changes to IDs or owners</p>"
+          }
+        ]
+      }
     },
     "getQxObject": {
       "type": "function",
@@ -5461,11 +5582,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 100,
+        "line": 104,
         "column": 12
       },
       "end": {
-        "line": 102,
+        "line": 106,
         "column": 3
       }
     },
@@ -5481,11 +5602,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 104,
+        "line": 108,
         "column": 9
       },
       "end": {
-        "line": 106,
+        "line": 110,
         "column": 3
       }
     },

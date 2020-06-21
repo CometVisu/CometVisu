@@ -271,7 +271,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>refresh</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #refresh}."
+          }
+        ]
+      }
     },
     "getCachecontrol": {
       "type": "function",
@@ -332,7 +340,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>cachecontrol</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cachecontrol}."
+          }
+        ]
+      }
     },
     "getRestartOnVisible": {
       "type": "function",
@@ -418,7 +434,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>restartOnVisible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #restartOnVisible}."
+          }
+        ]
+      }
     },
     "getStyling": {
       "type": "function",
@@ -479,7 +503,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>styling</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styling}."
+          }
+        ]
+      }
     },
     "getQxOwner": {
       "type": "function",
@@ -540,7 +572,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -599,7 +639,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getPath": {
       "type": "function",
@@ -660,7 +708,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>path</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #path}."
+          }
+        ]
+      }
     },
     "get$$type": {
       "type": "function",
@@ -721,7 +777,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>$$type</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #$$type}."
+          }
+        ]
+      }
     },
     "getPageType": {
       "type": "function",
@@ -782,7 +846,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>pageType</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #pageType}."
+          }
+        ]
+      }
     },
     "getAnonymous": {
       "type": "function",
@@ -868,7 +940,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
+          }
+        ]
+      }
     },
     "getFlavour": {
       "type": "function",
@@ -929,7 +1009,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>flavour</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #flavour}."
+          }
+        ]
+      }
     },
     "getLayout": {
       "type": "function",
@@ -990,7 +1078,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>layout</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #layout}."
+          }
+        ]
+      }
     },
     "getLabel": {
       "type": "function",
@@ -1051,7 +1147,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>label</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #label}."
+          }
+        ]
+      }
     },
     "getBindClickToWidget": {
       "type": "function",
@@ -1137,7 +1241,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>bindClickToWidget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #bindClickToWidget}."
+          }
+        ]
+      }
     },
     "getMapping": {
       "type": "function",
@@ -1198,7 +1310,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>mapping</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #mapping}."
+          }
+        ]
+      }
     },
     "getAlign": {
       "type": "function",
@@ -1259,7 +1379,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>align</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #align}."
+          }
+        ]
+      }
     },
     "getClasses": {
       "type": "function",
@@ -1320,7 +1448,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>classes</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #classes}."
+          }
+        ]
+      }
     },
     "getStyle": {
       "type": "function",
@@ -1381,7 +1517,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>style</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #style}."
+          }
+        ]
+      }
     },
     "getColspan": {
       "type": "function",
@@ -1442,7 +1586,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colspan</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colspan}."
+          }
+        ]
+      }
     },
     "getColspanM": {
       "type": "function",
@@ -1503,7 +1655,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colspanM</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colspanM}."
+          }
+        ]
+      }
     },
     "getColspanS": {
       "type": "function",
@@ -1564,7 +1724,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>colspanS</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colspanS}."
+          }
+        ]
+      }
     },
     "getRowspanClass": {
       "type": "function",
@@ -1625,7 +1793,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>rowspanClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rowspanClass}."
+          }
+        ]
+      }
     },
     "getContainerClass": {
       "type": "function",
@@ -1686,7 +1862,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>containerClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #containerClass}."
+          }
+        ]
+      }
     },
     "getVisible": {
       "type": "function",
@@ -1772,7 +1956,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>visible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visible}."
+          }
+        ]
+      }
     },
     "getResponsive": {
       "type": "function",
@@ -1858,7 +2050,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>responsive</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #responsive}."
+          }
+        ]
+      }
     },
     "getContent": {
       "type": "function",
@@ -1919,7 +2119,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>content</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #content}."
+          }
+        ]
+      }
     },
     "getTitle": {
       "type": "function",
@@ -1980,7 +2188,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>title</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #title}."
+          }
+        ]
+      }
     },
     "getSeries": {
       "type": "function",
@@ -2041,7 +2257,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>series</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #series}."
+          }
+        ]
+      }
     },
     "getSeriesStart": {
       "type": "function",
@@ -2102,7 +2326,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>seriesStart</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #seriesStart}."
+          }
+        ]
+      }
     },
     "getSeriesEnd": {
       "type": "function",
@@ -2163,7 +2395,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>seriesEnd</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #seriesEnd}."
+          }
+        ]
+      }
     },
     "getSeriesResolution": {
       "type": "function",
@@ -2224,7 +2464,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>seriesResolution</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #seriesResolution}."
+          }
+        ]
+      }
     },
     "getPeriod": {
       "type": "function",
@@ -2285,7 +2533,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>period</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #period}."
+          }
+        ]
+      }
     },
     "getLegendInline": {
       "type": "function",
@@ -2371,7 +2627,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>legendInline</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #legendInline}."
+          }
+        ]
+      }
     },
     "getLegendPopup": {
       "type": "function",
@@ -2457,7 +2721,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>legendPopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #legendPopup}."
+          }
+        ]
+      }
     },
     "getLegendposition": {
       "type": "function",
@@ -2518,7 +2790,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>legendposition</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #legendposition}."
+          }
+        ]
+      }
     },
     "getTimeformat": {
       "type": "function",
@@ -2579,7 +2859,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>timeformat</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #timeformat}."
+          }
+        ]
+      }
     },
     "getTimeformatTooltip": {
       "type": "function",
@@ -2640,7 +2928,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>timeformatTooltip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #timeformatTooltip}."
+          }
+        ]
+      }
     },
     "getZoomYAxis": {
       "type": "function",
@@ -2726,7 +3022,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>zoomYAxis</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #zoomYAxis}."
+          }
+        ]
+      }
     },
     "getGridcolor": {
       "type": "function",
@@ -2787,7 +3091,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>gridcolor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #gridcolor}."
+          }
+        ]
+      }
     },
     "getPreviewlabels": {
       "type": "function",
@@ -2873,7 +3185,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>previewlabels</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #previewlabels}."
+          }
+        ]
+      }
     },
     "getPopup": {
       "type": "function",
@@ -2959,7 +3279,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>popup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #popup}."
+          }
+        ]
+      }
     },
     "getTooltip": {
       "type": "function",
@@ -3045,7 +3373,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>tooltip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tooltip}."
+          }
+        ]
+      }
     },
     "getWidth": {
       "type": "function",

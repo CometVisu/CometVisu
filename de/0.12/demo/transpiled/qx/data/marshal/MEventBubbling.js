@@ -105,7 +105,7 @@
 
         if (value instanceof qx.core.Object && qx.Class.hasMixin(value.constructor, qx.data.marshal.MEventBubbling)) {
           // create the listener
-          var listener = qx.lang.Function.bind(this.__changePropertyListener, this, name); // add the listener
+          var listener = qx.lang.Function.bind(this.__P_131_0, this, name); // add the listener
 
           var id = value.addListener("changeBubble", listener, this);
           var listeners = value.getUserData("idBubble-" + this.toHashCode());
@@ -127,7 +127,7 @@
        * @param e {qx.event.type.Data} The date event fired by the property
        *   change.
        */
-      __changePropertyListener: function __changePropertyListener(name, e) {
+      __P_131_0: function __P_131_0(name, e) {
         var data = e.getData();
         var value = data.value;
         var old = data.old; // if the target is an array
@@ -180,4 +180,4 @@
   qx.data.marshal.MEventBubbling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MEventBubbling.js.map?dt=1591115580311
+//# sourceMappingURL=MEventBubbling.js.map?dt=1592778971638

@@ -183,14 +183,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} Map containing the insets.",
-            "type": "Map",
-            "description": " Map containing the insets."
-          }
         ]
       },
       "type": "function",
@@ -216,14 +208,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} True, if the decorator is initialized.",
-            "type": "Boolean",
-            "description": " True, if the decorator is initialized."
           }
         ]
       },
@@ -344,7 +328,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundColor"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundColor",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getBackgroundColor": {
       "type": "function",
@@ -445,7 +437,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MBorderRadius"
+      "overriddenFrom": "qx.ui.decoration.MBorderRadius",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getRadiusTopLeft": {
       "type": "function",
@@ -810,7 +810,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MBoxShadow"
+      "overriddenFrom": "qx.ui.decoration.MBoxShadow",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getShadowHorizontalLength": {
       "type": "function",
@@ -1421,7 +1429,19 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY APPLY ROUTINES\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "_applyStyle": {
       "type": "function",
@@ -1430,7 +1450,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder"
+      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getWidthTop": {
       "type": "function",
@@ -2719,7 +2747,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "_applyBackgroundPosition": {
       "type": "function",
@@ -2728,7 +2764,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage"
+      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getBackgroundImage": {
       "type": "function",
@@ -4341,7 +4385,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MLinearBackgroundGradient"
+      "overriddenFrom": "qx.ui.decoration.MLinearBackgroundGradient",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getStartColor": {
       "type": "function",
@@ -5748,7 +5800,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MTransition"
+      "overriddenFrom": "qx.ui.decoration.MTransition",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "getTransitionProperty": {
       "type": "function",
@@ -6073,7 +6133,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.decoration.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -6132,7 +6200,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.decoration.Abstract",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "descendants": []

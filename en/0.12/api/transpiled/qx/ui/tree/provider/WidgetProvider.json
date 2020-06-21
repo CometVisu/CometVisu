@@ -149,30 +149,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "row {Integer} The cell's row index.",
-            "paramName": "row",
-            "description": " The cell's row index.",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "column {Integer} The cell's column index.",
-            "paramName": "column",
-            "description": " The cell's column index.",
-            "type": "Integer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.core.LayoutItem} The configured widget for the given cell.",
-            "type": "qx.ui.core.LayoutItem",
-            "description": " The configured widget for the given cell."
-          }
         ]
       },
       "type": "function",
@@ -198,15 +174,6 @@
           {
             "name": "@description",
             "body": "<p>interface implementation</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "widget {qx.ui.core.LayoutItem} The cell widget to pool.",
-            "paramName": "widget",
-            "description": " The cell widget to pool.",
-            "type": "qx.ui.core.LayoutItem"
           }
         ]
       },
@@ -234,14 +201,6 @@
             "name": "@description",
             "body": "<p>Interface implementation</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.virtual.layer.Abstract} new layer.",
-            "type": "qx.ui.virtual.layer.Abstract",
-            "description": " new layer."
-          }
         ]
       },
       "type": "function",
@@ -267,14 +226,6 @@
           {
             "name": "@description",
             "body": "<p>Interface implementation</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var} new node renderer.",
-            "type": "var",
-            "description": " new node renderer."
           }
         ]
       },
@@ -302,15 +253,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "row {Integer} row to style.",
-            "paramName": "row",
-            "description": " row to style.",
-            "type": "Integer"
-          }
         ]
       },
       "type": "function",
@@ -337,15 +279,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "row {Integer} row to style.",
-            "paramName": "row",
-            "description": " row to style.",
-            "type": "Integer"
-          }
         ]
       },
       "type": "function",
@@ -371,23 +304,6 @@
           {
             "name": "@description",
             "body": "<p>interface implementation</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "row {Integer} row to select.",
-            "paramName": "row",
-            "description": " row to select.",
-            "type": "Integer"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} <code>true</code> when the row can be selected,\n    <code>false</code> otherwise.",
-            "type": "Boolean",
-            "description": " <code>true</code> when the row can be selected,\n    <code>false</code> otherwise."
           }
         ]
       },
@@ -806,7 +722,15 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController"
+      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all bindings from all bounded items.</p>"
+          }
+        ]
+      }
     },
     "_bindItem": {
       "type": "function",
@@ -1011,7 +935,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>labelPath</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #labelPath}."
+          }
+        ]
+      }
     },
     "getIconPath": {
       "type": "function",
@@ -1072,7 +1004,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>iconPath</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #iconPath}."
+          }
+        ]
+      }
     },
     "getLabelOptions": {
       "type": "function",
@@ -1133,7 +1073,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>labelOptions</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #labelOptions}."
+          }
+        ]
+      }
     },
     "getIconOptions": {
       "type": "function",
@@ -1194,7 +1142,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>iconOptions</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #iconOptions}."
+          }
+        ]
+      }
     },
     "getChildProperty": {
       "type": "function",
@@ -1229,7 +1185,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>childProperty</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #childProperty}."
+          }
+        ]
+      }
     },
     "getDelegate": {
       "type": "function",
@@ -1290,7 +1254,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>delegate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #delegate}."
+          }
+        ]
+      }
     },
     "getQxOwner": {
       "type": "function",
@@ -1351,7 +1323,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -1410,7 +1390,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "destruct": {

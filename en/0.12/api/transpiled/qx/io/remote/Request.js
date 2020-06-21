@@ -75,10 +75,10 @@
      */
     construct: function construct(vUrl, vMethod, vResponseType) {
       qx.core.Object.constructor.call(this);
-      this.__requestHeaders = {};
-      this.__urlParameters = {};
-      this.__dataParameters = {};
-      this.__formFields = {};
+      this.__P_212_0 = {};
+      this.__P_212_1 = {};
+      this.__P_212_2 = {};
+      this.__P_212_3 = {};
 
       if (vUrl !== undefined) {
         this.setUrl(vUrl);
@@ -94,7 +94,7 @@
 
       this.setProhibitCaching(true); // Get the next sequence number for this request
 
-      this.__seqNum = ++qx.io.remote.Request.__seqNum;
+      this.__P_212_4 = ++qx.io.remote.Request.__P_212_4;
     },
 
     /*
@@ -147,7 +147,7 @@
        * Sequence (id) number of a request, used to associate a response or error
        * with its initiating request.
        */
-      __seqNum: 0,
+      __P_212_4: 0,
 
       /**
        * Returns true if the given HTTP method allows a request body being transferred to the server.
@@ -348,11 +348,11 @@
     *****************************************************************************
     */
     members: {
-      __requestHeaders: null,
-      __urlParameters: null,
-      __dataParameters: null,
-      __formFields: null,
-      __seqNum: null,
+      __P_212_0: null,
+      __P_212_1: null,
+      __P_212_2: null,
+      __P_212_3: null,
+      __P_212_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -489,7 +489,7 @@
        *
        * @param e {qx.event.type.Event} The original event
        */
-      __forwardEvent: qx.event.GlobalError.observeMethod(function (e) {
+      __P_212_5: qx.event.GlobalError.observeMethod(function (e) {
         var clonedEvent = e.clone();
         clonedEvent.setTarget(this);
         this.dispatchEvent(clonedEvent);
@@ -504,7 +504,7 @@
         // Modify internal state
         this.setState("queued"); // Bubbling up
 
-        this.__forwardEvent(e);
+        this.__P_212_5(e);
       },
 
       /**
@@ -516,7 +516,7 @@
         // Modify internal state
         this.setState("sending"); // Bubbling up
 
-        this.__forwardEvent(e);
+        this.__P_212_5(e);
       },
 
       /**
@@ -528,7 +528,7 @@
         // Modify internal state
         this.setState("receiving"); // Bubbling up
 
-        this.__forwardEvent(e);
+        this.__P_212_5(e);
       },
 
       /**
@@ -540,7 +540,7 @@
         // Modify internal state
         this.setState("completed"); // Bubbling up
 
-        this.__forwardEvent(e); // Automatically dispose after event completion
+        this.__P_212_5(e); // Automatically dispose after event completion
 
 
         this.dispose();
@@ -555,7 +555,7 @@
         // Modify internal state
         this.setState("aborted"); // Bubbling up
 
-        this.__forwardEvent(e); // Automatically dispose after event completion
+        this.__P_212_5(e); // Automatically dispose after event completion
 
 
         this.dispose();
@@ -583,7 +583,7 @@
         // Modify internal state
         this.setState("timeout"); // Bubbling up
 
-        this.__forwardEvent(e); // Automatically dispose after event completion
+        this.__P_212_5(e); // Automatically dispose after event completion
 
 
         this.dispose();
@@ -598,7 +598,7 @@
         // Modify internal state
         this.setState("failed"); // Bubbling up
 
-        this.__forwardEvent(e); // Automatically dispose after event completion
+        this.__P_212_5(e); // Automatically dispose after event completion
 
 
         this.dispose();
@@ -680,7 +680,7 @@
        * @param vValue {String} The value to use for this added header
        */
       setRequestHeader: function setRequestHeader(vId, vValue) {
-        this.__requestHeaders[vId] = vValue;
+        this.__P_212_0[vId] = vValue;
       },
 
       /**
@@ -689,7 +689,7 @@
        * @param vId {String} The id of the header to be removed
        */
       removeRequestHeader: function removeRequestHeader(vId) {
-        delete this.__requestHeaders[vId];
+        delete this.__P_212_0[vId];
       },
 
       /**
@@ -699,7 +699,7 @@
        * @return {String} The value of the header with the specified id
        */
       getRequestHeader: function getRequestHeader(vId) {
-        return this.__requestHeaders[vId] || null;
+        return this.__P_212_0[vId] || null;
       },
 
       /**
@@ -710,7 +710,7 @@
        *     property corresponding to that id.
        */
       getRequestHeaders: function getRequestHeaders() {
-        return this.__requestHeaders;
+        return this.__P_212_0;
       },
 
       /*
@@ -745,9 +745,9 @@
        */
       setParameter: function setParameter(vId, vValue, bAsData) {
         if (bAsData) {
-          this.__dataParameters[vId] = vValue;
+          this.__P_212_2[vId] = vValue;
         } else {
-          this.__urlParameters[vId] = vValue;
+          this.__P_212_1[vId] = vValue;
         }
       },
 
@@ -765,9 +765,9 @@
        */
       removeParameter: function removeParameter(vId, bFromData) {
         if (bFromData) {
-          delete this.__dataParameters[vId];
+          delete this.__P_212_2[vId];
         } else {
-          delete this.__urlParameters[vId];
+          delete this.__P_212_1[vId];
         }
       },
 
@@ -788,9 +788,9 @@
        */
       getParameter: function getParameter(vId, bFromData) {
         if (bFromData) {
-          return this.__dataParameters[vId] || null;
+          return this.__P_212_2[vId] || null;
         } else {
-          return this.__urlParameters[vId] || null;
+          return this.__P_212_1[vId] || null;
         }
       },
 
@@ -807,7 +807,7 @@
        *   value of the property corresponding to that id.
        */
       getParameters: function getParameters(bFromData) {
-        return bFromData ? this.__dataParameters : this.__urlParameters;
+        return bFromData ? this.__P_212_2 : this.__P_212_1;
       },
 
       /*
@@ -830,7 +830,7 @@
        * @param vValue {String} Value of form field
        */
       setFormField: function setFormField(vId, vValue) {
-        this.__formFields[vId] = vValue;
+        this.__P_212_3[vId] = vValue;
       },
 
       /**
@@ -839,7 +839,7 @@
        * @param vId {String} Identifier of the form field to remove.
        */
       removeFormField: function removeFormField(vId) {
-        delete this.__formFields[vId];
+        delete this.__P_212_3[vId];
       },
 
       /**
@@ -850,7 +850,7 @@
        *    exists for the passed identifier.
        */
       getFormField: function getFormField(vId) {
-        return this.__formFields[vId] || null;
+        return this.__P_212_3[vId] || null;
       },
 
       /**
@@ -861,7 +861,7 @@
        *     of the property corresponding to that id.
        */
       getFormFields: function getFormFields() {
-        return this.__formFields;
+        return this.__P_212_3;
       },
 
       /**
@@ -870,7 +870,7 @@
        * @return {Integer} The sequence number of this request
        */
       getSequenceNumber: function getSequenceNumber() {
-        return this.__seqNum;
+        return this.__P_212_4;
       }
     },
 
@@ -881,10 +881,10 @@
     */
     destruct: function destruct() {
       this.setTransport(null);
-      this.__requestHeaders = this.__urlParameters = this.__dataParameters = this.__formFields = null;
+      this.__P_212_0 = this.__P_212_1 = this.__P_212_2 = this.__P_212_3 = null;
     }
   });
   qx.io.remote.Request.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Request.js.map?dt=1591114973120
+//# sourceMappingURL=Request.js.map?dt=1592777088350

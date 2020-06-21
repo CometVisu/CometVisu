@@ -65,18 +65,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "desktop {qx.ui.window.IDesktop|null} The connected desktop or null",
-            "paramName": "desktop",
-            "description": " The connected desktop or null",
-            "type": [
-              "qx.ui.window.IDesktop",
-              "null"
-            ]
-          }
         ]
       },
       "type": "function",
@@ -132,22 +120,6 @@
           {
             "name": "@description",
             "body": "<p>interface implementation</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "active {qx.ui.window.Window} new active window",
-            "paramName": "active",
-            "description": " new active window",
-            "type": "qx.ui.window.Window"
-          },
-          {
-            "name": "@param",
-            "body": "oldActive {qx.ui.window.Window} old active window",
-            "paramName": "oldActive",
-            "description": " old active window",
-            "type": "qx.ui.window.Window"
           }
         ]
       },
@@ -251,15 +223,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "win {qx.ui.window.Window} window to bring to front",
-            "paramName": "win",
-            "description": " window to bring to front",
-            "type": "qx.ui.window.Window"
-          }
         ]
       },
       "type": "function",
@@ -285,15 +248,6 @@
           {
             "name": "@description",
             "body": "<p>interface implementation</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "win {qx.ui.window.Window} window to sent to back",
-            "paramName": "win",
-            "description": " window to sent to back",
-            "type": "qx.ui.window.Window"
           }
         ]
       },
@@ -363,7 +317,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -422,7 +384,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "destruct": {

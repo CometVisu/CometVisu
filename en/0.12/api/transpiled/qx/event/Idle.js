@@ -78,11 +78,11 @@
       }
     },
     members: {
-      __timer: null,
+      __P_166_0: null,
       // property apply
       _applyTimeoutInterval: function _applyTimeoutInterval(value) {
-        if (this.__timer) {
-          this.__timer.setInterval(value);
+        if (this.__P_166_0) {
+          this.__P_166_0.setInterval(value);
         }
       },
 
@@ -96,25 +96,25 @@
       /**
        * Starts the timer but only if there are listeners for the "interval" event
        */
-      __startTimer: function __startTimer() {
-        if (!this.__timer && this.hasListener("interval")) {
+      __P_166_1: function __P_166_1() {
+        if (!this.__P_166_0 && this.hasListener("interval")) {
           var timer = new qx.event.Timer(this.getTimeoutInterval());
           timer.addListener("interval", this._onInterval, this);
           timer.start();
-          this.__timer = timer;
+          this.__P_166_0 = timer;
         }
       },
 
       /**
        * Stops the timer but only if there are no listeners for the interval event
        */
-      __stopTimer: function __stopTimer() {
-        if (this.__timer && !this.hasListener("interval")) {
-          this.__timer.stop();
+      __P_166_2: function __P_166_2() {
+        if (this.__P_166_0 && !this.hasListener("interval")) {
+          this.__P_166_0.stop();
 
-          this.__timer.dispose();
+          this.__P_166_0.dispose();
 
-          this.__timer = null;
+          this.__P_166_0 = null;
         }
       },
 
@@ -124,7 +124,7 @@
       addListener: function addListener(type, listener, self, capture) {
         var result = qx.event.Idle.prototype.addListener.base.call(this, type, listener, self, capture);
 
-        this.__startTimer();
+        this.__P_166_1();
 
         return result;
       },
@@ -135,7 +135,7 @@
       addListenerOnce: function addListenerOnce(type, listener, self, capture) {
         var result = qx.event.Idle.prototype.addListenerOnce.base.call(this, type, listener, self, capture);
 
-        this.__startTimer();
+        this.__P_166_1();
 
         return result;
       },
@@ -146,7 +146,7 @@
       removeListener: function removeListener(type, listener, self, capture) {
         var result = qx.event.Idle.prototype.removeListener.base.call(this, type, listener, self, capture);
 
-        this.__stopTimer();
+        this.__P_166_2();
 
         return result;
       },
@@ -157,7 +157,7 @@
       removeListenerById: function removeListenerById(id) {
         var result = qx.event.Idle.prototype.removeListenerById.base.call(this, id);
 
-        this.__stopTimer();
+        this.__P_166_2();
 
         return result;
       }
@@ -169,14 +169,14 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__timer) {
-        this.__timer.stop();
+      if (this.__P_166_0) {
+        this.__P_166_0.stop();
       }
 
-      this.__timer = null;
+      this.__P_166_0 = null;
     }
   });
   qx.event.Idle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Idle.js.map?dt=1591114969832
+//# sourceMappingURL=Idle.js.map?dt=1592777085012

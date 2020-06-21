@@ -92,12 +92,12 @@
     ******************************************************
     */
     members: {
-      __navLeft: null,
-      __isTouchDevice: null,
+      __P_10_0: null,
+      __P_10_1: null,
       // overridden
       getDomString: function getDomString() {
         if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
-          var navLeft = this.__navLeft = document.querySelector('#navbarLeft');
+          var navLeft = this.__P_10_0 = document.querySelector('#navbarLeft');
 
           if (!navLeft.classList.contains('mobilemenu')) {
             navLeft.classList.add('mobilemenu');
@@ -124,9 +124,9 @@
       _action: function _action() {
         if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
           if (this.isTouchDevice()) {
-            this.__navLeft.style.display = "block";
+            this.__P_10_0.style.display = "block";
 
-            var navbar = this.__navLeft.querySelector('.navbar.navbarActive');
+            var navbar = this.__P_10_0.querySelector('.navbar.navbarActive');
 
             qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
           }
@@ -145,16 +145,16 @@
         }, false);
       },
       isTouchDevice: function isTouchDevice() {
-        if (this.__isTouchDevice === null) {
+        if (this.__P_10_1 === null) {
           try {
             document.createEvent("TouchEvent");
-            this.__isTouchDevice = true;
+            this.__P_10_1 = true;
           } catch (e) {
-            this.__isTouchDevice = false;
+            this.__P_10_1 = false;
           }
         }
 
-        return this.__isTouchDevice;
+        return this.__P_10_1;
       }
     },
     // VisuDesign_Custom.prototype.addCreator("mobilemenu", {
@@ -174,4 +174,4 @@
   cv.plugins.MobileMenu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MobileMenu.js.map?dt=1591115567541
+//# sourceMappingURL=MobileMenu.js.map?dt=1592778958509

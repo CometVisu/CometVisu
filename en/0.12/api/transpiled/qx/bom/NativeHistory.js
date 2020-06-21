@@ -73,39 +73,39 @@
     construct: function construct() {
       qx.bom.History.constructor.call(this);
 
-      this.__attachListeners();
+      this.__P_75_0();
     },
     members: {
-      __checkOnHashChange: null,
+      __P_75_1: null,
 
       /**
        * Attach hash change listeners
        */
-      __attachListeners: function __attachListeners() {
+      __P_75_0: function __P_75_0() {
         if (qx.bom.History.SUPPORTS_HASH_CHANGE_EVENT) {
-          var boundFunc = qx.lang.Function.bind(this.__onHashChange, this);
-          this.__checkOnHashChange = qx.event.GlobalError.observeMethod(boundFunc);
-          qx.bom.Event.addNativeListener(window, "hashchange", this.__checkOnHashChange);
+          var boundFunc = qx.lang.Function.bind(this.__P_75_2, this);
+          this.__P_75_1 = qx.event.GlobalError.observeMethod(boundFunc);
+          qx.bom.Event.addNativeListener(window, "hashchange", this.__P_75_1);
         } else {
-          qx.event.Idle.getInstance().addListener("interval", this.__onHashChange, this);
+          qx.event.Idle.getInstance().addListener("interval", this.__P_75_2, this);
         }
       },
 
       /**
        * Remove hash change listeners
        */
-      __detatchListeners: function __detatchListeners() {
+      __P_75_3: function __P_75_3() {
         if (qx.bom.History.SUPPORTS_HASH_CHANGE_EVENT) {
-          qx.bom.Event.removeNativeListener(window, "hashchange", this.__checkOnHashChange);
+          qx.bom.Event.removeNativeListener(window, "hashchange", this.__P_75_1);
         } else {
-          qx.event.Idle.getInstance().removeListener("interval", this.__onHashChange, this);
+          qx.event.Idle.getInstance().removeListener("interval", this.__P_75_2, this);
         }
       },
 
       /**
        * hash change event handler
        */
-      __onHashChange: function __onHashChange() {
+      __P_75_2: function __P_75_2() {
         var currentState = this._readState();
 
         if (qx.lang.Type.isString(currentState) && currentState != this.getState()) {
@@ -139,10 +139,10 @@
       })
     },
     destruct: function destruct() {
-      this.__detatchListeners();
+      this.__P_75_3();
     }
   });
   qx.bom.NativeHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NativeHistory.js.map?dt=1591114961986
+//# sourceMappingURL=NativeHistory.js.map?dt=1592777076932

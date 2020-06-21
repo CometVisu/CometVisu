@@ -101,7 +101,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Position of the aligned object in relation to the opener.\n Please note than changes to this property are only applied\n when re-aligning the widget.\n The first part of the value is the edge to attach to. The second\n part the alignment of the orthogonal edge after the widget\n has been attached.\n The default value \"bottom-left\" for example means that the\n widget should be shown directly under the given target and\n then should be aligned to be left edge:\n </p>\n<pre>\n +--------+\n | target |\n +--------+\n +-------------+\n |   widget    |\n +-------------+\n </pre>"
+          }
+        ]
+      }
     },
     "placeMethod": {
       "type": "property",
@@ -109,7 +117,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should be placed relative to an other widget or to\n the pointer.</p>"
+          }
+        ]
+      }
     },
     "domMove": {
       "type": "property",
@@ -117,7 +133,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should moved using DOM methods.</p>"
+          }
+        ]
+      }
     },
     "placementModeX": {
       "type": "property",
@@ -125,7 +149,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects the algorithm to place the widget horizontally. <code>direct</code>\n uses {@link qx.util.placement.DirectAxis}, <code>keep-align</code>\n uses {@link qx.util.placement.KeepAlignAxis} and <code>best-fit</code>\n uses {@link qx.util.placement.BestFitAxis}.</p>"
+          }
+        ]
+      }
     },
     "placementModeY": {
       "type": "property",
@@ -133,7 +165,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects the algorithm to place the widget vertically. <code>direct</code>\n uses {@link qx.util.placement.DirectAxis}, <code>keep-align</code>\n uses {@link qx.util.placement.KeepAlignAxis} and <code>best-fit</code>\n uses {@link qx.util.placement.BestFitAxis}.</p>"
+          }
+        ]
+      }
     },
     "offsetLeft": {
       "type": "property",
@@ -141,7 +181,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Left offset of the pointer (in pixel)</p>"
+          }
+        ]
+      }
     },
     "offsetTop": {
       "type": "property",
@@ -149,7 +197,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Top offset of the pointer (in pixel)</p>"
+          }
+        ]
+      }
     },
     "offsetRight": {
       "type": "property",
@@ -157,7 +213,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Right offset of the pointer (in pixel)</p>"
+          }
+        ]
+      }
     },
     "offsetBottom": {
       "type": "property",
@@ -165,7 +229,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Bottom offset of the pointer (in pixel)</p>"
+          }
+        ]
+      }
     },
     "offset": {
       "type": "property",
@@ -173,7 +245,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Offsets in one group</p>"
+          }
+        ]
+      }
     },
     "qxOwner": {
       "type": "property",
@@ -181,7 +261,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -189,7 +277,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -420,32 +516,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "id {String} ID of the child control. If a # is used, the id is\n   the part in front of the #.",
-            "paramName": "id",
-            "description": " ID of the child control. If a # is used, the id is\n   the part in front of the #.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "hash {String?undefined} If a child control name contains a #,\n   all text following the # will be the hash argument.",
-            "paramName": "hash",
-            "description": " If a child control name contains a #,\n   all text following the # will be the hash argument.",
-            "optional": true,
-            "defaultValue": "undefined",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.core.Widget} The created control or <code>null</code>",
-            "type": "qx.ui.core.Widget",
-            "description": " The created control or <code>null</code>"
-          }
         ]
       },
       "type": "function",
@@ -571,7 +641,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.ui.core.MPlacement"
+      "overriddenFrom": "qx.ui.core.MPlacement",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all resources allocated by the last run of placeToWidget with liveupdate=true</p>"
+          }
+        ]
+      }
     },
     "placeToPointer": {
       "type": "function",
@@ -2207,7 +2285,29 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.data.MBinding"
+      "overriddenFrom": "qx.data.MBinding",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all bindings from the object.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
+            "type": "qx.core.AssertionError",
+            "description": " If the object is not in the internal\n   registry of the bindings."
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
+            "type": "Error",
+            "description": " If one of the bindings listed internally can not be\n   removed."
+          }
+        ]
+      }
     },
     "getBindings": {
       "type": "function",
@@ -3024,7 +3124,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply owner</p>"
+          }
+        ]
+      }
     },
     "_applyQxObjectId": {
       "type": "function",
@@ -3033,7 +3141,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply objectId</p>"
+          }
+        ]
+      }
     },
     "__onOwnedObjectIdChange": {
       "type": "function",
@@ -3042,7 +3158,15 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a child's objectId changes</p>"
+          }
+        ]
+      }
     },
     "_cascadeQxObjectIdChanges": {
       "type": "function",
@@ -3051,7 +3175,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reflect changes to IDs or owners</p>"
+          }
+        ]
+      }
     },
     "getQxObject": {
       "type": "function",

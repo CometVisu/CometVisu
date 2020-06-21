@@ -39,8 +39,8 @@
       "qx.util.ResourceManager": {},
       "qx.event.Timer": {},
       "qx.event.message.Bus": {},
-      "cv.data.FileWorker": {},
       "cv.core.notifications.Router": {},
+      "cv.data.FileWorker": {},
       "qx.core.Init": {},
       "qx.core.WindowError": {},
       "qx.dev.StackTrace": {},
@@ -124,7 +124,17 @@
         this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === "visible");
       }, this); // install global shortcut for opening the manager
 
-      window.showManager = this.showManager;
+      if (window.parent && typeof window.parent.showManager === 'function') {
+        window.showManager = window.parent.showManager;
+      } else {
+        window.showManager = this.showManager.bind(this);
+      }
+
+      if (window.parent && typeof window.parent.showConfigErrors === 'function') {
+        window.showConfigErrors = window.parent.showConfigErrors;
+      } else {
+        window.showConfigErrors = this.showConfigErrors.bind(this);
+      }
     },
 
     /*
@@ -135,7 +145,7 @@
     statics: {
       HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
       consoleCommands: [],
-      __commandManager: null,
+      __P_2_0: null,
 
       /**
        * Client factory method -> create a client
@@ -199,6 +209,10 @@
         check: "Boolean",
         init: true,
         event: "changeActive"
+      },
+      inManager: {
+        check: "Boolean",
+        init: false
       }
     },
 
@@ -235,7 +249,7 @@
        * during startup of the application
        */
       main: function main() {
-        qx.event.GlobalError.setErrorHandler(this.__globalErrorHandler, this);
+        qx.event.GlobalError.setErrorHandler(this.__P_2_1, this);
         cv.report.Record.prepare();
         var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + " Christian Mayer and the CometVisu contributers.\n" + " Version: " + cv.Version.VERSION + "\n";
 
@@ -271,39 +285,65 @@
         // in debug mode load the uncompressed unobfuscated scripts
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?' + Date.now() : ''));
 
-        this.__init();
+        this.__P_2_2();
       },
 
       /**
        * @param action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()
-       * @param path {String} path of file that action should executed on
+       * @param data {String|Map} path of file that action should executed on or a Map of options
        */
-      showManager: function showManager(action, path) {
+      showManager: function showManager(action, data) {
         qx.io.PartLoader.require(['manager'], function (states) {
           // break dependency
           var engine = cv.TemplateEngine.getInstance();
 
-          if (!engine.isLoggedIn()) {
+          if (!engine.isLoggedIn() && !action) {
             // never start the manager before we are logged in, as the login response might contain information about the REST API URL
             engine.addListenerOnce('changeLoggedIn', this.showManager, this);
             return;
           }
 
           var ManagerMain = cv.ui['manager']['Main'];
-          var toggleVisibility = !!ManagerMain.constructor.$$instance;
+          var firstCall = !ManagerMain.constructor.$$instance;
           var manager = ManagerMain.getInstance();
 
-          if (toggleVisibility) {
+          if (!action && !firstCall) {
             manager.setVisible(!manager.getVisible());
+          } else if (firstCall) {
+            // initially bind manager visibility
+            manager.bind('visible', this, 'inManager');
           }
 
-          if (manager.getVisible() && action && path) {
+          if (manager.getVisible() && action && data) {
             // delay this a little bit, give the manager some time to settle
             qx.event.Timer.once(function () {
-              qx.event.message.Bus.dispatchByName('cv.manager.' + action, path);
+              qx.event.message.Bus.dispatchByName('cv.manager.' + action, data);
             }, this, 1000);
           }
         }, this);
+      },
+      showConfigErrors: function showConfigErrors(configName, options) {
+        configName = configName ? 'visu_config_' + configName + '.xml' : 'visu_config.xml';
+        var handlerId = options && options.upgradeVersion ? 'cv.ui.manager.editor.Diff' : 'cv.ui.manager.editor.Source';
+        var data = {
+          file: configName,
+          handler: handlerId,
+          handlerOptions: Object.assign({
+            jumpToError: true
+          }, options ? options : {})
+        };
+
+        if (this.isInManager()) {
+          qx.event.message.Bus.dispatchByName('cv.manager.openWith', data);
+        } else {
+          this.showManager('openWith', data);
+        } // remove any config error messages shown
+
+
+        cv.core.notifications.Router.dispatchMessage('cv.config.error', {
+          topic: 'cv.config.error',
+          condition: false
+        });
       },
       validateConfig: function validateConfig(configName) {
         var _this = this;
@@ -364,10 +404,7 @@
                 link: [{
                   title: qx.locale.Manager.tr("Show errors"),
                   action: function action() {
-                    qx.core.Init.getApplication().showManager('openWith', {
-                      file: "visu_config".concat(configName, ".xml"),
-                      handler: 'cv.ui.manager.editor.Source'
-                    });
+                    qx.core.Init.getApplication().showConfigErrors(configName);
                   }
                 }]
               },
@@ -379,7 +416,7 @@
           _this.error(err);
         });
       },
-      __globalErrorHandler: function __globalErrorHandler(ex) {
+      __P_2_1: function __P_2_1(ex) {
         // connect client data for Bug-Report
         var bugData = cv.report.Record.getClientData();
         var body = "**" + qx.locale.Manager.tr("Please describe what you have done until the error occured?") + "**\n \n\n";
@@ -555,7 +592,7 @@
       /**
        * Internal initialization method
        */
-      __init: function __init() {
+      __P_2_2: function __P_2_2() {
         qx.event.Registration.addListener(window, 'resize', cv.ui.layout.ResizeHandler.invalidateScreensize, cv.ui.layout.ResizeHandler);
         qx.event.Registration.addListener(window, 'unload', function () {
           cv.io.Client.stopAll();
@@ -618,7 +655,7 @@
             cv.Config.lazyLoading = true;
             engine.initBackendClient();
 
-            this.__detectInitialPage(); // load part for structure
+            this.__P_2_3(); // load part for structure
 
 
             var structure = cv.Config.getStructure();
@@ -665,7 +702,7 @@
         if (!cv.Config.cacheUsed) {
           this.debug("starting");
 
-          this.__detectInitialPage();
+          this.__P_2_3();
 
           engine.parseXML(xml, function () {
             this.loadPlugins();
@@ -788,7 +825,7 @@
           cv.util.ScriptLoader.getInstance().setAllQueued(true);
         }
       },
-      __detectInitialPage: function __detectInitialPage() {
+      __P_2_3: function __P_2_3() {
         var startpage = 'id_';
 
         if (cv.Config.startpage) {
@@ -830,4 +867,4 @@
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1591114952591
+//# sourceMappingURL=Application.js.map?dt=1592777067425

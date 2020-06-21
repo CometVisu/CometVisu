@@ -178,14 +178,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.html.Element} The widget's content element",
-            "type": "qx.html.Element",
-            "description": " The widget's content element"
-          }
         ]
       },
       "type": "function",
@@ -264,14 +256,6 @@
           {
             "name": "@description",
             "body": "<p>overridden</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} The map with the preferred width/height and the allowed\n   minimum and maximum values.",
-            "type": "Map",
-            "description": " The map with the preferred width/height and the allowed\n   minimum and maximum values."
           }
         ]
       },
@@ -696,7 +680,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.core.MBlocker"
+      "overriddenFrom": "qx.ui.core.MBlocker",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "_applyBlockerOpacity": {
       "type": "function",
@@ -705,7 +697,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.core.MBlocker"
+      "overriddenFrom": "qx.ui.core.MBlocker",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "block": {
       "type": "function",
@@ -714,7 +714,15 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MBlocker"
+      "overriddenFrom": "qx.ui.core.MBlocker",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Block all events from this widget by placing a transparent overlay widget,\n which receives all events, exactly over the widget.</p>"
+          }
+        ]
+      }
     },
     "isBlocked": {
       "type": "function",
@@ -748,7 +756,15 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MBlocker"
+      "overriddenFrom": "qx.ui.core.MBlocker",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unblock the widget blocked by {@link #block}, but it takes care of\n the amount of {@link #block} calls. The blocker is only removed if\n the number of {@link #unblock} calls is identical to {@link #block} calls.</p>"
+          }
+        ]
+      }
     },
     "forceUnblock": {
       "type": "function",
@@ -757,7 +773,15 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.core.MBlocker"
+      "overriddenFrom": "qx.ui.core.MBlocker",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unblock the widget blocked by {@link #block}, but it doesn't take care of\n the amount of {@link #block} calls. The blocker is directly removed.</p>"
+          }
+        ]
+      }
     },
     "blockContent": {
       "type": "function",
@@ -1051,7 +1075,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.window.MDesktop"
+      "overriddenFrom": "qx.ui.window.MDesktop",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>property apply</p>"
+          }
+        ]
+      }
     },
     "_onChangeModal": {
       "type": "function",
@@ -1086,7 +1118,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.ui.window.MDesktop"
+      "overriddenFrom": "qx.ui.window.MDesktop",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called if one of the managed windows changes its visibility\n state.</p>"
+          }
+        ]
+      }
     },
     "_afterAddChild": {
       "type": "function",
@@ -1586,7 +1626,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -1645,7 +1693,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMinWidth": {
       "type": "function",

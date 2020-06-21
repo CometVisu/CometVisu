@@ -73,29 +73,6 @@
             "name": "@Override",
             "body": ""
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "filename    {String}  name of object",
-            "paramName": "filename",
-            "description": "  name of object",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "blob        {Blob}    the blob to upload",
-            "paramName": "blob",
-            "description": "    the blob to upload",
-            "type": "Blob"
-          },
-          {
-            "name": "@param",
-            "body": "params      {Object}  List of params added to the upload params",
-            "paramName": "params",
-            "description": "  List of params added to the upload params",
-            "type": "Object"
-          }
         ]
       },
       "type": "function",
@@ -127,23 +104,6 @@
           {
             "name": "@Override",
             "body": ""
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "input\n          {DOM} the DOM input[type=file]",
-            "paramName": "input",
-            "description": " the DOM input[type=file]",
-            "type": "DOM"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{com.zenesis.qx.upload.File|com.zenesis.qx.upload.File[]}",
-            "type": "com.zenesis.qx.upload.File|com.zenesis.qx.upload.File[]",
-            "description": ""
           }
         ]
       },
@@ -177,12 +137,6 @@
             "name": "@Override",
             "body": ""
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "file\n          {com.zenesis.qx.upload.File}"
-          }
         ]
       },
       "type": "function",
@@ -214,15 +168,6 @@
           {
             "name": "@Override",
             "body": ""
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "file\n          {com.zenesis.qx.upload.File} file to cancel uploading",
-            "paramName": "file",
-            "description": " file to cancel uploading",
-            "type": "com.zenesis.qx.upload.File"
           }
         ]
       },
@@ -292,7 +237,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -351,7 +304,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getMaxConnections": {
       "type": "function",

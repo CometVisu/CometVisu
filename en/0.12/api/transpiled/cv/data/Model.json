@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 279,
+        "line": 283,
         "column": 3
       }
     },
@@ -177,14 +177,28 @@
       "type": "variable",
       "access": "private"
     },
-    "onUpdate": {
+    "getStateListener": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 89,
+          "line": 75,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "onUpdate": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4
+        },
+        "end": {
+          "line": 93,
           "column": 5
         }
       },
@@ -218,11 +232,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 95,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 107,
           "column": 5
         }
       },
@@ -249,11 +263,11 @@
     "getState": {
       "location": {
         "start": {
-          "line": 111,
+          "line": 115,
           "column": 4
         },
         "end": {
-          "line": 113,
+          "line": 117,
           "column": 5
         }
       },
@@ -288,11 +302,11 @@
     "addUpdateListener": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 126,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 131,
           "column": 5
         }
       },
@@ -333,11 +347,11 @@
     "removeUpdateListener": {
       "location": {
         "start": {
-          "line": 136,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 152,
+          "line": 156,
           "column": 5
         }
       },
@@ -378,11 +392,11 @@
     "addAddress": {
       "location": {
         "start": {
-          "line": 159,
+          "line": 163,
           "column": 4
         },
         "end": {
-          "line": 167,
+          "line": 171,
           "column": 5
         }
       },
@@ -416,11 +430,11 @@
     "getAddresses": {
       "location": {
         "start": {
-          "line": 173,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 175,
+          "line": 179,
           "column": 5
         }
       },
@@ -446,11 +460,11 @@
     "setAddressList": {
       "location": {
         "start": {
-          "line": 181,
+          "line": 185,
           "column": 4
         },
         "end": {
-          "line": 183,
+          "line": 187,
           "column": 5
         }
       },
@@ -477,11 +491,11 @@
     "getAddressList": {
       "location": {
         "start": {
-          "line": 189,
+          "line": 193,
           "column": 4
         },
         "end": {
-          "line": 191,
+          "line": 195,
           "column": 5
         }
       },
@@ -507,11 +521,11 @@
     "resetAddressList": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 201,
           "column": 4
         },
         "end": {
-          "line": 199,
+          "line": 203,
           "column": 5
         }
       },
@@ -535,11 +549,11 @@
     "getWidgetData": {
       "location": {
         "start": {
-          "line": 206,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 208,
+          "line": 212,
           "column": 5
         }
       },
@@ -574,11 +588,11 @@
     "getWidgetDataByElement": {
       "location": {
         "start": {
-          "line": 216,
+          "line": 220,
           "column": 4
         },
         "end": {
-          "line": 225,
+          "line": 229,
           "column": 5
         }
       },
@@ -613,11 +627,11 @@
     "setWidgetData": {
       "location": {
         "start": {
-          "line": 234,
+          "line": 238,
           "column": 4
         },
         "end": {
-          "line": 241,
+          "line": 245,
           "column": 5
         }
       },
@@ -659,11 +673,11 @@
     "setWidgetDataModel": {
       "location": {
         "start": {
-          "line": 247,
+          "line": 251,
           "column": 4
         },
         "end": {
-          "line": 249,
+          "line": 253,
           "column": 5
         }
       },
@@ -690,11 +704,11 @@
     "getWidgetDataModel": {
       "location": {
         "start": {
-          "line": 255,
+          "line": 259,
           "column": 4
         },
         "end": {
-          "line": 257,
+          "line": 261,
           "column": 5
         }
       },
@@ -720,11 +734,11 @@
     "resetWidgetDataModel": {
       "location": {
         "start": {
-          "line": 263,
+          "line": 267,
           "column": 4
         },
         "end": {
-          "line": 265,
+          "line": 269,
           "column": 5
         }
       },
@@ -748,11 +762,11 @@
     "clear": {
       "location": {
         "start": {
-          "line": 271,
+          "line": 275,
           "column": 4
         },
         "end": {
-          "line": 276,
+          "line": 280,
           "column": 5
         }
       },
@@ -832,7 +846,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -891,7 +913,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "descendants": []

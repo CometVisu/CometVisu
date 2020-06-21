@@ -51,23 +51,6 @@
             "name": "@description",
             "body": "<p>interface implementation</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellInfo {Map} A map containing the information about the cell to\n      create.",
-            "paramName": "cellInfo",
-            "description": " A map containing the information about the cell to\n      create.",
-            "type": "Map"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.core.Widget} the widget that should be used as cell editor.",
-            "type": "qx.ui.core.Widget",
-            "description": " the widget that should be used as cell editor."
-          }
         ]
       },
       "type": "function",
@@ -93,23 +76,6 @@
           {
             "name": "@description",
             "body": "<p>interface implementation</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellEditor {qx.ui.core.Widget} The cell editor formally created by\n      {@link #createCellEditor}.",
-            "paramName": "cellEditor",
-            "description": " The cell editor formally created by\n      {@link #createCellEditor}.",
-            "type": "qx.ui.core.Widget"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var} the current value from the editor.",
-            "type": "var",
-            "description": " the current value from the editor."
           }
         ]
       },
@@ -179,7 +145,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -238,7 +212,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     }
   },
   "descendants": []

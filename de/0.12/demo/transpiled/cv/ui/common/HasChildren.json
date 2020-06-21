@@ -53,18 +53,54 @@
   },
   "properties": {
     "children": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Array with child paths</p>"
+          }
+        ]
+      },
       "name": "children",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": [],
+      "check": "Array",
+      "defaultValue": []
     },
     "childWidgets": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Array with child widget objects</p>"
+          }
+        ]
+      },
       "name": "childWidgets",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": [],
+      "check": "Array",
+      "defaultValue": []
     }
   },
   "members": {

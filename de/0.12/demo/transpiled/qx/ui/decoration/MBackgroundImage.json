@@ -33,53 +33,180 @@
   "type": "mixin",
   "properties": {
     "backgroundImage": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The URL of the background image</p>"
+          }
+        ]
+      },
       "name": "backgroundImage",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBackgroundImage",
+      "nullable": true,
+      "allowNull": true
     },
     "backgroundRepeat": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>How the background image should be repeated</p>"
+          }
+        ]
+      },
       "name": "backgroundRepeat",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBackgroundImage",
+      "init": "repeat",
+      "defaultValue": "repeat"
     },
     "backgroundPositionX": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4
+        },
+        "end": {
+          "line": 82,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Either a string or a number, which defines the horizontal position\n of the background image.\n If the value is an integer it is interpreted as a pixel value, otherwise\n the value is taken to be a CSS value. For CSS, the values are \"center\",\n \"left\" and \"right\".</p>"
+          }
+        ]
+      },
       "name": "backgroundPositionX",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBackgroundPosition",
+      "nullable": true,
+      "allowNull": true
     },
     "backgroundPositionY": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 97,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Either a string or a number, which defines the vertical position\n of the background image.\n If the value is an integer it is interpreted as a pixel value, otherwise\n the value is taken to be a CSS value. For CSS, the values are \"top\",\n \"center\" and \"bottom\".</p>"
+          }
+        ]
+      },
       "name": "backgroundPositionY",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBackgroundPosition",
+      "nullable": true,
+      "allowNull": true
     },
     "backgroundOrigin": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4
+        },
+        "end": {
+          "line": 107,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Specifies where the background image is positioned.</p>"
+          }
+        ]
+      },
       "name": "backgroundOrigin",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyBackgroundImage",
+      "nullable": true,
+      "allowNull": true
     },
     "backgroundPosition": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4
+        },
+        "end": {
+          "line": 116,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to define the background position</p>"
+          }
+        ]
+      },
       "name": "backgroundPosition",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "group": [
+        "backgroundPositionY",
+        "backgroundPositionX"
+      ]
     },
     "orderGradientsFront": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 128,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to order gradients before Image-URL-based background declarations\n if both qx.ui.decoration.MBackgroundImage and\n qx.ui.decoration.MLinearBackgroundGradient decorations are used.</p>"
+          }
+        ]
+      },
       "name": "orderGradientsFront",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     }
   },
   "members": {

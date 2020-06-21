@@ -68,8 +68,8 @@
     include: [qx.ui.decoration.MSingleBorder, qx.ui.decoration.MBackgroundImage],
     construct: function construct() {
       // override the methods of single border and background image
-      this._getDefaultInsetsForBorder = this.__getDefaultInsetsForDoubleBorder;
-      this._styleBorder = this.__styleDoubleBorder;
+      this._getDefaultInsetsForBorder = this.__P_321_0;
+      this._styleBorder = this.__P_321_1;
     },
 
     /*
@@ -177,7 +177,7 @@
        *
        * @param styles {Map} A map to add the styles.
        */
-      __styleDoubleBorder: function __styleDoubleBorder(styles) {
+      __P_321_1: function __P_321_1(styles) {
         var propName = qx.core.Environment.get("css.boxshadow");
         var color, innerColor, innerWidth;
 
@@ -244,7 +244,7 @@
         var innerOpacity = this.getInnerOpacity();
 
         if (innerOpacity < 1) {
-          this.__processInnerOpacity(innerColor, innerOpacity);
+          this.__P_321_2(innerColor, innerOpacity);
         } // inner border
 
 
@@ -321,7 +321,7 @@
        * @param innerColor {Map} map of top, right, bottom and left colors
        * @param innerOpacity {Number} alpha value
        */
-      __processInnerOpacity: function __processInnerOpacity(innerColor, innerOpacity) {
+      __P_321_2: function __P_321_2(innerColor, innerOpacity) {
         if (!qx.core.Environment.get("css.rgba")) {
           return;
         }
@@ -341,7 +341,7 @@
        * @return {Map} A map containing the default insets.
        *   (top, right, bottom, left)
        */
-      __getDefaultInsetsForDoubleBorder: function __getDefaultInsetsForDoubleBorder() {
+      __P_321_0: function __P_321_0() {
         return {
           top: this.getWidthTop() + this.getInnerWidthTop(),
           right: this.getWidthRight() + this.getInnerWidthRight(),
@@ -354,4 +354,4 @@
   qx.ui.decoration.MDoubleBorder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDoubleBorder.js.map?dt=1591115595449
+//# sourceMappingURL=MDoubleBorder.js.map?dt=1592778986634

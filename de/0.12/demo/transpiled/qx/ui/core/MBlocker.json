@@ -33,18 +33,58 @@
   "type": "mixin",
   "properties": {
     "blockerColor": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Color of the blocker</p>"
+          }
+        ]
+      },
       "name": "blockerColor",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "apply": "_applyBlockerColor",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Color"
     },
     "blockerOpacity": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opacity of the blocker</p>"
+          }
+        ]
+      },
       "name": "blockerOpacity",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "themeable": true,
+      "apply": "_applyBlockerOpacity",
+      "init": 1,
+      "check": "Number",
+      "defaultValue": 1
     }
   },
   "members": {

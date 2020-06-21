@@ -74,25 +74,82 @@
   },
   "properties": {
     "maxLength": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximal number of characters that can be entered in the input field.</p>"
+          }
+        ]
+      },
       "name": "maxLength",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyMaxLength",
+      "nullable": true,
+      "allowNull": true,
+      "check": "PositiveInteger"
     },
     "placeholder": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4
+        },
+        "end": {
+          "line": 76,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>String value which will be shown as a hint if the field is all of:\n unset, unfocused and enabled. Set to <code>null</code> to not show a placeholder\n text.</p>"
+          }
+        ]
+      },
       "name": "placeholder",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyPlaceholder",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     },
     "readOnly": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the field is read only</p>"
+          }
+        ]
+      },
       "name": "readOnly",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyAttribute",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Boolean"
     }
   },
   "members": {

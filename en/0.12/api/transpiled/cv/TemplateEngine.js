@@ -91,10 +91,10 @@
     construct: function construct() {
       // this.base(arguments);
       this.pagePartsHandler = new cv.ui.PagePartsHandler();
-      this.__partQueue = new qx.data.Array();
+      this.__P_479_0 = new qx.data.Array();
       this._domFinishedQueue = [];
 
-      this.__partQueue.addListener("changeLength", function (ev) {
+      this.__P_479_0.addListener("changeLength", function (ev) {
         this.setPartsLoaded(ev.getData() === 0);
       }, this);
 
@@ -191,12 +191,12 @@
       visu: null,
       pluginsToLoadCount: 0,
       xml: null,
-      __partQueue: null,
+      __P_479_0: null,
       _domFinishedQueue: null,
       // plugins that do not need to be loaded to proceed with the initial setup
       lazyPlugins: ["plugin-openhab"],
-      __activeChangedTimer: null,
-      __hasBeenConnected: false,
+      __P_479_1: null,
+      __P_479_2: false,
 
       /**
        * Load parts (e.g. plugins, structure)
@@ -218,12 +218,12 @@
           });
         }
 
-        this.__partQueue.append(parts);
+        this.__P_479_0.append(parts);
 
         qx.io.PartLoader.require(parts, function (states) {
           parts.forEach(function (part, idx) {
             if (states[idx] === "complete") {
-              this.__partQueue.remove(part);
+              this.__P_479_0.remove(part);
 
               this.debug("successfully loaded part " + part);
 
@@ -363,25 +363,25 @@
         var app = qx.core.Init.getApplication();
 
         if (app.isActive()) {
-          if (!this.visu.isConnected() && this.__hasBeenConnected) {
+          if (!this.visu.isConnected() && this.__P_479_2) {
             // reconnect
             this.visu.restart(true);
           } // wait for 3 seconds before checking the backend connection
 
 
-          if (!this.__activeChangedTimer) {
-            this.__activeChangedTimer = new qx.event.Timer(3000);
+          if (!this.__P_479_1) {
+            this.__P_479_1 = new qx.event.Timer(3000);
 
-            this.__activeChangedTimer.addListener('interval', function () {
+            this.__P_479_1.addListener('interval', function () {
               if (app.isActive()) {
                 this._checkBackendConnection();
               }
 
-              this.__activeChangedTimer.stop();
+              this.__P_479_1.stop();
             }, this);
           }
 
-          this.__activeChangedTimer.restart();
+          this.__P_479_1.restart();
         } else {
           this._checkBackendConnection();
         }
@@ -394,7 +394,7 @@
           severity: "urgent",
           unique: true,
           deletable: false,
-          condition: !connected && this.__hasBeenConnected && qx.core.Init.getApplication().isActive()
+          condition: !connected && this.__P_479_2 && qx.core.Init.getApplication().isActive()
         };
         var lastError = this.visu.getLastError();
 
@@ -405,7 +405,7 @@
             message.message = qx.locale.Manager.tr("Connection to backend is lost.");
           }
         } else {
-          this.__hasBeenConnected = true;
+          this.__P_479_2 = true;
         }
 
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
@@ -983,10 +983,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeObjects('__activeChangedTimer');
+      this._disposeObjects("__P_479_1");
     }
   });
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1591114996242
+//# sourceMappingURL=TemplateEngine.js.map?dt=1592777111465

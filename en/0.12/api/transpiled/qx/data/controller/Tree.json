@@ -310,7 +310,16 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.data.controller.MSelection"
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "event": "changeSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Data array containing the selected model objects. This property can be\n manipulated directly which means that a push to the selection will also\n select the corresponding element in the target.</p>"
+          }
+        ]
+      }
     },
     "qxOwner": {
       "type": "property",
@@ -318,7 +327,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
     },
     "qxObjectId": {
       "type": "property",
@@ -326,7 +343,15 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "qx.core.MObjectId"
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -1476,7 +1501,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.data.controller.ISelection",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the selection to its default value.</p>"
+          }
+        ]
+      }
     },
     "setValue": {
       "type": "function",
@@ -1547,7 +1580,15 @@
       "mixin": true,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.data.controller.MSelection"
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>resetValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ]
+      }
     },
     "_applySelection": {
       "type": "function",
@@ -1596,7 +1637,19 @@
       "mixin": true,
       "inherited": true,
       "access": "private",
-      "overriddenFrom": "qx.data.controller.MSelection"
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>---------------------------------------------------------------------------\n   EVENT HANDLER\n---------------------------------------------------------------------------\n</code></pre>"
+          },
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the change of the data array holding the selection.\n If a change is in the selection array, the selection update will be\n invoked.</p>"
+          }
+        ]
+      }
     },
     "_changeTargetSelection": {
       "type": "function",
@@ -1605,7 +1658,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.data.controller.MSelection"
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for a change in the target selection.\n If the selection in the target has changed, the selected model objects\n will be found and added to the selection array.</p>"
+          }
+        ]
+      }
     },
     "_addChangeTargetListener": {
       "type": "function",
@@ -1657,7 +1718,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.data.controller.MSelection"
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method for updating the selection. It checks for the case of single or\n multi selection and after that checks if the selection in the selection\n array is the same as in the target widget.</p>"
+          }
+        ]
+      }
     },
     "__targetSupportsMultiSelection": {
       "type": "function",
@@ -1776,7 +1845,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.data.controller.MSelection"
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method signaling that currently the selection of the target is\n in change. That will block the change of the internal selection.\n {@link #_endSelectionModification}</p>"
+          }
+        ]
+      }
     },
     "_endSelectionModification": {
       "type": "function",
@@ -1785,7 +1862,15 @@
       "mixin": true,
       "inherited": true,
       "access": "protected",
-      "overriddenFrom": "qx.data.controller.MSelection"
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method signaling that the internal changing of the targets\n selection is over.\n {@link #_startSelectionModification}</p>"
+          }
+        ]
+      }
     },
     "_inSelectionModification": {
       "type": "function",
@@ -1871,7 +1956,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -1930,7 +2023,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.core.Object",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getModel": {
       "type": "function",

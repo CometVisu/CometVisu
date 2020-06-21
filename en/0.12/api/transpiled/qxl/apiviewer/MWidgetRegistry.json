@@ -29,11 +29,22 @@
   "type": "mixin",
   "properties": {
     "id": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4
+        },
+        "end": {
+          "line": 30,
+          "column": 5
+        }
+      },
       "name": "id",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_applyId",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     }
   },
   "members": {

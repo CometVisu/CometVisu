@@ -45,7 +45,7 @@
     ******************************************************
     */
     statics: {
-      __handlers: {},
+      __P_3_0: {},
 
       /**
        * Register an action handler for an action type.
@@ -57,11 +57,11 @@
        * @param handler {cv.core.notifications.IActionHandler}
        */
       registerActionHandler: function registerActionHandler(type, handler) {
-        if (this.__handlers[type]) {
+        if (this.__P_3_0[type]) {
           qx.log.Logger.warn(this, "there is already an action handler registered for '" + type + "' action. replacing now");
         }
 
-        this.__handlers[type] = handler;
+        this.__P_3_0[type] = handler;
       },
 
       /**
@@ -70,8 +70,8 @@
        * @param type {String} action type
        */
       unregisterActionHandler: function unregisterActionHandler(type) {
-        if (this.__handlers[type]) {
-          delete this.__handlers[type];
+        if (this.__P_3_0[type]) {
+          delete this.__P_3_0[type];
         }
       },
 
@@ -82,8 +82,8 @@
        * @return {cv.core.notifications.IActionHandler|null}
        */
       getActionHandler: function getActionHandler(type, config) {
-        if (this.__handlers[type]) {
-          return new this.__handlers[type](config);
+        if (this.__P_3_0[type]) {
+          return new this.__P_3_0[type](config);
         } else {
           return null;
         }
@@ -98,11 +98,11 @@
        * @return {Element|null}
        */
       createActionElement: function createActionElement(type, config) {
-        if (!this.__handlers[type]) {
+        if (!this.__P_3_0[type]) {
           qx.log.Logger.error(this, "no action handler registered for '%1' action type", type);
           return null;
         } else {
-          var actionHandler = new this.__handlers[type](config);
+          var actionHandler = new this.__P_3_0[type](config);
           return actionHandler.getDomElement();
         }
       }
@@ -111,4 +111,4 @@
   cv.core.notifications.ActionRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ActionRegistry.js.map?dt=1591115565658
+//# sourceMappingURL=ActionRegistry.js.map?dt=1592778956736

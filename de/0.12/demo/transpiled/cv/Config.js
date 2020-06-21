@@ -89,12 +89,6 @@
       currentPageId: null,
 
       /**
-       * Config file version
-       * @type {Number}
-       */
-      libraryVersion: 8,
-
-      /**
        * @type {Boolean}
        */
       libraryCheck: true,
@@ -419,4 +413,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1591115572735
+//# sourceMappingURL=Config.js.map?dt=1592778963548

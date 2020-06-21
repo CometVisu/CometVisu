@@ -66,10 +66,10 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__routes = {};
+      this.__P_4_0 = {};
       this.debug("new router");
-      this.__dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat("short"));
-      this.__timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat("short"));
+      this.__P_4_1 = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat("short"));
+      this.__P_4_2 = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat("short"));
     },
 
     /*
@@ -140,10 +140,13 @@
     *****************************************************************************
     */
     members: {
-      __routes: null,
-      __stateMessageConfig: null,
-      __dateFormat: null,
-      __timeFormat: null,
+      __P_4_0: null,
+      __P_4_3: null,
+      __P_4_1: null,
+      __P_4_2: null,
+      getStateMessageConfig: function getStateMessageConfig() {
+        return this.__P_4_3;
+      },
 
       /**
        * Register state update handler for one or more addresses.
@@ -170,8 +173,8 @@
        * @param config {Map}
        */
       registerStateUpdateHandler: function registerStateUpdateHandler(config) {
-        this.__stateMessageConfig = config;
-        Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function (address) {
+        this.__P_4_3 = config;
+        Object.getOwnPropertyNames(this.__P_4_3).forEach(function (address) {
           cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
         }, this);
       },
@@ -184,8 +187,8 @@
         addresses.forEach(function (address) {
           cv.data.Model.getInstance().removeUpdateListener(address, this._onIncomingData, this);
 
-          if (this.__stateMessageConfig[address]) {
-            delete this.__stateMessageConfig[address];
+          if (this.__P_4_3[address]) {
+            delete this.__P_4_3[address];
           }
         }, this);
       },
@@ -199,26 +202,26 @@
         Object.getOwnPropertyNames(topics).forEach(function (topic) {
           var segments = topic.split(".");
           var firstSegment = segments.shift();
-          var currentSegment = this.__routes[firstSegment];
+          var currentSegment = this.__P_4_0[firstSegment];
 
           if (!currentSegment) {
-            this.__routes[firstSegment] = {
-              '__handlers__': []
+            this.__P_4_0[firstSegment] = {
+              "__P_4_4": []
             };
-            currentSegment = this.__routes[firstSegment];
+            currentSegment = this.__P_4_0[firstSegment];
           }
 
           segments.forEach(function (segment) {
             if (!currentSegment[segment]) {
               currentSegment[segment] = {
-                '__handlers__': []
+                "__P_4_4": []
               };
             }
 
             currentSegment = currentSegment[segment];
           }, this);
 
-          currentSegment.__handlers__.push({
+          currentSegment.__P_4_4.push({
             handler: handler,
             config: topics[topic]
           });
@@ -234,17 +237,17 @@
        * @protected
        */
       _onIncomingData: function _onIncomingData(address, state, initial, changed) {
-        if (!this.__stateMessageConfig[address]) {
+        if (!this.__P_4_3[address]) {
           return;
         }
 
         var now = new Date();
 
-        var formattedDate = this.__dateFormat.format(now);
+        var formattedDate = this.__P_4_1.format(now);
 
-        var formattedTime = this.__timeFormat.format(now);
+        var formattedTime = this.__P_4_2.format(now);
 
-        this.__stateMessageConfig[address].forEach(function (config) {
+        this.__P_4_3[address].forEach(function (config) {
           if (initial === true && config.skipInitial === true || changed === false) {
             // do not handle the first update
             return;
@@ -295,11 +298,11 @@
           this.dispatchMessage(message.topic, message, config.target);
         }, this);
       },
-      __collectHandlers: function __collectHandlers(topic) {
+      __P_4_5: function __P_4_5(topic) {
         var handlers = new qx.data.Array();
         var segments = topic.split(".");
         var firstSegment = segments.shift();
-        var currentSegment = this.__routes[firstSegment];
+        var currentSegment = this.__P_4_0[firstSegment];
         var last = segments.length - 1;
         segments.some(function (segmentName, idx) {
           if (!currentSegment) {
@@ -307,17 +310,17 @@
             return true;
           } else if (segmentName === "*") {
             // collect all
-            this.__collectAllFromSegment(currentSegment, handlers);
+            this.__P_4_6(currentSegment, handlers);
 
             return true;
           } else {
             if (currentSegment["*"]) {
-              handlers.append(currentSegment["*"].__handlers__);
+              handlers.append(currentSegment["*"].__P_4_4);
             }
 
             if (currentSegment[segmentName]) {
               if (idx === last) {
-                handlers.append(currentSegment[segmentName].__handlers__);
+                handlers.append(currentSegment[segmentName].__P_4_4);
               }
 
               currentSegment = currentSegment[segmentName];
@@ -329,11 +332,11 @@
         }, this);
         return handlers;
       },
-      __collectAllFromSegment: function __collectAllFromSegment(segment, handlers) {
-        handlers.append(segment.__handlers__);
+      __P_4_6: function __P_4_6(segment, handlers) {
+        handlers.append(segment.__P_4_4);
         Object.getOwnPropertyNames(segment).forEach(function (segmentName) {
-          if (segmentName !== "__handlers__") {
-            this.__collectAllFromSegment(segment[segmentName], handlers);
+          if (segmentName !== "__P_4_4") {
+            this.__P_4_6(segment[segmentName], handlers);
           }
         }, this);
         return handlers;
@@ -347,15 +350,15 @@
           this.debug("dispatching '" + topic + "' message to handler: " + target);
           target.handleMessage(message, {});
         } else {
-          this.__collectHandlers(topic).forEach(function (entry) {
+          this.__P_4_5(topic).forEach(function (entry) {
             this.debug("dispatching '" + topic + "' message to handler: " + entry.handler);
             entry.handler.handleMessage(message, entry.config);
           }, this);
         }
       },
       clear: function clear() {
-        this.__routes = {};
-        this.__stateMessageConfig = {};
+        this.__P_4_0 = {};
+        this.__P_4_3 = {};
       }
     },
 
@@ -367,10 +370,10 @@
     destruct: function destruct() {
       this.clear();
 
-      this._disposeObjects("__dateFormat", "__timeFormat");
+      this._disposeObjects("__P_4_1", "__P_4_2");
     }
   });
   cv.core.notifications.Router.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Router.js.map?dt=1591115565836
+//# sourceMappingURL=Router.js.map?dt=1592778956913

@@ -83,28 +83,60 @@
       "name": "orientation",
       "abstract": true,
       "mixin": false,
-      "access": "public"
+      "access": "public",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The scroll bar orientation</p>"
+          }
+        ]
+      }
     },
     "maximum": {
       "type": "property",
       "name": "maximum",
       "abstract": true,
       "mixin": false,
-      "access": "public"
+      "access": "public",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximum value (difference between available size and\n content size).</p>"
+          }
+        ]
+      }
     },
     "position": {
       "type": "property",
       "name": "position",
       "abstract": true,
       "mixin": false,
-      "access": "public"
+      "access": "public",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Position of the scrollbar (which means the scroll left/top of the\n attached area's pane)\n Strictly validates according to {@link #maximum}.\n Does not apply any correction to the incoming value. If you depend\n on this, please use {@link #scrollTo} instead.</p>"
+          }
+        ]
+      }
     },
     "knobFactor": {
       "type": "property",
       "name": "knobFactor",
       "abstract": true,
       "mixin": false,
-      "access": "public"
+      "access": "public",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factor to apply to the width/height of the knob in relation\n to the dimension of the underlying area.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {

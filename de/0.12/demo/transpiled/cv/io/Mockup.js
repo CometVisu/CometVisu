@@ -72,7 +72,7 @@
       var testMode = "resource/demo/media/demo_testmode_data.json";
 
       if (typeof testMode === "string" && testMode !== "true") {
-        this.__loadTestData();
+        this.__P_57_0();
       }
 
       this.addresses = [];
@@ -107,22 +107,22 @@
     members: {
       backendName: 'mockup',
       addresses: null,
-      __xhr: null,
-      __sequence: null,
-      __sequenceIndex: 0,
-      __simulations: null,
-      __loadTestData: function __loadTestData() {
+      __P_57_1: null,
+      __P_57_2: null,
+      __P_57_3: 0,
+      __P_57_4: null,
+      __P_57_0: function __P_57_0() {
         // load the demo data to fill the visu with some values
         var r = new qx.io.request.Xhr("resource/demo/media/demo_testmode_data.json");
         r.addListener('success', function (e) {
           cv.Config.initialDemoData = e.getTarget().getResponse();
 
-          this.__applyTestData();
+          this.__P_57_5();
         }, this);
         r.send();
       },
-      __applyTestData: function __applyTestData() {
-        this.__xhr = cv.Config.initialDemoData.xhr; // configure server
+      __P_57_5: function __P_57_5() {
+        this.__P_57_1 = cv.Config.initialDemoData.xhr; // configure server
 
         qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
           return url.startsWith('https://sentry.io');
@@ -135,17 +135,17 @@
             url = url.replace(/[\?|&]nocache=[0-9]+/, "");
           }
 
-          if (!this.__xhr[url] || this.__xhr[url].length === 0) {
+          if (!this.__P_57_1[url] || this.__P_57_1[url].length === 0) {
             qx.log.Logger.error(this, "404: no logged responses for URI " + url + " found");
           } else {
             qx.log.Logger.debug(this, "faking response for " + url);
             var response = "";
 
-            if (this.__xhr[url].length === 1) {
-              response = this.__xhr[url][0];
+            if (this.__P_57_1[url].length === 1) {
+              response = this.__P_57_1[url][0];
             } else {
               // multiple responses recorded use them as LIFO stack
-              response = this.__xhr[url].shift();
+              response = this.__P_57_1[url].shift();
             }
 
             if (request.readyState === 4 && request.status === 404) {
@@ -181,7 +181,7 @@
               });
 
               if (cv.Config.initialDemoData.sequence) {
-                this.__sequence = cv.Config.initialDemoData.sequence;
+                this.__P_57_2 = cv.Config.initialDemoData.sequence;
 
                 this._startSequence();
               }
@@ -196,36 +196,36 @@
         }
       },
       _registerSimulations: function _registerSimulations(simulations) {
-        this.__simulations = {};
+        this.__P_57_4 = {};
         Object.keys(simulations).forEach(function (mainAddress) {
           var simulation = simulations[mainAddress];
-          this.__simulations[mainAddress] = simulation;
+          this.__P_57_4[mainAddress] = simulation;
 
           if (simulation.hasOwnProperty("additionalAddresses")) {
             simulation.additionalAddresses.forEach(function (addr) {
-              this.__simulations[addr] = simulation;
+              this.__P_57_4[addr] = simulation;
             }, this);
           }
         }, this);
       },
       _startSequence: function _startSequence() {
-        if (this.__sequence.length <= this.__sequenceIndex) {
+        if (this.__P_57_2.length <= this.__P_57_3) {
           // start again
-          this.__sequenceIndex = 0;
+          this.__P_57_3 = 0;
         }
 
         qx.event.Timer.once(function () {
           this.receive({
             i: new Date().getTime(),
-            d: this.__sequence[this.__sequenceIndex].data
+            d: this.__P_57_2[this.__P_57_3].data
           });
-          this.__sequenceIndex++;
+          this.__P_57_3++;
 
           this._startSequence();
-        }, this, this.__sequence[this.__sequenceIndex].delay);
+        }, this, this.__P_57_2[this.__P_57_3].delay);
       },
       _processSimulation: function _processSimulation(address, value) {
-        var simulation = this.__simulations[address];
+        var simulation = this.__P_57_4[address];
 
         if (!simulation) {
           return;
@@ -336,7 +336,7 @@
           ts: ts
         });
 
-        if (this.__simulations && this.__simulations.hasOwnProperty(address)) {
+        if (this.__P_57_4 && this.__P_57_4.hasOwnProperty(address)) {
           this._processSimulation(address, value);
         } else {
           // send update
@@ -353,10 +353,16 @@
       stop: function stop() {},
       getResourcePath: function getResourcePath(name) {
         return name;
+      },
+      getLastError: function getLastError() {
+        return null;
+      },
+      getBackend: function getBackend() {
+        return {};
       }
     }
   });
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1591115572799
+//# sourceMappingURL=Mockup.js.map?dt=1592778963624

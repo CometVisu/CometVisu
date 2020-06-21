@@ -36,7 +36,7 @@
     ******************************************************
     */
     statics: {
-      __elem: null,
+      __P_492_0: null,
 
       /**
        * Decode HTML entities like &amp; to &
@@ -44,12 +44,12 @@
        * @return {String}
        */
       decodeHtmlEntities: function decodeHtmlEntities(str) {
-        if (!this.__elem) {
-          this.__elem = document.createElement("span");
+        if (!this.__P_492_0) {
+          this.__P_492_0 = document.createElement("span");
         }
 
-        this.__elem.innerHTML = str;
-        return this.__elem.innerText;
+        this.__P_492_0.innerHTML = str;
+        return this.__P_492_0.innerText;
       },
 
       /**
@@ -99,4 +99,4 @@
   cv.util.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1591114997236
+//# sourceMappingURL=String.js.map?dt=1592777112307

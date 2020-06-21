@@ -49,23 +49,6 @@
             "name": "@description",
             "body": "<p>overridden</p>"
           }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "cellEditor {qx.ui.core.Widget} The cell editor formally created by\n      {@link #createCellEditor}.",
-            "paramName": "cellEditor",
-            "description": " The cell editor formally created by\n      {@link #createCellEditor}.",
-            "type": "qx.ui.core.Widget"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var} the current value from the editor.",
-            "type": "var",
-            "description": " the current value from the editor."
-          }
         ]
       },
       "type": "function",
@@ -163,7 +146,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.celleditor.AbstractField",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
     },
     "getQxObjectId": {
       "type": "function",
@@ -222,7 +213,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.celleditor.AbstractField",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
     },
     "getValidationFunction": {
       "type": "function",
@@ -283,7 +282,15 @@
       "inherited": true,
       "access": "public",
       "overriddenFrom": "qx.ui.table.celleditor.AbstractField",
-      "property": "reset"
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>validationFunction</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #validationFunction}."
+          }
+        ]
+      }
     }
   },
   "descendants": []

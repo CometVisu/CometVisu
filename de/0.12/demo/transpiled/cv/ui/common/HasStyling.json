@@ -29,11 +29,21 @@
   "type": "mixin",
   "properties": {
     "styling": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
+          "column": 5
+        }
+      },
       "name": "styling",
-      "abstract": false,
-      "mixin": true,
-      "access": "public"
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     }
   },
   "members": {
