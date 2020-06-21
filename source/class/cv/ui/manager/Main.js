@@ -180,7 +180,11 @@ qx.Class.define('cv.ui.manager.Main', {
     handleAction: function (actionName, data) {
       switch (actionName) {
         case 'close':
-          this.closeCurrentFile();
+          if (!data) {
+            this.closeCurrentFile();
+          } else {
+            this.closeFile(data);
+          }
           break;
 
         case 'quit':
@@ -287,7 +291,7 @@ qx.Class.define('cv.ui.manager.Main', {
             // this can only by a file in the root dir (a config)
             data.file = this.__findConfigFile(data.file);
           }
-          this.openFile(data.file || this.getCurrentSelection(), false, data.handler);
+          this.openFile(data.file || this.getCurrentSelection(), false, data.handler, null, data.handlerOptions);
           break;
 
         case 'cv.manager.open':
@@ -376,9 +380,14 @@ qx.Class.define('cv.ui.manager.Main', {
         if (!editorConfig.instance) {
           editorConfig.instance = new editorConfig.Clazz();
           editorConfig.instance.setFile(file);
-          this._stack.add(editorConfig.instance);
         } else {
           editorConfig.instance.setFile(file);
+        }
+        if (this._stack.indexOf(editorConfig.instance) < 0) {
+          this._stack.add(editorConfig.instance);
+        }
+        if (editorConfig.instance instanceof cv.ui.manager.editor.AbstractEditor) {
+          editorConfig.instance.setHandlerOptions(openFile.getHandlerOptions());
         }
         this._stack.setSelection([editorConfig.instance]);
         this.__actionDispatcher.setFocusedWidget(editorConfig.instance);
@@ -396,7 +405,7 @@ qx.Class.define('cv.ui.manager.Main', {
      * @param handlerId {String} use this handler to open the file (classname as string)
      * @param handlerType {String} use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer
      */
-    openFile: function (file, preview, handlerId, handlerType) {
+    openFile: function (file, preview, handlerId, handlerType, handlerOptions) {
       var openFiles = this.getOpenFiles();
       var openFile;
       if (!handlerId) {
@@ -409,6 +418,16 @@ qx.Class.define('cv.ui.manager.Main', {
         } else {
           handlerId = handlerConf.Clazz.classname;
         }
+      } else {
+        // check if this handler opens the file in a external frame that is not connected to the manager
+        var handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
+        if (!handlerConf.instance) {
+          handlerConf.instance = new handlerConf.Clazz();
+        }
+        if (handlerConf.instance.isExternal()) {
+          handlerConf.instance.setFile(file);
+          return;
+        }
       }
       var isOpen = openFiles.some(function (of) {
         if (of.getFile() === file && handlerId === of.getHandlerId()) {
@@ -418,6 +437,11 @@ qx.Class.define('cv.ui.manager.Main', {
       });
       if (!openFile) {
         openFile = new cv.ui.manager.model.OpenFile(file, handlerId);
+      }
+      if (handlerOptions) {
+        openFile.setHandlerOptions(handlerOptions);
+      } else {
+        openFile.resetHandlerOptions();
       }
       if (preview === true) {
         if (!openFile.isPermanent()) {
@@ -441,10 +465,22 @@ qx.Class.define('cv.ui.manager.Main', {
     },
 
     closeFile: function (openFile, force) {
-      var file = openFile.getFile();
+      if (openFile instanceof cv.ui.manager.model.FileItem) {
+        // find the opened file
+        var found = this.getOpenFiles().some(function (f) {
+          if (f.getFile().getFullPath() === openFile.getFullPath()) {
+            openFile = f;
+            return true;
+          }
+        });
+        if (!found) {
+          return;
+        }
+      }
       if (!openFile.isCloseable()) {
         return;
       }
+      var file = openFile.getFile();
 
       // check if this file is modified
       if (file.isModified() && !force) {
@@ -466,7 +502,9 @@ qx.Class.define('cv.ui.manager.Main', {
         }, this, qx.locale.Manager.tr('Unsaved changes'));
         return;
       }
-      openFile.resetPermanent();
+      if (openFile instanceof cv.ui.manager.model.OpenFile) {
+        openFile.resetPermanent();
+      }
       var currentSelection = this._openFilesController.getSelection();
       var selectionIndex = -1;
       var openFiles = this.getOpenFiles();

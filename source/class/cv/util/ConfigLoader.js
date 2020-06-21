@@ -74,8 +74,10 @@ qx.Class.define('cv.util.ConfigLoader', {
           var xmlLibVersion = xml.querySelector('pages').getAttribute("lib_version");
           if (xmlLibVersion === undefined) {
             xmlLibVersion = -1;
+          } else {
+            xmlLibVersion = parseInt(xmlLibVersion);
           }
-          if (cv.Config.libraryCheck && xmlLibVersion < cv.Config.libraryVersion) {
+          if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
             this.configError("libraryerror");
           }
           else {
@@ -173,17 +175,17 @@ qx.Class.define('cv.util.ConfigLoader', {
       var message = '';
       switch (textStatus) {
         case 'parsererror':
-          message = qx.locale.Manager.tr("Invalid config file!")+'<br/><a href="check_config.php?config=' + configSuffix + '">'+qx.locale.Manager.tr("Please check!")+'</a>';
+          message = qx.locale.Manager.tr("Invalid config file!")+'<br/><a href="#" onclick="showConfigErrors(\'' + configSuffix + '\')">'+qx.locale.Manager.tr("Please check!")+'</a>';
           break;
         case 'libraryerror':
-          var link = window.location.href;
+          var link = window.location.href.split('#')[0];
           if (link.indexOf('?') <= 0) {
             link = link + '?';
           }
           link = link + '&libraryCheck=false';
           message = qx.locale.Manager.tr('Config file has wrong library version!').translate().toString()+'<br/>' +
             qx.locale.Manager.tr('This can cause problems with your configuration').translate().toString()+'</br>' +
-            '<p>'+qx.locale.Manager.tr("You can run the %1Configuration Upgrader%2.", '<a href="./upgrade/index.php?config=' + configSuffix + '">', '</a>').translate().toString() +'</br>' +
+            '<p>'+qx.locale.Manager.tr("You can run the %1Configuration Upgrader%2.", '<a href="#" onclick="showConfigErrors(\'' + configSuffix + '\', {upgradeVersion: true})">', '</a>').translate().toString() +'</br>' +
             qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>').translate().toString()+'</p>';
           break;
         case 'filenotfound':

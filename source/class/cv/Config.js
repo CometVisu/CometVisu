@@ -47,11 +47,6 @@ qx.Class.define('cv.Config', {
     currentPageId: null,
 
     /**
-     * Config file version
-     * @type {Number}
-     */
-    libraryVersion: 8,
-    /**
      * @type {Boolean}
      */
     libraryCheck: true,

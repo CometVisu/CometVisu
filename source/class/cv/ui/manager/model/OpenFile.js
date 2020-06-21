@@ -38,6 +38,11 @@ qx.Class.define('cv.ui.manager.model.OpenFile', {
       apply: '_maintainIcon'
     },
 
+    handlerOptions: {
+      check: 'Map',
+      nullable: true
+    },
+
     /**
      * The opening state: permanent false behaves like a quick preview, where
      * the current file content is replaces by the next selected file on single click.

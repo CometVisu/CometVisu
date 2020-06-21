@@ -30,6 +30,14 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
       nullable: true,
       apply: '_applyFile',
       event: 'changeFile'
+    },
+
+    /**
+     * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file
+     */
+    external: {
+      check: 'Boolean',
+      init: false
     }
   },
 

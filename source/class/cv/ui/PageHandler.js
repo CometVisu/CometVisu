@@ -114,7 +114,6 @@ qx.Class.define('cv.ui.PageHandler', {
         // set it to visible
         pageWidget.setVisible(true);
       }
-      console.log(speed, animationEnabled, animationConfig)
 
       if (!animationEnabled) {
         if (oldPageWidget) {

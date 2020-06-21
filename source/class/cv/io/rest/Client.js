@@ -21,7 +21,7 @@ qx.Class.define('cv.io.rest.Client', {
         var path = ""; 
         var engine = cv.TemplateEngine.getInstance();
         var clientBackend = engine.visu ? engine.visu.getBackend() : {};
-        if (clientBackend.resources.rest) {
+        if (clientBackend.resources && clientBackend.resources.rest) {
           path = clientBackend.resources.rest
         } else {
           path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';

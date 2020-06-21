@@ -70,6 +70,10 @@ qx.Class.define('cv.data.Model', {
     __addressList : null,
     __widgetData: null,
 
+    getStateListener: function () {
+      return this.__stateListeners;
+    },
+
     /**
      * Updates the state of a single address
      *

@@ -32,6 +32,7 @@ class AbstractCompileHandler {
       revision: revision,
       branch: branch,
       date: new Date().toISOString(),
+      libraryVersion: 0,
       tags: []
     }
     Object.keys(this._customSettings).forEach(key => {
@@ -43,7 +44,11 @@ class AbstractCompileHandler {
       data.tags[data.tags.length - 1].last = true
     }
     const packageData = JSON.parse(fs.readFileSync("package.json"));
-    data.version = packageData.version
+    data.version = packageData.version;
+
+    // get library version
+    data.libraryVersion = packageData.org_cometvisu.libraryVersion;
+
     const code = mustache.render(`
 qx.Class.define("cv.Version", {
   type: "static",
@@ -52,6 +57,7 @@ qx.Class.define("cv.Version", {
     REV: "{{ revision }}",
     BRANCH: "{{ branch }}",
     VERSION: "{{ version }}",
+    LIBRARY_VERSION: {{ libraryVersion }},
     DATE: "{{ date }}",
     TAGS: { {{#tags}}
       {{ name }}: "{{value}}"{{^last}},{{/last}}{{/tags}}

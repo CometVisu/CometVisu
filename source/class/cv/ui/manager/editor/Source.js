@@ -66,7 +66,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         return /\.(xml|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(file.getFullPath().toLowerCase())
       }
     },
-    DEFAULT_FOR: /^visu_config.*\.xml/,
+    DEFAULT_FOR: /^(demo)?\/?visu_config.*\.xml/,
     ICON: cv.theme.dark.Images.getIcon('text', 18),
 
     load: function (callback, context) {
@@ -161,6 +161,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             dragAndDrop: true,
             formatOnPaste: true,
             formatOnType: true,
+            renderValidationDecorations: 'on',
             minimap: {
               enabled: true
             },
@@ -316,26 +317,28 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         this._editor.setValue(value);
       }
       this._editor.updateOptions({ readOnly: !file.isWriteable() });
-      this.enableMarkers(newModel);
+      this._processHandlerOptions(value);
     },
 
-    // workaround for enabling markers in readonly files (from: https://github.com/microsoft/monaco-editor/issues/311#issuecomment-465139491)
-    enableMarkers: function (model) {
-      if (!model) {
-        return;
+    _processHandlerOptions: function (content) {
+      var handlerOptions = this.getHandlerOptions() || {};
+      if (handlerOptions.hasOwnProperty('upgradeVersion') && handlerOptions.upgradeVersion === true && content) {
+        const [err, res] = this._upgradeConfig(content);
+        if (err) {
+          this.error(err);
+        } else {
+          this._editor.setValue(this._convertToString(res));
+        }
       }
-      [
-        ['getLineDecorations', 2],
-        ['getLinesDecorations', 3],
-        ['getDecorationsInRange', 2],
-        ['getOverviewRulerDecorations', 1],
-        ['getAllDecorations', 1],
-      ].forEach(([functionName, maxArgs]) => {
-        const originalMethod = model[functionName];
-        model[functionName] = function() {
-          return originalMethod.apply(this, Array.from(arguments).slice(0, maxArgs));
-        };
-      });
+    },
+
+    _convertToString: function (xml) {
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + xml.documentElement.outerHTML;
+    },
+
+    _upgradeConfig: function (content) {
+      const upgrader = new cv.util.ConfigUpgrader();
+      return upgrader.upgrade(content);
     },
 
     getCurrentContent: function () {
@@ -363,6 +366,12 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       if (!model) {
         return;
       }
+      let firstErrorLine = -1;
+      function check(line) {
+        if (firstErrorLine < 0 || firstErrorLine > line) {
+          firstErrorLine = line;
+        }
+      }
       // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
       if (errorList) {
 //            console.error(errorList);
@@ -379,6 +388,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
                 endColumn: model.getLineContent(currentMessage.line).length,
                 message: currentMessage.message
               });
+              check(currentMessage.line);
             }
             // add marker for completed message
             var parts = error.split(":");
@@ -399,6 +409,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
               message: parts.slice(-2).join(":"),
               file: file
             };
+            check(currentMessage.line);
           } else {
             currentMessage.message += "\n"+error;
           }
@@ -413,10 +424,18 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             endColumn: model.getLineContent(currentMessage.line).length,
             message: currentMessage.message
           });
+          check(currentMessage.line);
         }
       }
       if (this.getFile().getFullPath() === path) {
         window.monaco.editor.setModelMarkers(model, '', markers);
+        const options = this.getHandlerOptions();
+        if (options && options.jumpToError) {
+          // jump too first error (only when we are at the beginning
+          if (this._editor.getScrollTop() === 0) {
+            this._editor.revealLineInCenter(firstErrorLine);
+          }
+        }
       } else {
         // TODO: save errors for later
       }

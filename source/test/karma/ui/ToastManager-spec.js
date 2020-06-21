@@ -36,7 +36,7 @@ describe('test the NotificationCenter', function () {
     message.severity = "high";
     message.unique = true;
 
-    var messageId = center.__idCounter-1;
+    var messageId = center.getIdCounter()-1;
     center.handleMessage(Object.assign({}, message));
     // as the message was unique it replaces the old one
     expect(center.getMessages().getLength()).toBe(1);
@@ -48,7 +48,7 @@ describe('test the NotificationCenter', function () {
     message.severity = "urgent";
     message.unique = false;
 
-    messageId = center.__idCounter;
+    messageId = center.getIdCounter();
     center.handleMessage(Object.assign({}, message));
     // as the message was unique it replaces the old one
     expect(center.getMessages().getLength()).toBe(2);
@@ -182,7 +182,7 @@ describe('test the NotificationCenter', function () {
         severity: "normal",
         target: "toast"
       };
-      var messageId = center.__idCounter;
+      var messageId = center.getIdCounter();
       center.handleMessage(message);
 
       var element = document.querySelector("#"+center.getMessageElementId()+messageId);

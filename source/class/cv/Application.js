@@ -51,7 +51,16 @@ qx.Class.define("cv.Application",
     }, this);
 
     // install global shortcut for opening the manager
-    window.showManager = this.showManager;
+    if (window.parent && typeof window.parent.showManager === 'function') {
+      window.showManager = window.parent.showManager;
+    } else {
+      window.showManager = this.showManager.bind(this);
+    }
+    if (window.parent && typeof window.parent.showConfigErrors === 'function') {
+      window.showConfigErrors = window.parent.showConfigErrors;
+    } else {
+      window.showConfigErrors = this.showConfigErrors.bind(this);
+    }
   },
 
   /*
@@ -125,6 +134,11 @@ qx.Class.define("cv.Application",
       check: "Boolean",
       init: true,
       event: "changeActive"
+    },
+
+    inManager: {
+      check: "Boolean",
+      init: false
     }
   },
 
@@ -232,30 +246,56 @@ qx.Class.define("cv.Application",
 
     /**
      * @param action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()
-     * @param path {String} path of file that action should executed on
+     * @param data {String|Map} path of file that action should executed on or a Map of options
      */
-    showManager: function (action, path) {
+    showManager: function (action, data) {
       qx.io.PartLoader.require(['manager'], function (states) {
         // break dependency
         var engine = cv.TemplateEngine.getInstance();
-        if (!engine.isLoggedIn()) {
+        if (!engine.isLoggedIn() && !action) {
           // never start the manager before we are logged in, as the login response might contain information about the REST API URL
           engine.addListenerOnce('changeLoggedIn', this.showManager, this);
           return;
         }
         var ManagerMain = cv.ui['manager']['Main'];
-        var toggleVisibility = !!ManagerMain.constructor.$$instance;
+        const firstCall = !ManagerMain.constructor.$$instance;
         var manager = ManagerMain.getInstance();
-        if (toggleVisibility) {
+        if (!action && !firstCall) {
           manager.setVisible(!manager.getVisible());
+        } else if (firstCall) {
+          // initially bind manager visibility
+          manager.bind('visible', this, 'inManager');
         }
-        if (manager.getVisible() && action && path) {
+
+        if (manager.getVisible() && action && data) {
           // delay this a little bit, give the manager some time to settle
           qx.event.Timer.once(() => {
-            qx.event.message.Bus.dispatchByName('cv.manager.' + action, path);
+            qx.event.message.Bus.dispatchByName('cv.manager.' + action, data);
           }, this, 1000);
         }
       }, this);
+    },
+
+    showConfigErrors: function(configName, options) {
+      configName = configName ? 'visu_config_'+configName+'.xml' : 'visu_config.xml';
+      const handlerId = options && options.upgradeVersion ? 'cv.ui.manager.editor.Diff' : 'cv.ui.manager.editor.Source';
+      const data = {
+        file: configName,
+        handler: handlerId,
+        handlerOptions: Object.assign({
+          jumpToError: true
+        }, options ? options : {})
+      }
+      if (this.isInManager()) {
+        qx.event.message.Bus.dispatchByName('cv.manager.openWith', data);
+      } else {
+        this.showManager('openWith', data);
+      }
+      // remove any config error messages shown
+      cv.core.notifications.Router.dispatchMessage('cv.config.error', {
+        topic: 'cv.config.error',
+        condition: false
+      });
     },
 
     validateConfig: function (configName) {
@@ -310,10 +350,7 @@ qx.Class.define("cv.Application",
                 {
                   title: qx.locale.Manager.tr("Show errors"),
                   action: function () {
-                    qx.core.Init.getApplication().showManager('openWith', {
-                      file: `visu_config${configName}.xml`,
-                      handler: 'cv.ui.manager.editor.Source'
-                    })
+                    qx.core.Init.getApplication().showConfigErrors(configName);
                   }
                 }]
             },

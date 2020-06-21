@@ -264,7 +264,10 @@ qx.Class.define('cv.ui.manager.control.FileController', {
           file.setValid(false);
           qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
             file: file,
-            handler: 'cv.ui.manager.editor.Source'
+            handler: 'cv.ui.manager.editor.Source',
+            handlerOptions: {
+              jumpToError: true
+            }
           });
           cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.trn(
             '%1 error found in %2!',
