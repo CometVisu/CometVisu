@@ -7,3 +7,4 @@ configparser
 PyYAML
 rjsmin
 semver
+requests

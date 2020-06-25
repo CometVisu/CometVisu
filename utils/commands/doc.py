@@ -39,7 +39,7 @@ from lxml import etree
 from distutils.version import LooseVersion
 from argparse import ArgumentParser
 from . import Command
-from scaffolding import Scaffolder
+from utils.commands.scaffolding import Scaffolder
 from sphinx import main
 try:
     # Python 2.6-2.7
@@ -246,7 +246,10 @@ class DocGenerator(Command):
         Generates the english manual from the source code comments (api documentation)
         """
         # traverse through the widgets
-        root, dirs, files = os.walk(path).next()
+        if not os.path.exists(path):
+            print("%s does not exist" % path)
+            return
+        root, dirs, files = list(os.walk(path))[0]
         source_files = []
         cleanr = re.compile('</?h.*?>')
         clean_tags = re.compile('</?.*?>')
@@ -350,9 +353,9 @@ class DocGenerator(Command):
                                             content[section].append(".. code-block:: xml\n\n    ")
                                             for child in xml:
                                                 if child.tag == "meta":
-                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').split("\n")))
+                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').decode().split("\n")))
                                                 elif child.tag != "settings":
-                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').split("\n")))
+                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').decode().split("\n")))
                                         else:
                                             # no screenshot name defined, the auto-configured name cannot be guessed
                                             # reliable -> using widget-example
@@ -475,7 +478,7 @@ class DocGenerator(Command):
                         if len(features[name]['screenshot']) == 0:
                             del features[name]['screenshot']
                         elif len(features[name]['screenshot']) == 1:
-                            features[name]['screenshot'] = features[name]['screenshot'].values()[0]
+                            features[name]['screenshot'] = list(features[name]['screenshot'].values())[0]
                         if len(features[name]['manual']) == 0:
                             del features[name]['manual']
 
@@ -498,16 +501,16 @@ class DocGenerator(Command):
 
         return None
 
-    def _sort_versions(self, a, b):
-        return cmp(LooseVersion(a.split("|")[0]), LooseVersion(b.split("|")[0]))
+    def _key_sort_versions(self, a):
+        return LooseVersion(a.split("|")[0])
 
     def process_versions(self, path):
-        root, dirs, files = os.walk(path).next()
+        root, dirs, files = list(os.walk(path))[0]
         for lang_dir in dirs:
             if lang_dir[0:1] != "." and len(lang_dir) == 2:
                 print("checking versions in language: %s" % lang_dir)
                 # collect versions and symlinks
-                root, dirs, files = os.walk(os.path.join(path, lang_dir)).next()
+                root, dirs, files = list(os.walk(os.path.join(path, lang_dir)))[0]
                 symlinks = {}
                 versions = []
                 special_versions = []
@@ -524,7 +527,7 @@ class DocGenerator(Command):
                         special_versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
 
                 # max_version = max_ver(versions)
-                versions.sort(self._sort_versions)
+                versions.sort(key=self._key_sort_versions)
                 max_version = None
                 max_version_path = None
                 found_max = False
@@ -617,8 +620,6 @@ class DocGenerator(Command):
             # move to the correct dir
             target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
             target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
-            # remove api suffix from target
-            target_dir = os.path.sep.join(target_dir.split(os.path.sep)[0:-1])
             shutil.move(self.config.get("api", "generator_target"), target_dir)
 
         elif 'doc' not in options or options.doc == "manual":
@@ -628,7 +629,7 @@ class DocGenerator(Command):
             sys.exit(0)
 
         elif options.doc == "source":
-            cmd = "./generate.py api -sI --macro=CV_VERSION:%s" % self._get_doc_version()
+            cmd = "CV_VERSION=%s npm run api" % self._get_doc_version()
             subprocess.call(cmd, shell=True)
 
         else:

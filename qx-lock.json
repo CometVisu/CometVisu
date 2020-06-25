@@ -1,0 +1,53 @@
+{
+  "libraries": [
+    {
+      "library_name": "versionlabel",
+      "library_version": "1.0.0-beta.3",
+      "path": "qx_packages/qooxdoo_qxl_versionlabel_v1_0_0-beta_3",
+      "uri": "qooxdoo/qxl.versionlabel",
+      "repo_name": "qooxdoo/qxl.versionlabel",
+      "repo_tag": "v1.0.0-beta.3"
+    },
+    {
+      "library_name": "qx-osparc-theme",
+      "library_version": "0.4.13",
+      "path": "qx_packages/ITISFoundation_qx-osparc-theme_v0_4_13",
+      "uri": "ITISFoundation/qx-osparc-theme",
+      "repo_name": "ITISFoundation/qx-osparc-theme",
+      "repo_tag": "v0.4.13"
+    },
+    {
+      "library_name": "qx-iconfont-material",
+      "library_version": "0.1.4",
+      "path": "qx_packages/ITISFoundation_qx-iconfont-material_v0_1_4",
+      "uri": "ITISFoundation/qx-iconfont-material",
+      "repo_name": "ITISFoundation/qx-iconfont-material",
+      "repo_tag": "v0.1.4"
+    },
+    {
+      "library_name": "UploadMgr",
+      "library_version": "1.0.4",
+      "path": "qx_packages/johnspackman_UploadMgr_v1_0_4",
+      "uri": "johnspackman/UploadMgr",
+      "repo_name": "johnspackman/UploadMgr",
+      "repo_tag": "v1.0.4"
+    },
+    {
+      "library_name": "Dialog",
+      "library_version": "2.1.1",
+      "path": "qx_packages/cboulanger_qx-contrib-Dialog_v2_1_1",
+      "uri": "cboulanger/qx-contrib-Dialog",
+      "repo_name": "cboulanger/qx-contrib-Dialog",
+      "repo_tag": "v2.1.1"
+    },
+    {
+      "library_name": "Qooxdoo API Viewer",
+      "library_version": "1.0.0-beta.7",
+      "path": "qx_packages/qooxdoo_qxl_apiviewer_v1_0_0-beta_7",
+      "uri": "qooxdoo/qxl.apiviewer",
+      "repo_name": "qooxdoo/qxl.apiviewer",
+      "repo_tag": "v1.0.0-beta.7"
+    }
+  ],
+  "version": "2.1.0"
+}

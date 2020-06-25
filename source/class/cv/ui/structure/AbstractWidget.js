@@ -307,6 +307,10 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     },
 
     _onPointerUp: function(ev) {
+      if (this.__pointerDownTime === null) {
+        // ignore pointer ups when the pointerdown has not set a start time
+        return;
+      }
       var upElement = ev.getTarget();
       while (upElement && upElement !== this.__pointerDownElement) {
         upElement = upElement.parentNode;
@@ -315,6 +319,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
         }
       }
       if (upElement && upElement === this.__pointerDownElement) {
+        this._skipNextEvent = "tap";
         // both events happened on the same element
         ev.setCurrentTarget(upElement);
         if (this._onLongTap &&
@@ -326,7 +331,6 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
         } else {
           this.action(ev);
         }
-        this._skipNextEvent = "tap";
       }
       this.__abort();
     },

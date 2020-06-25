@@ -43,7 +43,58 @@ qx.Class.define('cv.io.Mockup', {
     window._getWidgetDataModel = model.getWidgetDataModel.bind(model);
     window.writeHistory = [];
 
-    if (qx.core.Environment.get('cv.testMode') && cv.Config.initialDemoData && cv.Config.initialDemoData.xhr) {
+    var testMode = qx.core.Environment.get('cv.testMode');
+    if (typeof testMode === "string" && testMode !== "true") {
+      this.__loadTestData();
+    }
+    this.addresses = [];
+  },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    dataReceived : {
+      check: "Boolean",
+      init: true
+    },
+    server: {
+      check: "String",
+      init: "Mockup"
+    },
+    connected: {
+      check: "Boolean",
+      init: true,
+      event: "changeConnected"
+    }
+  },
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    backendName: 'mockup',
+    addresses: null,
+    __xhr: null,
+    __sequence: null,
+    __sequenceIndex: 0,
+    __simulations: null,
+
+    __loadTestData: function () {
+      // load the demo data to fill the visu with some values
+      var r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
+      r.addListener('success', function (e) {
+        cv.Config.initialDemoData = e.getTarget().getResponse();
+        this.__applyTestData();
+      }, this);
+      r.send();
+    },
+
+    __applyTestData: function () {
       this.__xhr = cv.Config.initialDemoData.xhr;
       // configure server
       qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
@@ -75,43 +126,7 @@ qx.Class.define('cv.io.Mockup', {
           request.respond(response.status, response.headers, JSON.stringify(response.body));
         }
       }.bind(this));
-    }
-
-    this.addresses = [];
-  },
-
-  /*
-  ******************************************************
-    PROPERTIES
-  ******************************************************
-  */
-  properties: {
-    dataReceived : {
-      check: "Boolean",
-      init: true
     },
-    server: {
-      check: "String",
-      init: "Mockup"
-    },
-    connected: {
-      check: "Boolean",
-      init: true,
-      event: "changeConnected"
-    }
-  },
-
-  /*
-  ******************************************************
-    MEMBERS
-  ******************************************************
-  */
-  members: {
-    addresses: null,
-    __xhr: null,
-    __sequence: null,
-    __sequenceIndex: 0,
-    __simulations: null,
 
     /**
      * This function gets called once the communication is established and session information is available
@@ -293,6 +308,14 @@ qx.Class.define('cv.io.Mockup', {
 
     getResourcePath: function (name) {
       return name;
+    },
+
+    getLastError: function () {
+      return null;
+    },
+
+    getBackend: function () {
+      return {};
     }
   }
 });

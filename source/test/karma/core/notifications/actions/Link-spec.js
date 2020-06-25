@@ -13,13 +13,13 @@ describe("testing the Link action", function() {
     expect(actionButton.innerText).toBe("Title");
     expect(actionButton).toHaveClass("action");
 
-    var spy = spyOn(cv.util.Location, "open");
+    spyOn(cv.util.Location, "open");
     var event = new qx.event.type.Event();
     event.init(true, true);
     event.setType("tap");
 
     qx.event.Registration.dispatchEvent(actionButton, event);
-    expect(spy).toHaveBeenCalledWith("http://localhost/test", "_blank");
+    expect(cv.util.Location.open).toHaveBeenCalledWith("http://localhost/test", "_blank");
   });
 
   it("should transform string values of action property to functions", function() {

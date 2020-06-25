@@ -23,7 +23,7 @@
  * (e.g. 14-byte text or temperature measurements).
  *
  * @widgetexample <settings>
- *   <caption>Show temperature in degree celcius</caption>
+ *   <caption>Show temperature in degree celsius</caption>
  *   <screenshot name="info_temp">
  *     <data address="0/0/0">19</data>
  *   </screenshot>

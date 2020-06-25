@@ -1,26 +1,27 @@
 sudo: required
 language: python
-dist: trusty
+dist: xenial
 services:
   - docker
 python:
 - '3.5'
 cache:
   directories:
-  - node_modules
   - "$HOME/.cache/pip"
   - downloads
 before_install:
 - mkdir -p downloads
-- nvm install 6.9
+- nvm install --lts
 - mkdir cache
 install:
 - npm install -g grunt-cli
 - npm install
-- sudo pip install -r utils/requirements.txt
-- virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
+- pip install -r utils/requirements.txt
+- export PATH="./node_modules/.bin:$PATH"
+- qx package install
 stages:
 - name: lint
+  if: branch = test-linter
 - name: test
 - name: deploy
   if: repo = CometVisu/CometVisu AND (NOT type IN (pull_request)) AND ( branch =~ ^master|develop|release-[0-9\.]+$ )
@@ -29,8 +30,7 @@ jobs:
   - stage: lint
     name: Lint
     script:
-    - source temp-python/bin/activate
-    - "./generate.py lint"
+    - qx lint
   - stage: test
     name: 'Unit Tests: Chrome stable'
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=stable
@@ -39,9 +39,7 @@ jobs:
     - export CHROME_BIN=`pwd`/chrome/google-chrome
     - export PATH=`pwd`/firefox:`pwd`/chrome:$PATH
     - google-chrome --version
-    - source temp-python/bin/activate
-    - "./generate.py source -sI"
-    - deactivate
+    - qx compile
     - grunt karma:travis --browser=$CV_BROWSER
     - if [ "$CV_BUILD" == "test" ] && [ "$CV_VERSION" == "stable" ] ; then grunt coveralls; fi
   - stage: test
@@ -57,9 +55,7 @@ jobs:
     script: &2
     - sudo ./utils/travis/browser-setup.sh
     - export CHROME_BIN=`pwd`/chrome/google-chrome
-    - source temp-python/bin/activate
-    - "./generate.py source -sI"
-    - deactivate
+    - qx compile
     - export CHROME_VERSION=$($CHROME_BIN --version | awk '{ print $3 }' | cut -d'.' -f 1,2,3)
     - export DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
     - echo "using chrome driver version $DRIVER_VERSION"
@@ -69,24 +65,36 @@ jobs:
     env: CV_BUILD=test CV_BROWSER=Chrome_travis CV_VERSION=beta
     script: *2
   - stage: deploy
+    name: "[SENTRY] create release and upload sourcemaps"
+    env: SENTRY_ORG=cometvisu SENTRY_PROJECT=cometvisu
+    script: |
+      qx compile -t=build
+      curl -sL https://sentry.io/get-cli/ | bash
+      export SENTRY_RELEASE=$(sentry-cli releases propose-version)
+      sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
+      sentry-cli releases set-commits --auto $SENTRY_RELEASE
+      sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps compiled/build --rewrite --strip-common-prefix --no-sourcemap-reference --ignore node_modules/ --ignore test/  --ignore transpiled/
+      sentry-cli releases finalize $SENTRY_RELEASE
+  - stage: deploy
     name: "[DOCS] - Generate and publish manual and API-viewer"
     env: CV_BUILD=docs ENCRYPTION_LABEL=4c79fec0aeb9 COMMIT_AUTHOR_EMAIL=generator@cometvisu.org CV_BROWSER=Chrome_travis CV_VERSION=stable
     script:
     - docker pull cometvisu/dev-helper
-    - source temp-python/bin/activate
-    - "./generate.py build -sI"
-    - deactivate
-    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false"
-    - sudo apt-get install python-lxml python3-lxml
+    - qx compile --t build # builds the cv for the screenshot generator
+    - export CHROME_VERSION=$(bin/docker-run "google-chrome --version" | tail -1 | awk '{ print $3 }' | cut -d'.' -f 1,2,3)
+    - export DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
+    - echo "using chrome driver version $DRIVER_VERSION"
+    - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false --versions.chrome=${DRIVER_VERSION}"
+    - sudo apt-get install python3-lxml
     - utils/travis/deploy.sh
   - name: "[NIGHTLY] - Build and push Nightly Build"
     if: type = cron OR commit_message =~ /^\[ci nightly\].*/
     script: &3
-    - 'CLIENT_CHANGES=`git log --pretty=format: --name-only --since="1 days ago" ${TRAVIS_BUILD_DIR}/client/ | sort | uniq | sed ''/^$/d'' | wc -l`'
-    - 'CORE_CHANGES=`git log --pretty=format: --name-only --since="1 days ago" ${TRAVIS_BUILD_DIR}/source/ | sort | uniq | sed ''/^$/d'' | wc -l`'
+    - 'CLIENT_CHANGES=`./utils/travis/check-changes.py cv`'
+    - 'CORE_CHANGES=`./utils/travis/check-changes.py client`'
     - export DEPLOY_NIGHTLY=0
     - if [[ ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0) ]]; then export DEPLOY_NIGHTLY=1; fi
-    - if [[ ${TRAVIS_COMMIT_MESSAGE:0:12} = "[ci nightly]" ]]; then export DEPLOY_NIGHTLY=1; export CORE_CHANGES=1; fi
+    - if [[ ${TRAVIS_COMMIT_MESSAGE:0:12} == "[ci nightly]" ]]; then export DEPLOY_NIGHTLY=1; export CORE_CHANGES=1; fi
     - echo "$CORE_CHANGES changes in core, $CLIENT_CHANGES changes in client, nighlies $DEPLOY_NIGHTLY, $TRAVIS_EVENT_TYPE event type"
     before_deploy:
     - if [ $CORE_CHANGES -gt 0 ]; then grunt release-cv; fi
@@ -106,7 +114,7 @@ jobs:
     if: fork = false AND type != cron
     script: skip
     before_deploy:
-    - grunt release-cv
+    - CV_TAG_RUNTIME=docker grunt release-cv
     - mv release build # move back to build because the dockerfile is expecting the build here
     deploy:
       on:

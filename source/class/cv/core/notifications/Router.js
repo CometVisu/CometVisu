@@ -112,6 +112,10 @@ qx.Class.define("cv.core.notifications.Router", {
     __dateFormat: null,
     __timeFormat: null,
 
+    getStateMessageConfig: function () {
+      return this.__stateMessageConfig;
+    },
+
     /**
      * Register state update handler for one or more addresses.
      *

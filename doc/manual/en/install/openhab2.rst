@@ -46,17 +46,17 @@ All this can be done by the following console commands:
     chown -R openhab:openhab /var/www/cometvisu
 
     # Customize configuration directories
-    mkdir -p /etc/openhab2/cometvisu/config
-    mkdir -p /etc/openhab2/cometvisu/designs
+    mkdir -p /etc/openhab2/cometvisu/resource/config
+    mkdir -p /etc/openhab2/cometvisu/resource/designs
 
     # Customize user rights for openHAB
     chown -R openhab:openhab /etc/openhab2/cometvisu
 
-The two directories */etc/openhab2/cometvisu/config* and
-*/etc/openhab2/cometvisu/designs* will contain the CometVisu
+The two directories */etc/openhab2/cometvisu/resource/config* and
+*/etc/openhab2/cometvisu/resource/designs* will contain the CometVisu
 configurations and are protected from upgrades by the separate
 location. Only if these directories are not present, CometVisu
-will search the configuration in */var/www/cometvisu/config*.
+will search the configuration in */var/www/cometvisu/resource/config*.
 
 3.-5. openHAB Configuration
 ---------------------------

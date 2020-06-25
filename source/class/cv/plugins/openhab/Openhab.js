@@ -42,16 +42,18 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
  */
   construct: function () {
     this.base(arguments);
+    if (!cv.Config.request.queryKey.hasOwnProperty('preview')) {
 
-    this.__notificationRouter = cv.core.notifications.Router.getInstance();
+      this.__notificationRouter = cv.core.notifications.Router.getInstance();
 
-    // listen to notifications
-    var client = cv.TemplateEngine.getInstance().visu;
-    var sse = client.getCurrentTransport && client.getCurrentTransport();
-    if (sse) {
-      sse.subscribe("notifications", this._onNotification, this);
+      // listen to notifications
+      var client = cv.TemplateEngine.getInstance().visu;
+      var sse = client.getCurrentTransport && client.getCurrentTransport();
+      if (sse) {
+        sse.subscribe("notifications", this._onNotification, this);
+      }
+      cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
     }
-    cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
   },
 
   /*

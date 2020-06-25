@@ -1,26 +1,26 @@
 
 describe('test the NotificationCenter', function () {
 
-  var center = cv.ui.ToastManager.getInstance();
-
   beforeEach(function() {
-    center._init();
+    cv.ui.ToastManager.getInstance()._init();
   });
 
   afterEach(function() {
-    center.clear(true);
+    cv.ui.ToastManager.getInstance().clear(true);
   });
 
   it("should test some basics", function () {
+    var center = cv.ui.ToastManager.getInstance();
     var severities = center.getSeverities();
     expect(severities.indexOf("low")).toBeGreaterThanOrEqual(0);
     expect(severities.indexOf("normal")).toBeGreaterThanOrEqual(0);
     expect(severities.indexOf("high")).toBeGreaterThanOrEqual(0);
     expect(severities.indexOf("urgent")).toBeGreaterThanOrEqual(0);
+
   });
 
   it('should handle messages', function() {
-
+    var center = cv.ui.ToastManager.getInstance();
     var message = {
       topic: "cv.test",
       title: "Title",
@@ -36,7 +36,7 @@ describe('test the NotificationCenter', function () {
     message.severity = "high";
     message.unique = true;
 
-    var messageId = center.__idCounter-1;
+    var messageId = center.getIdCounter()-1;
     center.handleMessage(Object.assign({}, message));
     // as the message was unique it replaces the old one
     expect(center.getMessages().getLength()).toBe(1);
@@ -48,7 +48,7 @@ describe('test the NotificationCenter', function () {
     message.severity = "urgent";
     message.unique = false;
 
-    messageId = center.__idCounter;
+    messageId = center.getIdCounter();
     center.handleMessage(Object.assign({}, message));
     // as the message was unique it replaces the old one
     expect(center.getMessages().getLength()).toBe(2);
@@ -68,6 +68,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it("should test the maxEntries limit", function() {
+    var center = cv.ui.ToastManager.getInstance();
     center.setMaxEntries(5);
     var message = {
       topic: "cv.test",
@@ -101,6 +102,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it("should perform a message action", function() {
+    var center = cv.ui.ToastManager.getInstance();
     var spy = jasmine.createSpy();
 
     qx.Class.define("cv.test.ActionHandler", {
@@ -143,6 +145,7 @@ describe('test the NotificationCenter', function () {
   });
 
   it("should test the interaction handling with list items", function() {
+    var center = cv.ui.ToastManager.getInstance();
     if (window.PointerEvent) {
       // click on the message content
       var down = new PointerEvent("pointerdown", {
@@ -179,7 +182,7 @@ describe('test the NotificationCenter', function () {
         severity: "normal",
         target: "toast"
       };
-      var messageId = center.__idCounter;
+      var messageId = center.getIdCounter();
       center.handleMessage(message);
 
       var element = document.querySelector("#"+center.getMessageElementId()+messageId);

@@ -12,7 +12,7 @@ describe('navbar widget testing', function () {
   'use strict';
   var mockupConfig = [];
   var configParts = {
-    start : '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd">',
+    start : '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd">',
     end :   '</pages>'
   };
 
@@ -56,7 +56,7 @@ describe('navbar widget testing', function () {
     '<navbar name="Navbar1" position="left" width="250px">'+
     '</navbar>'+
     '</page>'+configParts.end);
-  
+
   it('should show a simple navbar: desktop', function() {
     var navbar = element.all(by.css('#navbarLeft')).first();
 

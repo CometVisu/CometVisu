@@ -14,6 +14,8 @@ var CometVisuDemo = function () {
   this.pageLoaded = this.and(
     this.isVisible($('#id_40_5_2'))
   );
+
+  this.pageChangeTimeout = 600;
 };
 CometVisuDemo.prototype = basePage;
 module.exports = new CometVisuDemo();

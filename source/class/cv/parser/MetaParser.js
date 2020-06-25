@@ -106,7 +106,7 @@ qx.Class.define("cv.parser.MetaParser", {
             var icon = this.__parseIconDefinition(v);
             value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon["class"]));
           }
-          else if (v.textContent.trim().length) {
+          else if (v && v.nodeType === 3 && v.textContent.trim().length) {
             value.push(v.textContent.trim());
           }
         }
@@ -204,6 +204,43 @@ qx.Class.define("cv.parser.MetaParser", {
 
         var text = elem.textContent;
         var search;
+
+        // compability change to make existing customer configurations work with the new manager links
+        // this replaces all document links to old manager tools with the new ones
+        let linkMatch;
+        const linkRegex = /href="([^"]+)"/gm;
+        const matches = [];
+        while (linkMatch = linkRegex.exec(text)) {
+          matches.push(linkMatch);
+        }
+        let handled = false;
+        search = window.location.search.replace(/\$/g, '$$$$');
+        search = search.replace(/.*config=([^&]*).*|.*/, '$1');
+        matches.forEach(match => {
+          switch (match[1]) {
+            case 'manager.php':
+              text = text.replace(match[0], 'href="#" onclick="showManager()"');
+              handled = true;
+              break;
+
+            case 'check_config.php':
+              text = text.replace(match[0], 'href="#" onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"');
+              handled = true;
+              break;
+
+            case 'editor/':
+            case 'editor':
+              const suffix = search ? '_' + search : '';
+              text = text.replace(match[0], 'href="#" onclick="showManager(\'open\', \'visu_config' + suffix + '.xml\')"');
+              handled = true;
+              break;
+          }
+        });
+
+        if (handled) {
+          // this overrides the extends
+          extend = null;
+        }
         switch (extend) {
           case 'all': // append all parameters
             search = window.location.search.replace(/\$/g, '$$$$');
@@ -222,6 +259,26 @@ qx.Class.define("cv.parser.MetaParser", {
             }
 
             text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
+            break;
+
+          case 'action':
+            search = window.location.search.replace(/\$/g, '$$$$');
+            search = search.replace(/.*config=([^&]*).*|.*/, '$1');
+            const match = /cv-action="([\w]+)"/.exec(text);
+            if (match) {
+              let replacement = 'href="#" '
+              switch (match[1]) {
+                case 'validate':
+                  replacement += 'onclick="qx.core.Init.getApplication().validateConfig(\'' + search + '\')"';
+                  break;
+
+                case 'edit':
+                  const configFile = search ? 'visu_config_' + search + '.xml' : 'visu_config.xml';
+                  replacement += 'onclick="showManager(\'open\', \'' + configFile + '\')"';
+                  break;
+              }
+              text = text.replace(match[0], replacement);
+            }
             break;
         }
         code += text;

@@ -22,7 +22,6 @@
  * Reflection API for possible Editor communication
  */
 qx.Class.define('cv.io.Reflection', {
-  extend: qx.core.Object,
   type: "static",
 
   /*

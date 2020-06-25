@@ -1,59 +1,12 @@
 {
-  "short_name": "CometVisu",
-  "name": "CometVisu",
-  "icons": [
-    {
-      "src": "icon/comet_webapp_icon_android_36.png",
-      "sizes": "36x36",
-      "type": "image/png",
-      "density": "0.75"
-    },
-    {
-      "src": "icon/comet_webapp_icon_android_48.png",
-      "sizes": "48x48",
-      "type": "image/png",
-      "density": "1.0"
-    },
-    {
-      "src": "icon/comet_webapp_icon_android_72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "density": "1.5"
-    },
-    {
-      "src": "icon/comet_webapp_icon_android_96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "density": "2.0"
-    },
-    {
-      "src": "icon/comet_webapp_icon_android_144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "density": "3.0"
-    },
-    {
-      "src": "icon/comet_webapp_icon_android_192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "density": "4.0"
-    }
-  ],
-  "display": "standalone",
-  "orientation": "any",
-
-  "info" : 
-  {
-    "name" : "cv",
-
-    "summary" : "CometVisu",
-    "description" : "The CometVisu is an interactive, realtime, web based visualization.",
-    
-    "homepage" : "http://www.cometvisu.org/",
-
-    "license" : "GPL-3.0",
-    "authors" :
-    [
+  "$schema": "https://raw.githubusercontent.com/qooxdoo/qooxdoo-compiler/master/source/resource/qx/tool/schema/Manifest-1-0-0.json",
+  "info": {
+    "name": "cv",
+    "summary": "CometVisu",
+    "description": "The CometVisu is an interactive, realtime, web based visualization.",
+    "homepage": "http://www.cometvisu.org/",
+    "license": "GPL-3.0",
+    "authors": [
       {
         "name": "Christian Mayer (ChristianMayer)",
         "email": "CometVisu at ChristianMayer dot de"
@@ -63,20 +16,35 @@
         "email": "tbraeutigam at gmail dot com"
       }
     ],
-
-    "version": "0.10.0-dev",
-    "qooxdoo-versions": ["5.1"],
+    "version": "0.12.0-dev",
     "sourceViewUri": "https://github.com/CometVisu/CometVisu/blob/develop/source/class/%{classFilePath}#L%{lineNumber}"
   },
-  
-  "provides" : 
-  {
-    "namespace"   : "cv",
-    "encoding"    : "utf-8",
-    "class"       : "source/class",
-    "resource"    : "source/resource",
-    "translation" : "source/translation",
-    "type"        : "application"
+  "provides": {
+    "namespace": "cv",
+    "encoding": "utf-8",
+    "class": "source/class",
+    "resource": "source/resource",
+    "translation": "source/translation"
+  },
+  "requires": {
+    "@qooxdoo/framework": "^6.0.0-beta",
+    "@qooxdoo/compiler": "^1.0.0-beta.20200514-1056",
+    "ITISFoundation/qx-osparc-theme": "^0.4.13",
+    "johnspackman/UploadMgr": "^1.0.4",
+    "cboulanger/qx-contrib-Dialog": "^2.1.1",
+    "qooxdoo/qxl.versionlabel": "^1.0.0-beta.3",
+    "ITISFoundation/qx-iconfont-material": "^0.1.4",
+    "qooxdoo/qxl.apiviewer": "^1.0.0-beta.7"
+  },
+  "externalResources": {
+    "script": [
+      "libs/EventRecorder.js",
+      "libs/sprintf.js",
+      "libs/jquery.js",
+      "libs/strftime.js",
+      "libs/svg4everybody.js",
+      "libs/favico.js",
+      "libs/inobounce.min.js"
+    ]
   }
 }
-

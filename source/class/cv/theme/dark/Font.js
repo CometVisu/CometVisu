@@ -20,37 +20,93 @@
 
 /**
  * Font definitions
- *
  */
-qx.Theme.define("cv.theme.dark.Font",
-{
-  extend : qx.theme.simple.Font,
+qx.Theme.define("cv.theme.dark.Font",{
+  extend : osparc.theme.osparcdark.Font,
 
   fonts : {
-    "default" :
-    {
-      size : 13,
-      family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"]
+    "italic": {
+      size: 13,
+      family: ["sans-serif"],
+      color: "text",
+      italic: true,
+      sources: [
+        {
+          family: "Roboto",
+          source: [
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf"
+          ]
+        }
+      ]
     },
-
-    "bold" :
-      {
-        size : 13,
-        family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"],
-        bold: true
-      },
-
-    "subtext" :
-    {
-      size : 12,
-      family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"]
+    "title": {
+      size: 18,
+      family: ["sans-serif"],
+      color: "text",
+      sources: [
+        {
+          family: "Roboto",
+          source: [
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf"
+          ]
+        }
+      ]
     },
-    
-    "title" :
-    {
-      size : 18,
-      bold : true,
-      family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"]
-    }
+    "small": {
+      size: 12,
+      family: ["sans-serif"],
+      color: "text",
+      sources: [
+        {
+          family: "Roboto",
+          source: [
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf"
+          ]
+        }
+      ]
+    },
+    "subtitle": {
+      size: 16,
+      family: ["sans-serif"],
+      color: "text",
+      sources: [
+        {
+          family: "Roboto",
+          source: [
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff",
+            "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf"
+          ]
+        }
+      ]
+    }//,
+    // "MaterialIcons": {
+    //   size: 32,
+    //   lineHeight: 1,
+    //   comparisonString : "\uf1e3\uf1f7\uf11b\uf19d",
+    //   family: ["MaterialIcons"],
+    //   sources: [
+    //     {
+    //       family: "MaterialIcons",
+    //       mapping: "iconfont/material/MaterialIcons-Regular.json",
+    //       source: [
+    //         "iconfont/material/MaterialIcons-Regular.eot",
+    //         "iconfont/material/MaterialIcons-Regular.woff2",
+    //         "iconfont/material/MaterialIcons-Regular.woff",
+    //         "iconfont/material/MaterialIcons-Regular.ttf"
+    //       ]
+    //     }
+    //   ]
+    // }
   }
 });

@@ -111,7 +111,7 @@ describe("testing the meta parser", function() {
 
       // test notifications
       var router = cv.core.notifications.Router.getInstance();
-      var config = router.__stateMessageConfig;
+      var config = router.getStateMessageConfig();
 
       expect(config.hasOwnProperty("Motion_FF_Dining")).toBeTruthy();
       expect(config.hasOwnProperty("Motion_FF_Corridor")).toBeTruthy();
@@ -120,13 +120,13 @@ describe("testing the meta parser", function() {
       // state listeners must be set
       var model = cv.data.Model.getInstance();
       ["Motion_FF_Dining", "Motion_FF_Corridor", "Motion_FF_Kitchen"].forEach(function(address) {
-        expect(model.__stateListeners.hasOwnProperty(address)).toBeTruthy();
-        expect(model.__stateListeners[address].length).toEqual(1);
+        expect(model.getStateListener().hasOwnProperty(address)).toBeTruthy();
+        expect(model.getStateListener()[address].length).toEqual(1);
       });
 
       // template
-      expect(cv.parser.WidgetParser.__templates.hasOwnProperty('test')).toBeTruthy();
-      expect(cv.parser.WidgetParser.__templates.test.trim()).toEqual('<root><text><label>Test template</label></text></root>');
+      expect(cv.parser.WidgetParser.getTemplates().hasOwnProperty('test')).toBeTruthy();
+      expect(cv.parser.WidgetParser.getTemplates().test.trim()).toEqual('<root><text><label>Test template</label></text></root>');
 
       footer.parentNode.removeChild(footer);
     });

@@ -24,7 +24,10 @@
  * 
  * @author Christian Mayer
  * @since 0.10.0
- * @asset(plugins/diagram/dep/flot/jquery.flot.min.js,plugins/diagram/dep/flot/jquery.flot.canvas.min.js,plugins/diagram/dep/flot/jquery.flot.resize.min.js,plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.canvas.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.resize.min.js)
+ * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
  */
 qx.Class.define('cv.plugins.PowerSpectrum', {
   extend: cv.ui.structure.AbstractWidget,

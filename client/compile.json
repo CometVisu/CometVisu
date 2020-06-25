@@ -1,0 +1,57 @@
+{
+  "$schema": "https://raw.githubusercontent.com/qooxdoo/qooxdoo-compiler/master/source/resource/qx/tool/schema/compile-1-0-0.json",
+  "targets": [
+    {
+      "type": "source",
+      "outputPath": "compiled/source",
+      "bundle": {
+        "include": "qx.*"
+      }
+    },
+    {
+      "type": "build",
+      "outputPath": "compiled/build",
+      "babelOptions": {
+        "targets": "Chrome >= 73, Firefox >= 66, edge >= 18"
+      }
+    }
+  ],
+  "defaultTarget": "build",
+  "locales": [],
+  "environment": {
+    "qx.promise": false,
+    "qx.theme" : null
+  },
+  "applications": [
+    {
+      "class": "cv.io.Client",
+      "theme": "",
+      "name": "qx-CometVisuClient",
+      "bootPath": "source/boot-qx",
+      "loaderTemplate": "oo.loader.tmpl.js",
+      "include": [
+        "cv.io.Client"
+      ],
+      "exclude": ["cv.io.request.Jquery"],
+      "standalone": false,
+      "environment": {
+        "cv.xhr": "qx"
+      }
+    },
+    {
+      "class": "cv.io.Client",
+      "theme": "",
+      "name": "jQuery-CometVisuClient",
+      "bootPath": "source/boot-jquery",
+      "loaderTemplate": "oo.loader.tmpl.js",
+      "include": [
+        "cv.io.Client"
+      ],
+      "exclude": ["qx.io.request.*"],
+      "standalone": false,
+      "environment": {
+        "cv.xhr": "jquery"
+      }
+    }
+  ]
+}

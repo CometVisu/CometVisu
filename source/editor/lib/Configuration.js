@@ -107,54 +107,64 @@ var Configuration = function (filename, isDemo) {
       return;
     }
         
-    if (filename === undefined) {
-      // if no filename is given, use the one that we had for loading the file
-      filename = _filename;
-    }
-        
     var data = _config.getAsSerializable();
-    $.ajax('editor/bin/save_config.php',
-                {
-                  dataType: 'json',
-                  data: {
-                    config: filename,
-                    data: JSON.stringify(data),
-                  },
-                  type: 'POST',
-                  cache: false,
-                  success: function (data) {
-                    if (data === undefined || typeof data.success === 'undefined') {
-                      // some weird generic error
-                      var result = new Result(false, Messages.configuration.savingErrorUnknown);
-                      $(document).trigger('configuration_saving_error', [result]);
+    if (window.saveFromIframe) {
+      window.saveFromIframe(data, filename, function (err) {
+        if (err) {
+          var result = new Result(false, Messages.configuration.savingErrorServer, [err.status, err.statusText]);
+          $(document).trigger('configuration_saving_error', [result]);
+        } else {
+          $(document).trigger('configuration_saving_success');
+        }
+      });
+    } else {
+      if (filename === undefined) {
+        // if no filename is given, use the one that we had for loading the file
+        filename = _filename;
+      }
+      $.ajax('editor/bin/save_config.php',
+        {
+          dataType: 'json',
+          data: {
+            config: filename,
+            data: JSON.stringify(data),
+          },
+          type: 'POST',
+          cache: false,
+          success: function (data) {
+            if (data === undefined || typeof data.success === 'undefined') {
+              // some weird generic error
+              var result = new Result(false, Messages.configuration.savingErrorUnknown);
+              $(document).trigger('configuration_saving_error', [result]);
 
-                      return;
-                    }
-                    
-                    if (data.success === false) {
-                      // we have an error.
-                      var message;
-                        
-                      if (typeof data.message !== 'undefined') {
-                        message = data.message;
-                      }
-                        
-                      var result = new Result(false, Messages.configuration.savingError, [message]);
-                      $(document).trigger('configuration_saving_error', [result]);
+              return;
+            }
 
-                      return;
-                    }
-                    
-                    // everything is pretty cool.
-                    $(document).trigger('configuration_saving_success');
-                    
-                  },
-                  error: function (jqXHR, textStatus, errorThrown) {
-                    var result = new Result(false, Messages.configuration.savingErrorServer, [textStatus, errorThrown]);
-                    $(document).trigger('configuration_saving_error', [result]);
-                  },
-                }
-            );
+            if (data.success === false) {
+              // we have an error.
+              var message;
+
+              if (typeof data.message !== 'undefined') {
+                message = data.message;
+              }
+
+              var result = new Result(false, Messages.configuration.savingError, [message]);
+              $(document).trigger('configuration_saving_error', [result]);
+
+              return;
+            }
+
+            // everything is pretty cool.
+            $(document).trigger('configuration_saving_success');
+
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            var result = new Result(false, Messages.configuration.savingErrorServer, [textStatus, errorThrown]);
+            $(document).trigger('configuration_saving_error', [result]);
+          },
+        }
+      );
+    }
   };
     
   /**

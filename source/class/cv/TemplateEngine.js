@@ -36,7 +36,15 @@ qx.Class.define('cv.TemplateEngine', {
     }, this);
 
     this.defaults = {widget: {}, plugin: {}};
-    this.setCommands(new qx.ui.command.Group());
+    var group = new qx.ui.command.Group();
+    this.setCommands(group);
+    var app = qx.core.Init.getApplication();
+    if (app) {
+      // application is not available in tests
+      var manager = app.getCommandManager();
+      manager.add(group);
+      manager.setActive(group);
+    }
   },
 
   properties: {
@@ -87,6 +95,13 @@ qx.Class.define('cv.TemplateEngine', {
     commands: {
       check: "qx.ui.command.Group",
       nullable: true
+    },
+    
+    // sent after the client is logged in to the backend
+    loggedIn: {
+      check: "Boolean",
+      init: false,
+      event: "changeLoggedIn"
     }
   },
 
@@ -122,6 +137,8 @@ qx.Class.define('cv.TemplateEngine', {
 
     // plugins that do not need to be loaded to proceed with the initial setup
     lazyPlugins: ["plugin-openhab"],
+    __activeChangedTimer: null,
+    __hasBeenConnected: false,
 
     /**
      * Load parts (e.g. plugins, structure)
@@ -248,27 +265,82 @@ qx.Class.define('cv.TemplateEngine', {
       }
       this.visu.showError = this._handleClientError.bind(this);
       this.visu.user = 'demo_user'; // example for setting a user
+      var visu = this.visu;
+
+      if (cv.Config.sentryEnabled && window.Sentry) {
+        Sentry.configureScope(function (scope) {
+          scope.setTag('backend', visu.backendName);
+          var webServer = visu.getServer();
+          if (webServer) {
+            scope.setTag('server.backend', webServer);
+          }
+          if (cv.Config.configServer) {
+            scope.setTag('server.web', cv.Config.configServer);
+          }
+        })
+        visu.addListener('changedServer', this._updateClientScope, this);
+      }
+      var app = qx.core.Init.getApplication();
+      app.addListener('changeActive', this._onActiveChanged, this);
 
       // show connection state in NotificationCenter
-      this.visu.addListener("changeConnected", function(ev) {
-        var message = {
-          topic: "cv.client.connection",
-          title: qx.locale.Manager.tr("Connection error"),
-          severity: "urgent",
-          unique: true,
-          deletable: false,
-          condition: !ev.getData()
-        };
-        var lastError = this.visu.getLastError();
-        if (!ev.getData()) {
-          if (lastError && (Date.now() - lastError.time) < 100) {
-            message.message = qx.locale.Manager.tr("Error requesting %1: %2 - %3.", lastError.url, lastError.code, lastError.text);
-          } else {
-            message.message = qx.locale.Manager.tr("Connection to backend is lost.");
-          }
+      this.visu.addListener("changeConnected", this._checkBackendConnection, this);
+    },
+
+    _onActiveChanged: function () {
+      var app = qx.core.Init.getApplication();
+      if (app.isActive()) {
+        if (!this.visu.isConnected() && this.__hasBeenConnected) {
+          // reconnect
+          this.visu.restart(true);
         }
-        cv.core.notifications.Router.dispatchMessage(message.topic, message);
-      }, this);
+        // wait for 3 seconds before checking the backend connection
+        if (!this.__activeChangedTimer) {
+          this.__activeChangedTimer = new qx.event.Timer(3000);
+          this.__activeChangedTimer.addListener('interval', function () {
+            if (app.isActive()) {
+              this._checkBackendConnection();
+            }
+            this.__activeChangedTimer.stop();
+          }, this);
+        }
+        this.__activeChangedTimer.restart();
+      } else {
+        this._checkBackendConnection();
+      }
+    },
+
+    _checkBackendConnection: function () {
+      var connected = this.visu.isConnected();
+      var message = {
+        topic: "cv.client.connection",
+        title: qx.locale.Manager.tr("Connection error"),
+        severity: "urgent",
+        unique: true,
+        deletable: false,
+        condition: !connected && this.__hasBeenConnected && qx.core.Init.getApplication().isActive()
+      };
+      var lastError = this.visu.getLastError();
+      if (!connected) {
+        if (lastError && (Date.now() - lastError.time) < 100) {
+          message.message = qx.locale.Manager.tr("Error requesting %1: %2 - %3.", lastError.url, lastError.code, lastError.text);
+        } else {
+          message.message = qx.locale.Manager.tr("Connection to backend is lost.");
+        }
+      } else {
+        this.__hasBeenConnected = true;
+      }
+      cv.core.notifications.Router.dispatchMessage(message.topic, message);
+    },
+
+    _updateClientScope: function () {
+      var visu = this.visu;
+      Sentry.configureScope(function (scope) {
+        var webServer = visu.getServer();
+        if (webServer) {
+          scope.setTag('server.backend', webServer);
+        }
+      })
     },
 
     _handleClientError: function (errorCode, varargs) {
@@ -433,6 +505,7 @@ qx.Class.define('cv.TemplateEngine', {
       // login to backend as it might change some settings needed for further processing
       this.visu.login(true, function () {
         this.debug("logged in");
+        this.setLoggedIn(true);
 
         // as we are sure that the default CSS were loaded now:
         document.querySelectorAll('link[href*="mobile.css"]').forEach(function (elem) {
@@ -818,5 +891,14 @@ qx.Class.define('cv.TemplateEngine', {
         });
       });
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct: function () {
+    this._disposeObjects('__activeChangedTimer');
   }
 });

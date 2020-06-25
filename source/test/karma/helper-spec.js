@@ -19,15 +19,6 @@
 
 
 /**
- * CustomMatcher factory for CometVisu specific matchers
- *
- * @author tobiasb
- * @since 2016
- */
-
-var templateEngine = cv.TemplateEngine.getInstance();
-
-/**
  * Create a widget as string
  * @param name {String} name of the widget creator
  * @param attributes {Map} widget attributes
@@ -126,6 +117,7 @@ var createTestElement = function (name, attributes, content, address, addressAtt
 };
 
 resetApplication = function() {
+  var templateEngine = cv.TemplateEngine.getInstance();
   // cleanup
   cv.data.Model.getInstance().clear();
   cv.ui.structure.WidgetFactory.clear();
@@ -290,27 +282,32 @@ var customMatchers = {
   }
 };
 
-beforeAll(function(done) {
-
-  if (!qx.$$loader.applicationHandlerReady) {
-    cv.Config.enableCache = false;
-    qx.event.message.Bus.subscribe("setup.dom.finished", function () {
-      resetApplication();
-      done();
-    }, this);
-    var l = qx.$$loader;
-    var bootPackageHash = l.parts[l.boot][0];
-    l.importPackageData(qx.$$packageData[bootPackageHash]);
-    qx.util.ResourceManager.getInstance().__registry = qx.$$resources;
-    qx.$$loader.signalStartup();
-
-    // always test in 'en' locale
-    qx.locale.Manager.getInstance().setLocale("en");
-  }
+beforeAll(function (done) {
+  jasmine.addMatchers(customMatchers);
+  setTimeout(function () {
+    try {
+      cv.Config.enableCache = false;
+      // always test in 'en' locale
+      qx.locale.Manager.getInstance().setLocale("en");
+      var templateEngine = cv.TemplateEngine.getInstance();
+      var startUp = function () {
+        resetApplication();
+        setTimeout(done, 100);
+      }
+      if (templateEngine.isDomFinished()) {
+        startUp()
+      } else {
+        qx.event.message.Bus.subscribe('setup.dom.finished', startUp, this);
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }, 2000)
 });
 
 beforeEach(function () {
-  jasmine.addMatchers(customMatchers);
+  var templateEngine = cv.TemplateEngine.getInstance();
+
   this.createTestElement = createTestElement;
   this.createTestWidgetString = createTestWidgetString;
   this.findChild = findChild;
@@ -331,6 +328,7 @@ beforeEach(function () {
 });
 
 afterEach(function () {
+  var templateEngine = cv.TemplateEngine.getInstance();
   templateEngine.widgetData = {};
   cv.data.Model.getInstance().clear();
   cv.ui.structure.WidgetFactory.clear();
@@ -342,7 +340,11 @@ afterEach(function () {
   cv.ui.layout.ResizeHandler.reset();
 
   if (this.container) {
-    document.body.removeChild(this.container);
+    try {
+      document.body.removeChild(this.container);
+    } catch (e) {
+      console.error(e)
+    }
     this.container = null;
   }
   if (this.creator) {

@@ -40,15 +40,15 @@ Dies alles kann durch folgenden Konsolenbefehle ausgeführt werden:
     chown -R openhab:openhab /var/www/cometvisu
 
     # Konfigurationsverzeichnisse anpassen
-    mkdir -p /etc/openhab2/cometvisu/config
-    mkdir -p /etc/openhab2/cometvisu/designs
+    mkdir -p /etc/openhab2/cometvisu/resource/config
+    mkdir -p /etc/openhab2/cometvisu/resource/designs
 
     # Benutzerrechte anpassen für openHAB
     chown -R openhab:openhab /etc/openhab2/cometvisu
 	
-Die zwei Verzeichnisse */etc/openhab2/cometvisu/config* und */etc/openhab2/cometvisu/designs* werden die Konfigurationen 
+Die zwei Verzeichnisse */etc/openhab2/cometvisu/resource/config* und */etc/openhab2/cometvisu/resource/designs* werden die Konfigurationen
 der CometVisu enthalten und sind durch die separate Lokation vor Upgrades geschützt. Nur wenn diese Verzeichnisse nicht 
-vorhanden sind, wird CometVisu die Konfiguration in */var/www/cometvisu/config* suchen.
+vorhanden sind, wird CometVisu die Konfiguration in */var/www/cometvisu/resource/config* suchen.
 
 3.-5. openHAB konfigurieren
 ---------------------------

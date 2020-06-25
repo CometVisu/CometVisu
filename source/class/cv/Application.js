@@ -21,18 +21,47 @@
 /**
  * This is the main application class of the CometVisu.
  *
- * @asset(config/*)
  * @asset(demo/*)
  * @asset(designs/*)
  * @asset(icon/*)
- * @asset(plugins/*)
- * @asset(visu_config.xsd)
+ * @asset(sentry/bundle.min.js)
+ * @asset(test/*)
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)
  */
 qx.Class.define("cv.Application",
 {
   extend : qx.application.Native,
+
+  /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function () {
+    this.base(arguments);
+    this.initCommandManager(new qx.ui.command.GroupManager());
+    var lang = qx.locale.Manager.getInstance().getLanguage();
+    if (qx.io.PartLoader.getInstance().hasPart(lang)) {
+      qx.io.PartLoader.require([lang]);
+    }
+
+    qx.bom.PageVisibility.getInstance().addListener('change', function () {
+      this.setActive(qx.bom.PageVisibility.getInstance().getVisibilityState() === "visible");
+    }, this);
+
+    // install global shortcut for opening the manager
+    if (window.parent && typeof window.parent.showManager === 'function') {
+      window.showManager = window.parent.showManager;
+    } else {
+      window.showManager = this.showManager.bind(this);
+    }
+    if (window.parent && typeof window.parent.showConfigErrors === 'function') {
+      window.showConfigErrors = window.parent.showConfigErrors;
+    } else {
+      window.showConfigErrors = this.showConfigErrors.bind(this);
+    }
+  },
 
   /*
    ******************************************************
@@ -42,6 +71,7 @@ qx.Class.define("cv.Application",
   statics: {
     HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
     consoleCommands: [],
+    __commandManager: null,
 
     /**
      * Client factory method -> create a client
@@ -93,6 +123,22 @@ qx.Class.define("cv.Application",
       check: 'Boolean',
       init: false,
       event: 'changeStructureLoaded'
+    },
+
+    commandManager: {
+      check: 'qx.ui.command.GroupManager',
+      deferredInit: true
+    },
+
+    active: {
+      check: "Boolean",
+      init: true,
+      event: "changeActive"
+    },
+
+    inManager: {
+      check: "Boolean",
+      init: false
     }
   },
 
@@ -157,6 +203,14 @@ qx.Class.define("cv.Application",
 
       console.log(info);
 
+      // add command to load and open the manager
+      var manCommand = new qx.ui.command.Command('Ctrl+M');
+      cv.TemplateEngine.getInstance().getCommands().add("open-manager", manCommand);
+      manCommand.addListener('execute', this.showManager, this);
+      if (cv.Config.request.queryKey.manager) {
+        this.showManager();
+      }
+
       if (qx.core.Environment.get("qx.aspects")) {
         qx.dev.Profile.stop();
         qx.dev.Profile.start();
@@ -188,6 +242,125 @@ qx.Class.define("cv.Application",
       qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?'+Date.now() : ''));
 
       this.__init();
+    },
+
+    /**
+     * @param action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()
+     * @param data {String|Map} path of file that action should executed on or a Map of options
+     */
+    showManager: function (action, data) {
+      qx.io.PartLoader.require(['manager'], function (states) {
+        // break dependency
+        var engine = cv.TemplateEngine.getInstance();
+        if (!engine.isLoggedIn() && !action) {
+          // never start the manager before we are logged in, as the login response might contain information about the REST API URL
+          engine.addListenerOnce('changeLoggedIn', this.showManager, this);
+          return;
+        }
+        var ManagerMain = cv.ui['manager']['Main'];
+        const firstCall = !ManagerMain.constructor.$$instance;
+        var manager = ManagerMain.getInstance();
+        if (!action && !firstCall) {
+          manager.setVisible(!manager.getVisible());
+        } else if (firstCall) {
+          // initially bind manager visibility
+          manager.bind('visible', this, 'inManager');
+        }
+
+        if (manager.getVisible() && action && data) {
+          // delay this a little bit, give the manager some time to settle
+          qx.event.Timer.once(() => {
+            qx.event.message.Bus.dispatchByName('cv.manager.' + action, data);
+          }, this, 1000);
+        }
+      }, this);
+    },
+
+    showConfigErrors: function(configName, options) {
+      configName = configName ? 'visu_config_'+configName+'.xml' : 'visu_config.xml';
+      const handlerId = options && options.upgradeVersion ? 'cv.ui.manager.editor.Diff' : 'cv.ui.manager.editor.Source';
+      const data = {
+        file: configName,
+        handler: handlerId,
+        handlerOptions: Object.assign({
+          jumpToError: true
+        }, options ? options : {})
+      }
+      if (this.isInManager()) {
+        qx.event.message.Bus.dispatchByName('cv.manager.openWith', data);
+      } else {
+        this.showManager('openWith', data);
+      }
+      // remove any config error messages shown
+      cv.core.notifications.Router.dispatchMessage('cv.config.error', {
+        topic: 'cv.config.error',
+        condition: false
+      });
+    },
+
+    validateConfig: function (configName) {
+      const worker = cv.data.FileWorker.getInstance();
+      let displayConfigName = configName;
+      if (configName) {
+        configName = '_' + configName;
+      } else {
+        configName = '';
+        displayConfigName = 'default';
+      }
+      let notification = {
+        topic: 'cv.config.validation',
+        severity: "normal",
+        deletable: true,
+        unique: true
+      }
+      cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+        target: 'toast',
+        message: qx.locale.Manager.tr('Validating configuration file...')
+      }));
+      const res = qx.util.ResourceManager.getInstance();
+      let configPath = `config/visu_config${configName}.xml`;
+      let url = '';
+      if (!res.has(configPath) && res.has(`demo/visu_config${configName}.xml`)) {
+        url = res.toUri(`demo/visu_config${configName}.xml`);
+      }
+      if (!url) {
+        url = res.toUri(configPath);
+      }
+      worker.validateConfig(url).then(res => {
+        // remove the toast information
+        cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+          target: 'toast',
+          condition: false
+        }));
+        if (res === true) {
+          // show result message as dialog
+          cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+            target: 'popup',
+            message: qx.locale.Manager.tr('The %1 configuration has no errors!', displayConfigName),
+            icon: 'message_ok'
+          }));
+        } else {
+          // show result message as dialog
+          console.error(res);
+          cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
+            target: 'popup',
+            message: qx.locale.Manager.tr('The %1 configuration has %2 errors!', displayConfigName, res.length),
+            actions: {
+              link: [
+                {
+                  title: qx.locale.Manager.tr("Show errors"),
+                  action: function () {
+                    qx.core.Init.getApplication().showConfigErrors(configName);
+                  }
+                }]
+            },
+            severity: 'high',
+            icon: 'message_attention'
+          }));
+        }
+      }).catch(err => {
+        this.error(err);
+      });
     },
 
     __globalErrorHandler: function(ex) {

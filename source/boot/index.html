@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> <!--manifest="cometvisu.appcache"-->
+<head>
+  <title>CometVisu-Client</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="manifest" href="${appPath}manifest.json">
+  <link rel="icon" href="${resourcePath}icon/comet_16x16_000000.png" type="image/png" />
+  <link rel="apple-touch-icon" href="${resourcePath}icon/comet_webapp_icon_180.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="${resourcePath}icon/comet_webapp_icon_76.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="${resourcePath}icon/comet_webapp_icon_120.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="${resourcePath}icon/comet_webapp_icon_152.png" />
+  <link rel="apple-touch-icon" sizes="167x167" href="${resourcePath}icon/comet_webapp_icon_167.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="${resourcePath}icon/comet_webapp_icon_180.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="CometVisu">
+  <meta name="msapplication-TileImage" content="${resourcePath}icon/comet_webapp_icon_144.png">
+  <meta name="msapplication-TileColor" content="#222222">
+  <script type="application/javascript">
+    var loadJS = function(url, callback) {
+
+      var scriptTag = document.createElement('script');
+      scriptTag.src = url;
+
+      scriptTag.onload = callback;
+      scriptTag.onreadystatechange = callback;
+
+      document.head.appendChild(scriptTag);
+    };
+
+    var enableSentry = window.location.search.substring(1).split('&').some(function (qs) {
+      var parts = qs.split('=');
+      return parts[0] === 'reportErrors' && parts[1] === 'true';
+    });
+
+    if (enableSentry) {
+      // load sentry and wait for it
+      loadJS('${resourcePath}sentry/bundle.min.js', function () {
+        Sentry.init({
+          dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@o178808.ingest.sentry.io/1265678',
+          release: 'ReleaseNotSetYet',
+          attachStacktrace: true,
+          beforeSend(data) {
+            var stacktrace = data.exception && data.exception.values[0].stacktrace;
+            var basePath = window.location.pathname;
+
+            if (stacktrace) {
+              if (stacktrace.frames) {
+                stacktrace.frames.forEach(function (frame) {
+                  frame.filename = frame.filename.replace(basePath, "/");
+                });
+              }
+              // Show report dialog (only in "de" or "en" language)
+              Sentry.showReportDialog({
+                eventId: data.event_id,
+                lang: qx.locale.Manager.getInstance().getLanguage() === "de" ? qx.locale.Manager.getInstance().getLanguage() : "en"
+              });
+            }
+            // overwrite release by the now known value
+            data.release = cv.Version.REV;
+            data.environment = cv.Version.VERSION;
+            return data;
+          }
+        });
+      })
+    }
+    ${preBootJs}
+  </script>
+  <script type="text/javascript" src="${appPath}boot.js"></script>
+  <style type="text/css" id="pageSize"></style>
+  <style type="text/css" id="rowspanStyle"></style>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://www.cometvisu.org/CometVisu/schemas/0.12/hidden-schema.json",
+
+  "type": "object",
+  "patternProperties": {
+    "^fritzbox(\\..*)?$": { "$ref": "#/definitions/login" },
+    "^influx(\\..*)?$": { "$ref": "#/definitions/login" },
+    "^tr064(\\..*)?$": { "$ref": "#/definitions/login" }
+  },
+  "definitions": {
+    "login": {
+      "type": "object",
+      "properties": {
+        "uri":  { "type": "string", "format": "uri" },
+        "user": { "type": "string" },
+        "pass": { "type": "string" },
+        "selfsigned": { "type": "string", "enum": ["true", "false"] }
+      },
+      "required": ["uri", "user", "pass"],
+      "additionalProperties": false
+    }
+  }
+}
