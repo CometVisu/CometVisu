@@ -2011,6 +2011,18 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
+    <xsd:attribute name="src" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">URL of the clock face SVG file</xsd:documentation>
+        <xsd:documentation xml:lang="de">URL für die zu verwendende Ziffernblatt SVG-Datei</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Send only when the slider is released.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Sende nur beim Loslassen des Sliders.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
   
   <xsd:complexType name="colorchooser">
