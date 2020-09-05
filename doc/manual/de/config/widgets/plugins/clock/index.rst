@@ -98,6 +98,24 @@ Hier ein Beispielcode der das Gauge Plugin aus dem folgenden Screenshot erzeugt:
         <address transform="DPT:10.001" mode="readwrite">12/7/10</address>
     </clock>
 
+Eigene Ziffernblätter
+---------------------
+
+Über das Attribut ``src`` lassen sich eigene Ziffernblätter verwenden. Diese
+müssen als SVG-Datei vorliegen und sich nach dem hier beschriebenen Standard
+richten:
+
+* Es sollten nur die Koordinaten zwischen 0 und 100 verwendet werden
+* Die Mitte muss bei der Koordinate x=50 und y=50 liegen
+* Der Stundenzeiger muss in einer SVG-Gruppe mit der ID ``Hour`` liegen
+* Der Hotspot für die Verstellung des Stundenzeigers muss die ID ``HotSpotHour``
+  haben
+* Der Minutenzeiger muss in einer SVG-Gruppe mit der ID ``Minute`` liegen
+* Der Hotspot für die Verstellung des Minutenzeigers muss die ID ``HotSpotMinute``
+  haben
+* Alle Zeiger müssen in der Date senkrecht nach oben zeigen, d.h. sie müssen
+  die Uhrzeit 00:00:00 anzeigen.
+
 .. rubric:: Fußnoten
 
 .. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.
