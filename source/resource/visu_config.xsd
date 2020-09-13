@@ -2017,7 +2017,25 @@
         <xsd:documentation xml:lang="de">URL für die zu verwendende Ziffernblatt SVG-Datei</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="src_popup" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">URL of the clock face SVG file used for pop up window</xsd:documentation>
+        <xsd:documentation xml:lang="de">URL für die als Pop-Up zu verwendende Ziffernblatt SVG-Datei</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title_popup" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title shown in the pop up</xsd:documentation>
+        <xsd:documentation xml:lang="de">Titel im Pop-Up Fenster</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="hide_24h" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Hide the 24h hand.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verstecke 24h Anzeige.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="hide_24h_popup" type="xsd:boolean" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Hide the 24h hand.</xsd:documentation>
         <xsd:documentation xml:lang="de">Verstecke 24h Anzeige.</xsd:documentation>
@@ -2029,13 +2047,31 @@
         <xsd:documentation xml:lang="de">Verstecke AM/PM Anzeige.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="hide_am_pm_popup" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Hide display of AM/PM.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verstecke AM/PM Anzeige.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="hide_digits" type="xsd:boolean" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Hide numerical display of the time.</xsd:documentation>
         <xsd:documentation xml:lang="de">Verstecke numerische Anzeige.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="hide_digits_popup" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Hide numerical display of the time.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verstecke numerische Anzeige.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="hide_seconds" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Set only hours and minutes and hide the second hand.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Stelle nur Stunden und Minuten und verstecke den Sekundenzeiger.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="hide_seconds_popup" type="xsd:boolean" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Set only hours and minutes and hide the second hand.</xsd:documentation>
         <xsd:documentation xml:lang="de">Stelle nur Stunden und Minuten und verstecke den Sekundenzeiger.</xsd:documentation>

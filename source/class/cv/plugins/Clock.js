@@ -24,7 +24,6 @@
 qx.Class.define('cv.plugins.Clock', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update],
-
   /*
   ***********************************************
     CONSTRUCTOR
@@ -44,7 +43,17 @@ qx.Class.define('cv.plugins.Clock', {
     src: {
       check: 'String'
     },
+    src_popup: {
+      check: 'String'
+    },
+    title_popup: {
+      check: 'String'
+    },
     hide24h: {
+      check: 'Boolean',
+      init: false
+    },
+    hide24h_popup: {
       check: 'Boolean',
       init: false
     },
@@ -52,11 +61,23 @@ qx.Class.define('cv.plugins.Clock', {
       check: 'Boolean',
       init: false
     },
+    hideAMPM_popup: {
+      check: 'Boolean',
+      init: false
+    },
     hideDigits: {
       check: 'Boolean',
       init: false
     },
+    hideDigits_popup: {
+      check: 'Boolean',
+      init: false
+    },
     hideSeconds: {
+      check: 'Boolean',
+      init: false
+    },
+    hideSeconds_popup: {
       check: 'Boolean',
       init: false
     },
@@ -90,46 +111,105 @@ qx.Class.define('cv.plugins.Clock', {
     },
 
     getAttributeToPropertyMappings: function () {
+      let transformValueTrue = function(value) {
+        return value === 'true';
+      };
+
       return {
         'src': {
           'default': 'plugins/clock/clock_pure.svg'
         },
+        'src_popup': {
+          'default': ''
+        },
+        'title_popup': {
+          'default': ''
+        },
         'hide_24h': {
           target: 'hide24h',
           'default': false,
-          transform: function(value) {
-            return value === 'true';
-          }
+          transform: transformValueTrue
+        },
+        'hide_24h_popup': {
+          target: 'hide24h_popup',
+          'default': false,
+          transform: transformValueTrue
         },
         'hide_am_pm': {
           target: 'hideAMPM',
           'default': false,
-          transform: function(value) {
-            return value === 'true';
-          }
+          transform: transformValueTrue
+        },
+        'hide_am_pm_popup': {
+          target: 'hideAMPM_popup',
+          'default': false,
+          transform: transformValueTrue
         },
         'hide_digits': {
           target: 'hideDigits',
           'default': false,
-          transform: function(value) {
-            return value === 'true';
-          }
+          transform: transformValueTrue
+        },
+        'hide_digits_popup': {
+          target: 'hideDigits_popup',
+          'default': false,
+          transform: transformValueTrue
         },
         'hide_seconds': {
           target: 'hideSeconds',
           'default': false,
-          transform: function(value) {
-            return value === 'true';
-          }
+          transform: transformValueTrue
+        },
+        'hide_seconds_popup': {
+          target: 'hideSeconds_popup',
+          'default': false,
+          transform: transformValueTrue
         },
         'send_on_finish': {
           target: 'sendOnFinish',
           'default': false,
-          transform: function(value) {
-            return value === 'true';
-          }
+          transform: transformValueTrue
         }
       };
+    },
+
+    getElements: function(svg, hide24h, hideAMPM, hideDigits, hideSeconds) {
+      let elements = {
+        hour24: svg.querySelector('#Hour24'),
+        hour: svg.querySelector('#Hour'),
+        minute: svg.querySelector('#Minute'),
+        second: svg.querySelector('#Second'),
+        am: svg.querySelector('#AM'),
+        pm: svg.querySelector('#PM'),
+        digits: svg.querySelector('#Digits')
+      };
+      let tspan;
+      while( elements.digits !== null && (tspan = elements.digits.querySelector('tspan')) !== null ) {
+        elements.digits = tspan;
+      }
+      let hour24Group = svg.querySelector('#Hour24Group');
+
+      if( hide24h && hour24Group !== null ) {
+        hour24Group.setAttribute( 'display', 'none' );
+      }
+      if( hideAMPM ) {
+        if( elements.am !== null ) {
+          elements.am.setAttribute( 'display', 'none' );
+          elements.am = null;
+        }
+        if( elements.pm !== null ) {
+          elements.pm.setAttribute( 'display', 'none' );
+          elements.pm = null;
+        }
+      }
+      if( hideDigits && elements.digits !== null ) {
+        elements.digits.setAttribute( 'display', 'none' );
+      }
+      if( hideSeconds && elements.second !== null ) {
+        elements.second.setAttribute( 'display', 'none' );
+      }
+
+      return elements;
     }
   },
 
@@ -140,13 +220,7 @@ qx.Class.define('cv.plugins.Clock', {
   */
   members: {
     __svg: null,       // cached access to the SVG in the DOM
-    __hour24Elem: null,
-    __hourElem: null,
-    __minuteElem: null,
-    __secondElem: null,
-    __amElem: null,
-    __pmElem: null,
-    __digitsElem: null,
+    __Elements: null,  // cached access to the individual clock parts
     __inDrag: 0,       // is the handle currently dragged?
 
     _getInnerDomString: function () {
@@ -159,18 +233,34 @@ qx.Class.define('cv.plugins.Clock', {
       this.__throttled = cv.util.Function.throttle(this.dragAction, 250, {trailing: true}, this);
 
       let uri = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
-      window.fetch(uri)
-        .then(response => {
-          if(!response.ok)
+      let uriPopup = this.getSrc_popup();
+      let promises = [window.fetch(uri)];
+      if( '' !== uriPopup ) {
+        uriPopup = qx.util.ResourceManager.getInstance().toUri( uriPopup );
+        promises.push(window.fetch(uriPopup));
+      }
+      Promise.all( promises )
+        .then(responses => {
+          let result = [];
+          if(!responses[0].ok)
           {
             throw new Error('Not 2xx response for URI "' + uri + '"');
           } else {
-            return response.text();
+            result.push( responses[0].text() );
           }
+          if( '' !== uriPopup ) {
+            if(!responses[1].ok)
+            {
+              throw new Error('Not 2xx response for popup URI "' + uriPopup + '"');
+            } else {
+              result.push(responses[1].text());
+            }
+          }
+          return Promise.all(result);
         })
-        .then(text => {
+        .then(texts => {
           let actor = this.getActor();
-          actor.innerHTML = text;
+          actor.innerHTML = texts[0];
           let svg = actor.firstElementChild;
 
           // make sure that the SVG fits exactly to the available space
@@ -182,6 +272,32 @@ qx.Class.define('cv.plugins.Clock', {
           }
           svg.setAttribute('width', '100%' );
           svg.setAttribute('height', '100%' );
+          this.__Elements = [cv.plugins.Clock.getElements(svg, this.getHide24h(), this.getHideAMPM(), this.getHideDigits(), this.getHideSeconds())];
+
+          if( texts.length > 1 ) {
+            let popup = document.createElement('div');
+            let title = this.getTitle_popup();
+            popup.setAttribute('style', 'width:100%;height:100%;position:absolute;');
+            popup.innerHTML = texts[1];
+
+            svg.addEventListener('click', function(){
+              //cv.ui.PopupHandler.showPopup('clock', {title: title, content: popup, page: ''});
+              cv.ui.PopupHandler.showPopup('clock', {title: title, content: popup});
+            });
+            svg = popup.firstElementChild;
+
+           // make sure that also this SVG fits exactly to the available space
+            if( !svg.getAttribute('viewBox') ) {
+              // fix SVGs that don't contain a viewBox
+              let width = svg.getAttribute('width') || 300;
+              let height = svg.getAttribute('height') || 150;
+              svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height );
+            }
+            svg.setAttribute('width', '100%' );
+            svg.setAttribute('height', '100%' );
+
+            this.__Elements.push( cv.plugins.Clock.getElements(svg, this.getHide24h_popup(), this.getHideAMPM_popup(), this.getHideDigits_popup(), this.getHideSeconds_popup()) );
+          }
 
           svg.setAttribute('style', 'touch-action: none' ); // prevent scroll interference
 
@@ -192,36 +308,6 @@ qx.Class.define('cv.plugins.Clock', {
           let HotSpotSecond = svg.getElementById('HotSpotSecond');
           if(HotSpotSecond) { HotSpotSecond.addEventListener('pointerdown', this); }
           this.__svg = svg;
-          this.__hour24Elem = svg.querySelector('#Hour24');
-          let hour24Group = svg.querySelector('#Hour24Group');
-          this.__hourElem = svg.querySelector('#Hour');
-          this.__minuteElem = svg.querySelector('#Minute');
-          this.__secondElem = svg.querySelector('#Second');
-          this.__amElem = svg.querySelector('#AM');
-          this.__pmElem = svg.querySelector('#PM');
-          this.__digitsElem = svg.querySelector('#Digits');
-          let tspan;
-          while( this.__digitsElem !== null && (tspan = this.__digitsElem.querySelector('tspan')) !== null ) {
-            this.__digitsElem = tspan;
-          }
-
-          if( this.getHide24h() && hour24Group !== null ) {
-            hour24Group.setAttribute( 'display', 'none' );
-          }
-          if( this.getHideAMPM() ) {
-            if( this.__amElem !== null ) {
-              this.__amElem.setAttribute( 'display', 'none' );
-            }
-            if( this.__pmElem !== null ) {
-              this.__pmElem.setAttribute( 'display', 'none' );
-            }
-          }
-          if( this.getHideDigits() && this.__digitsElem !== null ) {
-            this.__digitsElem.setAttribute( 'display', 'none' );
-          }
-          if( this.getHideSeconds() && this.__secondElem !== null ) {
-            this.__secondElem.setAttribute( 'display', 'none' );
-          }
 
           // call parents _onDomReady method
           this.base(args);
@@ -391,40 +477,42 @@ qx.Class.define('cv.plugins.Clock', {
     },
 
     _updateHands: function ( hour, minute, second ) {
-      let showSeconds = true;
-      if( this.__hourElem !== null ) {
-        if( showSeconds ) {
-          this.__hourElem.setAttribute("transform", 'rotate(' + ((hour % 12) * 360 / 12 + minute * 30 / 60 + second * 30 / 60 / 60) + ',0,0)');
-        } else {
-          this.__hourElem.setAttribute("transform", 'rotate(' + ((hour % 12) * 360 / 12 + minute * 30 / 60) + ',0,0)');
+      this.__Elements.forEach(e => {
+        let showSeconds = true;
+        if (e.hour !== null) {
+          if (showSeconds) {
+            e.hour.setAttribute("transform", 'rotate(' + ((hour % 12) * 360 / 12 + minute * 30 / 60 + second * 30 / 60 / 60) + ',0,0)');
+          } else {
+            e.hour.setAttribute("transform", 'rotate(' + ((hour % 12) * 360 / 12 + minute * 30 / 60) + ',0,0)');
+          }
         }
-      }
-      if( this.__minuteElem !== null ) {
-        if( showSeconds ) {
-          this.__minuteElem.setAttribute("transform", 'rotate(' + (minute * 6 + second * 6 / 60) + ',0,0)');
-        } else {
-          this.__minuteElem.setAttribute("transform", 'rotate(' + (minute * 6) + ',0,0)');
+        if (e.minute !== null) {
+          if (showSeconds) {
+            e.minute.setAttribute("transform", 'rotate(' + (minute * 6 + second * 6 / 60) + ',0,0)');
+          } else {
+            e.minute.setAttribute("transform", 'rotate(' + (minute * 6) + ',0,0)');
+          }
         }
-      }
-      if( this.__secondElem !== null ) {
-        this.__secondElem.setAttribute("transform", 'rotate(' + (second * 6) + ',0,0)');
-      }
-      if( this.__hour24Elem !== null ) {
-        this.__hour24Elem.setAttribute("transform", 'rotate(' + ((hour % 24) * 360 / 24 + minute * 15 / 60) + ',0,0)');
-      }
-      if( this.__amElem !== null && !this.getHideAMPM() ) {
-        this.__amElem.setAttribute(  'display', hour < 12 ? '' : 'none' );
-      }
-      if( this.__pmElem !== null && !this.getHideAMPM() ) {
-        this.__pmElem.setAttribute(  'display', hour < 12 ? 'none' : '' );
-      }
-      if( this.__digitsElem !== null ) {
-        if( this.getHideSeconds() ) {
-          this.__digitsElem.textContent = sprintf('%02d:%02d', hour, minute);
-        } else {
-          this.__digitsElem.textContent = sprintf('%02d:%02d:%02d', hour, minute, second);
+        if (e.second !== null) {
+          e.second.setAttribute("transform", 'rotate(' + (second * 6) + ',0,0)');
         }
-      }
+        if (e.hour24 !== null) {
+          e.hour24.setAttribute("transform", 'rotate(' + ((hour % 24) * 360 / 24 + minute * 15 / 60) + ',0,0)');
+        }
+        if (e.am !== null) {
+          e.am.setAttribute('display', hour < 12 ? '' : 'none');
+        }
+        if (e.pm !== null) {
+          e.pm.setAttribute('display', hour < 12 ? 'none' : '');
+        }
+        if (e.digits !== null) {
+          if (this.getHideSeconds()) {
+            e.digits.textContent = sprintf('%02d:%02d', hour, minute);
+          } else {
+            e.digits.textContent = sprintf('%02d:%02d:%02d', hour, minute, second);
+          }
+        }
+      });
     }
   },
 
