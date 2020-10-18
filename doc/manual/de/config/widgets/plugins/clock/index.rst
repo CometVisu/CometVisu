@@ -11,6 +11,13 @@ Beschreibung
 Das Clock Plugin fügt der Visualisierung eine analoge Uhr zur Anzeige und
 zum Ändern von Uhrzeiten hinzu.
 
+Wird auch eine URL für das Pop-Up angegeben (diese kann gleich, aber auch
+unterschiedlich zu der normalen URL sein), so zeigt das Widget nur die Uhrzeit
+an und mit einem Klick auf das Widget öffnet sich eine weiteres, größere Uhr
+in einem Pop-Up. So kann leicht ein Optimum zwischen einer kompakten Anzeige
+in der Visu, aber auch einer komfortablen, großen Verstellung der Uhrzeit
+erreicht werden.
+
 .. widget-example::
     :hide-source: true
 
