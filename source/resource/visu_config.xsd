@@ -2032,49 +2032,49 @@
     <xsd:attribute name="hide_24h" type="xsd:boolean" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Hide the 24h hand.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Verstecke 24h Anzeige.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verstecke die 24h Anzeige.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="hide_24h_popup" type="xsd:boolean" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Hide the 24h hand.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Verstecke 24h Anzeige.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Hide the 24h hand in the pop up.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verstecke die 24h Anzeige im Pop-Up.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="hide_am_pm" type="xsd:boolean" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Hide display of AM/PM.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Verstecke AM/PM Anzeige.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verstecke die AM/PM Anzeige.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="hide_am_pm_popup" type="xsd:boolean" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Hide display of AM/PM.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Verstecke AM/PM Anzeige.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Hide display of AM/PM in the pop up.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verstecke die AM/PM Anzeige im Pop-Up.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="hide_digits" type="xsd:boolean" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Hide numerical display of the time.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Verstecke numerische Anzeige.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verstecke die numerische Anzeige.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="hide_digits_popup" type="xsd:boolean" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Hide numerical display of the time.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Verstecke numerische Anzeige.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Hide numerical display of the time in the pop up.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verstecke die numerische Anzeige im Pop-Up.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="hide_seconds" type="xsd:boolean" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Set only hours and minutes and hide the second hand.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Stelle nur Stunden und Minuten und verstecke den Sekundenzeiger.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Stelle nur Stunden- und Minuten-Zeiger dar und verstecke den Sekundenzeiger.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="hide_seconds_popup" type="xsd:boolean" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Set only hours and minutes and hide the second hand.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Stelle nur Stunden und Minuten und verstecke den Sekundenzeiger.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Set only hours and minutes and hide the second hand in the pop up.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Stelle nur Stunden und Minuten-Zeiger und verstecke den Sekundenzeiger im Pop-Up.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional">

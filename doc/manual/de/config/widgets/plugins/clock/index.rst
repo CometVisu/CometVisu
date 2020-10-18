@@ -11,6 +11,25 @@ Beschreibung
 Das Clock Plugin fügt der Visualisierung eine analoge Uhr zur Anzeige und
 zum Ändern von Uhrzeiten hinzu.
 
+.. widget-example::
+    :hide-source: true
+
+    <settings>
+        <screenshot name="clock_enhanced" sleep="2000">
+            <caption>Clock-Plugin Beispiel</caption>
+            <data address="12/7/10">22:10:22</data>
+        </screenshot>
+    </settings>
+    <meta>
+        <plugins>
+            <plugin name="clock" />
+        </plugins>
+    </meta>
+    <clock src="plugins/clock/clock_full.svg">
+        <layout colspan="4" rowspan="5" />
+        <address transform="DPT:10.001" mode="readwrite">12/7/10</address>
+    </clock>
+
 Einstellungen
 -------------
 
@@ -83,9 +102,9 @@ Hier ein Beispielcode der das Gauge Plugin aus dem folgenden Screenshot erzeugt:
 .. widget-example::
 
     <settings>
-        <screenshot name="clock" sleep="2000">
+        <screenshot name="clock_pure_simple" sleep="2000">
             <caption>Clock-Plugin</caption>
-            <data address="12/7/10">17:30:00</data>
+            <data address="12/7/10">22:10:22</data>
         </screenshot>
     </settings>
     <meta>
@@ -105,16 +124,83 @@ Eigene Ziffernblätter
 müssen als SVG-Datei vorliegen und sich nach dem hier beschriebenen Standard
 richten:
 
-* Es sollten nur die Koordinaten zwischen 0 und 100 verwendet werden
-* Die Mitte muss bei der Koordinate x=50 und y=50 liegen
-* Der Stundenzeiger muss in einer SVG-Gruppe mit der ID ``Hour`` liegen
-* Der Hotspot für die Verstellung des Stundenzeigers muss die ID ``HotSpotHour``
-  haben
-* Der Minutenzeiger muss in einer SVG-Gruppe mit der ID ``Minute`` liegen
-* Der Hotspot für die Verstellung des Minutenzeigers muss die ID ``HotSpotMinute``
-  haben
-* Alle Zeiger müssen in der Date senkrecht nach oben zeigen, d.h. sie müssen
-  die Uhrzeit 00:00:00 anzeigen.
+* Die Zeiger und Elemente müssen in SVG-Gruppen mit entsprechender ID liegen:
+
+  * `Hour24` - der 24h-Zeiger
+  * `Hour` - der Stunden-Zeiger
+  * `Minute` - der Minuten-Zeiger
+  * `Second` - der Sekunden-Zeiger
+  * `AM` - die Anzeige "AM" am Vormittag
+  * `PM` - die Anzeige "PM" am Nachmittag
+  * `Digits` - die numerische Anzeige der Uhrzeit
+  * `Hour24Group` - das Ziffernblatt des 24h-Zeigers
+* Die Zeiger werden durch eine Rotation um den Ursprung verstellt. Somit ist es
+  in der Regel notwendig den Zeiger in eine weiteren SVG-Gruppe zu legen die
+  diesen an die Zielposition verschiebt.
+* Wenn in der Konfig-Datei Elemente ausgeblendet werden, so wird die
+  entsprechende Ebene durch ein `display="none"` versteckt.
+* Für einen einfachen Start kann das Ziffernblatt "Full" mit einem SVG Editor
+  wie Inkscape angepasst werden.
+
+Mit der CometVisu werden diese Ziffernblätter bereits mitgeliefert:
+
+.. widget-example::
+    :hide-source: true
+
+    <settings>
+        <screenshot name="clock_full" sleep="2000">
+            <caption>Ziffernblatt "Full": plugins/clock/clock_full.svg</caption>
+            <data address="12/7/10">22:10:22</data>
+        </screenshot>
+    </settings>
+    <meta>
+        <plugins>
+            <plugin name="clock" />
+        </plugins>
+    </meta>
+    <clock src="plugins/clock/clock_full.svg">
+        <layout colspan="3" rowspan="4" />
+        <address transform="DPT:10.001" mode="readwrite">12/7/10</address>
+    </clock>
+
+.. widget-example::
+    :hide-source: true
+
+    <settings>
+        <screenshot name="clock_simple" sleep="2000">
+            <caption>Ziffernblatt "Simple": plugins/clock/clock_simple.svg</caption>
+            <data address="12/7/10">22:10:22</data>
+        </screenshot>
+    </settings>
+    <meta>
+        <plugins>
+            <plugin name="clock" />
+        </plugins>
+    </meta>
+    <clock src="plugins/clock/clock_simple.svg">
+        <layout colspan="3" rowspan="4" />
+        <address transform="DPT:10.001" mode="readwrite">12/7/10</address>
+    </clock>
+
+.. widget-example::
+    :hide-source: true
+
+    <settings>
+        <screenshot name="clock_pure" sleep="2000">
+            <caption>Ziffernblatt "Pure": plugins/clock/clock_pure.svg</caption>
+            <data address="12/7/10">22:10:22</data>
+        </screenshot>
+    </settings>
+    <meta>
+        <plugins>
+            <plugin name="clock" />
+        </plugins>
+    </meta>
+    <clock src="plugins/clock/clock_pure.svg">
+        <layout colspan="3" rowspan="4" />
+        <address transform="DPT:10.001" mode="readwrite">12/7/10</address>
+    </clock>
+
 
 .. rubric:: Fußnoten
 
