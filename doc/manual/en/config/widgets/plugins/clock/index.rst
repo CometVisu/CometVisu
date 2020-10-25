@@ -10,7 +10,7 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-This plugins integrates clock into the visualization
+This plugins integrates a clock into the visualization
 
 
 

@@ -43,17 +43,17 @@ qx.Class.define('cv.plugins.Clock', {
     src: {
       check: 'String'
     },
-    src_popup: {
+    srcPopup: {
       check: 'String'
     },
-    title_popup: {
+    titlePopup: {
       check: 'String'
     },
     hide24h: {
       check: 'Boolean',
       init: false
     },
-    hide24h_popup: {
+    hide24hPopup: {
       check: 'Boolean',
       init: false
     },
@@ -61,7 +61,7 @@ qx.Class.define('cv.plugins.Clock', {
       check: 'Boolean',
       init: false
     },
-    hideAMPM_popup: {
+    hideAMPMPopup: {
       check: 'Boolean',
       init: false
     },
@@ -69,7 +69,7 @@ qx.Class.define('cv.plugins.Clock', {
       check: 'Boolean',
       init: false
     },
-    hideDigits_popup: {
+    hideDigitsPopup: {
       check: 'Boolean',
       init: false
     },
@@ -77,7 +77,7 @@ qx.Class.define('cv.plugins.Clock', {
       check: 'Boolean',
       init: false
     },
-    hideSeconds_popup: {
+    hideSecondsPopup: {
       check: 'Boolean',
       init: false
     },
@@ -120,9 +120,11 @@ qx.Class.define('cv.plugins.Clock', {
           'default': 'plugins/clock/clock_pure.svg'
         },
         'src_popup': {
+          target: 'srcPopup',
           'default': ''
         },
         'title_popup': {
+          target: 'titlePopup',
           'default': ''
         },
         'hide_24h': {
@@ -131,7 +133,7 @@ qx.Class.define('cv.plugins.Clock', {
           transform: transformValueTrue
         },
         'hide_24h_popup': {
-          target: 'hide24h_popup',
+          target: 'hide24hPopup',
           'default': false,
           transform: transformValueTrue
         },
@@ -141,7 +143,7 @@ qx.Class.define('cv.plugins.Clock', {
           transform: transformValueTrue
         },
         'hide_am_pm_popup': {
-          target: 'hideAMPM_popup',
+          target: 'hideAMPMPopup',
           'default': false,
           transform: transformValueTrue
         },
@@ -151,7 +153,7 @@ qx.Class.define('cv.plugins.Clock', {
           transform: transformValueTrue
         },
         'hide_digits_popup': {
-          target: 'hideDigits_popup',
+          target: 'hideDigitsPopup',
           'default': false,
           transform: transformValueTrue
         },
@@ -161,7 +163,7 @@ qx.Class.define('cv.plugins.Clock', {
           transform: transformValueTrue
         },
         'hide_seconds_popup': {
-          target: 'hideSeconds_popup',
+          target: 'hideSecondsPopup',
           'default': false,
           transform: transformValueTrue
         },
@@ -233,7 +235,7 @@ qx.Class.define('cv.plugins.Clock', {
       this.__throttled = cv.util.Function.throttle(this.dragAction, 250, {trailing: true}, this);
 
       let uri = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
-      let uriPopup = this.getSrc_popup();
+      let uriPopup = this.getSrcPopup();
       let promises = [window.fetch(uri)];
       if( '' !== uriPopup ) {
         uriPopup = qx.util.ResourceManager.getInstance().toUri( uriPopup );
@@ -276,12 +278,11 @@ qx.Class.define('cv.plugins.Clock', {
 
           if( texts.length > 1 ) {
             let popup = document.createElement('div');
-            let title = this.getTitle_popup();
+            let title = this.getTitlePopup();
             popup.setAttribute('style', 'width:100%;height:100%;position:absolute;');
             popup.innerHTML = texts[1];
 
             svg.addEventListener('click', function(){
-              //cv.ui.PopupHandler.showPopup('clock', {title: title, content: popup, page: ''});
               cv.ui.PopupHandler.showPopup('clock', {title: title, content: popup});
             });
             svg = popup.firstElementChild;
@@ -296,7 +297,7 @@ qx.Class.define('cv.plugins.Clock', {
             svg.setAttribute('width', '100%' );
             svg.setAttribute('height', '100%' );
 
-            this.__Elements.push( cv.plugins.Clock.getElements(svg, this.getHide24h_popup(), this.getHideAMPM_popup(), this.getHideDigits_popup(), this.getHideSeconds_popup()) );
+            this.__Elements.push( cv.plugins.Clock.getElements(svg, this.getHide24hPopup(), this.getHideAMPMPopup(), this.getHideDigitsPopup(), this.getHideSecondsPopup()) );
           }
 
           svg.setAttribute('style', 'touch-action: none' ); // prevent scroll interference

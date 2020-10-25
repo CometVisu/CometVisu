@@ -13,9 +13,9 @@ zum Ändern von Uhrzeiten hinzu.
 
 Wird auch eine URL für das Pop-Up angegeben (diese kann gleich, aber auch
 unterschiedlich zu der normalen URL sein), so zeigt das Widget nur die Uhrzeit
-an und mit einem Klick auf das Widget öffnet sich eine weiteres, größere Uhr
+an und mit einem Klick auf das Widget öffnet sich eine weitere, größere Uhr
 in einem Pop-Up. So kann leicht ein Optimum zwischen einer kompakten Anzeige
-in der Visu, aber auch einer komfortablen, großen Verstellung der Uhrzeit
+in der Visualisierung, aber auch einer komfortablen, großen Verstellung der Uhrzeit
 erreicht werden.
 
 .. widget-example::
@@ -104,7 +104,7 @@ der :ref:`visu_config.xml <xml-format>` hinzufügen.
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 
-Hier ein Beispielcode der das Gauge Plugin aus dem folgenden Screenshot erzeugt:
+Hier ein Beispielcode der das Clock Plugin aus dem folgenden Screenshot erzeugt:
 
 .. widget-example::
 
