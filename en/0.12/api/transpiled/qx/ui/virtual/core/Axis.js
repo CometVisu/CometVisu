@@ -55,7 +55,7 @@
       "change": "qx.event.type.Event"
     },
     members: {
-      __P_431_0: null,
+      __P_432_0: null,
 
       /**
        * Get the default size of the items.
@@ -74,7 +74,7 @@
       setDefaultItemSize: function setDefaultItemSize(defaultItemSize) {
         if (this.defaultItemSize !== defaultItemSize) {
           this.defaultItemSize = defaultItemSize;
-          this.__P_431_0 = null;
+          this.__P_432_0 = null;
           this.fireNonBubblingEvent("change");
         }
       },
@@ -96,7 +96,7 @@
       setItemCount: function setItemCount(itemCount) {
         if (this.itemCount !== itemCount) {
           this.itemCount = itemCount;
-          this.__P_431_0 = null;
+          this.__P_432_0 = null;
           this.fireNonBubblingEvent("change");
         }
       },
@@ -119,7 +119,7 @@
           this.customSizes[index] = size;
         }
 
-        this.__P_431_0 = null;
+        this.__P_432_0 = null;
         this.fireNonBubblingEvent("change");
       },
 
@@ -139,7 +139,7 @@
        */
       resetItemSizes: function resetItemSizes() {
         this.customSizes = {};
-        this.__P_431_0 = null;
+        this.__P_432_0 = null;
         this.fireNonBubblingEvent("change");
       },
 
@@ -152,9 +152,9 @@
        *
        * @return {Map[]} The sorted list of ranges.
        */
-      __P_431_1: function __P_431_1() {
-        if (this.__P_431_0) {
-          return this.__P_431_0;
+      __P_432_1: function __P_432_1() {
+        if (this.__P_432_0) {
+          return this.__P_432_0;
         }
 
         var defaultSize = this.defaultItemSize;
@@ -177,7 +177,7 @@
             rangeStart: 0,
             rangeEnd: itemCount * defaultSize - 1
           }];
-          this.__P_431_0 = ranges;
+          this.__P_432_0 = ranges;
           return ranges;
         }
 
@@ -225,7 +225,7 @@
         var remainingItemsSize = (itemCount - lastRange.startIndex - 1) * defaultSize;
         lastRange.rangeEnd = lastRange.rangeStart + lastRange.firstItemSize + remainingItemsSize - 1;
         lastRange.endIndex = itemCount - 1;
-        this.__P_431_0 = ranges;
+        this.__P_432_0 = ranges;
         return ranges;
       },
 
@@ -237,8 +237,8 @@
        * @param position {Integer} The position.
        * @return {Map} The range, which contains the given position.
        */
-      __P_431_2: function __P_431_2(position) {
-        var ranges = this.__P_431_0 || this.__P_431_1();
+      __P_432_2: function __P_432_2(position) {
+        var ranges = this.__P_432_0 || this.__P_432_1();
 
         var start = 0;
         var end = ranges.length - 1; // binary search in the sorted ranges list
@@ -271,7 +271,7 @@
           return null;
         }
 
-        var range = this.__P_431_2(position);
+        var range = this.__P_432_2(position);
 
         var startPos = range.rangeStart;
         var index = range.startIndex;
@@ -299,8 +299,8 @@
        * @param index {Integer} The index of the item to get the range for.
        * @return {Map} The range for the index.
        */
-      __P_431_3: function __P_431_3(index) {
-        var ranges = this.__P_431_0 || this.__P_431_1();
+      __P_432_3: function __P_432_3(index) {
+        var ranges = this.__P_432_0 || this.__P_432_1();
 
         var start = 0;
         var end = ranges.length - 1; // binary search in the sorted ranges list
@@ -331,7 +331,7 @@
           return null;
         }
 
-        var range = this.__P_431_3(index);
+        var range = this.__P_432_3(index);
 
         if (range.startIndex == index) {
           return range.rangeStart;
@@ -346,7 +346,7 @@
        * @return {Integer} The sum of all item sizes.
        */
       getTotalSize: function getTotalSize() {
-        var ranges = this.__P_431_0 || this.__P_431_1();
+        var ranges = this.__P_432_0 || this.__P_432_1();
 
         return ranges[ranges.length - 1].rangeEnd + 1;
       },
@@ -383,10 +383,10 @@
       }
     },
     destruct: function destruct() {
-      this.customSizes = this.__P_431_0 = null;
+      this.customSizes = this.__P_432_0 = null;
     }
   });
   qx.ui.virtual.core.Axis.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Axis.js.map?dt=1592777107654
+//# sourceMappingURL=Axis.js.map?dt=1603737147959

@@ -80,7 +80,7 @@
     members: {
       _model: null,
       _listController: null,
-      __P_29_0: 0,
+      __P_30_0: 0,
       _initClient: function _initClient() {
         this._client = cv.io.rest.Client.getConfigClient();
 
@@ -106,7 +106,7 @@
         var model = this._listController.getModel();
 
         model.removeAll();
-        this.__P_29_0 = Object.keys(value).length;
+        this.__P_30_0 = Object.keys(value).length;
         Object.keys(value).forEach(function (sectionName) {
           var section = new cv.ui.manager.model.config.Section(sectionName);
           Object.keys(value[sectionName]).forEach(function (optionKey) {
@@ -115,7 +115,7 @@
           model.push(section);
         }, this);
 
-        this.__P_29_1();
+        this.__P_30_1();
       },
       // overridden
       getCurrentContent: function getCurrentContent() {
@@ -128,13 +128,13 @@
 
         model.remove(section);
 
-        this.__P_29_1();
+        this.__P_30_1();
       },
       // compare current controller model with the loaded config content
-      __P_29_1: function __P_29_1() {
+      __P_30_1: function __P_30_1() {
         var file = this.getFile();
 
-        if (this.__P_29_0 !== this._listController.getModel().length) {
+        if (this.__P_30_0 !== this._listController.getModel().length) {
           file.setModified(true);
           return;
         }
@@ -214,7 +214,7 @@
               },
               configureItem: function (item) {
                 item.addListener('delete', this._onDeleteSection, this);
-                item.addListener('changeModified', this.__P_29_1, this);
+                item.addListener('changeModified', this.__P_30_1, this);
               }.bind(this),
               bindItem: function bindItem(controller, item, index) {
                 controller.bindProperty('', 'model', null, item, index);
@@ -239,7 +239,7 @@
             control.addListener('execute', function () {
               this._listController.getModel().push(new cv.ui.manager.model.config.Section(''));
 
-              this.__P_29_1();
+              this.__P_30_1();
             }, this);
             this.getChildControl('buttons').add(control);
             break;
@@ -261,4 +261,4 @@
   cv.ui.manager.editor.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1592778960500
+//# sourceMappingURL=Config.js.map?dt=1603737737328

@@ -63,7 +63,7 @@
       qx.core.Assert.assertNotNull(browserObject);
       qx.core.Assert.assertNotNull(filename);
       qx.core.Assert.assertNotNull(id);
-      this.__P_135_0 = browserObject;
+      this.__P_136_0 = browserObject;
       this.setFilename(filename);
       this.setId(id);
     },
@@ -147,8 +147,8 @@
       }
     },
     members: {
-      __P_135_0: null,
-      __P_135_1: null,
+      __P_136_0: null,
+      __P_136_1: null,
 
       /**
        * Sets a parameter value to be sent with the file
@@ -161,8 +161,8 @@
        */
       setParam: function setParam(name, value) {
         if (value !== null && typeof value != "string") value = "" + value;
-        if (!this.__P_135_1) this.__P_135_1 = {};
-        this.__P_135_1[name] = value;
+        if (!this.__P_136_1) this.__P_136_1 = {};
+        this.__P_136_1[name] = value;
       },
 
       /**
@@ -172,7 +172,7 @@
        * @returns {Boolean}
        */
       getParam: function getParam(name) {
-        return this.__P_135_1 && this.__P_135_1[name];
+        return this.__P_136_1 && this.__P_136_1[name];
       },
 
       /**
@@ -182,7 +182,7 @@
        */
       getParamNames: function getParamNames() {
         var result = [];
-        if (this.__P_135_1) for (var name in this.__P_135_1) {
+        if (this.__P_136_1) for (var name in this.__P_136_1) {
           result.push(name);
         }
         return result;
@@ -194,7 +194,7 @@
        * @returns {DOM}
        */
       getBrowserObject: function getBrowserObject() {
-        return this.__P_135_0;
+        return this.__P_136_0;
       },
       // property apply
       _applyState: function _applyState(value, oldValue) {
@@ -205,4 +205,4 @@
   com.zenesis.qx.upload.File.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=File.js.map?dt=1592778972113
+//# sourceMappingURL=File.js.map?dt=1603737748427

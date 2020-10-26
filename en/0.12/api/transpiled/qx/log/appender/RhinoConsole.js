@@ -38,12 +38,12 @@
       /**
        * java.lang.System.out
        */
-      __P_232_0: null,
+      __P_233_0: null,
 
       /**
        * java.lang.System.err
        */
-      __P_232_1: null,
+      __P_233_1: null,
 
       /**
        * Writes a message to the shell. Errors will be sent to STDERR, everything
@@ -54,9 +54,9 @@
        */
       log: function log(logMessage, level) {
         if (level == "error") {
-          this.__P_232_1.println(logMessage);
+          this.__P_233_1.println(logMessage);
         } else {
-          this.__P_232_0.println(logMessage);
+          this.__P_233_0.println(logMessage);
         }
       },
 
@@ -118,12 +118,12 @@
     },
     defer: function defer() {
       if (typeof java !== "undefined" && typeof java.lang !== "undefined") {
-        qx.log.appender.RhinoConsole.__P_232_0 = java.lang.System.out;
-        qx.log.appender.RhinoConsole.__P_232_1 = java.lang.System.err;
+        qx.log.appender.RhinoConsole.__P_233_0 = java.lang.System.out;
+        qx.log.appender.RhinoConsole.__P_233_1 = java.lang.System.err;
       }
     }
   });
   qx.log.appender.RhinoConsole.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RhinoConsole.js.map?dt=1592777090208
+//# sourceMappingURL=RhinoConsole.js.map?dt=1603737132580

@@ -192,37 +192,37 @@
       /**
        * @type {String} The context in which an update has occurred.
        */
-      __P_258_0: null,
+      __P_259_0: null,
 
       /**
        * @type {Array} Map containing the preset colors.
        * @lint ignoreReferenceField(__presetTable)
        */
-      __P_258_1: ["maroon", "red", "orange", "yellow", "olive", "purple", "fuchsia", "lime", "green", "navy", "blue", "aqua", "teal", "black", "#333", "#666", "#999", "#BBB", "#EEE", "white"],
+      __P_259_1: ["maroon", "red", "orange", "yellow", "olive", "purple", "fuchsia", "lime", "green", "navy", "blue", "aqua", "teal", "black", "#333", "#666", "#999", "#BBB", "#EEE", "white"],
 
       /**
        * @type {String} Name of child control which is captured.
        */
-      __P_258_2: "",
+      __P_259_2: "",
 
       /**
        * @type {Number} Numeric brightness value
        */
-      __P_258_3: 0,
+      __P_259_3: 0,
 
       /**
        * @type {Integer} HueSaturation's X coordinate
        */
-      __P_258_4: 0,
+      __P_259_4: 0,
 
       /**
        * @type {Integer} HueSaturation's Y coordinate
        */
-      __P_258_5: 0,
+      __P_259_5: 0,
       // internal boolean flag to signal, that the value is set to null
-      __P_258_6: true,
+      __P_259_6: true,
       // internal mutex to prevent the changeValue event to be fired too often
-      __P_258_7: false,
+      __P_259_7: false,
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
@@ -334,7 +334,7 @@
               for (var j = 0; j < 10; j++) {
                 colorPos = i * 10 + j;
                 colorField = this.getChildControl("colorbucket#" + colorPos);
-                colorField.setBackgroundColor(this.__P_258_1[colorPos]);
+                colorField.setBackgroundColor(this.__P_259_1[colorPos]);
                 control.add(colorField, {
                   column: j,
                   row: i
@@ -482,19 +482,19 @@
         var rgb;
 
         if (value == null) {
-          this.__P_258_6 = true;
+          this.__P_259_6 = true;
           rgb = [255, 255, 255];
         } else {
           rgb = qx.util.ColorUtil.stringToRgb(value);
-          this.__P_258_6 = false;
+          this.__P_259_6 = false;
         } // block the first tow events
 
 
-        this.__P_258_7 = true;
+        this.__P_259_7 = true;
         this.setRed(rgb[0]);
         this.setGreen(rgb[1]); // only allow the final change event
 
-        this.__P_258_7 = false;
+        this.__P_259_7 = false;
         this.setBlue(rgb[2]);
       },
 
@@ -505,27 +505,27 @@
        *   is set, null.
        */
       getValue: function getValue() {
-        return this.__P_258_6 ? null : qx.util.ColorUtil.rgbToHexString([this.getRed(), this.getGreen(), this.getBlue()]);
+        return this.__P_259_6 ? null : qx.util.ColorUtil.rgbToHexString([this.getRed(), this.getGreen(), this.getBlue()]);
       },
 
       /**
        * Resets the color to null.
        */
       resetValue: function resetValue() {
-        this.__P_258_6 = true;
-        this.__P_258_7 = true;
+        this.__P_259_6 = true;
+        this.__P_259_7 = true;
         this.setRed(255);
         this.setGreen(255);
-        this.__P_258_7 = false;
+        this.__P_259_7 = false;
         this.setBlue(255);
       },
 
       /**
        * Helper for firing the changeValue event and checking for the mutex.
        */
-      __P_258_8: function __P_258_8() {
-        if (!this.__P_258_7) {
-          this.__P_258_6 = false;
+      __P_259_8: function __P_259_8() {
+        if (!this.__P_259_7) {
+          this.__P_259_6 = false;
           this.fireDataEvent("changeValue", this.getValue());
         }
       },
@@ -537,19 +537,19 @@
       */
       // property apply
       _applyRed: function _applyRed(value, old) {
-        if (this.__P_258_0 === null) {
-          this.__P_258_0 = "redModifier";
+        if (this.__P_259_0 === null) {
+          this.__P_259_0 = "redModifier";
         }
 
-        if (this.__P_258_0 !== "rgbSpinner") {
+        if (this.__P_259_0 !== "rgbSpinner") {
           this.getChildControl("rgb-spinner-red").setValue(value);
         }
 
-        if (this.__P_258_0 !== "hexField") {
+        if (this.__P_259_0 !== "hexField") {
           this._setHexFromRgb();
         }
 
-        switch (this.__P_258_0) {
+        switch (this.__P_259_0) {
           case "rgbSpinner":
           case "hexField":
           case "redModifier":
@@ -559,27 +559,27 @@
 
         this._setPreviewFromRgb();
 
-        this.__P_258_8();
+        this.__P_259_8();
 
-        if (this.__P_258_0 === "redModifier") {
-          this.__P_258_0 = null;
+        if (this.__P_259_0 === "redModifier") {
+          this.__P_259_0 = null;
         }
       },
       // property apply
       _applyGreen: function _applyGreen(value, old) {
-        if (this.__P_258_0 === null) {
-          this.__P_258_0 = "greenModifier";
+        if (this.__P_259_0 === null) {
+          this.__P_259_0 = "greenModifier";
         }
 
-        if (this.__P_258_0 !== "rgbSpinner") {
+        if (this.__P_259_0 !== "rgbSpinner") {
           this.getChildControl("rgb-spinner-green").setValue(value);
         }
 
-        if (this.__P_258_0 !== "hexField") {
+        if (this.__P_259_0 !== "hexField") {
           this._setHexFromRgb();
         }
 
-        switch (this.__P_258_0) {
+        switch (this.__P_259_0) {
           case "rgbSpinner":
           case "hexField":
           case "greenModifier":
@@ -589,27 +589,27 @@
 
         this._setPreviewFromRgb();
 
-        this.__P_258_8();
+        this.__P_259_8();
 
-        if (this.__P_258_0 === "greenModifier") {
-          this.__P_258_0 = null;
+        if (this.__P_259_0 === "greenModifier") {
+          this.__P_259_0 = null;
         }
       },
       // property apply
       _applyBlue: function _applyBlue(value, old) {
-        if (this.__P_258_0 === null) {
-          this.__P_258_0 = "blueModifier";
+        if (this.__P_259_0 === null) {
+          this.__P_259_0 = "blueModifier";
         }
 
-        if (this.__P_258_0 !== "rgbSpinner") {
+        if (this.__P_259_0 !== "rgbSpinner") {
           this.getChildControl("rgb-spinner-blue").setValue(value);
         }
 
-        if (this.__P_258_0 !== "hexField") {
+        if (this.__P_259_0 !== "hexField") {
           this._setHexFromRgb();
         }
 
-        switch (this.__P_258_0) {
+        switch (this.__P_259_0) {
           case "rgbSpinner":
           case "hexField":
           case "blueModifier":
@@ -619,10 +619,10 @@
 
         this._setPreviewFromRgb();
 
-        this.__P_258_8();
+        this.__P_259_8();
 
-        if (this.__P_258_0 === "blueModifier") {
-          this.__P_258_0 = null;
+        if (this.__P_259_0 === "blueModifier") {
+          this.__P_259_0 = null;
         }
       },
 
@@ -633,15 +633,15 @@
       */
       // property apply
       _applyHue: function _applyHue(value, old) {
-        if (this.__P_258_0 === null) {
-          this.__P_258_0 = "hueModifier";
+        if (this.__P_259_0 === null) {
+          this.__P_259_0 = "hueModifier";
         }
 
-        if (this.__P_258_0 !== "hsbSpinner") {
+        if (this.__P_259_0 !== "hsbSpinner") {
           this.getChildControl("hsb-spinner-hue").setValue(value);
         }
 
-        if (this.__P_258_0 !== "hueSaturationField") {
+        if (this.__P_259_0 !== "hueSaturationField") {
           if (this.getChildControl("hue-saturation-handle").getBounds()) {
             this.getChildControl("hue-saturation-handle").setDomLeft(Math.round(value / 1.40625) + this.getChildControl("hue-saturation-pane").getPaddingLeft());
           } else {
@@ -651,7 +651,7 @@
           }
         }
 
-        switch (this.__P_258_0) {
+        switch (this.__P_259_0) {
           case "hsbSpinner":
           case "hueSaturationField":
           case "hueModifier":
@@ -661,21 +661,21 @@
 
         this._setBrightnessGradiant();
 
-        if (this.__P_258_0 === "hueModifier") {
-          this.__P_258_0 = null;
+        if (this.__P_259_0 === "hueModifier") {
+          this.__P_259_0 = null;
         }
       },
       // property apply
       _applySaturation: function _applySaturation(value, old) {
-        if (this.__P_258_0 === null) {
-          this.__P_258_0 = "saturationModifier";
+        if (this.__P_259_0 === null) {
+          this.__P_259_0 = "saturationModifier";
         }
 
-        if (this.__P_258_0 !== "hsbSpinner") {
+        if (this.__P_259_0 !== "hsbSpinner") {
           this.getChildControl("hsb-spinner-saturation").setValue(value);
         }
 
-        if (this.__P_258_0 !== "hueSaturationField") {
+        if (this.__P_259_0 !== "hueSaturationField") {
           this._setBrightnessGradiant();
 
           if (this.getChildControl("hue-saturation-handle").getBounds()) {
@@ -687,7 +687,7 @@
           }
         }
 
-        switch (this.__P_258_0) {
+        switch (this.__P_259_0) {
           case "hsbSpinner":
           case "hueSaturationField":
           case "saturationModifier":
@@ -695,21 +695,21 @@
 
         }
 
-        if (this.__P_258_0 === "saturationModifier") {
-          this.__P_258_0 = null;
+        if (this.__P_259_0 === "saturationModifier") {
+          this.__P_259_0 = null;
         }
       },
       // property apply
       _applyBrightness: function _applyBrightness(value, old) {
-        if (this.__P_258_0 === null) {
-          this.__P_258_0 = "brightnessModifier";
+        if (this.__P_259_0 === null) {
+          this.__P_259_0 = "brightnessModifier";
         }
 
-        if (this.__P_258_0 !== "hsbSpinner") {
+        if (this.__P_259_0 !== "hsbSpinner") {
           this.getChildControl("hsb-spinner-brightness").setValue(value);
         }
 
-        if (this.__P_258_0 !== "brightnessField") {
+        if (this.__P_259_0 !== "brightnessField") {
           var topValue = 256 - Math.round(value * 2.56);
 
           if (this.getChildControl("brightness-handle").getBounds()) {
@@ -721,7 +721,7 @@
           }
         }
 
-        switch (this.__P_258_0) {
+        switch (this.__P_259_0) {
           case "hsbSpinner":
           case "brightnessField":
           case "brightnessModifier":
@@ -729,8 +729,8 @@
 
         }
 
-        if (this.__P_258_0 === "brightnessModifier") {
-          this.__P_258_0 = null;
+        if (this.__P_259_0 === "brightnessModifier") {
+          this.__P_259_0 = null;
         }
       },
 
@@ -749,12 +749,12 @@
       _onBrightnessHandlePointerDown: function _onBrightnessHandlePointerDown(e) {
         // Activate Capturing
         this.getChildControl("brightness-handle").capture();
-        this.__P_258_2 = "brightness-handle"; // Calculate subtract: Position of Brightness Field - Current Pointer Offset
+        this.__P_259_2 = "brightness-handle"; // Calculate subtract: Position of Brightness Field - Current Pointer Offset
 
         var locationBrightnessField = this.getChildControl("brightness-field").getContentLocation();
         var locationBrightnessHandle = this.getChildControl("brightness-handle").getContentLocation();
         var fieldBounds = this.getChildControl("brightness-field").getBounds();
-        this.__P_258_3 = locationBrightnessField.top + (e.getDocumentTop() - locationBrightnessHandle.top) - fieldBounds.top; // Block field event handling
+        this.__P_259_3 = locationBrightnessField.top + (e.getDocumentTop() - locationBrightnessHandle.top) - fieldBounds.top; // Block field event handling
 
         e.stopPropagation();
       },
@@ -768,7 +768,7 @@
       _onBrightnessHandlePointerUp: function _onBrightnessHandlePointerUp(e) {
         // Disabling capturing
         this.getChildControl("brightness-handle").releaseCapture();
-        this.__P_258_2 = null;
+        this.__P_259_2 = null;
       },
 
       /**
@@ -779,7 +779,7 @@
        */
       _onBrightnessHandlePointerMove: function _onBrightnessHandlePointerMove(e) {
         // Update if captured currently (through previous pointerdown)
-        if (this.__P_258_2 === "brightness-handle") {
+        if (this.__P_259_2 === "brightness-handle") {
           this._setBrightnessOnFieldEvent(e);
 
           e.stopPropagation();
@@ -796,13 +796,13 @@
         // Calculate substract: Half height of handler
         var location = this.getChildControl("brightness-field").getContentLocation();
         var bounds = this.getChildControl("brightness-handle").getBounds();
-        this.__P_258_3 = location.top + bounds.height / 2; // Update
+        this.__P_259_3 = location.top + bounds.height / 2; // Update
 
         this._setBrightnessOnFieldEvent(e); // Afterwards: Activate Capturing for handle
 
 
         this.getChildControl("brightness-handle").capture();
-        this.__P_258_2 = "brightness-handle";
+        this.__P_259_2 = "brightness-handle";
       },
 
       /**
@@ -827,8 +827,8 @@
        * @param e {qx.event.type.Pointer} Incoming event object
        */
       _setBrightnessOnFieldEvent: function _setBrightnessOnFieldEvent(e) {
-        var value = qx.lang.Number.limit(e.getDocumentTop() - this.__P_258_3, 0, 256);
-        this.__P_258_0 = "brightnessField";
+        var value = qx.lang.Number.limit(e.getDocumentTop() - this.__P_259_3, 0, 256);
+        this.__P_259_0 = "brightnessField";
 
         if (this.getChildControl("brightness-handle").getBounds()) {
           this.getChildControl("brightness-handle").setDomTop(value);
@@ -839,7 +839,7 @@
         }
 
         this.setBrightness(100 - Math.round(value / 2.56));
-        this.__P_258_0 = null;
+        this.__P_259_0 = null;
       },
 
       /*
@@ -856,10 +856,10 @@
        */
       _onHueSaturationHandlePointerUp: function _onHueSaturationHandlePointerUp(e) {
         // Disabling capturing
-        if (this.__P_258_2) {
+        if (this.__P_259_2) {
           e.stopPropagation();
           this.getChildControl("hue-saturation-handle").releaseCapture();
-          this.__P_258_2 = null;
+          this.__P_259_2 = null;
         }
       },
 
@@ -871,7 +871,7 @@
        */
       _onHueSaturationHandlePointerMove: function _onHueSaturationHandlePointerMove(e) {
         // Update if captured currently (through previous pointerdown)
-        if (this.__P_258_2 === "hue-saturation-handle") {
+        if (this.__P_259_2 === "hue-saturation-handle") {
           this._setHueSaturationOnFieldEvent(e);
 
           e.stopPropagation();
@@ -890,14 +890,14 @@
         var location = this.getChildControl("hue-saturation-field").getContentLocation();
         var handleBounds = this.getChildControl("hue-saturation-handle").getBounds();
         var fieldBounds = this.getChildControl("hue-saturation-field").getBounds();
-        this.__P_258_4 = location.top + handleBounds.height / 2 - fieldBounds.top;
-        this.__P_258_5 = location.left + handleBounds.width / 2 - fieldBounds.left; // Update
+        this.__P_259_4 = location.top + handleBounds.height / 2 - fieldBounds.top;
+        this.__P_259_5 = location.left + handleBounds.width / 2 - fieldBounds.left; // Update
 
         this._setHueSaturationOnFieldEvent(e); // Afterwards: Activate Capturing for handle
 
 
         this.getChildControl("hue-saturation-handle").capture();
-        this.__P_258_2 = "hue-saturation-handle";
+        this.__P_259_2 = "hue-saturation-handle";
       },
 
       /**
@@ -924,13 +924,13 @@
        * @param e {qx.event.type.Pointer} Incoming event object
        */
       _setHueSaturationOnFieldEvent: function _setHueSaturationOnFieldEvent(e) {
-        var vTop = qx.lang.Number.limit(e.getDocumentTop() - this.__P_258_4, 0, 256);
-        var vLeft = qx.lang.Number.limit(e.getDocumentLeft() - this.__P_258_5, 0, 256);
+        var vTop = qx.lang.Number.limit(e.getDocumentTop() - this.__P_259_4, 0, 256);
+        var vLeft = qx.lang.Number.limit(e.getDocumentLeft() - this.__P_259_5, 0, 256);
         this.getChildControl("hue-saturation-handle").setDomPosition(vLeft, vTop);
-        this.__P_258_0 = "hueSaturationField";
+        this.__P_259_0 = "hueSaturationField";
         this.setSaturation(100 - Math.round(vTop / 2.56));
         this.setHue(Math.round(vLeft * 1.40625));
-        this.__P_258_0 = null;
+        this.__P_259_0 = null;
       },
 
       /*
@@ -943,39 +943,39 @@
        * Sets widget's red value to spinner's value.
        */
       _setRedFromSpinner: function _setRedFromSpinner() {
-        if (this.__P_258_0 !== null) {
+        if (this.__P_259_0 !== null) {
           return;
         }
 
-        this.__P_258_0 = "rgbSpinner";
+        this.__P_259_0 = "rgbSpinner";
         this.setRed(this.getChildControl("rgb-spinner-red").getValue());
-        this.__P_258_0 = null;
+        this.__P_259_0 = null;
       },
 
       /**
        * Sets widget's green value to spinner's value.
        */
       _setGreenFromSpinner: function _setGreenFromSpinner() {
-        if (this.__P_258_0 !== null) {
+        if (this.__P_259_0 !== null) {
           return;
         }
 
-        this.__P_258_0 = "rgbSpinner";
+        this.__P_259_0 = "rgbSpinner";
         this.setGreen(this.getChildControl("rgb-spinner-green").getValue());
-        this.__P_258_0 = null;
+        this.__P_259_0 = null;
       },
 
       /**
        * Sets widget's blue value to spinner's value.
        */
       _setBlueFromSpinner: function _setBlueFromSpinner() {
-        if (this.__P_258_0 !== null) {
+        if (this.__P_259_0 !== null) {
           return;
         }
 
-        this.__P_258_0 = "rgbSpinner";
+        this.__P_259_0 = "rgbSpinner";
         this.setBlue(this.getChildControl("rgb-spinner-blue").getValue());
-        this.__P_258_0 = null;
+        this.__P_259_0 = null;
       },
 
       /*
@@ -988,39 +988,39 @@
        * Sets widget's hue value to spinner's value.
        */
       _setHueFromSpinner: function _setHueFromSpinner() {
-        if (this.__P_258_0 !== null) {
+        if (this.__P_259_0 !== null) {
           return;
         }
 
-        this.__P_258_0 = "hsbSpinner";
+        this.__P_259_0 = "hsbSpinner";
         this.setHue(this.getChildControl("hsb-spinner-hue").getValue());
-        this.__P_258_0 = null;
+        this.__P_259_0 = null;
       },
 
       /**
        * Sets widget's saturation value to spinner's value.
        */
       _setSaturationFromSpinner: function _setSaturationFromSpinner() {
-        if (this.__P_258_0 !== null) {
+        if (this.__P_259_0 !== null) {
           return;
         }
 
-        this.__P_258_0 = "hsbSpinner";
+        this.__P_259_0 = "hsbSpinner";
         this.setSaturation(this.getChildControl("hsb-spinner-saturation").getValue());
-        this.__P_258_0 = null;
+        this.__P_259_0 = null;
       },
 
       /**
        * Sets widget's brightness value to spinner's value.
        */
       _setBrightnessFromSpinner: function _setBrightnessFromSpinner() {
-        if (this.__P_258_0 !== null) {
+        if (this.__P_259_0 !== null) {
           return;
         }
 
-        this.__P_258_0 = "hsbSpinner";
+        this.__P_259_0 = "hsbSpinner";
         this.setBrightness(this.getChildControl("hsb-spinner-brightness").getValue());
-        this.__P_258_0 = null;
+        this.__P_259_0 = null;
       },
 
       /*
@@ -1034,7 +1034,7 @@
        * @param e {qx.event.type.Data} Incoming event object
        */
       _onHexFieldChange: function _onHexFieldChange(e) {
-        if (this.__P_258_0 !== null) {
+        if (this.__P_259_0 !== null) {
           return;
         }
 
@@ -1046,11 +1046,11 @@
         }
 
         ;
-        this.__P_258_0 = "hexField";
+        this.__P_259_0 = "hexField";
         this.setRed(rgb[0]);
         this.setGreen(rgb[1]);
         this.setBlue(rgb[2]);
-        this.__P_258_0 = null;
+        this.__P_259_0 = null;
       },
 
       /**
@@ -1099,7 +1099,7 @@
        * Sets hue value to it's corresponding red, green and blue value.
        */
       _setHueFromRgb: function _setHueFromRgb() {
-        switch (this.__P_258_0) {
+        switch (this.__P_259_0) {
           case "hsbSpinner":
           case "hueSaturationField":
           case "brightnessField":
@@ -1117,7 +1117,7 @@
        * Sets red, green and blue value to corresponding hue value.
        */
       _setRgbFromHue: function _setRgbFromHue() {
-        switch (this.__P_258_0) {
+        switch (this.__P_259_0) {
           case "rgbSpinner":
           case "hexField":
             break;
@@ -1185,4 +1185,4 @@
   qx.ui.control.ColorSelector.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorSelector.js.map?dt=1592777093553
+//# sourceMappingURL=ColorSelector.js.map?dt=1603737135605

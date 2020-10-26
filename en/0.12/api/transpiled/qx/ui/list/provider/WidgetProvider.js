@@ -162,13 +162,13 @@
       },
       // interface implementation
       styleSelectabled: function styleSelectabled(row) {
-        var widget = this.__P_330_0(row);
+        var widget = this.__P_331_0(row);
 
         this._styleSelectabled(widget);
       },
       // interface implementation
       styleUnselectabled: function styleUnselectabled(row) {
-        var widget = this.__P_330_0(row);
+        var widget = this.__P_331_0(row);
 
         this._styleUnselectabled(widget);
       },
@@ -199,7 +199,7 @@
        * @param widget {qx.ui.core.Widget} widget to style.
        */
       _styleSelectabled: function _styleSelectabled(widget) {
-        this.__P_330_1(widget, {
+        this.__P_331_1(widget, {
           selected: 1
         });
       },
@@ -210,7 +210,7 @@
        * @param widget {qx.ui.core.Widget} widget to style.
        */
       _styleUnselectabled: function _styleUnselectabled(widget) {
-        this.__P_330_1(widget, {});
+        this.__P_331_1(widget, {});
       },
 
       /**
@@ -290,7 +290,7 @@
        * @param row {Integer} row to search.
        * @return {qx.ui.core.Widget|null} The found widget or <code>null</code> when no widget found.
        */
-      __P_330_0: function __P_330_0(row) {
+      __P_331_0: function __P_331_0(row) {
         return this._list._layer.getRenderedCellWidget(row, 0);
       },
 
@@ -300,7 +300,7 @@
        * @param widget {qx.ui.core.Widget} widget to set states.
        * @param states {Map} the state to set.
        */
-      __P_330_1: function __P_330_1(widget, states) {
+      __P_331_1: function __P_331_1(widget, states) {
         if (widget == null) {
           return;
         }
@@ -319,4 +319,4 @@
   qx.ui.list.provider.WidgetProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetProvider.js.map?dt=1592777099318
+//# sourceMappingURL=WidgetProvider.js.map?dt=1603737140706

@@ -45,11 +45,11 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_411_0 = [];
-      this.__P_411_1 = -1;
-      this.__P_411_2 = -1;
+      this.__P_412_0 = [];
+      this.__P_412_1 = -1;
+      this.__P_412_2 = -1;
       this.hasBatchModeRefCount = 0;
-      this.__P_411_3 = false;
+      this.__P_412_3 = false;
     },
 
     /*
@@ -123,10 +123,10 @@
     *****************************************************************************
     */
     members: {
-      __P_411_3: null,
-      __P_411_1: null,
-      __P_411_2: null,
-      __P_411_0: null,
+      __P_412_3: null,
+      __P_412_1: null,
+      __P_412_2: null,
+      __P_412_0: null,
       // selectionMode property modifier
       _applySelectionMode: function _applySelectionMode(selectionMode) {
         this.resetSelection();
@@ -156,8 +156,8 @@
 
           this.hasBatchModeRefCount -= 1;
 
-          if (this.__P_411_3) {
-            this.__P_411_3 = false;
+          if (this.__P_412_3) {
+            this.__P_412_3 = false;
 
             this._fireChangeSelection();
           }
@@ -183,7 +183,7 @@
        * @return {Integer} the anchor selection index.
        */
       getAnchorSelectionIndex: function getAnchorSelectionIndex() {
-        return this.__P_411_1;
+        return this.__P_412_1;
       },
 
       /**
@@ -193,7 +193,7 @@
        * @param index {Integer} the index to set.
        */
       _setAnchorSelectionIndex: function _setAnchorSelectionIndex(index) {
-        this.__P_411_1 = index;
+        this.__P_412_1 = index;
       },
 
       /**
@@ -203,7 +203,7 @@
        * @return {Integer} the lead selection index.
        */
       getLeadSelectionIndex: function getLeadSelectionIndex() {
-        return this.__P_411_2;
+        return this.__P_412_2;
       },
 
       /**
@@ -213,7 +213,7 @@
        * @param index {Integer} the index to set.
        */
       _setLeadSelectionIndex: function _setLeadSelectionIndex(index) {
-        this.__P_411_2 = index;
+        this.__P_412_2 = index;
       },
 
       /**
@@ -224,7 +224,7 @@
        * @return {Map[]} array with all the selected ranges.
        */
       _getSelectedRangeArr: function _getSelectedRangeArr() {
-        return this.__P_411_0;
+        return this.__P_412_0;
       },
 
       /**
@@ -244,7 +244,7 @@
        * @return {Boolean} whether the selection is empty.
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__P_411_0.length == 0;
+        return this.__P_412_0.length == 0;
       },
 
       /**
@@ -255,8 +255,8 @@
       getSelectedCount: function getSelectedCount() {
         var selectedCount = 0;
 
-        for (var i = 0; i < this.__P_411_0.length; i++) {
-          var range = this.__P_411_0[i];
+        for (var i = 0; i < this.__P_412_0.length; i++) {
+          var range = this.__P_412_0[i];
           selectedCount += range.maxIndex - range.minIndex + 1;
         }
 
@@ -270,8 +270,8 @@
        * @return {Boolean} whether the index is selected.
        */
       isSelectedIndex: function isSelectedIndex(index) {
-        for (var i = 0; i < this.__P_411_0.length; i++) {
-          var range = this.__P_411_0[i];
+        for (var i = 0; i < this.__P_412_0.length; i++) {
+          var range = this.__P_412_0[i];
 
           if (index >= range.minIndex && index <= range.maxIndex) {
             return true;
@@ -292,10 +292,10 @@
         // caller from messing with the internal model
         var retVal = [];
 
-        for (var i = 0; i < this.__P_411_0.length; i++) {
+        for (var i = 0; i < this.__P_412_0.length; i++) {
           retVal.push({
-            minIndex: this.__P_411_0[i].minIndex,
-            maxIndex: this.__P_411_0[i].maxIndex
+            minIndex: this.__P_412_0[i].minIndex,
+            maxIndex: this.__P_412_0[i].maxIndex
           });
         }
 
@@ -319,8 +319,8 @@
        *          (this object will be available via "this" in the iterator)
        */
       iterateSelection: function iterateSelection(iterator, object) {
-        for (var i = 0; i < this.__P_411_0.length; i++) {
-          for (var j = this.__P_411_0[i].minIndex; j <= this.__P_411_0[i].maxIndex; j++) {
+        for (var i = 0; i < this.__P_412_0.length; i++) {
+          for (var j = this.__P_412_0[i].minIndex; j <= this.__P_412_0[i].maxIndex; j++) {
             iterator.call(object, j);
           }
         }
@@ -413,8 +413,8 @@
        *   If rows were removed, move the selections over so the same rows are selected as before.
        */
       removeSelectionInterval: function removeSelectionInterval(fromIndex, toIndex, rowsRemoved) {
-        this.__P_411_1 = fromIndex;
-        this.__P_411_2 = toIndex;
+        this.__P_412_1 = fromIndex;
+        this.__P_412_2 = toIndex;
         var minIndex = Math.min(fromIndex, toIndex);
         var maxIndex = Math.max(fromIndex, toIndex);
         var removeCount = maxIndex + 1 - minIndex; // Crop the affected ranges
@@ -422,8 +422,8 @@
         var newRanges = [];
         var extraRange = null;
 
-        for (var i = 0; i < this.__P_411_0.length; i++) {
-          var range = this.__P_411_0[i];
+        for (var i = 0; i < this.__P_412_0.length; i++) {
+          var range = this.__P_412_0[i];
 
           if (range.minIndex > maxIndex) {
             if (rowsRemoved) {
@@ -475,7 +475,7 @@
           }
         }
 
-        this.__P_411_0 = newRanges;
+        this.__P_412_0 = newRanges;
 
         this._fireChangeSelection();
       },
@@ -484,9 +484,9 @@
        * Resets (clears) the selection, but doesn't inform the listeners.
        */
       _resetSelection: function _resetSelection() {
-        this.__P_411_0 = [];
-        this.__P_411_1 = -1;
-        this.__P_411_2 = -1;
+        this.__P_412_0 = [];
+        this.__P_412_1 = -1;
+        this.__P_412_2 = -1;
       },
 
       /**
@@ -497,15 +497,15 @@
        * @param toIndex {Integer} the last index of the selection (including).
        */
       _addSelectionInterval: function _addSelectionInterval(fromIndex, toIndex) {
-        this.__P_411_1 = fromIndex;
-        this.__P_411_2 = toIndex;
+        this.__P_412_1 = fromIndex;
+        this.__P_412_2 = toIndex;
         var minIndex = Math.min(fromIndex, toIndex);
         var maxIndex = Math.max(fromIndex, toIndex); // Find the index where the new range should be inserted
 
         var newRangeIndex = 0;
 
-        for (; newRangeIndex < this.__P_411_0.length; newRangeIndex++) {
-          var range = this.__P_411_0[newRangeIndex];
+        for (; newRangeIndex < this.__P_412_0.length; newRangeIndex++) {
+          var range = this.__P_412_0[newRangeIndex];
 
           if (range.minIndex > minIndex) {
             break;
@@ -513,22 +513,22 @@
         } // Add the new range
 
 
-        this.__P_411_0.splice(newRangeIndex, 0, {
+        this.__P_412_0.splice(newRangeIndex, 0, {
           minIndex: minIndex,
           maxIndex: maxIndex
         }); // Merge overlapping ranges
 
 
-        var lastRange = this.__P_411_0[0];
+        var lastRange = this.__P_412_0[0];
 
-        for (var i = 1; i < this.__P_411_0.length; i++) {
-          var range = this.__P_411_0[i];
+        for (var i = 1; i < this.__P_412_0.length; i++) {
+          var range = this.__P_412_0[i];
 
           if (lastRange.maxIndex + 1 >= range.minIndex) {
             // The ranges are overlapping -> merge them
             lastRange.maxIndex = Math.max(lastRange.maxIndex, range.maxIndex); // Remove the current range
 
-            this.__P_411_0.splice(i, 1); // Check this index another time
+            this.__P_412_0.splice(i, 1); // Check this index another time
 
 
             i--;
@@ -546,8 +546,8 @@
       _dumpRanges: function _dumpRanges() {
         var text = "Ranges:";
 
-        for (var i = 0; i < this.__P_411_0.length; i++) {
-          var range = this.__P_411_0[i];
+        for (var i = 0; i < this.__P_412_0.length; i++) {
+          var range = this.__P_412_0[i];
           text += " [" + range.minIndex + ".." + range.maxIndex + "]";
         }
 
@@ -562,7 +562,7 @@
       _fireChangeSelection: function _fireChangeSelection() {
         if (this.hasBatchMode()) {
           // In batch mode, remember event but do not throw (yet)
-          this.__P_411_3 = true;
+          this.__P_412_3 = true;
         } else {
           // If not in batch mode, throw event
           this.fireEvent("changeSelection");
@@ -576,10 +576,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_411_0 = null;
+      this.__P_412_0 = null;
     }
   });
   qx.ui.table.selection.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1592777105695
+//# sourceMappingURL=Model.js.map?dt=1603737146247

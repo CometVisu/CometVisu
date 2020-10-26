@@ -57,7 +57,7 @@
           path += '/';
         }
 
-        this.__P_37_0 = path;
+        this.__P_38_0 = path;
       }
 
       if (name) {
@@ -308,9 +308,9 @@
     ***********************************************
     */
     members: {
-      __P_37_0: null,
-      __P_37_1: null,
-      __P_37_2: null,
+      __P_38_0: null,
+      __P_38_1: null,
+      __P_38_2: null,
       _toLowerCase: function _toLowerCase(name) {
         return name.toLowerCase();
       },
@@ -356,7 +356,7 @@
         }
       },
       _applyName: function _applyName(value, old) {
-        this.__P_37_1 = null;
+        this.__P_38_1 = null;
 
         if (value && (this.getDisplayName() === null || this.getDisplayName() === old)) {
           // use name as default display name
@@ -364,7 +364,7 @@
         }
       },
       getPath: function getPath() {
-        if (!this.__P_37_0) {
+        if (!this.__P_38_0) {
           var parentFolder = this.getParentFolder();
 
           if (!parentFolder) {
@@ -373,10 +373,10 @@
             parentFolder += '/';
           }
 
-          this.__P_37_0 = parentFolder;
+          this.__P_38_0 = parentFolder;
         }
 
-        return this.__P_37_0;
+        return this.__P_38_0;
       },
       _onOpen: function _onOpen(value) {
         if (!this.isLoaded() && value) {
@@ -469,8 +469,8 @@
         this.sortElements();
         this.setLoaded(true);
 
-        if (this.__P_37_2) {
-          this.__P_37_2();
+        if (this.__P_38_2) {
+          this.__P_38_2();
         }
 
         this.setLoading(false);
@@ -483,8 +483,8 @@
         }, this);
         this.setLoaded(true);
 
-        if (this.__P_37_2) {
-          this.__P_37_2();
+        if (this.__P_38_2) {
+          this.__P_38_2();
         }
 
         this.setLoading(false);
@@ -518,7 +518,7 @@
             this.setLoading(true);
 
             if (callback) {
-              this.__P_37_2 = callback.bind(context || this);
+              this.__P_38_2 = callback.bind(context || this);
             }
 
             cv.io.rest.Client.getFsClient().readSync({
@@ -538,11 +538,11 @@
        * @returns {null}
        */
       getFullPath: function getFullPath() {
-        if (!this.__P_37_1) {
-          this.__P_37_1 = this.getPath() + this.getName();
+        if (!this.__P_38_1) {
+          this.__P_38_1 = this.getPath() + this.getName();
         }
 
-        return this.__P_37_1;
+        return this.__P_38_1;
       },
       getBusTopic: function getBusTopic() {
         return 'cv.manager.fs.' + this.getFullPath().replace(/\//g, '.');
@@ -620,10 +620,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_37_1 = null;
+      this.__P_38_1 = null;
     }
   });
   cv.ui.manager.model.FileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileItem.js.map?dt=1592778961549
+//# sourceMappingURL=FileItem.js.map?dt=1603737738301

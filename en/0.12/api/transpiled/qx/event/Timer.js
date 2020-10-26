@@ -76,7 +76,7 @@
 
       var self = this;
 
-      this.__P_170_0 = function () {
+      this.__P_171_0 = function () {
         self._oninterval.call(self);
       };
     },
@@ -113,12 +113,12 @@
         var timer = new qx.event.Timer(timeout); // Bug #3481: append original function to timer instance so it can be
         // read by a debugger
 
-        timer.__P_170_1 = func; // Add event listener to interval
+        timer.__P_171_1 = func; // Add event listener to interval
 
         timer.addListener("interval", function (e) {
           timer.stop();
           func.call(obj, e);
-          delete timer.__P_170_1;
+          delete timer.__P_171_1;
           timer.dispose();
           obj = null;
         }, obj); // Directly start timer
@@ -163,8 +163,8 @@
     *****************************************************************************
     */
     members: {
-      __P_170_2: null,
-      __P_170_0: null,
+      __P_171_2: null,
+      __P_171_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -192,10 +192,10 @@
        */
       _applyEnabled: function _applyEnabled(value, old) {
         if (old) {
-          window.clearInterval(this.__P_170_2);
-          this.__P_170_2 = null;
+          window.clearInterval(this.__P_171_2);
+          this.__P_171_2 = null;
         } else if (value) {
-          this.__P_170_2 = window.setInterval(this.__P_170_0, this.getInterval());
+          this.__P_171_2 = window.setInterval(this.__P_171_0, this.getInterval());
         }
       },
 
@@ -279,14 +279,14 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__P_170_2) {
-        window.clearInterval(this.__P_170_2);
+      if (this.__P_171_2) {
+        window.clearInterval(this.__P_171_2);
       }
 
-      this.__P_170_2 = this.__P_170_0 = null;
+      this.__P_171_2 = this.__P_171_0 = null;
     }
   });
   qx.event.Timer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Timer.js.map?dt=1592777085258
+//# sourceMappingURL=Timer.js.map?dt=1603737127916

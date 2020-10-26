@@ -173,7 +173,7 @@
           qx.event.Registration.addListener(actor, "pointerdown", this._onPointerDown, this);
         }, this);
       },
-      __P_45_0: function __P_45_0(element) {
+      __P_46_0: function __P_46_0(element) {
         while (!element.classList.contains('actor')) {
           element = element.parentNode;
 
@@ -186,12 +186,12 @@
         return element;
       },
       _onLongTap: function _onLongTap(event) {
-        this.__P_45_1(false, this.__P_45_0(event.getCurrentTarget()).classList.contains('downlabel'));
+        this.__P_46_1(false, this.__P_46_0(event.getCurrentTarget()).classList.contains('downlabel'));
       },
       _action: function _action(event) {
-        this.__P_45_1(true, this.__P_45_0(event.getCurrentTarget()).classList.contains('downlabel'));
+        this.__P_46_1(true, this.__P_46_0(event.getCurrentTarget()).classList.contains('downlabel'));
       },
-      __P_45_1: function __P_45_1(isShort, isDown) {
+      __P_46_1: function __P_46_1(isShort, isDown) {
         var value;
 
         if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
@@ -235,4 +235,4 @@
   cv.ui.structure.pure.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1592778962340
+//# sourceMappingURL=InfoTrigger.js.map?dt=1603737739061

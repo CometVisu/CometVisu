@@ -55,7 +55,7 @@
    */
   qx.Bootstrap.define("qx.bom.Storage", {
     statics: {
-      __P_80_0: null,
+      __P_81_0: null,
 
       /**
        * Get an instance of a local storage.
@@ -99,4 +99,4 @@
   qx.bom.Storage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Storage.js.map?dt=1592777077612
+//# sourceMappingURL=Storage.js.map?dt=1603737121329

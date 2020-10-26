@@ -86,7 +86,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * for backwards-compability
        * @type {Boolean}
        */
-      __P_495_0: false,
+      __P_496_0: false,
 
       /**
        * Enforce the use of a coloured blocker.
@@ -95,7 +95,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {void}
        */
       useBlocker: function useBlocker(value) {
-        dialog.Dialog.__P_495_0 = value;
+        dialog.Dialog.__P_496_0 = value;
       },
 
       /**
@@ -280,11 +280,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       var root = qx.core.Init.getApplication().getRoot();
       root.add(this); // use blocker (for backwards-compability)
 
-      this.__P_495_1 = new qx.ui.core.Blocker(root);
+      this.__P_496_1 = new qx.ui.core.Blocker(root);
 
-      this.__P_495_1.setOpacity(this.getBlockerOpacity());
+      this.__P_496_1.setOpacity(this.getBlockerOpacity());
 
-      this.__P_495_1.setColor(this.getBlockerColor()); // handle focus
+      this.__P_496_1.setColor(this.getBlockerColor()); // handle focus
 
 
       qx.ui.core.FocusHandler.getInstance().addRoot(this); // resize the window when viewport size changes
@@ -425,7 +425,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       /**
        * A reference to the widget that previously had the focus
        */
-      __P_495_2: null,
+      __P_496_2: null,
 
       /**
        * The container widget
@@ -597,7 +597,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {dialog.Dialog} The widget instance
        */
       show: function show() {
-        if (this.isUseBlocker() || dialog.Dialog.__P_495_0) {
+        if (this.isUseBlocker() || dialog.Dialog.__P_496_0) {
           // make sure the dialog is above any opened window
           var root = qx.core.Init.getApplication().getRoot();
           var maxWindowZIndex = root.getZIndex();
@@ -610,15 +610,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           this.setZIndex(maxWindowZIndex + 1);
 
-          this.__P_495_1.blockContent(maxWindowZIndex);
+          this.__P_496_1.blockContent(maxWindowZIndex);
         }
 
         this.setVisibility("visible");
-        this.__P_495_2 = qx.ui.core.FocusHandler.getInstance().getActiveWidget();
+        this.__P_496_2 = qx.ui.core.FocusHandler.getInstance().getActiveWidget();
 
-        if (this.__P_495_2) {
+        if (this.__P_496_2) {
           try {
-            this.__P_495_2.blur();
+            this.__P_496_2.blur();
           } catch (e) {} //this.__previousFocus.setFocusable(false);
 
         }
@@ -632,14 +632,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {dialog.Dialog} The widget instance
        */
       hide: function hide() {
-        if (this.isUseBlocker() || dialog.Dialog.__P_495_0) {
-          this.__P_495_1.unblock();
+        if (this.isUseBlocker() || dialog.Dialog.__P_496_0) {
+          this.__P_496_1.unblock();
         }
 
-        if (this.__P_495_2) {
+        if (this.__P_496_2) {
           try {
             //this.__previousFocus.setFocusable(true);
-            this.__P_495_2.focus();
+            this.__P_496_2.focus();
           } catch (e) {}
         }
 
@@ -704,4 +704,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   dialog.Dialog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dialog.js.map?dt=1592777112557
+//# sourceMappingURL=Dialog.js.map?dt=1603737152381

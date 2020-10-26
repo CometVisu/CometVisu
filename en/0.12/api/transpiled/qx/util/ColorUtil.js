@@ -183,13 +183,13 @@
         } else if (this.isSystemColor(str)) {
           throw new Error("Could not convert system colors to RGB: " + str);
         } else if (this.isRgbaString(str)) {
-          return this.__P_455_0(str);
+          return this.__P_456_0(str);
         } else if (this.isRgbString(str)) {
-          return this.__P_455_1();
+          return this.__P_456_1();
         } else if (this.isHex3String(str)) {
-          return this.__P_455_2();
+          return this.__P_456_2();
         } else if (this.isHex6String(str)) {
-          return this.__P_455_3();
+          return this.__P_456_3();
         }
 
         throw new Error("Could not parse color: " + str);
@@ -209,13 +209,13 @@
         } else if (this.isSystemColor(str)) {
           throw new Error("Could not convert system colors to RGB: " + str);
         } else if (this.isRgbString(str)) {
-          return this.__P_455_1();
+          return this.__P_456_1();
         } else if (this.isRgbaString(str)) {
-          return this.__P_455_0();
+          return this.__P_456_0();
         } else if (this.isHex3String(str)) {
-          return this.__P_455_2();
+          return this.__P_456_2();
         } else if (this.isHex6String(str)) {
-          return this.__P_455_3();
+          return this.__P_456_3();
         }
 
         throw new Error("Could not parse color: " + str);
@@ -321,7 +321,7 @@
        *
        * @return {Array} an array with red, green, blue
        */
-      __P_455_1: function __P_455_1() {
+      __P_456_1: function __P_456_1() {
         var red = parseInt(RegExp.$1, 10);
         var green = parseInt(RegExp.$2, 10);
         var blue = parseInt(RegExp.$3, 10);
@@ -333,7 +333,7 @@
        *
        * @return {Array} an array with red, green, blue
        */
-      __P_455_0: function __P_455_0() {
+      __P_456_0: function __P_456_0() {
         var red = parseInt(RegExp.$1, 10);
         var green = parseInt(RegExp.$2, 10);
         var blue = parseInt(RegExp.$3, 10);
@@ -351,7 +351,7 @@
        *
        * @return {Array} an array with red, green, blue
        */
-      __P_455_2: function __P_455_2() {
+      __P_456_2: function __P_456_2() {
         var red = parseInt(RegExp.$1, 16) * 17;
         var green = parseInt(RegExp.$2, 16) * 17;
         var blue = parseInt(RegExp.$3, 16) * 17;
@@ -363,7 +363,7 @@
        *
        * @return {Array} an array with red, green, blue
        */
-      __P_455_3: function __P_455_3() {
+      __P_456_3: function __P_456_3() {
         var red = parseInt(RegExp.$1, 16) * 16 + parseInt(RegExp.$2, 16);
         var green = parseInt(RegExp.$3, 16) * 16 + parseInt(RegExp.$4, 16);
         var blue = parseInt(RegExp.$5, 16) * 16 + parseInt(RegExp.$6, 16);
@@ -378,7 +378,7 @@
        */
       hex3StringToRgb: function hex3StringToRgb(value) {
         if (this.isHex3String(value)) {
-          return this.__P_455_2(value);
+          return this.__P_456_2(value);
         }
 
         throw new Error("Invalid hex3 value: " + value);
@@ -407,7 +407,7 @@
        */
       hex6StringToRgb: function hex6StringToRgb(value) {
         if (this.isHex6String(value)) {
-          return this.__P_455_3(value);
+          return this.__P_456_3(value);
         }
 
         throw new Error("Invalid hex6 value: " + value);
@@ -421,11 +421,11 @@
        */
       hexStringToRgb: function hexStringToRgb(value) {
         if (this.isHex3String(value)) {
-          return this.__P_455_2(value);
+          return this.__P_456_2(value);
         }
 
         if (this.isHex6String(value)) {
-          return this.__P_455_3(value);
+          return this.__P_456_3(value);
         }
 
         throw new Error("Invalid hex value: " + value);
@@ -582,4 +582,4 @@
   qx.util.ColorUtil.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorUtil.js.map?dt=1592777109489
+//# sourceMappingURL=ColorUtil.js.map?dt=1603737149625

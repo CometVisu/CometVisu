@@ -62,7 +62,7 @@
 
       if (fontFamily) {
         this.setFontFamily(fontFamily);
-        this.__P_328_0 = this._getRequestedHelpers();
+        this.__P_329_0 = this._getRequestedHelpers();
       }
     },
 
@@ -105,15 +105,15 @@
        * property.
        */
       COMPARISON_STRING: "WEei",
-      __P_328_1: null,
-      __P_328_2: null,
+      __P_329_1: null,
+      __P_329_2: null,
 
       /**
        * Removes the two common helper elements used for all size comparisons from
        * the DOM
        */
       removeDefaultHelperElements: function removeDefaultHelperElements() {
-        var defaultHelpers = qx.bom.webfonts.Validator.__P_328_2;
+        var defaultHelpers = qx.bom.webfonts.Validator.__P_329_2;
 
         if (defaultHelpers) {
           for (var prop in defaultHelpers) {
@@ -121,7 +121,7 @@
           }
         }
 
-        delete qx.bom.webfonts.Validator.__P_328_2;
+        delete qx.bom.webfonts.Validator.__P_329_2;
       }
     },
 
@@ -178,9 +178,9 @@
     *****************************************************************************
     */
     members: {
-      __P_328_0: null,
-      __P_328_3: null,
-      __P_328_4: null,
+      __P_329_0: null,
+      __P_329_3: null,
+      __P_329_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -192,18 +192,18 @@
        * Validates the font
        */
       validate: function validate() {
-        this.__P_328_4 = new Date().getTime();
+        this.__P_329_4 = new Date().getTime();
 
-        if (this.__P_328_3) {
-          this.__P_328_3.restart();
+        if (this.__P_329_3) {
+          this.__P_329_3.restart();
         } else {
-          this.__P_328_3 = new qx.event.Timer(100);
+          this.__P_329_3 = new qx.event.Timer(100);
 
-          this.__P_328_3.addListener("interval", this.__P_328_5, this); // Give the browser a chance to render the new elements
+          this.__P_329_3.addListener("interval", this.__P_329_5, this); // Give the browser a chance to render the new elements
 
 
           qx.event.Timer.once(function () {
-            this.__P_328_3.start();
+            this.__P_329_3.start();
           }, this, 0);
         }
       },
@@ -218,13 +218,13 @@
        * Removes the helper elements from the DOM
        */
       _reset: function _reset() {
-        if (this.__P_328_0) {
-          for (var prop in this.__P_328_0) {
-            var elem = this.__P_328_0[prop];
+        if (this.__P_329_0) {
+          for (var prop in this.__P_329_0) {
+            var elem = this.__P_329_0[prop];
             document.body.removeChild(elem);
           }
 
-          this.__P_328_0 = null;
+          this.__P_329_0 = null;
         }
       },
 
@@ -237,24 +237,24 @@
        * in size
        */
       _isFontValid: function _isFontValid() {
-        if (!qx.bom.webfonts.Validator.__P_328_1) {
-          this.__P_328_6();
+        if (!qx.bom.webfonts.Validator.__P_329_1) {
+          this.__P_329_6();
         }
 
-        if (!this.__P_328_0) {
-          this.__P_328_0 = this._getRequestedHelpers();
+        if (!this.__P_329_0) {
+          this.__P_329_0 = this._getRequestedHelpers();
         } // force rerendering for chrome
 
 
-        this.__P_328_0.sans.style.visibility = "visible";
-        this.__P_328_0.sans.style.visibility = "hidden";
-        this.__P_328_0.serif.style.visibility = "visible";
-        this.__P_328_0.serif.style.visibility = "hidden";
-        var requestedSans = qx.bom.element.Dimension.getWidth(this.__P_328_0.sans);
-        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__P_328_0.serif);
+        this.__P_329_0.sans.style.visibility = "visible";
+        this.__P_329_0.sans.style.visibility = "hidden";
+        this.__P_329_0.serif.style.visibility = "visible";
+        this.__P_329_0.serif.style.visibility = "hidden";
+        var requestedSans = qx.bom.element.Dimension.getWidth(this.__P_329_0.sans);
+        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__P_329_0.serif);
         var cls = qx.bom.webfonts.Validator;
 
-        if (requestedSans !== cls.__P_328_1.sans || requestedSerif !== cls.__P_328_1.serif) {
+        if (requestedSans !== cls.__P_329_1.sans || requestedSerif !== cls.__P_329_1.serif) {
           return true;
         }
 
@@ -318,19 +318,19 @@
       /**
        * Creates the default helper elements and gets their widths
        */
-      __P_328_6: function __P_328_6() {
+      __P_329_6: function __P_329_6() {
         var cls = qx.bom.webfonts.Validator;
 
-        if (!cls.__P_328_2) {
-          cls.__P_328_2 = {
+        if (!cls.__P_329_2) {
+          cls.__P_329_2 = {
             sans: this._getHelperElement(cls.COMPARISON_FONTS.sans),
             serif: this._getHelperElement(cls.COMPARISON_FONTS.serif)
           };
         }
 
-        cls.__P_328_1 = {
-          sans: qx.bom.element.Dimension.getWidth(cls.__P_328_2.sans),
-          serif: qx.bom.element.Dimension.getWidth(cls.__P_328_2.serif)
+        cls.__P_329_1 = {
+          sans: qx.bom.element.Dimension.getWidth(cls.__P_329_2.sans),
+          serif: qx.bom.element.Dimension.getWidth(cls.__P_329_2.serif)
         };
       },
 
@@ -338,9 +338,9 @@
        * Triggers helper element size comparison and fires a ({@link #changeStatus})
        * event with the result.
        */
-      __P_328_5: function __P_328_5() {
+      __P_329_5: function __P_329_5() {
         if (this._isFontValid()) {
-          this.__P_328_3.stop();
+          this.__P_329_3.stop();
 
           this._reset();
 
@@ -351,8 +351,8 @@
         } else {
           var now = new Date().getTime();
 
-          if (now - this.__P_328_4 >= this.getTimeout()) {
-            this.__P_328_3.stop();
+          if (now - this.__P_329_4 >= this.getTimeout()) {
+            this.__P_329_3.stop();
 
             this._reset();
 
@@ -373,14 +373,14 @@
     destruct: function destruct() {
       this._reset();
 
-      this.__P_328_3.stop();
+      this.__P_329_3.stop();
 
-      this.__P_328_3.removeListener("interval", this.__P_328_5, this);
+      this.__P_329_3.removeListener("interval", this.__P_329_5, this);
 
-      this._disposeObjects("__P_328_3");
+      this._disposeObjects("__P_329_3");
     }
   });
   qx.bom.webfonts.Validator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Validator.js.map?dt=1592778987147
+//# sourceMappingURL=Validator.js.map?dt=1603737762877

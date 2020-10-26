@@ -370,6 +370,7 @@
         "cv.ui.common.Refresh",
         "cv.ui.common.HandleLongpress",
         "cv.ui.common.Update",
+        "cv.util.Function",
         "cv.ui.common.Operate",
         "cv.ui.common.HasChildren",
         "qx.data.store.Jsonp",
@@ -594,8 +595,7 @@
         "qx.util.StringEscape",
         "cv.ui.common.HasAnimatedButton",
         "cv.ui.structure.IPage",
-        "cv.util.LimitedRateUpdateAnimator",
-        "cv.util.Function"
+        "cv.util.LimitedRateUpdateAnimator"
       ],
       "include": [
         "cv.Application",
@@ -929,6 +929,7 @@
     "demo/media/demo_2d_backdrop_floorplan.png",
     "demo/media/demo_2d_backdrop_floorplan_inkscape.svg",
     "demo/media/demo_2d_backdrop_floorplan_viewbox.svg",
+    "demo/media/demo_2d_backdrop_nikolaushaus.png",
     "demo/media/demo_2d_backdrop_nikolaushaus.svg",
     "demo/media/demo_2d_backdrop_red_pot.js",
     "demo/media/demo_2d_backdrop_red_pot.png",
@@ -940,7 +941,6 @@
     "demo/media/rollo.svg",
     "demo/media/testmode.css",
     "demo/media/testmode.js",
-    "demo/media/demo_2d_backdrop_nikolaushaus.png",
     "designs/design_preview.html",
     "designs/designglobals.css",
     "designs/alaska/basic.css",
@@ -1146,7 +1146,9 @@
     "manager/xmllint.js",
     "manager/completion-libs/qooxdoo.d.ts",
     "plugins/calendarlist/calendarlist.php",
+    "plugins/clock/clock_full.svg",
     "plugins/clock/clock_pure.svg",
+    "plugins/clock/clock_simple.svg",
     "plugins/colorchooser/farbtastic/farbtastic.css",
     "plugins/colorchooser/farbtastic/farbtastic.js",
     "plugins/colorchooser/farbtastic/marker.png",

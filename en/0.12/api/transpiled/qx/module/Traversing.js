@@ -80,7 +80,7 @@
        * @return {qxWeb} Collection containing the ancestor elements
        * @internal
        */
-      __P_241_0: function __P_241_0(selector, filter) {
+      __P_242_0: function __P_242_0(selector, filter) {
         var ancestors = [];
 
         for (var i = 0; i < this.length; i++) {
@@ -113,7 +113,7 @@
        * @return {Node|var} If a node can be extracted, the node element will be return.
        *   If not, at given argument will be returned.
        */
-      __P_241_1: function __P_241_1(arg) {
+      __P_242_1: function __P_242_1(arg) {
         if (arg instanceof qxWeb) {
           return arg[0];
         } else if (qx.Bootstrap.isString(arg)) {
@@ -128,7 +128,7 @@
        * @param arg {var} object to convert
        * @return {Node|null} DOM node or null if the conversion failed
        */
-      __P_241_2: function __P_241_2(arg) {
+      __P_242_2: function __P_242_2(arg) {
         if (typeof arg == "string") {
           arg = qxWeb(arg);
         }
@@ -147,7 +147,7 @@
        * @param node {Node} DOM node
        * @return {Map} Map of attribute names/values
        */
-      __P_241_3: function __P_241_3(node) {
+      __P_242_3: function __P_242_3(node) {
         var attributes = {};
 
         for (var attr in node.attributes) {
@@ -177,7 +177,7 @@
        * @return {Array} Result array
        * @internal
        */
-      __P_241_4: function __P_241_4(collection, method, selector) {
+      __P_242_4: function __P_242_4(collection, method, selector) {
         // Iterate ourself, as we want to directly combine the result
         var all = [];
         var Hierarchy = qx.dom.Hierarchy;
@@ -204,7 +204,7 @@
        * @return {Boolean} <code>true</code> if the object is a DOM element
        */
       isElement: function isElement(selector) {
-        return qx.dom.Node.isElement(qx.module.Traversing.__P_241_1(selector));
+        return qx.dom.Node.isElement(qx.module.Traversing.__P_242_1(selector));
       },
 
       /**
@@ -215,7 +215,7 @@
        * @return {Boolean} <code>true</code> if the object is a DOM node
        */
       isNode: function isNode(selector) {
-        return qx.dom.Node.isNode(qx.module.Traversing.__P_241_1(selector));
+        return qx.dom.Node.isNode(qx.module.Traversing.__P_242_1(selector));
       },
 
       /**
@@ -227,7 +227,7 @@
        * @return {Boolean} <code>true</code> if the node has the given name
        */
       isNodeName: function isNodeName(selector, nodeName) {
-        return qx.dom.Node.isNodeName(qx.module.Traversing.__P_241_1(selector), nodeName);
+        return qx.dom.Node.isNodeName(qx.module.Traversing.__P_242_1(selector), nodeName);
       },
 
       /**
@@ -270,7 +270,7 @@
        * @return {Window} the <code>defaultView</code> for the given node
        */
       getWindow: function getWindow(selector) {
-        return qx.dom.Node.getWindow(qx.module.Traversing.__P_241_1(selector));
+        return qx.dom.Node.getWindow(qx.module.Traversing.__P_242_1(selector));
       },
 
       /**
@@ -308,7 +308,7 @@
        * @return {Document|null} The document of the given DOM node
        */
       getDocument: function getDocument(selector) {
-        return qx.dom.Node.getDocument(qx.module.Traversing.__P_241_1(selector));
+        return qx.dom.Node.getDocument(qx.module.Traversing.__P_242_1(selector));
       },
 
       /**
@@ -319,7 +319,7 @@
        * @return {String} node name
        */
       getNodeName: function getNodeName(selector) {
-        return qx.dom.Node.getName(qx.module.Traversing.__P_241_1(selector));
+        return qx.dom.Node.getName(qx.module.Traversing.__P_242_1(selector));
       },
 
       /**
@@ -333,7 +333,7 @@
        * appropriate.
        */
       getNodeText: function getNodeText(selector) {
-        return qx.dom.Node.getText(qx.module.Traversing.__P_241_1(selector));
+        return qx.dom.Node.getText(qx.module.Traversing.__P_242_1(selector));
       },
 
       /**
@@ -344,7 +344,7 @@
        * @return {Boolean} <code>true</code> if the node is a block node
        */
       isBlockNode: function isBlockNode(selector) {
-        return qx.dom.Node.isBlockNode(qx.module.Traversing.__P_241_1(selector));
+        return qx.dom.Node.isBlockNode(qx.module.Traversing.__P_242_1(selector));
       },
 
       /**
@@ -358,8 +358,8 @@
        * @return {Boolean} <code>true</code> if the nodes are equal
        */
       equalNodes: function equalNodes(node1, node2) {
-        node1 = qx.module.Traversing.__P_241_2(node1);
-        node2 = qx.module.Traversing.__P_241_2(node2);
+        node1 = qx.module.Traversing.__P_242_2(node1);
+        node2 = qx.module.Traversing.__P_242_2(node2);
 
         if (!node1 || !node2) {
           return false;
@@ -398,9 +398,9 @@
 
 
           if (hasAttributes) {
-            var node1Attributes = qx.module.Traversing.__P_241_3(node1);
+            var node1Attributes = qx.module.Traversing.__P_242_3(node1);
 
-            var node2Attributes = qx.module.Traversing.__P_241_3(node2);
+            var node2Attributes = qx.module.Traversing.__P_242_3(node2);
 
             for (var attr in node1Attributes) {
               if (node1Attributes[attr] !== node2Attributes[attr]) {
@@ -426,7 +426,7 @@
       }
     },
     members: {
-      __P_241_0: null,
+      __P_242_0: null,
 
       /**
        * Adds an element to the collection
@@ -569,7 +569,7 @@
        * @return {qxWeb} Collection containing the ancestor elements
        */
       getAncestors: function getAncestors(filter) {
-        return this.__P_241_0(null, filter);
+        return this.__P_242_0(null, filter);
       },
 
       /**
@@ -586,7 +586,7 @@
        * @return {qxWeb} Collection containing the ancestor elements
        */
       getAncestorsUntil: function getAncestorsUntil(selector, filter) {
-        return this.__P_241_0(selector, filter);
+        return this.__P_242_0(selector, filter);
       },
 
       /**
@@ -795,7 +795,7 @@
        * @return {qxWeb} New set containing following siblings
        */
       getNextAll: function getNextAll(selector) {
-        var ret = qx.module.Traversing.__P_241_4(this, "getNextSiblings", selector);
+        var ret = qx.module.Traversing.__P_242_4(this, "getNextSiblings", selector);
 
         return qxWeb.$init(ret, qxWeb);
       },
@@ -856,7 +856,7 @@
        * @return {qxWeb} New set containing preceding siblings
        */
       getPrevAll: function getPrevAll(selector) {
-        var ret = qx.module.Traversing.__P_241_4(this, "getPreviousSiblings", selector);
+        var ret = qx.module.Traversing.__P_242_4(this, "getPreviousSiblings", selector);
 
         return qxWeb.$init(ret, qxWeb);
       },
@@ -897,7 +897,7 @@
        * @return {qxWeb} New set containing sibling elements
        */
       getSiblings: function getSiblings(selector) {
-        var ret = qx.module.Traversing.__P_241_4(this, "getSiblings", selector);
+        var ret = qx.module.Traversing.__P_242_4(this, "getSiblings", selector);
 
         return qxWeb.$init(ret, qxWeb);
       },
@@ -954,11 +954,11 @@
       qxWeb.$attachAll(this); // manually attach private method which is ignored by attachAll
 
       qxWeb.$attach({
-        "__P_241_0": statics.__P_241_0
+        "__P_242_0": statics.__P_242_0
       });
     }
   });
   qx.module.Traversing.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Traversing.js.map?dt=1592777091031
+//# sourceMappingURL=Traversing.js.map?dt=1603737133298

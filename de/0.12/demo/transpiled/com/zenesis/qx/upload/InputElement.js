@@ -88,7 +88,7 @@
       }
 
       qx.html.Element.constructor.call(this, 'input', css, attrs);
-      this.__P_255_0 = widget;
+      this.__P_256_0 = widget;
       this.setMultiple(!!multiple);
     },
     properties: {
@@ -99,9 +99,9 @@
       }
     },
     members: {
-      __P_255_0: null,
+      __P_256_0: null,
       getWidget: function getWidget() {
-        return this.__P_255_0;
+        return this.__P_256_0;
       },
       _applyMultiple: function _applyMultiple(value, oldValue) {
         if (value) this.setAttribute("multiple", "multiple");else this.removeAttribute("multiple");
@@ -111,4 +111,4 @@
   com.zenesis.qx.upload.InputElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InputElement.js.map?dt=1592778981068
+//# sourceMappingURL=InputElement.js.map?dt=1603737756980

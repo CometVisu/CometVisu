@@ -15,14 +15,12 @@
       "cv.parser.WidgetParser": {
         "defer": "runtime"
       },
+      "cv.util.Function": {},
       "qx.util.ResourceManager": {},
-      "cv.data.Model": {},
+      "cv.ui.PopupHandler": {},
       "cv.TemplateEngine": {},
       "cv.Transform": {},
       "cv.ui.structure.WidgetFactory": {
-        "defer": "runtime"
-      },
-      "cv.util.ScriptLoader": {
         "defer": "runtime"
       }
     }
@@ -67,6 +65,59 @@
 
     /*
     ******************************************************
+    PROPERTIES
+    ******************************************************
+    */
+    properties: {
+      src: {
+        check: 'String'
+      },
+      srcPopup: {
+        check: 'String'
+      },
+      titlePopup: {
+        check: 'String'
+      },
+      hide24h: {
+        check: 'Boolean',
+        init: false
+      },
+      hide24hPopup: {
+        check: 'Boolean',
+        init: false
+      },
+      hideAMPM: {
+        check: 'Boolean',
+        init: false
+      },
+      hideAMPMPopup: {
+        check: 'Boolean',
+        init: false
+      },
+      hideDigits: {
+        check: 'Boolean',
+        init: false
+      },
+      hideDigitsPopup: {
+        check: 'Boolean',
+        init: false
+      },
+      hideSeconds: {
+        check: 'Boolean',
+        init: false
+      },
+      hideSecondsPopup: {
+        check: 'Boolean',
+        init: false
+      },
+      sendOnFinish: {
+        check: 'Boolean',
+        init: false
+      }
+    },
+
+    /*
+    ******************************************************
       STATICS
     ******************************************************
     */
@@ -82,10 +133,118 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+        var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
         cv.parser.WidgetParser.parseFormat(xml, path);
         cv.parser.WidgetParser.parseAddress(xml, path);
         return data;
+      },
+      getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
+        var transformValueTrue = function transformValueTrue(value) {
+          return value === 'true';
+        };
+
+        return {
+          'src': {
+            'default': 'plugins/clock/clock_pure.svg'
+          },
+          'src_popup': {
+            target: 'srcPopup',
+            'default': ''
+          },
+          'title_popup': {
+            target: 'titlePopup',
+            'default': ''
+          },
+          'hide_24h': {
+            target: 'hide24h',
+            'default': false,
+            transform: transformValueTrue
+          },
+          'hide_24h_popup': {
+            target: 'hide24hPopup',
+            'default': false,
+            transform: transformValueTrue
+          },
+          'hide_am_pm': {
+            target: 'hideAMPM',
+            'default': false,
+            transform: transformValueTrue
+          },
+          'hide_am_pm_popup': {
+            target: 'hideAMPMPopup',
+            'default': false,
+            transform: transformValueTrue
+          },
+          'hide_digits': {
+            target: 'hideDigits',
+            'default': false,
+            transform: transformValueTrue
+          },
+          'hide_digits_popup': {
+            target: 'hideDigitsPopup',
+            'default': false,
+            transform: transformValueTrue
+          },
+          'hide_seconds': {
+            target: 'hideSeconds',
+            'default': false,
+            transform: transformValueTrue
+          },
+          'hide_seconds_popup': {
+            target: 'hideSecondsPopup',
+            'default': false,
+            transform: transformValueTrue
+          },
+          'send_on_finish': {
+            target: 'sendOnFinish',
+            'default': false,
+            transform: transformValueTrue
+          }
+        };
+      },
+      getElements: function getElements(svg, hide24h, hideAMPM, hideDigits, hideSeconds) {
+        var elements = {
+          hour24: svg.querySelector('#Hour24'),
+          hour: svg.querySelector('#Hour'),
+          minute: svg.querySelector('#Minute'),
+          second: svg.querySelector('#Second'),
+          am: svg.querySelector('#AM'),
+          pm: svg.querySelector('#PM'),
+          digits: svg.querySelector('#Digits')
+        };
+        var tspan;
+
+        while (elements.digits !== null && (tspan = elements.digits.querySelector('tspan')) !== null) {
+          elements.digits = tspan;
+        }
+
+        var hour24Group = svg.querySelector('#Hour24Group');
+
+        if (hide24h && hour24Group !== null) {
+          hour24Group.setAttribute('display', 'none');
+        }
+
+        if (hideAMPM) {
+          if (elements.am !== null) {
+            elements.am.setAttribute('display', 'none');
+            elements.am = null;
+          }
+
+          if (elements.pm !== null) {
+            elements.pm.setAttribute('display', 'none');
+            elements.pm = null;
+          }
+        }
+
+        if (hideDigits && elements.digits !== null) {
+          elements.digits.setAttribute('display', 'none');
+        }
+
+        if (hideSeconds && elements.second !== null) {
+          elements.second.setAttribute('display', 'none');
+        }
+
+        return elements;
       }
     },
 
@@ -95,106 +254,278 @@
     ******************************************************
     */
     members: {
+      __P_8_0: null,
+      // cached access to the SVG in the DOM
+      __P_8_1: null,
+      // cached access to the individual clock parts
+      __P_8_2: 0,
+      // is the handle currently dragged?
       _getInnerDomString: function _getInnerDomString() {
-        return '<div class="actor" style="width:200px; height: 200px"></div>';
+        return '<div class="actor" style="width:100%;height:100%"></div>';
       },
       _onDomReady: function _onDomReady() {
-        //this.base(arguments);
+        var _this = this;
+
         var args = arguments;
-        var $actor = $(this.getActor());
-        $actor.svg({
-          loadURL: qx.util.ResourceManager.getInstance().toUri('plugins/clock/clock_pure.svg'),
-          onLoad: function (svg) {
-            $(svg.root().getElementById('HotSpotHour')).draggable().bind('drag', {
-              type: 'hour',
-              actor: $actor
-            }, this.dragHelper.bind(this)).bind('dragstop', {
-              actor: $actor
-            }, this.dragAction.bind(this));
-            $(svg.root().getElementById('HotSpotMinute')).draggable().bind('drag', {
-              type: 'minute',
-              actor: $actor
-            }, this.dragHelper.bind(this)).bind('dragstop', {
-              actor: $actor
-            }, this.dragAction.bind(this)); // call parents _onDomReady method
+        this.__P_8_3 = cv.util.Function.throttle(this.dragAction, 250, {
+          trailing: true
+        }, this);
+        var uri = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
+        var uriPopup = this.getSrcPopup();
+        var promises = [window.fetch(uri)];
 
-            cv.plugins.Clock.prototype._onDomReady.base.call(this);
+        if ('' !== uriPopup) {
+          uriPopup = qx.util.ResourceManager.getInstance().toUri(uriPopup);
+          promises.push(window.fetch(uriPopup));
+        }
 
-            Object.getOwnPropertyNames(this.getAddress()).filter(function (address) {
-              return cv.data.Model.isReadAddress(this.getAddress()[address]);
-            }.bind(this)).forEach(function (address) {
-              this._update(address, this.getValue().getHours() + ':' + this.getValue().getMinutes() + ':00', true);
-            }, this);
-          }.bind(this)
+        Promise.all(promises).then(function (responses) {
+          var result = [];
+
+          if (!responses[0].ok) {
+            throw new Error('Not 2xx response for URI "' + uri + '"');
+          } else {
+            result.push(responses[0].text());
+          }
+
+          if ('' !== uriPopup) {
+            if (!responses[1].ok) {
+              throw new Error('Not 2xx response for popup URI "' + uriPopup + '"');
+            } else {
+              result.push(responses[1].text());
+            }
+          }
+
+          return Promise.all(result);
+        }).then(function (texts) {
+          var actor = _this.getActor();
+
+          actor.innerHTML = texts[0];
+          var svg = actor.firstElementChild; // make sure that the SVG fits exactly to the available space
+
+          if (!svg.getAttribute('viewBox')) {
+            // fix SVGs that don't contain a viewBox
+            var width = svg.getAttribute('width') || 300;
+            var height = svg.getAttribute('height') || 150;
+            svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+          }
+
+          svg.setAttribute('width', '100%');
+          svg.setAttribute('height', '100%');
+          _this.__P_8_1 = [cv.plugins.Clock.getElements(svg, _this.getHide24h(), _this.getHideAMPM(), _this.getHideDigits(), _this.getHideSeconds())];
+
+          if (texts.length > 1) {
+            var popup = document.createElement('div');
+
+            var title = _this.getTitlePopup();
+
+            popup.setAttribute('style', 'width:100%;height:100%;position:absolute;');
+            popup.innerHTML = texts[1];
+            svg.addEventListener('click', function () {
+              cv.ui.PopupHandler.showPopup('clock', {
+                title: title,
+                content: popup
+              });
+            });
+            svg = popup.firstElementChild; // make sure that also this SVG fits exactly to the available space
+
+            if (!svg.getAttribute('viewBox')) {
+              // fix SVGs that don't contain a viewBox
+              var _width = svg.getAttribute('width') || 300;
+
+              var _height = svg.getAttribute('height') || 150;
+
+              svg.setAttribute('viewBox', '0 0 ' + _width + ' ' + _height);
+            }
+
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+
+            _this.__P_8_1.push(cv.plugins.Clock.getElements(svg, _this.getHide24hPopup(), _this.getHideAMPMPopup(), _this.getHideDigitsPopup(), _this.getHideSecondsPopup()));
+          }
+
+          svg.setAttribute('style', 'touch-action: none'); // prevent scroll interference
+
+          var HotSpotHour = svg.getElementById('HotSpotHour');
+
+          if (HotSpotHour) {
+            HotSpotHour.addEventListener('pointerdown', _this);
+          }
+
+          var HotSpotMinute = svg.getElementById('HotSpotMinute');
+
+          if (HotSpotMinute) {
+            HotSpotMinute.addEventListener('pointerdown', _this);
+          }
+
+          var HotSpotSecond = svg.getElementById('HotSpotSecond');
+
+          if (HotSpotSecond) {
+            HotSpotSecond.addEventListener('pointerdown', _this);
+          }
+
+          _this.__P_8_0 = svg; // call parents _onDomReady method
+
+          cv.plugins.Clock.prototype._onDomReady.base.call(_this);
+        })["catch"](function (error) {
+          console.error('There has been a problem with the reading of the clock SVG:', error);
         });
       },
       // overridden
       initListeners: function initListeners() {},
-      // overidden
+      // overridden
       _update: function _update(address, data, isDataAlreadyHandled) {
-        var element = this.getDomElement();
         var value = isDataAlreadyHandled ? data : this.defaultValueHandling(address, data);
-        var svg = element.querySelector('svg');
         var time = value.split(':');
-        var hourElem = svg.querySelector('#Hour');
-        var minuteElem = svg.querySelector('#Minute');
 
-        if (hourElem !== undefined && minuteElem !== undefined) {
-          hourElem.setAttribute("transform", 'rotate(' + (time[0] % 12 * 360 / 12 + time[1] * 30 / 60) + ',50,50)');
-          minuteElem.setAttribute("transform", 'rotate(' + time[1] * 6 + ',50,50)');
-        } else {
-          console.error('Error: trying to update unknown clock SVG elements #Hour and/or #Minute');
+        this._updateHands(time[0], time[1], time[2]);
+      },
+      handleEvent: function handleEvent(event) {
+        var dragMode = {
+          none: 0,
+          hour: 1,
+          minute: 2,
+          second: 3
+        };
+
+        switch (event.type) {
+          case 'pointerdown':
+            switch (event.target.id) {
+              case 'HotSpotHour':
+                this.__P_8_2 = dragMode.hour;
+                break;
+
+              case 'HotSpotMinute':
+                this.__P_8_2 = dragMode.minute;
+                break;
+
+              case 'HotSpotSecond':
+                this.__P_8_2 = dragMode.second;
+                break;
+
+              default:
+                this.__P_8_2 = dragMode.none;
+                return;
+              // early exit
+            }
+
+            document.addEventListener('pointermove', this);
+            document.addEventListener('pointerup', this);
+            event.preventDefault();
+            event.stopPropagation();
+            break;
+
+          case 'pointermove':
+            if (this.__P_8_2 === dragMode.none) {
+              return;
+            }
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (event.buttons > 0) {
+              this.dragHelper(event);
+              break;
+            }
+
+          // jshint ignore:line
+          // pass through to end drag when no buttons are pressed anymore
+
+          case 'pointerup':
+          case 'pointercancel':
+            this.dragHelper(event);
+            this.__P_8_2 = dragMode.none;
+            document.removeEventListener('pointermove', this);
+            document.removeEventListener('pointerup', this);
+            break;
+        }
+
+        if (!this.getSendOnFinish() || event.type === 'pointerup') {
+          this.__P_8_3.call();
         }
       },
       dragHelper: function dragHelper(event) {
-        var $container = event.data.actor;
-        var $svg = $container.find('svg');
-        var x = event.originalEvent.pageX - $svg.offset().left - 50;
-        var y = 50 - (event.originalEvent.pageY - $svg.offset().top);
+        var dragMode = {
+          none: 0,
+          hour: 1,
+          minute: 2,
+          second: 3
+        };
+
+        var CTM = this.__P_8_0.getScreenCTM(); // get the Current Transformation Matrix
+
+
+        var x = (event.clientX - CTM.e) / CTM.a - 60;
+        var y = 60 - (event.clientY - CTM.f) / CTM.d;
         var angle = (Math.atan2(x, y) * 180 / Math.PI + 360) % 360;
         var time = this.getValue();
         var minutes;
 
-        if (event.data.type === 'hour') {
-          var oldHours = time.getHours();
-          var pm = oldHours >= 12;
-          var hours = Math.floor(angle / 30);
-          minutes = angle % 30 * 2;
+        switch (this.__P_8_2) {
+          case dragMode.hour:
+            var oldHours = time.getHours();
+            var pm = oldHours >= 12;
+            var hours = Math.floor(angle / 30);
+            minutes = angle % 30 * 2;
 
-          if (oldHours % 12 > 9 && hours < 3) {
-            if (pm) {
-              pm = false;
-              time.setDate(time.getDate() + 1);
-            } else {
-              pm = true;
+            if (oldHours % 12 > 9 && hours < 3) {
+              if (pm) {
+                pm = false;
+                time.setDate(time.getDate() + 1);
+              } else {
+                pm = true;
+              }
+            } else if (hours > 9 && oldHours % 12 < 3) {
+              if (pm) {
+                pm = false;
+              } else {
+                pm = true;
+                time.setDate(time.getDate() - 1);
+              }
             }
-          } else if (hours > 9 && oldHours % 12 < 3) {
-            if (pm) {
-              pm = false;
+
+            time.setHours(hours + pm * 12);
+            time.setMinutes(minutes);
+            break;
+
+          case dragMode.minute:
+            if (this.getHideSeconds()) {
+              minutes = Math.round(angle / 6);
             } else {
-              pm = true;
-              time.setDate(time.getDate() - 1);
+              minutes = Math.floor(angle / 6);
             }
-          }
 
-          time.setHours(hours + pm * 12);
-          time.setMinutes(minutes);
-        } else {
-          // minute
-          minutes = Math.round(angle / 6);
-          var oldMinutes = time.getMinutes();
+            var oldMinutes = time.getMinutes();
 
-          if (oldMinutes > 45 && minutes < 15) {
-            time.setHours(time.getHours() + 1);
-          } else if (minutes > 45 && oldMinutes < 15) {
-            time.setHours(time.getHours() - 1);
-          }
+            if (oldMinutes > 45 && minutes < 15) {
+              time.setHours(time.getHours() + 1);
+            } else if (minutes > 45 && oldMinutes < 15) {
+              time.setHours(time.getHours() - 1);
+            }
 
-          time.setMinutes(minutes);
+            time.setMinutes(minutes);
+            time.setSeconds(angle % 6 * 10);
+            break;
+
+          case dragMode.second:
+            var seconds = Math.round(angle / 6) % 60;
+            var oldSeconds = time.getSeconds();
+
+            if (oldSeconds > 45 && seconds < 15) {
+              time.setMinutes(time.getMinutes() + 1);
+            } else if (seconds > 45 && oldSeconds < 15) {
+              time.setMinutes(time.getMinutes() - 1);
+            }
+
+            time.setSeconds(seconds);
+            break;
         }
 
-        $container.find('#Hour').attr('transform', 'rotate(' + (time.getHours() % 12 * 360 / 12 + time.getMinutes() * 30 / 60) + ',50,50)');
-        $container.find('#Minute').attr('transform', 'rotate(' + time.getMinutes() * 6 + ',50,50)');
+        if (this.getHideSeconds()) {
+          time.setSeconds(0);
+        }
+
+        this._updateHands(time.getHours(), time.getMinutes(), time.getSeconds());
       },
       dragAction: function dragAction() {
         var address = this.getAddress();
@@ -207,18 +538,61 @@
 
           cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr][0], this.getValue()));
         }
+      },
+      _updateHands: function _updateHands(hour, minute, second) {
+        var _this2 = this;
+
+        this.__P_8_1.forEach(function (e) {
+          var showSeconds = true;
+
+          if (e.hour !== null) {
+            if (showSeconds) {
+              e.hour.setAttribute("transform", 'rotate(' + (hour % 12 * 360 / 12 + minute * 30 / 60 + second * 30 / 60 / 60) + ',0,0)');
+            } else {
+              e.hour.setAttribute("transform", 'rotate(' + (hour % 12 * 360 / 12 + minute * 30 / 60) + ',0,0)');
+            }
+          }
+
+          if (e.minute !== null) {
+            if (showSeconds) {
+              e.minute.setAttribute("transform", 'rotate(' + (minute * 6 + second * 6 / 60) + ',0,0)');
+            } else {
+              e.minute.setAttribute("transform", 'rotate(' + minute * 6 + ',0,0)');
+            }
+          }
+
+          if (e.second !== null) {
+            e.second.setAttribute("transform", 'rotate(' + second * 6 + ',0,0)');
+          }
+
+          if (e.hour24 !== null) {
+            e.hour24.setAttribute("transform", 'rotate(' + (hour % 24 * 360 / 24 + minute * 15 / 60) + ',0,0)');
+          }
+
+          if (e.am !== null) {
+            e.am.setAttribute('display', hour < 12 ? '' : 'none');
+          }
+
+          if (e.pm !== null) {
+            e.pm.setAttribute('display', hour < 12 ? 'none' : '');
+          }
+
+          if (e.digits !== null) {
+            if (_this2.getHideSeconds()) {
+              e.digits.textContent = sprintf('%02d:%02d', hour, minute);
+            } else {
+              e.digits.textContent = sprintf('%02d:%02d:%02d', hour, minute, second);
+            }
+          }
+        });
       }
     },
     defer: function defer(statics) {
       cv.parser.WidgetParser.addHandler("clock", cv.plugins.Clock);
       cv.ui.structure.WidgetFactory.registerClass("clock", statics);
-      var loader = cv.util.ScriptLoader.getInstance();
-      {
-        loader.addScripts(['resource/libs/jquery-ui.min.js', 'resource/libs/jquery.svg.min.js'], [0]);
-      }
     }
   });
   cv.plugins.Clock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clock.js.map?dt=1592778958337
+//# sourceMappingURL=Clock.js.map?dt=1603737735259

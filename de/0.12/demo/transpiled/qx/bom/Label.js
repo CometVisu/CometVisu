@@ -60,7 +60,7 @@
     */
     statics: {
       /** @type {Map} Contains all supported styles */
-      __P_221_0: {
+      __P_222_0: {
         fontFamily: 1,
         fontSize: 1,
         fontWeight: 1,
@@ -74,8 +74,8 @@
        *
        * @return {Element} Helper DOM element
        */
-      __P_221_1: function __P_221_1() {
-        var el = this.__P_221_2(false);
+      __P_222_1: function __P_222_1() {
+        var el = this.__P_222_2(false);
 
         document.body.insertBefore(el, document.body.firstChild);
         return this._textElement = el;
@@ -86,8 +86,8 @@
        *
        * @return {Element} Helper DOM element
        */
-      __P_221_3: function __P_221_3() {
-        var el = this.__P_221_2(true);
+      __P_222_3: function __P_222_3() {
+        var el = this.__P_222_2(true);
 
         document.body.insertBefore(el, document.body.firstChild);
         return this._htmlElement = el;
@@ -99,7 +99,7 @@
        * @param html {Boolean?false} Whether HTML markup should be used.
        * @return {Element} The measure element
        */
-      __P_221_2: function __P_221_2(html) {
+      __P_222_2: function __P_222_2(html) {
         var el = qx.dom.Element.create("div");
         var style = el.style;
         style.width = style.height = "auto";
@@ -123,7 +123,7 @@
             style.margin = "0";
             style.width = "auto";
 
-            for (var key in this.__P_221_0) {
+            for (var key in this.__P_222_0) {
               style[key] = "inherit";
             }
 
@@ -141,7 +141,7 @@
        * @param html {Boolean?false} Whether HTML markup should be used.
        * @return {Map} Initial styles which should be applied to a label element.
        */
-      __P_221_4: function __P_221_4(html) {
+      __P_222_4: function __P_222_4(html) {
         var styles = {};
         styles.overflow = "hidden";
 
@@ -200,14 +200,14 @@
           style.width = "auto"; // Force style inheritance for font styles to omit usage of
           // CSS "label" selector, See bug #1349 for details.
 
-          for (var key in this.__P_221_0) {
+          for (var key in this.__P_222_0) {
             xulel.style[key] = "inherit";
           }
 
           xulel.setAttribute("crop", "end");
           el.appendChild(xulel);
         } else {
-          qx.bom.element.Style.setStyles(el, this.__P_221_4(html));
+          qx.bom.element.Style.setStyles(el, this.__P_222_4(html));
         }
 
         if (content) {
@@ -218,7 +218,7 @@
       },
 
       /** Sanitizer function */
-      __P_221_5: null,
+      __P_222_5: null,
 
       /**
        * Sets a function to sanitize values. It will be used by {@link #setValue}.
@@ -229,7 +229,7 @@
        *  from given string parameter
        */
       setSanitizer: function setSanitizer(func) {
-        qx.bom.Label.__P_221_5 = func;
+        qx.bom.Label.__P_222_5 = func;
       },
 
       /**
@@ -245,8 +245,8 @@
         value = value || "";
 
         if (element.useHtml) {
-          if (qx.bom.Label.__P_221_5 && typeof qx.bom.Label.__P_221_5 === "function") {
-            value = qx.bom.Label.__P_221_5(value);
+          if (qx.bom.Label.__P_222_5 && typeof qx.bom.Label.__P_222_5 === "function") {
+            value = qx.bom.Label.__P_222_5(value);
           }
 
           element.innerHTML = value;
@@ -282,13 +282,13 @@
        * @return {Map} A map with preferred <code>width</code> and <code>height</code>.
        */
       getHtmlSize: function getHtmlSize(content, styles, width) {
-        var element = this._htmlElement || this.__P_221_3(); // apply width
+        var element = this._htmlElement || this.__P_222_3(); // apply width
 
 
         element.style.width = width != undefined ? width + "px" : "auto"; // insert content
 
         element.innerHTML = content;
-        return this.__P_221_6(element, styles);
+        return this.__P_222_6(element, styles);
       },
 
       /**
@@ -299,7 +299,7 @@
        * @return {Map} A map with preferred <code>width</code> and <code>height</code>.
        */
       getTextSize: function getTextSize(text, styles) {
-        var element = this._textElement || this.__P_221_1();
+        var element = this._textElement || this.__P_222_1();
 
         if (!qx.core.Environment.get("css.textoverflow") && qx.core.Environment.get("html.xul")) {
           element.firstChild.setAttribute("value", text);
@@ -307,7 +307,7 @@
           qx.bom.element.Attribute.set(element, "text", text);
         }
 
-        return this.__P_221_6(element, styles);
+        return this.__P_222_6(element, styles);
       },
 
       /**
@@ -317,9 +317,9 @@
        * @param styles {Map?null} Optional styles to apply
        * @return {Map} A map with preferred <code>width</code> and <code>height</code>.
        */
-      __P_221_6: function __P_221_6(element, styles) {
+      __P_222_6: function __P_222_6(element, styles) {
         // sync styles
-        var keys = this.__P_221_0;
+        var keys = this.__P_222_0;
 
         if (!styles) {
           styles = {};
@@ -340,4 +340,4 @@
   qx.bom.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1592778978243
+//# sourceMappingURL=Label.js.map?dt=1603737754351

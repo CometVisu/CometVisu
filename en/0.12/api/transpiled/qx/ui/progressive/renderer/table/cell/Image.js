@@ -52,25 +52,25 @@
       qx.ui.progressive.renderer.table.cell.Icon.constructor.call(this);
 
       if (width === undefined) {
-        this.__P_381_0 = width;
+        this.__P_382_0 = width;
       } else {
-        this.__P_381_0 = 16;
+        this.__P_382_0 = 16;
       }
 
       if (height === undefined) {
-        this.__P_381_1 = height;
+        this.__P_382_1 = height;
       } else {
-        this.__P_381_1 = 16;
+        this.__P_382_1 = 16;
       }
     },
     members: {
-      __P_381_0: null,
-      __P_381_1: null,
+      __P_382_0: null,
+      __P_382_1: null,
       // overridden
       _identifyImage: function _identifyImage(cellInfo) {
         var imageData = {
-          imageWidth: this.__P_381_0,
-          imageHeight: this.__P_381_1
+          imageWidth: this.__P_382_0,
+          imageHeight: this.__P_382_1
         };
         var height; // String data is the unresolved url for the image.
         // Object data is a map containing the url, tooltip, and a height
@@ -104,4 +104,4 @@
   qx.ui.progressive.renderer.table.cell.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1592777103043
+//# sourceMappingURL=Image.js.map?dt=1603737144025

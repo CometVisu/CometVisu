@@ -120,7 +120,7 @@
        *
        * @lint ignoreReferenceField(__buttonsDom2EventModel)
        */
-      __P_196_0: {
+      __P_197_0: {
         0: "left",
         2: "right",
         1: "middle"
@@ -131,7 +131,7 @@
        *
        * @lint ignoreReferenceField(__buttonsDom3EventModel)
        */
-      __P_196_1: {
+      __P_197_1: {
         0: "none",
         1: "left",
         2: "right",
@@ -143,7 +143,7 @@
        *
        * @lint ignoreReferenceField(__buttonsMshtmlEventModel)
        */
-      __P_196_2: {
+      __P_197_2: {
         1: "left",
         2: "right",
         4: "middle"
@@ -194,12 +194,12 @@
               // if the button value is -1, we should use the DOM level 3 .buttons attribute
               // the value -1 is only set for pointer events: http://msdn.microsoft.com/en-us/library/ie/ff974877(v=vs.85).aspx
               if (this._native.button === -1) {
-                return this.__P_196_1[this._native.buttons] || "none";
+                return this.__P_197_1[this._native.buttons] || "none";
               }
 
-              return this.__P_196_0[this._native.button] || "none";
+              return this.__P_197_0[this._native.button] || "none";
             } else {
-              return this.__P_196_2[this._native.button] || "none";
+              return this.__P_197_2[this._native.button] || "none";
             }
 
         }
@@ -332,4 +332,4 @@
   qx.event.type.Mouse.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mouse.js.map?dt=1592777087197
+//# sourceMappingURL=Mouse.js.map?dt=1603737129775

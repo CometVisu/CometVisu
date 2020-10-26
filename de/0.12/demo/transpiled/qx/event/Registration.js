@@ -62,7 +62,7 @@
        * Static list of all instantiated event managers. The key is the qooxdoo
        * hash value of the corresponding window
        */
-      __P_70_0: {},
+      __P_71_0: {},
 
       /**
        * Get an instance of the event manager, which can handle events for the
@@ -81,11 +81,11 @@
         }
 
         var hash = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var manager = this.__P_70_0[hash];
+        var manager = this.__P_71_0[hash];
 
         if (!manager) {
           manager = new qx.event.Manager(target, this);
-          this.__P_70_0[hash] = manager;
+          this.__P_71_0[hash] = manager;
         }
 
         return manager;
@@ -101,7 +101,7 @@
        */
       removeManager: function removeManager(mgr) {
         var id = mgr.getWindowId();
-        delete this.__P_70_0[id];
+        delete this.__P_71_0[id];
       },
 
       /**
@@ -270,7 +270,7 @@
        * @return {Event} the event
        * @see #createEvent
        */
-      __P_70_1: function __P_70_1(target, type, clazz, args) {
+      __P_71_1: function __P_71_1(target, type, clazz, args) {
         var evt = this.createEvent(type, clazz || null, args);
         this.getManager(target).dispatchEvent(target, evt);
         return evt;
@@ -341,7 +341,7 @@
        * @return {Event} the event
        * @see #createEvent
        */
-      __P_70_2: function __P_70_2(target, type, clazz, args) {
+      __P_71_2: function __P_71_2(target, type, clazz, args) {
         var mgr = this.getManager(target);
 
         if (!mgr.hasListener(target, type, false)) {
@@ -368,7 +368,7 @@
        * @see #createEvent
        */
       fireNonBubblingEvent: function fireNonBubblingEvent(target, type, clazz, args) {
-        var evt = this.__P_70_2.apply(this, arguments);
+        var evt = this.__P_71_2.apply(this, arguments);
 
         if (evt === null) {
           return true;
@@ -417,7 +417,7 @@
       */
 
       /** @type {Array} Contains all known event handlers */
-      __P_70_3: [],
+      __P_71_3: [],
 
       /**
        * Register an event handler.
@@ -427,10 +427,10 @@
        */
       addHandler: function addHandler(handler) {
         // Append to list
-        this.__P_70_3.push(handler); // Re-sort list
+        this.__P_71_3.push(handler); // Re-sort list
 
 
-        this.__P_70_3.sort(function (a, b) {
+        this.__P_71_3.sort(function (a, b) {
           return a.PRIORITY - b.PRIORITY;
         });
       },
@@ -441,7 +441,7 @@
        * @return {qx.event.IEventHandler[]} registered event handlers
        */
       getHandlers: function getHandlers() {
-        return this.__P_70_3;
+        return this.__P_71_3;
       },
 
       /*
@@ -451,7 +451,7 @@
       */
 
       /** @type {Array} Contains all known event dispatchers */
-      __P_70_4: [],
+      __P_71_4: [],
 
       /**
        * Register an event dispatcher.
@@ -465,10 +465,10 @@
        */
       addDispatcher: function addDispatcher(dispatcher, priority) {
         // Append to list
-        this.__P_70_4.push(dispatcher); // Re-sort list
+        this.__P_71_4.push(dispatcher); // Re-sort list
 
 
-        this.__P_70_4.sort(function (a, b) {
+        this.__P_71_4.sort(function (a, b) {
           return a.PRIORITY - b.PRIORITY;
         });
       },
@@ -479,11 +479,11 @@
        * @return {qx.event.IEventDispatcher[]} all registered event dispatcher
        */
       getDispatchers: function getDispatchers() {
-        return this.__P_70_4;
+        return this.__P_71_4;
       }
     }
   });
   qx.event.Registration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Registration.js.map?dt=1592778964619
+//# sourceMappingURL=Registration.js.map?dt=1603737741318

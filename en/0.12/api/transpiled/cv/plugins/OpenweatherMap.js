@@ -73,10 +73,10 @@
     construct: function construct(props) {
       props.refresh = props.refresh * 60;
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
-      this.__P_11_0 = {};
+      this.__P_12_0 = {};
       Object.keys(props).forEach(function (key) {
         if (props[key]) {
-          this.__P_11_0[key] = props[key];
+          this.__P_12_0[key] = props[key];
         }
       }, this);
 
@@ -203,7 +203,7 @@
     ******************************************************
     */
     members: {
-      __P_11_0: null,
+      __P_12_0: null,
       _getInnerDomString: function _getInnerDomString() {
         var classes = "widget clearfix text openweathermap";
 
@@ -225,7 +225,7 @@
       },
       _refreshAction: function _refreshAction() {
         var elem = $(this.getDomElement());
-        elem.openweathermap(this.__P_11_0);
+        elem.openweathermap(this.__P_12_0);
       }
     },
     defer: function defer(statics) {
@@ -241,4 +241,4 @@
   cv.plugins.OpenweatherMap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenweatherMap.js.map?dt=1592777069326
+//# sourceMappingURL=OpenweatherMap.js.map?dt=1603737113834

@@ -317,8 +317,8 @@
     ******************************************************
     */
     members: {
-      __P_48_0: undefined,
-      __P_48_1: [],
+      __P_49_0: undefined,
+      __P_49_1: [],
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         /**
@@ -570,9 +570,9 @@
           BBox = bboxAdd(BBox, thisBBox.l, thisBBox.u);
           BBox = bboxAdd(BBox, thisBBox.r, thisBBox.d);
         });
-        this.__P_48_0 = [];
+        this.__P_49_0 = [];
         this.getIndicators().forEach(function (indicator, number) {
-          self.__P_48_0.push(new cv.util.LimitedRateUpdateAnimator(self.__P_48_2, self, number));
+          self.__P_49_0.push(new cv.util.LimitedRateUpdateAnimator(self.__P_49_2, self, number));
 
           svgIndicators += '<path class="indicator" style="' + indicator.style + '" />';
 
@@ -637,7 +637,7 @@
               tspan[i].textContent = valueFormat;
             }
 
-            self.__P_48_0[i].setTo(target[i][0], !self.isVisible());
+            self.__P_49_0[i].setTo(target[i][0], !self.isVisible());
           }
         });
         this.setTargetRatioValue(target);
@@ -651,10 +651,10 @@
        * a pooling wouldn't make a difference on the one hand but complicate the code on the other hand.
        * Even with a few roundbars using the same address the performance impact is negligible.
        */
-      __P_48_2: function __P_48_2(ratio, indicatorNumber) {
-        if (this.__P_48_1.length === 0) {
+      __P_49_2: function __P_49_2(ratio, indicatorNumber) {
+        if (this.__P_49_1.length === 0) {
           // cache
-          this.__P_48_1 = Array.from(this.getDomElement().getElementsByClassName('indicator'));
+          this.__P_49_1 = Array.from(this.getDomElement().getElementsByClassName('indicator'));
         }
 
         var indicator = this.getIndicators()[indicatorNumber],
@@ -669,9 +669,9 @@
         }
 
         if (indicator.isBar) {
-          this.__P_48_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createBarPath(startAngle, overflowarrow && !(target[1] && ratio < 0.01) ? 0 : indicator.startarrow, targetAngle, overflowarrow && !(target[2] && ratio > 0.99) ? 0 : indicator.endarrow, indicator.radius, indicator.width));
+          this.__P_49_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createBarPath(startAngle, overflowarrow && !(target[1] && ratio < 0.01) ? 0 : indicator.startarrow, targetAngle, overflowarrow && !(target[2] && ratio > 0.99) ? 0 : indicator.endarrow, indicator.radius, indicator.width));
         } else {
-          this.__P_48_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createPointerPath(targetAngle, indicator));
+          this.__P_49_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createPointerPath(targetAngle, indicator));
         }
       }
     }
@@ -679,4 +679,4 @@
   cv.ui.structure.pure.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1592777073809
+//# sourceMappingURL=Roundbar.js.map?dt=1603737117890

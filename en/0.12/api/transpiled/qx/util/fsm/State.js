@@ -182,11 +182,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // If we find one of our properties, call its setter.
         switch (field) {
           case "onentry":
-            this.setOnentry(this.__P_472_0(stateInfo[field], context));
+            this.setOnentry(this.__P_473_0(stateInfo[field], context));
             break;
 
           case "onexit":
-            this.setOnexit(this.__P_472_0(stateInfo[field], context));
+            this.setOnexit(this.__P_473_0(stateInfo[field], context));
             break;
 
           case "autoActionsBeforeOnentry":
@@ -426,7 +426,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * list in a State.
        */
       name: {
-        transform: "__P_472_1",
+        transform: "__P_473_1",
         nullable: true
       },
 
@@ -437,7 +437,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * to change this dynamically.
        */
       onentry: {
-        transform: "__P_472_2",
+        transform: "__P_473_2",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -449,7 +449,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * to change this dynamically.
        */
       onexit: {
-        transform: "__P_472_3",
+        transform: "__P_473_3",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -483,7 +483,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     </pre>
        */
       autoActionsBeforeOnentry: {
-        transform: "__P_472_4",
+        transform: "__P_473_4",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -518,7 +518,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     </pre>
        */
       autoActionsAfterOnentry: {
-        transform: "__P_472_5",
+        transform: "__P_473_5",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -552,7 +552,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     </pre>
        */
       autoActionsBeforeOnexit: {
-        transform: "__P_472_6",
+        transform: "__P_473_6",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -587,7 +587,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     </pre>
        */
       autoActionsAfterOnexit: {
-        transform: "__P_472_7",
+        transform: "__P_473_7",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -599,7 +599,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * (but highly NOT recommended) to change this dynamically.
        */
       events: {
-        transform: "__P_472_8",
+        transform: "__P_473_8",
         nullable: true
       }
     },
@@ -611,7 +611,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_472_1: function __P_472_1(value) {
+      __P_473_1: function __P_473_1(value) {
         // Ensure that we got a valid state name
         if (typeof value != "string" || value.length < 1) {
           throw new Error("Invalid state name");
@@ -627,7 +627,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_472_2: function __P_472_2(value) {
+      __P_473_2: function __P_473_2(value) {
         // Validate the onentry function
         switch (_typeof(value)) {
           case "undefined":
@@ -650,7 +650,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_472_3: function __P_472_3(value) {
+      __P_473_3: function __P_473_3(value) {
         // Validate the onexit function
         switch (_typeof(value)) {
           case "undefined":
@@ -673,7 +673,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_472_8: function __P_472_8(value) {
+      __P_473_8: function __P_473_8(value) {
         // Validate that events is an object
         if (_typeof(value) != "object") {
           throw new Error("events must be an object");
@@ -720,7 +720,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_472_4: function __P_472_4(value) {
+      __P_473_4: function __P_473_4(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsBeforeOnentry", value, this.getUserData("context"));
       },
 
@@ -730,7 +730,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_472_5: function __P_472_5(value) {
+      __P_473_5: function __P_473_5(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsAfterOnentry", value, this.getUserData("context"));
       },
 
@@ -740,7 +740,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_472_6: function __P_472_6(value) {
+      __P_473_6: function __P_473_6(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsBeforeOnexit", value, this.getUserData("context"));
       },
 
@@ -750,7 +750,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_472_7: function __P_472_7(value) {
+      __P_473_7: function __P_473_7(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsAfterOnexit", value, this.getUserData("context"));
       },
 
@@ -768,7 +768,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   be called in the specified context. Otherwise, f is returned
        *   unaltered.
        */
-      __P_472_0: function __P_472_0(f, context) {
+      __P_473_0: function __P_473_0(f, context) {
         // Is the first parameter a function?
         if (typeof f == "function") {
           // Yup. Bind it to the specified context.
@@ -801,4 +801,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.util.fsm.State.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=State.js.map?dt=1592777110781
+//# sourceMappingURL=State.js.map?dt=1603737150746

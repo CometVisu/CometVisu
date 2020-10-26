@@ -318,7 +318,7 @@
        *
        * @internal
        */
-      __P_87_0: {},
+      __P_88_0: {},
 
       /**
        * Creates and returns a DOM helper element.
@@ -334,8 +334,8 @@
 
         var key = win.location.href;
 
-        if (!qx.dom.Element.__P_87_0[key]) {
-          var helper = qx.dom.Element.__P_87_0[key] = win.document.createElement("div"); // innerHTML will only parsed correctly if element is appended to document
+        if (!qx.dom.Element.__P_88_0[key]) {
+          var helper = qx.dom.Element.__P_88_0[key] = win.document.createElement("div"); // innerHTML will only parsed correctly if element is appended to document
 
           if (qx.core.Environment.get("engine.name") == "webkit") {
             helper.style.display = "none";
@@ -343,7 +343,7 @@
           }
         }
 
-        return qx.dom.Element.__P_87_0[key];
+        return qx.dom.Element.__P_88_0[key];
       },
 
       /**
@@ -386,4 +386,4 @@
   qx.dom.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1592778966112
+//# sourceMappingURL=Element.js.map?dt=1603737742770

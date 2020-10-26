@@ -34,7 +34,7 @@
     */
     construct: function construct(schemaNode) {
       qx.core.Object.constructor.call(this);
-      this.__P_32_0 = {};
+      this.__P_33_0 = {};
       this._schemaNode = schemaNode;
       this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
     },
@@ -45,8 +45,8 @@
     ***********************************************
     */
     members: {
-      __P_32_0: null,
-      __P_32_1: null,
+      __P_33_0: null,
+      __P_33_1: null,
       _schemaNode: null,
       _dataProvider: null,
       getLastOpenedTag: function getLastOpenedTag(text) {
@@ -106,7 +106,7 @@
         }
       },
       findElements: function findElements(parent, elementName, maxDepth, currentDepth, inMeta) {
-        var cache = inMeta === true ? this.__P_32_1 : this.__P_32_0;
+        var cache = inMeta === true ? this.__P_33_1 : this.__P_33_0;
 
         if (elementName in cache) {
           return cache[elementName];
@@ -128,7 +128,7 @@
 
         if (elementName in allowedElements) {
           // console.log("found "+elementName+" in tree level "+currentDepth);
-          this.__P_32_0[elementName] = allowedElements[elementName];
+          this.__P_33_0[elementName] = allowedElements[elementName];
           return allowedElements[elementName];
         } else {
           for (var element in allowedElements) {
@@ -572,7 +572,7 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_32_0 = null;
+      this.__P_33_0 = null;
       this._schemaNode = null;
       this._dataProvider = null;
     }
@@ -580,4 +580,4 @@
   cv.ui.manager.editor.completion.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1592778961034
+//# sourceMappingURL=Config.js.map?dt=1603737737828

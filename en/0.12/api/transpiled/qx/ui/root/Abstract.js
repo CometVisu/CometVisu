@@ -93,7 +93,7 @@
 
       qx.ui.core.queue.Visibility.add(this);
       this.initNativeHelp();
-      this.addListener("keypress", this.__P_384_0, this);
+      this.addListener("keypress", this.__P_385_0, this);
     },
 
     /*
@@ -181,7 +181,7 @@
     *****************************************************************************
     */
     members: {
-      __P_384_1: null,
+      __P_385_1: null,
       // overridden
       isRootWidget: function isRootWidget() {
         return true;
@@ -203,10 +203,10 @@
         // For performance reasons this is impractical in IE
         "default": function _default(value, old) {
           var Stylesheet = qx.bom.Stylesheet;
-          var sheet = this.__P_384_1;
+          var sheet = this.__P_385_1;
 
           if (!sheet) {
-            this.__P_384_1 = sheet = Stylesheet.createElement();
+            this.__P_385_1 = sheet = Stylesheet.createElement();
           }
 
           Stylesheet.removeAllRules(sheet);
@@ -243,7 +243,7 @@
       *
       * @param e {qx.event.type.KeySequence} The KeySequence event
       */
-      __P_384_0: function __P_384_0(e) {
+      __P_385_0: function __P_385_0(e) {
         // Require space pressed
         if (e.getKeyIdentifier() !== "Space") {
           return;
@@ -300,7 +300,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_384_1 = null;
+      this.__P_385_1 = null;
     },
 
     /*
@@ -315,4 +315,4 @@
   qx.ui.root.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1592777103150
+//# sourceMappingURL=Abstract.js.map?dt=1603737144124

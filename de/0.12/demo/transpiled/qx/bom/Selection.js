@@ -98,7 +98,7 @@
         },
         // suitable for gecko, opera and webkit
         "default": function _default(node) {
-          if (this.__P_285_0(node)) {
+          if (this.__P_286_0(node)) {
             return node.value.substring(node.selectionStart, node.selectionEnd);
           } else {
             return this.getSelectionObject(qx.dom.Node.getDocument(node)).toString();
@@ -127,7 +127,7 @@
           if (qx.core.Environment.get("engine.name") == "opera") {
             var selectedValue, selectedLength, split;
 
-            if (this.__P_285_0(node)) {
+            if (this.__P_286_0(node)) {
               var start = node.selectionStart;
               var end = node.selectionEnd;
               selectedValue = node.value.substring(start, end);
@@ -146,7 +146,7 @@
           } // suitable for gecko and webkit
 
 
-          if (this.__P_285_0(node)) {
+          if (this.__P_286_0(node)) {
             return node.selectionEnd - node.selectionStart;
           } else {
             return this.get(node).length;
@@ -164,7 +164,7 @@
        */
       getStart: qx.core.Environment.select("html.selection", {
         "selection": function selection(node) {
-          if (this.__P_285_0(node)) {
+          if (this.__P_286_0(node)) {
             var documentRange = qx.bom.Range.get(); // Check if the document.selection is the text range inside the input element
 
             if (!node.contains(documentRange.parentElement())) {
@@ -223,7 +223,7 @@
         },
         "default": function _default(node) {
           if (qx.core.Environment.get("engine.name") === "gecko" || qx.core.Environment.get("engine.name") === "webkit") {
-            if (this.__P_285_0(node)) {
+            if (this.__P_286_0(node)) {
               return node.selectionStart;
             } else {
               var documentElement = qx.dom.Node.getDocument(node);
@@ -238,7 +238,7 @@
             }
           }
 
-          if (this.__P_285_0(node)) {
+          if (this.__P_286_0(node)) {
             return node.selectionStart;
           } else {
             return qx.bom.Selection.getSelectionObject(qx.dom.Node.getDocument(node)).anchorOffset;
@@ -255,7 +255,7 @@
        */
       getEnd: qx.core.Environment.select("html.selection", {
         "selection": function selection(node) {
-          if (this.__P_285_0(node)) {
+          if (this.__P_286_0(node)) {
             var documentRange = qx.bom.Range.get(); // Check if the document.selection is the text range inside the input element
 
             if (!node.contains(documentRange.parentElement())) {
@@ -315,7 +315,7 @@
         },
         "default": function _default(node) {
           if (qx.core.Environment.get("engine.name") === "gecko" || qx.core.Environment.get("engine.name") === "webkit") {
-            if (this.__P_285_0(node)) {
+            if (this.__P_286_0(node)) {
               return node.selectionEnd;
             } else {
               var documentElement = qx.dom.Node.getDocument(node);
@@ -330,7 +330,7 @@
             }
           }
 
-          if (this.__P_285_0(node)) {
+          if (this.__P_286_0(node)) {
             return node.selectionEnd;
           } else {
             return qx.bom.Selection.getSelectionObject(qx.dom.Node.getDocument(node)).focusOffset;
@@ -344,7 +344,7 @@
        * @param node {Node} node to check
        * @return {Boolean} Whether the given node is an input or textarea element
        */
-      __P_285_0: function __P_285_0(node) {
+      __P_286_0: function __P_286_0(node) {
         return qx.dom.Node.isElement(node) && (node.nodeName.toLowerCase() == "input" || node.nodeName.toLowerCase() == "textarea");
       },
 
@@ -592,4 +592,4 @@
   qx.bom.Selection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Selection.js.map?dt=1592778983900
+//# sourceMappingURL=Selection.js.map?dt=1603737759795

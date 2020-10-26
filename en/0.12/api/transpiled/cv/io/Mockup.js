@@ -72,7 +72,7 @@
       var testMode = false;
 
       if (typeof testMode === "string" && testMode !== "true") {
-        this.__P_476_0();
+        this.__P_477_0();
       }
 
       this.addresses = [];
@@ -107,22 +107,22 @@
     members: {
       backendName: 'mockup',
       addresses: null,
-      __P_476_1: null,
-      __P_476_2: null,
-      __P_476_3: 0,
-      __P_476_4: null,
-      __P_476_0: function __P_476_0() {
+      __P_477_1: null,
+      __P_477_2: null,
+      __P_477_3: 0,
+      __P_477_4: null,
+      __P_477_0: function __P_477_0() {
         // load the demo data to fill the visu with some values
         var r = new qx.io.request.Xhr(false);
         r.addListener('success', function (e) {
           cv.Config.initialDemoData = e.getTarget().getResponse();
 
-          this.__P_476_5();
+          this.__P_477_5();
         }, this);
         r.send();
       },
-      __P_476_5: function __P_476_5() {
-        this.__P_476_1 = cv.Config.initialDemoData.xhr; // configure server
+      __P_477_5: function __P_477_5() {
+        this.__P_477_1 = cv.Config.initialDemoData.xhr; // configure server
 
         qx.dev.FakeServer.getInstance().addFilter(function (method, url) {
           return url.startsWith('https://sentry.io');
@@ -135,17 +135,17 @@
             url = url.replace(/[\?|&]nocache=[0-9]+/, "");
           }
 
-          if (!this.__P_476_1[url] || this.__P_476_1[url].length === 0) {
+          if (!this.__P_477_1[url] || this.__P_477_1[url].length === 0) {
             qx.log.Logger.error(this, "404: no logged responses for URI " + url + " found");
           } else {
             qx.log.Logger.debug(this, "faking response for " + url);
             var response = "";
 
-            if (this.__P_476_1[url].length === 1) {
-              response = this.__P_476_1[url][0];
+            if (this.__P_477_1[url].length === 1) {
+              response = this.__P_477_1[url][0];
             } else {
               // multiple responses recorded use them as LIFO stack
-              response = this.__P_476_1[url].shift();
+              response = this.__P_477_1[url].shift();
             }
 
             if (request.readyState === 4 && request.status === 404) {
@@ -176,36 +176,36 @@
         }
       },
       _registerSimulations: function _registerSimulations(simulations) {
-        this.__P_476_4 = {};
+        this.__P_477_4 = {};
         Object.keys(simulations).forEach(function (mainAddress) {
           var simulation = simulations[mainAddress];
-          this.__P_476_4[mainAddress] = simulation;
+          this.__P_477_4[mainAddress] = simulation;
 
           if (simulation.hasOwnProperty("additionalAddresses")) {
             simulation.additionalAddresses.forEach(function (addr) {
-              this.__P_476_4[addr] = simulation;
+              this.__P_477_4[addr] = simulation;
             }, this);
           }
         }, this);
       },
       _startSequence: function _startSequence() {
-        if (this.__P_476_2.length <= this.__P_476_3) {
+        if (this.__P_477_2.length <= this.__P_477_3) {
           // start again
-          this.__P_476_3 = 0;
+          this.__P_477_3 = 0;
         }
 
         qx.event.Timer.once(function () {
           this.receive({
             i: new Date().getTime(),
-            d: this.__P_476_2[this.__P_476_3].data
+            d: this.__P_477_2[this.__P_477_3].data
           });
-          this.__P_476_3++;
+          this.__P_477_3++;
 
           this._startSequence();
-        }, this, this.__P_476_2[this.__P_476_3].delay);
+        }, this, this.__P_477_2[this.__P_477_3].delay);
       },
       _processSimulation: function _processSimulation(address, value) {
-        var simulation = this.__P_476_4[address];
+        var simulation = this.__P_477_4[address];
 
         if (!simulation) {
           return;
@@ -316,7 +316,7 @@
           ts: ts
         });
 
-        if (this.__P_476_4 && this.__P_476_4.hasOwnProperty(address)) {
+        if (this.__P_477_4 && this.__P_477_4.hasOwnProperty(address)) {
           this._processSimulation(address, value);
         } else {
           // send update
@@ -345,4 +345,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1592777111164
+//# sourceMappingURL=Mockup.js.map?dt=1603737151101

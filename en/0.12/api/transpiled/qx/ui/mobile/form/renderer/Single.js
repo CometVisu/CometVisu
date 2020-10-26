@@ -83,7 +83,7 @@
   qx.Class.define("qx.ui.mobile.form.renderer.Single", {
     extend: qx.ui.mobile.form.renderer.AbstractRenderer,
     construct: function construct(form) {
-      this.__P_359_0 = [];
+      this.__P_360_0 = [];
       this._rows = [];
       this._labels = [];
       qx.ui.mobile.form.renderer.AbstractRenderer.constructor.call(this, form);
@@ -112,7 +112,7 @@
        * resulted after form validation.
        * Also useful to clear them when the validation passes.
        */
-      __P_359_0: null,
+      __P_360_0: null,
       // override
       _getTagName: function _getTagName() {
         return "ul";
@@ -291,7 +291,7 @@
         qx.bom.element.Class.add(errorNode, 'form-element-error');
         qx.dom.Element.insertAfter(errorNode, this._getParentRow(item).getContainerElement());
 
-        this.__P_359_0.push(errorNode);
+        this.__P_360_0.push(errorNode);
       },
 
       /**
@@ -327,8 +327,8 @@
       },
       // override
       resetForm: function resetForm() {
-        for (var i = 0; i < this.__P_359_0.length; i++) {
-          qx.dom.Element.remove(this.__P_359_0[i]);
+        for (var i = 0; i < this.__P_360_0.length; i++) {
+          qx.dom.Element.remove(this.__P_360_0[i]);
         }
       }
     },
@@ -349,4 +349,4 @@
   qx.ui.mobile.form.renderer.Single.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Single.js.map?dt=1592777101566
+//# sourceMappingURL=Single.js.map?dt=1603737142718

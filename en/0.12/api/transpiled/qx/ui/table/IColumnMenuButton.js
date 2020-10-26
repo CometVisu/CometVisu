@@ -98,4 +98,4 @@
   qx.ui.table.IColumnMenuButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IColumnMenuButton.js.map?dt=1592777103538
+//# sourceMappingURL=IColumnMenuButton.js.map?dt=1603737144475

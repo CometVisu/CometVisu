@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 192,
+        "line": 524,
         "column": 3
       }
     },
@@ -38,11 +38,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 33,
+        "line": 32,
         "column": 13
       },
       "end": {
-        "line": 36,
+        "line": 35,
         "column": 3
       }
     },
@@ -55,15 +55,332 @@
       ]
     }
   },
-  "statics": {
-    "parse": {
+  "properties": {
+    "src": {
       "location": {
         "start": {
-          "line": 54,
+          "line": 43,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 5
+        }
+      },
+      "name": "src",
+      "propertyType": "new",
+      "check": "String"
+    },
+    "srcPopup": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 5
+        }
+      },
+      "name": "srcPopup",
+      "propertyType": "new",
+      "check": "String"
+    },
+    "titlePopup": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 51,
+          "column": 5
+        }
+      },
+      "name": "titlePopup",
+      "propertyType": "new",
+      "check": "String"
+    },
+    "hide24h": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 55,
+          "column": 5
+        }
+      },
+      "name": "hide24h",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "hide24hPopup": {
+      "location": {
+        "start": {
+          "line": 56,
           "column": 4
         },
         "end": {
           "line": 59,
+          "column": 5
+        }
+      },
+      "name": "hide24hPopup",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "hideAMPM": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 5
+        }
+      },
+      "name": "hideAMPM",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "hideAMPMPopup": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 5
+        }
+      },
+      "name": "hideAMPMPopup",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "hideDigits": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 71,
+          "column": 5
+        }
+      },
+      "name": "hideDigits",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "hideDigitsPopup": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 75,
+          "column": 5
+        }
+      },
+      "name": "hideDigitsPopup",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "hideSeconds": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4
+        },
+        "end": {
+          "line": 79,
+          "column": 5
+        }
+      },
+      "name": "hideSeconds",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "hideSecondsPopup": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4
+        },
+        "end": {
+          "line": 83,
+          "column": 5
+        }
+      },
+      "name": "hideSecondsPopup",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "sendOnFinish": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4
+        },
+        "end": {
+          "line": 87,
+          "column": 5
+        }
+      },
+      "name": "sendOnFinish",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "value": {
+      "type": "property",
+      "name": "value",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "event": "changeValue",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{var} the incoming value after transformation, mapping and formatting"
+          }
+        ]
+      }
+    },
+    "basicValue": {
+      "type": "property",
+      "name": "basicValue",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{var} the incoming value after transformation"
+          }
+        ]
+      }
+    },
+    "format": {
+      "type": "property",
+      "name": "format",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.BasicUpdate",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Format to apply to incoming values</p>"
+          }
+        ]
+      }
+    },
+    "address": {
+      "type": "property",
+      "name": "address",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.HasAddress",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Map of addresses (KNX-GA's or openHAB item names) this widget communicates with</p>"
+          }
+        ]
+      }
+    },
+    "styling": {
+      "type": "property",
+      "name": "styling",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.common.HasStyling"
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "statics": {
+    "parse": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 111,
           "column": 5
         }
       },
@@ -115,45 +432,129 @@
       },
       "type": "function",
       "access": "public"
-    }
-  },
-  "members": {
-    "_getInnerDomString": {
+    },
+    "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 113,
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 176,
           "column": 5
         }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getElements": {
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4
+        },
+        "end": {
+          "line": 215,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
+  "members": {
+    "__svg": {
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4
+        },
+        "end": {
+          "line": 224,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__Elements": {
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4
+        },
+        "end": {
+          "line": 225,
+          "column": 20
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cached access to the SVG in the DOM</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__inDrag": {
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4
+        },
+        "end": {
+          "line": 226,
+          "column": 15
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cached access to the individual clock parts</p>"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_getInnerDomString": {
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4
+        },
+        "end": {
+          "line": 230,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>is the handle currently dragged?</p>"
+          }
+        ]
       },
       "type": "function",
       "access": "protected",
       "overriddenFrom": "cv.ui.structure.AbstractWidget",
       "appearsIn": [
         "cv.ui.structure.AbstractWidget"
-      ],
-      "jsdoc": {
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} HTML code as string",
-            "type": "String",
-            "description": " HTML code as string"
-          }
-        ]
-      }
+      ]
     },
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 232,
           "column": 4
         },
         "end": {
-          "line": 100,
+          "line": 319,
           "column": 5
         }
       },
@@ -167,11 +568,11 @@
     "initListeners": {
       "location": {
         "start": {
-          "line": 103,
+          "line": 322,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 322,
           "column": 33
         }
       },
@@ -193,11 +594,11 @@
     "_update": {
       "location": {
         "start": {
-          "line": 106,
+          "line": 325,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 329,
           "column": 5
         }
       },
@@ -205,21 +606,35 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>overidden</p>"
+            "body": "<p>overridden</p>"
           }
         ]
       },
       "type": "function",
       "access": "protected"
     },
-    "dragHelper": {
+    "handleEvent": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 331,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 388,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "dragHelper": {
+      "location": {
+        "start": {
+          "line": 390,
+          "column": 4
+        },
+        "end": {
+          "line": 470,
           "column": 5
         }
       },
@@ -229,16 +644,30 @@
     "dragAction": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 472,
           "column": 4
         },
         "end": {
-          "line": 178,
+          "line": 478,
           "column": 5
         }
       },
       "type": "function",
       "access": "public"
+    },
+    "_updateHands": {
+      "location": {
+        "start": {
+          "line": 480,
+          "column": 4
+        },
+        "end": {
+          "line": 517,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
     },
     "__initUpdater": {
       "type": "function",
@@ -5376,16 +5805,1024 @@
           }
         ]
       }
+    },
+    "getSrc": {
+      "type": "function",
+      "name": "getSrc",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>src</code>.\n\nFor further details take a look at the property definition: {@link #src}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for src"
+          }
+        ]
+      }
+    },
+    "setSrc": {
+      "type": "function",
+      "name": "setSrc",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>src</code>.\n\nFor further details take a look at the property definition: {@link #src}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for src"
+          }
+        ]
+      }
+    },
+    "resetSrc": {
+      "type": "function",
+      "name": "resetSrc",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>src</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #src}."
+          }
+        ]
+      }
+    },
+    "getSrcPopup": {
+      "type": "function",
+      "name": "getSrcPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>srcPopup</code>.\n\nFor further details take a look at the property definition: {@link #srcPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for srcPopup"
+          }
+        ]
+      }
+    },
+    "setSrcPopup": {
+      "type": "function",
+      "name": "setSrcPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>srcPopup</code>.\n\nFor further details take a look at the property definition: {@link #srcPopup}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for srcPopup"
+          }
+        ]
+      }
+    },
+    "resetSrcPopup": {
+      "type": "function",
+      "name": "resetSrcPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>srcPopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #srcPopup}."
+          }
+        ]
+      }
+    },
+    "getTitlePopup": {
+      "type": "function",
+      "name": "getTitlePopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>titlePopup</code>.\n\nFor further details take a look at the property definition: {@link #titlePopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for titlePopup"
+          }
+        ]
+      }
+    },
+    "setTitlePopup": {
+      "type": "function",
+      "name": "setTitlePopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>titlePopup</code>.\n\nFor further details take a look at the property definition: {@link #titlePopup}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for titlePopup"
+          }
+        ]
+      }
+    },
+    "resetTitlePopup": {
+      "type": "function",
+      "name": "resetTitlePopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>titlePopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #titlePopup}."
+          }
+        ]
+      }
+    },
+    "getHide24h": {
+      "type": "function",
+      "name": "getHide24h",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hide24h</code>.\n\nFor further details take a look at the property definition: {@link #hide24h}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hide24h"
+          }
+        ]
+      }
+    },
+    "isHide24h": {
+      "type": "function",
+      "name": "isHide24h",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hide24h</code>.\n\nFor further details take a look at the property definition: {@link #hide24h}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hide24h"
+          }
+        ]
+      }
+    },
+    "setHide24h": {
+      "type": "function",
+      "name": "setHide24h",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hide24h</code>.\n\nFor further details take a look at the property definition: {@link #hide24h}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for hide24h"
+          }
+        ]
+      }
+    },
+    "resetHide24h": {
+      "type": "function",
+      "name": "resetHide24h",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hide24h</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hide24h}."
+          }
+        ]
+      }
+    },
+    "getHide24hPopup": {
+      "type": "function",
+      "name": "getHide24hPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hide24hPopup</code>.\n\nFor further details take a look at the property definition: {@link #hide24hPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hide24hPopup"
+          }
+        ]
+      }
+    },
+    "isHide24hPopup": {
+      "type": "function",
+      "name": "isHide24hPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hide24hPopup</code>.\n\nFor further details take a look at the property definition: {@link #hide24hPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hide24hPopup"
+          }
+        ]
+      }
+    },
+    "setHide24hPopup": {
+      "type": "function",
+      "name": "setHide24hPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hide24hPopup</code>.\n\nFor further details take a look at the property definition: {@link #hide24hPopup}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for hide24hPopup"
+          }
+        ]
+      }
+    },
+    "resetHide24hPopup": {
+      "type": "function",
+      "name": "resetHide24hPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hide24hPopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hide24hPopup}."
+          }
+        ]
+      }
+    },
+    "getHideAMPM": {
+      "type": "function",
+      "name": "getHideAMPM",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideAMPM</code>.\n\nFor further details take a look at the property definition: {@link #hideAMPM}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideAMPM"
+          }
+        ]
+      }
+    },
+    "isHideAMPM": {
+      "type": "function",
+      "name": "isHideAMPM",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideAMPM</code>.\n\nFor further details take a look at the property definition: {@link #hideAMPM}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideAMPM"
+          }
+        ]
+      }
+    },
+    "setHideAMPM": {
+      "type": "function",
+      "name": "setHideAMPM",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hideAMPM</code>.\n\nFor further details take a look at the property definition: {@link #hideAMPM}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for hideAMPM"
+          }
+        ]
+      }
+    },
+    "resetHideAMPM": {
+      "type": "function",
+      "name": "resetHideAMPM",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hideAMPM</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hideAMPM}."
+          }
+        ]
+      }
+    },
+    "getHideAMPMPopup": {
+      "type": "function",
+      "name": "getHideAMPMPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideAMPMPopup</code>.\n\nFor further details take a look at the property definition: {@link #hideAMPMPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideAMPMPopup"
+          }
+        ]
+      }
+    },
+    "isHideAMPMPopup": {
+      "type": "function",
+      "name": "isHideAMPMPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideAMPMPopup</code>.\n\nFor further details take a look at the property definition: {@link #hideAMPMPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideAMPMPopup"
+          }
+        ]
+      }
+    },
+    "setHideAMPMPopup": {
+      "type": "function",
+      "name": "setHideAMPMPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hideAMPMPopup</code>.\n\nFor further details take a look at the property definition: {@link #hideAMPMPopup}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for hideAMPMPopup"
+          }
+        ]
+      }
+    },
+    "resetHideAMPMPopup": {
+      "type": "function",
+      "name": "resetHideAMPMPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hideAMPMPopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hideAMPMPopup}."
+          }
+        ]
+      }
+    },
+    "getHideDigits": {
+      "type": "function",
+      "name": "getHideDigits",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideDigits</code>.\n\nFor further details take a look at the property definition: {@link #hideDigits}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideDigits"
+          }
+        ]
+      }
+    },
+    "isHideDigits": {
+      "type": "function",
+      "name": "isHideDigits",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideDigits</code>.\n\nFor further details take a look at the property definition: {@link #hideDigits}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideDigits"
+          }
+        ]
+      }
+    },
+    "setHideDigits": {
+      "type": "function",
+      "name": "setHideDigits",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hideDigits</code>.\n\nFor further details take a look at the property definition: {@link #hideDigits}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for hideDigits"
+          }
+        ]
+      }
+    },
+    "resetHideDigits": {
+      "type": "function",
+      "name": "resetHideDigits",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hideDigits</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hideDigits}."
+          }
+        ]
+      }
+    },
+    "getHideDigitsPopup": {
+      "type": "function",
+      "name": "getHideDigitsPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideDigitsPopup</code>.\n\nFor further details take a look at the property definition: {@link #hideDigitsPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideDigitsPopup"
+          }
+        ]
+      }
+    },
+    "isHideDigitsPopup": {
+      "type": "function",
+      "name": "isHideDigitsPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideDigitsPopup</code>.\n\nFor further details take a look at the property definition: {@link #hideDigitsPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideDigitsPopup"
+          }
+        ]
+      }
+    },
+    "setHideDigitsPopup": {
+      "type": "function",
+      "name": "setHideDigitsPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hideDigitsPopup</code>.\n\nFor further details take a look at the property definition: {@link #hideDigitsPopup}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for hideDigitsPopup"
+          }
+        ]
+      }
+    },
+    "resetHideDigitsPopup": {
+      "type": "function",
+      "name": "resetHideDigitsPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hideDigitsPopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hideDigitsPopup}."
+          }
+        ]
+      }
+    },
+    "getHideSeconds": {
+      "type": "function",
+      "name": "getHideSeconds",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideSeconds</code>.\n\nFor further details take a look at the property definition: {@link #hideSeconds}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideSeconds"
+          }
+        ]
+      }
+    },
+    "isHideSeconds": {
+      "type": "function",
+      "name": "isHideSeconds",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideSeconds</code>.\n\nFor further details take a look at the property definition: {@link #hideSeconds}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideSeconds"
+          }
+        ]
+      }
+    },
+    "setHideSeconds": {
+      "type": "function",
+      "name": "setHideSeconds",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hideSeconds</code>.\n\nFor further details take a look at the property definition: {@link #hideSeconds}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for hideSeconds"
+          }
+        ]
+      }
+    },
+    "resetHideSeconds": {
+      "type": "function",
+      "name": "resetHideSeconds",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hideSeconds</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hideSeconds}."
+          }
+        ]
+      }
+    },
+    "getHideSecondsPopup": {
+      "type": "function",
+      "name": "getHideSecondsPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideSecondsPopup</code>.\n\nFor further details take a look at the property definition: {@link #hideSecondsPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideSecondsPopup"
+          }
+        ]
+      }
+    },
+    "isHideSecondsPopup": {
+      "type": "function",
+      "name": "isHideSecondsPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>hideSecondsPopup</code>.\n\nFor further details take a look at the property definition: {@link #hideSecondsPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for hideSecondsPopup"
+          }
+        ]
+      }
+    },
+    "setHideSecondsPopup": {
+      "type": "function",
+      "name": "setHideSecondsPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>hideSecondsPopup</code>.\n\nFor further details take a look at the property definition: {@link #hideSecondsPopup}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for hideSecondsPopup"
+          }
+        ]
+      }
+    },
+    "resetHideSecondsPopup": {
+      "type": "function",
+      "name": "resetHideSecondsPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>hideSecondsPopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hideSecondsPopup}."
+          }
+        ]
+      }
+    },
+    "getSendOnFinish": {
+      "type": "function",
+      "name": "getSendOnFinish",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>sendOnFinish</code>.\n\nFor further details take a look at the property definition: {@link #sendOnFinish}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for sendOnFinish"
+          }
+        ]
+      }
+    },
+    "isSendOnFinish": {
+      "type": "function",
+      "name": "isSendOnFinish",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>sendOnFinish</code>.\n\nFor further details take a look at the property definition: {@link #sendOnFinish}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for sendOnFinish"
+          }
+        ]
+      }
+    },
+    "setSendOnFinish": {
+      "type": "function",
+      "name": "setSendOnFinish",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>sendOnFinish</code>.\n\nFor further details take a look at the property definition: {@link #sendOnFinish}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for sendOnFinish"
+          }
+        ]
+      }
+    },
+    "resetSendOnFinish": {
+      "type": "function",
+      "name": "resetSendOnFinish",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>sendOnFinish</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #sendOnFinish}."
+          }
+        ]
+      }
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 181,
+        "line": 520,
         "column": 9
       },
       "end": {
-        "line": 191,
+        "line": 523,
         "column": 3
       }
     },

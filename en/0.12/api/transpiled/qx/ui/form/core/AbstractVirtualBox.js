@@ -82,8 +82,8 @@
       if (model != null) {
         this.initModel(model);
       } else {
-        this.__P_317_0 = new qx.data.Array();
-        this.initModel(this.__P_317_0);
+        this.__P_318_0 = new qx.data.Array();
+        this.initModel(this.__P_318_0);
       }
     },
     properties: {
@@ -193,7 +193,7 @@
     },
     members: {
       /** @type {qx.data.Array} The initial model array of this virtual box. */
-      __P_317_0: null,
+      __P_318_0: null,
 
       /**
        * @lint ignoreReferenceField(_forwardStates)
@@ -448,12 +448,12 @@
       }
     },
     destruct: function destruct() {
-      if (this.__P_317_0) {
-        this.__P_317_0.dispose();
+      if (this.__P_318_0) {
+        this.__P_318_0.dispose();
       }
     }
   });
   qx.ui.form.core.AbstractVirtualBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractVirtualBox.js.map?dt=1592777098014
+//# sourceMappingURL=AbstractVirtualBox.js.map?dt=1603737139536

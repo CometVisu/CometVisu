@@ -66,10 +66,10 @@
       this.numericAllowed = ["==", "!=", ">", "<", ">=", "<="];
       this.betweenAllowed = ["between", "!between"];
       this.conditions = [];
-      this.__P_396_0 = align || "";
-      this.__P_396_1 = color || "";
-      this.__P_396_2 = style || "";
-      this.__P_396_3 = weight || "";
+      this.__P_397_0 = align || "";
+      this.__P_397_1 = color || "";
+      this.__P_397_2 = style || "";
+      this.__P_397_3 = weight || "";
     },
 
     /*
@@ -78,17 +78,17 @@
     *****************************************************************************
     */
     members: {
-      __P_396_0: null,
-      __P_396_1: null,
-      __P_396_2: null,
-      __P_396_3: null,
+      __P_397_0: null,
+      __P_397_1: null,
+      __P_397_2: null,
+      __P_397_3: null,
 
       /**
        * Applies the cell styles to the style map.
        * @param condition {Array} The matched condition
        * @param style {Map} map of already applied styles.
        */
-      __P_396_4: function __P_396_4(condition, style) {
+      __P_397_4: function __P_397_4(condition, style) {
         if (condition[1] != null) {
           style["text-align"] = condition[1];
         }
@@ -226,10 +226,10 @@
         var cond_test;
         var compareValue;
         var style = {
-          "text-align": this.__P_396_0,
-          "color": this.__P_396_1,
-          "font-style": this.__P_396_2,
-          "font-weight": this.__P_396_3
+          "text-align": this.__P_397_0,
+          "color": this.__P_397_1,
+          "font-style": this.__P_397_2,
+          "font-weight": this.__P_397_3
         };
 
         for (i in this.conditions) {
@@ -320,7 +320,7 @@
 
 
           if (cond_test == true) {
-            this.__P_396_4(this.conditions[i], style);
+            this.__P_397_4(this.conditions[i], style);
           }
         }
 
@@ -348,4 +348,4 @@
   qx.ui.table.cellrenderer.Conditional.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Conditional.js.map?dt=1592777104140
+//# sourceMappingURL=Conditional.js.map?dt=1603737145015

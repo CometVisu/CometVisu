@@ -541,11 +541,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   var _this3 = _this2;
 
                   var validationFunc = function validationFunc(validatorObj, value) {
-                    if (!validatorObj.__P_512_0) {
-                      validatorObj.__P_512_0 = true;
+                    if (!validatorObj.__P_513_0) {
+                      validatorObj.__P_513_0 = true;
                       proxy(method, [value], function (valid) {
                         validatorObj.setValid(valid, message || this.tr('Value is invalid'));
-                        validatorObj.__P_512_0 = false;
+                        validatorObj.__P_513_0 = false;
                       });
                     }
                   };
@@ -667,4 +667,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   dialog.Form.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Form.js.map?dt=1592777115242
+//# sourceMappingURL=Form.js.map?dt=1603737154862

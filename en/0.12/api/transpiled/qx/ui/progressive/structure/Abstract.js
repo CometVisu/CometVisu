@@ -54,18 +54,18 @@
       qx.core.Object.constructor.call(this); // If no pane was specified. Create one.
 
       if (!pane) {
-        this.__P_382_0 = new qx.ui.core.Widget();
-        this.__P_382_1 = this.__P_382_0;
+        this.__P_383_0 = new qx.ui.core.Widget();
+        this.__P_383_1 = this.__P_383_0;
       } else {
-        this.__P_382_0 = null;
-        this.__P_382_1 = pane;
+        this.__P_383_0 = null;
+        this.__P_383_1 = pane;
       }
 
-      this.__P_382_1.getContentElement().setStyle("overflowY", "auto");
+      this.__P_383_1.getContentElement().setStyle("overflowY", "auto");
     },
     members: {
-      __P_382_0: null,
-      __P_382_1: null,
+      __P_383_0: null,
+      __P_383_1: null,
 
       /**
        * Apply the structure typically defined in the constructor to the
@@ -84,18 +84,18 @@
        * @return {qx.ui.core.Widget}
        */
       getPane: function getPane() {
-        return this.__P_382_1;
+        return this.__P_383_1;
       }
     },
     destruct: function destruct() {
-      if (this.__P_382_0) {
-        this.__P_382_0.dispose();
+      if (this.__P_383_0) {
+        this.__P_383_0.dispose();
       }
 
-      this.__P_382_0 = this.__P_382_1 = null;
+      this.__P_383_0 = this.__P_383_1 = null;
     }
   });
   qx.ui.progressive.structure.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1592777103082
+//# sourceMappingURL=Abstract.js.map?dt=1603737144060

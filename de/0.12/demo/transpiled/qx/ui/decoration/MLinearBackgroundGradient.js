@@ -170,22 +170,22 @@
           return;
         }
 
-        var styleImpl = this.__P_322_0;
+        var styleImpl = this.__P_323_0;
 
         if (qx.core.Environment.get("css.gradient.legacywebkit")) {
-          styleImpl = this.__P_322_1;
+          styleImpl = this.__P_323_1;
         } else if (!qx.core.Environment.get("css.gradient.linear") && qx.core.Environment.get("css.borderradius")) {
-          styleImpl = this.__P_322_2;
+          styleImpl = this.__P_323_2;
         } else if (!qx.core.Environment.get("css.gradient.linear")) {
-          styleImpl = this.__P_322_3;
+          styleImpl = this.__P_323_3;
         }
 
         var gradientProperties = ["startColor", "endColor", "colorPositionUnit", "orientation", "startColorPosition", "endColorPosition"];
         (function (startColors, endColors, units, orientations, startColorPositions, endColorPositions) {
           for (var i = 0; i < startColors.length; i++) {
-            var startColor = this.__P_322_4(startColors[i]);
+            var startColor = this.__P_323_4(startColors[i]);
 
-            var endColor = this.__P_322_4(endColors[i]);
+            var endColor = this.__P_323_4(endColors[i]);
 
             var unit = units[i];
             var orientation = orientations[i];
@@ -227,7 +227,7 @@
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).
        */
-      __P_322_1: function __P_322_1(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+      __P_323_1: function __P_323_1(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
         // webkit uses px values if non are given
         unit = unit === "px" ? "" : unit;
 
@@ -260,9 +260,9 @@
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).
        */
-      __P_322_2: function me(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
-        if (!me.__P_322_5) {
-          me.__P_322_5 = document.createElement("canvas");
+      __P_323_2: function me(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+        if (!me.__P_323_5) {
+          me.__P_323_5 = document.createElement("canvas");
         }
 
         var isVertical = orientation == "vertical";
@@ -284,10 +284,10 @@
           }
         }
 
-        me.__P_322_5.width = width;
-        me.__P_322_5.height = height;
+        me.__P_323_5.width = width;
+        me.__P_323_5.height = height;
 
-        var ctx = me.__P_322_5.getContext('2d');
+        var ctx = me.__P_323_5.getContext('2d');
 
         if (isVertical) {
           var lingrad = ctx.createLinearGradient(0, 0, 0, height);
@@ -317,7 +317,7 @@
           size = isVertical ? height + "px 100%" : "100% " + width + "px";
         }
 
-        backgroundStyle.push("url(" + me.__P_322_5.toDataURL() + ") " + size);
+        backgroundStyle.push("url(" + me.__P_323_5.toDataURL() + ") " + size);
         return true;
       },
 
@@ -337,7 +337,7 @@
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (false).
        */
-      __P_322_3: function __P_322_3(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+      __P_323_3: function __P_323_3(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
         var type = orientation == "horizontal" ? 1 : 0; // convert rgb, hex3 and named colors to hex6
 
         if (!qx.util.ColorUtil.isHex6String(startColor)) {
@@ -388,7 +388,7 @@
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).
        */
-      __P_322_0: function __P_322_0(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+      __P_323_0: function __P_323_0(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
         // WebKit, Opera and Gecko interpret 0deg as "to right"
         var deg = orientation == "horizontal" ? 0 : 270;
         var start = startColor + " " + startColorPosition + unit;
@@ -409,7 +409,7 @@
        * @param color {String} The color name
        * @return {Map} The resolved color
        */
-      __P_322_4: function __P_322_4(color) {
+      __P_323_4: function __P_323_4(color) {
         return qx.core.Environment.get("qx.theme") ? qx.theme.manager.Color.getInstance().resolve(color) : color;
       },
       // property apply
@@ -419,4 +419,4 @@
   qx.ui.decoration.MLinearBackgroundGradient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MLinearBackgroundGradient.js.map?dt=1592778986690
+//# sourceMappingURL=MLinearBackgroundGradient.js.map?dt=1603737762466

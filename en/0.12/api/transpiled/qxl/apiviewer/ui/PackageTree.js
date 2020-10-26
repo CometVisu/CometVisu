@@ -52,12 +52,12 @@
       qx.ui.tree.Tree.constructor.call(this, "Documentation");
       this.setDecorator(null);
       this.setPadding(0);
-      this.__P_516_0 = new qx.ui.tree.TreeFolder("Packages");
+      this.__P_517_0 = new qx.ui.tree.TreeFolder("Packages");
 
-      this.__P_516_0.setOpen(true);
+      this.__P_517_0.setOpen(true);
 
-      this.setRoot(this.__P_516_0);
-      this.setSelection([this.__P_516_0]); // TODO: Is this workaround still needed?
+      this.setRoot(this.__P_517_0);
+      this.setSelection([this.__P_517_0]); // TODO: Is this workaround still needed?
       // Workaround: Since navigating in qx.ui.tree.Tree doesn't work, we've to
       // maintain a hash that keeps the tree nodes for class names
 
@@ -70,7 +70,7 @@
     * ****************************************************************************
     */
     members: {
-      __P_516_0: null,
+      __P_517_0: null,
 
       /**
        * Updates the tree on the left.
@@ -83,7 +83,7 @@
       setTreeData: function setTreeData(docTree) {
         this._docTree = docTree; // Fill the packages tree
 
-        this.__P_516_1(this.__P_516_0, docTree, 0);
+        this.__P_517_1(this.__P_517_0, docTree, 0);
 
         if (this._wantedClassName) {
           this.selectTreeNodeByClassName(this._wantedClassName);
@@ -109,10 +109,10 @@
         }
 
         if (!className) {
-          this.__P_516_0.setOpen(true);
+          this.__P_517_0.setOpen(true);
 
-          this.setSelection([this.__P_516_0]);
-          this.scrollChildIntoView(this.__P_516_0);
+          this.setSelection([this.__P_517_0]);
+          this.scrollChildIntoView(this.__P_517_0);
           return qx.Promise.resolve(true);
         }
 
@@ -170,13 +170,13 @@
        *          {var} current depth in the tree
        * @return {Function} the opener callback function
        */
-      __P_516_2: function __P_516_2(packageTreeNode, packageDoc, depth) {
+      __P_517_2: function __P_517_2(packageTreeNode, packageDoc, depth) {
         var self = this;
         return function () {
           if (!packageTreeNode.loaded) {
             packageTreeNode.loaded = true;
 
-            self.__P_516_1(packageTreeNode, packageDoc, depth + 1);
+            self.__P_517_1(packageTreeNode, packageDoc, depth + 1);
 
             packageTreeNode.setOpenSymbolMode("always");
           }
@@ -194,7 +194,7 @@
        * @param depth
        *          {var} current depth in the tree
        */
-      __P_516_1: function __P_516_1(treeNode, docNode, depth) {
+      __P_517_1: function __P_517_1(treeNode, docNode, depth) {
         var _this2 = this;
 
         var PackageTree = qxl.apiviewer.ui.PackageTree;
@@ -213,7 +213,7 @@
           packageTreeNode.setUserData("nodeName", packageDoc.getFullName());
           treeNode.add(packageTreeNode); // defer adding of child nodes
 
-          packageTreeNode.addListener("changeOpen", _this2.__P_516_2(packageTreeNode, packageDoc, depth + 1), _this2); // Register the tree node
+          packageTreeNode.addListener("changeOpen", _this2.__P_517_2(packageTreeNode, packageDoc, depth + 1), _this2); // Register the tree node
 
           _this2._classTreeNodeHash[packageDoc.getFullName()] = packageTreeNode;
           return packageDoc.load();
@@ -250,10 +250,10 @@
     destruct: function destruct() {
       this._docTree = this._classTreeNodeHash = null;
 
-      this._disposeObjects("__P_516_0");
+      this._disposeObjects("__P_517_0");
     }
   });
   qxl.apiviewer.ui.PackageTree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PackageTree.js.map?dt=1592777115785
+//# sourceMappingURL=PackageTree.js.map?dt=1603737155338

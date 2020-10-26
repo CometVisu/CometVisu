@@ -264,10 +264,10 @@
     *****************************************************************************
     */
     members: {
-      __P_254_0: null,
-      __P_254_1: null,
-      __P_254_2: null,
-      __P_254_3: null,
+      __P_255_0: null,
+      __P_255_1: null,
+      __P_255_2: null,
+      __P_255_3: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -276,14 +276,14 @@
       */
       // overridden
       _getContentHint: function _getContentHint() {
-        if (this.__P_254_1) {
-          this.__P_254_4 = this.__P_254_5();
-          delete this.__P_254_1;
+        if (this.__P_255_1) {
+          this.__P_255_4 = this.__P_255_5();
+          delete this.__P_255_1;
         }
 
         return {
-          width: this.__P_254_4.width,
-          height: this.__P_254_4.height
+          width: this.__P_255_4.width,
+          height: this.__P_255_4.height
         };
       },
       // overridden
@@ -309,7 +309,7 @@
           return null;
         }
 
-        return this.__P_254_5(width).height;
+        return this.__P_255_5(width).height;
       },
       // overridden
       _createContentElement: function _createContentElement() {
@@ -339,31 +339,31 @@
        *
        * @lint ignoreReferenceField(__contentSize)
        */
-      __P_254_4: {
+      __P_255_4: {
         width: 0,
         height: 0
       },
       // property apply
       _applyFont: function _applyFont(value, old) {
-        if (old && this.__P_254_0 && this.__P_254_3) {
-          this.__P_254_0.removeListenerById(this.__P_254_3);
+        if (old && this.__P_255_0 && this.__P_255_3) {
+          this.__P_255_0.removeListenerById(this.__P_255_3);
 
-          this.__P_254_3 = null;
+          this.__P_255_3 = null;
         } // Apply
 
 
         var styles;
 
         if (value) {
-          this.__P_254_0 = qx.theme.manager.Font.getInstance().resolve(value);
+          this.__P_255_0 = qx.theme.manager.Font.getInstance().resolve(value);
 
-          if (this.__P_254_0 instanceof qx.bom.webfonts.WebFont) {
-            this.__P_254_3 = this.__P_254_0.addListener("changeStatus", this._onWebFontStatusChange, this);
+          if (this.__P_255_0 instanceof qx.bom.webfonts.WebFont) {
+            this.__P_255_3 = this.__P_255_0.addListener("changeStatus", this._onWebFontStatusChange, this);
           }
 
-          styles = this.__P_254_0.getStyles();
+          styles = this.__P_255_0.getStyles();
         } else {
-          this.__P_254_0 = null;
+          this.__P_255_0 = null;
           styles = qx.bom.Font.getDefaultStyles();
         } // check if text color already set - if so this local value has higher priority
 
@@ -374,7 +374,7 @@
 
         this.getContentElement().setStyles(styles); // Invalidate text size
 
-        this.__P_254_1 = true; // Update layout
+        this.__P_255_1 = true; // Update layout
 
         qx.ui.core.queue.Layout.add(this);
       },
@@ -385,15 +385,15 @@
        * @param width {Integer?null} Optional width constraint
        * @return {Map} Map with <code>width</code> and <code>height</code> keys
        */
-      __P_254_5: function __P_254_5(width) {
+      __P_255_5: function __P_255_5(width) {
         var Label = qx.bom.Label;
         var font = this.getFont();
-        var styles = font ? this.__P_254_0.getStyles() : qx.bom.Font.getDefaultStyles();
+        var styles = font ? this.__P_255_0.getStyles() : qx.bom.Font.getDefaultStyles();
         var content = this.getValue() || "A";
         var rich = this.getRich();
 
-        if (this.__P_254_3) {
-          this.__P_254_6();
+        if (this.__P_255_3) {
+          this.__P_255_6();
         }
 
         if (rich && this.getBreakWithinWords()) {
@@ -408,7 +408,7 @@
       * though there is enough space for the text. Re-applying the content forces
       * a recalculation and fixes the problem. See qx bug #6293
       */
-      __P_254_6: function __P_254_6() {
+      __P_255_6: function __P_255_6() {
         if (!this.getContentElement()) {
           return;
         }
@@ -431,13 +431,13 @@
       _applyBuddy: function _applyBuddy(value, old) {
         if (old != null) {
           this.removeRelatedBindings(old);
-          this.removeListenerById(this.__P_254_2);
-          this.__P_254_2 = null;
+          this.removeListenerById(this.__P_255_2);
+          this.__P_255_2 = null;
         }
 
         if (value != null) {
           value.bind("enabled", this, "enabled");
-          this.__P_254_2 = this.addListener("tap", function () {
+          this.__P_255_2 = this.addListener("tap", function () {
             // only focus focusable elements [BUG #3555]
             if (value.isFocusable()) {
               value.focus.apply(value);
@@ -455,7 +455,7 @@
         // Sync with content element
         this.getContentElement().setRich(value); // Mark text size cache as invalid
 
-        this.__P_254_1 = true; // Update layout
+        this.__P_255_1 = true; // Update layout
 
         qx.ui.core.queue.Layout.add(this);
       },
@@ -501,12 +501,12 @@
           // safari has trouble resizing, adding it again fixed the issue [BUG #8786]
           if (qx.core.Environment.get("browser.name") == "safari" && parseFloat(qx.core.Environment.get("browser.version")) >= 8) {
             window.setTimeout(function () {
-              this.__P_254_1 = true;
+              this.__P_255_1 = true;
               qx.ui.core.queue.Layout.add(this);
             }.bind(this), 0);
           }
 
-          this.__P_254_1 = true;
+          this.__P_255_1 = true;
           qx.ui.core.queue.Layout.add(this);
         }
       },
@@ -520,7 +520,7 @@
         } // Mark text size cache as invalid
 
 
-        this.__P_254_1 = true; // Update layout
+        this.__P_255_1 = true; // Update layout
 
         qx.ui.core.queue.Layout.add(this);
       }
@@ -536,14 +536,14 @@
         qx.locale.Manager.getInstance().removeListener("changeLocale", this._onChangeLocale, this);
       }
 
-      if (this.__P_254_0 && this.__P_254_3) {
-        this.__P_254_0.removeListenerById(this.__P_254_3);
+      if (this.__P_255_0 && this.__P_255_3) {
+        this.__P_255_0.removeListenerById(this.__P_255_3);
       }
 
-      this.__P_254_0 = null;
+      this.__P_255_0 = null;
     }
   });
   qx.ui.basic.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1592777093121
+//# sourceMappingURL=Label.js.map?dt=1603737135206

@@ -132,8 +132,8 @@
       }
     },
     members: {
-      __P_297_0: null,
-      __P_297_1: null,
+      __P_298_0: null,
+      __P_298_1: null,
       // overridden
       _getIframeElement: function _getIframeElement() {
         return this.getChildControl("iframe").getContentElement();
@@ -259,26 +259,26 @@
        * Start observing size changes of the iframe document
        */
       _startIframeObserver: function _startIframeObserver() {
-        if (this.__P_297_1) {
+        if (this.__P_298_1) {
           this._stopIframeObserver();
         }
 
         var idle = qx.event.Idle.getInstance();
-        this.__P_297_1 = idle.addListener("interval", this._onIframeObserverInterval, this);
+        this.__P_298_1 = idle.addListener("interval", this._onIframeObserverInterval, this);
       },
 
       /**
        * Stop observing size changes of the iframe document
        */
       _stopIframeObserver: function _stopIframeObserver() {
-        this.__P_297_0 = null;
+        this.__P_298_0 = null;
 
-        if (!this.__P_297_1) {
+        if (!this.__P_298_1) {
           return;
         }
 
         var idle = qx.event.Idle.getInstance();
-        idle.removeListenerById(this.__P_297_1);
+        idle.removeListenerById(this.__P_298_1);
       },
 
       /**
@@ -293,11 +293,11 @@
           return;
         }
 
-        if (this.__P_297_0 && iframeSize.width == this.__P_297_0.width && iframeSize.height == this.__P_297_0.height) {
+        if (this.__P_298_0 && iframeSize.width == this.__P_298_0.width && iframeSize.height == this.__P_298_0.height) {
           return;
         }
 
-        this.__P_297_0 = iframeSize;
+        this.__P_298_0 = iframeSize;
 
         this._preventIframeScrolling();
 
@@ -328,7 +328,7 @@
        * document size
        */
       _updateScrollbars: function _updateScrollbars() {
-        var iframeSize = this.__P_297_0;
+        var iframeSize = this.__P_298_0;
         var paneSize = this.getChildControl("iframe").getBounds();
         var innerSize = this.getChildControl("iframe").getInnerSize();
 
@@ -497,10 +497,10 @@
     destruct: function destruct() {
       this._stopIframeObserver();
 
-      this.__P_297_0 = null;
+      this.__P_298_0 = null;
     }
   });
   qx.ui.embed.ThemedIframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ThemedIframe.js.map?dt=1592777096296
+//# sourceMappingURL=ThemedIframe.js.map?dt=1603737138015

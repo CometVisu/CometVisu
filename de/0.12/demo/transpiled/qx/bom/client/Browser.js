@@ -76,7 +76,7 @@
        */
       getName: function getName() {
         var agent = navigator.userAgent;
-        var reg = new RegExp("(" + qx.bom.client.Browser.__P_187_0 + ")(/|)?([0-9]+\.[0-9])?");
+        var reg = new RegExp("(" + qx.bom.client.Browser.__P_188_0 + ")(/|)?([0-9]+\.[0-9])?");
         var match = agent.match(reg);
 
         if (!match) {
@@ -131,7 +131,7 @@
        */
       getVersion: function getVersion() {
         var agent = navigator.userAgent;
-        var reg = new RegExp("(" + qx.bom.client.Browser.__P_187_0 + ")(/| )([0-9]+\.[0-9])");
+        var reg = new RegExp("(" + qx.bom.client.Browser.__P_188_0 + ")(/| )([0-9]+\.[0-9])");
         var match = agent.match(reg);
 
         if (!match) {
@@ -200,7 +200,7 @@
       /**
        * Internal helper map for picking the right browser names to check.
        */
-      __P_187_0: {
+      __P_188_0: {
         // Safari should be the last one to check, because some other Webkit-based browsers
         // use this identifier together with their own one.
         // "Version" is used in Safari 4 to define the Safari version. After "Safari" they place the
@@ -227,4 +227,4 @@
   qx.bom.client.Browser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Browser.js.map?dt=1592778975861
+//# sourceMappingURL=Browser.js.map?dt=1603737752041

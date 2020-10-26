@@ -54,11 +54,11 @@
           return this.formatOffset(entry.offset, 6);
         }
 
-        if (!qx.log.appender.Formatter.__P_272_0) {
-          qx.log.appender.Formatter.__P_272_0 = new qx.util.format.DateFormat("YYYY-MM-dd HH:mm:ss");
+        if (!qx.log.appender.Formatter.__P_273_0) {
+          qx.log.appender.Formatter.__P_273_0 = new qx.util.format.DateFormat("YYYY-MM-dd HH:mm:ss");
         }
 
-        return qx.log.appender.Formatter.__P_272_0.format(entry.time);
+        return qx.log.appender.Formatter.__P_273_0.format(entry.time);
       },
 
       /**
@@ -262,10 +262,10 @@
     },
     statics: {
       /** @type {qx.util.format.DateFormat} format for datetimes */
-      __P_272_0: null,
+      __P_273_0: null,
 
       /** @type {qx.log.appender.Formatter} the default instance */
-      __P_272_1: null,
+      __P_273_1: null,
 
       /**
        * Returns the default formatter
@@ -273,11 +273,11 @@
        * @return {qx.log.appender.Formatter}
        */
       getFormatter: function getFormatter() {
-        if (!qx.log.appender.Formatter.__P_272_1) {
-          qx.log.appender.Formatter.__P_272_1 = new qx.log.appender.Formatter();
+        if (!qx.log.appender.Formatter.__P_273_1) {
+          qx.log.appender.Formatter.__P_273_1 = new qx.log.appender.Formatter();
         }
 
-        return qx.log.appender.Formatter.__P_272_1;
+        return qx.log.appender.Formatter.__P_273_1;
       },
 
       /**
@@ -286,7 +286,7 @@
        * @param instance {qx.log.appender.Formatter}
        */
       setFormatter: function setFormatter(instance) {
-        qx.log.appender.Formatter.__P_272_1 = instance;
+        qx.log.appender.Formatter.__P_273_1 = instance;
       },
 
       /**
@@ -297,7 +297,7 @@
        * @return {String} escaped value
        */
       escapeHTML: function escapeHTML(value) {
-        return String(value).replace(/[<>&"']/g, qx.log.appender.Formatter.__P_272_2);
+        return String(value).replace(/[<>&"']/g, qx.log.appender.Formatter.__P_273_2);
       },
 
       /**
@@ -307,7 +307,7 @@
        *          {String} Single item to replace.
        * @return {String} Replaced item
        */
-      __P_272_2: function __P_272_2(ch) {
+      __P_273_2: function __P_273_2(ch) {
         var map = {
           "<": "&lt;",
           ">": "&gt;",
@@ -322,4 +322,4 @@
   qx.log.appender.Formatter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Formatter.js.map?dt=1592778983229
+//# sourceMappingURL=Formatter.js.map?dt=1603737759007

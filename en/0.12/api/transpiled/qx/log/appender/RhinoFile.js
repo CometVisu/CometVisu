@@ -37,7 +37,7 @@
        * called from.
        */
       FILENAME: null,
-      __P_233_0: null,
+      __P_234_0: null,
 
       /**
        * Writes a message to the file.
@@ -46,11 +46,11 @@
        * @param level {String} Log level. One of "debug", "info", "warn", "error"
        */
       log: function log(logMessage, level) {
-        if (!qx.log.appender.RhinoFile.__P_233_0) {
+        if (!qx.log.appender.RhinoFile.__P_234_0) {
           qx.log.appender.RhinoFile.create();
         }
 
-        var logFile = qx.log.appender.RhinoFile.__P_233_0;
+        var logFile = qx.log.appender.RhinoFile.__P_234_0;
         logFile.write(logMessage);
         logFile.newLine();
         logFile.flush();
@@ -117,8 +117,8 @@
        * file path/name.
        */
       create: function create() {
-        if (qx.log.appender.RhinoFile.__P_233_0) {
-          qx.log.appender.RhinoFile.__P_233_0.close();
+        if (qx.log.appender.RhinoFile.__P_234_0) {
+          qx.log.appender.RhinoFile.__P_234_0.close();
         }
 
         if (!qx.log.appender.RhinoFile.FILENAME) {
@@ -126,11 +126,11 @@
         }
 
         var fstream = new java.io.FileWriter(qx.log.appender.RhinoFile.FILENAME, true);
-        qx.log.appender.RhinoFile.__P_233_0 = new java.io.BufferedWriter(fstream);
+        qx.log.appender.RhinoFile.__P_234_0 = new java.io.BufferedWriter(fstream);
       }
     }
   });
   qx.log.appender.RhinoFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RhinoFile.js.map?dt=1592777090239
+//# sourceMappingURL=RhinoFile.js.map?dt=1603737132600

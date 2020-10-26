@@ -133,7 +133,7 @@
     ******************************************************
     */
     members: {
-      __P_8_0: false,
+      __P_9_0: false,
       _onDomReady: function _onDomReady() {
         cv.plugins.ColorChooser.prototype._onDomReady.base.call(this);
 
@@ -143,7 +143,7 @@
           this.setValueG(parseInt(color.substring(3, 5), 16) * 100 / 255.0);
           this.setValueB(parseInt(color.substring(5, 7), 16) * 100 / 255.0);
 
-          if (this.getRateLimiter() === false && this.__P_8_0 === false) {
+          if (this.getRateLimiter() === false && this.__P_9_0 === false) {
             // already requests going?
             this._rateLimitedSend($actor);
           }
@@ -218,7 +218,7 @@
           this.setBusG(this.getValueG());
           this.setBusB(this.getValueB());
           this.setRateLimiter(true);
-          this.__P_8_1 = qx.event.Timer.once(this._rateLimitedSend, this, 250); // next call in 250ms
+          this.__P_9_1 = qx.event.Timer.once(this._rateLimitedSend, this, 250); // next call in 250ms
         } else {
           this.setRateLimiter(false);
         }
@@ -264,17 +264,17 @@
             break;
         }
 
-        this.__P_8_0 = true;
+        this.__P_9_0 = true;
 
-        if (this.__P_8_1) {
-          this.__P_8_1.stop();
+        if (this.__P_9_1) {
+          this.__P_9_1.stop();
 
-          this.__P_8_1 = null;
+          this.__P_9_1 = null;
           this.setRateLimiter(false);
         }
 
         farbtastic.setColor(color);
-        this.__P_8_0 = false;
+        this.__P_9_0 = false;
       }
     },
     defer: function defer(statics) {
@@ -292,10 +292,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_8_2 = null;
+      this.__P_9_2 = null;
     }
   });
   cv.plugins.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1592778958386
+//# sourceMappingURL=ColorChooser.js.map?dt=1603737735313

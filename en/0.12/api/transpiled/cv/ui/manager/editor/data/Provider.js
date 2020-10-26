@@ -35,7 +35,7 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_33_0 = {};
+      this.__P_34_0 = {};
       this._client = cv.io.rest.Client.getDataProviderClient();
     },
 
@@ -45,19 +45,19 @@
     ***********************************************
     */
     members: {
-      __P_33_0: null,
+      __P_34_0: null,
       _getFromCache: function _getFromCache(cacheId) {
-        return this.__P_33_0[cacheId];
+        return this.__P_34_0[cacheId];
       },
-      __P_33_1: function __P_33_1(cacheId) {
+      __P_34_1: function __P_34_1(cacheId) {
         if (!cacheId) {
-          this.__P_33_0 = {};
+          this.__P_34_0 = {};
         } else {
-          delete this.__P_33_0[cacheId];
+          delete this.__P_34_0[cacheId];
         }
       },
       _addToCache: function _addToCache(cacheId, data) {
-        this.__P_33_0[cacheId] = data;
+        this.__P_34_0[cacheId] = data;
       },
 
       /**
@@ -65,7 +65,7 @@
        * @returns {Promise<Array>} suggestions
        */
       getDesigns: function getDesigns() {
-        return this.__P_33_2('designs', 'designsSync', null, [], function (res) {
+        return this.__P_34_2('designs', 'designsSync', null, [], function (res) {
           return res.map(function (designName) {
             return {
               label: designName,
@@ -87,7 +87,7 @@
        * @returns {Promise<any>}
        * @private
        */
-      __P_33_2: function __P_33_2(cacheId, rpc, rpcContext, args, converter, converterContext) {
+      __P_34_2: function __P_34_2(cacheId, rpc, rpcContext, args, converter, converterContext) {
         var cached = this._getFromCache(cacheId);
 
         if (cached) {
@@ -121,18 +121,18 @@
         }
       },
       getRrds: function getRrds() {
-        return this.__P_33_2('rrds', 'rrdsSync', null, [], this._parseDpResponse, this);
+        return this.__P_34_2('rrds', 'rrdsSync', null, [], this._parseDpResponse, this);
       },
       getInfluxDBs: function getInfluxDBs() {
-        return this.__P_33_2('influxdbs', 'influxdbsSync', null, [], this._parseDpResponse, this);
+        return this.__P_34_2('influxdbs', 'influxdbsSync', null, [], this._parseDpResponse, this);
       },
       getInfluxDBFields: function getInfluxDBFields(measurement) {
-        return this.__P_33_2('influxdbfields|' + measurement, 'influxdbfieldsSync', null, [{
+        return this.__P_34_2('influxdbfields|' + measurement, 'influxdbfieldsSync', null, [{
           measurement: measurement
         }], this._parseDpResponse, this);
       },
       getInfluxDBTags: function getInfluxDBTags(measurement) {
-        return this.__P_33_2('influxdbtags|' + measurement, 'influxdbtagsSync', null, [{
+        return this.__P_34_2('influxdbtags|' + measurement, 'influxdbtagsSync', null, [{
           measurement: measurement
         }], function (res) {
           return Object.keys(res).map(function (x) {
@@ -145,7 +145,7 @@
         }, this);
       },
       getInfluxDBValues: function getInfluxDBValues(measurement, tag) {
-        return this.__P_33_2('influxdbtags|' + measurement, 'influxdbtagsSync', null, [{
+        return this.__P_34_2('influxdbtags|' + measurement, 'influxdbtagsSync', null, [{
           measurement: measurement
         }], function (res) {
           var sug = [];
@@ -172,7 +172,7 @@
       },
       getMediaFiles: function getMediaFiles(typeFilter) {
         var fsClient = cv.io.rest.Client.getFsClient();
-        return this.__P_33_2('media', fsClient.readSync, fsClient, [{
+        return this.__P_34_2('media', fsClient.readSync, fsClient, [{
           path: 'media',
           recursive: true
         }], function (res) {
@@ -323,10 +323,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_33_0 = null;
+      this.__P_34_0 = null;
     }
   });
   cv.ui.manager.editor.data.Provider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Provider.js.map?dt=1592777072026
+//# sourceMappingURL=Provider.js.map?dt=1603737116370

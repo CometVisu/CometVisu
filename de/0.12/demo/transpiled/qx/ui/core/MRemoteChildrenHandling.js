@@ -52,7 +52,7 @@
        * @param a3 {var?} third argument of the method to call
        * @return {var} The return value of the forward method
        */
-      __P_137_0: function __P_137_0(functionName, a1, a2, a3) {
+      __P_138_0: function __P_138_0(functionName, a1, a2, a3) {
         var container = this.getChildrenContainer();
 
         if (container === this) {
@@ -69,7 +69,7 @@
        *   reference types, please do not modify them in-place)
        */
       getChildren: function getChildren() {
-        return this.__P_137_0("getChildren");
+        return this.__P_138_0("getChildren");
       },
 
       /**
@@ -78,7 +78,7 @@
        * @return {Boolean} Returns <code>true</code> when the widget has children.
        */
       hasChildren: function hasChildren() {
-        return this.__P_137_0("hasChildren");
+        return this.__P_138_0("hasChildren");
       },
 
       /**
@@ -93,7 +93,7 @@
        * @return {qx.ui.core.Widget} This object (for chaining support)
        */
       add: function add(child, options) {
-        return this.__P_137_0("add", child, options);
+        return this.__P_138_0("add", child, options);
       },
 
       /**
@@ -103,7 +103,7 @@
        * @return {qx.ui.core.Widget} This object (for chaining support)
        */
       remove: function remove(child) {
-        return this.__P_137_0("remove", child);
+        return this.__P_138_0("remove", child);
       },
 
       /**
@@ -111,7 +111,7 @@
        * @return {Array} An array containing the removed children.
        */
       removeAll: function removeAll() {
-        return this.__P_137_0("removeAll");
+        return this.__P_138_0("removeAll");
       },
 
       /**
@@ -128,7 +128,7 @@
        *   the given item is no child of this layout.
        */
       indexOf: function indexOf(child) {
-        return this.__P_137_0("indexOf", child);
+        return this.__P_138_0("indexOf", child);
       },
 
       /**
@@ -144,7 +144,7 @@
        * @param options {Map?null} Optional layout data for item.
        */
       addAt: function addAt(child, index, options) {
-        this.__P_137_0("addAt", child, index, options);
+        this.__P_138_0("addAt", child, index, options);
       },
 
       /**
@@ -160,7 +160,7 @@
        * @param options {Map?null} Optional layout data for item.
        */
       addBefore: function addBefore(child, before, options) {
-        this.__P_137_0("addBefore", child, before, options);
+        this.__P_138_0("addBefore", child, before, options);
       },
 
       /**
@@ -176,7 +176,7 @@
        * @param options {Map?null} Optional layout data for item.
        */
       addAfter: function addAfter(child, after, options) {
-        this.__P_137_0("addAfter", child, after, options);
+        this.__P_138_0("addAfter", child, after, options);
       },
 
       /**
@@ -191,11 +191,11 @@
        * @return {qx.ui.core.LayoutItem} The removed item
        */
       removeAt: function removeAt(index) {
-        return this.__P_137_0("removeAt", index);
+        return this.__P_138_0("removeAt", index);
       }
     }
   });
   qx.ui.core.MRemoteChildrenHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRemoteChildrenHandling.js.map?dt=1592778972239
+//# sourceMappingURL=MRemoteChildrenHandling.js.map?dt=1603737748553

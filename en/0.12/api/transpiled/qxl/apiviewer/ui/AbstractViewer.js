@@ -173,13 +173,13 @@
       _init: function _init(pkg) {
         var _this = this;
 
-        this.__P_528_0();
+        this.__P_529_0();
 
         this.addListenerOnce("appear", function () {
           return _this._syncHtml();
         });
       },
-      __P_528_0: function __P_528_0() {
+      __P_529_0: function __P_529_0() {
         var html = new qx.util.StringBuilder();
         html.add("<div style=\"padding:24px;\">"); // Add title
 
@@ -414,4 +414,4 @@
   qxl.apiviewer.ui.AbstractViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractViewer.js.map?dt=1592777116817
+//# sourceMappingURL=AbstractViewer.js.map?dt=1603737156277

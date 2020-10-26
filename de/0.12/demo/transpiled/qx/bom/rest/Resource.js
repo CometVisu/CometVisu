@@ -97,14 +97,14 @@
      * @see qx.io.rest
      */
     construct: function construct(description) {
-      this.__P_211_0 = {};
-      this.__P_211_1 = {};
-      this.__P_211_2 = {};
-      this.__P_211_3 = {};
+      this.__P_212_0 = {};
+      this.__P_212_1 = {};
+      this.__P_212_2 = {};
+      this.__P_212_3 = {};
 
       try {
         if (typeof description !== "undefined") {
-          this.__P_211_4(description);
+          this.__P_212_4(description);
         }
       } catch (e) {
         this.dispose();
@@ -211,22 +211,22 @@
       }
     },
     members: {
-      __P_211_0: null,
-      __P_211_1: null,
-      __P_211_5: null,
-      __P_211_2: null,
-      __P_211_3: null,
-      __P_211_6: null,
+      __P_212_0: null,
+      __P_212_1: null,
+      __P_212_5: null,
+      __P_212_2: null,
+      __P_212_3: null,
+      __P_212_6: null,
 
       /**
        * @type {Map} Request callbacks for 'onsuccess', 'onfail' and 'onloadend' - see {@link #setRequestHandler}.
        */
-      __P_211_7: null,
+      __P_212_7: null,
 
       /**
        * @type {Function} Function which returns instances from {@link qx.io.request.AbstractRequest}.
        */
-      __P_211_8: null,
+      __P_212_8: null,
       //
       // Request
       //
@@ -240,7 +240,7 @@
        * @internal
        */
       setRequestFactory: function setRequestFactory(fn) {
-        this.__P_211_8 = fn;
+        this.__P_212_8 = fn;
       },
 
       /**
@@ -251,7 +251,7 @@
        * @internal
        */
       setRequestHandler: function setRequestHandler(handler) {
-        this.__P_211_7 = handler;
+        this.__P_212_7 = handler;
       },
 
       /**
@@ -260,7 +260,7 @@
        * @return {Map} Map defining callbacks and their context.
        */
       _getRequestHandler: function _getRequestHandler() {
-        return this.__P_211_7 === null ? {
+        return this.__P_212_7 === null ? {
           onsuccess: {
             callback: function callback(req, action) {
               return function () {
@@ -347,7 +347,7 @@
             },
             context: this
           }
-        } : this.__P_211_7;
+        } : this.__P_212_7;
       },
 
       /**
@@ -359,8 +359,8 @@
        * @internal
        */
       getRequestsByAction: function getRequestsByAction(action) {
-        var hasRequests = this.__P_211_0 !== null && action in this.__P_211_0;
-        return hasRequests ? this.__P_211_0[action] : null;
+        var hasRequests = this.__P_212_0 !== null && action in this.__P_212_0;
+        return hasRequests ? this.__P_212_0[action] : null;
       },
 
       /**
@@ -370,7 +370,7 @@
        *   Receives request, action, params and data.
        */
       configureRequest: function configureRequest(callback) {
-        this.__P_211_6 = callback;
+        this.__P_212_6 = callback;
       },
 
       /**
@@ -380,7 +380,7 @@
        * @return {qx.bom.request.SimpleXhr|qx.io.request.AbstractRequest} Request object
        */
       _getRequest: function _getRequest() {
-        return this.__P_211_8 === null ? new qx.bom.request.SimpleXhr() : this.__P_211_8();
+        return this.__P_212_8 === null ? new qx.bom.request.SimpleXhr() : this.__P_212_8();
       },
 
       /**
@@ -389,16 +389,16 @@
        * @param action {String} The action the created request is associated to.
        * @return {qx.bom.request.SimpleXhr|qx.io.request.AbstractRequest} Request object
        */
-      __P_211_9: function __P_211_9(action) {
+      __P_212_9: function __P_212_9(action) {
         var req = this._getRequest();
 
-        if (!qx.lang.Type.isArray(this.__P_211_0[action])) {
-          this.__P_211_0[action] = [];
+        if (!qx.lang.Type.isArray(this.__P_212_0[action])) {
+          this.__P_212_0[action] = [];
         }
 
         qx.core.ObjectRegistry.register(req);
 
-        this.__P_211_0[action].push(req);
+        this.__P_212_0[action].push(req);
 
         return req;
       },
@@ -420,9 +420,9 @@
        *   <code>qx.bom.rest.Resource.REQUIRED</code> (to verify existence).
        */
       map: function map(action, method, url, check) {
-        this.__P_211_1[action] = [method, url, check]; // Track requests
+        this.__P_212_1[action] = [method, url, check]; // Track requests
 
-        this.__P_211_0[action] = []; // Undefine generic getter when action is named "get"
+        this.__P_212_0[action] = []; // Undefine generic getter when action is named "get"
 
         if (action == "get") {
           this[action] = undefined;
@@ -434,9 +434,9 @@
           throw new Error("Method with name of action (" + action + ") already exists");
         }
 
-        this.__P_211_10(action + "Success");
+        this.__P_212_10(action + "Success");
 
-        this.__P_211_10(action + "Error");
+        this.__P_212_10(action + "Error");
 
         this[action] = qx.lang.Function.bind(function () {
           Array.prototype.unshift.call(arguments, action);
@@ -464,25 +464,25 @@
        * @return {Number} Id of the action's invocation.
        */
       invoke: function invoke(action, params, data) {
-        var req = this.__P_211_9(action),
+        var req = this.__P_212_9(action),
             params = params == null ? {} : params,
             config = this._getRequestConfig(action, params); // Cache parameters
 
 
-        this.__P_211_1[action].params = params; // Check parameters
+        this.__P_212_1[action].params = params; // Check parameters
 
-        this.__P_211_11(params, config.check); // Configure request
-
-
-        this.__P_211_12(req, config, data); // Run configuration callback, passing in pre-configured request
+        this.__P_212_11(params, config.check); // Configure request
 
 
-        if (this.__P_211_6) {
-          this.__P_211_6.call(this, req, action, params, data);
+        this.__P_212_12(req, config, data); // Run configuration callback, passing in pre-configured request
+
+
+        if (this.__P_212_6) {
+          this.__P_212_6.call(this, req, action, params, data);
         } // Configure JSON request (content type may have been set in configuration callback)
 
 
-        this.__P_211_13(req, config, data);
+        this.__P_212_13(req, config, data);
 
         var reqHandler = this._getRequestHandler(); // Handle successful request
 
@@ -515,7 +515,7 @@
        * @param baseUrl {String} Base URL.
        */
       setBaseUrl: function setBaseUrl(baseUrl) {
-        this.__P_211_5 = baseUrl;
+        this.__P_212_5 = baseUrl;
       },
 
       /**
@@ -524,7 +524,7 @@
        * @param params {Map} Parameters.
        * @param check {Map} Checks.
        */
-      __P_211_11: function __P_211_11(params, check) {
+      __P_212_11: function __P_212_11(params, check) {
         if (typeof check !== "undefined") {
           Object.keys(check).forEach(function (param) {
             // Warn about invalid check
@@ -553,7 +553,7 @@
        * @param config {Map} Configuration.
        * @param data {Map} Data.
        */
-      __P_211_12: function __P_211_12(req, config, data) {
+      __P_212_12: function __P_212_12(req, config, data) {
         req.setUrl(config.url);
 
         if (!req.setMethod && config.method !== "GET") {
@@ -576,7 +576,7 @@
        * @param config {Map} Configuration.
        * @param data {Map} Data.
        */
-      __P_211_13: function __P_211_13(req, config, data) {
+      __P_212_13: function __P_212_13(req, config, data) {
         if (data) {
           var contentType = req.getRequestHeader("Content-Type");
 
@@ -606,9 +606,9 @@
           }
         } else {
           var action = varargs;
-          var reqs = this.__P_211_0[action];
+          var reqs = this.__P_212_0[action];
 
-          if (this.__P_211_0[action]) {
+          if (this.__P_212_0[action]) {
             reqs.forEach(function (req) {
               req.abort();
             });
@@ -624,7 +624,7 @@
        * @param action {String} Action to refresh.
        */
       refresh: function refresh(action) {
-        this.invoke(action, this.__P_211_1[action].params);
+        this.invoke(action, this.__P_212_1[action].params);
       },
 
       /**
@@ -653,13 +653,13 @@
        */
       poll: function poll(action, interval, params, immediately) {
         // Dispose timer previously created for action
-        if (this.__P_211_2[action]) {
+        if (this.__P_212_2[action]) {
           this.stopPollByAction(action);
         } // Fallback to previous params
 
 
         if (typeof params == "undefined") {
-          params = this.__P_211_1[action].params;
+          params = this.__P_212_1[action].params;
         } // Invoke immediately
 
 
@@ -669,7 +669,7 @@
 
         var intervalListener = function (scope) {
           return function () {
-            var req = scope.__P_211_0[action][0];
+            var req = scope.__P_212_0[action][0];
 
             if (!immediately && !req) {
               scope.invoke(action, params);
@@ -693,7 +693,7 @@
        * @param interval {Number} Interval in ms.
        */
       _startPoll: function _startPoll(action, listener, interval) {
-        this.__P_211_2[action] = {
+        this.__P_212_2[action] = {
           "id": window.setInterval(listener, interval),
           "interval": interval,
           "listener": listener
@@ -706,8 +706,8 @@
        * @param action {String} Action to poll.
        */
       stopPollByAction: function stopPollByAction(action) {
-        if (action in this.__P_211_2) {
-          var intervalId = this.__P_211_2[action].id;
+        if (action in this.__P_212_2) {
+          var intervalId = this.__P_212_2[action].id;
           window.clearInterval(intervalId);
         }
       },
@@ -718,8 +718,8 @@
        * @param action {String} Action to poll.
        */
       restartPollByAction: function restartPollByAction(action) {
-        if (action in this.__P_211_2) {
-          var timer = this.__P_211_2[action];
+        if (action in this.__P_212_2) {
+          var timer = this.__P_212_2[action];
           this.stopPollByAction(action);
 
           this._startPoll(action, timer.listener, timer.interval);
@@ -774,7 +774,7 @@
           return false;
         }
 
-        var handlerId = this.__P_211_3[action] = this.addListener(action + "Success", function longPollHandler() {
+        var handlerId = this.__P_212_3[action] = this.addListener(action + "Success", function longPollHandler() {
           if (res.isDisposed()) {
             return;
           }
@@ -799,7 +799,7 @@
        *   <code>method</code>, <code>url</code> and <code>check</code>.
        */
       _getRequestConfig: function _getRequestConfig(action, params) {
-        var route = this.__P_211_1[action]; // Not modify original params
+        var route = this.__P_212_1[action]; // Not modify original params
 
         var params = qx.lang.Object.clone(params);
 
@@ -808,7 +808,7 @@
         }
 
         var method = route[0],
-            url = this.__P_211_5 !== null ? this.__P_211_5 + route[1] : route[1],
+            url = this.__P_212_5 !== null ? this.__P_212_5 + route[1] : route[1],
             check = route[2],
             placeholders = qx.bom.rest.Resource.placeholdersFromUrl(url);
         params = params || {};
@@ -857,7 +857,7 @@
        *
        * @param description {Map} Map that defines the routes.
        */
-      __P_211_4: function __P_211_4(description) {
+      __P_212_4: function __P_212_4(description) {
         Object.keys(description).forEach(function (action) {
           var route = description[action],
               method = route.method,
@@ -872,7 +872,7 @@
        *
        * @param type {String} Type of event.
        */
-      __P_211_10: function __P_211_10(type) {
+      __P_212_10: function __P_212_10(type) {
         if (!this.constructor.$$events) {
           this.constructor.$$events = {};
         }
@@ -921,32 +921,32 @@
       destruct: function destruct() {
         var action;
 
-        for (action in this.__P_211_0) {
-          if (this.__P_211_0[action]) {
-            this.__P_211_0[action].forEach(function (req) {
+        for (action in this.__P_212_0) {
+          if (this.__P_212_0[action]) {
+            this.__P_212_0[action].forEach(function (req) {
               req.dispose();
             });
           }
         }
 
-        if (this.__P_211_2) {
-          for (action in this.__P_211_2) {
+        if (this.__P_212_2) {
+          for (action in this.__P_212_2) {
             this.stopPollByAction(action);
           }
         }
 
-        if (this.__P_211_3) {
-          for (action in this.__P_211_3) {
-            var id = this.__P_211_3[action];
+        if (this.__P_212_3) {
+          for (action in this.__P_212_3) {
+            var id = this.__P_212_3[action];
             this.removeListenerById(id);
           }
         }
 
-        this.__P_211_0 = this.__P_211_1 = this.__P_211_2 = null;
+        this.__P_212_0 = this.__P_212_1 = this.__P_212_2 = null;
       }
     }
   });
   qx.bom.rest.Resource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resource.js.map?dt=1592778977449
+//# sourceMappingURL=Resource.js.map?dt=1603737753619

@@ -104,7 +104,7 @@
 
       this._setLayout(new qx.ui.layout.Grow());
 
-      this.addListener("changeSelection", this.__P_256_0, this);
+      this.addListener("changeSelection", this.__P_257_0, this);
     },
 
     /*
@@ -191,7 +191,7 @@
        *
        * @param e {qx.event.type.Data} Data event.
        */
-      __P_256_0: function __P_256_0(e) {
+      __P_257_0: function __P_257_0(e) {
         var old = e.getOldData()[0];
         var value = e.getData()[0];
 
@@ -274,4 +274,4 @@
   qx.ui.container.Stack.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stack.js.map?dt=1592777093360
+//# sourceMappingURL=Stack.js.map?dt=1603737135434

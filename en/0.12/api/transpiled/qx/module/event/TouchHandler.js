@@ -58,12 +58,12 @@
        * @param element {Element} DOM element
        */
       register: function register(element) {
-        if (!element.__P_244_0) {
+        if (!element.__P_245_0) {
           if (!element.$$emitter) {
             element.$$emitter = new qx.event.Emitter();
           }
 
-          element.__P_244_0 = new qx.event.handler.TouchCore(element, element.$$emitter);
+          element.__P_245_0 = new qx.event.handler.TouchCore(element, element.$$emitter);
         }
       },
 
@@ -73,9 +73,9 @@
        * @param element {Element} DOM element
        */
       unregister: function unregister(element) {
-        if (element.__P_244_0) {
+        if (element.__P_245_0) {
           if (!element.$$emitter) {
-            element.__P_244_0 = null;
+            element.__P_245_0 = null;
           } else {
             var hasTouchListener = false;
             var listeners = element.$$emitter.getListeners();
@@ -86,7 +86,7 @@
             });
 
             if (!hasTouchListener) {
-              element.__P_244_0 = null;
+              element.__P_245_0 = null;
             }
           }
         }
@@ -99,4 +99,4 @@
   qx.module.event.TouchHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TouchHandler.js.map?dt=1592777091501
+//# sourceMappingURL=TouchHandler.js.map?dt=1603737133720

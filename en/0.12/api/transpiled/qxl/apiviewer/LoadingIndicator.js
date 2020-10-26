@@ -47,32 +47,32 @@
     type: "singleton",
     extend: qx.core.Object,
     construct: function construct() {
-      this.__P_522_0 = new qx.ui.core.Blocker(qxl.apiviewer.MWidgetRegistry.getWidgetById("tabView"));
+      this.__P_523_0 = new qx.ui.core.Blocker(qxl.apiviewer.MWidgetRegistry.getWidgetById("tabView"));
 
-      this.__P_522_0.setColor("#D5D5D5");
+      this.__P_523_0.setColor("#D5D5D5");
 
-      this.__P_522_0.setOpacity(0.5);
+      this.__P_523_0.setOpacity(0.5);
 
-      this.__P_522_0.getBlockerElement().setStyle("padding-top", "100px");
+      this.__P_523_0.getBlockerElement().setStyle("padding-top", "100px");
 
-      this.__P_522_0.getBlockerElement().setStyle("text-align", "center");
+      this.__P_523_0.getBlockerElement().setStyle("text-align", "center");
 
       var loadingImage = new qx.html.Element("img");
       loadingImage.setAttribute("src", qx.util.ResourceManager.getInstance().toUri("qxl/apiviewer/image/loading66.gif"));
 
-      this.__P_522_0.getBlockerElement().add(loadingImage);
+      this.__P_523_0.getBlockerElement().add(loadingImage);
     },
     members: {
-      __P_522_0: null,
+      __P_523_0: null,
       show: function show() {
-        this.__P_522_0.block();
+        this.__P_523_0.block();
       },
       hide: function hide() {
-        this.__P_522_0.unblock();
+        this.__P_523_0.unblock();
       }
     }
   });
   qxl.apiviewer.LoadingIndicator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadingIndicator.js.map?dt=1592777116182
+//# sourceMappingURL=LoadingIndicator.js.map?dt=1603737155689

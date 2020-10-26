@@ -152,7 +152,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           window.require(['xml!./resource/visu_config.xsd' + noCacheSuffix, 'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
           'vs/editor/editor.main'], function (schema, qxLib) {
-            this.__P_30_0 = schema;
+            this.__P_31_0 = schema;
             callback.apply(context);
             window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
             var parsedSchema = new window.Schema("visu_config.xsd", schema); // jshint ignore:line
@@ -176,7 +176,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     ***********************************************
     */
     members: {
-      __P_30_0: null,
+      __P_31_0: null,
       _editor: null,
       _basePath: null,
       _workerWrapper: null,
@@ -311,17 +311,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             // ask user if he really want to save a file with warnings
             dialog.Dialog.confirm(this.tr("Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?"), function (confirmed) {
               if (confirmed) {
-                this.__P_30_1();
+                this.__P_31_1();
               }
             }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
           } else {
-            this.__P_30_1();
+            this.__P_31_1();
           }
         } else {
           cv.ui.manager.editor.Source.prototype.save.base.call(this, callback, overrideHash);
         }
       },
-      __P_30_1: function __P_30_1() {
+      __P_31_1: function __P_31_1() {
         this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
@@ -583,4 +583,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1592778960793
+//# sourceMappingURL=Source.js.map?dt=1603737737570

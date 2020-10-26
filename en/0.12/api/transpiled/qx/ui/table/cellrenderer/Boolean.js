@@ -52,7 +52,7 @@
     */
     construct: function construct() {
       qx.ui.table.cellrenderer.AbstractImage.constructor.call(this);
-      this.__P_395_0 = qx.util.AliasManager.getInstance();
+      this.__P_396_0 = qx.util.AliasManager.getInstance();
       this.initIconTrue();
       this.initIconFalse(); // dynamic theme switch
 
@@ -92,9 +92,9 @@
     *****************************************************************************
     */
     members: {
-      __P_395_1: null,
-      __P_395_2: false,
-      __P_395_0: null,
+      __P_396_1: null,
+      __P_396_2: false,
+      __P_396_0: null,
 
       /**
        * Handler for theme changes.
@@ -107,11 +107,11 @@
       },
       // property apply
       _applyIconTrue: function _applyIconTrue(value) {
-        this.__P_395_1 = this.__P_395_0.resolve(value);
+        this.__P_396_1 = this.__P_396_0.resolve(value);
       },
       // property apply
       _applyIconFalse: function _applyIconFalse(value) {
-        this.__P_395_2 = this.__P_395_0.resolve(value);
+        this.__P_396_2 = this.__P_396_0.resolve(value);
       },
       // overridden
       _insetY: 5,
@@ -129,7 +129,7 @@
         var imageHints; // Retrieve the ID
 
         rm = qx.util.ResourceManager.getInstance();
-        ids = rm.getIds(this.__P_395_1); // If ID was found, we'll use its first (likely only) element here.
+        ids = rm.getIds(this.__P_396_1); // If ID was found, we'll use its first (likely only) element here.
 
         if (ids) {
           id = ids[0]; // Get the natural size of the image
@@ -150,11 +150,11 @@
 
         switch (cellInfo.value) {
           case true:
-            imageHints.url = this.__P_395_1;
+            imageHints.url = this.__P_396_1;
             break;
 
           case false:
-            imageHints.url = this.__P_395_2;
+            imageHints.url = this.__P_396_2;
             break;
 
           default:
@@ -172,7 +172,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_395_0 = null; // remove dynamic theme listener
+      this.__P_396_0 = null; // remove dynamic theme listener
 
       {
         qx.theme.manager.Meta.getInstance().removeListener("changeTheme", this._onChangeTheme, this);
@@ -182,4 +182,4 @@
   qx.ui.table.cellrenderer.Boolean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Boolean.js.map?dt=1592777104096
+//# sourceMappingURL=Boolean.js.map?dt=1603737144983

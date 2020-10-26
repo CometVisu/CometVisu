@@ -329,7 +329,7 @@
               disableScrolling: true
             });
 
-            this.__P_25_0(control);
+            this.__P_26_0(control);
 
             this.getChildControl('content').add(control, {
               flex: 1
@@ -339,10 +339,10 @@
 
         return control || cv.ui.manager.Start.prototype._createChildControlImpl.base.call(this, id);
       },
-      __P_25_0: function __P_25_0(folderWidget) {
+      __P_26_0: function __P_26_0(folderWidget) {
         if (!cv.ui.manager.model.FileItem.ROOT.isLoaded()) {
           cv.ui.manager.model.FileItem.ROOT.addListenerOnce('changeLoaded', function () {
-            this.__P_25_0(folderWidget);
+            this.__P_26_0(folderWidget);
           }, this);
           return;
         } // find the real 'hidden.php' in the root folder
@@ -387,4 +387,4 @@
   cv.ui.manager.Start.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Start.js.map?dt=1592778960003
+//# sourceMappingURL=Start.js.map?dt=1603737736866

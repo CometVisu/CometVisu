@@ -85,7 +85,7 @@
     ******************************************************
     */
     members: {
-      __P_43_0: null,
+      __P_44_0: null,
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         // create the actor
@@ -103,14 +103,14 @@
           imgStyle += 'height:' + this.getHeight() + ';';
         }
 
-        return '<div class="actor"><img src="' + this.__P_43_1() + '" style="' + imgStyle + '" /></div>';
+        return '<div class="actor"><img src="' + this.__P_44_1() + '" style="' + imgStyle + '" /></div>';
       },
 
       /**
        * Return the real src value
        */
-      __P_43_1: function __P_43_1() {
-        if (!this.__P_43_0) {
+      __P_44_1: function __P_44_1() {
+        if (!this.__P_44_0) {
           var src = this.getSrc();
           var parsedUri = qx.util.Uri.parseUri(this.getSrc());
 
@@ -119,10 +119,10 @@
             src = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
           }
 
-          this.__P_43_0 = src;
+          this.__P_44_0 = src;
         }
 
-        return this.__P_43_0;
+        return this.__P_44_0;
       },
       // overridden
       getValueElement: function getValueElement() {
@@ -137,7 +137,7 @@
         }
 
         if (value === true) {
-          valueElem.setAttribute("src", this.__P_43_1());
+          valueElem.setAttribute("src", this.__P_44_1());
         } else {
           valueElem.setAttribute("src", "");
         }
@@ -150,4 +150,4 @@
   cv.ui.structure.pure.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1592777073203
+//# sourceMappingURL=Image.js.map?dt=1603737117337

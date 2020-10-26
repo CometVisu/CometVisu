@@ -108,7 +108,7 @@
      ******************************************************
      */
     members: {
-      __P_19_0: null,
+      __P_20_0: null,
       _onDomReady: function _onDomReady() {
         if (!this.$$domReady) {
           var pageId = this.getParentPage().getPath();
@@ -137,7 +137,7 @@
               }
             }, this).schedule();
           } else {
-            this.__P_19_0 = this.addListener("changeVisible", function (ev) {
+            this.__P_20_0 = this.addListener("changeVisible", function (ev) {
               if (ev.getData()) {
                 if (!this._init) {
                   this.loadDiagramData(this.plot, false, false);
@@ -145,8 +145,8 @@
                   this.initDiagram(false);
                 }
 
-                this.removeListenerById(this.__P_19_0);
-                this.__P_19_0 = null;
+                this.removeListenerById(this.__P_20_0);
+                this.__P_20_0 = null;
               }
             }, this);
           }
@@ -170,4 +170,4 @@
   cv.plugins.diagram.Diagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diagram.js.map?dt=1592778959177
+//# sourceMappingURL=Diagram.js.map?dt=1603737736051

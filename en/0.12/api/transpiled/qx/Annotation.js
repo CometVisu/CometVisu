@@ -101,7 +101,7 @@
        * @param annoClass {Class?} optional class which the annotations being returned must implement 
        * @return {Object[]} the annotations, never null
        */
-      __P_52_0: function __P_52_0(clazz, name, group, annoClass) {
+      __P_53_0: function __P_53_0(clazz, name, group, annoClass) {
         if (clazz.$$annotations === undefined) {
           return [];
         }
@@ -130,7 +130,7 @@
        * @param annoClass {Class?} optional class which the annotations being returned must implement 
        * @return {Object[]} the annotations, never null
        */
-      __P_52_1: function __P_52_1(clazz, name, group, annoClass) {
+      __P_53_1: function __P_53_1(clazz, name, group, annoClass) {
         var result = [];
 
         for (var tmp = clazz; tmp; tmp = tmp.superclass) {
@@ -160,7 +160,7 @@
        * @return {Object[]} the annotations, never null
        */
       getOwnClass: function getOwnClass(clazz, annoClass) {
-        return this.__P_52_0(clazz, "@", null, annoClass);
+        return this.__P_53_0(clazz, "@", null, annoClass);
       },
 
       /**
@@ -170,7 +170,7 @@
        * @return {Object[]} the annotations, never null
        */
       getClass: function getClass(clazz, annoClass) {
-        return this.__P_52_1(clazz, "@", null, annoClass);
+        return this.__P_53_1(clazz, "@", null, annoClass);
       },
 
       /**
@@ -180,7 +180,7 @@
        * @return {Object[]} the annotations, never null
        */
       getOwnConstructor: function getOwnConstructor(clazz, annoClass) {
-        return this.__P_52_0(clazz, "@construct", null, annoClass);
+        return this.__P_53_0(clazz, "@construct", null, annoClass);
       },
 
       /**
@@ -190,7 +190,7 @@
        * @return {Object[]} the annotations, never null
        */
       getConstructor: function getConstructor(clazz, annoClass) {
-        return this.__P_52_1(clazz, "@construct", null, annoClass);
+        return this.__P_53_1(clazz, "@construct", null, annoClass);
       },
 
       /**
@@ -200,7 +200,7 @@
        * @return {Object[]} the annotations, never null
        */
       getOwnDestructor: function getOwnDestructor(clazz, annoClass) {
-        return this.__P_52_0(clazz, "@destruct", null, annoClass);
+        return this.__P_53_0(clazz, "@destruct", null, annoClass);
       },
 
       /**
@@ -210,7 +210,7 @@
        * @return {Object[]} the annotations, never null
        */
       getDestructor: function getDestructor(clazz, annoClass) {
-        return this.__P_52_1(clazz, "@destruct", null, annoClass);
+        return this.__P_53_1(clazz, "@destruct", null, annoClass);
       },
 
       /**
@@ -221,7 +221,7 @@
        * @return {Object[]} the annotations, never null
        */
       getOwnMember: function getOwnMember(clazz, name, annoClass) {
-        return this.__P_52_0(clazz, name, "members", annoClass);
+        return this.__P_53_0(clazz, name, "members", annoClass);
       },
 
       /**
@@ -232,7 +232,7 @@
        * @return {Object[]} the annotations, never null
        */
       getMember: function getMember(clazz, name, annoClass) {
-        return this.__P_52_1(clazz, name, "members", annoClass);
+        return this.__P_53_1(clazz, name, "members", annoClass);
       },
 
       /**
@@ -243,7 +243,7 @@
        * @return {Object[]} the annotations, never null
        */
       getOwnProperty: function getOwnProperty(clazz, name, annoClass) {
-        return this.__P_52_0(clazz, name, "properties", annoClass);
+        return this.__P_53_0(clazz, name, "properties", annoClass);
       },
 
       /**
@@ -254,7 +254,7 @@
        * @return {Object[]} the annotations, never null
        */
       getProperty: function getProperty(clazz, name, annoClass) {
-        return this.__P_52_1(clazz, name, "properties", annoClass);
+        return this.__P_53_1(clazz, name, "properties", annoClass);
       },
 
       /**
@@ -281,11 +281,11 @@
        * @return {Object[]} the annotations, never null
        */
       getStatic: function getStatic(clazz, name, annoClass) {
-        return this.__P_52_0(clazz, name, "statics", annoClass);
+        return this.__P_53_0(clazz, name, "statics", annoClass);
       }
     }
   });
   qx.Annotation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Annotation.js.map?dt=1592777074179
+//# sourceMappingURL=Annotation.js.map?dt=1603737118219

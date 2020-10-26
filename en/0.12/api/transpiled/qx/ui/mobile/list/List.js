@@ -106,7 +106,7 @@
      */
     construct: function construct(delegate) {
       qx.ui.mobile.core.Widget.constructor.call(this);
-      this.__P_362_0 = new qx.ui.mobile.list.provider.Provider(this);
+      this.__P_363_0 = new qx.ui.mobile.list.provider.Provider(this);
       this.addListener("tap", this._onTap, this);
       this.addListener("trackstart", this._onTrackStart, this);
       this.addListener("track", this._onTrack, this);
@@ -192,10 +192,10 @@
      *****************************************************************************
      */
     members: {
-      __P_362_0: null,
-      __P_362_1: null,
-      __P_362_2: null,
-      __P_362_3: null,
+      __P_363_0: null,
+      __P_363_1: null,
+      __P_363_2: null,
+      __P_363_3: null,
       // overridden
       _getTagName: function _getTagName() {
         return "ul";
@@ -283,14 +283,14 @@
       * @param evt {qx.event.type.Track} the <code>trackstart</code> event
       */
       _onTrackStart: function _onTrackStart(evt) {
-        this.__P_362_2 = null;
-        this.__P_362_3 = null;
+        this.__P_363_2 = null;
+        this.__P_363_3 = null;
 
         var element = this._getElement(evt);
 
         if (element && qx.bom.element.Class.has(element, "list-item") && qx.bom.element.Class.has(element, "removable")) {
-          this.__P_362_3 = element;
-          this.__P_362_1 = qx.bom.element.Dimension.getWidth(element) / 2;
+          this.__P_363_3 = element;
+          this.__P_363_1 = qx.bom.element.Dimension.getWidth(element) / 2;
           qx.bom.element.Class.add(element, "track");
         }
       },
@@ -300,23 +300,23 @@
       * @param evt {qx.event.type.Track} the <code>track</code> event
       */
       _onTrack: function _onTrack(evt) {
-        if (!this.__P_362_3) {
+        if (!this.__P_363_3) {
           return;
         }
 
-        var element = this.__P_362_3;
+        var element = this.__P_363_3;
         var delta = evt.getDelta();
         var deltaX = Math.round(delta.x * 0.1) / 0.1;
 
-        if (this.__P_362_2 === null) {
-          this.__P_362_2 = delta.axis == "x";
+        if (this.__P_363_2 === null) {
+          this.__P_363_2 = delta.axis == "x";
         }
 
-        if (!this.__P_362_2) {
+        if (!this.__P_363_2) {
           return;
         }
 
-        var opacity = 1 - Math.abs(deltaX) / this.__P_362_1;
+        var opacity = 1 - Math.abs(deltaX) / this.__P_363_1;
 
         opacity = Math.round(opacity * 100) / 100;
         qx.bom.element.Style.set(element, "transform", "translate3d(" + deltaX + "px,0,0)");
@@ -329,13 +329,13 @@
       * @param evt {qx.event.type.Track} the <code>trackend</code> event
       */
       _onTrackEnd: function _onTrackEnd(evt) {
-        if (!this.__P_362_3) {
+        if (!this.__P_363_3) {
           return;
         }
 
-        var element = this.__P_362_3;
+        var element = this.__P_363_3;
 
-        if (Math.abs(evt.getDelta().x) > this.__P_362_1) {
+        if (Math.abs(evt.getDelta().x) > this.__P_363_1) {
           var row = parseInt(element.getAttribute("data-row"), 10);
           this.fireDataEvent("removeItem", row);
         } else {
@@ -368,42 +368,42 @@
       // property apply
       _applyModel: function _applyModel(value, old) {
         if (old != null) {
-          old.removeListener("changeBubble", this.__P_362_4, this);
+          old.removeListener("changeBubble", this.__P_363_4, this);
         }
 
         if (value != null) {
-          value.addListener("changeBubble", this.__P_362_4, this);
+          value.addListener("changeBubble", this.__P_363_4, this);
         }
 
         if (old != null) {
-          old.removeListener("change", this.__P_362_5, this);
+          old.removeListener("change", this.__P_363_5, this);
         }
 
         if (value != null) {
-          value.addListener("change", this.__P_362_5, this);
+          value.addListener("change", this.__P_363_5, this);
         }
 
         if (old != null) {
-          old.removeListener("changeLength", this.__P_362_6, this);
+          old.removeListener("changeLength", this.__P_363_6, this);
         }
 
         if (value != null) {
-          value.addListener("changeLength", this.__P_362_6, this);
+          value.addListener("changeLength", this.__P_363_6, this);
         }
 
-        this.__P_362_7();
+        this.__P_363_7();
       },
       // property apply
       _applyDelegate: function _applyDelegate(value, old) {
-        this.__P_362_0.setDelegate(value);
+        this.__P_363_0.setDelegate(value);
       },
 
       /**
        * Listen on model 'changeLength' event.
        * @param evt {qx.event.type.Data} data event which contains model change data.
        */
-      __P_362_6: function __P_362_6(evt) {
-        this.__P_362_7();
+      __P_363_6: function __P_363_6(evt) {
+        this.__P_363_7();
       },
 
       /**
@@ -413,16 +413,16 @@
        * @param e {Event} the change event
        */
       _onChangeLocale: function _onChangeLocale(e) {
-        this.__P_362_7();
+        this.__P_363_7();
       },
 
       /**
        * Reacts on model 'change' event.
        * @param evt {qx.event.type.Data} data event which contains model change data.
        */
-      __P_362_5: function __P_362_5(evt) {
+      __P_363_5: function __P_363_5(evt) {
         if (evt && evt.getData() && evt.getData().type == "order") {
-          this.__P_362_7();
+          this.__P_363_7();
         }
       },
 
@@ -430,7 +430,7 @@
        * Reacts on model 'changeBubble' event.
        * @param evt {qx.event.type.Data} data event which contains model changeBubble data.
        */
-      __P_362_4: function __P_362_4(evt) {
+      __P_363_4: function __P_363_4(evt) {
         if (evt) {
           var data = evt.getData();
           var isArray = qx.lang.Type.isArray(data.old) && qx.lang.Type.isArray(data.value);
@@ -439,7 +439,7 @@
             var rows = this._extractRowsToRender(data.name);
 
             for (var i = 0; i < rows.length; i++) {
-              this.__P_362_8(rows[i]);
+              this.__P_363_8(rows[i]);
             }
           }
         }
@@ -502,11 +502,11 @@
        * Renders a specific row identified by its index.
        * @param index {Integer} index of the row which should be rendered.
        */
-      __P_362_8: function __P_362_8(index) {
+      __P_363_8: function __P_363_8(index) {
         var renderedItems = qx.bom.Selector.query(".list-item", this.getContentElement());
         var oldNode = renderedItems[index];
 
-        var newNode = this.__P_362_0.getItemElement(this.getModel().getItem(index), index);
+        var newNode = this.__P_363_0.getItemElement(this.getModel().getItem(index), index);
 
         this.getContentElement().replaceChild(newNode, oldNode);
 
@@ -532,7 +532,7 @@
       /**
        * Renders the list.
        */
-      __P_362_7: function __P_362_7() {
+      __P_363_7: function __P_363_7() {
         this._setHtml("");
 
         var model = this.getModel();
@@ -540,7 +540,7 @@
         var groupIndex = 0;
 
         for (var index = 0; index < this.getItemCount(); index++) {
-          if (this.__P_362_9()) {
+          if (this.__P_363_9()) {
             var groupElement = this._renderGroup(index, groupIndex);
 
             if (groupElement) {
@@ -551,7 +551,7 @@
 
           var item = model.getItem(index);
 
-          var itemElement = this.__P_362_0.getItemElement(item, index);
+          var itemElement = this.__P_363_0.getItemElement(item, index);
 
           var itemHeight = null;
 
@@ -572,7 +572,7 @@
        * Triggers a re-rendering of this list.
        */
       render: function render() {
-        this.__P_362_7();
+        this.__P_363_7();
       },
 
       /**
@@ -583,15 +583,15 @@
       * @return {Element} the group element or <code>null</code> if no group was needed.
       */
       _renderGroup: function _renderGroup(itemIndex, groupIndex) {
-        var group = this.__P_362_10(itemIndex);
+        var group = this.__P_363_10(itemIndex);
 
         if (itemIndex === 0) {
-          return this.__P_362_0.getGroupElement(group, groupIndex);
+          return this.__P_363_0.getGroupElement(group, groupIndex);
         } else {
-          var previousGroup = this.__P_362_10(itemIndex - 1);
+          var previousGroup = this.__P_363_10(itemIndex - 1);
 
           if (!qx.lang.Object.equals(group, previousGroup)) {
-            return this.__P_362_0.getGroupElement(group, groupIndex);
+            return this.__P_363_0.getGroupElement(group, groupIndex);
           }
         }
       },
@@ -600,7 +600,7 @@
       * Checks whether the delegate support group rendering.
       * @return {Boolean} true if the delegate object supports grouping function.
       */
-      __P_362_9: function __P_362_9() {
+      __P_363_9: function __P_363_9() {
         return qx.util.Delegate.getMethod(this.getDelegate(), "group") !== null;
       },
 
@@ -609,16 +609,16 @@
        * @param index {Integer} the item index.
        * @return {Object} the group object, to which the item belongs to.
        */
-      __P_362_10: function __P_362_10(index) {
+      __P_363_10: function __P_363_10(index) {
         var item = this.getModel().getItem(index);
         var group = qx.util.Delegate.getMethod(this.getDelegate(), "group");
         return group(item, index);
       }
     },
     destruct: function destruct() {
-      this.__P_362_3 = null;
+      this.__P_363_3 = null;
 
-      this._disposeObjects("__P_362_0");
+      this._disposeObjects("__P_363_0");
 
       {
         qx.locale.Manager.getInstance().removeListener("changeLocale", this._onChangeLocale, this);
@@ -628,4 +628,4 @@
   qx.ui.mobile.list.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1592777101846
+//# sourceMappingURL=List.js.map?dt=1603737143107

@@ -2,6 +2,7 @@
   "_base": "http://www.cometvisu.org/CometVisu/",
   "audio": "/develop/manual/config/widgets/audio/index.html#audio",
   "break": "/develop/manual/config/widgets/break/index.html#break",
+  "clock": "/develop/manual/config/widgets/plugins/clock/index.html#clock",
   "colorchooser": "/develop/manual/config/widgets/plugins/colorchooser/index.html#colorchooser",
   "custom-css": "/develop/manual/config/customizing.html#custom-css",
   "custom-cssrules": "/develop/manual/config/customizing.html#custom-cssrules",

@@ -57,8 +57,8 @@
 
 
       if (this.getSelection() == null) {
-        this.__P_232_0 = new qx.data.Array();
-        this.setSelection(this.__P_232_0);
+        this.__P_233_0 = new qx.data.Array();
+        this.setSelection(this.__P_233_0);
       }
     },
 
@@ -104,9 +104,9 @@
       // private members //
       // set the semaphore-like variable for the selection change
       _modifingSelection: 0,
-      __P_232_1: null,
-      __P_232_2: null,
-      __P_232_0: null,
+      __P_233_1: null,
+      __P_233_2: null,
+      __P_233_0: null,
 
       /**
        * setValue implements part of the {@link qx.ui.form.IField} interface.
@@ -155,14 +155,14 @@
        */
       _applySelection: function _applySelection(value, old) {
         // remove the old listener if necessary
-        if (this.__P_232_2 != undefined && old != undefined) {
-          old.removeListenerById(this.__P_232_2);
-          this.__P_232_2 = null;
+        if (this.__P_233_2 != undefined && old != undefined) {
+          old.removeListenerById(this.__P_233_2);
+          this.__P_233_2 = null;
         } // add a new change listener to the changeArray
 
 
         if (value) {
-          this.__P_232_2 = value.addListener("change", this.__P_232_3, this);
+          this.__P_233_2 = value.addListener("change", this.__P_233_3, this);
         } // apply the new selection
 
 
@@ -180,7 +180,7 @@
        * If a change is in the selection array, the selection update will be
        * invoked.
        */
-      __P_232_3: function __P_232_3() {
+      __P_233_3: function __P_233_3() {
         this._updateSelection();
       },
 
@@ -196,7 +196,7 @@
         } // if a selection API is supported
 
 
-        if (!this.__P_232_4() && !this.__P_232_5()) {
+        if (!this.__P_233_4() && !this.__P_233_5()) {
           return;
         } // if __changeSelectionArray is currently working, do nothing
 
@@ -211,7 +211,7 @@
 
         if (selection == null) {
           selection = new qx.data.Array();
-          this.__P_232_0 = selection;
+          this.__P_233_0 = selection;
           this.setSelection(selection);
         } // go through the target selection
 
@@ -247,15 +247,15 @@
        */
       _addChangeTargetListener: function _addChangeTargetListener(value, old) {
         // remove the old selection listener
-        if (this.__P_232_1 != undefined && old != undefined) {
-          old.removeListenerById(this.__P_232_1);
+        if (this.__P_233_1 != undefined && old != undefined) {
+          old.removeListenerById(this.__P_233_1);
         }
 
         if (value != null) {
           // if a selection API is supported
-          if (this.__P_232_4() || this.__P_232_5()) {
+          if (this.__P_233_4() || this.__P_233_5()) {
             // add a new selection listener
-            this.__P_232_1 = value.addListener("changeSelection", this._changeTargetSelection, this);
+            this.__P_233_1 = value.addListener("changeSelection", this._changeTargetSelection, this);
           }
         }
       },
@@ -275,14 +275,14 @@
         this._startSelectionModification(); // if its a multi selection target
 
 
-        if (this.__P_232_4()) {
+        if (this.__P_233_4()) {
           var targetSelection = []; // go through the selection array
 
           for (var i = 0; i < this.getSelection().length; i++) {
             // store each item
             var model = this.getSelection().getItem(i);
 
-            var selectable = this.__P_232_6(model);
+            var selectable = this.__P_233_6(model);
 
             if (selectable != null) {
               targetSelection.push(selectable);
@@ -308,13 +308,13 @@
             }
           } // if its a single selection target
 
-        } else if (this.__P_232_5()) {
+        } else if (this.__P_233_5()) {
           // get the model which should be selected
           var item = this.getSelection().getItem(this.getSelection().length - 1);
 
           if (item !== undefined) {
             // select the last selected item (old selection will be removed anyway)
-            this.__P_232_7(item); // remove the other items from the selection data array and get
+            this.__P_233_7(item); // remove the other items from the selection data array and get
             // rid of the return array
 
 
@@ -336,7 +336,7 @@
        * Helper-method returning true, if the target supports multi selection.
        * @return {Boolean} true, if the target supports multi selection.
        */
-      __P_232_4: function __P_232_4() {
+      __P_233_4: function __P_233_4() {
         var targetClass = this.getTarget().constructor;
         return qx.Class.implementsInterface(targetClass, qx.ui.core.IMultiSelection);
       },
@@ -345,7 +345,7 @@
        * Helper-method returning true, if the target supports single selection.
        * @return {Boolean} true, if the target supports single selection.
        */
-      __P_232_5: function __P_232_5() {
+      __P_233_5: function __P_233_5() {
         var targetClass = this.getTarget().constructor;
         return qx.Class.implementsInterface(targetClass, qx.ui.core.ISingleSelection);
       },
@@ -356,8 +356,8 @@
        *
        * @param item {qx.core.Object} A model element.
        */
-      __P_232_7: function __P_232_7(item) {
-        var selectable = this.__P_232_6(item); // if no selectable could be found, just return
+      __P_233_7: function __P_233_7(item) {
+        var selectable = this.__P_233_6(item); // if no selectable could be found, just return
 
 
         if (selectable == null) {
@@ -365,10 +365,10 @@
         } // if the target is multi selection able
 
 
-        if (this.__P_232_4()) {
+        if (this.__P_233_4()) {
           // select the item in the target
           this.getTarget().addToSelection(selectable); // if the target is single selection able
-        } else if (this.__P_232_5()) {
+        } else if (this.__P_233_5()) {
           this.getTarget().setSelection([selectable]);
         }
       },
@@ -379,7 +379,7 @@
        * @param model {var} The representing model of a selectable.
        * @return {Object|null} List item or <code>null</code> if none was found
        */
-      __P_232_6: function __P_232_6(model) {
+      __P_233_6: function __P_233_6(model) {
         // get all list items
         var children = this.getTarget().getSelectables(true); // go through all children and search for the child to select
 
@@ -428,12 +428,12 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__P_232_0) {
-        this.__P_232_0.dispose();
+      if (this.__P_233_0) {
+        this.__P_233_0.dispose();
       }
     }
   });
   qx.data.controller.MSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSelection.js.map?dt=1592778979390
+//# sourceMappingURL=MSelection.js.map?dt=1603737755462

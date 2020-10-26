@@ -471,7 +471,7 @@
       plot: null,
       plotted: null,
       _timerPopup: null,
-      __P_18_0: false,
+      __P_19_0: false,
       // property apply
       _applyTitle: function _applyTitle(value) {
         if (value) {
@@ -578,7 +578,7 @@
         }
 
         this._init = false;
-        isPopup = isPopup || this.__P_18_0;
+        isPopup = isPopup || this.__P_19_0;
         var options = {
           canvas: true,
           tooltip: this.getTooltip(),
@@ -901,4 +901,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1592778959144
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1603737736020

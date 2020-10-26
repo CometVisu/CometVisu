@@ -43,7 +43,7 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_483_0 = new qx.data.Array();
+      this.__P_484_0 = new qx.data.Array();
     },
 
     /*
@@ -52,17 +52,17 @@
     ******************************************************
     */
     members: {
-      __P_483_0: null,
-      __P_483_1: null,
-      __P_483_2: null,
-      __P_483_3: null,
+      __P_484_0: null,
+      __P_484_1: null,
+      __P_484_2: null,
+      __P_484_3: null,
 
       /**
        * Load a config file
        */
       load: function load(callback, context) {
-        this.__P_483_1 = callback;
-        this.__P_483_2 = context; // get the data once the page was loaded
+        this.__P_484_1 = callback;
+        this.__P_484_2 = context; // get the data once the page was loaded
 
         var uri = qx.util.ResourceManager.getInstance().toUri('config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml');
 
@@ -77,7 +77,7 @@
         this.debug("Requesting " + uri);
         var ajaxRequest = new qx.io.request.Xhr(uri);
 
-        this.__P_483_0.push(uri);
+        this.__P_484_0.push(uri);
 
         ajaxRequest.set({
           accept: "application/xml",
@@ -95,10 +95,10 @@
             xml = qx.xml.Document.fromString(xml);
           }
 
-          this.__P_483_3 = xml;
+          this.__P_484_3 = xml;
           xml.querySelectorAll('include').forEach(this.loadInclude, this);
 
-          this.__P_483_0.remove(ajaxRequest.getUrl());
+          this.__P_484_0.remove(ajaxRequest.getUrl());
 
           if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
             this.configError("parsererror");
@@ -138,12 +138,12 @@
             ajaxRequest.setUserData("noDemo", false);
             ajaxRequest.setUserData("origUrl", ajaxRequest.getUrl());
 
-            this.__P_483_0.remove(ajaxRequest.getUrl());
+            this.__P_484_0.remove(ajaxRequest.getUrl());
 
             var demoUrl = ajaxRequest.getUrl().replace('config/', 'demo/');
             ajaxRequest.setUrl(demoUrl);
 
-            this.__P_483_0.push(demoUrl);
+            this.__P_484_0.push(demoUrl);
 
             ajaxRequest.send();
           } else if (!qx.util.Request.isSuccessful(status)) {
@@ -166,7 +166,7 @@
           url = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + url;
         }
 
-        this.__P_483_0.push(url);
+        this.__P_484_0.push(url);
 
         var xhr = new qx.io.request.Xhr(url);
         xhr.set({
@@ -182,7 +182,7 @@
             parent.appendChild(child);
           });
 
-          this.__P_483_0.remove(url);
+          this.__P_484_0.remove(url);
 
           this._checkQueue();
         }, this);
@@ -203,8 +203,8 @@
        * @private
        */
       _checkQueue: function _checkQueue() {
-        if (this.__P_483_0.length === 0) {
-          this.__P_483_1.call(this.__P_483_2, this.__P_483_3);
+        if (this.__P_484_0.length === 0) {
+          this.__P_484_1.call(this.__P_484_2, this.__P_484_3);
 
           this.dispose();
         }
@@ -272,12 +272,12 @@
     */
     destruct: function destruct() {
       // remove references
-      this.__P_483_3 = null;
-      this.__P_483_1 = null;
-      this.__P_483_2 = null;
+      this.__P_484_3 = null;
+      this.__P_484_1 = null;
+      this.__P_484_2 = null;
     }
   });
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1592777111802
+//# sourceMappingURL=ConfigLoader.js.map?dt=1603737151676

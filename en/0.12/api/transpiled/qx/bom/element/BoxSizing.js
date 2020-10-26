@@ -60,7 +60,7 @@
     */
     statics: {
       /** @type {Map} Internal data structure for __usesNativeBorderBox() */
-      __P_101_0: {
+      __P_102_0: {
         tags: {
           button: true,
           select: true
@@ -81,8 +81,8 @@
        * @param element {Element} DOM element to query
        * @return {Boolean} true when the element uses "border-box" independently from the doctype
        */
-      __P_101_1: function __P_101_1(element) {
-        var map = this.__P_101_0;
+      __P_102_1: function __P_102_1(element) {
+        var map = this.__P_102_0;
         return map.tags[element.tagName.toLowerCase()] || map.types[element.type];
       },
 
@@ -111,7 +111,7 @@
         }
 
         if (qx.bom.Document.isStandardMode(qx.dom.Node.getWindow(element))) {
-          if (!this.__P_101_1(element)) {
+          if (!this.__P_102_1(element)) {
             return "content-box";
           }
         }
@@ -147,4 +147,4 @@
   qx.bom.element.BoxSizing.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BoxSizing.js.map?dt=1592777079375
+//# sourceMappingURL=BoxSizing.js.map?dt=1603737122929

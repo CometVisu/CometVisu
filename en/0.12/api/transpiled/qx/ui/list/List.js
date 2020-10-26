@@ -106,8 +106,8 @@
 
       this._init();
 
-      this.__P_328_0 = new qx.data.Array();
-      this.initGroups(this.__P_328_0);
+      this.__P_329_0 = new qx.data.Array();
+      this.initGroups(this.__P_329_0);
 
       if (model != null) {
         this.initModel(model);
@@ -286,40 +286,40 @@
        *
        * Note the value <code>-1</code> indicates that the value is a group item.
        */
-      __P_328_1: null,
+      __P_329_1: null,
 
       /** @type {Array} lookup table for getting the group index from the row */
-      __P_328_2: null,
+      __P_329_2: null,
 
       /**
        * @type {Map} contains all groups with the items as children. The key is
        *   the group name and the value is an <code>Array</code> containing each
        *   item's model index.
        */
-      __P_328_3: null,
+      __P_329_3: null,
 
       /**
        * @type {Boolean} indicates when one or more <code>String</code> are used for grouping.
        */
-      __P_328_4: false,
+      __P_329_4: false,
 
       /**
        * @type {Boolean} indicates when one or more <code>Object</code> are used for grouping.
        */
-      __P_328_5: false,
+      __P_329_5: false,
 
       /**
        * @type {Boolean} indicates when a default group is used for grouping.
        */
-      __P_328_6: false,
-      __P_328_0: null,
-      __P_328_7: null,
+      __P_329_6: false,
+      __P_329_0: null,
+      __P_329_7: null,
 
       /**
        * Trigger a rebuild from the internal data structure.
        */
       refresh: function refresh() {
-        this.__P_328_8();
+        this.__P_329_8();
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
@@ -347,12 +347,12 @@
       _init: function _init() {
         this._initWidgetProvider();
 
-        this.__P_328_1 = [];
-        this.__P_328_2 = [];
-        this.__P_328_3 = {};
-        this.__P_328_4 = false;
-        this.__P_328_5 = false;
-        this.__P_328_6 = false;
+        this.__P_329_1 = [];
+        this.__P_329_2 = [];
+        this.__P_329_3 = {};
+        this.__P_329_4 = false;
+        this.__P_329_5 = false;
+        this.__P_329_6 = false;
         this.getPane().addListener("resize", this._onResize, this);
 
         this._initBackground();
@@ -419,7 +419,7 @@
        * @return {Array} The internal lookup table.
        */
       _getLookupTable: function _getLookupTable() {
-        return this.__P_328_1;
+        return this.__P_329_1;
       },
 
       /**
@@ -430,7 +430,7 @@
        *   <code>-1</code> if the row is a group item.
        */
       _lookup: function _lookup(row) {
-        return this.__P_328_1[row];
+        return this.__P_329_1[row];
       },
 
       /**
@@ -441,7 +441,7 @@
        *   <code>-1</code> if the row is a not a group item.
        */
       _lookupGroup: function _lookupGroup(row) {
-        return this.__P_328_2.indexOf(row);
+        return this.__P_329_2.indexOf(row);
       },
 
       /**
@@ -456,7 +456,7 @@
           return -1;
         }
 
-        return this.__P_328_1.indexOf(index);
+        return this.__P_329_1.indexOf(index);
       },
 
       /**
@@ -502,7 +502,7 @@
       },
       // apply method
       _applyGroupRowHeight: function _applyGroupRowHeight(value, old) {
-        this.__P_328_9();
+        this.__P_329_9();
       },
       // apply method
       _applyLabelPath: function _applyLabelPath(value, old) {
@@ -532,7 +532,7 @@
       _applyDelegate: function _applyDelegate(value, old) {
         this._provider.setDelegate(value);
 
-        this.__P_328_8();
+        this.__P_329_8();
       },
       // property apply
       _applyVariableItemHeight: function _applyVariableItemHeight(value, old) {
@@ -570,7 +570,7 @@
         // see: https://github.com/qooxdoo/qooxdoo/issues/196
         this._provider.removeBindings();
 
-        this.__P_328_8();
+        this.__P_329_8();
 
         this._applyDefaultSelection();
 
@@ -591,13 +591,13 @@
           return;
         }
 
-        if (this.__P_328_7 === null) {
-          this.__P_328_7 = new qx.util.DeferredCall(function () {
+        if (this.__P_329_7 === null) {
+          this.__P_329_7 = new qx.util.DeferredCall(function () {
             this._setRowItemSize();
           }, this);
         }
 
-        this.__P_328_7.schedule();
+        this.__P_329_7.schedule();
       },
 
       /*
@@ -609,15 +609,15 @@
       /**
        * Helper method to update the row count.
        */
-      __P_328_10: function __P_328_10() {
-        this.getPane().getRowConfig().setItemCount(this.__P_328_1.length);
+      __P_329_10: function __P_329_10() {
+        this.getPane().getRowConfig().setItemCount(this.__P_329_1.length);
         this.getPane().fullUpdate();
       },
 
       /**
        * Helper method to update group row heights.
        */
-      __P_328_9: function __P_328_9() {
+      __P_329_9: function __P_329_9() {
         /*
          * In case of having variableItemHeight set to true,
          * the group item height has a variable height as well
@@ -637,8 +637,8 @@
         rc.resetItemSizes();
 
         if (gh) {
-          for (var i = 0, l = this.__P_328_1.length; i < l; ++i) {
-            if (this.__P_328_1[i] == -1) {
+          for (var i = 0, l = this.__P_329_1.length; i < l; ++i) {
+            if (this.__P_329_1[i] == -1) {
               rc.setItemSize(i, gh);
             }
           }
@@ -648,10 +648,10 @@
       /**
        * Internal method for building the lookup table.
        */
-      __P_328_8: function __P_328_8() {
-        this.__P_328_1 = [];
-        this.__P_328_2 = [];
-        this.__P_328_3 = {};
+      __P_329_8: function __P_329_8() {
+        this.__P_329_1 = [];
+        this.__P_329_2 = [];
+        this.__P_329_3 = {};
 
         if (this.isAutoGrouping()) {
           this.getGroups().removeAll();
@@ -669,9 +669,9 @@
 
         this._updateSelection();
 
-        this.__P_328_9();
+        this.__P_329_9();
 
-        this.__P_328_10();
+        this.__P_329_10();
       },
 
       /**
@@ -684,7 +684,7 @@
 
         for (var i = 0, l = model.length; i < l; ++i) {
           if (filter == null || filter(model.getItem(i))) {
-            this.__P_328_1.push(i);
+            this.__P_329_1.push(i);
           }
         }
       },
@@ -695,14 +695,14 @@
        * @param model {qx.data.IListData} The model.
        */
       _runDelegateSorter: function _runDelegateSorter(model) {
-        if (this.__P_328_1.length == 0) {
+        if (this.__P_329_1.length == 0) {
           return;
         }
 
         var sorter = qx.util.Delegate.getMethod(this.getDelegate(), "sorter");
 
         if (sorter != null) {
-          this.__P_328_1.sort(function (a, b) {
+          this.__P_329_1.sort(function (a, b) {
             return sorter(model.getItem(a), model.getItem(b));
           });
         }
@@ -717,15 +717,15 @@
         var groupMethod = qx.util.Delegate.getMethod(this.getDelegate(), "group");
 
         if (groupMethod != null) {
-          for (var i = 0, l = this.__P_328_1.length; i < l; ++i) {
-            var index = this.__P_328_1[i];
+          for (var i = 0, l = this.__P_329_1.length; i < l; ++i) {
+            var index = this.__P_329_1[i];
             var item = this.getModel().getItem(index);
             var group = groupMethod(item);
 
-            this.__P_328_11(group, index);
+            this.__P_329_11(group, index);
           }
 
-          this.__P_328_1 = this.__P_328_12();
+          this.__P_329_1 = this.__P_329_12();
         }
       },
 
@@ -735,24 +735,24 @@
        * @param group {String|Object|null} the group.
        * @param index {Integer} model index to add.
        */
-      __P_328_11: function __P_328_11(group, index) {
+      __P_329_11: function __P_329_11(group, index) {
         // if group is null add to default group
         if (group == null) {
-          this.__P_328_6 = true;
+          this.__P_329_6 = true;
           group = "???";
         }
 
-        var name = this.__P_328_13(group);
+        var name = this.__P_329_13(group);
 
-        if (this.__P_328_3[name] == null) {
-          this.__P_328_3[name] = [];
+        if (this.__P_329_3[name] == null) {
+          this.__P_329_3[name] = [];
 
           if (this.isAutoGrouping()) {
             this.getGroups().push(group);
           }
         }
 
-        this.__P_328_3[name].push(index);
+        this.__P_329_3[name].push(index);
       },
 
       /**
@@ -760,8 +760,8 @@
        *
        * @return {Array} the lookup table based on the internal group hash map.
        */
-      __P_328_12: function __P_328_12() {
-        this.__P_328_14();
+      __P_329_12: function __P_329_12() {
+        this.__P_329_14();
 
         var result = [];
         var row = 0;
@@ -772,13 +772,13 @@
 
           result.push(-1);
 
-          this.__P_328_2.push(row);
+          this.__P_329_2.push(row);
 
           row++;
 
-          var key = this.__P_328_13(group);
+          var key = this.__P_329_13(group);
 
-          var groupMembers = this.__P_328_3[key];
+          var groupMembers = this.__P_329_3[key];
 
           if (groupMembers != null) {
             for (var k = 0; k < groupMembers.length; k++) {
@@ -797,12 +797,12 @@
        * @param group {String|Object} Group to find unique group name.
        * @return {String} Unique group name.
        */
-      __P_328_13: function __P_328_13(group) {
+      __P_329_13: function __P_329_13(group) {
         var name = null;
 
         if (!qx.lang.Type.isString(group)) {
           var index = this.getGroups().indexOf(group);
-          this.__P_328_5 = true;
+          this.__P_329_5 = true;
           name = "group";
 
           if (index == -1) {
@@ -811,7 +811,7 @@
             name += index;
           }
         } else {
-          this.__P_328_4 = true;
+          this.__P_329_4 = true;
           var name = group;
         }
 
@@ -822,8 +822,8 @@
        * Checks that <code>Object</code> and <code>String</code> are not mixed
        * as group identifier, otherwise an exception occurs.
        */
-      __P_328_14: function __P_328_14() {
-        if (this.__P_328_5 && this.__P_328_6 || this.__P_328_5 && this.__P_328_4) {
+      __P_329_14: function __P_329_14() {
+        if (this.__P_329_5 && this.__P_329_6 || this.__P_329_5 && this.__P_329_4) {
           throw new Error("GroupingTypeError: You can't mix 'Objects' and 'Strings' as group identifier!");
         }
       },
@@ -849,7 +849,7 @@
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_328_7");
+      this._disposeObjects("__P_329_7");
 
       var model = this.getModel();
 
@@ -869,14 +869,14 @@
 
       this._layer.dispose();
 
-      this._background = this._provider = this._layer = this.__P_328_1 = this.__P_328_2 = this.__P_328_3 = null;
+      this._background = this._provider = this._layer = this.__P_329_1 = this.__P_329_2 = this.__P_329_3 = null;
 
-      if (this.__P_328_0) {
-        this.__P_328_0.dispose();
+      if (this.__P_329_0) {
+        this.__P_329_0.dispose();
       }
     }
   });
   qx.ui.list.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1592777099186
+//# sourceMappingURL=List.js.map?dt=1603737140581

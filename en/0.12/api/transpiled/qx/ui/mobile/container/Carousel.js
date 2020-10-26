@@ -97,13 +97,13 @@
         this.setTransitionDuration(transitionDuration);
       }
 
-      this.__P_337_0 = [];
-      this.__P_337_1 = [0, 0];
-      this.__P_337_2 = [0, 0];
-      this.__P_337_3 = [0, 0];
-      this.__P_337_4 = [];
-      this.__P_337_5 = [];
-      var carouselScroller = this.__P_337_6 = new qx.ui.mobile.container.Composite(new qx.ui.mobile.layout.HBox());
+      this.__P_338_0 = [];
+      this.__P_338_1 = [0, 0];
+      this.__P_338_2 = [0, 0];
+      this.__P_338_3 = [0, 0];
+      this.__P_338_4 = [];
+      this.__P_338_5 = [];
+      var carouselScroller = this.__P_338_6 = new qx.ui.mobile.container.Composite(new qx.ui.mobile.layout.HBox());
       carouselScroller.setTransformUnit("px");
       carouselScroller.addCssClass("carousel-scroller");
       carouselScroller.addListener("pointerdown", this._onPointerDown, this);
@@ -112,11 +112,11 @@
       carouselScroller.addListener("swipe", this._onSwipe, this);
       this.addListener("touchmove", qx.bom.Event.preventDefault, this);
       this.addListener("appear", this._onContainerUpdate, this);
-      qx.event.Registration.addListener(this.__P_337_6.getContainerElement(), "transitionEnd", this._onScrollerTransitionEnd, this);
+      qx.event.Registration.addListener(this.__P_338_6.getContainerElement(), "transitionEnd", this._onScrollerTransitionEnd, this);
       qx.event.Registration.addListener(window, "orientationchange", this._onContainerUpdate, this);
       qx.event.Registration.addListener(window, "resize", this._onContainerUpdate, this);
       qx.event.Registration.addListener(this.getContentElement(), "scroll", this._onNativeScroll, this);
-      var pagination = this.__P_337_7 = new qx.ui.mobile.container.Composite();
+      var pagination = this.__P_338_7 = new qx.ui.mobile.container.Composite();
       pagination.setLayout(new qx.ui.mobile.layout.HBox());
       pagination.setTransformUnit("px");
       pagination.addCssClass("carousel-pagination");
@@ -193,20 +193,20 @@
     *****************************************************************************
     */
     members: {
-      __P_337_6: null,
-      __P_337_8: null,
-      __P_337_9: null,
-      __P_337_5: null,
-      __P_337_7: null,
-      __P_337_0: null,
-      __P_337_1: null,
-      __P_337_2: null,
-      __P_337_3: null,
-      __P_337_4: null,
-      __P_337_10: null,
-      __P_337_11: null,
-      __P_337_12: null,
-      __P_337_13: null,
+      __P_338_6: null,
+      __P_338_8: null,
+      __P_338_9: null,
+      __P_338_5: null,
+      __P_338_7: null,
+      __P_338_0: null,
+      __P_338_1: null,
+      __P_338_2: null,
+      __P_338_3: null,
+      __P_338_4: null,
+      __P_338_10: null,
+      __P_338_11: null,
+      __P_338_12: null,
+      __P_338_13: null,
       // overridden
 
       /**
@@ -216,17 +216,17 @@
       add: function add(page) {
         page.addCssClass("carousel-page");
 
-        this.__P_337_4.push(page);
+        this.__P_338_4.push(page);
 
-        this.__P_337_6.add(page, {
+        this.__P_338_6.add(page, {
           flex: 1
         });
 
         var paginationLabel = this._createPaginationLabel();
 
-        this.__P_337_5.push(paginationLabel);
+        this.__P_338_5.push(paginationLabel);
 
-        this.__P_337_7.add(paginationLabel);
+        this.__P_338_7.add(paginationLabel);
 
         this._setTransitionDuration(0);
 
@@ -239,17 +239,17 @@
        * @return {qx.ui.mobile.container.Composite} the page which was removed from carousel.
        */
       removePageByIndex: function removePageByIndex(pageIndex) {
-        if (this.__P_337_4 && this.__P_337_4.length > pageIndex) {
+        if (this.__P_338_4 && this.__P_338_4.length > pageIndex) {
           if (pageIndex <= this.getCurrentIndex() && this.getCurrentIndex() !== 0) {
             this.setCurrentIndex(this.getCurrentIndex() - 1);
           }
 
-          var targetPage = this.__P_337_4[pageIndex];
-          var paginationLabel = this.__P_337_5[pageIndex];
+          var targetPage = this.__P_338_4[pageIndex];
+          var paginationLabel = this.__P_338_5[pageIndex];
 
-          this.__P_337_6.remove(targetPage);
+          this.__P_338_6.remove(targetPage);
 
-          this.__P_337_7.remove(paginationLabel);
+          this.__P_338_7.remove(paginationLabel);
 
           paginationLabel.removeListener("tap", this._onPaginationLabelTap, {
             self: this,
@@ -257,9 +257,9 @@
           });
           qx.util.DisposeUtil.destroyContainer(paginationLabel);
 
-          this.__P_337_4.splice(pageIndex, 1);
+          this.__P_338_4.splice(pageIndex, 1);
 
-          this.__P_337_5.splice(pageIndex, 1);
+          this.__P_338_5.splice(pageIndex, 1);
 
           this._onContainerUpdate();
 
@@ -270,8 +270,8 @@
       removeAll: function removeAll() {
         var removedPages = [];
 
-        if (this.__P_337_4) {
-          for (var i = this.__P_337_4.length - 1; i >= 0; i--) {
+        if (this.__P_338_4) {
+          for (var i = this.__P_338_4.length - 1; i >= 0; i--) {
             removedPages.push(this.removePageByIndex(i));
           }
         }
@@ -283,8 +283,8 @@
        * Scrolls the carousel to next page.
        */
       nextPage: function nextPage() {
-        if (this.getCurrentIndex() == this.__P_337_4.length - 1) {
-          if (this.isScrollLoop() && this.__P_337_4.length > 1) {
+        if (this.getCurrentIndex() == this.__P_338_4.length - 1) {
+          if (this.isScrollLoop() && this.__P_338_4.length > 1) {
             this._doScrollLoop();
           }
         } else {
@@ -297,7 +297,7 @@
        */
       previousPage: function previousPage() {
         if (this.getCurrentIndex() === 0) {
-          if (this.isScrollLoop() && this.__P_337_4.length > 1) {
+          if (this.isScrollLoop() && this.__P_338_4.length > 1) {
             this._doScrollLoop();
           }
         } else {
@@ -310,8 +310,8 @@
       * @return {Integer} the current page count
       */
       getPageCount: function getPageCount() {
-        if (this.__P_337_4) {
-          return this.__P_337_4.length;
+        if (this.__P_338_4) {
+          return this.__P_338_4.length;
         }
 
         return 0;
@@ -323,18 +323,18 @@
        * @param showTransition {Boolean ? true} flag if a transition should be shown or not
        */
       _scrollToPage: function _scrollToPage(pageIndex, showTransition) {
-        if (pageIndex >= this.__P_337_4.length || pageIndex < 0) {
+        if (pageIndex >= this.__P_338_4.length || pageIndex < 0) {
           return;
         }
 
         this._updatePagination(pageIndex);
 
-        var snapPoint = -pageIndex * this.__P_337_9;
+        var snapPoint = -pageIndex * this.__P_338_9;
 
         this._updateScrollerPosition(snapPoint); // Update lastOffset, because snapPoint has changed.
 
 
-        this.__P_337_2[0] = snapPoint;
+        this.__P_338_2[0] = snapPoint;
       },
 
       /**
@@ -354,17 +354,17 @@
       * Event handler for <code>transitionEnd</code> event on carouselScroller.
       */
       _onScrollerTransitionEnd: function _onScrollerTransitionEnd() {
-        var opacity = qx.bom.element.Style.get(this.__P_337_6.getContainerElement(), "opacity");
+        var opacity = qx.bom.element.Style.get(this.__P_338_6.getContainerElement(), "opacity");
 
         if (opacity === 0) {
           var pageIndex = null;
 
-          if (this.getCurrentIndex() == this.__P_337_4.length - 1) {
+          if (this.getCurrentIndex() == this.__P_338_4.length - 1) {
             pageIndex = 0;
           }
 
           if (this.getCurrentIndex() === 0) {
-            pageIndex = this.__P_337_4.length - 1;
+            pageIndex = this.__P_338_4.length - 1;
           }
 
           this._setTransitionDuration(0);
@@ -383,7 +383,7 @@
        * @return {qx.ui.mobile.container.Composite} the created pagination label.
        */
       _createPaginationLabel: function _createPaginationLabel() {
-        var paginationIndex = this.__P_337_4.length;
+        var paginationIndex = this.__P_338_4.length;
         var paginationLabel = new qx.ui.mobile.container.Composite();
         var paginationLabelText = new qx.ui.mobile.basic.Label("" + paginationIndex);
         paginationLabel.add(paginationLabelText);
@@ -400,8 +400,8 @@
        * @param opacity {Integer} the target value of the opacity.
        */
       _setScrollersOpacity: function _setScrollersOpacity(opacity) {
-        if (this.__P_337_6) {
-          qx.bom.element.Style.set(this.__P_337_6.getContainerElement(), "opacity", opacity);
+        if (this.__P_338_6) {
+          qx.bom.element.Style.set(this.__P_338_6.getContainerElement(), "opacity", opacity);
         }
       },
 
@@ -411,11 +411,11 @@
        */
       _applyShowPagination: function _applyShowPagination(value, old) {
         if (value) {
-          if (this.__P_337_4.length > 1) {
-            this.__P_337_7.show();
+          if (this.__P_338_4.length > 1) {
+            this.__P_338_7.show();
           }
         } else {
-          this.__P_337_7.hide();
+          this.__P_338_7.hide();
         }
       },
 
@@ -435,7 +435,7 @@
         }
 
         var carouselSize = qx.bom.element.Dimension.getSize(this.getContainerElement());
-        this.__P_337_9 = carouselSize.width;
+        this.__P_338_9 = carouselSize.width;
 
         if (this.getHeight() !== null) {
           this._setStyle("height", this.getHeight() / 16 + "rem");
@@ -443,20 +443,20 @@
           this._setStyle("height", "100%");
         }
 
-        qx.bom.element.Style.set(this.__P_337_6.getContentElement(), "width", this.__P_337_4.length * carouselSize.width + "px");
+        qx.bom.element.Style.set(this.__P_338_6.getContentElement(), "width", this.__P_338_4.length * carouselSize.width + "px");
 
-        for (var i = 0; i < this.__P_337_4.length; i++) {
-          var pageContentElement = this.__P_337_4[i].getContentElement();
+        for (var i = 0; i < this.__P_338_4.length; i++) {
+          var pageContentElement = this.__P_338_4[i].getContentElement();
 
           qx.bom.element.Style.set(pageContentElement, "width", carouselSize.width + "px");
           qx.bom.element.Style.set(pageContentElement, "height", carouselSize.height + "px");
         }
 
-        if (this.__P_337_4.length == 1) {
-          this.__P_337_7.exclude();
+        if (this.__P_338_4.length == 1) {
+          this.__P_338_7.exclude();
         } else {
           if (this.isShowPagination()) {
-            this.__P_337_7.show();
+            this.__P_338_7.show();
           }
         }
 
@@ -467,7 +467,7 @@
        * Synchronizes the positions of the scroller to the current shown page index.
        */
       _refreshScrollerPosition: function _refreshScrollerPosition() {
-        this.__P_337_8 = qx.bom.element.Dimension.getWidth(this.__P_337_6.getContentElement());
+        this.__P_338_8 = qx.bom.element.Dimension.getWidth(this.__P_338_6.getContentElement());
 
         this._scrollToPage(this.getCurrentIndex());
       },
@@ -488,7 +488,7 @@
        * @return {Number} the horizontal position
        */
       _getScrollerOffset: function _getScrollerOffset() {
-        var transformMatrix = qx.bom.element.Style.get(this.__P_337_6.getContentElement(), "transform");
+        var transformMatrix = qx.bom.element.Style.get(this.__P_338_6.getContentElement(), "transform");
         var transformValueArray = transformMatrix.substr(7, transformMatrix.length - 8).split(', ');
         var i = 4; // Check if MSCSSMatrix is used.
 
@@ -508,11 +508,11 @@
           return;
         }
 
-        this.__P_337_2[0] = this._getScrollerOffset();
-        this.__P_337_11 = null;
-        this.__P_337_3[0] = -this.__P_337_8 + this.__P_337_9;
+        this.__P_338_2[0] = this._getScrollerOffset();
+        this.__P_338_11 = null;
+        this.__P_338_3[0] = -this.__P_338_8 + this.__P_338_9;
 
-        this._updateScrollerPosition(this.__P_337_2[0]);
+        this._updateScrollerPosition(this.__P_338_2[0]);
       },
 
       /**
@@ -526,25 +526,25 @@
 
         this._setTransitionDuration(0);
 
-        this.__P_337_12 = evt.getDelta().x;
-        this.__P_337_13 = evt.getDelta().y;
+        this.__P_338_12 = evt.getDelta().x;
+        this.__P_338_13 = evt.getDelta().y;
 
-        if (this.__P_337_11 === null) {
-          this.__P_337_11 = evt.getDelta().axis == "y";
+        if (this.__P_338_11 === null) {
+          this.__P_338_11 = evt.getDelta().axis == "y";
         }
 
-        if (!this.__P_337_11) {
-          this.__P_337_1[0] = Math.floor(this.__P_337_12 + this.__P_337_2[0]);
+        if (!this.__P_338_11) {
+          this.__P_338_1[0] = Math.floor(this.__P_338_12 + this.__P_338_2[0]);
 
-          if (this.__P_337_1[0] >= this.__P_337_3[1]) {
-            this.__P_337_1[0] = this.__P_337_3[1];
+          if (this.__P_338_1[0] >= this.__P_338_3[1]) {
+            this.__P_338_1[0] = this.__P_338_3[1];
           }
 
-          if (this.__P_337_1[0] <= this.__P_337_3[0]) {
-            this.__P_337_1[0] = this.__P_337_3[0];
+          if (this.__P_338_1[0] <= this.__P_338_3[0]) {
+            this.__P_338_1[0] = this.__P_338_3[0];
           }
 
-          this._updateScrollerPosition(this.__P_337_1[0]);
+          this._updateScrollerPosition(this.__P_338_1[0]);
 
           evt.preventDefault();
         }
@@ -574,7 +574,7 @@
         }
 
         if (evt.getDuration() < 750 && Math.abs(evt.getDistance()) > 50) {
-          var duration = this._calculateTransitionDuration(this.__P_337_12, evt.getDuration());
+          var duration = this._calculateTransitionDuration(this.__P_338_12, evt.getDuration());
 
           duration = Math.min(this.getTransitionDuration(), duration);
 
@@ -598,7 +598,7 @@
       * @return {Number} the transition duration.
       */
       _calculateTransitionDuration: function _calculateTransitionDuration(deltaX, duration) {
-        var distanceX = this.__P_337_9 - Math.abs(deltaX);
+        var distanceX = this.__P_338_9 - Math.abs(deltaX);
         var transitionDuration = distanceX / Math.abs(deltaX) * duration;
         return transitionDuration / 1000;
       },
@@ -620,7 +620,7 @@
       * @param value {Number} the target value of the transitionDuration.
       */
       _setTransitionDuration: function _setTransitionDuration(value) {
-        qx.bom.element.Style.set(this.__P_337_6.getContentElement(), "transitionDuration", value + "s");
+        qx.bom.element.Style.set(this.__P_338_6.getContentElement(), "transitionDuration", value + "s");
       },
 
       /**
@@ -634,9 +634,9 @@
         var leastDistance = 10000;
         var nearestPageIndex = 0; // Determine nearest snapPoint.
 
-        for (var i = 0; i < this.__P_337_4.length; i++) {
-          var snapPoint = -i * this.__P_337_9;
-          var distance = this.__P_337_1[0] - snapPoint;
+        for (var i = 0; i < this.__P_338_4.length; i++) {
+          var snapPoint = -i * this.__P_338_9;
+          var distance = this.__P_338_1[0] - snapPoint;
 
           if (Math.abs(distance) < leastDistance) {
             leastDistance = Math.abs(distance);
@@ -658,36 +658,36 @@
        * @param newActiveIndex {Integer} Index of paginationLabel which should have active state
        */
       _updatePagination: function _updatePagination(newActiveIndex) {
-        for (var i = 0; i < this.__P_337_5.length; i++) {
-          this.__P_337_5[i].removeCssClass("active");
+        for (var i = 0; i < this.__P_338_5.length; i++) {
+          this.__P_338_5[i].removeCssClass("active");
         }
 
-        var newActiveLabel = this.__P_337_5[newActiveIndex];
+        var newActiveLabel = this.__P_338_5[newActiveIndex];
 
         if (newActiveLabel && newActiveLabel.getContainerElement()) {
           newActiveLabel.addCssClass("active");
         }
 
-        if (this.__P_337_5.length) {
-          var paginationStyle = window.getComputedStyle(this.__P_337_7.getContentElement());
+        if (this.__P_338_5.length) {
+          var paginationStyle = window.getComputedStyle(this.__P_338_7.getContentElement());
           var paginationWidth = parseFloat(paginationStyle.width, 10);
 
           if (isNaN(paginationWidth)) {
             return;
           }
 
-          var paginationLabelWidth = paginationWidth / this.__P_337_5.length;
+          var paginationLabelWidth = paginationWidth / this.__P_338_5.length;
           var left = null;
-          var translate = this.__P_337_9 / 2 - newActiveIndex * paginationLabelWidth - paginationLabelWidth / 2;
+          var translate = this.__P_338_9 / 2 - newActiveIndex * paginationLabelWidth - paginationLabelWidth / 2;
 
-          if (paginationWidth < this.__P_337_9) {
-            left = this.__P_337_9 / 2 - paginationWidth / 2 + "px";
+          if (paginationWidth < this.__P_338_9) {
+            left = this.__P_338_9 / 2 - paginationWidth / 2 + "px";
             translate = 0;
           }
 
-          qx.bom.element.Style.set(this.__P_337_7.getContentElement(), "left", left);
+          qx.bom.element.Style.set(this.__P_338_7.getContentElement(), "left", left);
 
-          this.__P_337_7.setTranslateX(translate);
+          this.__P_338_7.setTranslateX(translate);
         }
       },
 
@@ -696,26 +696,26 @@
        * @param x {Integer} scroller's x position.
        */
       _updateScrollerPosition: function _updateScrollerPosition(x) {
-        if (isNaN(x) || this.__P_337_6.getContentElement() === null) {
+        if (isNaN(x) || this.__P_338_6.getContentElement() === null) {
           return;
         }
 
-        this.__P_337_6.setTranslateX(x);
+        this.__P_338_6.setTranslateX(x);
       },
 
       /**
        * Remove all listeners.
        */
       _removeListeners: function _removeListeners() {
-        this.__P_337_6.removeListener("pointerdown", this._onPointerDown, this);
+        this.__P_338_6.removeListener("pointerdown", this._onPointerDown, this);
 
-        this.__P_337_6.removeListener("track", this._onTrack, this);
+        this.__P_338_6.removeListener("track", this._onTrack, this);
 
-        this.__P_337_6.removeListener("pointerup", this._onPointerUp, this);
+        this.__P_338_6.removeListener("pointerup", this._onPointerUp, this);
 
-        this.__P_337_6.removeListener("swipe", this._onSwipe, this);
+        this.__P_338_6.removeListener("swipe", this._onSwipe, this);
 
-        this.__P_337_6.removeListener("touchmove", qx.bom.Event.preventDefault, this);
+        this.__P_338_6.removeListener("touchmove", qx.bom.Event.preventDefault, this);
 
         this.removeListener("appear", this._onContainerUpdate, this);
         qx.event.Registration.removeListener(window, "orientationchange", this._onContainerUpdate, this);
@@ -726,14 +726,14 @@
     destruct: function destruct() {
       this._removeListeners();
 
-      this._disposeObjects("__P_337_6", " __pagination");
+      this._disposeObjects("__P_338_6", " __pagination");
 
       qx.util.DisposeUtil.destroyContainer(this);
-      qx.util.DisposeUtil.disposeArray(this, "__P_337_5");
-      this.__P_337_4 = this.__P_337_5 = this.__P_337_0 = this.__P_337_1 = this.__P_337_2 = this.__P_337_3 = this.__P_337_11 = null;
+      qx.util.DisposeUtil.disposeArray(this, "__P_338_5");
+      this.__P_338_4 = this.__P_338_5 = this.__P_338_0 = this.__P_338_1 = this.__P_338_2 = this.__P_338_3 = this.__P_338_11 = null;
     }
   });
   qx.ui.mobile.container.Carousel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Carousel.js.map?dt=1592777099958
+//# sourceMappingURL=Carousel.js.map?dt=1603737141286

@@ -91,7 +91,7 @@
      * @param layout {qx.ui.mobile.layout.Abstract ? qx.ui.mobile.layout.VBox} The layout of the root widget.
      */
     construct: function construct(root, layout) {
-      this.__P_345_0 = root || document.body;
+      this.__P_346_0 = root || document.body;
       qx.ui.mobile.container.Composite.constructor.call(this, layout || new qx.ui.mobile.layout.VBox());
       this.addCssClass("mobile");
       this.addCssClass(qx.core.Environment.get("os.name"));
@@ -162,10 +162,10 @@
     *****************************************************************************
     */
     members: {
-      __P_345_0: null,
+      __P_346_0: null,
       // overridden
       _createContainerElement: function _createContainerElement() {
-        return this.__P_345_0;
+        return this.__P_346_0;
       },
       // property apply
       _applyShowScrollbarY: function _applyShowScrollbarY(value, old) {
@@ -262,7 +262,7 @@
       * @return {Integer} the width of the container element.
       */
       getWidth: function getWidth() {
-        return qx.bom.element.Dimension.getWidth(this.__P_345_0);
+        return qx.bom.element.Dimension.getWidth(this.__P_346_0);
       },
 
       /**
@@ -270,7 +270,7 @@
       * @return {Integer} the height of the container element.
       */
       getHeight: function getHeight() {
-        return qx.bom.element.Dimension.getHeight(this.__P_345_0);
+        return qx.bom.element.Dimension.getHeight(this.__P_346_0);
       },
 
       /**
@@ -311,7 +311,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_345_0 = null;
+      this.__P_346_0 = null;
       this.removeListener("touchmove", qx.bom.Event.preventDefault, this);
       qx.event.Registration.removeListener(window, "orientationchange", this._onOrientationChange, this);
     }
@@ -319,4 +319,4 @@
   qx.ui.mobile.core.Root.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Root.js.map?dt=1592777100571
+//# sourceMappingURL=Root.js.map?dt=1603737141850

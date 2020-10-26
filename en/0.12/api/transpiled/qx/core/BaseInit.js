@@ -63,7 +63,7 @@
     *****************************************************************************
     */
     statics: {
-      __P_124_0: null,
+      __P_125_0: null,
 
       /**
        * Returns the instantiated qooxdoo application.
@@ -71,7 +71,7 @@
        * @return {qx.core.Object} The application instance.
        */
       getApplication: function getApplication() {
-        return this.__P_124_0 || null;
+        return this.__P_125_0 || null;
       },
 
       /**
@@ -80,7 +80,7 @@
        *
        */
       ready: function ready() {
-        if (this.__P_124_0) {
+        if (this.__P_125_0) {
           return;
         }
 
@@ -101,15 +101,15 @@
         var clazz = qx.Class.getByName(app);
 
         if (clazz) {
-          this.__P_124_0 = new clazz();
+          this.__P_125_0 = new clazz();
           var start = new Date();
 
-          this.__P_124_0.main();
+          this.__P_125_0.main();
 
           qx.log.Logger.debug(this, "Main runtime: " + (new Date() - start) + "ms");
           var start = new Date();
 
-          this.__P_124_0.finalize();
+          this.__P_125_0.finalize();
 
           qx.log.Logger.debug(this, "Finalize runtime: " + (new Date() - start) + "ms");
           qx.event.handler.Application.onAppInstanceInitialized();
@@ -124,8 +124,8 @@
        *
        * @param e {qx.event.type.Native} Incoming beforeunload event.
        */
-      __P_124_1: function __P_124_1(e) {
-        var app = this.__P_124_0;
+      __P_125_1: function __P_125_1(e) {
+        var app = this.__P_125_0;
 
         if (app) {
           app.close();
@@ -137,8 +137,8 @@
        * created application instance.
        *
        */
-      __P_124_2: function __P_124_2() {
-        var app = this.__P_124_0;
+      __P_125_2: function __P_125_2() {
+        var app = this.__P_125_0;
 
         if (app) {
           app.terminate();
@@ -149,4 +149,4 @@
   qx.core.BaseInit.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseInit.js.map?dt=1592777081098
+//# sourceMappingURL=BaseInit.js.map?dt=1603737124420

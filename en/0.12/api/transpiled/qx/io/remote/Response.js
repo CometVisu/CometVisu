@@ -80,7 +80,7 @@
     *****************************************************************************
     */
     members: {
-      __P_214_0: null,
+      __P_215_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -104,8 +104,8 @@
        * @return {Object | null} The header value or null;
        */
       getResponseHeader: function getResponseHeader(vHeader) {
-        if (this.__P_214_0) {
-          return this.__P_214_0[vHeader.toLowerCase()] || null;
+        if (this.__P_215_0) {
+          return this.__P_215_0[vHeader.toLowerCase()] || null;
         }
 
         return null;
@@ -125,7 +125,7 @@
           Object.keys(value).forEach(function (key) {
             lowerHeaders[key.toLowerCase()] = value[key];
           });
-          this.__P_214_0 = lowerHeaders;
+          this.__P_215_0 = lowerHeaders;
         }
       }
     }
@@ -133,4 +133,4 @@
   qx.io.remote.Response.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Response.js.map?dt=1592777088431
+//# sourceMappingURL=Response.js.map?dt=1603737130928

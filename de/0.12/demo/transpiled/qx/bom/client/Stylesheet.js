@@ -53,12 +53,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {StyleSheet} Stylesheet element
        */
-      __P_165_0: function __P_165_0() {
-        if (!qx.bom.client.Stylesheet.__P_165_1) {
-          qx.bom.client.Stylesheet.__P_165_1 = qx.bom.Stylesheet.createElement();
+      __P_166_0: function __P_166_0() {
+        if (!qx.bom.client.Stylesheet.__P_166_1) {
+          qx.bom.client.Stylesheet.__P_166_1 = qx.bom.Stylesheet.createElement();
         }
 
-        return qx.bom.client.Stylesheet.__P_165_1;
+        return qx.bom.client.Stylesheet.__P_166_1;
       },
 
       /**
@@ -82,7 +82,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if insertRule is supported
        */
       getInsertRule: function getInsertRule() {
-        return typeof qx.bom.client.Stylesheet.__P_165_0().insertRule === "function";
+        return typeof qx.bom.client.Stylesheet.__P_166_0().insertRule === "function";
       },
 
       /**
@@ -92,7 +92,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if deleteRule is supported
        */
       getDeleteRule: function getDeleteRule() {
-        return typeof qx.bom.client.Stylesheet.__P_165_0().deleteRule === "function";
+        return typeof qx.bom.client.Stylesheet.__P_166_0().deleteRule === "function";
       },
 
       /**
@@ -103,7 +103,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if stylesheet.addImport is supported
        */
       getAddImport: function getAddImport() {
-        return _typeof(qx.bom.client.Stylesheet.__P_165_0().addImport) === "object";
+        return _typeof(qx.bom.client.Stylesheet.__P_166_0().addImport) === "object";
       },
 
       /**
@@ -114,7 +114,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if stylesheet.removeImport is supported
        */
       getRemoveImport: function getRemoveImport() {
-        return _typeof(qx.bom.client.Stylesheet.__P_165_0().removeImport) === "object";
+        return _typeof(qx.bom.client.Stylesheet.__P_166_0().removeImport) === "object";
       }
     },
     defer: function defer(statics) {
@@ -128,4 +128,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.bom.client.Stylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stylesheet.js.map?dt=1592778974360
+//# sourceMappingURL=Stylesheet.js.map?dt=1603737750555

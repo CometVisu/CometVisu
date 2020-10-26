@@ -46,7 +46,7 @@
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_305_0 = qx.util.placement.DirectAxis;
+      this.__P_306_0 = qx.util.placement.DirectAxis;
     },
     properties: {
       /**
@@ -80,7 +80,7 @@
       }
     },
     statics: {
-      __P_305_1: null,
+      __P_306_1: null,
 
       /**
        * DOM and widget independent method to compute the location
@@ -118,23 +118,23 @@
        *   <code>left</code> and <code>top</code>.
        */
       compute: function compute(size, area, target, offsets, position, modeX, modeY) {
-        this.__P_305_1 = this.__P_305_1 || new qx.util.placement.Placement();
+        this.__P_306_1 = this.__P_306_1 || new qx.util.placement.Placement();
         var splitted = position.split("-");
         var edge = splitted[0];
         var align = splitted[1];
 
-        this.__P_305_1.set({
-          axisX: this.__P_305_2(modeX),
-          axisY: this.__P_305_2(modeY),
+        this.__P_306_1.set({
+          axisX: this.__P_306_2(modeX),
+          axisY: this.__P_306_2(modeY),
           edge: edge,
           align: align
         });
 
-        return this.__P_305_1.compute(size, area, target, offsets);
+        return this.__P_306_1.compute(size, area, target, offsets);
       },
-      __P_305_3: null,
-      __P_305_4: null,
-      __P_305_5: null,
+      __P_306_3: null,
+      __P_306_4: null,
+      __P_306_5: null,
 
       /**
        * Get the axis implementation for the given mode
@@ -143,19 +143,19 @@
        *   <code>best-fit</code>
        * @return {qx.util.placement.AbstractAxis}
        */
-      __P_305_2: function __P_305_2(mode) {
+      __P_306_2: function __P_306_2(mode) {
         switch (mode) {
           case "direct":
-            this.__P_305_3 = this.__P_305_3 || qx.util.placement.DirectAxis;
-            return this.__P_305_3;
+            this.__P_306_3 = this.__P_306_3 || qx.util.placement.DirectAxis;
+            return this.__P_306_3;
 
           case "keep-align":
-            this.__P_305_4 = this.__P_305_4 || qx.util.placement.KeepAlignAxis;
-            return this.__P_305_4;
+            this.__P_306_4 = this.__P_306_4 || qx.util.placement.KeepAlignAxis;
+            return this.__P_306_4;
 
           case "best-fit":
-            this.__P_305_5 = this.__P_305_5 || qx.util.placement.BestFitAxis;
-            return this.__P_305_5;
+            this.__P_306_5 = this.__P_306_5 || qx.util.placement.BestFitAxis;
+            return this.__P_306_5;
 
           default:
             throw new Error("Invalid 'mode' argument!'");
@@ -163,7 +163,7 @@
       }
     },
     members: {
-      __P_305_0: null,
+      __P_306_0: null,
 
       /**
        * DOM and widget independent method to compute the location
@@ -184,7 +184,7 @@
        *   <code>left</code> and <code>top</code>.
        */
       compute: function compute(size, area, target, offsets) {
-        var axisX = this.getAxisX() || this.__P_305_0;
+        var axisX = this.getAxisX() || this.__P_306_0;
 
         var left = axisX.computeStart(size.width, {
           start: target.left,
@@ -192,9 +192,9 @@
         }, {
           start: offsets.left,
           end: offsets.right
-        }, area.width, this.__P_305_6());
+        }, area.width, this.__P_306_6());
 
-        var axisY = this.getAxisY() || this.__P_305_0;
+        var axisY = this.getAxisY() || this.__P_306_0;
 
         var top = axisY.computeStart(size.height, {
           start: target.top,
@@ -202,7 +202,7 @@
         }, {
           start: offsets.top,
           end: offsets.bottom
-        }, area.height, this.__P_305_7());
+        }, area.height, this.__P_306_7());
         return {
           left: left,
           top: top
@@ -214,7 +214,7 @@
        *
        * @return {String} the position
        */
-      __P_305_6: function __P_305_6() {
+      __P_306_6: function __P_306_6() {
         var edge = this.getEdge();
         var align = this.getAlign();
 
@@ -236,7 +236,7 @@
        *
        * @return {String} the position
        */
-      __P_305_7: function __P_305_7() {
+      __P_306_7: function __P_306_7() {
         var edge = this.getEdge();
         var align = this.getAlign();
 
@@ -254,10 +254,10 @@
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_305_0");
+      this._disposeObjects("__P_306_0");
     }
   });
   qx.util.placement.Placement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Placement.js.map?dt=1592778985241
+//# sourceMappingURL=Placement.js.map?dt=1603737761112
