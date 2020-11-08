@@ -27,6 +27,7 @@ def check_for_changes(type = 'cv'):
     )
     r = requests.get('%s/versions/%s/files?include_unpublished=1' % (base_url, bintray_version), auth=(os.environ['BINTRAY_USER'], os.environ['BINTRAY_KEY']))
     newest_build_time = None
+    build = True
     if r.status_code == 200:
         for file in r.json():
             build_time = datetime.strptime(file['created'], '%Y-%m-%dT%H:%M:%S.%fz')
@@ -36,14 +37,14 @@ def check_for_changes(type = 'cv'):
             elif type == 'client' and 'CometVisuClient' in file['name']:
                 if newest_build_time is None or newest_build_time < build_time:
                     newest_build_time = build_time
+        if newest_build_time is not None:
+            raw = sh.git('--no-pager', 'log', '--pretty=format:', '--name-only', '--since="%s"' % newest_build_time, source_dir if type == 'cv' else client_dir)
+            changed_files = [x.rstrip("\n") for x in raw if len(x.rstrip("\n")) > 0]
+            build = len(changed_files) > 0
 
-    build = True
-
-    if newest_build_time is not None:
-        raw = sh.git('--no-pager', 'log', '--pretty=format:', '--name-only', '--since="%s"' % newest_build_time, source_dir if type == 'cv' else client_dir)
-        changed_files = [x.rstrip("\n") for x in raw if len(x.rstrip("\n")) > 0]
-        build = len(changed_files) > 0
-
+    else:
+        build = False    
+    
     print(1 if build else 0)
 
 if __name__ == '__main__':

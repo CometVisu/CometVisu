@@ -29,7 +29,7 @@ parser = etree.XMLParser(schema=xsd)
 class WidgetExampleParser:
 
     config_parts = {
-        "start": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0">',
+        "start": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="9" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0">',
         "meta": '<meta/>',
         "content_start": '<page name="Example">',
         "content_end": '</page>',

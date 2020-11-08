@@ -90,8 +90,8 @@ jobs:
   - name: "[NIGHTLY] - Build and push Nightly Build"
     if: type = cron OR commit_message =~ /^\[ci nightly\].*/
     script: &3
-    - 'CLIENT_CHANGES=`./utils/travis/check-changes.py cv`'
-    - 'CORE_CHANGES=`./utils/travis/check-changes.py client`'
+    - 'CLIENT_CHANGES=`./utils/travis/check-changes.py client`'
+    - 'CORE_CHANGES=`./utils/travis/check-changes.py cv`'
     - export DEPLOY_NIGHTLY=0
     - if [[ ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0) ]]; then export DEPLOY_NIGHTLY=1; fi
     - if [[ ${TRAVIS_COMMIT_MESSAGE:0:12} == "[ci nightly]" ]]; then export DEPLOY_NIGHTLY=1; export CORE_CHANGES=1; fi
