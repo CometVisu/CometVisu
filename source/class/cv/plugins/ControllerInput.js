@@ -520,7 +520,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/controllerinput/controllerinput.css');
     // register the parser
-    cv.parser.WidgetParser.addHandler("controllerinput", statics);
+    cv.parser.WidgetParser.addHandler("controllerinput", cv.plugins.ControllerInput);
     cv.ui.structure.WidgetFactory.registerClass("controllerinput", statics);
   }
 });
