@@ -61,6 +61,11 @@
             "cv.plugins.ColorChooser"
           ]
         },
+        "plugin-controllerinput": {
+          "include": [
+            "cv.plugins.ControllerInput"
+          ]
+        },
         "plugin-calendarlist": {
           "include": [
             "cv.plugins.CalendarList"
