@@ -54,7 +54,9 @@
         },
         "plugin-diagram": {
           "include": [
-            "cv.plugins.diagram.*"
+            "cv.plugins.diagram.Info",
+            "cv.plugins.diagram.Diagram"
+            //"cv.plugins.diagram.*"
           ]
         },
         "plugin-clock": {
