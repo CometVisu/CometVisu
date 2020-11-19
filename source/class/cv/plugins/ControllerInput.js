@@ -31,7 +31,7 @@
  * @asset(plugins/controllerinput/controllerinput.css)
  */
 qx.Class.define('cv.plugins.ControllerInput', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.plugins.diagram.AbstractDiagram, // cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update, cv.ui.common.Operate],
 
   /*
@@ -43,9 +43,12 @@ qx.Class.define('cv.plugins.ControllerInput', {
     DEFAULTS: {},
 
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      //var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      var data = cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
+      console.log('CI parse', data);
+      return data;
 
       // get min/max from transform if not set by xml
       if (!data.hasOwnProperty('min') || data.hasOwnProperty('max')) {
@@ -157,13 +160,14 @@ qx.Class.define('cv.plugins.ControllerInput', {
     _inAction: false,
 
     _onDomReady: function () {
+      console.log('CI onDomReady');
+      return;
       if (!this.$$domReady) {
         this.initListeners();
         this.fireEvent("domReady");
         this.$$domReady = true;
         this.updateSetpoint(this.getPath(), '-', 0, 0);
         qx.bom.element.Class.remove(this.getActor(), 'notransition');
-
         /*
         var
           handler = $('#' + path + ' .handler' ),
@@ -213,9 +217,10 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     __init: function() {
-      this.createSparkline();
-      this.getRRDData();
+      //this.createSparkline();
+      //this.getRRDData();
     },
+
 
     _getInnerDomString: function () {
       return '<div class="actor notransition"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow" style="transform:translate(-999cm,0)"></div><div class="handler" style="transform:translate(-999cm,0)"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">' + this.getMin() + '</div><div class="smallvalue right">' + this.getMax() + '</div><div class="sparkline"></div></div>';
