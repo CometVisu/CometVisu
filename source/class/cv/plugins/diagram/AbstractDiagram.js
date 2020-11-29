@@ -175,6 +175,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           tsType    : elem.tagName,
           src       : src,
           color     : elem.getAttribute('color'),
+          variant   : elem.getAttribute('variant'), // optional meta information, might be used by derived classes
           label     : elem.getAttribute('label') || src,
           axisIndex : axesNameIndex[elem.getAttribute('yaxis')] || 1,
           steps     : steps,
@@ -615,7 +616,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
 
       // plot diagram initially with empty values
-      var diagram = isPopup ? $( '#' + this.getPath() + '_big' ) : $( '#' + this.getPath() + ' .actor div' );
+      var diagram = isPopup ? $( '#' + this.getPath() + '_big' ) : $( '#' + this.getPath() + ' .actor div.diagram' );
       diagram.empty();
       var plot = $.plot(diagram, [], options);
       if( isPopup ) {
