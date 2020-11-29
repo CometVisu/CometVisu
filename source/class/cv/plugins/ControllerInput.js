@@ -32,7 +32,7 @@
  */
 qx.Class.define('cv.plugins.ControllerInput', {
   extend: cv.plugins.diagram.AbstractDiagram, // cv.ui.structure.AbstractWidget,
-  include: [cv.ui.common.Update, cv.ui.common.Operate],
+  include: [cv.ui.common.Update], //, cv.ui.common.Operate],
 
   /*
   ******************************************************
@@ -40,15 +40,13 @@ qx.Class.define('cv.plugins.ControllerInput', {
   ******************************************************
   */
   statics: {
-    DEFAULTS: {},
+    //DEFAULTS: {},
 
-    parse: function (xml, path, flavour, pageType) {
+    parse: function (xml, path, flavour, pageType, mappings) {
       //var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
-      var data = cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType);
+      var data = cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType, mappings);
       cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path);
-      console.log('CI parse', data);
-      return data;
+      cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
       // get min/max from transform if not set by xml
       if (!data.hasOwnProperty('min') || data.hasOwnProperty('max')) {
@@ -75,22 +73,12 @@ qx.Class.define('cv.plugins.ControllerInput', {
         }
       }
 
-      data.rrd = {};
-      qx.bom.Selector.query("rrd", xml).forEach(function(elem) {
-        var variant = elem.getAttribute('variant');
-        if( variant ) {
-          data.rrd[variant] = {
-            src: qx.dom.Node.getText(elem),
-            cFunc: 'AVERAGE',
-            start: 'end-1day',
-            end: 'now',
-            resol: 300,
-            scaling: 1.0,
-            dsIndex: 0
-          };
-        }
-      });
+      console.log('CI parse', data);
       return data;
+    },
+
+    makeAddressListFn: function( src, transform, mode, variant ) {
+      return [ true, variant ];
     },
 
     getAttributeToPropertyMappings: function() {
@@ -107,6 +95,16 @@ qx.Class.define('cv.plugins.ControllerInput', {
         'rrd'            : {}
       };
     }
+  },
+
+  /*
+   ******************************************************
+   CONSTRUCTOR
+   ******************************************************
+   */
+  construct: function(props) {
+    this._init = true;
+    this.base(arguments, props);
   },
 
   /*
@@ -160,151 +158,65 @@ qx.Class.define('cv.plugins.ControllerInput', {
     _inAction: false,
 
     _onDomReady: function () {
-      console.log('CI onDomReady');
-      return;
+      console.log('CI onDomReady', this.$$domReady);
+      this.setLegendInline(false);
+
       if (!this.$$domReady) {
+        var pageId = this.getParentPage().getPath();
+        var broker = qx.event.message.Bus;
+        console.log(pageId, broker, this.getContent());
+        let content = this.getContent();
+        for( let i = 0; i < content.ts.length; i++ )
+        {
+          if( content.ts[i].color === null ) {
+            switch( content.ts[i].variant ) {
+              case 'actual':
+                content.ts[i].color = this.getColorActual();
+                break;
+
+              case 'setpoint':
+                content.ts[i].color = this.getColorSetpoint();
+                break;
+
+              case 'control':
+                content.ts[i].color = this.getColorControl();
+                break;
+            }
+          }
+        }
+        this.setContent( content );
+
+        // let the refresh only be active when this widget is visible
+        this.setRestartOnVisible(true);
+
+        broker.subscribe("path." + pageId + ".beforePageChange", function () {
+          if (!this._init) {
+            console.log('CI beforePageChange - loadDiagramData');
+            this.loadDiagramData(this.plot, false, false);
+          }
+        }, this);
+
+        broker.subscribe("page." + pageId + ".appear", function () {
+          // create diagram when it's not already existing
+          if (this._init) {
+            console.log('CI appear - initDiagram');
+            this.initDiagram(false);
+          }
+        }, this);
+
         this.initListeners();
         this.fireEvent("domReady");
         this.$$domReady = true;
-        this.updateSetpoint(this.getPath(), '-', 0, 0);
+        this.updateSetpoint(this.getPath(), '-', 0);
         qx.bom.element.Class.remove(this.getActor(), 'notransition');
-        /*
-        var
-          handler = $('#' + path + ' .handler' ),
-          mouseDown = false,
-          dx, dy;
-
-        this.debug( handler );
-        handler.mousedown( function(e){
-          this.debug(e);
-          if(e.which == 1){
-            mouseDown = true;
-            dx = e.clientX - this.offsetLeft;
-            dy = e.clientY - this.offsetTop;
-          }
-        });
-        $(window).on("mousemove", function(e){
-          if(!mouseDown) return false;
-
-                  var p = e.clientX - dx, q = e.clientY - dy,
-              a1 = ele1.offsetLeft, b1 = ele2.offsetTop,
-              a2 = ele1.offsetLeft, b2 = ele2.offsetTop;
-
-
-          this.debug( dx,dy,p,q,a1,b1,a2,b2);
-          e.preventDefault();
-        }).mouseup(function(){
-            mouseDown = false;
-        });
-        */
-
-
-        //setTimeout( createSparkline, 3000 );
-        if (this.isVisible()) {
-          new qx.util.DeferredCall(this.__init, this).schedule();
-        } else {
-          this.__vlid1 = this.addListener("changeVisible", function(ev) {
-            if (ev.getData()) {
-              this.__init();
-              this.removeListenerById(this.__vlid1);
-              this.__vlid1 = null;
-            }
-          }, this);
-        }
-
-        //templateEngine.lookupRRDcache( rrd, start, end, res, refresh, force, callback );
       }
     },
 
-    __init: function() {
-      //this.createSparkline();
-      //this.getRRDData();
-    },
-
-
     _getInnerDomString: function () {
-      return '<div class="actor notransition"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow" style="transform:translate(-999cm,0)"></div><div class="handler" style="transform:translate(-999cm,0)"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">' + this.getMin() + '</div><div class="smallvalue right">' + this.getMax() + '</div><div class="sparkline"></div></div>';
+      return '<div class="actor notransition"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow" style="transform:translate(-999cm,0)"></div><div class="handler" style="transform:translate(-999cm,0)"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">' + this.getMin() + '</div><div class="smallvalue right">' + this.getMax() + '</div><div class="sparkline diagram"></div></div>';
     },
 
-    createSparkline: function() {
-      /*
-      var dataActual   = [ [0, 21], [1, 12], [2, 32], [3, 32], [4, 22], [5, 23], [6, 24], [7, 22], [8, 28], [9, 23], [10, 25], [11, 25], [12, 24] ];
-      var dataControl  = [ [0, 22], [1, 24], [2, 23], [3, 23], [4, 21], [5, 22], [6, 23], [7, 23], [8, 23], [9, 22], [10, 23], [11, 25], [12, 25] ];
-      var dataSetpoint = [ [0, 24], [1, 23], [2, 22], [3, 21], [4, 20], [5, 22], [6, 24], [7, 24], [8, 20], [9, 22], [10, 25], [11, 22], [12, 22] ];
-      */
-      var
-        dataActual = [[0, 0]],
-        dataControl = [[0, 0]],
-        dataSetpoint = [[0, 0]];
-      //debugger;
-      //this.debug( path );
-      var
-        dataLastX = dataActual[dataActual.length - 1][0],
-        element = this.getDomElement(),
-        XcolorActual = qx.bom.element.Style.get(element, 'border-top-color'),
-        XcolorSet = qx.bom.element.Style.get(element, 'border-top-color');
-
-      var options = {
-        xaxis: {
-          // extend graph to fit the last point
-          //max: dataLastX
-        },
-        yaxes: [
-          {min: this.getMin(), max: this.getMax()},
-          {min: 0, max: 100}
-        ],
-        grid: {
-          show: false,
-          margin: 2 * (cv.plugins.ControllerInput.DEFAULTS.sparklineSpotradius || 1) // make space for the round dots
-        }
-      };
-      //this.debug( options );
-
-      // main series
-      var series = [
-        this.createDataLine(1, this.getColorActual()),
-        this.createDataLine(2, this.getColorControl()),
-        this.createDataLine(1, this.getColorSetpoint()),
-        this.createDataPoint(1, this.getColorActual()),
-        this.createDataPoint(2, this.getColorControl()),
-        this.createDataPoint(1, this.getColorSetpoint())
-      ];
-
-      // draw the sparkline
-      // data.plot = $.plot('.sparkline', series, options);
-      return; // FIXME
-      this.plot = $(qx.bom.Selector.query('.sparkline', element)).plot(series, options).data('plot');
-      //this.debug(data.plot);
-    },
-
-    createDataLine: function( axis, color ) {
-      var defaults = cv.plugins.ControllerInput.DEFAULTS || {};
-      return {
-        data: [[0, 0]],
-        yaxis: axis,
-        color: color,
-        lines: {
-          lineWidth: defaults.sparklineWidth || 1
-        },
-        shadowSize: 0
-      };
-    },
-
-    createDataPoint: function( axis, color ) {
-      var defaults = cv.plugins.ControllerInput.DEFAULTS || {};
-      return {
-        data: [[0, 0]],
-        yaxis: axis,
-        points: {
-          show: true,
-          radius: defaults.sparklineSpotradius || 1,
-          fillColor: color
-        },
-        color: color
-      };
-    },
-
-    updateSetpoint: function ( id, format, value, percentage ) {
+    updateSetpoint: function ( id, value, percentage ) {
       var
         roundbar = $('#' + id + ' .roundbar'),
         roundbarStyle = roundbar.attr('style'),
@@ -338,118 +250,47 @@ qx.Class.define('cv.plugins.ControllerInput', {
       this.debug('uSP', $('#' + id + ' .actor')[0].className, isHidden);
       handler.css('transform', handlerTranslate);
       handlerVal.css('transform', 'rotate(' + (90 - percentage * 180) + 'deg)');
-      handlerVal.text(format ? sprintf(format, value) : value);
-    },
-
-    getRRDData: function(  ) {
-      return; // FIXME
-      //templateEngine.lookupRRDcache( rrd, start, end, res, refresh, force, callback );
-      var rrds = this.getRrd();
-      for( var variant in rrds )
-      {
-        var
-          rrd = rrds[ variant ];
-
-        cv.plugins.diagram.AbstractDiagram.lookupRRDcache( rrd, rrd.start, rrd.end, rrd.resol, undefined, false, function( rrdContent, thisVariant ) {
-          if( !rrdContent ) {
-            return;
-          }
-    
-          var plotData = this.plot.getData();
-          //rrdContent.forEach(function(a){a[1]=+a[1][0];});
-          switch( thisVariant )
-          {
-            case 'actual':
-              plotData[0].data = rrdContent;
-              plotData[3].data[0][0] = rrdContent[rrdContent.length-1][0];
-              break;
-            case 'control':
-              plotData[1].data = rrdContent;
-              plotData[4].data[0][0] = rrdContent[rrdContent.length-1][0];
-              break;
-            case 'setpoint':
-              plotData[2].data = rrdContent;
-              plotData[5].data[0][0] = rrdContent[rrdContent.length-1][0];
-              break;
-          }
-          this.plot.setData( plotData );
-          this.plot.setupGrid();
-          this.plot.draw();
-    
-        }, variant );
-        /*
-        $.ajax({
-          url: templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + rrd.start + "&end=" + rrd.end + "&res=" + rrd.resol,
-          dataType: "json",
-          type: "GET",
-          context: this,
-          variant: variant,
-          success: function( rrdContent,aaa ) { 
-            if( !rrdContent )
-              return;
-            
-            var plotData = data.plot.getData();
-            rrdContent.forEach(function(a){a[1]=+a[1][0];});
-            switch( this.variant )
-            {
-              case 'actual':
-                plotData[0].data = rrdContent;
-                plotData[3].data[0][0] = rrdContent[rrdContent.length-1][0];
-              break;
-              case 'control':
-                plotData[1].data = rrdContent;
-                plotData[4].data[0][0] = rrdContent[rrdContent.length-1][0];
-              break;
-              case 'setpoint':
-                plotData[2].data = rrdContent;
-                plotData[5].data[0][0] = rrdContent[rrdContent.length-1][0];
-              break;
-            }
-            data.plot.setData( plotData );
-            data.plot.setupGrid();
-            data.plot.draw();
-          }
-        });*/
-      }
+      handlerVal.text(value);
     },
 
     _update: function (ga, d) {
-      return; // FIXME
-      var
+      console.log('_update', ga, d);
+      let
         value = this.defaultValueHandling(ga, d),
-        plotData = this.plot.getData();
+        plotData = this.plot.getData(),
+        showValue = Math.min(Math.max(this.getMin(), this.getBasicValue()), this.getMax()),
+        percentage = (showValue - this.getMin()) / (this.getMax() - this.getMin());
 
       //templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
       //this.debug( data.address[ ga ][2] );
 
-      var
-        showValue = Math.min(Math.max(this.getMin(), value), this.getMax()),
-        percentage = (showValue - this.getMin()) / (this.getMax() - this.getMin());
-
+      console.log(value, plotData, showValue, percentage, this.getAddress()[ga]);
+      //return; // FIXME
       switch (this.getAddress()[ga][2]) {
         case 'actual':
           qx.bom.element.Transform.transform(qx.bom.Selector.query('.roundbar', this.getDomElement())[0], {
             rotate: (180 + 180 * percentage) + 'deg'
           });
           this.defaultUpdate(ga, d, this.getDomElement(), true, this.getPath());
-          plotData[0].data[plotData[0].data.length - 1][1] = value;
-          plotData[3].data[0][1] = value;
+          //plotData[0].data[plotData[0].data.length - 1][1] = value;
+          //plotData[3].data[0][1] = value;
           break;
 
         case 'control':
-          plotData[1].data[plotData[1].data.length - 1][1] = value;
-          plotData[4].data[0][1] = value;
+          //plotData[1].data[plotData[1].data.length - 1][1] = value;
+          //plotData[4].data[0][1] = value;
           break;
 
         case 'setpoint':
           this.debug('setpoint', value, this._inAction);
           if (!this._inAction) {
-            this.updateSetpoint(this.getPath(), this.getFormat(), value, percentage);
+            this.updateSetpoint(this.getPath(), value, percentage);
           }
-          plotData[2].data[plotData[2].data.length - 1][1] = value;
-          plotData[5].data[0][1] = value;
+          //plotData[2].data[plotData[2].data.length - 1][1] = value;
+          //plotData[5].data[0][1] = value;
           break;
       }
+      return; // FIXME
       this.plot.setData(plotData);
       this.plot.setupGrid();
       this.plot.draw();
@@ -491,7 +332,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
           percentageRaw = Math.atan2(dx, dy) / Math.PI + 0.5,
           percentage = Math.min(Math.max(percentageRaw, 0), 1),
           value = this.getMin() + percentage * (this.getMax() - this.getMin());
-        this.updateSetpoint(this.getPath(), this.getFormat(), value, percentage);
+        this.updateSetpoint(this.getPath(), value, percentage);
 
         this.setValue(value);
       }

@@ -141,7 +141,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
         (this.getWidth() ? (';width:' + this.getWidth()) : '') +
         (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
 
-      return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
+      return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + ' diagram" style="' + styleStr + '">loading...</div></div>';
     }
   },
 
