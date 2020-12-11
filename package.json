@@ -63,7 +63,7 @@
     "grunt-shell": "^3.0.1",
     "grunt-svgmin": "^6.0.0",
     "grunt-svgstore": "latest",
-    "ini": "^1.3.5",
+    "ini": "^1.3.6",
     "jasmine-core": "^3.4.0",
     "jshint-stylish": "^2.1.0",
     "karma": "^5.0.4",
