@@ -396,9 +396,17 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       check: "Boolean",
       init: false
     },
+    showGrid: {
+      check: "Boolean",
+      init: true
+    },
     gridcolor: {
       check: "String",
       init: "#81664B"
+    },
+    backgroundColor: {
+      check: "String",
+      init: "#000000"
     },
     previewlabels: {
       check: "Boolean",
@@ -560,10 +568,10 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           position        : this.getLegendposition()
         },
         grid : {
-          show            : true,
+          show            : this.getShowGrid(),
           aboveData       : false,
           color           : this.getGridcolor(),
-          backgroundColor : "#000000",
+          backgroundColor : this.getBackgroundColor(),
           tickColor       : this.getGridcolor(),
           markingsColor   : this.getGridcolor(),
           borderColor     : this.getGridcolor(),
