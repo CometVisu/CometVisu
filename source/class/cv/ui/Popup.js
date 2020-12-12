@@ -265,7 +265,7 @@ qx.Class.define('cv.ui.Popup', {
       ret_val.style.left = placement.x;
       ret_val.style.top  = placement.y;
 
-      if (!closable) {
+      if (!closable && ret_val.querySelector('.reload') === null) {
         var reload = '<div class="reload">' +
           '<a href="javascript:location.reload(true);">' +
           qx.locale.Manager.tr('Reload').toString() +
