@@ -160,6 +160,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
     _onDomReady: function () {
       console.log('CI onDomReady', this.$$domReady);
       this.setLegendInline(false);
+      this.setShowGrid(false);
 
       if (!this.$$domReady) {
         var pageId = this.getParentPage().getPath();
@@ -272,11 +273,14 @@ qx.Class.define('cv.plugins.ControllerInput', {
             rotate: (180 + 180 * percentage) + 'deg'
           });
           this.defaultUpdate(ga, d, this.getDomElement(), true, this.getPath());
-          //plotData[0].data[plotData[0].data.length - 1][1] = value;
+          if(plotData[0])
+            plotData[0].data[plotData[0].data.length - 1][1] = this.getBasicValue();
           //plotData[3].data[0][1] = value;
           break;
 
         case 'control':
+          if(plotData[1])
+            plotData[1].data[plotData[0].data.length - 1][1] = this.getBasicValue();
           //plotData[1].data[plotData[1].data.length - 1][1] = value;
           //plotData[4].data[0][1] = value;
           break;
@@ -286,11 +290,13 @@ qx.Class.define('cv.plugins.ControllerInput', {
           if (!this._inAction) {
             this.updateSetpoint(this.getPath(), value, percentage);
           }
+          if(plotData[2])
+            plotData[2].data[plotData[0].data.length - 1][1] = this.getBasicValue();
           //plotData[2].data[plotData[2].data.length - 1][1] = value;
           //plotData[5].data[0][1] = value;
           break;
       }
-      return; // FIXME
+      //return; // FIXME
       this.plot.setData(plotData);
       this.plot.setupGrid();
       this.plot.draw();
