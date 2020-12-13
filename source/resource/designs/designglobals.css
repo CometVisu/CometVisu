@@ -488,7 +488,7 @@ button.ui-slider-handle {
   overflow-y: auto;
 }
 
-.popup .main .icon:not(.spinner):not(.rsslogRow) {
+.popup .main > div > .icon:not(.spinner) {
   float: left;
   margin: 0 1em 0 0;
   vertical-align: top;
