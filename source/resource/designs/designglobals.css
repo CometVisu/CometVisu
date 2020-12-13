@@ -444,9 +444,6 @@ button.ui-slider-handle {
 .popup_background.notification {
   position: absolute;
   padding: 30px;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 50%;
   width: auto;
   height: auto;
   max-width: calc(100vw - 60px);
