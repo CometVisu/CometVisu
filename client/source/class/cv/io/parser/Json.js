@@ -23,7 +23,8 @@ qx.Class.define('cv.io.parser.Json', {
               var jsonString = i === 0 ? subData + "}" : "{" + subData;
               result = $.extend(result, JSON.parse(jsonString));
             } catch (se) {
-              qx.log.Logger.error(se);
+              qx.log.Logger.error(se, data);
+              result = data; // return the bad input
             }
           }, this);
         }
@@ -39,7 +40,8 @@ qx.Class.define('cv.io.parser.Json', {
               var jsonString = i === 0 ? subData + "}" : "{" + subData;
               result = Object.assign(result, JSON.parse(jsonString));
             } catch (se) {
-              qx.log.Logger.error(se);
+              qx.log.Logger.error(se, data);
+              result = data; // return the bad input
             }
           }, this);
         }
