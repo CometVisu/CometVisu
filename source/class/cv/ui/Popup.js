@@ -94,7 +94,7 @@ qx.Class.define('cv.ui.Popup', {
         ret_val = this.__domElement = qx.dom.Element.create("div", {
           id: "popup_" + this.__counter,
           "class": classes.join(" "),
-          style: "display:none",
+          style: "visibility:hidden",
           html: closable ? '<div class="popup_close">X</div>' : ""
         });
         body.appendChild(ret_val);
@@ -262,10 +262,10 @@ qx.Class.define('cv.ui.Popup', {
         align
       );
 
-      ret_val.style.left = placement.x;
-      ret_val.style.top  = placement.y;
+      ret_val.style.left = placement.x + 'px';
+      ret_val.style.top  = placement.y + 'px';
 
-      if (!closable) {
+      if (!closable && ret_val.querySelector('.reload') === null) {
         var reload = '<div class="reload">' +
           '<a href="javascript:location.reload(true);">' +
           qx.locale.Manager.tr('Reload').toString() +
@@ -289,7 +289,7 @@ qx.Class.define('cv.ui.Popup', {
 
       attributes.id = this.__counter;
       if (isNew) {
-        ret_val.style.display = 'block';
+        ret_val.style.visibility = 'visible';
         this.__counter++;
       }
       return ret_val;

@@ -21,7 +21,7 @@
 /**
  * @author Michael Markstaller
  * @since 2011
- * @asset(plugins/rsslog/rsslog.css)
+ * @asset(plugins/rsslog/*)
  */
 qx.Class.define('cv.plugins.RssLog', {
   extend: cv.ui.structure.AbstractWidget,
@@ -217,7 +217,8 @@ qx.Class.define('cv.plugins.RssLog', {
 
     _action: function () {
       var brss = cv.util.String.htmlStringToDomElement('<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>');
-      var title = document.querySelector('#' + this.getPath() + ' .label').innerText || '';
+      var label = document.querySelector('#' + this.getPath() + ' .label');
+      var title = label ? (label.innerText || '') : '';
       var popup = cv.ui.PopupHandler.showPopup("rsslog", {title: title, content: brss});
       var parent = cv.util.Tree.getParent(brss, "div", null, 1)[0];
       Object.entries({height: "90%", width: "90%", margin: "auto"}).forEach(function(key_value){parent.style[key_value[0]]=key_value[1];}); // define parent as 100%!

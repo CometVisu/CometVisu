@@ -345,8 +345,12 @@ qx.Class.define('cv.TemplateEngine', {
 
     _handleClientError: function (errorCode, varargs) {
       varargs = Array.prototype.slice.call(arguments, 1);
-      var notification;
-      var message = '';
+      varargs = JSON.stringify(varargs[0], null, 2);
+      // escape HTML:
+      let div = document.createElement('div');
+      div.innerText = varargs;
+      varargs = div.innerHTML;
+      let notification;
       switch (errorCode) {
         case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
           notification = {
@@ -356,7 +360,7 @@ qx.Class.define('cv.TemplateEngine', {
               '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
               '</a>') + '<br/>' +
               qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
-            '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) +'</pre></div>',
+            '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs + '</pre></div>',
             severity: "urgent",
             unique: true,
             deletable: false
@@ -371,7 +375,7 @@ qx.Class.define('cv.TemplateEngine', {
               '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
               '</a>') + '<br/>' +
               qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
-              '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) +'</pre></div>',
+              '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs +'</pre></div>',
             severity: "urgent",
             unique: true,
             deletable: false
