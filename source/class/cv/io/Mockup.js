@@ -27,6 +27,7 @@
 /* istanbul ignore next */
 qx.Class.define('cv.io.Mockup', {
   extend: qx.core.Object,
+  implement: cv.io.IClient,
 
   /*
   ******************************************************
@@ -140,7 +141,7 @@ qx.Class.define('cv.io.Mockup', {
       }
     },
 
-    login: function (loginOnly, callback, context) {
+    login: function (loginOnly, credentials, callback, context) {
       if (callback) {
         callback.call(context);
         if (qx.core.Environment.get('cv.testMode')) {
@@ -316,6 +317,24 @@ qx.Class.define('cv.io.Mockup', {
 
     getBackend: function () {
       return {};
-    }
+    },
+
+    authorize: function (req) {
+    },
+
+    update: function(json) {},
+    record: function(type, data) {},
+    showError: function(type, message, args) {},
+
+    // not used / needed in this client
+    setInitialAddresses: function(addresses) {
+    },
+
+    hasCustomChartsDataProcessor : function () {
+      return false;
+    },
+    processChartsData : function (data) {
+      return data;
+    },
   }
 });

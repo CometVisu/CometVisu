@@ -645,7 +645,7 @@ qx.Class.define('cv.io.Client', {
       });
     },
 
-    // this client does not implement an autorization
+    // this client does not implement an authorization
     authorize: function (req) {},
 
     /**
