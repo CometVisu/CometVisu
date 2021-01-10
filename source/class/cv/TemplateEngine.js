@@ -47,6 +47,20 @@ qx.Class.define('cv.TemplateEngine', {
     }
   },
 
+  /*
+  ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    /**
+     * Shortcut access to client
+     */
+    getClient: function () {
+      return this.getInstance().visu;
+    }
+  },
+
   properties: {
 
     /**

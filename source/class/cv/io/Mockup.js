@@ -336,5 +336,14 @@ qx.Class.define('cv.io.Mockup', {
     processChartsData : function (data) {
       return data;
     },
+    hasProvider: function (name) {
+      return false;
+    },
+    getProviderUrl: function (name) {
+      return null;
+    },
+    getProviderConvertFunction : function (name) {
+      return null
+    }
   }
 });

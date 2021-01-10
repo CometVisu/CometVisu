@@ -31,6 +31,32 @@ qx.Interface.define('cv.io.IClient', {
   */
   members: {
     /**
+     * Returns the current backend configuration
+     * @return {Map}
+     */
+    getBackend: function() { },
+
+    /**
+     * Returns true, when the backend provides a special data provider for this kins of data
+     * @param name {String}
+     * @return {Boolean}
+     */
+    hasProvider: function (name) {},
+
+    /**
+     * URL to the provided data
+     * @param name
+     * @return {String}
+     */
+    getProviderUrl: function (name) {},
+
+    /**
+     * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.
+     * @param name {String}
+     */
+    getProviderConvertFunction : function (name) { },
+
+    /**
      * Set a subset of addresses the client should request initially (e.g. the ones one the start page).
      * This can be used to increase the init state loading speed by sending an initial request with a smaller
      * subset of addresses to the backend and send the rest later.

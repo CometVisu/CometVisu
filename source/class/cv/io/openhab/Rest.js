@@ -67,6 +67,10 @@ qx.Class.define('cv.io.openhab.Rest', {
     _backendUrl: null,
     __token: null,
 
+    getBackend: function () {
+      return {};
+    },
+
     // not used / needed in this client
     setInitialAddresses: function(addresses) {
     },
@@ -252,6 +256,55 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     update: function(json) {}, // jshint ignore:line
     record: function(type, data) {},
-    showError: function(type, message, args) {}
+    showError: function(type, message, args) {},
+
+    hasProvider: function (name) {
+      return ["addresses", "rrd"].includes(name);
+    },
+    getProviderUrl: function (name) {
+      switch (name) {
+        case "addresses":
+          return this._backendUrl + "items?fields=name,type,label"
+        case "rrd":
+          return this._backendUrl + "persistence/items"
+        default:
+          return null;
+      }
+    },
+    getProviderConvertFunction : function (name) {
+      switch (name) {
+        case "addresses":
+          return function (result) {
+            const data = {};
+            result.forEach(element => {
+              const type = element.type ? element.type.split(":")[0] : "";
+              if (!data.hasOwnProperty(type)) {
+                data[type] = [];
+              }
+              const entry = {
+                value: element.name,
+                label: element.label || element.name
+              }
+              if (type) {
+                entry.hints = [
+                  {
+                    transform: "OH:" + type.toLowerCase()
+                  }
+                ];
+              }
+              data[type].push(entry);
+            });
+            return data;
+          }
+        case "rrd":
+          return function (result) {
+            return result.map(element => {
+              return {value: element, label: element};
+            });
+          }
+        default:
+          return null;
+      }
+    }
   }
 });

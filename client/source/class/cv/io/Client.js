@@ -670,7 +670,17 @@ qx.Class.define('cv.io.Client', {
      * @param message {String} detailed error message
      * @param args
      */
-    showError: function(type, message, args) {} // jshint ignore:line
+    showError: function(type, message, args) {},// jshint ignore:line
+
+    hasProvider: function (name) {
+      return false;
+    },
+    getProviderUrl: function (name) {
+      return null;
+    },
+    getProviderConvertFunction : function (name) {
+      return null
+    }
   },
 
   /*
