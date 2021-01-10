@@ -33,6 +33,7 @@
  */
 qx.Class.define('cv.io.Client', {
   extend: qx.core.Object,
+  implement: cv.io.IClient,
 
   /*
    ******************************************************
@@ -312,16 +313,15 @@ qx.Class.define('cv.io.Client', {
       }
     },
 
-    /* return the relative path to a resource on the currently used backend
-     *
-     *
-     *
-     * @param name
-     *          {String} Name of the resource (e.g. login, read, write, rrd)
-     * @return {String} relative path to the resource
-     */
-    getResourcePath : function (name) {
-      return this.backend.baseURL + this.backend.resources[name];
+    getResourcePath : function (name, map) {
+      return this.backend.resources.hasOwnProperty(name) ? this.backend.baseURL + this.backend.resources[name] : null;
+    },
+
+    hasCustomChartsDataProcessor : function () {
+      return false;
+    },
+    processChartsData : function (data) {
+      return data;
     },
 
     /**
@@ -644,6 +644,9 @@ qx.Class.define('cv.io.Client', {
         accept: "application/json, text/javascript, */*; q=0.01"
       });
     },
+
+    // this client does not implement an autorization
+    authorize: function (req) {},
 
     /**
      * Restart the connection

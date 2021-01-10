@@ -43,10 +43,7 @@ qx.Class.define('cv.io.openhab.Rest', {
   ***********************************************
   */
   properties: {
-    user: {
-      check: "String",
-      nullable: false
-    },
+
     connected: {
       check: "Boolean",
       init: false,
@@ -74,6 +71,77 @@ qx.Class.define('cv.io.openhab.Rest', {
     setInitialAddresses: function(addresses) {
     },
 
+    getResourcePath : function (name, map) {
+      if (name === 'charts' && map && map.src) {
+        let url = this._backendUrl + "persistence/items/" + map.src;
+        const params = [];
+        if (map.start) {
+          let endTime = map.end ? this.__convertTimes(map.end) : new Date();
+          let startTime = new Date();
+          const match = /^end-([\d]*)([\w]+)$/.exec(map.start);
+          if (match) {
+            const amount = parseInt(match[1]) || 1;
+            let interval = 0;
+            switch (match[2]) {
+              case 'second':
+                interval = 1000;
+                break;
+              case 'minute':
+                interval = 60000;
+                break;
+              case 'hour':
+                interval = 60 * 60000;
+                break;
+              case 'day':
+                interval = 24 * 60 * 60000;
+                break;
+              case 'month':
+                interval = 30 * 24 * 60 * 60000;
+                break;
+              case 'year':
+                interval = 365 * 24 * 60 * 60000;
+                break;
+            }
+            startTime.setTime(endTime.getTime() - (amount * interval));
+          } else if (/^[\d]+$/.test(map.start)) {
+            const d = new Date();
+            d.setTime(parseInt(map.start) * 1000);
+          }
+
+          params.push("starttime=" + startTime.toISOString());
+          params.push("endtime=" + endTime.toISOString());
+        }
+
+        url += "?" + params.join("&");
+        return url;
+      }
+      return null;
+    },
+
+    __convertTimes: function (time) {
+      if (time === "now") {
+        return new Date();
+      } else if (/^[\d]+$/.test(time)) {
+        let d = new Date();
+        d.setTime(parseInt(time) * 1000);
+      } else {
+        return null;
+      }
+    },
+
+    hasCustomChartsDataProcessor : function () {
+      return true;
+    },
+
+    processChartsData : function (response) {
+      const data = response.data;
+      const newRrd = new Array(data.length);
+      for (let j = 0, l = data.length; j < l; j++) {
+        newRrd[j] = [data[j].time, parseFloat(data[j].state)];
+      }
+      return newRrd;
+    },
+
     /**
      * Auth basic authentication header to request
      * @param req {qx.io.request.Xhr}
@@ -85,6 +153,12 @@ qx.Class.define('cv.io.openhab.Rest', {
       }
     },
 
+    /**
+     * Creates an authorized request to the backend with a relative path
+     * @param url {String?} appended to the backends base path
+     * @param method {String?} HTTP method type (GET is the default)
+     * @return A XHR request {qx.io.request.Xhr}
+     */
     createAuthorizedRequest: function (url, method) {
       const req = new qx.io.request.Xhr(this._backendUrl + (url || ""), method);
       this.authorize(req);

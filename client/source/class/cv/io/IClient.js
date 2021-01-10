@@ -8,10 +8,6 @@ qx.Interface.define('cv.io.IClient', {
   ***********************************************
   */
   properties: {
-    user: {
-      check: "String",
-      nullable: false
-    },
 
     connected: {
       check: "Boolean",
@@ -66,18 +62,31 @@ qx.Interface.define('cv.io.IClient', {
     login : function (loginOnly, credentials, callback, context) {},
 
     /**
-     * Creates an authorized request to the backend with a relative path
-     * @param url {String?} appended to the backends base path
-     * @param method {String?} HTTP method type (GET is the default)
-     * @return A XHR request {qx.io.request.Xhr}
-     */
-    createAuthorizedRequest: function (url, method) {},
-
-    /**
      * Authorize a Request by adding the necessary headers.
      * @param req {qx.io.request.Xhr}
      */
     authorize: function (req) {},
+
+    /**
+     * return the relative path to a resource on the currently used backend
+     *
+     * @param name {String} Name of the resource (e.g. login, read, write, rrd)
+     * @param params {Map?} optional data needed to generate the resource path
+     * @return {String|null} relative path to the resource, returns `null` when the backend does not provide that resource
+     */
+    getResourcePath : function (name, params) {},
+
+    /**
+     * This client provides an own processor for charts data
+     * @return {Boolean}
+     */
+    hasCustomChartsDataProcessor : function () {},
+
+    /**
+     * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
+     * @param data {var}
+     */
+    processChartsData : function (data) {},
 
     /**
      * This function sends a value
