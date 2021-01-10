@@ -58,11 +58,26 @@ qx.Interface.define('cv.io.IClient', {
      *
      * @param loginOnly {Boolean} if true only login and backend configuration, no subscription
      *                            to addresses (default: false)
+     * @param credentials {Map} map with "username" and "password" (optional)
      * @param callback {Function} call this function when login is done
      * @param context {Object} context for the callback (this)
      *
      */
-    login : function (loginOnly, callback, context) {},
+    login : function (loginOnly, credentials, callback, context) {},
+
+    /**
+     * Creates an authorized request to the backend with a relative path
+     * @param url {String?} appended to the backends base path
+     * @param method {String?} HTTP method type (GET is the default)
+     * @return A XHR request {qx.io.request.Xhr}
+     */
+    createAuthorizedRequest: function (url, method) {},
+
+    /**
+     * Authorize a Request by adding the necessary headers.
+     * @param req {qx.io.request.Xhr}
+     */
+    authorize: function (req) {},
 
     /**
      * This function sends a value

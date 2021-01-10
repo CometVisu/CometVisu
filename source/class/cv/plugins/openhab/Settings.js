@@ -93,9 +93,14 @@ qx.Class.define("cv.plugins.openhab.Settings", {
         "put": { method: "PUT", url: "/rest/services/"+pid+"/config" }
       };
       var service = this.__service = new qx.io.rest.Resource(serviceDesc);
+      const client = cv.TemplateEngine.getInstance().visu;
+
       this._store = new qx.data.store.Rest(service, "get", {
         configureRequest: function(req) {
           req.setRequestHeader("Content-Type", "application/json");
+          if (client instanceof cv.io.openhab.Rest) {
+            client.authorize(req);
+          }
         },
         manipulateData: function(data) {
           // normalize the keys (replace .> with _) for the marshaller
@@ -130,11 +135,16 @@ qx.Class.define("cv.plugins.openhab.Settings", {
       };
 
       var config = this.__configDescriptionResource = new qx.io.rest.Resource(description);
+      const client = cv.TemplateEngine.getInstance().visu;
+
       config.addListener("getSuccess", function(ev) {
         this._createForm(ev.getRequest().getResponse());
       }, this);
       config.configureRequest(function(req) {
         req.setRequestHeader("Content-Type", "application/json");
+        if (client instanceof cv.io.openhab.Rest) {
+          client.authorize(req);
+        }
       });
       config.get();
 

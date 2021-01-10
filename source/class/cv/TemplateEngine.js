@@ -250,8 +250,7 @@ qx.Class.define('cv.TemplateEngine', {
       let backendName = cv.Config.configSettings.backend || cv.Config.backend;
       const mapping = {
         oh: "openhab",
-        oh2: "openhab2",
-        oh3: "openhab3"
+        oh2: "openhab2"
       };
       if (mapping.hasOwnProperty(backendName)) {
         backendName = mapping[backendName];
@@ -430,6 +429,16 @@ qx.Class.define('cv.TemplateEngine', {
       if (pagesNode.getAttribute("backend") !== null) {
         settings.backend = pagesNode.getAttribute("backend");
       }
+
+      if (pagesNode.getAttribute("token") !== null) {
+        settings.credentials.token = pagesNode.getAttribute("token");
+      }
+      if (pagesNode.getAttribute("username") !== null) {
+        settings.credentials.username = pagesNode.getAttribute("username");
+      }
+      if (pagesNode.getAttribute("password") !== null) {
+        settings.credentials.password = pagesNode.getAttribute("password");
+      }
       this.initBackendClient();
 
       if (pagesNode.getAttribute('scroll_speed') === null) {
@@ -508,7 +517,7 @@ qx.Class.define('cv.TemplateEngine', {
       this.debug("setup");
 
       // login to backend as it might change some settings needed for further processing
-      this.visu.login(true, function () {
+      this.visu.login(true, cv.Config.configSettings.credentials, function () {
         this.debug("logged in");
         this.setLoggedIn(true);
 

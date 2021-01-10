@@ -68,14 +68,32 @@ qx.Class.define('cv.io.openhab.Rest', {
     __lastError: null,
     _backendName: null,
     _backendUrl: null,
+    __token: null,
 
     // not used / needed in this client
     setInitialAddresses: function(addresses) {
     },
 
+    /**
+     * Auth basic authentication header to request
+     * @param req {qx.io.request.Xhr}
+     * @private
+     */
+    authorize: function (req) {
+      if (this.__token) {
+        req.setRequestHeader("Authorization", this.__token);
+      }
+    },
+
+    createAuthorizedRequest: function (url, method) {
+      const req = new qx.io.request.Xhr(this._backendUrl + (url || ""), method);
+      this.authorize(req);
+      return req;
+    },
+
     subscribe : function (addresses, filters) {
       // send first request to get all states once
-      const req = new qx.io.request.Xhr(this._backendUrl + "items?fields=name,state");
+      const req = this.createAuthorizedRequest("items?fields=name,state");
       req.addListener("success", function(e) {
         const req = e.getTarget();
 
@@ -106,8 +124,6 @@ qx.Class.define('cv.io.openhab.Rest', {
         this.debug("connection established");
         this.setConnected(true);
       }.bind(this);
-
-      // filter for addresses
     },
 
     handleMessage: function(payload) {
@@ -125,7 +141,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     },
 
     write: function (address, value) {
-      const req = new qx.io.request.Xhr(this._backendUrl + "items/" + address, "post");
+      const req = this.createAuthorizedRequest("items/" + address, "POST");
       req.setRequestHeader("Content-Type", "text/plain");
       req.setRequestData(value);
       req.send();
@@ -135,9 +151,13 @@ qx.Class.define('cv.io.openhab.Rest', {
       this.error(error);
     },
 
-    login : function (loginOnly, callback, context) {
+    login : function (loginOnly, credentials, callback, context) {
+      if (credentials && credentials.username) {
+        // just saving the credentials for later use as we are using basic authentication
+        this.__token = "Basic " + btoa(credentials.username + ":" + (credentials.password || ""));
+      }
       // no login needed we just do a request to the if the backend is reachable
-      const req = new qx.io.request.Xhr(this._backendUrl);
+      const req = this.createAuthorizedRequest();
       req.addListener("success", function(e) {
         const req = e.getTarget();
         this.setServer(req.getResponseHeader("Server"));

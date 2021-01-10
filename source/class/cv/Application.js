@@ -81,8 +81,9 @@ qx.Class.define("cv.Application",
       let Client = cv.io.Client;
       if (cv.Config.testMode === true) {
         Client = cv.io.Mockup;
-      } else if (args[0] === "openhab3") {
+      } else if (args[0] === "openhab") {
         Client = cv.io.openhab.Rest;
+        cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
         if (args[1] && args[1].endsWith("/cv/l/")) {
           // we only need the rest path not the login resource
           args[1] = args[1].substring(0, args[1].indexOf("cv/"));
