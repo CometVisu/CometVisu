@@ -29,7 +29,7 @@ Es wird davon ausgegangen, dass Punkt 1 bereits erfüllt ist und im folgenden nu
     sudo apt install apache2 php libapache2-mod-php php-soap
 
 Den Inhalt der Datei ``/etc/apache2/sites-enabled/000-default.conf`` durch folgenden ersetzen (``<openhab>`` bitte mit
-der IP-Addresse oder dem Hostnamen des openHAB Servers ersetzen, wenn alles auf einem Server läuft, kann ``localhost``
+der IP-Adresse oder dem Hostnamen des openHAB Servers ersetzen, wenn alles auf einem Server läuft, kann ``localhost``
 eingetragen werden).
 
 .. code-block:: apacheconf

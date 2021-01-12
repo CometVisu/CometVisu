@@ -1,5 +1,5 @@
-Installation auf einem Ubuntu System mit openHAB2 und Docker
-============================================================
+Installation auf einem Ubuntu System mit openHAB und Docker
+===========================================================
 
 1. Voraussetzungen
 ------------------

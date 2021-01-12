@@ -9,7 +9,7 @@ Einfache Installation:
 -  :doc:`auf Raspberry Pi <raspberry>`
 -  :doc:`auf einem Debian System mit openHAB <openhab>`
 -  :doc:`Über Docker <docker>`
--  :doc:`Über Docker mit openHAB <docker_openhab2>`
+-  :doc:`Über Docker mit openHAB <docker_openhab>`
 -  :doc:`Auf dem Timberwolf / mittels Portainer <timberwolf>`
 
 .. toctree::
@@ -19,9 +19,9 @@ Einfache Installation:
     wiregate
     raspberry
     install-dev
-    openhab2
+    openhab
     docker
-    docker_openhab2
+    docker_openhab
     timberwolf
 
 Schwieriger, nur für **Fortgeschrittene**:
