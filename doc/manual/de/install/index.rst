@@ -7,7 +7,7 @@ Einfache Installation:
 -  :doc:`Allgemein <allgemein>`
 -  :doc:`auf Wiregate <wiregate>`
 -  :doc:`auf Raspberry Pi <raspberry>`
--  :doc:`auf einem Debian System mit openHAB <openhab2>`
+-  :doc:`auf einem Debian System mit openHAB <openhab>`
 -  :doc:`Über Docker <docker>`
 -  :doc:`Über Docker mit openHAB <docker_openhab2>`
 -  :doc:`Auf dem Timberwolf / mittels Portainer <timberwolf>`
