@@ -254,7 +254,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      * @param force {Boolean} Update even when the cache is still valid
      * @param callback {Function} call when the data has arrived
      */
-    lookupTsCache: function(ts, start, end, res, refresh, force, callback, callbackParameter ) {
+    lookupTsCache: function(ts, start, end, res, forceNowDatapoint, refresh, force, callback, callbackParameter ) {
       var
         url = (( 'influx' === ts.tsType )
             ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src
@@ -289,7 +289,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           xhr.set({
             accept: "application/json"
           });
-          xhr.addListener("success", function(ev){self._onSuccess(ts, key, ev);}, this);
+          xhr.addListener("success", function(ev){self._onSuccess(ts, key, ev, forceNowDatapoint);}, this);
           xhr.addListener("statusError", function(ev){self._onStatusError(ts, key, ev);}, this);
           this.cache[ key ].xhr = xhr;
           xhr.send();
@@ -299,7 +299,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
     },
 
-    _onSuccess: function(ts, key, ev) {
+    _onSuccess: function(ts, key, ev, forceNowDatapoint) {
       var tsdata = ev.getTarget().getResponse();
       if (tsdata !== null) {
         // calculate timestamp offset and scaling
@@ -313,8 +313,17 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         }
         tsdata = newRrd;
       }
+
+      let now = Date.now();
+
+      if(forceNowDatapoint) {
+        let last = Array.from( tsdata[tsdata.length - 1] ); // force copy
+        last[0] = now;
+        tsdata.push( last );
+      }
+
       this.cache[key].data = tsdata;
-      this.cache[key].timestamp = Date.now();
+      this.cache[key].timestamp = now;
 
       this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
         waitingCallback[0](tsdata, waitingCallback[1]);
@@ -366,6 +375,10 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     seriesResolution: {
       check: "Number",
       init: 300
+    },
+    forceNowDatapoint: {
+      check: "Boolean",
+      init: true
     },
     period: {
       check: "Number",
@@ -710,10 +723,11 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       // get all time series data
       this.getContent().ts.forEach(function(ts, index) {
         var
-          res = ts.resol ? ts.resol : series.res,
+          res = isNaN(ts.resol) ? series.res : ts.resol,
+          forceNowDatapoint = this.getForceNowDatapoint(),
           refresh = this.getRefresh() ? this.getRefresh() : res;
 
-        cv.plugins.diagram.AbstractDiagram.lookupTsCache( ts, series.start, series.end, res, refresh, forceReload, function(tsdata ){
+        cv.plugins.diagram.AbstractDiagram.lookupTsCache( ts, series.start, series.end, res, forceNowDatapoint, refresh, forceReload, function(tsdata ){
           tsloaded++;
           if (tsdata !== null) {
             tsSuccessful++;

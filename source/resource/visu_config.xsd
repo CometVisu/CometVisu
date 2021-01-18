@@ -2771,8 +2771,8 @@
     </xsd:attribute>
     <xsd:attribute name="field" type="xsd:string" use="optional" default="*" >
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">If there are multiple fields in the InfluxDB series this field defines which one to show. (When not set a default of "*" will be used.)</xsd:documentation>
-        <xsd:documentation xml:lang="de">Im Falle mehrerer Felder (Spalten) in einer InfluxDB-Zeitreihe kann hier der Name des Feldes angegeben werden, die angezeigt werden soll. (Wenn nicht explizit angegeben wird "*" verwendet.)</xsd:documentation>
+        <xsd:documentation xml:lang="en">If there are multiple fields in the InfluxDB series this field defines which one to show. When not set a default of "*" will be used. Warning: when more than one field is selected none will be displayed.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Im Falle mehrerer Felder (Spalten) in einer InfluxDB-Zeitreihe kann hier der Name des Feldes angegeben werden, die angezeigt werden soll. Wenn nicht explizit angegeben, wird "*" verwendet. Achtung: Es darf nur eine Spalte ausgewählt werden, sonst wird keiner angezeigt.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="resolution" type="xsd:integer" use="optional">
