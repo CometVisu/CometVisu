@@ -2777,8 +2777,8 @@
     </xsd:attribute>
     <xsd:attribute name="resolution" type="xsd:integer" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">The temporal resolution for the InfluxDB data can be set to a fixed interval (value in seconds).</xsd:documentation>
-        <xsd:documentation xml:lang="de">Die zeitliche Auflösung für die Daten aus der InfluxDB kann auf eine eigenes Intervall (Wert in Sekunden) festgesetzt werden.</xsd:documentation>
+        <xsd:documentation xml:lang="en">The temporal resolution for the InfluxDB data can be set to a fixed interval (value in seconds). A value of "0" disables the grouping.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Die zeitliche Auflösung für die Daten aus der InfluxDB kann auf eine eigenes Intervall (Wert in Sekunden) festgesetzt werden. Der Wert "0" schaltet die Gruppierung aus.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="consolidationFunction" use="optional" default="MEDIAN" >
