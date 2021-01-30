@@ -134,11 +134,7 @@ qx.Class.define('cv.util.ConfigLoader', {
       xhr.addListenerOnce("success", function(e) {
         var req = e.getTarget();
         var xml = qx.xml.Document.fromString('<root>' + req.getResponseText() + '</root>');
-        var parent = includeElem.parentElement;
-        parent.removeChild(includeElem);
-        xml.firstChild.childNodes.forEach(function (child) {
-          parent.appendChild(child);
-        });
+        includeElem.replaceWith(...xml.firstChild.childNodes);
         this.__loadQueue.remove(url);
         this._checkQueue();
       }, this);
