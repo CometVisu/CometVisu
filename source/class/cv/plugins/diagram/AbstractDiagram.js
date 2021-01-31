@@ -302,8 +302,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           xhr.set({
             accept: "application/json"
           });
-          xhr.addListener("success", function(ev){self._onSuccess(ts, key, ev, forceNowDatapoint);}, this);
-          xhr.addListener("statusError", function(ev){self._onStatusError(ts, key, ev);}, this);
+          xhr.addListener("success", function(ev){this._onSuccess(ts, key, ev, forceNowDatapoint);}, this);
+          xhr.addListener("statusError", function(ev){this._onStatusError(ts, key, ev);}, this);
           this.cache[ key ].xhr = xhr;
           xhr.send();
         }
