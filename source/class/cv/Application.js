@@ -79,7 +79,7 @@ qx.Class.define("cv.Application",
      */
     createClient: function(...args) {
       let Client = cv.io.Client;
-      if (cv.Config.testMode === true) {
+      if (cv.Config.testMode === true || window.cvTestMode === true) {
         Client = cv.io.Mockup;
       } else if (args[0] === "openhab") {
         Client = cv.io.openhab.Rest;

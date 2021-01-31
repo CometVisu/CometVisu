@@ -283,6 +283,7 @@ var customMatchers = {
 };
 
 beforeAll(function (done) {
+  window.cvTestMode = true;
   jasmine.addMatchers(customMatchers);
   setTimeout(function () {
     try {
@@ -322,7 +323,6 @@ beforeEach(function () {
     qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
   };
-  templateEngine.visu = new cv.io.Mockup();
   var model = cv.data.Model.getInstance();
   templateEngine.visu.update = model.update.bind(model); // override clients update function
 });
