@@ -381,7 +381,7 @@ qx.Class.define('cv.io.Client', {
         }
         this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath("login"),
           request, this.handleLogin, this);
-      } else if (this.loginSettings.callbackAfterLoggedIn) {
+      } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
         // call callback immediately
         this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
         this.loginSettings.callbackAfterLoggedIn = null;
@@ -573,7 +573,7 @@ qx.Class.define('cv.io.Client', {
         this.getCurrentTransport().handleSession(args, true);
       }
       this.loginSettings.loggedIn = true;
-      if (this.loginSettings.callbackAfterLoggedIn) {
+      if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
         this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
         this.loginSettings.callbackAfterLoggedIn = null;
         this.loginSettings.context = null;
