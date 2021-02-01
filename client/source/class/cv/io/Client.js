@@ -360,11 +360,12 @@ qx.Class.define('cv.io.Client', {
      *
      * @param loginOnly {Boolean} if true only login and backend configuration, no subscription
      *                            to addresses (default: false)
+     * @param credentials {Map?} not used in this client
      * @param callback {Function} call this function when login is done
      * @param context {Object} context for the callback (this)
      *
      */
-    login : function (loginOnly, callback, context) {
+    login : function (loginOnly, credentials, callback, context) {
       if (!this.loginSettings.loggedIn) {
         this.loginSettings.loginOnly = !!loginOnly;
         this.loginSettings.callbackAfterLoggedIn = callback;
