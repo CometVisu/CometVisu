@@ -47,6 +47,20 @@ qx.Class.define('cv.TemplateEngine', {
     }
   },
 
+  /*
+  ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    /**
+     * Shortcut access to client
+     */
+    getClient: function () {
+      return this.getInstance().visu;
+    }
+  },
+
   properties: {
 
     /**
@@ -247,15 +261,15 @@ qx.Class.define('cv.TemplateEngine', {
      * Initialize the {@link cv.io.Client} for backend communication
      */
     initBackendClient: function () {
-      var backendName = cv.Config.configSettings.backend || cv.Config.backend;
-      if (backendName === "oh") {
-        this.visu = cv.Application.createClient('openhab', cv.Config.backendUrl);
+      let backendName = cv.Config.configSettings.backend || cv.Config.backend;
+      const mapping = {
+        oh: "openhab",
+        oh2: "openhab2"
+      };
+      if (mapping.hasOwnProperty(backendName)) {
+        backendName = mapping[backendName];
       }
-      else if (backendName === "oh2") {
-        this.visu = cv.Application.createClient('openhab2', cv.Config.backendUrl);
-      } else {
-        this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
-      }
+      this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
 
       var model = cv.data.Model.getInstance();
       this.visu.update = model.update.bind(model); // override clients update function
@@ -429,6 +443,16 @@ qx.Class.define('cv.TemplateEngine', {
       if (pagesNode.getAttribute("backend") !== null) {
         settings.backend = pagesNode.getAttribute("backend");
       }
+
+      if (pagesNode.getAttribute("token") !== null) {
+        settings.credentials.token = pagesNode.getAttribute("token");
+      }
+      if (pagesNode.getAttribute("username") !== null) {
+        settings.credentials.username = pagesNode.getAttribute("username");
+      }
+      if (pagesNode.getAttribute("password") !== null) {
+        settings.credentials.password = pagesNode.getAttribute("password");
+      }
       this.initBackendClient();
 
       if (pagesNode.getAttribute('scroll_speed') === null) {
@@ -507,7 +531,7 @@ qx.Class.define('cv.TemplateEngine', {
       this.debug("setup");
 
       // login to backend as it might change some settings needed for further processing
-      this.visu.login(true, function () {
+      this.visu.login(true, cv.Config.configSettings.credentials, function () {
         this.debug("logged in");
         this.setLoggedIn(true);
 

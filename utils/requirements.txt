@@ -1,6 +1,6 @@
 docutils==0.12
 sh
-sphinx==1.4.8
+sphinx==3.4.3
 lxml
 sphinxcontrib-plantuml
 configparser

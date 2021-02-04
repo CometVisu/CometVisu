@@ -470,6 +470,18 @@
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute ref="backend" use="optional" />
+      <xsd:attribute name="username" use="optional" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Backend username used to authorize requests (can also be an access token).</xsd:documentation>
+          <xsd:documentation xml:lang="de">Benutzername für Anfragen an das Backend (kann auch ein Token sein). </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="password" use="optional" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Backend password used to authorize requests (if you use an access token as username a password is not requered).</xsd:documentation>
+          <xsd:documentation xml:lang="de">Passwort für Anfragen an das Backend (wenn ein Token als Benutzername verwendet wird ist ein Passwort nicht erfolderlich). </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
       <xsd:attribute ref="bind_click_to_widget" use="optional"/>
       <xsd:attribute name="scroll_speed" type="xsd:decimal" use="optional">
         <xsd:annotation>

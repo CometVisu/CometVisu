@@ -33,6 +33,10 @@
  * @requires    DataProviderConfig.js
  */
 
+if (!window.client) {
+  window.client = parent && parent.cv ? parent.cv.TemplateEngine.getClient() : null;
+}
+
 var DataProviderManager = {
   /**
    * get the DataProvider for a specified attribute
@@ -362,11 +366,19 @@ var DataProvider = function (config) {
                   dataType: 'json',
                   cache: doCaching,
                   async: true,
+                  beforeSend: function (xhr) {
+                    if (window.client) {
+                      window.client.authorize(xhr);
+                    }
+                  },
                   success: function (result) {
                     if (typeof _providerConfig.map === 'function') {
                       $.each(result, function(index, entry) {
                         result[index] = _providerConfig.map(entry);
                       });
+                    }
+                    if (typeof _providerConfig.convert === 'function') {
+                      result = _providerConfig.convert(result);
                     }
                     // what we get from the server is exactly what we need (hopefully ...)
                     data = result;

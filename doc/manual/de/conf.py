@@ -202,7 +202,7 @@ code_add_python_path = ["../py"]
 
 
 def setup(app):
-    app.add_stylesheet('theme_override.css')
+    app.add_css_file('theme_override.css')
     app.add_config_value('releaselevel', '', 'env')
 
     from sphinx.util.texescape import tex_replacements

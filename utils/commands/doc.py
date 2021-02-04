@@ -40,7 +40,7 @@ from distutils.version import LooseVersion
 from argparse import ArgumentParser
 from . import Command
 from utils.commands.scaffolding import Scaffolder
-from sphinx import main
+
 try:
     # Python 2.6-2.7
     from HTMLParser import HTMLParser

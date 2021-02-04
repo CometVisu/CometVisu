@@ -132,7 +132,14 @@ qx.Class.define('cv.Config', {
        * Array with alls icons defined in the current config file
        * @type {Array}
        */
-      iconsFromConfig: []
+      iconsFromConfig: [],
+      /**
+       * Credentials for Backend authentication, username/token and optional password
+       */
+      credentials: {
+        username: null,
+        password: null
+      }
     },
 
     /**

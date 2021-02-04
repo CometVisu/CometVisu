@@ -255,21 +255,34 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      * @param callback {Function} call when the data has arrived
      */
     lookupTsCache: function(ts, start, end, res, forceNowDatapoint, refresh, force, callback, callbackParameter ) {
-      var
-        url = (( 'influx' === ts.tsType )
+      const client = cv.TemplateEngine.getInstance().visu;
+      let key, url;
+      const chartsResource = client.getResourcePath('charts', {
+        src: ts.src,
+        start: start,
+        end: end
+      });
+      if (ts.tsType !== 'influx' && chartsResource !== null) {
+        // the backend provides an charts resource that must be processed differently (e.g. openHABs persistence data
+        url = chartsResource;
+        key = url;
+      } else {
+        url = (('influx' === ts.tsType)
             ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src
-            : cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+'?rrd=' + encodeURIComponent(ts.src) + '.rrd')
-          + '&ds='    + encodeURIComponent(ts.cFunc)
-          // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
-          //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
-          + '&start=' + ('rrd' === ts.tsType ? start : encodeURIComponent(start))
-          + '&end='   + ('rrd' === ts.tsType ? end : encodeURIComponent(end))
-          + '&res='   + encodeURIComponent(res)
-          + (ts.fillTs ? '&fill='   + encodeURIComponent(ts.fillTs) : '')
-          + (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '')
-          + (ts.field  ? '&field='  + encodeURIComponent(ts.field ) : '')
-          + (ts.authentication  ? '&auth='  + encodeURIComponent(ts.authentication ) : ''),
-        key = url + ( 'rrd' === ts.tsType ? '|' + ts.dsIndex : ''),
+            : client.getResourcePath('rrd') + '?rrd=' + encodeURIComponent(ts.src) + '.rrd')
+            + '&ds=' + encodeURIComponent(ts.cFunc)
+            // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
+            //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
+            + '&start=' + ('rrd' === ts.tsType ? start : encodeURIComponent(start))
+            + '&end=' + ('rrd' === ts.tsType ? end : encodeURIComponent(end))
+            + '&res=' + encodeURIComponent(res)
+            + (ts.fillTs ? '&fill=' + encodeURIComponent(ts.fillTs) : '')
+            + (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '')
+            + (ts.field ? '&field=' + encodeURIComponent(ts.field) : '')
+            + (ts.authentication ? '&auth=' + encodeURIComponent(ts.authentication) : '');
+        key = url + ('rrd' === ts.tsType ? '|' + ts.dsIndex : '');
+      }
+      let
         urlNotInCache = !(key in this.cache),
         doLoad = force || urlNotInCache || !('data' in this.cache[ key ]) || (refresh!==undefined && (Date.now()-this.cache[key].timestamp) > refresh*1000);
 
@@ -285,12 +298,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
             this.cache[ key ].xhr.dispose();
           }
           var xhr = new qx.io.request.Xhr(url);
-          var self = this;
+          client.authorize(xhr);
           xhr.set({
             accept: "application/json"
           });
-          xhr.addListener("success", function(ev){self._onSuccess(ts, key, ev, forceNowDatapoint);}, this);
-          xhr.addListener("statusError", function(ev){self._onStatusError(ts, key, ev);}, this);
+          xhr.addListener("success", function(ev){this._onSuccess(ts, key, ev, forceNowDatapoint);}, this);
+          xhr.addListener("statusError", function(ev){this._onStatusError(ts, key, ev);}, this);
           this.cache[ key ].xhr = xhr;
           xhr.send();
         }
@@ -302,16 +315,21 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     _onSuccess: function(ts, key, ev, forceNowDatapoint) {
       var tsdata = ev.getTarget().getResponse();
       if (tsdata !== null) {
-        // calculate timestamp offset and scaling
-        var millisOffset = (ts.offset ? ts.offset * 1000 : 0);
-        var newRrd = new Array(tsdata.length);
-        for (var j = 0, l = tsdata.length; j < l; j++) {
-          if( ts.tsType === 'rrd' )
-            newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling)];
-          else
-            newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1]) * ts.scaling)];
+        const client = cv.TemplateEngine.getInstance().visu;
+        if (client.hasCustomChartsDataProcessor(tsdata)) {
+          tsdata = client.processChartsData(tsdata);
+        } else {
+          // calculate timestamp offset and scaling
+          var millisOffset = (ts.offset ? ts.offset * 1000 : 0);
+          var newRrd = new Array(tsdata.length);
+          for (var j = 0, l = tsdata.length; j < l; j++) {
+            if (ts.tsType === 'rrd')
+              newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling)];
+            else
+              newRrd[j] = [(tsdata[j][0] + millisOffset), (parseFloat(tsdata[j][1]) * ts.scaling)];
+          }
+          tsdata = newRrd;
         }
-        tsdata = newRrd;
       }
 
       let now = Date.now();

@@ -33,6 +33,7 @@
  */
 qx.Class.define('cv.io.Client', {
   extend: qx.core.Object,
+  implement: cv.io.IClient,
 
   /*
    ******************************************************
@@ -312,16 +313,15 @@ qx.Class.define('cv.io.Client', {
       }
     },
 
-    /* return the relative path to a resource on the currently used backend
-     *
-     *
-     *
-     * @param name
-     *          {String} Name of the resource (e.g. login, read, write, rrd)
-     * @return {String} relative path to the resource
-     */
-    getResourcePath : function (name) {
-      return this.backend.baseURL + this.backend.resources[name];
+    getResourcePath : function (name, map) {
+      return this.backend.resources.hasOwnProperty(name) ? this.backend.baseURL + this.backend.resources[name] : null;
+    },
+
+    hasCustomChartsDataProcessor : function () {
+      return false;
+    },
+    processChartsData : function (data) {
+      return data;
     },
 
     /**
@@ -360,11 +360,12 @@ qx.Class.define('cv.io.Client', {
      *
      * @param loginOnly {Boolean} if true only login and backend configuration, no subscription
      *                            to addresses (default: false)
+     * @param credentials {Map?} not used in this client
      * @param callback {Function} call this function when login is done
      * @param context {Object} context for the callback (this)
      *
      */
-    login : function (loginOnly, callback, context) {
+    login : function (loginOnly, credentials, callback, context) {
       if (!this.loginSettings.loggedIn) {
         this.loginSettings.loginOnly = !!loginOnly;
         this.loginSettings.callbackAfterLoggedIn = callback;
@@ -381,7 +382,7 @@ qx.Class.define('cv.io.Client', {
         }
         this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath("login"),
           request, this.handleLogin, this);
-      } else if (this.loginSettings.callbackAfterLoggedIn) {
+      } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
         // call callback immediately
         this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
         this.loginSettings.callbackAfterLoggedIn = null;
@@ -573,7 +574,7 @@ qx.Class.define('cv.io.Client', {
         this.getCurrentTransport().handleSession(args, true);
       }
       this.loginSettings.loggedIn = true;
-      if (this.loginSettings.callbackAfterLoggedIn) {
+      if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
         this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
         this.loginSettings.callbackAfterLoggedIn = null;
         this.loginSettings.context = null;
@@ -645,6 +646,9 @@ qx.Class.define('cv.io.Client', {
       });
     },
 
+    // this client does not implement an authorization
+    authorize: function (req) {},
+
     /**
      * Restart the connection
      */
@@ -667,7 +671,17 @@ qx.Class.define('cv.io.Client', {
      * @param message {String} detailed error message
      * @param args
      */
-    showError: function(type, message, args) {} // jshint ignore:line
+    showError: function(type, message, args) {},// jshint ignore:line
+
+    hasProvider: function (name) {
+      return false;
+    },
+    getProviderUrl: function (name) {
+      return null;
+    },
+    getProviderConvertFunction : function (name) {
+      return null
+    }
   },
 
   /*

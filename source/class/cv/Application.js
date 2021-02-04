@@ -77,18 +77,20 @@ qx.Class.define("cv.Application",
      * Client factory method -> create a client
      * @return {cv.io.Client|cv.io.Mockup}
      */
-    createClient: function() {
-      var args = Array.prototype.slice.call(arguments);
-      if (args[0] === "openhab2") {
-        // auto-load openhab plugin for this backend
+    createClient: function(...args) {
+      let Client = cv.io.Client;
+      if (cv.Config.testMode === true || window.cvTestMode === true) {
+        Client = cv.io.Mockup;
+      } else if (args[0] === "openhab") {
+        Client = cv.io.openhab.Rest;
         cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
+        if (args[1] && args[1].endsWith("/cv/l/")) {
+          // we only need the rest path not the login resource
+          args[1] = args[1].substring(0, args[1].indexOf("cv/"));
+        }
       }
       args.unshift(null);
-      if (cv.Config.testMode === true) {
-        return  new (Function.prototype.bind.apply(cv.io.Mockup, args)); // jshint ignore:line
-      } else {
-        return new (Function.prototype.bind.apply(cv.io.Client, args)); // jshint ignore:line
-      }
+      return new (Function.prototype.bind.apply(Client, args)); // jshint ignore:line
     },
 
     /**

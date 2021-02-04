@@ -1,20 +1,19 @@
-Installation auf einem Ubuntu System mit openHAB2 und Docker
-============================================================
+Installation auf einem Ubuntu System mit openHAB und Docker
+===========================================================
 
 1. Voraussetzungen
 ------------------
 
-Für den Betrieb der CometVisu mit openHAB2 und Docker werden folgende Dinge benötigt:
+Für den Betrieb der CometVisu mit openHAB und Docker werden folgende Dinge benötigt:
 
-1. Server mit funktionierender openHAB2 Installation.
+1. Server mit funktionierender openHAB Installation.
 2. Docker-CE und Docker Compose
-3. Die openHAB Erweiterung *CometVisu*
 
 .. HINT::
 
     Es wird kein zusätzlicher Webserver, wie z.B. Apache o.ä. mit installiertem PHP Support benötigt, da dies
     alles Bestandteil des Containers ist.
-    Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erfolderlich ist.
+    Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erforderlich ist.
 
 
 2. Installation von Docker-CE und Compose auf dem Server
@@ -103,7 +102,7 @@ Nach dem Aufnehmen des Benutzers nochmal neu Anmelden
     # Rechte für den Webserver setzen
     sudo chown -hR www-data:www-data resource/config 
 
-4. Cometvisu per Docker installieren
+4. CometVisu per Docker installieren
 ------------------------------------
 Jetzt den Container installieren
 
@@ -112,7 +111,7 @@ Jetzt den Container installieren
     # yaml datei Anlegen
     sudo nano docker-compose.yaml
 
-    # Beispielinhalt für openhab2
+    # Beispielinhalt für openhab
     
     version: '3.4'
     services:
@@ -137,4 +136,4 @@ Jetzt den Container installieren
     # docker starten
     docker-compose up -d
 
-Die CometVisu ist dann direkt unter der URL ``http://<IP-Openhab2>:`` im Browser erreichbar.
+Die CometVisu ist dann direkt unter der URL ``http://<IP-Openhab>:`` im Browser erreichbar.
