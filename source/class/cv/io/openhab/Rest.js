@@ -35,6 +35,8 @@ qx.Class.define('cv.io.openhab.Rest', {
     this.initialAddresses = [];
     this._backendName = backendName;
     this._backendUrl = backendUrl || "/rest";
+    this.__groups = {};
+    this.__memberLookup = {};
   },
 
   /*
@@ -66,6 +68,8 @@ qx.Class.define('cv.io.openhab.Rest', {
     _backendName: null,
     _backendUrl: null,
     __token: null,
+    __groups: null,
+    __memberLookup: null,
 
     getBackend: function () {
       return {};
@@ -169,17 +173,62 @@ qx.Class.define('cv.io.openhab.Rest', {
       return req;
     },
 
+    __isActive: function (type, state) {
+      switch (type) {
+        case "Decimal":
+        case "Percent":
+        case "Number":
+        case "Dimmer":
+          return parseInt(state) > 0;
+
+        case "Rollershutter":
+          return state === "0";
+
+        case "Contact":
+          return state === "OPENED";
+
+        case "OnOff":
+        case "Switch":
+          return state === "ON";
+
+        default:
+          return null;
+      }
+    },
+
     subscribe : function (addresses, filters) {
       // send first request to get all states once
-      const req = this.createAuthorizedRequest("items?fields=name,state");
+      const req = this.createAuthorizedRequest("items?fields=name,state,members,type&recursive=true");
       req.addListener("success", function(e) {
         const req = e.getTarget();
 
         const res = req.getResponse();
-        const update = res.reduce(function(map, obj) {
-          map[obj.name] = obj.state;
-          return map;
-        }, {});
+        const update = {};
+        res.forEach(function(entry) {
+          if (entry.members && Array.isArray(entry.members)) {
+            // this is a group
+            let active = 0;
+            const map = {};
+            entry.members.forEach(obj => {
+              map[obj.name] = {type: obj.type, state: obj.state};
+              if (this.__isActive(obj.type, obj.state)) {
+                active++;
+              }
+              if (!this.__memberLookup.hasOwnProperty(obj.name)) {
+                this.__memberLookup[obj.name] = [entry.name];
+              } else {
+                this.__memberLookup[obj.name].push(entry.name);
+              }
+              return map;
+            });
+            this.__groups[entry.name] = {
+              members: map,
+              active: active
+            };
+            update["number:" + entry.name] = active;
+          }
+          update[entry.name] = entry.state;
+        }, this);
         this.update(update);
       }, this);
       // Send request
@@ -207,12 +256,30 @@ qx.Class.define('cv.io.openhab.Rest', {
     handleMessage: function(payload) {
       if (payload.type === "message") {
         const data = JSON.parse(payload.data);
-        if (data.type === "ItemStateChangedEvent") {
+        if (data.type === "ItemStateChangedEvent" || data.type === "GroupItemStateChangedEvent") {
           //extract item name from topic
           const update = {}
           const item = data.topic.split("/")[2];
           const change = JSON.parse(data.payload);
           update[item] = change.value;
+          // check if this Item is part of any group
+          if (this.__memberLookup.hasOwnProperty(item)) {
+            const groupNames = this.__memberLookup[item];
+            groupNames.forEach(groupName => {
+              const group = this.__groups[groupName];
+              let active = 0;
+              group.members[item].value = change.value;
+              Object.keys(group.members).forEach(memberName => {
+                const member = group.members[memberName];
+                if (this.__isActive(member.type, member.value)) {
+                  active++;
+                }
+              });
+              group.active = active;
+              update["number:" + groupName] = active;
+            })
+
+          }
           this.update(update);
         }
       }

@@ -81,14 +81,21 @@ qx.Class.define('cv.util.ConfigLoader', {
             this.configError("libraryerror");
           }
           else {
+            let backendName = ""
+            if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
+              backendName = req.getResponseHeader("X-CometVisu-Backend-Name");
+            }
             if (req.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
               cv.Config.backendUrl = req.getResponseHeader("X-CometVisu-Backend-LoginUrl");
               if (!cv.Config.backendUrl.endsWith('/')) {
                 cv.Config.backendUrl += '/';
               }
+              if (!backendName && cv.Config.backendUrl.startsWith("/rest/")) {
+                backendName = "openhab";
+              }
             }
-            if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
-              cv.Config.backend = req.getResponseHeader("X-CometVisu-Backend-Name");
+            if (backendName) {
+              cv.Config.backend = backendName;
             }
             this._checkQueue();
           }
