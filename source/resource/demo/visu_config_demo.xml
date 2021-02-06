@@ -124,7 +124,7 @@
     </stylings>
     <statusbar>
       <status type="html"><![CDATA[
-          <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
+          <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
           - <a href="#" onclick="showManager()">Config-Manager</a>
           - <a href=".?config=demo&forceReload=true">Reload</a>
           - <a href=".">Default Config</a>
@@ -346,14 +346,14 @@
       <address transform="DPT:9" mode="readwrite">12/7/9</address>
     </info>
     <break/>
-    <image src="icon/comet_128_ff8000.png">
+    <image src="icons/comet_128_ff8000.png">
       <label>Image</label>
     </image>
     <page name="Image: Erweitert..." align="center">
       <image src="https://www.reliablecounter.com/count.php?page=cometvisu.org&amp;digit=style/plain/1/&amp;reloads=0" refresh="10">
         <label>Image: Update alle 10s</label>
       </image>
-      <image src="icon/comet_128_ff8000.png" width="500px" height="46px">
+      <image src="icons/comet_128_ff8000.png" width="500px" height="46px">
         <label>Image: mit Größenangabe</label>
       </image>
     </page>

@@ -9,7 +9,7 @@
     </stylings>
     <statusbar>
       <status type="html"><![CDATA[
-          <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
+          <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="https://www.cometvisu.org/">CometVisu.org</a>
           - <a href="#" onclick="showManager()">Config-Manager</a>
           - <a href=".?forceReload=true">Reload</a>
         ]]></status>

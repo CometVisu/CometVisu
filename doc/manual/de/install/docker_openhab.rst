@@ -72,7 +72,7 @@ Nach dem Aufnehmen des Benutzers nochmal neu Anmelden
     <meta>
         <statusbar>
         <status type="html"><![CDATA[
-                <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+                <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
                 -<a href=".?forceReload=true">Reload</a>
                 -<a href="?config=demo">Widget Demo</a>
                 ]]></status>

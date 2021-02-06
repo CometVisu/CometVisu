@@ -88,7 +88,7 @@ for the Image widget.
 .. widget-example::
 
     
-    <image src="resource/icon/CometVisu_orange.png" width="45px" height="32px">
+    <image src="resource/icons/CometVisu_orange.png" width="45px" height="32px">
       <layout colspan="2" />
     </image>
     

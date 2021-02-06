@@ -184,7 +184,7 @@ module.exports = function(grunt) {
       },
       default : {
         files: {
-          'source/resource/icon/knx-uf-iconset.svg': [
+          'source/resource/icons/knx-uf-iconset.svg': [
             'cache/icons/*.svg'
           ]
         }
@@ -585,7 +585,7 @@ module.exports = function(grunt) {
   // - replace #FFFFFF with the currentColor
   // - fix viewBox to follow the png icon version
   grunt.registerTask('handle-kuf-svg', function() {
-    var filename   = 'source/resource/icon/knx-uf-iconset.svg';
+    var filename   = 'source/resource/icons/knx-uf-iconset.svg';
     var iconconfig = 'source/class/cv/IconConfig.js';
     var svg = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, svg

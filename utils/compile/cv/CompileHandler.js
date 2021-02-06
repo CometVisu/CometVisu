@@ -146,7 +146,7 @@ class CvCompileHandler extends AbstractCompileHandler {
       });
     }
 
-    // copy IconConfig.js to make it available for resource/icon/iconlist.html
+    // copy IconConfig.js to make it available for resource/icons/iconlist.html
     const classTargetDir = path.join(currentDir, targetDir, 'class', 'cv');
     fse.ensureDirSync(classTargetDir);
     fse.copySync(path.join(process.cwd(), 'source', 'class', 'cv', 'IconConfig.js'), path.join(classTargetDir, 'IconConfig.js'));
