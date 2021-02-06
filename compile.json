@@ -138,8 +138,7 @@
         },
         "plugin-openhab": {
           "include": [
-            "cv.plugins.openhab.*",
-            "${QXTHEME}"
+            "cv.plugins.openhab.*"
           ]
         }
       }

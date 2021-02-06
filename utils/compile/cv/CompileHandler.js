@@ -63,7 +63,6 @@ class CvCompileHandler extends AbstractCompileHandler {
     this._excludes = excludeFromCopy.hasOwnProperty(this._config.targetType) ? excludeFromCopy[this._config.targetType].map(d => {
       return path.join(currentDir, targetDir, (d.startsWith('../') ? d.substring(3) : d));
     }) : [];
-    console.log(this._excludes);
   }
 
   /**

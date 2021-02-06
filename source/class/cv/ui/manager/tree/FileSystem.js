@@ -224,7 +224,8 @@ qx.Class.define('cv.ui.manager.tree.FileSystem', {
            control = new qx.ui.tree.VirtualTree(null, 'name', 'children');
            control.set({
              selectionMode: 'single',
-             minWidth: 250
+             minWidth: 250,
+             showTopLevelOpenCloseIcons: true
            });
            cv.ui.manager.model.Preferences.getInstance().bind('quickPreview', control, 'openMode', {
              converter: function (value) {

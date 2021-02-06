@@ -27,14 +27,14 @@
     "translation": "source/translation"
   },
   "requires": {
-    "@qooxdoo/framework": "^6.0.0-beta",
-    "@qooxdoo/compiler": "^1.0.0-beta.20200514-1056",
-    "ITISFoundation/qx-osparc-theme": "^0.4.13",
-    "johnspackman/UploadMgr": "^1.0.4",
+    "@qooxdoo/framework": "^6.0.0",
+    "@qooxdoo/compiler": "^1.0.0",
+    "johnspackman/UploadMgr": "^1.0.5",
     "cboulanger/qx-contrib-Dialog": "^2.1.1",
-    "qooxdoo/qxl.versionlabel": "^1.0.0-beta.3",
-    "ITISFoundation/qx-iconfont-material": "^0.1.4",
-    "qooxdoo/qxl.apiviewer": "^1.0.0-beta.7"
+    "qooxdoo/qxl.versionlabel": "^1.0.4",
+    "qooxdoo/qxl.apiviewer": "^1.0.16",
+    "ITISFoundation/qx-osparc-theme": "^0.5.6",
+    "ITISFoundation/qx-iconfont-material": "^0.1.7"
   },
   "externalResources": {
     "script": [

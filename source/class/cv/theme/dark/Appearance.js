@@ -20,7 +20,7 @@
 
 
 qx.Theme.define("cv.theme.dark.Appearance", {
-  extend : osparc.theme.osparcdark.Appearance,
+  extend : osparc.theme.common.Appearance,
 
   appearances : {
     'cv-start': 'widget',

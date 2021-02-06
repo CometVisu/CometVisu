@@ -81,9 +81,9 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       return this.$navbarBottom;
     },
 
-    queueJob: function(name) {
-      if (this.validationQueue.indexOf(name) === -1) {
-        this.validationQueue.push(name);
+    queueJob: function(callback) {
+      if (this.validationQueue.indexOf(callback) === -1) {
+        this.validationQueue.push(callback);
       }
       if (!this.__request) {
         this.__request = qx.bom.AnimationFrame.request(this.flush, this);
@@ -93,7 +93,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     flush: function() {
       while (this.validationQueue.length) {
         var job = this.validationQueue.shift();
-        this[job].apply(this);
+        job.apply(this);
       }
       this.__request = null;
     },
@@ -106,7 +106,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     },
 
     makeBackdropValid: function () {
-      this.queueJob("__makeBackdropValid");
+      this.queueJob(this.__makeBackdropValid);
     },
 
     __makeBackdropValid: function () {
@@ -221,7 +221,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     },
 
     makeNavbarValid: function () {
-      this.queueJob("__makeNavbarValid");
+      this.queueJob(this.__makeNavbarValid);
     },
 
     __makeNavbarValid: function() {
@@ -239,7 +239,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         ) {
           // Top/Bottom-Navbar is not initialized yet, re-queue the job
           new qx.util.DeferredCall(function() {
-            this.queueJob("__makeNavbarValid");
+            this.queueJob(this.__makeNavbarValid);
           }, this).schedule();
           return;
         }
@@ -258,7 +258,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         this.__initial = false;
         this.__makePagesizeValid();
       } else {
-        this.queueJob("__makePagesizeValid");
+        this.queueJob(this.__makePagesizeValid);
       }
     },
 
@@ -282,7 +282,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     },
 
     makeRowspanValid: function () {
-      this.queueJob("__makeRowspanValid");
+      this.queueJob(this.__makeRowspanValid);
     },
 
     __makeRowspanValid: function () {
