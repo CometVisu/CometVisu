@@ -63,7 +63,6 @@ class CvCompileHandler extends AbstractCompileHandler {
     this._excludes = excludeFromCopy.hasOwnProperty(this._config.targetType) ? excludeFromCopy[this._config.targetType].map(d => {
       return path.join(currentDir, targetDir, (d.startsWith('../') ? d.substring(3) : d));
     }) : [];
-    console.log(this._excludes);
   }
 
   /**
@@ -147,7 +146,7 @@ class CvCompileHandler extends AbstractCompileHandler {
       });
     }
 
-    // copy IconConfig.js to make it available for resource/icon/iconlist.html
+    // copy IconConfig.js to make it available for resource/icons/iconlist.html
     const classTargetDir = path.join(currentDir, targetDir, 'class', 'cv');
     fse.ensureDirSync(classTargetDir);
     fse.copySync(path.join(process.cwd(), 'source', 'class', 'cv', 'IconConfig.js'), path.join(classTargetDir, 'IconConfig.js'));

@@ -89,7 +89,7 @@ Hier der minimale Beispielcode der das ImageTrigger Widget aus dem folgenden Scr
               <data address="0/0/0">grey</data>
             </screenshot>
         </settings>
-	    <imagetrigger src="icon/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
+	    <imagetrigger src="icons/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
             <layout colspan="1" />
             <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
         </imagetrigger>
@@ -106,7 +106,7 @@ Weitere Beispiele
          <data address="0/0/0">1</data>
        </screenshot>
      </settings>
-     <imagetrigger src="icon/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
+     <imagetrigger src="icons/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
        <layout colspan="0" />
        <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
      </imagetrigger>

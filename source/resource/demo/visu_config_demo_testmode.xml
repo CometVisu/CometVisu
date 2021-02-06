@@ -96,7 +96,7 @@
     <statusbar>
       <status type="html"><![CDATA[
       <div style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center;">
-          <div style="flex: auto"><a href="https://www.cometvisu.org/"><img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /></a></div>
+          <div style="flex: auto"><a href="https://www.cometvisu.org/"><img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /></a></div>
 ]]></status>
       <status type="html" condition="testMode"><![CDATA[
       <div style="flex: auto;"><span style="color: #FF8000;">Bitte beachten: Im Testmodus steht nicht die volle Funktionalität der CometVisu zur Verfügung!</span></div>

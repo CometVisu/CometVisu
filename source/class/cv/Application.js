@@ -23,7 +23,7 @@
  *
  * @asset(demo/*)
  * @asset(designs/*)
- * @asset(icon/*)
+ * @asset(icons/*)
  * @asset(sentry/bundle.min.js)
  * @asset(test/*)
  *

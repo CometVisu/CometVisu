@@ -63,13 +63,13 @@ qx.Class.define('cv.IconConfig', {
           'orange  ': '*/ff8000',
           '*': {
             '*': 'ff8000',
-            '000000': {'uri': 'icon/comet_16_000000.png'},
-            'ffffff': {'uri': 'icon/comet_16_ffffff.png'},
-            '00ddff': {'uri': 'icon/comet_16_00ddff.png'},
-            '00ff11': {'uri': 'icon/comet_16_00ff11.png'},
-            'ff0000': {'uri': 'icon/comet_16_ff0000.png'},
-            'd00055': {'uri': 'icon/comet_16_d00055.png'},
-            'ff8000': {'uri': 'icon/comet_16_ff8000.png'}
+            '000000': {'uri': 'icons/comet_16_000000.png'},
+            'ffffff': {'uri': 'icons/comet_16_ffffff.png'},
+            '00ddff': {'uri': 'icons/comet_16_00ddff.png'},
+            '00ff11': {'uri': 'icons/comet_16_00ff11.png'},
+            'ff0000': {'uri': 'icons/comet_16_ff0000.png'},
+            'd00055': {'uri': 'icons/comet_16_d00055.png'},
+            'ff8000': {'uri': 'icons/comet_16_ff8000.png'}
           }
         },
         '32': {
@@ -82,13 +82,13 @@ qx.Class.define('cv.IconConfig', {
           'orange  ': '*/ff8000',
           '*': {
             '*': 'ff8000',
-            '000000': {'uri': 'icon/comet_32_000000.png'},
-            'ffffff': {'uri': 'icon/comet_32_ffffff.png'},
-            '00ddff': {'uri': 'icon/comet_32_00ddff.png'},
-            '00ff11': {'uri': 'icon/comet_32_00ff11.png'},
-            'ff0000': {'uri': 'icon/comet_32_ff0000.png'},
-            'd00055': {'uri': 'icon/comet_32_d00055.png'},
-            'ff8000': {'uri': 'icon/comet_32_ff8000.png'}
+            '000000': {'uri': 'icons/comet_32_000000.png'},
+            'ffffff': {'uri': 'icons/comet_32_ffffff.png'},
+            '00ddff': {'uri': 'icons/comet_32_00ddff.png'},
+            '00ff11': {'uri': 'icons/comet_32_00ff11.png'},
+            'ff0000': {'uri': 'icons/comet_32_ff0000.png'},
+            'd00055': {'uri': 'icons/comet_32_d00055.png'},
+            'ff8000': {'uri': 'icons/comet_32_ff8000.png'}
           }
         },
         '64': {
@@ -101,13 +101,13 @@ qx.Class.define('cv.IconConfig', {
           'orange  ': '*/ff8000',
           '*': {
             '*': 'ff8000',
-            '000000': {'uri': 'icon/comet_64_000000.png'},
-            'ffffff': {'uri': 'icon/comet_64_ffffff.png'},
-            '00ddff': {'uri': 'icon/comet_64_00ddff.png'},
-            '00ff11': {'uri': 'icon/comet_64_00ff11.png'},
-            'ff0000': {'uri': 'icon/comet_64_ff0000.png'},
-            'd00055': {'uri': 'icon/comet_64_d00055.png'},
-            'ff8000': {'uri': 'icon/comet_64_ff8000.png'}
+            '000000': {'uri': 'icons/comet_64_000000.png'},
+            'ffffff': {'uri': 'icons/comet_64_ffffff.png'},
+            '00ddff': {'uri': 'icons/comet_64_00ddff.png'},
+            '00ff11': {'uri': 'icons/comet_64_00ff11.png'},
+            'ff0000': {'uri': 'icons/comet_64_ff0000.png'},
+            'd00055': {'uri': 'icons/comet_64_d00055.png'},
+            'ff8000': {'uri': 'icons/comet_64_ff8000.png'}
           }
         },
         '128': {
@@ -120,13 +120,13 @@ qx.Class.define('cv.IconConfig', {
           'orange  ': '*/ff8000',
           '*': {
             '*': 'ff8000',
-            '000000': {'uri': 'icon/comet_128_000000.png'},
-            'ffffff': {'uri': 'icon/comet_128_ffffff.png'},
-            '00ddff': {'uri': 'icon/comet_128_00ddff.png'},
-            '00ff11': {'uri': 'icon/comet_128_00ff11.png'},
-            'ff0000': {'uri': 'icon/comet_128_ff0000.png'},
-            'd00055': {'uri': 'icon/comet_128_d00055.png'},
-            'ff8000': {'uri': 'icon/comet_128_ff8000.png'}
+            '000000': {'uri': 'icons/comet_128_000000.png'},
+            'ffffff': {'uri': 'icons/comet_128_ffffff.png'},
+            '00ddff': {'uri': 'icons/comet_128_00ddff.png'},
+            '00ff11': {'uri': 'icons/comet_128_00ff11.png'},
+            'ff0000': {'uri': 'icons/comet_128_ff0000.png'},
+            'd00055': {'uri': 'icons/comet_128_d00055.png'},
+            'ff8000': {'uri': 'icons/comet_128_ff8000.png'}
           }
         }
       },

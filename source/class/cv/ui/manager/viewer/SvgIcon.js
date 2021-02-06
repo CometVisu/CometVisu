@@ -46,7 +46,7 @@ qx.Class.define('cv.ui.manager.viewer.SvgIcon', {
     _applyName: function (value) {
       if (value) {
         if (!this.__spriteUrl) {
-          this.__spriteUrl = qx.util.ResourceManager.getInstance().toUri('icon/knx-uf-iconset.svg');
+          this.__spriteUrl = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
         }
         if (!this.__useElement.getDomElement()) {
           this.__useElement.addListenerOnce('appear', function () {

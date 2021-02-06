@@ -28,7 +28,7 @@
  * @since       2012-10-17
  */
 
-define('ICON_FILE', '../../resource/icon/knx-uf-iconset.svg');
+define('ICON_FILE', '../../resource/icons/knx-uf-iconset.svg');
 
 function createListEntry( $key )
 {

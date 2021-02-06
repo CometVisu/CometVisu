@@ -171,12 +171,12 @@ qx.Class.define("cv.core.notifications.Router", {
         var firstSegment = segments.shift();
         var currentSegment = this.__routes[firstSegment];
         if (!currentSegment) {
-          this.__routes[firstSegment] = {'__handlers__': []};
+          this.__routes[firstSegment] = {__handlers__: []};
           currentSegment = this.__routes[firstSegment];
         }
         segments.forEach(function(segment) {
           if (!currentSegment[segment]) {
-            currentSegment[segment] = {'__handlers__': []};
+            currentSegment[segment] = {__handlers__: []};
           }
           currentSegment = currentSegment[segment];
         }, this);

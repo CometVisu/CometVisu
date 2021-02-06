@@ -20,7 +20,7 @@
 
 
 qx.Theme.define("cv.theme.dark.Decoration", {
-  extend : osparc.theme.osparcdark.Decoration,
+  extend : osparc.theme.common.Decoration,
 
   decorations : {
     "window-caption-active": {

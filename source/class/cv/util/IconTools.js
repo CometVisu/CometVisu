@@ -243,7 +243,7 @@ qx.Class.define('cv.util.IconTools', {
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
-        var iconPath = qx.util.ResourceManager.getInstance().toUri('icon/knx-uf-iconset.svg');
+        var iconPath = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
         var style = styling || "";
         if (color) {
           style += 'color:' + color + ';';

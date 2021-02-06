@@ -28,7 +28,7 @@ Browser unterstützen werden. Vorzugweise sollten das PNG, GIF und JPG sein.
     <settings>
         <screenshot name="image_simple"/>
     </settings>
-    <image src="icon/comet_128_ff8000.png"/>
+    <image src="resource/icons/comet_128_ff8000.png"/>
 
 
 Einstellungen
@@ -78,7 +78,7 @@ Die gültigen Werte für ``cachecontrol`` sind:
     :align: center
 
         <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
-        <image src="/icon/comet_128_ff8000.png"/>
+        <image src="/resource/icons/comet_128_ff8000.png"/>
 
 
 Erlaubte Kind-Elemente und deren Attribute
@@ -92,7 +92,7 @@ Erlaubte Kind-Elemente und deren Attribute
     :align: center
 
         <caption>Elemente im Editor</caption>
-        <image src="/icon/comet_128_ff8000.png">
+        <image src="/resource/icons/comet_128_ff8000.png">
             <label>Beschreibung der Grafik</label>
         </image>
 
@@ -110,7 +110,7 @@ Hier der minimale Beispielcode der das Image Widget aus dem oben gezeigten Scree
 
 .. code-block:: xml
 
-    <image src="icon/comet_128_ff8000.png"/>
+    <image src="icons/comet_128_ff8000.png"/>
 
 
 XML Syntax komplett
@@ -124,7 +124,7 @@ Eigenschaften einfügt:
     <settings>
         <screenshot name="image_complete"/>
     </settings>
-    <image src="icon/comet_128_ff8000.png" width="300px" height="200px" refresh="300">
+    <image src="icons/comet_128_ff8000.png" width="300px" height="200px" refresh="300">
         <label>Beschreibung der Grafik</label>
     </image>
 

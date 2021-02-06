@@ -57,7 +57,7 @@ Iconset <http://knx-user-forum.de/knx-uf-iconset/>`__
 
 Eine Übersicht der verfügbaren Icons findet man am einfachsten auf dem
 Rechner auf dem die CometVisu läuft unter
-``http://<IP>/visu/resource/icon/iconlist.html``
+``http://<IP>/visu/resource/icons/iconlist.html``
 
 Man kann damit Mapping nutzen um statt Werten (z.B. 0 oder 1) Icons
 anzuzeigen.
