@@ -136,7 +136,7 @@ module.exports = function(config) {
     qooxdooFramework: {
       testSources: true,
       codePath: 'source/',
-      scriptFile: "cv/boot.js"
+      scriptFile: "cv/index.js"
     }
   });
 };
