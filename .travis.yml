@@ -1,6 +1,6 @@
 sudo: required
 language: python
-dist: xenial
+dist: bionic
 services:
   - docker
 python:
@@ -79,12 +79,14 @@ jobs:
     name: "[DOCS] - Generate and publish manual and API-viewer"
     env: CV_BUILD=docs ENCRYPTION_LABEL=4c79fec0aeb9 COMMIT_AUTHOR_EMAIL=generator@cometvisu.org CV_BROWSER=Chrome_travis CV_VERSION=stable
     script:
-    - docker pull cometvisu/dev-helper
+    - docker pull -q cometvisu/dev-helper
     - qx compile --t build # builds the cv for the screenshot generator
     - export CHROME_VERSION=$(bin/docker-run "google-chrome --version" | tail -1 | awk '{ print $3 }' | cut -d'.' -f 1,2,3)
     - export DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
     - echo "using chrome driver version $DRIVER_VERSION"
     - "node ./node_modules/protractor/bin/webdriver-manager update --gecko=false --versions.chrome=${DRIVER_VERSION}"
+    - which sphinx-build
+    - sphinx-build --version
     - sudo apt-get install python3-lxml
     - utils/travis/deploy.sh
   - name: "[NIGHTLY] - Build and push Nightly Build"
