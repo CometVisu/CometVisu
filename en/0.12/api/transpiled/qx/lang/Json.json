@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2013 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Richard Sternagel (rsternagel)\n   ======================================================================\n   This class contains code from:\n JSON 3 (v3.2.5)\n     Code:\n       https://github.com/bestiejs/json3\n     Copyright:\n       (c) 2012-2013, Kit Cambridge\n     License:\n       MIT: https://raw.github.com/bestiejs/json3/gh-pages/LICENSE</p>\n<hr />\n<pre><code>Copyright (c) 2012-2013 Kit Cambridge.\nhttp://kitcambridge.be/\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n*****************************************************************\n</code></pre>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Exposes (potentially polyfilled or patched) window.JSON to qooxdoo\n (enabled by <a href=\"https://github.com/bestiejs/json3\">JSON 3</a>).</p>"
         }
       ]
@@ -106,10 +102,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<p>will be set after the polyfill</p>"
-          },
           {
             "name": "@description",
             "body": "<p>This method parses a JSON text to produce an object or array.\n It can throw a SyntaxError exception.\n The optional reviver parameter is a function that can filter and\n transform the results. It receives each of the keys and values,\n and its return value is used instead of the original value.\n If it returns what it received, then the structure is not modified.\n If it returns undefined then the member is deleted.\n Example:\n </p>\n<pre class=\"javascript\">\n\n\n myData = JSON.parse(text, function (key, value)\n {\n   if (typeof value === 'string')\n   {\n     var a = /^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2}(?:\\.\\d*)?)Z$/.exec(value);\n     if (a) {\n       return new Date(Date.UTC(+a[1], +a[2] - 1, +a[3], +a[4], +a[5], +a[6]));\n     }\n   }\n   return value;\n });\n myData = JSON.parse('[\"Date(09/09/2001)\"]', function (key, value) {\n     var d;\n     if (typeof value === 'string' &&\n             value.slice(0, 5) === 'Date(' &&\n             value.slice(-1) === ')') {\n         d = new Date(value.slice(5, -1));\n         if (d) {\n             return d;\n         }\n     }\n     return value;\n });\n </pre>"

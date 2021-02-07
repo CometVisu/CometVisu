@@ -29,10 +29,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n Christian Hagendorn (chris_schmidt)\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>The radio group handles a collection of items from which only one item\n can be selected. Selection another item will deselect the previously selected\n item.\n This class is e.g. used to create radio groups or {@link qx.ui.form.RadioButton}\n or {@link qx.ui.toolbar.RadioButton} instances.\n We also offer a widget for the same purpose which uses this class. So if\n you like to act with a widget instead of a pure logic coupling of the\n widgets, take a look at the {@link qx.ui.form.RadioButtonGroup} widget.</p>"
         }
       ]
@@ -52,10 +48,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -387,10 +379,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  UTILITIES\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Get all managed items</p>"
           }
         ],
@@ -419,10 +407,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  REGISTRY\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Add the passed items to the radio group.</p>"
@@ -517,10 +501,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  LISTENER FOR ITEM CHANGES\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Event listener for <code>changeValue</code> event of every managed item.</p>"
           }
         ],
@@ -548,18 +528,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  APPLY ROUTINES\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -577,14 +546,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -602,14 +564,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -627,14 +582,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -652,14 +600,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -679,10 +620,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  SELECTION\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Select the item following the given item.</p>"
@@ -727,10 +664,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  HELPER METHODS FOR SELECTION API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the items for the selection.</p>"
@@ -1035,10 +968,6 @@
       "overriddenFrom": "qx.ui.form.IField",
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  VALUE PROPERTY\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Sets the field model value. Should also update the UI.</p>"
@@ -1414,10 +1343,6 @@
       "overriddenFrom": "qx.ui.core.MSingleSelectionHandling",
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT HANDLER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Event listener for <code>changeSelected</code> event on single\n selection manager.</p>"
@@ -2110,13 +2035,120 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
+    "jsdoc": {}
+  },
+  "events": {
+    "changeSelection": {
+      "type": "event",
+      "name": "changeSelection",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.core.ISingleSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires after the selection was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeValue": {
+      "type": "event",
+      "name": "changeValue",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IField",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the model value was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeEnabled": {
+      "type": "event",
+      "name": "changeEnabled",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the enabled state was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeValid": {
+      "type": "event",
+      "name": "changeValid",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the valid state was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeInvalidMessage": {
+      "type": "event",
+      "name": "changeInvalidMessage",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the invalidMessage was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeRequired": {
+      "type": "event",
+      "name": "changeRequired",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IForm",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the required was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeModelSelection": {
+      "type": "event",
+      "name": "changeModelSelection",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.MModelSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pseudo event. It will never be fired because the array itself can not\n be changed. But the event description is needed for the data binding.</p>"
+          }
+        ]
+      }
     }
   },
   "descendants": [

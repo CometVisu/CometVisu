@@ -27,10 +27,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n Christian Hagendorn (chris_schmidt)\n Adrian Olaru (adrianolaru)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>The stack container puts its child widgets on top of each other and only the\n topmost widget is visible.\n This is used e.g. in the tab view widget. Which widget is visible can be\n controlled by using the {@link #getSelection} method.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n\n   var stack = new qx.ui.container.Stack();\n\n   stack.add(new qx.ui.core.Widget().set({\n    backgroundColor: \"red\"\n   }));\n   stack.add(new qx.ui.core.Widget().set({\n    backgroundColor: \"green\"\n   }));\n   stack.add(new qx.ui.core.Widget().set({\n    backgroundColor: \"blue\"\n   }));\n\n   stack.setSelection([stack.getChildren()[1]]);\n   this.getRoot().add(stack);\n </pre>\n<p>This example creates an stack with three children. Only the selected \"green\"\n widget is visible.\n<em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/stack.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
         }
       ]
@@ -48,14 +44,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "properties": {
     "dynamic": {
@@ -97,14 +86,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -124,10 +106,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  HELPER METHODS FOR SELECTION API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the widget for the selection.</p>"
@@ -256,14 +234,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected"
     },
@@ -278,14 +249,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected"
     },
@@ -302,10 +266,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PUBLIC API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Go to the previous child in the children list.</p>"
@@ -347,10 +307,6 @@
       "overriddenFrom": "qx.ui.form.IField",
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  VALUE PROPERTY\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Sets the field model value. Should also update the UI.</p>"
@@ -607,10 +563,6 @@
       "overriddenFrom": "qx.ui.core.MSingleSelectionHandling",
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT HANDLER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Event listener for <code>changeSelected</code> event on single\n selection manager.</p>"
@@ -1908,31 +1860,6 @@
         ]
       }
     },
-    "getAllowStretchX": {
-      "type": "function",
-      "name": "getAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchX"
-          }
-        ]
-      }
-    },
     "setAllowStretchX": {
       "type": "function",
       "name": "setAllowStretchX",
@@ -1973,31 +1900,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ]
-      }
-    },
-    "getAllowStretchY": {
-      "type": "function",
-      "name": "getAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchY"
           }
         ]
       }
@@ -2318,31 +2220,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ]
-      }
-    },
-    "getMargin": {
-      "type": "function",
-      "name": "getMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for margin"
           }
         ]
       }
@@ -2801,31 +2678,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ]
-      }
-    },
-    "getPadding": {
-      "type": "function",
-      "name": "getPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>padding</code>.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for padding"
           }
         ]
       }
@@ -4960,6 +4812,40 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>dynamic</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #dynamic}."
+          }
+        ]
+      }
+    }
+  },
+  "events": {
+    "changeValue": {
+      "type": "event",
+      "name": "changeValue",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.form.IField",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the model value was modified</p>"
+          }
+        ]
+      }
+    },
+    "changeSelection": {
+      "type": "event",
+      "name": "changeSelection",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.core.ISingleSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires after the selection was modified</p>"
           }
         ]
       }

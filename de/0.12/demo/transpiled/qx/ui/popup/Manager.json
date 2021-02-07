@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 194,
+        "line": 203,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>This singleton is used to manager multiple instances of popups and their\n state.</p>"
@@ -45,24 +41,76 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
+    "jsdoc": {}
+  },
+  "properties": {
+    "containsFunction": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4
+        },
+        "end": {
+          "line": 62,
+          "column": 5
         }
-      ]
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function that is used to determine if a widget is contained within another one.</p>"
+          }
+        ]
+      },
+      "name": "containsFunction",
+      "propertyType": "new",
+      "init": "qx.ui.core.Widget.contains",
+      "check": "Function",
+      "defaultValue": "qx.ui.core.Widget.contains"
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
     "__objects": {
       "location": {
         "start": {
-          "line": 63,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 63,
+          "line": 73,
           "column": 20
         }
       },
@@ -72,11 +120,11 @@
     "add": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 82,
+          "line": 91,
           "column": 5
         }
       },
@@ -103,11 +151,11 @@
     "remove": {
       "location": {
         "start": {
-          "line": 90,
+          "line": 99,
           "column": 4
         },
         "end": {
-          "line": 101,
+          "line": 110,
           "column": 5
         }
       },
@@ -134,11 +182,11 @@
     "hideAll": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 117,
           "column": 4
         },
         "end": {
-          "line": 118,
+          "line": 127,
           "column": 5
         }
       },
@@ -156,20 +204,16 @@
     "__updateIndexes": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 149,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  INTERNAL HELPER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Updates the zIndex of all registered items to push\n newly added ones on top of existing ones</p>"
@@ -182,20 +226,16 @@
     "__onPointerDown": {
       "location": {
         "start": {
-          "line": 156,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 176,
+          "line": 185,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT HANDLER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Event handler for pointer down events</p>"
@@ -349,27 +389,86 @@
           }
         ]
       }
+    },
+    "getContainsFunction": {
+      "type": "function",
+      "name": "getContainsFunction",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>containsFunction</code>.\n\nFor further details take a look at the property definition: {@link #containsFunction}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Function",
+            "desc": "Returns the value for containsFunction"
+          }
+        ]
+      }
+    },
+    "setContainsFunction": {
+      "type": "function",
+      "name": "setContainsFunction",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>containsFunction</code>.\n\nFor further details take a look at the property definition: {@link #containsFunction}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Function",
+            "paramName": "value",
+            "desc": "Value for containsFunction"
+          }
+        ]
+      }
+    },
+    "resetContainsFunction": {
+      "type": "function",
+      "name": "resetContainsFunction",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>containsFunction</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #containsFunction}."
+          }
+        ]
+      }
     }
   },
   "destruct": {
     "location": {
       "start": {
-        "line": 187,
+        "line": 196,
         "column": 13
       },
       "end": {
-        "line": 193,
+        "line": 202,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

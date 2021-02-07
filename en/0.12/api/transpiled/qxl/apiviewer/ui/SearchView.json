@@ -9,20 +9,16 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 23,
+        "line": 24,
         "column": 0
       },
       "end": {
-        "line": 670,
+        "line": 669,
         "column": 5
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Stefan Kloiber (skloiber)\n Jonathan Weiß (jonathan_rass)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>Shows the search pane.</p>"
@@ -34,32 +30,25 @@
   "construct": {
     "location": {
       "start": {
-        "line": 34,
+        "line": 35,
         "column": 16
       },
       "end": {
-        "line": 47,
+        "line": 48,
         "column": 5
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "events": {
     "searchFinished": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 62,
           "column": 6
         },
         "end": {
-          "line": 61,
+          "line": 62,
           "column": 43
         }
       },
@@ -79,11 +68,11 @@
     "__note": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 76,
+          "line": 77,
           "column": 17
         }
       },
@@ -93,11 +82,11 @@
     "__initresult": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 78,
           "column": 23
         }
       },
@@ -107,11 +96,11 @@
     "__table": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 78,
+          "line": 79,
           "column": 18
         }
       },
@@ -121,11 +110,11 @@
     "__typeFilter": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 79,
+          "line": 80,
           "column": 22
         }
       },
@@ -135,11 +124,11 @@
     "__typesIndex": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 81,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 81,
           "column": 22
         }
       },
@@ -149,11 +138,11 @@
     "__searchTerm": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 81,
+          "line": 82,
           "column": 22
         }
       },
@@ -163,11 +152,11 @@
     "search": {
       "location": {
         "start": {
-          "line": 90,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 109,
+          "line": 110,
           "column": 5
         }
       },
@@ -194,11 +183,11 @@
     "_showSearchForm": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 116,
           "column": 4
         },
         "end": {
-          "line": 295,
+          "line": 296,
           "column": 5
         }
       },
@@ -216,11 +205,11 @@
     "_searchResult": {
       "location": {
         "start": {
-          "line": 303,
+          "line": 304,
           "column": 4
         },
         "end": {
-          "line": 362,
+          "line": 364,
           "column": 5
         }
       },
@@ -247,11 +236,11 @@
     "_validateInput": {
       "location": {
         "start": {
-          "line": 370,
+          "line": 372,
           "column": 4
         },
         "end": {
-          "line": 390,
+          "line": 392,
           "column": 5
         }
       },
@@ -278,11 +267,11 @@
     "_searchIndex": {
       "location": {
         "start": {
-          "line": 400,
+          "line": 402,
           "column": 4
         },
         "end": {
-          "line": 463,
+          "line": 465,
           "column": 5
         }
       },
@@ -316,11 +305,11 @@
     "_isTypeFilteredIn": {
       "location": {
         "start": {
-          "line": 470,
+          "line": 472,
           "column": 4
         },
         "end": {
-          "line": 472,
+          "line": 474,
           "column": 5
         }
       },
@@ -347,11 +336,11 @@
     "_setListdata": {
       "location": {
         "start": {
-          "line": 479,
+          "line": 481,
           "column": 4
         },
         "end": {
-          "line": 498,
+          "line": 500,
           "column": 5
         }
       },
@@ -378,11 +367,11 @@
     "_sortByIcons": {
       "location": {
         "start": {
-          "line": 507,
+          "line": 509,
           "column": 4
         },
         "end": {
-          "line": 554,
+          "line": 556,
           "column": 5
         }
       },
@@ -416,11 +405,11 @@
     "_load": {
       "location": {
         "start": {
-          "line": 563,
+          "line": 565,
           "column": 4
         },
         "end": {
-          "line": 585,
+          "line": 588,
           "column": 5
         }
       },
@@ -444,11 +433,11 @@
     "_callDetailFrame": {
       "location": {
         "start": {
-          "line": 591,
+          "line": 594,
           "column": 4
         },
         "end": {
-          "line": 623,
+          "line": 622,
           "column": 5
         }
       },
@@ -466,11 +455,11 @@
     "_resetElements": {
       "location": {
         "start": {
-          "line": 625,
+          "line": 624,
           "column": 4
         },
         "end": {
-          "line": 628,
+          "line": 627,
           "column": 5
         }
       },
@@ -480,11 +469,11 @@
     "__initNote": {
       "location": {
         "start": {
-          "line": 631,
+          "line": 630,
           "column": 4
         },
         "end": {
-          "line": 645,
+          "line": 644,
           "column": 5
         }
       },
@@ -494,11 +483,11 @@
     "__handleNote": {
       "location": {
         "start": {
-          "line": 647,
+          "line": 646,
           "column": 4
         },
         "end": {
-          "line": 655,
+          "line": 654,
           "column": 5
         }
       },
@@ -1431,31 +1420,6 @@
         ]
       }
     },
-    "getAllowStretchX": {
-      "type": "function",
-      "name": "getAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchX"
-          }
-        ]
-      }
-    },
     "setAllowStretchX": {
       "type": "function",
       "name": "setAllowStretchX",
@@ -1496,31 +1460,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ]
-      }
-    },
-    "getAllowStretchY": {
-      "type": "function",
-      "name": "getAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchY"
           }
         ]
       }
@@ -1841,31 +1780,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ]
-      }
-    },
-    "getMargin": {
-      "type": "function",
-      "name": "getMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for margin"
           }
         ]
       }
@@ -2324,31 +2238,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ]
-      }
-    },
-    "getPadding": {
-      "type": "function",
-      "name": "getPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>padding</code>.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for padding"
           }
         ]
       }
@@ -4401,22 +4290,15 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 664,
+        "line": 663,
         "column": 15
       },
       "end": {
-        "line": 669,
+        "line": 668,
         "column": 5
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

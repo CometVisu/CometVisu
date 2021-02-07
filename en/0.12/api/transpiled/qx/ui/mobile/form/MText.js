@@ -12,7 +12,9 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.OperatingSystem": {},
+      "qx.bom.client.OperatingSystem": {
+        "require": true
+      },
       "qx.bom.Element": {}
     },
     "environment": {
@@ -154,4 +156,4 @@
   qx.ui.mobile.form.MText.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MText.js.map?dt=1604955486176
+//# sourceMappingURL=MText.js.map?dt=1612690412401

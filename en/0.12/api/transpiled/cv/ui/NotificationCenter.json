@@ -57,14 +57,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\nCONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "statics": {
     "SLIDE": {
@@ -572,14 +565,7 @@
       "inherited": true,
       "access": "protected",
       "overriddenFrom": "cv.ui.MHandleMessage",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      }
+      "jsdoc": {}
     },
     "getMessageIdFromEvent": {
       "type": "function",
@@ -1254,18 +1240,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\nDESTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
-        {
-          "name": "@description",
-          "body": "<p>istanbul ignore next [destructor not called in singleton]</p>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

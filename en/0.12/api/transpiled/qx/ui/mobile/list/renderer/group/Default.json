@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2014 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christopher Zuendorf (czuendorf)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>The default group renderer. Used as the default renderer by the\n {@link qx.ui.mobile.list.provider.Provider}. Configure the renderer\n by setting the {@link qx.ui.mobile.list.List#delegate} property.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n\n\n   var list = new qx.ui.mobile.list.List({\n     configureItem: function(item, data, row)\n     {\n       item.setImage(\"path/to/image.png\");\n       item.setTitle(data.title);\n       item.setSubtitle(data.subtitle);\n     },\n     configureGroupItem: function(item, data, group) {\n       item.setTitle(group + \" \" + data.title);\n     },\n     group: function(data, row) {\n      return {\n       title: row < 4 ? \"Selectable\" : \"Unselectable\"\n     };\n    }\n  });\n </pre>\n<p>This example creates a list with a delegate that configures the list items and groups with\n the given data.</p>"
         }
       ]
@@ -363,14 +359,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.list.renderer.group.Abstract",
@@ -1665,5 +1654,6 @@
     },
     "jsdoc": {}
   },
+  "events": {},
   "descendants": []
 }

@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 368,
+        "line": 375,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Config.js\n copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
-        },
         {
           "name": "@description",
           "body": "<p>Main settings that an be accessed from anywhere inside the Application</p>"
@@ -484,7 +480,7 @@
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 143,
           "column": 5
         }
       },
@@ -502,11 +498,11 @@
     "rememberLastPage": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 148,
           "column": 27
         }
       },
@@ -524,11 +520,11 @@
     "lazyLoading": {
       "location": {
         "start": {
-          "line": 148,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 148,
+          "line": 155,
           "column": 22
         }
       },
@@ -552,11 +548,11 @@
     "designStructureMap": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 160,
           "column": 4
         },
         "end": {
-          "line": 155,
+          "line": 162,
           "column": 5
         }
       },
@@ -574,11 +570,11 @@
     "sentryEnabled": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 167,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 167,
           "column": 24
         }
       },
@@ -596,11 +592,11 @@
     "reporting": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 172,
           "column": 4
         },
         "end": {
-          "line": 165,
+          "line": 172,
           "column": 20
         }
       },
@@ -618,11 +614,11 @@
     "enableLogging": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 177,
           "column": 23
         }
       },
@@ -640,11 +636,11 @@
     "configServer": {
       "location": {
         "start": {
-          "line": 175,
+          "line": 182,
           "column": 4
         },
         "end": {
-          "line": 175,
+          "line": 182,
           "column": 22
         }
       },
@@ -662,11 +658,11 @@
     "initialDemoData": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 187,
           "column": 4
         },
         "end": {
-          "line": 180,
+          "line": 187,
           "column": 25
         }
       },
@@ -684,11 +680,11 @@
     "getStructure": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 194,
           "column": 4
         },
         "end": {
-          "line": 200,
+          "line": 207,
           "column": 5
         }
       },
@@ -724,11 +720,11 @@
     "guessIfProxied": {
       "location": {
         "start": {
-          "line": 207,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 219,
           "column": 5
         }
       },
@@ -746,11 +742,11 @@
     "addMapping": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 221,
           "column": 4
         },
         "end": {
-          "line": 216,
+          "line": 223,
           "column": 5
         }
       },
@@ -760,11 +756,11 @@
     "getMapping": {
       "location": {
         "start": {
-          "line": 218,
+          "line": 225,
           "column": 4
         },
         "end": {
-          "line": 220,
+          "line": 227,
           "column": 5
         }
       },
@@ -774,11 +770,11 @@
     "hasMapping": {
       "location": {
         "start": {
-          "line": 222,
+          "line": 229,
           "column": 4
         },
         "end": {
-          "line": 224,
+          "line": 231,
           "column": 5
         }
       },
@@ -788,11 +784,11 @@
     "clearMappings": {
       "location": {
         "start": {
-          "line": 226,
+          "line": 233,
           "column": 4
         },
         "end": {
-          "line": 228,
+          "line": 235,
           "column": 5
         }
       },
@@ -802,11 +798,11 @@
     "addStyling": {
       "location": {
         "start": {
-          "line": 230,
+          "line": 237,
           "column": 4
         },
         "end": {
-          "line": 232,
+          "line": 239,
           "column": 5
         }
       },
@@ -816,11 +812,11 @@
     "getStyling": {
       "location": {
         "start": {
-          "line": 234,
+          "line": 241,
           "column": 4
         },
         "end": {
-          "line": 236,
+          "line": 243,
           "column": 5
         }
       },
@@ -830,11 +826,11 @@
     "hasStyling": {
       "location": {
         "start": {
-          "line": 238,
+          "line": 245,
           "column": 4
         },
         "end": {
-          "line": 240,
+          "line": 247,
           "column": 5
         }
       },
@@ -844,11 +840,11 @@
     "getDesign": {
       "location": {
         "start": {
-          "line": 242,
+          "line": 249,
           "column": 4
         },
         "end": {
-          "line": 244,
+          "line": 251,
           "column": 5
         }
       },
@@ -859,11 +855,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 247,
+        "line": 254,
         "column": 9
       },
       "end": {
-        "line": 367,
+        "line": 374,
         "column": 3
       }
     },

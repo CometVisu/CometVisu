@@ -23,10 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2013 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Richard Sternagel (rsternagel)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This class is internal because it's tailored to {@link qx.io.rest.Resource}\n which needs more functionality than {@link qx.bom.request.Xhr} provides.\n The usage of {@link qx.io.request.Xhr} isn't possible either due to it's qx.Class nature.\n For alternatives to this class have a look at:</p>\n<ul>\n<li>\"qx.bom.request.Xhr\" (low level, cross-browser XHR abstraction compatible with spec)</li>\n<li>\"qx.io.request.Xhr\" (high level XHR abstraction)\nA wrapper of {@link qx.bom.request.Xhr} which offers:</li>\n<li>set/get HTTP method, URL, request data and headers</li>\n<li>retrieve the parsed response as object (content-type recognition)</li>\n<li>more fine-grained events such as success, fail, …</li>\n<li><p>supports hash code for request identification\nIt does <em>not</em> comply the interface defined by {@link qx.bom.request.IRequest}.</p></li>\n</ul>\n<div class=\"desktop\">\n Example:\n <pre class=\"javascript\">\n  var req = new qx.bom.request.SimpleXhr(\"/some/path/file.json\");\n  req.setRequestData({\"a\":\"b\"});\n  req.once(\"success\", function successHandler() {\n    var response = req.getResponse();\n  }, this);\n  req.once(\"fail\", function successHandler() {\n    var response = req.getResponse();\n  }, this);\n  req.send();\n </pre>\n </div>"
         }
       ],
@@ -92,10 +88,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PUBLIC\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Sets a request header.</p>"
@@ -493,38 +485,6 @@
           {
             "name": "@description",
             "body": "<p>Gets low-level transport.\n Note: To be used with caution!\n This method can be used to query the transport directly,\n but should be used with caution. Especially, it\n is not advisable to call any destructive methods\n such as <code>open</code> or <code>send</code>.</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>This method mainly exists so that some methods found in the</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>low-level transport can be deliberately omitted here,</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>but still be accessed should it be absolutely necessary.</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
-            "body": "<p>Valid use cases include to query the transport’s responseXML</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>property if performance is critical and any extra parsing</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>should be avoided at all costs.</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
           }
         ],
         "@return": [
@@ -907,10 +867,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROTECTED\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Holds transport.</p>"
           }
         ]
@@ -1113,10 +1069,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PRIVATE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>{Array} Request headers.</p>"
           }
         ]
@@ -1313,10 +1265,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT HANDLING\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Adds an event listener for the given event name which is executed only once.</p>"

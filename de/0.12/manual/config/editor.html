@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -205,22 +202,18 @@ auseinander setzen muss.</p>
 <div class="section" id="aufbau">
 <h2>Aufbau<a class="headerlink" href="#aufbau" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Der Editor besteht aus drei Teilen:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/editor.png" src="../_images/editor.png" />
 </div>
 <p>Oben ist eine Menü-Leiste, links wird die Struktur der Konfiguration dargestellt
 und rechts können die Attribute für ein Element angepasst werden.</p>
 <p>Die Optionen der Menüleiste sind:</p>
 <dl class="docutils">
-<dt>save</dt>
-<dd>Speichert den aktuellen Stand der Konfiguration.</dd>
-<dt>complex</dt>
-<dd>Schaltet erweiterte Konfigurationsmöglichkeiten frei.</dd>
-<dt>preview</dt>
-<dd>Zeigt eine Vorschau des aktuellen Stands der Konfiguration an ohne die
+<dt>save</dt><dd>Speichert den aktuellen Stand der Konfiguration.</dd>
+<dt>complex</dt><dd>Schaltet erweiterte Konfigurationsmöglichkeiten frei.</dd>
+<dt>preview</dt><dd>Zeigt eine Vorschau des aktuellen Stands der Konfiguration an ohne die
 bestehende Version zu überschreiben.</dd>
-<dt>manager</dt>
-<dd>Kehrt zum <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> zurück.</dd>
+<dt>manager</dt><dd>Kehrt zum <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> zurück.</dd>
 </dl>
 </div>
 <div class="section" id="bedienung">
@@ -229,28 +222,22 @@ bestehende Version zu überschreiben.</dd>
 dazugehörigen Attributen, wenn für diesen Element-Typen verfügbar.</p>
 <p>Um weitere Elemente hinzuzufügen, muss man das zukünftige Eltern-Element mit
 der rechten Maustaste anklicken.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/editor_node_right_click.png" src="../_images/editor_node_right_click.png" />
 </div>
 <p>In dem dann erscheinenden Kontext-Menü gibt es Optionen für:</p>
 <dl class="docutils">
-<dt>add child</dt>
-<dd>Ein Kind-Element hinzufügen.</dd>
-<dt>remove</dt>
-<dd>Element löschen.</dd>
-<dt>cut</dt>
-<dd>Element ausschneiden.</dd>
-<dt>copy</dt>
-<dd>Element kopieren.</dd>
-<dt>paste</dt>
-<dd>Ausgeschnittenes oder kopiertes Element einfügen.</dd>
-<dt>sort</dt>
-<dd>Elemente umsortieren (wenn an dieser Stelle möglich).</dd>
+<dt>add child</dt><dd>Ein Kind-Element hinzufügen.</dd>
+<dt>remove</dt><dd>Element löschen.</dd>
+<dt>cut</dt><dd>Element ausschneiden.</dd>
+<dt>copy</dt><dd>Element kopieren.</dd>
+<dt>paste</dt><dd>Ausgeschnittenes oder kopiertes Element einfügen.</dd>
+<dt>sort</dt><dd>Elemente umsortieren (wenn an dieser Stelle möglich).</dd>
 </dl>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/editor_sort.png" src="../_images/editor_sort.png" />
 </div>
-<p>Um Elemente zu sortieren wird bei einem im Kontext-Menü &#8220;sort&#8221; ausgewählt. In
+<p>Um Elemente zu sortieren wird bei einem im Kontext-Menü „sort“ ausgewählt. In
 der dann erscheinenden Darstellung kann durch Klicken auf einen der gelben
 Platzhalter dieses Element dorthin verschoben werden.</p>
 </div>
@@ -261,7 +248,7 @@ Drop-Down-Liste vorbefüllt werden. Die meisten Daten kann der Editor
 selbständig ableiten, manche benötigen aber eine Unterstützung durch den Anwender.</p>
 <div class="section" id="adressen-cgi-bin-backend-fur-eibd-knxd">
 <h3>Adressen <em>(cgi-bin Backend für eibd/knxd)</em><a class="headerlink" href="#adressen-cgi-bin-backend-fur-eibd-knxd" title="Link zu dieser Überschrift">¶</a></h3>
-<p>Die KNX Gruppen-Adressen für die <code class="docutils literal"><span class="pre">&lt;address&gt;</span></code> Elemente können auf dem
+<p>Die KNX Gruppen-Adressen für die <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code> Elemente können auf dem
 WireGate der dort vorhandenen Datenbank entnommen werden. Auf anderen Systemen,
 die das cgi-bin Backend verwenden,
 können damit kompatible Dateien über den <a class="reference internal" href="manager.html"><span class="doc">Manager</span></a> unter den
@@ -270,7 +257,7 @@ Medien-Dateien hochgeladen werden. Hierzu sind diese drei Dateien nötig:</p>
 <h4>eibga.conf<a class="headerlink" href="#eibga-conf" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Diese Datei enthält eine Liste aller Gruppenadressen mit Beschreibung und
 Datenpunkt:</p>
-<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[1/0/42]</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[1/0/42]</span>
 <span class="na">short</span> <span class="o">=</span> <span class="s">Wohnzimmer</span>
 <span class="na">DPTSubId</span> <span class="o">=</span> <span class="s">1.001</span>
 <span class="na">ga</span> <span class="o">=</span> <span class="s">1/0/42</span>
@@ -301,7 +288,7 @@ Datenpunkt:</p>
 <div class="section" id="eibga-hg-conf">
 <h4>eibga_hg.conf<a class="headerlink" href="#eibga-hg-conf" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Diese Datei enthält die Liste der Hauptgruppen:</p>
-<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[0]</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[0]</span>
 
 <span class="na">name</span> <span class="o">=</span> <span class="s">Zentral</span>
 
@@ -316,7 +303,7 @@ Datenpunkt:</p>
 <div class="section" id="eibga-mg-conf">
 <h4>eibga_mg.conf<a class="headerlink" href="#eibga-mg-conf" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Diese Datei enthält die Liste der Mittelgruppen:</p>
-<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[0]</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[0]</span>
 
 <span class="na">name</span> <span class="o">=</span> <span class="s">Kontakt</span>
 
@@ -354,7 +341,7 @@ Datenpunkt:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -400,7 +387,7 @@ Datenpunkt:</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

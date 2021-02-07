@@ -67,8 +67,7 @@
      *   <code>text</code>, <code>textarea</code>, <code>select</code>,
      *   <code>checkbox</code>, <code>radio</code>, <code>password</code>,
      *   <code>hidden</code>, <code>submit</code>, <code>image</code>,
-     *   <code>file</code>, <code>search</code>, <code>reset</code>,
-     *   <code>select</code> and <code>textarea</code>.
+     *   <code>file</code>, <code>search</code>, and <code>reset</code>.
      * @param styles {Map?null} optional map of CSS styles, where the key is the name
      *    of the style and the value is the value to use.
      * @param attributes {Map?null} optional map of element attributes, where the
@@ -83,7 +82,7 @@
       }
 
       qx.html.Element.constructor.call(this, nodeName, styles, attributes);
-      this.__P_206_0 = type;
+      this.__P_203_0 = type;
     },
 
     /*
@@ -92,10 +91,10 @@
     *****************************************************************************
     */
     members: {
-      __P_206_0: null,
+      __P_203_0: null,
       // used for webkit only
-      __P_206_1: null,
-      __P_206_2: null,
+      __P_203_1: null,
+      __P_203_2: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -104,7 +103,7 @@
       */
       //overridden
       _createDomElement: function _createDomElement() {
-        return qx.bom.Input.create(this.__P_206_0);
+        return qx.bom.Input.create(this.__P_203_0);
       },
       // overridden
       _applyProperty: function _applyProperty(name, value) {
@@ -138,7 +137,7 @@
        * @param value {Boolean} true, if the input element should be enabled.
        */
       setEnabled: function setEnabled(value) {
-        this.__P_206_2 = value;
+        this.__P_203_2 = value;
         this.setAttribute("disabled", value === false);
 
         if (qx.core.Environment.get("engine.name") == "webkit") {
@@ -150,7 +149,7 @@
           } else {
             this.setStyles({
               "userModify": null,
-              "userSelect": this.__P_206_1 ? null : "none"
+              "userSelect": this.__P_203_1 ? null : "none"
             });
           }
         }
@@ -166,9 +165,9 @@
        */
       setSelectable: qx.core.Environment.select("engine.name", {
         "webkit": function webkit(value) {
-          this.__P_206_1 = value; // Only apply the value when it is enabled
+          this.__P_203_1 = value; // Only apply the value when it is enabled
 
-          qx.html.Input.prototype.setSelectable.base.call(this, this.__P_206_2 && value);
+          qx.html.Input.prototype.setSelectable.base.call(this, this.__P_203_2 && value);
         },
         "default": function _default(value) {
           qx.html.Input.prototype.setSelectable.base.call(this, value);
@@ -229,7 +228,7 @@
        * @return {qx.html.Input} This instance for for chaining support.
        */
       setWrap: function setWrap(wrap, direct) {
-        if (this.__P_206_0 === "textarea") {
+        if (this.__P_203_0 === "textarea") {
           this._setProperty("wrap", wrap, direct);
         } else {
           throw new Error("Text wrapping is only support by textareas!");
@@ -246,7 +245,7 @@
        * @return {Boolean} Whether wrapping is enabled or disabled.
        */
       getWrap: function getWrap() {
-        if (this.__P_206_0 === "textarea") {
+        if (this.__P_203_0 === "textarea") {
           return this._getProperty("wrap");
         } else {
           throw new Error("Text wrapping is only support by textareas!");
@@ -257,4 +256,4 @@
   qx.html.Input.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Input.js.map?dt=1604955474828
+//# sourceMappingURL=Input.js.map?dt=1612690401583

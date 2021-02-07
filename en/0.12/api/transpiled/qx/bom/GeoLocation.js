@@ -13,8 +13,12 @@
         "require": true
       },
       "qx.lang.Function": {},
-      "qx.bom.client.OperatingSystem": {},
-      "qx.bom.client.Browser": {},
+      "qx.bom.client.OperatingSystem": {
+        "require": true
+      },
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.event.type.GeoPosition": {}
     },
     "environment": {
@@ -172,4 +176,4 @@
   qx.bom.GeoLocation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GeoLocation.js.map?dt=1604955465156
+//# sourceMappingURL=GeoLocation.js.map?dt=1612690392367

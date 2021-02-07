@@ -64,13 +64,13 @@
 
         return arr;
       },
-      __P_532_0: function __P_532_0(node, currentClassDocNode) {
+      __P_531_0: function __P_531_0(node, currentClassDocNode) {
         if (node.isRefined()) {
           return "";
         }
 
         if (node.isPrivate()) {
-          var access = "__P_532_1";
+          var access = "__";
           var name = node.getName().substring(2);
         } else if (node.isProtected()) {
           access = "_";
@@ -104,7 +104,7 @@
         textHtml.add("</div>");
         return qxl.apiviewer.ui.panels.InfoPanel.resolveLinkAttributes(textHtml.get(), currentClassDocNode);
       },
-      __P_532_2: function __P_532_2(node) {
+      __P_531_1: function __P_531_1(node) {
         var attributes = [];
 
         if (node.isNullable()) {
@@ -146,7 +146,7 @@
        * @param node {qxl.apiviewer.dao.ClassItem} item to get the the information from
        * @return {String} HTML fragment
        */
-      __P_532_3: function __P_532_3(node) {
+      __P_531_2: function __P_531_2(node) {
         if (node.isRefined()) {
           var html = new qx.util.StringBuilder("<div class=\"item-detail-headline\">", "Refined property:", "</div>", "<div class=\"item-detail-text\">", qxl.apiviewer.ui.panels.InfoPanel.createItemLinkHtml(node.getOverriddenFrom().getFullName() + "#" + node.getName()), "</div>");
           return html.get();
@@ -217,10 +217,10 @@
             textHtml.add("<div class=\"item-detail-headline\">", "Apply method:", "</div>", "<div class=\"item-detail-text\">", qxl.apiviewer.ui.panels.InfoPanel.createItemLinkHtml("#" + node.getApplyMethod(), node.getClass(), true, true), "</div>");
           }
 
-          textHtml.add(this.__P_532_2(node));
-          textHtml.add(this.__P_532_0(node, currentClassDocNode));
+          textHtml.add(this.__P_531_1(node));
+          textHtml.add(this.__P_531_0(node, currentClassDocNode));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createIncludedFromHtml(node, currentClassDocNode));
-          textHtml.add(this.__P_532_3(node));
+          textHtml.add(this.__P_531_2(node));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createInheritedFromHtml(node, currentClassDocNode));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createInfoRequiredByHtml(node));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createSeeAlsoHtml(node));
@@ -235,4 +235,4 @@
   qxl.apiviewer.ui.panels.PropertyPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PropertyPanel.js.map?dt=1604955499375
+//# sourceMappingURL=PropertyPanel.js.map?dt=1612690425325

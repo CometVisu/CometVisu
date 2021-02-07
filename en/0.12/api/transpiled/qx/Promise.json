@@ -21,33 +21,7 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2016 Zenesis Limited, http://www.zenesis.com\n     BluebirdJS Copyright (c) 2013-2016 Petka Antonov http://bluebirdjs.com/\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n John Spackman (john.spackman@zenesis.com)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This class adds Promise/A+ support to Qooxdoo, as specified at\n https://github.com/promises-aplus/promises-spec and using the Bluebird Promise\n library (http://bluebirdjs.com/) to implement it.  The official Promise/A+ API)\n is mirrored exactly, and a number of extension methods are added with the BluebirdJS\n API for inspiration (many/most of the extension functions are taken verbatim).\n There are two ways to bind a 'this' value to callbacks - the first is to\n append a context method to methods like then(), and the second is to specify\n the context as the second parameter to the constructor and all callbacks will\n be bound to that value.\n For example:\n </p>\n<pre class=\"javascript\">\n   var promise = new qx.Promise(myAsyncFunction, this);\n   promise.then(function() {\n\n   });\n\n   var promise = new qx.Promise(myAsyncFunction);\n   promise.then(function() {\n\n   }, this);\n </pre>\n<p>If you have an existing qx.Promise and want to bind all callbacks, use the\n bind() method - but note that it returns a new promise:\n  </p>\n<pre class=\"javascript\">\n    var promise = someMethodThatReturnsAPromise();\n    var boundPromise = promise.bind(this);\n    boundPromise.then(function() {\n\n    }, this);\n  </pre>"
-        },
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "process.*"
-        },
-        {
-          "name": "@ignore",
-          "body": "global.*"
-        },
-        {
-          "name": "@ignore",
-          "body": "Symbol.*"
-        },
-        {
-          "name": "@ignore",
-          "body": "chrome.*"
         }
       ]
     }
@@ -170,10 +144,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>**************************************************************************\n</code></pre>\n<p>Promise API methods</p>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Returns a promise which is determined by the functions <code>onFulfilled</code>\n and <code>onRejected</code>.</p>"
           }
         ],
@@ -259,10 +229,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>**************************************************************************\n</code></pre>\n<p>Extension Promise methods</p>"
-          },
           {
             "name": "@description",
             "body": "<p>Creates a new qx.Promise with the 'this' set to a different context</p>"
@@ -882,10 +848,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>**************************************************************************\n</code></pre>\n<p>Utility methods</p>"
-          },
           {
             "name": "@description",
             "body": "<p>Helper method used to call Promise methods which iterate over an array</p>"
@@ -1570,6 +1532,58 @@
         ]
       }
     },
+    "fireEventAsync": {
+      "type": "function",
+      "name": "fireEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an event on this object; equivalent to fireEvent, except that it\n always returns a promise</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      }
+    },
     "fireNonBubblingEvent": {
       "type": "function",
       "name": "fireNonBubblingEvent",
@@ -1618,6 +1632,58 @@
             "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean",
             "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireNonBubblingEventAsync": {
+      "type": "function",
+      "name": "fireNonBubblingEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent,\n except that it always returns a promise.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -1677,6 +1743,65 @@
             "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean|qx.Promise",
             "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireDataEventAsync": {
+      "type": "function",
+      "name": "fireDataEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an non-bubbling data event on this object; equivalent to\n fireEvent, except that it always returns a promise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} User defined data attached to the event object",
+            "paramName": "data",
+            "description": " User defined data attached to the event object",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "oldData {var?null} The event's old data (optional)",
+            "paramName": "oldData",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -4031,10 +4156,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>**************************************************************************\n</code></pre>\n<p>Promise API methods</p>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Returns a Promise object that is resolved with the given value. If the value is a thenable (i.e.\n has a then method), the returned promise will \"follow\" that thenable, adopting its eventual\n state; otherwise the returned promise will be fulfilled with the value. Generally, if you\n don't know if a value is a promise or not, Promise.resolve(value) it instead and work with\n the return value as a promise.</p>"
           }
         ],
@@ -4242,10 +4363,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>**************************************************************************\n</code></pre>\n<p>Extension API methods</p>"
-          },
           {
             "name": "@description",
             "body": "<p>Like Promise.some, with 1 as count. However, if the promise fulfills, the fulfillment value is not an\n array of 1 but the value directly.</p>"
@@ -4704,10 +4821,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>**************************************************************************\n</code></pre>\n<p>Internal API methods</p>"
-          },
           {
             "name": "@description",
             "body": "<p>Called when the Bluebird Promise class is loaded</p>"

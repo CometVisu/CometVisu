@@ -2,6 +2,7 @@
   var $$dbClassInfo = {
     "dependsOn": {
       "qx.bom.client.EcmaScript": {
+        "require": true,
         "defer": "runtime"
       },
       "qx.Bootstrap": {
@@ -42,7 +43,7 @@
    * MDN documentation &copy; Mozilla Contributors.
    *
    * @group (Polyfill)
-   * @use(qx.bom.client.EcmaScript)
+   * @require(qx.bom.client.EcmaScript)
    */
   qx.Bootstrap.define("qx.lang.normalize.Array", {
     statics: {
@@ -474,4 +475,4 @@
   qx.lang.normalize.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1604955476255
+//# sourceMappingURL=Array.js.map?dt=1612690402816

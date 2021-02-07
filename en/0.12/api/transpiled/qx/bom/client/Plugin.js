@@ -384,7 +384,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
 
           try {
-            new ActiveXObject(activeXName);
+            new window.ActiveXObject(activeXName);
           } catch (ex) {
             return false;
           }
@@ -432,4 +432,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.bom.client.Plugin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Plugin.js.map?dt=1604955467272
+//# sourceMappingURL=Plugin.js.map?dt=1612690394277

@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>An extended array class which adds a lot of often used\n convenience methods to the regular array like <code>remove</code> or\n <code>contains</code>.</p>"
         }
       ]
@@ -44,10 +40,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": "<p>Creates a new Array with the given length or the listed items.\n </p>\n<pre class=\"javascript\">\n var arr1 = new qx.type.Array(length);\n var arr2 = new qx.type.Array(elem0, elem1, ..., elemN);\n </pre>\n<ul>\n<li><code>length</code>: The initial length of the array.</li>\n<li><code>item1, item2. .. itemN</code>:  the items that will make up the newly created array</li>\n</ul>"

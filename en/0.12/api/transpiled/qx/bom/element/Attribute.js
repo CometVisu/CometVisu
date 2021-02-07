@@ -10,17 +10,23 @@
         "usage": "dynamic",
         "require": true
       },
+      "qx.bom.client.Html": {
+        "require": true
+      },
       "qx.bom.client.Engine": {
         "require": true
       },
-      "qx.bom.client.Browser": {},
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.lang.Type": {}
     },
     "environment": {
       "provided": [],
       "required": {
         "html.element.textcontent": {
-          "load": true
+          "load": true,
+          "className": "qx.bom.client.Html"
         },
         "engine.name": {
           "load": true,
@@ -340,4 +346,4 @@
   qx.bom.element.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1604955467607
+//# sourceMappingURL=Attribute.js.map?dt=1612690394577

@@ -65,7 +65,7 @@
           columnChildren[column] = child;
         }
 
-        var menu = this.__P_332_0(children[0]);
+        var menu = this.__P_329_0(children[0]);
 
         var columns = menu.getColumnSizes();
         var spacing = menu.getSpacingX(); // stretch label column
@@ -102,7 +102,7 @@
        * @param widget {qx.ui.core.Widget} the widget to get the menu for
        * @return {qx.ui.menu.Menu} the menu
        */
-      __P_332_0: function __P_332_0(widget) {
+      __P_329_0: function __P_329_0(widget) {
         while (!(widget instanceof qx.ui.menu.Menu)) {
           widget = widget.getLayoutParent();
         }
@@ -132,4 +132,4 @@
   qx.ui.menu.ButtonLayout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ButtonLayout.js.map?dt=1604955484667
+//# sourceMappingURL=ButtonLayout.js.map?dt=1612690411036

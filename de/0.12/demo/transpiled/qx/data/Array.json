@@ -25,10 +25,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>The data array is a special array used in the data binding context of\n qooxdoo. It does not extend the native array of JavaScript but its a wrapper\n for it. All the native methods are included in the implementation and it\n also fires events if the content or the length of the array changes in\n any way. Also the <code>.length</code> property is available on the array.\n This class does not need to be disposed, unless you set the autoDisposeItems\n property to true and want the items to be disposed.</p>"
         }
       ]
@@ -167,6 +163,22 @@
       },
       "name": "changeLength",
       "type": "qx.event.type.Data"
+    },
+    "changeBubble": {
+      "type": "event",
+      "name": "changeBubble",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.data.marshal.MEventBubbling",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The change event which will be fired on every change in the model no\n matter what property changes. This event bubbles so the root model will\n fire a change event on every change of its children properties too.\n Note that properties are required to call\n {@link #_applyEventPropagation} on apply for changes to be tracked as\n desired. It is already taken care of that properties created with the\n {@link qx.data.marshal.Json} marshaler call this method.\n The data will contain a map with the following four keys\n   <li>value: The new value of the property</li>\n   <li>old: The old value of the property.</li>\n   <li>name: The name of the property changed including its parent\n     properties separated by dots.</li>\n   <li>item: The item which has the changed property.</li>\n Due to that, the <code>getOldData</code> method will always return null\n because the old data is contained in the map.</p>"
+          }
+        ]
+      }
     }
   },
   "members": {
@@ -181,14 +193,7 @@
           "column": 18
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>private members</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -849,10 +854,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   IMPLEMENTATION OF THE QX.LANG.ARRAY METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Check if the given item is in the current array.</p>"
           }
         ],
@@ -1434,10 +1435,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  Additional JS1.6 methods\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Creates a new array with all elements that pass the test implemented by\n the provided function. It returns a new data array instance so make sure\n to think about disposing it.</p>"
           }
         ],
@@ -1724,10 +1721,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  INTERNAL HELPERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Internal function which updates the length property of the array.\n Every time the length will be updated, a {@link #changeLength} data\n event will be fired.</p>"
@@ -2126,14 +2119,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n  DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

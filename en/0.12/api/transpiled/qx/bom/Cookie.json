@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 153,
+        "line": 156,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>A wrapper for Cookie handling.\n Previous versions of qooxoo use <code>escape()</code> and <code>unescape()</code> functions. Since those functions\n are deprecated, then now qooxdoo use <code>encodeURIComponent()</code> and <code>decodeURIComponent()</code> functions.\n This may break some cookies.\n There are no issues with special characters like <code>~!@#$%^&amp;*(){}[]=:/,;?+\\'\"\\\\</code> but some unicode\n characters like <code>äëíöü</code> (etc) are encoded different by <code>escape()</code> and <code>encodeURIComponent()</code>,\n so you must take care of this change if you use unicode characters.</p>"
@@ -45,10 +41,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  USER APPLICATION METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the string value of a cookie.</p>"
@@ -78,11 +70,11 @@
     "set": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 94,
           "column": 4
         },
         "end": {
-          "line": 120,
+          "line": 123,
           "column": 5
         }
       },
@@ -143,6 +135,15 @@
             "optional": true,
             "defaultValue": "null",
             "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "sameSite {String?null} sameSite value. (Lax, Strict, None)",
+            "paramName": "sameSite",
+            "description": " sameSite value. (Lax, Strict, None)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
           }
         ]
       },
@@ -152,11 +153,11 @@
     "del": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 133,
           "column": 4
         },
         "end": {
-          "line": 151,
+          "line": 154,
           "column": 5
         }
       },

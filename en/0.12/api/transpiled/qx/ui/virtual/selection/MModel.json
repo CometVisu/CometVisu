@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christian Hagendorn (chris_schmidt)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Implements the different selection modes single, multi, additive and one\n selection with there drag and quick selection.\n Example how to use selection:\n </p>\n<pre class=\"javascript\">\n var rawData = [];\n for (var i = 0; i < 2500; i++) {\n  rawData[i] = \"Item No \" + i;\n }\n var model = qx.data.marshal.Json.createModel(rawData);\n var list = new qx.ui.list.List(model);\n\n list.getSelection().push(model.getItem(20));\n\n list.getSelection().addListener(\"change\", function(e) {\n   this.debug(\"Selection: \" + list.getSelection().getItem(0));\n }, this);\n </pre>"
         }
       ],
@@ -67,10 +63,6 @@
           {
             "name": "@description",
             "body": "<p>Current selected items</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>psuedo property - implemented manually in code below\n    selection :\n    {\n      check : \"qx.data.Array\",\n      event : \"changeSelection\",\n      apply : \"_applySelection\",\n      nullable : false,\n      deferredInit : true\n    },</p>"
           },
           {
             "name": "@description",
@@ -502,10 +494,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  APPLY ROUTINES\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Setter for selection property; takes the selection on, and does not change the\n array instance in <code>this.selection</code></p>"
           }
         ],
@@ -654,14 +642,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>apply method</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -679,14 +660,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>apply method</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -704,14 +678,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>apply method</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -731,10 +698,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  SELECTION HANDLERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Event handler for the internal selection change {@link #selection}.</p>"

@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n   ======================================================================\n   This class uses ideas and code snippets presented at\n   http://webreflection.blogspot.com/2008/05/habemus-array-unlocked-length-in-ie8.html\n   http://webreflection.blogspot.com/2008/05/stack-and-arrayobject-how-to-create.html\n   Author:\n     Andrea Giammarchi\n   License:\n     MIT: http://www.opensource.org/licenses/mit-license.php\n   ======================================================================\n   This class uses documentation of the native Array methods from the MDC\n   documentation of Mozilla.\n   License:\n     CC Attribution-Sharealike License:\n     http://creativecommons.org/licenses/by-sa/2.5/\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This class is the common superclass for most array classes in\n qooxdoo. It supports all of the shiny 1.6 JavaScript array features\n like <code>forEach</code> and <code>map</code>.\n This class may be instantiated instead of the native Array if\n one wants to work with a feature-unified Array instead of the native\n one. This class uses native features whereever possible but fills\n all missing implementations with custom ones.\n Through the ability to extend from this class one could add even\n more utility features on top of it.</p>"
         }
       ],
@@ -54,10 +50,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": "<p>Creates a new Array with the given length or the listed elements.\n </p>\n<pre class=\"javascript\">\n var arr1 = new qx.type.BaseArray(arrayLength);\n var arr2 = new qx.type.BaseArray(item0, item1, ..., itemN);\n </pre>\n<ul>\n<li><code>arrayLength</code>: The initial length of the array. You can access\nthis value using the length property. If the value specified is not a\nnumber, an array of length 1 is created, with the first element having\nthe specified value. The maximum length allowed for an\narray is 2^32-1, i.e. 4,294,967,295.</li>\n<li><code>itemN</code>:  A value for the element in that position in the\narray. When this form is used, the array is initialized with the specified\nvalues as its elements, and the array's length property is set to the\nnumber of arguments.</li>\n</ul>"

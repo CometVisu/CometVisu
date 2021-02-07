@@ -23,7 +23,10 @@
       "qx.ui.basic.Image": {},
       "qx.ui.core.queue.Widget": {},
       "qx.data.SingleValueBinding": {},
-      "qx.util.Delegate": {}
+      "qx.util.Delegate": {},
+      "qx.ui.form.TextField": {},
+      "qx.theme.manager.Appearance": {},
+      "qx.module.util.String": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -53,8 +56,20 @@
    *
    * @childControl spacer {qx.ui.core.Spacer} Flexible spacer widget.
    * @childControl atom {qx.ui.basic.Atom} Shows the text and icon of the content.
-   * @childControl arrow {qx.ui.basic.Image} Shows the arrow to open the drop-down
-   *   list.
+   * @childControl arrow {qx.ui.basic.Image} Shows the arrow to open the drop-down list.
+   *
+   * Item labels are plain text by default. Property <code>rich</code> can be used
+   * to enable HTML formatting.
+   *
+   * Incremental search can be enabled by setting property <code>incrementalSearch</code>
+   * to <code>true</code>. Highlightung of the search string is controlled by property
+   * <code>highlightMode</code>. BEWARE that html highlighting sets property <code>rich</code>
+   * automatically to <code>true</code>.
+   *
+   * With <code>highlightMode=='html'</code> item label parts and search value are all HTML-escaped.
+   * If HTML-formatted item labels are used, this might lead to unexpected or undesirable (but save)
+   * results. In this case you might want to override the various protected methods involved.
+   *
    */
   qx.Class.define("qx.ui.form.VirtualSelectBox", {
     extend: qx.ui.form.core.AbstractVirtualBox,
@@ -71,13 +86,19 @@
 
       this.addListener("pointerover", this._onPointerOver, this);
       this.addListener("pointerout", this._onPointerOut, this);
-      this.__P_317_0 = [];
+      this.__P_314_0 = [];
       this.initSelection(this.getChildControl("dropdown").getSelection());
-      this.__P_317_1 = new qx.event.Timer(500);
+      this.__P_314_1 = new qx.event.Timer(500);
 
-      this.__P_317_1.addListener("interval", this.__P_317_2, this);
+      this.__P_314_1.addListener("interval", this.__P_314_2, this);
 
       this.getSelection().addListener("change", this._updateSelectionValue, this);
+
+      if (this.isIncrementalSearch()) {
+        this.__P_314_3();
+      }
+
+      this.initHtmlMarkers(['<span style="' + this.__P_314_4() + '">', '</span>']);
     },
     properties: {
       // overridden
@@ -89,6 +110,57 @@
       width: {
         refine: true,
         init: 120
+      },
+
+      /**
+       * Whether or not to use incremental search.
+       */
+      incrementalSearch: {
+        apply: '_applyIncrementalSearch',
+        init: false,
+        check: "Boolean"
+      },
+
+      /**
+       * Array of non-HTML strings for opening an closing marker for incremental search highlighting
+       */
+      plainMarkers: {
+        apply: "__P_314_5",
+        init: ['|', '|'],
+        check: "Array"
+      },
+
+      /**
+       * Array of HTML strings for opening an closing marker for incremental search highlighting.
+       * Initialized from 'list-search-highlight' theme if not set explicitly.
+       */
+      htmlMarkers: {
+        apply: "__P_314_5",
+        deferredInit: true,
+        check: "Array"
+      },
+
+      /**
+       * Setting rich to true sets both the select box atom and the list items to rich.
+       */
+      rich: {
+        apply: '_applyRich',
+        init: null,
+        check: "Boolean"
+      },
+
+      /**
+       * Define how to highlight the incremental search string.
+       *
+       * none: no highlighting (this is the default)
+       * plain: use characters from plainMarkers property
+       * html: use HTML for highlighting; this automatically calls <code>this.setRich(true)</code> and thus sets item labels to rich as well.
+       *
+       */
+      highlightMode: {
+        apply: '_applyHighlightMode',
+        init: "none",
+        check: ["plain", "html", "none"]
       },
 
       /** Current selected items. */
@@ -116,15 +188,15 @@
     },
     members: {
       /** @type {String} The search value to {@link #__preselect} an item. */
-      __P_317_3: "",
+      __P_314_6: "",
 
       /**
        * @type {qx.event.Timer} The time which triggers the search for pre-selection.
        */
-      __P_317_1: null,
+      __P_314_1: null,
 
       /** @type {Array} Contains the id from all bindings. */
-      __P_317_0: null,
+      __P_314_0: null,
 
       /**
        * @param selected {var|null} Item to select as value.
@@ -225,20 +297,20 @@
 
         var id = this.bind(modelPath, atom, "model", null);
 
-        this.__P_317_0.push(id);
+        this.__P_314_0.push(id);
 
         var labelSourcePath = this._getBindPath("selection", this.getLabelPath());
 
         id = this.bind(labelSourcePath, atom, "label", this.getLabelOptions());
 
-        this.__P_317_0.push(id);
+        this.__P_314_0.push(id);
 
         if (this.getIconPath() != null) {
           var iconSourcePath = this._getBindPath("selection", this.getIconPath());
 
           id = this.bind(iconSourcePath, atom, "icon", this.getIconOptions());
 
-          this.__P_317_0.push(id);
+          this.__P_314_0.push(id);
         }
       },
 
@@ -247,8 +319,8 @@
        * widget. For e.q. remove the bound drop-down selection.
        */
       _removeBindings: function _removeBindings() {
-        while (this.__P_317_0.length > 0) {
-          var id = this.__P_317_0.pop();
+        while (this.__P_314_0.length > 0) {
+          var id = this.__P_314_0.pop();
 
           this.removeBinding(id);
         }
@@ -259,6 +331,11 @@
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
+      _onBlur: function _onBlur() {
+        if (!this.isIncrementalSearch()) {
+          this.close();
+        }
+      },
       // overridden
       _handlePointer: function _handlePointer(event) {
         qx.ui.form.VirtualSelectBox.prototype._handlePointer.base.call(this, event);
@@ -275,9 +352,11 @@
 
         switch (action) {
           case "search":
-            this.__P_317_3 += this.__P_317_4(event.getKeyIdentifier());
+            if (!this.isIncrementalSearch()) {
+              this.__P_314_6 += this.__P_314_7(event.getKeyIdentifier());
 
-            this.__P_317_1.restart();
+              this.__P_314_1.restart();
+            }
 
             break;
 
@@ -357,10 +436,10 @@
        * Preselects an item in the drop-down, when item starts with the
        * __searchValue value.
        */
-      __P_317_2: function __P_317_2() {
-        this.__P_317_1.stop();
+      __P_314_2: function __P_314_2() {
+        this.__P_314_1.stop();
 
-        var searchValue = this.__P_317_3;
+        var searchValue = this.__P_314_6;
 
         if (searchValue === null || searchValue === "") {
           return;
@@ -406,7 +485,7 @@
           }
         }
 
-        this.__P_317_3 = "";
+        this.__P_314_6 = "";
       },
 
       /**
@@ -416,7 +495,7 @@
        * @param keyIdentifier {String} The keyIdentifier to convert.
        * @return {String} The converted keyIdentifier.
        */
-      __P_317_4: function __P_317_4(keyIdentifier) {
+      __P_314_7: function __P_314_7(keyIdentifier) {
         if (keyIdentifier === "Space") {
           return " ";
         } else {
@@ -433,6 +512,241 @@
         var d = event.getData();
         var old = d.removed.length ? d.removed[0] : null;
         this.fireDataEvent("changeValue", d.added[0], old);
+      },
+
+      /*
+      ---------------------------------------------------------------------------
+        INCREMENTAL SEARCH
+      ---------------------------------------------------------------------------
+      */
+      __P_314_8: null,
+      __P_314_9: '',
+      // prevent recursion problems when deleting unsucessful filtering
+      __P_314_10: 0,
+      __P_314_11: null,
+      __P_314_12: null,
+      _highlightFilterValueFunction: null,
+      _searchRegExp: null,
+      __P_314_13: function __P_314_13() {
+        var input = this.__P_314_11 = new qx.ui.form.TextField().set({
+          appearance: 'widget',
+          liveUpdate: true,
+          height: 0,
+          width: 1 // must be > 0
+
+        }); // we don't want the browser to set this
+        // works with Chrome even
+
+        input.getContentElement().setAttribute('autocomplete', 'new-password');
+
+        this._add(input);
+
+        var dropdown = this.getChildControl("dropdown");
+        dropdown.addListener('appear', function () {
+          // we must delay so that the focus is only set once the list is ready
+          window.setTimeout(function () {
+            input.focus();
+          }, 0);
+        }, this);
+        dropdown.addListener('disappear', function () {
+          input.blur(); // clear filter
+
+          var sel = this.getValue();
+          input.resetValue();
+          this.setValue(sel);
+        }, this);
+        input.addListener("blur", function (e) {
+          this.close();
+        }, this);
+        input.addListener('changeValue', function (e) {
+          if (this.__P_314_10 === 0) {
+            this.__P_314_14();
+          }
+        }, this);
+      },
+      __P_314_4: function __P_314_4() {
+        var highlightAppearance = qx.theme.manager.Appearance.getInstance().styleFrom("list-search-highlight"); // default style        
+
+        if (!highlightAppearance) {
+          this.debug('The current theme is missing the "list-search-highlight" appearance setting, using default.');
+          highlightAppearance = {
+            backgroundColor: 'rgba(255, 251, 0, 0.53)',
+            textDecorationStyle: 'dotted',
+            textDecorationLine: 'underline'
+          };
+        }
+
+        var highlightStyle = '',
+            styles = [];
+        var keys = Object.keys(highlightAppearance);
+
+        for (var k = 0; k < keys.length; k++) {
+          var key = qx.module.util.String.hyphenate(keys[k]);
+          styles.push(key + ':' + highlightAppearance[keys[k]]);
+        }
+
+        highlightStyle = styles.join(';') + ';';
+        return highlightStyle;
+      },
+      // filterValue is passed below to allow usage in overridden _searchMatch
+      // we use _searchRegExp here for efficiency
+      _searchMatch: function _searchMatch(item, filterValue) {
+        return item.match(this._searchRegExp);
+      },
+      // highlight plain
+      _highlightFilterValuePlainFunction: function _highlightFilterValuePlainFunction(parts) {
+        // the array elements will contain '' if empty
+        return parts[1] + this.__P_314_12[0] + parts[2] + this.__P_314_12[1] + parts[3];
+      },
+      // htmlEscape all label parts
+      _highlightFilterValueHtmlFunction: function _highlightFilterValueHtmlFunction(parts) {
+        // the array elements will contain '' if empty
+        // the markers will be HTML strings
+        return qx.module.util.String.escapeHtml(parts[1]) + this.__P_314_12[0] + qx.module.util.String.escapeHtml(parts[2]) + this.__P_314_12[1] + qx.module.util.String.escapeHtml(parts[3]);
+      },
+      _configureItemRich: function _configureItemRich(item) {
+        item.setRich(true);
+      },
+      _configureItemPlain: function _configureItemPlain(item) {
+        item.setRich(false);
+      },
+      __P_314_14: function __P_314_14(lastFilterValue) {
+        this.__P_314_10++;
+        var filterValue = lastFilterValue !== undefined ? lastFilterValue : this.__P_314_11.getValue();
+        this.__P_314_8 = filterValue; // _searchRegExp is used in default _searchMatch function to avoid recreation of regexp object
+        // for each list item
+
+        var filterValueEscaped = filterValue != null ? qx.module.util.String.escapeRegexpChars(filterValue) : '';
+        this._searchRegExp = new RegExp('(.*?)(' + filterValueEscaped + ')(.*)', 'i'); // create and apply new filter
+
+        var that = this;
+        var delegate = {
+          filter: function filter(item) {
+            if (that.getLabelPath() != null) {
+              item = qx.data.SingleValueBinding.resolvePropertyChain(item, that.getLabelPath());
+            } // we pass filterValue in case _searchMatch() is overridden and wants to use it.
+
+
+            return that._searchMatch(item, filterValue);
+          }
+        }; // needed for newly created items on filterValue backspacing
+
+        if (this.isRich()) {
+          delegate.configureItem = this._configureItemRich;
+        }
+
+        this.setDelegate(delegate); // update selection if there is at least one item left,
+        // otherwise shorten filterValue and re-run filtering
+        // This deals with multi-char input like for ü on MacOS where
+        // where this is entered as option-: followed by u on a keyboard
+        // without a separat key for it.
+
+        var item = this.getModel().getItem(this.getChildControl('dropdown').getChildControl('list')._lookup(0));
+
+        if (item) {
+          this.__P_314_9 = filterValue;
+          this.getSelection().setItem(0, item);
+        } else {
+          var len = filterValue.length;
+          var last = len > this.__P_314_9.length + 1 ? this.__P_314_11.getValue().charAt(len - 1) : '';
+          filterValue = this.__P_314_9 + last;
+
+          this.__P_314_14(filterValue);
+        } // make sure length of dropdown is updated
+
+
+        this.__P_314_10--;
+      },
+      __P_314_3: function __P_314_3() {
+        // add search input field
+        this.__P_314_13(); // set label converter
+
+
+        var that = this;
+        var labelOptions = this.getLabelOptions() || {};
+
+        labelOptions.converter = function (data, model, source, target) {
+          var filterValue = that.__P_314_8;
+
+          if (filterValue && data && that._highlightFilterValueFunction) {
+            var match = that._searchMatch(data, filterValue);
+
+            if (match) {
+              data = that._highlightFilterValueFunction(match);
+            }
+          }
+
+          if (data === undefined) {
+            data = '';
+          }
+
+          return data;
+        };
+
+        this.setLabelOptions(labelOptions);
+      },
+      _applyDelegate: function _applyDelegate(value, old) {
+        // we assume that if the user sets configureItem himself
+        // he keeps this consistent with rich
+        if (this.isRich() && !value.configureItem) {
+          value.configureItem = this._configureItemRich;
+        }
+
+        qx.ui.form.VirtualSelectBox.prototype._applyDelegate.base.call(this, value, old);
+      },
+      _applyRich: function _applyRich(value, old) {
+        if (!value && this.getHighlightMode() == 'html') {
+          this.debug('highlightMode html requires rich==true, ignoring setting it to false');
+          return;
+        }
+
+        this.getChildControl('atom').setRich(value);
+        var configureItemFunction = value ? this._configureItemRich : this._configureItemPlain;
+        this.setDelegate({
+          configureItem: configureItemFunction
+        });
+      },
+      _applyHighlightMode: function _applyHighlightMode(value, old) {
+        switch (value) {
+          case 'html':
+            // set rich item labels
+            this.setRich(true);
+            this._highlightFilterValueFunction = this._highlightFilterValueHtmlFunction;
+            this.__P_314_12 = this.getHtmlMarkers();
+            break;
+
+          case 'plain':
+            this._highlightFilterValueFunction = this._highlightFilterValuePlainFunction;
+            this.__P_314_12 = this.getPlainMarkers();
+            break;
+
+          default:
+            this._highlightFilterValueFunction = null;
+            break;
+        }
+      },
+      __P_314_5: function __P_314_5(value, old) {
+        this.__P_314_12 = value; // make sure we have strings for both markers
+
+        if (value.length < 1) {
+          this.__P_314_12[0] = '';
+        } // this most likely won't work for HTML highlighting
+
+
+        if (value.length < 2) {
+          this.__P_314_12[1] = this.__P_314_12[0];
+        }
+      },
+      _applyIncrementalSearch: function _applyIncrementalSearch(value, old) {
+        if (value) {
+          this.__P_314_1.stop();
+
+          this.__P_314_1.setEnabled(false);
+
+          this.__P_314_3();
+        } else {
+          this.__P_314_1.setEnabled(true);
+        }
       }
     },
     destruct: function destruct() {
@@ -440,14 +754,14 @@
 
       this.getSelection().removeListener("change", this._updateSelectionValue, this);
 
-      this.__P_317_1.removeListener("interval", this.__P_317_2, this);
+      this.__P_314_1.removeListener("interval", this.__P_314_2, this);
 
-      this.__P_317_1.dispose();
+      this.__P_314_1.dispose();
 
-      this.__P_317_1 = null;
+      this.__P_314_1 = null;
     }
   });
   qx.ui.form.VirtualSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualSelectBox.js.map?dt=1604955483377
+//# sourceMappingURL=VirtualSelectBox.js.map?dt=1612690409891

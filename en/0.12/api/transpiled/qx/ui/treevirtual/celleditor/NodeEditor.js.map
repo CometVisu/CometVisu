@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "sources": [
+    "/home/travis/build/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/treevirtual/celleditor/NodeEditor.js"
+  ],
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "table",
+    "celleditor",
+    "TextField",
+    "members",
+    "getCellEditorValue",
+    "cellEditor",
+    "label",
+    "getValue",
+    "validationFunc",
+    "getValidationFunction",
+    "originalLabel",
+    "newValue",
+    "lang",
+    "Object",
+    "clone",
+    "originalValue",
+    "createCellEditor",
+    "cellInfo",
+    "getTableModel",
+    "isNodeEditable",
+    "row",
+    "_createEditor",
+    "value",
+    "labelPos",
+    "setValue",
+    "setPaddingLeft",
+    "addListener",
+    "selectAllText",
+    "form",
+    "setAppearance",
+    "treevirtual",
+    "NodeEditor"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAGA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yCAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,KAAN,CAAYC,UAAZ,CAAuBC,SADlC;AAGEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,kBAAkB,EAAG,4BAASC,UAAT,EACrB;AACE,YAAIC,KAAK,GAAGD,UAAU,CAACE,QAAX,EAAZ,CADF,CACsC;AAEpC;;AACA,YAAIC,cAAc,GAAG,KAAKC,qBAAL,EAArB;;AACA,YAAID,cAAJ,EAAqB;AACnBF,UAAAA,KAAK,GAAGE,cAAc,CAACF,KAAD,EAAQD,UAAU,CAACK,aAAnB,CAAtB;AACD;;AAED,YAAIC,QAAQ,GAAGnB,EAAE,CAACoB,IAAH,CAAQC,MAAR,CAAeC,KAAf,CAAqBT,UAAU,CAACU,aAAhC,CAAf;AACAJ,QAAAA,QAAQ,CAACL,KAAT,GAAiBA,KAAjB;AACA,eAAOK,QAAP;AACD,OAfH;AAkBE;AACAK,MAAAA,gBAAgB,EAAG,0BAASC,QAAT,EACnB;AACE,YAAI,CAACA,QAAQ,CAACjB,KAAT,CAAekB,aAAf,GAA+BC,cAA/B,CAA8CF,QAAQ,CAACG,GAAvD,CAAL,EAAkE;AAChE,iBAAO,IAAP;AACD;;AAED,YAAIf,UAAU,GAAG,KAAKgB,aAAL,EAAjB,CALF,CAOE;;;AACA,YAAIJ,QAAQ,CAACK,KAAT,KAAmB,IAAnB,IAA2B,QAAOL,QAAQ,CAACK,KAAhB,KAAyB,QAAxD,EAAkE;AAChEL,UAAAA,QAAQ,CAACK,KAAT,GAAiB;AAAChB,YAAAA,KAAK,EAAE,EAAR;AAAYiB,YAAAA,QAAQ,EAAE;AAAtB,WAAjB;AACD;;AAED,YAAIjB,KAAK,GAAGW,QAAQ,CAACK,KAAT,CAAehB,KAA3B;AACAD,QAAAA,UAAU,CAACU,aAAX,GAA2BE,QAAQ,CAACK,KAApC;AACAjB,QAAAA,UAAU,CAACK,aAAX,GAA2BJ,KAA3B;AACAD,QAAAA,UAAU,CAACmB,QAAX,CAAoB,KAAKlB,KAAzB,EAfF,CAgBE;;AACAD,QAAAA,UAAU,CAACoB,cAAX,CAA0BR,QAAQ,CAACK,KAAT,CAAeC,QAAzC;AAEAlB,QAAAA,UAAU,CAACqB,WAAX,CAAuB,QAAvB,EAAiC,YAAW;AAC1CrB,UAAAA,UAAU,CAACsB,aAAX;AACD,SAFD;AAIA,eAAOtB,UAAP;AACD,OA5CH;AA8CEgB,MAAAA,aAAa,EAAE,SAASA,aAAT,GAAyB;AACtC,YAAIhB,UAAU,GAAG,IAAIb,EAAE,CAACO,EAAH,CAAM6B,IAAN,CAAW1B,SAAf,EAAjB;AACAG,QAAAA,UAAU,CAACwB,aAAX,CAAyB,mCAAzB;AACA,eAAOxB,UAAP;AACD;AAlDH;AAJF,GADA;AAtBAb,EAAAA,EAAE,CAACO,EAAH,CAAM+B,WAAN,CAAkB7B,UAAlB,CAA6B8B,UAA7B,CAAwCpC,aAAxC,GAAwDA,aAAxD",
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 Patrick Buxton\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Pat Buxton (rad-pat)\n\n************************************************************************ */\n\n\n/**\n * A cell editor factory for editing a virtualtree node label\n */\nqx.Class.define(\"qx.ui.treevirtual.celleditor.NodeEditor\",\n{\n  extend : qx.ui.table.celleditor.TextField,\n\n  members :\n  {\n    // overridden\n    getCellEditorValue : function(cellEditor)\n    {\n      var label = cellEditor.getValue();  // This will be the new label for the Tree Node\n\n      // validation function will be called with new and old label\n      var validationFunc = this.getValidationFunction();\n      if (validationFunc ) {\n        label = validationFunc(label, cellEditor.originalLabel);\n      }\n\n      var newValue = qx.lang.Object.clone(cellEditor.originalValue);\n      newValue.label = label;\n      return newValue;\n    },\n\n\n    // interface implementation\n    createCellEditor : function(cellInfo)\n    {\n      if (!cellInfo.table.getTableModel().isNodeEditable(cellInfo.row)) {\n        return null;\n      }\n\n      var cellEditor = this._createEditor();\n\n      // The value in the case of a Tree is a Node and we want the label\n      if (cellInfo.value === null || typeof cellInfo.value != \"object\") {\n        cellInfo.value = {label: \"\", labelPos: 0};\n      }\n\n      var label = cellInfo.value.label;\n      cellEditor.originalValue = cellInfo.value;\n      cellEditor.originalLabel = label;\n      cellEditor.setValue(\"\" + label);\n      // dynamically pad to the position of the node label - calculated in CellRenderer\n      cellEditor.setPaddingLeft(cellInfo.value.labelPos);\n\n      cellEditor.addListener(\"appear\", function() {\n        cellEditor.selectAllText();\n      });\n\n      return cellEditor;\n    },\n\n    _createEditor: function _createEditor() {\n      var cellEditor = new qx.ui.form.TextField();\n      cellEditor.setAppearance(\"treevirtual-node-editor-textfield\");\n      return cellEditor;\n    }\n  }\n});\n"
+  ]
+}

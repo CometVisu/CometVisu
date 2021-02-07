@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -119,7 +116,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#allgemeine-infos-uber-rrd">Allgemeine Infos über RRD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#rrd-und-die-cometvisu">RRD und die CometVisu</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#anlegen-der-rrd-datenbank">Anlegen der RRD-Datenbank</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#befullen-der-rrd-datenbank">&#8220;Befüllen&#8221; der RRD-Datenbank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#befullen-der-rrd-datenbank">„Befüllen“ der RRD-Datenbank</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#fehlersuche">Fehlersuche</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../rrd_examples.html#beispiele-fur-rrds">Beispiele für RRDs</a></li>
 </ul>
@@ -220,7 +217,7 @@ bei allen Geräten gegeben sein.</p>
 <li>evt. der Interface-Index (im Beispiel .1 in IF-MIB::ifHCInOctets.1, hier können andere Zahlen erforderlich sein - notfalls probieren)</li>
 </ul>
 <p>Dieses Script funktioniert so wenn es unter /var/www/rrd/xxx gespeichert (und ausführbar) ist.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#</span>
 
 <span class="nb">cd</span> /var/www/rrd
@@ -247,7 +244,7 @@ RRA:AVERAGE:0.5:525600:3200
 </pre></div>
 </div>
 <p>Im /etc/crontab muss folgende Zeile hinzugefügt werden, um das Script alle 5 Minuten aufzurufen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>*/5 *   * * *   root    /var/www/rrd/network_internet
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/5 *   * * *   root    /var/www/rrd/network_internet
 </pre></div>
 </div>
 </div>
@@ -274,7 +271,7 @@ RRA:AVERAGE:0.5:525600:3200
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -320,7 +317,7 @@ RRA:AVERAGE:0.5:525600:3200
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

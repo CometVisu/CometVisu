@@ -24,10 +24,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n Fabian Jakobs (fjakobs)\n Christian Hagendorn (chris_schmidt)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This class provides an unified mouse event handler for Internet Explorer,\n Firefox, Opera and Safari\n NOTE: Instances of this class must be disposed of after use</p>"
         }
       ],
@@ -59,10 +55,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": "<p>Create a new instance</p>"
@@ -331,18 +323,7 @@
           "column": 46
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT HANDLER INTERFACE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>interface implementation</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.event.IEventHandler",
@@ -361,30 +342,7 @@
           "column": 37
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>interface implementation</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>The iPhone requires for attaching mouse events natively to every element which</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>should react on mouse events. As of version 3.0 it also requires to keep the</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>listeners as long as the event should work. In 2.0 it was enough to attach the</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>listener once.</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public"
     },
@@ -399,14 +357,7 @@
           "column": 37
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>interface implementation</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public"
     },
@@ -423,10 +374,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  HELPER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Fire a mouse event with the given parameters</p>"
@@ -500,10 +447,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  OBSERVER INIT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Initializes the native mouse button event listeners.</p>"
@@ -590,10 +533,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  OBSERVER STOP\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Disconnects the native mouse button event listeners.</p>"
           }
         ],
@@ -676,10 +615,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  NATIVE EVENT OBSERVERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Global handler for all mouse move related events like \"mousemove\",\n \"mouseout\" and \"mouseover\".</p>"
@@ -791,10 +726,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  CROSS BROWSER SUPPORT FIXES\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Normalizes the click sequence of right click events in Webkit and Opera.\n The normalized sequence is:</p>\n<ol>\n<li>mousedown  &lt;- not fired by Webkit</li>\n<li>mouseup  &lt;- not fired by Webkit</li>\n<li>contextmenu &lt;- not fired by Opera</li>\n</ol>"
@@ -1083,14 +1014,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "defer": {
     "location": {
@@ -1103,14 +1027,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DEFER\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

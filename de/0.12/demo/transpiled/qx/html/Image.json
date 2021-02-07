@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This is a simple image class using the low level image features of\n qooxdoo and wraps it for the qx.html layer.</p>"
         }
       ]
@@ -71,34 +67,7 @@
           "column": 22
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>this member variable is only used for IE browsers to be able</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>to the tag name which will be set. This is heavily connected to the runtime</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>change of decorators and the use of external (=unmanaged images). It is</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>necessary to be able to determine what tag will be used e.g. before the</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>ImageLoader has finished its loading of an external image.</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>See Bug #3894 for more details</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
@@ -151,18 +120,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  ELEMENT API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.html.Element",
@@ -181,14 +139,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.html.Element",
@@ -207,14 +158,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.html.Element",
@@ -233,18 +177,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>be sure that style attributes are merged and not overwritten</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.html.Element",
@@ -265,10 +198,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  IMAGE API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Configures the image source</p>"

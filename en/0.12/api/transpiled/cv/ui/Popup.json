@@ -17,14 +17,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>noinspection JSUnusedGlobalSymbols</p>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "type": "class",
   "construct": {
@@ -38,14 +31,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nCONSTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "events": {
     "close": {
@@ -488,14 +474,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nDESTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

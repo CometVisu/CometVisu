@@ -9,7 +9,9 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.Html": {},
+      "qx.bom.client.Html": {
+        "require": true
+      },
       "cv.Config": {},
       "cv.data.Model": {},
       "cv.Version": {},
@@ -223,4 +225,4 @@
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1604956071051
+//# sourceMappingURL=ConfigCache.js.map?dt=1612691005333

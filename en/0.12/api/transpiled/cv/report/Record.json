@@ -53,14 +53,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nCONSTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "statics": {
     "CONFIG": {
@@ -200,14 +193,7 @@
           "column": 81
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Events that should be recorded</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },

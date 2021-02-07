@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 1889,
+        "line": 1963,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>Generic selection manager to bring rich desktop like selection behavior\n to widgets and low-level interactive controls.\n The selection handling supports both Shift and Ctrl/Meta modifies like\n known from native applications.</p>"
@@ -45,14 +41,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "events": {
     "changeSelection": {
@@ -160,6 +149,31 @@
       "check": "Boolean",
       "defaultValue": false
     },
+    "readOnly": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4
+        },
+        "end": {
+          "line": 121,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the selection can be changed by user interaction</p>"
+          }
+        ]
+      },
+      "name": "readOnly",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
     "qxOwner": {
       "type": "property",
       "name": "qxOwner",
@@ -197,11 +211,11 @@
     "__scrollStepX": {
       "location": {
         "start": {
-          "line": 127,
+          "line": 136,
           "column": 4
         },
         "end": {
-          "line": 127,
+          "line": 136,
           "column": 21
         }
       },
@@ -211,11 +225,11 @@
     "__scrollStepY": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 137,
           "column": 4
         },
         "end": {
-          "line": 128,
+          "line": 137,
           "column": 21
         }
       },
@@ -225,11 +239,11 @@
     "__scrollTimer": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 138,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 138,
           "column": 24
         }
       },
@@ -239,11 +253,11 @@
     "__frameScroll": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 139,
           "column": 24
         }
       },
@@ -253,11 +267,11 @@
     "__lastRelX": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 131,
+          "line": 140,
           "column": 21
         }
       },
@@ -267,11 +281,11 @@
     "__lastRelY": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 141,
           "column": 21
         }
       },
@@ -281,11 +295,11 @@
     "__frameLocation": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 142,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 142,
           "column": 26
         }
       },
@@ -295,11 +309,11 @@
     "__dragStartX": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 134,
+          "line": 143,
           "column": 23
         }
       },
@@ -309,11 +323,11 @@
     "__dragStartY": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 144,
           "column": 23
         }
       },
@@ -323,11 +337,11 @@
     "__inCapture": {
       "location": {
         "start": {
-          "line": 136,
+          "line": 145,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 145,
           "column": 22
         }
       },
@@ -337,11 +351,11 @@
     "__pointerX": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 137,
+          "line": 146,
           "column": 21
         }
       },
@@ -351,11 +365,11 @@
     "__pointerY": {
       "location": {
         "start": {
-          "line": 138,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 138,
+          "line": 147,
           "column": 21
         }
       },
@@ -365,11 +379,11 @@
     "__moveDirectionX": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 139,
+          "line": 148,
           "column": 27
         }
       },
@@ -379,11 +393,11 @@
     "__moveDirectionY": {
       "location": {
         "start": {
-          "line": 140,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 149,
           "column": 27
         }
       },
@@ -393,11 +407,11 @@
     "__selectionModified": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 150,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 150,
           "column": 30
         }
       },
@@ -407,11 +421,11 @@
     "__selectionContext": {
       "location": {
         "start": {
-          "line": 142,
+          "line": 151,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 151,
           "column": 29
         }
       },
@@ -421,11 +435,11 @@
     "__leadItem": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 152,
           "column": 4
         },
         "end": {
-          "line": 143,
+          "line": 152,
           "column": 21
         }
       },
@@ -435,11 +449,11 @@
     "__selection": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 153,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 153,
           "column": 22
         }
       },
@@ -449,11 +463,11 @@
     "__anchorItem": {
       "location": {
         "start": {
-          "line": 145,
+          "line": 154,
           "column": 4
         },
         "end": {
-          "line": 145,
+          "line": 154,
           "column": 23
         }
       },
@@ -463,11 +477,11 @@
     "__pointerDownOnSelected": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 146,
+          "line": 155,
           "column": 34
         }
       },
@@ -477,37 +491,26 @@
     "_userInteraction": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 159,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 159,
           "column": 28
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>A flag that signals an user interaction, which means the selection change</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>was triggered by pointer or keyboard [BUG #3344]</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "protected"
     },
     "__oldScrollTop": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 161,
           "column": 4
         },
         "end": {
-          "line": 152,
+          "line": 161,
           "column": 25
         }
       },
@@ -517,20 +520,16 @@
     "getSelectionContext": {
       "location": {
         "start": {
-          "line": 168,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 179,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  USER APIS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the selection context. One of <code>tap</code>,\n <code>quick</code>, <code>drag</code> or <code>key</code> or\n <code>null</code>.</p>"
@@ -551,11 +550,11 @@
     "selectAll": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 186,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 195,
           "column": 5
         }
       },
@@ -573,11 +572,11 @@
     "selectItem": {
       "location": {
         "start": {
-          "line": 198,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 211,
+          "line": 220,
           "column": 5
         }
       },
@@ -604,11 +603,11 @@
     "addItem": {
       "location": {
         "start": {
-          "line": 222,
+          "line": 231,
           "column": 4
         },
         "end": {
-          "line": 240,
+          "line": 249,
           "column": 5
         }
       },
@@ -635,11 +634,11 @@
     "removeItem": {
       "location": {
         "start": {
-          "line": 251,
+          "line": 260,
           "column": 4
         },
         "end": {
-          "line": 274,
+          "line": 283,
           "column": 5
         }
       },
@@ -666,11 +665,11 @@
     "selectItemRange": {
       "location": {
         "start": {
-          "line": 283,
+          "line": 292,
           "column": 4
         },
         "end": {
-          "line": 298,
+          "line": 307,
           "column": 5
         }
       },
@@ -704,11 +703,11 @@
     "clearSelection": {
       "location": {
         "start": {
-          "line": 307,
+          "line": 316,
           "column": 4
         },
         "end": {
-          "line": 322,
+          "line": 331,
           "column": 5
         }
       },
@@ -726,11 +725,11 @@
     "replaceSelection": {
       "location": {
         "start": {
-          "line": 333,
+          "line": 342,
           "column": 4
         },
         "end": {
-          "line": 353,
+          "line": 362,
           "column": 5
         }
       },
@@ -757,11 +756,11 @@
     "getSelectedItem": {
       "location": {
         "start": {
-          "line": 362,
+          "line": 371,
           "column": 4
         },
         "end": {
-          "line": 372,
+          "line": 381,
           "column": 5
         }
       },
@@ -787,11 +786,11 @@
     "getSelection": {
       "location": {
         "start": {
-          "line": 383,
+          "line": 392,
           "column": 4
         },
         "end": {
-          "line": 385,
+          "line": 394,
           "column": 5
         }
       },
@@ -817,11 +816,11 @@
     "getSortedSelection": {
       "location": {
         "start": {
-          "line": 394,
+          "line": 403,
           "column": 4
         },
         "end": {
-          "line": 404,
+          "line": 413,
           "column": 5
         }
       },
@@ -847,11 +846,11 @@
     "isItemSelected": {
       "location": {
         "start": {
-          "line": 413,
+          "line": 422,
           "column": 4
         },
         "end": {
-          "line": 417,
+          "line": 426,
           "column": 5
         }
       },
@@ -886,11 +885,11 @@
     "isSelectionEmpty": {
       "location": {
         "start": {
-          "line": 425,
+          "line": 434,
           "column": 4
         },
         "end": {
-          "line": 427,
+          "line": 436,
           "column": 5
         }
       },
@@ -916,11 +915,11 @@
     "invertSelection": {
       "location": {
         "start": {
-          "line": 433,
+          "line": 442,
           "column": 4
         },
         "end": {
-          "line": 446,
+          "line": 455,
           "column": 5
         }
       },
@@ -938,20 +937,16 @@
     "_setLeadItem": {
       "location": {
         "start": {
-          "line": 462,
+          "line": 471,
           "column": 4
         },
         "end": {
-          "line": 475,
+          "line": 484,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  LEAD/ANCHOR SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Sets the lead item. Generally the item which was last modified\n by the user (tapped on etc.)</p>"
@@ -973,11 +968,11 @@
     "getLeadItem": {
       "location": {
         "start": {
-          "line": 484,
+          "line": 493,
           "column": 4
         },
         "end": {
-          "line": 486,
+          "line": 495,
           "column": 5
         }
       },
@@ -1003,11 +998,11 @@
     "_setAnchorItem": {
       "location": {
         "start": {
-          "line": 496,
+          "line": 505,
           "column": 4
         },
         "end": {
-          "line": 509,
+          "line": 518,
           "column": 5
         }
       },
@@ -1034,11 +1029,11 @@
     "_getAnchorItem": {
       "location": {
         "start": {
-          "line": 519,
+          "line": 528,
           "column": 4
         },
         "end": {
-          "line": 521,
+          "line": 530,
           "column": 5
         }
       },
@@ -1064,20 +1059,16 @@
     "_isSelectable": {
       "location": {
         "start": {
-          "line": 539,
+          "line": 548,
           "column": 4
         },
         "end": {
-          "line": 541,
+          "line": 550,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  BASIC SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Whether the given item is selectable.</p>"
@@ -1107,11 +1098,11 @@
     "_getSelectableFromPointerEvent": {
       "location": {
         "start": {
-          "line": 550,
+          "line": 559,
           "column": 4
         },
         "end": {
-          "line": 558,
+          "line": 567,
           "column": 5
         }
       },
@@ -1146,11 +1137,11 @@
     "_selectableToHashCode": {
       "location": {
         "start": {
-          "line": 567,
+          "line": 576,
           "column": 4
         },
         "end": {
-          "line": 569,
+          "line": 578,
           "column": 5
         }
       },
@@ -1185,11 +1176,11 @@
     "_styleSelectable": {
       "location": {
         "start": {
-          "line": 579,
+          "line": 588,
           "column": 4
         },
         "end": {
-          "line": 581,
+          "line": 590,
           "column": 5
         }
       },
@@ -1230,11 +1221,11 @@
     "_capture": {
       "location": {
         "start": {
-          "line": 588,
+          "line": 597,
           "column": 4
         },
         "end": {
-          "line": 590,
+          "line": 599,
           "column": 5
         }
       },
@@ -1252,11 +1243,11 @@
     "_releaseCapture": {
       "location": {
         "start": {
-          "line": 597,
+          "line": 606,
           "column": 4
         },
         "end": {
-          "line": 599,
+          "line": 608,
           "column": 5
         }
       },
@@ -1274,20 +1265,16 @@
     "_getLocation": {
       "location": {
         "start": {
-          "line": 618,
+          "line": 627,
           "column": 4
         },
         "end": {
-          "line": 620,
+          "line": 629,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  DIMENSION AND LOCATION\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the location of the container</p>"
@@ -1308,11 +1295,11 @@
     "_getDimension": {
       "location": {
         "start": {
-          "line": 628,
+          "line": 637,
           "column": 4
         },
         "end": {
-          "line": 630,
+          "line": 639,
           "column": 5
         }
       },
@@ -1338,11 +1325,11 @@
     "_getSelectableLocationX": {
       "location": {
         "start": {
-          "line": 639,
+          "line": 648,
           "column": 4
         },
         "end": {
-          "line": 641,
+          "line": 650,
           "column": 5
         }
       },
@@ -1377,11 +1364,11 @@
     "_getSelectableLocationY": {
       "location": {
         "start": {
-          "line": 650,
+          "line": 659,
           "column": 4
         },
         "end": {
-          "line": 652,
+          "line": 661,
           "column": 5
         }
       },
@@ -1416,20 +1403,16 @@
     "_getScroll": {
       "location": {
         "start": {
-          "line": 670,
+          "line": 679,
           "column": 4
         },
         "end": {
-          "line": 672,
+          "line": 681,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  SCROLL SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the scroll position of the container.</p>"
@@ -1450,11 +1433,11 @@
     "_scrollBy": {
       "location": {
         "start": {
-          "line": 681,
+          "line": 690,
           "column": 4
         },
         "end": {
-          "line": 683,
+          "line": 692,
           "column": 5
         }
       },
@@ -1488,11 +1471,11 @@
     "_scrollItemIntoView": {
       "location": {
         "start": {
-          "line": 691,
+          "line": 700,
           "column": 4
         },
         "end": {
-          "line": 693,
+          "line": 702,
           "column": 5
         }
       },
@@ -1519,20 +1502,16 @@
     "getSelectables": {
       "location": {
         "start": {
-          "line": 713,
+          "line": 722,
           "column": 4
         },
         "end": {
-          "line": 715,
+          "line": 724,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  QUERY SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns all selectable items of the container.</p>"
@@ -1562,11 +1541,11 @@
     "_getSelectableRange": {
       "location": {
         "start": {
-          "line": 727,
+          "line": 736,
           "column": 4
         },
         "end": {
-          "line": 729,
+          "line": 738,
           "column": 5
         }
       },
@@ -1608,11 +1587,11 @@
     "_getFirstSelectable": {
       "location": {
         "start": {
-          "line": 737,
+          "line": 746,
           "column": 4
         },
         "end": {
-          "line": 739,
+          "line": 748,
           "column": 5
         }
       },
@@ -1638,11 +1617,11 @@
     "_getLastSelectable": {
       "location": {
         "start": {
-          "line": 747,
+          "line": 756,
           "column": 4
         },
         "end": {
-          "line": 749,
+          "line": 758,
           "column": 5
         }
       },
@@ -1665,14 +1644,74 @@
       "type": "function",
       "access": "protected"
     },
-    "_getRelatedSelectable": {
+    "_getFirstVisibleSelectable": {
       "location": {
         "start": {
-          "line": 761,
+          "line": 766,
           "column": 4
         },
         "end": {
-          "line": 763,
+          "line": 768,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the first visible and selectable item.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The first visible and selectable item",
+            "type": "var",
+            "description": " The first visible and selectable item"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getLastVisibleSelectable": {
+      "location": {
+        "start": {
+          "line": 776,
+          "column": 4
+        },
+        "end": {
+          "line": 778,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the last visible and selectable item.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The last visible and selectable item",
+            "type": "var",
+            "description": " The last visible and selectable item"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getRelatedSelectable": {
+      "location": {
+        "start": {
+          "line": 790,
+          "column": 4
+        },
+        "end": {
+          "line": 792,
           "column": 5
         }
       },
@@ -1714,11 +1753,11 @@
     "_getPage": {
       "location": {
         "start": {
-          "line": 775,
+          "line": 804,
           "column": 4
         },
         "end": {
-          "line": 777,
+          "line": 806,
           "column": 5
         }
       },
@@ -1754,26 +1793,15 @@
     "_applyMode": {
       "location": {
         "start": {
-          "line": 789,
+          "line": 818,
           "column": 4
         },
         "end": {
-          "line": 802,
+          "line": 831,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY APPLY ROUTINES\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1783,20 +1811,16 @@
     "handlePointerOver": {
       "location": {
         "start": {
-          "line": 821,
+          "line": 850,
           "column": 4
         },
         "end": {
-          "line": 869,
+          "line": 898,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  POINTER SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>This method should be connected to the <code>pointerover</code> event\n of the managed object.</p>"
@@ -1818,11 +1842,11 @@
     "handlePointerDown": {
       "location": {
         "start": {
-          "line": 878,
+          "line": 907,
           "column": 4
         },
         "end": {
-          "line": 942,
+          "line": 971,
           "column": 5
         }
       },
@@ -1849,11 +1873,11 @@
     "handleTap": {
       "location": {
         "start": {
-          "line": 951,
+          "line": 980,
           "column": 4
         },
         "end": {
-          "line": 1028,
+          "line": 1059,
           "column": 5
         }
       },
@@ -1880,11 +1904,11 @@
     "handleLoseCapture": {
       "location": {
         "start": {
-          "line": 1037,
+          "line": 1068,
           "column": 4
         },
         "end": {
-          "line": 1039,
+          "line": 1070,
           "column": 5
         }
       },
@@ -1911,11 +1935,11 @@
     "handlePointerMove": {
       "location": {
         "start": {
-          "line": 1048,
+          "line": 1079,
           "column": 4
         },
         "end": {
-          "line": 1121,
+          "line": 1152,
           "column": 5
         }
       },
@@ -1942,11 +1966,11 @@
     "handleAddItem": {
       "location": {
         "start": {
-          "line": 1130,
+          "line": 1161,
           "column": 4
         },
         "end": {
-          "line": 1136,
+          "line": 1167,
           "column": 5
         }
       },
@@ -1973,11 +1997,11 @@
     "handleRemoveItem": {
       "location": {
         "start": {
-          "line": 1145,
+          "line": 1176,
           "column": 4
         },
         "end": {
-          "line": 1147,
+          "line": 1178,
           "column": 5
         }
       },
@@ -2004,20 +2028,16 @@
     "_cleanup": {
       "location": {
         "start": {
-          "line": 1161,
+          "line": 1192,
           "column": 4
         },
         "end": {
-          "line": 1184,
+          "line": 1215,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  POINTER SUPPORT INTERNALS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Stops all timers, release capture etc. to cleanup drag selection</p>"
@@ -2030,11 +2050,11 @@
     "_onInterval": {
       "location": {
         "start": {
-          "line": 1192,
+          "line": 1223,
           "column": 4
         },
         "end": {
-          "line": 1202,
+          "line": 1233,
           "column": 5
         }
       },
@@ -2061,11 +2081,11 @@
     "_autoSelect": {
       "location": {
         "start": {
-          "line": 1208,
+          "line": 1239,
           "column": 4
         },
         "end": {
-          "line": 1318,
+          "line": 1349,
           "column": 5
         }
       },
@@ -2083,20 +2103,16 @@
     "__navigationKeys": {
       "location": {
         "start": {
-          "line": 1336,
+          "line": 1367,
           "column": 4
         },
         "end": {
-          "line": 1346,
+          "line": 1377,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  KEYBOARD SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": ""
@@ -2121,11 +2137,11 @@
     "handleKeyPress": {
       "location": {
         "start": {
-          "line": 1355,
+          "line": 1386,
           "column": 4
         },
         "end": {
-          "line": 1520,
+          "line": 1594,
           "column": 5
         }
       },
@@ -2152,20 +2168,16 @@
     "_selectAllItems": {
       "location": {
         "start": {
-          "line": 1536,
+          "line": 1610,
           "column": 4
         },
         "end": {
-          "line": 1542,
+          "line": 1616,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  SUPPORT FOR ITEM RANGES\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Adds all items to the selection</p>"
@@ -2178,11 +2190,11 @@
     "_clearSelection": {
       "location": {
         "start": {
-          "line": 1548,
+          "line": 1622,
           "column": 4
         },
         "end": {
-          "line": 1555,
+          "line": 1629,
           "column": 5
         }
       },
@@ -2200,11 +2212,11 @@
     "_selectItemRange": {
       "location": {
         "start": {
-          "line": 1566,
+          "line": 1640,
           "column": 4
         },
         "end": {
-          "line": 1588,
+          "line": 1662,
           "column": 5
         }
       },
@@ -2247,11 +2259,11 @@
     "_deselectItemRange": {
       "location": {
         "start": {
-          "line": 1597,
+          "line": 1671,
           "column": 4
         },
         "end": {
-          "line": 1603,
+          "line": 1677,
           "column": 5
         }
       },
@@ -2285,11 +2297,11 @@
     "__rangeToMap": {
       "location": {
         "start": {
-          "line": 1612,
+          "line": 1686,
           "column": 4
         },
         "end": {
-          "line": 1624,
+          "line": 1698,
           "column": 5
         }
       },
@@ -2316,20 +2328,16 @@
     "_getSelectedItem": {
       "location": {
         "start": {
-          "line": 1643,
+          "line": 1717,
           "column": 4
         },
         "end": {
-          "line": 1650,
+          "line": 1724,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  SINGLE ITEM QUERY AND MODIFICATION\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the first selected item. Only makes sense\n when using manager in single selection mode.</p>"
@@ -2350,11 +2358,11 @@
     "_setSelectedItem": {
       "location": {
         "start": {
-          "line": 1658,
+          "line": 1732,
           "column": 4
         },
         "end": {
-          "line": 1672,
+          "line": 1746,
           "column": 5
         }
       },
@@ -2381,20 +2389,16 @@
     "_addToSelection": {
       "location": {
         "start": {
-          "line": 1691,
+          "line": 1765,
           "column": 4
         },
         "end": {
-          "line": 1702,
+          "line": 1776,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  MODIFY ITEM SELECTION\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Adds an item to the current selection.</p>"
@@ -2416,11 +2420,11 @@
     "_toggleInSelection": {
       "location": {
         "start": {
-          "line": 1711,
+          "line": 1785,
           "column": 4
         },
         "end": {
-          "line": 1727,
+          "line": 1801,
           "column": 5
         }
       },
@@ -2447,11 +2451,11 @@
     "_removeFromSelection": {
       "location": {
         "start": {
-          "line": 1735,
+          "line": 1809,
           "column": 4
         },
         "end": {
-          "line": 1746,
+          "line": 1820,
           "column": 5
         }
       },
@@ -2478,11 +2482,11 @@
     "_replaceMultiSelection": {
       "location": {
         "start": {
-          "line": 1754,
+          "line": 1828,
           "column": 4
         },
         "end": {
-          "line": 1831,
+          "line": 1905,
           "column": 5
         }
       },
@@ -2509,11 +2513,11 @@
     "_fireChange": {
       "location": {
         "start": {
-          "line": 1841,
+          "line": 1915,
           "column": 4
         },
         "end": {
-          "line": 1852,
+          "line": 1926,
           "column": 5
         }
       },
@@ -2540,11 +2544,11 @@
     "_applyDefaultSelection": {
       "location": {
         "start": {
-          "line": 1862,
+          "line": 1936,
           "column": 4
         },
         "end": {
-          "line": 1873,
+          "line": 1947,
           "column": 5
         }
       },
@@ -2957,27 +2961,110 @@
           }
         ]
       }
+    },
+    "getReadOnly": {
+      "type": "function",
+      "name": "getReadOnly",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>readOnly</code>.\n\nFor further details take a look at the property definition: {@link #readOnly}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for readOnly"
+          }
+        ]
+      }
+    },
+    "isReadOnly": {
+      "type": "function",
+      "name": "isReadOnly",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>readOnly</code>.\n\nFor further details take a look at the property definition: {@link #readOnly}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for readOnly"
+          }
+        ]
+      }
+    },
+    "setReadOnly": {
+      "type": "function",
+      "name": "setReadOnly",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>readOnly</code>.\n\nFor further details take a look at the property definition: {@link #readOnly}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for readOnly"
+          }
+        ]
+      }
+    },
+    "resetReadOnly": {
+      "type": "function",
+      "name": "resetReadOnly",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>readOnly</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #readOnly}."
+          }
+        ]
+      }
     }
   },
   "destruct": {
     "location": {
       "start": {
-        "line": 1883,
+        "line": 1957,
         "column": 13
       },
       "end": {
-        "line": 1888,
+        "line": 1962,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": [
     "qx.ui.core.selection.Widget",

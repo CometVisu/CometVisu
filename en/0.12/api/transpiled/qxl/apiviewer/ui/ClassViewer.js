@@ -38,7 +38,9 @@
         "construct": true
       },
       "qx.util.ResourceManager": {},
-      "qx.bom.client.Engine": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
       "qxl.apiviewer.dao.Class": {},
       "qx.util.LibraryManager": {},
       "qx.util.StringBuilder": {},
@@ -48,7 +50,6 @@
       "qx.bom.element.Scroll": {},
       "qx.bom.element.Style": {},
       "qxl.apiviewer.TreeUtil": {},
-      "qx.lang.String": {},
       "qx.event.Timer": {},
       "qxl.apiviewer.UiModel": {}
     },
@@ -86,6 +87,7 @@
        * Fabian Jakobs (fjakobs)
        * Jonathan Weiß (jonathan_rass)
        * John Spackman (johnspackman)
+       * Henner Kollmann (hkollmann)
   
   ************************************************************************ */
 
@@ -237,9 +239,9 @@
         var style;
 
         if (qx.core.Environment.get("engine.name") == "webkit") {
-          html = "<span style=\"display:inline;position:relative;top:-2px;width:" + width + "px;height:" + height + "px" + (styleAttributes == null ? "" : ";" + styleAttributes) + "\">";
+          html = "<span style=\"display:inline;position:relative;top:-2px;width:" + width + "px;height:" + height + "px" + (styleAttributes ? ";" + styleAttributes : "") + "\">";
         } else {
-          html = "<span style=\"display:inline-block;display:inline;padding-right:18px;position:relative;top:-2px;left:0;width:" + width + "px;height:" + height + "px" + (styleAttributes == null ? "" : ";" + styleAttributes) + "\">";
+          html = "<span style=\"display:inline-block;display:inline;padding-right:18px;position:relative;top:-2px;left:0;width:" + width + "px;height:" + height + "px" + (styleAttributes ? ";" + styleAttributes : "") + "\">";
         }
 
         if (qx.core.Environment.get("engine.name") == "webkit") {
@@ -253,7 +255,7 @@
         for (var i = 0; i < imgUrlArr.length; i++) {
           html += "<img";
 
-          if (toolTip != null) {
+          if (toolTip) {
             html += " title=\"" + toolTip + "\"";
           }
 
@@ -373,7 +375,7 @@
         var tocHtml = document.createDocumentFragment();
         var lastTocItem = null;
         this.getPanels().forEach(function (panel) {
-          var items = panel.getPanelItemObjects(_this.getDocNode(), _this.getShowInherited());
+          var items = panel.getPanelItemObjects(_this.getDocNode(), _this.getShowInherited() || _this.getShowIncluded());
 
           if (items.length == 0) {
             return;
@@ -389,7 +391,7 @@
           tocItem.innerHTML = qxl.apiviewer.ui.ClassViewer.createImageHtml(panel.getPanelIcon(), panel.getPanelTitle()) + " ";
           q(tocItem).on("tap", function (firstItem) {
             return function () {
-              this.__P_528_0(firstItem, firstItem.getName());
+              this.__P_527_0(firstItem);
 
               qx.bom.element.Scroll.intoView(panel.getTitleElement(), null, "left", "top");
 
@@ -414,6 +416,7 @@
       },
 
       /**
+       * @param classNode
        * @return {Promise}
        */
       _getDescriptionHtml: function _getDescriptionHtml(classNode) {
@@ -454,21 +457,21 @@
 
 
         if (classNode.getType() === "interface") {
-          classHtml.add(this.__P_528_1(classNode));
+          classHtml.add(this.__P_527_1(classNode));
         } else {
-          classHtml.add(this.__P_528_2(classNode));
+          classHtml.add(this.__P_527_2(classNode));
         }
 
         return classNode.getChildClasses().then(function (childClasses) {
-          classHtml.add(_this2.__P_528_3(childClasses, "Direct " + subObjectsName + ":"));
-          classHtml.add(_this2.__P_528_3(classNode.getInterfaces(), "Implemented interfaces:"));
-          classHtml.add(_this2.__P_528_3(classNode.getMixins(), "Included mixins:"));
+          classHtml.add(_this2.__P_527_3(childClasses, "Direct " + subObjectsName + ":"));
+          classHtml.add(_this2.__P_527_3(classNode.getInterfaces(), "Implemented interfaces:"));
+          classHtml.add(_this2.__P_527_3(classNode.getMixins(), "Included mixins:"));
           return classNode.getImplementations();
         }).then(function (classes) {
-          classHtml.add(_this2.__P_528_3(classes, "Implementations of this interface:"));
+          classHtml.add(_this2.__P_527_3(classes, "Implementations of this interface:"));
           return classNode.getIncluder();
         }).then(function (classes) {
-          classHtml.add(_this2.__P_528_3(classes, "Classes including this mixin:"));
+          classHtml.add(_this2.__P_527_3(classes, "Classes including this mixin:"));
 
           if (classNode.isDeprecated()) {
             classHtml.add("<h2 class=\"warning\">", "Deprecated:", "</h2>");
@@ -509,7 +512,7 @@
        * @param title {String} headline
        * @return {String} HTML Fragement
        */
-      __P_528_3: function __P_528_3(dependentClasses, title) {
+      __P_527_3: function __P_527_3(dependentClasses, title) {
         var result = "";
 
         if (dependentClasses.length > 0) {
@@ -535,7 +538,7 @@
        * @param classNode {qxl.apiviewer.dao.Class} class node
        * @return {String} HTML fragemnt
        */
-      __P_528_2: function __P_528_2(classNode) {
+      __P_527_2: function __P_527_2(classNode) {
         var ClassViewer = qxl.apiviewer.ui.ClassViewer; // Create the class hierarchy
 
         var classHtml = new qx.util.StringBuilder("<h2>", "Inheritance hierarchy:", "</h2>");
@@ -577,7 +580,7 @@
        * @param classNode {qxl.apiviewer.dao.Class} class node
        * @return {String} HTML fragemnt
        */
-      __P_528_1: function __P_528_1(classNode) {
+      __P_527_1: function __P_527_1(classNode) {
         var ClassViewer = qxl.apiviewer.ui.ClassViewer;
         var TreeUtil = qxl.apiviewer.TreeUtil;
         var InfoPanel = qxl.apiviewer.ui.panels.InfoPanel;
@@ -585,7 +588,7 @@
         var html = new qx.util.StringBuilder(); // show nothing if we don't have a hierarchy
 
         if (hierarchy.length <= 1) {
-          return;
+          return html;
         }
 
         html.add("<h2>", "Inheritance hierarchy:", "</h2>");
@@ -637,8 +640,7 @@
           itemNode = this.getDocNode().getConstructor();
         } else if (itemName.indexOf("!") != -1) {
           var parts = itemName.split("!");
-          var upname = "get" + qx.lang.String.firstUp(nameMap[parts[1]]);
-          itemNode = this.getDocNode()[upname](parts[0]);
+          itemNode = this.getDocNode().getItemByListAndName(nameMap[parts[1]], parts[0]);
 
           if (!itemNode) {
             itemNode = this.getDocNode().getItem(parts[0]);
@@ -652,7 +654,7 @@
         } // Show properties, private or protected methods if they are hidden
 
 
-        this.__P_528_0(itemNode, itemName);
+        this.__P_527_0(itemNode);
 
         var panel = this._getPanelForItemNode(itemNode);
 
@@ -687,11 +689,9 @@
       /**
        * Programatically enables the button to show private, protected function or
        * properties so that the selected item can be shown.
-       *
-       * @param itemName {String} the name of the item to highlight.
-       * @param itemName {String} The doc node of the item
+       * @param itemNode
        */
-      __P_528_0: function __P_528_0(itemNode, itemName) {
+      __P_527_0: function __P_527_0(itemNode) {
         var uiModel = qxl.apiviewer.UiModel.getInstance(); // Check for property
 
         if (itemNode.isFromProperty && itemNode.isFromProperty()) {
@@ -717,10 +717,10 @@
 
           if (itemNode.isInternal()) {
             uiModel.setShowInternal(true);
-          } // Check for protected
-          else if (itemNode.isProtected()) {
-              uiModel.setShowProtected(true);
-            }
+          } else if (itemNode.isProtected()) {
+            // Check for protected
+            uiModel.setShowProtected(true);
+          }
         }
       },
 
@@ -740,6 +740,8 @@
             return panel;
           }
         }
+
+        return null;
       }
     },
 
@@ -755,4 +757,4 @@
   qxl.apiviewer.ui.ClassViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassViewer.js.map?dt=1604955498995
+//# sourceMappingURL=ClassViewer.js.map?dt=1612690424919

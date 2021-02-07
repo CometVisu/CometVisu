@@ -15,16 +15,12 @@
         "column": 0
       },
       "end": {
-        "line": 2323,
+        "line": 2366,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Til Schneider (til132)\n Fabian Jakobs (fjakobs)\n Jonathan Weiß (jonathan_rass)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>Table\n A detailed description can be found in the package description\n {@link qx.ui.table}.</p>"
@@ -62,10 +58,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -858,14 +850,66 @@
       "check": "Boolean",
       "defaultValue": true
     },
-    "dataRowRenderer": {
+    "resetSelectionOnTapBelowRows": {
       "location": {
         "start": {
-          "line": 560,
+          "line": 563,
           "column": 4
         },
         "end": {
-          "line": 566,
+          "line": 568,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to reset the selection when the unpopulated table area is tapped.\n The default is false which keeps the behaviour as before</p>"
+          }
+        ]
+      },
+      "name": "resetSelectionOnTapBelowRows",
+      "propertyType": "new",
+      "apply": "_applyResetSelectionOnTapBelowRows",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "minCellEditHeight": {
+      "location": {
+        "start": {
+          "line": 573,
+          "column": 4
+        },
+        "end": {
+          "line": 578,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If set then defines the minimum height of the focus indicator when editing</p>"
+          }
+        ]
+      },
+      "name": "minCellEditHeight",
+      "propertyType": "new",
+      "apply": "_applyMinCellEditHeight",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
+    },
+    "dataRowRenderer": {
+      "location": {
+        "start": {
+          "line": 582,
+          "column": 4
+        },
+        "end": {
+          "line": 588,
           "column": 5
         }
       },
@@ -887,11 +931,11 @@
     "modalCellEditorPreOpenFunction": {
       "location": {
         "start": {
-          "line": 583,
+          "line": 605,
           "column": 4
         },
         "end": {
-          "line": 588,
+          "line": 610,
           "column": 5
         }
       },
@@ -934,11 +978,11 @@
     "excludeScrollerScrollbarsIfNotNeeded": {
       "location": {
         "start": {
-          "line": 596,
+          "line": 618,
           "column": 4
         },
         "end": {
-          "line": 601,
+          "line": 623,
           "column": 5
         }
       },
@@ -961,11 +1005,11 @@
     "newColumnMenu": {
       "location": {
         "start": {
-          "line": 607,
+          "line": 629,
           "column": 4
         },
         "end": {
-          "line": 613,
+          "line": 635,
           "column": 5
         }
       },
@@ -984,11 +1028,11 @@
     "newSelectionManager": {
       "location": {
         "start": {
-          "line": 621,
+          "line": 643,
           "column": 4
         },
         "end": {
-          "line": 627,
+          "line": 649,
           "column": 5
         }
       },
@@ -1007,11 +1051,11 @@
     "newSelectionModel": {
       "location": {
         "start": {
-          "line": 635,
+          "line": 657,
           "column": 4
         },
         "end": {
-          "line": 641,
+          "line": 663,
           "column": 5
         }
       },
@@ -1030,11 +1074,11 @@
     "newTableColumnModel": {
       "location": {
         "start": {
-          "line": 649,
+          "line": 671,
           "column": 4
         },
         "end": {
-          "line": 655,
+          "line": 677,
           "column": 5
         }
       },
@@ -1053,11 +1097,11 @@
     "newTablePane": {
       "location": {
         "start": {
-          "line": 663,
+          "line": 685,
           "column": 4
         },
         "end": {
-          "line": 669,
+          "line": 691,
           "column": 5
         }
       },
@@ -1076,11 +1120,11 @@
     "newTablePaneHeader": {
       "location": {
         "start": {
-          "line": 677,
+          "line": 699,
           "column": 4
         },
         "end": {
-          "line": 683,
+          "line": 705,
           "column": 5
         }
       },
@@ -1099,11 +1143,11 @@
     "newTablePaneScroller": {
       "location": {
         "start": {
-          "line": 691,
+          "line": 713,
           "column": 4
         },
         "end": {
-          "line": 697,
+          "line": 719,
           "column": 5
         }
       },
@@ -1122,11 +1166,11 @@
     "newTablePaneModel": {
       "location": {
         "start": {
-          "line": 705,
+          "line": 727,
           "column": 4
         },
         "end": {
-          "line": 711,
+          "line": 733,
           "column": 5
         }
       },
@@ -1195,11 +1239,11 @@
     "__focusedCol": {
       "location": {
         "start": {
-          "line": 725,
+          "line": 747,
           "column": 4
         },
         "end": {
-          "line": 725,
+          "line": 747,
           "column": 23
         }
       },
@@ -1209,11 +1253,11 @@
     "__focusedRow": {
       "location": {
         "start": {
-          "line": 726,
+          "line": 748,
           "column": 4
         },
         "end": {
-          "line": 726,
+          "line": 748,
           "column": 23
         }
       },
@@ -1223,11 +1267,11 @@
     "__scrollerParent": {
       "location": {
         "start": {
-          "line": 728,
+          "line": 750,
           "column": 4
         },
         "end": {
-          "line": 728,
+          "line": 750,
           "column": 27
         }
       },
@@ -1237,11 +1281,11 @@
     "__selectionManager": {
       "location": {
         "start": {
-          "line": 730,
+          "line": 752,
           "column": 4
         },
         "end": {
-          "line": 730,
+          "line": 752,
           "column": 29
         }
       },
@@ -1251,11 +1295,11 @@
     "__additionalStatusBarText": {
       "location": {
         "start": {
-          "line": 732,
+          "line": 754,
           "column": 4
         },
         "end": {
-          "line": 732,
+          "line": 754,
           "column": 36
         }
       },
@@ -1265,11 +1309,11 @@
     "__lastRowCount": {
       "location": {
         "start": {
-          "line": 733,
+          "line": 755,
           "column": 4
         },
         "end": {
-          "line": 733,
+          "line": 755,
           "column": 25
         }
       },
@@ -1279,11 +1323,11 @@
     "__internalChange": {
       "location": {
         "start": {
-          "line": 734,
+          "line": 756,
           "column": 4
         },
         "end": {
-          "line": 734,
+          "line": 756,
           "column": 27
         }
       },
@@ -1293,11 +1337,11 @@
     "__columnMenuButtons": {
       "location": {
         "start": {
-          "line": 736,
+          "line": 758,
           "column": 4
         },
         "end": {
-          "line": 736,
+          "line": 758,
           "column": 30
         }
       },
@@ -1307,11 +1351,11 @@
     "__columnModel": {
       "location": {
         "start": {
-          "line": 737,
+          "line": 759,
           "column": 4
         },
         "end": {
-          "line": 737,
+          "line": 759,
           "column": 24
         }
       },
@@ -1321,11 +1365,11 @@
     "__emptyTableModel": {
       "location": {
         "start": {
-          "line": 738,
+          "line": 760,
           "column": 4
         },
         "end": {
-          "line": 738,
+          "line": 760,
           "column": 28
         }
       },
@@ -1335,11 +1379,11 @@
     "__hadVerticalScrollBar": {
       "location": {
         "start": {
-          "line": 740,
+          "line": 762,
           "column": 4
         },
         "end": {
-          "line": 740,
+          "line": 762,
           "column": 33
         }
       },
@@ -1349,11 +1393,11 @@
     "__timer": {
       "location": {
         "start": {
-          "line": 742,
+          "line": 764,
           "column": 4
         },
         "end": {
-          "line": 742,
+          "line": 764,
           "column": 18
         }
       },
@@ -1363,22 +1407,15 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 746,
+          "line": 768,
           "column": 4
         },
         "end": {
-          "line": 781,
+          "line": 803,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -1389,22 +1426,15 @@
     "_applySelectionModel": {
       "location": {
         "start": {
-          "line": 786,
+          "line": 808,
           "column": 4
         },
         "end": {
-          "line": 795,
+          "line": 817,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1414,22 +1444,15 @@
     "_applyRowHeight": {
       "location": {
         "start": {
-          "line": 799,
+          "line": 821,
           "column": 4
         },
         "end": {
-          "line": 806,
+          "line": 828,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1439,22 +1462,15 @@
     "_applyHeaderCellsVisible": {
       "location": {
         "start": {
-          "line": 810,
+          "line": 832,
           "column": 4
         },
         "end": {
-          "line": 825,
+          "line": 847,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1464,36 +1480,47 @@
     "_applyHeaderCellHeight": {
       "location": {
         "start": {
-          "line": 829,
+          "line": 851,
           "column": 4
         },
         "end": {
-          "line": 836,
+          "line": 858,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
         "headerCellHeight"
       ]
     },
-    "getEmptyTableModel": {
+    "_applyMinCellEditHeight": {
       "location": {
         "start": {
-          "line": 845,
+          "line": 862,
           "column": 4
         },
         "end": {
-          "line": 854,
+          "line": 868,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "minCellEditHeight"
+      ]
+    },
+    "getEmptyTableModel": {
+      "location": {
+        "start": {
+          "line": 877,
+          "column": 4
+        },
+        "end": {
+          "line": 886,
           "column": 5
         }
       },
@@ -1519,22 +1546,15 @@
     "_applyTableModel": {
       "location": {
         "start": {
-          "line": 858,
+          "line": 890,
           "column": 4
         },
         "end": {
-          "line": 902,
+          "line": 934,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1544,11 +1564,11 @@
     "getTableColumnModel": {
       "location": {
         "start": {
-          "line": 910,
+          "line": 942,
           "column": 4
         },
         "end": {
-          "line": 935,
+          "line": 967,
           "column": 5
         }
       },
@@ -1574,22 +1594,15 @@
     "_applyStatusBarVisible": {
       "location": {
         "start": {
-          "line": 939,
+          "line": 971,
           "column": 4
         },
         "end": {
-          "line": 950,
+          "line": 982,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1599,22 +1612,15 @@
     "_applyAdditionalStatusBarText": {
       "location": {
         "start": {
-          "line": 954,
+          "line": 986,
           "column": 4
         },
         "end": {
-          "line": 958,
+          "line": 990,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1624,22 +1630,15 @@
     "_applyColumnVisibilityButtonVisible": {
       "location": {
         "start": {
-          "line": 962,
+          "line": 994,
           "column": 4
         },
         "end": {
-          "line": 969,
+          "line": 1001,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1649,22 +1648,15 @@
     "_applyMetaColumnCounts": {
       "location": {
         "start": {
-          "line": 973,
+          "line": 1005,
           "column": 4
         },
         "end": {
-          "line": 1126,
+          "line": 1158,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1674,22 +1666,15 @@
     "_applyFocusCellOnPointerMove": {
       "location": {
         "start": {
-          "line": 1130,
+          "line": 1162,
           "column": 4
         },
         "end": {
-          "line": 1137,
+          "line": 1169,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1699,22 +1684,15 @@
     "_applyShowCellFocusIndicator": {
       "location": {
         "start": {
-          "line": 1141,
+          "line": 1173,
           "column": 4
         },
         "end": {
-          "line": 1148,
+          "line": 1180,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1724,22 +1702,15 @@
     "_applyContextMenuFromDataCellsOnly": {
       "location": {
         "start": {
-          "line": 1152,
+          "line": 1184,
           "column": 4
         },
         "end": {
-          "line": 1159,
+          "line": 1191,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1749,22 +1720,15 @@
     "_applyKeepFirstVisibleRowComplete": {
       "location": {
         "start": {
-          "line": 1163,
+          "line": 1195,
           "column": 4
         },
         "end": {
-          "line": 1170,
+          "line": 1202,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1774,36 +1738,47 @@
     "_applyResetSelectionOnHeaderTap": {
       "location": {
         "start": {
-          "line": 1174,
+          "line": 1206,
           "column": 4
         },
         "end": {
-          "line": 1181,
+          "line": 1213,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property modifier</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
         "resetSelectionOnHeaderTap"
       ]
     },
-    "getSelectionManager": {
+    "_applyResetSelectionOnTapBelowRows": {
       "location": {
         "start": {
-          "line": 1189,
+          "line": 1217,
           "column": 4
         },
         "end": {
-          "line": 1191,
+          "line": 1224,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "resetSelectionOnTapBelowRows"
+      ]
+    },
+    "getSelectionManager": {
+      "location": {
+        "start": {
+          "line": 1232,
+          "column": 4
+        },
+        "end": {
+          "line": 1234,
           "column": 5
         }
       },
@@ -1829,11 +1804,11 @@
     "_getPaneScrollerArr": {
       "location": {
         "start": {
-          "line": 1199,
+          "line": 1242,
           "column": 4
         },
         "end": {
-          "line": 1201,
+          "line": 1244,
           "column": 5
         }
       },
@@ -1859,11 +1834,11 @@
     "getPaneScroller": {
       "location": {
         "start": {
-          "line": 1210,
+          "line": 1253,
           "column": 4
         },
         "end": {
-          "line": 1212,
+          "line": 1255,
           "column": 5
         }
       },
@@ -1898,11 +1873,11 @@
     "_cleanUpMetaColumns": {
       "location": {
         "start": {
-          "line": 1222,
+          "line": 1265,
           "column": 4
         },
         "end": {
-          "line": 1233,
+          "line": 1276,
           "column": 5
         }
       },
@@ -1929,11 +1904,11 @@
     "_onChangeLocale": {
       "location": {
         "start": {
-          "line": 1241,
+          "line": 1284,
           "column": 4
         },
         "end": {
-          "line": 1245,
+          "line": 1288,
           "column": 5
         }
       },
@@ -1960,22 +1935,15 @@
     "_onChangeTheme": {
       "location": {
         "start": {
-          "line": 1249,
+          "line": 1292,
           "column": 4
         },
         "end": {
-          "line": 1255,
+          "line": 1298,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -1987,11 +1955,11 @@
     "_onSelectionChanged": {
       "location": {
         "start": {
-          "line": 1263,
+          "line": 1306,
           "column": 4
         },
         "end": {
-          "line": 1272,
+          "line": 1315,
           "column": 5
         }
       },
@@ -2018,11 +1986,11 @@
     "_onTableModelMetaDataChanged": {
       "location": {
         "start": {
-          "line": 1280,
+          "line": 1323,
           "column": 4
         },
         "end": {
-          "line": 1289,
+          "line": 1332,
           "column": 5
         }
       },
@@ -2049,11 +2017,11 @@
     "_onTableModelDataChanged": {
       "location": {
         "start": {
-          "line": 1297,
+          "line": 1340,
           "column": 4
         },
         "end": {
-          "line": 1306,
+          "line": 1349,
           "column": 5
         }
       },
@@ -2080,22 +2048,15 @@
     "_onContextMenuOpen": {
       "location": {
         "start": {
-          "line": 1310,
+          "line": 1353,
           "column": 4
         },
         "end": {
-          "line": 1317,
+          "line": 1360,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -2106,11 +2067,11 @@
     "_updateTableData": {
       "location": {
         "start": {
-          "line": 1330,
+          "line": 1373,
           "column": 4
         },
         "end": {
-          "line": 1360,
+          "line": 1403,
           "column": 5
         }
       },
@@ -2176,11 +2137,11 @@
     "_onScrollY": {
       "location": {
         "start": {
-          "line": 1368,
+          "line": 1411,
           "column": 4
         },
         "end": {
-          "line": 1383,
+          "line": 1426,
           "column": 5
         }
       },
@@ -2207,11 +2168,11 @@
     "_onKeyPress": {
       "location": {
         "start": {
-          "line": 1392,
+          "line": 1435,
           "column": 4
         },
         "end": {
-          "line": 1397,
+          "line": 1440,
           "column": 5
         }
       },
@@ -2244,11 +2205,11 @@
     "_onKeyDown": {
       "location": {
         "start": {
-          "line": 1403,
+          "line": 1446,
           "column": 4
         },
         "end": {
-          "line": 1539,
+          "line": 1582,
           "column": 5
         }
       },
@@ -2275,11 +2236,11 @@
     "_onFocusChanged": {
       "location": {
         "start": {
-          "line": 1547,
+          "line": 1590,
           "column": 4
         },
         "end": {
-          "line": 1554,
+          "line": 1597,
           "column": 5
         }
       },
@@ -2306,11 +2267,11 @@
     "_onColVisibilityChanged": {
       "location": {
         "start": {
-          "line": 1562,
+          "line": 1605,
           "column": 4
         },
         "end": {
-          "line": 1578,
+          "line": 1621,
           "column": 5
         }
       },
@@ -2337,11 +2298,11 @@
     "_onColWidthChanged": {
       "location": {
         "start": {
-          "line": 1586,
+          "line": 1629,
           "column": 4
         },
         "end": {
-          "line": 1598,
+          "line": 1641,
           "column": 5
         }
       },
@@ -2368,11 +2329,11 @@
     "_onColOrderChanged": {
       "location": {
         "start": {
-          "line": 1606,
+          "line": 1649,
           "column": 4
         },
         "end": {
-          "line": 1617,
+          "line": 1660,
           "column": 5
         }
       },
@@ -2399,11 +2360,11 @@
     "getTablePaneScrollerAtPageX": {
       "location": {
         "start": {
-          "line": 1627,
+          "line": 1670,
           "column": 4
         },
         "end": {
-          "line": 1631,
+          "line": 1674,
           "column": 5
         }
       },
@@ -2438,11 +2399,11 @@
     "setFocusedCell": {
       "location": {
         "start": {
-          "line": 1643,
+          "line": 1686,
           "column": 4
         },
         "end": {
-          "line": 1664,
+          "line": 1707,
           "column": 5
         }
       },
@@ -2489,11 +2450,11 @@
     "resetSelection": {
       "location": {
         "start": {
-          "line": 1670,
+          "line": 1713,
           "column": 4
         },
         "end": {
-          "line": 1672,
+          "line": 1715,
           "column": 5
         }
       },
@@ -2511,11 +2472,11 @@
     "resetCellFocus": {
       "location": {
         "start": {
-          "line": 1678,
+          "line": 1721,
           "column": 4
         },
         "end": {
-          "line": 1680,
+          "line": 1723,
           "column": 5
         }
       },
@@ -2533,11 +2494,11 @@
     "getFocusedColumn": {
       "location": {
         "start": {
-          "line": 1688,
+          "line": 1731,
           "column": 4
         },
         "end": {
-          "line": 1690,
+          "line": 1733,
           "column": 5
         }
       },
@@ -2563,11 +2524,11 @@
     "getFocusedRow": {
       "location": {
         "start": {
-          "line": 1698,
+          "line": 1741,
           "column": 4
         },
         "end": {
-          "line": 1700,
+          "line": 1743,
           "column": 5
         }
       },
@@ -2593,11 +2554,11 @@
     "highlightFocusedRow": {
       "location": {
         "start": {
-          "line": 1710,
+          "line": 1753,
           "column": 4
         },
         "end": {
-          "line": 1713,
+          "line": 1756,
           "column": 5
         }
       },
@@ -2624,11 +2585,11 @@
     "clearFocusedRowHighlight": {
       "location": {
         "start": {
-          "line": 1728,
+          "line": 1771,
           "column": 4
         },
         "end": {
-          "line": 1751,
+          "line": 1794,
           "column": 5
         }
       },
@@ -2655,11 +2616,11 @@
     "moveFocusedCell": {
       "location": {
         "start": {
-          "line": 1760,
+          "line": 1803,
           "column": 4
         },
         "end": {
-          "line": 1786,
+          "line": 1829,
           "column": 5
         }
       },
@@ -2693,11 +2654,11 @@
     "scrollCellVisible": {
       "location": {
         "start": {
-          "line": 1795,
+          "line": 1838,
           "column": 4
         },
         "end": {
-          "line": 1815,
+          "line": 1858,
           "column": 5
         }
       },
@@ -2731,11 +2692,11 @@
     "isEditing": {
       "location": {
         "start": {
-          "line": 1823,
+          "line": 1866,
           "column": 4
         },
         "end": {
-          "line": 1832,
+          "line": 1875,
           "column": 5
         }
       },
@@ -2761,11 +2722,11 @@
     "startEditing": {
       "location": {
         "start": {
-          "line": 1841,
+          "line": 1884,
           "column": 4
         },
         "end": {
-          "line": 1852,
+          "line": 1895,
           "column": 5
         }
       },
@@ -2791,11 +2752,11 @@
     "stopEditing": {
       "location": {
         "start": {
-          "line": 1858,
+          "line": 1901,
           "column": 4
         },
         "end": {
-          "line": 1866,
+          "line": 1909,
           "column": 5
         }
       },
@@ -2813,11 +2774,11 @@
     "cancelEditing": {
       "location": {
         "start": {
-          "line": 1872,
+          "line": 1915,
           "column": 4
         },
         "end": {
-          "line": 1880,
+          "line": 1923,
           "column": 5
         }
       },
@@ -2835,11 +2796,11 @@
     "updateContent": {
       "location": {
         "start": {
-          "line": 1886,
+          "line": 1929,
           "column": 4
         },
         "end": {
-          "line": 1891,
+          "line": 1934,
           "column": 5
         }
       },
@@ -2857,11 +2818,11 @@
     "blockHeaderElements": {
       "location": {
         "start": {
-          "line": 1897,
+          "line": 1940,
           "column": 4
         },
         "end": {
-          "line": 1904,
+          "line": 1947,
           "column": 5
         }
       },
@@ -2879,11 +2840,11 @@
     "unblockHeaderElements": {
       "location": {
         "start": {
-          "line": 1911,
+          "line": 1954,
           "column": 4
         },
         "end": {
-          "line": 1918,
+          "line": 1961,
           "column": 5
         }
       },
@@ -2901,11 +2862,11 @@
     "_getMetaColumnAtPageX": {
       "location": {
         "start": {
-          "line": 1927,
+          "line": 1970,
           "column": 4
         },
         "end": {
-          "line": 1941,
+          "line": 1984,
           "column": 5
         }
       },
@@ -2940,11 +2901,11 @@
     "_getMetaColumnAtColumnX": {
       "location": {
         "start": {
-          "line": 1951,
+          "line": 1994,
           "column": 4
         },
         "end": {
-          "line": 1967,
+          "line": 2010,
           "column": 5
         }
       },
@@ -2979,11 +2940,11 @@
     "_updateStatusBar": {
       "location": {
         "start": {
-          "line": 1973,
+          "line": 2016,
           "column": 4
         },
         "end": {
-          "line": 2006,
+          "line": 2049,
           "column": 5
         }
       },
@@ -3001,11 +2962,11 @@
     "_updateScrollerWidths": {
       "location": {
         "start": {
-          "line": 2012,
+          "line": 2055,
           "column": 4
         },
         "end": {
-          "line": 2027,
+          "line": 2070,
           "column": 5
         }
       },
@@ -3023,11 +2984,11 @@
     "_updateScrollBarVisibility": {
       "location": {
         "start": {
-          "line": 2033,
+          "line": 2076,
           "column": 4
         },
         "end": {
-          "line": 2123,
+          "line": 2166,
           "column": 5
         }
       },
@@ -3045,11 +3006,11 @@
     "_initColumnMenu": {
       "location": {
         "start": {
-          "line": 2129,
+          "line": 2172,
           "column": 4
         },
         "end": {
-          "line": 2177,
+          "line": 2220,
           "column": 5
         }
       },
@@ -3067,11 +3028,11 @@
     "_createColumnVisibilityCheckBoxHandler": {
       "location": {
         "start": {
-          "line": 2189,
+          "line": 2232,
           "column": 4
         },
         "end": {
-          "line": 2196,
+          "line": 2239,
           "column": 5
         }
       },
@@ -3106,11 +3067,11 @@
     "setColumnWidth": {
       "location": {
         "start": {
-          "line": 2205,
+          "line": 2248,
           "column": 4
         },
         "end": {
-          "line": 2207,
+          "line": 2250,
           "column": 5
         }
       },
@@ -3144,11 +3105,11 @@
     "_onResize": {
       "location": {
         "start": {
-          "line": 2213,
+          "line": 2256,
           "column": 4
         },
         "end": {
-          "line": 2218,
+          "line": 2261,
           "column": 5
         }
       },
@@ -3166,22 +3127,15 @@
     "addListener": {
       "location": {
         "start": {
-          "line": 2222,
+          "line": 2265,
           "column": 4
         },
         "end": {
-          "line": 2239,
+          "line": 2282,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.core.Object",
@@ -3193,22 +3147,15 @@
     "removeListener": {
       "location": {
         "start": {
-          "line": 2243,
+          "line": 2286,
           "column": 4
         },
         "end": {
-          "line": 2256,
+          "line": 2299,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.core.Object",
@@ -3220,22 +3167,15 @@
     "removeListenerById": {
       "location": {
         "start": {
-          "line": 2260,
+          "line": 2303,
           "column": 4
         },
         "end": {
-          "line": 2277,
+          "line": 2320,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.core.Object",
@@ -3247,11 +3187,11 @@
     "destroy": {
       "location": {
         "start": {
-          "line": 2280,
+          "line": 2323,
           "column": 4
         },
         "end": {
-          "line": 2284,
+          "line": 2327,
           "column": 5
         }
       },
@@ -3709,10 +3649,6 @@
       "overriddenFrom": "qx.ui.core.MDragDropScrolling",
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\nEVENT HANDLERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Event handler for the drag event.</p>"
@@ -4888,31 +4824,6 @@
         ]
       }
     },
-    "getAllowStretchX": {
-      "type": "function",
-      "name": "getAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchX"
-          }
-        ]
-      }
-    },
     "setAllowStretchX": {
       "type": "function",
       "name": "setAllowStretchX",
@@ -4953,31 +4864,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ]
-      }
-    },
-    "getAllowStretchY": {
-      "type": "function",
-      "name": "getAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchY"
           }
         ]
       }
@@ -5298,31 +5184,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ]
-      }
-    },
-    "getMargin": {
-      "type": "function",
-      "name": "getMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for margin"
           }
         ]
       }
@@ -5781,31 +5642,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ]
-      }
-    },
-    "getPadding": {
-      "type": "function",
-      "name": "getPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>padding</code>.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for padding"
           }
         ]
       }
@@ -9306,6 +9142,162 @@
         ]
       }
     },
+    "getResetSelectionOnTapBelowRows": {
+      "type": "function",
+      "name": "getResetSelectionOnTapBelowRows",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resetSelectionOnTapBelowRows</code>.\n\nFor further details take a look at the property definition: {@link #resetSelectionOnTapBelowRows}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for resetSelectionOnTapBelowRows"
+          }
+        ]
+      }
+    },
+    "isResetSelectionOnTapBelowRows": {
+      "type": "function",
+      "name": "isResetSelectionOnTapBelowRows",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resetSelectionOnTapBelowRows</code>.\n\nFor further details take a look at the property definition: {@link #resetSelectionOnTapBelowRows}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for resetSelectionOnTapBelowRows"
+          }
+        ]
+      }
+    },
+    "setResetSelectionOnTapBelowRows": {
+      "type": "function",
+      "name": "setResetSelectionOnTapBelowRows",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>resetSelectionOnTapBelowRows</code>.\n\nFor further details take a look at the property definition: {@link #resetSelectionOnTapBelowRows}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for resetSelectionOnTapBelowRows"
+          }
+        ]
+      }
+    },
+    "resetResetSelectionOnTapBelowRows": {
+      "type": "function",
+      "name": "resetResetSelectionOnTapBelowRows",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>resetSelectionOnTapBelowRows</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resetSelectionOnTapBelowRows}."
+          }
+        ]
+      }
+    },
+    "getMinCellEditHeight": {
+      "type": "function",
+      "name": "getMinCellEditHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>minCellEditHeight</code>.\n\nFor further details take a look at the property definition: {@link #minCellEditHeight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for minCellEditHeight"
+          }
+        ]
+      }
+    },
+    "setMinCellEditHeight": {
+      "type": "function",
+      "name": "setMinCellEditHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>minCellEditHeight</code>.\n\nFor further details take a look at the property definition: {@link #minCellEditHeight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for minCellEditHeight"
+          }
+        ]
+      }
+    },
+    "resetMinCellEditHeight": {
+      "type": "function",
+      "name": "resetMinCellEditHeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>minCellEditHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minCellEditHeight}."
+          }
+        ]
+      }
+    },
     "getDataRowRenderer": {
       "type": "function",
       "name": "getDataRowRenderer",
@@ -10060,22 +10052,15 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 2296,
+        "line": 2339,
         "column": 13
       },
       "end": {
-        "line": 2322,
+        "line": 2365,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": [
     "qx.ui.treevirtual.TreeVirtual"

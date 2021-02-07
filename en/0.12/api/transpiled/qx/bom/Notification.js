@@ -16,8 +16,12 @@
       "qx.locale.Manager": {},
       "qx.util.ResourceManager": {},
       "qx.util.AliasManager": {},
-      "qx.bom.client.Engine": {},
-      "qx.bom.client.Browser": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.event.Timer": {}
     },
     "environment": {
@@ -327,4 +331,4 @@
   qx.bom.Notification.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Notification.js.map?dt=1604955465585
+//# sourceMappingURL=Notification.js.map?dt=1612690392771

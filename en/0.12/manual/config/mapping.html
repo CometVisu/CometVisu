@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -210,19 +207,19 @@ by an online translation service.</p>
 <span id="id1"></span><h1>Mapping<a class="headerlink" href="#mapping" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="meaning">
 <h2>Meaning<a class="headerlink" href="#meaning" title="Permalink to this headline">¶</a></h2>
-<p>With the element &#8220;Mapping&#8221; different values that are sent on the bus
+<p>With the element “Mapping” different values that are sent on the bus
 can get different names for the visualization. As a simplest example,
-e.g. a displayed &#8220;0&#8221; may be displayed as &#8220;off&#8221; while the &#8220;1&#8221; may be
-designated as &#8220;on&#8221;. Here, the terms (&#8220;on&#8221;, &#8220;off&#8221; ...) can be chosen
+e.g. a displayed “0” may be displayed as “off” while the “1” may be
+designated as “on”. Here, the terms (“on”, “off” …) can be chosen
 arbitrarily. Mapping is part of the meta-section in XML. All mappings
-together are surrounded by a ... tag. The mapping definition gets a
+together are surrounded by a … tag. The mapping definition gets a
 unique name that can be referenced later on for a wide variety of
 visualization elements.</p>
 </div>
 <div class="section" id="mapping-values-to-text">
 <h2>Mapping values to text<a class="headerlink" href="#mapping-values-to-text" title="Permalink to this headline">¶</a></h2>
 <p>A simple definition in the meta area looks like this:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;OffOn&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;OffOn&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Off<span class="nt">&lt;/entry&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>On<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
@@ -230,11 +227,11 @@ visualization elements.</p>
 </div>
 <p>This would be in use with e.g. one <a class="reference internal" href="widgets/switch/index.html"><span class="doc">Switch-Widget</span></a></p>
 <p>Instead of 0 and 1:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="Simple Switch" src="../_images/switch.png" />
 </div>
 <p>Show on and off:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="Switch with mapping" src="../_images/switch_mapping.png" />
 </div>
 <p>The color can be determined by the definition of <a class="reference internal" href="styling.html"><span class="doc">styling</span></a>.</p>
@@ -245,11 +242,11 @@ visualization elements.</p>
 Iconset</a></p>
 <p>An overview of the available icons can be found most easily on
 the computer on which the CometVisu is running
-<code class="docutils literal"><span class="pre">http://&lt;IP&gt;/visu/resource/icon/iconlist.html</span></code></p>
+<code class="docutils literal notranslate"><span class="pre">http://&lt;IP&gt;/visu/resource/icons/iconlist.html</span></code></p>
 <p>You can use mapping to display icons instead of values
 (for example, 0 or 1).</p>
 <p>The definition in the meta area looks like this:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;On_Off_Symbol&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;On_Off_Symbol&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;light_light_dim_00&quot;</span> <span class="na">color=</span><span class="s">&quot;grey&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
@@ -261,18 +258,18 @@ the computer on which the CometVisu is running
 </div>
 <p>Thus, when used with e.g. one <a class="reference internal" href="widgets/switch/index.html"><span class="doc">Switch-Widget</span></a></p>
 <p>instead of 0 and 1:</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="switch.png" src="../_images/switch.png" />
-<p class="caption"><span class="caption-text">Simple  Switch</span></p>
+<p class="caption"><span class="caption-text">Simple  Switch</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>the bulb with status in the button will display:</p>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="Switched Off" src="../_images/switch_mapping_styling_off.png" />
-<p class="caption"><span class="caption-text">Switched Off</span></p>
+<p class="caption"><span class="caption-text">Switched Off</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="Switched ON" src="../_images/switch_mapping_styling_on.png" />
-<p class="caption"><span class="caption-text">Switched ON</span></p>
+<p class="caption"><span class="caption-text">Switched ON</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>The color of an icon is NOT controlled via the styling,
 but directly in the mapping.</p>
@@ -280,7 +277,7 @@ but directly in the mapping.</p>
 <div class="section" id="mapping-non-binary-values">
 <h2>Mapping non-binary values<a class="headerlink" href="#mapping-non-binary-values" title="Permalink to this headline">¶</a></h2>
 <p>Mapping works not only with binary data types:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;OpenCloseDoorSymbol&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;OpenCloseDoorSymbol&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_door&quot;</span> <span class="na">color=</span><span class="s">&quot;green&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
@@ -297,43 +294,43 @@ but directly in the mapping.</p>
 and 2 with the door tilted. The mapping replaces the insignificant
 number with the corresponding icons from the CometVisu supplied
 <a class="reference external" href="http://knx-user-forum.de/knx-uf-iconset/">KNX User Forum Iconset</a></p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/mapping_door_closed.png" src="../_images/mapping_door_closed.png" />
 </div>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/mapping_door_open.png" src="../_images/mapping_door_open.png" />
 </div>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/mapping_door_tilt.png" src="../_images/mapping_door_tilt.png" />
 </div>
 </div>
 <div class="section" id="value-ranges">
 <h2>Value ranges<a class="headerlink" href="#value-ranges" title="Permalink to this headline">¶</a></h2>
 <p>Value ranges can also be selected for the corresponding display:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Sign&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Sign&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;-1e99&quot;</span> <span class="na">range_max=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>negative<span class="nt">&lt;/entry&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Null<span class="nt">&lt;/entry&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>positive<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
-<p>On closer inspection, you can see that the &#8220;0&#8221; occurs three times.
+<p>On closer inspection, you can see that the “0” occurs three times.
 The rule here is that all values that have individual definitions
 are prioritized higher than the values within a range of values.
 This makes it possible to define special names (in this case the
-&#8220;zero&#8221;) for individual values.</p>
+“zero”) for individual values.</p>
 </div>
 <div class="section" id="special-mapping-values">
 <h2>Special mapping values<a class="headerlink" href="#special-mapping-values" title="Permalink to this headline">¶</a></h2>
 <p>There are two mapping values that are treated separately:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">NULL</span></code>: is applied if the value is empty</li>
-<li><code class="docutils literal"><span class="pre">*</span></code>: is applied if no previously defined mapping for the
+<li><code class="docutils literal notranslate"><span class="pre">NULL</span></code>: is applied if the value is empty</li>
+<li><code class="docutils literal notranslate"><span class="pre">*</span></code>: is applied if no previously defined mapping for the
 value was found</li>
 </ul>
 </div></blockquote>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Error&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Error&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;NULL&quot;</span><span class="nt">&gt;</span>Error<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;*&quot;</span><span class="nt">&gt;</span>Ok<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
@@ -346,22 +343,22 @@ value <em>Error</em>, otherwise <em>Ok</em>.</p>
 <h2>Formulas (beginners)<a class="headerlink" href="#formulas-beginners" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes it is also necessary to convert values
 before presentation, e.g. to use other units.</p>
-<p>&#8220;x&#8221; is the input value that the formula needs to be modified
-to match the value &#8220;y&#8221;.</p>
+<p>“x” is the input value that the formula needs to be modified
+to match the value “y”.</p>
 <p>More complex functions and calculations with multiple values
 can not be performed here, an external logic engine (linkknx or
 similar) must be used for this. However, it is quite possible
 to use the given JavaScript functions. More below.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Convert_kW&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Convert_kW&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;formula&gt;</span>y = x*1000<span class="nt">&lt;/formula&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
 <p>For example, you can convert ° C to ° F:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/mappong_formula.png" src="../_images/mappong_formula.png" />
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
  <span class="nt">&lt;mappings&gt;</span>
   <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;C-to-F&quot;</span><span class="nt">&gt;</span>
@@ -386,12 +383,12 @@ to use the given JavaScript functions. More below.</p>
 Sensors usually provide numeric values. If these remain off, e.g. the
 expire binding in openHAB returns a negative value. The mapping would
 return an <em>OK</em> or <em>not OK</em>:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;SensorAlarm&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;SensorAlarm&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;formula&gt;</span>y = (x &gt;= 0) ? &quot;OK&quot; : &quot;not OK&quot;;<span class="nt">&lt;/formula&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/sensor_alarme.png" src="../_images/sensor_alarme.png" />
 </div>
 </div>
@@ -404,15 +401,15 @@ Item-Type <em>DateTime</em>. This data type is mapped to the JavaScript
 counterpart so that its methods can be applied directly.</p>
 <p>Without a mapping or formula, the output of an openHAB DateTime
 item looks like this:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/oh_datetime.png" src="../_images/oh_datetime.png" />
 </div>
 <p>However, if you only want to have the time in the output, you can
 do this with the following mapping:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/mapping_oh_datetime.png" src="../_images/mapping_oh_datetime.png" />
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
  <span class="nt">&lt;mappings&gt;</span>
   <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;HourMinute&quot;</span><span class="nt">&gt;</span>
@@ -446,7 +443,7 @@ this object.</p>
 <div class="section" id="wind-and-wind-strength">
 <h3>Wind and wind strength<a class="headerlink" href="#wind-and-wind-strength" title="Permalink to this headline">¶</a></h3>
 <p>For weather data in km / h:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;kmh2bft&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;kmh2bft&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>0<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;2&quot;</span> <span class="na">range_max=</span><span class="s">&quot;5&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;11&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/entry&gt;</span>
@@ -480,7 +477,7 @@ this object.</p>
 </pre></div>
 </div>
 <p>For weather data in m/s:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;ms2bft&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;ms2bft&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;0.3&quot;</span><span class="nt">&gt;</span>0<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0.3&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1.6&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;1.6&quot;</span> <span class="na">range_max=</span><span class="s">&quot;3.4&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/entry&gt;</span>
@@ -532,7 +529,7 @@ this object.</p>
 </div>
 <div class="section" id="wind-direction">
 <h3>wind direction<a class="headerlink" href="#wind-direction" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Windrichtung_°&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Windrichtung_°&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;11.25&quot;</span><span class="nt">&gt;</span>North<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;11.25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;33.75&quot;</span><span class="nt">&gt;</span>North Northeast<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;33.75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;56.25&quot;</span><span class="nt">&gt;</span>Northeast<span class="nt">&lt;/entry&gt;</span>
@@ -556,7 +553,7 @@ this object.</p>
 </div>
 <div class="section" id="blinds-venetian-blinds-and-external-blinds">
 <h3>Blinds, venetian blinds and external blinds<a class="headerlink" href="#blinds-venetian-blinds-and-external-blinds" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Blinds&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Blinds&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_window_2w&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
@@ -654,7 +651,7 @@ this object.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -700,7 +697,7 @@ this object.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

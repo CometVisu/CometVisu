@@ -25,9 +25,10 @@
       "qx.bom.PageVisibility": {
         "construct": true
       },
+      "cv.io.Client": {},
       "cv.Config": {},
       "cv.io.Mockup": {},
-      "cv.io.Client": {},
+      "cv.io.openhab.Rest": {},
       "qx.bom.Blocker": {},
       "qx.event.GlobalError": {},
       "cv.report.Record": {},
@@ -60,7 +61,9 @@
       "cv.IconHandler": {},
       "qx.Part": {},
       "qx.util.LibraryManager": {},
-      "qx.bom.client.Html": {}
+      "qx.bom.client.Html": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
@@ -97,7 +100,7 @@
    *
    * @asset(demo/*)
    * @asset(designs/*)
-   * @asset(icon/*)
+   * @asset(icons/*)
    * @asset(sentry/bundle.min.js)
    * @asset(test/*)
    *
@@ -152,20 +155,26 @@
        * @return {cv.io.Client|cv.io.Mockup}
        */
       createClient: function createClient() {
-        var args = Array.prototype.slice.call(arguments);
+        var Client = cv.io.Client;
 
-        if (args[0] === "openhab2") {
-          // auto-load openhab plugin for this backend
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        if (cv.Config.testMode === true || window.cvTestMode === true) {
+          Client = cv.io.Mockup;
+        } else if (args[0] === "openhab") {
+          Client = cv.io.openhab.Rest;
           cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
+
+          if (args[1] && args[1].endsWith("/cv/l/")) {
+            // we only need the rest path not the login resource
+            args[1] = args[1].substring(0, args[1].indexOf("cv/"));
+          }
         }
 
         args.unshift(null);
-
-        if (cv.Config.testMode === true) {
-          return new (Function.prototype.bind.apply(cv.io.Mockup, args))(); // jshint ignore:line
-        } else {
-          return new (Function.prototype.bind.apply(cv.io.Client, args))(); // jshint ignore:line
-        }
+        return new (Function.prototype.bind.apply(Client, args))(); // jshint ignore:line
       },
 
       /**
@@ -867,4 +876,4 @@
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1604955457440
+//# sourceMappingURL=Application.js.map?dt=1612690383852

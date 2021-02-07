@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2009 Derrell Lipman\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Derrell Lipman (derrell)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Interface for creating the column visibility menu</p>"
         }
       ]
@@ -33,11 +29,16 @@
   "type": "interface",
   "properties": {
     "menu": {
-      "type": "property",
-      "name": "menu",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4
+        },
+        "end": {
+          "line": 29,
+          "column": 14
+        }
+      },
       "jsdoc": {
         "@description": [
           {
@@ -45,7 +46,9 @@
             "body": "<p>The menu which is displayed when this button is pressed.</p>"
           }
         ]
-      }
+      },
+      "name": "menu",
+      "propertyType": "new"
     }
   },
   "members": {

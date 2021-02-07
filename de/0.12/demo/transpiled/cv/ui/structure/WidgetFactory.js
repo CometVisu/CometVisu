@@ -44,15 +44,15 @@
       /**
        * Map $$type to Classname
        */
-      __P_78_0: {},
+      __P_79_0: {},
       registry: {},
       registerClass: function registerClass(type, clazz) {
-        this.__P_78_0[type] = clazz;
+        this.__P_79_0[type] = clazz;
       },
       createInstance: function createInstance(type, data) {
         if (!this.registry[data.path]) {
           if (!cv.ui.structure.pure[type.charAt(0).toUpperCase() + type.substr(1)]) {
-            var clazz = this.__P_78_0[type];
+            var clazz = this.__P_79_0[type];
 
             if (clazz) {
               this.registry[data.path] = new clazz(data); // jshint ignore:line
@@ -101,4 +101,4 @@
   cv.ui.structure.WidgetFactory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetFactory.js.map?dt=1604956071286
+//# sourceMappingURL=WidgetFactory.js.map?dt=1612691005571

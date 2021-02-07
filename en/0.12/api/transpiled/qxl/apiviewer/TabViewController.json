@@ -9,32 +9,25 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 19,
-        "column": 75
+        "line": 21,
+        "column": 0
       },
       "end": {
-        "line": 106,
+        "line": 118,
         "column": 5
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n John Spackman (johnspackman)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "type": "class",
   "construct": {
     "location": {
       "start": {
-        "line": 23,
+        "line": 25,
         "column": 16
       },
       "end": {
-        "line": 30,
+        "line": 32,
         "column": 5
       }
     },
@@ -44,11 +37,11 @@
     "classLinkTapped": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 38,
           "column": 4
         },
         "end": {
-          "line": 36,
+          "line": 38,
           "column": 44
         }
       },
@@ -66,11 +59,11 @@
     "changeSelection": {
       "location": {
         "start": {
-          "line": 38,
+          "line": 40,
           "column": 4
         },
         "end": {
-          "line": 38,
+          "line": 40,
           "column": 44
         }
       },
@@ -79,14 +72,28 @@
     }
   },
   "members": {
-    "showTabView": {
+    "isLoaded": {
       "location": {
         "start": {
-          "line": 44,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 46,
+          "line": 55,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "showTabView": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
           "column": 5
         }
       },
@@ -96,11 +103,11 @@
     "onSelectItem": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 67,
           "column": 4
         },
         "end": {
-          "line": 55,
+          "line": 69,
           "column": 5
         }
       },
@@ -110,6 +117,14 @@
             "name": "@description",
             "body": "<p>Callback for internal links to other classes/items.\n This code is called directly from the generated HTML of the\n class viewer.</p>"
           }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "itemName",
+            "paramName": "itemName",
+            "type": ""
+          }
         ]
       },
       "type": "function",
@@ -118,11 +133,11 @@
     "showItem": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 64,
+          "line": 76,
           "column": 5
         }
       },
@@ -132,11 +147,11 @@
     "openPackage": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 80,
           "column": 5
         }
       },
@@ -146,11 +161,11 @@
     "openClass": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 82,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 84,
           "column": 5
         }
       },
@@ -160,11 +175,11 @@
     "__open": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 93,
+          "line": 105,
           "column": 5
         }
       },
@@ -174,11 +189,11 @@
     "__onChangeSelection": {
       "location": {
         "start": {
-          "line": 95,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 99,
+          "line": 111,
           "column": 5
         }
       },
@@ -325,11 +340,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 102,
+        "line": 114,
         "column": 15
       },
       "end": {
-        "line": 105,
+        "line": 117,
         "column": 5
       }
     },

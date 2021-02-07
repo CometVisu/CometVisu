@@ -18,12 +18,17 @@
       "qx.util.Uri": {},
       "qx.util.Request": {},
       "qx.Bootstrap": {},
+      "qx.bom.request.Script": {
+        "require": true
+      },
       "qx.util.ResponseParser": {}
     },
     "environment": {
       "provided": [],
       "required": {
-        "qx.debug.io": {}
+        "qx.debug.io": {
+          "className": "qx.bom.request.Script"
+        }
       }
     }
   };
@@ -356,4 +361,4 @@
   qx.io.request.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1604955475733
+//# sourceMappingURL=Xhr.js.map?dt=1612690402371

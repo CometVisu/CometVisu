@@ -226,7 +226,6 @@
        * Returns the button used within this page. This method is used by
        * the TabView to access the button.
        *
-       * @internal
        * @return {qx.ui.form.RadioButton} The button associated with this page.
        */
       getButton: function getButton() {
@@ -237,4 +236,4 @@
   qx.ui.tabview.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1604955489887
+//# sourceMappingURL=Page.js.map?dt=1612690415905

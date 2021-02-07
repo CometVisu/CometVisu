@@ -23,14 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo dialog library\n   https://github.com/cboulanger/qx-contrib-Dialog\n   Copyright:\n     2007-2017 Christian Boulanger and others\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
-          "body": "<p>global qx dialog</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Form renderer renderer for {@link qx.ui.form.Form}. This is a\n single row renderer adapted for the dialog.Form widget. Main\n difference is that the form allows text-only labels without a corresponding\n form element which can serve, for example, for explanatory text.</p>"
         }
       ]
@@ -1182,31 +1174,6 @@
         ]
       }
     },
-    "getAllowStretchX": {
-      "type": "function",
-      "name": "getAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.renderer.Single",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchX"
-          }
-        ]
-      }
-    },
     "setAllowStretchX": {
       "type": "function",
       "name": "setAllowStretchX",
@@ -1247,31 +1214,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ]
-      }
-    },
-    "getAllowStretchY": {
-      "type": "function",
-      "name": "getAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.renderer.Single",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchY"
           }
         ]
       }
@@ -1592,31 +1534,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ]
-      }
-    },
-    "getMargin": {
-      "type": "function",
-      "name": "getMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.renderer.Single",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for margin"
           }
         ]
       }
@@ -2075,31 +1992,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ]
-      }
-    },
-    "getPadding": {
-      "type": "function",
-      "name": "getPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.renderer.Single",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>padding</code>.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for padding"
           }
         ]
       }
@@ -4287,5 +4179,6 @@
       }
     }
   },
+  "events": {},
   "descendants": []
 }

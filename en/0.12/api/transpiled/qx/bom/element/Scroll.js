@@ -10,7 +10,9 @@
         "require": true
       },
       "qx.bom.element.Style": {},
-      "qx.bom.client.Engine": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
       "qx.dom.Node": {},
       "qx.bom.Viewport": {},
       "qx.bom.element.Location": {},
@@ -338,4 +340,4 @@
   qx.bom.element.Scroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroll.js.map?dt=1604955468027
+//# sourceMappingURL=Scroll.js.map?dt=1612690394942

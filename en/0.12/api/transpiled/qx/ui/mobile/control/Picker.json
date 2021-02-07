@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2011-2014 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christopher Zuendorf (czuendorf)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>The picker widget gives the user the possibility to select a value out of an array\n of values. The picker widget can be added to a {@link qx.ui.mobile.dialog.Popup} or to any other container.\n The picker widget is able to display multiple picker slots, for letting the user choose\n several values at one time, in one single control.\n You can add an array with objects which contain the keys <code>title</code>, a <code>subtitle</code> or an <code>image</code> (all optional).\n </p>\n<pre>\n var picker = new qx.ui.mobile.control.Picker();\n picker.setHeight(200);\n picker.addListener(\"changeSelection\", function(evt) {\n   var data = evt.getData();\n },this);\n var slotData1 = [{title:\"Windows Phone\"}, {title:\"iOS\",subtitle:\"Version 7.1\"}, {title:\"Android\"}];\n var slotData2 = [{title:\"Tablet\"}, {title:\"Smartphone\"}, {title:\"Phablet\"}];\n picker.addSlot(new qx.data.Array(slotData1));\n picker.addSlot(new qx.data.Array(slotData2));\n </pre>"
         }
       ]
@@ -80,14 +76,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "defaultCssClass",
       "propertyType": "new",
       "refine": true,
@@ -249,14 +238,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [

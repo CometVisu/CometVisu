@@ -45,14 +45,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nCONSTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "properties": {
     "messageDuration": {
@@ -358,14 +351,7 @@
       "inherited": true,
       "access": "protected",
       "overriddenFrom": "cv.ui.MHandleMessage",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      }
+      "jsdoc": {}
     },
     "getMessageIdFromEvent": {
       "type": "function",
@@ -1106,14 +1092,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nDESTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

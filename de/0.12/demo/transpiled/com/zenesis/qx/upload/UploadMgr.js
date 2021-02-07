@@ -1,3 +1,5 @@
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -19,7 +21,10 @@
       "com.zenesis.qx.upload.MParameters": {
         "require": true
       },
-      "qx.bom.client.Engine": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
+      "com.zenesis.qx.upload.MUploadButton": {},
       "qx.core.Assert": {},
       "com.zenesis.qx.upload.InputElement": {},
       "qx.lang.Function": {},
@@ -75,7 +80,7 @@
     include: [com.zenesis.qx.upload.MParameters],
     construct: function construct(widget, uploadUrl) {
       qx.core.Object.constructor.call(this);
-      this.__P_135_0 = {};
+      this.__P_136_0 = {};
       if (widget) this.addWidget(widget);
       if (uploadUrl) this.setUploadUrl(uploadUrl);
     },
@@ -131,12 +136,19 @@
        * Whether to support multiple files (default=true); this is not supported
        * on older browsers
        */
-      multiple: {
+      multiple: _defineProperty({
         check: "Boolean",
         init: true,
         nullable: false,
         event: "changeMultiple",
         apply: "_applyMultiple"
+      }, "event", "changeMultiple"),
+      directory: {
+        init: false,
+        check: "Boolean",
+        nullable: false,
+        apply: "_applyDirectory",
+        event: "changeDirectory"
       },
 
       /**
@@ -161,10 +173,10 @@
       }
     },
     members: {
-      __P_135_0: null,
-      __P_135_1: 0,
-      __P_135_2: null,
-      __P_135_3: 0,
+      __P_136_0: null,
+      __P_136_1: 0,
+      __P_136_2: null,
+      __P_136_3: 0,
 
       /**
        * Adds a widget which is to have an input[type=file] attached; this would
@@ -173,7 +185,7 @@
        */
       addWidget: function addWidget(widget) {
         var appearId = widget.addListenerOnce("appear", function (evt) {
-          var data = this.__P_135_0[widget.toHashCode()];
+          var data = this.__P_136_0[widget.toHashCode()];
 
           if (data) {
             data.appearId = null;
@@ -181,14 +193,14 @@
             container.setStyle("overflow", "hidden");
             if (widget.getEnabled() && !data.inputElement) container.addAt(this._createInputElement(widget), 0);
 
-            this.__P_135_4(widget);
+            this.__P_136_4(widget);
           }
         }, this);
         var keydownId = null;
 
         if (qx.core.Environment.get("engine.name") != "gecko") {
           keydownId = widget.addListener("keydown", function (evt) {
-            var data = this.__P_135_0[widget.toHashCode()];
+            var data = this.__P_136_0[widget.toHashCode()];
 
             if (data && data.inputElement) {
               var dom = data.inputElement.getDomElement();
@@ -201,14 +213,14 @@
           }, this);
         }
 
-        this.__P_135_0[widget.toHashCode()] = {
+        this.__P_136_0[widget.toHashCode()] = {
           appearId: appearId,
           keydownId: keydownId,
           widget: widget,
           inputElement: null
         };
         widget.addListener("resize", function (evt) {
-          this.__P_135_4(widget);
+          this.__P_136_4(widget);
         }, this);
         widget.addListener("changeEnabled", function (evt) {
           if (evt.getData()) {
@@ -218,6 +230,11 @@
             this._removeInputElement(widget);
           }
         }, this);
+
+        if (qx.Class.hasMixin(widget.constructor, com.zenesis.qx.upload.MUploadButton)) {
+          this.bind("multiple", widget, "multiple");
+          this.bind("directory", widget, "directory");
+        }
       },
 
       /**
@@ -226,12 +243,12 @@
        * @param widget {qx.ui.core.Widget} Widget to remvove
        */
       removeWidget: function removeWidget(widget) {
-        var data = this.__P_135_0[widget.toHashCode()];
+        var data = this.__P_136_0[widget.toHashCode()];
 
         if (data) {
           if (data.appearId) widget.removeListener(data.appearId);
           if (data.keydownId) widget.removeListener(data.keydownId);
-          delete this.__P_135_0[widget.toHashCode()];
+          delete this.__P_136_0[widget.toHashCode()];
         }
       },
 
@@ -252,8 +269,8 @@
        * 
        * @param widget {qx.ui.core.Widget} Widget to fixup size
        */
-      __P_135_4: function __P_135_4(widget) {
-        var data = this.__P_135_0[widget.toHashCode()];
+      __P_136_4: function __P_136_4(widget) {
+        var data = this.__P_136_0[widget.toHashCode()];
 
         if (data && data.inputElement) {
           var bounds = widget.getBounds(); // It may be that if the widgets icon is styled
@@ -274,14 +291,21 @@
       },
       // property apply
       _applyMultiple: function _applyMultiple(value, oldValue) {
-        for (var hash in this.__P_135_0) {
-          var data = this.__P_135_0[hash];
+        for (var hash in this.__P_136_0) {
+          var data = this.__P_136_0[hash];
           if (data.inputElement) data.inputElement.setMultiple(value);
+        }
+      },
+      // property directory
+      _applyDirectory: function _applyDirectory(value, oldValue) {
+        for (var hash in this.__P_136_0) {
+          var data = this.__P_136_0[hash];
+          if (data.inputElement) data.inputElement.setDirectory(value);
         }
       },
       // property apply
       _applyRequireMultipartFormData: function _applyRequireMultipartFormData(value, oldValue) {
-        if (this.__P_135_2) throw new Error("Changing the requireMultipartFormData property of " + this + " has no effect once uploads have started");
+        if (this.__P_136_2) throw new Error("Changing the requireMultipartFormData property of " + this + " has no effect once uploads have started");
       },
 
       /**
@@ -306,11 +330,11 @@
        * @returns
        */
       _createInputElement: function _createInputElement(widget) {
-        var data = this.__P_135_0[widget.toHashCode()];
+        var data = this.__P_136_0[widget.toHashCode()];
 
-        var name = this.getInputNamePrefix() + '-' + ++this.__P_135_1;
+        var name = this.getInputNamePrefix() + '-' + ++this.__P_136_1;
         qx.core.Assert.assertNull(data.inputElement);
-        var elem = data.inputElement = new com.zenesis.qx.upload.InputElement(widget, this.getMultiple(), name);
+        var elem = data.inputElement = new com.zenesis.qx.upload.InputElement(widget, name);
         elem.addListenerOnce("change", qx.lang.Function.bind(this._onInputChange, this, elem));
         return elem;
       },
@@ -320,7 +344,7 @@
        * has already been queued for uploading)
        */
       _removeInputElement: function _removeInputElement(widget) {
-        var data = this.__P_135_0[widget.toHashCode()];
+        var data = this.__P_136_0[widget.toHashCode()];
 
         var elem = data.inputElement;
         var container = widget.getContentElement();
@@ -360,11 +384,20 @@
        * @returns
        */
       getUploadHandler: function getUploadHandler() {
-        if (!this.__P_135_2) {
-          if (com.zenesis.qx.upload.XhrHandler.isSupported(this.isRequireMultipartFormData())) this.__P_135_2 = new com.zenesis.qx.upload.XhrHandler(this);else this.__P_135_2 = new com.zenesis.qx.upload.FormHandler(this);
+        if (!this.__P_136_2) {
+          if (com.zenesis.qx.upload.XhrHandler.isSupported(this.isRequireMultipartFormData())) this.__P_136_2 = new com.zenesis.qx.upload.XhrHandler(this);else this.__P_136_2 = new com.zenesis.qx.upload.FormHandler(this);
         }
 
-        return this.__P_135_2;
+        return this.__P_136_2;
+      },
+
+      /**
+       * Sets the upload handler
+       * 
+       * @param elem {AbstractHandler} The upload handler
+       */
+      setUploadHandler: function setUploadHandler(handler) {
+        this.__P_136_2 = handler;
       },
 
       /**
@@ -372,11 +405,11 @@
        * application code can use to uniquely identify themselves to the server
        */
       allocateUploadId: function allocateUploadId() {
-        return "uploadId:" + ++this.__P_135_3;
+        return "uploadId:" + ++this.__P_136_3;
       }
     }
   });
   com.zenesis.qx.upload.UploadMgr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UploadMgr.js.map?dt=1604956077222
+//# sourceMappingURL=UploadMgr.js.map?dt=1612691010936

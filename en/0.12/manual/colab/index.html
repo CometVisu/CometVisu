@@ -64,9 +64,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -116,7 +113,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#help-with-the-documentation">Help with the documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="doc/rst.html">The RST-Syntax</a></li>
 <li class="toctree-l3"><a class="reference internal" href="doc/rst.html#own-directives">Own directives</a></li>
-<li class="toctree-l3"><a class="reference internal" href="todos.html">TODO&#8217;s</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todos.html">TODO’s</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#local-generation-of-the-html-documentation">Local generation of the HTML documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#write-documentation-with-visualstudio-code">Write documentation with VisualStudio Code</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="howto-vm.html">Set up a VM with Visual Studio code</a></li>
@@ -231,7 +228,7 @@ To do this, follow these steps:</p>
 <ol class="arabic simple">
 <li>login on github.com</li>
 <li>goto <a class="reference external" href="https://github.com/CometVisu/CometVisu">https://github.com/CometVisu/CometVisu</a></li>
-<li>press &#8220;Fork&#8221;-Button click on the top right and follow the instructions</li>
+<li>press “Fork”-Button click on the top right and follow the instructions</li>
 </ol>
 <p>This is a private copy of the CometVisu repository created
 in which you can make your own changes. Of course it is easier
@@ -242,17 +239,17 @@ In this description we are using the version for the command line, but
 there are also versions available that use a graphical user interface.
 Since the procedures and terms are similar
 for all clients, the command line client will be used as reference
-in the further course. To &#8216;clone&#8217; the repository, follow these steps:</p>
+in the further course. To ‘clone’ the repository, follow these steps:</p>
 <ol class="arabic simple">
 <li>open a shell</li>
 <li>go to a folder in which the subfolder of the project is to be created</li>
-<li><code class="docutils literal"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/&lt;your-account&gt;/CometVisu.git</span></code> (&lt;your-account&gt; replace with your username)</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/&lt;your-account&gt;/CometVisu.git</span></code> (&lt;your-account&gt; replace with your username)</li>
 <li>go into the project folder and reload the submodules (icons and
 Qooxdoo framework) as follows</li>
-<li><code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">init</span></code></li>
-<li><code class="docutils literal"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">init</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span></code></li>
 </ol>
-<p>that&#8217;s it, the local working copy is in the <em>CometVisu</em> subfolder.
+<p>that’s it, the local working copy is in the <em>CometVisu</em> subfolder.
 With this all preparations have been made.</p>
 </div>
 <div class="section" id="general-approach">
@@ -267,7 +264,7 @@ this is how the workflow looks, first as an overview without details:</p>
 <li>create new <em>branch</em></li>
 <li>make the changes you want to do</li>
 <li>Save changes to the local repository (this is something other
-than &#8220;save file&#8221;)</li>
+than “save file”)</li>
 <li>Steps 2. + 3. can be repeated as many times as you think
 you have made all the changes</li>
 <li>Load changes to the private Github repository</li>
@@ -276,15 +273,15 @@ you have made all the changes</li>
 <p>And now again the same steps in detail:</p>
 <ol class="arabic simple">
 <li>Switch to the directory with the local repository on the command line
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">new-branches</span></code> (The name of the new branch can be chosen
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">new-branches</span></code> (The name of the new branch can be chosen
 freely, as long as it is not existing yet)</li>
 <li>Edit and save the desired files with an editor of your choice</li>
-<li><code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span> <span class="pre">-m</span> <span class="pre">&quot;Short</span> <span class="pre">description</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">change&quot;</span></code> (Formulate the
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span> <span class="pre">-m</span> <span class="pre">&quot;Short</span> <span class="pre">description</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">change&quot;</span></code> (Formulate the
 description in English if possible).
-With <code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> you can first check which changes are all <em>commited</em></li>
+With <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> you can first check which changes are all <em>commited</em></li>
 <li>Steps 2. + 3. can be repeated as many times as many times as you
 want until you have made all intended changes</li>
-<li><code class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code></li>
 <li>Go to the github page of the private repository and click on
 <em>new pull request</em>. On the following page <em>Comparing changes</em>
 to the right of the button <em>head fork:&lt;username&gt;/CometVisu</em>
@@ -294,7 +291,7 @@ with the changes and can click on the green button named
 <em>Create pull request</em> (green button top left).
 Then you can describe again, which changes the pull request
 contains. In general, this is already pre-filled and you can
-by clicking on &#8220;Create pull request&#8221; (green button bottom right).
+by clicking on “Create pull request” (green button bottom right).
 This creates the pull request</li>
 </ol>
 <p>Now you have to wait until one of the maintainers of the CometVisu project
@@ -308,12 +305,12 @@ will now come into play. You just have to execute steps 2, 3 and 5 to
 execute the correction requests of the maintainer. Thus, the changes are
 automatically part of the existing pull request.</p>
 <p>Once all changes have been agreed and accepted, the branch can be deleted.
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-D</span> <span class="pre">name-of-the-branche</span></code></p>
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-D</span> <span class="pre">name-of-the-branche</span></code></p>
 <p>If you e.g. Starting with new changes in a new branch, you can switch
 between the branches as you like and even edit multiple pull requests
 and changes at the same time without mixing them in terms of content.
 You can always switch to another branch after a commit (see step 3)
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">name-of-the-branche</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">name-of-the-branche</span></code>.</p>
 </div>
 <div class="section" id="keep-repositories-in-sync">
 <h2>Keep repositories in sync<a class="headerlink" href="#keep-repositories-in-sync" title="Permalink to this headline">¶</a></h2>
@@ -322,41 +319,41 @@ You can always switch to another branch after a commit (see step 3)
 <p>In order to keep the <em>already merged</em> changes made by other developers
 synchronous with their own fork, a pull request must be made
 from the private repository.
-<em>This branch is ... commits ahead of CometVisu: develop.</em> Shows
+<em>This branch is … commits ahead of CometVisu: develop.</em> Shows
 how many changes have been made since the last sync. Next to it
 is the link to the <em>Pull Request</em>, which in the following page
 shows the changes that can be <em>merged</em> into the private repository.</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id4">
 <img alt="../_images/pull_request_sync.png" src="../_images/pull_request_sync.png" />
-<p class="caption"><span class="caption-text">Pull request for synchronization between main and private repository</span></p>
+<p class="caption"><span class="caption-text">Pull request for synchronization between main and private repository</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id5">
 <img alt="../_images/github_sync2.png" src="../_images/github_sync2.png" />
-<p class="caption"><span class="caption-text">Comparison of the changes</span></p>
+<p class="caption"><span class="caption-text">Comparison of the changes</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">Important in this comparison is that your own <em>base fork</em>
 is on the left and the official <em>head fork</em> is on the right.</p>
 </div>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id6">
 <img alt="../_images/github_sync3.png" src="../_images/github_sync3.png" />
-<p class="caption"><span class="caption-text">Create Merge pull request</span></p>
+<p class="caption"><span class="caption-text">Create Merge pull request</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>Accepting all changes synchronizes the changes from the
 main repository to the private repository.</p>
-<div class="figure" id="id5">
+<div class="figure align-default" id="id7">
 <img alt="../_images/github_sync4.png" src="../_images/github_sync4.png" />
-<p class="caption"><span class="caption-text">Merge confirm</span></p>
+<p class="caption"><span class="caption-text">Merge confirm</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure" id="id6">
+<div class="figure align-default" id="id8">
 <img alt="../_images/github_sync5.png" src="../_images/github_sync5.png" />
-<p class="caption"><span class="caption-text">Successful synchronization</span></p>
+<p class="caption"><span class="caption-text">Successful synchronization</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 <p>The local copy of the private repository must then be updated as well.
 To do this, you have to switch to the branch <em>develop</em> in the local
-repository (<code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">develop</span></code>), where all the changes made by
-the developers <em>are merged</em>. The <code class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span></code> command synchronizes
+repository (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">develop</span></code>), where all the changes made by
+the developers <em>are merged</em>. The <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> command synchronizes
 the local and private repository. Now that all repositories are in sync
 again, you can continue with new changes to the documentation as described
 under 1. above.</p>
@@ -369,14 +366,14 @@ to configure the <em>remotes</em> of your local clone accordingly.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p class="last">For the following examples it is assumed that the user name is
-<code class="docutils literal"><span class="pre">gh-user</span></code> and the CometVisu repository has been cloned via SSH
-(<code class="docutils literal"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:gh-user/CometVisu.git</span></code>). If cloned
-over HTTPS (<code class="docutils literal"><span class="pre">https://github.com/CometVisu/CometVisu.git</span></code>) the
+<code class="docutils literal notranslate"><span class="pre">gh-user</span></code> and the CometVisu repository has been cloned via SSH
+(<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:gh-user/CometVisu.git</span></code>). If cloned
+over HTTPS (<code class="docutils literal notranslate"><span class="pre">https://github.com/CometVisu/CometVisu.git</span></code>) the
 URLs will look different.</p>
 </div>
 <div class="section" id="abstract">
 <h4>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># query current settings</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># query current settings</span>
 git remote -v
 &gt;&gt;&gt; origin  git@github.com:gh-user/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
 &gt;&gt;&gt; origin  git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
@@ -397,26 +394,26 @@ git pull
 </div>
 <div class="section" id="detailed-approach">
 <h4>Detailed approach<a class="headerlink" href="#detailed-approach" title="Permalink to this headline">¶</a></h4>
-<p>The current settings can be queried with the command <code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code>.
+<p>The current settings can be queried with the command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code>.
 Usually, this returns the following values:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
 origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
 <p>This means that when updating (<em>fetch</em>,*pull*) and also
-<em>pushing</em> git uses the user&#8217;s fork on github.
+<em>pushing</em> git uses the user’s fork on github.
 But you want to load changes to the main repository into
 the local clone as easily as possible. To do this, change the
 <em>fetch</em> URL of the remotes with the following command:
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">set-url</span> <span class="pre">origin</span> <span class="pre">git&#64;github.com:CometVisu/CometVisu.git</span></code>.
-After that, <code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> should deliver the following output:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>origin      git@github.com:CometVisu/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">set-url</span> <span class="pre">origin</span> <span class="pre">git&#64;github.com:CometVisu/CometVisu.git</span></code>.
+After that, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> should deliver the following output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>origin      git@github.com:CometVisu/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
 origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
 <p>This fulfills the requirements and you can create a local <em>develop</em>
 branch (this contains the latest developments) simply by
-a <code class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span></code> update.</p>
+a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> update.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p class="last">This procedure is only advisable if you only make changes to the
@@ -424,13 +421,13 @@ CometVisu on one computer. If you use several computers at the
 same time, you will inevitably have to make the changes you have
 from the other computer in your own fork <em>pushed</em> got into the
 local clone. For this you can set up a second remote with
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">fork</span> <span class="pre">git&#64;github.com:gh-user/CometVisu.git</span></code> and then <em>pull</em>
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">fork</span> <span class="pre">develop</span></code></p>
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">fork</span> <span class="pre">git&#64;github.com:gh-user/CometVisu.git</span></code> and then <em>pull</em>
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">fork</span> <span class="pre">develop</span></code></p>
 </div>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="id1">
 <p class="first admonition-title">Todo</p>
 <ul class="last simple">
-<li>other useful git commands (branches delete, status, ...)</li>
+<li>other useful git commands (branches delete, status, …)</li>
 <li>merge-conflicts</li>
 <li>Flowchart for workflow change -&gt; pull request</li>
 </ul>
@@ -445,7 +442,7 @@ local clone. For this you can set up a second remote with
 generated. The documentation is therefore written in the reStructuredText
 format (RST for short). This is a simplified markup language that is easy
 to read in plain text form and has the advantage of being simple
-to be converted to other formats <a class="reference internal" href="#rst-wiki" id="id1">[RST-Wiki]</a>.
+to be converted to other formats <a class="reference internal" href="#rst-wiki" id="id2"><span>[RST-Wiki]</span></a>.
 For more detailed information about the syntax of the RST format
 please consult those links:</p>
 <ul class="simple">
@@ -479,16 +476,16 @@ own contributions to the documentation.</p>
 </div>
 <div class="section" id="local-generation-of-the-html-documentation">
 <h3>Local generation of the HTML documentation<a class="headerlink" href="#local-generation-of-the-html-documentation" title="Permalink to this headline">¶</a></h3>
-<p>The command <code class="docutils literal"><span class="pre">./cv</span> <span class="pre">doc</span></code> translates the German documentation from
-the RST to HTML. For the English version, <code class="docutils literal"><span class="pre">./cv</span> <span class="pre">doc</span> <span class="pre">-l</span> <span class="pre">en</span></code>
+<p>The command <code class="docutils literal notranslate"><span class="pre">./cv</span> <span class="pre">doc</span></code> translates the German documentation from
+the RST to HTML. For the English version, <code class="docutils literal notranslate"><span class="pre">./cv</span> <span class="pre">doc</span> <span class="pre">-l</span> <span class="pre">en</span></code>
 must be called. Therefore you have to be in the root folder of the CometVisu.</p>
 <p>If every went well, it should start like this.</p>
-<div class="figure" id="id7">
+<div class="figure align-default" id="id9">
 <img alt="../_images/start_docu_build.png" src="../_images/start_docu_build.png" />
-<p class="caption"><span class="caption-text">Start building</span></p>
+<p class="caption"><span class="caption-text">Start building</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <p>After completing the build process, there should be a new docu under
-<code class="docutils literal"><span class="pre">doc/manual/de/_build/html/</span></code> and/or <code class="docutils literal"><span class="pre">doc/manual/de/_build/html/</span></code></p>
+<code class="docutils literal notranslate"><span class="pre">doc/manual/de/_build/html/</span></code> and/or <code class="docutils literal notranslate"><span class="pre">doc/manual/de/_build/html/</span></code></p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">If the project is set up correctly, but the documentation generation still
@@ -505,43 +502,43 @@ allows you to view a live preview of the written documentation.</p>
 <p class="last">Some of the tools used are only available on Linux. The Live Preview is
 therefore currently not available in Visual Studio Code on Windows. For
 Windows users, therefore, Visual Studio Code in a virtual machine with
-Linux (Ubuntu, Mint, ...) is recommended.
+Linux (Ubuntu, Mint, …) is recommended.
 see <a class="reference internal" href="howto-vm.html"><span class="doc">Set up VM</span></a> for detailed information.</p>
 </div>
-<p>After installing the editor, the extension <code class="docutils literal"><span class="pre">restructuredtext</span></code>
+<p>After installing the editor, the extension <code class="docutils literal notranslate"><span class="pre">restructuredtext</span></code>
 (via Shft + Ctrl + X or View -&gt;  Extensions ) must be installed. Search
 for <em>restructuredtext</em> inside the extensions. Also a spell checking extension
 is recommended.</p>
-<div class="figure" id="id8">
+<div class="figure align-default" id="id10">
 <img alt="../_images/visual_studio_install_ext.png" src="../_images/visual_studio_install_ext.png" />
-<p class="caption"><span class="caption-text">Install extensions</span></p>
+<p class="caption"><span class="caption-text">Install extensions</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 <p>After a single reload of the editor, the extension is available.</p>
 <p>For the Live Preview to work, Python must be installed.
 A guide to create the necessary prerequisites can be found here:
 <a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md">Install Sphinx</a>.
 To install the required tools, use the
-<code class="docutils literal"><span class="pre">sudo</span> <span class="pre">-H</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">utils/requirements.txt</span></code> command
+<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-H</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">utils/requirements.txt</span></code> command
 Run CometVisu directory.</p>
 <p>If Sphinx is setup correctly, you can see the configurations
 available at the footer.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/visual_studio_sphinx_select1.png" src="../_images/visual_studio_sphinx_select1.png" />
 </div>
 <p>By clicking on the footer you can choose between the <em>de</em> or <em>en</em> config to be
 used for the preview. So if you work on the english docu make sure
 <em>en</em> is selected, else you will not see your correct preview.</p>
-<div class="figure" id="id9">
+<div class="figure align-default" id="id11">
 <img alt="../_images/visual_studio_sphinx_select2.png" src="../_images/visual_studio_sphinx_select2.png" />
-<p class="caption"><span class="caption-text">Select a Sphinx config</span></p>
+<p class="caption"><span class="caption-text">Select a Sphinx config</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 <p>If everything is set up correctly, you can open an RST file from the
 documentation and open the Live Preview window with `` Ctrl + Shift r``.
 Changes to the RST file should then be automatically displayed in
 preview windows with a short delay.</p>
-<div class="figure" id="id10">
+<div class="figure align-default" id="id12">
 <img alt="../_images/visual_studio_live_preview.png" src="../_images/visual_studio_live_preview.png" />
-<p class="caption"><span class="caption-text">Ansicht des Editors mit Live-Preview</span></p>
+<p class="caption"><span class="caption-text">Ansicht des Editors mit Live-Preview</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 <div class="toctree-wrapper compound">
 </div>
@@ -549,7 +546,7 @@ preview windows with a short delay.</p>
 </div>
 <div class="section" id="help-with-the-development">
 <h2>Help with the development<a class="headerlink" href="#help-with-the-development" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="id3">
 <p class="first admonition-title">Todo</p>
 <ul class="last simple">
 <li>Description of the basic structure, where to find something.</li>
@@ -581,7 +578,7 @@ are formulated</p>
 to cause the misconduct</li>
 <li>A detailed error description</li>
 <li>What would the correct behavior look like from the
-author&#8217;s point of view?</li>
+author’s point of view?</li>
 <li>[Optional] a log file with recorded error</li>
 </ol>
 <div class="admonition hint">
@@ -598,9 +595,9 @@ Users can record the behavior of the CometVisu and provide a so-called
 replay file (preferably attached to the issue as an attachment).</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">The recording of the replay files can be activated with the URL parameter <code class="docutils literal"><span class="pre">reporting</span> <span class="pre">=</span> <span class="pre">true</span></code>
+<p class="last">The recording of the replay files can be activated with the URL parameter <code class="docutils literal notranslate"><span class="pre">reporting</span> <span class="pre">=</span> <span class="pre">true</span></code>
 (see: <a class="reference internal" href="../config/url-params.html#reporting"><span class="std std-ref">URL-Parameter</span></a>). Once the error has been corrected,
-the log replay can be downloaded by entering the <code class="docutils literal"><span class="pre">downloadLog()</span></code> command
+the log replay can be downloaded by entering the <code class="docutils literal notranslate"><span class="pre">downloadLog()</span></code> command
 in the browser console (open with F12 key). In addition to the automatic
 download of the file, its content is also shown in the console.
 So you can control which data is contained in the file.</p>
@@ -620,7 +617,7 @@ part of the replay file and are missing when the file gets replayed.</p>
 <table class="docutils citation" frame="void" id="rst-wiki" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[RST-Wiki]</a></td><td><a class="reference external" href="https://de.wikipedia.org/wiki/ReStructuredText">https://de.wikipedia.org/wiki/ReStructuredText</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[RST-Wiki]</a></td><td><a class="reference external" href="https://de.wikipedia.org/wiki/ReStructuredText">https://de.wikipedia.org/wiki/ReStructuredText</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -649,7 +646,7 @@ part of the replay file and are missing when the file gets replayed.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -695,7 +692,7 @@ part of the replay file and are missing when the file gets replayed.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

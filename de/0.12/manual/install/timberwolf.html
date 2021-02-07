@@ -42,7 +42,7 @@
     <link rel="top" title="CometVisu" href="../index.html"/>
         <link rel="up" title="Installation der CometVisu" href="index.html"/>
         <link rel="next" title="Installation auf generischen Linux Systemen" href="linux.html"/>
-        <link rel="prev" title="Installation auf einem Ubuntu System mit openHAB2 und Docker" href="docker_openhab2.html"/> 
+        <link rel="prev" title="Installation auf einem Ubuntu System mit openHAB und Docker" href="docker_openhab.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -64,9 +64,6 @@
             <a href="../index.html" class="icon icon-home"> CometVisu
           
 
-          
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
           
           </a>
 
@@ -104,9 +101,9 @@
 <li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation auf einem Debian System mit openHAB2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab.html">Installation auf einem Debian System mit openHAB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Installation mittels Docker-Container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker_openhab2.html">Installation auf einem Ubuntu System mit openHAB2 und Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_openhab.html">Installation auf einem Ubuntu System mit openHAB und Docker</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installation auf dem Timberwolf über die App</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#update">Update</a></li>
 </ul>
@@ -211,19 +208,19 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <span id="timberwolf"></span><h1>Installation auf dem Timberwolf über die App<a class="headerlink" href="#installation-auf-dem-timberwolf-uber-die-app" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Die einfachste Möglichkeit die CometVisu auf dem  <a class="reference external" href="https://wiregate.de/">Timberwolf</a>-Server zu
 installieren ist über die dort angebotene App.</p>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../_images/timberwolf_app.png"><img alt="../_images/timberwolf_app.png" src="../_images/timberwolf_app.png" style="width: 450.5px; height: 434.5px;" /></a>
-<p class="caption"><span class="caption-text">Auswahl der CometVisu App auf der Timberwolf-Oberfläche</span></p>
+<p class="caption"><span class="caption-text">Auswahl der CometVisu App auf der Timberwolf-Oberfläche</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
 </div>
-<p>Nach der Installation über das grüne &#8220;+&#8221; wird die CometVisu unter &#8220;Aktive Apps&#8221; aufgeführt. Hinter &#8220;URL&#8221; ist
+<p>Nach der Installation über das grüne „+“ wird die CometVisu unter „Aktive Apps“ aufgeführt. Hinter „URL“ ist
 bereits der Link eingeblendet über den die CometVisu aufgerufen werden kann.</p>
 <div class="section" id="update">
 <h2>Update<a class="headerlink" href="#update" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../_images/timberwolf_installed_app.png"><img alt="../_images/timberwolf_installed_app.png" src="../_images/timberwolf_installed_app.png" style="width: 541.5px; height: 395.5px;" /></a>
-<p class="caption"><span class="caption-text">Installierte CometVisu App</span></p>
+<p class="caption"><span class="caption-text">Installierte CometVisu App</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
 </div>
-<p>Über das Stift-Symbol kann die App konfiguriert werden. Am wichtigsten ist die Zeile &#8220;Version&#8221;. Die dort eingestelle
+<p>Über das Stift-Symbol kann die App konfiguriert werden. Am wichtigsten ist die Zeile „Version“. Die dort eingestelle
 Versions-Nummer wird installiert, bzw. über Speichern wird auf diese Versionsnummer gewechselt.</p>
 </div>
 </div>
@@ -236,7 +233,7 @@ wesentlichen geeignet.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Mit dieser Anleitung wird die CometVisu auf dem Timberwolf Server über HTTPS
-unter der Adresse <code class="docutils literal"><span class="pre">https://&lt;mein</span> <span class="pre">timberwolf&gt;/proxy/visu/</span></code> aufrufbar sein.</p>
+unter der Adresse <code class="docutils literal notranslate"><span class="pre">https://&lt;mein</span> <span class="pre">timberwolf&gt;/proxy/visu/</span></code> aufrufbar sein.</p>
 <p>Grundsätzlich eignen sich diese Schritte auch als Referenz für die Installation
 über Portainer auf anderen Systemen, jedoch müssen die Schritte im Detail
 angepasst werden, da dort üblicherweise keine Proxy zur Verfügung steht, der
@@ -248,10 +245,10 @@ die CometVisu über HTTPS zugreifbar macht.</p>
 <p>Zuerst ist ein Volume anzulegen um dort die Konfigurationsdateien abzulegen
 und diese über Neustarts und Aktualisierungen des Containers hinweg
 beizubehalten.</p>
-<p>Die notwendigen Schritte sind: <em>Volumes</em> → <em>Add Volume</em> → Name: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> → <em>Create the Volume</em></p>
-<div class="figure" id="id5">
+<p>Die notwendigen Schritte sind: <em>Volumes</em> → <em>Add Volume</em> → Name: <code class="docutils literal notranslate"><span class="pre">CometVisuConfig</span></code> → <em>Create the Volume</em></p>
+<div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../_images/portainer_volume_add.png"><img alt="../_images/portainer_volume_add.png" src="../_images/portainer_volume_add.png" style="width: 1362.0px; height: 615.0px;" /></a>
-<p class="caption"><span class="caption-text">Volume im Portainer anlegen</span></p>
+<p class="caption"><span class="caption-text">Volume im Portainer anlegen</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>Dieses Volume kann von außen mit den Config-Dateien befüllt werden - oder
 am besten über den <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Manager</span></a>.</p>
@@ -262,7 +259,7 @@ am besten über den <a class="reference internal" href="../config/manager.html#m
 mit RRD Dateien genutzt werden sollen. Bei der reinen Verwendung der InfluxDB
 kann dieser Schritt übersprungen werden.</p>
 <p>Die Schritte für das Anlegen des <em>Volume für Konfigurationsdateien</em> ist zu
-wiederholen, jedoch wird hier sinnvoller Weise der Name <code class="docutils literal"><span class="pre">CometVisuRRD</span></code>
+wiederholen, jedoch wird hier sinnvoller Weise der Name <code class="docutils literal notranslate"><span class="pre">CometVisuRRD</span></code>
 gewählt.</p>
 <p>Das Befüllen dieses Containers muss extern erfolgen, z.B. durch einen anderen
 Container, der diesen RRD-Container gleichzeitig mit einbindet.</p>
@@ -275,64 +272,64 @@ dem Timberwolf (64 Bit Architektur) verwendet werden <a class="footnote-referenc
 <h3>Anlegen des Containers<a class="headerlink" href="#anlegen-des-containers" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Unter <em>Containers</em> → <em>Add Container</em></p>
 <ul>
-<li><p class="first">Name: <code class="docutils literal"><span class="pre">CometVisu</span></code></p>
+<li><p class="first">Name: <code class="docutils literal notranslate"><span class="pre">CometVisu</span></code></p>
 </li>
-<li><p class="first">Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest</span></code> für die &#8220;großen&#8221; Server
-(TSW2xxx) oder <code class="docutils literal"><span class="pre">cometvisu/cometvisu:latest-arm</span></code> für die Hutschienen-Server.</p>
+<li><p class="first">Image configuration: Name: <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest</span></code> für die „großen“ Server
+(TSW2xxx) oder <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest-arm</span></code> für die Hutschienen-Server.</p>
 </li>
-<li><p class="first">Port mapping: host <code class="docutils literal"><span class="pre">18080</span></code>, container <code class="docutils literal"><span class="pre">80</span></code></p>
+<li><p class="first">Port mapping: host <code class="docutils literal notranslate"><span class="pre">18080</span></code>, container <code class="docutils literal notranslate"><span class="pre">80</span></code></p>
 </li>
 <li><p class="first">Advanced container settings:</p>
 <ul>
 <li><p class="first">Volumes: Volume mapping</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> <em>(bis einschließlich Version 0.10.2)</em></li>
-<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/resource/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuConfig</span></code> <em>(ab Version 0.11)</em></li>
-<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/rrd</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">RRD</span></code> <em>(Optional, wenn RRD genutzt werden soll)</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">container</span></code>: <code class="docutils literal notranslate"><span class="pre">/var/www/html/config</span></code> ⭢ <code class="docutils literal notranslate"><span class="pre">volume</span></code>: <code class="docutils literal notranslate"><span class="pre">CometVisuConfig</span></code> <em>(bis einschließlich Version 0.10.2)</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">container</span></code>: <code class="docutils literal notranslate"><span class="pre">/var/www/html/resource/config</span></code> ⭢ <code class="docutils literal notranslate"><span class="pre">volume</span></code>: <code class="docutils literal notranslate"><span class="pre">CometVisuConfig</span></code> <em>(ab Version 0.11)</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">container</span></code>: <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code> ⭢ <code class="docutils literal notranslate"><span class="pre">volume</span></code>: <code class="docutils literal notranslate"><span class="pre">RRD</span></code> <em>(Optional, wenn RRD genutzt werden soll)</em></li>
 </ul>
 </li>
 <li><p class="first">Env: Environment variables</p>
 <ul>
-<li><p class="first"><code class="docutils literal"><span class="pre">name</span></code>: <code class="docutils literal"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal"><span class="pre">value</span></code>: <code class="docutils literal"><span class="pre">/proxy/visu/cgi-bin/</span></code></p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">name</span></code>: <code class="docutils literal notranslate"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal notranslate"><span class="pre">value</span></code>: <code class="docutils literal notranslate"><span class="pre">/proxy/visu/cgi-bin/</span></code></p>
 </li>
 <li><p class="first">Je nach lokaler Umgebung sind gegebenenfalls weitere Anpassungen
 notwendig, die im Abschnitt des
 <a class="reference internal" href="docker.html#dockerenvironment"><span class="std std-ref">Docker Containers</span></a> angegeben wurden.</p>
-<p>So kann es notwendig sein für <code class="docutils literal"><span class="pre">KNX_PA</span></code> einen anderen Wert als das
-Default <code class="docutils literal"><span class="pre">1.1.238</span></code> zu setzen, wenn diese physikalische Addresse bereits
-belegt ist oder eine andere Linie als <code class="docutils literal"><span class="pre">1.1</span></code> verwendet werden soll.</p>
+<p>So kann es notwendig sein für <code class="docutils literal notranslate"><span class="pre">KNX_PA</span></code> einen anderen Wert als das
+Default <code class="docutils literal notranslate"><span class="pre">1.1.238</span></code> zu setzen, wenn diese physikalische Addresse bereits
+belegt ist oder eine andere Linie als <code class="docutils literal notranslate"><span class="pre">1.1</span></code> verwendet werden soll.</p>
 <p>Es ist auch wichtig, dass der Port der KNX Schnittstelle korrekt ist. Im
 Timberwolf ist unter <em>Einstellungen</em> → <em>KNX</em> → <em>Schnittstellen</em> der
 verwendete Port ersichtlich:</p>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="../_images/timberwolf_knx_port.png"><img alt="../_images/timberwolf_knx_port.png" src="../_images/timberwolf_knx_port.png" style="width: 1016.0px; height: 319.0px;" /></a>
 </div>
-<p>Sollte der Port von <code class="docutils literal"><span class="pre">3700</span></code> abweichen, so ist die Umgebungsvariable
-<code class="docutils literal"><span class="pre">KNX_INTERFACE</span></code> entsprechend anzupassen, in diesem Beispiel auf den
-Wert <code class="docutils literal"><span class="pre">iptn:172.17.0.1:3674</span></code>.</p>
+<p>Sollte der Port von <code class="docutils literal notranslate"><span class="pre">3700</span></code> abweichen, so ist die Umgebungsvariable
+<code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE</span></code> entsprechend anzupassen, in diesem Beispiel auf den
+Wert <code class="docutils literal notranslate"><span class="pre">iptn:172.17.0.1:3674</span></code>.</p>
 </li>
 </ul>
 </li>
-<li><p class="first">Restart policy: <code class="docutils literal"><span class="pre">Unless</span> <span class="pre">stopped</span></code></p>
+<li><p class="first">Restart policy: <code class="docutils literal notranslate"><span class="pre">Unless</span> <span class="pre">stopped</span></code></p>
 </li>
 </ul>
 </li>
 </ul>
-<div class="figure" id="id6">
+<div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="../_images/portainer_container_add.png"><img alt="../_images/portainer_container_add.png" src="../_images/portainer_container_add.png" style="width: 1346.0px; height: 755.0px;" /></a>
-<p class="caption"><span class="caption-text">Container im Portainer anlegen</span></p>
+<p class="caption"><span class="caption-text">Container im Portainer anlegen</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="figure" id="id7">
+<div class="figure align-default" id="id7">
 <a class="reference internal image-reference" href="../_images/portainer_container_volumes_add.png"><img alt="../_images/portainer_container_volumes_add.png" src="../_images/portainer_container_volumes_add.png" style="width: 1082.0px; height: 369.0px;" /></a>
-<p class="caption"><span class="caption-text">Container <em>Volumes</em> im Portainer konfigurieren</span></p>
+<p class="caption"><span class="caption-text">Container <em>Volumes</em> im Portainer konfigurieren</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="figure" id="id8">
+<div class="figure align-default" id="id8">
 <a class="reference internal image-reference" href="../_images/portainer_container_env_add.png"><img alt="../_images/portainer_container_env_add.png" src="../_images/portainer_container_env_add.png" style="width: 1081.0px; height: 259.0px;" /></a>
-<p class="caption"><span class="caption-text">Container <em>Env</em> im Portainer konfigurieren</span></p>
+<p class="caption"><span class="caption-text">Container <em>Env</em> im Portainer konfigurieren</span><a class="headerlink" href="#id8" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="figure" id="id9">
+<div class="figure align-default" id="id9">
 <a class="reference internal image-reference" href="../_images/portainer_container_restart_add.png"><img alt="../_images/portainer_container_restart_add.png" src="../_images/portainer_container_restart_add.png" style="width: 763.0px; height: 217.0px;" /></a>
-<p class="caption"><span class="caption-text">Container <em>Restart policy</em> im Portainer konfigurieren</span></p>
+<p class="caption"><span class="caption-text">Container <em>Restart policy</em> im Portainer konfigurieren</span><a class="headerlink" href="#id9" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>Dann über <em>Deploy the container</em> diesen erzeugen.</p>
 </div>
@@ -340,50 +337,50 @@ Wert <code class="docutils literal"><span class="pre">iptn:172.17.0.1:3674</span
 <h3>Proxy einrichten<a class="headerlink" href="#proxy-einrichten" title="Link zu dieser Überschrift">¶</a></h3>
 <p>In der Timberwolf Oberfläche: <em>Einstellungen</em> → <em>Remotezugriff</em> → <em>Reverse Proxy</em></p>
 <ul class="simple">
-<li>URL: <code class="docutils literal"><span class="pre">visu/</span></code>, Target <code class="docutils literal"><span class="pre">http://127.0.0.1:18080/</span></code></li>
+<li>URL: <code class="docutils literal notranslate"><span class="pre">visu/</span></code>, Target <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:18080/</span></code></li>
 </ul>
 <p>Über <em>Add</em> bestätigen.</p>
-<div class="figure" id="id10">
+<div class="figure align-default" id="id10">
 <a class="reference internal image-reference" href="../_images/timberwolf_proxy_add.png"><img alt="../_images/timberwolf_proxy_add.png" src="../_images/timberwolf_proxy_add.png" style="width: 694.0px; height: 129.0px;" /></a>
-<p class="caption"><span class="caption-text">Timberwolf Proxy-Eintrag hinzufügen</span></p>
+<p class="caption"><span class="caption-text">Timberwolf Proxy-Eintrag hinzufügen</span><a class="headerlink" href="#id10" title="Link zu diesem Bild">¶</a></p>
 </div>
-<p>Die CometVisu ist nun über <code class="docutils literal"><span class="pre">https://&lt;mein</span> <span class="pre">timberwolf&gt;/proxy/visu/</span></code> aufrufbar.</p>
+<p>Die CometVisu ist nun über <code class="docutils literal notranslate"><span class="pre">https://&lt;mein</span> <span class="pre">timberwolf&gt;/proxy/visu/</span></code> aufrufbar.</p>
 </div>
 <div class="section" id="influxdb-zugriff">
 <h3>InfluxDB Zugriff<a class="headerlink" href="#influxdb-zugriff" title="Link zu dieser Überschrift">¶</a></h3>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
 <p class="last">The InfluxDB access as well as the hidden config was introduced with
-version 0.11.0 and isn&#8217;t available in earlier versions.</p>
+version 0.11.0 and isn’t available in earlier versions.</p>
 </div>
 <p>Für den Zugriff auf die Zeitreihen der InfluxDB müssen die Credentials in der
 <a class="reference internal" href="../config/hidden-config.html#hidden-config"><span class="std std-ref">Versteckten Konfiguration</span></a> über den
 <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Manager</span></a> eingetragen werden. Hierzu muss auf dem Timberwolf
-Server unter <em>Portainer</em> bei <em>&#8220;Wie Sie aus dem Docker Container auf die
-Zeitreihen-Datenbank zugreifen können&#8221;</em> auf das <code class="docutils literal"><span class="pre">i</span></code> geklickt werden um
+Server unter <em>Portainer</em> bei <em>„Wie Sie aus dem Docker Container auf die
+Zeitreihen-Datenbank zugreifen können“</em> auf das <code class="docutils literal notranslate"><span class="pre">i</span></code> geklickt werden um
 den Benutzernamen und das Passwort für die lokale Installation in Erfahrung
 zu bringen.</p>
-<div class="figure" id="id11">
+<div class="figure align-default" id="id11">
 <a class="reference internal image-reference" href="../_images/timberwolf_influx.png"><img alt="../_images/timberwolf_influx.png" src="../_images/timberwolf_influx.png" style="width: 1070.0px; height: 337.0px;" /></a>
-<p class="caption"><span class="caption-text">Timberwolf InfluxDB Credentials</span></p>
+<p class="caption"><span class="caption-text">Timberwolf InfluxDB Credentials</span><a class="headerlink" href="#id11" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>In der <a class="reference internal" href="../config/hidden-config.html#hidden-config"><span class="std std-ref">Versteckten Konfiguration</span></a> des <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">Managers</span></a>
 ist nun ein Eintrag mit diesen Eigenschaften anzulegen:</p>
 <ul class="simple">
-<li>Name: <code class="docutils literal"><span class="pre">influx</span></code></li>
+<li>Name: <code class="docutils literal notranslate"><span class="pre">influx</span></code></li>
 <li>Schlüssel und Wert:<ul>
-<li><code class="docutils literal"><span class="pre">uri</span></code>: <code class="docutils literal"><span class="pre">https://172.17.0.1/proxy/ts/query</span></code> (Sollte entgegen dieser
+<li><code class="docutils literal notranslate"><span class="pre">uri</span></code>: <code class="docutils literal notranslate"><span class="pre">https://172.17.0.1/proxy/ts/query</span></code> (Sollte entgegen dieser
 Anleitung das Netzwerk des Containers angepasst worden sein, so muss
 gegebenenfalls hier die IP-Addresse entsprechend angepasst werden)</li>
-<li><code class="docutils literal"><span class="pre">user</span></code>: Benutzername aus den Credentials</li>
-<li><code class="docutils literal"><span class="pre">pass</span></code>: Passwort aus den Credentials</li>
-<li><code class="docutils literal"><span class="pre">selfsigned</span></code>: <code class="docutils literal"><span class="pre">true</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">user</span></code>: Benutzername aus den Credentials</li>
+<li><code class="docutils literal notranslate"><span class="pre">pass</span></code>: Passwort aus den Credentials</li>
+<li><code class="docutils literal notranslate"><span class="pre">selfsigned</span></code>: <code class="docutils literal notranslate"><span class="pre">true</span></code></li>
 </ul>
 </li>
 </ul>
-<div class="figure" id="id12">
+<div class="figure align-default" id="id12">
 <a class="reference internal image-reference" href="../_images/timberwolf_influx_manager.png"><img alt="../_images/timberwolf_influx_manager.png" src="../_images/timberwolf_influx_manager.png" style="width: 575.0px; height: 305.0px;" /></a>
-<p class="caption"><span class="caption-text">Timberwolf InfluxDB Credentials im Manager</span></p>
+<p class="caption"><span class="caption-text">Timberwolf InfluxDB Credentials im Manager</span><a class="headerlink" href="#id12" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>
 </div>
@@ -391,7 +388,7 @@ gegebenenfalls hier die IP-Addresse entsprechend angepasst werden)</li>
 <h2>Aktualisieren<a class="headerlink" href="#aktualisieren" title="Link zu dieser Überschrift">¶</a></h2>
 <div class="section" id="container-ersetzen">
 <h3>Container ersetzen<a class="headerlink" href="#container-ersetzen" title="Link zu dieser Überschrift">¶</a></h3>
-<p>Unter <em>Containers</em> → <code class="docutils literal"><span class="pre">CometVisu</span></code> wird über den Button <em>Duplicate/Edit</em> das
+<p>Unter <em>Containers</em> → <code class="docutils literal notranslate"><span class="pre">CometVisu</span></code> wird über den Button <em>Duplicate/Edit</em> das
 Menü aufgerufen um den Container zu aktualisieren.</p>
 <p>Hier ist sicher zu stellen, dass <em>Always pull the image</em> aktiv ist.</p>
 <p>Unter <em>Advanced container settings</em> → <em>Labels</em> sollten die Labels gelöscht
@@ -399,17 +396,17 @@ werden, um später leichter erkennen zu können welche CometVisu Container
 Version installiert ist.</p>
 <p>Wenn von der Version 0.10.2 auf eine Version aus der 0.11er Reihe gewechselt
 werden soll, so ist noch unter <em>Volumes</em> der Config-Pfad von
-<code class="docutils literal"><span class="pre">/var/www/html/config</span></code> auf <code class="docutils literal"><span class="pre">/var/www/html/resource/config</span></code> anzupassen.</p>
+<code class="docutils literal notranslate"><span class="pre">/var/www/html/config</span></code> auf <code class="docutils literal notranslate"><span class="pre">/var/www/html/resource/config</span></code> anzupassen.</p>
 <p>Mit <em>Actions</em> → <em>Deploy the Container</em> wird der Container nun durch die
 neueste Version ersetzt.</p>
-<div class="figure" id="id13">
+<div class="figure align-default" id="id13">
 <a class="reference internal image-reference" href="../_images/portainer_container_replace.png"><img alt="../_images/portainer_container_replace.png" src="../_images/portainer_container_replace.png" style="width: 836.0px; height: 863.0px;" /></a>
-<p class="caption"><span class="caption-text">Container im Portainer durch eine neue Version ersetzen</span></p>
+<p class="caption"><span class="caption-text">Container im Portainer durch eine neue Version ersetzen</span><a class="headerlink" href="#id13" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>Anschließend muss die Sicherheitsabfrage bestätigt werden.</p>
-<div class="figure" id="id14">
+<div class="figure align-default" id="id14">
 <img alt="../_images/portainer_container_replace_confirm.png" src="../_images/portainer_container_replace_confirm.png" />
-<p class="caption"><span class="caption-text">Bestätigung um den Container im Portainer durch eine neue Version zu ersetzen</span></p>
+<p class="caption"><span class="caption-text">Bestätigung um den Container im Portainer durch eine neue Version zu ersetzen</span><a class="headerlink" href="#id14" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>
 <div class="section" id="aufraumen">
@@ -419,9 +416,9 @@ neueste Version ersetzt.</p>
 <em>Images</em> löschen.</p>
 <p>Durch markieren des zu löschenden Images (zu erkennen am Label <em>Unused</em> und
 dem entsprechenden Tag) kann über <em>Remove</em> das Image entfernt werden.</p>
-<div class="figure" id="id15">
+<div class="figure align-default" id="id15">
 <a class="reference internal image-reference" href="../_images/portainer_image_remove.png"><img alt="../_images/portainer_image_remove.png" src="../_images/portainer_image_remove.png" style="width: 1349.0px; height: 601.0px;" /></a>
-<p class="caption"><span class="caption-text">Portainer Dialog um ein Image zu löschen</span></p>
+<p class="caption"><span class="caption-text">Portainer Dialog um ein Image zu löschen</span><a class="headerlink" href="#id15" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>
 </div>
@@ -430,33 +427,33 @@ dem entsprechenden Tag) kann über <em>Remove</em> das Image entfernt werden.</p
 <p>Grundsätzlich sind für die jeweils aktuelle Entwicklungsversion die gleichen
 Schritte wie für das Release durchzuführen. Auch wenn theoretisch das gleiche
 Konfigutations-Volume wie für die Produktiv-Version verwendet werden kann, so
-sollte ein getrenntes Volume (z.B. <code class="docutils literal"><span class="pre">CometVisuTestConfig</span></code>) angelegt werden, da
+sollte ein getrenntes Volume (z.B. <code class="docutils literal notranslate"><span class="pre">CometVisuTestConfig</span></code>) angelegt werden, da
 sich durch zukünftige Updates das Format der Config-Dateien inkompatibel ändern
 kann.</p>
 <p>Wie unter <a class="reference internal" href="docker.html#docker"><span class="std std-ref">Docker</span></a> beschrieben hat die neueste
-Entwicklunglungsversion den Tag <code class="docutils literal"><span class="pre">testing</span></code>. Somit ist unter <em>Anlegen des
-Containers</em> als <code class="docutils literal"><span class="pre">name</span></code> <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code> bzw.
-<code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing-arm</span></code> zu verwenden.</p>
+Entwicklunglungsversion den Tag <code class="docutils literal notranslate"><span class="pre">testing</span></code>. Somit ist unter <em>Anlegen des
+Containers</em> als <code class="docutils literal notranslate"><span class="pre">name</span></code> <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code> bzw.
+<code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing-arm</span></code> zu verwenden.</p>
 <p>Um für Fehlerberichte u.ä. eine einheitliche Umgebung zu haben, ist die
 Empfehlung die Testing Version mit diesen Parametern zu installieren:</p>
 <ul class="simple">
 <li>Container:<ul>
-<li>Name: <code class="docutils literal"><span class="pre">CometVisuTest</span></code></li>
-<li>Image configuration: Name: <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing</span></code> bzw. <code class="docutils literal"><span class="pre">cometvisu/cometvisu:testing-arm</span></code></li>
-<li>Port mapping: host <code class="docutils literal"><span class="pre">28080</span></code>, container <code class="docutils literal"><span class="pre">80</span></code></li>
+<li>Name: <code class="docutils literal notranslate"><span class="pre">CometVisuTest</span></code></li>
+<li>Image configuration: Name: <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing-arm</span></code></li>
+<li>Port mapping: host <code class="docutils literal notranslate"><span class="pre">28080</span></code>, container <code class="docutils literal notranslate"><span class="pre">80</span></code></li>
 <li>Advanced container settings:<ul>
 <li>Volumes: Volume mapping<ul>
-<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/html/resource/config</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">CometVisuTestConfig</span></code></li>
-<li><code class="docutils literal"><span class="pre">container</span></code>: <code class="docutils literal"><span class="pre">/var/www/rrd</span></code> ⭢ <code class="docutils literal"><span class="pre">volume</span></code>: <code class="docutils literal"><span class="pre">RRD</span></code> <em>(Optional)</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">container</span></code>: <code class="docutils literal notranslate"><span class="pre">/var/www/html/resource/config</span></code> ⭢ <code class="docutils literal notranslate"><span class="pre">volume</span></code>: <code class="docutils literal notranslate"><span class="pre">CometVisuTestConfig</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">container</span></code>: <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code> ⭢ <code class="docutils literal notranslate"><span class="pre">volume</span></code>: <code class="docutils literal notranslate"><span class="pre">RRD</span></code> <em>(Optional)</em></li>
 </ul>
 </li>
-<li>Env: Environment variables <code class="docutils literal"><span class="pre">name</span></code>: <code class="docutils literal"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal"><span class="pre">value</span></code>: <code class="docutils literal"><span class="pre">/proxy/visutest/cgi-bin/</span></code></li>
+<li>Env: Environment variables <code class="docutils literal notranslate"><span class="pre">name</span></code>: <code class="docutils literal notranslate"><span class="pre">CGI_URL_PATH</span></code> mit <code class="docutils literal notranslate"><span class="pre">value</span></code>: <code class="docutils literal notranslate"><span class="pre">/proxy/visutest/cgi-bin/</span></code></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Proxy:<ul>
-<li>URL: <code class="docutils literal"><span class="pre">visutest</span></code>, Target <code class="docutils literal"><span class="pre">http://127.0.0.1:28080/</span></code></li>
+<li>URL: <code class="docutils literal notranslate"><span class="pre">visutest</span></code>, Target <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:28080/</span></code></li>
 </ul>
 </li>
 </ul>
@@ -464,15 +461,15 @@ Empfehlung die Testing Version mit diesen Parametern zu installieren:</p>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><p class="first">Um den Inhalt einer RRD Datei <code class="docutils literal"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><p class="first">Um den Inhalt einer RRD Datei <code class="docutils literal notranslate"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine
 andere zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der
 Befehl</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool dump /var/www/rrd/RRD_Name.rrd &gt; RRD_Name.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump /var/www/rrd/RRD_Name.rrd &gt; RRD_Name.xml
 </pre></div>
 </div>
 <p>ausgeführt werden. Auf dem Ziel-System (also z.B. einem Container auf dem
 Timberwolf) wird dann mit dem Befehl</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool restore -f RRD_Name.xml RRD_Name.rrd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool restore -f RRD_Name.xml RRD_Name.rrd
 </pre></div>
 </div>
 <p>die neue RRD-Datei angelegt.</p>
@@ -480,14 +477,14 @@ Timberwolf) wird dann mit dem Befehl</p>
 Zahlen mit einem Komma als Dezimaltrennzeichen verwendet (so wie im
 Deutschen üblich), so kann es sein, dass der RRD-Export mit Komma statt
 Punkt erfolgt und somit der Import fehl schlägt. Hier wäre dann der Export
-mit generischem <code class="docutils literal"><span class="pre">LANG=C</span></code> durchzuführen.</p>
+mit generischem <code class="docutils literal notranslate"><span class="pre">LANG=C</span></code> durchzuführen.</p>
 <p>Um eine größere Menge an RRD-Dateien zu konvertieren kann dies über eine
 Schleife vereinfacht werden:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">LANG</span><span class="o">=</span>C<span class="p">;</span> <span class="k">for</span> f in *.rrd<span class="p">;</span> <span class="k">do</span> rrdtool dump <span class="si">${</span><span class="nv">f</span><span class="si">}</span> &gt; <span class="si">${</span><span class="nv">f</span><span class="si">}</span>.xml<span class="p">;</span> <span class="k">done</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LANG</span><span class="o">=</span>C<span class="p">;</span> <span class="k">for</span> f <span class="k">in</span> *.rrd<span class="p">;</span> <span class="k">do</span> rrdtool dump <span class="si">${</span><span class="nv">f</span><span class="si">}</span> &gt; <span class="si">${</span><span class="nv">f</span><span class="si">}</span>.xml<span class="p">;</span> <span class="k">done</span>
 </pre></div>
 </div>
 <p>bzw.</p>
-<div class="last highlight-bash"><div class="highlight"><pre><span></span><span class="k">for</span> f in *.xml<span class="p">;</span> <span class="k">do</span> rrdtool restore <span class="si">${</span><span class="nv">f</span><span class="si">}</span> <span class="si">${</span><span class="nv">f</span><span class="si">}</span>.rrd<span class="p">;</span> <span class="k">done</span>
+<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> f <span class="k">in</span> *.xml<span class="p">;</span> <span class="k">do</span> rrdtool restore <span class="si">${</span><span class="nv">f</span><span class="si">}</span> <span class="si">${</span><span class="nv">f</span><span class="si">}</span>.rrd<span class="p">;</span> <span class="k">done</span>
 </pre></div>
 </div>
 </td></tr>
@@ -509,7 +506,7 @@ Schleife vereinfacht werden:</p>
         <a href="linux.html" class="btn btn-neutral float-right" title="Installation auf generischen Linux Systemen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="docker_openhab2.html" class="btn btn-neutral" title="Installation auf einem Ubuntu System mit openHAB2 und Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="docker_openhab.html" class="btn btn-neutral" title="Installation auf einem Ubuntu System mit openHAB und Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -518,7 +515,7 @@ Schleife vereinfacht werden:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -564,7 +561,7 @@ Schleife vereinfacht werden:</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

@@ -14,7 +14,9 @@
         "require": true
       },
       "qx.lang.Object": {},
-      "qx.bom.client.OperatingSystem": {},
+      "qx.bom.client.OperatingSystem": {
+        "require": true
+      },
       "qx.event.Timer": {}
     },
     "environment": {
@@ -65,7 +67,7 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this); // {Map} Internal selection storage
 
-      this.__P_314_0 = {};
+      this.__P_316_0 = {};
     },
 
     /*
@@ -117,6 +119,14 @@
       quick: {
         check: "Boolean",
         init: false
+      },
+
+      /**
+       * Whether the selection can be changed by user interaction
+       */
+      readOnly: {
+        check: "Boolean",
+        init: false
       }
     },
 
@@ -126,30 +136,30 @@
     *****************************************************************************
     */
     members: {
-      __P_314_1: 0,
-      __P_314_2: 0,
-      __P_314_3: null,
-      __P_314_4: null,
-      __P_314_5: null,
-      __P_314_6: null,
-      __P_314_7: null,
-      __P_314_8: null,
-      __P_314_9: null,
-      __P_314_10: null,
-      __P_314_11: null,
-      __P_314_12: null,
-      __P_314_13: null,
-      __P_314_14: null,
-      __P_314_15: null,
-      __P_314_16: null,
-      __P_314_17: null,
-      __P_314_0: null,
-      __P_314_18: null,
-      __P_314_19: null,
+      __P_316_1: 0,
+      __P_316_2: 0,
+      __P_316_3: null,
+      __P_316_4: null,
+      __P_316_5: null,
+      __P_316_6: null,
+      __P_316_7: null,
+      __P_316_8: null,
+      __P_316_9: null,
+      __P_316_10: null,
+      __P_316_11: null,
+      __P_316_12: null,
+      __P_316_13: null,
+      __P_316_14: null,
+      __P_316_15: null,
+      __P_316_16: null,
+      __P_316_17: null,
+      __P_316_0: null,
+      __P_316_18: null,
+      __P_316_19: null,
       // A flag that signals an user interaction, which means the selection change
       // was triggered by pointer or keyboard [BUG #3344]
       _userInteraction: false,
-      __P_314_20: null,
+      __P_316_20: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -166,7 +176,7 @@
        *    <code>drag</code> or <code>key</code> or <code>null</code>
        */
       getSelectionContext: function getSelectionContext() {
-        return this.__P_314_16;
+        return this.__P_316_16;
       },
 
       /**
@@ -372,7 +382,7 @@
        * @return {Object[]} List of items.
        */
       getSelection: function getSelection() {
-        return Object.values(this.__P_314_0);
+        return Object.values(this.__P_316_0);
       },
 
       /**
@@ -383,7 +393,7 @@
        */
       getSortedSelection: function getSortedSelection() {
         var children = this.getSelectables();
-        var sel = Object.values(this.__P_314_0);
+        var sel = Object.values(this.__P_316_0);
         sel.sort(function (a, b) {
           return children.indexOf(a) - children.indexOf(b);
         });
@@ -399,7 +409,7 @@
       isItemSelected: function isItemSelected(item) {
         var hash = this._selectableToHashCode(item);
 
-        return this.__P_314_0[hash] !== undefined;
+        return this.__P_316_0[hash] !== undefined;
       },
 
       /**
@@ -408,7 +418,7 @@
        * @return {Boolean} Whether the selection is empty
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return qx.lang.Object.isEmpty(this.__P_314_0);
+        return qx.lang.Object.isEmpty(this.__P_316_0);
       },
 
       /**
@@ -443,7 +453,7 @@
        * @param value {Object} Any valid item or <code>null</code>
        */
       _setLeadItem: function _setLeadItem(value) {
-        var old = this.__P_314_17;
+        var old = this.__P_316_17;
 
         if (old !== null) {
           this._styleSelectable(old, "lead", false);
@@ -453,7 +463,7 @@
           this._styleSelectable(value, "lead", true);
         }
 
-        this.__P_314_17 = value;
+        this.__P_316_17 = value;
       },
 
       /**
@@ -463,7 +473,7 @@
        * @return {Object} The lead item or <code>null</code>
        */
       getLeadItem: function getLeadItem() {
-        return this.__P_314_17;
+        return this.__P_316_17;
       },
 
       /**
@@ -474,7 +484,7 @@
        * @param value {Object} Any valid item or <code>null</code>
        */
       _setAnchorItem: function _setAnchorItem(value) {
-        var old = this.__P_314_18;
+        var old = this.__P_316_18;
 
         if (old != null) {
           this._styleSelectable(old, "anchor", false);
@@ -484,7 +494,7 @@
           this._styleSelectable(value, "anchor", true);
         }
 
-        this.__P_314_18 = value;
+        this.__P_316_18 = value;
       },
 
       /**
@@ -495,7 +505,7 @@
        * @return {Object} The anchor item or <code>null</code>
        */
       _getAnchorItem: function _getAnchorItem() {
-        return this.__P_314_18 !== null ? this.__P_314_18 : null;
+        return this.__P_316_18 !== null ? this.__P_316_18 : null;
       },
 
       /*
@@ -695,6 +705,24 @@
       },
 
       /**
+       * Returns the first visible and selectable item.
+       *
+       * @return {var} The first visible and selectable item
+       */
+      _getFirstVisibleSelectable: function _getFirstVisibleSelectable() {
+        throw new Error("Abstract method call: _getFirstVisibleSelectable()");
+      },
+
+      /**
+       * Returns the last visible and selectable item.
+       *
+       * @return {var} The last visible and selectable item
+       */
+      _getLastVisibleSelectable: function _getLastVisibleSelectable() {
+        throw new Error("Abstract method call: _getLastVisibleSelectable()");
+      },
+
+      /**
        * Returns a selectable item which is related to the given
        * <code>item</code> through the value of <code>relation</code>.
        *
@@ -757,8 +785,8 @@
         // All browsers (except Opera) fire a native "mouseover" event when a scroll appears
         // by keyboard interaction. We have to ignore the event to avoid a selection for
         // "pointerover" (quick selection). For more details see [BUG #4225]
-        if (this.__P_314_20 != null && this.__P_314_20 != this._getScroll().top) {
-          this.__P_314_20 = null;
+        if (this.__P_316_20 != null && this.__P_316_20 != this._getScroll().top) {
+          this.__P_316_20 = null;
           return;
         } // quick select should only work on mouse events
 
@@ -824,11 +852,11 @@
         var isShiftPressed = event.isShiftPressed(); // tapping on selected items deselect on pointerup, not on pointerdown
 
         if (this.isItemSelected(item) && !isShiftPressed && !isCtrlPressed && !this.getDrag()) {
-          this.__P_314_19 = item;
+          this.__P_316_19 = item;
           this._userInteraction = false;
           return;
         } else {
-          this.__P_314_19 = null;
+          this.__P_316_19 = null;
         } // Be sure that item is in view
 
 
@@ -843,13 +871,13 @@
           this._setLeadItem(item); // Cache location/scroll data
 
 
-          this.__P_314_7 = this._getLocation();
-          this.__P_314_4 = this._getScroll(); // Store position at start
+          this.__P_316_7 = this._getLocation();
+          this.__P_316_4 = this._getScroll(); // Store position at start
 
-          this.__P_314_8 = event.getDocumentLeft() + this.__P_314_4.left;
-          this.__P_314_9 = event.getDocumentTop() + this.__P_314_4.top; // Switch to capture mode
+          this.__P_316_8 = event.getDocumentLeft() + this.__P_316_4.left;
+          this.__P_316_9 = event.getDocumentTop() + this.__P_316_4.top; // Switch to capture mode
 
-          this.__P_314_10 = true;
+          this.__P_316_10 = true;
 
           this._capture();
         } // Fire change event as needed
@@ -874,7 +902,7 @@
         var isCtrlPressed = event.isCtrlPressed() || qx.core.Environment.get("os.name") == "osx" && event.isMetaPressed();
         var isShiftPressed = event.isShiftPressed();
 
-        if (!isCtrlPressed && !isShiftPressed && this.__P_314_19 != null) {
+        if (!isCtrlPressed && !isShiftPressed && this.__P_316_19 != null) {
           this._userInteraction = false;
 
           var item = this._getSelectableFromPointerEvent(event);
@@ -892,50 +920,52 @@
         } // Action depends on selected mode
 
 
-        switch (this.getMode()) {
-          case "single":
-          case "one":
-            this._setSelectedItem(item);
+        if (!this.isReadOnly()) {
+          switch (this.getMode()) {
+            case "single":
+            case "one":
+              this._setSelectedItem(item);
 
-            break;
+              break;
 
-          case "additive":
-            this._setLeadItem(item);
+            case "additive":
+              this._setLeadItem(item);
 
-            this._setAnchorItem(item);
+              this._setAnchorItem(item);
 
-            this._toggleInSelection(item);
+              this._toggleInSelection(item);
 
-            break;
+              break;
 
-          case "multi":
-            // Update lead item
-            this._setLeadItem(item); // Create/Update range selection
+            case "multi":
+              // Update lead item
+              this._setLeadItem(item); // Create/Update range selection
 
 
-            if (isShiftPressed) {
-              var anchor = this._getAnchorItem();
+              if (isShiftPressed) {
+                var anchor = this._getAnchorItem();
 
-              if (anchor === null) {
-                anchor = this._getFirstSelectable();
+                if (anchor === null) {
+                  anchor = this._getFirstSelectable();
 
-                this._setAnchorItem(anchor);
-              }
-
-              this._selectItemRange(anchor, item, isCtrlPressed);
-            } // Toggle in selection
-            else if (isCtrlPressed) {
-                this._setAnchorItem(item);
-
-                this._toggleInSelection(item);
-              } // Replace current selection
-              else {
-                  this._setAnchorItem(item);
-
-                  this._setSelectedItem(item);
+                  this._setAnchorItem(anchor);
                 }
 
-            break;
+                this._selectItemRange(anchor, item, isCtrlPressed);
+              } // Toggle in selection
+              else if (isCtrlPressed) {
+                  this._setAnchorItem(item);
+
+                  this._toggleInSelection(item);
+                } // Replace current selection
+                else {
+                    this._setAnchorItem(item);
+
+                    this._setSelectedItem(item);
+                  }
+
+              break;
+          }
         } // Cleanup operation
 
 
@@ -962,65 +992,65 @@
        */
       handlePointerMove: function handlePointerMove(event) {
         // Only relevant when capturing is enabled
-        if (!this.__P_314_10) {
+        if (!this.__P_316_10) {
           return;
         } // Update pointer position cache
 
 
-        this.__P_314_11 = event.getDocumentLeft();
-        this.__P_314_12 = event.getDocumentTop(); // this is a method invoked by an user interaction, so be careful to
+        this.__P_316_11 = event.getDocumentLeft();
+        this.__P_316_12 = event.getDocumentTop(); // this is a method invoked by an user interaction, so be careful to
         // set / clear the mark this._userInteraction [BUG #3344]
 
         this._userInteraction = true; // Detect move directions
 
-        var dragX = this.__P_314_11 + this.__P_314_4.left;
+        var dragX = this.__P_316_11 + this.__P_316_4.left;
 
-        if (dragX > this.__P_314_8) {
-          this.__P_314_13 = 1;
-        } else if (dragX < this.__P_314_8) {
-          this.__P_314_13 = -1;
+        if (dragX > this.__P_316_8) {
+          this.__P_316_13 = 1;
+        } else if (dragX < this.__P_316_8) {
+          this.__P_316_13 = -1;
         } else {
-          this.__P_314_13 = 0;
+          this.__P_316_13 = 0;
         }
 
-        var dragY = this.__P_314_12 + this.__P_314_4.top;
+        var dragY = this.__P_316_12 + this.__P_316_4.top;
 
-        if (dragY > this.__P_314_9) {
-          this.__P_314_14 = 1;
-        } else if (dragY < this.__P_314_9) {
-          this.__P_314_14 = -1;
+        if (dragY > this.__P_316_9) {
+          this.__P_316_14 = 1;
+        } else if (dragY < this.__P_316_9) {
+          this.__P_316_14 = -1;
         } else {
-          this.__P_314_14 = 0;
+          this.__P_316_14 = 0;
         } // Update scroll steps
 
 
-        var location = this.__P_314_7;
+        var location = this.__P_316_7;
 
-        if (this.__P_314_11 < location.left) {
-          this.__P_314_1 = this.__P_314_11 - location.left;
-        } else if (this.__P_314_11 > location.right) {
-          this.__P_314_1 = this.__P_314_11 - location.right;
+        if (this.__P_316_11 < location.left) {
+          this.__P_316_1 = this.__P_316_11 - location.left;
+        } else if (this.__P_316_11 > location.right) {
+          this.__P_316_1 = this.__P_316_11 - location.right;
         } else {
-          this.__P_314_1 = 0;
+          this.__P_316_1 = 0;
         }
 
-        if (this.__P_314_12 < location.top) {
-          this.__P_314_2 = this.__P_314_12 - location.top;
-        } else if (this.__P_314_12 > location.bottom) {
-          this.__P_314_2 = this.__P_314_12 - location.bottom;
+        if (this.__P_316_12 < location.top) {
+          this.__P_316_2 = this.__P_316_12 - location.top;
+        } else if (this.__P_316_12 > location.bottom) {
+          this.__P_316_2 = this.__P_316_12 - location.bottom;
         } else {
-          this.__P_314_2 = 0;
+          this.__P_316_2 = 0;
         } // Dynamically create required timer instance
 
 
-        if (!this.__P_314_3) {
-          this.__P_314_3 = new qx.event.Timer(100);
+        if (!this.__P_316_3) {
+          this.__P_316_3 = new qx.event.Timer(100);
 
-          this.__P_314_3.addListener("interval", this._onInterval, this);
+          this.__P_316_3.addListener("interval", this._onInterval, this);
         } // Start interval
 
 
-        this.__P_314_3.start(); // Auto select based on new cursor position
+        this.__P_316_3.start(); // Auto select based on new cursor position
 
 
         this._autoSelect();
@@ -1063,25 +1093,25 @@
        * Stops all timers, release capture etc. to cleanup drag selection
        */
       _cleanup: function _cleanup() {
-        if (!this.getDrag() && this.__P_314_10) {
+        if (!this.getDrag() && this.__P_316_10) {
           return;
         } // Fire change event if needed
 
 
-        if (this.__P_314_15) {
+        if (this.__P_316_15) {
           this._fireChange("tap");
         } // Remove flags
 
 
-        delete this.__P_314_10;
-        delete this.__P_314_5;
-        delete this.__P_314_6; // Stop capturing
+        delete this.__P_316_10;
+        delete this.__P_316_5;
+        delete this.__P_316_6; // Stop capturing
 
         this._releaseCapture(); // Stop timer
 
 
-        if (this.__P_314_3) {
-          this.__P_314_3.stop();
+        if (this.__P_316_3) {
+          this.__P_316_3.stop();
         }
       },
 
@@ -1092,10 +1122,10 @@
        */
       _onInterval: function _onInterval(e) {
         // Scroll by defined block size
-        this._scrollBy(this.__P_314_1, this.__P_314_2); // Update scroll cache
+        this._scrollBy(this.__P_316_1, this.__P_316_2); // Update scroll cache
 
 
-        this.__P_314_4 = this._getScroll(); // Auto select based on new scroll position and cursor
+        this.__P_316_4 = this._getScroll(); // Auto select based on new scroll position and cursor
 
         this._autoSelect();
       },
@@ -1107,23 +1137,23 @@
         var inner = this._getDimension(); // Get current relative Y position and compare it with previous one
 
 
-        var relX = Math.max(0, Math.min(this.__P_314_11 - this.__P_314_7.left, inner.width)) + this.__P_314_4.left;
+        var relX = Math.max(0, Math.min(this.__P_316_11 - this.__P_316_7.left, inner.width)) + this.__P_316_4.left;
 
-        var relY = Math.max(0, Math.min(this.__P_314_12 - this.__P_314_7.top, inner.height)) + this.__P_314_4.top; // Compare old and new relative coordinates (for performance reasons)
+        var relY = Math.max(0, Math.min(this.__P_316_12 - this.__P_316_7.top, inner.height)) + this.__P_316_4.top; // Compare old and new relative coordinates (for performance reasons)
 
 
-        if (this.__P_314_5 === relX && this.__P_314_6 === relY) {
+        if (this.__P_316_5 === relX && this.__P_316_6 === relY) {
           return;
         }
 
-        this.__P_314_5 = relX;
-        this.__P_314_6 = relY; // Cache anchor
+        this.__P_316_5 = relX;
+        this.__P_316_6 = relY; // Cache anchor
 
         var anchor = this._getAnchorItem();
 
         var lead = anchor; // Process X-coordinate
 
-        var moveX = this.__P_314_13;
+        var moveX = this.__P_316_13;
         var nextX, locationX;
 
         while (moveX !== 0) {
@@ -1144,7 +1174,7 @@
         } // Process Y-coordinate
 
 
-        var moveY = this.__P_314_14;
+        var moveY = this.__P_316_14;
         var nextY, locationY;
 
         while (moveY !== 0) {
@@ -1200,7 +1230,7 @@
        *
        * @lint ignoreReferenceField(__navigationKeys)
        */
-      __P_314_21: {
+      __P_316_21: {
         Home: 1,
         Down: 1,
         Right: 1,
@@ -1228,20 +1258,21 @@
         var isCtrlPressed = event.isCtrlPressed() || qx.core.Environment.get("os.name") == "osx" && event.isMetaPressed();
         var isShiftPressed = event.isShiftPressed();
         var consumed = false;
+        var readOnly = this.isReadOnly();
 
-        if (key === "A" && isCtrlPressed) {
+        if (key === "A" && isCtrlPressed && !readOnly) {
           if (mode !== "single" && mode !== "one") {
             this._selectAllItems();
 
             consumed = true;
           }
-        } else if (key === "Escape") {
+        } else if (key === "Escape" && !readOnly) {
           if (mode !== "single" && mode !== "one") {
             this._clearSelection();
 
             consumed = true;
           }
-        } else if (key === "Space") {
+        } else if (key === "Space" && !readOnly) {
           var lead = this.getLeadItem();
 
           if (lead != null && !isShiftPressed) {
@@ -1253,7 +1284,48 @@
 
             consumed = true;
           }
-        } else if (this.__P_314_21[key]) {
+        } else if (this.__P_316_21[key] && readOnly) {
+          switch (key) {
+            case "Home":
+              next = this._getFirstSelectable();
+              break;
+
+            case "End":
+              next = this._getLastSelectable();
+              break;
+
+            case "Up":
+              next = this._getRelatedSelectable(this._getFirstVisibleSelectable(), "above");
+              break;
+
+            case "Down":
+              next = this._getRelatedSelectable(this._getLastVisibleSelectable(), "under");
+              break;
+
+            case "Left":
+              next = this._getRelatedSelectable(this._getFirstVisibleSelectable(), "left");
+              break;
+
+            case "Right":
+              next = this._getRelatedSelectable(this._getLastVisibleSelectable(), "right");
+              break;
+
+            case "PageUp":
+              next = this._getPage(this._getFirstVisibleSelectable(), true);
+              break;
+
+            case "PageDown":
+              next = this._getPage(this._getLastVisibleSelectable(), false);
+              break;
+          }
+
+          if (next) {
+            consumed = true;
+            this.__P_316_20 = this._getScroll().top;
+
+            this._scrollItemIntoView(next);
+          }
+        } else if (this.__P_316_21[key]) {
           consumed = true;
 
           if (mode === "single" || mode == "one") {
@@ -1352,7 +1424,7 @@
                 break;
             }
 
-            this.__P_314_20 = this._getScroll().top;
+            this.__P_316_20 = this._getScroll().top;
 
             this._scrollItemIntoView(next);
           }
@@ -1389,13 +1461,13 @@
        * Clears current selection
        */
       _clearSelection: function _clearSelection() {
-        var selection = this.__P_314_0;
+        var selection = this.__P_316_0;
 
         for (var hash in selection) {
           this._removeFromSelection(selection[hash]);
         }
 
-        this.__P_314_0 = {};
+        this.__P_316_0 = {};
       },
 
       /**
@@ -1411,9 +1483,9 @@
 
 
         if (!extend) {
-          var selected = this.__P_314_0;
+          var selected = this.__P_316_0;
 
-          var mapped = this.__P_314_22(range);
+          var mapped = this.__P_316_22(range);
 
           for (var hash in selected) {
             if (!mapped[hash]) {
@@ -1448,7 +1520,7 @@
        *
        * @param range {Array} List of selectable items
        */
-      __P_314_22: function __P_314_22(range) {
+      __P_316_22: function __P_316_22(range) {
         var mapped = {};
         var item;
 
@@ -1473,8 +1545,8 @@
        * @return {var} The selected item (or <code>null</code>)
        */
       _getSelectedItem: function _getSelectedItem() {
-        for (var hash in this.__P_314_0) {
-          return this.__P_314_0[hash];
+        for (var hash in this.__P_316_0) {
+          return this.__P_316_0[hash];
         }
 
         return null;
@@ -1488,7 +1560,7 @@
       _setSelectedItem: function _setSelectedItem(item) {
         if (this._isSelectable(item)) {
           // If already selected try to find out if this is the only item
-          var current = this.__P_314_0;
+          var current = this.__P_316_0;
 
           var hash = this._selectableToHashCode(item);
 
@@ -1514,12 +1586,12 @@
       _addToSelection: function _addToSelection(item) {
         var hash = this._selectableToHashCode(item);
 
-        if (this.__P_314_0[hash] == null && this._isSelectable(item)) {
-          this.__P_314_0[hash] = item;
+        if (this.__P_316_0[hash] == null && this._isSelectable(item)) {
+          this.__P_316_0[hash] = item;
 
           this._styleSelectable(item, "selected", true);
 
-          this.__P_314_15 = true;
+          this.__P_316_15 = true;
         }
       },
 
@@ -1532,17 +1604,17 @@
       _toggleInSelection: function _toggleInSelection(item) {
         var hash = this._selectableToHashCode(item);
 
-        if (this.__P_314_0[hash] == null) {
-          this.__P_314_0[hash] = item;
+        if (this.__P_316_0[hash] == null) {
+          this.__P_316_0[hash] = item;
 
           this._styleSelectable(item, "selected", true);
         } else {
-          delete this.__P_314_0[hash];
+          delete this.__P_316_0[hash];
 
           this._styleSelectable(item, "selected", false);
         }
 
-        this.__P_314_15 = true;
+        this.__P_316_15 = true;
       },
 
       /**
@@ -1553,12 +1625,12 @@
       _removeFromSelection: function _removeFromSelection(item) {
         var hash = this._selectableToHashCode(item);
 
-        if (this.__P_314_0[hash] != null) {
-          delete this.__P_314_0[hash];
+        if (this.__P_316_0[hash] != null) {
+          delete this.__P_316_0[hash];
 
           this._styleSelectable(item, "selected", false);
 
-          this.__P_314_15 = true;
+          this.__P_316_15 = true;
         }
       },
 
@@ -1591,7 +1663,7 @@
         var first = items[0];
         var last = selectable; // Clear old entries from map
 
-        var current = this.__P_314_0;
+        var current = this.__P_316_0;
 
         for (var hash in current) {
           if (incoming[hash]) {
@@ -1634,7 +1706,7 @@
         this._setAnchorItem(first); // Finally fire change event
 
 
-        this.__P_314_15 = true;
+        this.__P_316_15 = true;
 
         this._fireChange();
       },
@@ -1647,12 +1719,12 @@
        *    <code>drag</code> or <code>key</code> or <code>null</code>
        */
       _fireChange: function _fireChange(context) {
-        if (this.__P_314_15) {
+        if (this.__P_316_15) {
           // Store context
-          this.__P_314_16 = context || null; // Fire data event which contains the current selection
+          this.__P_316_16 = context || null; // Fire data event which contains the current selection
 
           this.fireDataEvent("changeSelection", this.getSelection());
-          delete this.__P_314_15;
+          delete this.__P_316_15;
         }
       },
 
@@ -1684,13 +1756,13 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_314_3");
+      this._disposeObjects("__P_316_3");
 
-      this.__P_314_0 = this.__P_314_19 = this.__P_314_18 = null;
-      this.__P_314_17 = null;
+      this.__P_316_0 = this.__P_316_19 = this.__P_316_18 = null;
+      this.__P_316_17 = null;
     }
   });
   qx.ui.core.selection.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1604956089553
+//# sourceMappingURL=Abstract.js.map?dt=1612691023646

@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n John Spackman (john.spackman@zenesis.com)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Main qooxdoo logging class.\n Used as central logging feature by qx.core.Object.\n Extremely modular and lightweight to support logging at bootstrap and\n at shutdown as well.</p>\n<ul>\n<li>Supports dynamic appenders to push the output to the user</li>\n<li>Supports buffering of the last 50 messages (configurable)</li>\n<li>Supports different debug levels (\"debug\", \"info\", \"warn\" or \"error\")</li>\n<li><p>Simple data serialization for incoming messages\nTypical use of this class is via qx.core.MLogging which is included into most\nclasses, so you would use \"this.debug(…)\" etc, but qx.log.Logger.debug(),\n.warn(), .error(), .info(), and .trace() can be used directly for static code.\nThe first parameter is expected to be the context object, ie the object which\nis sending the log; this can be null but that will prevent the filtering from\nfiltering on class name so ideally it will be a real qx.core.Object derived\nobject.  Other parameters are any Javascript object which will be serialized\ninto the log message</p></li>\n</ul>\n<pre class=\"javascript\">\n  qx.log.Logger.warn(myObject, \"This is a message to log\", myParam, otherData);\n </pre>\n<p>The output of logging is controlled by \"appenders\", which are classes that\n accept a log message and output it somehow (see examples in qx.log.appender.*);\n typical examples are qx.log.appender.Console which outputs to the browser\n console, or qx.log.appender.Native which outputs messages into a popup\n window as part of your Qooxdoo UI.\n While it's quick and easy to add logging calls to code as and when you need it,\n it is often convenient to control which logging calls output messages at runtime\n rather than having to edit code. @see qx.log.Logger#addFilter</p>"
         }
       ],
@@ -49,14 +45,7 @@
           "column": 21
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  CONFIGURATION\n---------------------------------------------------------------------------\n</code></pre>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -195,10 +184,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  APPENDER MANAGEMENT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": ""
@@ -445,10 +430,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  USER METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Sending a message at level \"debug\" to the logger.</p>"
@@ -923,10 +904,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  INTERNAL LOGGING IMPLEMENTATION\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": ""

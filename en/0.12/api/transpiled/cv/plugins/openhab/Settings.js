@@ -13,7 +13,9 @@
         "construct": true
       },
       "qx.io.rest.Resource": {},
+      "cv.TemplateEngine": {},
       "qx.data.store.Rest": {},
+      "cv.io.openhab.Rest": {},
       "qx.util.Serializer": {},
       "qx.ui.form.TextField": {},
       "qx.ui.form.CheckBox": {},
@@ -130,9 +132,14 @@
           }
         };
         var service = this.__P_22_3 = new qx.io.rest.Resource(serviceDesc);
+        var client = cv.TemplateEngine.getInstance().visu;
         this._store = new qx.data.store.Rest(service, "get", {
           configureRequest: function configureRequest(req) {
             req.setRequestHeader("Content-Type", "application/json");
+
+            if (client instanceof cv.io.openhab.Rest) {
+              client.authorize(req);
+            }
           },
           manipulateData: function manipulateData(data) {
             // normalize the keys (replace .> with _) for the marshaller
@@ -172,11 +179,16 @@
           }
         };
         var config = this.__P_22_2 = new qx.io.rest.Resource(description);
+        var client = cv.TemplateEngine.getInstance().visu;
         config.addListener("getSuccess", function (ev) {
           this._createForm(ev.getRequest().getResponse());
         }, this);
         config.configureRequest(function (req) {
           req.setRequestHeader("Content-Type", "application/json");
+
+          if (client instanceof cv.io.openhab.Rest) {
+            client.authorize(req);
+          }
         });
         config.get();
 
@@ -300,10 +312,10 @@
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_22_2", "__P_22_3", "__P_22_7", "_store", "_window");
+      this._disposeObjects("__P_22_2", "__P_22_3", "__root", "_store", "_window");
     }
   });
   cv.plugins.openhab.Settings.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Settings.js.map?dt=1604955459866
+//# sourceMappingURL=Settings.js.map?dt=1612690386755

@@ -91,6 +91,51 @@
       ---------------------------------------------------------------------------
       */
       // overridden
+      _getFirstVisibleSelectable: function _getFirstVisibleSelectable() {
+        var selectables = this.getSelectables();
+
+        var widget = this._getWidget();
+
+        var scrollTop = widget.getScrollY();
+
+        for (var i = 0; i < selectables.length; i++) {
+          var bottom = widget.getItemBottom(selectables[i]);
+
+          if (bottom > scrollTop) {
+            return selectables[i];
+          }
+        }
+
+        return null;
+      },
+      // overridden
+      _getLastVisibleSelectable: function _getLastVisibleSelectable() {
+        var selectables = this.getSelectables();
+
+        var widget = this._getWidget();
+
+        var scrollTop = widget.getScrollY();
+        var innerHeight = widget.getInnerSize().height;
+        var scrollBottom = scrollTop + innerHeight;
+        var last = null;
+
+        for (var i = 0; i < selectables.length; i++) {
+          var top = widget.getItemTop(selectables[i]);
+
+          if (top > scrollBottom) {
+            break;
+          }
+
+          var bottom = widget.getItemBottom(selectables[i]);
+
+          if (bottom > scrollTop) {
+            last = selectables[i];
+          }
+        }
+
+        return last;
+      },
+      // overridden
       _getPage: function _getPage(lead, up) {
         var selectables = this.getSelectables();
         var length = selectables.length;
@@ -189,4 +234,4 @@
   qx.ui.core.selection.ScrollArea.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollArea.js.map?dt=1604955481340
+//# sourceMappingURL=ScrollArea.js.map?dt=1612690408078

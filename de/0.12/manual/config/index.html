@@ -64,9 +64,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -224,7 +221,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <div class="toctree-wrapper compound">
 </div>
 <p>Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
-Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis &#8221;./config&#8221;
+Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis „./config“
 der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor oder
 mit dem integrierten grafischen Editor erfolgen. Die Verwendung des grafischen Editors
 setzt jedoch voraus, dass die CometVisu von einem PHP-fähigen Webserver (z.B Apache oder
@@ -234,20 +231,20 @@ Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibba
 <p>Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:</p>
 <ul class="simple">
-<li>Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Vezeichnisbaum &#8220;/var/www/visu…&#8221; des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.</li>
-<li>Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem textbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) &#8220;umlenken“.</li>
-<li>Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in &#8220;/usr/share/openhab/webapps/visu…&#8221; installiert.</li>
-<li>Wurde openHAB manuell z.B. in &#8220;/opt/openHAB&#8221; installiert, wird die CometVisu manuell in &#8220;/opt/openhab/www/visu...&#8221; installiert.</li>
+<li>Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Vezeichnisbaum „/var/www/visu…“ des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.</li>
+<li>Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem textbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) „umlenken“.</li>
+<li>Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in „/usr/share/openhab/webapps/visu…“ installiert.</li>
+<li>Wurde openHAB manuell z.B. in „/opt/openHAB“ installiert, wird die CometVisu manuell in „/opt/openhab/www/visu…“ installiert.</li>
 </ul>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="id1">
 <p class="first admonition-title">Zu tun</p>
-<p class="last">Wird openHAB2 als backend für die CometVisu eingesetzt, ...</p>
+<p class="last">Wird openHAB2 als backend für die CometVisu eingesetzt, …</p>
 </div>
 <p>Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den
 (fortgeschrittenen) Anwender direkt bearbeitet werden, ist es sehr ratsam,
 hierzu einen XML-fähigen Editor zu verwenden, welcher u.a. die Syntax der besseren
 Lesbarkeit einfärbt (z.B. Textwrangler auf MacOSX, WordPad++, Notepad++ oder
-MS XML Editor 2007 unter Windows und unter Linux z.B. vi mit &#8221;:syntax on&#8221;).</p>
+MS XML Editor 2007 unter Windows und unter Linux z.B. vi mit „:syntax on“).</p>
 <p>Allgemeine Informationen über das CometVisu XML Format findet man
 <a class="reference internal" href="xml-format.html"><span class="doc">hier</span></a>, Informationen zu den einzelnen
 Widgets in den jeweiligen Unterseiten.</p>
@@ -261,7 +258,7 @@ sollte man die Seite neu laden und den Browser-Cache löschen.</p>
 <p>Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
 eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue
 Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
-Darstellung) auch mit dem Link &#8220;Check Config&#8221; in der Fusszeile oder
+Darstellung) auch mit dem Link „Check Config“ in der Fusszeile oder
 durch Anhängen von check_config.php an den URL erzwingen.</p>
 <div class="toctree-wrapper compound">
 </div>
@@ -315,18 +312,18 @@ zurück zu navigieren .</li>
 <li>Der Zurück-Button des Browsers bzw. des Betriebssystems (zB. iOS, Android)</li>
 <li>Das Navbar-Widget in Verbingung mit Pagejump-Widgets</li>
 <li>Das <a class="reference internal" href="widgets/pagejump/index.html#pagejump"><span class="std std-ref">Pagejump-Widget</span></a> erlaubt den Aufruf einer beliebigen Unterseite.</li>
-<li>Das <a class="reference internal" href="widgets/group/index.html#group"><span class="std std-ref">Group-Widget</span></a> kann mit der Option <code class="docutils literal"><span class="pre">target=</span></code> ebenfalls eine beliebige Unterseite aufrufen.</li>
+<li>Das <a class="reference internal" href="widgets/group/index.html#group"><span class="std std-ref">Group-Widget</span></a> kann mit der Option <code class="docutils literal notranslate"><span class="pre">target=</span></code> ebenfalls eine beliebige Unterseite aufrufen.</li>
 <li>Eine Besonderheit ist der <a class="reference internal" href="xml-format.html#xml-format-statusbar"><span class="std std-ref">Statusbar</span></a> am unteren Bilschirmrand. Von dort können zB. externe URL aufgerufen werden.</li>
 </ul>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id3">
 <img alt="../_images/Navigation_withDescription.png" src="../_images/Navigation_withDescription.png" />
-<p class="caption"><span class="caption-text">Übersicht der wichtigsten Navigationselemente.</span></p>
+<p class="caption"><span class="caption-text">Übersicht der wichtigsten Navigationselemente.</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>Ebenso sind verschiedene Funktionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:</p>
 <ul class="simple">
-<li>Per KNX Gruppenadresse kann auf eine Unterseite gesprungen werden, wenn das Attribut <code class="docutils literal"><span class="pre">ga=x/y/z</span></code> in der zugehörigen
+<li>Per KNX Gruppenadresse kann auf eine Unterseite gesprungen werden, wenn das Attribut <code class="docutils literal notranslate"><span class="pre">ga=x/y/z</span></code> in der zugehörigen
 <a class="reference internal" href="widgets/page/index.html#page"><span class="std std-ref">Page Definition</span></a> eingetragen ist.</li>
-<li>Die Optionen <code class="docutils literal"><span class="pre">screensave_time</span></code> und <code class="docutils literal"><span class="pre">screensave_page</span></code>. Damit wird nach Ablauf einer definierten Zeit eine festgelegte
+<li>Die Optionen <code class="docutils literal notranslate"><span class="pre">screensave_time</span></code> und <code class="docutils literal notranslate"><span class="pre">screensave_page</span></code>. Damit wird nach Ablauf einer definierten Zeit eine festgelegte
 Seite aufgerufen.</li>
 <li>Das <a class="reference internal" href="widgets/plugins/timeout/index.html#timeout"><span class="std std-ref">timeout-Plugin</span></a> funktioniert ähnlich der screensave-Funktion, wird aber auch ausgeführt, wenn die Unterseite
 per GA aufgerufen wurde.</li>
@@ -343,18 +340,18 @@ per GA aufgerufen wurde.</li>
 <li>Alaska</li>
 <li>Alaska Slim</li>
 </ul>
-<div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="id2">
 <p class="first admonition-title">Zu tun</p>
 <p class="last">Weitere Beispielseiten für die anderen Designs</p>
 </div>
 </div>
 <div class="section" id="grundlegende-elemente-zum-gestalten-des-layouts">
 <h2>Grundlegende Elemente zum Gestalten des Layouts<a class="headerlink" href="#grundlegende-elemente-zum-gestalten-des-layouts" title="Link zu dieser Überschrift">¶</a></h2>
-<p>In der CometVisu kann die Größe und Anordnung der Widgets mit dem Kind-Element <code class="docutils literal"><span class="pre">Layout</span></code> gesteuert werden.
-Damit kann ein &#8220;Responsive Design&#8221; realisiert werden, dass sich an die Displaygröße des Endgerätes anpasst, vom dem
+<p>In der CometVisu kann die Größe und Anordnung der Widgets mit dem Kind-Element <code class="docutils literal notranslate"><span class="pre">Layout</span></code> gesteuert werden.
+Damit kann ein „Responsive Design“ realisiert werden, dass sich an die Displaygröße des Endgerätes anpasst, vom dem
 aus die CometVisu betrachtet wird. Dies erfolgt nicht nur zum Zeitpunkt des URL-Aufrufes, sondern dynamisch
 zB. auch beim Drehen des Endgerätes vom Quer- ins Hochformat bzw. beim Ändern der Fenstergröße am PC.</p>
-<p>Innerhalb der Widgets stehen noch verschiedene Attribute wie <code class="docutils literal"><span class="pre">width</span></code>, <code class="docutils literal"><span class="pre">height</span></code>, etc. zur Verfügung. Damit kann
+<p>Innerhalb der Widgets stehen noch verschiedene Attribute wie <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">height</span></code>, etc. zur Verfügung. Damit kann
 die Größe des Widgetinhaltes (zB. Bild- und Diagrammgröße, etc.) gesteuert werden.</p>
 <p>Detaillierte Beschreibungen zur Formatierung der Widgetgrößen- und -inhalte:</p>
 <div class="toctree-wrapper compound">
@@ -443,7 +440,7 @@ eingebaut sein oder per Plugin-Schnittstelle integriert.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -489,7 +486,7 @@ eingebaut sein oder per Plugin-Schnittstelle integriert.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

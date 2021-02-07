@@ -41,11 +41,16 @@
   "type": "interface",
   "properties": {
     "path": {
-      "type": "property",
-      "name": "path",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 42,
+          "column": 12
+        }
+      },
       "jsdoc": {
         "@description": [
           {
@@ -59,14 +64,21 @@
             "body": "{String}"
           }
         ]
-      }
+      },
+      "name": "path",
+      "propertyType": "new"
     },
     "pageType": {
-      "type": "property",
-      "name": "pageType",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 16
+        }
+      },
       "jsdoc": {
         "@description": [
           {
@@ -80,21 +92,37 @@
             "body": "{String}"
           }
         ]
-      }
+      },
+      "name": "pageType",
+      "propertyType": "new"
     },
     "backdropAlign": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 21
+        }
+      },
       "name": "backdropAlign",
-      "abstract": true,
-      "mixin": false,
-      "access": "public"
+      "propertyType": "new"
     },
     "backdropType": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 20
+        }
+      },
       "name": "backdropType",
-      "abstract": true,
-      "mixin": false,
-      "access": "public"
+      "propertyType": "new"
     }
   },
   "members": {

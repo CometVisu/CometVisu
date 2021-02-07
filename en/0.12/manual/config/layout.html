@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -199,7 +196,7 @@ by an online translation service.</p>
 </div>
 <div class="section" id="functions-for-controlling-the-layout">
 <span id="layout"></span><h1>Functions for controlling the layout<a class="headerlink" href="#functions-for-controlling-the-layout" title="Permalink to this headline">¶</a></h1>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="id1">
 <p class="first admonition-title">Todo</p>
 <ul class="last simple">
 <li>Distinction between standard construction vs. 2D pages</li>
@@ -233,8 +230,7 @@ in the following sections:</p>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
-<dt>line</dt>
-<dd><ul class="first last simple">
+<dt>line</dt><dd><ul class="simple">
 <li>layout</li>
 </ul>
 </dd>
@@ -313,24 +309,24 @@ in the following sections:</p>
 <div class="section" id="the-attribute-colspan">
 <h2>The attribute colspan<a class="headerlink" href="#the-attribute-colspan" title="Permalink to this headline">¶</a></h2>
 <p>Colspan determines how many columns the widget should occupy
-on a large display. The default value is <code class="docutils literal"><span class="pre">colspan=&quot;6&quot;</span></code>,
+on a large display. The default value is <code class="docutils literal notranslate"><span class="pre">colspan=&quot;6&quot;</span></code>,
 if not specified. This sets the widget width to half the page size.
 Thus, two widgets fit next to each other, only then is the next row
 started with the next widget.</p>
 <p>The Colspan attribute may also contain non-integer information, but
 it should be noted (for visual reasons) that the sum of the colspan
 definitions per row returns 12.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id2">
 <img alt="../_images/Layout_colspan1.png" src="../_images/Layout_colspan1.png" />
-<p class="caption"><span class="caption-text">Simple text widgets with different colspan values</span></p>
+<p class="caption"><span class="caption-text">Simple text widgets with different colspan values</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<p>The special case <code class="docutils literal"><span class="pre">colpan=&quot;0&quot;</span></code> creates a widget with the minimum
+<p>The special case <code class="docutils literal notranslate"><span class="pre">colpan=&quot;0&quot;</span></code> creates a widget with the minimum
 width of the content.</p>
-<p>For each widget, <code class="docutils literal"><span class="pre">colspan-m</span></code> or <code class="docutils literal"><span class="pre">colspan-s</span></code> can also be used to
+<p>For each widget, <code class="docutils literal notranslate"><span class="pre">colspan-m</span></code> or <code class="docutils literal notranslate"><span class="pre">colspan-s</span></code> can also be used to
 specify a widget width for smaller displays. This is necessary because
 in practice the font size and the size of the control surfaces
 (e.g. button size) scale differently than the actual display size.</p>
-<p>Furthermore, <code class="docutils literal"><span class="pre">colspan-m</span></code> and <code class="docutils literal"><span class="pre">colspan-s</span></code> can also affect the layout
+<p>Furthermore, <code class="docutils literal notranslate"><span class="pre">colspan-m</span></code> and <code class="docutils literal notranslate"><span class="pre">colspan-s</span></code> can also affect the layout
 in portrait format, if the same config is used on several devices
 or if the display should be rearranged on a device when the
 screen is rotated.</p>
@@ -344,7 +340,7 @@ provides eg.`&lt;viewportsizes.com&gt;`__</p>
 </div>
 <p>An example is shown below in which the widgets are arranged
 differently on 3 display sizes.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;text&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;text&gt;</span>
     <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">colspan-m=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan-s=</span><span class="s">&quot;12&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;label&gt;</span>Colspan 3/6/12, Rowspan 1<span class="nt">&lt;/label&gt;</span>
 <span class="nt">&lt;/text&gt;</span>
@@ -362,24 +358,24 @@ differently on 3 display sizes.</p>
 <span class="nt">&lt;/text&gt;</span>
 </pre></div>
 </div>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id3">
 <img alt="../_images/Layout_colspan_screensize_large.png" src="../_images/Layout_colspan_screensize_large.png" />
-<p class="caption"><span class="caption-text">Representation at a resolution of 1100x640</span></p>
+<p class="caption"><span class="caption-text">Representation at a resolution of 1100x640</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id4">
 <img alt="../_images/Layout_colspan_screensize_medium_640x400.png" src="../_images/Layout_colspan_screensize_medium_640x400.png" />
-<p class="caption"><span class="caption-text">Representation at a resolution of 640x400 (Smartphone in landscape mode)</span></p>
+<p class="caption"><span class="caption-text">Representation at a resolution of 640x400 (Smartphone in landscape mode)</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id5">
 <img alt="../_images/Layout_colspan_screensize_small_400x640.png" src="../_images/Layout_colspan_screensize_small_400x640.png" />
-<p class="caption"><span class="caption-text">Representation at a resolution of 400x640 (Smartphone in portrait mode)</span></p>
+<p class="caption"><span class="caption-text">Representation at a resolution of 400x640 (Smartphone in portrait mode)</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="the-attribute-rowspan">
 <h2>The attribute rowspan<a class="headerlink" href="#the-attribute-rowspan" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">Rowspan</span></code> determines the number of lines a widget occupies. Currently
-only integer statements are allowed for <code class="docutils literal"><span class="pre">rowspan</span></code>. Most widgets
-do not require <code class="docutils literal"><span class="pre">rowspan</span></code> because the default value <code class="docutils literal"><span class="pre">rowspan=&quot;1&quot;</span></code>
+<p><code class="docutils literal notranslate"><span class="pre">Rowspan</span></code> determines the number of lines a widget occupies. Currently
+only integer statements are allowed for <code class="docutils literal notranslate"><span class="pre">rowspan</span></code>. Most widgets
+do not require <code class="docutils literal notranslate"><span class="pre">rowspan</span></code> because the default value <code class="docutils literal notranslate"><span class="pre">rowspan=&quot;1&quot;</span></code>
 is sufficient.</p>
 <p>Necessary or meaningful may be the specification for the following widgets:</p>
 <ul class="simple">
@@ -389,26 +385,26 @@ is sufficient.</p>
 <li>Diagram-plugin</li>
 <li>Group</li>
 </ul>
-<p>In the example below, the <code class="docutils literal"><span class="pre">rowspan=&quot;5&quot;</span></code> forces the image widget
+<p>In the example below, the <code class="docutils literal notranslate"><span class="pre">rowspan=&quot;5&quot;</span></code> forces the image widget
 to be the same as the five individual widgets on the left.</p>
-<div class="figure" id="id5">
+<div class="figure align-default" id="id6">
 <img alt="../_images/Layout_rowspan_mitImage.png" src="../_images/Layout_rowspan_mitImage.png" />
-<p class="caption"><span class="caption-text">Image-Widget with rowspan=&#8221;5&#8221;</span></p>
+<p class="caption"><span class="caption-text">Image-Widget with rowspan=”5”</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>Because the widget arrangement is one after the other in rows,
-using different values for <code class="docutils literal"><span class="pre">rowspan</span></code> can create empty areas.</p>
-<div class="figure" id="id6">
+using different values for <code class="docutils literal notranslate"><span class="pre">rowspan</span></code> can create empty areas.</p>
+<div class="figure align-default" id="id7">
 <img alt="../_images/Layout_rowspan.png" src="../_images/Layout_rowspan.png" />
-<p class="caption"><span class="caption-text">Empty areas in interaction with the rowspan element</span></p>
+<p class="caption"><span class="caption-text">Empty areas in interaction with the rowspan element</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 <p>In such cases, the use of the Group widget in conjunction with
 the nowidget attribute can be remedied.</p>
-<div class="figure" id="id7">
+<div class="figure align-default" id="id8">
 <img alt="../_images/Layout_rowspan_mitGroup.png" src="../_images/Layout_rowspan_mitGroup.png" />
-<p class="caption"><span class="caption-text">Control of the arrangement with an invisible group(Attribut <code class="docutils literal"><span class="pre">nowidget=&quot;true&quot;</span></code>)</span></p>
+<p class="caption"><span class="caption-text">Control of the arrangement with an invisible group(Attribut <code class="docutils literal notranslate"><span class="pre">nowidget=&quot;true&quot;</span></code>)</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 <p>Below the xml code for the screenshot with the correct arrangement.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;text&gt;</span>
         <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
@@ -454,7 +450,7 @@ the nowidget attribute can be remedied.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -500,7 +496,7 @@ the nowidget attribute can be remedied.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

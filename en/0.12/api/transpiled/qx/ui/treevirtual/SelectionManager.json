@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 223,
+        "line": 219,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007 Derrell Lipman\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Derrell Lipman (derrell)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>A selection manager. This is a helper class that handles all selection\n related events and updates a SelectionModel.\n <p>\n This Selection Manager differs from its superclass in that we do not want\n rows to be selected when moving around with the keyboard.</p>"
@@ -112,7 +108,7 @@
           "column": 4
         },
         "end": {
-          "line": 189,
+          "line": 185,
           "column": 5
         }
       },
@@ -150,11 +146,11 @@
     "_handleExtendedClick": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 217,
+          "line": 213,
           "column": 5
         }
       },
@@ -416,11 +412,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 220,
+        "line": 216,
         "column": 13
       },
       "end": {
-        "line": 222,
+        "line": 218,
         "column": 3
       }
     },

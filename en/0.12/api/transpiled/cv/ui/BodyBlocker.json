@@ -17,14 +17,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>noinspection JSUnusedGlobalSymbols</p>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "type": "class",
   "isAbstract": false,
@@ -41,14 +34,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nCONSTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "members": {
     "__body": {

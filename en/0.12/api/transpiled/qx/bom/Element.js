@@ -45,7 +45,9 @@
       "qx.event.Registration": {},
       "qx.event.handler.Focus": {},
       "qx.event.dispatch.MouseCapture": {},
-      "qx.bom.client.Engine": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
       "qx.xml.Document": {},
       "qx.dom.Hierarchy": {}
     },
@@ -308,4 +310,4 @@
   qx.bom.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1604955464948
+//# sourceMappingURL=Element.js.map?dt=1612690392172

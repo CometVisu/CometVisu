@@ -1,0 +1,67 @@
+{
+  "className": "osparc.theme.common.Appearance",
+  "packageName": "osparc.theme.common",
+  "name": "Appearance",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 38,
+        "column": 0
+      },
+      "end": {
+        "line": 2604,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The simple qooxdoo appearance theme.</p>"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/16/apps/office-calendar.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/16/places/folder-open.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/16/places/folder.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/16/mimetypes/text-plain.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/16/actions/view-refresh.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/16/actions/window-close.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/16/actions/dialog-cancel.png"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/icon/Tango/16/actions/dialog-ok.png"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": [
+    "cv.theme.dark.Appearance"
+  ]
+}

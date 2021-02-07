@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 165,
+        "line": 167,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>Manager for color themes</p>"
@@ -120,7 +116,7 @@
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 105,
           "column": 5
         }
       },
@@ -162,11 +158,11 @@
     "resolve": {
       "location": {
         "start": {
-          "line": 113,
+          "line": 115,
           "column": 4
         },
         "end": {
-          "line": 134,
+          "line": 136,
           "column": 5
         }
       },
@@ -205,11 +201,11 @@
     "isDynamic": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 145,
           "column": 4
         },
         "end": {
-          "line": 163,
+          "line": 165,
           "column": 5
         }
       },

@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tristan Koch (tristankoch)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Send HTTP requests and handle responses using the HTTP client API.\n Configuration of the request is done with properties. Events are fired for\n various states in the life cycle of a request, such as \"success\". Request\n data is transparently processed.\n Here is how to request a JSON file and listen to the \"success\" event:\n </p>\n<pre class=\"javascript\">\n var req = new qx.io.request.Xhr(\"/some/path/file.json\");\n req.addListener(\"success\", function(e) {\n   var req = e.getTarget();\n\n\n   req.getResponse();\n }, this);\n\n req.send();\n </pre>\n<p>Some noteable features:</p>\n<ul>\n<li>Abstraction of low-level request</li>\n<li>Convenient setup using properties</li>\n<li>Fine-grained events</li>\n<li>Symbolic phases</li>\n<li>Transparent processing of request data</li>\n<li>Stream-lined authentication</li>\n<li>Automagic parsing of response based on content type\nCross-origin requests are supported, but require browser support\n(see <a href=\"http://caniuse.com/#search=CORS\">caniuse.com</a>) and backend configuration\n(see <a href=\"https://developer.mozilla.org/en-US/docs/docs/HTTP/Access_control_CORS>MDN</a>).\nNote that IE's <code>XDomainRequest</code> is not currently supported.\nFor a cross-browser alternative, consider {@link qx.io.request.Jsonp}.\nIn order to debug requests, set the environment flag\n<code>qx.debug.io</code>.\nInternally uses {@link qx.bom.request.Xhr}.</li>\n</ul>"
         }
       ]
@@ -335,10 +331,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  CONFIGURE TRANSPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Create XHR transport.</p>"
           }
         ],
@@ -403,14 +395,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.io.request.AbstractRequest",
@@ -429,14 +414,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.io.request.AbstractRequest",
@@ -455,14 +433,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.io.request.AbstractRequest",
@@ -483,10 +454,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PARSING\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Create response parser.</p>"

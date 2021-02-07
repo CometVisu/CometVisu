@@ -12,8 +12,12 @@
       "qx.event.type.Native": {
         "require": true
       },
-      "qx.bom.client.OperatingSystem": {},
-      "qx.bom.client.Engine": {}
+      "qx.bom.client.OperatingSystem": {
+        "require": true
+      },
+      "qx.bom.client.Engine": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
@@ -239,4 +243,4 @@
   qx.event.type.Dom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dom.js.map?dt=1604956091095
+//# sourceMappingURL=Dom.js.map?dt=1612691025181

@@ -10,7 +10,8 @@
         "require": true
       },
       "qx.bom.client.EcmaScript": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       }
     },
     "environment": {
@@ -21,10 +22,16 @@
           "className": "qx.bom.client.EcmaScript"
         },
         "ecmascript.object.values": {
-          "defer": true
+          "defer": true,
+          "className": "qx.bom.client.EcmaScript"
         },
         "ecmascript.object.is": {
-          "defer": true
+          "defer": true,
+          "className": "qx.bom.client.EcmaScript"
+        },
+        "ecmascript.object.assign": {
+          "defer": true,
+          "className": "qx.bom.client.EcmaScript"
         }
       }
     }
@@ -108,6 +115,42 @@
           // Step 6.a: NaN == NaN
           return x !== x && y !== y;
         }
+      },
+
+      /**
+       * Copies all enumerable own properties from one or more source objects to a target object..
+       *
+       * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN web docs: Object.assign()</a>
+       *
+       * @signature function(target,varArgs)
+       * @param target {Object} The target object - what to apply the sources’ properties to, which is returned after it is modified. 
+       * @param sources {Object} The source object(s) - objects containing the properties you want to apply.
+       * @return {Object} The target object.
+       */
+      assign: function assign(target, sources) {
+        // .length of function is 2
+        'use strict';
+
+        if (target === null || target === undefined) {
+          throw new TypeError('Cannot convert undefined or null to object');
+        }
+
+        var to = Object(target);
+
+        for (var index = 1; index < arguments.length; index++) {
+          var nextSource = arguments[index];
+
+          if (nextSource !== null && nextSource !== undefined) {
+            for (var nextKey in nextSource) {
+              // Avoid bugs when hasOwnProperty is shadowed
+              if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                to[nextKey] = nextSource[nextKey];
+              }
+            }
+          }
+        }
+
+        return to;
       }
     },
     defer: function defer(statics) {
@@ -124,10 +167,15 @@
 
       if (!qx.core.Environment.get("ecmascript.object.is")) {
         Object.is = statics.is;
+      } // assign
+
+
+      if (!qx.core.Environment.get("ecmascript.object.assign")) {
+        Object.assign = statics.assign;
       }
     }
   });
   qx.lang.normalize.Object.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Object.js.map?dt=1604955476349
+//# sourceMappingURL=Object.js.map?dt=1612690402920

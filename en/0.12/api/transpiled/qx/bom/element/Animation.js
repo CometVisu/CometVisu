@@ -9,7 +9,9 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.CssAnimation": {},
+      "qx.bom.client.CssAnimation": {
+        "require": true
+      },
       "qx.bom.element.AnimationCss": {},
       "qx.bom.element.AnimationJs": {},
       "qx.lang.String": {},
@@ -187,4 +189,4 @@
   qx.bom.element.Animation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Animation.js.map?dt=1604955467409
+//# sourceMappingURL=Animation.js.map?dt=1612690394403

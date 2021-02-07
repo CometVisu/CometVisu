@@ -17,9 +17,18 @@
       "qx.lang.Function": {},
       "qx.lang.Json": {},
       "qx.core.Init": {},
-      "qx.bom.client.Browser": {},
-      "qx.bom.client.Engine": {},
-      "qx.bom.client.OperatingSystem": {}
+      "qx.bom.client.Browser": {
+        "require": true
+      },
+      "qx.bom.client.Engine": {
+        "require": true
+      },
+      "qx.bom.client.OperatingSystem": {
+        "require": true
+      },
+      "qx.bom.client.EcmaScript": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
@@ -36,7 +45,9 @@
         "os.version": {
           "className": "qx.bom.client.OperatingSystem"
         },
-        "ecmascript.function.async": {}
+        "ecmascript.function.async": {
+          "className": "qx.bom.client.EcmaScript"
+        }
       }
     }
   };
@@ -298,4 +309,4 @@
   qx.dev.unit.MRequirements.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRequirements.js.map?dt=1604955471021
+//# sourceMappingURL=MRequirements.js.map?dt=1612690397975

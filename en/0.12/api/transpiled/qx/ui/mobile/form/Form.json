@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tino Butz (tbtz)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Representation of a form. A form widget can contain one or more {@link Row} widgets.\n<em>Example</em>\n Here is an example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var title = new qx.ui.mobile.form.Title(\"Group\");\n   var form = new qx.ui.mobile.form.Form();\n   form.add(new qx.ui.mobile.form.TextField(), \"Username: \");\n   this.getRoot().add(title);\n   this.getRoot().add(new qx.ui.mobile.form.renderer.Single(form));\n </pre>\n<p>This example creates a form and adds a row with a text field in it.</p>"
         }
       ]
@@ -42,14 +38,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "members": {
     "__renderer": {
@@ -300,14 +289,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.form.Form",
@@ -484,5 +466,6 @@
       }
     }
   },
+  "events": {},
   "descendants": []
 }

@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 741,
+        "line": 766,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007 Derrell Lipman\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Derrell Lipman (derrell)\n David Perez Carmona (david-perez)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>A data cell renderer for the tree column of a simple tree\n This cell renderer has provisions for subclasses to easily extend the\n appearance of the tree. If the tree should contain images, labels,\n etc. before the indentation, the subclass should override the method\n _addExtraContentBeforeIndentation(). Similarly, content can be added before\n the icon by overriding _addExtraContentBeforeIcon(), and before the label\n by overriding _addExtraContentBeforeLabel().\n Each of these overridden methods that calls _addImage() can provide, as\n part of the map passed to _addImage(), a member called \"tooltip\" which\n contains the tool tip to present when the mouse is hovered over the image.\n If this class is subclassed to form a new cell renderer, an instance of it\n must be provided, via the 'custom' parameter, to the TreeVirtual\n constructor.</p>"
@@ -243,14 +239,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
@@ -269,14 +258,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
@@ -291,18 +273,11 @@
           "column": 4
         },
         "end": {
-          "line": 239,
+          "line": 241,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
@@ -313,11 +288,11 @@
     "_addImage": {
       "location": {
         "start": {
-          "line": 266,
+          "line": 268,
           "column": 4
         },
         "end": {
-          "line": 351,
+          "line": 353,
           "column": 5
         }
       },
@@ -352,11 +327,11 @@
     "_addIndentation": {
       "location": {
         "start": {
-          "line": 374,
+          "line": 376,
           "column": 4
         },
         "end": {
-          "line": 415,
+          "line": 417,
           "column": 5
         }
       },
@@ -398,11 +373,11 @@
     "_addIcon": {
       "location": {
         "start": {
-          "line": 432,
+          "line": 434,
           "column": 4
         },
         "end": {
-          "line": 475,
+          "line": 477,
           "column": 5
         }
       },
@@ -444,11 +419,11 @@
     "_addLabel": {
       "location": {
         "start": {
-          "line": 493,
+          "line": 495,
           "column": 4
         },
         "end": {
-          "line": 522,
+          "line": 524,
           "column": 5
         }
       },
@@ -490,11 +465,11 @@
     "_addExtraContentBeforeIndentation": {
       "location": {
         "start": {
-          "line": 539,
+          "line": 541,
           "column": 4
         },
         "end": {
-          "line": 542,
+          "line": 544,
           "column": 5
         }
       },
@@ -536,11 +511,11 @@
     "_addExtraContentBeforeIcon": {
       "location": {
         "start": {
-          "line": 559,
+          "line": 561,
           "column": 4
         },
         "end": {
-          "line": 562,
+          "line": 564,
           "column": 5
         }
       },
@@ -582,11 +557,11 @@
     "_addExtraContentBeforeLabel": {
       "location": {
         "start": {
-          "line": 579,
+          "line": 581,
           "column": 4
         },
         "end": {
-          "line": 582,
+          "line": 584,
           "column": 5
         }
       },
@@ -628,11 +603,11 @@
     "_getIndentSymbol": {
       "location": {
         "start": {
-          "line": 615,
+          "line": 617,
           "column": 4
         },
         "end": {
-          "line": 735,
+          "line": 737,
           "column": 5
         }
       },
@@ -691,6 +666,52 @@
       },
       "type": "function",
       "access": "protected"
+    },
+    "getOpenCloseButtonPosition": {
+      "location": {
+        "start": {
+          "line": 751,
+          "column": 4
+        },
+        "end": {
+          "line": 760,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determine the position in the cell of the open/close button image</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "table {Table}\n   The column of indentation being requested, zero-relative",
+            "paramName": "table",
+            "description": "\n   The column of indentation being requested, zero-relative",
+            "type": "Table"
+          },
+          {
+            "name": "@param",
+            "body": "node {Node}\n   The node being displayed in the row.  The properties of a node are\n   described in {@link qx.ui.treevirtual.SimpleTreeDataModel}",
+            "paramName": "node",
+            "description": "\n   The node being displayed in the row.  The properties of a node are\n   described in {@link qx.ui.treevirtual.SimpleTreeDataModel}",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Position of the Open/Close Button",
+            "type": "Object",
+            "description": " Position of the Open/Close Button"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
     },
     "getQxOwner": {
       "type": "function",
@@ -1171,11 +1192,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 738,
+        "line": 763,
         "column": 13
       },
       "end": {
-        "line": 740,
+        "line": 765,
         "column": 3
       }
     },

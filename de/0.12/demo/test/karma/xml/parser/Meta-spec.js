@@ -70,7 +70,7 @@ describe("testing the meta parser", function() {
         </notifications>
       <statusbar>
         <status type="html"><![CDATA[
-        <img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+        <img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
           - <a href="manager.php">Config-Manager</a>
           - <a href=".?config=demo&forceReload=true">Reload</a>
           - <a href=".">Default Config</a>

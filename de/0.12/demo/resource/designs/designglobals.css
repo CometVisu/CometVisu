@@ -444,9 +444,6 @@ button.ui-slider-handle {
 .popup_background.notification {
   position: absolute;
   padding: 30px;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 50%;
   width: auto;
   height: auto;
   max-width: calc(100vw - 60px);
@@ -491,7 +488,7 @@ button.ui-slider-handle {
   overflow-y: auto;
 }
 
-.popup .main .icon:not(.spinner):not(.rsslogRow) {
+.popup .main > div > .icon:not(.spinner) {
   float: left;
   margin: 0 1em 0 0;
   vertical-align: top;

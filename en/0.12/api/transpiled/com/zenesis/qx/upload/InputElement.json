@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 75,
+        "line": 100,
         "column": 3
       }
     }
@@ -26,28 +26,68 @@
         "column": 13
       },
       "end": {
-        "line": 51,
+        "line": 50,
         "column": 3
       }
     },
     "jsdoc": {}
   },
   "properties": {
-    "multiple": {
+    "acceptUpload": {
       "location": {
         "start": {
-          "line": 54,
-          "column": 4
+          "line": 53,
+          "column": 2
         },
         "end": {
           "line": 58,
           "column": 5
         }
       },
+      "name": "acceptUpload",
+      "propertyType": "new",
+      "apply": "_applyAcceptUpload",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "multiple": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 5
+        }
+      },
       "name": "multiple",
       "propertyType": "new",
       "apply": "_applyMultiple",
+      "nullable": false,
       "init": false,
+      "allowNull": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "directory": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 5
+        }
+      },
+      "name": "directory",
+      "propertyType": "new",
+      "apply": "_applyDirectory",
+      "nullable": false,
+      "init": false,
+      "allowNull": false,
       "check": "Boolean",
       "defaultValue": false
     },
@@ -88,11 +128,11 @@
     "__relatedWidget": {
       "location": {
         "start": {
-          "line": 62,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 62,
+          "line": 74,
           "column": 25
         }
       },
@@ -102,25 +142,59 @@
     "getWidget": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 66,
+          "line": 78,
           "column": 5
         }
       },
       "type": "function",
       "access": "public"
     },
-    "_applyMultiple": {
+    "_applyAcceptUpload": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 73,
+          "line": 85,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "acceptUpload"
+      ]
+    },
+    "_applyDirectory": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "directory"
+      ]
+    },
+    "_applyMultiple": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4
+        },
+        "end": {
+          "line": 98,
           "column": 5
         }
       },
@@ -266,6 +340,72 @@
         ]
       }
     },
+    "getAcceptUpload": {
+      "type": "function",
+      "name": "getAcceptUpload",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>acceptUpload</code>.\n\nFor further details take a look at the property definition: {@link #acceptUpload}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for acceptUpload"
+          }
+        ]
+      }
+    },
+    "setAcceptUpload": {
+      "type": "function",
+      "name": "setAcceptUpload",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>acceptUpload</code>.\n\nFor further details take a look at the property definition: {@link #acceptUpload}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for acceptUpload"
+          }
+        ]
+      }
+    },
+    "resetAcceptUpload": {
+      "type": "function",
+      "name": "resetAcceptUpload",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>acceptUpload</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #acceptUpload}."
+          }
+        ]
+      }
+    },
     "getMultiple": {
       "type": "function",
       "name": "getMultiple",
@@ -352,6 +492,96 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>multiple</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #multiple}."
+          }
+        ]
+      }
+    },
+    "getDirectory": {
+      "type": "function",
+      "name": "getDirectory",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>directory</code>.\n\nFor further details take a look at the property definition: {@link #directory}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for directory"
+          }
+        ]
+      }
+    },
+    "isDirectory": {
+      "type": "function",
+      "name": "isDirectory",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>directory</code>.\n\nFor further details take a look at the property definition: {@link #directory}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for directory"
+          }
+        ]
+      }
+    },
+    "setDirectory": {
+      "type": "function",
+      "name": "setDirectory",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>directory</code>.\n\nFor further details take a look at the property definition: {@link #directory}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for directory"
+          }
+        ]
+      }
+    },
+    "resetDirectory": {
+      "type": "function",
+      "name": "resetDirectory",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>directory</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #directory}."
           }
         ]
       }

@@ -337,7 +337,7 @@
        *
        * @param testFunction {qx.dev.unit.TestFunction} The current test
        */
-      __P_162_0: function __P_162_0(testFunction) {
+      __P_159_0: function __P_159_0(testFunction) {
         testFunction._addedListeners = [];
 
         if (!qx.event.Registration.addListenerOriginal) {
@@ -365,7 +365,7 @@
        *
        * @param testFunction {qx.dev.unit.TestFunction} The current test
        */
-      __P_162_1: function __P_162_1(testFunction) {
+      __P_159_1: function __P_159_1(testFunction) {
         // remove listeners added during test execution
         if (testFunction._addedListeners) {
           var listeners = testFunction._addedListeners;
@@ -421,4 +421,4 @@
   qx.dev.unit.TestResult.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestResult.js.map?dt=1604955471933
+//# sourceMappingURL=TestResult.js.map?dt=1612690398936

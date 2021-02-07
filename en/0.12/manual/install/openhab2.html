@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -202,13 +199,13 @@ by an online translation service.</p>
 <ol class="arabic simple">
 <li>Server with working openHAB installation (all examples refer to
 an openHAB installation on a Debian based system via the supplied
-package manager <code class="docutils literal"><span class="pre">apt</span></code>, with other distributions the paths used
+package manager <code class="docutils literal notranslate"><span class="pre">apt</span></code>, with other distributions the paths used
 in this manual may have to be adapted.</li>
 <li>An unpacked release of CometVisu on the server</li>
 <li>The openHAB extension <em>CometVisu</em></li>
 <li>The openHAB extension <em>PHP support for CometVisu</em>, if the editor
 of the CometVisu is to be used</li>
-<li>The configuration option <code class="docutils literal"><span class="pre">webFolder</span></code> with the path to CometVisu</li>
+<li>The configuration option <code class="docutils literal notranslate"><span class="pre">webFolder</span></code> with the path to CometVisu</li>
 </ol>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
@@ -228,17 +225,17 @@ the server in the following path <em>/var/www/cometvisu</em>. In
 addition, appropriate rights must still be set for the openHAB user
 and some configuration directories must be created.</p>
 <p>All this can be done by the following console commands:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> Copy the release directory to the right place
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Copy the release directory to the right place
 <span class="go">cp -r cometvisu/release /var/www/cometvisu</span>
 
-<span class="gp">#</span> Customize user rights <span class="k">for</span> openHAB
+<span class="gp"># </span>Customize user rights <span class="k">for</span> openHAB
 <span class="go">chown -R openhab:openhab /var/www/cometvisu</span>
 
-<span class="gp">#</span> Customize configuration directories
+<span class="gp"># </span>Customize configuration directories
 <span class="go">mkdir -p /etc/openhab2/cometvisu/resource/config</span>
 <span class="go">mkdir -p /etc/openhab2/cometvisu/resource/designs</span>
 
-<span class="gp">#</span> Customize user rights <span class="k">for</span> openHAB
+<span class="gp"># </span>Customize user rights <span class="k">for</span> openHAB
 <span class="go">chown -R openhab:openhab /etc/openhab2/cometvisu</span>
 </pre></div>
 </div>
@@ -255,14 +252,14 @@ corresponding extension is to be installed via the PaperUI
 (http: // openhab_address: 8080) -&gt; Add-ons -&gt; User
 Interfaces -&gt; CometVisu. If you also want to use the CometVisu
 editor, install the extension <em>PHP support for CometVisu</em>.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="../_images/openhab_paperui_user_interfaces.png" src="../_images/openhab_paperui_user_interfaces.png" />
-<p class="caption"><span class="caption-text">PaperUI - Add-ons - User Interfaces</span></p>
+<p class="caption"><span class="caption-text">PaperUI - Add-ons - User Interfaces</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The openHAB configuration file cometvisu.cfg, like all other
 configurations of the openHAB extensions, is located under
 <em>/etc/openhab2/services/</em> and should contain the following entries:</p>
-<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="c1"># Path on the server where the CometVisu is located</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># Path on the server where the CometVisu is located</span>
 <span class="na">webFolder</span><span class="o">=</span><span class="s">/var/www/cometvisu/</span>
 
 <span class="c1"># Relative path in the browser under which the CometVisu should be accessible</span>
@@ -270,9 +267,9 @@ configurations of the openHAB extensions, is located under
 </pre></div>
 </div>
 <p>The CometVisu can then be reached directly under the URL
-<code class="docutils literal"><span class="pre">http://openhab_address:8080/cometvisu/?Config</span> <span class="pre">=</span> <span class="pre">&lt;name&gt;</span></code> in
-the browser, where <code class="docutils literal"><span class="pre">&lt;name&gt;</span></code> is the name of
-the <code class="docutils literal"><span class="pre">visu_config_</span> <span class="pre">&lt;name&gt;</span> <span class="pre">Derives</span> <span class="pre">.xml</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">http://openhab_address:8080/cometvisu/?Config</span> <span class="pre">=</span> <span class="pre">&lt;name&gt;</span></code> in
+the browser, where <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> is the name of
+the <code class="docutils literal notranslate"><span class="pre">visu_config_</span> <span class="pre">&lt;name&gt;</span> <span class="pre">Derives</span> <span class="pre">.xml</span></code>.</p>
 </div>
 </div>
 
@@ -298,7 +295,7 @@ the <code class="docutils literal"><span class="pre">visu_config_</span> <span c
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -344,7 +341,7 @@ the <code class="docutils literal"><span class="pre">visu_config_</span> <span c
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

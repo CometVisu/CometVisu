@@ -54,14 +54,7 @@
           "column": 36
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>\"global\" functions (=&gt; state less)</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
@@ -104,14 +97,7 @@
           "column": 20
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>the Image() of all knows (i.e. used) icons</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
@@ -126,14 +112,7 @@
           "column": 17
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>mapping of ID to Cache entry (URL)</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
@@ -148,14 +127,7 @@
           "column": 21
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>array of all icons to fill where the Image is not ready yet</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
@@ -170,14 +142,7 @@
           "column": 19
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>handler for delay function</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },

@@ -10,7 +10,7 @@
       }
     },
     "environment": {
-      "provided": ["ecmascript.array.indexof", "ecmascript.array.lastindexof", "ecmascript.array.foreach", "ecmascript.array.filter", "ecmascript.array.map", "ecmascript.array.some", "ecmascript.array.find", "ecmascript.array.findIndex", "ecmascript.array.every", "ecmascript.array.reduce", "ecmascript.array.reduceright", "ecmascript.array.includes", "ecmascript.date.now", "ecmascript.date.parse", "ecmascript.error.toString", "ecmascript.error.stacktrace", "ecmascript.function.bind", "ecmascript.object.keys", "ecmascript.object.values", "ecmascript.object.is", "ecmascript.number.EPSILON", "ecmascript.string.startsWith", "ecmascript.string.endsWith", "ecmascript.string.trim", "ecmascript.function.async", "ecmascript.mutationobserver", "ecmascript.bigint", "ecmascript.bigint.tolocalestring", "ecmascript.promise.native"],
+      "provided": ["ecmascript.array.indexof", "ecmascript.array.lastindexof", "ecmascript.array.foreach", "ecmascript.array.filter", "ecmascript.array.map", "ecmascript.array.some", "ecmascript.array.find", "ecmascript.array.findIndex", "ecmascript.array.every", "ecmascript.array.reduce", "ecmascript.array.reduceright", "ecmascript.array.includes", "ecmascript.date.now", "ecmascript.date.parse", "ecmascript.error.toString", "ecmascript.error.stacktrace", "ecmascript.function.bind", "ecmascript.object.keys", "ecmascript.object.values", "ecmascript.object.is", "ecmascript.object.assign", "ecmascript.number.EPSILON", "ecmascript.string.startsWith", "ecmascript.string.endsWith", "ecmascript.string.trim", "ecmascript.string.codePointAt", "ecmascript.string.fromCodePoint", "ecmascript.function.async", "ecmascript.mutationobserver", "ecmascript.bigint", "ecmascript.bigint.tolocalestring", "ecmascript.promise.native"],
       "required": {}
     }
   };
@@ -254,6 +254,15 @@
       },
 
       /**
+       * Checks if 'assign' is supported on the Object object.
+       * @internal
+       * @return {Boolean} <code>true</code>, if the method is available.
+       */
+      getObjectAssign: function getObjectAssign() {
+        return !!Object.assign;
+      },
+
+      /**
        * Checks if 'now' is supported on the Date object.
        * @internal
        * @return {Boolean} <code>true</code>, if the method is available.
@@ -302,6 +311,24 @@
        */
       getStringTrim: function getStringTrim() {
         return typeof String.prototype.trim === "function";
+      },
+
+      /**
+       * Checks if 'codePointAt' is supported on the String object.
+       * @internal
+       * @return {Boolean} <code>true</code>, if the method is available.
+       */
+      getStringCodePointAt: function getStringCodePointAt() {
+        return typeof String.prototype.codePointAt === "function";
+      },
+
+      /**
+       * Checks if 'fromCodePoint' is supported on the String object.
+       * @internal
+       * @return {Boolean} <code>true</code>, if the method is available.
+       */
+      getStringFromCodePoint: function getStringFromCodePoint() {
+        return !!String.fromCodePoint;
       },
 
       /**
@@ -368,13 +395,16 @@
 
       qx.core.Environment.add("ecmascript.object.keys", statics.getObjectKeys);
       qx.core.Environment.add("ecmascript.object.values", statics.getObjectValues);
-      qx.core.Environment.add("ecmascript.object.is", statics.getObjectIs); // number polyfill
+      qx.core.Environment.add("ecmascript.object.is", statics.getObjectIs);
+      qx.core.Environment.add("ecmascript.object.assign", statics.getObjectAssign); // number polyfill
 
       qx.core.Environment.add("ecmascript.number.EPSILON", statics.getEpsilon); // string polyfill
 
       qx.core.Environment.add("ecmascript.string.startsWith", statics.getStringStartsWith);
       qx.core.Environment.add("ecmascript.string.endsWith", statics.getStringEndsWith);
-      qx.core.Environment.add("ecmascript.string.trim", statics.getStringTrim); // ES7 async function support
+      qx.core.Environment.add("ecmascript.string.trim", statics.getStringTrim);
+      qx.core.Environment.add("ecmascript.string.codePointAt", statics.getStringCodePointAt);
+      qx.core.Environment.add("ecmascript.string.fromCodePoint", statics.getStringFromCodePoint); // ES7 async function support
 
       qx.core.Environment.add("ecmascript.function.async", statics.getAsyncFunction); // MutationObserver
 
@@ -389,4 +419,4 @@
   qx.bom.client.EcmaScript.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EcmaScript.js.map?dt=1604955466693
+//# sourceMappingURL=EcmaScript.js.map?dt=1612690393744

@@ -23,10 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n     2006 Derrell Lipman\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n Derrell Lipman (derrell)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Transports requests to a server using the native XmlHttpRequest object.\n This class should not be used directly by client programmers.</p>"
         }
       ]
@@ -240,14 +236,7 @@
           "column": 26
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  CORE METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -324,10 +313,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  USER METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Implementation for sending the request</p>"
           }
         ]
@@ -376,10 +361,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT HANDLER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Listener method for change of the \"readystate\".\n Sets the internal state and informs the transport layer.</p>"
           }
         ],
@@ -417,10 +398,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  READY STATE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Get the ready state of this transports request.\n For qx.io.remote.transport.XmlHttp, ready state is a number between 1 to 4.</p>"
           }
         ],
@@ -449,10 +426,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  REQUEST HEADER SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Set a request header to this transports request.</p>"
@@ -495,10 +468,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  RESPONSE HEADER SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns a specific header provided by the server upon sending a request,\n with header name determined by the argument headerName.\n Only available at readyState 3 and 4 universally and in readyState 2\n in Gecko.\n Please note: Some servers/proxies (such as Selenium RC) will capitalize\n response header names. This is in accordance with RFC 2616[1], which\n states that HTTP 1.1 header names are case-insensitive, so your\n application should be case-agnostic when dealing with response headers.\n [1]<a href=\"http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2\">RFC 2616: HTTP Message Headers</a></p>"
@@ -608,10 +577,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  STATUS SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Returns the current status code of the request if available or -1 if not.</p>"
           }
         ],
@@ -678,10 +643,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  RESPONSE DATA SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Provides the response text from the request when available and null\n otherwise.  By passing true as the \"partial\" parameter of this method,\n incomplete data will be made available to the caller.</p>"
@@ -822,10 +783,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  APPLY ROUTINES\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Apply method for the \"state\" property.\n Fires an event for each state value to inform the listeners.</p>"
@@ -1971,14 +1928,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DEFER\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "destruct": {
     "location": {
@@ -1991,14 +1941,8 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
+  "events": {},
   "descendants": []
 }

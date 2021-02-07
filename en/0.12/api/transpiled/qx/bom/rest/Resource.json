@@ -23,10 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2013 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Richard Sternagel (rsternagel)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Client-side wrapper of a REST resource.\n Each instance represents a resource in terms of REST. A number of actions\n (usually HTTP methods) unique to the resource can be defined and invoked.\n A resource with its actions is configured declaratively by passing a resource\n description to the constructor, or programmatically using {@link #map}.\n Each action is associated to a route. A route is a combination of method,\n URL pattern and optional parameter constraints.\n An action is invoked by calling a method with the same name. When a URL\n pattern of a route contains positional parameters, those parameters must be\n passed when invoking the associated action. Also, constraints defined in the\n route must be satisfied.\n When an action is invoked, a request is configured according to the associated\n route, is passed the URL parameters, request body data, and finally send.\n What kind of request is send can be configured by overwriting {@link #_getRequest}.\n No constraints on the action's name or the scope of the URLs are imposed. However,\n if you want to follow RESTful design patterns it is recommended to name actions\n the same as the HTTP action.\n Strictly speaking, the <code>photos</code> instance represents two distinct resources\n and could therefore just as well mapped to two distinct resources (for instance,\n named photos and photosTagged). What style to choose depends on the kind of data\n returned. For instance, it seems sensible to stick with one resource if the filter\n only limits the result set (i.e. the individual results have the same properties).\n In order to respond to successful (or erroneous) invocations of actions,\n either listen to the generic \"success\" or \"error\" event and get the action\n from the event data, or listen to action specific events defined at runtime.\n Action specific events follow the pattern \"&lt;action&gt;Success\" and\n \"&lt;action&gt;Error\", e.g. \"indexSuccess\".</p>"
         }
       ],
@@ -526,18 +522,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
-            "body": "<p>Request</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
             "body": "<p>Set a request factory function to switch the request implementation.\n The created requests have to implement {@link qx.io.request.AbstractRequest}.</p>"
           }
         ],
@@ -785,18 +769,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
-            "body": "<p>Routes and actions</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
-          },
           {
             "name": "@description",
             "body": "<p>Map action to combination of method and URL pattern.</p>"
@@ -1517,10 +1489,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  DISPOSER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns true if the object is disposed.</p>"

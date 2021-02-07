@@ -18,8 +18,12 @@
       },
       "qx.lang.Type": {},
       "qx.event.Timer": {},
-      "qx.bom.client.Engine": {},
-      "qx.bom.client.Browser": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.event.Idle": {},
       "qx.bom.Iframe": {},
       "qx.util.ResourceManager": {}
@@ -333,4 +337,4 @@
   qx.bom.IframeHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IframeHistory.js.map?dt=1604955465357
+//# sourceMappingURL=IframeHistory.js.map?dt=1612690392567

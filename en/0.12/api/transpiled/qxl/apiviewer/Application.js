@@ -1,10 +1,6 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
-      "qx.core.Environment": {
-        "defer": "load",
-        "require": true
-      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -23,12 +19,6 @@
       "qxl.apiviewer.MWidgetRegistry": {},
       "qxl.apiviewer.Viewer": {},
       "qxl.apiviewer.Controller": {}
-    },
-    "environment": {
-      "provided": [],
-      "required": {
-        "apiviewer": {}
-      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -57,15 +47,11 @@
   
   ************************************************************************ */
 
-  /* ************************************************************************
-  
-  
-  ************************************************************************ */
-
   /**
    * Your apiviewer application
    *
    * @asset(qxl/apiviewer/*)
+   * @ignore (qxl.$$apiviewer)
    */
   qx.Class.define("qxl.apiviewer.Application", {
     extend: qx.application.Standalone,
@@ -74,12 +60,6 @@
       var uri = qx.util.ResourceManager.getInstance().toUri("qxl/apiviewer/css/apiviewer.css");
       qx.bom.Stylesheet.includeFile(uri);
     },
-
-    /*
-    *****************************************************************************
-     MEMBERS
-    *****************************************************************************
-    */
     members: {
       // overridden
       main: function main() {
@@ -98,17 +78,10 @@
       finalize: function finalize() {
         qxl.apiviewer.Application.prototype.finalize.base.call(this); // Finally load the data
 
-        var apidata = qx.core.Environment.get("apiviewer");
-        this.viewer._searchView.apiindex = apidata.apiindex;
-        this.controller.load(apidata);
+        this.viewer._searchView.apiindex = qxl.$$apiviewer.apiindex;
+        this.controller.load(qxl.$$apiviewer.classes);
       }
     },
-
-    /*
-    *****************************************************************************
-     DESTRUCTOR
-    *****************************************************************************
-    */
     destruct: function destruct() {
       this._disposeObjects("viewer", "controller");
     }
@@ -116,4 +89,4 @@
   qxl.apiviewer.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1604955494281
+//# sourceMappingURL=Application.js.map?dt=1612690420057

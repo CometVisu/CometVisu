@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -202,14 +199,14 @@ by an online translation service.</p>
 <div class="section" id="notifications">
 <span id="id1"></span><h1>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
-<div class="line"><strong>Available since version</strong>: 0.11.0</div>
 <div class="line"><strong>Author</strong>: Tobias Bräutigam</div>
+<div class="line"><strong>Available since version</strong>: 0.11.0</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">state-notification</span></code> element in the meta-area of the
+<p>The <code class="docutils literal notranslate"><span class="pre">state-notification</span></code> element in the meta-area of the
 configuration allows to create notifications when a new value
 for a widget is uploaded from the backend. These notifications
 can be displayed as a pop-up or as an entry in the
@@ -221,7 +218,7 @@ higher priority are underneath, this is indicated by a colored
 background.</p>
 <div class="literal-block-wrapper container" id="id2">
 <div class="code-block-caption"><span class="caption-text">A simple example shows a message in the message center when the living room lamp is on</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span> <span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span> <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;notifications&gt;</span>
         <span class="nt">&lt;state-notification</span> <span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
             <span class="nt">&lt;title-template&gt;</span>Light Livingroom<span class="nt">&lt;/title-template&gt;</span>
@@ -239,15 +236,15 @@ background.</p>
 </div>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">The <code class="docutils literal"><span class="pre">&lt;address&gt;</span></code> elements used here are exactly the same, as they are used in the widgets.
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code> elements used here are exactly the same, as they are used in the widgets.
 In the examples on this page addresses for the openHAB backend are used. An equivalent example for the default
-backend would be: <code class="docutils literal"><span class="pre">&lt;address</span> <span class="pre">transform=&quot;DPT:1.001&quot;&gt;12/0/3&lt;/address&gt;</span></code></p>
+backend would be: <code class="docutils literal notranslate"><span class="pre">&lt;address</span> <span class="pre">transform=&quot;DPT:1.001&quot;&gt;12/0/3&lt;/address&gt;</span></code></p>
 </div>
 <p><strong>Explanation:</strong></p>
-<p>Via the <code class="docutils literal"><span class="pre">address</span></code> element (several are possible) it is specified
+<p>Via the <code class="docutils literal notranslate"><span class="pre">address</span></code> element (several are possible) it is specified
 that a message is generated for incoming status updates for this
 address. A message consists of a title and the message content. The two
-elements <code class="docutils literal"><span class="pre">title-template</span></code> and <code class="docutils literal"><span class="pre">message-template</span></code> determine the
+elements <code class="docutils literal notranslate"><span class="pre">title-template</span></code> and <code class="docutils literal notranslate"><span class="pre">message-template</span></code> determine the
 content of the two message parts. The templates are
 <a class="reference external" href="'https://github.com/janl/mustache.js">mustache</a> templates, where
 specific placeholders can be placed anywhere in the text. The following
@@ -263,32 +260,32 @@ placeholders are available:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">address</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">address</span></code></td>
 <td>Address from which the status update came</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">value</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">value</span></code></td>
 <td>Value of the status update</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">date</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">date</span></code></td>
 <td>Date of receipt</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">time</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">time</span></code></td>
 <td>Time of receipt</td>
 </tr>
 </tbody>
 </table>
 <p>The example would generate the following message:</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>Light Livingroom
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Light Livingroom
 switched on at 12.45 o&#39;Clock
 </pre></div>
 </div>
-<p>Via <code class="docutils literal"><span class="pre">target=&quot;notificationCenter&quot;</span></code> it is determined that this
+<p>Via <code class="docutils literal notranslate"><span class="pre">target=&quot;notificationCenter&quot;</span></code> it is determined that this
 notification will be displayed in the message center at the left
-edge of the visu. Another possible value would be <code class="docutils literal"><span class="pre">popup</span></code> to
+edge of the visu. Another possible value would be <code class="docutils literal notranslate"><span class="pre">popup</span></code> to
 display the message as a popup.</p>
-<p><code class="docutils literal"><span class="pre">unique=&quot;true&quot;</span></code> specifies that the message will be displayed only
-once, and only if the value of the status update equals <code class="docutils literal"><span class="pre">&lt;condition&gt;</span></code>
-set <code class="docutils literal"><span class="pre">ON</span></code>, it means the message is displayed when the lamp is
+<p><code class="docutils literal notranslate"><span class="pre">unique=&quot;true&quot;</span></code> specifies that the message will be displayed only
+once, and only if the value of the status update equals <code class="docutils literal notranslate"><span class="pre">&lt;condition&gt;</span></code>
+set <code class="docutils literal notranslate"><span class="pre">ON</span></code>, it means the message is displayed when the lamp is
 turned on, when it is turned off, the message is automatically deleted.</p>
 <div class="section" id="explanation-of-the-attributes-in-the-state-notification-element">
 <h3>Explanation of the attributes in the state-notification element<a class="headerlink" href="#explanation-of-the-attributes-in-the-state-notification-element" title="Permalink to this headline">¶</a></h3>
@@ -303,7 +300,7 @@ turned on, when it is turned off, the message is automatically deleted.</p>
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="4">Attribute</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Content</th>
 <th class="head">Description</th>
@@ -358,7 +355,7 @@ turned on, when it is turned off, the message is automatically deleted.</p>
 <h3>Complex example with mapping<a class="headerlink" href="#complex-example-with-mapping" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper container" id="id3">
 <div class="code-block-caption"><span class="caption-text">Complex example with notifications for movements incl. Mapping</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;mappings&gt;</span>
         <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
             <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Corridor&quot;</span><span class="nt">&gt;</span>Floor OG<span class="nt">&lt;/entry&gt;</span>
@@ -385,7 +382,7 @@ turned on, when it is turned off, the message is automatically deleted.</p>
 </div>
 </div>
 <p>This example shows a notification when one of the motion detectors
-provides a movement with high priority (<code class="docutils literal"><span class="pre">severity=&quot;high&quot;</span></code>,
+provides a movement with high priority (<code class="docutils literal notranslate"><span class="pre">severity=&quot;high&quot;</span></code>,
 turns orange).</p>
 <p>To bring the somewhat cryptic address name into a readable
 format, a <a class="reference internal" href="mapping.html#mapping"><span class="std std-ref">Mapping</span></a> is used. If the motion
@@ -393,14 +390,14 @@ detector named <em>Motion_FF_Corridor</em> now signals a movement,
 the message would have the following content:</p>
 <div class="figure align-center" id="id4">
 <img alt="../_images/nachrichten_zentrale.png" src="../_images/nachrichten_zentrale.png" />
-<p class="caption"><span class="caption-text">Example of a message in the message center</span></p>
+<p class="caption"><span class="caption-text">Example of a message in the message center</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="speech">
 <h3>Speech<a class="headerlink" href="#speech" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper container" id="id5">
 <div class="code-block-caption"><span class="caption-text">Output of the message via the text-to-speech engine of the browser</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>    <span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>    <span class="nt">&lt;meta&gt;</span>
         <span class="nt">&lt;mappings&gt;</span>
             <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
                 <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Corridor&quot;</span><span class="nt">&gt;</span>Floor OG<span class="nt">&lt;/entry&gt;</span>
@@ -427,9 +424,9 @@ the message would have the following content:</p>
 </div>
 <p>This example generates speech output via the text-to-speech engine
 built into modern browsers. In this case, if one of the motion
-detectors identified by the three <code class="docutils literal"><span class="pre">address</span></code> entries returns <code class="docutils literal"><span class="pre">ON</span></code>,
+detectors identified by the three <code class="docutils literal notranslate"><span class="pre">address</span></code> entries returns <code class="docutils literal notranslate"><span class="pre">ON</span></code>,
 the following message is output.</p>
-<div class="highlight-text"><div class="highlight"><pre><span></span>Motion at Floor OG
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Motion at Floor OG
 </pre></div>
 </div>
 </div>
@@ -458,7 +455,7 @@ the following message is output.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -504,7 +501,7 @@ the following message is output.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

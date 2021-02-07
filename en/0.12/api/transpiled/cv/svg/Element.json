@@ -30,14 +30,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>****************************************\nCONSTRUCTOR\n****************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "members": {
     "_createDomElement": {

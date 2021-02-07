@@ -20,7 +20,8 @@
         "construct": true
       },
       "qx.bom.client.OperatingSystem": {
-        "construct": true
+        "construct": true,
+        "require": true
       },
       "qx.bom.element.Location": {},
       "qx.bom.element.Animation": {}
@@ -348,4 +349,4 @@
   qx.ui.mobile.container.MNativeScroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MNativeScroll.js.map?dt=1604955485336
+//# sourceMappingURL=MNativeScroll.js.map?dt=1612690411605

@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2013 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n Daniel Wagner (danielwagner)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>The Slider control is used to select a numerical value from a given range.\n It supports custom minimum/maximum values, step sizes and offsets (which limit\n the knob's range).\n </p>\n<h2>Markup</h2>\n<p>The Slider contains a single button element (the knob), which will be\n created if it's not already present.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-slider</code></td>\n       <td>Container element</td>\n       <td>Identifies the Slider widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-slider-knob</code></td>\n       <td>Slider knob (button)</td>\n       <td>Identifies and styles the Slider's draggable knob</td>\n     </tr>\n   </tbody>\n </table>\n<h2 class=\"widget-markup\">Generated DOM Structure</h2>"
         }
       ],
@@ -934,14 +930,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Make the slider widget available as a qxWeb module</p>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

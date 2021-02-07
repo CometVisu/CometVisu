@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>All widget used as scrollbars must implement this interface.</p>"
         }
       ]
@@ -33,16 +29,12 @@
   "type": "interface",
   "events": {
     "scroll": {
-      "location": {
-        "start": {
-          "line": 27,
-          "column": 4
-        },
-        "end": {
-          "line": 27,
-          "column": 35
-        }
-      },
+      "type": "event",
+      "name": "scroll",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
       "jsdoc": {
         "@description": [
           {
@@ -50,21 +42,15 @@
             "body": "<p>Fired if the user scroll</p>"
           }
         ]
-      },
-      "name": "scroll",
-      "type": "qx.event.type.Data"
+      }
     },
     "scrollAnimationEnd": {
-      "location": {
-        "start": {
-          "line": 29,
-          "column": 4
-        },
-        "end": {
-          "line": 29,
-          "column": 47
-        }
-      },
+      "type": "event",
+      "name": "scrollAnimationEnd",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
       "jsdoc": {
         "@description": [
           {
@@ -72,18 +58,21 @@
             "body": "<p>Fired as soon as the scroll animation ended.</p>"
           }
         ]
-      },
-      "name": "scrollAnimationEnd",
-      "type": "qx.event.type.Event"
+      }
     }
   },
   "properties": {
     "orientation": {
-      "type": "property",
-      "name": "orientation",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 38,
+          "column": 20
+        }
+      },
       "jsdoc": {
         "@description": [
           {
@@ -91,14 +80,21 @@
             "body": "<p>The scroll bar orientation</p>"
           }
         ]
-      }
+      },
+      "name": "orientation",
+      "propertyType": "new"
     },
     "maximum": {
-      "type": "property",
-      "name": "maximum",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 45,
+          "column": 16
+        }
+      },
       "jsdoc": {
         "@description": [
           {
@@ -106,14 +102,21 @@
             "body": "<p>The maximum value (difference between available size and\n content size).</p>"
           }
         ]
-      }
+      },
+      "name": "maximum",
+      "propertyType": "new"
     },
     "position": {
-      "type": "property",
-      "name": "position",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 56,
+          "column": 17
+        }
+      },
       "jsdoc": {
         "@description": [
           {
@@ -121,14 +124,21 @@
             "body": "<p>Position of the scrollbar (which means the scroll left/top of the\n attached area's pane)\n Strictly validates according to {@link #maximum}.\n Does not apply any correction to the incoming value. If you depend\n on this, please use {@link #scrollTo} instead.</p>"
           }
         ]
-      }
+      },
+      "name": "position",
+      "propertyType": "new"
     },
     "knobFactor": {
-      "type": "property",
-      "name": "knobFactor",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 19
+        }
+      },
       "jsdoc": {
         "@description": [
           {
@@ -136,7 +146,9 @@
             "body": "<p>Factor to apply to the width/height of the knob in relation\n to the dimension of the underlying area.</p>"
           }
         ]
-      }
+      },
+      "name": "knobFactor",
+      "propertyType": "new"
     }
   },
   "members": {

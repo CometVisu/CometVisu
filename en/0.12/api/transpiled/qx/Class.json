@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 1736,
+        "line": 1741,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n John Spackman (john.spackman@zenesis.com)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>This class is one of the most important parts of qooxdoo's\n object-oriented features.\n Its {@link #define} method is used to create qooxdoo classes.\n Each instance of a class defined by {@link #define} has\n the following keys attached to the constructor and the prototype:\n </p>\n<table>\n <tr><th><code>classname</code></th><td>The fully-qualified name of the class (e.g. <code>\"qx.ui.core.Widget\"</code>).</td></tr>\n <tr><th><code>basename</code></th><td>The namespace part of the class name (e.g. <code>\"qx.ui.core\"</code>).</td></tr>\n <tr><th><code>constructor</code></th><td>A reference to the constructor of the class.</td></tr>\n <tr><th><code>superclass</code></th><td>A reference to the constructor of the super class.</td></tr>\n </table>\n<p>Each method may access static members of the same class by using\n <code>this.self(arguments)</code> ({@link qx.core.Object#self}):\n </p>\n<pre class='javascript'>\n statics : { FOO : \"bar\" },\n members: {\n   baz: function(x) {\n     this.self(arguments).FOO;\n     ...\n   }\n }\n </pre>\n<p>Each overriding method may call the overridden method by using\n <code>this.base(arguments [, ...])</code> ({@link qx.core.Object#base}). This is also true for calling\n the constructor of the superclass.\n </p>\n<pre class='javascript'>\n members: {\n   foo: function(x) {\n     this.base(arguments, x);\n     ...\n   }\n }\n </pre>\n<p>By using <code>qx.Class</code> within an app, the native JS data types are\n conveniently polyfilled according to {@link qx.lang.normalize}.\n Annotations can be added to classes, constructors, destructors, and methods, properties, and statics -\n see <code>qx.Annotation</code> for examples and means access annotations at runtime.</p>"
@@ -105,10 +101,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PUBLIC METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Define a new class using the qooxdoo class system. This sets up the\n namespace for the class and generates the class from the definition map.\n Example:\n </p>\n<pre class='javascript'>\n qx.Class.define(\"name\",\n {\n   extend : Object,\n   implement : [Interfaces],\n   include : [Mixins],\n   statics:\n   {\n     CONSTANT : 3.141,\n     publicMethod: function() {},\n     _protectedMethod: function() {},\n     __privateMethod: function() {}\n   },\n   properties:\n   {\n     \"tabIndex\": { check: \"Number\", init : -1 }\n   },\n   members:\n   {\n     publicField: \"foo\",\n     publicMethod: function() {},\n     _protectedField: \"bar\",\n     _protectedMethod: function() {},\n     __privateField: \"baz\",\n     __privateMethod: function() {}\n   }\n });\n </pre>"
@@ -1268,10 +1260,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PRIVATE/INTERNAL BASICS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>This method will be attached to all classes to return\n a nice identifier for them.</p>"
           }
         ],
@@ -1600,10 +1588,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PRIVATE ADD HELPERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Attach events to the class</p>"
           }
         ],
@@ -1815,7 +1799,7 @@
           "column": 4
         },
         "end": {
-          "line": 1507,
+          "line": 1512,
           "column": 5
         }
       },
@@ -1857,11 +1841,11 @@
     "__addInterface": {
       "location": {
         "start": {
-          "line": 1516,
+          "line": 1521,
           "column": 4
         },
         "end": {
-          "line": 1549,
+          "line": 1554,
           "column": 5
         }
       },
@@ -1895,11 +1879,11 @@
     "__addMixin": {
       "location": {
         "start": {
-          "line": 1559,
+          "line": 1564,
           "column": 4
         },
         "end": {
-          "line": 1607,
+          "line": 1612,
           "column": 5
         }
       },
@@ -1940,20 +1924,16 @@
     "__createDefaultConstructor": {
       "location": {
         "start": {
-          "line": 1625,
+          "line": 1630,
           "column": 4
         },
         "end": {
-          "line": 1632,
+          "line": 1637,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PRIVATE FUNCTION HELPERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the default constructor.\n This constructor just calls the constructor of the base class.</p>"
@@ -1974,11 +1954,11 @@
     "__wrapConstructor": {
       "location": {
         "start": {
-          "line": 1644,
+          "line": 1649,
           "column": 4
         },
         "end": {
-          "line": 1714,
+          "line": 1719,
           "column": 5
         }
       },
@@ -2028,11 +2008,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 1717,
+        "line": 1722,
         "column": 10
       },
       "end": {
-        "line": 1735,
+        "line": 1740,
         "column": 3
       }
     },

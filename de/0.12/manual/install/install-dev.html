@@ -41,7 +41,7 @@
         <link rel="search" title="Suche" href="../search.html"/>
     <link rel="top" title="CometVisu" href="../index.html"/>
         <link rel="up" title="Installation der CometVisu" href="index.html"/>
-        <link rel="next" title="Installation auf einem Debian System mit openHAB2" href="openhab2.html"/>
+        <link rel="next" title="Installation auf einem Debian System mit openHAB" href="openhab.html"/>
         <link rel="prev" title="Installation auf dem Raspberry PI" href="raspberry.html"/> 
 
   
@@ -64,9 +64,6 @@
             <a href="../index.html" class="icon icon-home"> CometVisu
           
 
-          
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
           
           </a>
 
@@ -118,9 +115,9 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation auf einem Debian System mit openHAB2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab.html">Installation auf einem Debian System mit openHAB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Installation mittels Docker-Container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker_openhab2.html">Installation auf einem Ubuntu System mit openHAB2 und Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_openhab.html">Installation auf einem Ubuntu System mit openHAB und Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation auf dem Timberwolf über die App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-auf-dem-timberwolf-mittels-portainer">Installation auf dem Timberwolf mittels Portainer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linux.html">Installation auf generischen Linux Systemen</a></li>
@@ -223,7 +220,7 @@ ein veröffentlichtes <cite>Release &lt;https://github.com/CometVisu/CometVisu/r
 </div>
 <p>Wenn man nur die aktuellste Entwickler-Version ausprobieren möchte
 (natürlich nur auf eigenes Risiko!), dann kann man diese ohne
-Versionskontrollsystem installieren. Für den &#8220;üblichen&#8221; Branch
+Versionskontrollsystem installieren. Für den „üblichen“ Branch
 CometVisu/CometVisu -&gt; develop lädt man dazu die Datei</p>
 <p><a class="reference external" href="https://github.com/CometVisu/CometVisu/archive/develop.zip">https://github.com/CometVisu/CometVisu/archive/develop.zip</a></p>
 <p>und installiert diese wie unter <a class="reference internal" href="update-other.html"><span class="doc">Update der CometVisu auf anderen Geräten</span></a> beschrieben.</p>
@@ -246,7 +243,7 @@ erstes diesen installieren.</p>
 <p>Auf neueren Debian basierten Systemen kann man git leicht über die
 Kommandozeile (z.B. remote üer eine SSH-Verbindung) als root mit diesem
 Befehl installieren:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>apt-get install git-core
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install git-core
 </pre></div>
 </div>
 </div>
@@ -254,14 +251,14 @@ Befehl installieren:</p>
 <span id="install-no-pakets"></span><h4>Installation ohne Pakete<a class="headerlink" href="#installation-ohne-pakete" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Da die aktuell (Stand: 12.04.2015) für das Wiregate verfügbare
 Git-Version zu alt ist (diese ist inkompatibel mit GitHub), muss man
-dort Git &#8220;per Hand&#8221; installieren. Es gibt zwei Möglichkeiten dies zu
+dort Git „per Hand“ installieren. Es gibt zwei Möglichkeiten dies zu
 tun. Man kann die aktuelle Git version selber installieren und
 compilieren - empfohlene Variante - oder man kann die master.zip Datei
 verwenden.</p>
 </div>
 <div class="section" id="aktuelle-git-version-selbst-installieren-und-compilieren">
 <h4>Aktuelle Git Version selbst installieren und compilieren<a class="headerlink" href="#aktuelle-git-version-selbst-installieren-und-compilieren" title="Link zu dieser Überschrift">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>apt-get install tcl
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install tcl
 apt-get install tk
 apt-get install python-apt
 apt-get install python-software-properties
@@ -288,12 +285,12 @@ abbrechen, dann hilft folgendes Kommando:</p>
 <p class="last">Es&nbsp;gibt&nbsp;Hinweise,&nbsp;dass&nbsp;aktuell&nbsp;(13.01.2016)&nbsp;das&nbsp;nächste&nbsp;Kommando&nbsp;die&nbsp;WireGate-Installation
 beschädigen&nbsp;kann!&nbsp;Bitte&nbsp;nur&nbsp;ausführen,&nbsp;wenn&nbsp;man&nbsp;weiß,&nbsp;was&nbsp;man&nbsp;macht!</p>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cp -f /usr/bin/python2.5 /usr/bin/python
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp -f /usr/bin/python2.5 /usr/bin/python
 dpkg --configure -a
 </pre></div>
 </div>
 <p>Die Installation kann überprüft werden mit folgendem Kommando:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git --version
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git --version
 </pre></div>
 </div>
 </div>
@@ -305,7 +302,7 @@ dpkg --configure -a
 man ausführen muss.</p>
 <p>Wenn es Schwierigkeiten gibt, müssen evtl. folgende Libraries
 nachinstalliert werden:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>apt-get install libexpat1-dev build-essential libcurl4-openssl-dev libssl-dev gettext
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install libexpat1-dev build-essential libcurl4-openssl-dev libssl-dev gettext
 </pre></div>
 </div>
 </div>
@@ -316,11 +313,11 @@ nachinstalliert werden:</p>
 keinen besitzt.</p>
 <p>Auf GitHub geht man nun zum CometVisu Repository unter
 <a class="reference external" href="https://github.com/CometVisu/CometVisu">CometVisu/CometVisu</a> klickt
-rechts oben auf &#8220;Fork&#8221; um einen Fork dieses Repositorys zu erstellen.</p>
+rechts oben auf „Fork“ um einen Fork dieses Repositorys zu erstellen.</p>
 <p>Wenn man nun auf seine eigene GitHub Seite geht, dann erscheint auf der
-rechten Seite unter &#8220;HTTPS clone URL&#8221; eine URL die man sich merken muss
+rechten Seite unter „HTTPS clone URL“ eine URL die man sich merken muss
 (bzw. in die Zwischenablage kopiert). Diese URL hat die Form
-<code class="docutils literal"><span class="pre">https://github.com/&lt;Accountname&gt;/CometVisu.git</span></code></p>
+<code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;Accountname&gt;/CometVisu.git</span></code></p>
 </div>
 </div>
 <div class="section" id="installation">
@@ -331,18 +328,18 @@ allerdings SVN (bzw. Subversion) weiterhin zur Verfügung.</p>
 <h4>Git<a class="headerlink" href="#git" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Der eigene Fork der CometVisu wird nun durch einen simplen Befehl
 installiert:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
 git clone https://github.com/&lt;Accountname&gt;/CometVisu.git CometVisuGit
 </pre></div>
 </div>
 <p>Unter Umständen funktioniert der Abruf via https nicht, dann sollte der Fork über folgenden
 Befehl initialisiert werden:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
 git clone git://github.com/&lt;Accountname&gt;/CometVisu.git CometVisuGit
 </pre></div>
 </div>
 <p>Als Ergebnis sollte nun als Ausgabe ein Text ähnlich diesem erscheinen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>Klone nach <span class="s1">&#39;CometVisuGit&#39;</span>...
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Klone nach <span class="s1">&#39;CometVisuGit&#39;</span>...
 remote: Counting objects: <span class="m">20347</span>, <span class="k">done</span>.
 remote: Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5220</span>/5220<span class="o">)</span>, <span class="k">done</span>.
 remote: Total <span class="m">20347</span> <span class="o">(</span>delta <span class="m">14950</span><span class="o">)</span>, reused <span class="m">20280</span> <span class="o">(</span>delta <span class="m">14905</span><span class="o">)</span>
@@ -355,14 +352,14 @@ Checke Dateien aus: <span class="m">100</span>% <span class="o">(</span><spa
 <p>Sollte das Klonen erfolgreich gewesen sein, wird diese Version als
 <em>origin</em> geführt. Im Anschluss kann man dann noch das Hauptrepository
 als <em>upstream</em> hinzufügen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git remote add upstream https://github.com/CometVisu/CometVisu.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote add upstream https://github.com/CometVisu/CometVisu.git
 </pre></div>
 </div>
 </div>
 <div class="section" id="subversion">
 <h4>Subversion<a class="headerlink" href="#subversion" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Falls das Git clone nicht funktioniert hat und eine Fehlermeldung wie</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>error: The requested URL returned error: <span class="m">403</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>error: The requested URL returned error: <span class="m">403</span>
 warning: remote HEAD refers to nonexistent ref, unable to checkout.
 </pre></div>
 </div>
@@ -376,35 +373,35 @@ Zugang mit Git.</p>
 <p>Nähere Infos zum Arbeiten mit Subversion auf GitHub steht in dem Artikel
 <a class="reference external" href="https://help.github.com/articles/support-for-subversion-clients/">1</a>.</p>
 <p>Zur Installation der CometVisu mit Subversion geht man nun auf der
-GitHub-Seite bei seinem Fork (s.o.) am rechten Rand zu &#8220;You can clone
-with HTTPS, SSH, or Subversion.&#8221; und klickt dort auf das Wort
-&#8220;Subversion&#8221;. Nun kopiert man sich unter dem nun erscheinenden
-&#8220;Subversion checkout URL&#8221; die URL. Diese sollte die Form <code class="docutils literal"><span class="pre">https://github.com/&lt;Accountname&gt;/CometVisu</span></code>
+GitHub-Seite bei seinem Fork (s.o.) am rechten Rand zu „You can clone
+with HTTPS, SSH, or Subversion.“ und klickt dort auf das Wort
+„Subversion“. Nun kopiert man sich unter dem nun erscheinenden
+„Subversion checkout URL“ die URL. Diese sollte die Form <code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;Accountname&gt;/CometVisu</span></code>
 haben.</p>
 <p>An der WireGate Kommandozeile führt man nun diese Befehle aus:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
 svn co --depth empty https://github.com/&lt;Accountname&gt;/CometVisu CometVisuGitSVN
 </pre></div>
 </div>
 <p>Nach etwas warten, sollte als Bestätigung ein Text ähnlich diesem
 erscheinen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>Ausgecheckt, Revision <span class="m">1342</span>.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Ausgecheckt, Revision <span class="m">1342</span>.
 </pre></div>
 </div>
 <p>Nun kann man in der Installation weiter gehen und diese Befehle
 ausführen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> CometVisuGitSVN/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> CometVisuGitSVN/
 svn up trunk
 </pre></div>
 </div>
 <p>Wenn nun am Bildschirm viele Zeilen mit Dateinamen auftauchen, war der
 Befehl erfolgreich. Komplettiert wird dieser nun durch</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>svn up --depth empty branches
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn up --depth empty branches
 <span class="nb">cd</span> ..
 ln -s CometVisuGitSVN/trunk/src visu_git
 </pre></div>
 </div>
-<p>Herzlichen Glückwunsch! Unter <code class="docutils literal"><span class="pre">http://wiregate/visu_git/</span></code> sollte jetzt die
+<p>Herzlichen Glückwunsch! Unter <code class="docutils literal notranslate"><span class="pre">http://wiregate/visu_git/</span></code> sollte jetzt die
 CometVisu laufen!</p>
 </div>
 <div class="section" id="weitere-schritte">
@@ -413,20 +410,20 @@ CometVisu laufen!</p>
 diese Schritte durchführen:</p>
 <p>Um die Visu Config über den Editor auch speichern zu können müssen für
 die Datei noch Schreibrechte eingerichtet werden:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>chmod a+rw /var/www/visu_git/config/visu_config.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod a+rw /var/www/visu_git/config/visu_config.xml
 </pre></div>
 </div>
 <p>Der Backup Ordner braucht auch Schreibrechte:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>chmod a+rw /var/www/visu_git/config/backup
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod a+rw /var/www/visu_git/config/backup
 </pre></div>
 </div>
 <p>Und die Vorschau auch:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>chmod a+rw
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod a+rw
 /var/www/visu_git/config/visu_config_previewtemp.xml
 </pre></div>
 </div>
-<p>Jetzt ist die Demo-Visu über <code class="docutils literal"><span class="pre">http://wiregatexxx/visu_git/</span></code> erreichbar.</p>
-<p>Der Visu-Editor steht unter <code class="docutils literal"><span class="pre">http://wiregateXXX/visu_git/editor/</span></code> zur Verfügung.</p>
+<p>Jetzt ist die Demo-Visu über <code class="docutils literal notranslate"><span class="pre">http://wiregatexxx/visu_git/</span></code> erreichbar.</p>
+<p>Der Visu-Editor steht unter <code class="docutils literal notranslate"><span class="pre">http://wiregateXXX/visu_git/editor/</span></code> zur Verfügung.</p>
 <div class="admonition important">
 <p class="first admonition-title">Wichtig</p>
 <p class="last">Die CometVisu kann durch einfaches Löschen des Verzeichnisses restlos entfernt werden.
@@ -446,26 +443,26 @@ installiert und die CometVisu ausgecheckt, dann kann man in die Nutzung
 nun mehrere Repositories gibt - und dort auch noch verschiedene
 Branches:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">master</span></code> - <strong>das</strong> Hauptrepository
+<li><code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">master</span></code> - <strong>das</strong> Hauptrepository
 und Hauptbranch. Hier stehen nur die offiziellen Releases.</li>
-<li><code class="docutils literal"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">develop</span></code> - der Entwicklungsbranch
+<li><code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">develop</span></code> - der Entwicklungsbranch
 im Hauptrepository. Hier findet die Hauptentwicklung statt. Der
 Zustand der Dateien in diesem Branch sollte immer funktionsfähig
 sein.</li>
-<li><code class="docutils literal"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">&lt;weitere&gt;</span></code> - unter
+<li><code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">&lt;weitere&gt;</span></code> - unter
 <a class="reference external" href="https://github.com/CometVisu/CometVisu/branches">GitHub-&gt;Branches</a>
 sind alle weiteren Branches zu finden. Hier werden manche Features
 für den Entwicklungsbranch vorbereitet.</li>
-<li><code class="docutils literal"><span class="pre">&lt;Accountname&gt;/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">...</span></code> - Die Branches unter dem Fork die **
+<li><code class="docutils literal notranslate"><span class="pre">&lt;Accountname&gt;/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">...</span></code> - Die Branches unter dem Fork die **
 gehören. Meist wird dort <em>master</em> verwendet - oder bei der
 Entwicklung von Patches oder Features extra ein (weiterer) Branch
 angelegt, der nach Fertigstellung und einem Pull nach
-<code class="docutils literal"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">develop</span></code> wieder geschlossen wird.</li>
-<li><code class="docutils literal"><span class="pre">Der</span> <span class="pre">lokale</span> <span class="pre">Rechner</span> <span class="pre">(bzw.</span> <span class="pre">das</span> <span class="pre">WireGate)</span> <span class="pre">-&gt;</span> <span class="pre">...</span></code> - die lokalen Branches.</li>
+<code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">develop</span></code> wieder geschlossen wird.</li>
+<li><code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">lokale</span> <span class="pre">Rechner</span> <span class="pre">(bzw.</span> <span class="pre">das</span> <span class="pre">WireGate)</span> <span class="pre">-&gt;</span> <span class="pre">...</span></code> - die lokalen Branches.</li>
 </ul>
 <p>Dies bedeutet, dass es im wesentlichen drei verschiedene Orte für die
 Dateien gibt:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;-&gt; ** <span class="o">(</span>origin<span class="o">)</span> &lt;-&gt; lokal auf dem WireGate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;-&gt; ** <span class="o">(</span>origin<span class="o">)</span> &lt;-&gt; lokal auf dem WireGate
 </pre></div>
 </div>
 <p>Um diese Orte synchron zu halten müssen verschiedene Schritte
@@ -473,65 +470,65 @@ durchgeführt werden.</p>
 <div class="section" id="generisch">
 <h3>Generisch<a class="headerlink" href="#generisch" title="Link zu dieser Überschrift">¶</a></h3>
 <p>In diesem Kapitel wird die Synchronisierung von</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;-&gt; ** <span class="o">(</span>origin<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;-&gt; ** <span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
 </div>
 <p>beschrieben.</p>
 <div class="section" id="update-des-github-forks">
 <h4>Update des GitHub Forks<a class="headerlink" href="#update-des-github-forks" title="Link zu dieser Überschrift">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> -&gt; ** <span class="o">(</span>origin<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> -&gt; ** <span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
 </div>
 <p>Um die letzten Änderungen des Entwicklung-Branches
 CometVisu/CometVisu -&gt; develop in den eigenen Fork zu
 übernehmen, benötigt man einen <em>Pull</em>. Dies führt man am einfachsten
-über die GitHub Seite des eigenen Forks <code class="docutils literal"><span class="pre">https://github.com/&lt;Accountname&gt;/CometVisu</span></code>
+über die GitHub Seite des eigenen Forks <code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;Accountname&gt;/CometVisu</span></code>
 aus.</p>
 <p>Man klickt auf den <em>Pull Request</em> Button:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/GitHub_Pull_Request_Button.png" src="../_images/GitHub_Pull_Request_Button.png" />
 </div>
 <p>Man stellt sicher, dass der <em>base fork</em> dem eigenen Fork entspricht
-(also <em>&lt;Accountname&gt;</em>) und <em>head fork</em> auf <code class="docutils literal"><span class="pre">CometVisu/CometVisu</span></code> steht:</p>
-<div class="figure">
+(also <em>&lt;Accountname&gt;</em>) und <em>head fork</em> auf <code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span></code> steht:</p>
+<div class="figure align-default">
 <img alt="../_images/GitHub_Comparing_Changes.png" src="../_images/GitHub_Comparing_Changes.png" />
 </div>
 <p>Man klickt auf <em>Create pull request</em> und auf der folgenden Seite (wo
 man bei Bedarf noch einen entsprechenden Commit-Kommentar eintragen
 kann) wieder <em>Create pull request</em>.</p>
-<p>Auf der nun folgenden Seite erscheint (hoffentlich...) <strong>*This pull
+<p>Auf der nun folgenden Seite erscheint (hoffentlich…) <strong>*This pull
 request can be automatically merged.*</strong> - hier klickt man dann auch
 wieder <em>Merge pull request</em>:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/GitHub_automatically_merged.png" src="../_images/GitHub_automatically_merged.png" />
 </div>
 <p>Am Schluss muss man noch auf <em>Configm merge</em> klicken:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/GitHub_confirm_merge.png" src="../_images/GitHub_confirm_merge.png" />
 </div>
 </div>
 <div class="section" id="update-des-hauptrepositorys-auf-github">
 <h4>Update des Hauptrepositorys auf GitHub<a class="headerlink" href="#update-des-hauptrepositorys-auf-github" title="Link zu dieser Überschrift">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;- ** <span class="o">(</span>origin<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;- ** <span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
 </div>
 <p>Dieser Schritt ist notwendig um die eigenen Änderungen in den
 Hauptentwickungs-Branch zu bekommen.</p>
-<p>Um nun vom eigenen Fork in nach <code class="docutils literal"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">develop</span></code> zu kommen, verwendet man als Subversion-Nutzer
+<p>Um nun vom eigenen Fork in nach <code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span> <span class="pre">-&gt;</span> <span class="pre">develop</span></code> zu kommen, verwendet man als Subversion-Nutzer
 am besten die GitHub Seite. Dies Funktioniert genau so wie Punkt #2 des Abschnittes
-&#8220;Update des GitHub Forks&#8221;, nur dass hier unter <em>base fork</em>
-<code class="docutils literal"><span class="pre">CometVisu/CometVisu</span></code> stehen muss und unter <em>head fork</em> das
-<code class="docutils literal"><span class="pre">&lt;Accountname&gt;/CometVisu</span></code>.</p>
+„Update des GitHub Forks“, nur dass hier unter <em>base fork</em>
+<code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span></code> stehen muss und unter <em>head fork</em> das
+<code class="docutils literal notranslate"><span class="pre">&lt;Accountname&gt;/CometVisu</span></code>.</p>
 </div>
 </div>
 <div class="section" id="id1">
 <h3>Git<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Wenn die Installation wie oben durchgeführt wurde, dann sind alle
-Branches unter <code class="docutils literal"><span class="pre">CometVisu/CometVisu</span></code> als upstream bekannt und die
-unter <code class="docutils literal"><span class="pre">&lt;Accountname/CometVisu</span></code> als origin.</p>
-<p>Dies lässt sich einfach durch den Befehl <code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code>
+Branches unter <code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span></code> als upstream bekannt und die
+unter <code class="docutils literal notranslate"><span class="pre">&lt;Accountname/CometVisu</span></code> als origin.</p>
+<p>Dies lässt sich einfach durch den Befehl <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code>
 überprüfen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git remote -v
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git remote -v
 origin  https://github.com/&lt;Accountname&gt;/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
 origin  https://github.com/&lt;Accountname&gt;/CometVisu.git&gt;  <span class="o">(</span>push<span class="o">)</span>
 upstream https://github.com/CometVisu/CometVisu.git  <span class="o">(</span>fetch<span class="o">)</span>
@@ -540,31 +537,31 @@ upstream https://github.com/CometVisu/CometVisu.git  <span class="o">(</span>p
 </div>
 <div class="section" id="update-auf-dem-wiregate">
 <h4>Update auf dem WireGate<a class="headerlink" href="#update-auf-dem-wiregate" title="Link zu dieser Überschrift">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>** <span class="o">(</span>origin<span class="o">)</span> -&gt; lokal auf dem WireGate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>** <span class="o">(</span>origin<span class="o">)</span> -&gt; lokal auf dem WireGate
 </pre></div>
 </div>
 <p>Die Arbeit mit Git kann in dieser kurzen Anleitung leider nicht erklärt
 werden. Hier bitte in geeigneten Quellen nachschlagen!</p>
 <p>Das wesentliche Kommando dafür ist:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git pull
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull
 </pre></div>
 </div>
 </div>
 <div class="section" id="update-auf-github">
 <h4>Update auf GitHub<a class="headerlink" href="#update-auf-github" title="Link zu dieser Überschrift">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> &lt;- lokal auf dem WireGate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> &lt;- lokal auf dem WireGate
 </pre></div>
 </div>
 <p>Um eigene Änderungen nach GitHub zu veröffentlichen braucht man mehrere
 - aber dafür einfache - Schritte.</p>
-<p>Durch den Upload der eigenen Änderungen wird nun zuerst <code class="docutils literal"><span class="pre">&lt;Accountname&gt;/CometVisu</span></code> aktuallisiert.
+<p>Durch den Upload der eigenen Änderungen wird nun zuerst <code class="docutils literal notranslate"><span class="pre">&lt;Accountname&gt;/CometVisu</span></code> aktuallisiert.
 Von dort kann man nun per Pull-Request diese Änderungen in das Hauptrepository
-<code class="docutils literal"><span class="pre">CometVisu/CometVisu</span></code> überführen. Bei dem Pull-Request kann man auch aussuchen in welchen
+<code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span></code> überführen. Bei dem Pull-Request kann man auch aussuchen in welchen
 Branch dort integriert werden soll. Diesen Pull-Request kann man natürlich auch über die Kommandozeile mit
 Git erstellen - oder aber sehr komfortabel über die GitHub Seite.</p>
 <p>Die Arbeit mit Git kann in dieser kurzen Anleitung leider nicht  erklärt werden.
 Hier bitte in geeigneten Quellen nachschlagen! Das grundlegendste Kommando in diesem Kontext ist allerdings:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git add .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add .
 git commit
 git push
 </pre></div>
@@ -575,27 +572,27 @@ git push
 <h3>Subversion<a class="headerlink" href="#id2" title="Link zu dieser Überschrift">¶</a></h3>
 <div class="section" id="id3">
 <h4>Update auf dem WireGate<a class="headerlink" href="#id3" title="Link zu dieser Überschrift">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> -&gt; lokal auf dem WireGate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> -&gt; lokal auf dem WireGate
 </pre></div>
 </div>
 <p>Zum Updaten der lokalen Dateien auf dem WireGate verwendet man:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www/visu_git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www/visu_git
 svn update .
 </pre></div>
 </div>
 </div>
 <div class="section" id="update-nach-github">
 <h4>Update nach GitHub<a class="headerlink" href="#update-nach-github" title="Link zu dieser Überschrift">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> &lt;- lokal auf dem WireGate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> &lt;- lokal auf dem WireGate
 </pre></div>
 </div>
 <p>Um eigene Änderungen nach GitHub zu veröffentlichen braucht man mehrere
 - aber dafür einfache - Schritte.</p>
-<p>Durch den Upload der eigenen Änderungen wird nun zuerst <code class="docutils literal"><span class="pre">&lt;Accountname&gt;/CometVisu</span></code> aktualisiert.
-Von dort kann man nun per Pull-Request diese Änderungen in das Hauptrepository <code class="docutils literal"><span class="pre">CometVisu/CometVisu</span></code>
+<p>Durch den Upload der eigenen Änderungen wird nun zuerst <code class="docutils literal notranslate"><span class="pre">&lt;Accountname&gt;/CometVisu</span></code> aktualisiert.
+Von dort kann man nun per Pull-Request diese Änderungen in das Hauptrepository <code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span></code>
 überführen. Bei dem Pull-Request kann man auch aussuchen in welchen Branch dort integriert werden soll.
 Durch den Befehl</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>svn ci --username &lt;GitHub Login&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn ci --username &lt;GitHub Login&gt;
 </pre></div>
 </div>
 <p>können eigene Änderungen nach GitHub in den eigenen Fork übertragen werden.</p>
@@ -614,7 +611,7 @@ Durch den Befehl</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="openhab2.html" class="btn btn-neutral float-right" title="Installation auf einem Debian System mit openHAB2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="openhab.html" class="btn btn-neutral float-right" title="Installation auf einem Debian System mit openHAB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="raspberry.html" class="btn btn-neutral" title="Installation auf dem Raspberry PI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -626,7 +623,7 @@ Durch den Befehl</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -672,7 +669,7 @@ Durch den Befehl</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

@@ -12,10 +12,12 @@
       },
       "qx.lang.Object": {},
       "qx.bom.client.Engine": {
-        "defer": "runtime",
+        "defer": "load",
         "require": true
       },
-      "qx.bom.client.Browser": {},
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.bom.Event": {
         "defer": "runtime"
       },
@@ -357,4 +359,4 @@
   qx.bom.Flash.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flash.js.map?dt=1604955465061
+//# sourceMappingURL=Flash.js.map?dt=1612690392287

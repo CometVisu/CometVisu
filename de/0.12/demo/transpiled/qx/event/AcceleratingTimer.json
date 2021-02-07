@@ -23,10 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Timer, which accelerates after each interval. The initial delay and the\n interval time can be set using the properties {@link #firstInterval}\n and {@link #interval}. The {@link #interval} events will be fired with\n decreasing interval times while the timer is running, until the {@link #minimum}\n is reached. The {@link #decrease} property sets the amount of milliseconds\n which will decreased after every firing.\n This class is e.g. used in the {@link qx.ui.form.RepeatButton} and\n {@link qx.ui.form.HoverButton} widgets.\n NOTE: Instances of this class must be disposed of after use</p>"
         }
       ]

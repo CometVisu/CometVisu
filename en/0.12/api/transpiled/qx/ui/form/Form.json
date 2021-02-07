@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>The form object is responsible for managing form items. For that, it takes\n advantage of two existing qooxdoo classes.\n The {@link qx.ui.form.Resetter} is used for resetting and the\n {@link qx.ui.form.validation.Manager} is used for all validation purposes.\n The view code can be found in the used renderer ({@link qx.ui.form.renderer}).</p>"
         }
       ]
@@ -166,10 +162,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   ADD\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Adds a form item to the form including its internal\n {@link qx.ui.form.validation.Manager} and {@link qx.ui.form.Resetter}.\n<em>Hint:</em> The order of all add calls represent the order in the layout.</p>"
@@ -359,10 +351,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   REMOVE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Removes the given item from the form.</p>"
           }
         ],
@@ -549,10 +537,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   RESET SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Resets the form. This means reseting all form items and the validation.</p>"
           }
         ]
@@ -633,10 +617,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   VALIDATION\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Validates the form using the\n {@link qx.ui.form.validation.Manager#validate} method.</p>"
           }
         ],
@@ -695,10 +675,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   RENDERER SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Accessor method for the renderer which returns all added items in a\n array containing a map of all items:\n {title: title, items: [], labels: [], names: []}</p>"
@@ -807,10 +783,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   INTERNAL\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Creates and returns the used validation manager.</p>"
@@ -1006,14 +978,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": [
     "qx.ui.mobile.form.Form"

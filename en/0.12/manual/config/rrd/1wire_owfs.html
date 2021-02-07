@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -119,7 +116,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#general-information-about-rrd">General information about RRD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#rrd-and-the-cometvisu">RRD and the CometVisu</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#create-the-rrd-database">Create the RRD database</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#filling-the-rrd-database">&#8220;Filling&#8221; the RRD database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#filling-the-rrd-database">“Filling” the RRD database</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#troubleshooting">Troubleshooting</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../rrd_examples.html#examples-of-rrds">Examples of RRDs</a></li>
 </ul>
@@ -211,7 +208,7 @@ by an online translation service.</p>
 from a 1wire sensor and fill it into an RRD database. Here the 1wire sensor
 has the ID 28.AB8BCB040000, this must be adjusted! This script works like
 this if it is stored (and executable) under /var/www/rrd/1wire_temp_outside.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#</span>
 
 <span class="nb">cd</span> /var/www/rrd
@@ -240,7 +237,7 @@ RRA:AVERAGE:0.5:525600:3200
 </pre></div>
 </div>
 <p>The following line must be added in /etc/crontab to call the script every 5 minutes:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>*/5 *   * * *   root    /var/www/rrd/1wire_temp_outside
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/5 *   * * *   root    /var/www/rrd/1wire_temp_outside
 </pre></div>
 </div>
 </div>
@@ -267,7 +264,7 @@ RRA:AVERAGE:0.5:525600:3200
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -313,7 +310,7 @@ RRA:AVERAGE:0.5:525600:3200
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

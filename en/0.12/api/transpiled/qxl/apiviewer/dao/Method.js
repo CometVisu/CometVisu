@@ -53,7 +53,7 @@
         this._return = new qxl.apiviewer.dao.Param(arr[0], this);
       }
 
-      var arr = this._jsdoc["@throws"];
+      arr = this._jsdoc["@throws"];
       this._throws = arr && arr.length ? new qxl.apiviewer.dao.Param(arr[0], this) : [];
 
       if (meta.property) {
@@ -113,7 +113,7 @@
       isRequiredByInterface: function isRequiredByInterface(iface) {
         var _this2 = this;
 
-        return iface.getMethods().some(function (method) {
+        return (iface.getMethods() || []).some(function (method) {
           return method.getName() == _this2.getName();
         });
       }
@@ -122,4 +122,4 @@
   qxl.apiviewer.dao.Method.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Method.js.map?dt=1604955498776
+//# sourceMappingURL=Method.js.map?dt=1612690424735

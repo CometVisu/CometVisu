@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n   ======================================================================\n   This class contains code based on the following work:\n Mootools\n     http://mootools.net/\n     Version 1.1.1\n     Copyright:\n       (c) 2007 Valerio Proietti\n     License:\n       MIT: http://www.opensource.org/licenses/mit-license.php\n   and\n XRegExp\n   http://xregexp.com/\n   Version 1.5\n   Copyright:\n       (c) 2006-2007, Steven Levithan <a href=\"http://stevenlevithan.com\">http://stevenlevithan.com</a>\n     License:\n       MIT: http://www.opensource.org/licenses/mit-license.php\n     Authors:\n Steven Levithan\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>String helper functions\n The native JavaScript String is not modified by this class. However,\n there are modifications to the native String in {@link qx.lang.normalize.String} for\n browsers that do not support certain features.</p>"
         }
       ],

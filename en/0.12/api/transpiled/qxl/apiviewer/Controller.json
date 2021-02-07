@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 32,
+        "line": 31,
         "column": 0
       },
       "end": {
-        "line": 376,
+        "line": 359,
         "column": 3
       }
     },
@@ -21,17 +21,7 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n John Spackman (johnspackman)\n Til Schneider (til132)\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n Fabian Jakobs (fjakobs)\n Jonathan Weiß (jonathan_rass)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Implements the dynamic behavior of the API viewer. The GUI is defined in\n {@link Viewer}.</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.$$appRoot"
         }
       ]
     }
@@ -44,7 +34,7 @@
         "column": 14
       },
       "end": {
-        "line": 80,
+        "line": 79,
         "column": 3
       }
     },
@@ -67,6 +57,12 @@
           "description": " the GUI",
           "type": "qxl.apiviewer.Viewer"
         }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "qx.$$appRoot"
+        }
       ]
     }
   },
@@ -74,11 +70,11 @@
     "__openInNewTab": {
       "location": {
         "start": {
-          "line": 85,
+          "line": 84,
           "column": 4
         },
         "end": {
-          "line": 85,
+          "line": 84,
           "column": 26
         }
       },
@@ -88,33 +84,26 @@
     "$$logCategory": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 87,
           "column": 33
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
     "load": {
       "location": {
         "start": {
-          "line": 96,
+          "line": 95,
           "column": 4
         },
         "end": {
-          "line": 123,
+          "line": 122,
           "column": 5
         }
       },
@@ -128,10 +117,7 @@
         "@param": [
           {
             "name": "@param",
-            "body": "apidata {Object} all the apidata from the enviroment.",
-            "paramName": "apidata",
-            "description": " all the apidata from the enviroment.",
-            "type": "Object"
+            "body": "classes [] all classes to show"
           }
         ]
       },
@@ -141,11 +127,11 @@
     "__bindTabViewController": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 127,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 152,
           "column": 5
         }
       },
@@ -163,11 +149,11 @@
     "__bindTree": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 158,
           "column": 4
         },
         "end": {
-          "line": 172,
+          "line": 168,
           "column": 5
         }
       },
@@ -185,11 +171,11 @@
     "__bindToolbar": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 174,
           "column": 4
         },
         "end": {
-          "line": 205,
+          "line": 200,
           "column": 5
         }
       },
@@ -207,11 +193,11 @@
     "__syncMenuButton": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 208,
           "column": 4
         },
         "end": {
-          "line": 237,
+          "line": 226,
           "column": 5
         }
       },
@@ -229,11 +215,11 @@
     "__bindHistory": {
       "location": {
         "start": {
-          "line": 242,
+          "line": 231,
           "column": 4
         },
         "end": {
-          "line": 250,
+          "line": 238,
           "column": 5
         }
       },
@@ -251,11 +237,11 @@
     "_updateHistory": {
       "location": {
         "start": {
-          "line": 260,
+          "line": 248,
           "column": 4
         },
         "end": {
-          "line": 264,
+          "line": 251,
           "column": 5
         }
       },
@@ -282,11 +268,11 @@
     "_selectClass": {
       "location": {
         "start": {
-          "line": 273,
+          "line": 261,
           "column": 4
         },
         "end": {
-          "line": 286,
+          "line": 271,
           "column": 5
         }
       },
@@ -300,10 +286,22 @@
         "@param": [
           {
             "name": "@param",
-            "body": "classNode\n          {qxl.apiviewer.dao.Class} class node to display",
+            "body": "classNode\n {qxl.apiviewer.dao.Class} class node to display",
             "paramName": "classNode",
             "description": " class node to display",
             "type": "qxl.apiviewer.dao.Class"
+          },
+          {
+            "name": "@param",
+            "body": "callback",
+            "paramName": "callback",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "self",
+            "paramName": "self",
+            "type": ""
           }
         ]
       },
@@ -313,11 +311,11 @@
     "__selectItem": {
       "location": {
         "start": {
-          "line": 298,
+          "line": 282,
           "column": 4
         },
         "end": {
-          "line": 351,
+          "line": 335,
           "column": 5
         }
       },
@@ -336,12 +334,6 @@
             "description": " the full name of the item to select. (e.g.\n          \"qx.mypackage.MyClass\" or \"qx.mypackage.MyClass#myProperty\")",
             "type": "String"
           }
-        ],
-        "@lint": [
-          {
-            "name": "@lint",
-            "body": "ignoreDeprecated(alert)"
-          }
         ]
       },
       "type": "function",
@@ -350,11 +342,11 @@
     "__encodeState": {
       "location": {
         "start": {
-          "line": 354,
+          "line": 338,
           "column": 4
         },
         "end": {
-          "line": 356,
+          "line": 340,
           "column": 5
         }
       },
@@ -364,11 +356,11 @@
     "__decodeState": {
       "location": {
         "start": {
-          "line": 358,
+          "line": 342,
           "column": 4
         },
         "end": {
-          "line": 360,
+          "line": 344,
           "column": 5
         }
       },
@@ -515,11 +507,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 371,
+        "line": 355,
         "column": 13
       },
       "end": {
-        "line": 375,
+        "line": 358,
         "column": 3
       }
     },

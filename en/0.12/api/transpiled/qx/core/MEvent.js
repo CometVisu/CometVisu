@@ -3,6 +3,10 @@
     "dependsOn": {
       "qx.event.dispatch.Direct": {},
       "qx.event.handler.Object": {},
+      "qx.core.Environment": {
+        "defer": "load",
+        "require": true
+      },
       "qx.Mixin": {
         "usage": "dynamic",
         "require": true
@@ -10,7 +14,14 @@
       "qx.event.Registration": {
         "require": true
       },
+      "qx.Promise": {},
       "qx.event.type.Data": {}
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "qx.promise": {}
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -194,6 +205,29 @@
       },
 
       /**
+       * Creates and dispatches an event on this object; equivalent to fireEvent, except that it
+       * always returns a promise
+       *
+       * @param type {String} Event type to fire
+       * @param clazz {Class?qx.event.type.Event} The event class
+       * @param args {Array?null} Arguments, which will be passed to
+       *       the event's init method.
+       * @return {qx.Promise} a promise aggregated from the event handlers;
+       *  if the default was prevented, the promise is rejected
+       */
+      fireEventAsync: function fireEventAsync(type, clazz, args) {
+        if (!qx.core.Environment.get("qx.promise")) {
+          throw new Error(this.classname + ".fireEventAsync not supported because qx.promise==false");
+        }
+
+        if (!this.$$disposed) {
+          return this.__P_130_0.fireEventAsync(this, type, clazz, args);
+        }
+
+        return qx.Promise.resolve(true);
+      },
+
+      /**
        * Create an event object and dispatch it on this object.
        * The event dispatched with this method does never bubble! Use only if you
        * are sure that bubbling is not required.
@@ -211,6 +245,32 @@
         }
 
         return true;
+      },
+
+      /**
+       * Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent, 
+       * except that it always returns a promise.
+       * 
+       * The event dispatched with this method does never bubble! Use only if you
+       * are sure that bubbling is not required.
+       *
+       * @param type {String} Event type to fire
+       * @param clazz {Class?qx.event.type.Event} The event class
+       * @param args {Array?null} Arguments, which will be passed to
+       *       the event's init method.
+       * @return {qx.Promise} a promise aggregated from the event handlers;
+       *  if the default was prevented, the promise is rejected
+       */
+      fireNonBubblingEventAsync: function fireNonBubblingEventAsync(type, clazz, args) {
+        if (!qx.core.Environment.get("qx.promise")) {
+          throw new Error(this.classname + ".fireNonBubblingEventAsync not supported because qx.promise==false");
+        }
+
+        if (!this.$$disposed) {
+          return this.__P_130_0.fireNonBubblingEventAsync(this, type, clazz, args);
+        }
+
+        return qx.Promise.resolve(true);
       },
 
       /**
@@ -238,10 +298,42 @@
         }
 
         return true;
+      },
+
+      /**
+       * Creates and dispatches an non-bubbling data event on this object; equivalent to 
+       * fireEvent, except that it always returns a promise.
+       *
+       * @param type {String} Event type to fire
+       * @param data {var} User defined data attached to the event object
+       * @param oldData {var?null} The event's old data (optional)
+       * @param cancelable {Boolean?false} Whether or not an event can have its default
+       *     action prevented. The default action can either be the browser's
+       *     default action of a native event (e.g. open the context menu on a
+       *     right click) or the default action of a qooxdoo class (e.g. close
+       *     the window widget). The default action can be prevented by calling
+       *     {@link qx.event.type.Event#preventDefault}
+       * @return {qx.Promise} a promise aggregated from the event handlers;
+       *  if the default was prevented, the promise is rejected
+       */
+      fireDataEventAsync: function fireDataEventAsync(type, data, oldData, cancelable) {
+        if (!qx.core.Environment.get("qx.promise")) {
+          throw new Error(this.classname + ".fireDataEventAsync not supported because qx.promise==false");
+        }
+
+        if (!this.$$disposed) {
+          if (oldData === undefined) {
+            oldData = null;
+          }
+
+          return this.__P_130_0.fireEventAsync(this, type, qx.event.type.Data, [data, oldData, !!cancelable]);
+        }
+
+        return qx.Promise.resolve(true);
       }
     }
   });
   qx.core.MEvent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MEvent.js.map?dt=1604955469358
+//# sourceMappingURL=MEvent.js.map?dt=1612690396231

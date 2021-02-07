@@ -72,12 +72,12 @@
 
             for (var i = 0; i < value.length; i++) {
               var valueAtI = isdataArray ? value.getItem(i) : value[i];
-              result += this.__P_104_0(name, valueAtI, qxSerializer);
+              result += this.__P_105_0(name, valueAtI, qxSerializer);
             }
           } else if (qx.lang.Type.isDate(value) && dateFormat != null) {
-            result += this.__P_104_0(name, dateFormat.format(value), qxSerializer);
+            result += this.__P_105_0(name, dateFormat.format(value), qxSerializer);
           } else {
-            result += this.__P_104_0(name, value, qxSerializer);
+            result += this.__P_105_0(name, value, qxSerializer);
           }
         }
 
@@ -93,7 +93,7 @@
        * @param qxSerializer {Function?} The serializer for qooxdoo objects.
        * @return {String} The serialized name value pair.
        */
-      __P_104_0: function __P_104_0(name, value, qxSerializer) {
+      __P_105_0: function __P_105_0(name, value, qxSerializer) {
         if (value && value.$$type == "Class") {
           value = value.classname;
         }
@@ -231,7 +231,7 @@
        * @param object {qx.core.Object} Any qooxdoo object
        * @param qxSerializer {Function?} Function used for serializing qooxdoo
        *   objects stored in the properties of the object. Check for the type of
-       *   classes <ou want to serialize and return the serialized value. In all
+       *   classes you want to serialize and return the serialized value. In all
        *   other cases, just return nothing.
        * @param dateFormat {qx.util.format.DateFormat?} If a date formater is given,
        *   the format method of this given formater is used to convert date
@@ -367,4 +367,4 @@
   qx.util.Serializer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Serializer.js.map?dt=1604956073480
+//# sourceMappingURL=Serializer.js.map?dt=1612691007534

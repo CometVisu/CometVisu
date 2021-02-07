@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_0-beta_7/source/class/qxl/apiviewer/ui/panels/ConstructorPanel.js"
+    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_16/source/class/qxl/apiviewer/ui/panels/ConstructorPanel.js"
   ],
   "names": [
     "qx",
@@ -28,7 +28,7 @@
     "getConstructor",
     "ConstructorPanel"
   ],
-  "mappings": ";;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;;;;AAuBAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0CAAhB,EAA4D;AAC1DC,IAAAA,MAAM,EAAEC,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,MAAjB,CAAwBC,mBAD0B;AAG1DC,IAAAA,SAAS,EAAE,qBAAW;AACpB,yEAAqB,aAArB,EAAoC,uCAApC;AACD,KALyD;AAO1DC,IAAAA,OAAO,EAAG;AACR;;;AAGAC,MAAAA,cAAc,EAAE,wBAASC,GAAT,EAAc;AAC5B,eAAOA,GAAG,YAAYR,GAAG,CAACC,SAAJ,CAAcO,GAAd,CAAkBC,MAAjC,IAA2CD,GAAG,CAACE,OAAJ,MAAiB,WAAnE;AACD,OANO;AAQRC,MAAAA,mBAAmB,EAAE,6BAASC,QAAT,EAAmBC,aAAnB,EAAkC;AACrD,eAAOD,QAAQ,CAACE,cAAT,EAAP;AACD;AAVO;AAPgD,GAA5D;AAvBAd,EAAAA,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,MAAjB,CAAwBY,gBAAxB,CAAyCnB,aAAzC,GAAyDA,aAAzD",
+  "mappings": ";;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0CAAhB,EAA4D;AAC1DC,IAAAA,MAAM,EAAEC,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,MAAjB,CAAwBC,mBAD0B;AAG1DC,IAAAA,SAAS,EAAE,qBAAW;AACpB,yEAAqB,aAArB,EAAoC,uCAApC;AACD,KALyD;AAO1DC,IAAAA,OAAO,EAAG;AACR;AACJ;AACA;AACIC,MAAAA,cAAc,EAAE,wBAASC,GAAT,EAAc;AAC5B,eAAOA,GAAG,YAAYR,GAAG,CAACC,SAAJ,CAAcO,GAAd,CAAkBC,MAAjC,IAA2CD,GAAG,CAACE,OAAJ,MAAiB,WAAnE;AACD,OANO;AAQRC,MAAAA,mBAAmB,EAAE,6BAASC,QAAT,EAAmBC,aAAnB,EAAkC;AACrD,eAAOD,QAAQ,CAACE,cAAT,EAAP;AACD;AAVO;AAPgD,GAA5D;AAvBAd,EAAAA,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,MAAjB,CAAwBY,gBAAxB,CAAyCnB,aAAzC,GAAyDA,aAAzD",
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Til Schneider (til132)\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Fabian Jakobs (fjakobs)\n     * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.ui.panels.ConstructorPanel\", {\n  extend: qxl.apiviewer.ui.panels.AbstractMethodPanel,\n\n  construct: function() {\n    this.base(arguments, \"Constructor\", \"qxl/apiviewer/image/constructor18.gif\");\n  },\n\n  members : {\n    /**\n     * @Override\n     */\n    canDisplayItem: function(dao) {\n      return dao instanceof qxl.apiviewer.dao.Method && dao.getName() == \"construct\";\n    },\n\n    getPanelItemObjects: function(daoClass, showInherited) {\n      return daoClass.getConstructor();\n    }\n\n  }\n});\n"
   ]

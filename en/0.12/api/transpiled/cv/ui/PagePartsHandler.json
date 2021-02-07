@@ -50,14 +50,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\n</code></pre>\n<p>CONSTRUCTOR\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong>*</strong></p>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "members": {
     "navbars": {

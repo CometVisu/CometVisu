@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 241,
+        "line": 330,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>This mixin offers basic event handling capabilities. It includes the\n commonly known methods for managing event listeners and firing events.</p>"
@@ -443,14 +439,71 @@
       "type": "function",
       "access": "public"
     },
-    "fireNonBubblingEvent": {
+    "fireEventAsync": {
       "location": {
         "start": {
-          "line": 201,
+          "line": 200,
           "column": 4
         },
         "end": {
-          "line": 208,
+          "line": 211,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an event on this object; equivalent to fireEvent, except that it\n always returns a promise</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fireNonBubblingEvent": {
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4
+        },
+        "end": {
+          "line": 233,
           "column": 5
         }
       },
@@ -500,14 +553,71 @@
       "type": "function",
       "access": "public"
     },
-    "fireDataEvent": {
+    "fireNonBubblingEventAsync": {
       "location": {
         "start": {
-          "line": 226,
+          "line": 250,
           "column": 4
         },
         "end": {
-          "line": 239,
+          "line": 261,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent,\n except that it always returns a promise.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fireDataEvent": {
+      "location": {
+        "start": {
+          "line": 279,
+          "column": 4
+        },
+        "end": {
+          "line": 292,
           "column": 5
         }
       },
@@ -558,6 +668,70 @@
             "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean|qx.Promise",
             "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fireDataEventAsync": {
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4
+        },
+        "end": {
+          "line": 328,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an non-bubbling data event on this object; equivalent to\n fireEvent, except that it always returns a promise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} User defined data attached to the event object",
+            "paramName": "data",
+            "description": " User defined data attached to the event object",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "oldData {var?null} The event's old data (optional)",
+            "paramName": "oldData",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       },

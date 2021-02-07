@@ -8,13 +8,18 @@
       "qx.Bootstrap": {
         "usage": "dynamic",
         "require": true
+      },
+      "qx.bom.client.EcmaScript": {
+        "defer": "load",
+        "require": true
       }
     },
     "environment": {
       "provided": [],
       "required": {
         "ecmascript.number.EPSILON": {
-          "defer": true
+          "defer": true,
+          "className": "qx.bom.client.EcmaScript"
         }
       }
     }
@@ -60,4 +65,4 @@
   qx.lang.normalize.Number.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Number.js.map?dt=1604956078221
+//# sourceMappingURL=Number.js.map?dt=1612691012026

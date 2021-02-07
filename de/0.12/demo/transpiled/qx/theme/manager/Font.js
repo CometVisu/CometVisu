@@ -40,7 +40,7 @@
 
   /**
    * Manager for font themes
-   * 
+   *
    * NOTE: Instances of this class must be disposed of after use
    *
    * @ignore(qx.$$fontBootstrap)
@@ -120,7 +120,7 @@
         var theme = this.getTheme();
 
         if (theme !== null && theme.fonts[value]) {
-          var font = this.__P_197_0(theme.fonts[value]);
+          var font = this.__P_199_0(theme.fonts[value]);
 
           var fo = new font(); // Inject information about custom charcter set tests before we apply the
           // complete blob in one.
@@ -155,7 +155,7 @@
         var theme = this.getTheme();
 
         if (theme !== null && value && theme.fonts[value]) {
-          var font = this.__P_197_0(theme.fonts[value]);
+          var font = this.__P_199_0(theme.fonts[value]);
 
           var fo = new font(); // Inject information about custom charcter set tests before we apply the
           // complete blob in one.
@@ -177,7 +177,7 @@
        * @param fonts {Map} all fonts of the theme
        * @param fontName {String} font name to include
        */
-      __P_197_1: function __P_197_1(fonts, fontName) {
+      __P_199_1: function __P_199_1(fonts, fontName) {
         if (fonts[fontName].include) {
           // get font infos out of the font theme
           var fontToInclude = fonts[fonts[fontName].include]; // delete 'include' key - not part of the merge
@@ -186,12 +186,12 @@
           delete fonts[fontName].include;
           fonts[fontName] = qx.lang.Object.mergeWith(fonts[fontName], fontToInclude, false);
 
-          this.__P_197_1(fonts, fontName);
+          this.__P_199_1(fonts, fontName);
         }
       },
       // apply method
       _applyTheme: function _applyTheme(value) {
-        var dest = this._dynamic;
+        var dest = this._dynamic = {};
 
         for (var key in dest) {
           if (dest[key].themed) {
@@ -205,10 +205,10 @@
 
           for (var key in source) {
             if (source[key].include && source[source[key].include]) {
-              this.__P_197_1(source, key);
+              this.__P_199_1(source, key);
             }
 
-            var font = this.__P_197_0(source[key]);
+            var font = this.__P_199_0(source[key]);
 
             var fo = new font(); // Inject information about custom charcter set tests before we apply the
             // complete blob in one.
@@ -231,7 +231,7 @@
        * @param config {Map} The font's configuration map
        * @return {Class}
        */
-      __P_197_0: function __P_197_0(config) {
+      __P_199_0: function __P_199_0(config) {
         if (config.sources) {
           return qx.bom.webfonts.WebFont;
         }
@@ -252,4 +252,4 @@
   qx.theme.manager.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1604956081183
+//# sourceMappingURL=Font.js.map?dt=1612691014986

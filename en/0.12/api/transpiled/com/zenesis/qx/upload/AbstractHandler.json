@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>****************************************************************\n</code></pre>\n<p>UploadMgr - provides an API for uploading one or multiple files\n   with progress feedback (on modern browsers), does not block the user\n   interface during uploads, supports cancelling uploads.\n   http://qooxdoo.org\n   Copyright:\n     2011 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     This software is provided under the same licensing terms as Qooxdoo,\n     please see the LICENSE file in the Qooxdoo project's top-level directory\n     for details.\n   Authors:\n John Spackman (john.spackman@zenesis.com)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Base class for upload implementations; operates a queue of pending and\n current uploads, and restricts the number of simultaneous uploads.</p>"
         }
       ]
@@ -137,14 +133,7 @@
           "column": 15
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Last unique ID used</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -159,14 +148,7 @@
           "column": 20
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Uploader instance</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -181,14 +163,7 @@
           "column": 17
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Queue of com.zenesis.qx.upload.File's to send</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -203,14 +178,7 @@
           "column": 19
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>List of com.zenesis.qx.upload.File's currently being sent</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -225,14 +193,7 @@
           "column": 18
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Parameters to post with the file</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },

@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_0-beta_7/source/class/qxl/apiviewer/ObjectRegistry.js"
+    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_16/source/class/qxl/apiviewer/ObjectRegistry.js"
   ],
   "names": [
     "qx",
@@ -23,7 +23,7 @@
     "qxl",
     "apiviewer"
   ],
-  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAmBAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,8BAAhB,EACE;AACEC,IAAAA,OAAO,EACT;AACEC,MAAAA,SAAU,EAAG,EADf;AAGEC,MAAAA,QAAQ,EAAG,kBAASC,MAAT,EAAiB;AAC1B,YAAIC,IAAI,GAAGV,EAAE,CAACW,IAAH,CAAQC,cAAR,CAAuBC,UAAvB,CAAkCJ,MAAlC,CAAX;AACA,aAAKF,SAAL,CAAgBG,IAAhB,IAAwBD,MAAxB;AACD,OANH;AAQEK,MAAAA,qBAAqB,EAAG,+BAASC,QAAT,EAAmB;AACzC,eAAO,KAAKR,SAAL,CAAgBQ,QAAhB,CAAP;AACD;AAVH;AAFA,GADF;AAnBAC,EAAAA,GAAG,CAACC,SAAJ,CAAcL,cAAd,CAA6BT,aAA7B,GAA6CA,aAA7C",
+  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,8BAAhB,EACE;AACEC,IAAAA,OAAO,EACT;AACEC,MAAAA,SAAU,EAAG,EADf;AAGEC,MAAAA,QAAQ,EAAG,kBAASC,MAAT,EAAiB;AAC1B,YAAIC,IAAI,GAAGV,EAAE,CAACW,IAAH,CAAQC,cAAR,CAAuBC,UAAvB,CAAkCJ,MAAlC,CAAX;AACA,aAAKF,SAAL,CAAgBG,IAAhB,IAAwBD,MAAxB;AACD,OANH;AAQEK,MAAAA,qBAAqB,EAAG,+BAASC,QAAT,EAAmB;AACzC,eAAO,KAAKR,SAAL,CAAgBQ,QAAhB,CAAP;AACD;AAVH;AAFA,GADF;AAnBAC,EAAAA,GAAG,CAACC,SAAJ,CAAcL,cAAd,CAA6BT,aAA7B,GAA6CA,aAA7C",
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\nqx.Class.define(\"qxl.apiviewer.ObjectRegistry\",\n  {\n    statics :\n  {\n    __objectDb : {},\n\n    register : function(object) {\n      var hash = qx.core.ObjectRegistry.toHashCode(object);\n      this.__objectDb[hash] = object;\n    },\n\n    getObjectFromHashCode : function(hashCode) {\n      return this.__objectDb[hashCode];\n    }\n  }\n\n  });\n"
   ]

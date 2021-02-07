@@ -61,40 +61,40 @@
       qx.ui.progressive.structure.Abstract.constructor.call(this, pane); // If no header was specified, use null header
 
       if (!header) {
-        this.__P_384_0 = new qx.ui.progressive.headfoot.Null();
-        this.__P_384_1 = this.__P_384_0;
+        this.__P_381_0 = new qx.ui.progressive.headfoot.Null();
+        this.__P_381_1 = this.__P_381_0;
       } else {
-        this.__P_384_0 = null;
-        this.__P_384_1 = header;
+        this.__P_381_0 = null;
+        this.__P_381_1 = header;
       } // If no footer was specified, use a null footer
 
 
       if (!footer) {
-        this.__P_384_2 = new qx.ui.progressive.headfoot.Null();
-        this.__P_384_3 = this.__P_384_2;
+        this.__P_381_2 = new qx.ui.progressive.headfoot.Null();
+        this.__P_381_3 = this.__P_381_2;
       } else {
-        this.__P_384_2 = null;
-        this.__P_384_3 = footer;
+        this.__P_381_2 = null;
+        this.__P_381_3 = footer;
       }
     },
     members: {
-      __P_384_1: null,
-      __P_384_3: null,
-      __P_384_0: null,
-      __P_384_2: null,
+      __P_381_1: null,
+      __P_381_3: null,
+      __P_381_0: null,
+      __P_381_2: null,
       // overridden
       applyStructure: function applyStructure(progressive) {
         // Tell the header/footer components who their Progressive is
-        this.__P_384_1.join(progressive);
+        this.__P_381_1.join(progressive);
 
-        this.__P_384_3.join(progressive); // Add the header, pane, and footer to the Progressive.
+        this.__P_381_3.join(progressive); // Add the header, pane, and footer to the Progressive.
 
 
-        progressive.add(this.__P_384_1);
+        progressive.add(this.__P_381_1);
         progressive.add(this.getPane(), {
           flex: 1
         });
-        progressive.add(this.__P_384_3);
+        progressive.add(this.__P_381_3);
       },
 
       /**
@@ -103,7 +103,7 @@
        * @return {qx.ui.progressive.headfoot.Abstract}
        */
       getHeader: function getHeader() {
-        return this.__P_384_1;
+        return this.__P_381_1;
       },
 
       /**
@@ -112,26 +112,26 @@
        * @return {qx.ui.progressive.headfoot.Abstract}
        */
       getFooter: function getFooter() {
-        return this.__P_384_3;
+        return this.__P_381_3;
       }
     },
     destruct: function destruct() {
-      if (this.__P_384_0) {
-        this.__P_384_0.dispose();
+      if (this.__P_381_0) {
+        this.__P_381_0.dispose();
 
-        this.__P_384_0 = null;
+        this.__P_381_0 = null;
       }
 
-      if (this.__P_384_2) {
-        this.__P_384_2.dispose();
+      if (this.__P_381_2) {
+        this.__P_381_2.dispose();
 
-        this.__P_384_2 = null;
+        this.__P_381_2 = null;
       }
 
-      this.__P_384_1 = this.__P_384_3 = null;
+      this.__P_381_1 = this.__P_381_3 = null;
     }
   });
   qx.ui.progressive.structure.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1604955487847
+//# sourceMappingURL=Default.js.map?dt=1612690413986

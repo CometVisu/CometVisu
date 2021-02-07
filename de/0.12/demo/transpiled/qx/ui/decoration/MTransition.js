@@ -9,7 +9,9 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.CssTransition": {},
+      "qx.bom.client.CssTransition": {
+        "require": true
+      },
       "qx.bom.client.Browser": {},
       "qx.bom.Style": {}
     },
@@ -145,4 +147,4 @@
   qx.ui.decoration.MTransition.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MTransition.js.map?dt=1604956090290
+//# sourceMappingURL=MTransition.js.map?dt=1612691024357

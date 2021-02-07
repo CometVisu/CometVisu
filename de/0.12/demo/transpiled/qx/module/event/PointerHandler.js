@@ -13,7 +13,9 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.Event": {},
+      "qx.bom.client.Event": {
+        "require": true
+      },
       "qx.event.Emitter": {},
       "qx.event.handler.PointerCore": {},
       "qxWeb": {
@@ -120,4 +122,4 @@
   qx.module.event.PointerHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PointerHandler.js.map?dt=1604956091439
+//# sourceMappingURL=PointerHandler.js.map?dt=1612691025513

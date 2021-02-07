@@ -15,7 +15,9 @@
       },
       "qx.util.ResourceManager": {},
       "qx.bom.element.Style": {},
-      "qx.bom.client.Css": {},
+      "qx.bom.client.Css": {
+        "require": true
+      },
       "qx.theme.manager.Font": {},
       "qx.lang.Object": {},
       "qx.bom.Style": {},
@@ -602,4 +604,4 @@
   qx.bom.element.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1604955467839
+//# sourceMappingURL=Decoration.js.map?dt=1612690394794

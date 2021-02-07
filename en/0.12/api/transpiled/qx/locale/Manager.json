@@ -9,20 +9,16 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 31,
+        "line": 35,
         "column": 0
       },
       "end": {
-        "line": 474,
+        "line": 478,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>The qx.locale.Manager provides static translation methods (like tr()) and\n general locale information.</p>"
@@ -36,6 +32,10 @@
         {
           "name": "@require",
           "body": "qx.locale.LocalizedString"
+        },
+        {
+          "name": "@require",
+          "body": "qx.bom.client.Locale"
         }
       ],
       "@cldr": [
@@ -53,32 +53,25 @@
   "construct": {
     "location": {
       "start": {
-        "line": 45,
+        "line": 49,
         "column": 14
       },
       "end": {
-        "line": 54,
+        "line": 58,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "statics": {
     "tr": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 78,
+          "line": 82,
           "column": 5
         }
       },
@@ -126,11 +119,11 @@
     "trn": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 97,
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 110,
           "column": 5
         }
       },
@@ -192,11 +185,11 @@
     "trc": {
       "location": {
         "start": {
-          "line": 118,
+          "line": 122,
           "column": 4
         },
         "end": {
-          "line": 124,
+          "line": 128,
           "column": 5
         }
       },
@@ -251,11 +244,11 @@
     "trnc": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 154,
           "column": 5
         }
       },
@@ -324,11 +317,11 @@
     "marktr": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 162,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 164,
           "column": 5
         }
       },
@@ -365,11 +358,11 @@
     "locale": {
       "location": {
         "start": {
-          "line": 175,
+          "line": 179,
           "column": 4
         },
         "end": {
-          "line": 190,
+          "line": 194,
           "column": 5
         }
       },
@@ -424,11 +417,11 @@
     "__defaultLocale": {
       "location": {
         "start": {
-          "line": 205,
+          "line": 209,
           "column": 4
         },
         "end": {
-          "line": 205,
+          "line": 209,
           "column": 63
         }
       },
@@ -438,11 +431,11 @@
     "__locale": {
       "location": {
         "start": {
-          "line": 206,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 206,
+          "line": 210,
           "column": 19
         }
       },
@@ -452,11 +445,11 @@
     "__language": {
       "location": {
         "start": {
-          "line": 207,
+          "line": 211,
           "column": 4
         },
         "end": {
-          "line": 207,
+          "line": 211,
           "column": 21
         }
       },
@@ -466,11 +459,11 @@
     "__translations": {
       "location": {
         "start": {
-          "line": 208,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 208,
+          "line": 212,
           "column": 25
         }
       },
@@ -480,11 +473,11 @@
     "__locales": {
       "location": {
         "start": {
-          "line": 209,
+          "line": 213,
           "column": 4
         },
         "end": {
-          "line": 209,
+          "line": 213,
           "column": 20
         }
       },
@@ -494,11 +487,11 @@
     "__clientLocale": {
       "location": {
         "start": {
-          "line": 210,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 210,
+          "line": 214,
           "column": 25
         }
       },
@@ -508,11 +501,11 @@
     "getLanguage": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 223,
           "column": 4
         },
         "end": {
-          "line": 221,
+          "line": 225,
           "column": 5
         }
       },
@@ -538,11 +531,11 @@
     "getTerritory": {
       "location": {
         "start": {
-          "line": 231,
+          "line": 235,
           "column": 4
         },
         "end": {
-          "line": 233,
+          "line": 237,
           "column": 5
         }
       },
@@ -568,11 +561,11 @@
     "getAvailableLocales": {
       "location": {
         "start": {
-          "line": 248,
+          "line": 252,
           "column": 4
         },
         "end": {
-          "line": 263,
+          "line": 267,
           "column": 5
         }
       },
@@ -609,11 +602,11 @@
     "__extractLanguage": {
       "location": {
         "start": {
-          "line": 272,
+          "line": 276,
           "column": 4
         },
         "end": {
-          "line": 287,
+          "line": 291,
           "column": 5
         }
       },
@@ -648,22 +641,15 @@
     "_applyLocale": {
       "location": {
         "start": {
-          "line": 291,
+          "line": 295,
           "column": 4
         },
         "end": {
-          "line": 301,
+          "line": 305,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -673,11 +659,11 @@
     "addTranslation": {
       "location": {
         "start": {
-          "line": 316,
+          "line": 320,
           "column": 4
         },
         "end": {
-          "line": 329,
+          "line": 333,
           "column": 5
         }
       },
@@ -711,11 +697,11 @@
     "addLocale": {
       "location": {
         "start": {
-          "line": 342,
+          "line": 346,
           "column": 4
         },
         "end": {
-          "line": 355,
+          "line": 359,
           "column": 5
         }
       },
@@ -749,11 +735,11 @@
     "translate": {
       "location": {
         "start": {
-          "line": 371,
+          "line": 375,
           "column": 4
         },
         "end": {
-          "line": 375,
+          "line": 379,
           "column": 5
         }
       },
@@ -804,11 +790,11 @@
     "localize": {
       "location": {
         "start": {
-          "line": 390,
+          "line": 394,
           "column": 4
         },
         "end": {
-          "line": 394,
+          "line": 398,
           "column": 5
         }
       },
@@ -859,11 +845,11 @@
     "__lookupAndExpand": {
       "location": {
         "start": {
-          "line": 411,
+          "line": 415,
           "column": 4
         },
         "end": {
-          "line": 472,
+          "line": 476,
           "column": 5
         }
       },

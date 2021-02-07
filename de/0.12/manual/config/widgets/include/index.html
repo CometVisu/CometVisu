@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -218,7 +215,7 @@ in der Visualisierung.</p>
 <p>Mit Hilfe des Include-Elements kann man seine visu_config.xml Datei in mehrere Dateien aufteilen.
 Das kann bei sehr großen Dateien, hilfreich sein, den Überblick zu bewahren, wenn man den XML-Code direkt
 bearbeiten möchte. Außerdem können bei mehreren visu_config_&lt;variable&gt;.xml Dateien redundante Abschnitte ausgelagert werden.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;page&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;page&gt;</span>
     <span class="nt">&lt;include</span> <span class="na">src=</span><span class="s">&quot;config/Wohnzimmer.xml&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;include</span> <span class="na">src=</span><span class="s">&quot;config/Schlafzimmer.xml&quot;</span><span class="nt">/&gt;</span>
     ...
@@ -226,16 +223,16 @@ bearbeiten möchte. Außerdem können bei mehreren visu_config_&lt;variable&gt;.
 </pre></div>
 </div>
 <p>Wie im Beispiel zu sehen, kann man z.B. für jeden Raum eine eigene XML-Datei anlegen und diese dann mittels
-<code class="docutils literal"><span class="pre">include</span></code> an der gewünschten Stelle in der eigentlichen <em>visu_config.xml</em> einbinden.</p>
+<code class="docutils literal notranslate"><span class="pre">include</span></code> an der gewünschten Stelle in der eigentlichen <em>visu_config.xml</em> einbinden.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
-<p class="last">Der Pfad zu den inkludierten Dateien muss relativ zum <code class="docutils literal"><span class="pre">resource</span></code>-Verzeichnis angegeben werden.
-Wenn die einzubindende Datei im config-Ordner liegt, muss also <code class="docutils literal"><span class="pre">src=config/&lt;dateiname&gt;</span></code>
+<p class="last">Der Pfad zu den inkludierten Dateien muss relativ zum <code class="docutils literal notranslate"><span class="pre">resource</span></code>-Verzeichnis angegeben werden.
+Wenn die einzubindende Datei im config-Ordner liegt, muss also <code class="docutils literal notranslate"><span class="pre">src=config/&lt;dateiname&gt;</span></code>
 angegeben werden (siehe Beispielcode oben).</p>
 </div>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
-<p class="last">Der Abschnitt zwischen <code class="docutils literal"><span class="pre">&lt;meta&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/meta&gt;</span></code> kann nicht ausgelagert werden.</p>
+<p class="last">Der Abschnitt zwischen <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/meta&gt;</span></code> kann nicht ausgelagert werden.</p>
 </div>
 </div>
 </div>
@@ -262,7 +259,7 @@ angegeben werden (siehe Beispielcode oben).</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -308,7 +305,7 @@ angegeben werden (siehe Beispielcode oben).</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

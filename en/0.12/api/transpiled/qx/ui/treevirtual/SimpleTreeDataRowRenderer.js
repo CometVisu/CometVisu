@@ -66,8 +66,11 @@
         if (node.bSelected) {
           // Ensure that the selection model knows it's selected
           var row = rowInfo.row;
+          var selModel = tree.getSelectionModel();
 
-          tree.getSelectionModel()._addSelectionInterval(row, row);
+          if (!selModel.isSelectedIndex(row)) {
+            selModel._addSelectionInterval(row, row);
+          }
         } // Now call our superclass
 
 
@@ -78,4 +81,4 @@
   qx.ui.treevirtual.SimpleTreeDataRowRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleTreeDataRowRenderer.js.map?dt=1604955491034
+//# sourceMappingURL=SimpleTreeDataRowRenderer.js.map?dt=1612690416958

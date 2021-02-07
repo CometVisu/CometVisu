@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2017 OETIKER+PARTNER AG\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tobias Oetiker (oetiker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Mixin responsible for setting the css transition properties of a widget\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n Keep in mind that this is not supported by all browsers:</p>\n<ul>\n<li>Firefox 16+</li>\n<li>IE 10+</li>\n<li>Edge</li>\n<li>Safari 6.1+</li>\n<li>Opera 12.10+</li>\n<li><p>Chrome 26+\nIt is possible to define transitions by setting an\narray containing the needed values as the property value.\nIn case multiple values are specified, the values of the properties\nare repeated until all match in length.\nAn example:</p></li>\n</ul>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       transitionProperty: ['top','left']\n       transitionDuration: '1s'\n     }\n   }\n </pre>"
         }
       ]
@@ -176,14 +172,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [

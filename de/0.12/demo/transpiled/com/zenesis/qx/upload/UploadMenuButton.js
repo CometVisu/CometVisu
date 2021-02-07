@@ -44,16 +44,9 @@
   qx.Class.define("com.zenesis.qx.upload.UploadMenuButton", {
     extend: qx.ui.menu.Button,
     include: [com.zenesis.qx.upload.MUploadButton],
-    members: {
-      _onTap: function _onTap(evt) {
-        var self = this;
-        setTimeout(function () {
-          self._onTap(evt);
-        }, 100);
-      }
-    }
+    members: {}
   });
   com.zenesis.qx.upload.UploadMenuButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UploadMenuButton.js.map?dt=1604956074803
+//# sourceMappingURL=UploadMenuButton.js.map?dt=1612691008764

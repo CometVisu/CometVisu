@@ -1,3 +1,15 @@
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -43,7 +55,7 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_75_0 = new qx.data.Array();
+      this.__P_76_0 = new qx.data.Array();
     },
 
     /*
@@ -52,17 +64,17 @@
     ******************************************************
     */
     members: {
-      __P_75_0: null,
-      __P_75_1: null,
-      __P_75_2: null,
-      __P_75_3: null,
+      __P_76_0: null,
+      __P_76_1: null,
+      __P_76_2: null,
+      __P_76_3: null,
 
       /**
        * Load a config file
        */
       load: function load(callback, context) {
-        this.__P_75_1 = callback;
-        this.__P_75_2 = context; // get the data once the page was loaded
+        this.__P_76_1 = callback;
+        this.__P_76_2 = context; // get the data once the page was loaded
 
         var uri = qx.util.ResourceManager.getInstance().toUri('config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml');
 
@@ -77,7 +89,7 @@
         this.debug("Requesting " + uri);
         var ajaxRequest = new qx.io.request.Xhr(uri);
 
-        this.__P_75_0.push(uri);
+        this.__P_76_0.push(uri);
 
         ajaxRequest.set({
           accept: "application/xml",
@@ -95,10 +107,10 @@
             xml = qx.xml.Document.fromString(xml);
           }
 
-          this.__P_75_3 = xml;
+          this.__P_76_3 = xml;
           xml.querySelectorAll('include').forEach(this.loadInclude, this);
 
-          this.__P_75_0.remove(ajaxRequest.getUrl());
+          this.__P_76_0.remove(ajaxRequest.getUrl());
 
           if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
             this.configError("parsererror");
@@ -115,16 +127,26 @@
             if (cv.Config.libraryCheck && xmlLibVersion < cv.Version.LIBRARY_VERSION) {
               this.configError("libraryerror");
             } else {
+              var backendName = "";
+
+              if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
+                backendName = req.getResponseHeader("X-CometVisu-Backend-Name");
+              }
+
               if (req.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
                 cv.Config.backendUrl = req.getResponseHeader("X-CometVisu-Backend-LoginUrl");
 
                 if (!cv.Config.backendUrl.endsWith('/')) {
                   cv.Config.backendUrl += '/';
                 }
+
+                if (!backendName && cv.Config.backendUrl.startsWith("/rest/")) {
+                  backendName = "openhab";
+                }
               }
 
-              if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
-                cv.Config.backend = req.getResponseHeader("X-CometVisu-Backend-Name");
+              if (backendName) {
+                cv.Config.backend = backendName;
               }
 
               this._checkQueue();
@@ -138,12 +160,12 @@
             ajaxRequest.setUserData("noDemo", false);
             ajaxRequest.setUserData("origUrl", ajaxRequest.getUrl());
 
-            this.__P_75_0.remove(ajaxRequest.getUrl());
+            this.__P_76_0.remove(ajaxRequest.getUrl());
 
             var demoUrl = ajaxRequest.getUrl().replace('config/', 'demo/');
             ajaxRequest.setUrl(demoUrl);
 
-            this.__P_75_0.push(demoUrl);
+            this.__P_76_0.push(demoUrl);
 
             ajaxRequest.send();
           } else if (!qx.util.Request.isSuccessful(status)) {
@@ -166,7 +188,7 @@
           url = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + url;
         }
 
-        this.__P_75_0.push(url);
+        this.__P_76_0.push(url);
 
         var xhr = new qx.io.request.Xhr(url);
         xhr.set({
@@ -176,13 +198,9 @@
         xhr.addListenerOnce("success", function (e) {
           var req = e.getTarget();
           var xml = qx.xml.Document.fromString('<root>' + req.getResponseText() + '</root>');
-          var parent = includeElem.parentElement;
-          parent.removeChild(includeElem);
-          xml.firstChild.childNodes.forEach(function (child) {
-            parent.appendChild(child);
-          });
+          includeElem.replaceWith.apply(includeElem, _toConsumableArray(xml.firstChild.childNodes));
 
-          this.__P_75_0.remove(url);
+          this.__P_76_0.remove(url);
 
           this._checkQueue();
         }, this);
@@ -203,8 +221,8 @@
        * @private
        */
       _checkQueue: function _checkQueue() {
-        if (this.__P_75_0.length === 0) {
-          this.__P_75_1.call(this.__P_75_2, this.__P_75_3);
+        if (this.__P_76_0.length === 0) {
+          this.__P_76_1.call(this.__P_76_2, this.__P_76_3);
 
           this.dispose();
         }
@@ -272,12 +290,12 @@
     */
     destruct: function destruct() {
       // remove references
-      this.__P_75_3 = null;
-      this.__P_75_1 = null;
-      this.__P_75_2 = null;
+      this.__P_76_3 = null;
+      this.__P_76_1 = null;
+      this.__P_76_2 = null;
     }
   });
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1604956071179
+//# sourceMappingURL=ConfigLoader.js.map?dt=1612691005471

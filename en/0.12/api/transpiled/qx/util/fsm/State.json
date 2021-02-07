@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2006, 2007, 2011 Derrell Lipman\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Derrell Lipman (derrell)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Create a new state which may be added to a finite state machine.</p>"
         }
       ]
@@ -203,6 +199,7 @@
       "name": "name",
       "propertyType": "new",
       "nullable": true,
+      "transform": "__P_470_1",
       "allowNull": true
     },
     "onentry": {
@@ -227,6 +224,7 @@
       "name": "onentry",
       "propertyType": "new",
       "nullable": true,
+      "transform": "__P_470_2",
       "allowNull": true
     },
     "onexit": {
@@ -251,6 +249,7 @@
       "name": "onexit",
       "propertyType": "new",
       "nullable": true,
+      "transform": "__P_470_3",
       "allowNull": true
     },
     "autoActionsBeforeOnentry": {
@@ -275,6 +274,7 @@
       "name": "autoActionsBeforeOnentry",
       "propertyType": "new",
       "nullable": true,
+      "transform": "__P_470_4",
       "allowNull": true
     },
     "autoActionsAfterOnentry": {
@@ -299,6 +299,7 @@
       "name": "autoActionsAfterOnentry",
       "propertyType": "new",
       "nullable": true,
+      "transform": "__P_470_5",
       "allowNull": true
     },
     "autoActionsBeforeOnexit": {
@@ -323,6 +324,7 @@
       "name": "autoActionsBeforeOnexit",
       "propertyType": "new",
       "nullable": true,
+      "transform": "__P_470_6",
       "allowNull": true
     },
     "autoActionsAfterOnexit": {
@@ -347,6 +349,7 @@
       "name": "autoActionsAfterOnexit",
       "propertyType": "new",
       "nullable": true,
+      "transform": "__P_470_7",
       "allowNull": true
     },
     "events": {
@@ -371,6 +374,7 @@
       "name": "events",
       "propertyType": "new",
       "nullable": true,
+      "transform": "__P_470_8",
       "allowNull": true
     },
     "qxOwner": {

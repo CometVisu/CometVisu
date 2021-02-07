@@ -23,10 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tristan Koch (tristankoch)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>AbstractRequest serves as a base class for {@link qx.io.request.Xhr}\n and {@link qx.io.request.Jsonp}. It contains methods to conveniently\n communicate with transports found in {@link qx.bom.request}.\n The general procedure to derive a new request is to choose a\n transport (override {@link #<em>createTransport}) and link\n the transport’s response (override {@link #</em>getParsedResponse}).\n The transport must implement {@link qx.bom.request.IRequest}.\n To adjust the behavior of {@link #send} override\n {@link #<em>getConfiguredUrl} and {@link #</em>getConfiguredRequestHeaders}.\n NOTE: Instances of this class must be disposed of after use</p>"
         }
       ]
@@ -727,10 +723,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  CONFIGURE TRANSPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Create and return transport.\n This method MUST be overridden, unless the constructor is overridden as\n well. It is called by the constructor and should return the transport that\n is to be interfaced.</p>"
           }
         ],
@@ -911,10 +903,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  INTERACT WITH TRANSPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Send request.</p>"
           }
         ]
@@ -961,9 +949,9 @@
         "@throws": [
           {
             "name": "@throws",
-            "body": "{qx.type.BaseError} If the environment setting `qx.promise` is set to false",
+            "body": "{qx.type.BaseError} If the environment setting <code>qx.promise</code> is set to false",
             "type": "qx.type.BaseError",
-            "description": " If the environment setting `qx.promise` is set to false"
+            "description": " If the environment setting <code>qx.promise</code> is set to false"
           }
         ]
       },
@@ -1005,10 +993,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n REQUEST HEADERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Apply configured request headers to transport.\n This method MAY be overridden to customize application of request headers\n to transport.</p>"
@@ -1201,43 +1185,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n QUERY TRANSPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Get low-level transport.\n Note: To be used with caution!\n This method can be used to query the transport directly,\n but should be used with caution. Especially, it\n is not advisable to call any destructive methods\n such as <code>open</code> or <code>send</code>.</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>This method mainly exists so that some methods found in the</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>low-level transport can be deliberately omitted here,</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>but still be accessed should it be absolutely necessary.</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
-            "body": "<p>Valid use cases include to query the transport’s responseXML</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>property if performance is critical and any extra parsing</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>should be avoided at all costs.</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
           }
         ],
         "@return": [
@@ -1575,10 +1523,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  RESPONSE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Get parsed response.</p>"
           }
         ],
@@ -1638,10 +1582,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT HANDLING\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Handle \"readyStateChange\" event.</p>"
@@ -1796,10 +1736,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  INTERNAL / HELPERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Fire stateful event.\n Fires event and sets phase to name of event.</p>"
@@ -2305,7 +2241,6 @@
     "jsdoc": {}
   },
   "descendants": [
-    "qx.io.request.Xhr",
-    "qx.io.request.Jsonp"
+    "qx.io.request.Xhr"
   ]
 }

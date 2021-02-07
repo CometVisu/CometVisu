@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2010 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Mixin for the linear background gradient CSS property.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n Keep in mind that this is not supported by all browsers:</p>\n<ul>\n<li>Safari 4.0+</li>\n<li>Chrome 4.0+</li>\n<li>Firefox 3.6+</li>\n<li>Opera 11.1+</li>\n<li>IE 10+</li>\n<li><p>IE 5.5+ (with limitations)\nFor IE 5.5 to IE 8,this class uses the filter rules to create the gradient. This\nhas some limitations: The start and end position property can not be used. For\nmore details, see the original documentation:\nhttp://msdn.microsoft.com/en-us/library/ms532997(v=vs.85).aspx\nFor IE9, we create a gradient in a canvas element and render this gradient\nas background image. Due to restrictions in the <code>background-image</code>\ncss property, we can not allow negative start values in that case.\nIt is possible to define multiple background gradients by setting an\narray containing the needed values as the property value.\nIn case multiple values are specified, the values of the properties\nare repeated until all match in length. It is not possible to define\nmultiple background gradients when falling back to filter rules (IE5.5 to IE8).\nAn example:</p></li>\n</ul>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       startColor:['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],\n       endColor: 'rgba(255, 255, 255, 0.2)',\n       orientation: ['horizontal', 'vertical']\n     }\n   }\n </pre>\n<p>which is the same as:\n </p>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       startColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],\n       endColor: ['rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.2)'],\n       orientation: ['horizontal', 'vertical', 'horizontal']\n     }\n   }\n </pre>"
         }
       ]
@@ -316,23 +312,23 @@
           },
           {
             "name": "@param",
-            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "paramName": "startColorPosition",
-            "description": " The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "type": "Number"
           },
           {
             "name": "@param",
-            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "paramName": "endColorPosition",
-            "description": " The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "type": "Number"
           },
           {
             "name": "@param",
-            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that)",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
             "paramName": "styles",
-            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that)",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
             "type": "Map"
           },
           {
@@ -404,23 +400,23 @@
           },
           {
             "name": "@param",
-            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "paramName": "startColorPosition",
-            "description": " The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "type": "Number"
           },
           {
             "name": "@param",
-            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "paramName": "endColorPosition",
-            "description": " The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "type": "Number"
           },
           {
             "name": "@param",
-            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that)",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
             "paramName": "styles",
-            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that)",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
             "type": "Map"
           },
           {
@@ -492,23 +488,23 @@
           },
           {
             "name": "@param",
-            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "paramName": "startColorPosition",
-            "description": " The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "type": "Number"
           },
           {
             "name": "@param",
-            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "paramName": "endColorPosition",
-            "description": " The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "type": "Number"
           },
           {
             "name": "@param",
-            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that). Note: this particular implementation will do that because it needs to change the `filter` property.",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that). Note: this particular implementation will do that because it needs to change the <code>filter</code> property.",
             "paramName": "styles",
-            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that). Note: this particular implementation will do that because it needs to change the `filter` property.",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that). Note: this particular implementation will do that because it needs to change the <code>filter</code> property.",
             "type": "Map"
           },
           {
@@ -580,23 +576,23 @@
           },
           {
             "name": "@param",
-            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "paramName": "startColorPosition",
-            "description": " The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "type": "Number"
           },
           {
             "name": "@param",
-            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "paramName": "endColorPosition",
-            "description": " The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
             "type": "Number"
           },
           {
             "name": "@param",
-            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that)",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
             "paramName": "styles",
-            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that)",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
             "type": "Map"
           },
           {
@@ -669,14 +665,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1084,30 +1073,6 @@
         ]
       }
     },
-    "getGradientStart": {
-      "type": "function",
-      "name": "getGradientStart",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>gradientStart</code>.\n\nFor further details take a look at the property definition: {@link #gradientStart}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for gradientStart"
-          }
-        ]
-      }
-    },
     "setGradientStart": {
       "type": "function",
       "name": "setGradientStart",
@@ -1146,30 +1111,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>gradientStart</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #gradientStart}."
-          }
-        ]
-      }
-    },
-    "getGradientEnd": {
-      "type": "function",
-      "name": "getGradientEnd",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>gradientEnd</code>.\n\nFor further details take a look at the property definition: {@link #gradientEnd}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for gradientEnd"
           }
         ]
       }

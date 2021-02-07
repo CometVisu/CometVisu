@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "osparc.theme.osparcdark.Font": {
+      "osparc.theme.common.Font": {
         "require": true
       }
     }
@@ -35,7 +35,7 @@
    * Font definitions
    */
   qx.Theme.define("cv.theme.dark.Font", {
-    extend: osparc.theme.osparcdark.Font,
+    extend: osparc.theme.common.Font,
     fonts: {
       "italic": {
         size: 13,
@@ -44,7 +44,7 @@
         italic: true,
         sources: [{
           family: "Roboto",
-          source: ["osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf"]
+          source: ["osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
         }]
       },
       "title": {
@@ -53,7 +53,7 @@
         color: "text",
         sources: [{
           family: "Roboto",
-          source: ["osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf"]
+          source: ["osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
         }]
       },
       "small": {
@@ -62,7 +62,7 @@
         color: "text",
         sources: [{
           family: "Roboto",
-          source: ["osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf"]
+          source: ["osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
         }]
       },
       "subtitle": {
@@ -71,7 +71,7 @@
         color: "text",
         sources: [{
           family: "Roboto",
-          source: ["osparc/theme/font/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/roboto-v18-latin_latin-ext-regular.ttf"]
+          source: ["osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "osparc/theme/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
         }]
       } //,
       // "MaterialIcons": {
@@ -98,4 +98,4 @@
   cv.theme.dark.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1604956077900
+//# sourceMappingURL=Font.js.map?dt=1612691011699

@@ -92,7 +92,7 @@
        * @param width {Integer} The cell's width
        * @param height {Integer} The cell's height
        */
-      __P_439_0: function __P_439_0(htmlArr, row, column, left, top, width, height) {
+      __P_436_0: function __P_436_0(htmlArr, row, column, left, top, width, height) {
         var cellProperties = this._cellProvider.getCellProperties(row, column);
 
         var insets = cellProperties.insets || [0, 0];
@@ -114,7 +114,7 @@
             var cell = cells[i];
             var cellBounds = bounds[i];
 
-            this.__P_439_0(html, cell.firstRow, cell.firstColumn, cellBounds.left, cellBounds.top, cellBounds.width, cellBounds.height);
+            this.__P_436_0(html, cell.firstRow, cell.firstColumn, cellBounds.left, cellBounds.top, cellBounds.width, cellBounds.height);
           }
         } else {
           // create empty dummy map
@@ -140,7 +140,7 @@
             var width = columnSizes[y];
 
             if (!spanMap[row][column]) {
-              this.__P_439_0(html, row, column, left, top, width, height);
+              this.__P_436_0(html, row, column, left, top, width, height);
             }
 
             column++;
@@ -167,4 +167,4 @@
   qx.ui.virtual.layer.HtmlCellSpan.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HtmlCellSpan.js.map?dt=1604955491789
+//# sourceMappingURL=HtmlCellSpan.js.map?dt=1612690417704

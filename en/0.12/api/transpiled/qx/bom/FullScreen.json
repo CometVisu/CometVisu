@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2014 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Cajus Pollmeier (cajus)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This class offers a constant API over the Fullscreen Spec:\n http://www.w3.org/TR/fullscreen/\n It forwards all the browsers support if supported.\n<em>Example</em>\n </p>\n<pre class=\"javascript\">\n var fs = qx.bom.FullScreen.getInstance();\n var button = new qx.ui.form.Button(\"Toggle fullscreen\");\n button.addListener(\"execute\", function() {\n   if (fs.isFullScreen()) {\n     fs.cancel();\n   } else {\n     fs.request();\n   }\n });\n\n button.setEnabled(qx.core.Environment.get(\"html.fullscreen\"));\n </pre>\n<p><em>Note</em>\n A fullscreen request will only be handled from within an interactive\n event handler. So there is most likely a mouse or key event involved\n to trigger it properly.</p>"
         }
       ]

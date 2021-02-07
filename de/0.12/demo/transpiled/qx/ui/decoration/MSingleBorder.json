@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2010 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>A basic decorator featuring simple borders based on CSS styles.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.</p>"
         }
       ]
@@ -45,10 +41,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY: WIDTH\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>top width of border</p>"
@@ -153,10 +145,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY: STYLE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>top style of border</p>"
@@ -307,10 +295,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY: COLOR\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>top color of border</p>"
           }
         ]
@@ -413,10 +397,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY GROUP: EDGE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Property group to configure the left border</p>"
@@ -525,10 +505,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY GROUP: TYPE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Property group to set the border width of all sides</p>"
@@ -672,18 +648,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY APPLY ROUTINES\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -704,14 +669,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1517,30 +1475,6 @@
         ]
       }
     },
-    "getLeft": {
-      "type": "function",
-      "name": "getLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>left</code>.\n\nFor further details take a look at the property definition: {@link #left}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for left"
-          }
-        ]
-      }
-    },
     "setLeft": {
       "type": "function",
       "name": "setLeft",
@@ -1579,30 +1513,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>left</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #left}."
-          }
-        ]
-      }
-    },
-    "getRight": {
-      "type": "function",
-      "name": "getRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>right</code>.\n\nFor further details take a look at the property definition: {@link #right}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for right"
           }
         ]
       }
@@ -1649,30 +1559,6 @@
         ]
       }
     },
-    "getTop": {
-      "type": "function",
-      "name": "getTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>top</code>.\n\nFor further details take a look at the property definition: {@link #top}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for top"
-          }
-        ]
-      }
-    },
     "setTop": {
       "type": "function",
       "name": "setTop",
@@ -1711,30 +1597,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>top</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #top}."
-          }
-        ]
-      }
-    },
-    "getBottom": {
-      "type": "function",
-      "name": "getBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>bottom</code>.\n\nFor further details take a look at the property definition: {@link #bottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for bottom"
           }
         ]
       }
@@ -1781,30 +1643,6 @@
         ]
       }
     },
-    "getWidth": {
-      "type": "function",
-      "name": "getWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for width"
-          }
-        ]
-      }
-    },
     "setWidth": {
       "type": "function",
       "name": "setWidth",
@@ -1847,30 +1685,6 @@
         ]
       }
     },
-    "getStyle": {
-      "type": "function",
-      "name": "getStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>style</code>.\n\nFor further details take a look at the property definition: {@link #style}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for style"
-          }
-        ]
-      }
-    },
     "setStyle": {
       "type": "function",
       "name": "setStyle",
@@ -1909,30 +1723,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>style</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #style}."
-          }
-        ]
-      }
-    },
-    "getColor": {
-      "type": "function",
-      "name": "getColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>color</code>.\n\nFor further details take a look at the property definition: {@link #color}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for color"
           }
         ]
       }

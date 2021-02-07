@@ -48,7 +48,8 @@
 
         for (var i = 0, l = str.length; i < l; i++) {
           var chr = str.charAt(i);
-          var code = chr.charCodeAt(0);
+          var code = str.codePointAt(i);
+          i += String.fromCodePoint(code).length - 1;
 
           if (charCodeToEntities[code]) {
             entity = "&" + charCodeToEntities[code] + ";";
@@ -87,13 +88,13 @@
                 code = entity.substring(2); // match hex number
 
                 if (code.match(/^[0-9A-Fa-f]+$/gi)) {
-                  chr = String.fromCharCode(parseInt(code, 16));
+                  chr = String.fromCodePoint(parseInt(code, 16));
                 }
               } else {
                 code = entity.substring(1); // match integer
 
                 if (code.match(/^\d+$/gi)) {
-                  chr = String.fromCharCode(parseInt(code, 10));
+                  chr = String.fromCodePoint(parseInt(code, 10));
                 }
               }
             }
@@ -107,4 +108,4 @@
   qx.util.StringEscape.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=StringEscape.js.map?dt=1604955493510
+//# sourceMappingURL=StringEscape.js.map?dt=1612690419339

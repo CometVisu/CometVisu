@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -196,39 +193,39 @@ by an online translation service.</p>
 <div class="section" id="update-cometvisu-on-wiregate">
 <h1>Update CometVisu on Wiregate<a class="headerlink" href="#update-cometvisu-on-wiregate" title="Permalink to this headline">¶</a></h1>
 <p><strong>Download the Instructions</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
 wget -O CometVisu0.8.5.tar.bz2  http://sourceforge.net/projects/openautomation/files/CometVisu/CometVisu_0.8.5.tar.bz2/download
 </pre></div>
 </div>
 <p><strong>Unpack the Files</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>tar xvf CometVisu0.8.5.tar.bz2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvf CometVisu0.8.5.tar.bz2
 </pre></div>
 </div>
 <p><strong>OPTIONAL: Delete the downloaded Files</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rm ./CometVisu0.8.5.tar.bz2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm ./CometVisu0.8.5.tar.bz2
 </pre></div>
 </div>
 <p><strong>Copy the Configuration into the new Visu Folder</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cp cometvisu/config/visu_config*.xml release_0.8.5/release/config/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp cometvisu/config/visu_config*.xml release_0.8.5/release/config/
 </pre></div>
 </div>
 <p><strong>EITHER remove an old backup and create a new backup from
 the current deprecated installation</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rm -Rf ./cometvisu.bak
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -Rf ./cometvisu.bak
 mv ./cometvisu cometvisu.bak
 </pre></div>
 </div>
 <p><strong>OR alternative procedure WITHOUT deleting old versions (rename to any_name)</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mv ./cometvisu any_name
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv ./cometvisu any_name
 </pre></div>
 </div>
-<p>&#8216;&#8217;&#8216;Generating a link to call the Visu with the known url
-can be done here again &#8216;&#8217;&#8216;</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ln -s release_0.8.5/release/cometvisu
+<p>‘’‘Generating a link to call the Visu with the known url
+can be done here again ‘’‘</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s release_0.8.5/release/cometvisu
 </pre></div>
 </div>
 <p>Call the Visu then known as
-<code class="docutils literal"><span class="pre">http://name_oder_ip_addresse/visu</span></code> - At the first start, if necessary,
+<code class="docutils literal notranslate"><span class="pre">http://name_oder_ip_addresse/visu</span></code> - At the first start, if necessary,
 the configuration will be automatically converted.</p>
 </div>
 
@@ -254,7 +251,7 @@ the configuration will be automatically converted.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -300,7 +297,7 @@ the configuration will be automatically converted.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

@@ -49,16 +49,16 @@
       inShutDown: false,
 
       /** @type {Map} Internal data structure to store objects */
-      __P_171_0: {},
+      __P_172_0: {},
 
       /** @type {Integer} Next new hash code. */
-      __P_171_1: 0,
+      __P_172_1: 0,
 
       /** @type {String} Post id for hash code creation. */
-      __P_171_2: "",
+      __P_172_2: "",
 
       /** @type {Map} Object hashes to stack traces (for dispose profiling only) */
-      __P_171_3: {},
+      __P_172_3: {},
 
       /**
        * Registers an object into the database. This adds a hashcode
@@ -73,7 +73,7 @@
        * @param obj {Object} Any object with a dispose() method
        */
       register: function register(obj) {
-        var registry = this.__P_171_0;
+        var registry = this.__P_172_0;
 
         if (!registry) {
           return;
@@ -95,7 +95,7 @@
           return;
         }
 
-        var registry = this.__P_171_0;
+        var registry = this.__P_172_0;
 
         if (registry && registry[hash]) {
           delete registry[hash];
@@ -131,7 +131,7 @@
        * @return {String}
        */
       createHashCode: function createHashCode() {
-        var hash = String(this.__P_171_1++ + this.__P_171_2);
+        var hash = String(this.__P_172_1++ + this.__P_172_2);
         return hash;
       },
 
@@ -168,7 +168,7 @@
        * @return {qx.core.Object} The corresponding object or <code>null</code>.
        */
       fromHashCode: function fromHashCode(hash, suppressWarnings) {
-        var obj = this.__P_171_0[hash] || null;
+        var obj = this.__P_172_0[hash] || null;
 
         if (!obj && !suppressWarnings) {
           qx.log.Logger.warn(this, "Object with hash code " + hash + " does not exist (since Qooxdoo 6.0 fromHashCode requires that you explicitly register objects with qx.core.ObjectRegistry.register)");
@@ -185,7 +185,7 @@
        * @return {qx.core.Object} The corresponding object or <code>null</code>.
        */
       hasHashCode: function hasHashCode(hash) {
-        return !!this.__P_171_0[hash];
+        return !!this.__P_172_0[hash];
       },
 
       /**
@@ -198,7 +198,7 @@
        */
       shutdown: function shutdown() {
         this.inShutDown = true;
-        var registry = this.__P_171_0;
+        var registry = this.__P_172_0;
         var hashes = [];
 
         for (var hash in registry) {
@@ -237,7 +237,7 @@
         }
 
         qx.Bootstrap.debug(this, "Disposed " + l + " objects");
-        delete this.__P_171_0;
+        delete this.__P_172_0;
       },
 
       /**
@@ -246,7 +246,7 @@
        * @return {Object} The registry
        */
       getRegistry: function getRegistry() {
-        return this.__P_171_0;
+        return this.__P_172_0;
       },
 
       /**
@@ -256,7 +256,7 @@
        * @internal
        */
       getNextHash: function getNextHash() {
-        return this.__P_171_1;
+        return this.__P_172_1;
       },
 
       /**
@@ -266,7 +266,7 @@
        * @internal
        */
       getPostId: function getPostId() {
-        return this.__P_171_2;
+        return this.__P_172_2;
       },
 
       /**
@@ -276,7 +276,7 @@
        * @internal
        */
       getStackTraces: function getStackTraces() {
-        return this.__P_171_3;
+        return this.__P_172_3;
       }
     },
     defer: function defer(statics) {
@@ -285,16 +285,16 @@
 
         for (var i = 0; i < frames.length; i++) {
           if (frames[i] === window) {
-            statics.__P_171_2 = "-" + (i + 1);
+            statics.__P_172_2 = "-" + (i + 1);
             return;
           }
         }
       }
 
-      statics.__P_171_2 = "-0";
+      statics.__P_172_2 = "-0";
     }
   });
   qx.core.ObjectRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ObjectRegistry.js.map?dt=1604956079617
+//# sourceMappingURL=ObjectRegistry.js.map?dt=1612691013417

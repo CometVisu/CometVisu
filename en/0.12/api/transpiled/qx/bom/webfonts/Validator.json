@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 405,
+        "line": 449,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>Checks whether a given font is available on the document and fires events\n accordingly.\n This class does not need to be disposed, unless you want to abort the validation\n early</p>"
@@ -34,20 +30,16 @@
   "construct": {
     "location": {
       "start": {
-        "line": 39,
+        "line": 41,
         "column": 14
       },
       "end": {
-        "line": 51,
+        "line": 59,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -63,9 +55,25 @@
         },
         {
           "name": "@param",
-          "body": "comparisonString {String?} String to be used to detect whether a font was loaded or not\n whether the font has loaded properly",
+          "body": "comparisonString {String?} String to be used to detect whether a font was loaded or not",
           "paramName": "comparisonString",
-          "description": " String to be used to detect whether a font was loaded or not\n whether the font has loaded properly",
+          "description": " String to be used to detect whether a font was loaded or not",
+          "optional": true,
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "fontWeight {String?} the weight of the font to be verified",
+          "paramName": "fontWeight",
+          "description": " the weight of the font to be verified",
+          "optional": true,
+          "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "fontStyle {String?} the style of the font to be verified\n whether the font has loaded properly",
+          "paramName": "fontStyle",
+          "description": " the style of the font to be verified\n whether the font has loaded properly",
           "optional": true,
           "type": "String"
         }
@@ -76,11 +84,11 @@
     "COMPARISON_FONTS": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 75,
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 78,
           "column": 5
         }
       },
@@ -98,11 +106,11 @@
     "HELPER_CSS": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 84,
           "column": 4
         },
         "end": {
-          "line": 88,
+          "line": 96,
           "column": 5
         }
       },
@@ -120,11 +128,11 @@
     "COMPARISON_STRING": {
       "location": {
         "start": {
-          "line": 97,
+          "line": 105,
           "column": 4
         },
         "end": {
-          "line": 97,
+          "line": 105,
           "column": 30
         }
       },
@@ -142,11 +150,11 @@
     "__defaultSizes": {
       "location": {
         "start": {
-          "line": 98,
+          "line": 106,
           "column": 4
         },
         "end": {
-          "line": 98,
+          "line": 106,
           "column": 25
         }
       },
@@ -156,11 +164,11 @@
     "__defaultHelpers": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 99,
+          "line": 107,
           "column": 27
         }
       },
@@ -170,11 +178,11 @@
     "removeDefaultHelperElements": {
       "location": {
         "start": {
-          "line": 106,
+          "line": 114,
           "column": 4
         },
         "end": {
-          "line": 115,
+          "line": 123,
           "column": 5
         }
       },
@@ -194,11 +202,11 @@
     "fontFamily": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 144,
           "column": 5
         }
       },
@@ -216,14 +224,66 @@
       "nullable": true,
       "allowNull": true
     },
-    "comparisonString": {
+    "fontWeight": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 145,
+          "line": 151,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The font weight to check</p>"
+          }
+        ]
+      },
+      "name": "fontWeight",
+      "propertyType": "new",
+      "apply": "_applyFontWeight",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "fontStyle": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4
+        },
+        "end": {
+          "line": 158,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The font style to check</p>"
+          }
+        ]
+      },
+      "name": "fontStyle",
+      "propertyType": "new",
+      "apply": "_applyFontStyle",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "comparisonString": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4
+        },
+        "end": {
+          "line": 167,
           "column": 5
         }
       },
@@ -243,11 +303,11 @@
     "timeout": {
       "location": {
         "start": {
-          "line": 151,
+          "line": 173,
           "column": 4
         },
         "end": {
-          "line": 155,
+          "line": 177,
           "column": 5
         }
       },
@@ -302,11 +362,11 @@
     "changeStatus": {
       "location": {
         "start": {
-          "line": 173,
+          "line": 195,
           "column": 4
         },
         "end": {
-          "line": 173,
+          "line": 195,
           "column": 41
         }
       },
@@ -326,11 +386,11 @@
     "__requestedHelpers": {
       "location": {
         "start": {
-          "line": 186,
+          "line": 208,
           "column": 4
         },
         "end": {
-          "line": 186,
+          "line": 208,
           "column": 29
         }
       },
@@ -340,11 +400,11 @@
     "__checkTimer": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 209,
           "column": 4
         },
         "end": {
-          "line": 187,
+          "line": 209,
           "column": 23
         }
       },
@@ -354,11 +414,11 @@
     "__checkStarted": {
       "location": {
         "start": {
-          "line": 188,
+          "line": 210,
           "column": 4
         },
         "end": {
-          "line": 188,
+          "line": 210,
           "column": 25
         }
       },
@@ -368,20 +428,16 @@
     "validate": {
       "location": {
         "start": {
-          "line": 201,
+          "line": 223,
           "column": 4
         },
         "end": {
-          "line": 216,
+          "line": 238,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PUBLIC API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Validates the font</p>"
@@ -394,20 +450,16 @@
     "_reset": {
       "location": {
         "start": {
-          "line": 229,
+          "line": 251,
           "column": 4
         },
         "end": {
-          "line": 238,
+          "line": 260,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROTECTED API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Removes the helper elements from the DOM</p>"
@@ -420,11 +472,11 @@
     "_isFontValid": {
       "location": {
         "start": {
-          "line": 249,
+          "line": 271,
           "column": 4
         },
         "end": {
-          "line": 275,
+          "line": 297,
           "column": 5
         }
       },
@@ -450,11 +502,11 @@
     "_getRequestedHelpers": {
       "location": {
         "start": {
-          "line": 284,
+          "line": 306,
           "column": 4
         },
         "end": {
-          "line": 292,
+          "line": 314,
           "column": 5
         }
       },
@@ -480,11 +532,11 @@
     "_getHelperElement": {
       "location": {
         "start": {
-          "line": 304,
+          "line": 326,
           "column": 4
         },
         "end": {
-          "line": 321,
+          "line": 349,
           "column": 5
         }
       },
@@ -527,45 +579,70 @@
     "_applyFontFamily": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 353,
           "column": 4
         },
         "end": {
-          "line": 330,
+          "line": 358,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
         "fontFamily"
       ]
     },
-    "__init": {
+    "_applyFontWeight": {
       "location": {
         "start": {
-          "line": 343,
+          "line": 361,
           "column": 4
         },
         "end": {
-          "line": 357,
+          "line": 366,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "fontWeight"
+      ]
+    },
+    "_applyFontStyle": {
+      "location": {
+        "start": {
+          "line": 369,
+          "column": 4
+        },
+        "end": {
+          "line": 374,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "fontStyle"
+      ]
+    },
+    "__init": {
+      "location": {
+        "start": {
+          "line": 387,
+          "column": 4
+        },
+        "end": {
+          "line": 401,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PRIVATE API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Creates the default helper elements and gets their widths</p>"
@@ -578,11 +655,11 @@
     "__onTimerInterval": {
       "location": {
         "start": {
-          "line": 364,
+          "line": 408,
           "column": 4
         },
         "end": {
-          "line": 386,
+          "line": 430,
           "column": 5
         }
       },
@@ -1287,6 +1364,58 @@
         ]
       }
     },
+    "fireEventAsync": {
+      "type": "function",
+      "name": "fireEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an event on this object; equivalent to fireEvent, except that it\n always returns a promise</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      }
+    },
     "fireNonBubblingEvent": {
       "type": "function",
       "name": "fireNonBubblingEvent",
@@ -1335,6 +1464,58 @@
             "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean",
             "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireNonBubblingEventAsync": {
+      "type": "function",
+      "name": "fireNonBubblingEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent,\n except that it always returns a promise.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -1394,6 +1575,65 @@
             "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean|qx.Promise",
             "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireDataEventAsync": {
+      "type": "function",
+      "name": "fireDataEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an non-bubbling data event on this object; equivalent to\n fireEvent, except that it always returns a promise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} User defined data attached to the event object",
+            "paramName": "data",
+            "description": " User defined data attached to the event object",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "oldData {var?null} The event's old data (optional)",
+            "paramName": "oldData",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -3709,6 +3949,138 @@
         ]
       }
     },
+    "getFontWeight": {
+      "type": "function",
+      "name": "getFontWeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>fontWeight</code>.\n\nFor further details take a look at the property definition: {@link #fontWeight}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for fontWeight"
+          }
+        ]
+      }
+    },
+    "setFontWeight": {
+      "type": "function",
+      "name": "setFontWeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>fontWeight</code>.\n\nFor further details take a look at the property definition: {@link #fontWeight}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for fontWeight"
+          }
+        ]
+      }
+    },
+    "resetFontWeight": {
+      "type": "function",
+      "name": "resetFontWeight",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>fontWeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #fontWeight}."
+          }
+        ]
+      }
+    },
+    "getFontStyle": {
+      "type": "function",
+      "name": "getFontStyle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>fontStyle</code>.\n\nFor further details take a look at the property definition: {@link #fontStyle}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for fontStyle"
+          }
+        ]
+      }
+    },
+    "setFontStyle": {
+      "type": "function",
+      "name": "setFontStyle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>fontStyle</code>.\n\nFor further details take a look at the property definition: {@link #fontStyle}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for fontStyle"
+          }
+        ]
+      }
+    },
+    "resetFontStyle": {
+      "type": "function",
+      "name": "resetFontStyle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>fontStyle</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #fontStyle}."
+          }
+        ]
+      }
+    },
     "getComparisonString": {
       "type": "function",
       "name": "getComparisonString",
@@ -3845,22 +4217,15 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 398,
+        "line": 442,
         "column": 13
       },
       "end": {
-        "line": 404,
+        "line": 448,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 668,
+        "line": 935,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n Christian Hagendorn (cs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>Methods to convert colors between different color spaces.</p>"
@@ -53,7 +49,7 @@
           "column": 4
         },
         "end": {
-          "line": 41,
+          "line": 43,
           "column": 5
         }
       },
@@ -71,11 +67,11 @@
     "SYSTEM": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 49,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 79,
           "column": 5
         }
       },
@@ -93,11 +89,11 @@
     "NAMED": {
       "location": {
         "start": {
-          "line": 84,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 108,
+          "line": 110,
           "column": 5
         }
       },
@@ -115,11 +111,11 @@
     "isNamedColor": {
       "location": {
         "start": {
-          "line": 117,
+          "line": 119,
           "column": 4
         },
         "end": {
-          "line": 119,
+          "line": 121,
           "column": 5
         }
       },
@@ -154,11 +150,11 @@
     "isSystemColor": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 130,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 132,
           "column": 5
         }
       },
@@ -193,11 +189,11 @@
     "supportsThemes": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 144,
+          "line": 146,
           "column": 5
         }
       },
@@ -223,11 +219,11 @@
     "isThemedColor": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 163,
+          "line": 165,
           "column": 5
         }
       },
@@ -262,11 +258,11 @@
     "stringToRgb": {
       "location": {
         "start": {
-          "line": 175,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 206,
+          "line": 183,
           "column": 5
         }
       },
@@ -274,7 +270,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Try to convert an incoming string to an RGB array.\n Supports themed, named and system colors, but also RGB strings,\n hex3 and hex6 values.</p>"
+            "body": "<p>Try to convert an incoming string to an RGBA array.\n Supports themed, named and system colors, but also RGBA strings,\n hex[3468] values.</p>"
           }
         ],
         "@param": [
@@ -289,9 +285,9 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Array} returns an array of red, green, blue on a successful transformation",
+            "body": "{Array} returns an array of red, green, blue and optional alpha on a successful transformation",
             "type": "Array",
-            "description": " returns an array of red, green, blue on a successful transformation"
+            "description": " returns an array of red, green, blue and optional alpha on a successful transformation"
           }
         ],
         "@throws": [
@@ -309,11 +305,11 @@
     "cssStringToRgb": {
       "location": {
         "start": {
-          "line": 217,
+          "line": 193,
           "column": 4
         },
         "end": {
-          "line": 245,
+          "line": 227,
           "column": 5
         }
       },
@@ -321,7 +317,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Try to convert an incoming string to an RGB array.\n Support named colors, RGB strings, hex3 and hex6 values.</p>"
+            "body": "<p>Try to convert an incoming string to an RGB array with optional alpha.\n Support named colors, RGB strings, RGBA strings, hex[3468] values.</p>"
           }
         ],
         "@param": [
@@ -356,11 +352,11 @@
     "stringToRgbString": {
       "location": {
         "start": {
-          "line": 258,
+          "line": 240,
           "column": 4
         },
         "end": {
-          "line": 260,
+          "line": 242,
           "column": 5
         }
       },
@@ -368,7 +364,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Try to convert an incoming string to an RGB string, which can be used\n for all color properties.\n Supports themed, named and system colors, but also RGB strings,\n hex3 and hex6 values.</p>"
+            "body": "<p>Try to convert an incoming string to an RGB string, which can be used\n for all color properties.\n Supports themed, named and system colors, but also RGB strings,\n hexShort and hexLong values.</p>"
           }
         ],
         "@param": [
@@ -403,11 +399,11 @@
     "rgbToRgbString": {
       "location": {
         "start": {
-          "line": 270,
+          "line": 252,
           "column": 4
         },
         "end": {
-          "line": 272,
+          "line": 254,
           "column": 5
         }
       },
@@ -442,11 +438,11 @@
     "rgbToHexString": {
       "location": {
         "start": {
-          "line": 281,
+          "line": 263,
           "column": 4
         },
         "end": {
-          "line": 289,
+          "line": 277,
           "column": 5
         }
       },
@@ -454,24 +450,24 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Converts a RGB array to an hex6 string</p>"
+            "body": "<p>Converts a RGB array to a hex[68] string</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "rgb {Array} an array with red, green and blue",
+            "body": "rgb {Array} an array with red, green, blue and optional alpha",
             "paramName": "rgb",
-            "description": " an array with red, green and blue",
+            "description": " an array with red, green, blue and optional alpha",
             "type": "Array"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{String} a hex6 string (#xxxxxx)",
+            "body": "{String} a hex[68] string (#xxxxxx)",
             "type": "String",
-            "description": " a hex6 string (#xxxxxx)"
+            "description": " a hex[68] string (#xxxxxx)"
           }
         ]
       },
@@ -481,11 +477,11 @@
     "isValidPropertyValue": {
       "location": {
         "start": {
-          "line": 298,
+          "line": 286,
           "column": 4
         },
         "end": {
-          "line": 306,
+          "line": 294,
           "column": 5
         }
       },
@@ -520,11 +516,11 @@
     "isCssString": {
       "location": {
         "start": {
-          "line": 315,
+          "line": 303,
           "column": 4
         },
         "end": {
-          "line": 323,
+          "line": 311,
           "column": 5
         }
       },
@@ -556,14 +552,53 @@
       "type": "function",
       "access": "public"
     },
-    "isHex3String": {
+    "ishexShortString": {
       "location": {
         "start": {
-          "line": 332,
+          "line": 319,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 321,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects if a string is a valid hexShort string</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} any string",
+            "paramName": "str",
+            "description": " any string",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true when the incoming value is a valid hexShort string",
+            "type": "Boolean",
+            "description": " true when the incoming value is a valid hexShort string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isHex3String": {
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 4
+        },
+        "end": {
+          "line": 330,
           "column": 5
         }
       },
@@ -598,11 +633,11 @@
     "isHex6String": {
       "location": {
         "start": {
-          "line": 343,
+          "line": 338,
           "column": 4
         },
         "end": {
-          "line": 345,
+          "line": 340,
           "column": 5
         }
       },
@@ -634,14 +669,53 @@
       "type": "function",
       "access": "public"
     },
-    "isRgbString": {
+    "ishexLongString": {
       "location": {
         "start": {
-          "line": 354,
+          "line": 348,
           "column": 4
         },
         "end": {
-          "line": 356,
+          "line": 350,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects if a string is a valid hex6/8 string</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} any string",
+            "paramName": "str",
+            "description": " any string",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true when the incoming value is a valid hex8 string",
+            "type": "Boolean",
+            "description": " true when the incoming value is a valid hex8 string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isRgbString": {
+      "location": {
+        "start": {
+          "line": 358,
+          "column": 4
+        },
+        "end": {
+          "line": 360,
           "column": 5
         }
       },
@@ -676,11 +750,11 @@
     "isRgbaString": {
       "location": {
         "start": {
-          "line": 365,
+          "line": 369,
           "column": 4
         },
         "end": {
-          "line": 367,
+          "line": 371,
           "column": 5
         }
       },
@@ -715,11 +789,11 @@
     "__rgbStringToRgb": {
       "location": {
         "start": {
-          "line": 375,
+          "line": 379,
           "column": 4
         },
         "end": {
-          "line": 382,
+          "line": 386,
           "column": 5
         }
       },
@@ -727,7 +801,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Converts a regexp object match of a rgb string to an RGB array.</p>"
+            "body": "<p>Converts a regexp object match of a rgb string to an RGBA array.</p>"
           }
         ],
         "@return": [
@@ -745,11 +819,11 @@
     "__rgbaStringToRgb": {
       "location": {
         "start": {
-          "line": 389,
+          "line": 393,
           "column": 4
         },
         "end": {
-          "line": 401,
+          "line": 407,
           "column": 5
         }
       },
@@ -772,14 +846,44 @@
       "type": "function",
       "access": "private"
     },
-    "__hex3StringToRgb": {
+    "__hexShortStringToRgb": {
       "location": {
         "start": {
-          "line": 409,
+          "line": 416,
           "column": 4
         },
         "end": {
-          "line": 416,
+          "line": 423,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a regexp object match of a hexShort string to an RGB array.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} an array with red, green, blue",
+            "type": "Array",
+            "description": " an array with red, green, blue"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "__hex3StringToRgb": {
+      "location": {
+        "start": {
+          "line": 431,
+          "column": 4
+        },
+        "end": {
+          "line": 438,
           "column": 5
         }
       },
@@ -805,11 +909,11 @@
     "__hex6StringToRgb": {
       "location": {
         "start": {
-          "line": 424,
+          "line": 446,
           "column": 4
         },
         "end": {
-          "line": 431,
+          "line": 453,
           "column": 5
         }
       },
@@ -832,14 +936,44 @@
       "type": "function",
       "access": "private"
     },
-    "hex3StringToRgb": {
+    "__hexLongStringToRgb": {
       "location": {
         "start": {
-          "line": 440,
+          "line": 461,
           "column": 4
         },
         "end": {
-          "line": 447,
+          "line": 468,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a regexp object match of a hexLong string to an RGB array.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} an array with red, green, blue",
+            "type": "Array",
+            "description": " an array with red, green, blue"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "hex3StringToRgb": {
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 4
+        },
+        "end": {
+          "line": 484,
           "column": 5
         }
       },
@@ -874,11 +1008,11 @@
     "hex3StringToHex6String": {
       "location": {
         "start": {
-          "line": 457,
+          "line": 494,
           "column": 4
         },
         "end": {
-          "line": 463,
+          "line": 500,
           "column": 5
         }
       },
@@ -913,11 +1047,11 @@
     "hex6StringToRgb": {
       "location": {
         "start": {
-          "line": 472,
+          "line": 509,
           "column": 4
         },
         "end": {
-          "line": 479,
+          "line": 516,
           "column": 5
         }
       },
@@ -952,11 +1086,11 @@
     "hexStringToRgb": {
       "location": {
         "start": {
-          "line": 488,
+          "line": 525,
           "column": 4
         },
         "end": {
-          "line": 499,
+          "line": 536,
           "column": 5
         }
       },
@@ -970,18 +1104,18 @@
         "@param": [
           {
             "name": "@param",
-            "body": "value {String} a hex3 (#xxx) or hex6 (#xxxxxx) string",
+            "body": "value {String} a hexShort (#rgb/#rgba) or hexLong (#rrggbb/#rrggbbaa) string",
             "paramName": "value",
-            "description": " a hex3 (#xxx) or hex6 (#xxxxxx) string",
+            "description": " a hexShort (#rgb/#rgba) or hexLong (#rrggbb/#rrggbbaa) string",
             "type": "String"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Array} an array with red, green, blue",
+            "body": "{Array} an array with red, green, blue and alpha",
             "type": "Array",
-            "description": " an array with red, green, blue"
+            "description": " an array with red, green, blue and alpha"
           }
         ]
       },
@@ -991,11 +1125,11 @@
     "rgbToHsb": {
       "location": {
         "start": {
-          "line": 508,
+          "line": 545,
           "column": 4
         },
         "end": {
-          "line": 562,
+          "line": 599,
           "column": 5
         }
       },
@@ -1003,7 +1137,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Convert RGB colors to HSB</p>"
+            "body": "<p>Convert RGB colors to HSB/HSV</p>"
           }
         ],
         "@param": [
@@ -1018,9 +1152,9 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Array} an array with hue, saturation and brightness",
+            "body": "{Array} an array with hue, saturation and brightness/value",
             "type": "Array",
-            "description": " an array with hue, saturation and brightness"
+            "description": " an array with hue, saturation and brightness/value"
           }
         ]
       },
@@ -1030,11 +1164,11 @@
     "hsbToRgb": {
       "location": {
         "start": {
-          "line": 571,
+          "line": 608,
           "column": 4
         },
         "end": {
-          "line": 651,
+          "line": 688,
           "column": 5
         }
       },
@@ -1042,15 +1176,93 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Convert HSB colors to RGB</p>"
+            "body": "<p>Convert HSB/HSV colors to RGB</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "hsb {Number[]} an array with hue, saturation and brightness",
+            "body": "hsb {Number[]} an array with hue, saturation and brightness/value",
             "paramName": "hsb",
-            "description": " an array with hue, saturation and brightness",
+            "description": " an array with hue, saturation and brightness/value",
+            "type": "Number[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer[]} an array with red, green, blue",
+            "type": "Integer[]",
+            "description": " an array with red, green, blue"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "rgbToHsl": {
+      "location": {
+        "start": {
+          "line": 696,
+          "column": 4
+        },
+        "end": {
+          "line": 707,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convert RGB colors to HSL</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rgb {Number[]} red, blue and green as array",
+            "paramName": "rgb",
+            "description": " red, blue and green as array",
+            "type": "Number[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} an array with hue, saturation and lightness",
+            "type": "Array",
+            "description": " an array with hue, saturation and lightness"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "hslToRgb": {
+      "location": {
+        "start": {
+          "line": 714,
+          "column": 4
+        },
+        "end": {
+          "line": 726,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convert HSL colors to RGB</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hsl {Number[]} an array with hue, saturation and lightness",
+            "paramName": "hsl",
+            "description": " an array with hue, saturation and lightness",
             "type": "Number[]"
           }
         ],
@@ -1069,11 +1281,11 @@
     "randomColor": {
       "location": {
         "start": {
-          "line": 659,
+          "line": 732,
           "column": 4
         },
         "end": {
-          "line": 666,
+          "line": 739,
           "column": 5
         }
       },
@@ -1090,6 +1302,243 @@
             "body": "{String} a valid qooxdoo/CSS rgb color string.",
             "type": "String",
             "description": " a valid qooxdoo/CSS rgb color string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__tuner": {
+      "location": {
+        "start": {
+          "line": 750,
+          "column": 4
+        },
+        "end": {
+          "line": 825,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tune a color string according to the tuneMap</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "color {String} a valid qooxdoo/CSS rgb color string",
+            "paramName": "color",
+            "description": " a valid qooxdoo/CSS rgb color string",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "scaleMap {Map}  as described above",
+            "paramName": "scaleMap",
+            "description": "  as described above",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "tuner {Function}  function",
+            "paramName": "tuner",
+            "description": "  function",
+            "type": "qx.util.Function"
+          },
+          {
+            "name": "@param",
+            "body": "hue_tuner {Function}  function",
+            "paramName": "hue_tuner",
+            "description": "  function",
+            "type": "qx.util.Function"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} a valid CSS rgb color string.*",
+            "type": "String",
+            "description": " a valid CSS rgb color string.*"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "scale": {
+      "location": {
+        "start": {
+          "line": 847,
+          "column": 4
+        },
+        "end": {
+          "line": 864,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scale\n Scale the given properties of the input color according to the\n configuration given in the <code>scaleMap</code>. Each key argument must point to a\n number between -100% and 100% (inclusive). This indicates how far the\n corresponding property should be moved from its original position\n towards the maximum (if the argument is positive) or the minimum (if the\n argument is negative). This means that, for example, <code>lightness: \"50%\"</code>\n will make all colors 50% closer to maximum lightness without making them\n fully white.\n Supported keys are:\n <code>red</code>, <code>green</code>, <code>blue</code>, <code>alpha</code>, <code>saturation</code>,\n <code>brightness</code>, <code>value</code>, <code>lightness</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "color {String}  a valid qooxdoo/CSS rgb color string",
+            "paramName": "color",
+            "description": "  a valid qooxdoo/CSS rgb color string",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "scaleMap {Map}  as described above",
+            "paramName": "scaleMap",
+            "description": "  as described above",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} a valid CSS rgb color string.",
+            "type": "String",
+            "description": " a valid CSS rgb color string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "adjust": {
+      "location": {
+        "start": {
+          "line": 882,
+          "column": 4
+        },
+        "end": {
+          "line": 903,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adjust\n Increases or decreases one or more properties of the input color\n by fixed amounts according to the configuration given in the\n <code>adjustMap</code>. The value of the corresponding key is added to the\n original value and the final result is adjusted to stay within legal\n bounds. Hue values can go full circle.a1\n Supported keys are:\n <code>red</code>, <code>green</code>, <code>blue</code>, <code>alpha</code>, <code>hue</code>, <code>saturation</code>, <code>brightness</code>,\n <code>lightness</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "color {String} a valid qooxdoo/CSS rgb color string",
+            "paramName": "color",
+            "description": " a valid qooxdoo/CSS rgb color string",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "scaleMap {Map} as described above",
+            "paramName": "scaleMap",
+            "description": " as described above",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} a valid CSS rgb color string.",
+            "type": "String",
+            "description": " a valid CSS rgb color string."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "luminance": {
+      "location": {
+        "start": {
+          "line": 912,
+          "column": 4
+        },
+        "end": {
+          "line": 919,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>RgbToLuminance\n Calculate the <a href=\"https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests\">luminance</a> of the given rgb color.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "color {String} a valid qooxdoo/CSS rgb color string",
+            "paramName": "color",
+            "description": " a valid qooxdoo/CSS rgb color string",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} luminance",
+            "type": "Number",
+            "description": " luminance"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "contrast": {
+      "location": {
+        "start": {
+          "line": 929,
+          "column": 4
+        },
+        "end": {
+          "line": 933,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>contrast\n Calculate the contrast of two given rgb colors.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "back {String} a valid qooxdoo/CSS rgb color string",
+            "paramName": "back",
+            "description": " a valid qooxdoo/CSS rgb color string",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "front {String} a valid qooxdoo/CSS rgb color string",
+            "paramName": "front",
+            "description": " a valid qooxdoo/CSS rgb color string",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} contrast",
+            "type": "Number",
+            "description": " contrast"
           }
         ]
       },

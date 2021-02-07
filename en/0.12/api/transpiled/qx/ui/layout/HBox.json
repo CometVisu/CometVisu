@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 82,
+        "line": 92,
         "column": 0
       },
       "end": {
-        "line": 553,
+        "line": 573,
         "column": 3
       }
     },
@@ -21,11 +21,7 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
-          "body": "<p>A horizontal box layout.\n The horizontal box layout lays out widgets in a horizontal row, from left\n to right.\n<em>Features</em></p>\n<ul>\n<li>Minimum and maximum dimensions</li>\n<li>Prioritized growing/shrinking (flex)</li>\n<li>Margins (with horizontal collapsing)</li>\n<li>Auto sizing (ignoring percent values)</li>\n<li>Percent widths (not relevant for size hint)</li>\n<li>Alignment (child property {@link qx.ui.core.LayoutItem#alignX} is ignored)</li>\n<li>Horizontal spacing (collapsed with margins)</li>\n<li>Reversed children layout (from last to first)</li>\n<li><p>Vertical children stretching (respecting size hints)\n<em>Item Properties</em></p></li>\n</ul>\n<ul>\n <li><strong>flex</strong> <em>(Integer)</em>: The flexibility of a layout item determines how the container\n   distributes remaining empty space among its children. If items are made\n   flexible, they can grow or shrink accordingly. Their relative flex values\n   determine how the items are being resized, i.e. the larger the flex ratio\n   of two items, the larger the resizing of the first item compared to the\n   second.\n   If there is only one flex item in a layout container, its actual flex\n   value is not relevant. To disallow items to become flexible, set the\n   flex value to zero.\n </li>\n <li><strong>width</strong> <em>(String)</em>: Allows to define a percent\n   width for the item. The width in percent, if specified, is used instead\n   of the width defined by the size hint. The minimum and maximum width still\n   takes care of the element's limits. It has no influence on the layout's\n   size hint. Percent values are mostly useful for widgets which are sized by\n   the outer hierarchy.\n </li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the HBox layout.\n </p>\n<pre class=\"javascript\">\n var layout = new qx.ui.layout.HBox();\n layout.setSpacing(4);\n var container = new qx.ui.container.Composite(layout);\n container.add(new qx.ui.core.Widget());\n container.add(new qx.ui.core.Widget());\n container.add(new qx.ui.core.Widget());\n </pre>\n<p><em>External Documentation</em>\n See <a href='http://qooxdoo.org/docs/#layout/box.md'>extended documentation</a>\n and links to demos for this layout.</p>"
+          "body": "<p>A horizontal box layout.\n The horizontal box layout lays out widgets in a horizontal row, from left\n to right.\n<em>Features</em></p>\n<ul>\n<li>Minimum and maximum dimensions</li>\n<li>Prioritized growing/shrinking (flex)</li>\n<li>Margins (with horizontal collapsing)</li>\n<li>Auto sizing (ignoring percent values)</li>\n<li>Percent widths (not relevant for size hint)</li>\n<li>Alignment (child property {@link qx.ui.core.LayoutItem#alignX} is ignored)</li>\n<li>Horizontal spacing (collapsed with margins)</li>\n<li>Reversed children layout (from last to first)</li>\n<li><p>Vertical children stretching (respecting size hints)\n<em>Item Properties</em></p></li>\n</ul>\n<ul>\n <li><strong>flex</strong> <em>(Integer)</em>: The flexibility of a layout item determines how the container\n   distributes remaining empty space among its children. If items are made\n   flexible, they can grow or shrink accordingly. Their relative flex values\n   determine how the items are being resized, i.e. the larger the flex ratio\n   of two items, the larger the resizing of the first item compared to the\n   second.\n   If there is only one flex item in a layout container, its actual flex\n   value is not relevant. To disallow items to become flexible, set the\n   flex value to zero.\n </li>\n <li><strong>flexShrink</strong> <em>(Boolean)</em>: Only valid if <code>flex</code> is\n    set to a non-zero value, <code>flexShrink</code> tells the layout to force the child\n    widget to shink if there is not enough space available for all of the children.\n    This is used in scenarios such as when the child insists that it has a <code>minWidth</code>\n    but there simply is not enough space to support that minimum width, so the\n    overflow has to be cut off.  This setting allows the container to pick\n    which children are able to have their <code>minWidth</code> sacrificed.  Without this\n    setting, one oversized child can force later children out of view, regardless\n    of <code>flex</code> settings\n </li>\n <li><strong>width</strong> <em>(String)</em>: Allows to define a percent\n   width for the item. The width in percent, if specified, is used instead\n   of the width defined by the size hint. The minimum and maximum width still\n   takes care of the element's limits. It has no influence on the layout's\n   size hint. Percent values are mostly useful for widgets which are sized by\n   the outer hierarchy.\n </li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the HBox layout.\n </p>\n<pre class=\"javascript\">\n var layout = new qx.ui.layout.HBox();\n layout.setSpacing(4);\n var container = new qx.ui.container.Composite(layout);\n container.add(new qx.ui.core.Widget());\n container.add(new qx.ui.core.Widget());\n container.add(new qx.ui.core.Widget());\n </pre>\n<p><em>External Documentation</em>\n See <a href='https://qooxdoo.org/documentation/#/desktop/layout/box.md'>extended documentation</a>\n and links to demos for this layout.</p>"
         }
       ]
     }
@@ -34,20 +30,16 @@
   "construct": {
     "location": {
       "start": {
-        "line": 101,
+        "line": 111,
         "column": 14
       },
       "end": {
-        "line": 116,
+        "line": 126,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -90,11 +82,11 @@
     "alignX": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 145,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 150,
           "column": 5
         }
       },
@@ -120,11 +112,11 @@
     "alignY": {
       "location": {
         "start": {
-          "line": 147,
+          "line": 157,
           "column": 4
         },
         "end": {
-          "line": 152,
+          "line": 162,
           "column": 5
         }
       },
@@ -150,11 +142,11 @@
     "spacing": {
       "location": {
         "start": {
-          "line": 156,
+          "line": 166,
           "column": 4
         },
         "end": {
-          "line": 161,
+          "line": 171,
           "column": 5
         }
       },
@@ -176,11 +168,11 @@
     "separator": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 175,
           "column": 4
         },
         "end": {
-          "line": 170,
+          "line": 180,
           "column": 5
         }
       },
@@ -202,11 +194,11 @@
     "reversed": {
       "location": {
         "start": {
-          "line": 174,
+          "line": 184,
           "column": 4
         },
         "end": {
-          "line": 179,
+          "line": 189,
           "column": 5
         }
       },
@@ -262,11 +254,11 @@
     "__widths": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 204,
           "column": 4
         },
         "end": {
-          "line": 194,
+          "line": 204,
           "column": 19
         }
       },
@@ -276,11 +268,11 @@
     "__flexs": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 205,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 205,
           "column": 18
         }
       },
@@ -290,11 +282,11 @@
     "__enableFlex": {
       "location": {
         "start": {
-          "line": 196,
+          "line": 206,
           "column": 4
         },
         "end": {
-          "line": 196,
+          "line": 206,
           "column": 23
         }
       },
@@ -304,11 +296,11 @@
     "__children": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 197,
+          "line": 207,
           "column": 21
         }
       },
@@ -318,26 +310,15 @@
     "_applyReversed": {
       "location": {
         "start": {
-          "line": 206,
+          "line": 216,
           "column": 4
         },
         "end": {
-          "line": 213,
+          "line": 223,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  HELPER METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -347,11 +328,11 @@
     "__rebuildCache": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 229,
           "column": 4
         },
         "end": {
-          "line": 267,
+          "line": 277,
           "column": 5
         }
       },
@@ -369,48 +350,30 @@
     "verifyLayoutProperty": {
       "location": {
         "start": {
-          "line": 280,
+          "line": 290,
           "column": 4
         },
         "end": {
-          "line": 299,
+          "line": 310,
           "column": 6
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  LAYOUT INTERFACE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
     "renderLayout": {
       "location": {
         "start": {
-          "line": 303,
+          "line": 314,
           "column": 4
         },
         "end": {
-          "line": 468,
+          "line": 487,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.layout.Abstract",
@@ -421,22 +384,15 @@
     "_computeSizeHint": {
       "location": {
         "start": {
-          "line": 472,
+          "line": 491,
           "column": 4
         },
         "end": {
-          "line": 539,
+          "line": 559,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.layout.Abstract",
@@ -938,22 +894,15 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 550,
+        "line": 570,
         "column": 13
       },
       "end": {
-        "line": 552,
+        "line": 572,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

@@ -13,7 +13,9 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.Engine": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
       "qx.bom.client.Browser": {}
     },
     "environment": {
@@ -498,4 +500,4 @@
   qx.bom.client.Css.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Css.js.map?dt=1604955466564
+//# sourceMappingURL=Css.js.map?dt=1612690393615

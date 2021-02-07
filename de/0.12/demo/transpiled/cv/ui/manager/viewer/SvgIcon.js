@@ -62,7 +62,7 @@
       _applyName: function _applyName(value) {
         if (value) {
           if (!this.__P_43_0) {
-            this.__P_43_0 = qx.util.ResourceManager.getInstance().toUri('icon/knx-uf-iconset.svg');
+            this.__P_43_0 = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
           }
 
           if (!this.__P_43_1.getDomElement()) {
@@ -101,4 +101,4 @@
   cv.ui.manager.viewer.SvgIcon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SvgIcon.js.map?dt=1604956068671
+//# sourceMappingURL=SvgIcon.js.map?dt=1612691002888

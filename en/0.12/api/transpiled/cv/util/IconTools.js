@@ -270,7 +270,7 @@
             color = cv.util.IconTools.colorMapping[color];
           }
 
-          var iconPath = qx.util.ResourceManager.getInstance().toUri('icon/knx-uf-iconset.svg');
+          var iconPath = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
           var style = styling || "";
 
           if (color) {
@@ -294,4 +294,4 @@
   cv.util.IconTools.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconTools.js.map?dt=1604955495418
+//# sourceMappingURL=IconTools.js.map?dt=1612690421253

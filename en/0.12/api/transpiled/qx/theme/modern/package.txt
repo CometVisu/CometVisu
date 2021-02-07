@@ -1,1 +1,0 @@
-qx.theme.modern package

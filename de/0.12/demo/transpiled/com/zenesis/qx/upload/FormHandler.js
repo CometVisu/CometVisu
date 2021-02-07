@@ -90,8 +90,8 @@
               // file with iframe
               return;
             }
-          } catch (e) {} // IE fix
-          // self.debug('iframe loaded');
+          } catch (e) {// IE fix
+          } // self.debug('iframe loaded');
 
 
           var response = self._getIframeContent(iframe);
@@ -213,4 +213,4 @@
   com.zenesis.qx.upload.FormHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FormHandler.js.map?dt=1604956085350
+//# sourceMappingURL=FormHandler.js.map?dt=1612691018983

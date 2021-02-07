@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 228,
+        "line": 231,
         "column": 3
       }
     },
@@ -21,7 +21,13 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<p>The ConfigLoader loads CometVisu config files from the backend. If the loaded config file contains\n <include> elements those config parts are loaded and add to the XML-Document.\n <code>author Tobias Bräutigam &lt;tbraeutigam</code>gmail.com&gt;</p><div class=\"since\"><label>Since:</label> 2018</div>"
+          "body": "<p>The ConfigLoader loads CometVisu config files from the backend. If the loaded config file contains\n <include> elements those config parts are loaded and add to the XML-Document.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam <tbraeutigam@gmail.com></div><div class=\"since\"><label>Since:</label> 2018</div>"
+        }
+      ],
+      "@author": [
+        {
+          "name": "@author",
+          "body": "Tobias Bräutigam <tbraeutigam@gmail.com>"
         }
       ],
       "@since": [
@@ -44,14 +50,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nCONSTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "members": {
     "__loadQueue": {
@@ -117,7 +116,7 @@
           "column": 4
         },
         "end": {
-          "line": 117,
+          "line": 124,
           "column": 5
         }
       },
@@ -135,11 +134,11 @@
     "loadInclude": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 130,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 157,
           "column": 5
         }
       },
@@ -163,11 +162,11 @@
     "_checkQueue": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 163,
           "column": 4
         },
         "end": {
-          "line": 165,
+          "line": 168,
           "column": 5
         }
       },
@@ -191,11 +190,11 @@
     "configError": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 175,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 217,
           "column": 5
         }
       },
@@ -366,22 +365,15 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 222,
+        "line": 225,
         "column": 12
       },
       "end": {
-        "line": 227,
+        "line": 230,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nDESTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

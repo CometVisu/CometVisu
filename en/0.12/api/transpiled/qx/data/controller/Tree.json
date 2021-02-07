@@ -25,10 +25,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<h2>Tree Controller</h2>\n<p><em>General idea</em>\n The tree controller is the controller made for the {@link qx.ui.tree.Tree}\n widget in qooxdoo. Therefore, it is responsible for creating and adding the\n tree folders to the tree given as target.\n<em>Features</em></p>\n<ul>\n<li>Synchronize the model and the target</li>\n<li>Label and icon are bindable</li>\n<li>Takes care of the selection</li>\n<li>Passes on the options used by {@link qx.data.SingleValueBinding#bind}\n<em>Usage</em>\nAs model, you can use every qooxdoo widget structure having one property,\nwhich is a data array holding the children of the current node. There can\nbe as many additional as you like.\nYou need to specify a model, a target, a child path and a label path to\nmake the controller work.\n<em>Cross reference</em></li>\n<li>If you want to bind single values, use {@link qx.data.controller.Object}</li>\n<li>If you want to bind a list like widget, use {@link qx.data.controller.List}</li>\n<li>If you want to bin a form widget, use {@link qx.data.controller.Form}</li>\n</ul>"
         }
       ]
@@ -48,10 +44,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -366,14 +358,7 @@
           "column": 24
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>private members</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -432,10 +417,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   APPLY METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>If a new delegate is set, it applies the stored configuration for the\n tree folder to the already created folders once.</p>"
@@ -814,10 +795,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   EVENT HANDLER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Handler function handling the change of a length of a children array.\n This method invokes a rebuild of the corresponding subtree.</p>"
           }
         ],
@@ -878,10 +855,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   ITEM HANDLING\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Creates a TreeFolder and delegates the configure method if a delegate is\n set and the needed function (configureItem) is available.</p>"
@@ -1072,10 +1045,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   BINDING STUFF\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Helper method for binding a given property from the model to the target\n widget.\n This method should only be called in the\n {@link qx.data.controller.IControllerDelegate#bindItem} function\n implemented by the {@link #delegate} property.</p>"
@@ -1335,10 +1304,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   DELEGATE HELPER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Helper method for applying the delegate It checks if a configureItem\n is set end invokes the initial process to apply the given function.</p>"
@@ -1602,10 +1567,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   APPLY METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Apply-method for setting a new selection array. Only the change listener\n will be removed from the old array and added to the new.</p>"
           }
         ],
@@ -1642,10 +1603,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   EVENT HANDLER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Event handler for the change of the data array holding the selection.\n If a change is in the selection array, the selection update will be\n invoked.</p>"
           }
         ]
@@ -1678,10 +1635,6 @@
       "overriddenFrom": "qx.data.controller.MSelection",
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   SELECTION\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Helper method which should be called by the classes including this\n Mixin when the target changes.</p>"
@@ -2573,13 +2526,40 @@
         "column": 4
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n  DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
+    "jsdoc": {}
+  },
+  "events": {
+    "changeSelection": {
+      "type": "event",
+      "name": "changeSelection",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This event is fired as soon as the content of the selection property changes, but\n this is not equal to the change of the selection of the widget. If the selection\n of the widget changes, the content of the array stored in the selection property\n changes. This means you have to listen to the change event of the selection array\n to get an event as soon as the user changes the selected item.\n </p>\n<pre class=\"javascript\">obj.getSelection().addListener(\"change\", listener, this);</pre>"
+          }
+        ]
+      }
+    },
+    "changeValue": {
+      "type": "event",
+      "name": "changeValue",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires after the value was modified</p>"
+          }
+        ]
+      }
     }
   },
   "descendants": []

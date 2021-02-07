@@ -433,6 +433,15 @@
           };
         }
       },
+      "treevirtual-node-editor-textfield": {
+        include: "textfield",
+        style: function style(states) {
+          return {
+            decorator: undefined,
+            padding: [2, 2]
+          };
+        }
+      },
 
       /*
       ---------------------------------------------------------------------------
@@ -1231,6 +1240,7 @@
           };
         }
       },
+      "toggle-button": "button",
       "hover-button": {
         alias: "button",
         include: "button",
@@ -2189,10 +2199,25 @@
             backgroundColor: "light-background"
           };
         }
+      },
+
+      /*
+        --------------------
+        VIRTUAL SELECTBOX 
+        --------------------
+      */
+      "list-search-highlight": {
+        style: function style(states) {
+          return {
+            backgroundColor: 'rgba(255, 251, 0, 0.53)',
+            textDecorationStyle: 'dotted',
+            textDecorationLine: 'underline'
+          };
+        }
       }
     }
   });
   qx.theme.simple.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1604955478828
+//# sourceMappingURL=Appearance.js.map?dt=1612690405306

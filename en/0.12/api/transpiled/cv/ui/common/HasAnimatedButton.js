@@ -35,7 +35,7 @@
      ******************************************************
      */
     construct: function construct() {
-      this.addListenerOnce("domReady", this.__P_501_0, this);
+      this.addListenerOnce("domReady", this.__P_499_0, this);
     },
 
     /*
@@ -44,11 +44,11 @@
     ******************************************************
     */
     members: {
-      __P_501_1: null,
-      __P_501_2: null,
-      __P_501_3: null,
-      __P_501_0: function __P_501_0() {
-        var actors = this.__P_501_4();
+      __P_499_1: null,
+      __P_499_2: null,
+      __P_499_3: null,
+      __P_499_0: function __P_499_0() {
+        var actors = this.__P_499_4();
 
         if (this.isBindClickToWidget()) {
           actors = [this.getInteractionElement()];
@@ -58,7 +58,7 @@
           qx.event.Registration.addListener(actor, "pointerdown", this.buttonPressed, this);
         }, this);
       },
-      __P_501_4: function __P_501_4() {
+      __P_499_4: function __P_499_4() {
         var actors = [this.getActor()];
 
         if (this.getActors) {
@@ -81,20 +81,20 @@
        */
       buttonPressed: function buttonPressed(event) {
         var actor = event.getCurrentTarget();
-        this.__P_501_3 = actor;
+        this.__P_499_3 = actor;
         qx.event.Registration.addListener(document, "pointerup", this.buttonReleased, this);
-        var buttons = this.isBindClickToWidget() ? this.__P_501_4() : [actor];
+        var buttons = this.isBindClickToWidget() ? this.__P_499_4() : [actor];
 
-        this.__P_501_5(buttons, true);
+        this.__P_499_5(buttons, true);
 
-        this.__P_501_1 = qx.event.Registration.addListener(actor, "pointerout", function () {
-          this.__P_501_5(buttons, false);
+        this.__P_499_1 = qx.event.Registration.addListener(actor, "pointerout", function () {
+          this.__P_499_5(buttons, false);
         }, this);
-        this.__P_501_2 = qx.event.Registration.addListener(actor, "pointerover", function () {
-          this.__P_501_5(buttons, true);
+        this.__P_499_2 = qx.event.Registration.addListener(actor, "pointerover", function () {
+          this.__P_499_5(buttons, true);
         }, this);
       },
-      __P_501_5: function __P_501_5(buttons, pressed) {
+      __P_499_5: function __P_499_5(buttons, pressed) {
         if (pressed) {
           buttons.forEach(function (button) {
             if (button) {
@@ -121,22 +121,22 @@
        */
       buttonReleased: function buttonReleased(event) {
         qx.event.Registration.removeListener(document, "pointerup", this.buttonReleased, this);
-        var actor = this.__P_501_3;
-        var buttons = this.isBindClickToWidget() ? this.__P_501_4() : [actor];
+        var actor = this.__P_499_3;
+        var buttons = this.isBindClickToWidget() ? this.__P_499_4() : [actor];
 
-        this.__P_501_5(buttons, false);
+        this.__P_499_5(buttons, false);
 
-        if (this.__P_501_1) {
-          qx.event.Registration.removeListenerById(actor, this.__P_501_1);
+        if (this.__P_499_1) {
+          qx.event.Registration.removeListenerById(actor, this.__P_499_1);
         }
 
-        if (this.__P_501_2) {
-          qx.event.Registration.removeListenerById(actor, this.__P_501_2);
+        if (this.__P_499_2) {
+          qx.event.Registration.removeListenerById(actor, this.__P_499_2);
         }
 
-        this.__P_501_1 = null;
-        this.__P_501_2 = null;
-        this.__P_501_3 = null;
+        this.__P_499_1 = null;
+        this.__P_499_2 = null;
+        this.__P_499_3 = null;
       }
     },
 
@@ -152,4 +152,4 @@
   cv.ui.common.HasAnimatedButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasAnimatedButton.js.map?dt=1604955496691
+//# sourceMappingURL=HasAnimatedButton.js.map?dt=1612690422547

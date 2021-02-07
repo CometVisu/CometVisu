@@ -66,6 +66,7 @@
    *
    * @internal
    * @asset(qx/static/empty.pdf)
+   * @ignore($.browser)
    */
   qx.Bootstrap.define("qx.bom.client.Pdfjs", {
     statics: {
@@ -487,17 +488,16 @@
           }
         },
         detectIE: function detectIE() {
-          var init = this,
-              $ = init.$,
-              browser = $.browser,
-              doc = document,
-              e,
-              x,
-              tmp,
-              userAgent = window.navigator ? navigator.userAgent || "" : "",
-              progid,
-              progid1,
-              progid2;
+          var init = this;
+          var $ = init.$;
+          var browser = $.browser;
+          var doc = document;
+          var x;
+          var tmp;
+          var userAgent = window.navigator ? navigator.userAgent || "" : "";
+          var progid;
+          var progid1;
+          var progid2;
           browser.ActiveXFilteringEnabled = false;
           browser.ActiveXEnabled = false;
 
@@ -1579,4 +1579,4 @@
   qx.bom.client.Pdfjs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pdfjs.js.map?dt=1604955467206
+//# sourceMappingURL=Pdfjs.js.map?dt=1612690394213

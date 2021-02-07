@@ -47,14 +47,14 @@
      */
     construct: function construct(translation, messageId, args, localized) {
       qx.type.BaseString.constructor.call(this, translation);
-      this.__P_149_0 = messageId;
-      this.__P_149_1 = !!localized;
-      this.__P_149_2 = args;
+      this.__P_150_0 = messageId;
+      this.__P_150_1 = !!localized;
+      this.__P_150_2 = args;
     },
     members: {
-      __P_149_1: null,
-      __P_149_0: null,
-      __P_149_2: null,
+      __P_150_1: null,
+      __P_150_0: null,
+      __P_150_2: null,
 
       /**
        * Get a translation of the string using the current locale.
@@ -63,11 +63,11 @@
        *    locale.
        */
       translate: function translate() {
-        if (this.__P_149_1) {
-          return qx.locale.Manager.getInstance().localize(this.__P_149_0, this.__P_149_2);
+        if (this.__P_150_1) {
+          return qx.locale.Manager.getInstance().localize(this.__P_150_0, this.__P_150_2);
         }
 
-        return qx.locale.Manager.getInstance().translate(this.__P_149_0, this.__P_149_2);
+        return qx.locale.Manager.getInstance().translate(this.__P_150_0, this.__P_150_2);
       },
 
       /**
@@ -76,11 +76,11 @@
        * @return {String} The messageId of this localized String
        */
       getMessageId: function getMessageId() {
-        return this.__P_149_0;
+        return this.__P_150_0;
       }
     }
   });
   qx.locale.LocalizedString.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LocalizedString.js.map?dt=1604956078490
+//# sourceMappingURL=LocalizedString.js.map?dt=1612691012264

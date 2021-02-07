@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -104,9 +101,9 @@
 <li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation auf einem Debian System mit openHAB2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab.html">Installation auf einem Debian System mit openHAB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Installation mittels Docker-Container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker_openhab2.html">Installation auf einem Ubuntu System mit openHAB2 und Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_openhab.html">Installation auf einem Ubuntu System mit openHAB und Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation auf dem Timberwolf über die App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-auf-dem-timberwolf-mittels-portainer">Installation auf dem Timberwolf mittels Portainer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linux.html">Installation auf generischen Linux Systemen</a></li>
@@ -196,40 +193,40 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <div class="section" id="update-der-cometvisu-auf-dem-wiregate">
 <h1>Update der CometVisu auf dem Wiregate<a class="headerlink" href="#update-der-cometvisu-auf-dem-wiregate" title="Link zu dieser Überschrift">¶</a></h1>
 <p><strong>Download der Installationsdatei</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
 wget -O CometVisu0.8.5.tar.bz2  http://sourceforge.net/projects/openautomation/files/CometVisu/CometVisu_0.8.5.tar.bz2/download
 </pre></div>
 </div>
 <p><strong>Entpacken der Dateien</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>tar xvf CometVisu0.8.5.tar.bz2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvf CometVisu0.8.5.tar.bz2
 </pre></div>
 </div>
 <p><strong>OPTIONAL: Entfernen des Downloads</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rm ./CometVisu0.8.5.tar.bz2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm ./CometVisu0.8.5.tar.bz2
 </pre></div>
 </div>
 <p><strong>Kopieren der Konfigurationsdatei in die neue Installation</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cp cometvisu/config/visu_config*.xml release_0.8.5/release/config/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp cometvisu/config/visu_config*.xml release_0.8.5/release/config/
 </pre></div>
 </div>
 <p><strong>ENTWEDER entfernen eines alten Backups und Erzeugen eines neuen Backup
 aus der jetzt veralteten aktuellen Installation</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rm -Rf ./cometvisu.bak
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -Rf ./cometvisu.bak
 mv ./cometvisu cometvisu.bak
 </pre></div>
 </div>
 <p><strong>ODER alternatives Vorgehen OHNE Löschen alter Versionen (irgendeiname
 durch z.B. CV-0.8.x oder so was ersetzen)</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mv ./cometvisu irgendeinname
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv ./cometvisu irgendeinname
 </pre></div>
 </div>
-<p>&#8216;&#8217;&#8216;Erzeugen eines Links um die Visu mit dem bekannten URL aufrufen zu
-können - hier wieder &#8216;&#8217;&#8216;</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ln -s release_0.8.5/release/ cometvisu
+<p>‚‘‚Erzeugen eines Links um die Visu mit dem bekannten URL aufrufen zu
+können - hier wieder ‚‘‚</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s release_0.8.5/release/ cometvisu
 </pre></div>
 </div>
 <p>Aufruf der Visu dann wie bekannt unter
-<code class="docutils literal"><span class="pre">http://name_oder_ip_addresse/cometvisu</span></code> - Beim ersten Start wird
+<code class="docutils literal notranslate"><span class="pre">http://name_oder_ip_addresse/cometvisu</span></code> - Beim ersten Start wird
 falls erforderlich angeboten die Konfiguration automatisch zu
 konvertieren.</p>
 </div>
@@ -256,7 +253,7 @@ konvertieren.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -302,7 +299,7 @@ konvertieren.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

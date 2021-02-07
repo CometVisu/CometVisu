@@ -6,6 +6,7 @@
         "require": true
       },
       "qx.locale.Manager": {},
+      "qx.bom.String": {},
       "qx.core.ValidationError": {},
       "qx.util.ColorUtil": {}
     }
@@ -96,7 +97,7 @@
        *    finite number
        */
       checkNumber: function checkNumber(value, formItem, errorMessage) {
-        errorMessage = errorMessage || qx.locale.Manager.tr("%1 is not a number.", value);
+        errorMessage = errorMessage || qx.locale.Manager.tr("%1 is not a number.", value ? qx.bom.String.escape(value + "") : value);
 
         if (typeof value !== "number" && !(value instanceof Number) || !isFinite(value)) {
           throw new qx.core.ValidationError("Validation Error", errorMessage);
@@ -129,7 +130,7 @@
        *    a valid email address.
        */
       checkEmail: function checkEmail(value, formItem, errorMessage) {
-        errorMessage = errorMessage || qx.locale.Manager.tr("'%1' is not an email address.", value || "");
+        errorMessage = errorMessage || qx.locale.Manager.tr("'%1' is not an email address.", value ? qx.bom.String.escape(value + "") : "");
         var reg = /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/;
 
         if (reg.test(value) === false) {
@@ -162,7 +163,7 @@
        * @throws {qx.core.ValidationError} If the value parameter is not a string.
        */
       checkString: function checkString(value, formItem, errorMessage) {
-        errorMessage = errorMessage || qx.locale.Manager.tr("%1 is not a string.", value);
+        errorMessage = errorMessage || qx.locale.Manager.tr("%1 is not a string.", value ? qx.bom.String.escape(value + "") : value);
 
         if (typeof value !== "string" && !(value instanceof String)) {
           throw new qx.core.ValidationError("Validation Error", errorMessage);
@@ -194,7 +195,7 @@
        * @throws {qx.core.ValidationError} If the value parameter is not an url.
        */
       checkUrl: function checkUrl(value, formItem, errorMessage) {
-        errorMessage = errorMessage || qx.locale.Manager.tr("%1 is not an url.", value);
+        errorMessage = errorMessage || qx.locale.Manager.tr("%1 is not an url.", value ? qx.bom.String.escape(value + "") : value);
         var reg = /([A-Za-z0-9])+:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 
         if (!reg.test(value)) {
@@ -231,7 +232,7 @@
         try {
           qx.util.ColorUtil.stringToRgb(value);
         } catch (e) {
-          var message = errorMessage || qx.locale.Manager.tr("%1 is not a color! %2", value, e);
+          var message = errorMessage || qx.locale.Manager.tr("%1 is not a color! %2", value ? qx.bom.String.escape(value + "") : value, e);
           throw new qx.core.ValidationError("Validation Error", message);
         }
       },
@@ -251,7 +252,7 @@
        */
       range: function range(from, to, errorMessage) {
         return function (value) {
-          var message = errorMessage || qx.locale.Manager.tr("%1 is not in the range from [%2, %3].", value, from, to);
+          var message = errorMessage || qx.locale.Manager.tr("%1 is not in the range from [%2, %3].", value ? qx.bom.String.escape(value + "") : value, from, to);
 
           if (value < from || value > to) {
             throw new qx.core.ValidationError("Validation Error", message);
@@ -270,7 +271,7 @@
        */
       inArray: function inArray(array, errorMessage) {
         return function (value) {
-          var message = errorMessage || qx.locale.Manager.tr("%1 is not in %2", value, array);
+          var message = errorMessage || qx.locale.Manager.tr("%1 is not in %2", value ? qx.bom.String.escape(value + "") : value, array);
 
           if (array.indexOf(value) === -1) {
             throw new qx.core.ValidationError("Validation Error", message);
@@ -290,7 +291,7 @@
        */
       regExp: function regExp(reg, errorMessage) {
         return function (value) {
-          var message = errorMessage || qx.locale.Manager.tr("%1 does not fit %2.", value, reg);
+          var message = errorMessage || qx.locale.Manager.tr("%1 does not fit %2.", value ? qx.bom.String.escape(value + "") : value, reg);
 
           if (!reg.test(value)) {
             throw new qx.core.ValidationError("Validation Error", message);
@@ -302,4 +303,4 @@
   qx.util.Validate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Validate.js.map?dt=1604956088353
+//# sourceMappingURL=Validate.js.map?dt=1612691022563

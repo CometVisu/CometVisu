@@ -22,7 +22,9 @@
       "qx.locale.MTranslation": {
         "require": true
       },
-      "qx.bom.client.Scroll": {},
+      "qx.bom.client.Scroll": {
+        "require": true
+      },
       "qx.application.Routing": {},
       "qx.ui.mobile.core.Root": {}
     },
@@ -155,4 +157,4 @@
   qx.application.Mobile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mobile.js.map?dt=1604955464711
+//# sourceMappingURL=Mobile.js.map?dt=1612690391892

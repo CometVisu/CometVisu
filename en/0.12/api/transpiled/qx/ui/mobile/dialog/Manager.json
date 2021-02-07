@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Gabriel Munteanu (gabios)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Very basic dialog manager. Displays a native alert or confirm dialog if\n the application is running in a PhoneGap environment. For debugging in a browser\n it displays the browser <code>alert</code> or <code>confirm</code> dialog. In the near\n future this should be replaced by dialog widgets.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n    var buttons = [];\n    buttons.push(qx.locale.Manager.tr(\"OK\"));\n    buttons.push(qx.locale.Manager.tr(\"Cancel\"));\n    var title = \"Delete item\";\n    var text = \"Do you want to delete the item?\"\n    qx.ui.mobile.dialog.Manager.getInstance().confirm(title, text, function(index) {\n      if (index==1) {\n\n      }\n    }, this, buttons);\n </pre>\n<p>This example displays a confirm dialog and defines a button click handler.</p>"
         }
       ]

@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>****************************************************************\n</code></pre>\n<p>UploadMgr - provides an API for uploading one or multiple files\n   with progress feedback (on modern browsers), does not block the user\n   interface during uploads, supports cancelling uploads.\n   http://qooxdoo.org\n   Copyright:\n     2011 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     This software is provided under the same licensing terms as Qooxdoo,\n     please see the LICENSE file in the Qooxdoo project's top-level directory\n     for details.\n   Authors:\n John Spackman (john.spackman@zenesis.com)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Represents a file that is to be or has been uploaded; this should be\n instantiated by the _createFile method of AbstractHandler implementations and\n is not expected to be used separately</p>"
         }
       ]
@@ -503,14 +499,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [

@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Sebastian Fastner (fastner)\n Tino Butz (tbtz)\n   ======================================================================\n   This class contains code based on the following work:\n Unify Project\n     Homepage:\n       http://unify-project.org\n     Copyright:\n       2009-2010 Deutsche Telekom AG, Germany, http://telekom.com\n     License:\n       MIT: http://www.opensource.org/licenses/mit-license.php\n Yahoo! UI Library\n       http://developer.yahoo.com/yui\n       Version 2.2.0\n     Copyright:\n       (c) 2007, Yahoo! Inc.\n     License:\n       BSD: http://developer.yahoo.com/yui/license.txt</p>\n<hr />\n<pre><code> http://developer.yahoo.com/yui/license.html\n Copyright (c) 2009, Yahoo! Inc.\n All rights reserved.\n Redistribution and use of this software in source and binary forms,\n with or without modification, are permitted provided that the\n following conditions are met:\n</code></pre>\n<p>Redistributions of source code must retain the above copyright\n       notice, this list of conditions and the following disclaimer.\n Redistributions in binary form must reproduce the above copyright\n       notice, this list of conditions and the following disclaimer in\n       the documentation and/or other materials provided with the\n       distribution.\n Neither the name of Yahoo! Inc. nor the names of its contributors\n       may be used to endorse or promote products derived from this\n       software without specific prior written permission of Yahoo! Inc.\n     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n     \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS\n     FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE\n     COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,\n     INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n     (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\n     SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,\n     STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\n     ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED\n     OF THE POSSIBILITY OF SUCH DAMAGE.\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Includes library functions to work with the client's viewport (window).\n Orientation related functions are point to window.top as default.</p>"
         }
       ]
@@ -246,14 +242,7 @@
           "column": 34
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Cache orientation normalizer map on start</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },

@@ -70,7 +70,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://qooxdoo.org/docs/#layout/basic.md'>
+   * <a href='https://qooxdoo.org/documentation/#/desktop/layout/basic.md'>
    * Extended documentation</a> and links to demos of this layout in the qooxdoo manual.
    */
   qx.Class.define("qx.ui.layout.Basic", {
@@ -140,4 +140,4 @@
   qx.ui.layout.Basic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Basic.js.map?dt=1604956081015
+//# sourceMappingURL=Basic.js.map?dt=1612691014833

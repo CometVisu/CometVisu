@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -209,13 +206,13 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <span id="id1"></span><h1>Mapping<a class="headerlink" href="#mapping" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="section" id="bedeutung">
 <h2>Bedeutung<a class="headerlink" href="#bedeutung" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Mit dem Element &#8220;Mapping&#8221; können verschiedene Werte, die auf dem Bus
+<p>Mit dem Element „Mapping“ können verschiedene Werte, die auf dem Bus
 gesendet werden für die Visualisierung unterschiedliche Bezeichnungen
-bekommen. Als einfachstes Beispiel kann z.B. eine angezeigte &#8220;0&#8221; als
-&#8220;Aus&#8221; dargestellt werden, währenddessen die &#8220;1&#8221; mit &#8220;Ein&#8221; bezeichnet
-werden kann. Hierbei können die Begriffe (&#8220;An&#8221;, &#8220;Aus&#8221; ...) beliebig
+bekommen. Als einfachstes Beispiel kann z.B. eine angezeigte „0“ als
+„Aus“ dargestellt werden, währenddessen die „1“ mit „Ein“ bezeichnet
+werden kann. Hierbei können die Begriffe („An“, „Aus“ …) beliebig
 gewählt werden. Mapping ist Bestandteil der Meta-Sektion im XML. Alle
-Mappings zusammen werden von einem ... Tag umschlossen. Die
+Mappings zusammen werden von einem … Tag umschlossen. Die
 Mapping-Definition bekommt einen eindeutigen Namen, auf den man sich im
 späteren Verlauf für die unterschiedlichsten Visualisierungselemente
 beziehen kann.</p>
@@ -223,7 +220,7 @@ beziehen kann.</p>
 <div class="section" id="mapping-von-werten-zu-text">
 <h2>Mapping von Werten zu Text<a class="headerlink" href="#mapping-von-werten-zu-text" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Eine einfache Definition im Meta-Bereich sieht folgendermaßen aus:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;AusAn&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;AusAn&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Aus<span class="nt">&lt;/entry&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>An<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
@@ -231,11 +228,11 @@ beziehen kann.</p>
 </div>
 <p>Dies würde bei Benutzung mit z.B. einem <a class="reference internal" href="widgets/switch/index.html"><span class="doc">Switch-Widget</span></a></p>
 <p>Statt 0 und 1:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="Einfacher Switch" src="../_images/switch.png" />
 </div>
 <p>An und Aus anzeigen:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="Switch mit mapping" src="../_images/switch_mapping.png" />
 </div>
 <p>Die Farbe kann durch die Definition des <a class="reference internal" href="styling.html"><span class="doc">Styling</span></a> bestimmt werden.</p>
@@ -246,11 +243,11 @@ beziehen kann.</p>
 Iconset</a></p>
 <p>Eine Übersicht der verfügbaren Icons findet man am einfachsten auf dem
 Rechner auf dem die CometVisu läuft unter
-<code class="docutils literal"><span class="pre">http://&lt;IP&gt;/visu/resource/icon/iconlist.html</span></code></p>
+<code class="docutils literal notranslate"><span class="pre">http://&lt;IP&gt;/visu/resource/icons/iconlist.html</span></code></p>
 <p>Man kann damit Mapping nutzen um statt Werten (z.B. 0 oder 1) Icons
 anzuzeigen.</p>
 <p>Die Definition im Meta-Bereich sieht dann folgendermaßen aus:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;On_Off_Symbol&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;On_Off_Symbol&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;light_light_dim_00&quot;</span> <span class="na">color=</span><span class="s">&quot;grey&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
@@ -262,18 +259,18 @@ anzuzeigen.</p>
 </div>
 <p>So würde bei Benutzung mit z.B. einem <a class="reference internal" href="widgets/switch/index.html"><span class="doc">Switch-Widget</span></a></p>
 <p>statt 0 und 1:</p>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="switch.png" src="../_images/switch.png" />
-<p class="caption"><span class="caption-text">Einfacher Switch</span></p>
+<p class="caption"><span class="caption-text">Einfacher Switch</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>die Birne mit Status in der Schaltfläche anzeigt werden:</p>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <img alt="Ausgeschaltet" src="../_images/switch_mapping_styling_off.png" />
-<p class="caption"><span class="caption-text">Ausgeschaltet</span></p>
+<p class="caption"><span class="caption-text">Ausgeschaltet</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="Eingeschaltet" src="../_images/switch_mapping_styling_on.png" />
-<p class="caption"><span class="caption-text">Eingeschaltet</span></p>
+<p class="caption"><span class="caption-text">Eingeschaltet</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>Die Farbe eines Icons wird hierbei NICHT über das Styling gesteuert,
 sondern direkt im Mapping.</p>
@@ -281,7 +278,7 @@ sondern direkt im Mapping.</p>
 <div class="section" id="mapping-von-nicht-binaren-werten">
 <h2>Mapping von nicht-binären Werten<a class="headerlink" href="#mapping-von-nicht-binaren-werten" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Mapping funktioniert nicht nur bei binären Datentypen:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;AufZuTuerSymbol&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;AufZuTuerSymbol&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_door&quot;</span> <span class="na">color=</span><span class="s">&quot;green&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
@@ -298,13 +295,13 @@ sondern direkt im Mapping.</p>
 bei gekippter Tür. Das Mapping ersetzt die wenig aussagekräftige Zahl
 durch die entsprechenden Icons aus dem bei der CometVisu mitgeliefertem
 <a class="reference external" href="http://knx-user-forum.de/knx-uf-iconset/">KNX User Forum Iconset</a></p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/mapping_door_closed.png" src="../_images/mapping_door_closed.png" />
 </div>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/mapping_door_open.png" src="../_images/mapping_door_open.png" />
 </div>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/mapping_door_tilt.png" src="../_images/mapping_door_tilt.png" />
 </div>
 </div>
@@ -312,29 +309,29 @@ durch die entsprechenden Icons aus dem bei der CometVisu mitgeliefertem
 <h2>Wertebereiche<a class="headerlink" href="#wertebereiche" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Es können auch Wertbereiche für die entsprechende Darstellung gewählt
 werden:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Vorzeichen&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Vorzeichen&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;-1e99&quot;</span> <span class="na">range_max=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Negativ<span class="nt">&lt;/entry&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Null<span class="nt">&lt;/entry&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>Positiv<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
-<p>Bei genauer Betrachtung sieht man, dass die &#8220;0&#8221; drei mal vorkommt. Hier
+<p>Bei genauer Betrachtung sieht man, dass die „0“ drei mal vorkommt. Hier
 gilt die Regel, dass alle Werte, die Einzeldefinitionen haben, höher
 priorisiert werden, als die Werte innerhalb eines Wertebereichs. Dadurch
 ist es möglich, für einzelne Werte Sonderbezeichnungen (in diesem Fall
-die &#8220;Null&#8221;) zu definieren.</p>
+die „Null“) zu definieren.</p>
 </div>
 <div class="section" id="besondere-mapping-werte">
 <h2>Besondere Mapping-Werte<a class="headerlink" href="#besondere-mapping-werte" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Es gibt zwei Mapping Werte die gesondert behandelt werden:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">NULL</span></code>: wird angewendet, wenn der Wert leer ist</li>
-<li><code class="docutils literal"><span class="pre">*</span></code>: wird angewendet, wenn kein vorher definiertes Mapping für den Wert gefunden wurde</li>
+<li><code class="docutils literal notranslate"><span class="pre">NULL</span></code>: wird angewendet, wenn der Wert leer ist</li>
+<li><code class="docutils literal notranslate"><span class="pre">*</span></code>: wird angewendet, wenn kein vorher definiertes Mapping für den Wert gefunden wurde</li>
 </ul>
 </div></blockquote>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Fehler&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Fehler&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;NULL&quot;</span><span class="nt">&gt;</span>Fehler<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;*&quot;</span><span class="nt">&gt;</span>Ok<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
@@ -346,22 +343,22 @@ die &#8220;Null&#8221;) zu definieren.</p>
 <h2>Formeln (Einsteiger)<a class="headerlink" href="#formeln-einsteiger" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Manchmal ist es auch nötig, Werte vor der Darstellung umzurechnen, z.B.
 um andere Einheiten zu benutzen.</p>
-<p>&#8220;x&#8221; ist der Eingangswert, den die Formel passend modifiziert auf den
-Wert &#8220;y&#8221; zuweisen muss.</p>
+<p>„x“ ist der Eingangswert, den die Formel passend modifiziert auf den
+Wert „y“ zuweisen muss.</p>
 <p>Komplexere Funktionen und Berechnungen mit mehreren Werten können hier
 nicht durchgeführt werden, dafür muss eine externe Logik Engine (linkknx
 o.ä.) eingesetzt werden. Allerdings ist es durchaus möglich, die
 gegebenen JavaScript-Funktionen zu verwenden. Mehr dazu weiter unten.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Umrechnen_kW&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Umrechnen_kW&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;formula&gt;</span>y = x*1000<span class="nt">&lt;/formula&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
 <p>Beispielsweise kann man damit °C in °F umrechnen:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/mappong_formula.png" src="../_images/mappong_formula.png" />
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
  <span class="nt">&lt;mappings&gt;</span>
   <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;C-to-F&quot;</span><span class="nt">&gt;</span>
@@ -385,12 +382,12 @@ gegebenen JavaScript-Funktionen zu verwenden. Mehr dazu weiter unten.</p>
 <p>Mit diesem Beispiel können fehlerhafte Sensoren in einer Übersichtsseite markiert werden.
 Sensoren liefern in der Regel nummerische Werte. Bleiben diesen aus, kann z.B. das expire-Binding
 in openHAB einen negativen Wert zurückliefern. Das Mapping würde ein <em>OK</em> oder <em>not OK</em> liefern:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;SensorAlarm&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;SensorAlarm&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;formula&gt;</span>y = (x &gt;= 0) ? &quot;OK&quot; : &quot;not OK&quot;;<span class="nt">&lt;/formula&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/sensor_alarme.png" src="../_images/sensor_alarme.png" />
 </div>
 </div>
@@ -403,15 +400,15 @@ in einer Formel auch die konkreten JavaScript-Methoden verwendet werden.</p>
 so dass dessen Methoden direkt angewendet werden können.</p>
 <p>Ohne Mapping resp. Formel sieht der Output eines openHAB-DateTime-Items
 bspw. so aus:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/oh_datetime.png" src="../_images/oh_datetime.png" />
 </div>
 <p>Möchte man jedoch lediglich die Uhrzeit im Output haben, so geht das mit
 folgendem Mapping:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/mapping_oh_datetime.png" src="../_images/mapping_oh_datetime.png" />
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
  <span class="nt">&lt;mappings&gt;</span>
   <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;HourMinute&quot;</span><span class="nt">&gt;</span>
@@ -446,7 +443,7 @@ Objekt aufrufen kann.</p>
 <div class="section" id="wind-und-windstarke">
 <h3>Wind und Windstärke<a class="headerlink" href="#wind-und-windstarke" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Für Wetterdaten in km/h:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;kmh2bft&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;kmh2bft&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>0<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;2&quot;</span> <span class="na">range_max=</span><span class="s">&quot;5&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;11&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/entry&gt;</span>
@@ -480,7 +477,7 @@ Objekt aufrufen kann.</p>
 </pre></div>
 </div>
 <p>Für Wetterdaten in m/s:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;ms2bft&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;ms2bft&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;0.3&quot;</span><span class="nt">&gt;</span>0<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0.3&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1.6&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;1.6&quot;</span> <span class="na">range_max=</span><span class="s">&quot;3.4&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/entry&gt;</span>
@@ -532,7 +529,7 @@ Objekt aufrufen kann.</p>
 </div>
 <div class="section" id="windrichtung">
 <h3>Windrichtung<a class="headerlink" href="#windrichtung" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Windrichtung_°&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Windrichtung_°&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;11.25&quot;</span><span class="nt">&gt;</span>Nord<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;11.25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;33.75&quot;</span><span class="nt">&gt;</span>Nordnordost<span class="nt">&lt;/entry&gt;</span>
     <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;33.75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;56.25&quot;</span><span class="nt">&gt;</span>Nordost<span class="nt">&lt;/entry&gt;</span>
@@ -556,7 +553,7 @@ Objekt aufrufen kann.</p>
 </div>
 <div class="section" id="rolladen-raffstores-und-jalousien">
 <h3>Rolläden, Raffstores und Jalousien<a class="headerlink" href="#rolladen-raffstores-und-jalousien" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Jalousie&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Jalousie&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_window_2w&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;/entry&gt;</span>
@@ -654,7 +651,7 @@ Objekt aufrufen kann.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -700,7 +697,7 @@ Objekt aufrufen kann.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

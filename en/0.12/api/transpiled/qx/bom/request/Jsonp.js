@@ -18,7 +18,9 @@
     "environment": {
       "provided": [],
       "required": {
-        "qx.debug.io": {}
+        "qx.debug.io": {
+          "className": "qx.bom.request.Script"
+        }
       }
     }
   };
@@ -324,4 +326,4 @@
   qx.bom.request.Jsonp.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsonp.js.map?dt=1604955468280
+//# sourceMappingURL=Jsonp.js.map?dt=1612690395182

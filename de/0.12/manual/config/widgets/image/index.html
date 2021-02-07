@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -222,7 +219,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 http erreichbar auf dem CV-System oder einem anderen Server liegen.</p>
 <p>Als Dateiformate können alle Formate verwendet werden, die vom für die CV genutzen
 Browser unterstützen werden. Vorzugweise sollten das PNG, GIF und JPG sein.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/image_simple.png" src="../../../_images/image_simple.png" />
 </div>
 </div>
@@ -233,7 +230,7 @@ Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden:
 <p>Das Verhalten und Aussehen des Image-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
 beides über den <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
-<p>Nur die mit ..... unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+<p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
 <div class="section" id="erlaubte-attribute-im-image-element">
 <h3>Erlaubte Attribute im Image-Element<a class="headerlink" href="#erlaubte-attribute-im-image-element" title="Link zu dieser Überschrift">¶</a></h3>
@@ -248,7 +245,7 @@ daher weg gelassen werden.</p>
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="4">Attribut</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Inhalt</th>
 <th class="head">Beschreibung</th>
@@ -270,7 +267,7 @@ daher weg gelassen werden.</p>
 </tr>
 <tr class="row-even"><td>widthfit</td>
 <td><em>true</em> oder <em>false</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>refresh</td>
 <td>Zahl</td>
@@ -290,28 +287,24 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
-<p>Die gültigen Werte für <code class="docutils literal"><span class="pre">cachecontrol</span></code> sind:</p>
+<p>Die gültigen Werte für <code class="docutils literal notranslate"><span class="pre">cachecontrol</span></code> sind:</p>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">full</span></code></dt>
-<dd>Standard. Durch Erweitern der URL um einen Zeitstempel wird
+<dt><code class="docutils literal notranslate"><span class="pre">full</span></code></dt><dd>Standard. Durch Erweitern der URL um einen Zeitstempel wird
 sichergestellt, dass immer eine neue Version geladen wird. Der
 Server muss dies jedoch unterstützen.</dd>
-<dt><code class="docutils literal"><span class="pre">force</span></code></dt>
-<dd>Durch aufwändigere, interne Maßnahmen wird versucht eine
+<dt><code class="docutils literal notranslate"><span class="pre">force</span></code></dt><dd>Durch aufwändigere, interne Maßnahmen wird versucht eine
 Aktualisierung des Bildes zu erzwingen.</dd>
-<dt><code class="docutils literal"><span class="pre">weak</span></code></dt>
-<dd>Die URL wird nur durch einen Anker (Raute) mit Zeitstempel erweitert.
-Server die Bilder bei <code class="docutils literal"><span class="pre">full</span></code> nicht übertragen sind jedoch meist
-mit <code class="docutils literal"><span class="pre">weak</span></code> kompatibel. Jedoch müssen hier die Cache-Parameter
+<dt><code class="docutils literal notranslate"><span class="pre">weak</span></code></dt><dd>Die URL wird nur durch einen Anker (Raute) mit Zeitstempel erweitert.
+Server die Bilder bei <code class="docutils literal notranslate"><span class="pre">full</span></code> nicht übertragen sind jedoch meist
+mit <code class="docutils literal notranslate"><span class="pre">weak</span></code> kompatibel. Jedoch müssen hier die Cache-Parameter
 im HTTP-Header vom Server richtig gesetzt werden so wie der Browser
 korrekt reagieren.</dd>
-<dt><code class="docutils literal"><span class="pre">none</span></code></dt>
-<dd>Die URL wird nicht verändert, dass eine Aktualisierung des Bildes
+<dt><code class="docutils literal notranslate"><span class="pre">none</span></code></dt><dd>Die URL wird nicht verändert, dass eine Aktualisierung des Bildes
 durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
 </dl>
 <div class="figure align-center" id="id2">
 <img alt="../../../_images/de_config_widgets_image_index_editor_attributes.png" src="../../../_images/de_config_widgets_image_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>
 <div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
@@ -335,8 +328,7 @@ durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
-<dt>image</dt>
-<dd><ul class="first last simple">
+<dt>image</dt><dd><ul class="simple">
 <li>layout</li>
 </ul>
 </dd>
@@ -431,8 +423,7 @@ durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
-<dt>image</dt>
-<dd><ul class="first last simple">
+<dt>image</dt><dd><ul class="simple">
 <li>label</li>
 <li>icon</li>
 </ul>
@@ -441,11 +432,11 @@ durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
 </td>
 <td><abbr title="Pflichtangabe">name</abbr></td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>type</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>flavour</td>
 <td>Text</td>
@@ -453,7 +444,7 @@ durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
 </tr>
 <tr class="row-even"><td>color</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>styling</td>
 <td>Text</td>
@@ -464,8 +455,7 @@ durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
 <td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
-<dt>image</dt>
-<dd><ul class="first last simple">
+<dt>image</dt><dd><ul class="simple">
 <li>label<ul>
 <li>#text</li>
 </ul>
@@ -474,7 +464,7 @@ durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
 </dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>Text</td>
 <td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
 </tr>
@@ -482,7 +472,7 @@ durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
 </table>
 <div class="figure align-center" id="id3">
 <img alt="../../../_images/de_config_widgets_image_index_editor_elements.png" src="../../../_images/de_config_widgets_image_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elemente im Editor</span></p>
+<p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>
 </div>
@@ -496,7 +486,7 @@ der <a class="reference internal" href="../../xml-format.html"><span class="doc"
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das Image Widget aus dem oben gezeigten Screenshot erzeugt:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;image</span> <span class="na">src=</span><span class="s">&quot;icon/comet_128_ff8000.png&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;image</span> <span class="na">src=</span><span class="s">&quot;icons/comet_128_ff8000.png&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -504,10 +494,10 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <h2>XML Syntax komplett<a class="headerlink" href="#xml-syntax-komplett" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Hier der Beispielcode der das Image-Widget mit den allen gezeigten
 Eigenschaften einfügt:</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/image_complete.png" src="../../../_images/image_complete.png" />
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;image</span> <span class="na">src=</span><span class="s">&quot;icon/comet_128_ff8000.png&quot;</span> <span class="na">width=</span><span class="s">&quot;300px&quot;</span> <span class="na">height=</span><span class="s">&quot;200px&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;image</span> <span class="na">src=</span><span class="s">&quot;icons/comet_128_ff8000.png&quot;</span> <span class="na">width=</span><span class="s">&quot;300px&quot;</span> <span class="na">height=</span><span class="s">&quot;200px&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;label&gt;</span>Beschreibung der Grafik<span class="nt">&lt;/label&gt;</span>
 <span class="nt">&lt;/image&gt;</span>
 </pre></div>
@@ -544,7 +534,7 @@ Eigenschaften einfügt:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -590,7 +580,7 @@ Eigenschaften einfügt:</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

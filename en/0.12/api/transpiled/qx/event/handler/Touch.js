@@ -58,7 +58,8 @@
         "require": true
       },
       "qx.bom.client.Event": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       }
     },
     "environment": {
@@ -121,10 +122,10 @@
      */
     construct: function construct(manager) {
       // Define shorthands
-      this.__P_190_0 = manager;
-      this.__P_190_1 = manager.getWindow();
-      this.__P_190_2 = this.__P_190_1.document;
-      qx.event.handler.TouchCore.apply(this, [this.__P_190_2]);
+      this.__P_187_0 = manager;
+      this.__P_187_1 = manager.getWindow();
+      this.__P_187_2 = this.__P_187_1.document;
+      qx.event.handler.TouchCore.apply(this, [this.__P_187_2]);
     },
 
     /*
@@ -168,11 +169,11 @@
     *****************************************************************************
     */
     members: {
-      __P_190_0: null,
-      __P_190_1: null,
-      __P_190_2: null,
+      __P_187_0: null,
+      __P_187_1: null,
+      __P_187_2: null,
       // Checks if the mouse movement is happening while simulating a touch event
-      __P_190_3: false,
+      __P_187_3: false,
 
       /*
       ---------------------------------------------------------------------------
@@ -214,7 +215,7 @@
         } // Fire user action event
 
 
-        qx.event.Registration.fireEvent(this.__P_190_1, "useraction", qx.event.type.Data, [type]);
+        qx.event.Registration.fireEvent(this.__P_187_1, "useraction", qx.event.type.Data, [type]);
       },
 
       /*
@@ -237,9 +238,9 @@
        * Dispose this object
        */
       dispose: function dispose() {
-        this.__P_190_4("dispose");
+        this.__P_187_4("dispose");
 
-        this.__P_190_0 = this.__P_190_1 = this.__P_190_2 = null;
+        this.__P_187_0 = this.__P_187_1 = this.__P_187_2 = null;
       },
 
       /**
@@ -248,7 +249,7 @@
        * @param method {String} Name of the overridden method.
        * @param args {Array} Arguments.
        */
-      __P_190_4: function __P_190_4(method, args) {
+      __P_187_4: function __P_187_4(method, args) {
         qx.event.handler.TouchCore.prototype[method].apply(this, args || []);
       }
     },
@@ -270,4 +271,4 @@
   qx.event.handler.Touch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Touch.js.map?dt=1604955473746
+//# sourceMappingURL=Touch.js.map?dt=1612690400471

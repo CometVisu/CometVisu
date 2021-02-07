@@ -1,0 +1,31 @@
+{
+  "className": "qx.theme.tangible.ColorLight",
+  "packageName": "qx.theme.tangible",
+  "name": "ColorLight",
+  "superClass": "qx.theme.tangible.ColorEngine",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0
+      },
+      "end": {
+        "line": 32,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Simple color theme</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

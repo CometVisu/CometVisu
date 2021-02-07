@@ -43,14 +43,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nCONSTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "properties": {
     "anonymous": {
@@ -234,6 +227,7 @@
       "name": "colspan",
       "propertyType": "new",
       "init": 6,
+      "transform": "string2number",
       "check": "Number",
       "defaultValue": 6
     },
@@ -251,6 +245,7 @@
       "name": "colspanM",
       "propertyType": "new",
       "init": 6,
+      "transform": "string2number",
       "check": "Number",
       "defaultValue": 6
     },
@@ -268,6 +263,7 @@
       "name": "colspanS",
       "propertyType": "new",
       "init": 6,
+      "transform": "string2number",
       "check": "Number",
       "defaultValue": 6
     },
@@ -494,14 +490,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -604,10 +593,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>jshint ignore:line</p>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Default action for tap events, does nothing but can be overridden\n by subclasses</p>"
           }
         ],
@@ -637,10 +622,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<p>jshint ignore:line</p>"
-          },
           {
             "name": "@description",
             "body": "<p>Triggered by the <code>setup.dom.finished</code> bus event</p>"
@@ -2633,14 +2614,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nDESTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": [
     "cv.plugins.CalendarList",

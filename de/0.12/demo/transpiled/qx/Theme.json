@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Theme classes contain styling information for certain aspects of the\n graphical user interface.\n Supported themes are: colors, decorations, fonts, icons, appearances.\n The additional meta theme allows for grouping of the individual\n themes.\n For more details, take a look at the\n <a href='http://qooxdoo.org/docs/#desktop/gui/theming.md' target='_blank'>\n documentation of the theme system in the qooxdoo manual.</a></p>"
         }
       ]
@@ -45,10 +41,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PUBLIC API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Theme config\n Example:\n </p>\n<pre class='javascript'>\n qx.Theme.define(\"name\",\n {\n   aliases : {\n     \"aliasKey\" : \"resourceFolderOrUri\"\n   },\n   extend : otherTheme,\n   include : [MMixinTheme],\n   patch : [MMixinTheme],\n   colors : {},\n   decorations : {},\n   fonts : {},\n   widgets : {},\n   appearances : {},\n   meta : {},\n   boot : function(){}\n });\n </pre>\n<p>For more details, take a look at the\n <a href='http://qooxdoo.org/docs/#desktop/gui/theming.md' target='_blank'>\n documentation of the theme system in the qooxdoo manual.</a></p>"
@@ -305,10 +297,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PRIVATE/INTERNAL API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>This method will be attached to all themes to return\n a nice identifier for them.</p>"

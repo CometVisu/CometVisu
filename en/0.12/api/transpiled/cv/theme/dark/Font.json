@@ -2,7 +2,7 @@
   "className": "cv.theme.dark.Font",
   "packageName": "cv.theme.dark",
   "name": "Font",
-  "superClass": "osparc.theme.osparcdark.Font",
+  "superClass": "osparc.theme.common.Font",
   "interfaces": [],
   "mixins": [],
   "functionName": null,

@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2006, 2007, 2011 Derrell Lipman\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Derrell Lipman (derrell)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Create a new possible transition from one state to another.</p>"
         }
       ]
@@ -113,7 +109,8 @@
         ]
       },
       "name": "predicate",
-      "propertyType": "new"
+      "propertyType": "new",
+      "transform": "__P_471_1"
     },
     "nextState": {
       "location": {
@@ -137,6 +134,7 @@
       "name": "nextState",
       "propertyType": "new",
       "init": "qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE",
+      "transform": "__P_471_2",
       "defaultValue": "qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE"
     },
     "autoActionsBeforeOntransition": {
@@ -159,7 +157,8 @@
         ]
       },
       "name": "autoActionsBeforeOntransition",
-      "propertyType": "new"
+      "propertyType": "new",
+      "transform": "__P_471_3"
     },
     "autoActionsAfterOntransition": {
       "location": {
@@ -181,7 +180,8 @@
         ]
       },
       "name": "autoActionsAfterOntransition",
-      "propertyType": "new"
+      "propertyType": "new",
+      "transform": "__P_471_4"
     },
     "ontransition": {
       "location": {
@@ -203,7 +203,8 @@
         ]
       },
       "name": "ontransition",
-      "propertyType": "new"
+      "propertyType": "new",
+      "transform": "__P_471_5"
     },
     "qxOwner": {
       "type": "property",

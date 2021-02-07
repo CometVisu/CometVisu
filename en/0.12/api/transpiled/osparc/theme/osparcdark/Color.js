@@ -52,10 +52,25 @@
     colors: {
       // main
       "background-main": "#202020",
-      "light-background": "#444",
+      "background-main-lighter": "#303030",
+      "background-main-lighter+": "#373737",
+      "contrasted-background": "#444",
+      "contrasted-background+": "#555555",
+      // text
+      "text": "#bfbfbf",
+      "text-disabled": "#808080",
+      "text-selected": "#f0f0f0",
+      "text-placeholder": "text-disabled",
+      "text-darker": "text-disabled",
+      "contrasted-text-dark": "#222222",
+      "contrasted-text-light": "#EEEEEE",
+      "link": "#aaa",
+      // shadows
+      "bg-shadow": "#666666",
+      "shadow": qx.core.Environment.get("css.rgba") ? "rgba(0, 0, 0, 0.4)" : "bg-shadow",
       // window
       "window-caption-background": "background-main",
-      "window-caption-background-active": "light-background",
+      "window-caption-background-active": "contrasted-background",
       "window-caption-text": "text",
       "window-caption-text-active": "text-selected",
       // material-button
@@ -82,16 +97,14 @@
       "tabview-unselected": "#ffffff",
       "tabview-button-border": "#ffffff",
       "tabview-label-active-disabled": "#d9d9d9",
-      "tabview-pane-background": "background-pane",
+      "tabview-pane-background": "background-main",
       "tabview-button-background": "transparent",
-      // text colors
-      "link": "#aaa",
       // scrollbar
       "scrollbar-passive": "#333",
       "scrollbar-active": "#444",
       // form
       "button": "#555",
-      "button-border": "#666",
+      "button-border": "bg-shadow",
       "button-border-hovered": "#888",
       "button-box": "#444",
       "button-box-pressed": "#555",
@@ -101,8 +114,6 @@
       "window-border-inner": "#222",
       // group box
       "white-box-border": "#404040",
-      // shadows
-      "shadow": qx.core.Environment.get("css.rgba") ? "rgba(0, 0, 0, 0.4)" : "#666666",
       // borders
       // 'border-main' is an alias of 'background-selected' (compatibility reasons)
       "border": "#484848",
@@ -111,11 +122,6 @@
       "border-disabled": "#222",
       // separator
       "border-separator": "#808080",
-      // text
-      "text": "#bfbfbf",
-      "text-disabled": "#808080",
-      "text-selected": "#f0f0f0",
-      "text-placeholder": "#404040",
       // tooltip
       "tooltip": "#808080",
       "tooltip-text": "#f0f0f0",
@@ -151,4 +157,4 @@
   osparc.theme.osparcdark.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1604955497925
+//# sourceMappingURL=Color.js.map?dt=1612690423832

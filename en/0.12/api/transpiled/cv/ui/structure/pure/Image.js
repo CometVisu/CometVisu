@@ -44,7 +44,7 @@
    * a camera picture.
    *
    * @widgetexample
-   * <image src="resource/icon/CometVisu_orange.png" width="45px" height="32px">
+   * <image src="resource/icons/CometVisu_orange.png" width="45px" height="32px">
    *   <layout colspan="2" />
    * </image>
    *
@@ -150,4 +150,4 @@
   cv.ui.structure.pure.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1604955462447
+//# sourceMappingURL=Image.js.map?dt=1612690389214

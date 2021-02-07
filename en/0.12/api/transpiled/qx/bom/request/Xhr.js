@@ -16,15 +16,26 @@
       "qx.event.Emitter": {
         "construct": true
       },
+      "qx.bom.request.Script": {
+        "require": true
+      },
       "qx.util.Request": {},
-      "qx.bom.client.Engine": {},
-      "qx.bom.client.Browser": {},
-      "qx.bom.client.Transport": {}
+      "qx.bom.client.Engine": {
+        "require": true
+      },
+      "qx.bom.client.Browser": {
+        "require": true
+      },
+      "qx.bom.client.Transport": {
+        "require": true
+      }
     },
     "environment": {
       "provided": ["qx.debug.io"],
       "required": {
-        "qx.debug.io": {},
+        "qx.debug.io": {
+          "className": "qx.bom.request.Script"
+        },
         "engine.name": {
           "className": "qx.bom.client.Engine"
         },
@@ -1201,4 +1212,4 @@
   qx.bom.request.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1604955468523
+//# sourceMappingURL=Xhr.js.map?dt=1612690395437

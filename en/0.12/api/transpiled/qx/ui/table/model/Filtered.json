@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007 by Tartan Solutions, Inc, http://www.tartansolutions.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Dan Hummon\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>A filtered table model to provide support for hiding and filtering table\n rows. Any rows that match any applied filters will be hidden.</p>\n<pre class='javascript'>\nvar model = new qx.ui.table.model.Filtered();\nmodel.setColumns([\"Login\", \"Name\", \"Email\"], [\"login\", \"name\", \"email\"]);\nvar table = new qx.ui.table.Table(model);\nvar data = [{\n  login : \"darthvader\",\n  name : \"Darth Vader\",\n  email : \"darthvader@tatooine.org\"\n}, {\n  login : \"anakin\",\n  name : \"Anakin Skywalker\",\n  email : \"anakin@skywalker.org\"\n}, {\n  login : \"luke\",\n  name : \"Luke Skywalker\",\n  email : \"luke@tatooine.org\"\n}, {\n  login : \"obi-wan\",\n  name : \"Obi-Wan Kenobi\",\n  email : \"obiwan@jedi.org\"\n}, {\n  login : \"rey\",\n  name : \"Rey\",\n  email : \"rey@jakku.sw\"\n}];\nmodel.setDataAsMapArray(data);\nthis.getRoot().add(table);\nvar search = new qx.ui.form.TextField();\nsearch.set({\n  liveUpdate : true,\n  placeholder : \"Search login\"\n});\nsearch.addListener(\"changeValue\", function(e) {\n  var value = e.getData();\n  model.resetHiddenRows();\n  model.addNotRegex(value, \"login\", true);\n  model.applyFilters();\n});\nthis.getRoot().add(search, {top : 500, left : 10});\n</pre>"
         }
       ],
@@ -496,14 +492,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Simple",
@@ -751,5 +740,6 @@
     },
     "jsdoc": {}
   },
+  "events": {},
   "descendants": []
 }

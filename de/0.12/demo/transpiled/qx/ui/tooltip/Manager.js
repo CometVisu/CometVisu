@@ -59,18 +59,18 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this); // Register events
 
-      qx.event.Registration.addListener(document.body, "pointerover", this.__P_110_0, this, true); // Instantiate timers
+      qx.event.Registration.addListener(document.body, "pointerover", this.__P_111_0, this, true); // Instantiate timers
 
-      this.__P_110_1 = new qx.event.Timer();
+      this.__P_111_1 = new qx.event.Timer();
 
-      this.__P_110_1.addListener("interval", this.__P_110_2, this);
+      this.__P_111_1.addListener("interval", this.__P_111_2, this);
 
-      this.__P_110_3 = new qx.event.Timer();
+      this.__P_111_3 = new qx.event.Timer();
 
-      this.__P_110_3.addListener("interval", this.__P_110_4, this); // Init pointer position
+      this.__P_111_3.addListener("interval", this.__P_111_4, this); // Init pointer position
 
 
-      this.__P_110_5 = {
+      this.__P_111_5 = {
         left: 0,
         top: 0
       };
@@ -108,11 +108,11 @@
     *****************************************************************************
     */
     members: {
-      __P_110_5: null,
-      __P_110_3: null,
-      __P_110_1: null,
-      __P_110_6: null,
-      __P_110_7: null,
+      __P_111_5: null,
+      __P_111_3: null,
+      __P_111_1: null,
+      __P_111_6: null,
+      __P_111_7: null,
 
       /**
        * Get the shared tooltip, which is used to display the
@@ -124,13 +124,13 @@
        * @return {qx.ui.tooltip.ToolTip} The shared tooltip
        */
       getSharedTooltip: function getSharedTooltip() {
-        if (!this.__P_110_6) {
-          this.__P_110_6 = new qx.ui.tooltip.ToolTip().set({
+        if (!this.__P_111_6) {
+          this.__P_111_6 = new qx.ui.tooltip.ToolTip().set({
             rich: true
           });
         }
 
-        return this.__P_110_6;
+        return this.__P_111_6;
       },
 
       /**
@@ -144,19 +144,19 @@
        * @return {qx.ui.tooltip.ToolTip} The shared tooltip
        */
       getSharedErrorTooltip: function getSharedErrorTooltip() {
-        if (!this.__P_110_7) {
-          this.__P_110_7 = new qx.ui.tooltip.ToolTip().set({
+        if (!this.__P_111_7) {
+          this.__P_111_7 = new qx.ui.tooltip.ToolTip().set({
             appearance: "tooltip-error",
             rich: true
           });
 
-          this.__P_110_7.setLabel(""); // trigger label widget creation
+          this.__P_111_7.setLabel(""); // trigger label widget creation
 
 
-          this.__P_110_7.syncAppearance();
+          this.__P_111_7.syncAppearance();
         }
 
-        return this.__P_110_7;
+        return this.__P_111_7;
       },
 
       /*
@@ -177,26 +177,26 @@
             old.exclude();
           }
 
-          this.__P_110_1.stop();
+          this.__P_111_1.stop();
 
-          this.__P_110_3.stop();
+          this.__P_111_3.stop();
         }
 
         var Registration = qx.event.Registration;
         var el = document.body; // If new tooltip is not null, set it up and start the timer
 
         if (value) {
-          this.__P_110_1.startWith(value.getShowTimeout()); // Register hide handler
+          this.__P_111_1.startWith(value.getShowTimeout()); // Register hide handler
 
 
-          Registration.addListener(el, "pointerout", this.__P_110_8, this, true);
-          Registration.addListener(el, "focusout", this.__P_110_9, this, true);
-          Registration.addListener(el, "pointermove", this.__P_110_10, this, true);
+          Registration.addListener(el, "pointerout", this.__P_111_8, this, true);
+          Registration.addListener(el, "focusout", this.__P_111_9, this, true);
+          Registration.addListener(el, "pointermove", this.__P_111_10, this, true);
         } else {
           // Deregister hide handler
-          Registration.removeListener(el, "pointerout", this.__P_110_8, this, true);
-          Registration.removeListener(el, "focusout", this.__P_110_9, this, true);
-          Registration.removeListener(el, "pointermove", this.__P_110_10, this, true);
+          Registration.removeListener(el, "pointerout", this.__P_111_8, this, true);
+          Registration.removeListener(el, "focusout", this.__P_111_9, this, true);
+          Registration.removeListener(el, "pointermove", this.__P_111_10, this, true);
         }
       },
 
@@ -211,22 +211,22 @@
        *
        * @param e {qx.event.type.Event} Event object
        */
-      __P_110_2: function __P_110_2(e) {
+      __P_111_2: function __P_111_2(e) {
         var current = this.getCurrent();
 
         if (current && !current.isDisposed()) {
-          this.__P_110_3.startWith(current.getHideTimeout());
+          this.__P_111_3.startWith(current.getHideTimeout());
 
           if (current.getPlaceMethod() == "widget") {
             current.placeToWidget(current.getOpener());
           } else {
-            current.placeToPoint(this.__P_110_5);
+            current.placeToPoint(this.__P_111_5);
           }
 
           current.show();
         }
 
-        this.__P_110_1.stop();
+        this.__P_111_1.stop();
       },
 
       /**
@@ -234,7 +234,7 @@
        *
        * @param e {qx.event.type.Event} Event object
        */
-      __P_110_4: function __P_110_4(e) {
+      __P_111_4: function __P_111_4(e) {
         var current = this.getCurrent();
 
         if (current && !current.getAutoHide()) {
@@ -245,7 +245,7 @@
           current.exclude();
         }
 
-        this.__P_110_3.stop();
+        this.__P_111_3.stop();
 
         this.resetCurrent();
       },
@@ -261,8 +261,8 @@
        *
        * @param e {qx.event.type.Pointer} The move pointer event
        */
-      __P_110_10: function __P_110_10(e) {
-        var pos = this.__P_110_5;
+      __P_111_10: function __P_111_10(e) {
+        var pos = this.__P_111_5;
         pos.left = Math.round(e.getDocumentLeft());
         pos.top = Math.round(e.getDocumentTop());
       },
@@ -274,10 +274,10 @@
        *
        * @param e {qx.event.type.Pointer} pointerover event
        */
-      __P_110_0: function __P_110_0(e) {
+      __P_111_0: function __P_111_0(e) {
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget()); // take first coordinates as backup if no move event will be fired (e.g. touch devices)
 
-        this.__P_110_10(e);
+        this.__P_111_10(e);
 
         this.showToolTip(target);
       },
@@ -343,7 +343,7 @@
        *
        * @param e {qx.event.type.Pointer} pointerout event
        */
-      __P_110_8: function __P_110_8(e) {
+      __P_111_8: function __P_111_8(e) {
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
 
         if (!target) {
@@ -394,7 +394,7 @@
        *
        * @param e {qx.event.type.Focus} blur event
        */
-      __P_110_9: function __P_110_9(e) {
+      __P_111_9: function __P_111_9(e) {
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
 
         if (!target) {
@@ -422,14 +422,14 @@
     */
     destruct: function destruct() {
       // Deregister events
-      qx.event.Registration.removeListener(document.body, "pointerover", this.__P_110_0, this, true); // Dispose timers
+      qx.event.Registration.removeListener(document.body, "pointerover", this.__P_111_0, this, true); // Dispose timers
 
-      this._disposeObjects("__P_110_1", "__P_110_3", "__P_110_6");
+      this._disposeObjects("__P_111_1", "__P_111_3", "__P_111_6");
 
-      this.__P_110_5 = null;
+      this.__P_111_5 = null;
     }
   });
   qx.ui.tooltip.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1604956073997
+//# sourceMappingURL=Manager.js.map?dt=1612691008050

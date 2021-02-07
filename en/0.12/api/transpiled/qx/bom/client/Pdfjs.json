@@ -9,20 +9,16 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 55,
+        "line": 56,
         "column": 0
       },
       "end": {
-        "line": 101,
+        "line": 102,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2014 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Richard Sternagel (rsternagel)\n   ======================================================================\n   This class contains code based on the following work:\n PluginDetect Library 0.8.7\n     Homepage:\n       http://www.pinlady.net/PluginDetect\n       http://www.pinlady.net/PluginDetect/PDFjs/\n     Copyright:\n       (c) 2014, Eric Gerds\n     License:\n       MIT: http://www.pinlady.net/PluginDetect/license/\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>Exposes PluginDetect<em>PDFjs to qooxdoo.\n Contains detection for PDF.js which is a Portable Document Format (PDF)\n viewer that is built with HTML5. PDF.js is built into Firefox 19+ and\n used as default viewer there. You can enable/disable it via \"about:config\"\n and \"pdfjs.disabled\" (true/false).\n As soon as there is an official way to detect this, which seems to be\n worked on [1][2], we should switch.\n [1] https://bugzilla.mozilla.org/show</em>bug.cgi?id=840439\n [2] https://bugzilla.mozilla.org/show_bug.cgi?id=558184\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
@@ -39,6 +35,12 @@
           "name": "@asset",
           "body": "qx/static/empty.pdf"
         }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "$.browser"
+        }
       ]
     }
   },
@@ -47,11 +49,11 @@
     "getPdfjs": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 67,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 69,
           "column": 5
         }
       },
@@ -91,11 +93,11 @@
     "__isAvailable": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 85,
+          "line": 86,
           "column": 5
         }
       },
@@ -129,11 +131,11 @@
     "__getPluginDetect": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 93,
           "column": 27
         }
       },
@@ -160,11 +162,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 98,
+        "line": 99,
         "column": 10
       },
       "end": {
-        "line": 100,
+        "line": 101,
         "column": 3
       }
     },

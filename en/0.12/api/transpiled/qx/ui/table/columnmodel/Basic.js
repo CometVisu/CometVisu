@@ -51,8 +51,8 @@
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_400_0 = [];
-      this.__P_400_1 = [];
+      this.__P_397_0 = [];
+      this.__P_397_1 = [];
     },
 
     /*
@@ -134,14 +134,14 @@
     *****************************************************************************
     */
     members: {
-      __P_400_2: null,
-      __P_400_3: null,
-      __P_400_1: null,
-      __P_400_0: null,
-      __P_400_4: null,
-      __P_400_5: null,
-      __P_400_6: null,
-      __P_400_7: null,
+      __P_397_2: null,
+      __P_397_3: null,
+      __P_397_1: null,
+      __P_397_0: null,
+      __P_397_4: null,
+      __P_397_5: null,
+      __P_397_6: null,
+      __P_397_7: null,
 
       /**
        * Initializes the column model.
@@ -153,13 +153,13 @@
        *   The table to which this column model is attached.
        */
       init: function init(colCount, table) {
-        this.__P_400_4 = [];
+        this.__P_397_4 = [];
         var width = qx.ui.table.columnmodel.Basic.DEFAULT_WIDTH;
-        var headerRenderer = this.__P_400_5 || (this.__P_400_5 = new qx.ui.table.columnmodel.Basic.DEFAULT_HEADER_RENDERER());
-        var dataRenderer = this.__P_400_6 || (this.__P_400_6 = new qx.ui.table.columnmodel.Basic.DEFAULT_DATA_RENDERER());
-        var editorFactory = this.__P_400_7 || (this.__P_400_7 = new qx.ui.table.columnmodel.Basic.DEFAULT_EDITOR_FACTORY());
-        this.__P_400_0 = [];
-        this.__P_400_1 = []; // Get the initially hidden column array, if one was provided. Older
+        var headerRenderer = this.__P_397_5 || (this.__P_397_5 = new qx.ui.table.columnmodel.Basic.DEFAULT_HEADER_RENDERER());
+        var dataRenderer = this.__P_397_6 || (this.__P_397_6 = new qx.ui.table.columnmodel.Basic.DEFAULT_DATA_RENDERER());
+        var editorFactory = this.__P_397_7 || (this.__P_397_7 = new qx.ui.table.columnmodel.Basic.DEFAULT_EDITOR_FACTORY());
+        this.__P_397_0 = [];
+        this.__P_397_1 = []; // Get the initially hidden column array, if one was provided. Older
         // subclasses may not provide the 'table' argument, so we treat them
         // traditionally with no initially hidden columns.
 
@@ -176,26 +176,26 @@
         initiallyHiddenColumns = initiallyHiddenColumns || [];
 
         for (var col = 0; col < colCount; col++) {
-          this.__P_400_4[col] = {
+          this.__P_397_4[col] = {
             width: width,
             headerRenderer: headerRenderer,
             dataRenderer: dataRenderer,
             editorFactory: editorFactory
           };
-          this.__P_400_0[col] = col;
-          this.__P_400_1[col] = col;
+          this.__P_397_0[col] = col;
+          this.__P_397_1[col] = col;
         }
 
-        this.__P_400_3 = null; // If any columns are initially hidden, hide them now. Make it an
+        this.__P_397_3 = null; // If any columns are initially hidden, hide them now. Make it an
         // internal change so that events are not generated.
 
-        this.__P_400_2 = true;
+        this.__P_397_2 = true;
 
         for (var hidden = 0; hidden < initiallyHiddenColumns.length; hidden++) {
           this.setColumnVisible(initiallyHiddenColumns[hidden], false);
         }
 
-        this.__P_400_2 = false;
+        this.__P_397_2 = false;
 
         for (col = 0; col < colCount; col++) {
           var data = {
@@ -213,7 +213,7 @@
        * @return {Array} List of all visible columns
        */
       getVisibleColumns: function getVisibleColumns() {
-        return this.__P_400_1 != null ? this.__P_400_1 : [];
+        return this.__P_397_1 != null ? this.__P_397_1 : [];
       },
 
       /**
@@ -231,10 +231,10 @@
        *
        */
       setColumnWidth: function setColumnWidth(col, width, isPointerAction) {
-        var oldWidth = this.__P_400_4[col].width;
+        var oldWidth = this.__P_397_4[col].width;
 
         if (oldWidth != width) {
-          this.__P_400_4[col].width = width;
+          this.__P_397_4[col].width = width;
           var data = {
             col: col,
             newWidth: width,
@@ -252,7 +252,7 @@
        * @return {Integer} the width of the column in pixels.
        */
       getColumnWidth: function getColumnWidth(col) {
-        return this.__P_400_4[col].width;
+        return this.__P_397_4[col].width;
       },
 
       /**
@@ -265,15 +265,15 @@
        *      should get.
        */
       setHeaderCellRenderer: function setHeaderCellRenderer(col, renderer) {
-        var oldRenderer = this.__P_400_4[col].headerRenderer;
+        var oldRenderer = this.__P_397_4[col].headerRenderer;
 
-        if (oldRenderer !== this.__P_400_5) {
+        if (oldRenderer !== this.__P_397_5) {
           oldRenderer.dispose();
         }
 
-        this.__P_400_4[col].headerRenderer = renderer;
+        this.__P_397_4[col].headerRenderer = renderer;
 
-        if (!this.__P_400_2) {
+        if (!this.__P_397_2) {
           this.fireDataEvent("headerCellRendererChanged", {
             col: col
           });
@@ -297,7 +297,7 @@
         var col; // Prevent firing "headerCellRendererChanged" for each column. Instead,
         // we'll fire it once at the end.
 
-        this.__P_400_2 = true; // For each listed column...
+        this.__P_397_2 = true; // For each listed column...
 
         for (col in renderers) {
           // ... set that column's renderer
@@ -305,7 +305,7 @@
         } // Turn off the internal-change flag so operation returns to normal
 
 
-        this.__P_400_2 = false; // Now we can fire the event once. The data indicates which columns
+        this.__P_397_2 = false; // Now we can fire the event once. The data indicates which columns
         // changed. Internally to qooxdoo, nothing cares about the event data.
 
         this.fireDataEvent("headerCellRendererChanged", {
@@ -320,7 +320,7 @@
        * @return {qx.ui.table.IHeaderRenderer} the header renderer of the column.
        */
       getHeaderCellRenderer: function getHeaderCellRenderer(col) {
-        return this.__P_400_4[col].headerRenderer;
+        return this.__P_397_4[col].headerRenderer;
       },
 
       /**
@@ -334,10 +334,10 @@
        *   pooling or disposing.
        */
       setDataCellRenderer: function setDataCellRenderer(col, renderer) {
-        var oldRenderer = this.__P_400_4[col].dataRenderer;
-        this.__P_400_4[col].dataRenderer = renderer;
+        var oldRenderer = this.__P_397_4[col].dataRenderer;
+        this.__P_397_4[col].dataRenderer = renderer;
 
-        if (oldRenderer !== this.__P_400_6) {
+        if (oldRenderer !== this.__P_397_6) {
           return oldRenderer;
         }
 
@@ -351,7 +351,7 @@
        * @return {qx.ui.table.ICellRenderer} the data renderer of the column.
        */
       getDataCellRenderer: function getDataCellRenderer(col) {
-        return this.__P_400_4[col].dataRenderer;
+        return this.__P_397_4[col].dataRenderer;
       },
 
       /**
@@ -361,17 +361,17 @@
        * @param factory {qx.ui.table.ICellEditorFactory} the new cell editor factory the column should get.
        */
       setCellEditorFactory: function setCellEditorFactory(col, factory) {
-        var oldFactory = this.__P_400_4[col].editorFactory;
+        var oldFactory = this.__P_397_4[col].editorFactory;
 
         if (oldFactory === factory) {
           return;
         }
 
-        if (oldFactory !== this.__P_400_7) {
+        if (oldFactory !== this.__P_397_7) {
           oldFactory.dispose();
         }
 
-        this.__P_400_4[col].editorFactory = factory;
+        this.__P_397_4[col].editorFactory = factory;
       },
 
       /**
@@ -381,7 +381,7 @@
        * @return {qx.ui.table.ICellEditorFactory} the cell editor factory of the column.
        */
       getCellEditorFactory: function getCellEditorFactory(col) {
-        return this.__P_400_4[col].editorFactory;
+        return this.__P_397_4[col].editorFactory;
       },
 
       /**
@@ -395,23 +395,23 @@
        * @return {Map} the "column to x position" map.
        */
       _getColToXPosMap: function _getColToXPosMap() {
-        if (this.__P_400_3 == null) {
-          this.__P_400_3 = {};
+        if (this.__P_397_3 == null) {
+          this.__P_397_3 = {};
 
-          for (var overX = 0; overX < this.__P_400_0.length; overX++) {
-            var col = this.__P_400_0[overX];
-            this.__P_400_3[col] = {
+          for (var overX = 0; overX < this.__P_397_0.length; overX++) {
+            var col = this.__P_397_0[overX];
+            this.__P_397_3[col] = {
               overX: overX
             };
           }
 
-          for (var visX = 0; visX < this.__P_400_1.length; visX++) {
-            var col = this.__P_400_1[visX];
-            this.__P_400_3[col].visX = visX;
+          for (var visX = 0; visX < this.__P_397_1.length; visX++) {
+            var col = this.__P_397_1[visX];
+            this.__P_397_3[col].visX = visX;
           }
         }
 
-        return this.__P_400_3;
+        return this.__P_397_3;
       },
 
       /**
@@ -420,7 +420,7 @@
        * @return {Integer} the number of visible columns.
        */
       getVisibleColumnCount: function getVisibleColumnCount() {
-        return this.__P_400_1 != null ? this.__P_400_1.length : 0;
+        return this.__P_397_1 != null ? this.__P_397_1.length : 0;
       },
 
       /**
@@ -430,7 +430,7 @@
        * @return {Integer} the model index of the column.
        */
       getVisibleColumnAtX: function getVisibleColumnAtX(visXPos) {
-        return this.__P_400_1[visXPos];
+        return this.__P_397_1[visXPos];
       },
 
       /**
@@ -449,7 +449,7 @@
        * @return {Integer} the overall number of columns.
        */
       getOverallColumnCount: function getOverallColumnCount() {
-        return this.__P_400_0.length;
+        return this.__P_397_0.length;
       },
 
       /**
@@ -459,7 +459,7 @@
        * @return {Integer} the model index of the column.
        */
       getOverallColumnAtX: function getOverallColumnAtX(overXPos) {
-        return this.__P_400_0[overXPos];
+        return this.__P_397_0[overXPos];
       },
 
       /**
@@ -502,8 +502,8 @@
 
             var nextVisX;
 
-            for (var x = overX + 1; x < this.__P_400_0.length; x++) {
-              var currCol = this.__P_400_0[x];
+            for (var x = overX + 1; x < this.__P_397_0.length; x++) {
+              var currCol = this.__P_397_0[x];
               var currVisX = colToXPosMap[currCol].visX;
 
               if (currVisX != null) {
@@ -515,21 +515,21 @@
 
 
             if (nextVisX == null) {
-              nextVisX = this.__P_400_1.length;
+              nextVisX = this.__P_397_1.length;
             } // Add the column to the visible columns
 
 
-            this.__P_400_1.splice(nextVisX, 0, col);
+            this.__P_397_1.splice(nextVisX, 0, col);
           } else {
             var visX = this.getVisibleX(col);
 
-            this.__P_400_1.splice(visX, 1);
+            this.__P_397_1.splice(visX, 1);
           } // Invalidate the __colToXPosMap
 
 
-          this.__P_400_3 = null; // Inform the listeners
+          this.__P_397_3 = null; // Inform the listeners
 
-          if (!this.__P_400_2) {
+          if (!this.__P_397_2) {
             var data = {
               col: col,
               visible: visible
@@ -548,26 +548,26 @@
        *      moved to.
        */
       moveColumn: function moveColumn(fromOverXPos, toOverXPos) {
-        this.__P_400_2 = true;
-        var col = this.__P_400_0[fromOverXPos];
+        this.__P_397_2 = true;
+        var col = this.__P_397_0[fromOverXPos];
         var visible = this.isColumnVisible(col);
 
         if (visible) {
           this.setColumnVisible(col, false);
         }
 
-        this.__P_400_0.splice(fromOverXPos, 1);
+        this.__P_397_0.splice(fromOverXPos, 1);
 
-        this.__P_400_0.splice(toOverXPos, 0, col); // Invalidate the __colToXPosMap
+        this.__P_397_0.splice(toOverXPos, 0, col); // Invalidate the __colToXPosMap
 
 
-        this.__P_400_3 = null;
+        this.__P_397_3 = null;
 
         if (visible) {
           this.setColumnVisible(col, true);
         }
 
-        this.__P_400_2 = false; // Inform the listeners
+        this.__P_397_2 = false; // Inform the listeners
 
         var data = {
           col: col,
@@ -584,17 +584,17 @@
        * @param newPositions {Integer[]} Array mapping the index of a column in table model to its wanted overall
        *                            position on screen (both zero based). If the table models holds
        *                            col0, col1, col2 and col3 and you give [1,3,2,0], the new column order
-       *                            will be col3, col0, col2, col1
+       *                            will be col1, col3, col2, col0
        */
       setColumnsOrder: function setColumnsOrder(newPositions) {
-        if (newPositions.length == this.__P_400_0.length) {
-          this.__P_400_2 = true; // Go through each column an switch visible ones to invisible. Reason is unknown,
+        if (newPositions.length == this.__P_397_0.length) {
+          this.__P_397_2 = true; // Go through each column an switch visible ones to invisible. Reason is unknown,
           // this just mimicks the behaviour of moveColumn. Possibly useful because setting
           // a column visible later updates a map with its screen coords.
 
           var isVisible = new Array(newPositions.length);
 
-          for (var colIdx = 0; colIdx < this.__P_400_0.length; colIdx++) {
+          for (var colIdx = 0; colIdx < this.__P_397_0.length; colIdx++) {
             var visible = this.isColumnVisible(colIdx);
             isVisible[colIdx] = visible; //Remember, as this relies on this.__colToXPosMap which is cleared below
 
@@ -604,23 +604,23 @@
           } // Store new position values
 
 
-          this.__P_400_0 = qx.lang.Array.clone(newPositions); // Invalidate the __colToXPosMap
+          this.__P_397_0 = qx.lang.Array.clone(newPositions); // Invalidate the __colToXPosMap
 
-          this.__P_400_3 = null; // Go through each column an switch invisible ones back to visible
+          this.__P_397_3 = null; // Go through each column an switch invisible ones back to visible
 
-          for (var colIdx = 0; colIdx < this.__P_400_0.length; colIdx++) {
+          for (var colIdx = 0; colIdx < this.__P_397_0.length; colIdx++) {
             if (isVisible[colIdx]) {
               this.setColumnVisible(colIdx, true);
             }
           }
 
-          this.__P_400_2 = false; // Inform the listeners. Do not add data as all known listeners in qooxdoo
+          this.__P_397_2 = false; // Inform the listeners. Do not add data as all known listeners in qooxdoo
           // only take this event to mean "total repaint necesscary". Fabian will look
           // after deprecating the data part of the orderChanged - event
 
           this.fireDataEvent("orderChanged");
         } else {
-          throw new Error("setColumnsOrder: Invalid number of column positions given, expected " + this.__P_400_0.length + ", got " + newPositions.length);
+          throw new Error("setColumnsOrder: Invalid number of column positions given, expected " + this.__P_397_0.length + ", got " + newPositions.length);
         }
       }
     },
@@ -631,20 +631,20 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      for (var i = 0; i < this.__P_400_4.length; i++) {
-        this.__P_400_4[i].headerRenderer.dispose();
+      for (var i = 0; i < this.__P_397_4.length; i++) {
+        this.__P_397_4[i].headerRenderer.dispose();
 
-        this.__P_400_4[i].dataRenderer.dispose();
+        this.__P_397_4[i].dataRenderer.dispose();
 
-        this.__P_400_4[i].editorFactory.dispose();
+        this.__P_397_4[i].editorFactory.dispose();
       }
 
-      this.__P_400_0 = this.__P_400_1 = this.__P_400_4 = this.__P_400_3 = null;
+      this.__P_397_0 = this.__P_397_1 = this.__P_397_4 = this.__P_397_3 = null;
 
-      this._disposeObjects("__P_400_5", "__P_400_6", "__P_400_7");
+      this._disposeObjects("__P_397_5", "__P_397_6", "__P_397_7");
     }
   });
   qx.ui.table.columnmodel.Basic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Basic.js.map?dt=1604955488980
+//# sourceMappingURL=Basic.js.map?dt=1612690415029

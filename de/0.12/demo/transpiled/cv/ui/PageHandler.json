@@ -21,23 +21,7 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<p>PageHandler.js\n copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
-        },
-        {
-          "name": "@description",
           "body": ""
-        },
-        {
-          "name": "@description",
-          "body": "<p>FIXME and TODO: This class is currently just a quick hack to get rid</p>"
-        },
-        {
-          "name": "@description",
-          "body": "<p>of the jQuery-Tools Scrollable. It should be enhanced to allow different</p>"
-        },
-        {
-          "name": "@description",
-          "body": "<p>page transition animations like blending, etc. pp.</p>"
         }
       ],
       "@author": [
@@ -67,14 +51,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>time in milliseconds</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "speed",
       "propertyType": "new",
       "init": 400,
@@ -92,14 +69,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>name of the easing function</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "easing",
       "propertyType": "new",
       "init": "ease",

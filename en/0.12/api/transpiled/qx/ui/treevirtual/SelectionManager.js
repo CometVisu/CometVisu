@@ -10,8 +10,8 @@
         "require": true
       },
       "qx.event.type.Mouse": {},
-      "qx.bom.element.Location": {},
-      "qx.ui.treevirtual.SimpleTreeDataModel": {}
+      "qx.ui.treevirtual.SimpleTreeDataModel": {},
+      "qx.bom.element.Location": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -50,10 +50,10 @@
      */
     construct: function construct(table) {
       qx.ui.table.selection.Manager.constructor.call(this);
-      this.__P_423_0 = table;
+      this.__P_420_0 = table;
     },
     members: {
-      __P_423_0: null,
+      __P_420_0: null,
 
       /**
        * Getter for the table being managed
@@ -62,7 +62,7 @@
        *   Table being managed
        */
       getTable: function getTable() {
-        return this.__P_423_0;
+        return this.__P_420_0;
       },
 
       /**
@@ -112,35 +112,34 @@
 
 
           if (evt instanceof qx.event.type.Mouse) {
-            // Yup.  Get the order of the columns
-            var tcm = tree.getTableColumnModel();
-
-            var columnPositions = tcm._getColToXPosMap(); // Calculate the position of the beginning of the tree column
-
-
-            var left = qx.bom.element.Location.getLeft(tree.getContentElement().getDomElement());
-
-            for (var i = 0; i < columnPositions[treeCol].visX; i++) {
-              left += tcm.getColumnWidth(columnPositions[i].visX);
-            } // Was the click on the open/close button?  That button begins at
-            // (node.level - 1) * (rowHeight + 3) + 2 (the latter for padding),
-            // and has width (rowHeight + 3). We add a bit of latitude to that.
-
-
+            // Was the click on the open/close button? We get the position and add a bit of
+            // latitude to that
             var x = evt.getViewportLeft();
             var latitude = 2;
+            var buttonPos = tree.getOpenCloseButtonPosition(node);
 
-            var rowHeight = _this.__P_423_0.getRowHeight();
+            if (x >= buttonPos.left - latitude && x <= buttonPos.left + buttonPos.width + latitude) {
+              // Yup.  Toggle the opened state for this node if open/close is allowed
+              if (!node.bHideOpenClose && node.type !== qx.ui.treevirtual.SimpleTreeDataModel.Type.LEAF) {
+                dataModel.setState(node, {
+                  bOpened: !node.bOpened
+                });
+              }
 
-            var buttonPos = left + (node.level - 1) * (rowHeight + 3) + 2;
-
-            if (x >= buttonPos - latitude && x <= buttonPos + rowHeight + 3 + latitude) {
-              // Yup.  Toggle the opened state for this node.
-              dataModel.setState(node, {
-                bOpened: !node.bOpened
-              });
               return tree.getOpenCloseClickSelectsRow() ? false : true;
             } else {
+              // Yup.  Get the order of the columns
+              var tcm = tree.getTableColumnModel();
+
+              var columnPositions = tcm._getColToXPosMap(); // Calculate the position of the beginning of the tree column
+
+
+              var left = qx.bom.element.Location.getLeft(tree.getContentElement().getDomElement());
+
+              for (var i = 0; i < columnPositions[treeCol].visX; i++) {
+                left += tcm.getColumnWidth(columnPositions[i].visX);
+              }
+
               return _this._handleExtendedClick(tree, evt, node, left);
             }
           } else {
@@ -170,7 +169,7 @@
         } // Call our local method to toggle the open/close state, if necessary
 
 
-        var bNoSelect = handleButtonClick(this.__P_423_0, index, evt); // If we haven't been told not to do the selection...
+        var bNoSelect = handleButtonClick(this.__P_420_0, index, evt); // If we haven't been told not to do the selection...
 
         if (!bNoSelect) {
           // then call the superclass to handle it.
@@ -206,10 +205,10 @@
       }
     },
     destruct: function destruct() {
-      this.__P_423_0 = null;
+      this.__P_420_0 = null;
     }
   });
   qx.ui.treevirtual.SelectionManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectionManager.js.map?dt=1604955490864
+//# sourceMappingURL=SelectionManager.js.map?dt=1612690416808

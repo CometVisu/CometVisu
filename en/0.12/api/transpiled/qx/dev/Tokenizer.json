@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n     Based on Public Domain code by Christopher Diggins\n     http://www.cdiggins.com/tokenizer.html\n   Authors:\n Fabian Jakobs (fjakobs)\n Christopher Diggins (original tokenizer code)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Simple JavaScript tokenizer used to print syntax highlighted\n JavaScript code.\n Based on Public Domain code by Christopher Diggins\n http://www.cdiggins.com/tokenizer.html</p>"
         }
       ]

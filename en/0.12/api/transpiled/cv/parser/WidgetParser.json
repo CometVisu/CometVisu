@@ -17,14 +17,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>noinspection JSUnusedGlobalSymbols</p>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "type": "class",
   "isAbstract": false,
@@ -799,14 +792,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>this might have been called from the cv.parser.WidgetParser with the including class as context</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public"
     },

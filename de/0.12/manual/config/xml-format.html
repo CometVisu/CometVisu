@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -197,14 +194,14 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <div class="section" id="xml-struktur">
 <span id="xml-format"></span><h1>XML-Struktur<a class="headerlink" href="#xml-struktur" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Eine XML-Datei besteht aus verschiedenen &#8220;Elementen&#8221;, die insgesamt
+<p>Eine XML-Datei besteht aus verschiedenen „Elementen“, die insgesamt
 einen Baum darstellen. Ein Element kann weitere Elemente einschließen.
-Über &#8220;Attribute&#8221; kann ein Element Werte annehmen. Einige dieser
+Über „Attribute“ kann ein Element Werte annehmen. Einige dieser
 Attribute müssen zwingend vergeben werden.</p>
 <div class="section" id="der-header-der-visu-config-xml">
 <span id="xml-format-header"></span><h2>Der Header der visu_config.xml<a class="headerlink" href="#der-header-der-visu-config-xml" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Konfigurationsdatei beginnt immer mit folgenden beiden Zeilen:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
 <span class="nt">&lt;pages</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">design=</span><span class="s">&quot;pure&quot;</span> <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;visu_config.xsd&quot;</span><span class="nt">&gt;</span>
 </pre></div>
 </div>
@@ -224,19 +221,19 @@ Attribute müssen zwingend vergeben werden.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">design=&quot;pure&quot;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">design=&quot;pure&quot;</span></code></td>
 <td>Mit dieser Option wird das Standard-Design festgelegt, dass auf die Visualisierung angewendet werden soll</td>
 <td>pure, metal, discreet, discreet_sand, discreet_slim, alaska, alaska_slim</td>
 <td>JA</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">screensave_time=&quot;60&quot;</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">screensave_time=&quot;60&quot;</span></code></td>
 <td>Mit dieser Option kann festgelegt werden, nach welcher Zeit auf eine bestimmte Seite zurückgekehrt wird</td>
 <td>beliebige Angabe in Sekunden</td>
 <td>NEIN</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">screensave_page=&quot;main&quot;</span></code></td>
-<td>Mit dieser Option kann festgelegt werden, auf welche Seite nach Ablauf von <code class="docutils literal"><span class="pre">sceensave_time</span></code> angezeigt wird</td>
-<td>Angabe der Seite-ID zB. &#8220;id_1&#8221; bzw. Seitenname zB. &#8220;Main&#8221;</td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">screensave_page=&quot;main&quot;</span></code></td>
+<td>Mit dieser Option kann festgelegt werden, auf welche Seite nach Ablauf von <code class="docutils literal notranslate"><span class="pre">sceensave_time</span></code> angezeigt wird</td>
+<td>Angabe der Seite-ID zB. „id_1“ bzw. Seitenname zB. „Main“</td>
 <td>NEIN</td>
 </tr>
 </tbody>
@@ -266,7 +263,7 @@ einzuhalten!</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;file</span> <span class="pre">type=&quot;</span> <span class="pre">&quot;&gt;&lt;/file&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;file</span> <span class="pre">type=&quot;</span> <span class="pre">&quot;&gt;&lt;/file&gt;</span></code></td>
 <td>Mit dieser Option können zusätzliche Dateien
 (CSS oder Javascript) geladen werden</td>
 <td>Pfad zur Datei</td>
@@ -274,7 +271,7 @@ einzuhalten!</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;files&gt;</span>
         <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/style.css<span class="nt">&lt;/file&gt;</span>
         <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;js&quot;</span> <span class="na">content=</span><span class="s">&quot;plugin&quot;</span><span class="nt">&gt;</span>resource/config/media/MyCustomWidget.js<span class="nt">&lt;/file&gt;</span>
@@ -302,14 +299,14 @@ einzuhalten!</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;plugin</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;/&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;plugin</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;/&gt;</span></code></td>
 <td>Mit dieser Option werden die Plugins eingebunden. Hier wird der Name des Plugins eingetragen. Pro Plugin muss ein solcher Eintrag angelegt werden.</td>
 <td>z.B. colorchooser oder diagram</td>
 <td>NEIN</td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;plugins&gt;</span>
         <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;colorchooser&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/plugins&gt;</span>
@@ -335,19 +332,19 @@ einzuhalten!</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;mapping</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;mapping</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;&gt;</span></code></td>
 <td>Mit dieser Option wird der Name des Mappings definiert. Dieser wird auch im Web-Editor bei entsprechenden Widgets angezeigt.</td>
 <td>z.B.</td>
 <td>JA</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">&lt;entry</span> <span class="pre">value=&quot;WERT&quot;&gt;NAME&lt;/entry&gt;</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">&lt;entry</span> <span class="pre">value=&quot;WERT&quot;&gt;NAME&lt;/entry&gt;</span></code></td>
 <td>Mit dieser Option wird einem Wert ein Namen zugewiesen. Für jeden möglichen Wert muss ein solcher Eintrag angelegt werden.</td>
 <td>z.B. Stop</td>
 <td>JA</td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
     ...
     <span class="nt">&lt;mappings&gt;</span>
         <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Start/Stop&quot;</span><span class="nt">&gt;</span>
@@ -377,19 +374,19 @@ einzuhalten!</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;styling</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;styling</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;&gt;</span></code></td>
 <td>Mit dieser Option wird der Name des Stylings definiert. Dieser wird auch im Web-Editor bei entsprechenden Widgets angezeigt.</td>
 <td>z.B.</td>
 <td>JA</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">&lt;entry</span> <span class="pre">value=&quot;WERT&quot;&gt;FARBE&lt;/entry&gt;</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">&lt;entry</span> <span class="pre">value=&quot;WERT&quot;&gt;FARBE&lt;/entry&gt;</span></code></td>
 <td>Mit dieser Option wird einem Wert eine Farbe zugewiesen.</td>
 <td>z.B. red</td>
 <td>JA</td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
     ...
     <span class="nt">&lt;stylings&gt;</span>
         <span class="nt">&lt;styling</span> <span class="na">name=</span><span class="s">&quot;RedGreen&quot;</span><span class="nt">&gt;</span>
@@ -419,14 +416,14 @@ einzuhalten!</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;icon-definition</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;</span> <span class="pre">uri=&quot;WERT&quot;&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;icon-definition</span> <span class="pre">name=&quot;</span> <span class="pre">&quot;</span> <span class="pre">uri=&quot;WERT&quot;&gt;</span></code></td>
 <td>Mit dieser Option wird der Name des Icons definiert, welches sich unter dem in uri angegebenen Verzeichnis befindet. Auf die so definierten Icons kann dann im weiteren Verlauf über den einfacher zu merkenden Namen zugegriffen werden. Die Verzeichnisangabe ist im Beispiel relativ zur CV installation. Hier wurden vorher die Icons in einem eigenen Unterverzeichnis abgelegt.</td>
 <td>z.B.</td>
 <td>NEIN</td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
     ...
     <span class="nt">&lt;icons&gt;</span>
         <span class="nt">&lt;icon-definition</span> <span class="na">name=</span><span class="s">&quot;Icon1&quot;</span> <span class="na">uri=</span><span class="s">&quot;./icon/unterverzeichnis/icon1.png&quot;</span><span class="nt">/&gt;</span>
@@ -438,20 +435,20 @@ einzuhalten!</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
 <p class="last">Wenn die Icons über den <a class="reference internal" href="manager.html"><span class="doc">Manager</span></a> hochgeladen wurden, befinden sie sich im Pfad
-<code class="docutils literal"><span class="pre">resource/config/media/</span></code>. Ein hochgeladenes Icon mit dem Dateiname <code class="docutils literal"><span class="pre">logo.svg</span></code> kann demnach mit folgender
-Zeile eingebunden werden: <code class="docutils literal"><span class="pre">&lt;icon-definition</span> <span class="pre">name=&quot;Logo&quot;</span> <span class="pre">uri=&quot;resource/config/media/logo.svg&quot;`.</span>
+<code class="docutils literal notranslate"><span class="pre">resource/config/media/</span></code>. Ein hochgeladenes Icon mit dem Dateiname <code class="docutils literal notranslate"><span class="pre">logo.svg</span></code> kann demnach mit folgender
+Zeile eingebunden werden: <code class="docutils literal notranslate"><span class="pre">&lt;icon-definition</span> <span class="pre">name=&quot;Logo&quot;</span> <span class="pre">uri=&quot;resource/config/media/logo.svg&quot;`.</span>
 <span class="pre">Der</span> <span class="pre">Pfad</span> <span class="pre">``resource/config/media/</span></code> gilt für CometVisu Versionen &gt;=0.11.x. Für Versionen &lt;=0.10.x gilt der Pfad
-<code class="docutils literal"><span class="pre">config/media/</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">config/media/</span></code>.</p>
 </div>
 </div>
 <div class="section" id="statusbar">
 <span id="xml-format-statusbar"></span><h2>Statusbar<a class="headerlink" href="#statusbar" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt z.B. das Anzeigen von externen Links (über URL).</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
     ...
     <span class="nt">&lt;statusbar&gt;</span>
         <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
-<span class="cp">            &lt;img src=&quot;resource/icon/comet_64_ff8000.png&quot; alt=&quot;CometVisu&quot; /&gt; by &lt;a href=&quot;http://www.cometvisu.org/&quot;&gt;CometVisu.org&lt;/a&gt;</span>
+<span class="cp">            &lt;img src=&quot;resource/icons/comet_64_ff8000.png&quot; alt=&quot;CometVisu&quot; /&gt; by &lt;a href=&quot;http://www.cometvisu.org/&quot;&gt;CometVisu.org&lt;/a&gt;</span>
 <span class="cp">            - &lt;a href=&quot;.?forceReload=true&quot;&gt;Reload&lt;/a&gt;</span>
 <span class="cp">            - &lt;a href=&quot;?config=demo&quot;&gt;Widget Demo&lt;/a&gt;</span>
 <span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
@@ -486,7 +483,7 @@ jedem Raum wiederverwenden.</p>
 die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ein Template definiert und benutzt.</p>
 <div class="literal-block-wrapper container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Beispiel eines Templates für eine Heizung und dessen Verwendung in verschiedenen Räumen</span><a class="headerlink" href="#id1" title="Link zu diesem Quellcode">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
         <span class="nt">&lt;templates&gt;</span>
             <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
@@ -554,7 +551,7 @@ kann die mustache.js Dokumentation zu Rate gezogen werden.</p>
 <p>Alternativ zum obigen Beispiel, kann der Inhalt des Templates auch in eine externe Datei ausgelagert werden.</p>
 <div class="literal-block-wrapper container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Beispiel einer Template-Definition aus einer externen Datei</span><a class="headerlink" href="#id2" title="Link zu diesem Quellcode">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
         <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span> <span class="na">ref=</span><span class="s">&quot;resource/config/media/heizung.template.xml&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/meta&gt;</span>
@@ -586,8 +583,8 @@ kann die mustache.js Dokumentation zu Rate gezogen werden.</p>
 </div>
 </div>
 <div class="literal-block-wrapper container" id="id3">
-<div class="code-block-caption"><span class="caption-text">Inhalt der externen Datei <code class="docutils literal"><span class="pre">resource/config/media/heizung.template.xml</span></code></span><a class="headerlink" href="#id3" title="Link zu diesem Quellcode">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+<div class="code-block-caption"><span class="caption-text">Inhalt der externen Datei <code class="docutils literal notranslate"><span class="pre">resource/config/media/heizung.template.xml</span></code></span><a class="headerlink" href="#id3" title="Link zu diesem Quellcode">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
   {{{ additional_content }}}
   <span class="nt">&lt;slide</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;100&quot;</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;label&gt;</span>
@@ -623,15 +620,15 @@ kann die mustache.js Dokumentation zu Rate gezogen werden.</p>
 geschieht mit dem obersten Container. Alle weiteren Widgets und Seiten
 befinden sich innerhalb dieser Hauptseite. Die Position der Elemente
 wird von oben nach unten verarbeitet. Das sieht schematisch so aus:</p>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="Startseite mit Link zur Unterseite" src="../_images/structure_main_page.png" />
-<p class="caption"><span class="caption-text">Startseite mit Link zur Unterseite</span></p>
+<p class="caption"><span class="caption-text">Startseite mit Link zur Unterseite</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="figure" id="id5">
+<div class="figure align-default" id="id5">
 <img alt="Unterseite" src="../_images/structure_sub_page.png" />
-<p class="caption"><span class="caption-text">Unterseite</span></p>
+<p class="caption"><span class="caption-text">Unterseite</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;plugins&gt;</span>
      <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;colorchooser&quot;</span><span class="nt">/&gt;</span>
@@ -666,7 +663,7 @@ Codes finden Sie in der <a class="reference internal" href="widgets/index.html">
 <p>In der letzten Zeile der Config muss noch der Tag geschlossen werden.
 Dafür muss also noch folgender Eintrag am Ende der Datei eingefügt
 werden:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;/pages&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
 <p>Damit ist die visu_config.xml vollständig und kann auf den Server
@@ -696,7 +693,7 @@ werden:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -742,7 +739,7 @@ werden:</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

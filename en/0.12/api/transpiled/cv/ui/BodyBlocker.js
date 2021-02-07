@@ -43,7 +43,7 @@
     */
     construct: function construct() {
       qx.bom.Blocker.constructor.call(this);
-      this.__P_512_0 = {};
+      this.__P_510_0 = {};
       this.setBlockerOpacity(0.5);
       this.setBlockerColor("#000000");
     },
@@ -54,21 +54,21 @@
     ******************************************************
     */
     members: {
-      __P_512_1: null,
-      __P_512_0: null,
-      __P_512_2: [],
+      __P_510_1: null,
+      __P_510_0: null,
+      __P_510_2: [],
 
       /**
        * @param topic {String} topic of the message related to this blocker
        * @param unique {Boolean} true if it is a unique message
        */
       block: function block(topic, unique) {
-        cv.ui.BodyBlocker.prototype.block.base.call(this, this.__P_512_3());
+        cv.ui.BodyBlocker.prototype.block.base.call(this, this.__P_510_3());
 
-        if (!this.__P_512_0.hasOwnProperty(topic)) {
-          this.__P_512_0[topic] = 1;
+        if (!this.__P_510_0.hasOwnProperty(topic)) {
+          this.__P_510_0[topic] = 1;
         } else if (!unique) {
-          this.__P_512_0[topic]++;
+          this.__P_510_0[topic]++;
         }
 
         document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
@@ -77,13 +77,13 @@
       },
       unblock: function unblock(topic) {
         if (topic) {
-          if (this.__P_512_0.hasOwnProperty(topic)) {
-            this.__P_512_0[topic]--;
+          if (this.__P_510_0.hasOwnProperty(topic)) {
+            this.__P_510_0[topic]--;
 
-            if (this.__P_512_0[topic] === 0) {
-              delete this.__P_512_0[topic];
+            if (this.__P_510_0[topic] === 0) {
+              delete this.__P_510_0[topic];
 
-              if (Object.keys(this.__P_512_0).length === 0) {
+              if (Object.keys(this.__P_510_0).length === 0) {
                 cv.ui.BodyBlocker.prototype.unblock.base.call(this);
                 document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
                   elem.classList.remove("blurred");
@@ -93,23 +93,23 @@
           }
         } else {
           // not topic given unblock all
-          this.__P_512_0 = {};
+          this.__P_510_0 = {};
           cv.ui.BodyBlocker.prototype.unblock.base.call(this);
           document.querySelectorAll("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function (elem) {
             elem.classList.remove("blurred");
           });
         }
       },
-      __P_512_3: function __P_512_3() {
-        if (!this.__P_512_1) {
-          this.__P_512_1 = document.querySelector("body");
+      __P_510_3: function __P_510_3() {
+        if (!this.__P_510_1) {
+          this.__P_510_1 = document.querySelector("body");
         }
 
-        return this.__P_512_1;
+        return this.__P_510_1;
       }
     }
   });
   cv.ui.BodyBlocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BodyBlocker.js.map?dt=1604955497483
+//# sourceMappingURL=BodyBlocker.js.map?dt=1612690423368

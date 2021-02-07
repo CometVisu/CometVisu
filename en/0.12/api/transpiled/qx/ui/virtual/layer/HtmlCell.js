@@ -13,7 +13,9 @@
         "construct": true,
         "require": true
       },
-      "qx.bom.client.Css": {}
+      "qx.bom.client.Css": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
@@ -135,4 +137,4 @@
   qx.ui.virtual.layer.HtmlCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HtmlCell.js.map?dt=1604955491765
+//# sourceMappingURL=HtmlCell.js.map?dt=1612690417684

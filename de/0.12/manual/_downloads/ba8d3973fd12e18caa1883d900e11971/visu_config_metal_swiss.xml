@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages design="metal" lib_version="8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+  <meta>
+    <mappings>
+      <mapping name="OpenClose">
+        <entry value="1">
+          <icon name="fts_window_2w_open" color="orange"/>
+        </entry>
+        <entry value="0">
+          <icon name="fts_window_2w"/>
+        </entry>
+      </mapping>
+      <mapping name="DoorOpenClose">
+        <entry value="1">
+          <icon name="fts_door_open" color="orange"/>
+        </entry>
+        <entry value="0">
+          <icon name="fts_door"/>
+        </entry>
+      </mapping>
+      <mapping name="UpDown">
+        <entry value="0">
+          <icon name="control_arrow_up"/>
+        </entry>
+        <entry value="1">
+          <icon name="control_arrow_down"/>
+        </entry>
+      </mapping>
+      <mapping name="OnOff">
+        <entry value="0">O</entry>
+        <entry value="1">I</entry>
+      </mapping>
+      <mapping name="OnOff_Licht">
+        <entry value="0">
+          <icon name="light_light" flavour="white"/>
+        </entry>
+        <entry value="1">
+          <icon name="light_light" flavour="sodium" color="orange"/>
+        </entry>
+      </mapping>
+      <mapping name="OnOff_tv">
+        <entry value="0">
+          <icon name="control_standby" flavour="white"/>
+        </entry>
+        <entry value="1">
+          <icon name="control_standby" flavour="white"/>
+        </entry>
+      </mapping>
+      <mapping name="AudioMute">
+        <entry value="0">
+          <icon name="audio_audio"/>
+        </entry>
+        <entry value="1">
+          <icon name="audio_audio"/>
+        </entry>
+      </mapping>
+      <mapping name="ScharfUnscharf">
+        <entry value="1">
+          <icon name="secur_alarm" color="orange"/>
+        </entry>
+        <entry value="0">
+          <icon name="secur_alarm"/>
+        </entry>
+      </mapping>
+      <mapping name="AlarnNormal">
+        <entry value="1">
+          <icon name="message_attention" color="orange"/>
+        </entry>
+        <entry value="0">
+          <icon name="message_attention"/>
+        </entry>
+      </mapping>
+      <mapping name="Text_EinAus">
+        <entry value="0">AUS</entry>
+        <entry value="1">EIN</entry>
+      </mapping>
+    </mappings>
+    <stylings>
+      <styling name="GreyGreen">
+        <entry value="0">grey</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="GreyGrey">
+        <entry value="0">grey</entry>
+        <entry value="1">grey</entry>
+      </styling>
+      <styling name="BluePurpleRedTemp">
+        <entry range_min="0" range_max="18">blue</entry>
+        <entry range_min="18" range_max="21">purple</entry>
+        <entry range_min="21" range_max="100">red</entry>
+      </styling>
+      <styling name="GreenRedBlueHum">
+        <entry range_min="0" range_max="50">green</entry>
+        <entry range_min="50" range_max="60">red</entry>
+        <entry range_min="60" range_max="100">blue</entry>
+      </styling>
+      <styling name="GreenRedBlueCo">
+        <entry range_min="0" range_max="800">green</entry>
+        <entry range_min="800" range_max="1200">red</entry>
+        <entry range_min="1200" range_max="9000">blue</entry>
+      </styling>
+      <styling name="BluePurpleRedBrauchwasser">
+        <entry range_min="0" range_max="49">blue</entry>
+        <entry range_min="49" range_max="54">purple</entry>
+        <entry range_min="54" range_max="90">red</entry>
+      </styling>
+      <styling name="BluePurpleRedHeizung">
+        <entry range_min="0" range_max="20">blue</entry>
+        <entry range_min="20" range_max="25">purple</entry>
+        <entry range_min="25" range_max="40">red</entry>
+      </styling>
+      <styling name="grau/orange ventilator">
+        <entry value="0">grey</entry>
+        <entry value="1">orange</entry>
+      </styling>
+    </stylings>
+    <plugins>
+      <plugin name="diagram"/>
+      <plugin name="colorchooser"/>
+      <plugin name="strftime"/>
+      <plugin name="rsslog"/>
+    </plugins>
+    <statusbar>
+      <status type="html">&lt;img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="https://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
+&lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt; - &lt;a href="?config=demo"&gt;Widget 
+Demo&lt;/a&gt;</status>
+      <status type="html" hrefextend="config">- &lt;a href="check_config.php"&gt;Check 
+Config&lt;/a&gt;</status>
+    </statusbar>
+  </meta>
+  <page name="Übersicht" showtopnavigation="false" showfooter="false" shownavbar-left="false">
+    <navbar position="top">
+      <pagejump target="Übersicht">
+        <layout colspan="0"/>
+        <label><icon name="control_home"/>Übersicht</label>
+      </pagejump>
+      <pagejump target="Wohnzimmer">
+        <layout colspan="0"/>
+        <label><icon name="control_all_on_off"/>KNX</label>
+      </pagejump>
+      <pagejump target="Video">
+        <layout colspan="0"/>
+        <label><icon name="it_television"/>Multimedia</label>
+      </pagejump>
+      <pagejump target="Audio">
+        <layout colspan="0"/>
+        <label><icon name="audio_audio"/>Multiroom</label>
+      </pagejump>
+      <pagejump target="Alarmanlage">
+        <layout colspan="0"/>
+        <label><icon name="secur_alarm"/>Alarmanlage</label>
+      </pagejump>
+    </navbar>
+    <group name="Temperaturen">
+      <layout colspan="12"/>
+      <diagram_info format="%.2f °C" series="day" period="2" refresh="300" tooltip="true" styling="BluePurpleRedTemp" gridcolor="#707070" legendposition="nw">
+        <layout colspan="4"/>
+        <label>Wohnen/Essen</label>
+        <axis position="left" unit="°C">temp</axis>
+        <rrd yaxis="temp" color="#FF0000" label="Temp Wohnen/Essen">wohnen</rrd>
+        <address transform="DPT:9.001" mode="readwrite">11/5/0</address>
+      </diagram_info>
+      <info format="%.2f °C" styling="BluePurpleRedTemp">
+        <layout colspan="4"/>
+        <label>Arbeitszimmer</label>
+        <address transform="DPT:9.001" mode="readwrite">11/5/1</address>
+      </info>
+      <info format="%.2f °C" styling="BluePurpleRedTemp">
+        <layout colspan="4"/>
+        <label>Schlafzimmer</label>
+        <address transform="DPT:9.001" mode="readwrite">11/5/2</address>
+      </info>
+      <info format="%.2f °C" styling="BluePurpleRedTemp">
+        <layout colspan="4"/>
+        <label>Bad</label>
+        <address transform="DPT:9.001" mode="readwrite">11/5/3</address>
+      </info>
+      <info format="%.2f °C" styling="BluePurpleRedTemp">
+        <layout colspan="4"/>
+        <label>Dusche</label>
+        <address transform="DPT:9.001" mode="readwrite">11/5/4</address>
+      </info>
+      <diagram_info series="week" refresh="300" format="%.2f °C" styling="BluePurpleRedTemp" tooltip="true">
+        <layout colspan="4"/>
+        <label>Aussen</label>
+        <axis unit="°C"/>
+        <rrd color="red">28.757A2E020000_temp</rrd>
+        <address transform="DPT:9.001" mode="readwrite">13/5/4</address>
+      </diagram_info>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <diagram_info series="day" refresh="300" format="%.2f °C" styling="BluePurpleRedHeizung" period="3" tooltip="true">
+        <layout colspan="4"/>
+        <label>VL Bodenheizung</label>
+        <axis unit="°C"/>
+        <rrd color="red" label="Vorlauf Bodenheizung">vl_bhz</rrd>
+        <rrd color="blue" label="Rücklauf Bodenheizung">rl_bhz</rrd>
+        <rrd color="orange" label="Temperatur Wohnen">wohnen</rrd>
+        <rrd label="Vorlauf Warmwasser" color="green">ww</rrd>
+        <address transform="DPT:9.001" mode="readwrite">11/5/5</address>
+      </diagram_info>
+      <info format="%.2f °C" styling="BluePurpleRedHeizung">
+        <layout colspan="4"/>
+        <label>RL Bodenheizung</label>
+        <address transform="DPT:9.001" mode="readwrite">11/5/6</address>
+      </info>
+      <diagram_info series="day" refresh="300" format="%.2f °C" styling="BluePurpleRedBrauchwasser" period="3" tooltip="true">
+        <layout colspan="4"/>
+        <label>VL Brauchwasser</label>
+        <axis unit="°C"/>
+        <rrd color="red">ww</rrd>
+        <address transform="DPT:9.001" mode="readwrite">11/5/7</address>
+      </diagram_info>
+    </group>
+    <group name="Weitere Messwerte">
+      <layout colspan="6"/>
+      <diagram_info series="day" refresh="300" format="%.2f %" styling="GreenRedBlueHum" tooltip="true" period="3">
+        <layout colspan="3"/>
+        <label>Feuchtigkeit Bad</label>
+        <axis unit="%"/>
+        <rrd color="blue" label="Luftfeuchtigkeit Bad">26.0A9430010000_hum</rrd>
+        <address transform="DPT:5.001" mode="readwrite">13/5/6</address>
+      </diagram_info>
+      <info format="%.2f %" styling="GreenRedBlueHum">
+        <layout colspan="3"/>
+        <label>Feuchtigkeit Dusche</label>
+        <address transform="DPT:5.001" mode="readwrite">13/5/19</address>
+      </info>
+      <info format="%.2f ppm" styling="GreenRedBlueCo">
+        <layout colspan="3"/>
+        <label>CO2 Bad</label>
+        <address transform="DPT:9.008" mode="readwrite">11/5/60</address>
+      </info>
+      <info format="%.2f ppm" styling="GreenRedBlueCo">
+        <layout colspan="3"/>
+        <label>CO2 Dusche</label>
+        <address transform="DPT:9.008" mode="readwrite">11/5/61</address>
+      </info>
+      <info format="%.2f W">
+        <layout colspan="3"/>
+        <label>Stromverbrauch</label>
+        <address transform="DPT:14.000" mode="readwrite">11/5/70</address>
+      </info>
+      <info format="%.2f var">
+        <layout colspan="3"/>
+        <label>Blindleistung</label>
+        <address transform="DPT:14.000" mode="readwrite">11/5/71</address>
+      </info>
+    </group>
+    <group name="Zustände Fenster/Türen">
+      <layout colspan="6"/>
+      <info mapping="OpenClose" styling="GreyGreen">
+        <layout colspan="3"/>
+        <label>Arbeitszimmer</label>
+        <address transform="DPT:1.001" mode="readwrite">11/7/11</address>
+      </info>
+      <info mapping="OpenClose" styling="GreyGreen">
+        <layout colspan="3"/>
+        <label>Schlafzimmer</label>
+        <address transform="DPT:1.001" mode="readwrite">11/7/12</address>
+      </info>
+      <info mapping="OpenClose" styling="GreyGreen">
+        <layout colspan="3"/>
+        <label>Wohnen links</label>
+        <address transform="DPT:1.001" mode="readwrite">11/7/13</address>
+      </info>
+      <info mapping="OpenClose" styling="GreyGreen">
+        <layout colspan="3"/>
+        <label>Wohnen rechts</label>
+        <address transform="DPT:1.001" mode="readwrite">11/7/14</address>
+      </info>
+      <info mapping="OpenClose" styling="GreyGreen">
+        <layout colspan="3"/>
+        <label>Bad/WC</label>
+        <address transform="DPT:1.001" mode="readwrite">11/7/10</address>
+      </info>
+      <info mapping="DoorOpenClose">
+        <layout colspan="3"/>
+        <label>Haustüre</label>
+        <address transform="DPT:1.001" mode="readwrite">11/7/15</address>
+      </info>
+    </group>
+    <page name="KNX" visible="false" shownavbar-left="true">
+      <navbar position="left" dynamic="true" width="230px">
+        <group name="Aktuelle Zeit">
+          <layout colspan="12"/>
+          <group nowidget="true">
+            <layout colspan="12"/>
+            <strftime lang="de" format="%H:%M" class="timebig">
+              <layout colspan="12"/>
+            </strftime>
+            <strftime lang="de" format="%A, %d. %B %Y" class="timedate">
+              <layout colspan="12"/>
+            </strftime>
+          </group>
+        </group>
+        <group name="Räume">
+          <pagejump target="Wohnzimmer" name="Wohnen">
+            <label>
+              <icon name="it_television"/>
+            </label>
+          </pagejump>
+          <pagejump target="Schlafzimmer" name="Schlafen">
+            <label>
+              <icon name="scene_sleeping"/>
+            </label>
+          </pagejump>
+          <pagejump target="Arbeitszimmer" name="Arbeitszimmer">
+            <label>
+              <icon name="it_pc"/>
+            </label>
+          </pagejump>
+          <pagejump target="Bad" name="Bad/WC">
+            <label>
+              <icon name="scene_bath"/>
+            </label>
+          </pagejump>
+          <pagejump name="Balkon" target="Balkon"/>
+        </group>
+        <group name="Sonstiges">
+          <pagejump target="Temperaturen" name="Heizung">
+            <label>
+              <icon name="temp_temperature"/>
+            </label>
+          </pagejump>
+        </group>
+      </navbar>
+      <page name="Wohnzimmer" visible="false">
+        <layout colspan="3"/>
+        <group name="Licht">
+          <layout colspan="12"/>
+          <group nowidget="true" flavour="lithium">
+            <layout colspan="12"/>
+            <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
+              <label>Spot Fernseher</label>
+              <address transform="DPT:1.001" mode="readwrite">11/1/0</address>
+              <address transform="DPT:1.001" mode="readwrite">11/1/1</address>
+            </switch>
+            <slide min="0" max="100" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
+              <label>Spot Fernseher</label>
+              <address transform="DPT:5.001" mode="readwrite">11/1/2</address>
+              <address transform="DPT:5.001" mode="readwrite">11/1/3</address>
+            </slide>
+            <switch mapping="OnOff_Licht" styling="GreyGrey">
+              <label>Spot Sofa</label>
+              <address transform="DPT:1.001" mode="readwrite">11/1/4</address>
+              <address transform="DPT:1.001" mode="readwrite">11/1/5</address>
+            </switch>
+            <slide min="0" max="100" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
+              <label>Spot Sofa</label>
+              <address transform="DPT:5.001" mode="readwrite">11/1/6</address>
+              <address transform="DPT:5.001" mode="readwrite">11/1/7</address>
+            </slide>
+            <switch mapping="OnOff_Licht" styling="GreyGrey">
+              <label>Spot Küche</label>
+              <address transform="DPT:1.001" mode="readwrite">11/1/8</address>
+              <address transform="DPT:1.001" mode="readwrite">11/1/9</address>
+            </switch>
+            <slide min="0" max="100" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
+              <label>Spot Küche</label>
+              <address transform="DPT:5.001" mode="readwrite">11/1/10</address>
+              <address transform="DPT:5.001" mode="readwrite">11/1/11</address>
+            </slide>
+            <switch mapping="OnOff_Licht" styling="GreyGrey">
+              <label>Esstischlampe</label>
+              <address transform="DPT:1.001" mode="readwrite">11/1/12</address>
+              <address transform="DPT:1.001" mode="readwrite">11/1/13</address>
+            </switch>
+            <slide min="0" max="100" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
+              <label>Esstischlampe</label>
+              <address transform="DPT:5.001" mode="readwrite">11/1/14</address>
+              <address transform="DPT:5.001" mode="readwrite">11/1/15</address>
+            </slide>
+          </group>
+        </group>
+        <group name="Jalousien/Rollos">
+          <layout colspan="12"/>
+          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
+            <layout colspan="3"/>
+            <label><icon name="fts_shutter"/>Fenster</label>
+            <address transform="DPT:1.001" mode="readwrite">3/4/0</address>
+          </multitrigger>
+          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
+            <layout colspan="3"/>
+            <label>Balkon links</label>
+            <address transform="DPT:1.001" mode="readwrite">3/5/0</address>
+          </multitrigger>
+          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
+            <layout colspan="3"/>
+            <label>Balkon mitte</label>
+            <address transform="DPT:1.001" mode="readwrite">3/5/3</address>
+          </multitrigger>
+          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
+            <layout colspan="3"/>
+            <label>Balkon rechts</label>
+            <address transform="DPT:1.001" mode="readwrite">3/5/6</address>
+          </multitrigger>
+        </group>
+        <group name="Steckdosen">
+          <layout colspan="12"/>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <layout colspan="3"/>
+            <label>Wohnen Fernseher</label>
+            <address transform="DPT:1.001" mode="readwrite">11/3/50</address>
+          </switch>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <layout colspan="3"/>
+            <label>Wohnen Sofa</label>
+            <address transform="DPT:1.001" mode="readwrite">11/3/51</address>
+          </switch>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <layout colspan="3"/>
+            <label>Essen</label>
+            <address transform="DPT:1.001" mode="readwrite">11/3/52</address>
+          </switch>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <layout colspan="3"/>
+            <label>Küche</label>
+            <address transform="DPT:1.001" mode="readwrite">11/3/53</address>
+          </switch>
+        </group>
+        <group name="Heizung">
+          <layout colspan="5"/>
+          <info format="%.1f °C">
+            <label><icon name="temp_temperatur"/>Ist</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/0</address>
+          </info>
+          <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+            <label><icon name="temp_regelung"/>Soll</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/20</address>
+          </infotrigger>
+        </group>
+        <group name="RGB Möbel">
+          <layout colspan="2"/>
+          <colorchooser>
+            <address transform="DPT:5.001" variant="r" mode="readwrite">11/1/50</address>
+            <address transform="DPT:5.001" variant="g" mode="readwrite">11/1/51</address>
+            <address transform="DPT:5.001" variant="b" mode="readwrite">11/1/52</address>
+          </colorchooser>
+          <trigger value="0" mapping="Off_On" align="center">
+            <layout colspan="2"/>
+            <label>AUS</label>
+            <address transform="DPT:5.001" mode="readwrite">11/1/50</address>
+            <address transform="DPT:5.001" mode="readwrite">11/1/51</address>
+            <address transform="DPT:5.001" mode="readwrite">11/1/52</address>
+          </trigger>
+        </group>
+        <group name="RGB Wallwasher DMX">
+          <layout colspan="5"/>
+          <colorchooser>
+            <layout colspan="2"/>
+            <address transform="DPT:5.001" variant="r" mode="readwrite">11/1/53</address>
+            <address transform="DPT:5.001" variant="g" mode="readwrite">11/1/54</address>
+            <address transform="DPT:5.001" variant="b" mode="readwrite">11/1/55</address>
+          </colorchooser>
+          <multitrigger button1label="Dreamflow" button1value="255" button2label="Farbfluss" button2value="235" button3label="Farbwechsel" button3value="190" button4label="Farbe" button4value="110">
+            <layout colspan="3"/>
+            <address transform="DPT:5.005" mode="readwrite">11/1/56</address>
+          </multitrigger>
+          <slide min="0" max="255" step="1" format="%d" styling="GreyGrey">
+            <layout colspan="3"/>
+            <label>Kanal1</label>
+            <address transform="DPT:5.005" mode="readwrite">11/1/53</address>
+          </slide>
+          <slide min="0" max="255" step="1" format="%d" styling="GreyGrey">
+            <layout colspan="3"/>
+            <label>Kanal2</label>
+            <address transform="DPT:5.005" mode="readwrite">11/1/54</address>
+          </slide>
+          <trigger value="0">
+            <layout colspan="2"/>
+            <label>AUS</label>
+            <address transform="DPT:5.005" mode="readwrite">11/1/56</address>
+          </trigger>
+          <slide min="0" max="255" step="1" format="%d" styling="GreyGrey">
+            <layout colspan="3"/>
+            <label>Kanal3</label>
+            <address transform="DPT:5.005" mode="readwrite">11/1/55</address>
+          </slide>
+        </group>
+      </page>
+      <page name="Schlafzimmer" visible="false">
+        <layout colspan="3"/>
+        <group name="Licht">
+          <layout colspan="12"/>
+          <switch mapping="OnOff_Licht" styling="GreyGrey">
+            <label>Deckenlicht</label>
+            <address transform="DPT:1.001" mode="readwrite">11/1/16</address>
+            <address transform="DPT:1.001" mode="readwrite">11/1/17</address>
+          </switch>
+          <slide min="0" max="100" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
+            <label>Deckenlicht</label>
+            <address transform="DPT:5.001" mode="readwrite">11/1/18</address>
+            <address transform="DPT:5.001" mode="readwrite">11/1/19</address>
+          </slide>
+        </group>
+        <group name="Jalousien + Fenster">
+          <layout colspan="12"/>
+          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
+            <label><icon name="fts_rollo"/>Jalousien</label>
+            <address transform="DPT:1.001" mode="readwrite">13/1/1</address>
+          </multitrigger>
+          <info mapping="OpenClose" styling="GreyGreen">
+            <label>Fenster</label>
+            <address transform="DPT:1.001" mode="readwrite">11/7/12</address>
+          </info>
+        </group>
+        <group align="center" name="Heizung">
+          <slide min="0" max="100" flavour="lithium">
+            <label><icon name="sani_heizung"/>Heizung</label>
+            <address transform="DPT:5.001" mode="readwrite">7/0/4</address>
+          </slide>
+          <info format="%.1f °C">
+            <label><icon name="temp_temperatur"/>Ist</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/2</address>
+          </info>
+          <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+            <label><icon name="temp_regelung"/>Soll</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/22</address>
+          </infotrigger>
+        </group>
+        <group align="center" name="Verbraucher">
+          <switch mapping="AudioMute" styling="GreyGreen">
+            <label>Lautsprecher</label>
+            <address transform="DPT:1.001" mode="readwrite">13/5/1</address>
+          </switch>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <label>TV</label>
+            <address transform="DPT:1.001" mode="readwrite">13/1/4</address>
+          </switch>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <label>DVD</label>
+            <address transform="DPT:1.001" mode="readwrite">13/1/7</address>
+          </switch>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <label>IR</label>
+            <address transform="DPT:1.001" mode="readwrite">13/1/6</address>
+          </switch>
+        </group>
+      </page>
+      <page name="Bad" visible="false">
+        <layout colspan="3"/>
+        <group name="Licht">
+          <layout colspan="12"/>
+          <group nowidget="true" flavour="lithium">
+            <layout colspan="12"/>
+            <switch mapping="OnOff_Licht" styling="GreyGrey">
+              <label>Deckenspot</label>
+              <address transform="DPT:1.001" mode="readwrite">11/1/24</address>
+              <address transform="DPT:1.001" mode="readwrite">11/1/25</address>
+            </switch>
+            <slide min="0" max="100" step="1" format="%d%%" styling="GreyGrey">
+              <label>Deckenspot</label>
+              <address transform="DPT:5.001" mode="readwrite">11/1/26</address>
+              <address transform="DPT:5.001" mode="readwrite">11/1/27</address>
+            </slide>
+          </group>
+        </group>
+        <group name="Jalousie">
+          <layout colspan="12"/>
+          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
+            <layout colspan="12"/>
+            <label>Fenster</label>
+            <address transform="DPT:1.001" mode="readwrite">3/2/0</address>
+          </multitrigger>
+        </group>
+      </page>
+      <page name="Balkon" visible="false">
+        <group name="Licht/Steckdosen/Ventilator">
+          <multitrigger button1label="AUS" button1value="0" button2label="Stufe1" button2value="3" button3label="Stufe2" button3value="2" button4label="Stufe3" button4value="1" showstatus="true">
+            <address transform="DPT:5.005" mode="readwrite">12/7/1</address>
+            <address transform="DPT:1.001" mode="readwrite">12/7/10</address>
+          </multitrigger>
+        </group>
+      </page>
+      <page name="Temperaturen" visible="false">
+        <layout colspan="3"/>
+        <group name="Temperaturen Ist, Soll, Stellgröse">
+          <layout colspan="12"/>
+          <info format="%.1f °C">
+            <label><icon name="temp_outside"/>Aussen</label>
+            <address transform="DPT:9.001" mode="readwrite">13/5/4</address>
+          </info>
+          <text>
+            <label/>
+          </text>
+          <info format="%.1f °C">
+            <label><icon name="temp_inside"/>Wohnen/Essen Ist:</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/0</address>
+          </info>
+          <info format="%.1f °C">
+            <layout colspan="3"/>
+            <label>Soll:</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/20</address>
+          </info>
+          <info format="%.1f %">
+            <layout colspan="3"/>
+            <label>Stellgrösse:</label>
+            <address transform="DPT:5.001" mode="readwrite">11/5/50</address>
+          </info>
+          <info format="%.1f °C">
+            <label><icon name="temp_inside"/>Arbeitszimmer Ist:</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/1</address>
+          </info>
+          <info format="%.1f °C">
+            <layout colspan="3"/>
+            <label>Soll:</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/21</address>
+          </info>
+          <info format="%.1f %">
+            <layout colspan="3"/>
+            <label>Stellgrösse:</label>
+            <address transform="DPT:5.001" mode="readwrite">11/5/51</address>
+          </info>
+          <info format="%.1f °C">
+            <label><icon name="temp_inside"/>Schlafzimmer Ist:</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/2</address>
+          </info>
+          <info format="%.1f °C">
+            <layout colspan="3"/>
+            <label>Soll:</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/22</address>
+          </info>
+          <info format="%.1f %">
+            <layout colspan="3"/>
+            <label>Stellgrösse:</label>
+            <address transform="DPT:5.001" mode="readwrite">11/5/52</address>
+          </info>
+          <info format="%.1f °C">
+            <label><icon name="temp_inside"/>Bad Ist:</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/3</address>
+          </info>
+          <info format="%.1f °C">
+            <layout colspan="3"/>
+            <label>Soll:</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/23</address>
+          </info>
+          <info format="%.1f %">
+            <layout colspan="3"/>
+            <label>Stellgrösse:</label>
+            <address transform="DPT:5.001" mode="readwrite">11/5/53</address>
+          </info>
+          <info format="%.1f °C">
+            <label><icon name="temp_inside"/>Dusche Ist:</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/4</address>
+          </info>
+          <info format="%.1f °C">
+            <layout colspan="3"/>
+            <label>Soll:</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/24</address>
+          </info>
+          <info format="%.1f %">
+            <layout colspan="3"/>
+            <label>Stellgrösse:</label>
+            <address transform="DPT:5.001" mode="readwrite">11/5/54</address>
+          </info>
+        </group>
+      </page>
+      <page name="Arbeitszimmer" visible="false">
+        <layout colspan="3"/>
+        <group name="Licht">
+          <layout colspan="12"/>
+          <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
+            <label>Deckenlicht</label>
+            <address transform="DPT:1.001" mode="readwrite">11/1/20</address>
+            <address transform="DPT:1.001" mode="readwrite">11/1/21</address>
+          </switch>
+          <slide min="0" max="100" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
+            <label>Deckenlicht</label>
+            <address transform="DPT:5.001" mode="readwrite">11/1/22</address>
+            <address transform="DPT:5.001" mode="readwrite">11/1/23</address>
+          </slide>
+        </group>
+        <group name="Jalousien + Fenster">
+          <layout colspan="12"/>
+          <multitrigger button1label="↑" button1value="0" button2label="↓" button2value="1">
+            <label><icon name="fts_rollo"/>Jalousien</label>
+            <address transform="DPT:1.001" mode="readwrite">13/1/1</address>
+          </multitrigger>
+          <info mapping="OpenClose">
+            <label><icon name="fts_shutter"/>Fenster</label>
+            <address transform="DPT:1.001" mode="readwrite">11/7/11</address>
+          </info>
+        </group>
+        <group align="center" name="Heizung">
+          <slide min="0" max="100" flavour="lithium">
+            <label><icon name="sani_heizung"/>Heizung</label>
+            <address transform="DPT:5.001" mode="readwrite">7/0/4</address>
+          </slide>
+          <info format="%.1f °C">
+            <label><icon name="temp_temperatur"/>Ist</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/1</address>
+          </info>
+          <infotrigger uplabel="+" upvalue="0.5" downlabel="-" downvalue="-0.5" styling="BluePurpleRedTemp" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+            <label><icon name="temp_regelung"/>Soll</label>
+            <address transform="DPT:9.001" mode="readwrite">11/5/21</address>
+          </infotrigger>
+        </group>
+        <group align="center" name="Verbraucher">
+          <switch mapping="AudioMute" styling="GreyGreen">
+            <label>Lautsprecher</label>
+            <address transform="DPT:1.001" mode="readwrite">13/5/1</address>
+          </switch>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <label>TV</label>
+            <address transform="DPT:1.001" mode="readwrite">13/1/4</address>
+          </switch>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <label>DVD</label>
+            <address transform="DPT:1.001" mode="readwrite">13/1/7</address>
+          </switch>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <label>IR</label>
+            <address transform="DPT:1.001" mode="readwrite">13/1/6</address>
+          </switch>
+        </group>
+      </page>
+    </page>
+    <page name="Video" visible="false">
+      <group name="Denon">
+        <layout colspan="12"/>
+        <group nowidget="true" flavour="lithium">
+          <layout colspan="12"/>
+          <web src="./denon01.jpg" width="320px" height="300px" frameborder="false" background="black" refresh="200">
+            <layout colspan="4"/>
+          </web>
+          <web src="./denon02.jpg" width="320px" height="300px" frameborder="false" background="black" refresh="200">
+            <layout colspan="4"/>
+          </web>
+          <web src="./denon03.jpg" width="320px" height="300px" frameborder="false" background="black" refresh="200">
+            <layout colspan="4"/>
+          </web>
+        </group>
+      </group>
+      <group name="Beamer">
+        <layout colspan="12"/>
+        <group nowidget="true" flavour="lithium">
+          <layout colspan="12"/>
+          <multitrigger button1label="HDMI1" button1value="0" button2label="HDMI2" button2value="1" button3label="VGA" button3value="2" button4label="-">
+            <layout colspan="6"/>
+            <label>Eingangsquelle</label>
+            <address transform="DPT:5.001" mode="readwrite">9/6/1</address>
+          </multitrigger>
+          <trigger value="1">
+            <layout colspan="6"/>
+            <label>Beamer ON</label>
+            <address transform="DPT:1.001" mode="readwrite">9/6/0</address>
+          </trigger>
+          <trigger value="0">
+            <layout colspan="6"/>
+            <label>Beamer OFF</label>
+            <address transform="DPT:1.001" mode="readwrite">9/6/0</address>
+          </trigger>
+        </group>
+      </group>
+      <group name="TV">
+        <layout colspan="6"/>
+        <group nowidget="true" flavour="lithium">
+          <layout colspan="12"/>
+          <switch mapping="OnOff_tv" styling="GreyGrey" bind_click_to_widget="false">
+            <label>On/Off</label>
+            <address transform="DPT:1.001" mode="readwrite">11/3/40</address>
+          </switch>
+          <info mapping="Text_EinAus" styling="GreyGreen">
+            <label>Status:</label>
+            <address transform="DPT:1.001" mode="readwrite">11/3/40</address>
+          </info>
+          <trigger value="1">
+            <layout colspan="6"/>
+            <label>TV Lift AB</label>
+            <address transform="DPT:1.001" mode="readwrite">9/7/1</address>
+          </trigger>
+          <trigger value="1">
+            <layout colspan="6"/>
+            <label>TV Lift AUF</label>
+            <address transform="DPT:1.001" mode="readwrite">9/7/0</address>
+          </trigger>
+        </group>
+      </group>
+      <group name="Dreambox">
+        <layout colspan="6"/>
+        <group nowidget="true" flavour="lithium">
+          <layout colspan="12"/>
+          <urltrigger url="http://ip_dreambox/web/powerstate?newstate=4" value="1">
+            <label>On/Off</label>
+          </urltrigger>
+          <urltrigger url="http://ip_dreambox/web/powerstate?newstate=5" value="0"/>
+          <urltrigger value="+" url="http://ip_dreambox/web/vol?set=up">
+            <label>Lautstärke</label>
+          </urltrigger>
+          <urltrigger value="-" url="http://ip_dreambox/web/vol?set=down"/>
+        </group>
+      </group>
+    </page>
+    <page name="Audio" visible="false">
+      <navbar position="left" dynamic="true" width="200px">
+        <group name="Sonstiges">
+          <pagejump target="Audio" name="Audio">
+            <label>
+              <icon name="audio_sound"/>
+            </label>
+          </pagejump>
+        </group>
+      </navbar>
+      <group name="Allgemein">
+        <layout colspan="12"/>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <label>Webradio</label>
+          <address transform="DPT:1.001" mode="readwrite">12/1/7</address>
+        </switch>
+        <switch mapping="AudioMute" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>LS Schlafzimmer</label>
+          <address transform="DPT:1.001" mode="readwrite">13/5/1</address>
+        </switch>
+        <switch mapping="AudioMute" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>LS Wohnzimmer</label>
+          <address transform="DPT:1.001" mode="readwrite">14/1/3</address>
+        </switch>
+      </group>
+    </page>
+    <group name="Wetter Wetzikon">
+      <image src="https://www.yr.no/place/Switzerland/Z%C3%BCrich/Wetzikon_%28ZH%29/meteogram.png" refresh="30" height="250px"/>
+    </group>
+    <group name="Wetter Stäfa">
+      <image src="https://www.yr.no/place/Switzerland/Z%C3%BCrich/St%C3%A4fa~2658518/meteogram.png&#10;" refresh="30" height="250px"/>
+    </group>
+    <page name="Alarmanlage" visible="false" shownavbar-left="false" ga="12/3/0">
+      <group name="Letzte Türzustände">
+        <layout colspan="6"/>
+        <rsslog src="plugins/rsslog/rsslog.php?state=0" refresh="10" filter="doortest" mode="last" datetime="true" timeformat="%d.%m. %H:%M">
+          <layout colspan="6" rowspan="4"/>
+        </rsslog>
+      </group>
+      <group name="Letzte Alarmmeldungen">
+        <layout colspan="6"/>
+        <rsslog src="plugins/rsslog/rsslog.php?state=0" refresh="10" filter="status" mode="last" datetime="true" timeformat="%d.%m. %H:%M">
+          <layout colspan="6" rowspan="4"/>
+        </rsslog>
+      </group>
+      <group name="Zustände Fenster/Türen">
+        <layout colspan="6"/>
+        <info mapping="OpenClose" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>Arbeitszimmer</label>
+          <address transform="DPT:1.001" mode="readwrite">11/7/11</address>
+        </info>
+        <info mapping="OpenClose" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>Schlafzimmer</label>
+          <address transform="DPT:1.001" mode="readwrite">11/7/12</address>
+        </info>
+        <info mapping="OpenClose" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>Wohnen links</label>
+          <address transform="DPT:1.001" mode="readwrite">11/7/13</address>
+        </info>
+        <info mapping="OpenClose" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>Wohnen rechts</label>
+          <address transform="DPT:1.001" mode="readwrite">11/7/14</address>
+        </info>
+        <info mapping="OpenClose" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>Bad/WC</label>
+          <address transform="DPT:1.001" mode="readwrite">11/7/10</address>
+        </info>
+        <info mapping="DoorOpenClose">
+          <layout colspan="3"/>
+          <label>Haustüre</label>
+          <address transform="DPT:1.001" mode="readwrite">11/7/15</address>
+        </info>
+      </group>
+      <group name="Zustände Alarmanlage">
+        <layout colspan="6"/>
+        <info mapping="ScharfUnscharf" styling="GreyGreen">
+          <layout colspan="6"/>
+          <label>Scharfschaltung extern</label>
+          <address transform="DPT:1.001" mode="readwrite">11/7/0</address>
+        </info>
+        <info mapping="ScharfUnscharf" styling="GreyGreen">
+          <layout colspan="6"/>
+          <label>Scharfschaltug intern</label>
+          <address transform="DPT:1.001" mode="readwrite">11/7/1</address>
+        </info>
+        <info mapping="AlarnNormal" styling="GreyGreen">
+          <layout colspan="6"/>
+          <label>Einbruchalarm</label>
+          <address transform="DPT:1.001" mode="readwrite">11/7/2</address>
+        </info>
+      </group>
+    </page>
+  </page>
+</pages>

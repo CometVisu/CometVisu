@@ -9,7 +9,9 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.Html": {},
+      "qx.bom.client.Html": {
+        "require": true
+      },
       "qx.bom.storage.Web": {},
       "qx.bom.storage.UserData": {},
       "qx.bom.storage.Memory": {}
@@ -99,4 +101,4 @@
   qx.bom.Storage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Storage.js.map?dt=1604955466104
+//# sourceMappingURL=Storage.js.map?dt=1612690393221

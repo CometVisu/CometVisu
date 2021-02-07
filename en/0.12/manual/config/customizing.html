@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -243,9 +240,9 @@ degree of complexity - are described in detail.</p>
 <li></li>
 </ol>
 </td>
-<td>Widgets with <code class="docutils literal"><span class="pre">class</span></code></td>
+<td>Widgets with <code class="docutils literal notranslate"><span class="pre">class</span></code></td>
 <td>Appearance</td>
-<td>Many widgets can be customized by adding the <code class="docutils literal"><span class="pre">class</span></code> attribute and matching CSS rules.</td>
+<td>Many widgets can be customized by adding the <code class="docutils literal notranslate"><span class="pre">class</span></code> attribute and matching CSS rules.</td>
 </tr>
 <tr class="row-odd"><td><ol class="first last arabic simple" start="4">
 <li></li>
@@ -282,7 +279,7 @@ in addition to the CSS files of the CometVisu design.</p>
 if it is not possible to access the servers filesystem directly.</p>
 <div class="literal-block-wrapper container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Extracting a configuration file that loads 2 additional CSS files:</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
         <span class="nt">&lt;files&gt;</span>
             <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-custom-style.css<span class="nt">&lt;/file&gt;</span>
@@ -299,7 +296,7 @@ if it is not possible to access the servers filesystem directly.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p class="last">In earlier versions of CometVisu (&lt;= 0.10.x) the CSS rules had to be entered
-in the <code class="docutils literal"><span class="pre">custom.css</span></code> file of the respective design. Although this still works, it is
+in the <code class="docutils literal notranslate"><span class="pre">custom.css</span></code> file of the respective design. Although this still works, it is
 recommended to copy these rules into a new file and integrate them using the path
 described here. The old way will only be maintained for reasons of
 compatibility and will be removed in future versions.</p>
@@ -308,13 +305,13 @@ compatibility and will be removed in future versions.</p>
 <div class="section" id="include-your-own-icons">
 <h2>Include your own icons<a class="headerlink" href="#include-your-own-icons" title="Permalink to this headline">¶</a></h2>
 <p>This option defines the name of the icon, which is located under the
-directory specified in <code class="docutils literal"><span class="pre">uri</span></code>. The icons defined in this way can then
+directory specified in <code class="docutils literal notranslate"><span class="pre">uri</span></code>. The icons defined in this way can then
 be accessed via the name that is easier to remember. The directory
 specification is in the example relative to the CV installation.</p>
 <p>Here, the icons were previously stored in a separate subdirectory.</p>
 <div class="literal-block-wrapper container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Add an additional icon</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
         ...
         <span class="nt">&lt;icons&gt;</span>
@@ -333,18 +330,18 @@ specification is in the example relative to the CV installation.</p>
 </div>
 <div class="section" id="change-individual-widgets-through-css-classes">
 <span id="custom-css"></span><h2>Change individual widgets through CSS classes<a class="headerlink" href="#change-individual-widgets-through-css-classes" title="Permalink to this headline">¶</a></h2>
-<p>With many widgets it is possible to specify a <code class="docutils literal"><span class="pre">class</span></code> attribute in the
+<p>With many widgets it is possible to specify a <code class="docutils literal notranslate"><span class="pre">class</span></code> attribute in the
 configuration file, which can then be used for own CSS rules. This gives
 you the opportunity to visually change individual widgets.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">The value of the <code class="docutils literal"><span class="pre">class</span></code> attribute specified in the configuration
-file is given a <code class="docutils literal"><span class="pre">custom_</span></code> prefix. So from <code class="docutils literal"><span class="pre">&lt;switch</span> <span class="pre">class</span> <span class="pre">=</span> <span class="pre">&quot;fancy&quot;...</span></code>
-the HTML code <code class="docutils literal"><span class="pre">&lt;div</span> <span class="pre">class=&quot;switch</span> <span class="pre">custom_fancy&quot;...</span></code></p>
+<p class="last">The value of the <code class="docutils literal notranslate"><span class="pre">class</span></code> attribute specified in the configuration
+file is given a <code class="docutils literal notranslate"><span class="pre">custom_</span></code> prefix. So from <code class="docutils literal notranslate"><span class="pre">&lt;switch</span> <span class="pre">class</span> <span class="pre">=</span> <span class="pre">&quot;fancy&quot;...</span></code>
+the HTML code <code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">class=&quot;switch</span> <span class="pre">custom_fancy&quot;...</span></code></p>
 </div>
 <div class="literal-block-wrapper container" id="id3">
 <div class="code-block-caption"><span class="caption-text">An individualized switch widget</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
         <span class="nt">&lt;files&gt;</span>
             <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-custom-style.css<span class="nt">&lt;/file&gt;</span>
@@ -360,7 +357,7 @@ the HTML code <code class="docutils literal"><span class="pre">&lt;div</span> <s
 </div>
 <div class="literal-block-wrapper container" id="id4">
 <div class="code-block-caption"><span class="caption-text">CSS rules for the switch widget in the file <cite>resource/config/media/my-custom-style.css</cite></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">switch</span><span class="p">.</span><span class="nc">custom_fancy</span> <span class="p">{</span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">switch</span><span class="p">.</span><span class="nc">custom_fancy</span> <span class="p">{</span>
     <span class="k">color</span><span class="p">:</span> <span class="kc">pink</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -378,8 +375,7 @@ adjustments, there is a further possibility to write a completely new design.</p
 <li><p class="first"><em>mobile.css</em>: CSS rules for small screen mobile devices (may be blank)</p>
 </li>
 <li><dl class="first docutils">
-<dt><em>design_setup.js</em>: Optional Javascript file that can make adjustments that</dt>
-<dd><p class="first last">are not possible via CSS (may be empty)</p>
+<dt><em>design_setup.js</em>: Optional Javascript file that can make adjustments that</dt><dd><p>are not possible via CSS (may be empty)</p>
 </dd>
 </dl>
 </li>
@@ -464,12 +460,12 @@ widget in the XML configuration file (not required for Standalone plug-ins)</li>
 <p>Every widget in CometVisu consists of these three things. In the standard
 widgets, the <em>parser</em> and the <em>widget class</em> are divided into two different
 files, with plugins both are in one file. The schema definitions can all be
-found in the <code class="docutils literal"><span class="pre">visu_config.xsd</span></code> file.</p>
+found in the <code class="docutils literal notranslate"><span class="pre">visu_config.xsd</span></code> file.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p class="last">Dividing the <em>parser</em> and <em>widget classes</em> into two files has the
 advantage of making it easier to swap widget classes. All standard
-widget classes are grouped together in a structure called <code class="docutils literal"><span class="pre">Pure</span></code>.
+widget classes are grouped together in a structure called <code class="docutils literal notranslate"><span class="pre">Pure</span></code>.
 It is possible to exchange this structure with another one. In order
 not to reprogram all parsers in such a case, this separation has been made.</p>
 </div>
@@ -477,8 +473,8 @@ not to reprogram all parsers in such a case, this separation has been made.</p>
 <div class="section" id="example-plugin">
 <h3>example plugin<a class="headerlink" href="#example-plugin" title="Permalink to this headline">¶</a></h3>
 <p>A simple example, for a new widget that can be plugged in,
-can be found in the <code class="docutils literal"><span class="pre">resource/config/structure_custom.js</span></code>.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">qx</span><span class="p">.</span><span class="nx">Class</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;cv.ui.structure.pure.Headline&#39;</span><span class="p">,</span> <span class="p">{</span>
+can be found in the <code class="docutils literal notranslate"><span class="pre">resource/config/structure_custom.js</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">qx</span><span class="p">.</span><span class="nx">Class</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;cv.ui.structure.pure.Headline&#39;</span><span class="p">,</span> <span class="p">{</span>
   <span class="nx">extend</span><span class="o">:</span> <span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">AbstractWidget</span><span class="p">,</span>
 
   <span class="nx">statics</span><span class="o">:</span> <span class="p">{</span>
@@ -516,13 +512,13 @@ can be found in the <code class="docutils literal"><span class="pre">resource/co
 </div>
 <p>This file provides a widget which adds to the GUI a heading element
 with arbitrary text. It can be used in the configuration file as
-<code class="docutils literal"><span class="pre">&lt;headline&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/</span> <span class="pre">headline&gt;</span></code>. It is important that the widget in the
-configuration file is always embedded in a <code class="docutils literal"><span class="pre">&lt;custom&gt;</span></code> element. Since
+<code class="docutils literal notranslate"><span class="pre">&lt;headline&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/</span> <span class="pre">headline&gt;</span></code>. It is important that the widget in the
+configuration file is always embedded in a <code class="docutils literal notranslate"><span class="pre">&lt;custom&gt;</span></code> element. Since
 no schema definition exists for this stand-alone plug-in, this additional
 step is necessary so that the schema validator does not mark the
 configuration file as invalid.</p>
 <p>To use this plugin, the file must be loaded.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...&gt;</span>
     <span class="nt">&lt;meta&gt;</span>
         <span class="nt">&lt;files&gt;</span>
             <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;js&quot;</span> <span class="na">content=</span><span class="s">&quot;plugin&quot;</span><span class="nt">&gt;</span>resource/config/structure_custom.js<span class="nt">&lt;/file&gt;</span>
@@ -539,7 +535,7 @@ configuration file as invalid.</p>
 </div>
 <p>For the CometVisu to recognize that the file provides a
 stand-alone plugin, it must be specified with the attributes
-<code class="docutils literal"><span class="pre">type=&quot;js&quot;</span> <span class="pre">content=&quot;plugin&quot;</span></code>. If this does not happen,
+<code class="docutils literal notranslate"><span class="pre">type=&quot;js&quot;</span> <span class="pre">content=&quot;plugin&quot;</span></code>. If this does not happen,
 it can happen that the file is loaded at the wrong time and
 can not be used due to an error.</p>
 </div>
@@ -547,8 +543,8 @@ can not be used due to an error.</p>
 <div class="section" id="write-your-own-structure">
 <h2>Write your own structure<a class="headerlink" href="#write-your-own-structure" title="Permalink to this headline">¶</a></h2>
 <p>If the HTML code generated by the CometVisu is to be changed, you
-have to write a new structure. So far, only the <code class="docutils literal"><span class="pre">pure</span></code> structure
-exists in the CometVisu under the path <code class="docutils literal"><span class="pre">cv.ui.structure.pure</span></code>.
+have to write a new structure. So far, only the <code class="docutils literal notranslate"><span class="pre">pure</span></code> structure
+exists in the CometVisu under the path <code class="docutils literal notranslate"><span class="pre">cv.ui.structure.pure</span></code>.
 It contains all widget classes provided by CometVisu. These are
 responsible for generating HTML code from a configuration file
 read by the <em>Parsers</em>.</p>
@@ -586,7 +582,7 @@ exchange the structures easily.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -632,7 +628,7 @@ exchange the structures easily.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

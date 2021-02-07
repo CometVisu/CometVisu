@@ -64,9 +64,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -225,7 +222,7 @@ by an online translation service.</p>
 <div class="toctree-wrapper compound">
 </div>
 <p>CometVisu is configured by editing the XML-formatted configuration
-file &#8220;visu_config.xml&#8221; in the respective subdirectory &#8221;./config&#8221; of
+file “visu_config.xml” in the respective subdirectory “./config” of
 the CometVisu installation. This can be done either with a text-based
 editor or with the integrated graphical editor. However, the use of
 the graphical editor assumes that the CometVisu is delivered by a
@@ -239,30 +236,30 @@ the CometVisu tree is located in different places:</p>
 <li>If the CometVisu should be connected directly to the KNX bus telegram
 traffic with the help of the knxd daemon (KNX is then the backend),
 the CometVisu is manually added to the directory tree
-&#8220;/var/www/visu...&#8221; of the web server (e.g. Apache or Lighttpd)
+“/var/www/visu…” of the web server (e.g. Apache or Lighttpd)
 The web server usually listens on port 80 in the default setting.</li>
 <li>If openHAB is used as the backend for the CometVisu, the CometVisu
 files must be in the openHAB directory tree. The openHAB own web
 server is addressed in the default setting via port 8080 and is
 not php-capable. In this case you have to be satisfied with a text-based
-editor or &#8220;divert&#8221; the probably parallel running web server
+editor or “divert” the probably parallel running web server
 (for example Apache or Lighttpd).</li>
 <li>If openHAB was automatically installed via apt-get, the CometVisu
-will be installed manually in &#8220;/usr/share/openhab/webapps/visu...&#8221;.</li>
-<li>If openHAB was manually installed in e.g. &#8220;/opt/openHAB&#8221;,
-the CometVisu is installed manually in &#8220;/opt/openhab/www/visu...&#8221;.</li>
+will be installed manually in “/usr/share/openhab/webapps/visu…”.</li>
+<li>If openHAB was manually installed in e.g. “/opt/openHAB”,
+the CometVisu is installed manually in “/opt/openhab/www/visu…”.</li>
 </ul>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p class="last">For further Information on the location of the CometVisu
 see the Install Section</p>
 </div>
-<p>If the XML-formatted configuration file &#8220;visu_config.xml&#8221; is to be
+<p>If the XML-formatted configuration file “visu_config.xml” is to be
 edited directly by the (advanced) user, it is advisable to use an
 XML-compatible editor for this, which i.a. coloring syntax for better
 readability (e.g., Textwrangler on MacOSX, WordPad ++, Notepad ++
 or MS XML Editor 2007 on Windows, and on Linux, for example,
-vi with &#8221;: syntax on&#8221;).</p>
+vi with “: syntax on”).</p>
 <p>General information about the CometVisu XML format can be found
 <a class="reference internal" href="xml-format.html"><span class="doc">here</span></a>, information on the individual widgets in
 the respective sub-pages.</p>
@@ -278,7 +275,7 @@ the page and clear the browser cache.</p>
 <p>If the XML file is invalid, an error message is displayed when
 loading the Visu in the web browser. This usually gives exact
 information about where in the file the error lies. You can also
-force the check with the link &#8220;Check Config&#8221;
+force the check with the link “Check Config”
 in the footer or by appending check_config.php to the URL.</p>
 <div class="toctree-wrapper compound">
 </div>
@@ -302,7 +299,7 @@ how the widget works in more detail.</p>
 the different pages of the visualization (other widgets)</li>
 </ul>
 <p>A small exception are the plugin widgets. These must be included in
-the &#8220;meta section&#8221; of the configuration file before use.</p>
+the “meta section” of the configuration file before use.</p>
 </div>
 <div class="section" id="working-with-the-configuration-file">
 <h3>Working with the configuration file<a class="headerlink" href="#working-with-the-configuration-file" title="Permalink to this headline">¶</a></h3>
@@ -334,20 +331,20 @@ navigate back to parent pages.</li>
 <li>The Navbar widget in conjunction with page jump widgets.</li>
 <li>The <a class="reference internal" href="widgets/pagejump/index.html#pagejump"><span class="std std-ref">Pagejump widget</span></a> allows to call any subpage.</li>
 <li>The <a class="reference internal" href="widgets/group/index.html#group"><span class="std std-ref">Group widget</span></a> can also call any subpage with the
-option <code class="docutils literal"><span class="pre">target</span> <span class="pre">=</span></code>.</li>
+option <code class="docutils literal notranslate"><span class="pre">target</span> <span class="pre">=</span></code>.</li>
 <li>A special feature is the <a class="reference internal" href="xml-format.html#xml-format-statusbar"><span class="std std-ref">Statusbar</span></a> at
 the bottom of the screen. From there you can call e.g. external URLs.</li>
 </ul>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id2">
 <img alt="../_images/Navigation_withDescription.png" src="../_images/Navigation_withDescription.png" />
-<p class="caption"><span class="caption-text">Overview of the most important navigation elements.</span></p>
+<p class="caption"><span class="caption-text">Overview of the most important navigation elements.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Furthermore, various functionalities are implemented which result in navigation
 without user intervention:</p>
 <ul class="simple">
 <li>A KNX group address can be used to jump to a subpage when the attribute
-<code class="docutils literal"><span class="pre">ga=x/y/z</span></code> is entered in the corresponding <a class="reference internal" href="widgets/page/index.html#page"><span class="std std-ref">Page Definition</span></a>.</li>
-<li>The options <code class="docutils literal"><span class="pre">screensave_time</span></code> and <code class="docutils literal"><span class="pre">screensave_page</span></code>. This will call a
+<code class="docutils literal notranslate"><span class="pre">ga=x/y/z</span></code> is entered in the corresponding <a class="reference internal" href="widgets/page/index.html#page"><span class="std std-ref">Page Definition</span></a>.</li>
+<li>The options <code class="docutils literal notranslate"><span class="pre">screensave_time</span></code> and <code class="docutils literal notranslate"><span class="pre">screensave_page</span></code>. This will call a
 specified page after a defined time has elapsed.</li>
 <li>The <a class="reference internal" href="widgets/plugins/timeout/index.html#timeout"><span class="std std-ref">timeout plugin</span></a> works similar to the screensave
 function, but will also run if the subpage is called via GA.</li>
@@ -364,7 +361,7 @@ function, but will also run if the subpage is called via GA.</li>
 <li>Alaska</li>
 <li>Alaska Slim</li>
 </ul>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="id1">
 <p class="first admonition-title">Todo</p>
 <p class="last">More example pages for the other designs</p>
 </div>
@@ -372,12 +369,12 @@ function, but will also run if the subpage is called via GA.</li>
 <div class="section" id="basic-elements-for-designing-the-layout">
 <h2>Basic elements for designing the layout<a class="headerlink" href="#basic-elements-for-designing-the-layout" title="Permalink to this headline">¶</a></h2>
 <p>In the CometVisu the size and arrangement of the widgets can be controlled
-with the child element <code class="docutils literal"><span class="pre">Layout</span></code>. Thus, a responsive design can be realized,
+with the child element <code class="docutils literal notranslate"><span class="pre">Layout</span></code>. Thus, a responsive design can be realized,
 that adapts to the display size of the terminal from which the CometVisu
 is viewed. This happens not only at the time of the URL call, but dynamically
 e.g. also when turning the terminal from landscape to portrait or when changing
 the window size on the PC.</p>
-<p>Within the widgets there are different attributes like <code class="docutils literal"><span class="pre">width</span></code>, <code class="docutils literal"><span class="pre">height</span></code>,
+<p>Within the widgets there are different attributes like <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">height</span></code>,
 etc. available. This can be used to control the size of the widget content
 (e.g. image and diagram size, etc.).</p>
 <p>Detailed descriptions of formatting the widget size and content:</p>
@@ -468,7 +465,7 @@ integrated via plug-in interface.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -514,7 +511,7 @@ integrated via plug-in interface.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

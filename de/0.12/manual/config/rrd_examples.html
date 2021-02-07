@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -119,7 +116,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#allgemeine-infos-uber-rrd">Allgemeine Infos über RRD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#rrd-und-die-cometvisu">RRD und die CometVisu</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#anlegen-der-rrd-datenbank">Anlegen der RRD-Datenbank</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#befullen-der-rrd-datenbank">&#8220;Befüllen&#8221; der RRD-Datenbank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#befullen-der-rrd-datenbank">„Befüllen“ der RRD-Datenbank</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#fehlersuche">Fehlersuche</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#beispiele-fur-rrds">Beispiele für RRDs</a></li>
 </ul>
@@ -213,7 +210,7 @@ des <a class="reference internal" href="widgets/plugins/diagram/index.html#diagr
 <div class="section" id="allgemeine-infos-uber-rrd">
 <h2>Allgemeine Infos über RRD<a class="headerlink" href="#allgemeine-infos-uber-rrd" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die CometVisu-Diagramme werden über RRD generiert.</p>
-<p>Diese werden üblicherweise im Verzeichnis <code class="docutils literal"><span class="pre">/var/www/rrd</span></code> abgelegt.</p>
+<p>Diese werden üblicherweise im Verzeichnis <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code> abgelegt.</p>
 <p>Allgemeine Infos zu RRD findet man auf englisch
 <a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/index.en.html">hier</a> und natürlich
 bei
@@ -234,7 +231,7 @@ oder ein <a class="reference external" href="CometVisu/rrdtool">RRDtool mit Patc
 </ul>
 <p>(beides ist auf dem wiregate und auf dem Raspberry Pi image
 standardmässig verfügbar)</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd# cat /etc/crontab
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd# cat /etc/crontab
 <span class="c1"># /etc/crontab: system-wide crontab</span>
 <span class="c1"># Unlike any other crontab you don&#39;t have to run the &#39;crontab&#39;</span>
 <span class="c1"># command to install the new version when you edit this file</span>
@@ -254,9 +251,9 @@ standardmässig verfügbar)</p>
 */5 *   * * *   root    /var/www/rrd/cpuload15
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">*/5</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code> bedeutet hierbei das der Job jederzeit alle 5 Minuten
+<p><code class="docutils literal notranslate"><span class="pre">*/5</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code> bedeutet hierbei das der Job jederzeit alle 5 Minuten
 ausgeführt wird. Der kleinste Zeitabstand der mit der crontab
-realisierbar ist ist <code class="docutils literal"><span class="pre">*/1</span></code>, also jede Minute.</p>
+realisierbar ist ist <code class="docutils literal notranslate"><span class="pre">*/1</span></code>, also jede Minute.</p>
 <p>Der Aktualisierungsabstand sollte zur RRD Datenbank passen!</p>
 </div>
 <div class="section" id="anlegen-der-rrd-datenbank">
@@ -264,24 +261,24 @@ realisierbar ist ist <code class="docutils literal"><span class="pre">*/1</span>
 <p>Die RRD Datei/Datenbank muss zunächst angelegt werden.</p>
 <p>Hierfür muss man sich beim Anlegen der Datenbank überlegen wie viele
 Datensätze gespeichert werden sollen. Die Datenbank wird dann erstellt
-und mit &#8220;NaN&#8221; (Not A Number - kein Wert vorhanden) Werten gefüllt. Die
+und mit „NaN“ (Not A Number - kein Wert vorhanden) Werten gefüllt. Die
 Grösse der Datenbank ändert sich dann nicht mehr.</p>
 <p>Dies bedeutet das wenn die maximale Anzahl Datensätze in einer Tabelle
 erreicht sind wird mit dem Eintragen eines neues Wertes der älteste
 verworfen. Dies ist jedoch kein Problem da regelmässig Werte
 zusammengefasst werden.</p>
 <p>In der Praxis heisst das das die Auflösung der Werte mit zunehmendem
-Zeitabstand zu &#8220;jetzt&#8221; geringer wird. (z.B. minütliche Werte für die
+Zeitabstand zu „jetzt“ geringer wird. (z.B. minütliche Werte für die
 letzten 7 Tage, stündliche Werte für die letzten 4 Wochen, tägliche
-Werte für die letzten 2 Jahre etc...)</p>
+Werte für die letzten 2 Jahre etc…)</p>
 </div>
 <div class="section" id="befullen-der-rrd-datenbank">
-<h2>&#8220;Befüllen&#8221; der RRD-Datenbank<a class="headerlink" href="#befullen-der-rrd-datenbank" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>„Befüllen“ der RRD-Datenbank<a class="headerlink" href="#befullen-der-rrd-datenbank" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die RRD Datei/Datenbank muss regelmässig mit Daten befüllt werden - wenn
 dies nicht geschieht erkennt RRD das und trägt automatische NaN ein -
 damit bleiben die Zusammenfassungen korrekt.</p>
-<p>Hierfür ruft man das das rrdtool auf mit dem Parameter &#8220;update&#8221; und
-übergibt einen Zeitstempel (oder N für &#8220;Now&#8221;, also aktuelle Zeit) sowie
+<p>Hierfür ruft man das das rrdtool auf mit dem Parameter „update“ und
+übergibt einen Zeitstempel (oder N für „Now“, also aktuelle Zeit) sowie
 die Werte die in die Datenbank aufgenommen werden sollen.</p>
 <p>Am, einfachsten lässt sich dieses über ein kurzes Shellscript erledigen,
 das man dann per cron regelmässig ausführen lässt.</p>
@@ -291,14 +288,14 @@ das man dann per cron regelmässig ausführen lässt.</p>
 <p>wenn RRD basierte Daten nicht wie vorgesehen angezeigt werden kann man
 direkt in die Datenbank schauen ob überhaupt (sinnvolle) Werte vorhanden
 sind. Hierfür gibt es das</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool dump
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump
 </pre></div>
 </div>
 <p>Kommando. Dieses stellt die Datenbank als Text dar. Man sollte dann
 Zeilen mit NaN (Not a Number = Kein Wert vorhanden) ausfiltern sowie nur
 Daten-Zeilen mit anschauen. Dies kann man z.B. mit dem grep-Kommando
 machen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool dump NAMEDERDATENBANK.rrd <span class="p">|</span> grep row <span class="p">|</span> grep -v NaN
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump NAMEDERDATENBANK.rrd <span class="p">|</span> grep row <span class="p">|</span> grep -v NaN
 </pre></div>
 </div>
 </div>
@@ -349,7 +346,7 @@ eine Temperatur eines RTR) in einer RRD Datenbank.</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -395,7 +392,7 @@ eine Temperatur eines RTR) in einer RRD Datenbank.</li>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

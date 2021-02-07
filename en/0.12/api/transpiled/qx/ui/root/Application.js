@@ -33,12 +33,15 @@
         "construct": true
       },
       "qx.bom.client.OperatingSystem": {
-        "construct": true
+        "construct": true,
+        "require": true
       },
       "qx.ui.core.Widget": {
         "construct": true
       },
-      "qx.bom.client.Engine": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
       "qx.html.Root": {},
       "qx.bom.Viewport": {},
       "qx.bom.element.Style": {},
@@ -113,12 +116,12 @@
      */
     construct: function construct(doc) {
       // Symbolic links
-      this.__P_386_0 = qx.dom.Node.getWindow(doc);
-      this.__P_386_1 = doc; // Base call
+      this.__P_383_0 = qx.dom.Node.getWindow(doc);
+      this.__P_383_1 = doc; // Base call
 
       qx.ui.root.Abstract.constructor.call(this); // Resize handling
 
-      qx.event.Registration.addListener(this.__P_386_0, "resize", this._onResize, this); // Use a hard-coded canvas layout
+      qx.event.Registration.addListener(this.__P_383_0, "resize", this._onResize, this); // Use a hard-coded canvas layout
 
       this._setLayout(new qx.ui.layout.Canvas()); // Directly schedule layout for root element
 
@@ -130,7 +133,7 @@
 
       this.getContentElement().setStyle("-webkit-backface-visibility", "hidden"); // prevent scrolling on touch devices
 
-      this.addListener("touchmove", this.__P_386_2, this); // handle focus for iOS which seems to deny any focus action
+      this.addListener("touchmove", this.__P_383_2, this); // handle focus for iOS which seems to deny any focus action
 
       if (qx.core.Environment.get("os.name") == "ios") {
         this.getContentElement().addListener("tap", function (e) {
@@ -153,8 +156,8 @@
     *****************************************************************************
     */
     members: {
-      __P_386_0: null,
-      __P_386_1: null,
+      __P_383_0: null,
+      __P_383_1: null,
       // overridden
 
       /**
@@ -164,7 +167,7 @@
        * @return {qx.html.Element} The container HTML element
        */
       _createContentElement: function _createContentElement() {
-        var doc = this.__P_386_1;
+        var doc = this.__P_383_1;
 
         if (qx.core.Environment.get("engine.name") == "webkit") {
           // In the "DOMContentLoaded" event of WebKit (Safari, Chrome) no body
@@ -172,7 +175,7 @@
           // contain a body tag explicitly. Unfortunately, it cannot be added
           // here dynamically.
           if (!doc.body) {
-            alert("The application could not be started due to a missing body tag in the HTML file!");
+            window.alert("The application could not be started due to a missing body tag in the HTML file!");
           }
         } // Apply application layout
 
@@ -214,8 +217,8 @@
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
-        var width = qx.bom.Viewport.getWidth(this.__P_386_0);
-        var height = qx.bom.Viewport.getHeight(this.__P_386_0);
+        var width = qx.bom.Viewport.getWidth(this.__P_383_0);
+        var height = qx.bom.Viewport.getHeight(this.__P_383_0);
         return {
           minWidth: width,
           width: width,
@@ -239,7 +242,7 @@
        * the native page scrolling.
        * @param e {qx.event.type.Touch} The qooxdoo touch event.
        */
-      __P_386_2: function __P_386_2(e) {
+      __P_383_2: function __P_383_2(e) {
         var node = e.getOriginalTarget();
 
         while (node && node.style) {
@@ -274,10 +277,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_386_0 = this.__P_386_1 = null;
+      this.__P_383_0 = this.__P_383_1 = null;
     }
   });
   qx.ui.root.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1604955487924
+//# sourceMappingURL=Application.js.map?dt=1612690414050

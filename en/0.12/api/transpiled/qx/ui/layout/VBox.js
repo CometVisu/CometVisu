@@ -92,7 +92,7 @@
    *
    * *External Documentation*
    *
-   * See <a href='http://qooxdoo.org/docs/#layout/box.md'>extended documentation</a>
+   * See <a href='https://qooxdoo.org/documentation/#/desktop/layout/box.md'>extended documentation</a>
    * and links to demos for this layout.
    *
    */
@@ -182,10 +182,10 @@
     *****************************************************************************
     */
     members: {
-      __P_328_0: null,
-      __P_328_1: null,
-      __P_328_2: null,
-      __P_328_3: null,
+      __P_325_0: null,
+      __P_325_1: null,
+      __P_325_2: null,
+      __P_325_3: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -203,16 +203,16 @@
       /**
        * Rebuilds caches for flex and percent layout properties
        */
-      __P_328_4: function __P_328_4() {
+      __P_325_4: function __P_325_4() {
         var children = this._getLayoutChildren();
 
         var length = children.length;
         var enableFlex = false;
-        var reuse = this.__P_328_0 && this.__P_328_0.length != length && this.__P_328_1 && this.__P_328_0;
+        var reuse = this.__P_325_0 && this.__P_325_0.length != length && this.__P_325_1 && this.__P_325_0;
         var props; // Sparse array (keep old one if lengths has not been modified)
 
-        var heights = reuse ? this.__P_328_0 : new Array(length);
-        var flexs = reuse ? this.__P_328_1 : new Array(length); // Reverse support
+        var heights = reuse ? this.__P_325_0 : new Array(length);
+        var flexs = reuse ? this.__P_325_1 : new Array(length); // Reverse support
 
         if (this.getReversed()) {
           children = children.concat().reverse();
@@ -237,12 +237,12 @@
 
 
         if (!reuse) {
-          this.__P_328_0 = heights;
-          this.__P_328_1 = flexs;
+          this.__P_325_0 = heights;
+          this.__P_325_1 = flexs;
         }
 
-        this.__P_328_2 = enableFlex;
-        this.__P_328_3 = children; // Clear invalidation marker
+        this.__P_325_2 = enableFlex;
+        this.__P_325_3 = children; // Clear invalidation marker
 
         delete this._invalidChildrenCache;
       },
@@ -258,21 +258,22 @@
       renderLayout: function renderLayout(availWidth, availHeight, padding) {
         // Rebuild flex/height caches
         if (this._invalidChildrenCache) {
-          this.__P_328_4();
+          this.__P_325_4();
         } // Cache children
 
 
-        var children = this.__P_328_3;
+        var children = this.__P_325_3;
         var length = children.length;
         var util = qx.ui.layout.Util; // Compute gaps
 
         var spacing = this.getSpacing();
         var separator = this.getSeparator();
+        var gaps;
 
         if (separator) {
-          var gaps = util.computeVerticalSeparatorGaps(children, spacing, separator);
+          gaps = util.computeVerticalSeparatorGaps(children, spacing, separator);
         } else {
-          var gaps = util.computeVerticalGaps(children, spacing, true);
+          gaps = util.computeVerticalGaps(children, spacing, true);
         } // First run to cache children data and compute allocated height
 
 
@@ -282,7 +283,7 @@
         var allocatedHeight = gaps;
 
         for (i = 0; i < length; i += 1) {
-          percent = this.__P_328_0[i];
+          percent = this.__P_325_0[i];
           hint = children[i].getSizeHint();
           height = percent != null ? Math.floor((availHeight - gaps) * percent) : hint.height; // Limit computed value
 
@@ -297,12 +298,13 @@
         } // Flex support (growing/shrinking)
 
 
-        if (this.__P_328_2 && allocatedHeight != availHeight) {
+        if (this.__P_325_2 && allocatedHeight != availHeight) {
           var flexibles = {};
           var flex, offset;
+          var notEnoughSpace = allocatedHeight > availHeight;
 
           for (i = 0; i < length; i += 1) {
-            flex = this.__P_328_1[i];
+            flex = this.__P_325_1[i];
 
             if (flex > 0) {
               hint = children[i].getSizeHint();
@@ -312,6 +314,14 @@
                 max: hint.maxHeight,
                 flex: flex
               };
+
+              if (notEnoughSpace) {
+                var props = children[i].getLayoutProperties();
+
+                if (props && props.flexShrink) {
+                  flexibles[i].min = 0;
+                }
+              }
             }
           }
 
@@ -391,11 +401,11 @@
       _computeSizeHint: function _computeSizeHint() {
         // Rebuild flex/height caches
         if (this._invalidChildrenCache) {
-          this.__P_328_4();
+          this.__P_325_4();
         }
 
         var util = qx.ui.layout.Util;
-        var children = this.__P_328_3; // Initialize
+        var children = this.__P_325_3; // Initialize
 
         var minHeight = 0,
             height = 0,
@@ -410,8 +420,8 @@
 
           height += hint.height; // Detect if child is shrinkable or has percent height and update minHeight
 
-          var flex = this.__P_328_1[i];
-          var percent = this.__P_328_0[i];
+          var flex = this.__P_325_1[i];
+          var percent = this.__P_325_0[i];
 
           if (flex) {
             minHeight += hint.minHeight;
@@ -438,11 +448,12 @@
 
         var spacing = this.getSpacing();
         var separator = this.getSeparator();
+        var gaps;
 
         if (separator) {
-          var gaps = util.computeVerticalSeparatorGaps(children, spacing, separator);
+          gaps = util.computeVerticalSeparatorGaps(children, spacing, separator);
         } else {
-          var gaps = util.computeVerticalGaps(children, spacing, true);
+          gaps = util.computeVerticalGaps(children, spacing, true);
         } // Return hint
 
 
@@ -461,10 +472,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_328_0 = this.__P_328_1 = this.__P_328_3 = null;
+      this.__P_325_0 = this.__P_325_1 = this.__P_325_3 = null;
     }
   });
   qx.ui.layout.VBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VBox.js.map?dt=1604955484376
+//# sourceMappingURL=VBox.js.map?dt=1612690410799

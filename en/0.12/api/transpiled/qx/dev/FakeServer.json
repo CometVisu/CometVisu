@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2013 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Daniel Wagner (danielwagner)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>A wrapper around Sinon.JS's FakeXMLHttpRequest and FakeServer features that\n allows quick and simple configuration of mock HTTP backends for testing and\n development.\n Automatically creates URL filtering rules to ensure that only configured\n requests are faked while others will be processed normally by the browser's\n XHR implementation.\n The following example shows how to configure mock responses for two different\n requests:\n </p>\n<pre class=\"javascript\">\n   var responseData = [\n     {\n       method: \"GET\",\n       url: /\\/api\\/resource\\/\\d+/,\n       response : function(request) {\n         var status = 200;\n         var headers = { \"Content-Type\": \"application/json\" };\n         var responseData = {\n           description: \"Mock REST response for resource \" + request.url\n         };\n         var body = qx.lang.Json.stringify(responseData);\n         request.respond(status, headers, body);\n       }\n     },\n     {\n       method: \"GET\",\n       url: \"/users/{userId}\",\n       response: [\n         200,\n         { \"Content-Type\": \"application/json\" },\n         qx.lang.Json.stringify({userId: 'someUser'})\n       ]\n     }\n   ];\n   qx.dev.FakeServer.getInstance().configure(responseData);\n </pre>"
         }
       ]

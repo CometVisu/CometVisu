@@ -17,16 +17,12 @@
         "column": 0
       },
       "end": {
-        "line": 639,
+        "line": 652,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>The ScrollArea provides a container widget with on demand scroll bars\n if the content size exceeds the size of the container.</p>"
@@ -103,14 +99,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "events": {
     "scrollAnimationXEnd": {
@@ -170,14 +159,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "appearance",
       "propertyType": "new",
       "refine": true,
@@ -188,14 +170,58 @@
         "qx.ui.core.Widget": "class"
       }
     },
-    "scrollbarX": {
+    "width": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 115,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 119,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "name": "width",
+      "propertyType": "new",
+      "refine": true,
+      "init": 0,
+      "defaultValue": 0,
+      "overriddenFrom": "qx.ui.core.LayoutItem",
+      "appearsIn": {
+        "qx.ui.core.LayoutItem": "class"
+      }
+    },
+    "height": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4
+        },
+        "end": {
+          "line": 126,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
+      "name": "height",
+      "propertyType": "new",
+      "refine": true,
+      "init": 0,
+      "defaultValue": 0,
+      "overriddenFrom": "qx.ui.core.LayoutItem",
+      "appearsIn": {
+        "qx.ui.core.LayoutItem": "class"
+      }
+    },
+    "scrollbarX": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4
+        },
+        "end": {
+          "line": 142,
           "column": 5
         }
       },
@@ -222,11 +248,11 @@
     "scrollbarY": {
       "location": {
         "start": {
-          "line": 140,
+          "line": 153,
           "column": 4
         },
         "end": {
-          "line": 146,
+          "line": 159,
           "column": 5
         }
       },
@@ -253,11 +279,11 @@
     "scrollbar": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 167,
           "column": 5
         }
       },
@@ -329,26 +355,15 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 190,
           "column": 4
         },
         "end": {
-          "line": 248,
+          "line": 261,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  CHILD CONTROL SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -359,20 +374,16 @@
     "getPaneSize": {
       "location": {
         "start": {
-          "line": 265,
+          "line": 278,
           "column": 4
         },
         "end": {
-          "line": 267,
+          "line": 280,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PANE SIZE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the dimensions of the pane.</p>"
@@ -393,20 +404,16 @@
     "getItemTop": {
       "location": {
         "start": {
-          "line": 287,
+          "line": 300,
           "column": 4
         },
         "end": {
-          "line": 289,
+          "line": 302,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  ITEM LOCATION SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the top offset of the given item in relation to the\n inner height of this widget.</p>"
@@ -436,11 +443,11 @@
     "getItemBottom": {
       "location": {
         "start": {
-          "line": 299,
+          "line": 312,
           "column": 4
         },
         "end": {
-          "line": 301,
+          "line": 314,
           "column": 5
         }
       },
@@ -475,11 +482,11 @@
     "getItemLeft": {
       "location": {
         "start": {
-          "line": 311,
+          "line": 324,
           "column": 4
         },
         "end": {
-          "line": 313,
+          "line": 326,
           "column": 5
         }
       },
@@ -514,11 +521,11 @@
     "getItemRight": {
       "location": {
         "start": {
-          "line": 323,
+          "line": 336,
           "column": 4
         },
         "end": {
-          "line": 325,
+          "line": 338,
           "column": 5
         }
       },
@@ -553,20 +560,16 @@
     "scrollToX": {
       "location": {
         "start": {
-          "line": 343,
+          "line": 356,
           "column": 4
         },
         "end": {
-          "line": 348,
+          "line": 361,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  SCROLL SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Scrolls the element's content to the given left coordinate</p>"
@@ -596,11 +599,11 @@
     "scrollByX": {
       "location": {
         "start": {
-          "line": 357,
+          "line": 370,
           "column": 4
         },
         "end": {
-          "line": 362,
+          "line": 375,
           "column": 5
         }
       },
@@ -635,11 +638,11 @@
     "getScrollX": {
       "location": {
         "start": {
-          "line": 370,
+          "line": 383,
           "column": 4
         },
         "end": {
-          "line": 374,
+          "line": 387,
           "column": 5
         }
       },
@@ -665,11 +668,11 @@
     "scrollToY": {
       "location": {
         "start": {
-          "line": 383,
+          "line": 396,
           "column": 4
         },
         "end": {
-          "line": 388,
+          "line": 401,
           "column": 5
         }
       },
@@ -704,11 +707,11 @@
     "scrollByY": {
       "location": {
         "start": {
-          "line": 397,
+          "line": 410,
           "column": 4
         },
         "end": {
-          "line": 402,
+          "line": 415,
           "column": 5
         }
       },
@@ -743,11 +746,11 @@
     "getScrollY": {
       "location": {
         "start": {
-          "line": 410,
+          "line": 423,
           "column": 4
         },
         "end": {
-          "line": 414,
+          "line": 427,
           "column": 5
         }
       },
@@ -773,11 +776,11 @@
     "stopScrollAnimationX": {
       "location": {
         "start": {
-          "line": 421,
+          "line": 434,
           "column": 4
         },
         "end": {
-          "line": 426,
+          "line": 439,
           "column": 5
         }
       },
@@ -795,11 +798,11 @@
     "stopScrollAnimationY": {
       "location": {
         "start": {
-          "line": 433,
+          "line": 446,
           "column": 4
         },
         "end": {
-          "line": 438,
+          "line": 451,
           "column": 5
         }
       },
@@ -817,20 +820,16 @@
     "_onScrollAnimationEnd": {
       "location": {
         "start": {
-          "line": 452,
+          "line": 465,
           "column": 4
         },
         "end": {
-          "line": 454,
+          "line": 467,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT LISTENERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Event handler for the scroll animation end event for both scroll bars.</p>"
@@ -852,11 +851,11 @@
     "_onScrollBarX": {
       "location": {
         "start": {
-          "line": 461,
+          "line": 474,
           "column": 4
         },
         "end": {
-          "line": 463,
+          "line": 476,
           "column": 5
         }
       },
@@ -883,11 +882,11 @@
     "_onScrollBarY": {
       "location": {
         "start": {
-          "line": 471,
+          "line": 484,
           "column": 4
         },
         "end": {
-          "line": 473,
+          "line": 486,
           "column": 5
         }
       },
@@ -914,11 +913,11 @@
     "_onScrollPaneX": {
       "location": {
         "start": {
-          "line": 481,
+          "line": 494,
           "column": 4
         },
         "end": {
-          "line": 486,
+          "line": 499,
           "column": 5
         }
       },
@@ -945,11 +944,11 @@
     "_onScrollPaneY": {
       "location": {
         "start": {
-          "line": 494,
+          "line": 507,
           "column": 4
         },
         "end": {
-          "line": 499,
+          "line": 512,
           "column": 5
         }
       },
@@ -976,11 +975,11 @@
     "_onChangeScrollbarXVisibility": {
       "location": {
         "start": {
-          "line": 507,
+          "line": 520,
           "column": 4
         },
         "end": {
-          "line": 517,
+          "line": 530,
           "column": 5
         }
       },
@@ -1007,11 +1006,11 @@
     "_onChangeScrollbarYVisibility": {
       "location": {
         "start": {
-          "line": 525,
+          "line": 538,
           "column": 4
         },
         "end": {
-          "line": 535,
+          "line": 548,
           "column": 5
         }
       },
@@ -1038,20 +1037,16 @@
     "_computeScrollbars": {
       "location": {
         "start": {
-          "line": 550,
+          "line": 563,
           "column": 4
         },
         "end": {
-          "line": 637,
+          "line": 650,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  HELPER METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Computes the visibility state for scrollbars.</p>"
@@ -1634,10 +1629,6 @@
       "overriddenFrom": "qx.ui.core.MDragDropScrolling",
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\nEVENT HANDLERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Event handler for the drag event.</p>"
@@ -2804,31 +2795,6 @@
         ]
       }
     },
-    "getAllowStretchX": {
-      "type": "function",
-      "name": "getAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchX"
-          }
-        ]
-      }
-    },
     "setAllowStretchX": {
       "type": "function",
       "name": "setAllowStretchX",
@@ -2869,31 +2835,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ]
-      }
-    },
-    "getAllowStretchY": {
-      "type": "function",
-      "name": "getAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchY"
           }
         ]
       }
@@ -3214,31 +3155,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ]
-      }
-    },
-    "getMargin": {
-      "type": "function",
-      "name": "getMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for margin"
           }
         ]
       }
@@ -3697,31 +3613,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ]
-      }
-    },
-    "getPadding": {
-      "type": "function",
-      "name": "getPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>padding</code>.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for padding"
           }
         ]
       }
@@ -5898,30 +5789,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>scrollbarY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scrollbarY}."
-          }
-        ]
-      }
-    },
-    "getScrollbar": {
-      "type": "function",
-      "name": "getScrollbar",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scrollbar</code>.\n\nFor further details take a look at the property definition: {@link #scrollbar}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for scrollbar"
           }
         ]
       }

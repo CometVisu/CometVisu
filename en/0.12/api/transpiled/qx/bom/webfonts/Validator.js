@@ -51,13 +51,23 @@
     /**
      * @param fontFamily {String} The name of the font to be verified
      * @param comparisonString {String?} String to be used to detect whether a font was loaded or not
+     * @param fontWeight {String?} the weight of the font to be verified
+     * @param fontStyle {String?} the style of the font to be verified
      * whether the font has loaded properly
      */
-    construct: function construct(fontFamily, comparisonString) {
+    construct: function construct(fontFamily, comparisonString, fontWeight, fontStyle) {
       qx.core.Object.constructor.call(this);
 
       if (comparisonString) {
         this.setComparisonString(comparisonString);
+      }
+
+      if (fontWeight) {
+        this.setFontWeight(fontWeight);
+      }
+
+      if (fontStyle) {
+        this.setFontStyle(fontStyle);
       }
 
       if (fontFamily) {
@@ -138,6 +148,20 @@
         nullable: true,
         init: null,
         apply: "_applyFontFamily"
+      },
+
+      /** The font weight to check */
+      fontWeight: {
+        nullable: true,
+        check: "String",
+        apply: "_applyFontWeight"
+      },
+
+      /** The font style to check */
+      fontStyle: {
+        nullable: true,
+        check: "String",
+        apply: "_applyFontStyle"
       },
 
       /**
@@ -296,6 +320,14 @@
           }
         }
 
+        if (this.getFontWeight()) {
+          styleMap.fontWeight = this.getFontWeight();
+        }
+
+        if (this.getFontStyle()) {
+          styleMap.fontStyle = this.getFontStyle();
+        }
+
         var elem = document.createElement("span");
         elem.innerHTML = comparisonString || qx.bom.webfonts.Validator.COMPARISON_STRING;
         qx.bom.element.Style.setStyles(elem, styleMap);
@@ -304,6 +336,18 @@
       },
       // property apply
       _applyFontFamily: function _applyFontFamily(value, old) {
+        if (value !== old) {
+          this._reset();
+        }
+      },
+      // property apply
+      _applyFontWeight: function _applyFontWeight(value, old) {
+        if (value !== old) {
+          this._reset();
+        }
+      },
+      // property apply
+      _applyFontStyle: function _applyFontStyle(value, old) {
         if (value !== old) {
           this._reset();
         }
@@ -383,4 +427,4 @@
   qx.bom.webfonts.Validator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Validator.js.map?dt=1604955468819
+//# sourceMappingURL=Validator.js.map?dt=1612690395794

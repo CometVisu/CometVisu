@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2013 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n Daniel Wagner (danielwagner)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This is a calendar widget used to select a date. It contain a set of\n buttons to switch to the next or previous month as well as a button for\n each day in the month.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-calendar</code></td>\n       <td>Container element</td>\n       <td>Identifies the Calendar widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-container</code></td>\n       <td>Container element (<code>table</code>)</td>\n       <td>Identifies the table container of the Calendar widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-prev</code></td>\n       <td><code>button</code></td>\n       <td>Identifies and styles the \"previous month\" button</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-prev-container</code></td>\n       <td>Container element (<code>td</code>)</td>\n       <td>Identifies and styles the \"previous month\" container</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-next</code></td>\n       <td><code>button</code></td>\n       <td>Identifies and styles the \"next month\" button</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-next-container</code></td>\n       <td>Container element (<code>td</code>)</td>\n       <td>Identifies and styles the \"next month\" container</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-previous-month</code></td>\n       <td>Day cell (<code>td</code>)</td>\n       <td>Identifies and styles calendar cells for days from the previous month</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-next-month</code></td>\n       <td>Day cell (<code>td</code>)</td>\n       <td>Identifies and styles calendar cells for days from the next month</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-dayname</code></td>\n       <td>Day name (<code>td</code>)</td>\n       <td>Identifies and styles the day name cell</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-day</code></td>\n       <td>Day (<code>button</code>)</td>\n       <td>Identifies and styles the day buttons</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-weekday</code></td>\n       <td>Day cell (<code>td</code>)</td>\n       <td>Identifies and styles the weekday cells</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-weekend</code></td>\n       <td>Day cell (<code>td</code>)</td>\n       <td>Identifies and styles the weekend cells</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-selected</code></td>\n       <td>Day cell (<code>td</code>)</td>\n       <td>Identifies and styles the cell containing the selected day's button</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-today</code></td>\n       <td>Day cell (<code>td</code>)</td>\n       <td>Identifies and styles the cell containing the current day button</td>\n     </tr>\n     <tr>\n       <td><code>qx-calendar-past</code></td>\n       <td>Day cell (<code>td</code>)</td>\n       <td>Identifies and styles all cells containing day buttons in the past</td>\n     </tr>\n     <tr>\n       <td><code>qx-hidden</code></td>\n       <td>Day (<code>button</code>)</td>\n       <td>Added to days of previous / next month if the configuration <code>hideDaysOtherMonth</code>\n             is set to <code>true</code> <br /> The default style property used is <code>visibility: hidden</code>\n         </td>\n     </tr>\n   </tbody>\n </table>\n<h2 class=\"widget-markup\">Generated DOM Structure</h2>"
         }
       ],
@@ -249,14 +245,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.website.Widget",
@@ -275,14 +264,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.website.Widget",
@@ -301,14 +283,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.website.Widget",

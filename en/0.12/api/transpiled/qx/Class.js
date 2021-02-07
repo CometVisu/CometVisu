@@ -1027,10 +1027,10 @@
 
 
           if (base !== false && member instanceof Function && member.$$type == null) {
-            if (wrap == true) {
+            if (false && wrap == true) {
               // wrap "patched" mixin member
               member = this.__P_55_15(member, proto[key]);
-            } else {
+            } else if (wrap != true) {
               // Configure extend (named base here)
               // Hint: proto[key] is not yet overwritten here
               if (proto[key]) {
@@ -1057,16 +1057,8 @@
        * @return {Function} the wrapped mixin member
        */
       __P_55_15: function __P_55_15(member, base) {
-        if (base) {
-          return function () {
-            var oldBase = member.base;
-            member.base = base;
-            var retval = member.apply(this, arguments);
-            member.base = oldBase;
-            return retval;
-          };
-        } else {
-          return member;
+        {
+          throw new Error("This function should not be used except with code compiled by the generator (ie python toolchain)");
         }
       },
 
@@ -1195,4 +1187,4 @@
   qx.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1604955463490
+//# sourceMappingURL=Class.js.map?dt=1612690390551

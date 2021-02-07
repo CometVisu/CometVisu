@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -232,18 +229,18 @@ könnte daher andere Widgets überdecken. Möchte man dies nicht kann man das No
 und frei in der Visu platzieren. Ratsam ist es jedoch dieses Widget in eine auf jeder Seite sichbaren Navigationsleiste
 einzufügen.</p>
 <p><strong>Beispiel:</strong></p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;notificationcenterbadge</span> <span class="na">align=</span><span class="s">&quot;right&quot;</span> <span class="na">hide-when-empty=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;notificationcenterbadge</span> <span class="na">align=</span><span class="s">&quot;right&quot;</span> <span class="na">hide-when-empty=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
      <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;0&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/notificationcenterbadge&gt;</span>
 </pre></div>
 </div>
-<p>Dieses Beispiel zeigt das Widget nur an wenn Nachrichten vorhanden sind <code class="docutils literal"><span class="pre">hide-when-empty=&quot;true&quot;</span></code>.
-Außerdem wird das Widget rechts platziert (in CSS: <code class="docutils literal"><span class="pre">float:</span> <span class="pre">right</span></code>) und
-<code class="docutils literal"><span class="pre">&lt;layout</span> <span class="pre">colspan=&quot;0&quot;/&gt;</span></code> bewirkt, dass das Widget in der Breite nur soviel Platz belegt wie es wirklich benötigt.</p>
+<p>Dieses Beispiel zeigt das Widget nur an wenn Nachrichten vorhanden sind <code class="docutils literal notranslate"><span class="pre">hide-when-empty=&quot;true&quot;</span></code>.
+Außerdem wird das Widget rechts platziert (in CSS: <code class="docutils literal notranslate"><span class="pre">float:</span> <span class="pre">right</span></code>) und
+<code class="docutils literal notranslate"><span class="pre">&lt;layout</span> <span class="pre">colspan=&quot;0&quot;/&gt;</span></code> bewirkt, dass das Widget in der Breite nur soviel Platz belegt wie es wirklich benötigt.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
 <p class="last">Unabhängig davon, ob man dieses Widget benutzt, kann man die Benachrichtigungszentrale immer mit dem
-Tastaturkürzel <code class="docutils literal"><span class="pre">Strg</span> <span class="pre">+</span> <span class="pre">M</span></code> öffnen.</p>
+Tastaturkürzel <code class="docutils literal notranslate"><span class="pre">Strg</span> <span class="pre">+</span> <span class="pre">M</span></code> öffnen.</p>
 </div>
 </div>
 <div class="section" id="einstellungen">
@@ -253,7 +250,7 @@ Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden:
 <p>Das Verhalten und Aussehen des NotificationCenterBadge-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
 beides über den <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
-<p>Nur die mit ..... unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+<p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
 <div class="section" id="erlaubte-attribute-im-notificationcenterbadge-element">
 <h3>Erlaubte Attribute im NotificationCenterBadge-Element<a class="headerlink" href="#erlaubte-attribute-im-notificationcenterbadge-element" title="Link zu dieser Überschrift">¶</a></h3>
@@ -268,7 +265,7 @@ daher weg gelassen werden.</p>
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="4">Attribut</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Inhalt</th>
 <th class="head">Beschreibung</th>
@@ -278,7 +275,7 @@ daher weg gelassen werden.</p>
 <tr class="row-odd"><td rowspan="4">notificationcenterbadge</td>
 <td>align</td>
 <td><em>left</em>, <em>right</em> oder <em>center</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>flavour</td>
 <td>Text</td>
@@ -296,7 +293,7 @@ daher weg gelassen werden.</p>
 </table>
 <div class="figure align-center" id="id2">
 <img alt="../../../_images/de_config_widgets_notificationcenterbadge_index_editor_attributes.png" src="../../../_images/de_config_widgets_notificationcenterbadge_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>
 <div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
@@ -320,8 +317,7 @@ daher weg gelassen werden.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
-<dt>notificationcenterbadge</dt>
-<dd><ul class="first last simple">
+<dt>notificationcenterbadge</dt><dd><ul class="simple">
 <li>layout</li>
 </ul>
 </dd>
@@ -416,8 +412,7 @@ daher weg gelassen werden.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
-<dt>notificationcenterbadge</dt>
-<dd><ul class="first last simple">
+<dt>notificationcenterbadge</dt><dd><ul class="simple">
 <li>label</li>
 <li>icon</li>
 </ul>
@@ -426,11 +421,11 @@ daher weg gelassen werden.</p>
 </td>
 <td><abbr title="Pflichtangabe">name</abbr></td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>type</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>flavour</td>
 <td>Text</td>
@@ -438,7 +433,7 @@ daher weg gelassen werden.</p>
 </tr>
 <tr class="row-even"><td>color</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>styling</td>
 <td>Text</td>
@@ -449,8 +444,7 @@ daher weg gelassen werden.</p>
 <td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
-<dt>notificationcenterbadge</dt>
-<dd><ul class="first last simple">
+<dt>notificationcenterbadge</dt><dd><ul class="simple">
 <li>label<ul>
 <li>#text</li>
 </ul>
@@ -459,7 +453,7 @@ daher weg gelassen werden.</p>
 </dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>Text</td>
 <td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
 </tr>
@@ -467,7 +461,7 @@ daher weg gelassen werden.</p>
 </table>
 <div class="figure align-center" id="id3">
 <img alt="../../../_images/de_config_widgets_notificationcenterbadge_index_editor_elements.png" src="../../../_images/de_config_widgets_notificationcenterbadge_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elemente im Editor</span></p>
+<p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>
 </div>
@@ -480,11 +474,11 @@ der <a class="reference internal" href="../../xml-format.html"><span class="doc"
 <p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="Badge ohne Nachrichten" src="../../../_images/notificationcenterbadge_center.png" />
-<p class="caption"><span class="caption-text">Badge ohne Nachrichten</span></p>
+<p class="caption"><span class="caption-text">Badge ohne Nachrichten</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;notificationcenterbadge&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;notificationcenterbadge&gt;</span>
     <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/notificationcenterbadge&gt;</span>
 </pre></div>
@@ -521,7 +515,7 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -567,7 +561,7 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

@@ -23,10 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tristan Koch (tristankoch)\n Richard Sternagel (rsternagel)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Client-side wrapper of a REST resource.\n Each instance represents a resource in terms of REST. A number of actions\n (usually HTTP methods) unique to the resource can be defined and invoked.\n A resource with its actions is configured declaratively by passing a resource\n description to the constructor, or programmatically using {@link #map}.\n Each action is associated to a route. A route is a combination of method,\n URL pattern and optional parameter constraints.\n An action is invoked by calling a method with the same name. When a URL\n pattern of a route contains positional parameters, those parameters must be\n passed when invoking the associated action. Also, constraints defined in the\n route must be satisfied.\n When an action is invoked, a request is configured according to the associated\n route, is passed the URL parameters, request body data, and finally send.\n What kind of request is send can be configured by overwriting {@link #_getRequest}.\n No constraints on the action's name or the scope of the URLs are imposed. However,\n if you want to follow RESTful design patterns it is recommended to name actions\n the same as the HTTP action.\n </p>\n<pre class=\"javascript\">\n var description = {\n  \"get\": { method: \"GET\", url: \"/photo/{id}\" },\n  \"put\": { method: \"PUT\", url: \"/photo/{id}\"},\n  \"post\": { method: \"POST\", url: \"/photos/\"}\n };\n var photo = new qx.io.rest.Resource(description);\n\n photo.get({id: 1});\n\n\n photo.configureRequest(function(req) {\n  req.setRequestHeader(\"Content-Type\", \"application/json\");\n });\n photo.put({id: 1}, {title: \"Monkey\"});\n\n\n photo.configureRequest(function(req) {\n  req.setRequestHeader(\"Content-Type\", \"application/json\");\n });\n photo.post(null, {title: \"Monkey\"});\n </pre>\n<p>To check for existence of URL parameters or constrain them to a certain format, you\n can add a <code>check</code> property to the description. See {@link #map} for details.\n </p>\n<pre class=\"javascript\">\n var description = {\n  \"get\": { method: \"GET\", url: \"/photo/{id}\", check: { id: /\\d+/ } }\n };\n var photo = new qx.io.rest.Resource(description);\n\n\n </pre>\n<p>If your description happens to use the same action more than once, consider\n defining another resource.\n </p>\n<pre class=\"javascript\">\n var description = {\n  \"get\": { method: \"GET\", url: \"/photos\"},\n };\n\n var photos = new qx.io.rest.Resource(description);\n photos.get();\n </pre>\n<p>Basically, all routes of a resource should point to the same URL (resource in\n terms of HTTP). One acceptable exception of this constraint are resources where\n required parameters are part of the URL (<code>/photos/1/</code>) or filter\n resources. For instance:\n </p>\n<pre class=\"javascript\">\n var description = {\n  \"get\": { method: \"GET\", url: \"/photos/{tag}\" }\n };\n var photos = new qx.io.rest.Resource(description);\n photos.get();\n photos.get({tag: \"wildlife\"})\n </pre>\n<p>Strictly speaking, the <code>photos</code> instance represents two distinct resources\n and could therefore just as well mapped to two distinct resources (for instance,\n named photos and photosTagged). What style to choose depends on the kind of data\n returned. For instance, it seems sensible to stick with one resource if the filter\n only limits the result set (i.e. the individual results have the same properties).\n In order to respond to successful (or erroneous) invocations of actions,\n either listen to the generic \"success\" or \"error\" event and get the action\n from the event data, or listen to action specific events defined at runtime.\n Action specific events follow the pattern \"&lt;action&gt;Success\" and\n \"&lt;action&gt;Error\", e.g. \"indexSuccess\".\n NOTE: Instances of this class must be disposed of after use</p>"
         }
       ]
@@ -421,18 +417,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
-            "body": "<p>Request</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
             "body": "<p>Configure request.</p>"
           }
         ],
@@ -492,18 +476,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
-            "body": "<p>Routes and actions</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
-          },
           {
             "name": "@description",
             "body": "<p>Map action to combination of method and URL pattern.\n </p>\n<pre class=\"javascript\">\n   res.map(\"get\", \"GET\", \"/photos/{id}\", {id: /\\d+/});\n\n   res.get({id: \"123\"});\n </pre>"

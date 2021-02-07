@@ -21,7 +21,7 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<p>page transition animations like blending, etc. pp.</p><div class=\"authors\"><label>Author:</label> Christian Mayer</div><div class=\"since\"><label>Since:</label> 2016</div>"
+          "body": "<div class=\"authors\"><label>Author:</label> Christian Mayer</div><div class=\"since\"><label>Since:</label> 2016</div>"
         }
       ],
       "@author": [
@@ -51,14 +51,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>time in milliseconds</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "speed",
       "propertyType": "new",
       "init": 400,
@@ -76,14 +69,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>name of the easing function</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "easing",
       "propertyType": "new",
       "init": "ease",

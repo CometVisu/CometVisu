@@ -62,9 +62,6 @@
           
 
           
-            
-            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -210,7 +207,7 @@ documentation more up-to-date.</p>
 from which one or more screenshots will be automatically generated later
 and integrated into the documentation together with the example code.</p>
 <p>The following example:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
 
     &lt;settings&gt;
         &lt;screenshot name=&quot;switch_complete&quot;&gt;
@@ -240,11 +237,11 @@ and integrated into the documentation together with the example code.</p>
 </pre></div>
 </div>
 <p>generates this entry in the documentation:</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="Switch with mapping + styling" src="../../_images/switch_complete.png" />
-<p class="caption"><span class="caption-text">Switch with mapping + styling</span></p>
+<p class="caption"><span class="caption-text">Switch with mapping + styling</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;mappings&gt;</span>
         <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;OnOff&quot;</span><span class="nt">&gt;</span>
@@ -297,7 +294,7 @@ code in the editor, not the widget itself</li>
 screenshot (Default: <em>left</em>)</li>
 </ol>
 <p>A complete example with all options:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
     <span class="nc">:linenos:</span>
     <span class="nc">:linenos-start:</span> 1
     <span class="nc">:scale:</span> 75
@@ -323,7 +320,7 @@ by attributes and subelements.</p>
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="3">Attribut</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Content</th>
 <th class="head">Description</th>
@@ -343,17 +340,15 @@ by attributes and subelements.</p>
 <td>Initial wait time in ms before the screenshot is taken</td>
 </tr>
 <tr class="row-even"><td><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt>
-<dd>&lt;caption&gt;</dd>
+<dt>&lt;settings&gt;</dt><dd>&lt;caption&gt;</dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>#text</td>
 <td>Subtitles of the example code</td>
 </tr>
 <tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt>
-<dd>&lt;screenshot&gt;</dd>
+<dt>&lt;settings&gt;</dt><dd>&lt;screenshot&gt;</dd>
 </dl>
 </td>
 <td>name</td>
@@ -373,10 +368,8 @@ by attributes and subelements.</p>
 <td>Waiting time between sending the data and screenshot</td>
 </tr>
 <tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt>
-<dd><dl class="first last docutils">
-<dt>&lt;screenshot&gt;</dt>
-<dd>&lt;data&gt;</dd>
+<dt>&lt;settings&gt;</dt><dd><dl class="docutils">
+<dt>&lt;screenshot&gt;</dt><dd>&lt;data&gt;</dd>
 </dl>
 </dd>
 </dl>
@@ -400,11 +393,11 @@ by attributes and subelements.</p>
 <div class="section" id="the-parameter-information-directive">
 <h2>The <em>parameter-information</em> Directive<a class="headerlink" href="#the-parameter-information-directive" title="Permalink to this headline">¶</a></h2>
 <p>This directive automatically creates a table summary with the
-widget&#8217;s attributes. These data are read from the schema definition
+widget’s attributes. These data are read from the schema definition
 (visu_config.xsd). This directive has no options, no content, and only
 one parameter that contains the widget name.</p>
 <p>This example creates the attribute table for the switch widget.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">parameter-information</span><span class="p">::</span> switch
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">parameter-information</span><span class="p">::</span> switch
 </pre></div>
 </div>
 <table border="1" class="docutils">
@@ -418,7 +411,7 @@ one parameter that contains the widget name.</p>
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="4">Attribute</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Content</th>
 <th class="head">Description</th>
@@ -436,15 +429,15 @@ one parameter that contains the widget name.</p>
 </tr>
 <tr class="row-odd"><td>on_value</td>
 <td>string</td>
-<td>Value of the &#8220;on&#8221; state. Defaults to &#8220;1&#8221;.</td>
+<td>Value of the “on” state. Defaults to “1”.</td>
 </tr>
 <tr class="row-even"><td>off_value</td>
 <td>string</td>
-<td>Value of the &#8220;off&#8221; state. Defaults to &#8220;0&#8221;.</td>
+<td>Value of the “off” state. Defaults to “0”.</td>
 </tr>
 <tr class="row-odd"><td>align</td>
 <td><em>left</em>, <em>right</em> or <em>center</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>flavour</td>
 <td>string</td>
@@ -472,7 +465,7 @@ sub-elements of a widget. These data are read from the schema definition
 (visu_config.xsd). This directive has no options, no content, and only
 one parameter that contains the widget name.</p>
 <p>This example creates the element table for the switch widget.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">elements-information</span><span class="p">::</span> switch
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">elements-information</span><span class="p">::</span> switch
 </pre></div>
 </div>
 <table border="1" class="schema-table docutils">
@@ -494,8 +487,7 @@ one parameter that contains the widget name.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>layout</li>
 </ul>
 </dd>
@@ -590,8 +582,7 @@ one parameter that contains the widget name.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>label</li>
 <li>icon</li>
 </ul>
@@ -600,11 +591,11 @@ one parameter that contains the widget name.</p>
 </td>
 <td><abbr title="mandatory">name</abbr></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>type</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>flavour</td>
 <td>string</td>
@@ -612,7 +603,7 @@ one parameter that contains the widget name.</p>
 </tr>
 <tr class="row-even"><td>color</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>styling</td>
 <td>string</td>
@@ -623,8 +614,7 @@ one parameter that contains the widget name.</p>
 <td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>label<ul>
 <li>#text</li>
 </ul>
@@ -633,7 +623,7 @@ one parameter that contains the widget name.</p>
 </dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>string</td>
 <td>Text to display a label for the widget.</td>
 </tr>
@@ -658,8 +648,7 @@ one parameter that contains the widget name.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li><abbr title="mandatory">address</abbr></li>
 </ul>
 </dd>
@@ -671,19 +660,18 @@ one parameter that contains the widget name.</p>
 </tr>
 <tr class="row-even"><td>mode</td>
 <td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>variant</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>format-pos</td>
 <td>decimal</td>
 <td>Position for format string when multiple addresses are used.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>address<ul>
 <li>#text</li>
 </ul>
@@ -692,7 +680,7 @@ one parameter that contains the widget name.</p>
 </dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>string</td>
 <td>The GA (like: 12/0/7) for KNX-backends or the item name for openHAB-backend</td>
 </tr>
@@ -703,24 +691,24 @@ one parameter that contains the widget name.</p>
 <h2>The <em>api-doc</em> Directive<a class="headerlink" href="#the-api-doc-directive" title="Permalink to this headline">¶</a></h2>
 <p>This directive reads important information from the source code
 documentation of a widget or plugin. Currently these are the values
-of the <code class="docutils literal"><span class="pre">&#64;author</span></code> and <code class="docutils literal"><span class="pre">&#64;since</span></code> specifications.</p>
+of the <code class="docutils literal notranslate"><span class="pre">&#64;author</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;since</span></code> specifications.</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">It is important that the name of the widget corresponds exactly
 to the name of the source code file without file extension, e.g.
-for <code class="docutils literal"><span class="pre">structure/pure/Switch.js</span></code> use <code class="docutils literal"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span> <span class="pre">Switch</span></code>
+for <code class="docutils literal notranslate"><span class="pre">structure/pure/Switch.js</span></code> use <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span> <span class="pre">Switch</span></code>
 (case-sensitive). For plugins, the folder name of the plugin
-must be specified, e.g. for <code class="docutils literal"><span class="pre">plugins/colorchooser/</span></code> you
-take <code class="docutils literal"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span> <span class="pre">colorchooser</span></code></p>
+must be specified, e.g. for <code class="docutils literal notranslate"><span class="pre">plugins/colorchooser/</span></code> you
+take <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span> <span class="pre">colorchooser</span></code></p>
 </div>
 <p>Example for the Switch-Widget:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">api-doc</span><span class="p">::</span> Switch
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">api-doc</span><span class="p">::</span> Switch
 </pre></div>
 </div>
 <p>generates the following content:</p>
 <div class="line"><div class="line-block">
-<div class="line"><strong>Available since version</strong>: 0.8.0 (2012)</div>
 <div class="line"><strong>Author</strong>: Christian Mayer</div>
+<div class="line"><strong>Available since version</strong>: 0.8.0 (2012)</div>
 <div class="line"><br /></div>
 </div>
 </div>
@@ -731,7 +719,7 @@ take <code class="docutils literal"><span class="pre">..</span> <span class="pre
 this manual page. Several wiki pages can be specified. This
 directive does not add any content to the documentation, but is
 used to automatically create redirects.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">replaces</span><span class="p">::</span> CometVisu/0.8.x/widgets/switch/de/
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">replaces</span><span class="p">::</span> CometVisu/0.8.x/widgets/switch/de/
     CometVisu/0.8.0/switch/de
     CometVisu/Widget/switch/de
     CometVisu/switch
@@ -754,7 +742,7 @@ used to automatically create redirects.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -800,7 +788,7 @@ used to automatically create redirects.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

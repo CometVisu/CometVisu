@@ -10,9 +10,12 @@
         "require": true
       },
       "qx.bom.client.Plugin": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       },
-      "qx.bom.client.Xml": {}
+      "qx.bom.client.Xml": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
@@ -199,4 +202,4 @@
   qx.xml.Document.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Document.js.map?dt=1604955494204
+//# sourceMappingURL=Document.js.map?dt=1612690419977

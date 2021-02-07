@@ -51,18 +51,28 @@
     /**
      * @param fontFamily {String} The name of the font to be verified
      * @param comparisonString {String?} String to be used to detect whether a font was loaded or not
+     * @param fontWeight {String?} the weight of the font to be verified
+     * @param fontStyle {String?} the style of the font to be verified
      * whether the font has loaded properly
      */
-    construct: function construct(fontFamily, comparisonString) {
+    construct: function construct(fontFamily, comparisonString, fontWeight, fontStyle) {
       qx.core.Object.constructor.call(this);
 
       if (comparisonString) {
         this.setComparisonString(comparisonString);
       }
 
+      if (fontWeight) {
+        this.setFontWeight(fontWeight);
+      }
+
+      if (fontStyle) {
+        this.setFontStyle(fontStyle);
+      }
+
       if (fontFamily) {
         this.setFontFamily(fontFamily);
-        this.__P_329_0 = this._getRequestedHelpers();
+        this.__P_330_0 = this._getRequestedHelpers();
       }
     },
 
@@ -105,15 +115,15 @@
        * property.
        */
       COMPARISON_STRING: "WEei",
-      __P_329_1: null,
-      __P_329_2: null,
+      __P_330_1: null,
+      __P_330_2: null,
 
       /**
        * Removes the two common helper elements used for all size comparisons from
        * the DOM
        */
       removeDefaultHelperElements: function removeDefaultHelperElements() {
-        var defaultHelpers = qx.bom.webfonts.Validator.__P_329_2;
+        var defaultHelpers = qx.bom.webfonts.Validator.__P_330_2;
 
         if (defaultHelpers) {
           for (var prop in defaultHelpers) {
@@ -121,7 +131,7 @@
           }
         }
 
-        delete qx.bom.webfonts.Validator.__P_329_2;
+        delete qx.bom.webfonts.Validator.__P_330_2;
       }
     },
 
@@ -138,6 +148,20 @@
         nullable: true,
         init: null,
         apply: "_applyFontFamily"
+      },
+
+      /** The font weight to check */
+      fontWeight: {
+        nullable: true,
+        check: "String",
+        apply: "_applyFontWeight"
+      },
+
+      /** The font style to check */
+      fontStyle: {
+        nullable: true,
+        check: "String",
+        apply: "_applyFontStyle"
       },
 
       /**
@@ -178,9 +202,9 @@
     *****************************************************************************
     */
     members: {
-      __P_329_0: null,
-      __P_329_3: null,
-      __P_329_4: null,
+      __P_330_0: null,
+      __P_330_3: null,
+      __P_330_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -192,18 +216,18 @@
        * Validates the font
        */
       validate: function validate() {
-        this.__P_329_4 = new Date().getTime();
+        this.__P_330_4 = new Date().getTime();
 
-        if (this.__P_329_3) {
-          this.__P_329_3.restart();
+        if (this.__P_330_3) {
+          this.__P_330_3.restart();
         } else {
-          this.__P_329_3 = new qx.event.Timer(100);
+          this.__P_330_3 = new qx.event.Timer(100);
 
-          this.__P_329_3.addListener("interval", this.__P_329_5, this); // Give the browser a chance to render the new elements
+          this.__P_330_3.addListener("interval", this.__P_330_5, this); // Give the browser a chance to render the new elements
 
 
           qx.event.Timer.once(function () {
-            this.__P_329_3.start();
+            this.__P_330_3.start();
           }, this, 0);
         }
       },
@@ -218,13 +242,13 @@
        * Removes the helper elements from the DOM
        */
       _reset: function _reset() {
-        if (this.__P_329_0) {
-          for (var prop in this.__P_329_0) {
-            var elem = this.__P_329_0[prop];
+        if (this.__P_330_0) {
+          for (var prop in this.__P_330_0) {
+            var elem = this.__P_330_0[prop];
             document.body.removeChild(elem);
           }
 
-          this.__P_329_0 = null;
+          this.__P_330_0 = null;
         }
       },
 
@@ -237,24 +261,24 @@
        * in size
        */
       _isFontValid: function _isFontValid() {
-        if (!qx.bom.webfonts.Validator.__P_329_1) {
-          this.__P_329_6();
+        if (!qx.bom.webfonts.Validator.__P_330_1) {
+          this.__P_330_6();
         }
 
-        if (!this.__P_329_0) {
-          this.__P_329_0 = this._getRequestedHelpers();
+        if (!this.__P_330_0) {
+          this.__P_330_0 = this._getRequestedHelpers();
         } // force rerendering for chrome
 
 
-        this.__P_329_0.sans.style.visibility = "visible";
-        this.__P_329_0.sans.style.visibility = "hidden";
-        this.__P_329_0.serif.style.visibility = "visible";
-        this.__P_329_0.serif.style.visibility = "hidden";
-        var requestedSans = qx.bom.element.Dimension.getWidth(this.__P_329_0.sans);
-        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__P_329_0.serif);
+        this.__P_330_0.sans.style.visibility = "visible";
+        this.__P_330_0.sans.style.visibility = "hidden";
+        this.__P_330_0.serif.style.visibility = "visible";
+        this.__P_330_0.serif.style.visibility = "hidden";
+        var requestedSans = qx.bom.element.Dimension.getWidth(this.__P_330_0.sans);
+        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__P_330_0.serif);
         var cls = qx.bom.webfonts.Validator;
 
-        if (requestedSans !== cls.__P_329_1.sans || requestedSerif !== cls.__P_329_1.serif) {
+        if (requestedSans !== cls.__P_330_1.sans || requestedSerif !== cls.__P_330_1.serif) {
           return true;
         }
 
@@ -296,6 +320,14 @@
           }
         }
 
+        if (this.getFontWeight()) {
+          styleMap.fontWeight = this.getFontWeight();
+        }
+
+        if (this.getFontStyle()) {
+          styleMap.fontStyle = this.getFontStyle();
+        }
+
         var elem = document.createElement("span");
         elem.innerHTML = comparisonString || qx.bom.webfonts.Validator.COMPARISON_STRING;
         qx.bom.element.Style.setStyles(elem, styleMap);
@@ -304,6 +336,18 @@
       },
       // property apply
       _applyFontFamily: function _applyFontFamily(value, old) {
+        if (value !== old) {
+          this._reset();
+        }
+      },
+      // property apply
+      _applyFontWeight: function _applyFontWeight(value, old) {
+        if (value !== old) {
+          this._reset();
+        }
+      },
+      // property apply
+      _applyFontStyle: function _applyFontStyle(value, old) {
         if (value !== old) {
           this._reset();
         }
@@ -318,19 +362,19 @@
       /**
        * Creates the default helper elements and gets their widths
        */
-      __P_329_6: function __P_329_6() {
+      __P_330_6: function __P_330_6() {
         var cls = qx.bom.webfonts.Validator;
 
-        if (!cls.__P_329_2) {
-          cls.__P_329_2 = {
+        if (!cls.__P_330_2) {
+          cls.__P_330_2 = {
             sans: this._getHelperElement(cls.COMPARISON_FONTS.sans),
             serif: this._getHelperElement(cls.COMPARISON_FONTS.serif)
           };
         }
 
-        cls.__P_329_1 = {
-          sans: qx.bom.element.Dimension.getWidth(cls.__P_329_2.sans),
-          serif: qx.bom.element.Dimension.getWidth(cls.__P_329_2.serif)
+        cls.__P_330_1 = {
+          sans: qx.bom.element.Dimension.getWidth(cls.__P_330_2.sans),
+          serif: qx.bom.element.Dimension.getWidth(cls.__P_330_2.serif)
         };
       },
 
@@ -338,9 +382,9 @@
        * Triggers helper element size comparison and fires a ({@link #changeStatus})
        * event with the result.
        */
-      __P_329_5: function __P_329_5() {
+      __P_330_5: function __P_330_5() {
         if (this._isFontValid()) {
-          this.__P_329_3.stop();
+          this.__P_330_3.stop();
 
           this._reset();
 
@@ -351,8 +395,8 @@
         } else {
           var now = new Date().getTime();
 
-          if (now - this.__P_329_4 >= this.getTimeout()) {
-            this.__P_329_3.stop();
+          if (now - this.__P_330_4 >= this.getTimeout()) {
+            this.__P_330_3.stop();
 
             this._reset();
 
@@ -373,14 +417,14 @@
     destruct: function destruct() {
       this._reset();
 
-      this.__P_329_3.stop();
+      this.__P_330_3.stop();
 
-      this.__P_329_3.removeListener("interval", this.__P_329_5, this);
+      this.__P_330_3.removeListener("interval", this.__P_330_5, this);
 
-      this._disposeObjects("__P_329_3");
+      this._disposeObjects("__P_330_3");
     }
   });
   qx.bom.webfonts.Validator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Validator.js.map?dt=1604956090637
+//# sourceMappingURL=Validator.js.map?dt=1612691024736

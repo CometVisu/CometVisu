@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2013 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Romeo Kenfack Tsakem (rkenfack)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This is a widget that enhances an HTML table with some basic features like\n Sorting and Filtering.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-table</code></td>\n       <td>Table element</td>\n       <td>Identifies the Table widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-table-cell</code></td>\n       <td>Table cell (<code>td</code>)</td>\n       <td>Identifies and styles a cell of the widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-table-header</code></td>\n       <td>Table header (<code>th</code>)</td>\n       <td>Identifies and styles a header of the table widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-table-row-selection</code></td>\n       <td>Table cell (<code>td</code>)</td>\n       <td>Identifies and styles the cells containing the inputs for the row selection</td>\n     </tr>\n     <tr>\n       <td><code>qx-table-selection-input</code></td>\n       <td><code>input</code></td>\n       <td>Identifies and styles input element to select a table row</td>\n     </tr>\n     <tr>\n       <td><code>qx-table-input-label</code></td>\n       <td>Label element (<code>label</code>)</td>\n       <td>Identifies and styles label contained in the selection cell. This label can be used to create custom inputs</td>\n     </tr>\n     <tr>\n       <td><code>qx-table-row-selected</code></td>\n       <td>Selected row (<code>tr</code>)</td>\n       <td>Identifies and styles the selected table rows</td>\n     </tr>\n     <tr>\n       <td><code>qx-table-sort-asc</code></td>\n       <td>Table header (<code>th</code>)</td>\n       <td>Identifies and styles the header of the current ascendant sorted column</td>\n     </tr>\n     <tr>\n       <td><code>qx-table-sort-desc</code></td>\n       <td>Table header (<code>th</code>)</td>\n       <td>Identifies and styles the header of the current descendant sorted column</td>\n     </tr>\n   </tbody>\n </table>"
         }
       ],
@@ -505,14 +501,7 @@
           "column": 53
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -527,14 +516,7 @@
           "column": 41
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -549,14 +531,7 @@
           "column": 45
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -571,14 +546,7 @@
           "column": 55
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -593,14 +561,7 @@
           "column": 53
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -615,14 +576,7 @@
           "column": 48
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -637,14 +591,7 @@
           "column": 44
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -659,14 +606,7 @@
           "column": 44
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -681,14 +621,7 @@
           "column": 47
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -703,14 +636,7 @@
           "column": 33
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -725,14 +651,7 @@
           "column": 46
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -747,14 +666,7 @@
           "column": 48
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -769,14 +681,7 @@
           "column": 43
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -791,14 +696,7 @@
           "column": 47
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     }
@@ -941,14 +839,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.website.Widget",
@@ -1923,14 +1814,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.website.Widget",
@@ -1951,10 +1835,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Private API</p>"
-          },
           {
             "name": "@description",
             "body": "<p>Renders or removes the selection inputs according to the specified widget selection mode</p>"

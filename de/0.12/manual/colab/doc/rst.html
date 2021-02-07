@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -121,7 +118,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#die-replaces-directive">Die <em>replaces</em> Directive</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../todos.html">TODO&#8217;s</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../todos.html">TODO’s</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#lokales-erzeugen-der-html-doku">Lokales Erzeugen der HTML-Doku</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#dokumentation-schreiben-mit-visualstudio-code">Dokumentation schreiben mit VisualStudio Code</a></li>
 </ul>
@@ -205,11 +202,11 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <h1>Die RST-Syntax<a class="headerlink" href="#die-rst-syntax" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="section" id="uberschriften">
 <h2>Überschriften<a class="headerlink" href="#uberschriften" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Überschriften werden in RST durch &#8220;unterstreichen&#8221; des Textes mit bestimmten Sonderzeichen definiert.
+<p>Überschriften werden in RST durch „unterstreichen“ des Textes mit bestimmten Sonderzeichen definiert.
 Zu beachten ist hier, das die Sonderzeichen mindestens genauso lang sind wie der Text selbst.
 Auch wenn die RST-Syntax bei der Benutzung der Sonderzeichen relativ tolerant ist, wird für die CometVisu Dokumentation
 folgende Definition festgelegt.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="gh">######################</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">######################</span>
 <span class="gh">Komplette Teilbereiche</span>
 <span class="gh">######################</span>
 
@@ -240,32 +237,32 @@ Referenzen / Links eingebaut werden benötigt man eine spezielle Syntax innerhal
 <p>Zur Formatierung eines Textes, wird der Text ebenfalls von Sonderzeichen umrahmt, so kann man ein Wort z.B. fett
 formatieren indem man in mit zwei Sternchen umfasst (<cite>**fetter Text**</cite>), weitere Möglichkeiten sind.</p>
 <ul class="simple">
-<li><strong>Fett</strong>: <code class="docutils literal"><span class="pre">**fetter</span> <span class="pre">Text**</span></code> =&gt; <strong>fetter Text</strong></li>
-<li><strong>Kursiv</strong>: <code class="docutils literal"><span class="pre">*kursiver</span> <span class="pre">Text*</span></code> =&gt; <em>kursiver Text</em></li>
-<li><strong>Code-Beispiele</strong>: <code class="docutils literal"><span class="pre">``Code</span> <span class="pre">im</span> <span class="pre">Text``</span></code> =&gt; <code class="docutils literal"><span class="pre">Code</span> <span class="pre">im</span> <span class="pre">Text</span></code></li>
+<li><strong>Fett</strong>: <code class="docutils literal notranslate"><span class="pre">**fetter</span> <span class="pre">Text**</span></code> =&gt; <strong>fetter Text</strong></li>
+<li><strong>Kursiv</strong>: <code class="docutils literal notranslate"><span class="pre">*kursiver</span> <span class="pre">Text*</span></code> =&gt; <em>kursiver Text</em></li>
+<li><strong>Code-Beispiele</strong>: <code class="docutils literal notranslate"><span class="pre">``Code</span> <span class="pre">im</span> <span class="pre">Text``</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">Code</span> <span class="pre">im</span> <span class="pre">Text</span></code></li>
 </ul>
 <div class="section" id="listen">
 <h3>Listen<a class="headerlink" href="#listen" title="Link zu dieser Überschrift">¶</a></h3>
-<p>Für unnummerierte Listen wird jede Zeile mit <code class="docutils literal"><span class="pre">*</span></code> gestartet, bei nummerierten mit <code class="docutils literal"><span class="pre">#.</span></code>. Mit entsprechender
+<p>Für unnummerierte Listen wird jede Zeile mit <code class="docutils literal notranslate"><span class="pre">*</span></code> gestartet, bei nummerierten mit <code class="docutils literal notranslate"><span class="pre">#.</span></code>. Mit entsprechender
 Einrückung der Zeilen sind auch verschachtelte Listen möglich.</p>
 </div>
 <div class="section" id="links-und-referenzen">
 <h3>Links und Referenzen<a class="headerlink" href="#links-und-referenzen" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Die Grundsätzliche Syntax von Links enthält einen Title und den Link selbst in folgender Struktur:
-<code class="docutils literal"><span class="pre">`Titel</span> <span class="pre">des</span> <span class="pre">Links</span> <span class="pre">&lt;URL</span> <span class="pre">des</span> <span class="pre">Links&gt;`__</span></code>. Natürlich kann man auch auf andere Dokumente innerhalb der Dokumentation verweisen:
-<code class="docutils literal"><span class="pre">:doc:`Titel</span> <span class="pre">&lt;relativer/pfad/zum/document&gt;`</span></code>. Zu beachten ist hierbei, dass man die <cite>.rst</cite> Dateiendung weglassen muss.
+<code class="docutils literal notranslate"><span class="pre">`Titel</span> <span class="pre">des</span> <span class="pre">Links</span> <span class="pre">&lt;URL</span> <span class="pre">des</span> <span class="pre">Links&gt;`__</span></code>. Natürlich kann man auch auf andere Dokumente innerhalb der Dokumentation verweisen:
+<code class="docutils literal notranslate"><span class="pre">:doc:`Titel</span> <span class="pre">&lt;relativer/pfad/zum/document&gt;`</span></code>. Zu beachten ist hierbei, dass man die <cite>.rst</cite> Dateiendung weglassen muss.
 Möchte man also ein Dokument namens <em>dok.rst</em> im Unterverzeichnis <em>test</em> verlinkten, sieht das so aus:
-<code class="docutils literal"><span class="pre">:doc:`test/dok`</span></code>. Der Titel des Links ist optional, wird er weggelassen, wird der Seitentitel des verlinkten Dokuments
+<code class="docutils literal notranslate"><span class="pre">:doc:`test/dok`</span></code>. Der Titel des Links ist optional, wird er weggelassen, wird der Seitentitel des verlinkten Dokuments
 als Titel benutzt (also die Überschrift auf der höchsten Ebene innerhalb des Dokuments).</p>
 </div>
 </div>
 <div class="section" id="direktiven">
 <h2>Direktiven<a class="headerlink" href="#direktiven" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Für Dinge die über reinen Text hinaus gehen (z.B. Bilder, Hinweise, Warnungen, usw.) werden Direktiven verwendet.
-Diese dürfen im Gegensatz zum bereits behandelten <em>inline Markup</em> nicht in der selben Zeile wie der &#8220;normale&#8221; Text
+Diese dürfen im Gegensatz zum bereits behandelten <em>inline Markup</em> nicht in der selben Zeile wie der „normale“ Text
 stehen sondern benötigen eine Leerzeile vor und hinter der Direktive. Direktiven bestehen aus einem Namen, Parametern
 Optionen und dem Inhalt und sind immer nach folgendem Prinzip aufgebaut:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="cp">.. &lt;name&gt;:: &lt;parameter1&gt; &lt;parameter2&gt; ...</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="cp">.. &lt;name&gt;:: &lt;parameter1&gt; &lt;parameter2&gt; ...</span>
 <span class="cp">     :&lt;option1&gt;: &lt;optionswert1&gt;</span>
 <span class="cp">     :&lt;option2&gt;: &lt;optionswert2&gt;</span>
 <span class="cp">     ....</span>
@@ -285,7 +282,7 @@ um damit Hinweise, Informationen, Warnungen usw. zu definieren. Diese Direktiven
 lediglich einen Inhalt.</p>
 <p>Mögliche Textblöcke sind: attention, caution, danger, error, hint, important, note, tip, warning.
 Möchte man den Leser also z.B. auf etwas wichtiges Hinweisen, kann man folgendes schreiben.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">IMPORTANT</span><span class="p">::</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">IMPORTANT</span><span class="p">::</span>
 
     Dies ist ein wichtiger Hinweis.
 </pre></div>
@@ -300,7 +297,7 @@ Möchte man den Leser also z.B. auf etwas wichtiges Hinweisen, kann man folgende
 <h3>Bilder<a class="headerlink" href="#bilder" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Bilder werden mit der <em>figure</em>-Direktive eingebunden. Es gibt zwar auch eine <em>image</em>-Direktive,
 aber die <em>figure</em>-Direktive erlaubt komplexe Bildunterschriften.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">figure</span><span class="p">::</span> <span class="nt">&lt;pfad-zum-bild&gt;</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">figure</span><span class="p">::</span> <span class="nt">&lt;pfad-zum-bild&gt;</span>
 
     Dies ist die Bildunterschift
 </pre></div>
@@ -350,7 +347,7 @@ Folgende Direktiven werden zur Zeit unterstützt:</p>
 einer oder mehrere Screenshots generiert werden und zusammen mit dem Beispiel-Code in die Dokumentation eingebunden
 werden.</p>
 <p>Das folgende Beispiel:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
 
     &lt;settings&gt;
         &lt;screenshot name=&quot;switch_complete&quot;&gt;
@@ -380,11 +377,11 @@ werden.</p>
 </pre></div>
 </div>
 <p>erzeugt diesen Eintrag in der Dokumentation:</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="Switch mit mapping + styling" src="../../_images/switch_complete.png" />
-<p class="caption"><span class="caption-text">Switch mit mapping + styling</span></p>
+<p class="caption"><span class="caption-text">Switch mit mapping + styling</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;mappings&gt;</span>
         <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;OnOff&quot;</span><span class="nt">&gt;</span>
@@ -430,7 +427,7 @@ Screenshots beinflusst werden können</p>
 <li><cite>align</cite>: <em>left</em>, <em>center</em> oder <em>right</em>. Definiert die Position des Screenshots (Default: <em>left</em>)</li>
 </ol>
 <p>Ein vollständiges Beispiel mit allen Optionen:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
     <span class="nc">:linenos:</span>
     <span class="nc">:linenos-start:</span> 1
     <span class="nc">:scale:</span> 75
@@ -456,7 +453,7 @@ verfeinert werden.</p>
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="3">Attribut</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Inhalt</th>
 <th class="head">Beschreibung</th>
@@ -477,17 +474,15 @@ verfeinert werden.</p>
 <td>Initiale Wartezeit in ms bevor der Screenshot aufgenommen wird</td>
 </tr>
 <tr class="row-even"><td><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt>
-<dd>&lt;caption&gt;</dd>
+<dt>&lt;settings&gt;</dt><dd>&lt;caption&gt;</dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>#text</td>
 <td>Untertitel des Beispielcodes</td>
 </tr>
 <tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt>
-<dd>&lt;screenshot&gt;</dd>
+<dt>&lt;settings&gt;</dt><dd>&lt;screenshot&gt;</dd>
 </dl>
 </td>
 <td>name</td>
@@ -507,10 +502,8 @@ verfeinert werden.</p>
 <td>Wartezeit zwischen Senden der Daten und Screenshot</td>
 </tr>
 <tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt>
-<dd><dl class="first last docutils">
-<dt>&lt;screenshot&gt;</dt>
-<dd>&lt;data&gt;</dd>
+<dt>&lt;settings&gt;</dt><dd><dl class="docutils">
+<dt>&lt;screenshot&gt;</dt><dd>&lt;data&gt;</dd>
 </dl>
 </dd>
 </dl>
@@ -537,7 +530,7 @@ verfeinert werden.</p>
 aus der Schema-Definition (visu_config.xsd) ausgelesen.
 Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der den Widget-Namen enthält.</p>
 <p>Dieses Beispiel erzeugt die Attribut-Tabelle für das Switch-Widget.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">parameter-information</span><span class="p">::</span> switch
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">parameter-information</span><span class="p">::</span> switch
 </pre></div>
 </div>
 <table border="1" class="docutils">
@@ -551,7 +544,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="4">Attribut</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Inhalt</th>
 <th class="head">Beschreibung</th>
@@ -569,15 +562,15 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </tr>
 <tr class="row-odd"><td>on_value</td>
 <td>Text</td>
-<td>Wert für den An-Zustand. Default ist &#8220;1&#8221;.</td>
+<td>Wert für den An-Zustand. Default ist „1“.</td>
 </tr>
 <tr class="row-even"><td>off_value</td>
 <td>Text</td>
-<td>Wert für den Aus-Zustand. Default ist &#8220;0&#8221;.</td>
+<td>Wert für den Aus-Zustand. Default ist „0“.</td>
 </tr>
 <tr class="row-odd"><td>align</td>
 <td><em>left</em>, <em>right</em> oder <em>center</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>flavour</td>
 <td>Text</td>
@@ -604,7 +597,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 aus der Schema-Definition (visu_config.xsd) ausgelesen.
 Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der den Widget-Namen enthält.</p>
 <p>Dieses Beispiel erzeugt die Element-Tabelle für das Switch-Widget.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">elements-information</span><span class="p">::</span> switch
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">elements-information</span><span class="p">::</span> switch
 </pre></div>
 </div>
 <table border="1" class="schema-table docutils">
@@ -626,8 +619,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>layout</li>
 </ul>
 </dd>
@@ -722,8 +714,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>label</li>
 <li>icon</li>
 </ul>
@@ -732,11 +723,11 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </td>
 <td><abbr title="Pflichtangabe">name</abbr></td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>type</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>flavour</td>
 <td>Text</td>
@@ -744,7 +735,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </tr>
 <tr class="row-even"><td>color</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>styling</td>
 <td>Text</td>
@@ -755,8 +746,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 <td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>label<ul>
 <li>#text</li>
 </ul>
@@ -765,7 +755,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>Text</td>
 <td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
 </tr>
@@ -790,8 +780,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li><abbr title="Pflichtangabe">address</abbr></li>
 </ul>
 </dd>
@@ -803,19 +792,18 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </tr>
 <tr class="row-even"><td>mode</td>
 <td><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>variant</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>format-pos</td>
 <td>Zahl</td>
 <td>Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>address<ul>
 <li>#text</li>
 </ul>
@@ -824,7 +812,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>Text</td>
 <td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends oder der Item-Name beim openHAB-Backend.</td>
 </tr>
@@ -834,16 +822,16 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 <div class="section" id="die-api-doc-direktive">
 <h2>Die <em>api-doc</em> Direktive<a class="headerlink" href="#die-api-doc-direktive" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Diese Direktive liest wichtige Informationen aus der Source-Code Dokumentation eines Widgets oder Plugins.
-Momentan sind das die Werte der <code class="docutils literal"><span class="pre">&#64;author</span></code> und <code class="docutils literal"><span class="pre">&#64;since</span></code> Angaben.</p>
+Momentan sind das die Werte der <code class="docutils literal notranslate"><span class="pre">&#64;author</span></code> und <code class="docutils literal notranslate"><span class="pre">&#64;since</span></code> Angaben.</p>
 <div class="admonition important">
 <p class="first admonition-title">Wichtig</p>
 <p class="last">Wichtig ist hierbei, dass der Name des Widgets exakt dem Namen der Sourcecode-Datei ohne Dateiendung
-entspricht, also z.B. für <code class="docutils literal"><span class="pre">structure/pure/Switch.js</span></code> nimmt man <code class="docutils literal"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">Switch</span></code>
+entspricht, also z.B. für <code class="docutils literal notranslate"><span class="pre">structure/pure/Switch.js</span></code> nimmt man <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">Switch</span></code>
 (Groß-/Kleinschreibung beachten). Bei Plugins muss der Ordnername des Plugins angegeben werden, also
-z.B. für <code class="docutils literal"><span class="pre">plugins/colorchooser/</span></code> nimmt man <code class="docutils literal"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">colorchooser</span></code></p>
+z.B. für <code class="docutils literal notranslate"><span class="pre">plugins/colorchooser/</span></code> nimmt man <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">colorchooser</span></code></p>
 </div>
 <p>Beispiel für das Switch-Widget:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">api-doc</span><span class="p">::</span> Switch
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">api-doc</span><span class="p">::</span> Switch
 </pre></div>
 </div>
 <p>erzeugt folgenden Inhalt:</p>
@@ -859,7 +847,7 @@ z.B. für <code class="docutils literal"><span class="pre">plugins/colorchooser/
 <p>Durch diese Direktive lasst sich definieren, welche Seiten des alten Wikis durch diese Handbuch-Seite ersetzt werden.
 Es können mehrere Wiki-Seiten angegeben werden. Diese Direktive fügt der Dokumentation keinen Inhalt hinzu,
 sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">replaces</span><span class="p">::</span> CometVisu/0.8.x/widgets/switch/de/
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">replaces</span><span class="p">::</span> CometVisu/0.8.x/widgets/switch/de/
     CometVisu/0.8.0/switch/de
     CometVisu/Widget/switch/de
     CometVisu/switch
@@ -891,7 +879,7 @@ sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -937,7 +925,7 @@ sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

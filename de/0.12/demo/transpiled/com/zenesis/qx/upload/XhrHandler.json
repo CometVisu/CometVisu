@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>****************************************************************\n</code></pre>\n<p>UploadMgr - provides an API for uploading one or multiple files\n   with progress feedback (on modern browsers), does not block the user\n   interface during uploads, supports cancelling uploads.\n   http://qooxdoo.org\n   Copyright:\n     2011 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     This software is provided under the same licensing terms as Qooxdoo,\n     please see the LICENSE file in the Qooxdoo project's top-level directory\n     for details.\n     Parts of this code is based on the work by Andrew Valums (andrew@valums.com)\n     and is covered by the GNU GPL and GNU LGPL2 licenses; please see\n     http://valums.com/ajax-upload/.\n   Authors:\n John Spackman (john.spackman@zenesis.com)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
-        },
-        {
-          "name": "@description",
           "body": ""
         },
         {

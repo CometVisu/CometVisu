@@ -10,17 +10,23 @@
         "usage": "dynamic",
         "require": true
       },
+      "qx.bom.client.Html": {
+        "require": true
+      },
       "qx.bom.client.Engine": {
         "require": true
       },
-      "qx.bom.client.Browser": {},
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.lang.Type": {}
     },
     "environment": {
       "provided": [],
       "required": {
         "html.element.textcontent": {
-          "load": true
+          "load": true,
+          "className": "qx.bom.client.Html"
         },
         "engine.name": {
           "load": true,
@@ -110,7 +116,7 @@
     */
     statics: {
       /** Internal map of attribute conversions */
-      __P_159_0: {
+      __P_160_0: {
         // Name translation table (camelcase is important for some attributes)
         names: {
           "class": "className",
@@ -220,7 +226,7 @@
        */
       compile: function compile(map) {
         var html = [];
-        var runtime = this.__P_159_0.runtime;
+        var runtime = this.__P_160_0.runtime;
 
         for (var key in map) {
           if (!runtime[key]) {
@@ -239,7 +245,7 @@
        * @return {var} The value of the attribute
        */
       get: function get(element, name) {
-        var hints = this.__P_159_0;
+        var hints = this.__P_160_0;
         var value; // normalize name
 
         name = hints.names[name] || name; // respect properties
@@ -283,7 +289,7 @@
           return;
         }
 
-        var hints = this.__P_159_0; // normalize name
+        var hints = this.__P_160_0; // normalize name
 
         name = hints.names[name] || name; // respect booleans
 
@@ -340,4 +346,4 @@
   qx.bom.element.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1604956078988
+//# sourceMappingURL=Attribute.js.map?dt=1612691012779

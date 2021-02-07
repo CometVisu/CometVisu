@@ -83,10 +83,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>jshint ignore:line</p>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Get a DOM element which usually starts the action</p>"
           }
         ]

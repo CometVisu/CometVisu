@@ -114,9 +114,9 @@
     *****************************************************************************
     */
     members: {
-      __P_355_0: null,
-      __P_355_1: null,
-      __P_355_2: null,
+      __P_352_0: null,
+      __P_352_1: null,
+      __P_352_2: null,
 
       /**
        * Converts the incoming value.
@@ -138,14 +138,14 @@
       * Handler for <code>focus</code> event.
       */
       _onFocus: function _onFocus() {
-        this.__P_355_2 = true;
+        this.__P_352_2 = true;
       },
 
       /**
       * Handler for <code>blur</code> event.
       */
       _onBlur: function _onBlur() {
-        this.__P_355_2 = false;
+        this.__P_352_2 = false;
       },
 
       /**
@@ -153,7 +153,7 @@
       * @return {Boolean} <code>true</code> or <code>false</code>
       */
       hasFocus: function hasFocus() {
-        return this.__P_355_2;
+        return this.__P_352_2;
       },
 
       /**
@@ -164,14 +164,14 @@
       setValue: function setValue(value) {
         value = this._convertValue(value);
 
-        if (this.__P_355_0 != value) {
+        if (this.__P_352_0 != value) {
           if (this._setValue) {
             this._setValue(value);
           } else {
             this._setAttribute("value", value);
           }
 
-          this.__P_355_3(value);
+          this.__P_352_3(value);
         }
       },
 
@@ -197,7 +197,7 @@
        * @param evt {qx.event.type.Data} The event, containing the changed content.
        */
       _onChangeContent: function _onChangeContent(evt) {
-        this.__P_355_3(this._convertValue(evt.getData()));
+        this.__P_352_3(this._convertValue(evt.getData()));
       },
 
       /**
@@ -213,7 +213,7 @@
           if (this._setValue) {
             this._setValue(data);
           } else {
-            this.__P_355_3(this._convertValue(data));
+            this.__P_352_3(this._convertValue(data));
           }
         }
       },
@@ -249,9 +249,9 @@
        *
        * @param value {var} The current value to fire.
        */
-      __P_355_3: function __P_355_3(value) {
-        if (this.__P_355_0 != value) {
-          this.__P_355_0 = value;
+      __P_352_3: function __P_352_3(value) {
+        if (this.__P_352_0 != value) {
+          this.__P_352_0 = value;
           this.fireDataEvent("changeValue", value);
         }
       }
@@ -264,4 +264,4 @@
   qx.ui.mobile.form.MValue.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MValue.js.map?dt=1604955486206
+//# sourceMappingURL=MValue.js.map?dt=1612690412427

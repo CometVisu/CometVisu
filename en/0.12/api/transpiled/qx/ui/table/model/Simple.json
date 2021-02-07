@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 782,
+        "line": 805,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Til Schneider (til132)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>A simple table model that provides an API for changing the model data.</p>"
@@ -111,7 +107,7 @@
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 80,
           "column": 5
         }
       },
@@ -160,11 +156,11 @@
     "_defaultSortComparatorInsensitiveAscending": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 91,
           "column": 4
         },
         "end": {
-          "line": 100,
+          "line": 110,
           "column": 5
         }
       },
@@ -213,11 +209,11 @@
     "_defaultSortComparatorDescending": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 122,
           "column": 4
         },
         "end": {
-          "line": 123,
+          "line": 138,
           "column": 5
         }
       },
@@ -266,11 +262,11 @@
     "_defaultSortComparatorInsensitiveDescending": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 147,
+          "line": 167,
           "column": 5
         }
       },
@@ -321,11 +317,11 @@
     "_rowArr": {
       "location": {
         "start": {
-          "line": 154,
+          "line": 174,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 174,
           "column": 18
         }
       },
@@ -335,11 +331,11 @@
     "__editableColArr": {
       "location": {
         "start": {
-          "line": 155,
+          "line": 175,
           "column": 4
         },
         "end": {
-          "line": 155,
+          "line": 175,
           "column": 27
         }
       },
@@ -349,11 +345,11 @@
     "__sortableColArr": {
       "location": {
         "start": {
-          "line": 156,
+          "line": 176,
           "column": 4
         },
         "end": {
-          "line": 156,
+          "line": 176,
           "column": 27
         }
       },
@@ -363,11 +359,11 @@
     "__sortMethods": {
       "location": {
         "start": {
-          "line": 157,
+          "line": 177,
           "column": 4
         },
         "end": {
-          "line": 157,
+          "line": 177,
           "column": 24
         }
       },
@@ -377,11 +373,11 @@
     "__sortColumnIndex": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 178,
           "column": 4
         },
         "end": {
-          "line": 158,
+          "line": 178,
           "column": 28
         }
       },
@@ -391,11 +387,11 @@
     "__sortAscending": {
       "location": {
         "start": {
-          "line": 159,
+          "line": 179,
           "column": 4
         },
         "end": {
-          "line": 159,
+          "line": 179,
           "column": 26
         }
       },
@@ -405,22 +401,15 @@
     "getRowData": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 171,
+          "line": 191,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
@@ -432,11 +421,11 @@
     "getRowDataAsMap": {
       "location": {
         "start": {
-          "line": 181,
+          "line": 201,
           "column": 4
         },
         "end": {
-          "line": 205,
+          "line": 225,
           "column": 5
         }
       },
@@ -471,11 +460,11 @@
     "getDataAsMapArray": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 224,
+          "line": 244,
           "column": 5
         }
       },
@@ -501,11 +490,11 @@
     "setEditable": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 252,
           "column": 4
         },
         "end": {
-          "line": 241,
+          "line": 261,
           "column": 5
         }
       },
@@ -532,11 +521,11 @@
     "setColumnEditable": {
       "location": {
         "start": {
-          "line": 250,
+          "line": 270,
           "column": 4
         },
         "end": {
-          "line": 262,
+          "line": 282,
           "column": 5
         }
       },
@@ -570,22 +559,15 @@
     "isColumnEditable": {
       "location": {
         "start": {
-          "line": 265,
+          "line": 285,
           "column": 4
         },
         "end": {
-          "line": 267,
+          "line": 287,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
@@ -597,11 +579,11 @@
     "setColumnSortable": {
       "location": {
         "start": {
-          "line": 276,
+          "line": 296,
           "column": 4
         },
         "end": {
-          "line": 287,
+          "line": 307,
           "column": 5
         }
       },
@@ -635,22 +617,15 @@
     "isColumnSortable": {
       "location": {
         "start": {
-          "line": 291,
+          "line": 311,
           "column": 4
         },
         "end": {
-          "line": 297,
+          "line": 317,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
@@ -662,22 +637,15 @@
     "sortByColumn": {
       "location": {
         "start": {
-          "line": 300,
+          "line": 320,
           "column": 4
         },
         "end": {
-          "line": 348,
+          "line": 368,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
@@ -689,11 +657,11 @@
     "setSortMethods": {
       "location": {
         "start": {
-          "line": 389,
+          "line": 409,
           "column": 4
         },
         "end": {
-          "line": 418,
+          "line": 438,
           "column": 5
         }
       },
@@ -730,11 +698,11 @@
     "getSortMethods": {
       "location": {
         "start": {
-          "line": 432,
+          "line": 452,
           "column": 4
         },
         "end": {
-          "line": 434,
+          "line": 454,
           "column": 5
         }
       },
@@ -769,11 +737,11 @@
     "clearSorting": {
       "location": {
         "start": {
-          "line": 440,
+          "line": 460,
           "column": 4
         },
         "end": {
-          "line": 449,
+          "line": 469,
           "column": 5
         }
       },
@@ -791,22 +759,15 @@
     "getSortColumnIndex": {
       "location": {
         "start": {
-          "line": 452,
+          "line": 472,
           "column": 4
         },
         "end": {
-          "line": 454,
+          "line": 474,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
@@ -818,11 +779,11 @@
     "_setSortColumnIndex": {
       "location": {
         "start": {
-          "line": 464,
+          "line": 484,
           "column": 4
         },
         "end": {
-          "line": 467,
+          "line": 487,
           "column": 5
         }
       },
@@ -849,22 +810,15 @@
     "isSortAscending": {
       "location": {
         "start": {
-          "line": 470,
+          "line": 490,
           "column": 4
         },
         "end": {
-          "line": 472,
+          "line": 492,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
@@ -876,11 +830,11 @@
     "_setSortAscending": {
       "location": {
         "start": {
-          "line": 484,
+          "line": 504,
           "column": 4
         },
         "end": {
-          "line": 487,
+          "line": 507,
           "column": 5
         }
       },
@@ -907,22 +861,15 @@
     "getRowCount": {
       "location": {
         "start": {
-          "line": 490,
+          "line": 510,
           "column": 4
         },
         "end": {
-          "line": 492,
+          "line": 512,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
@@ -934,22 +881,15 @@
     "getValue": {
       "location": {
         "start": {
-          "line": 495,
+          "line": 515,
           "column": 4
         },
         "end": {
-          "line": 502,
+          "line": 522,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
@@ -961,22 +901,15 @@
     "setValue": {
       "location": {
         "start": {
-          "line": 505,
+          "line": 525,
           "column": 4
         },
         "end": {
-          "line": 529,
+          "line": 549,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.model.Abstract",
@@ -988,11 +921,11 @@
     "setData": {
       "location": {
         "start": {
-          "line": 540,
+          "line": 560,
           "column": 4
         },
         "end": {
-          "line": 561,
+          "line": 581,
           "column": 5
         }
       },
@@ -1028,11 +961,11 @@
     "getData": {
       "location": {
         "start": {
-          "line": 574,
+          "line": 594,
           "column": 4
         },
         "end": {
-          "line": 576,
+          "line": 596,
           "column": 5
         }
       },
@@ -1058,11 +991,11 @@
     "setDataAsMapArray": {
       "location": {
         "start": {
-          "line": 588,
+          "line": 608,
           "column": 4
         },
         "end": {
-          "line": 590,
+          "line": 610,
           "column": 5
         }
       },
@@ -1107,11 +1040,11 @@
     "addRows": {
       "location": {
         "start": {
-          "line": 605,
+          "line": 625,
           "column": 4
         },
         "end": {
-          "line": 630,
+          "line": 650,
           "column": 5
         }
       },
@@ -1156,11 +1089,11 @@
     "addRowsAsMapArray": {
       "location": {
         "start": {
-          "line": 646,
+          "line": 666,
           "column": 4
         },
         "end": {
-          "line": 648,
+          "line": 668,
           "column": 5
         }
       },
@@ -1214,11 +1147,11 @@
     "setRows": {
       "location": {
         "start": {
-          "line": 664,
+          "line": 684,
           "column": 4
         },
         "end": {
-          "line": 689,
+          "line": 712,
           "column": 5
         }
       },
@@ -1263,11 +1196,11 @@
     "setRowsAsMapArray": {
       "location": {
         "start": {
-          "line": 706,
+          "line": 729,
           "column": 4
         },
         "end": {
-          "line": 708,
+          "line": 731,
           "column": 5
         }
       },
@@ -1321,11 +1254,11 @@
     "removeRows": {
       "location": {
         "start": {
-          "line": 718,
+          "line": 741,
           "column": 4
         },
         "end": {
-          "line": 737,
+          "line": 760,
           "column": 5
         }
       },
@@ -1368,11 +1301,11 @@
     "_mapArray2RowArr": {
       "location": {
         "start": {
-          "line": 751,
+          "line": 774,
           "column": 4
         },
         "end": {
-          "line": 773,
+          "line": 796,
           "column": 5
         }
       },
@@ -1643,16 +1576,17 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 777,
+        "line": 800,
         "column": 13
       },
       "end": {
-        "line": 781,
+        "line": 804,
         "column": 3
       }
     },
     "jsdoc": {}
   },
+  "events": {},
   "descendants": [
     "qx.ui.table.model.Filtered"
   ]

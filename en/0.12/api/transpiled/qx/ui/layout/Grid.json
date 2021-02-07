@@ -21,11 +21,7 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
-          "body": "<p>The grid layout manager arranges the items in a two dimensional\n grid. Widgets can be placed into the grid's cells and may span multiple rows\n and columns.\n<em>Features</em></p>\n<ul>\n<li>Flex values for rows and columns</li>\n<li>Minimal and maximal column and row sizes</li>\n<li>Manually setting of column and row sizes</li>\n<li>Horizontal and vertical alignment</li>\n<li>Horizontal and vertical spacing</li>\n<li>Column and row spans</li>\n<li><p>Auto-sizing\n<em>Item Properties</em></p></li>\n</ul>\n<ul>\n <li><strong>row</strong> <em>(Integer)</em>: The row of the cell the\n   widget should occupy. Each cell can only containing one widget. This layout\n   property is mandatory.\n </li>\n <li><strong>column</strong> <em>(Integer)</em>: The column of the cell the\n   widget should occupy. Each cell can only containing one widget. This layout\n   property is mandatory.\n </li>\n <li><strong>rowSpan</strong> <em>(Integer)</em>: The number of rows, the\n   widget should span, starting from the row specified in the <code>row</code>\n   property. The cells in the spanned rows must be empty as well.\n </li>\n <li><strong>colSpan</strong> <em>(Integer)</em>: The number of columns, the\n   widget should span, starting from the column specified in the <code>column</code>\n   property. The cells in the spanned columns must be empty as well.\n </li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the grid layout.\n </p>\n<pre class=\"javascript\">\n var layout = new qx.ui.layout.Grid();\n layout.setRowFlex(0, 1);\n layout.setColumnWidth(1, 200);\n var container = new qx.ui.container.Composite(layout);\n container.add(new qx.ui.core.Widget(), {row: 0, column: 0});\n container.add(new qx.ui.core.Widget(), {row: 0, column: 1});\n container.add(new qx.ui.core.Widget(), {row: 1, column: 0, rowSpan: 2});\n </pre>\n<p><em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#layout/grid.md'>\n Extended documentation</a> and links to demos of this layout in the qooxdoo manual.</p>"
+          "body": "<p>The grid layout manager arranges the items in a two dimensional\n grid. Widgets can be placed into the grid's cells and may span multiple rows\n and columns.\n<em>Features</em></p>\n<ul>\n<li>Flex values for rows and columns</li>\n<li>Minimal and maximal column and row sizes</li>\n<li>Manually setting of column and row sizes</li>\n<li>Horizontal and vertical alignment</li>\n<li>Horizontal and vertical spacing</li>\n<li>Column and row spans</li>\n<li><p>Auto-sizing\n<em>Item Properties</em></p></li>\n</ul>\n<ul>\n <li><strong>row</strong> <em>(Integer)</em>: The row of the cell the\n   widget should occupy. Each cell can only containing one widget. This layout\n   property is mandatory.\n </li>\n <li><strong>column</strong> <em>(Integer)</em>: The column of the cell the\n   widget should occupy. Each cell can only containing one widget. This layout\n   property is mandatory.\n </li>\n <li><strong>rowSpan</strong> <em>(Integer)</em>: The number of rows, the\n   widget should span, starting from the row specified in the <code>row</code>\n   property. The cells in the spanned rows must be empty as well.\n </li>\n <li><strong>colSpan</strong> <em>(Integer)</em>: The number of columns, the\n   widget should span, starting from the column specified in the <code>column</code>\n   property. The cells in the spanned columns must be empty as well.\n </li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the grid layout.\n </p>\n<pre class=\"javascript\">\n var layout = new qx.ui.layout.Grid();\n layout.setRowFlex(0, 1);\n layout.setColumnWidth(1, 200);\n var container = new qx.ui.container.Composite(layout);\n container.add(new qx.ui.core.Widget(), {row: 0, column: 0});\n container.add(new qx.ui.core.Widget(), {row: 0, column: 1});\n container.add(new qx.ui.core.Widget(), {row: 1, column: 0, rowSpan: 2});\n </pre>\n<p><em>External Documentation</em>\n <a href='https://qooxdoo.org/documentation/#/desktop/layout/grid.md'>\n Extended documentation</a> and links to demos of this layout in the qooxdoo manual.</p>"
         }
       ]
     }
@@ -44,10 +40,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -367,14 +359,7 @@
           "column": 6
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
@@ -1825,14 +1810,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.layout.Abstract",
@@ -1851,14 +1829,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.layout.Abstract",
@@ -1877,14 +1848,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.layout.Abstract",
@@ -2262,14 +2226,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCT\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

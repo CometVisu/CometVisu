@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -121,9 +118,9 @@
 <li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="openhab2.html">Installation auf einem Debian System mit openHAB2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab.html">Installation auf einem Debian System mit openHAB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Installation mittels Docker-Container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker_openhab2.html">Installation auf einem Ubuntu System mit openHAB2 und Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_openhab.html">Installation auf einem Ubuntu System mit openHAB und Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation auf dem Timberwolf über die App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-auf-dem-timberwolf-mittels-portainer">Installation auf dem Timberwolf mittels Portainer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linux.html">Installation auf generischen Linux Systemen</a></li>
@@ -241,9 +238,9 @@ CometVisu wird unter <a class="reference internal" href="install-rrd.html"><span
 </div>
 <div class="section" id="webserver">
 <h2>Webserver<a class="headerlink" href="#webserver" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Der notwendigen Dateien unter <code class="docutils literal"><span class="pre">/usr/lib/cgi-bin/</span></code> müssen für das Konto,
+<p>Der notwendigen Dateien unter <code class="docutils literal notranslate"><span class="pre">/usr/lib/cgi-bin/</span></code> müssen für das Konto,
 unter dem der Webserver läuft, ausführbar sein:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>chmod +x /usr/lib/cgi-bin/r
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x /usr/lib/cgi-bin/r
 chmod +x /usr/lib/cgi-bin/l
 chmod +x /usr/lib/cgi-bin/w
 chmod +x /usr/lib/cgi-bin/rrdfetch
@@ -261,11 +258,11 @@ Konfiguration hier ist allerdings nur als Referenz gedacht; die
 tatsächlich notwendigen Konfigurationsoptionen können sich je nach
 Bedürfnis ändern.</p>
 <p>Um unter Debian/Ubuntu lighttpd zu installieren:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>apt-get install lighttpd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install lighttpd
 </pre></div>
 </div>
 <p>/etc/lighttpd/lighttpd.conf</p>
-<div class="highlight-lighttpd"><div class="highlight"><pre><span></span><span class="k">server.modules</span> <span class="o">=</span> <span class="p">(</span>
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="k">server.modules</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">&quot;mod_access&quot;</span><span class="p">,</span>
         <span class="s2">&quot;mod_alias&quot;</span><span class="p">,</span>
         <span class="s2">&quot;mod_compress&quot;</span><span class="p">,</span>
@@ -302,7 +299,7 @@ Bedürfnis ändern.</p>
 </pre></div>
 </div>
 <p>/etc/lighttpd/conf-enabled/10-cgi.conf</p>
-<div class="highlight-lighttpd"><div class="highlight"><pre><span></span><span class="c1"># /usr/share/doc/lighttpd-doc/cgi.txt</span>
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="c1"># /usr/share/doc/lighttpd-doc/cgi.txt</span>
 
 <span class="k">server.modules</span> <span class="o">+=</span> <span class="p">(</span> <span class="s2">&quot;mod_cgi&quot;</span> <span class="p">)</span>
 
@@ -321,7 +318,7 @@ Bedürfnis ändern.</p>
 </pre></div>
 </div>
 <p>/etc/lighttpd/conf-enabled/11-cgi-cometvisu.conf</p>
-<div class="highlight-lighttpd"><div class="highlight"><pre><span></span><span class="c1">### Add cgi for cometvisu</span>
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="c1">### Add cgi for cometvisu</span>
 <span class="k">alias.url</span> <span class="o">+=</span> <span class="p">(</span> <span class="s2">&quot;/cgi-bin/&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/lib/cgi-bin/&quot;</span> <span class="p">)</span>
 <span class="k">compress.filetype</span> <span class="o">+=</span> <span class="p">(</span><span class="s2">&quot;application/javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span> <span class="s2">&quot;application/octet-stream&quot;</span><span class="p">)</span>
 </pre></div>
@@ -367,7 +364,7 @@ beschrieben.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -413,7 +410,7 @@ beschrieben.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

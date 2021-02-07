@@ -38,10 +38,10 @@
   qx.Class.define("qx.ui.core.queue.Appearance", {
     statics: {
       /** @type {Array} This contains all the queued widgets for the next flush. */
-      __P_209_0: [],
+      __P_211_0: [],
 
       /** @type {Map} map of widgets by hash code which are in the queue */
-      __P_209_1: {},
+      __P_211_1: {},
 
       /**
        * Clears the widget from the internal queue. Normally only used
@@ -50,9 +50,9 @@
        * @param widget {qx.ui.core.Widget} The widget to clear
        */
       remove: function remove(widget) {
-        if (this.__P_209_1[widget.toHashCode()]) {
-          qx.lang.Array.remove(this.__P_209_0, widget);
-          delete this.__P_209_1[widget.toHashCode()];
+        if (this.__P_211_1[widget.toHashCode()]) {
+          qx.lang.Array.remove(this.__P_211_0, widget);
+          delete this.__P_211_1[widget.toHashCode()];
         }
       },
 
@@ -64,13 +64,13 @@
        * @param widget {qx.ui.core.Widget} The widget to add.
        */
       add: function add(widget) {
-        if (this.__P_209_1[widget.toHashCode()]) {
+        if (this.__P_211_1[widget.toHashCode()]) {
           return;
         }
 
-        this.__P_209_0.unshift(widget);
+        this.__P_211_0.unshift(widget);
 
-        this.__P_209_1[widget.toHashCode()] = widget;
+        this.__P_211_1[widget.toHashCode()] = widget;
         qx.ui.core.queue.Manager.scheduleFlush("appearance");
       },
 
@@ -81,7 +81,7 @@
        * @return {Boolean} <code>true</code> if the widget is queued
        */
       has: function has(widget) {
-        return !!this.__P_209_1[widget.toHashCode()];
+        return !!this.__P_211_1[widget.toHashCode()];
       },
 
       /**
@@ -91,14 +91,14 @@
        */
       flush: function flush() {
         var Visibility = qx.ui.core.queue.Visibility;
-        var queue = this.__P_209_0;
+        var queue = this.__P_211_0;
         var obj;
 
         for (var i = queue.length - 1; i >= 0; i--) {
           // Order is important to allow the same widget to be re-queued directly
           obj = queue[i];
           queue.splice(i, 1);
-          delete this.__P_209_1[obj.toHashCode()]; // Only apply to currently visible widgets
+          delete this.__P_211_1[obj.toHashCode()]; // Only apply to currently visible widgets
 
           if (Visibility.isVisible(obj)) {
             obj.syncAppearance();
@@ -112,4 +112,4 @@
   qx.ui.core.queue.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1604956081973
+//# sourceMappingURL=Appearance.js.map?dt=1612691015725

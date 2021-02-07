@@ -121,7 +121,7 @@
        * @param newPromise {qx.Promise} the new promise
        * @return {qx.Promise} the new promise
        */
-      __P_172_0: function __P_172_0(tracker, newPromise) {
+      __P_169_0: function __P_169_0(tracker, newPromise) {
         tracker.promise = newPromise;
         return tracker.promise;
       },
@@ -141,11 +141,11 @@
 
           if (tracker.promise) {
             if (qx.lang.Type.isPromise(fn)) {
-              this.__P_172_0(tracker, tracker.promise.then(fn));
+              this.__P_169_0(tracker, tracker.promise.then(fn));
             } else {
               var self = this;
 
-              this.__P_172_0(tracker, tracker.promise.then(function (result) {
+              this.__P_169_0(tracker, tracker.promise.then(function (result) {
                 if (tracker.rejected) {
                   return null;
                 }
@@ -160,19 +160,19 @@
               }));
             }
 
-            this.__P_172_1(tracker);
+            this.__P_169_1(tracker);
 
             return tracker.promise;
           }
 
           if (qx.lang.Type.isPromise(fn)) {
-            return this.__P_172_2(tracker, fn);
+            return this.__P_169_2(tracker, fn);
           }
 
           var result = fn(tracker.result);
 
           if (qx.lang.Type.isPromise(result)) {
-            return this.__P_172_2(tracker, result);
+            return this.__P_169_2(tracker, result);
           }
 
           tracker.result = result;
@@ -205,16 +205,16 @@
        * @param newPromise {qx.Promise} the new promise
        * @return {qx.Promise} the new promise
        */
-      __P_172_2: function __P_172_2(tracker, newPromise) {
+      __P_169_2: function __P_169_2(tracker, newPromise) {
         if (tracker.promise) {
-          this.__P_172_0(tracker, tracker.promise.then(function () {
+          this.__P_169_0(tracker, tracker.promise.then(function () {
             return newPromise;
           }));
         } else {
-          this.__P_172_0(tracker, newPromise);
+          this.__P_169_0(tracker, newPromise);
         }
 
-        this.__P_172_1(tracker);
+        this.__P_169_1(tracker);
 
         return tracker.promise;
       },
@@ -237,7 +237,7 @@
           throw new Error("Rejecting Event");
         }
 
-        var result = this.__P_172_3(tracker);
+        var result = this.__P_169_3(tracker);
 
         return result === undefined ? this.ABORT : result;
       },
@@ -247,10 +247,10 @@
        *
        * @param tracker {Object} the tracker object
        */
-      __P_172_1: function __P_172_1(tracker) {
+      __P_169_1: function __P_169_1(tracker) {
         if (tracker.promise && tracker["catch"]) {
           if (!tracker.promise["qx.event.Utils.hasCatcher"]) {
-            this.__P_172_0(tracker, tracker.promise["catch"](this.__P_172_3.bind(this, tracker)));
+            this.__P_169_0(tracker, tracker.promise["catch"](this.__P_169_3.bind(this, tracker)));
 
             tracker.promise["qx.event.Utils.hasCatcher"] = true;
           }
@@ -264,7 +264,7 @@
        *
        * @param tracker {Object} the tracker object
        */
-      __P_172_3: function __P_172_3(tracker, err) {
+      __P_169_3: function __P_169_3(tracker, err) {
         var fn = tracker["catch"];
 
         if (fn) {
@@ -309,7 +309,7 @@
           tracker["catch"] = fn;
         }
 
-        this.__P_172_1(tracker);
+        this.__P_169_1(tracker);
       },
 
       /**
@@ -393,4 +393,4 @@
   qx.event.Utils.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Utils.js.map?dt=1604955472525
+//# sourceMappingURL=Utils.js.map?dt=1612690399448

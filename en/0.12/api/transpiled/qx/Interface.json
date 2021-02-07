@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This class is used to define interfaces (similar to Java interfaces).\n See the description of the {@link #define} method how an interface is\n defined.</p>"
         }
       ],
@@ -51,10 +47,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PUBLIC API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Define a new interface. Interface definitions look much like class definitions.\n The main difference is that the bodies of functions defined in <code>members</code>\n and <code>statics</code> are called before the original function with the\n same arguments. This can be used to check the passed arguments. If the\n checks fail, an exception should be thrown. It is convenient to use the\n method defined in {@link qx.core.MAssert} to check the arguments.\n In the <code>build</code> version the checks are omitted.\n For properties only the names are required so the value of the properties\n can be empty maps.\n Example:\n </p>\n<pre class='javascript'>\n qx.Interface.define(\"name\",\n {\n   extend: [SuperInterfaces],\n   statics:\n   {\n     PI : 3.14\n   },\n   properties: {\"color\": {}, \"name\": {} },\n   members:\n   {\n     meth1: function() {},\n     meth2: function(a, b) { this.assertArgumentsCount(arguments, 2, 2); },\n     meth3: function(c) { this.assertInterface(c.constructor, qx.some.Interface); }\n   },\n   events :\n   {\n     keydown : \"qx.event.type.KeySequence\"\n   }\n });\n </pre>"
@@ -650,10 +642,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PRIVATE/INTERNAL API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>This method will be attached to all interface to return\n a nice identifier for them.</p>"

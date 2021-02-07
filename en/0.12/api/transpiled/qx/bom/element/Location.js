@@ -16,7 +16,9 @@
       "qx.bom.client.Engine": {
         "require": true
       },
-      "qx.bom.client.Browser": {},
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.bom.element.BoxSizing": {}
     },
     "environment": {
@@ -460,4 +462,4 @@
   qx.bom.element.Location.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Location.js.map?dt=1604955467920
+//# sourceMappingURL=Location.js.map?dt=1612690394867

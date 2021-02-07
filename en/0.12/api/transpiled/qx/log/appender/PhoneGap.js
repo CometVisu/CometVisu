@@ -17,7 +17,8 @@
         "defer": "runtime"
       },
       "qx.bom.client.PhoneGap": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       }
     },
     "environment": {
@@ -120,4 +121,4 @@
   qx.log.appender.PhoneGap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PhoneGap.js.map?dt=1604955476764
+//# sourceMappingURL=PhoneGap.js.map?dt=1612690403348

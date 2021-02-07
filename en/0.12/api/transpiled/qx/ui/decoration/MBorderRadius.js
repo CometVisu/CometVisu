@@ -9,7 +9,9 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.Engine": {}
+      "qx.bom.client.Engine": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
@@ -154,4 +156,4 @@
   qx.ui.decoration.MBorderRadius.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBorderRadius.js.map?dt=1604955481529
+//# sourceMappingURL=MBorderRadius.js.map?dt=1612690408258

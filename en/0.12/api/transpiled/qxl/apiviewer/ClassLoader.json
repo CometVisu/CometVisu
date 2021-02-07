@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 62,
+        "line": 68,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n John Spackman (johnspackman)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>Module for on demand class data loading.</p>"
@@ -46,14 +42,28 @@
       "type": "variable",
       "access": "private"
     },
-    "setBaseUri": {
+    "RESOURCEPATH": {
       "location": {
         "start": {
           "line": 30,
           "column": 4
         },
         "end": {
+          "line": 30,
+          "column": 22
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "setBaseUri": {
+      "location": {
+        "start": {
           "line": 32,
+          "column": 4
+        },
+        "end": {
+          "line": 34,
           "column": 5
         }
       },
@@ -63,11 +73,11 @@
     "getBaseUri": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 36,
           "column": 4
         },
         "end": {
-          "line": 36,
+          "line": 38,
           "column": 5
         }
       },
@@ -77,11 +87,11 @@
     "loadClassList": {
       "location": {
         "start": {
-          "line": 38,
+          "line": 40,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 50,
           "column": 5
         }
       },
@@ -91,17 +101,30 @@
     "getClassOrPackage": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 59,
+          "line": 61,
           "column": 5
         }
       },
       "type": "function",
       "access": "public"
     }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 63,
+        "column": 9
+      },
+      "end": {
+        "line": 65,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
   },
   "members": {
     "getQxOwner": {

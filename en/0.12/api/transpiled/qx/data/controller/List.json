@@ -25,10 +25,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<h2>List Controller</h2>\n<p><em>General idea</em>\n The list controller is responsible for synchronizing every list like widget\n with a data array. It does not matter if the array contains atomic values\n like strings of complete objects where one property holds the value for\n the label and another property holds the icon url. You can even use converters\n that make the label show a text corresponding to the icon, by binding both\n label and icon to the same model property and converting one of them.\n<em>Features</em></p>\n<ul>\n<li>Synchronize the model and the target</li>\n<li>Label and icon are bindable</li>\n<li>Takes care of the selection</li>\n<li>Passes on the options used by {@link qx.data.SingleValueBinding#bind}\n<em>Usage</em>\nAs model, only {@link qx.data.Array}s do work. The currently supported\ntargets are</li>\n<li>{@link qx.ui.form.SelectBox}</li>\n<li>{@link qx.ui.form.List}</li>\n<li>{@link qx.ui.form.ComboBox}\nAll the properties like model, target or any property path is bindable.\nEspecially the model is nice to bind to another selection for example.\nThe controller itself can only work if it has a model and a target set. The\nrest of the properties may be empty.\n<em>Cross reference</em></li>\n<li>If you want to bind single values, use {@link qx.data.controller.Object}</li>\n<li>If you want to bind a tree widget, use {@link qx.data.controller.Tree}</li>\n<li>If you want to bind a form widget, use {@link qx.data.controller.Form}</li>\n</ul>"
         }
       ]
@@ -48,10 +44,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -415,14 +407,7 @@
           "column": 34
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>private members</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -525,10 +510,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PUBLIC API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Updates the filter and the target. This could be used if the filter\n uses an additional parameter which changes the filter result.</p>"
           }
         ]
@@ -549,10 +530,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   APPLY METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>If a new delegate is set, it applies the stored configuration for the\n list items to the already created list items once.</p>"
@@ -981,10 +958,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   EVENT HANDLER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Event handler for the change event of the model. If the model changes,\n Only the selection needs to be changed. The change of the data will\n be done by the binding.</p>"
           }
         ]
@@ -1101,10 +1074,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   ITEM HANDLING\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Creates a ListItem and delegates the configure method if a delegate is\n set and the needed function (configureItem) is available.</p>"
           }
         ],
@@ -1216,10 +1185,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   BINDING STUFF\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Sets up the binding for the given ListItem and index.</p>"
@@ -1526,10 +1491,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   DELEGATE HELPER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Helper method for applying the delegate It checks if a configureItem\n is set end invokes the initial process to apply the given function.</p>"
           }
         ],
@@ -1708,10 +1669,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   LOOKUP STUFF\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Helper-Method which builds up the index lookup for the filter feature.\n If no filter is set, the lookup table will be a 1:1 mapping.</p>"
@@ -1917,10 +1874,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   APPLY METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Apply-method for setting a new selection array. Only the change listener\n will be removed from the old array and added to the new.</p>"
           }
         ],
@@ -1957,10 +1910,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   EVENT HANDLER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Event handler for the change of the data array holding the selection.\n If a change is in the selection array, the selection update will be\n invoked.</p>"
           }
         ]
@@ -1993,10 +1942,6 @@
       "overriddenFrom": "qx.data.controller.MSelection",
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   SELECTION\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Helper method which should be called by the classes including this\n Mixin when the target changes.</p>"
@@ -3044,13 +2989,40 @@
         "column": 4
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n  DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
+    "jsdoc": {}
+  },
+  "events": {
+    "changeSelection": {
+      "type": "event",
+      "name": "changeSelection",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This event is fired as soon as the content of the selection property changes, but\n this is not equal to the change of the selection of the widget. If the selection\n of the widget changes, the content of the array stored in the selection property\n changes. This means you have to listen to the change event of the selection array\n to get an event as soon as the user changes the selected item.\n </p>\n<pre class=\"javascript\">obj.getSelection().addListener(\"change\", listener, this);</pre>"
+          }
+        ]
+      }
+    },
+    "changeValue": {
+      "type": "event",
+      "name": "changeValue",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.data.controller.MSelection",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires after the value was modified</p>"
+          }
+        ]
+      }
     }
   },
   "descendants": []

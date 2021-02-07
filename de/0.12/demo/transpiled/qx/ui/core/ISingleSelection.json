@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christian Hagendorn (chris_schmidt)\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Each object, which should support single selection have to\n implement this interface.</p>"
         }
       ]
@@ -33,16 +29,12 @@
   "type": "interface",
   "events": {
     "changeSelection": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4
-        },
-        "end": {
-          "line": 36,
-          "column": 44
-        }
-      },
+      "type": "event",
+      "name": "changeSelection",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
       "jsdoc": {
         "@description": [
           {
@@ -50,9 +42,7 @@
             "body": "<p>Fires after the selection was modified</p>"
           }
         ]
-      },
-      "name": "changeSelection",
-      "type": "qx.event.type.Data"
+      }
     }
   },
   "members": {

@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -198,7 +195,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <div class="section" id="funktionen-zur-steuerung-des-layouts">
 <span id="layout"></span><h1>Funktionen zur Steuerung des Layouts<a class="headerlink" href="#funktionen-zur-steuerung-des-layouts" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="id1">
 <p class="first admonition-title">Zu tun</p>
 <ul class="last simple">
 <li>Unterscheidung Standardaufbau vs. 2D Seiten</li>
@@ -207,7 +204,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <p>Jedes Page-Element (=Seite der Visualisierung) wird grundsätzlich in 12 Spalten aufgeteilt. Das gilt auch bei
 Verwendung eines Navbars auf der linken oder rechten Seite. Das Page-Element nimmt in diesem Fall zwar einen
 schmaleren Bereich am Bildschirm ein, hat aber dennoch 12 Spalten.</p>
-<p>Das wichtigste Element zur Beeinflussung des Gesamtlayouts ist das Kind-Element <code class="docutils literal"><span class="pre">layout</span></code>, das in allen
+<p>Das wichtigste Element zur Beeinflussung des Gesamtlayouts ist das Kind-Element <code class="docutils literal notranslate"><span class="pre">layout</span></code>, das in allen
 sichtbaren Widgets zur Verfügung steht. Nachstehend sind am Beispiel des Line-Widgets alle Attribute aufgelistet,
 die in den nächsten Abschnitten genauer erklärt werden:</p>
 <table border="1" class="schema-table docutils">
@@ -229,8 +226,7 @@ die in den nächsten Abschnitten genauer erklärt werden:</p>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
-<dt>line</dt>
-<dd><ul class="first last simple">
+<dt>line</dt><dd><ul class="simple">
 <li>layout</li>
 </ul>
 </dd>
@@ -309,19 +305,19 @@ die in den nächsten Abschnitten genauer erklärt werden:</p>
 <div class="section" id="das-attribut-colspan">
 <h2>Das Attribut colspan<a class="headerlink" href="#das-attribut-colspan" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Mit colspan wird festgelegt, wie viele Spalten das Widget auf einem großen Display einnehmen soll. Der Defaultwert
-ist <code class="docutils literal"><span class="pre">colspan=&quot;6&quot;</span></code>, wenn keine Angabe erfolgt. Dies legt die Widgetbreite auf die Hälfte der Page-Größe fest.
+ist <code class="docutils literal notranslate"><span class="pre">colspan=&quot;6&quot;</span></code>, wenn keine Angabe erfolgt. Dies legt die Widgetbreite auf die Hälfte der Page-Größe fest.
 Somit passen 2 Widgets nebeneinander, erst dann wird die nächste Reihe mit dem nächsten Widget begonnen.</p>
 <p>Das Colspan-Attribut kann auch nicht ganzzahlige Angaben enthalten es sollte aber (aus optischen Gründen) darauf
 geachtet werden, dass die Summe der colspan-Definitionen je Reihe wieder 12 ergibt.</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id2">
 <img alt="../_images/Layout_colspan1.png" src="../_images/Layout_colspan1.png" />
-<p class="caption"><span class="caption-text">Einfache Text-Widgets mit verschiedenen colspan-Werten</span></p>
+<p class="caption"><span class="caption-text">Einfache Text-Widgets mit verschiedenen colspan-Werten</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
 </div>
-<p>Der Spezialfall <code class="docutils literal"><span class="pre">colpan</span> <span class="pre">=</span> <span class="pre">&quot;0&quot;</span></code> erzeugt ein Widget mit der Mindestbreite des Inhaltes.</p>
-<p>Für jedes Widget kann mit <code class="docutils literal"><span class="pre">colspan-m</span></code> bzw. <code class="docutils literal"><span class="pre">colspan-s</span></code> auch eine Widgetbreite für kleinere Displays angegeben werden.
+<p>Der Spezialfall <code class="docutils literal notranslate"><span class="pre">colpan</span> <span class="pre">=</span> <span class="pre">&quot;0&quot;</span></code> erzeugt ein Widget mit der Mindestbreite des Inhaltes.</p>
+<p>Für jedes Widget kann mit <code class="docutils literal notranslate"><span class="pre">colspan-m</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">colspan-s</span></code> auch eine Widgetbreite für kleinere Displays angegeben werden.
 Dies ist notwendig, da in der Praxis die Schriftgröße und die Größe der Bedienflächen (zB. Buttongröße) anders skalieren
 als die tatsächliche Displaygröße.
-Des weiteren kann mit <code class="docutils literal"><span class="pre">colspan-m</span></code> und <code class="docutils literal"><span class="pre">colspan-s</span></code> auch das Layout im Hochformat beeinflusst werden, wenn die gleiche config
+Des weiteren kann mit <code class="docutils literal notranslate"><span class="pre">colspan-m</span></code> und <code class="docutils literal notranslate"><span class="pre">colspan-s</span></code> auch das Layout im Hochformat beeinflusst werden, wenn die gleiche config
 auf meherer Devices verwendet wird oder auf einem Gerät beim Drehen des Bildschirms die Anzeige anders angeordnet werden
 soll.</p>
 <div class="admonition important">
@@ -331,7 +327,7 @@ ab,sondern von der Viewport Größe, die für jedes Gerät auf Basis der Display
 ist. Eine Übersicht liefert zB. <a class="reference external" href="viewportsizes.com">viewportsizes.com</a></p>
 </div>
 <p>Nachfolgend wird ein Beispiel gezeigt, bei dem die Widgets auf 3 Displaygrößen unterschiedlich angeordnet werden.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;text&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;text&gt;</span>
     <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">colspan-m=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan-s=</span><span class="s">&quot;12&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;label&gt;</span>Colspan 3/6/12, Rowspan 1<span class="nt">&lt;/label&gt;</span>
 <span class="nt">&lt;/text&gt;</span>
@@ -349,24 +345,24 @@ ist. Eine Übersicht liefert zB. <a class="reference external" href="viewportsiz
 <span class="nt">&lt;/text&gt;</span>
 </pre></div>
 </div>
-<div class="figure" id="id2">
+<div class="figure align-default" id="id3">
 <img alt="../_images/Layout_colspan_screensize_large.png" src="../_images/Layout_colspan_screensize_large.png" />
-<p class="caption"><span class="caption-text">Darstellung bei einer Auflösung von 1100x640</span></p>
+<p class="caption"><span class="caption-text">Darstellung bei einer Auflösung von 1100x640</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id4">
 <img alt="../_images/Layout_colspan_screensize_medium_640x400.png" src="../_images/Layout_colspan_screensize_medium_640x400.png" />
-<p class="caption"><span class="caption-text">Darstellung bei einer Auflösung von 640x400 (Smartphone im Querformat)</span></p>
+<p class="caption"><span class="caption-text">Darstellung bei einer Auflösung von 640x400 (Smartphone im Querformat)</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id5">
 <img alt="../_images/Layout_colspan_screensize_small_400x640.png" src="../_images/Layout_colspan_screensize_small_400x640.png" />
-<p class="caption"><span class="caption-text">Darstellung bei einer Auflösung von 400x640 (Smartphone im Hochformat)</span></p>
+<p class="caption"><span class="caption-text">Darstellung bei einer Auflösung von 400x640 (Smartphone im Hochformat)</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>
 <div class="section" id="das-attribut-rowspan">
 <h2>Das Attribut rowspan<a class="headerlink" href="#das-attribut-rowspan" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Mit <code class="docutils literal"><span class="pre">rowspan</span></code> wird die Anzahl der Zeilen festgelegt, die ein Widget einnimmt. Derzeit sind nur ganzzahlige Angaben für
-<code class="docutils literal"><span class="pre">rowspan</span></code> erlaubt. Für die meisten Widgets ist die Angabe von <code class="docutils literal"><span class="pre">rowspan</span></code> nicht erforderlich, da der default-Wert
-<code class="docutils literal"><span class="pre">rowspan=&quot;1&quot;</span></code> ausreichend ist.</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">rowspan</span></code> wird die Anzahl der Zeilen festgelegt, die ein Widget einnimmt. Derzeit sind nur ganzzahlige Angaben für
+<code class="docutils literal notranslate"><span class="pre">rowspan</span></code> erlaubt. Für die meisten Widgets ist die Angabe von <code class="docutils literal notranslate"><span class="pre">rowspan</span></code> nicht erforderlich, da der default-Wert
+<code class="docutils literal notranslate"><span class="pre">rowspan=&quot;1&quot;</span></code> ausreichend ist.</p>
 <p>Notwendig bzw. sinnvoll kann die Angabe bei folgenden Widgets sein:</p>
 <ul class="simple">
 <li>Image</li>
@@ -375,25 +371,25 @@ ist. Eine Übersicht liefert zB. <a class="reference external" href="viewportsiz
 <li>Diagram-plugin</li>
 <li>Group</li>
 </ul>
-<p>Im nachstehenden Beispiel erzwingt das <code class="docutils literal"><span class="pre">rowspan=&quot;5&quot;</span></code>, dass das Image-Widget gleich hoch ist, wie die fünf einzelnen
+<p>Im nachstehenden Beispiel erzwingt das <code class="docutils literal notranslate"><span class="pre">rowspan=&quot;5&quot;</span></code>, dass das Image-Widget gleich hoch ist, wie die fünf einzelnen
 Widgets auf der linken Seite.</p>
-<div class="figure" id="id5">
+<div class="figure align-default" id="id6">
 <img alt="../_images/Layout_rowspan_mitImage.png" src="../_images/Layout_rowspan_mitImage.png" />
-<p class="caption"><span class="caption-text">Image-Widget mit rowspan=&#8221;5&#8221;</span></p>
+<p class="caption"><span class="caption-text">Image-Widget mit rowspan=“5“</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>Da die Widget-Anordnung nacheinander in Reihen erfolgt, können bei Anwendung von unterschiedlichen Werten für
-<code class="docutils literal"><span class="pre">rowspan</span></code> leere Bereiche entstehen.</p>
-<div class="figure" id="id6">
+<code class="docutils literal notranslate"><span class="pre">rowspan</span></code> leere Bereiche entstehen.</p>
+<div class="figure align-default" id="id7">
 <img alt="../_images/Layout_rowspan.png" src="../_images/Layout_rowspan.png" />
-<p class="caption"><span class="caption-text">Leere Bereiche im Zusammenspiel mit dem rowspan-Element</span></p>
+<p class="caption"><span class="caption-text">Leere Bereiche im Zusammenspiel mit dem rowspan-Element</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>Abhilfe schafft in solchen Fällen die Verwendung das Group-Widget in verbindung mit dem nowidget-Attribut.</p>
-<div class="figure" id="id7">
+<div class="figure align-default" id="id8">
 <img alt="../_images/Layout_rowspan_mitGroup.png" src="../_images/Layout_rowspan_mitGroup.png" />
-<p class="caption"><span class="caption-text">Steuerung der Anordnung mit einer unsichtbaren Gruppe (Attribut <code class="docutils literal"><span class="pre">nowidget=&quot;true&quot;</span></code>)</span></p>
+<p class="caption"><span class="caption-text">Steuerung der Anordnung mit einer unsichtbaren Gruppe (Attribut <code class="docutils literal notranslate"><span class="pre">nowidget=&quot;true&quot;</span></code>)</span><a class="headerlink" href="#id8" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>Nachstehend der xml-Code für den Screenshot mit korrekter Anordnung.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;text&gt;</span>
         <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
@@ -439,7 +435,7 @@ Widgets auf der linken Seite.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -485,7 +481,7 @@ Widgets auf der linken Seite.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

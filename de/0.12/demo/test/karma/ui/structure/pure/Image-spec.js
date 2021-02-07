@@ -48,7 +48,7 @@ describe("testing a image widget", function() {
   it("should test the image creator", function () {
 
     var res = this.createTestWidgetString("image", {
-      src: '/source/resource/icon/comet_64_ff8000.png',
+      src: '/source/resource/icons/comet_64_ff8000.png',
       flavour: 'potassium'
     }, '<label>Test</label>');
 
@@ -57,7 +57,7 @@ describe("testing a image widget", function() {
     expect(widget).toHaveClass('image');
     expect(widget).toHaveLabel('Test');
     expect(res[0].getPath()).toBe("id_0");
-    expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+    expect(widget.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
     expect(widget.querySelector("img").getAttribute("style")).toBe('width:100%;');
   });
 
@@ -92,7 +92,7 @@ describe("testing the refresh caching of the image widget", function() {
 
   it("should test refreshing with full cache control", function(done) {
     var widget = this.createTestElement("image", {
-      src: '/source/resource/icon/comet_64_ff8000.png',
+      src: '/source/resource/icons/comet_64_ff8000.png',
       width: '50%',
       height: '51%',
       refresh: 1,
@@ -100,10 +100,10 @@ describe("testing the refresh caching of the image widget", function() {
     });
     this.initWidget(widget);
     var domElement = widget.getDomElement();
-    expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+    expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
 
     qx.event.Timer.once(function() {
-      expect(domElement.querySelector("img").getAttribute("src")).toMatch(/^\/source\/resource\/icon\/comet_64_ff8000.png\?/);
+      expect(domElement.querySelector("img").getAttribute("src")).toMatch(/^\/source\/resource\/icons\/comet_64_ff8000.png\?/);
 
       // cleanup
       widget.dispose();
@@ -113,7 +113,7 @@ describe("testing the refresh caching of the image widget", function() {
 
   it("should test refreshing with weak cache control", function(done) {
     var widget = this.createTestElement("image", {
-      src: '/source/resource/icon/comet_64_ff8000.png',
+      src: '/source/resource/icons/comet_64_ff8000.png',
       width: '50%',
       height: '51%',
       refresh: 1,
@@ -121,11 +121,11 @@ describe("testing the refresh caching of the image widget", function() {
     });
     this.initWidget(widget);
     var domElement = widget.getDomElement();
-    expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+    expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
     widget.setVisible(true);
 
     qx.event.Timer.once(function() {
-      expect(domElement.querySelector("img").getAttribute("src")).toMatch(/^\/source\/resource\/icon\/comet_64_ff8000.png#/);
+      expect(domElement.querySelector("img").getAttribute("src")).toMatch(/^\/source\/resource\/icons\/comet_64_ff8000.png#/);
 
       // cleanup
       widget.dispose();
@@ -135,7 +135,7 @@ describe("testing the refresh caching of the image widget", function() {
 
   it("should test refreshing with no cache control", function(done) {
     var widget = this.createTestElement("image", {
-      src: '/source/resource/icon/comet_64_ff8000.png',
+      src: '/source/resource/icons/comet_64_ff8000.png',
       width: '50%',
       height: '51%',
       refresh: 1,
@@ -143,10 +143,10 @@ describe("testing the refresh caching of the image widget", function() {
     });
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
     var domElement = widget.getDomElement();
-    expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+    expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
 
     qx.event.Timer.once(function() {
-      expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+      expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
 
       // cleanup
       widget.dispose();
@@ -156,7 +156,7 @@ describe("testing the refresh caching of the image widget", function() {
 
   it("should test refreshing with no cache control and long refresh time", function(done) {
     var widget = this.createTestElement("image", {
-      src: '/source/resource/icon/comet_64_ff8000.png',
+      src: '/source/resource/icons/comet_64_ff8000.png',
       width: '50%',
       height: '51%',
       refresh: 10,
@@ -164,10 +164,10 @@ describe("testing the refresh caching of the image widget", function() {
     });
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
     var domElement = widget.getDomElement();
-    expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+    expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
 
     qx.event.Timer.once(function() {
-      expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+      expect(domElement.querySelector("img").getAttribute("src")).toBe('/source/resource/icons/comet_64_ff8000.png');
 
       // cleanup
       widget.dispose();

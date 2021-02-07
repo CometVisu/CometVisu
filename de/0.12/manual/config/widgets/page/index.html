@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -217,7 +214,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 enthalten. Die Seiten dienen dazu die Widgets inhaltlich zusammenzufassen. So kann man z.B. für jeden Raum eine
 Seite hinzufügen und dort alle Widgets einfügen, die in diesem Raum vorhanden sind (z.B. alle Lampen, Steckdosen,
 Jalousien und sonstigen Informations- und Bedienungsmöglichkeiten innerhalb dieses Raumes.</p>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="id1">
 <p class="first admonition-title">Zu tun</p>
 <p class="last">Weitere Erklärungen zum Page-Widget, ggf. Beispiele (aus der Metal-Demo?)</p>
 </div>
@@ -229,7 +226,7 @@ Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden:
 <p>Das Verhalten und Aussehen des Page-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
 beides über den <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
-<p>Nur die mit ..... unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+<p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
 <div class="section" id="erlaubte-attribute-im-page-element">
 <h3>Erlaubte Attribute im Page-Element<a class="headerlink" href="#erlaubte-attribute-im-page-element" title="Link zu dieser Überschrift">¶</a></h3>
@@ -244,7 +241,7 @@ daher weg gelassen werden.</p>
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="4">Attribut</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Inhalt</th>
 <th class="head">Beschreibung</th>
@@ -262,11 +259,11 @@ daher weg gelassen werden.</p>
 </tr>
 <tr class="row-odd"><td>align</td>
 <td><em>left</em>, <em>right</em> oder <em>center</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>ga</td>
 <td>GA/Itemname</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>visible</td>
 <td><em>true</em> oder <em>false</em></td>
@@ -274,19 +271,19 @@ daher weg gelassen werden.</p>
 </tr>
 <tr class="row-even"><td>type</td>
 <td><em>text</em>, <em>2d</em> oder <em>3d</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>size</td>
 <td><em>fixed</em>, <em>scaled</em> oder <em>contained</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>backdropalign</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>backdrop</td>
 <td>URL</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>showtopnavigation</td>
 <td><em>true</em> oder <em>false</em></td>
@@ -318,9 +315,9 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id3">
 <img alt="../../../_images/de_config_widgets_page_index_editor_attributes.png" src="../../../_images/de_config_widgets_page_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id2">[1]</a></span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>
 <div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
@@ -329,7 +326,7 @@ daher weg gelassen werden.</p>
 </div>
 <div class="section" id="erklarung-zu-den-menubezeichnungen">
 <h3>Erklärung zu den Menübezeichnungen<a class="headerlink" href="#erklarung-zu-den-menubezeichnungen" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference external image-reference" href="../../../_images/menu_expl_page.png"><img alt="Menübezeichnungen" src="../../../_images/menu_expl_page.png" /></a>
 </div>
 </div>
@@ -337,7 +334,7 @@ daher weg gelassen werden.</p>
 <div class="section" id="xml-syntax">
 <h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Hier der Beispielcode der die Page mit den oben gezeigten Eigenschaften einfügt:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Testseite&quot;</span> <span class="na">visible=</span><span class="s">&quot;true&quot;</span> <span class="na">showtopnavigation=</span><span class="s">&quot;true&quot;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Testseite&quot;</span> <span class="na">visible=</span><span class="s">&quot;true&quot;</span> <span class="na">showtopnavigation=</span><span class="s">&quot;true&quot;</span>
         <span class="na">showfooter=</span><span class="s">&quot;true&quot;</span> <span class="na">shownavbar-top=</span><span class="s">&quot;true&quot;</span> <span class="na">shownavbar-bottom=</span><span class="s">&quot;false&quot;</span>
         <span class="na">shownavbar-left=</span><span class="s">&quot;false&quot;</span> <span class="na">shownavbar-right=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
 ....
@@ -348,7 +345,7 @@ daher weg gelassen werden.</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
 </tbody>
 </table>
 </div>
@@ -376,7 +373,7 @@ daher weg gelassen werden.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -422,7 +419,7 @@ daher weg gelassen werden.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

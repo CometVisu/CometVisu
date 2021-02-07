@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Form interface for all form widgets which are executable in some way. This\n could be a button for example.</p>"
         }
       ]
@@ -33,16 +29,12 @@
   "type": "interface",
   "events": {
     "execute": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4
-        },
-        "end": {
-          "line": 37,
-          "column": 36
-        }
-      },
+      "type": "event",
+      "name": "execute",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
       "jsdoc": {
         "@description": [
           {
@@ -50,9 +42,7 @@
             "body": "<p>Fired when the widget is executed. Sets the \"data\" property of the\n event to the object that issued the command.</p>"
           }
         ]
-      },
-      "name": "execute",
-      "type": "qx.event.type.Data"
+      }
     }
   },
   "members": {
@@ -69,10 +59,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  COMMAND PROPERTY\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Set the command of this executable.</p>"

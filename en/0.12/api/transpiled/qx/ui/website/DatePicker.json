@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2014 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Alexander Steitz (aback)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This is a date picker widget used to combine an input element with a calendar widget\n to select a date. The calendar itself is opened as popup to save visual space.\n </p>\n<h2>Markup</h2>\n<p>Each Date Picker widget is connected to an existing input element.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-datepicker</code></td>\n       <td>Input element</td>\n       <td>Identifies the date picker widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-datepicker-icon</code></td>\n       <td>Icon element</td>\n       <td>Identifies the (if configured) image element to open the date picker</td>\n     </tr>\n   </tbody>\n </table>"
         }
       ],
@@ -237,10 +233,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>overridden</p>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Initializes the date picker widget</p>"
           }
         ],
@@ -280,14 +272,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.website.Widget",
@@ -306,14 +291,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.website.Widget",
@@ -549,14 +527,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.website.Widget",

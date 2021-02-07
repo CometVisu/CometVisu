@@ -21,16 +21,13 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christopher Zuendorf (czuendorf)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>The Radio button group for mobile usage.\n<em>Example</em>\n </p>\n<pre class='javascript'>\n    var form = new qx.ui.mobile.form.Form();\n    var radio1 = new qx.ui.mobile.form.RadioButton();\n    var radio2 = new qx.ui.mobile.form.RadioButton();\n    var radio3 = new qx.ui.mobile.form.RadioButton();\n    var radiogroup = new qx.ui.mobile.form.RadioGroup(radio1, radio2, radio3);\n    form.add(radio1, \"Germany\");\n    form.add(radio2, \"UK\");\n    form.add(radio3, \"USA\");\n    this.getRoot.add(new qx.ui.mobile.form.renderer.Single(form));\n </pre>"
         }
       ]
     }
   },
   "type": "class",
+  "events": {},
   "members": {
     "setEnabled": {
       "type": "function",

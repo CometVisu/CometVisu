@@ -1,0 +1,53 @@
+{
+  "className": "qx.theme.iconfont.LoadMaterialIcons",
+  "packageName": "qx.theme.iconfont",
+  "name": "LoadMaterialIcons",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 28,
+        "column": 59
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A dummy class to trigger the compiler to copy the MaterialIcons font files</p>"
+        },
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialicons-v70.ttf"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialicons-v70.woff2"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialicons-v70.woff"
+        },
+        {
+          "name": "@asset",
+          "body": "qx/iconfont/MaterialIcons/materialicons-v70.eot"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "descendants": []
+}

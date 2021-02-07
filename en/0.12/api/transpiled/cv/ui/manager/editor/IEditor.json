@@ -29,18 +29,34 @@
   "type": "interface",
   "properties": {
     "file": {
-      "type": "property",
+      "location": {
+        "start": {
+          "line": 11,
+          "column": 4
+        },
+        "end": {
+          "line": 15,
+          "column": 5
+        }
+      },
       "name": "file",
-      "abstract": true,
-      "mixin": false,
-      "access": "public"
+      "propertyType": "new",
+      "apply": "_loadFile",
+      "nullable": true,
+      "allowNull": true,
+      "check": "cv.ui.manager.model.FileItem"
     },
     "external": {
-      "type": "property",
-      "name": "external",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
+      "location": {
+        "start": {
+          "line": 20,
+          "column": 4
+        },
+        "end": {
+          "line": 23,
+          "column": 5
+        }
+      },
       "jsdoc": {
         "@description": [
           {
@@ -48,7 +64,12 @@
             "body": "<p>External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file</p>"
           }
         ]
-      }
+      },
+      "name": "external",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
     }
   },
   "statics": {

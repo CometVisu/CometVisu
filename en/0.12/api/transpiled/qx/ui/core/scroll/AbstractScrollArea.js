@@ -24,7 +24,8 @@
         "require": true
       },
       "qx.bom.client.Scroll": {
-        "construct": true
+        "construct": true,
+        "require": true
       },
       "qx.ui.layout.Canvas": {
         "construct": true
@@ -142,6 +143,16 @@
       appearance: {
         refine: true,
         init: "scrollarea"
+      },
+      // overridden
+      width: {
+        refine: true,
+        init: 0
+      },
+      // overridden
+      height: {
+        refine: true,
+        init: 0
       },
 
       /**
@@ -633,4 +644,4 @@
   qx.ui.core.scroll.AbstractScrollArea.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractScrollArea.js.map?dt=1604955480949
+//# sourceMappingURL=AbstractScrollArea.js.map?dt=1612690407721

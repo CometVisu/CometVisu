@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -108,7 +105,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#background">Background</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#construction">Construction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#manager">Manager</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#known-name-entries">Known <code class="docutils literal"><span class="pre">Name</span></code> Entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-name-entries">Known <code class="docutils literal notranslate"><span class="pre">Name</span></code> Entries</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
@@ -200,7 +197,7 @@ by an online translation service.</p>
 <div class="section" id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
 <p>The Hidden Configurations are configuration data that is not transferred to
-the client and stays on the server. Therefore, these are &#8220;hidden&#8221; from the
+the client and stays on the server. Therefore, these are “hidden” from the
 user, but are readable on the server itself in plain text.
 Even in the manager, this information is readable in plain text.</p>
 <p>This does not create a secure environment for itself. However, this can
@@ -217,13 +214,13 @@ hidden configuration is described in their respective documentation.</p>
 </div>
 <div class="section" id="construction">
 <h2>Construction<a class="headerlink" href="#construction" title="Permalink to this headline">¶</a></h2>
-<p>The hidden configurations are stored in the file <code class="docutils literal"><span class="pre">config/hidden.php</span></code>.
+<p>The hidden configurations are stored in the file <code class="docutils literal notranslate"><span class="pre">config/hidden.php</span></code>.
 This file can be edited via a normal text editor as well as via the
 <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a>.</p>
 <p>The content consists of several entries containing a <em>name</em> with several
 <em>key</em> and <em>value</em> pairs. In the file itself, this information is
 stored as a PHP array:</p>
-<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="c1">// File for configurations that shouldn&#39;t be shared with the user</span>
 <span class="nv">$hidden</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
   <span class="s1">&#39;fritzbox&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;uri&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://192.168.0.1:49443/&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CometVisuTestUser&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;pa3bvNM4j9z4&#39;</span><span class="p">)</span>
@@ -237,13 +234,13 @@ stored as a PHP array:</p>
 <h2>Manager<a class="headerlink" href="#manager" title="Permalink to this headline">¶</a></h2>
 <p>Conveniently, the content of the hidden configuration can
 be edited via the <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a>.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/hidden_config_de.png" src="../_images/hidden_config_de.png" />
 </div>
 </div>
 <div class="section" id="known-name-entries">
-<h2>Known <code class="docutils literal"><span class="pre">Name</span></code> Entries<a class="headerlink" href="#known-name-entries" title="Permalink to this headline">¶</a></h2>
-<p>Even if the choice for the <code class="docutils literal"><span class="pre">name</span></code> is basically free, there are
+<h2>Known <code class="docutils literal notranslate"><span class="pre">Name</span></code> Entries<a class="headerlink" href="#known-name-entries" title="Permalink to this headline">¶</a></h2>
+<p>Even if the choice for the <code class="docutils literal notranslate"><span class="pre">name</span></code> is basically free, there are
 usual entries for it, which are recommended to be used. Thus, some
 widgets or plug-ins without an explicit configuration can look in the usual
 name for entries, which can reduce the configuration effort.</p>
@@ -262,7 +259,7 @@ name for entries, which can reduce the configuration effort.</p>
 <tbody valign="top">
 <tr class="row-even"><td>fritzbox</td>
 <td><a class="reference internal" href="widgets/plugins/tr064/index.html#tr064"><span class="std std-ref">The tr064 Plugin</span></a></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>influx</td>
 <td><a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">The diagram plugin</span></a></td>
@@ -295,7 +292,7 @@ name for entries, which can reduce the configuration effort.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -341,7 +338,7 @@ name for entries, which can reduce the configuration effort.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

@@ -11,6 +11,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "construct": true,
         "require": true
       },
+      "cv.io.IClient": {
+        "require": true
+      },
       "cv.io.transport.LongPolling": {},
       "cv.io.transport.Sse": {},
       "qx.util.ResponseParser": {},
@@ -55,6 +58,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    */
   qx.Class.define('cv.io.Client', {
     extend: qx.core.Object,
+    implement: cv.io.IClient,
 
     /*
      ******************************************************
@@ -269,11 +273,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // current session ID
       loginSettings: null,
       headers: null,
-      __P_478_0: null,
+      __P_474_0: null,
       // property apply
       _applyConnected: function _applyConnected(value) {
         if (value === true) {
-          this.__P_478_0 = null;
+          this.__P_474_0 = null;
         }
       },
       setInitialAddresses: function setInitialAddresses(addresses) {
@@ -350,17 +354,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         }
       },
-
-      /* return the relative path to a resource on the currently used backend
-       *
-       *
-       *
-       * @param name
-       *          {String} Name of the resource (e.g. login, read, write, rrd)
-       * @return {String} relative path to the resource
-       */
-      getResourcePath: function getResourcePath(name) {
-        return this.backend.baseURL + this.backend.resources[name];
+      getResourcePath: function getResourcePath(name, map) {
+        return this.backend.resources.hasOwnProperty(name) ? this.backend.baseURL + this.backend.resources[name] : null;
+      },
+      hasCustomChartsDataProcessor: function hasCustomChartsDataProcessor() {
+        return false;
+      },
+      processChartsData: function processChartsData(data) {
+        return data;
       },
 
       /**
@@ -398,11 +399,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param loginOnly {Boolean} if true only login and backend configuration, no subscription
        *                            to addresses (default: false)
+       * @param credentials {Map?} not used in this client
        * @param callback {Function} call this function when login is done
        * @param context {Object} context for the callback (this)
        *
        */
-      login: function login(loginOnly, callback, context) {
+      login: function login(loginOnly, credentials, callback, context) {
         if (!this.loginSettings.loggedIn) {
           this.loginSettings.loginOnly = !!loginOnly;
           this.loginSettings.callbackAfterLoggedIn = callback;
@@ -422,7 +424,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
 
           this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath("login"), request, this.handleLogin, this);
-        } else if (this.loginSettings.callbackAfterLoggedIn) {
+        } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
           // call callback immediately
           this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
           this.loginSettings.callbackAfterLoggedIn = null;
@@ -543,7 +545,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return; // ignore error when already handled
         }
 
-        this.__P_478_0 = {
+        this.__P_474_0 = {
           code: req.getStatus(),
           text: req.getStatusText(),
           response: req.getResponse(),
@@ -560,7 +562,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}
        */
       getLastError: function getLastError() {
-        return this.__P_478_0;
+        return this.__P_474_0;
       },
 
       /**
@@ -597,7 +599,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         this.loginSettings.loggedIn = true;
 
-        if (this.loginSettings.callbackAfterLoggedIn) {
+        if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
           this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
           this.loginSettings.callbackAfterLoggedIn = null;
           this.loginSettings.context = null;
@@ -675,6 +677,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           accept: "application/json, text/javascript, */*; q=0.01"
         });
       },
+      // this client does not implement an authorization
+      authorize: function authorize(req) {},
 
       /**
        * Restart the connection
@@ -699,8 +703,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param message {String} detailed error message
        * @param args
        */
-      showError: function showError(type, message, args) {} // jshint ignore:line
-
+      showError: function showError(type, message, args) {},
+      // jshint ignore:line
+      hasProvider: function hasProvider(name) {
+        return false;
+      },
+      getProviderUrl: function getProviderUrl(name) {
+        return null;
+      },
+      getProviderConvertFunction: function getProviderConvertFunction(name) {
+        return null;
+      }
     },
 
     /*
@@ -715,4 +728,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1604955494442
+//# sourceMappingURL=Client.js.map?dt=1612690420137

@@ -16,8 +16,12 @@
       "qx.ui.core.MNativeOverflow": {
         "require": true
       },
-      "qx.bom.client.Engine": {},
-      "qx.bom.client.Browser": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.theme.manager.Font": {},
       "qx.bom.Font": {},
       "qx.theme.manager.Color": {}
@@ -214,4 +218,4 @@
   qx.ui.embed.Html.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Html.js.map?dt=1604955481831
+//# sourceMappingURL=Html.js.map?dt=1612690408517

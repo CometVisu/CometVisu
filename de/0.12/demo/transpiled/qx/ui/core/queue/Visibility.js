@@ -36,13 +36,13 @@
   qx.Class.define("qx.ui.core.queue.Visibility", {
     statics: {
       /** @type {Array} This contains all the queued widgets for the next flush. */
-      __P_204_0: [],
+      __P_206_0: [],
 
       /** @type {Map} map of widgets by hash code which are in the queue */
-      __P_204_1: {},
+      __P_206_1: {},
 
       /** @type {Map} Maps hash codes to visibility */
-      __P_204_2: {},
+      __P_206_2: {},
 
       /**
        * Clears the cached data of the given widget. Normally only used
@@ -51,12 +51,12 @@
        * @param widget {qx.ui.core.Widget} The widget to clear
        */
       remove: function remove(widget) {
-        if (this.__P_204_1[widget.toHashCode()]) {
-          delete this.__P_204_1[widget.toHashCode()];
-          qx.lang.Array.remove(this.__P_204_0, widget);
+        if (this.__P_206_1[widget.toHashCode()]) {
+          delete this.__P_206_1[widget.toHashCode()];
+          qx.lang.Array.remove(this.__P_206_0, widget);
         }
 
-        delete this.__P_204_2[widget.toHashCode()];
+        delete this.__P_206_2[widget.toHashCode()];
       },
 
       /**
@@ -69,7 +69,7 @@
        * @return {Boolean} Whether the widget is visible
        */
       isVisible: function isVisible(widget) {
-        return this.__P_204_2[widget.toHashCode()] || false;
+        return this.__P_206_2[widget.toHashCode()] || false;
       },
 
       /**
@@ -78,8 +78,8 @@
        * @param widget {qx.ui.core.Widget} The widget to update
        * @return {Boolean} Whether the widget is visible
        */
-      __P_204_3: function __P_204_3(widget) {
-        var data = this.__P_204_2;
+      __P_206_3: function __P_206_3(widget) {
+        var data = this.__P_206_2;
         var hash = widget.toHashCode();
         var visible; // Respect local value
 
@@ -90,7 +90,7 @@
           var parent = widget.$$parent;
 
           if (parent) {
-            visible = this.__P_204_3(parent);
+            visible = this.__P_206_3(parent);
           } else {
             visible = widget.isRootWidget();
           }
@@ -107,13 +107,13 @@
        * @param widget {qx.ui.core.Widget} The widget to add.
        */
       add: function add(widget) {
-        if (this.__P_204_1[widget.toHashCode()]) {
+        if (this.__P_206_1[widget.toHashCode()]) {
           return;
         }
 
-        this.__P_204_0.unshift(widget);
+        this.__P_206_0.unshift(widget);
 
-        this.__P_204_1[widget.toHashCode()] = widget;
+        this.__P_206_1[widget.toHashCode()] = widget;
         qx.ui.core.queue.Manager.scheduleFlush("visibility");
       },
 
@@ -124,8 +124,8 @@
        */
       flush: function flush() {
         // Dispose all registered objects
-        var queue = this.__P_204_0;
-        var data = this.__P_204_2; // Dynamically add children to queue
+        var queue = this.__P_206_0;
+        var data = this.__P_206_2; // Dynamically add children to queue
         // Only respect already known widgets because otherwise the children
         // are also already in the queue (added on their own)
 
@@ -158,7 +158,7 @@
           queue.splice(i, 1); // Only update when not already updated by another widget
 
           if (data[hash] == null) {
-            this.__P_204_3(widget);
+            this.__P_206_3(widget);
           } // Check for updates required to the appearance.
           // Hint: Invisible widgets are ignored inside appearance flush
 
@@ -169,12 +169,12 @@
         } // Recreate the array is cheaper compared to keep a sparse array over time
 
 
-        this.__P_204_0 = [];
-        this.__P_204_1 = {};
+        this.__P_206_0 = [];
+        this.__P_206_1 = {};
       }
     }
   });
   qx.ui.core.queue.Visibility.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Visibility.js.map?dt=1604956081624
+//# sourceMappingURL=Visibility.js.map?dt=1612691015380

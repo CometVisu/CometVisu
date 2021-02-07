@@ -309,12 +309,27 @@
        * @param force {Boolean} Update even when the cache is still valid
        * @param callback {Function} call when the data has arrived
        */
-      lookupTsCache: function lookupTsCache(ts, start, end, res, refresh, force, callback, callbackParameter) {
-        var url = ('influx' === ts.tsType ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src : cv.TemplateEngine.getInstance().visu.getResourcePath('rrd') + '?rrd=' + encodeURIComponent(ts.src) + '.rrd') + '&ds=' + encodeURIComponent(ts.cFunc) // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
-        //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
-        + '&start=' + ('rrd' === ts.tsType ? start : encodeURIComponent(start)) + '&end=' + ('rrd' === ts.tsType ? end : encodeURIComponent(end)) + '&res=' + encodeURIComponent(res) + (ts.fillTs ? '&fill=' + encodeURIComponent(ts.fillTs) : '') + (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '') + (ts.field ? '&field=' + encodeURIComponent(ts.field) : '') + (ts.authentication ? '&auth=' + encodeURIComponent(ts.authentication) : ''),
-            key = url + ('rrd' === ts.tsType ? '|' + ts.dsIndex : ''),
-            urlNotInCache = !(key in this.cache),
+      lookupTsCache: function lookupTsCache(ts, start, end, res, forceNowDatapoint, refresh, force, callback, callbackParameter) {
+        var client = cv.TemplateEngine.getInstance().visu;
+        var key, url;
+        var chartsResource = client.getResourcePath('charts', {
+          src: ts.src,
+          start: start,
+          end: end
+        });
+
+        if (ts.tsType !== 'influx' && chartsResource !== null) {
+          // the backend provides an charts resource that must be processed differently (e.g. openHABs persistence data
+          url = chartsResource;
+          key = url;
+        } else {
+          url = ('influx' === ts.tsType ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src : client.getResourcePath('rrd') + '?rrd=' + encodeURIComponent(ts.src) + '.rrd') + '&ds=' + encodeURIComponent(ts.cFunc) // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
+          //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
+          + '&start=' + ('rrd' === ts.tsType ? start : encodeURIComponent(start)) + '&end=' + ('rrd' === ts.tsType ? end : encodeURIComponent(end)) + '&res=' + encodeURIComponent(res) + (ts.fillTs ? '&fill=' + encodeURIComponent(ts.fillTs) : '') + (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '') + (ts.field ? '&field=' + encodeURIComponent(ts.field) : '') + (ts.authentication ? '&auth=' + encodeURIComponent(ts.authentication) : '');
+          key = url + ('rrd' === ts.tsType ? '|' + ts.dsIndex : '');
+        }
+
+        var urlNotInCache = !(key in this.cache),
             doLoad = force || urlNotInCache || !('data' in this.cache[key]) || refresh !== undefined && Date.now() - this.cache[key].timestamp > refresh * 1000;
 
         if (doLoad) {
@@ -332,15 +347,15 @@
             }
 
             var xhr = new qx.io.request.Xhr(url);
-            var self = this;
+            client.authorize(xhr);
             xhr.set({
               accept: "application/json"
             });
             xhr.addListener("success", function (ev) {
-              self._onSuccess(ts, key, ev);
+              this._onSuccess(ts, key, ev, forceNowDatapoint);
             }, this);
             xhr.addListener("statusError", function (ev) {
-              self._onStatusError(ts, key, ev);
+              this._onStatusError(ts, key, ev);
             }, this);
             this.cache[key].xhr = xhr;
             xhr.send();
@@ -349,23 +364,38 @@
           callback(this.cache[key].data, callbackParameter);
         }
       },
-      _onSuccess: function _onSuccess(ts, key, ev) {
+      _onSuccess: function _onSuccess(ts, key, ev, forceNowDatapoint) {
         var tsdata = ev.getTarget().getResponse();
 
         if (tsdata !== null) {
-          // calculate timestamp offset and scaling
-          var millisOffset = ts.offset ? ts.offset * 1000 : 0;
-          var newRrd = new Array(tsdata.length);
+          var client = cv.TemplateEngine.getInstance().visu;
 
-          for (var j = 0, l = tsdata.length; j < l; j++) {
-            if (ts.tsType === 'rrd') newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling];else newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1]) * ts.scaling];
+          if (client.hasCustomChartsDataProcessor(tsdata)) {
+            tsdata = client.processChartsData(tsdata);
+          } else {
+            // calculate timestamp offset and scaling
+            var millisOffset = ts.offset ? ts.offset * 1000 : 0;
+            var newRrd = new Array(tsdata.length);
+
+            for (var j = 0, l = tsdata.length; j < l; j++) {
+              if (ts.tsType === 'rrd') newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling];else newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1]) * ts.scaling];
+            }
+
+            tsdata = newRrd;
           }
+        }
 
-          tsdata = newRrd;
+        var now = Date.now();
+
+        if (forceNowDatapoint) {
+          var last = Array.from(tsdata[tsdata.length - 1]); // force copy
+
+          last[0] = now;
+          tsdata.push(last);
         }
 
         this.cache[key].data = tsdata;
-        this.cache[key].timestamp = Date.now();
+        this.cache[key].timestamp = now;
         this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
           waitingCallback[0](tsdata, waitingCallback[1]);
         }, this);
@@ -413,6 +443,10 @@
       seriesResolution: {
         check: "Number",
         init: 300
+      },
+      forceNowDatapoint: {
+        check: "Boolean",
+        init: true
       },
       period: {
         check: "Number",
@@ -817,9 +851,10 @@
         var tsSuccessful = 0; // get all time series data
 
         this.getContent().ts.forEach(function (ts, index) {
-          var res = ts.resol ? ts.resol : series.res,
+          var res = isNaN(ts.resol) ? series.res : ts.resol,
+              forceNowDatapoint = this.getForceNowDatapoint(),
               refresh = this.getRefresh() ? this.getRefresh() : res;
-          cv.plugins.diagram.AbstractDiagram.lookupTsCache(ts, series.start, series.end, res, refresh, forceReload, function (tsdata) {
+          cv.plugins.diagram.AbstractDiagram.lookupTsCache(ts, series.start, series.end, res, forceNowDatapoint, refresh, forceReload, function (tsdata) {
             tsloaded++;
 
             if (tsdata !== null) {
@@ -901,4 +936,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1604955459663
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1612690386595

@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 404,
+        "line": 436,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>The main purpose of this class to hold all checks about ECMAScript.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
@@ -770,7 +766,7 @@
       "type": "function",
       "access": "public"
     },
-    "getDateNow": {
+    "getObjectAssign": {
       "location": {
         "start": {
           "line": 256,
@@ -778,6 +774,42 @@
         },
         "end": {
           "line": 258,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'assign' is supported on the Object object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDateNow": {
+      "location": {
+        "start": {
+          "line": 265,
+          "column": 4
+        },
+        "end": {
+          "line": 267,
           "column": 5
         }
       },
@@ -809,11 +841,11 @@
     "getDateParse": {
       "location": {
         "start": {
-          "line": 270,
+          "line": 279,
           "column": 4
         },
         "end": {
-          "line": 275,
+          "line": 284,
           "column": 5
         }
       },
@@ -845,11 +877,11 @@
     "getStringStartsWith": {
       "location": {
         "start": {
-          "line": 283,
+          "line": 292,
           "column": 4
         },
         "end": {
-          "line": 285,
+          "line": 294,
           "column": 5
         }
       },
@@ -881,11 +913,11 @@
     "getStringEndsWith": {
       "location": {
         "start": {
-          "line": 293,
+          "line": 302,
           "column": 4
         },
         "end": {
-          "line": 295,
+          "line": 304,
           "column": 5
         }
       },
@@ -917,11 +949,11 @@
     "getStringTrim": {
       "location": {
         "start": {
-          "line": 303,
+          "line": 312,
           "column": 4
         },
         "end": {
-          "line": 305,
+          "line": 314,
           "column": 5
         }
       },
@@ -950,14 +982,86 @@
       "type": "function",
       "access": "public"
     },
-    "getBigInt": {
+    "getStringCodePointAt": {
       "location": {
         "start": {
-          "line": 314,
+          "line": 322,
           "column": 4
         },
         "end": {
-          "line": 316,
+          "line": 324,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'codePointAt' is supported on the String object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getStringFromCodePoint": {
+      "location": {
+        "start": {
+          "line": 332,
+          "column": 4
+        },
+        "end": {
+          "line": 334,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'fromCodePoint' is supported on the String object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "Boolean",
+            "description": " <code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getBigInt": {
+      "location": {
+        "start": {
+          "line": 343,
+          "column": 4
+        },
+        "end": {
+          "line": 345,
           "column": 5
         }
       },
@@ -995,11 +1099,11 @@
     "getBigIntToLocaleString": {
       "location": {
         "start": {
-          "line": 328,
+          "line": 357,
           "column": 4
         },
         "end": {
-          "line": 333,
+          "line": 362,
           "column": 5
         }
       },
@@ -1041,11 +1145,11 @@
     "getPromiseNative": {
       "location": {
         "start": {
-          "line": 339,
+          "line": 368,
           "column": 4
         },
         "end": {
-          "line": 341,
+          "line": 370,
           "column": 5
         }
       },
@@ -1063,11 +1167,11 @@
     "getEpsilon": {
       "location": {
         "start": {
-          "line": 346,
+          "line": 375,
           "column": 4
         },
         "end": {
-          "line": 348,
+          "line": 377,
           "column": 5
         }
       },
@@ -1086,11 +1190,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 352,
+        "line": 381,
         "column": 10
       },
       "end": {
-        "line": 403,
+        "line": 435,
         "column": 3
       }
     },

@@ -41,10 +41,10 @@
     extend: qxl.apiviewer.dao.Node,
 
     /**
-    * @param classDocNode {Map} class documentation node
-    * @param parentClass {qxl.apiviewer.dao.Class} reference to the class this item belongs to
-    * @param name {String} name of the list in the JSON structure of the class
-    */
+     * @param meta
+     * @param parentClass {qxl.apiviewer.dao.Class} reference to the class this item belongs to
+     * @param name {String} name of the list in the JSON structure of the class
+     */
     construct: function construct(meta, parentClass, name) {
       qxl.apiviewer.dao.Node.constructor.call(this, meta);
       this._class = parentClass;
@@ -173,4 +173,4 @@
   qxl.apiviewer.dao.ClassItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassItem.js.map?dt=1604955499022
+//# sourceMappingURL=ClassItem.js.map?dt=1612690424941

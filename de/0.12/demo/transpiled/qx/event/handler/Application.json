@@ -16,16 +16,12 @@
         "column": 0
       },
       "end": {
-        "line": 410,
+        "line": 412,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>This handler provides events for qooxdoo application startup/shutdown logic.\n NOTE: Instances of this class must be disposed of after use</p>"
@@ -53,10 +49,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": "<p>Create a new instance</p>"
@@ -255,18 +247,7 @@
           "column": 46
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT HANDLER INTERFACE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>interface implementation</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.event.IEventHandler",
@@ -285,14 +266,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>interface implementation</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.event.IEventHandler",
@@ -311,14 +285,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>interface implementation</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.event.IEventHandler",
@@ -409,10 +376,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  USER ACCESS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Fires a global ready event.</p>"
@@ -511,16 +474,12 @@
           "column": 4
         },
         "end": {
-          "line": 302,
+          "line": 304,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  OBSERVER INIT/STOP\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Initializes the native application event listeners.</p>"
@@ -533,11 +492,11 @@
     "_stopObserver": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 311,
           "column": 4
         },
         "end": {
-          "line": 318,
+          "line": 320,
           "column": 5
         }
       },
@@ -555,20 +514,16 @@
     "_onNativeLoad": {
       "location": {
         "start": {
-          "line": 333,
+          "line": 335,
           "column": 4
         },
         "end": {
-          "line": 339,
+          "line": 341,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  NATIVE LISTENER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>When qx.globalErrorHandling is enabled the callback will observed</p>"
@@ -581,11 +536,11 @@
     "__onNativeLoadHandler": {
       "location": {
         "start": {
-          "line": 345,
+          "line": 347,
           "column": 4
         },
         "end": {
-          "line": 348,
+          "line": 350,
           "column": 5
         }
       },
@@ -603,11 +558,11 @@
     "_onNativeUnload": {
       "location": {
         "start": {
-          "line": 354,
+          "line": 356,
           "column": 4
         },
         "end": {
-          "line": 360,
+          "line": 362,
           "column": 5
         }
       },
@@ -625,11 +580,11 @@
     "__onNativeUnloadHandler": {
       "location": {
         "start": {
-          "line": 366,
+          "line": 368,
           "column": 4
         },
         "end": {
-          "line": 379,
+          "line": 381,
           "column": 5
         }
       },
@@ -784,42 +739,28 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 392,
+        "line": 394,
         "column": 13
       },
       "end": {
-        "line": 396,
+        "line": 398,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "defer": {
     "location": {
       "start": {
-        "line": 407,
+        "line": 409,
         "column": 10
       },
       "end": {
-        "line": 409,
+        "line": 411,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DEFER\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

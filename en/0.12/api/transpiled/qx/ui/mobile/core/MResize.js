@@ -10,7 +10,9 @@
         "require": true
       },
       "qx.bom.element.Style": {},
-      "qx.bom.client.Scroll": {}
+      "qx.bom.client.Scroll": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
@@ -71,8 +73,8 @@
     *****************************************************************************
     */
     members: {
-      __P_345_0: null,
-      __P_345_1: null,
+      __P_342_0: null,
+      __P_342_1: null,
 
       /**
        * Removes fixed size from container.
@@ -105,13 +107,13 @@
             this._setHeight(height);
 
             this._setWidth(width);
-          } else if (this.__P_345_0 != height && this.__P_345_1 != width) {
+          } else if (this.__P_342_0 != height && this.__P_342_1 != width) {
             this._setHeight(height);
 
             this._setWidth(width);
 
-            this.__P_345_1 = width;
-            this.__P_345_0 = height;
+            this.__P_342_1 = width;
+            this.__P_342_0 = height;
 
             this._domUpdated();
           }
@@ -152,4 +154,4 @@
   qx.ui.mobile.core.MResize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MResize.js.map?dt=1604955485653
+//# sourceMappingURL=MResize.js.map?dt=1612690411888

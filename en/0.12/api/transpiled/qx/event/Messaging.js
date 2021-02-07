@@ -54,13 +54,13 @@
    */
   qx.Bootstrap.define("qx.event.Messaging", {
     construct: function construct() {
-      this._listener = {}, this.__P_169_0 = 0;
-      this.__P_169_1 = {};
+      this._listener = {}, this.__P_166_0 = 0;
+      this.__P_166_1 = {};
     },
     members: {
       _listener: null,
-      __P_169_0: null,
-      __P_169_1: null,
+      __P_166_0: null,
+      __P_166_1: null,
 
       /**
        * Adds a route handler for the given channel. The route is called
@@ -100,7 +100,7 @@
        */
       _addListener: function _addListener(channel, type, handler, scope) {
         var listeners = this._listener[channel] = this._listener[channel] || {};
-        var id = this.__P_169_0++;
+        var id = this.__P_166_0++;
         var params = [];
         var param = null; // Convert the route to a regular expression.
 
@@ -120,7 +120,7 @@
           handler: handler,
           scope: scope
         };
-        this.__P_169_1[id] = channel;
+        this.__P_166_1[id] = channel;
         return id;
       },
 
@@ -130,10 +130,10 @@
        * @param id {String} The id of the registered listener.
        */
       remove: function remove(id) {
-        var channel = this.__P_169_1[id];
+        var channel = this.__P_166_1[id];
         var listener = this._listener[channel];
         delete listener[id];
-        delete this.__P_169_1[id];
+        delete this.__P_166_1[id];
       },
 
       /**
@@ -268,4 +268,4 @@
   qx.event.Messaging.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Messaging.js.map?dt=1604955472358
+//# sourceMappingURL=Messaging.js.map?dt=1612690399323

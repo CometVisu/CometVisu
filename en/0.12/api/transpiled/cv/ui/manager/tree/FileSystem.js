@@ -249,7 +249,8 @@
             control = new qx.ui.tree.VirtualTree(null, 'name', 'children');
             control.set({
               selectionMode: 'single',
-              minWidth: 250
+              minWidth: 250,
+              showTopLevelOpenCloseIcons: true
             });
             cv.ui.manager.model.Preferences.getInstance().bind('quickPreview', control, 'openMode', {
               converter: function converter(value) {
@@ -302,4 +303,4 @@
   cv.ui.manager.tree.FileSystem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileSystem.js.map?dt=1604955462053
+//# sourceMappingURL=FileSystem.js.map?dt=1612690388795

@@ -10,16 +10,20 @@
         "require": true
       },
       "qx.bom.client.Browser": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       },
       "qx.bom.client.Engine": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       },
       "qx.bom.client.Device": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       },
       "qx.bom.client.Event": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       },
       "qxWeb": {
         "defer": "runtime"
@@ -157,4 +161,4 @@
   qx.module.Environment.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Environment.js.map?dt=1604955477015
+//# sourceMappingURL=Environment.js.map?dt=1612690403620

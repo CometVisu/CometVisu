@@ -15,8 +15,10 @@
       "qx.bom.Element": {
         "construct": true
       },
-      "qx.lang.Array": {},
-      "qx.ui.core.Widget": {}
+      "qx.ui.core.Widget": {
+        "require": true
+      },
+      "qx.lang.Array": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -56,11 +58,20 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this); // Create data structure, use an array because order matters [BUG #4323]
 
-      this.__P_330_0 = []; // Register pointerdown handler
+      this.__P_331_0 = []; // Register pointerdown handler
 
-      qx.event.Registration.addListener(document.documentElement, "pointerdown", this.__P_330_1, this, true); // Hide all popups on window blur
+      qx.event.Registration.addListener(document.documentElement, "pointerdown", this.__P_331_1, this, true); // Hide all popups on window blur
 
       qx.bom.Element.addListener(window, "blur", this.hideAll, this);
+    },
+    properties: {
+      /**
+       * Function that is used to determine if a widget is contained within another one.
+       **/
+      containsFunction: {
+        check: "Function",
+        init: qx.ui.core.Widget.contains
+      }
     },
 
     /*
@@ -69,7 +80,7 @@
     *****************************************************************************
     */
     members: {
-      __P_330_0: null,
+      __P_331_0: null,
 
       /**
        * Registers a visible popup.
@@ -77,9 +88,9 @@
        * @param obj {qx.ui.popup.Popup} The popup to register
        */
       add: function add(obj) {
-        this.__P_330_0.push(obj);
+        this.__P_331_0.push(obj);
 
-        this.__P_330_2();
+        this.__P_331_2();
       },
 
       /**
@@ -88,9 +99,9 @@
        * @param obj {qx.ui.popup.Popup} The popup which was excluded
        */
       remove: function remove(obj) {
-        qx.lang.Array.remove(this.__P_330_0, obj);
+        qx.lang.Array.remove(this.__P_331_0, obj);
 
-        this.__P_330_2();
+        this.__P_331_2();
       },
 
       /**
@@ -98,11 +109,11 @@
        * except those with {@link qx.ui.popup.Popup#autoHide} set to false.
        */
       hideAll: function hideAll() {
-        var l = this.__P_330_0.length,
+        var l = this.__P_331_0.length,
             current = {};
 
         while (l--) {
-          current = this.__P_330_0[l];
+          current = this.__P_331_0[l];
 
           if (current.getAutoHide()) {
             current.exclude();
@@ -121,11 +132,11 @@
        * newly added ones on top of existing ones
        *
        */
-      __P_330_2: function __P_330_2() {
+      __P_331_2: function __P_331_2() {
         var min = 1e7;
 
-        for (var i = 0; i < this.__P_330_0.length; i++) {
-          this.__P_330_0[i].setZIndex(min++);
+        for (var i = 0; i < this.__P_331_0.length; i++) {
+          this.__P_331_0[i].setZIndex(min++);
         }
       },
 
@@ -140,19 +151,19 @@
        *
        * @param e {qx.event.type.Pointer} Pointer event object
        */
-      __P_330_1: function __P_330_1(e) {
+      __P_331_1: function __P_331_1(e) {
         // Get the corresponding widget of the target since we are dealing with
         // DOM elements here. This is necessary because we have to be aware of
         // Inline applications which are not covering the whole document and
         // therefore are not able to get all pointer events when only the
         // application root is monitored.
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
-        var reg = this.__P_330_0;
+        var reg = this.__P_331_0;
 
         for (var i = 0; i < reg.length; i++) {
           var obj = reg[i];
 
-          if (!obj.getAutoHide() || target == obj || qx.ui.core.Widget.contains(obj, target)) {
+          if (!obj.getAutoHide() || target == obj || this.getContainsFunction()(obj, target)) {
             continue;
           }
 
@@ -167,12 +178,12 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      qx.event.Registration.removeListener(document.documentElement, "pointerdown", this.__P_330_1, this, true);
+      qx.event.Registration.removeListener(document.documentElement, "pointerdown", this.__P_331_1, this, true);
 
-      this._disposeArray("__P_330_0");
+      this._disposeArray("__P_331_0");
     }
   });
   qx.ui.popup.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1604956090663
+//# sourceMappingURL=Manager.js.map?dt=1612691024758

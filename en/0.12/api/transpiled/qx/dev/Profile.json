@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>qooxdoo profiler.\n All functions of qooxdoo classes (constructors, members, statics) can be profiled\n using this class.\n To enable profiling this class must be loaded <b>before</b> <code>qx.Class</code> is\n loaded. This can be achieved by making <code>qx.core.Aspect</code> and\n <code>qx.dev.Profile</code> a load time dependency of <code>qx.Class</code>.\n Further more the variant <code>qx.aspects</code> must be set to <code>on</code>.</p>"
         }
       ]

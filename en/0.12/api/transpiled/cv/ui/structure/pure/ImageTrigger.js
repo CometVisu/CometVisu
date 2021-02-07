@@ -60,13 +60,13 @@
    * </ul>
    * Example:
    * <pre class="sunlight-highlight-xml">
-   * &lt;imagetrigger src="resource/icon/comet" suffix="svg" sendValue="clicked" type="select"&gt;
+   * &lt;imagetrigger src="resource/icons/comet" suffix="svg" sendValue="clicked" type="select"&gt;
    *    &lt;address transform="DPT:16.001" mode="readwrite"&gt;0/0/0&lt;/address&gt;
    * &lt;/imagetrigger&gt;
    * </pre>
    *
    * initially shows nothing. When the CometVisu receives the string <code>_icon</code> in address <code>0/0/0</code>,
-   * the image <code>icon/comet_opt_icon.svg</code> is shown. When the CometVisu receives '0' on address <code>0/0/0</code>,
+   * the image <code>icons/comet_opt_icon.svg</code> is shown. When the CometVisu receives '0' on address <code>0/0/0</code>,
    * this image is hidden.
    *
    * @widgetexample <settings>
@@ -79,7 +79,7 @@
    *     <data address="0/0/0">grey</data>
    *   </screenshot>
    *  </settings>
-   *  <imagetrigger src="resource/icon/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
+   *  <imagetrigger src="resource/icons/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
    *    <layout colspan="1" />
    *    <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
    *  </imagetrigger>
@@ -90,7 +90,7 @@
    *     <data address="0/0/0">1</data>
    *   </screenshot>
    *  </settings>
-   *  <imagetrigger src="resource/icon/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
+   *  <imagetrigger src="resource/icons/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
    *    <layout colspan="0" />
    *    <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
    *  </imagetrigger>
@@ -216,4 +216,4 @@
   cv.ui.structure.pure.ImageTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageTrigger.js.map?dt=1604955462477
+//# sourceMappingURL=ImageTrigger.js.map?dt=1612690389239

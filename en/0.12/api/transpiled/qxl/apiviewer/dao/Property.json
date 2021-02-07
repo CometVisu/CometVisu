@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n John Spackman (johnspackman)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Represents a property\n    \"paddingTop\": {\n      \"location\": {\n        \"start\": {\n          \"line\": 393,\n          \"column\": 4\n        },\n        \"end\": {\n          \"line\": 399,\n          \"column\": 5\n        }\n      },\n      \"jsdoc\": {\n        \"@description\": [\n          {\n            \"name\": \"@description\",\n            \"body\": \"---------------------------------------------------------------------------\\nPADDING\\n---------------------------------------------------------------------------\"\n          },\n          {\n            \"name\": \"@description\",\n            \"body\": \"Padding of the widget (top)\"\n          }\n        ]\n      },\n      \"name\": \"paddingTop\",\n      \"propertyType\": \"new\",\n      \"themeable\": true,\n      \"apply\": \"_applyPadding\",\n      \"check\": \"Integer\",\n      \"defaultValue\": 0\n    },</p>"
         }
       ]

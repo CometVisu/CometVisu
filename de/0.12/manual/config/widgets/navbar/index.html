@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -218,9 +215,9 @@ das auf jeder Seite der Visualisierung getrennt konfiguriert oder auch ausgeblen
 <p>Am häufigsten werden im Navbar PageJump-Widgets zur Navigation platziert. Besonders praktisch ist auch die
 Anzeige der Uhrzeit- bzw. des  Datums mit dem strftime-Plugin.</p>
 <p>Je Seite können bis zu 4 Navbars konfiguriert werden, meistens werden aber nur 1-2 Navbars verwendet.
-Die Sichtbarkeit der Navbars kann über die Attribute des Page-Elementes zB. <code class="docutils literal"><span class="pre">showtopnavigation=&quot;true&quot;</span></code> gesteuert
+Die Sichtbarkeit der Navbars kann über die Attribute des Page-Elementes zB. <code class="docutils literal notranslate"><span class="pre">showtopnavigation=&quot;true&quot;</span></code> gesteuert
 werden.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/Navbar_TopLeft.png" src="../../../_images/Navbar_TopLeft.png" />
 </div>
 </div>
@@ -230,14 +227,14 @@ werden.</p>
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
 <p>Das Verhalten und Aussehen des Navbar-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente.</p>
-<p>Nur die mit ..... unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+<p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
-<p>Über das <code class="docutils literal"><span class="pre">scope</span></code>-Attribut kann die Vererbung der Navbars auf die nächsten Unterseiten gesteuert werden. Mit <code class="docutils literal"><span class="pre">scope=&quot;0&quot;</span></code>
+<p>Über das <code class="docutils literal notranslate"><span class="pre">scope</span></code>-Attribut kann die Vererbung der Navbars auf die nächsten Unterseiten gesteuert werden. Mit <code class="docutils literal notranslate"><span class="pre">scope=&quot;0&quot;</span></code>
 erfolgt keine Vererbung, d.h. die Navbar mussfür jede Seite individuell definiert werden.</p>
-<p>Mit <code class="docutils literal"><span class="pre">scope=&quot;1&quot;</span></code> wird die Navbar auf das nächste Page-Element vererbt, d.h. eine weitere Navbar-Definition auf
-der Unterseite wird zusätzlich zur Navbar der übergeordneten Page angezeigt, mit <code class="docutils literal"><span class="pre">scope=&quot;2&quot;</span></code> wird um 2 Ebenen
+<p>Mit <code class="docutils literal notranslate"><span class="pre">scope=&quot;1&quot;</span></code> wird die Navbar auf das nächste Page-Element vererbt, d.h. eine weitere Navbar-Definition auf
+der Unterseite wird zusätzlich zur Navbar der übergeordneten Page angezeigt, mit <code class="docutils literal notranslate"><span class="pre">scope=&quot;2&quot;</span></code> wird um 2 Ebenen
 vererbt, usw.</p>
-<p>Über das <code class="docutils literal"><span class="pre">dynamic</span></code> kann eingestellt werden, ob die Navbar angezeigt werden soll
+<p>Über das <code class="docutils literal notranslate"><span class="pre">dynamic</span></code> kann eingestellt werden, ob die Navbar angezeigt werden soll
 und unter welchen Bedingungen diese dynamisch ein- und ausgeblendet wird.
 Das Ein- und Ausblenden ist nur für die linke Navbar implementiert und benötigt
 ein touch-fähiges Gerät. Zum Einblenden muss vom linken Bildschirmrand in die
@@ -249,7 +246,7 @@ Mitte horizontal gewischt werden, zum Ausblenden muss nach links gewischt werden
 <col width="43%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head"><code class="docutils literal"><span class="pre">dynamic</span></code></th>
+<tr class="row-odd"><th class="head"><code class="docutils literal notranslate"><span class="pre">dynamic</span></code></th>
 <th class="head">Mobiles Gerät</th>
 <th class="head">Großer Bildschirm</th>
 </tr>
@@ -287,7 +284,7 @@ Nach Start ist diese eingeblendet.</td>
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="4">Attribut</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Inhalt</th>
 <th class="head">Beschreibung</th>
@@ -309,11 +306,11 @@ Nach Start ist diese eingeblendet.</td>
 </tr>
 <tr class="row-even"><td>width</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>scope</td>
 <td>Zahl</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -338,10 +335,10 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 des <a class="reference internal" href="../pagejump/index.html#pagejump"><span class="std std-ref">PageJump-Widgets</span></a>.</p>
 <p>Nachstehend ein weiteres Beispiel für ein Navigationsmenü mit zwei Navbar-Widgets. Im top-Navbar wird neben mehreren
 PageJump-Widgets das strftime-Plugin zur Anzeige von Datum und Uhrzeit angewendet.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../_images/Navbar_TopLeft.png" src="../../../_images/Navbar_TopLeft.png" />
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>  <span class="nt">&lt;meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>  <span class="nt">&lt;meta&gt;</span>
       <span class="nt">&lt;plugins&gt;</span>
           <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;strftime&quot;</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;/plugins&gt;</span>
@@ -451,7 +448,7 @@ PageJump-Widgets das strftime-Plugin zur Anzeige von Datum und Uhrzeit angewende
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -497,7 +494,7 @@ PageJump-Widgets das strftime-Plugin zur Anzeige von Datum und Uhrzeit angewende
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

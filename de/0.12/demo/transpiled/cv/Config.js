@@ -20,7 +20,8 @@
         "defer": "runtime"
       },
       "qx.bom.client.Html": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       },
       "cv.ConfigCache": {
         "defer": "runtime"
@@ -184,7 +185,15 @@
          * Array with alls icons defined in the current config file
          * @type {Array}
          */
-        iconsFromConfig: []
+        iconsFromConfig: [],
+
+        /**
+         * Credentials for Backend authentication, username/token and optional password
+         */
+        credentials: {
+          username: null,
+          password: null
+        }
       },
 
       /**
@@ -413,4 +422,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1604956069974
+//# sourceMappingURL=Config.js.map?dt=1612691004251

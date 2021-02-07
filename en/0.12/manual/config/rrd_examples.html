@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -119,7 +116,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#general-information-about-rrd">General information about RRD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#rrd-and-the-cometvisu">RRD and the CometVisu</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#create-the-rrd-database">Create the RRD database</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#filling-the-rrd-database">&#8220;Filling&#8221; the RRD database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filling-the-rrd-database">“Filling” the RRD database</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#examples-of-rrds">Examples of RRDs</a></li>
 </ul>
@@ -214,7 +211,7 @@ in the documentation of the <a class="reference internal" href="widgets/plugins/
 <div class="section" id="general-information-about-rrd">
 <h2>General information about RRD<a class="headerlink" href="#general-information-about-rrd" title="Permalink to this headline">¶</a></h2>
 <p>The CometVisu diagrams are generated via RRD. These are usually
-stored in the directory <code class="docutils literal"><span class="pre">/var/www/rrd</span></code>.</p>
+stored in the directory <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code>.</p>
 <p>General information about RRD can be found in English
 <a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/index.en.html">here</a>
 and of course at
@@ -235,7 +232,7 @@ or an <a class="reference external" href="CometVisu/rrdtool">RRDtool with patche
 </ul>
 <p>(both are on the wiregate and on the Raspberry Pi image
 standard available)</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd# cat /etc/crontab
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd# cat /etc/crontab
 <span class="c1"># /etc/crontab: system-wide crontab</span>
 <span class="c1"># Unlike any other crontab you don&#39;t have to run the &#39;crontab&#39;</span>
 <span class="c1"># command to install the new version when you edit this file</span>
@@ -255,9 +252,9 @@ standard available)</p>
 */5 *   * * *   root    /var/www/rrd/cpuload15
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">*/5</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code> means that the job every 5 minutes at any time
+<p><code class="docutils literal notranslate"><span class="pre">*/5</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code> means that the job every 5 minutes at any time
 is performed. The smallest time interval with the crontab
-is realizable is <code class="docutils literal"><span class="pre">*/1</span></code>, so every minute.</p>
+is realizable is <code class="docutils literal notranslate"><span class="pre">*/1</span></code>, so every minute.</p>
 <p>The update distance should match the RRD database!</p>
 </div>
 <div class="section" id="create-the-rrd-database">
@@ -265,23 +262,23 @@ is realizable is <code class="docutils literal"><span class="pre">*/1</span></co
 <p>The RRD file/database must first be created.</p>
 <p>For this you have to consider when creating the database how many
 records should be stored. The database is then created and populated
-with &#8220;NaN&#8221; (Not A Number) values. The size of the database will then
+with “NaN” (Not A Number) values. The size of the database will then
 no longer change.</p>
 <p>This means that when the maximum number of records in a table is reached,
 the oldest is rejected when a new value is entered. However, this
 is not a problem as values are regularly summarized.</p>
 <p>In practice this means that the resolution of the values decreases
-with increasing time interval to &#8220;now&#8221;. (for example, minute values
+with increasing time interval to “now”. (for example, minute values
 for the last 7 days, hourly values for the last 4 weeks, daily
-values for the last 2 years etc ...)</p>
+values for the last 2 years etc …)</p>
 </div>
 <div class="section" id="filling-the-rrd-database">
-<h2>&#8220;Filling&#8221; the RRD database<a class="headerlink" href="#filling-the-rrd-database" title="Permalink to this headline">¶</a></h2>
+<h2>“Filling” the RRD database<a class="headerlink" href="#filling-the-rrd-database" title="Permalink to this headline">¶</a></h2>
 <p>The RRD file / database must be regularly filled with data - if this
 does not happen RRD recognizes this and enters automatic NaN - so
 that the summaries remain correct.</p>
-<p>To do this, call the rrdtool with the &#8220;update&#8221; parameter and pass
-a time stamp (or N for &#8220;Now&#8221;), as well as the values to be
+<p>To do this, call the rrdtool with the “update” parameter and pass
+a time stamp (or N for “Now”), as well as the values to be
 included in the database.</p>
 <p>The easiest way to do this is via a short shell script, which can
 then be executed regularly via cron.</p>
@@ -291,13 +288,13 @@ then be executed regularly via cron.</p>
 <p>If RRD-based data is not displayed as intended, you can look directly
 into the database to see if any (meaningful) values exist. There
 is this for that</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool dump
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump
 </pre></div>
 </div>
 <p>Command. This represents the database as text. You should then filter
 out lines with NaN (Not a Number) and only look at data lines.
 This can be done e.g. with the grep command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rrdtool dump NAMEOFTHEDATABASE.rrd <span class="p">|</span> grep row <span class="p">|</span> grep -v NaN
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump NAMEOFTHEDATABASE.rrd <span class="p">|</span> grep row <span class="p">|</span> grep -v NaN
 </pre></div>
 </div>
 </div>
@@ -348,7 +345,7 @@ temperature of an RTR) in an RRD database.</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -394,7 +391,7 @@ temperature of an RTR) in an RRD database.</li>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

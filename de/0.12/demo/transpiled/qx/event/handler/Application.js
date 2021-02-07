@@ -28,8 +28,13 @@
         "require": true
       },
       "qx.lang.Function": {},
-      "qx.bom.client.Browser": {},
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.bom.Event": {},
+      "qx.bom.client.Runtime": {
+        "require": true
+      },
       "qx.event.GlobalError": {}
     },
     "environment": {
@@ -40,6 +45,9 @@
         },
         "browser.documentmode": {
           "className": "qx.bom.client.Browser"
+        },
+        "runtime.name": {
+          "className": "qx.bom.client.Runtime"
         }
       }
     }
@@ -91,11 +99,11 @@
       qx.core.Object.constructor.call(this); // Define shorthands
 
       this._window = manager.getWindow();
-      this.__P_168_0 = false;
-      this.__P_168_1 = false;
-      this.__P_168_2 = false;
-      this.__P_168_3 = false;
-      this.__P_168_4 = false; // Initialize observers
+      this.__P_169_0 = false;
+      this.__P_169_1 = false;
+      this.__P_169_2 = false;
+      this.__P_169_3 = false;
+      this.__P_169_4 = false; // Initialize observers
 
       this._initObserver(); // Store instance (only supported for main app window, this
       // is the reason why this is OK here)
@@ -135,7 +143,7 @@
         var inst = qx.event.handler.Application.$$instance;
 
         if (inst) {
-          inst.__P_168_5();
+          inst.__P_169_5();
         }
       },
 
@@ -148,7 +156,7 @@
         var inst = qx.event.handler.Application.$$instance;
 
         if (inst) {
-          inst.__P_168_6();
+          inst.__P_169_6();
         }
       }
     },
@@ -172,11 +180,11 @@
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type, capture) {// Nothing needs to be done here
       },
-      __P_168_2: null,
-      __P_168_3: null,
-      __P_168_0: null,
-      __P_168_1: null,
-      __P_168_4: null,
+      __P_169_2: null,
+      __P_169_3: null,
+      __P_169_0: null,
+      __P_169_1: null,
+      __P_169_4: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -188,21 +196,21 @@
        * Fires a global ready event.
        *
        */
-      __P_168_5: function __P_168_5() {
+      __P_169_5: function __P_169_5() {
         // Wrapper qxloader needed to be compatible with old generator
-        if (!this.__P_168_2 && this.__P_168_0 && qx.$$loader.scriptLoaded) {
+        if (!this.__P_169_2 && this.__P_169_0 && qx.$$loader.scriptLoaded) {
           // If qooxdoo is loaded within a frame in IE, the document is ready before
           // the "ready" listener can be added. To avoid any startup issue check
           // for the availability of the "ready" listener before firing the event.
           // So at last the native "load" will trigger the "ready" event.
           if (qx.core.Environment.get("engine.name") == "mshtml") {
             if (qx.event.Registration.hasListener(this._window, "ready")) {
-              this.__P_168_2 = true; // Fire user event
+              this.__P_169_2 = true; // Fire user event
 
               qx.event.Registration.fireEvent(this._window, "ready");
             }
           } else {
-            this.__P_168_2 = true; // Fire user event
+            this.__P_169_2 = true; // Fire user event
 
             qx.event.Registration.fireEvent(this._window, "ready");
           }
@@ -213,8 +221,8 @@
        * Fires a global "appinitialized" event.
        *
        */
-      __P_168_6: function __P_168_6() {
-        this.__P_168_3 = true; // Fire user event
+      __P_169_6: function __P_169_6() {
+        this.__P_169_3 = true; // Fire user event
 
         qx.event.Registration.fireEvent(this._window, "appinitialized");
       },
@@ -225,7 +233,7 @@
        * @return {Boolean} ready status
        */
       isApplicationReady: function isApplicationReady() {
-        return this.__P_168_2;
+        return this.__P_169_2;
       },
 
       /**
@@ -234,7 +242,7 @@
        * @return {Boolean} initialization status
        */
       isApplicationInitialized: function isApplicationInitialized() {
-        return this.__P_168_3;
+        return this.__P_169_3;
       },
 
       /*
@@ -250,9 +258,9 @@
       _initObserver: function _initObserver() {
         // in Firefox the loader script sets the ready state
         if (qx.$$domReady || document.readyState == "complete" || document.readyState == "ready") {
-          this.__P_168_0 = true;
+          this.__P_169_0 = true;
 
-          this.__P_168_5();
+          this.__P_169_5();
         } else {
           this._onNativeLoadWrapped = qx.lang.Function.bind(this._onNativeLoad, this);
 
@@ -283,6 +291,10 @@
           qx.bom.Event.addNativeListener(this._window, "load", this._onNativeLoadWrapped);
         }
 
+        if (qx.core.Environment.get("runtime.name") == "rhino" || qx.core.Environment.get("runtime.name") == "node.js") {
+          return;
+        }
+
         this._onNativeUnloadWrapped = qx.lang.Function.bind(this._onNativeUnload, this);
         qx.bom.Event.addNativeListener(this._window, "unload", this._onNativeUnloadWrapped);
       },
@@ -311,33 +323,33 @@
        * When qx.globalErrorHandling is enabled the callback will observed
        */
       _onNativeLoad: function _onNativeLoad() {
-        var callback = qx.event.GlobalError.observeMethod(this.__P_168_7);
+        var callback = qx.event.GlobalError.observeMethod(this.__P_169_7);
         callback.apply(this, arguments);
       },
 
       /**
        * Event listener for native load event
        */
-      __P_168_7: function __P_168_7() {
-        this.__P_168_0 = true;
+      __P_169_7: function __P_169_7() {
+        this.__P_169_0 = true;
 
-        this.__P_168_5();
+        this.__P_169_5();
       },
 
       /**
        * When qx.globalErrorHandling is enabled the callback will observed
        */
       _onNativeUnload: function _onNativeUnload() {
-        var callback = qx.event.GlobalError.observeMethod(this.__P_168_8);
+        var callback = qx.event.GlobalError.observeMethod(this.__P_169_8);
         callback.apply(this, arguments);
       },
 
       /**
        * Event listener for native unload event
        */
-      __P_168_8: function __P_168_8() {
-        if (!this.__P_168_4) {
-          this.__P_168_4 = true;
+      __P_169_8: function __P_169_8() {
+        if (!this.__P_169_4) {
+          this.__P_169_4 = true;
 
           try {
             // Fire user event
@@ -373,4 +385,4 @@
   qx.event.handler.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1604956079530
+//# sourceMappingURL=Application.js.map?dt=1612691013293

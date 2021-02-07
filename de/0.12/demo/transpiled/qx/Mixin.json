@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 413,
+        "line": 492,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>This class is used to define mixins (similar to mixins in Ruby).\n Mixins are collections of code and variables, which can be merged into\n other classes. They are similar to classes but don't support inheritance.\n See the description of the {@link #define} method how a mixin is defined.</p>"
@@ -51,10 +47,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PUBLIC API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Define a new mixin.\n Example:\n </p>\n<pre class='javascript'>\n qx.Mixin.define(\"name\",\n {\n   include: [SuperMixins],\n   properties: {\n     tabIndex: {type: \"number\", init: -1}\n   },\n   members:\n   {\n     prop1: \"foo\",\n     meth1: function() {},\n     meth2: function() {}\n   }\n });\n </pre>"
@@ -340,14 +332,14 @@
       "type": "function",
       "access": "public"
     },
-    "genericToString": {
+    "baseClassMethod": {
       "location": {
         "start": {
-          "line": 319,
+          "line": 326,
           "column": 4
         },
         "end": {
-          "line": 321,
+          "line": 380,
           "column": 5
         }
       },
@@ -355,8 +347,57 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n   PRIVATE/INTERNAL API\n---------------------------------------------------------------------------\n</code></pre>"
+            "body": "<p>This method is used to determine the base method to call at runtime, and is used\n by Mixins where the mixin method calls <code>this.base()</code>.  It is only required by the\n compiler, and not the generator.\n The problem is that while Mixin's cannot override the same methods in a single class,\n they can override methods that were implemented in a base base - but the compiler\n cannot emit compile-time code which knows the base class method because that depends\n on the class that the mixin is mixed-into.\n This method will search the hierarchy of the class at runtime, and figure out the\n nearest superclass method to call; the result is cached, and it is acceptable for\n a mixin's method to override a method mixed into a superclass.\n Technically, this method should be private - it is internal and no notification will\n be given if the API changes.  However, because it needs to be called by generated code\n in any class, it has to appear as public.  Do not use it directly.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "clazz {Class} the class that is to be examined",
+            "paramName": "clazz",
+            "description": " the class that is to be examined",
+            "type": "qx.Class"
           },
+          {
+            "name": "@param",
+            "body": "mixin {Mixin} the mixin that is calling <code>this.base</code>",
+            "paramName": "mixin",
+            "description": " the mixin that is calling <code>this.base</code>",
+            "type": "qx.Mixin"
+          },
+          {
+            "name": "@param",
+            "body": "methodName {String} the name of the method in <code>mixin</code> that is calling <code>this.base</code>",
+            "paramName": "methodName",
+            "description": " the name of the method in <code>mixin</code> that is calling <code>this.base</code>",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} the base class function to call",
+            "type": "Function",
+            "description": " the base class function to call"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "genericToString": {
+      "location": {
+        "start": {
+          "line": 398,
+          "column": 4
+        },
+        "end": {
+          "line": 400,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
           {
             "name": "@description",
             "body": "<p>This method will be attached to all mixins to return\n a nice identifier for them.</p>"
@@ -383,11 +424,11 @@
     "$$registry": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 404,
           "column": 4
         },
         "end": {
-          "line": 325,
+          "line": 404,
           "column": 19
         }
       },
@@ -405,11 +446,11 @@
     "__allowedKeys": {
       "location": {
         "start": {
-          "line": 329,
+          "line": 408,
           "column": 4
         },
         "end": {
-          "line": 343,
+          "line": 422,
           "column": 6
         }
       },
@@ -433,11 +474,11 @@
     "__validateConfig": {
       "location": {
         "start": {
-          "line": 353,
+          "line": 432,
           "column": 4
         },
         "end": {
-          "line": 411,
+          "line": 490,
           "column": 6
         }
       },

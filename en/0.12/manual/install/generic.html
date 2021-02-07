@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -244,16 +241,16 @@ described under <a class="reference internal" href="install-rrd.html"><span clas
 <div class="section" id="web-server">
 <h2>Web server<a class="headerlink" href="#web-server" title="Permalink to this headline">¶</a></h2>
 <p>The relevant files to connect via eibd/knxd are CGI programms, usually
-located at <code class="docutils literal"><span class="pre">/usr/lib/cgi-bin/</span></code>. They must be executable for the account
+located at <code class="docutils literal notranslate"><span class="pre">/usr/lib/cgi-bin/</span></code>. They must be executable for the account
 of the web server. This could be enforced by:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>chmod +x /usr/lib/cgi-bin/r
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x /usr/lib/cgi-bin/r
 chmod +x /usr/lib/cgi-bin/l
 chmod +x /usr/lib/cgi-bin/w
 chmod +x /usr/lib/cgi-bin/rrdfetch
 </pre></div>
 </div>
 <p>When these files are symbolic links also the link targets (located e.g. at
-<code class="docutils literal"><span class="pre">/usr/local/bin</span></code> or <code class="docutils literal"><span class="pre">/usr/share/knxd/examples/bin</span></code>) must be executable
+<code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code> or <code class="docutils literal notranslate"><span class="pre">/usr/share/knxd/examples/bin</span></code>) must be executable
 as well.</p>
 <p>To be able to use additional components like the editor the web server must
 support PHP.</p>
@@ -263,69 +260,69 @@ support PHP.</p>
 servers are also possible, of course). Please make sure that you are
 changing the example parameters to fit your need.</p>
 <p>To install lighttpd on a Debian or Ubuntu system:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>apt-get install lighttpd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install lighttpd
 </pre></div>
 </div>
 <p>/etc/lighttpd/lighttpd.conf</p>
-<div class="highlight-lighttpd"><div class="highlight"><pre><span></span>server.modules = (
-        &quot;mod_access&quot;,
-        &quot;mod_alias&quot;,
-        &quot;mod_compress&quot;,
-        &quot;mod_redirect&quot;,
-#       &quot;mod_rewrite&quot;,
-)
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="k">server.modules</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;mod_access&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mod_alias&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mod_compress&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mod_redirect&quot;</span><span class="p">,</span>
+<span class="c1">#       &quot;mod_rewrite&quot;,</span>
+<span class="p">)</span>
 
-server.document-root        = &quot;/var/www&quot;
-server.upload-dirs          = ( &quot;/var/cache/lighttpd/uploads&quot; )
-server.errorlog             = &quot;/var/log/lighttpd/error.log&quot;
-server.pid-file             = &quot;/var/run/lighttpd.pid&quot;
-server.username             = &quot;www-data&quot;
-server.groupname            = &quot;www-data&quot;
+<span class="k">server.document-root</span>        <span class="o">=</span> <span class="s2">&quot;/var/www&quot;</span>
+<span class="k">server.upload-dirs</span>          <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;/var/cache/lighttpd/uploads&quot;</span> <span class="p">)</span>
+<span class="k">server.errorlog</span>             <span class="o">=</span> <span class="s2">&quot;/var/log/lighttpd/error.log&quot;</span>
+<span class="k">server.pid-file</span>             <span class="o">=</span> <span class="s2">&quot;/var/run/lighttpd.pid&quot;</span>
+<span class="k">server.username</span>             <span class="o">=</span> <span class="s2">&quot;www-data&quot;</span>
+<span class="k">server.groupname</span>            <span class="o">=</span> <span class="s2">&quot;www-data&quot;</span>
 
-index-file.names            = ( &quot;index.php&quot;, &quot;index.html&quot;,
-                                &quot;index.htm&quot;, &quot;default.htm&quot;,
-                               &quot; index.lighttpd.html&quot; )
+<span class="k">index-file.names</span>            <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;index.php&quot;</span><span class="p">,</span> <span class="s2">&quot;index.html&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;index.htm&quot;</span><span class="p">,</span> <span class="s2">&quot;default.htm&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot; index.lighttpd.html&quot;</span> <span class="p">)</span>
 
-url.access-deny             = ( &quot;~&quot;, &quot;.inc&quot; )
+<span class="k">url.access-deny</span>             <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;~&quot;</span><span class="p">,</span> <span class="s2">&quot;.inc&quot;</span> <span class="p">)</span>
 
-static-file.exclude-extensions = ( &quot;.php&quot;, &quot;.pl&quot;, &quot;.fcgi&quot; )
+<span class="k">static-file.exclude-extensions</span> <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;.php&quot;</span><span class="p">,</span> <span class="s2">&quot;.pl&quot;</span><span class="p">,</span> <span class="s2">&quot;.fcgi&quot;</span> <span class="p">)</span>
 
-## Use ipv6 if available
-#include_shell &quot;/usr/share/lighttpd/use-ipv6.pl&quot;
+<span class="c1">## Use ipv6 if available</span>
+<span class="c1">#include_shell &quot;/usr/share/lighttpd/use-ipv6.pl&quot;</span>
 
-dir-listing.encoding        = &quot;utf-8&quot;
-server.dir-listing          = &quot;enable&quot;
+<span class="k">dir-listing.encoding</span>        <span class="o">=</span> <span class="s2">&quot;utf-8&quot;</span>
+<span class="k">server.dir-listing</span>          <span class="o">=</span> <span class="s2">&quot;enable&quot;</span>
 
-compress.cache-dir          = &quot;/var/cache/lighttpd/compress/&quot;
-compress.filetype           = ( &quot;application/x-javascript&quot;, &quot;text/css&quot;, &quot;text/html&quot;, &quot;text/plain&quot; )
+<span class="k">compress.cache-dir</span>          <span class="o">=</span> <span class="s2">&quot;/var/cache/lighttpd/compress/&quot;</span>
+<span class="k">compress.filetype</span>           <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;application/x-javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;text/css&quot;</span><span class="p">,</span> <span class="s2">&quot;text/html&quot;</span><span class="p">,</span> <span class="s2">&quot;text/plain&quot;</span> <span class="p">)</span>
 
-include_shell &quot;/usr/share/lighttpd/create-mime.assign.pl&quot;
-include_shell &quot;/usr/share/lighttpd/include-conf-enabled.pl&quot;
+<span class="k">include_shell</span> <span class="s2">&quot;/usr/share/lighttpd/create-mime.assign.pl&quot;</span>
+<span class="k">include_shell</span> <span class="s2">&quot;/usr/share/lighttpd/include-conf-enabled.pl&quot;</span>
 </pre></div>
 </div>
 <p>/etc/lighttpd/conf-enabled/10-cgi.conf</p>
-<div class="highlight-lighttpd"><div class="highlight"><pre><span></span># /usr/share/doc/lighttpd-doc/cgi.txt
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="c1"># /usr/share/doc/lighttpd-doc/cgi.txt</span>
 
-server.modules += ( &quot;mod_cgi&quot; )
+<span class="k">server.modules</span> <span class="o">+=</span> <span class="p">(</span> <span class="s2">&quot;mod_cgi&quot;</span> <span class="p">)</span>
 
-$HTTP[&quot;url&quot;] =~ &quot;^/cgi-bin/&quot; {
-        cgi.assign = ( &quot;&quot; =&gt; &quot;&quot; )
-}
+<span class="nb">$HTTP</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span> <span class="o">=~</span> <span class="s2">&quot;^/cgi-bin/&quot;</span> <span class="p">{</span>
+        <span class="k">cgi.assign</span> <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot;&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;&quot;</span> <span class="p">)</span>
+<span class="p">}</span>
 
-## Warning this represents a security risk, as it allow to execute any file
-## with a .pl/.py even outside of /usr/lib/cgi-bin.
-#
-cgi.assign      = (
-        &quot;.pl&quot;  =&gt; &quot;/usr/bin/perl&quot;,
-        &quot;.php&quot; =&gt; &quot;/usr/bin/php-cgi&quot;,
-        &quot;.py&quot;  =&gt; &quot;/usr/bin/python&quot;,
-)
+<span class="c1">## Warning this represents a security risk, as it allow to execute any file</span>
+<span class="c1">## with a .pl/.py even outside of /usr/lib/cgi-bin.</span>
+<span class="c1">#</span>
+<span class="k">cgi.assign</span>      <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;.pl&quot;</span>  <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/perl&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.php&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/php-cgi&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.py&quot;</span>  <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/python&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>/etc/lighttpd/conf-enabled/11-cgi-cometvisu.conf</p>
-<div class="highlight-lighttpd"><div class="highlight"><pre><span></span>### Add cgi for cometvisu
-alias.url += ( &quot;/cgi-bin/&quot; =&gt; &quot;/usr/lib/cgi-bin/&quot; )
-compress.filetype += (&quot;application/javascript&quot;, &quot;application/xml&quot;, &quot;application/octet-stream&quot;)
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="c1">### Add cgi for cometvisu</span>
+<span class="k">alias.url</span> <span class="o">+=</span> <span class="p">(</span> <span class="s2">&quot;/cgi-bin/&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/lib/cgi-bin/&quot;</span> <span class="p">)</span>
+<span class="k">compress.filetype</span> <span class="o">+=</span> <span class="p">(</span><span class="s2">&quot;application/javascript&quot;</span><span class="p">,</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span> <span class="s2">&quot;application/octet-stream&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -333,8 +330,8 @@ compress.filetype += (&quot;application/javascript&quot;, &quot;application/xm
 <div class="section" id="installing-cometvisu">
 <h2>Installing CometVisu<a class="headerlink" href="#installing-cometvisu" title="Permalink to this headline">¶</a></h2>
 <p>The CometVisu can be downloaded at <a class="reference external" href="https://github.com/CometVisu/CometVisu">https://github.com/CometVisu/CometVisu</a> and
-unpacked at the web root, most likely in it&#8217;s own directory (e.g.
-<code class="docutils literal"><span class="pre">/var/www/visu/</span></code>).</p>
+unpacked at the web root, most likely in it’s own directory (e.g.
+<code class="docutils literal notranslate"><span class="pre">/var/www/visu/</span></code>).</p>
 <p>The released versions of the CometVisu are located at
 <a class="reference external" href="https://github.com/CometVisu/CometVisu/releases">https://github.com/CometVisu/CometVisu/releases</a>.</p>
 <p>A documentation of an install procedure for the  <a class="reference external" href="http://de.wikipedia.org/wiki/Raspberry_Pi">Raspberry
@@ -370,7 +367,7 @@ avilable under <a class="reference internal" href="raspberry.html"><span class="
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -416,7 +413,7 @@ avilable under <a class="reference internal" href="raspberry.html"><span class="
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

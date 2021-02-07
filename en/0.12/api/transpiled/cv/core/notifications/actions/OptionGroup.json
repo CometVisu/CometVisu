@@ -52,14 +52,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nCONSTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "properties": {
     "title": {
@@ -681,5 +674,6 @@
     },
     "jsdoc": {}
   },
+  "events": {},
   "descendants": []
 }

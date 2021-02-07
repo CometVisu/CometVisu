@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Andreas Ecker (ecker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Basis for Aspect Oriented features in qooxdoo.\n This class makes it possible to attach functions (aspects) before or\n after each function call of any function defined in {@link qx.Class#define}.\n Classes, which define own aspects must add an explicit require to this class\n in the header comment using the following code:\n </p>\n<pre>\n &#35;require(qx.core.Aspect)\n &#35;ignore(auto-require)\n </pre>\n<p>One example for a qooxdoo aspect is profiling ({@link qx.dev.Profile}).</p>"
         }
       ]

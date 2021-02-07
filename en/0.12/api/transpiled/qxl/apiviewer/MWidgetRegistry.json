@@ -13,18 +13,11 @@
         "column": 0
       },
       "end": {
-        "line": 88,
+        "line": 87,
         "column": 5
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n John Spackman (johnspackman)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "type": "mixin",
   "properties": {
@@ -203,11 +196,11 @@
     "register": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 71,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 76,
           "column": 5
         }
       },
@@ -221,10 +214,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "widget {qx.ui.core.Widget} the widget to register",
-            "paramName": "widget",
-            "description": " the widget to register",
-            "type": "qx.ui.core.Widget"
+            "body": "object",
+            "paramName": "object",
+            "type": ""
           },
           {
             "name": "@param",
@@ -241,11 +233,11 @@
     "unregister": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 84,
+          "line": 83,
           "column": 5
         }
       },

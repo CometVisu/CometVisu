@@ -12,9 +12,15 @@
       "qx.ui.form.AbstractField": {
         "require": true
       },
-      "qx.bom.client.Engine": {},
-      "qx.bom.client.Browser": {},
-      "qx.bom.client.Device": {}
+      "qx.bom.client.Engine": {
+        "require": true
+      },
+      "qx.bom.client.Browser": {
+        "require": true
+      },
+      "qx.bom.client.Device": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
@@ -134,4 +140,4 @@
   qx.ui.form.TextField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextField.js.map?dt=1604956073506
+//# sourceMappingURL=TextField.js.map?dt=1612691007553

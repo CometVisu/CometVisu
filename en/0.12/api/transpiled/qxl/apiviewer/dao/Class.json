@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 739,
+        "line": 834,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n John Spackman (johnspackman)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>This Class wraps the access to the documentation data of classes.</p>"
@@ -34,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 31,
+        "line": 30,
         "column": 13
       },
       "end": {
-        "line": 36,
+        "line": 35,
         "column": 3
       }
     },
@@ -52,10 +48,9 @@
       "@param": [
         {
           "name": "@param",
-          "body": "classDocNode\n          {Map} class documentation node",
-          "paramName": "classDocNode",
-          "description": " class documentation node",
-          "type": "Map"
+          "body": "className",
+          "paramName": "className",
+          "type": ""
         }
       ]
     }
@@ -64,11 +59,11 @@
     "_package": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 38,
           "column": 4
         },
         "end": {
-          "line": 39,
+          "line": 38,
           "column": 18
         }
       },
@@ -78,11 +73,11 @@
     "_construct": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 39,
           "column": 4
         },
         "end": {
-          "line": 40,
+          "line": 39,
           "column": 20
         }
       },
@@ -92,11 +87,11 @@
     "_destruct": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 40,
           "column": 4
         },
         "end": {
-          "line": 41,
+          "line": 40,
           "column": 19
         }
       },
@@ -106,11 +101,11 @@
     "_defer": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 41,
           "column": 4
         },
         "end": {
-          "line": 42,
+          "line": 41,
           "column": 16
         }
       },
@@ -120,11 +115,11 @@
     "_staticMethods": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 42,
           "column": 4
         },
         "end": {
-          "line": 43,
+          "line": 42,
           "column": 24
         }
       },
@@ -134,11 +129,11 @@
     "_constants": {
       "location": {
         "start": {
-          "line": 44,
+          "line": 43,
           "column": 4
         },
         "end": {
-          "line": 44,
+          "line": 43,
           "column": 20
         }
       },
@@ -148,11 +143,11 @@
     "_members": {
       "location": {
         "start": {
-          "line": 45,
+          "line": 44,
           "column": 4
         },
         "end": {
-          "line": 45,
+          "line": 44,
           "column": 18
         }
       },
@@ -162,11 +157,11 @@
     "_mixinMembers": {
       "location": {
         "start": {
-          "line": 46,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 46,
+          "line": 45,
           "column": 23
         }
       },
@@ -176,11 +171,11 @@
     "_properties": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 46,
           "column": 4
         },
         "end": {
-          "line": 47,
+          "line": 46,
           "column": 21
         }
       },
@@ -190,11 +185,11 @@
     "_mixinProperties": {
       "location": {
         "start": {
-          "line": 48,
+          "line": 47,
           "column": 4
         },
         "end": {
-          "line": 48,
+          "line": 47,
           "column": 26
         }
       },
@@ -204,11 +199,11 @@
     "_events": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 48,
           "column": 4
         },
         "end": {
-          "line": 49,
+          "line": 48,
           "column": 17
         }
       },
@@ -218,11 +213,11 @@
     "_mixinEvents": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 49,
           "column": 4
         },
         "end": {
-          "line": 50,
+          "line": 49,
           "column": 22
         }
       },
@@ -232,11 +227,11 @@
     "_superClass": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 50,
           "column": 4
         },
         "end": {
-          "line": 51,
+          "line": 50,
           "column": 21
         }
       },
@@ -246,11 +241,11 @@
     "_superInterfaces": {
       "location": {
         "start": {
-          "line": 52,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 52,
+          "line": 51,
           "column": 26
         }
       },
@@ -260,11 +255,11 @@
     "_superMixins": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 52,
           "column": 4
         },
         "end": {
-          "line": 53,
+          "line": 52,
           "column": 22
         }
       },
@@ -274,11 +269,11 @@
     "_mixins": {
       "location": {
         "start": {
-          "line": 54,
+          "line": 53,
           "column": 4
         },
         "end": {
-          "line": 54,
+          "line": 53,
           "column": 17
         }
       },
@@ -288,11 +283,11 @@
     "_loadingPromise": {
       "location": {
         "start": {
-          "line": 56,
+          "line": 55,
           "column": 4
         },
         "end": {
-          "line": 56,
+          "line": 55,
           "column": 25
         }
       },
@@ -302,25 +297,61 @@
     "_loaded": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 56,
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 56,
           "column": 18
         }
       },
       "type": "variable",
       "access": "protected"
     },
-    "load": {
+    "__url": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 58,
           "column": 4
         },
         "end": {
-          "line": 82,
+          "line": 58,
+          "column": 15
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getMetaFile": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>retrieves the meta file name + path</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "load": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4
+        },
+        "end": {
+          "line": 91,
           "column": 5
         }
       },
@@ -346,11 +377,11 @@
     "isLoaded": {
       "location": {
         "start": {
-          "line": 84,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 95,
           "column": 5
         }
       },
@@ -360,11 +391,11 @@
     "_initMeta": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 193,
+          "line": 226,
           "column": 5
         }
       },
@@ -373,6 +404,14 @@
           {
             "name": "@description",
             "body": "<p>Loads meta data, including super classes/interfaces/mixins</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "meta",
+            "paramName": "meta",
+            "type": ""
           }
         ],
         "@return": [
@@ -394,11 +433,11 @@
     "getPackage": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 228,
           "column": 4
         },
         "end": {
-          "line": 197,
+          "line": 230,
           "column": 5
         }
       },
@@ -408,11 +447,11 @@
     "getName": {
       "location": {
         "start": {
-          "line": 204,
+          "line": 237,
           "column": 4
         },
         "end": {
-          "line": 206,
+          "line": 239,
           "column": 5
         }
       },
@@ -438,11 +477,11 @@
     "getFullName": {
       "location": {
         "start": {
-          "line": 214,
+          "line": 247,
           "column": 4
         },
         "end": {
-          "line": 216,
+          "line": 249,
           "column": 5
         }
       },
@@ -468,11 +507,11 @@
     "getPackageName": {
       "location": {
         "start": {
-          "line": 224,
+          "line": 257,
           "column": 4
         },
         "end": {
-          "line": 226,
+          "line": 259,
           "column": 5
         }
       },
@@ -498,11 +537,11 @@
     "getType": {
       "location": {
         "start": {
-          "line": 235,
+          "line": 268,
           "column": 4
         },
         "end": {
-          "line": 237,
+          "line": 270,
           "column": 5
         }
       },
@@ -528,11 +567,11 @@
     "isAbstract": {
       "location": {
         "start": {
-          "line": 245,
+          "line": 278,
           "column": 4
         },
         "end": {
-          "line": 247,
+          "line": 280,
           "column": 5
         }
       },
@@ -558,11 +597,11 @@
     "isStatic": {
       "location": {
         "start": {
-          "line": 255,
+          "line": 288,
           "column": 4
         },
         "end": {
-          "line": 257,
+          "line": 290,
           "column": 5
         }
       },
@@ -588,11 +627,11 @@
     "isSingleton": {
       "location": {
         "start": {
-          "line": 265,
+          "line": 298,
           "column": 4
         },
         "end": {
-          "line": 267,
+          "line": 300,
           "column": 5
         }
       },
@@ -618,11 +657,11 @@
     "getSuperClass": {
       "location": {
         "start": {
-          "line": 275,
+          "line": 308,
           "column": 4
         },
         "end": {
-          "line": 277,
+          "line": 310,
           "column": 5
         }
       },
@@ -648,11 +687,11 @@
     "getChildClasses": {
       "location": {
         "start": {
-          "line": 286,
+          "line": 319,
           "column": 4
         },
         "end": {
-          "line": 295,
+          "line": 328,
           "column": 5
         }
       },
@@ -666,8 +705,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.Promise(qxl.apiviewer.dao.Class[])} A list of direct child classes of the\n         class.",
-            "type": "qx.Promise(qxl.apiviewer.dao.Class[])",
+            "body": "{qx.Promise<qxl.apiviewer.dao.Class[]>} A list of direct child classes of the\n         class.",
+            "type": "qx.Promise<qxl.apiviewer.dao.Class[]>",
             "description": " A list of direct child classes of the\n         class."
           }
         ]
@@ -678,11 +717,11 @@
     "getInterfaces": {
       "location": {
         "start": {
-          "line": 304,
+          "line": 337,
           "column": 4
         },
         "end": {
-          "line": 306,
+          "line": 339,
           "column": 5
         }
       },
@@ -708,11 +747,11 @@
     "getSuperInterfaces": {
       "location": {
         "start": {
-          "line": 313,
+          "line": 346,
           "column": 4
         },
         "end": {
-          "line": 315,
+          "line": 348,
           "column": 5
         }
       },
@@ -738,11 +777,11 @@
     "getMixins": {
       "location": {
         "start": {
-          "line": 323,
+          "line": 356,
           "column": 4
         },
         "end": {
-          "line": 325,
+          "line": 358,
           "column": 5
         }
       },
@@ -768,11 +807,11 @@
     "getSuperMixins": {
       "location": {
         "start": {
-          "line": 332,
+          "line": 365,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 367,
           "column": 5
         }
       },
@@ -798,11 +837,11 @@
     "getIncluder": {
       "location": {
         "start": {
-          "line": 341,
+          "line": 374,
           "column": 4
         },
         "end": {
-          "line": 350,
+          "line": 383,
           "column": 5
         }
       },
@@ -816,8 +855,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.Promise(qxl.apiviewer.dao.Class[])} All classes including this mixin.",
-            "type": "qx.Promise(qxl.apiviewer.dao.Class[])",
+            "body": "{qx.Promise<qxl.apiviewer.dao.Class[]>} All classes including this mixin.",
+            "type": "qx.Promise<qxl.apiviewer.dao.Class[]>",
             "description": " All classes including this mixin."
           }
         ]
@@ -828,11 +867,11 @@
     "getImplementations": {
       "location": {
         "start": {
-          "line": 357,
+          "line": 390,
           "column": 4
         },
         "end": {
-          "line": 366,
+          "line": 399,
           "column": 5
         }
       },
@@ -846,8 +885,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.Promise(qxl.apiviewer.dao.Class[])} All implementations of this interface.",
-            "type": "qx.Promise(qxl.apiviewer.dao.Class[])",
+            "body": "{qx.Promise<qxl.apiviewer.dao.Class[]>} All implementations of this interface.",
+            "type": "qx.Promise<qxl.apiviewer.dao.Class[]>",
             "description": " All implementations of this interface."
           }
         ]
@@ -858,11 +897,11 @@
     "getConstructor": {
       "location": {
         "start": {
-          "line": 373,
+          "line": 406,
           "column": 4
         },
         "end": {
-          "line": 375,
+          "line": 408,
           "column": 5
         }
       },
@@ -888,11 +927,11 @@
     "getChildControls": {
       "location": {
         "start": {
-          "line": 383,
+          "line": 416,
           "column": 4
         },
         "end": {
-          "line": 385,
+          "line": 418,
           "column": 5
         }
       },
@@ -918,11 +957,11 @@
     "getMembers": {
       "location": {
         "start": {
-          "line": 393,
+          "line": 426,
           "column": 4
         },
         "end": {
-          "line": 395,
+          "line": 428,
           "column": 5
         }
       },
@@ -954,11 +993,11 @@
     "getMethods": {
       "location": {
         "start": {
-          "line": 402,
+          "line": 435,
           "column": 4
         },
         "end": {
-          "line": 404,
+          "line": 437,
           "column": 5
         }
       },
@@ -984,11 +1023,11 @@
     "getMixinMembers": {
       "location": {
         "start": {
-          "line": 412,
+          "line": 445,
           "column": 4
         },
         "end": {
-          "line": 414,
+          "line": 447,
           "column": 5
         }
       },
@@ -1020,11 +1059,11 @@
     "getMixinMethods": {
       "location": {
         "start": {
-          "line": 421,
+          "line": 454,
           "column": 4
         },
         "end": {
-          "line": 423,
+          "line": 456,
           "column": 5
         }
       },
@@ -1050,11 +1089,11 @@
     "getStatics": {
       "location": {
         "start": {
-          "line": 430,
+          "line": 463,
           "column": 4
         },
         "end": {
-          "line": 432,
+          "line": 465,
           "column": 5
         }
       },
@@ -1080,11 +1119,11 @@
     "getEvents": {
       "location": {
         "start": {
-          "line": 439,
+          "line": 472,
           "column": 4
         },
         "end": {
-          "line": 441,
+          "line": 474,
           "column": 5
         }
       },
@@ -1110,11 +1149,11 @@
     "getMixinEvents": {
       "location": {
         "start": {
-          "line": 448,
+          "line": 481,
           "column": 4
         },
         "end": {
-          "line": 450,
+          "line": 483,
           "column": 5
         }
       },
@@ -1140,11 +1179,11 @@
     "getProperties": {
       "location": {
         "start": {
-          "line": 457,
+          "line": 490,
           "column": 4
         },
         "end": {
-          "line": 459,
+          "line": 492,
           "column": 5
         }
       },
@@ -1170,11 +1209,11 @@
     "getProperty": {
       "location": {
         "start": {
-          "line": 466,
+          "line": 499,
           "column": 4
         },
         "end": {
-          "line": 474,
+          "line": 507,
           "column": 5
         }
       },
@@ -1183,6 +1222,14 @@
           {
             "name": "@description",
             "body": "<p>Returns a property with a given name</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name",
+            "paramName": "name",
+            "type": ""
           }
         ],
         "@return": [
@@ -1200,11 +1247,11 @@
     "getMixinProperties": {
       "location": {
         "start": {
-          "line": 481,
+          "line": 514,
           "column": 4
         },
         "end": {
-          "line": 483,
+          "line": 516,
           "column": 5
         }
       },
@@ -1230,11 +1277,11 @@
     "getConstants": {
       "location": {
         "start": {
-          "line": 490,
+          "line": 523,
           "column": 4
         },
         "end": {
-          "line": 492,
+          "line": 525,
           "column": 5
         }
       },
@@ -1260,11 +1307,11 @@
     "getSee": {
       "location": {
         "start": {
-          "line": 499,
+          "line": 532,
           "column": 4
         },
         "end": {
-          "line": 501,
+          "line": 534,
           "column": 5
         }
       },
@@ -1290,11 +1337,11 @@
     "getErrors": {
       "location": {
         "start": {
-          "line": 503,
+          "line": 536,
           "column": 4
         },
         "end": {
-          "line": 505,
+          "line": 538,
           "column": 5
         }
       },
@@ -1318,20 +1365,16 @@
     "getClassHierarchy": {
       "location": {
         "start": {
-          "line": 518,
+          "line": 551,
           "column": 4
         },
         "end": {
-          "line": 530,
+          "line": 563,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<p>COMPLEX FUNCTIONS</p>"
-          },
           {
             "name": "@description",
             "body": "<p>Get the documentation nodes of all classes in the inheritance chain of a\n class. The first entry in the list is the class itself.</p>"
@@ -1361,11 +1404,11 @@
     "getInterfaceHierarchy": {
       "location": {
         "start": {
-          "line": 540,
+          "line": 573,
           "column": 4
         },
         "end": {
-          "line": 551,
+          "line": 586,
           "column": 5
         }
       },
@@ -1391,11 +1434,11 @@
     "getAllInterfaces": {
       "location": {
         "start": {
-          "line": 560,
+          "line": 595,
           "column": 4
         },
         "end": {
-          "line": 572,
+          "line": 609,
           "column": 5
         }
       },
@@ -1424,11 +1467,11 @@
     "getItemByNameFromMixins": {
       "location": {
         "start": {
-          "line": 582,
+          "line": 619,
           "column": 4
         },
         "end": {
-          "line": 587,
+          "line": 624,
           "column": 5
         }
       },
@@ -1463,11 +1506,11 @@
     "getItem": {
       "location": {
         "start": {
-          "line": 595,
+          "line": 632,
           "column": 4
         },
         "end": {
-          "line": 618,
+          "line": 655,
           "column": 5
         }
       },
@@ -1499,14 +1542,99 @@
       "type": "function",
       "access": "public"
     },
-    "loadDependedClasses": {
+    "getItemList": {
       "location": {
         "start": {
-          "line": 620,
+          "line": 674,
           "column": 4
         },
         "end": {
-          "line": 622,
+          "line": 693,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get an array of class items matching the given list name. Known list names are:\n <ul>\n   <li>events</li>\n   <li>constructor</li>\n   <li>properties</li>\n   <li>methods</li>\n   <li>methods-static</li>\n   <li>constants</li>\n   <li>appearances</li>\n   <li>superInterfaces</li>\n   <li>superMixins</li>\n </li></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "listName {String} name of the item list",
+            "paramName": "listName",
+            "description": " name of the item list",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{apiviewer.dao.ClassItem[]} item list",
+            "type": "apiviewer.dao.ClassItem[]",
+            "description": " item list"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getItemByListAndName": {
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 4
+        },
+        "end": {
+          "line": 712,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a class item by the item list name and the item name.\n Valid item list names are documented at {@link #getItemList}.\n .</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "listName {String} name of the item list.",
+            "paramName": "listName",
+            "description": " name of the item list.",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "itemName {String} name of the class item.",
+            "paramName": "itemName",
+            "description": " name of the class item.",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{apiviewer.dao.ClassItem} the matching class item.",
+            "type": "apiviewer.dao.ClassItem",
+            "description": " the matching class item."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "loadDependedClasses": {
+      "location": {
+        "start": {
+          "line": 715,
+          "column": 4
+        },
+        "end": {
+          "line": 717,
           "column": 5
         }
       },
@@ -1516,11 +1644,11 @@
     "getDependedClasses": {
       "location": {
         "start": {
-          "line": 631,
+          "line": 726,
           "column": 4
         },
         "end": {
-          "line": 652,
+          "line": 748,
           "column": 5
         }
       },
@@ -1534,8 +1662,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.Promise(Class[])} array of dependent classes.",
-            "type": "qx.Promise(Class[])",
+            "body": "{qx.Promise<Class[]>} array of dependent classes.",
+            "type": "qx.Promise<Class[]>",
             "description": " array of dependent classes."
           }
         ]
@@ -1684,11 +1812,11 @@
     "_native_classes": {
       "location": {
         "start": {
-          "line": 656,
+          "line": 752,
           "column": 4
         },
         "end": {
-          "line": 667,
+          "line": 763,
           "column": 5
         }
       },
@@ -1698,11 +1826,11 @@
     "getClassByName": {
       "location": {
         "start": {
-          "line": 676,
+          "line": 772,
           "column": 4
         },
         "end": {
-          "line": 692,
+          "line": 788,
           "column": 5
         }
       },
@@ -1716,10 +1844,16 @@
         "@param": [
           {
             "name": "@param",
-            "body": "className\n          {String} name of the class",
+            "body": "className\n {String} name of the class",
             "paramName": "className",
             "description": " name of the class",
             "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "create",
+            "paramName": "create",
+            "type": ""
           }
         ],
         "@return": [
@@ -1737,11 +1871,11 @@
     "getClassesByName": {
       "location": {
         "start": {
-          "line": 702,
+          "line": 797,
           "column": 4
         },
         "end": {
-          "line": 706,
+          "line": 801,
           "column": 5
         }
       },
@@ -1755,10 +1889,15 @@
         "@param": [
           {
             "name": "@param",
-            "body": "className\n          {String} name of the class",
-            "paramName": "className",
-            "description": " name of the class",
-            "type": "String"
+            "body": "classNames",
+            "paramName": "classNames",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "create",
+            "paramName": "create",
+            "type": ""
           }
         ],
         "@return": [
@@ -1776,11 +1915,11 @@
     "findClasses": {
       "location": {
         "start": {
-          "line": 709,
+          "line": 804,
           "column": 4
         },
         "end": {
-          "line": 723,
+          "line": 818,
           "column": 5
         }
       },
@@ -1790,11 +1929,11 @@
     "isNativeObject": {
       "location": {
         "start": {
-          "line": 734,
+          "line": 829,
           "column": 4
         },
         "end": {
-          "line": 736,
+          "line": 831,
           "column": 5
         }
       },

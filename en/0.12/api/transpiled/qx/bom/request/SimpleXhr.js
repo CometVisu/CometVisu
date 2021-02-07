@@ -24,12 +24,17 @@
       "qx.util.Uri": {},
       "qx.lang.Function": {},
       "qx.util.ResponseParser": {},
-      "qx.lang.Json": {}
+      "qx.lang.Json": {},
+      "qx.bom.request.Script": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
       "required": {
-        "qx.debug.io": {}
+        "qx.debug.io": {
+          "className": "qx.bom.request.Script"
+        }
       }
     }
   };
@@ -678,8 +683,8 @@
         } else {
           try {
             this._setResponse(this.__P_113_1.parse(response, contentType));
-          } catch (e) {} // ignore if it does not work
-          // A remote error failure
+          } catch (e) {// ignore if it does not work
+          } // A remote error failure
 
 
           if (this._transport.status !== 0) {
@@ -731,4 +736,4 @@
   qx.bom.request.SimpleXhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleXhr.js.map?dt=1604955468408
+//# sourceMappingURL=SimpleXhr.js.map?dt=1612690395330

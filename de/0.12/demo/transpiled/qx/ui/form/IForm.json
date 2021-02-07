@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Form interface for all form widgets. It includes the API for enabled,\n required and valid states.</p>"
         }
       ]
@@ -33,16 +29,12 @@
   "type": "interface",
   "events": {
     "changeEnabled": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4
-        },
-        "end": {
-          "line": 34,
-          "column": 42
-        }
-      },
+      "type": "event",
+      "name": "changeEnabled",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
       "jsdoc": {
         "@description": [
           {
@@ -50,21 +42,15 @@
             "body": "<p>Fired when the enabled state was modified</p>"
           }
         ]
-      },
-      "name": "changeEnabled",
-      "type": "qx.event.type.Data"
+      }
     },
     "changeValid": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4
-        },
-        "end": {
-          "line": 37,
-          "column": 40
-        }
-      },
+      "type": "event",
+      "name": "changeValid",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
       "jsdoc": {
         "@description": [
           {
@@ -72,21 +58,15 @@
             "body": "<p>Fired when the valid state was modified</p>"
           }
         ]
-      },
-      "name": "changeValid",
-      "type": "qx.event.type.Data"
+      }
     },
     "changeInvalidMessage": {
-      "location": {
-        "start": {
-          "line": 40,
-          "column": 4
-        },
-        "end": {
-          "line": 40,
-          "column": 49
-        }
-      },
+      "type": "event",
+      "name": "changeInvalidMessage",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
       "jsdoc": {
         "@description": [
           {
@@ -94,21 +74,15 @@
             "body": "<p>Fired when the invalidMessage was modified</p>"
           }
         ]
-      },
-      "name": "changeInvalidMessage",
-      "type": "qx.event.type.Data"
+      }
     },
     "changeRequired": {
-      "location": {
-        "start": {
-          "line": 43,
-          "column": 4
-        },
-        "end": {
-          "line": 43,
-          "column": 43
-        }
-      },
+      "type": "event",
+      "name": "changeRequired",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
       "jsdoc": {
         "@description": [
           {
@@ -116,9 +90,7 @@
             "body": "<p>Fired when the required was modified</p>"
           }
         ]
-      },
-      "name": "changeRequired",
-      "type": "qx.event.type.Data"
+      }
     }
   },
   "members": {
@@ -135,10 +107,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  ENABLED PROPERTY\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Set the enabled state of the widget.</p>"
@@ -202,10 +170,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  REQUIRED PROPERTY\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Sets the required state of a widget.</p>"
           }
         ],
@@ -265,10 +229,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  VALID PROPERTY\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Sets the valid state of the widget.</p>"
@@ -332,10 +292,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  INVALID MESSAGE PROPERTY\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Sets the invalid message of the widget.</p>"
           }
         ],
@@ -395,10 +351,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  REQUIRED INVALID MESSAGE PROPERTY\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Sets the invalid message if required of the widget.</p>"

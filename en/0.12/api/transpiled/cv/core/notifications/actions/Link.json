@@ -52,14 +52,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nCONSTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "properties": {
     "title": {
@@ -110,6 +103,7 @@
       "name": "action",
       "propertyType": "new",
       "nullable": true,
+      "transform": "_transformAction",
       "allowNull": true,
       "check": "Function"
     },
@@ -885,5 +879,6 @@
     },
     "jsdoc": {}
   },
+  "events": {},
   "descendants": []
 }

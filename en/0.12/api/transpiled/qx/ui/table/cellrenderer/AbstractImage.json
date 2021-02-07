@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 281,
+        "line": 278,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Til Schneider (til132)\n Carsten Lergenmueller (carstenl)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>A template class for cell renderer, which display images. Concrete\n implementations must implement the method {@link #_identifyImage}.</p>"
@@ -41,28 +37,21 @@
         "column": 14
       },
       "end": {
-        "line": 51,
+        "line": 50,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "properties": {
     "repeat": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 91,
+          "line": 90,
           "column": 5
         }
       },
@@ -93,11 +82,11 @@
     "__defaultWidth": {
       "location": {
         "start": {
-          "line": 103,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 102,
           "column": 23
         }
       },
@@ -107,11 +96,11 @@
     "__defaultHeight": {
       "location": {
         "start": {
-          "line": 104,
+          "line": 103,
           "column": 4
         },
         "end": {
-          "line": 104,
+          "line": 103,
           "column": 24
         }
       },
@@ -121,47 +110,25 @@
     "__imageData": {
       "location": {
         "start": {
-          "line": 105,
+          "line": 104,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 104,
           "column": 22
         }
       },
       "type": "variable",
       "access": "private"
     },
-    "_insetY": {
-      "location": {
-        "start": {
-          "line": 108,
-          "column": 4
-        },
-        "end": {
-          "line": 108,
-          "column": 15
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "protected"
-    },
     "_identifyImage": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 130,
           "column": 5
         }
       },
@@ -210,11 +177,11 @@
     "_getImageInfos": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 180,
+          "line": 177,
           "column": 5
         }
       },
@@ -247,11 +214,11 @@
     "__getImageSize": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 187,
           "column": 4
         },
         "end": {
-          "line": 214,
+          "line": 211,
           "column": 5
         }
       },
@@ -286,22 +253,15 @@
     "createDataCellHtml": {
       "location": {
         "start": {
-          "line": 218,
+          "line": 215,
           "column": 4
         },
         "end": {
-          "line": 222,
+          "line": 219,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
@@ -313,22 +273,15 @@
     "_getCellClass": {
       "location": {
         "start": {
-          "line": 226,
+          "line": 223,
           "column": 4
         },
         "end": {
-          "line": 228,
+          "line": 225,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
@@ -339,22 +292,15 @@
     "_getContentHtml": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 229,
           "column": 4
         },
         "end": {
-          "line": 255,
+          "line": 252,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
@@ -365,22 +311,15 @@
     "_getCellAttributes": {
       "location": {
         "start": {
-          "line": 259,
+          "line": 256,
           "column": 4
         },
         "end": {
-          "line": 268,
+          "line": 265,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
@@ -661,22 +600,15 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 277,
+        "line": 274,
         "column": 13
       },
       "end": {
-        "line": 280,
+        "line": 277,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": [
     "qx.ui.table.cellrenderer.Boolean",

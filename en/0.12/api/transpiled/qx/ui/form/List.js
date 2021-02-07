@@ -87,14 +87,14 @@
     construct: function construct(horizontal) {
       qx.ui.core.scroll.AbstractScrollArea.constructor.call(this); // Create content
 
-      this.__P_304_0 = this._createListItemContainer(); // Used to fire item add/remove events
+      this.__P_301_0 = this._createListItemContainer(); // Used to fire item add/remove events
 
-      this.__P_304_0.addListener("addChildWidget", this._onAddChild, this);
+      this.__P_301_0.addListener("addChildWidget", this._onAddChild, this);
 
-      this.__P_304_0.addListener("removeChildWidget", this._onRemoveChild, this); // Add to scrollpane
+      this.__P_301_0.addListener("removeChildWidget", this._onRemoveChild, this); // Add to scrollpane
 
 
-      this.getChildControl("pane").add(this.__P_304_0); // Apply orientation
+      this.getChildControl("pane").add(this.__P_301_0); // Apply orientation
 
       if (horizontal) {
         this.setOrientation("horizontal");
@@ -106,7 +106,7 @@
       this.addListener("keypress", this._onKeyPress);
       this.addListener("keyinput", this._onKeyInput); // initialize the search string
 
-      this.__P_304_1 = "";
+      this.__P_301_1 = "";
     },
 
     /*
@@ -178,6 +178,14 @@
       enableInlineFind: {
         check: "Boolean",
         init: true
+      },
+
+      /** Whether the list is read only when enabled */
+      readOnly: {
+        check: "Boolean",
+        init: false,
+        event: "changeReadOnly",
+        apply: "_applyReadOnly"
       }
     },
 
@@ -187,11 +195,11 @@
     *****************************************************************************
     */
     members: {
-      __P_304_1: null,
-      __P_304_2: null,
+      __P_301_1: null,
+      __P_301_2: null,
 
       /** @type {qx.ui.core.Widget} The children container */
-      __P_304_0: null,
+      __P_301_0: null,
 
       /** @type {Class} Pointer to the selection manager to use */
       SELECTION_MANAGER: qx.ui.core.selection.ScrollArea,
@@ -203,7 +211,7 @@
       */
       // overridden
       getChildrenContainer: function getChildrenContainer() {
-        return this.__P_304_0;
+        return this.__P_301_0;
       },
 
       /**
@@ -264,7 +272,7 @@
       */
       // property apply
       _applyOrientation: function _applyOrientation(value, old) {
-        var content = this.__P_304_0; // save old layout for disposal
+        var content = this.__P_301_0; // save old layout for disposal
 
         var oldLayout = content.getLayout(); // Create new layout
 
@@ -284,7 +292,58 @@
       },
       // property apply
       _applySpacing: function _applySpacing(value, old) {
-        this.__P_304_0.getLayout().setSpacing(value);
+        this.__P_301_0.getLayout().setSpacing(value);
+      },
+      // property readOnly
+      _applyReadOnly: function _applyReadOnly(value) {
+        this._getManager().setReadOnly(value);
+
+        if (value) {
+          this.addState("readonly");
+          this.addState("disabled"); // Remove draggable
+
+          if (this.isDraggable()) {
+            this._applyDraggable(false, true);
+          } // Remove droppable
+
+
+          if (this.isDroppable()) {
+            this._applyDroppable(false, true);
+          }
+        } else {
+          this.removeState("readonly");
+
+          if (this.isEnabled()) {
+            this.removeState("disabled"); // Re-add draggable
+
+            if (this.isDraggable()) {
+              this._applyDraggable(true, false);
+            } // Re-add droppable
+
+
+            if (this.isDroppable()) {
+              this._applyDroppable(true, false);
+            }
+          }
+        }
+      },
+      // override
+      _applyEnabled: function _applyEnabled(value, old) {
+        qx.ui.form.List.prototype._applyEnabled.base.call(this, value, old); // If editable has just been turned on, we need to correct for readOnly status 
+
+
+        if (value && this.isReadOnly()) {
+          this.addState("disabled"); // Remove draggable
+
+          if (this.isDraggable()) {
+            this._applyDraggable(false, true);
+          } // Remove droppable
+
+
+          if (this.isDroppable()) {
+            this._applyDroppable(false, true);
+          }
+        }
       },
 
       /*
@@ -339,21 +398,21 @@
         } // Reset string after a second of non pressed key
 
 
-        if (new Date().valueOf() - this.__P_304_2 > 1000) {
-          this.__P_304_1 = "";
+        if (new Date().valueOf() - this.__P_301_2 > 1000) {
+          this.__P_301_1 = "";
         } // Combine keys the user pressed to a string
 
 
-        this.__P_304_1 += e.getChar(); // Find matching item
+        this.__P_301_1 += e.getChar(); // Find matching item
 
-        var matchedItem = this.findItemByLabelFuzzy(this.__P_304_1); // if an item was found, select it
+        var matchedItem = this.findItemByLabelFuzzy(this.__P_301_1); // if an item was found, select it
 
         if (matchedItem) {
           this.setSelection([matchedItem]);
         } // Store timestamp
 
 
-        this.__P_304_2 = new Date().valueOf();
+        this.__P_301_2 = new Date().valueOf();
       },
 
       /**
@@ -447,10 +506,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_304_0");
+      this._disposeObjects("__P_301_0");
     }
   });
   qx.ui.form.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1604955482569
+//# sourceMappingURL=List.js.map?dt=1612690409195

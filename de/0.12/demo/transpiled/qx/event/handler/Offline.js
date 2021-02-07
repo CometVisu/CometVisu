@@ -72,8 +72,8 @@
      */
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this);
-      this.__P_266_0 = manager;
-      this.__P_266_1 = manager.getWindow();
+      this.__P_267_0 = manager;
+      this.__P_267_1 = manager.getWindow();
 
       this._initObserver();
     },
@@ -106,9 +106,9 @@
     *****************************************************************************
     */
     members: {
-      __P_266_0: null,
-      __P_266_1: null,
-      __P_266_2: null,
+      __P_267_0: null,
+      __P_267_1: null,
+      __P_267_2: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -128,17 +128,17 @@
        * Connects the native online and offline event listeners.
        */
       _initObserver: function _initObserver() {
-        this.__P_266_2 = qx.lang.Function.listener(this._onNative, this);
-        qx.bom.Event.addNativeListener(this.__P_266_1, "offline", this.__P_266_2);
-        qx.bom.Event.addNativeListener(this.__P_266_1, "online", this.__P_266_2);
+        this.__P_267_2 = qx.lang.Function.listener(this._onNative, this);
+        qx.bom.Event.addNativeListener(this.__P_267_1, "offline", this.__P_267_2);
+        qx.bom.Event.addNativeListener(this.__P_267_1, "online", this.__P_267_2);
       },
 
       /**
        * Disconnects the native online and offline event listeners.
        */
       _stopObserver: function _stopObserver() {
-        qx.bom.Event.removeNativeListener(this.__P_266_1, "offline", this.__P_266_2);
-        qx.bom.Event.removeNativeListener(this.__P_266_1, "online", this.__P_266_2);
+        qx.bom.Event.removeNativeListener(this.__P_267_1, "offline", this.__P_267_2);
+        qx.bom.Event.removeNativeListener(this.__P_267_1, "online", this.__P_267_2);
       },
 
       /**
@@ -147,7 +147,7 @@
        * @param domEvent {Event} Native DOM event
        */
       _onNative: qx.event.GlobalError.observeMethod(function (domEvent) {
-        qx.event.Registration.fireEvent(this.__P_266_1, domEvent.type, qx.event.type.Event, []);
+        qx.event.Registration.fireEvent(this.__P_267_1, domEvent.type, qx.event.type.Event, []);
       }),
 
       /*
@@ -161,7 +161,7 @@
        * @return {Boolean} <code>true</code> if its online
        */
       isOnline: function isOnline() {
-        return !!this.__P_266_1.navigator.onLine;
+        return !!this.__P_267_1.navigator.onLine;
       }
     },
 
@@ -171,12 +171,12 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_266_0 = null;
+      this.__P_267_0 = null;
 
       this._stopObserver(); // Deregister
 
 
-      delete qx.event.handler.Appear.__P_266_3[this.toHashCode()];
+      delete qx.event.handler.Appear.__P_267_3[this.toHashCode()];
     },
 
     /*
@@ -191,4 +191,4 @@
   qx.event.handler.Offline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Offline.js.map?dt=1604956086651
+//# sourceMappingURL=Offline.js.map?dt=1612691020233

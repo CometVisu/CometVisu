@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -211,8 +208,8 @@ by an online translation service.</p>
 <div class="section" id="the-image-widget">
 <span id="image"></span><h1>The Image widget<a class="headerlink" href="#the-image-widget" title="Permalink to this headline">¶</a></h1>
 <div class="line"><div class="line-block">
-<div class="line"><strong>Available since version</strong>: 0.8.0 (2012)</div>
 <div class="line"><strong>Author</strong>: Christian Mayer</div>
+<div class="line"><strong>Available since version</strong>: 0.8.0 (2012)</div>
 <div class="line"><br /></div>
 </div>
 </div>
@@ -228,7 +225,7 @@ it is recommended to read this section first: <a class="reference internal" href
 <p>The behaviour and appearance of the Image widget can be influenced by using certain attributes and elements.
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
-<p>Attributes underlined by ..... are mandatory, all the others are optional and be omitted.</p>
+<p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
 <div class="section" id="allowed-attributes-in-the-image-element">
 <h3>Allowed attributes in the Image-element<a class="headerlink" href="#allowed-attributes-in-the-image-element" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
@@ -242,7 +239,7 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="4">Attribute</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Content</th>
 <th class="head">Description</th>
@@ -264,7 +261,7 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tr>
 <tr class="row-even"><td>widthfit</td>
 <td><em>true</em> or <em>false</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>refresh</td>
 <td>decimal</td>
@@ -284,22 +281,18 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tr>
 </tbody>
 </table>
-<p>Valid values for <code class="docutils literal"><span class="pre">cachecontrol</span></code> are:</p>
+<p>Valid values for <code class="docutils literal notranslate"><span class="pre">cachecontrol</span></code> are:</p>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">full</span></code>   Standard. By extending the URL with a timestamp a refresh is</dt>
-<dd>ensured. Server support is required though.</dd>
-<dt><code class="docutils literal"><span class="pre">force</span></code>  Using sophisticated methods an enfocrement of the refresh is</dt>
-<dd>attempted.</dd>
-<dt><code class="docutils literal"><span class="pre">weak</span></code>   The URL will be extended by an anchor with timestamp. This will</dt>
-<dd>work with most servers where <code class="docutils literal"><span class="pre">full</span></code> mode doesn&#8217;t work. But it
+<dt><code class="docutils literal notranslate"><span class="pre">full</span></code>   Standard. By extending the URL with a timestamp a refresh is</dt><dd>ensured. Server support is required though.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">force</span></code>  Using sophisticated methods an enfocrement of the refresh is</dt><dd>attempted.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">weak</span></code>   The URL will be extended by an anchor with timestamp. This will</dt><dd>work with most servers where <code class="docutils literal notranslate"><span class="pre">full</span></code> mode doesn’t work. But it
 requires the correct use of HTTP headers by the server as well
 as a correct reaction by the web browser.</dd>
-<dt><code class="docutils literal"><span class="pre">none</span></code>   The URL will not be modified. A working refresh can be prevented</dt>
-<dd>by caching.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">none</span></code>   The URL will not be modified. A working refresh can be prevented</dt><dd>by caching.</dd>
 </dl>
 <div class="figure align-center" id="id2">
 <img alt="../../../_images/en_config_widgets_image_index_editor_attributes.png" src="../../../_images/en_config_widgets_image_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+<p class="caption"><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="allowed-child-elements-und-their-attributes">
@@ -323,8 +316,7 @@ as a correct reaction by the web browser.</dd>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
-<dt>image</dt>
-<dd><ul class="first last simple">
+<dt>image</dt><dd><ul class="simple">
 <li>layout</li>
 </ul>
 </dd>
@@ -419,8 +411,7 @@ as a correct reaction by the web browser.</dd>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
-<dt>image</dt>
-<dd><ul class="first last simple">
+<dt>image</dt><dd><ul class="simple">
 <li>label</li>
 <li>icon</li>
 </ul>
@@ -429,11 +420,11 @@ as a correct reaction by the web browser.</dd>
 </td>
 <td><abbr title="mandatory">name</abbr></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>type</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>flavour</td>
 <td>string</td>
@@ -441,7 +432,7 @@ as a correct reaction by the web browser.</dd>
 </tr>
 <tr class="row-even"><td>color</td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>styling</td>
 <td>string</td>
@@ -452,8 +443,7 @@ as a correct reaction by the web browser.</dd>
 <td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
-<dt>image</dt>
-<dd><ul class="first last simple">
+<dt>image</dt><dd><ul class="simple">
 <li>label<ul>
 <li>#text</li>
 </ul>
@@ -462,7 +452,7 @@ as a correct reaction by the web browser.</dd>
 </dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>string</td>
 <td>Text to display a label for the widget.</td>
 </tr>
@@ -470,7 +460,7 @@ as a correct reaction by the web browser.</dd>
 </table>
 <div class="figure align-center" id="id3">
 <img alt="../../../_images/en_config_widgets_image_index_editor_elements.png" src="../../../_images/en_config_widgets_image_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elements in the editor</span></p>
+<p class="caption"><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -483,7 +473,7 @@ for the Image widget.</p>
 <p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
 XML-editor to UTF-8 mode!</p>
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;image</span> <span class="na">src=</span><span class="s">&quot;resource/icon/CometVisu_orange.png&quot;</span> <span class="na">width=</span><span class="s">&quot;45px&quot;</span> <span class="na">height=</span><span class="s">&quot;32px&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;image</span> <span class="na">src=</span><span class="s">&quot;resource/icons/CometVisu_orange.png&quot;</span> <span class="na">width=</span><span class="s">&quot;45px&quot;</span> <span class="na">height=</span><span class="s">&quot;32px&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/image&gt;</span>
 </pre></div>
@@ -520,7 +510,7 @@ XML-editor to UTF-8 mode!</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -566,7 +556,7 @@ XML-editor to UTF-8 mode!</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

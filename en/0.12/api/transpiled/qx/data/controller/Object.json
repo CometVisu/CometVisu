@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<h2>Object Controller</h2>\n<p><em>General idea</em>\n The idea of the object controller is to make the binding of one model object\n containing one or more properties as easy as possible. Therefore the\n controller can take a model as property. Every property in that model can be\n bound to one or more target properties. The binding will be for\n atomic types only like Numbers, Strings, …\n<em>Features</em></p>\n<ul>\n<li>Manages the bindings between the model properties and the different targets</li>\n<li>No need for the user to take care of the binding ids</li>\n<li>Can create an bidirectional binding (read- / write-binding)</li>\n<li>Handles the change of the model which means adding the old targets\n<em>Usage</em>\nThe controller only can work if a model is set. If the model property is\nnull, the controller is not working. But it can be null on any time.\n<em>Cross reference</em></li>\n<li>If you want to bind a list like widget, use {@link qx.data.controller.List}</li>\n<li>If you want to bind a tree widget, use {@link qx.data.controller.Tree}</li>\n<li>If you want to bind a form widget, use {@link qx.data.controller.Form}</li>\n</ul>"
         }
       ]
@@ -44,10 +40,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -139,14 +131,7 @@
           "column": 20
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>private members</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -666,14 +651,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n  DESTRUCT\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

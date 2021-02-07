@@ -18,7 +18,9 @@
       },
       "qx.util.ResourceManager": {},
       "qx.io.ImageLoader": {},
-      "qx.bom.client.Css": {},
+      "qx.bom.client.Css": {
+        "require": true
+      },
       "qx.bom.element.Decoration": {}
     },
     "environment": {
@@ -69,7 +71,7 @@
       var clazz = qx.ui.table.cellrenderer.AbstractImage;
 
       if (!clazz.stylesheet) {
-        clazz.stylesheet = qx.bom.Stylesheet.createElement(".qooxdoo-table-cell-icon {  text-align:center;  padding-top:1px;}");
+        clazz.stylesheet = qx.bom.Stylesheet.createElement(".qooxdoo-table-cell-icon {  text-align:center;}");
       }
     },
 
@@ -107,11 +109,9 @@
     *****************************************************************************
     */
     members: {
-      __P_395_0: 16,
-      __P_395_1: 16,
-      __P_395_2: null,
-      // overridden
-      _insetY: 2,
+      __P_392_0: 16,
+      __P_392_1: 16,
+      __P_392_2: null,
 
       /**
        * Identifies the Image to show. This is a template method, which must be
@@ -165,7 +165,7 @@
 
 
         if (!imageData.imageWidth || !imageData.imageHeight) {
-          var sizes = this.__P_395_3(imageData.url);
+          var sizes = this.__P_392_3(imageData.url);
 
           imageData.imageWidth = sizes.width;
           imageData.imageHeight = sizes.height;
@@ -186,7 +186,7 @@
        * @return {Map} A map containing the image's <code>width</code> and
        *    <code>height</code>
        */
-      __P_395_3: function __P_395_3(source) {
+      __P_392_3: function __P_392_3(source) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var ImageLoader = qx.io.ImageLoader;
         var width, height; // Detect if the image registry knows this image
@@ -198,8 +198,8 @@
           width = ImageLoader.getWidth(source);
           height = ImageLoader.getHeight(source);
         } else {
-          width = this.__P_395_0;
-          height = this.__P_395_1;
+          width = this.__P_392_0;
+          height = this.__P_392_1;
         }
 
         return {
@@ -209,7 +209,7 @@
       },
       // overridden
       createDataCellHtml: function createDataCellHtml(cellInfo, htmlArr) {
-        this.__P_395_2 = this._getImageInfos(cellInfo);
+        this.__P_392_2 = this._getImageInfos(cellInfo);
         return qx.ui.table.cellrenderer.AbstractImage.prototype.createDataCellHtml.base.call(this, cellInfo, htmlArr);
       },
       // overridden
@@ -220,25 +220,25 @@
       _getContentHtml: function _getContentHtml(cellInfo) {
         var content = "<div></div>"; // set image
 
-        if (this.__P_395_2.url) {
-          var srcUrl = this.__P_395_2.url;
-          var highResolutionSource = qx.util.ResourceManager.getInstance().findHighResolutionSource(this.__P_395_2.url);
+        if (this.__P_392_2.url) {
+          var srcUrl = this.__P_392_2.url;
+          var highResolutionSource = qx.util.ResourceManager.getInstance().findHighResolutionSource(this.__P_392_2.url);
 
           if (highResolutionSource) {
             srcUrl = highResolutionSource;
           }
 
           var style = {
-            width: this.__P_395_2.width + "px",
-            height: this.__P_395_2.height + "px",
+            width: this.__P_392_2.width + "px",
+            height: this.__P_392_2.height + "px",
             display: qx.core.Environment.get("css.inlineblock"),
-            verticalAlign: "top",
+            verticalAlign: "middle",
             position: "static"
           };
 
-          if (qx.util.ResourceManager.getInstance().getCombinedFormat(this.__P_395_2.url) === "") {
+          if (qx.util.ResourceManager.getInstance().getCombinedFormat(this.__P_392_2.url) === "") {
             // background size is critical for high-resolution images but breaks combined images
-            style["background-size"] = this.__P_395_2.width + "px " + this.__P_395_2.height + "px";
+            style["background-size"] = this.__P_392_2.width + "px " + this.__P_392_2.height + "px";
           }
 
           content = qx.bom.element.Decoration.create(srcUrl, this.getRepeat(), style);
@@ -248,7 +248,7 @@
       },
       // overridden
       _getCellAttributes: function _getCellAttributes(cellInfo) {
-        var tooltip = this.__P_395_2.tooltip;
+        var tooltip = this.__P_392_2.tooltip;
 
         if (tooltip) {
           return "title='" + tooltip + "'";
@@ -264,10 +264,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_395_2 = null;
+      this.__P_392_2 = null;
     }
   });
   qx.ui.table.cellrenderer.AbstractImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractImage.js.map?dt=1604955488648
+//# sourceMappingURL=AbstractImage.js.map?dt=1612690414729

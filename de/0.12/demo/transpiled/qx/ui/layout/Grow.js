@@ -64,7 +64,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://qooxdoo.org/docs/#layout/grow.md'>
+   * <a href='https://qooxdoo.org/documentation/#/desktop/layout/grow.md'>
    * Extended documentation</a> and links to demos of this layout in the qooxdoo manual.
    */
   qx.Class.define("qx.ui.layout.Grow", {
@@ -149,4 +149,4 @@
   qx.ui.layout.Grow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Grow.js.map?dt=1604956075596
+//# sourceMappingURL=Grow.js.map?dt=1612691009467

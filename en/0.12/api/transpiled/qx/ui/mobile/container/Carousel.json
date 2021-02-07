@@ -23,10 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christopher Zuendorf (czuendorf)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Creates a Carousel widget.\n A carousel is a widget which can switch between several sub pages {@link  qx.ui.mobile.container.Composite}.\n A page switch is triggered by a swipe to left, for next page, or a swipe to right for\n previous page.\n A carousel shows by default a pagination indicator at the bottom of the carousel.\n This pagination indicator can be hidden by property <code>showPagination</code>.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n  var carousel = new qx.ui.mobile.container.Carousel();\n  var carouselPage1 = new qx.ui.mobile.container.Composite();\n  var carouselPage2 = new qx.ui.mobile.container.Composite();\n  carouselPage1.add(new qx.ui.mobile.basic.Label(\"This is a carousel. Please swipe left.\"));\n  carouselPage2.add(new qx.ui.mobile.basic.Label(\"Now swipe right.\"));\n  carousel.add(carouselPage1);\n  carousel.add(carouselPage2);\n </pre>"
         }
       ]
@@ -46,10 +42,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -80,14 +72,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "defaultCssClass",
       "propertyType": "new",
       "refine": true,
@@ -490,10 +475,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>overridden</p>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Adds a page to the end of the carousel.</p>"
           }
         ],
@@ -564,14 +545,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.core.MChildrenHandling",
@@ -3542,5 +3516,6 @@
     },
     "jsdoc": {}
   },
+  "events": {},
   "descendants": []
 }

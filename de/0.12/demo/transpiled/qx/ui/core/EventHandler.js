@@ -58,7 +58,7 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_200_0 = qx.event.Registration.getManager(window);
+      this.__P_202_0 = qx.event.Registration.getManager(window);
     },
 
     /*
@@ -145,14 +145,14 @@
     *****************************************************************************
     */
     members: {
-      __P_200_0: null,
+      __P_202_0: null,
 
       /**
        * @type {Map} Supported focus event types
        *
        * @lint ignoreReferenceField(__focusEvents)
        */
-      __P_200_1: {
+      __P_202_1: {
         focusin: 1,
         focusout: 1,
         focus: 1,
@@ -164,7 +164,7 @@
        *
        * @lint ignoreReferenceField(__ignoreDisabled)
        */
-      __P_200_2: {
+      __P_202_2: {
         // mouse events
         mouseover: 1,
         mouseout: 1,
@@ -199,7 +199,7 @@
         } // Correcting target for focus events
 
 
-        if (this.__P_200_1[domEvent.getType()]) {
+        if (this.__P_202_1[domEvent.getType()]) {
           widgetTarget = widgetTarget && widgetTarget.getFocusTarget(); // Whether nothing is returned
 
           if (!widgetTarget) {
@@ -218,7 +218,7 @@
 
           if (widgetRelatedTarget) {
             // Correcting target for focus events
-            if (this.__P_200_1[domEvent.getType()]) {
+            if (this.__P_202_1[domEvent.getType()]) {
               widgetRelatedTarget = widgetRelatedTarget.getFocusTarget();
             } // If target and related target are identical ignore the event
 
@@ -238,14 +238,14 @@
         } // Correcting target for focus events
 
 
-        if (this.__P_200_1[domEvent.getType()]) {
+        if (this.__P_202_1[domEvent.getType()]) {
           currentWidget = currentWidget.getFocusTarget();
         } // Ignore most events in the disabled state.
 
 
         var type = domEvent.getType();
 
-        if (!currentWidget || !(currentWidget.isEnabled() || this.__P_200_2[type])) {
+        if (!currentWidget || !(currentWidget.isEnabled() || this.__P_202_2[type])) {
           return;
         } // PROCESS LISTENERS
         // Load listeners
@@ -253,14 +253,14 @@
 
         var capture = domEvent.getEventPhase() == qx.event.type.Event.CAPTURING_PHASE;
 
-        var listeners = this.__P_200_0.getListeners(currentWidget, type, capture);
+        var listeners = this.__P_202_0.getListeners(currentWidget, type, capture);
 
         if (domEvent.getEventPhase() == qx.event.type.Event.AT_TARGET) {
           if (!listeners) {
             listeners = [];
           }
 
-          var otherListeners = this.__P_200_0.getListeners(currentWidget, type, !capture);
+          var otherListeners = this.__P_202_0.getListeners(currentWidget, type, !capture);
 
           if (otherListeners) {
             listeners = listeners.concat(otherListeners);
@@ -350,7 +350,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_200_0 = null;
+      this.__P_202_0 = null;
     },
 
     /*
@@ -365,4 +365,4 @@
   qx.ui.core.EventHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EventHandler.js.map?dt=1604956081369
+//# sourceMappingURL=EventHandler.js.map?dt=1612691015140

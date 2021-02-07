@@ -62,9 +62,6 @@
           
 
           
-            
-            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -208,7 +205,7 @@ Folgende Direktiven werden zur Zeit unterstützt:</p>
 einer oder mehrere Screenshots generiert werden und zusammen mit dem Beispiel-Code in die Dokumentation eingebunden
 werden.</p>
 <p>Das folgende Beispiel:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
 
     &lt;settings&gt;
         &lt;screenshot name=&quot;switch_complete&quot;&gt;
@@ -238,11 +235,11 @@ werden.</p>
 </pre></div>
 </div>
 <p>erzeugt diesen Eintrag in der Dokumentation:</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <img alt="Switch mit mapping + styling" src="../../_images/switch_complete.png" />
-<p class="caption"><span class="caption-text">Switch mit mapping + styling</span></p>
+<p class="caption"><span class="caption-text">Switch mit mapping + styling</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;mappings&gt;</span>
         <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;OnOff&quot;</span><span class="nt">&gt;</span>
@@ -288,7 +285,7 @@ Screenshots beinflusst werden können</p>
 <li><cite>align</cite>: <em>left</em>, <em>center</em> oder <em>right</em>. Definiert die Position des Screenshots (Default: <em>left</em>)</li>
 </ol>
 <p>Ein vollständiges Beispiel mit allen Optionen:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">widget-example</span><span class="p">::</span>
     <span class="nc">:linenos:</span>
     <span class="nc">:linenos-start:</span> 1
     <span class="nc">:scale:</span> 75
@@ -314,7 +311,7 @@ verfeinert werden.</p>
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="3">Attribut</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Inhalt</th>
 <th class="head">Beschreibung</th>
@@ -335,17 +332,15 @@ verfeinert werden.</p>
 <td>Initiale Wartezeit in ms bevor der Screenshot aufgenommen wird</td>
 </tr>
 <tr class="row-even"><td><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt>
-<dd>&lt;caption&gt;</dd>
+<dt>&lt;settings&gt;</dt><dd>&lt;caption&gt;</dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>#text</td>
 <td>Untertitel des Beispielcodes</td>
 </tr>
 <tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt>
-<dd>&lt;screenshot&gt;</dd>
+<dt>&lt;settings&gt;</dt><dd>&lt;screenshot&gt;</dd>
 </dl>
 </td>
 <td>name</td>
@@ -365,10 +360,8 @@ verfeinert werden.</p>
 <td>Wartezeit zwischen Senden der Daten und Screenshot</td>
 </tr>
 <tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
-<dt>&lt;settings&gt;</dt>
-<dd><dl class="first last docutils">
-<dt>&lt;screenshot&gt;</dt>
-<dd>&lt;data&gt;</dd>
+<dt>&lt;settings&gt;</dt><dd><dl class="docutils">
+<dt>&lt;screenshot&gt;</dt><dd>&lt;data&gt;</dd>
 </dl>
 </dd>
 </dl>
@@ -395,7 +388,7 @@ verfeinert werden.</p>
 aus der Schema-Definition (visu_config.xsd) ausgelesen.
 Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der den Widget-Namen enthält.</p>
 <p>Dieses Beispiel erzeugt die Attribut-Tabelle für das Switch-Widget.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">parameter-information</span><span class="p">::</span> switch
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">parameter-information</span><span class="p">::</span> switch
 </pre></div>
 </div>
 <table border="1" class="docutils">
@@ -409,7 +402,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="4">Attribut</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Inhalt</th>
 <th class="head">Beschreibung</th>
@@ -427,15 +420,15 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </tr>
 <tr class="row-odd"><td>on_value</td>
 <td>Text</td>
-<td>Wert für den An-Zustand. Default ist &#8220;1&#8221;.</td>
+<td>Wert für den An-Zustand. Default ist „1“.</td>
 </tr>
 <tr class="row-even"><td>off_value</td>
 <td>Text</td>
-<td>Wert für den Aus-Zustand. Default ist &#8220;0&#8221;.</td>
+<td>Wert für den Aus-Zustand. Default ist „0“.</td>
 </tr>
 <tr class="row-odd"><td>align</td>
 <td><em>left</em>, <em>right</em> oder <em>center</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>flavour</td>
 <td>Text</td>
@@ -462,7 +455,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 aus der Schema-Definition (visu_config.xsd) ausgelesen.
 Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der den Widget-Namen enthält.</p>
 <p>Dieses Beispiel erzeugt die Element-Tabelle für das Switch-Widget.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">elements-information</span><span class="p">::</span> switch
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">elements-information</span><span class="p">::</span> switch
 </pre></div>
 </div>
 <table border="1" class="schema-table docutils">
@@ -484,8 +477,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>layout</li>
 </ul>
 </dd>
@@ -580,8 +572,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>label</li>
 <li>icon</li>
 </ul>
@@ -590,11 +581,11 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </td>
 <td><abbr title="Pflichtangabe">name</abbr></td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>type</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>flavour</td>
 <td>Text</td>
@@ -602,7 +593,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </tr>
 <tr class="row-even"><td>color</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>styling</td>
 <td>Text</td>
@@ -613,8 +604,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 <td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>label<ul>
 <li>#text</li>
 </ul>
@@ -623,7 +613,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>Text</td>
 <td>Text um bei dem Widget eine Beschreibung darzustellen.</td>
 </tr>
@@ -648,8 +638,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li><abbr title="Pflichtangabe">address</abbr></li>
 </ul>
 </dd>
@@ -661,19 +650,18 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </tr>
 <tr class="row-even"><td>mode</td>
 <td><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>variant</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>format-pos</td>
 <td>Zahl</td>
 <td>Position für Format-String wenn mehrere Addressen gleichzeitig genutzt werden.</td>
 </tr>
 <tr class="row-odd"><td><dl class="first last docutils">
-<dt>switch</dt>
-<dd><ul class="first last simple">
+<dt>switch</dt><dd><ul class="simple">
 <li>address<ul>
 <li>#text</li>
 </ul>
@@ -682,7 +670,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </dd>
 </dl>
 </td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>Text</td>
 <td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends oder der Item-Name beim openHAB-Backend.</td>
 </tr>
@@ -692,16 +680,16 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 <div class="section" id="die-api-doc-direktive">
 <h2>Die <em>api-doc</em> Direktive<a class="headerlink" href="#die-api-doc-direktive" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Diese Direktive liest wichtige Informationen aus der Source-Code Dokumentation eines Widgets oder Plugins.
-Momentan sind das die Werte der <code class="docutils literal"><span class="pre">&#64;author</span></code> und <code class="docutils literal"><span class="pre">&#64;since</span></code> Angaben.</p>
+Momentan sind das die Werte der <code class="docutils literal notranslate"><span class="pre">&#64;author</span></code> und <code class="docutils literal notranslate"><span class="pre">&#64;since</span></code> Angaben.</p>
 <div class="admonition important">
 <p class="first admonition-title">Wichtig</p>
 <p class="last">Wichtig ist hierbei, dass der Name des Widgets exakt dem Namen der Sourcecode-Datei ohne Dateiendung
-entspricht, also z.B. für <code class="docutils literal"><span class="pre">structure/pure/Switch.js</span></code> nimmt man <code class="docutils literal"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">Switch</span></code>
+entspricht, also z.B. für <code class="docutils literal notranslate"><span class="pre">structure/pure/Switch.js</span></code> nimmt man <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">Switch</span></code>
 (Groß-/Kleinschreibung beachten). Bei Plugins muss der Ordnername des Plugins angegeben werden, also
-z.B. für <code class="docutils literal"><span class="pre">plugins/colorchooser/</span></code> nimmt man <code class="docutils literal"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">colorchooser</span></code></p>
+z.B. für <code class="docutils literal notranslate"><span class="pre">plugins/colorchooser/</span></code> nimmt man <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">colorchooser</span></code></p>
 </div>
 <p>Beispiel für das Switch-Widget:</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">api-doc</span><span class="p">::</span> Switch
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">api-doc</span><span class="p">::</span> Switch
 </pre></div>
 </div>
 <p>erzeugt folgenden Inhalt:</p>
@@ -717,7 +705,7 @@ z.B. für <code class="docutils literal"><span class="pre">plugins/colorchooser/
 <p>Durch diese Direktive lasst sich definieren, welche Seiten des alten Wikis durch diese Handbuch-Seite ersetzt werden.
 Es können mehrere Wiki-Seiten angegeben werden. Diese Direktive fügt der Dokumentation keinen Inhalt hinzu,
 sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
-<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">replaces</span><span class="p">::</span> CometVisu/0.8.x/widgets/switch/de/
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">replaces</span><span class="p">::</span> CometVisu/0.8.x/widgets/switch/de/
     CometVisu/0.8.0/switch/de
     CometVisu/Widget/switch/de
     CometVisu/switch
@@ -740,7 +728,7 @@ sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -786,7 +774,7 @@ sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

@@ -16,16 +16,12 @@
         "column": 0
       },
       "end": {
-        "line": 1304,
+        "line": 1305,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n Christian Hagendorn (chris_schmidt)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>This handler is used to normalize all focus/activation requirements\n and normalize all cross browser quirks in this area.\n Notes:</p>\n<ul>\n<li>Webkit and Opera (before 9.5) do not support tabIndex for all elements\n(See also: https://bugs.webkit.org/show_bug.cgi?id=7138)</li>\n<li>TabIndex is normally 0, which means all naturally focusable elements are focusable.</li>\n<li>TabIndex &gt; 0 means that the element is focusable and tabable</li>\n<li>TabIndex &lt; 0 means that the element, even if naturally possible, is not focusable.\nNOTE: Instances of this class must be disposed of after use</li>\n</ul>"
@@ -53,10 +49,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": "<p>Create a new instance</p>"
@@ -485,18 +477,7 @@
           "column": 46
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT HANDLER INTERFACE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>interface implementation</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.event.IEventHandler",
@@ -515,14 +496,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>interface implementation</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.event.IEventHandler",
@@ -541,14 +515,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>interface implementation</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.event.IEventHandler",
@@ -569,10 +536,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  FOCUS/BLUR USER INTERFACE\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Focuses the given DOM element</p>"
@@ -730,10 +693,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  HELPER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Shorthand to fire events from within this class.</p>"
           }
         ],
@@ -792,10 +751,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  WINDOW FOCUS/BLUR SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": ""
@@ -870,10 +825,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  NATIVE OBSERVER\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Initializes event listeners.</p>"
           }
         ],
@@ -928,10 +879,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  NATIVE LISTENERS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Native event listener for <code>draggesture</code> event\n supported by gecko. Used to stop native drag and drop when\n selection is disabled.</p>"
@@ -1191,7 +1138,7 @@
           "column": 4
         },
         "end": {
-          "line": 1074,
+          "line": 1075,
           "column": 5
         }
       },
@@ -1232,11 +1179,11 @@
     "__fixFocus": {
       "location": {
         "start": {
-          "line": 1083,
+          "line": 1084,
           "column": 4
         },
         "end": {
-          "line": 1096,
+          "line": 1097,
           "column": 9
         }
       },
@@ -1277,11 +1224,11 @@
     "__onNativeSelectStart": {
       "location": {
         "start": {
-          "line": 1104,
+          "line": 1105,
           "column": 4
         },
         "end": {
-          "line": 1123,
+          "line": 1124,
           "column": 7
         }
       },
@@ -1314,20 +1261,16 @@
     "__isFocusable": {
       "location": {
         "start": {
-          "line": 1138,
+          "line": 1139,
           "column": 4
         },
         "end": {
-          "line": 1151,
+          "line": 1152,
           "column": 5
         }
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  HELPER METHODS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Whether the given element is focusable. This is perfectly modeled to the\n browsers behavior and this way may differ in the various clients.</p>"
@@ -1357,11 +1300,11 @@
     "__findFocusableElement": {
       "location": {
         "start": {
-          "line": 1160,
+          "line": 1161,
           "column": 4
         },
         "end": {
-          "line": 1179,
+          "line": 1180,
           "column": 5
         }
       },
@@ -1396,11 +1339,11 @@
     "__findActivatableElement": {
       "location": {
         "start": {
-          "line": 1191,
+          "line": 1192,
           "column": 4
         },
         "end": {
-          "line": 1205,
+          "line": 1206,
           "column": 5
         }
       },
@@ -1435,11 +1378,11 @@
     "__isSelectable": {
       "location": {
         "start": {
-          "line": 1214,
+          "line": 1215,
           "column": 4
         },
         "end": {
-          "line": 1227,
+          "line": 1228,
           "column": 5
         }
       },
@@ -1474,26 +1417,15 @@
     "_applyActive": {
       "location": {
         "start": {
-          "line": 1236,
+          "line": 1237,
           "column": 4
         },
         "end": {
-          "line": 1250,
+          "line": 1251,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY APPLY ROUTINES\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>apply routine</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1503,22 +1435,15 @@
     "_applyFocus": {
       "location": {
         "start": {
-          "line": 1253,
+          "line": 1254,
           "column": 4
         },
         "end": {
-          "line": 1272,
+          "line": 1273,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>apply routine</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -1797,42 +1722,28 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 1281,
+        "line": 1282,
         "column": 13
       },
       "end": {
-        "line": 1286,
+        "line": 1287,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "defer": {
     "location": {
       "start": {
-        "line": 1294,
+        "line": 1295,
         "column": 10
       },
       "end": {
-        "line": 1303,
+        "line": 1304,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DEFER\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

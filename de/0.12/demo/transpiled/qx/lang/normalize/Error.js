@@ -10,7 +10,8 @@
         "require": true
       },
       "qx.bom.client.EcmaScript": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       }
     },
     "environment": {
@@ -89,4 +90,4 @@
   qx.lang.normalize.Error.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Error.js.map?dt=1604956078136
+//# sourceMappingURL=Error.js.map?dt=1612691011911

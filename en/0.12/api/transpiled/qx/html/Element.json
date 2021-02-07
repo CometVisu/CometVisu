@@ -23,10 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>High-performance, high-level DOM element creation and management.\n Includes support for HTML and style attributes. Elements also have\n got a powerful children and visibility management.\n Processes DOM insertion and modification with advanced logic\n to reduce the real transactions.\n From the view of the parent you can use the following children management\n methods:\n {@link #getChildren}, {@link #indexOf}, {@link #hasChild}, {@link #add},\n {@link #addAt}, {@link #remove}, {@link #removeAt}, {@link #removeAll}\n Each child itself also has got some powerful methods to control its\n position:\n {@link #getParent}, {@link #free},\n {@link #insertInto}, {@link #insertBefore}, {@link #insertAfter},\n {@link #moveTo}, {@link #moveBefore}, {@link #moveAfter},\n NOTE: Instances of this class must be disposed of after use</p>"
         }
       ],
@@ -52,10 +48,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": "<p>Creates a new Element</p>"
@@ -106,10 +98,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  STATIC DATA\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": ""
@@ -308,10 +296,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PUBLIC ELEMENT FLUSH\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Schedule a deferred element queue flush. If the widget subsystem is used\n this method gets overwritten by {@link qx.ui.core.queue.Manager}.</p>"
           }
         ],
@@ -501,14 +485,7 @@
           "column": 21
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROTECTED HELPERS/DATA\n---------------------------------------------------------------------------\n</code></pre>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "private"
     },
@@ -1008,10 +985,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  FLUSH OBJECT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Syncs data of an HtmlElement object to the DOM.</p>"
           }
         ]
@@ -1032,10 +1005,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  SUPPORT FOR CHILDREN FLUSH\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Append all child nodes to the DOM\n element. This function is used when the element is initially\n created. After this initial apply {@link #_syncChildren} is used\n instead.</p>"
@@ -1078,14 +1047,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  SUPPORT FOR ATTRIBUTE/STYLE/EVENT FLUSH\n---------------------------------------------------------------------------\n</code></pre>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public"
     },
@@ -1155,10 +1117,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PRIVATE HELPERS/DATA\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Walk up the internal children hierarchy and\n look if one of the children is marked as root.\n This method is quite performance hungry as it\n really walks up recursively.</p>"
@@ -1306,10 +1264,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  CHILDREN MANAGEMENT (EXECUTED ON THE PARENT)\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns a copy of the internal children structure.\n Please do not modify the array in place. If you need\n to work with the data in such a way make yourself\n a copy of the data first.</p>"
@@ -1682,10 +1636,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  CHILDREN MANAGEMENT (EXECUTED ON THE CHILD)\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Returns the parent of this element.</p>"
           }
         ],
@@ -1997,10 +1947,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  DOM ELEMENT ACCESS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Returns the DOM element (if created). Please use this with caution.\n It is better to make all changes to the object itself using the public\n API rather than to the underlying DOM element.</p>"
           }
         ],
@@ -2284,10 +2230,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EXCLUDE SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Marks the element as included which means it will be moved into\n the DOM again and synced with the internal data representation.</p>"
           }
         ],
@@ -2378,10 +2320,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  ANIMATION SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Fades in the element.</p>"
           }
         ],
@@ -2458,10 +2396,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  VISIBILITY SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Marks the element as visible which means that a previously applied\n CSS style of display=none gets removed and the element will inserted\n into the DOM, when this had not already happened before.</p>"
@@ -2552,10 +2486,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  SCROLL SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Scrolls the given child element into view. Only scrolls children.\n Do not influence elements on top of this element.\n If the element is currently invisible it gets scrolled automatically\n at the next time it is visible again (queued).</p>"
@@ -2885,10 +2815,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  TEXT SELECTION SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Get the selection of the element.\n If the underlaying DOM element is not yet created, this methods returns\n a null value.</p>"
           }
         ],
@@ -3067,10 +2993,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  FOCUS/ACTIVATE SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Takes the action to process as argument and queues this action if the\n underlying DOM element is not yet created.</p>"
@@ -3252,10 +3174,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  STYLE SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Set up the given style attribute</p>"
@@ -3478,10 +3396,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  ATTRIBUTE SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Set up the given attribute</p>"
           }
         ],
@@ -3672,10 +3586,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  CSS CLASS SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Adds a css class to the element.</p>"
           }
         ],
@@ -3736,10 +3646,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  PROPERTY SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Applies a special property with the given value.\n This property apply routine can be easily overwritten and\n extended by sub classes to add new low level features which\n are not easily possible using styles and attributes.</p>"
@@ -3934,10 +3840,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  EVENT SUPPORT\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Adds an event listener to the element.</p>"
@@ -4336,14 +4238,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DEFER\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "destruct": {
     "location": {
@@ -4356,14 +4251,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCT\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": [
     "qx.html.Blocker",

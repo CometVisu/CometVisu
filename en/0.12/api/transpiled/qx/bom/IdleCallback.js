@@ -11,12 +11,17 @@
       },
       "qx.core.Object": {
         "require": true
+      },
+      "qx.bom.client.Idle": {
+        "require": true
       }
     },
     "environment": {
       "provided": [],
       "required": {
-        "client.idle": {}
+        "client.idle": {
+          "className": "qx.bom.client.Idle"
+        }
       }
     }
   };
@@ -128,4 +133,4 @@
   qx.bom.IdleCallback.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IdleCallback.js.map?dt=1604955465289
+//# sourceMappingURL=IdleCallback.js.map?dt=1612690392502

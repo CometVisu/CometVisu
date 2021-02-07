@@ -23,7 +23,9 @@
       "qx.theme.manager.Color": {},
       "qx.bom.element.Style": {},
       "qx.bom.Font": {},
-      "qx.bom.client.Css": {}
+      "qx.bom.client.Css": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
@@ -256,4 +258,4 @@
   qx.ui.table.rowrenderer.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1604955489774
+//# sourceMappingURL=Default.js.map?dt=1612690415811

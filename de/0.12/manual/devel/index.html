@@ -64,9 +64,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -200,8 +197,7 @@ Generator erstellt für die Releases unterschiedliche Build-Versionen für die 4
 <p>Weitere Qooxdoo-Features die die CometVisu nutzt:</p>
 <ul>
 <li><dl class="first docutils">
-<dt><a class="reference external" href="http://www.qooxdoo.org/current/pages/development/parts_using.html">Parts</a>:</dt>
-<dd><p class="first last">Teile des Codes, die nicht immer benötigt werden, werden in <em>Parts</em> ausgelagert, die bei Bedarf nachgeladen werden.
+<dt><a class="reference external" href="http://www.qooxdoo.org/current/pages/development/parts_using.html">Parts</a>:</dt><dd><p>Teile des Codes, die nicht immer benötigt werden, werden in <em>Parts</em> ausgelagert, die bei Bedarf nachgeladen werden.
 Die CometVisu nutzt dies für Plugins und die Widget-Pakete (Es gibt zwar momentan nur das <em>Pure</em>-Widgetpaket,
 weitere sind jedoch möglich).</p>
 </dd>
@@ -219,14 +215,14 @@ Es wäre jedoch möglich ein neues auf Qooxdoo-UI basierendes Widgetpaket zu imp
 <p class="caption"><span class="caption-text">Start-Kommunikation zwischen CometVisu und Backend</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
 </div>
 <ol class="arabic">
-<li><p class="first">Laden der Konfigurationsdatei <code class="docutils literal"><span class="pre">visu_config*.xml</span></code></p>
+<li><p class="first">Laden der Konfigurationsdatei <code class="docutils literal notranslate"><span class="pre">visu_config*.xml</span></code></p>
 </li>
 <li><p class="first">Der Server kann diese Datei mit 2 optionalen Headern ausliefern, die der CometVisu weitere Informationen
 über das Backend zu liefern:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">X-CometVisu-Backend-LoginUrl</span></code>: Pfad unter der der Client das Login ausführen kann.</li>
-<li><code class="docutils literal"><span class="pre">X-CometVisu-Backend-Name</span></code>: Der Name des zu verwendenden Backends.</li>
+<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-LoginUrl</span></code>: Pfad unter der der Client das Login ausführen kann.</li>
+<li><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-Name</span></code>: Der Name des zu verwendenden Backends.</li>
 </ul>
 </div></blockquote>
 </li>
@@ -234,10 +230,10 @@ Es wäre jedoch möglich ein neues auf Qooxdoo-UI basierendes Widgetpaket zu imp
 </li>
 <li><p class="first">Das Backend bestätigt die Authentifizierung und liefert Informationen als JSON zurück:</p>
 <blockquote>
-<div><p><code class="docutils literal"><span class="pre">v</span></code>: Ist die Protokollversion</p>
-<p><code class="docutils literal"><span class="pre">s</span></code>: Die Session ID</p>
-<p><code class="docutils literal"><span class="pre">c</span></code>: Die optionale Backend-Konfiguration</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div><p><code class="docutils literal notranslate"><span class="pre">v</span></code>: Ist die Protokollversion</p>
+<p><code class="docutils literal notranslate"><span class="pre">s</span></code>: Die Session ID</p>
+<p><code class="docutils literal notranslate"><span class="pre">c</span></code>: Die optionale Backend-Konfiguration</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
     <span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
     <span class="nt">&quot;c&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -300,21 +296,21 @@ durchgeführt und die Daten aus dem Cache werden verworfen.</p>
 </div>
 <div class="section" id="der-notificationrouter">
 <h2>Der NotificationRouter<a class="headerlink" href="#der-notificationrouter" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Es gibt einen internen <code class="docutils literal"><span class="pre">NotificationRouter</span></code> der für verschiedene Zwecke benutzt wird.
+<p>Es gibt einen internen <code class="docutils literal notranslate"><span class="pre">NotificationRouter</span></code> der für verschiedene Zwecke benutzt wird.
 Hauptfunktion dieses Routers ist es Nachrichten entgegenzunehmen und an den richtigen
-Empfänger weiterzuleiten. Mögliche Empfänger sind z.B. das <code class="docutils literal"><span class="pre">NotificationCenter</span></code> und der
-<code class="docutils literal"><span class="pre">PopupHandler</span></code>. Beide kümmern sich dann um die Anzeige der Nachricht, entweder in der Nachrichtenzentrale (die am
+Empfänger weiterzuleiten. Mögliche Empfänger sind z.B. das <code class="docutils literal notranslate"><span class="pre">NotificationCenter</span></code> und der
+<code class="docutils literal notranslate"><span class="pre">PopupHandler</span></code>. Beide kümmern sich dann um die Anzeige der Nachricht, entweder in der Nachrichtenzentrale (die am
 rechten Rand eingeblendet wird und eine Liste von Nachrichten anzeigt) oder als Popup.</p>
 <p>Eine Nachricht hat immer ein <em>Topic</em>, welches der thematischen Zuordnung dient, einen Titel, Text und diverse
 Konfigurations-Optionen.</p>
 <p>Folgenden <em>Topics</em> werden zur Zeit genutzt:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">cv.error</span></code>: Allgemeine Fehler</li>
-<li><code class="docutils literal"><span class="pre">cv.config.error</span></code>: Fehler die beim Einlesen der Config-Datei aufgetreten sind</li>
-<li><code class="docutils literal"><span class="pre">cv.state.*</span></code>: Namespace für alle in den <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">Benachrichtigungen</span></a> benutzten Nachrichten</li>
+<li><code class="docutils literal notranslate"><span class="pre">cv.error</span></code>: Allgemeine Fehler</li>
+<li><code class="docutils literal notranslate"><span class="pre">cv.config.error</span></code>: Fehler die beim Einlesen der Config-Datei aufgetreten sind</li>
+<li><code class="docutils literal notranslate"><span class="pre">cv.state.*</span></code>: Namespace für alle in den <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">Benachrichtigungen</span></a> benutzten Nachrichten</li>
 </ul>
-<p>Ein Nachrichtenempfänger (<code class="docutils literal"><span class="pre">NotificationHandler</span></code>) kann sich nun für eines oder mehrere solcher Topics registrieren:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">{</span>
+<p>Ein Nachrichtenempfänger (<code class="docutils literal notranslate"><span class="pre">NotificationHandler</span></code>) kann sich nun für eines oder mehrere solcher Topics registrieren:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">{</span>
     <span class="s1">&#39;cv.config.error&#39;</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
         <span class="nx">icon</span><span class="o">:</span> <span class="s2">&quot;message_attention&quot;</span>
@@ -327,7 +323,7 @@ Konfigurations-Optionen.</p>
 </pre></div>
 </div>
 <p>Auch Wildcards sind möglich:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">{</span>
     <span class="s1">&#39;cv.*&#39;</span><span class="o">:</span> <span class="p">{}</span>
 <span class="p">});</span>
 </pre></div>
@@ -345,13 +341,13 @@ Als ein wichtiges Beispiel wären hier noch Verbindungsprobleme mit dem Backend 
 solange das Problem besteht und verschwinden automatisch, sobald das Problem behoben wurde.</p>
 <div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/noticenter_hidden.png"><img alt="../_images/noticenter_hidden.png" src="../_images/noticenter_hidden.png" style="width: 795.9px; height: 556.5px;" /></a>
-<p class="caption"><span class="caption-text">Geschlossene Nachrichtenzentrale mit einer kritischen Fehlermeldung</span></p>
+<p class="caption"><span class="caption-text">Geschlossene Nachrichtenzentrale mit einer kritischen Fehlermeldung</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
 </div>
 <div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/NotificationCenter.png"><img alt="../_images/NotificationCenter.png" src="../_images/NotificationCenter.png" style="width: 798.6999999999999px; height: 557.9px;" /></a>
-<p class="caption"><span class="caption-text">Geöffnete Nachrichtenzentrale mit einer kritischen Fehlermeldung</span></p>
+<p class="caption"><span class="caption-text">Geöffnete Nachrichtenzentrale mit einer kritischen Fehlermeldung</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
 </div>
-<p>Der <code class="docutils literal"><span class="pre">NotificationRouter</span></code> wird ebenfalls für die <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">Benachrichtigungen</span></a> genutzt.</p>
+<p>Der <code class="docutils literal notranslate"><span class="pre">NotificationRouter</span></code> wird ebenfalls für die <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">Benachrichtigungen</span></a> genutzt.</p>
 </div>
 </div>
 
@@ -377,7 +373,7 @@ solange das Problem besteht und verschwinden automatisch, sobald das Problem beh
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -423,7 +419,7 @@ solange das Problem besteht und verschwinden automatisch, sobald das Problem beh
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

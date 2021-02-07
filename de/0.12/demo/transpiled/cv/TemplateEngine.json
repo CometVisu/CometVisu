@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 904,
+        "line": 932,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<p>TemplateEngine.js\n copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -47,15 +43,39 @@
     },
     "jsdoc": {}
   },
+  "statics": {
+    "getClient": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shortcut access to client</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    }
+  },
   "properties": {
     "partsLoaded": {
       "location": {
         "start": {
-          "line": 55,
+          "line": 69,
           "column": 4
         },
         "end": {
-          "line": 60,
+          "line": 74,
           "column": 5
         }
       },
@@ -78,11 +98,11 @@
     "scriptsLoaded": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 79,
           "column": 4
         },
         "end": {
-          "line": 69,
+          "line": 83,
           "column": 5
         }
       },
@@ -104,11 +124,11 @@
     "ready": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 89,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 94,
           "column": 5
         }
       },
@@ -131,11 +151,11 @@
     "currentPage": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 96,
           "column": 4
         },
         "end": {
-          "line": 86,
+          "line": 100,
           "column": 5
         }
       },
@@ -149,11 +169,11 @@
     "domFinished": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 93,
+          "line": 107,
           "column": 5
         }
       },
@@ -168,11 +188,11 @@
     "commands": {
       "location": {
         "start": {
-          "line": 95,
+          "line": 109,
           "column": 4
         },
         "end": {
-          "line": 98,
+          "line": 112,
           "column": 5
         }
       },
@@ -185,22 +205,15 @@
     "loggedIn": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 115,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 119,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>sent after the client is logged in to the backend</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "loggedIn",
       "propertyType": "new",
       "event": "changeLoggedIn",
@@ -245,11 +258,11 @@
     "pagePartsHandler": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 114,
+          "line": 128,
           "column": 26
         }
       },
@@ -259,37 +272,26 @@
     "bindClickToWidget": {
       "location": {
         "start": {
-          "line": 117,
+          "line": 131,
           "column": 4
         },
         "end": {
-          "line": 117,
+          "line": 131,
           "column": 29
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>if true the whole widget reacts on click events</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>if false only the actor in the widget reacts on click events</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
     "defaults": {
       "location": {
         "start": {
-          "line": 126,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 126,
+          "line": 140,
           "column": 19
         }
       },
@@ -307,11 +309,11 @@
     "main_scroll": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 142,
           "column": 4
         },
         "end": {
-          "line": 128,
+          "line": 142,
           "column": 22
         }
       },
@@ -321,11 +323,11 @@
     "old_scroll": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 143,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 143,
           "column": 19
         }
       },
@@ -335,11 +337,11 @@
     "visu": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 130,
+          "line": 144,
           "column": 15
         }
       },
@@ -349,11 +351,11 @@
     "pluginsToLoadCount": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 146,
           "column": 26
         }
       },
@@ -363,11 +365,11 @@
     "xml": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 147,
           "column": 14
         }
       },
@@ -377,11 +379,11 @@
     "__partQueue": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 135,
+          "line": 149,
           "column": 21
         }
       },
@@ -391,11 +393,11 @@
     "_domFinishedQueue": {
       "location": {
         "start": {
-          "line": 136,
+          "line": 150,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 150,
           "column": 27
         }
       },
@@ -405,33 +407,26 @@
     "lazyPlugins": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 153,
           "column": 4
         },
         "end": {
-          "line": 139,
+          "line": 153,
           "column": 35
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>plugins that do not need to be loaded to proceed with the initial setup</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },
     "__activeChangedTimer": {
       "location": {
         "start": {
-          "line": 140,
+          "line": 154,
           "column": 4
         },
         "end": {
-          "line": 140,
+          "line": 154,
           "column": 30
         }
       },
@@ -441,11 +436,11 @@
     "__hasBeenConnected": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 155,
           "column": 29
         }
       },
@@ -455,11 +450,11 @@
     "loadParts": {
       "location": {
         "start": {
-          "line": 148,
+          "line": 162,
           "column": 4
         },
         "end": {
-          "line": 183,
+          "line": 197,
           "column": 5
         }
       },
@@ -492,22 +487,15 @@
     "_applyReady": {
       "location": {
         "start": {
-          "line": 186,
+          "line": 200,
           "column": 4
         },
         "end": {
-          "line": 190,
+          "line": 204,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -517,22 +505,15 @@
     "_applyLoaded": {
       "location": {
         "start": {
-          "line": 193,
+          "line": 207,
           "column": 4
         },
         "end": {
-          "line": 198,
+          "line": 212,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -543,22 +524,15 @@
     "_applyDomFinished": {
       "location": {
         "start": {
-          "line": 201,
+          "line": 215,
           "column": 4
         },
         "end": {
-          "line": 212,
+          "line": 226,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -568,11 +542,11 @@
     "executeWhenDomFinished": {
       "location": {
         "start": {
-          "line": 219,
+          "line": 233,
           "column": 4
         },
         "end": {
-          "line": 226,
+          "line": 240,
           "column": 5
         }
       },
@@ -600,11 +574,11 @@
     "addAddress": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 246,
           "column": 4
         },
         "end": {
-          "line": 235,
+          "line": 249,
           "column": 5
         }
       },
@@ -628,11 +602,11 @@
     "getAddresses": {
       "location": {
         "start": {
-          "line": 241,
+          "line": 255,
           "column": 4
         },
         "end": {
-          "line": 244,
+          "line": 258,
           "column": 5
         }
       },
@@ -656,11 +630,11 @@
     "initBackendClient": {
       "location": {
         "start": {
-          "line": 249,
+          "line": 263,
           "column": 4
         },
         "end": {
-          "line": 288,
+          "line": 302,
           "column": 5
         }
       },
@@ -678,11 +652,11 @@
     "_onActiveChanged": {
       "location": {
         "start": {
-          "line": 290,
+          "line": 304,
           "column": 4
         },
         "end": {
-          "line": 311,
+          "line": 325,
           "column": 5
         }
       },
@@ -692,11 +666,11 @@
     "_checkBackendConnection": {
       "location": {
         "start": {
-          "line": 313,
+          "line": 327,
           "column": 4
         },
         "end": {
-          "line": 334,
+          "line": 348,
           "column": 5
         }
       },
@@ -706,11 +680,11 @@
     "_updateClientScope": {
       "location": {
         "start": {
-          "line": 336,
+          "line": 350,
           "column": 4
         },
         "end": {
-          "line": 344,
+          "line": 358,
           "column": 5
         }
       },
@@ -720,11 +694,11 @@
     "_handleClientError": {
       "location": {
         "start": {
-          "line": 346,
+          "line": 360,
           "column": 4
         },
         "end": {
-          "line": 384,
+          "line": 402,
           "column": 5
         }
       },
@@ -734,11 +708,11 @@
     "resetPageValues": {
       "location": {
         "start": {
-          "line": 389,
+          "line": 407,
           "column": 4
         },
         "end": {
-          "line": 394,
+          "line": 412,
           "column": 5
         }
       },
@@ -756,11 +730,11 @@
     "parseXML": {
       "location": {
         "start": {
-          "line": 401,
+          "line": 419,
           "column": 4
         },
         "end": {
-          "line": 496,
+          "line": 524,
           "column": 5
         }
       },
@@ -794,11 +768,11 @@
     "setupPage": {
       "location": {
         "start": {
-          "line": 501,
+          "line": 529,
           "column": 4
         },
         "end": {
-          "line": 570,
+          "line": 598,
           "column": 5
         }
       },
@@ -816,11 +790,11 @@
     "startScreensaver": {
       "location": {
         "start": {
-          "line": 575,
+          "line": 603,
           "column": 4
         },
         "end": {
-          "line": 584,
+          "line": 612,
           "column": 5
         }
       },
@@ -838,11 +812,11 @@
     "startInitialRequest": {
       "location": {
         "start": {
-          "line": 589,
+          "line": 617,
           "column": 4
         },
         "end": {
-          "line": 611,
+          "line": 639,
           "column": 5
         }
       },
@@ -860,11 +834,11 @@
     "createPages": {
       "location": {
         "start": {
-          "line": 620,
+          "line": 648,
           "column": 4
         },
         "end": {
-          "line": 633,
+          "line": 661,
           "column": 5
         }
       },
@@ -912,11 +886,11 @@
     "getPageIdByPath": {
       "location": {
         "start": {
-          "line": 641,
+          "line": 669,
           "column": 4
         },
         "end": {
-          "line": 659,
+          "line": 687,
           "column": 5
         }
       },
@@ -952,11 +926,11 @@
     "traversePath": {
       "location": {
         "start": {
-          "line": 661,
+          "line": 689,
           "column": 4
         },
         "end": {
-          "line": 687,
+          "line": 715,
           "column": 5
         }
       },
@@ -966,11 +940,11 @@
     "getPageIdByName": {
       "location": {
         "start": {
-          "line": 689,
+          "line": 717,
           "column": 4
         },
         "end": {
-          "line": 759,
+          "line": 787,
           "column": 5
         }
       },
@@ -980,11 +954,11 @@
     "scrollToPage": {
       "location": {
         "start": {
-          "line": 761,
+          "line": 789,
           "column": 4
         },
         "end": {
-          "line": 809,
+          "line": 837,
           "column": 5
         }
       },
@@ -994,11 +968,11 @@
     "selectDesign": {
       "location": {
         "start": {
-          "line": 811,
+          "line": 839,
           "column": 4
         },
         "end": {
-          "line": 893,
+          "line": 921,
           "column": 5
         }
       },
@@ -1758,6 +1732,58 @@
         ]
       }
     },
+    "fireEventAsync": {
+      "type": "function",
+      "name": "fireEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an event on this object; equivalent to fireEvent, except that it\n always returns a promise</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      }
+    },
     "fireNonBubblingEvent": {
       "type": "function",
       "name": "fireNonBubblingEvent",
@@ -1806,6 +1832,58 @@
             "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean",
             "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireNonBubblingEventAsync": {
+      "type": "function",
+      "name": "fireNonBubblingEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent,\n except that it always returns a promise.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -1865,6 +1943,65 @@
             "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean|qx.Promise",
             "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireDataEventAsync": {
+      "type": "function",
+      "name": "fireDataEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an non-bubbling data event on this object; equivalent to\n fireEvent, except that it always returns a promise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} User defined data attached to the event object",
+            "paramName": "data",
+            "description": " User defined data attached to the event object",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "oldData {var?null} The event's old data (optional)",
+            "paramName": "oldData",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -4700,22 +4837,15 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 901,
+        "line": 929,
         "column": 12
       },
       "end": {
-        "line": 903,
+        "line": 931,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>****************************************\nDESTRUCTOR\n****************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

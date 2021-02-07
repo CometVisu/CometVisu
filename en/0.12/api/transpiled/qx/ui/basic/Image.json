@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 1083,
+        "line": 1179,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n Sebastian Werner (wpbasti)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>The image class displays an image file\n This class supports image clipping, which means that multiple images can be combined\n into one large image and only the relevant part is shown.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var image = new qx.ui.basic.Image(\"icon/32/actions/format-justify-left.png\");\n   this.getRoot().add(image);\n </pre>\n<p>This example create a widget to display the image\n <code>icon/32/actions/format-justify-left.png</code>.\n<em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/image.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>\n NOTE: Instances of this class must be disposed of after use</p>"
@@ -44,10 +40,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -123,14 +115,14 @@
       "check": "Boolean",
       "defaultValue": false
     },
-    "appearance": {
+    "forceRatio": {
       "location": {
         "start": {
-          "line": 113,
+          "line": 115,
           "column": 4
         },
         "end": {
-          "line": 117,
+          "line": 119,
           "column": 5
         }
       },
@@ -138,10 +130,60 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>overridden</p>"
+            "body": "<p>Whether to preserve the image ratio (ie prevent distortion), and which dimension\n to prioritise</p>"
           }
         ]
       },
+      "name": "forceRatio",
+      "propertyType": "new",
+      "apply": "_applyDimension",
+      "init": "auto",
+      "possibleValues": [
+        "disabled",
+        "height",
+        "width",
+        "auto"
+      ],
+      "defaultValue": "auto"
+    },
+    "allowScaleUp": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4
+        },
+        "end": {
+          "line": 128,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to allow scaling the image up</p>"
+          }
+        ]
+      },
+      "name": "allowScaleUp",
+      "propertyType": "new",
+      "apply": "_applyDimension",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4
+        },
+        "end": {
+          "line": 135,
+          "column": 5
+        }
+      },
+      "jsdoc": {},
       "name": "appearance",
       "propertyType": "new",
       "refine": true,
@@ -155,22 +197,15 @@
     "allowShrinkX": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 143,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "allowShrinkX",
       "propertyType": "new",
       "refine": true,
@@ -184,22 +219,15 @@
     "allowShrinkY": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 147,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 151,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "allowShrinkY",
       "propertyType": "new",
       "refine": true,
@@ -213,22 +241,15 @@
     "allowGrowX": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 155,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 159,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "allowGrowX",
       "propertyType": "new",
       "refine": true,
@@ -242,22 +263,15 @@
     "allowGrowY": {
       "location": {
         "start": {
-          "line": 145,
+          "line": 163,
           "column": 4
         },
         "end": {
-          "line": 149,
+          "line": 167,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "allowGrowY",
       "propertyType": "new",
       "refine": true,
@@ -305,11 +319,11 @@
     "loadingFailed": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 165,
+          "line": 183,
           "column": 41
         }
       },
@@ -327,11 +341,11 @@
     "loaded": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 190,
           "column": 4
         },
         "end": {
-          "line": 172,
+          "line": 190,
           "column": 34
         }
       },
@@ -349,11 +363,11 @@
     "aborted": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 194,
           "column": 4
         },
         "end": {
-          "line": 176,
+          "line": 194,
           "column": 35
         }
       },
@@ -373,11 +387,11 @@
     "PLACEHOLDER_IMAGE": {
       "location": {
         "start": {
-          "line": 182,
+          "line": 200,
           "column": 4
         },
         "end": {
-          "line": 182,
+          "line": 200,
           "column": 103
         }
       },
@@ -389,11 +403,11 @@
     "__width": {
       "location": {
         "start": {
-          "line": 193,
+          "line": 211,
           "column": 4
         },
         "end": {
-          "line": 193,
+          "line": 211,
           "column": 18
         }
       },
@@ -403,11 +417,11 @@
     "__height": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 194,
+          "line": 212,
           "column": 19
         }
       },
@@ -417,11 +431,11 @@
     "__mode": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 213,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 213,
           "column": 17
         }
       },
@@ -431,11 +445,11 @@
     "__contentElements": {
       "location": {
         "start": {
-          "line": 196,
+          "line": 214,
           "column": 4
         },
         "end": {
-          "line": 196,
+          "line": 214,
           "column": 28
         }
       },
@@ -445,11 +459,11 @@
     "__currentContentElement": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 215,
           "column": 4
         },
         "end": {
-          "line": 197,
+          "line": 215,
           "column": 34
         }
       },
@@ -459,11 +473,11 @@
     "__wrapper": {
       "location": {
         "start": {
-          "line": 198,
+          "line": 216,
           "column": 4
         },
         "end": {
-          "line": 198,
+          "line": 216,
           "column": 20
         }
       },
@@ -473,11 +487,11 @@
     "__requestId": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 217,
           "column": 4
         },
         "end": {
-          "line": 199,
+          "line": 217,
           "column": 19
         }
       },
@@ -487,22 +501,15 @@
     "_onChangeTheme": {
       "location": {
         "start": {
-          "line": 203,
+          "line": 221,
           "column": 4
         },
         "end": {
-          "line": 207,
+          "line": 225,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -514,26 +521,15 @@
     "getContentElement": {
       "location": {
         "start": {
-          "line": 216,
+          "line": 234,
           "column": 4
         },
         "end": {
-          "line": 218,
+          "line": 236,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  WIDGET API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -544,22 +540,15 @@
     "_createContentElement": {
       "location": {
         "start": {
-          "line": 222,
+          "line": 240,
           "column": 4
         },
         "end": {
-          "line": 224,
+          "line": 242,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -570,22 +559,15 @@
     "_getContentHint": {
       "location": {
         "start": {
-          "line": 228,
+          "line": 246,
           "column": 4
         },
         "end": {
-          "line": 234,
+          "line": 252,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -596,22 +578,15 @@
     "_applyDecorator": {
       "location": {
         "start": {
-          "line": 237,
+          "line": 255,
           "column": 4
         },
         "end": {
-          "line": 247,
+          "line": 265,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -622,22 +597,15 @@
     "_applyTextColor": {
       "location": {
         "start": {
-          "line": 250,
+          "line": 268,
           "column": 4
         },
         "end": {
-          "line": 264,
+          "line": 282,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -648,22 +616,15 @@
     "_applyPadding": {
       "location": {
         "start": {
-          "line": 267,
+          "line": 285,
           "column": 4
         },
         "end": {
-          "line": 288,
+          "line": 306,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -674,11 +635,11 @@
     "renderLayout": {
       "location": {
         "start": {
-          "line": 290,
+          "line": 308,
           "column": 4
         },
         "end": {
-          "line": 302,
+          "line": 320,
           "column": 5
         }
       },
@@ -693,26 +654,15 @@
     "_applyEnabled": {
       "location": {
         "start": {
-          "line": 314,
+          "line": 332,
           "column": 4
         },
         "end": {
-          "line": 321,
+          "line": 339,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  IMAGE API\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>property apply, overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
@@ -723,22 +673,15 @@
     "_applySource": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 343,
           "column": 4
         },
         "end": {
-          "line": 335,
+          "line": 353,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -748,22 +691,15 @@
     "_applyScale": {
       "location": {
         "start": {
-          "line": 339,
+          "line": 357,
           "column": 4
         },
         "end": {
-          "line": 341,
+          "line": 359,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -773,11 +709,11 @@
     "__setMode": {
       "location": {
         "start": {
-          "line": 348,
+          "line": 366,
           "column": 4
         },
         "end": {
-          "line": 350,
+          "line": 368,
           "column": 5
         }
       },
@@ -804,11 +740,11 @@
     "__getMode": {
       "location": {
         "start": {
-          "line": 359,
+          "line": 377,
           "column": 4
         },
         "end": {
-          "line": 384,
+          "line": 402,
           "column": 5
         }
       },
@@ -834,11 +770,11 @@
     "__createSuitableContentElement": {
       "location": {
         "start": {
-          "line": 393,
+          "line": 411,
           "column": 4
         },
         "end": {
-          "line": 443,
+          "line": 461,
           "column": 5
         }
       },
@@ -873,11 +809,11 @@
     "__getSuitableContentElement": {
       "location": {
         "start": {
-          "line": 451,
+          "line": 469,
           "column": 4
         },
         "end": {
-          "line": 470,
+          "line": 488,
           "column": 5
         }
       },
@@ -903,11 +839,11 @@
     "_styleSource": {
       "location": {
         "start": {
-          "line": 478,
+          "line": 496,
           "column": 4
         },
         "end": {
-          "line": 539,
+          "line": 557,
           "column": 5
         }
       },
@@ -925,11 +861,11 @@
     "__fireLoadEvent": {
       "location": {
         "start": {
-          "line": 548,
+          "line": 566,
           "column": 4
         },
         "end": {
-          "line": 559,
+          "line": 577,
           "column": 5
         }
       },
@@ -947,11 +883,11 @@
     "__getContentElement": {
       "location": {
         "start": {
-          "line": 566,
+          "line": 584,
           "column": 4
         },
         "end": {
-          "line": 574,
+          "line": 592,
           "column": 5
         }
       },
@@ -977,11 +913,11 @@
     "__checkForContentElementSwitch": {
       "location": {
         "start": {
-          "line": 583,
+          "line": 601,
           "column": 4
         },
         "end": {
-          "line": 627,
+          "line": 645,
           "column": 6
         }
       },
@@ -1008,11 +944,11 @@
     "__checkForContentElementReplacement": {
       "location": {
         "start": {
-          "line": 635,
+          "line": 653,
           "column": 4
         },
         "end": {
-          "line": 730,
+          "line": 748,
           "column": 5
         }
       },
@@ -1039,11 +975,11 @@
     "__setManagedImage": {
       "location": {
         "start": {
-          "line": 739,
+          "line": 757,
           "column": 4
         },
         "end": {
-          "line": 806,
+          "line": 824,
           "column": 5
         }
       },
@@ -1077,16 +1013,20 @@
     "_applyDimension": {
       "location": {
         "start": {
-          "line": 808,
+          "line": 826,
           "column": 4
         },
         "end": {
-          "line": 828,
+          "line": 848,
           "column": 5
         }
       },
       "type": "function",
       "access": "protected",
+      "applyFor": [
+        "forceRatio",
+        "allowScaleUp"
+      ],
       "overriddenFrom": "qx.ui.core.LayoutItem",
       "appearsIn": [
         "qx.ui.core.LayoutItem"
@@ -1095,11 +1035,11 @@
     "__setUnmanagedImage": {
       "location": {
         "start": {
-          "line": 836,
+          "line": 856,
           "column": 4
         },
         "end": {
-          "line": 847,
+          "line": 867,
           "column": 5
         }
       },
@@ -1133,11 +1073,11 @@
     "__loadUnmanagedImage": {
       "location": {
         "start": {
-          "line": 856,
+          "line": 876,
           "column": 4
         },
         "end": {
-          "line": 888,
+          "line": 908,
           "column": 5
         }
       },
@@ -1171,11 +1111,11 @@
     "__resetSource": {
       "location": {
         "start": {
-          "line": 895,
+          "line": 915,
           "column": 4
         },
         "end": {
-          "line": 905,
+          "line": 925,
           "column": 5
         }
       },
@@ -1202,11 +1142,11 @@
     "__setSource": {
       "location": {
         "start": {
-          "line": 914,
+          "line": 934,
           "column": 4
         },
         "end": {
-          "line": 1006,
+          "line": 1026,
           "column": 5
         }
       },
@@ -1240,11 +1180,11 @@
     "__loaderCallback": {
       "location": {
         "start": {
-          "line": 1014,
+          "line": 1034,
           "column": 4
         },
         "end": {
-          "line": 1040,
+          "line": 1060,
           "column": 5
         }
       },
@@ -1278,11 +1218,11 @@
     "__updateContentHint": {
       "location": {
         "start": {
-          "line": 1049,
+          "line": 1069,
           "column": 4
         },
         "end": {
-          "line": 1059,
+          "line": 1079,
           "column": 5
         }
       },
@@ -1312,6 +1252,46 @@
       },
       "type": "function",
       "access": "private"
+    },
+    "_recalc": {
+      "location": {
+        "start": {
+          "line": 1087,
+          "column": 4
+        },
+        "end": {
+          "line": 1155,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Recalculates the size of the image, according to scaling parameters</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "maxWidth {Integer?} maximum width restriction",
+            "paramName": "maxWidth",
+            "description": " maximum width restriction",
+            "optional": true,
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "maxHeight {Integer?} minimum height restriction",
+            "paramName": "maxHeight",
+            "description": " minimum height restriction",
+            "optional": true,
+            "type": "Integer"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
     },
     "tr": {
       "type": "function",
@@ -2449,30 +2429,6 @@
         ]
       }
     },
-    "getAllowStretchX": {
-      "type": "function",
-      "name": "getAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchX"
-          }
-        ]
-      }
-    },
     "setAllowStretchX": {
       "type": "function",
       "name": "setAllowStretchX",
@@ -2511,30 +2467,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ]
-      }
-    },
-    "getAllowStretchY": {
-      "type": "function",
-      "name": "getAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for allowStretchY"
           }
         ]
       }
@@ -2841,30 +2773,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ]
-      }
-    },
-    "getMargin": {
-      "type": "function",
-      "name": "getMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for margin"
           }
         ]
       }
@@ -3303,30 +3211,6 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ]
-      }
-    },
-    "getPadding": {
-      "type": "function",
-      "name": "getPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>padding</code>.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for padding"
           }
         ]
       }
@@ -5442,27 +5326,176 @@
           }
         ]
       }
+    },
+    "getForceRatio": {
+      "type": "function",
+      "name": "getForceRatio",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>forceRatio</code>.\n\nFor further details take a look at the property definition: {@link #forceRatio}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for forceRatio"
+          }
+        ]
+      }
+    },
+    "setForceRatio": {
+      "type": "function",
+      "name": "setForceRatio",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>forceRatio</code>.\n\nFor further details take a look at the property definition: {@link #forceRatio}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for forceRatio"
+          }
+        ]
+      }
+    },
+    "resetForceRatio": {
+      "type": "function",
+      "name": "resetForceRatio",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>forceRatio</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #forceRatio}."
+          }
+        ]
+      }
+    },
+    "getAllowScaleUp": {
+      "type": "function",
+      "name": "getAllowScaleUp",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowScaleUp</code>.\n\nFor further details take a look at the property definition: {@link #allowScaleUp}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowScaleUp"
+          }
+        ]
+      }
+    },
+    "isAllowScaleUp": {
+      "type": "function",
+      "name": "isAllowScaleUp",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>allowScaleUp</code>.\n\nFor further details take a look at the property definition: {@link #allowScaleUp}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for allowScaleUp"
+          }
+        ]
+      }
+    },
+    "setAllowScaleUp": {
+      "type": "function",
+      "name": "setAllowScaleUp",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>allowScaleUp</code>.\n\nFor further details take a look at the property definition: {@link #allowScaleUp}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for allowScaleUp"
+          }
+        ]
+      }
+    },
+    "resetAllowScaleUp": {
+      "type": "function",
+      "name": "resetAllowScaleUp",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>allowScaleUp</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowScaleUp}."
+          }
+        ]
+      }
     }
   },
   "destruct": {
     "location": {
       "start": {
-        "line": 1069,
+        "line": 1165,
         "column": 13
       },
       "end": {
-        "line": 1082,
+        "line": 1178,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": [
     "qx.ui.core.DragDropCursor",

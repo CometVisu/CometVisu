@@ -72,10 +72,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>********************************************************************\n</code></pre>\n<p>All functions below are only in this, i.e. the default, file.\n All further transforms will only have the above data structure.\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>***</p>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Add transformation rules to the registry</p>"
           }
         ],

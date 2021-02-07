@@ -920,7 +920,7 @@
           code.push('}');
 
           if (qx.core.Environment.get("qx.promise") && (!config.check || config.check != "qx.Promise")) {
-            code.push('var promise;', 'if (value instanceof qx.Promise) ', 'promise = value.then(set.bind(this));', 'else ', 'promise = set.apply(this, arguments);');
+            code.push('var promise;', 'if (value instanceof qx.Promise || value instanceof Promise) ', 'promise = value.then(set.bind(this));', 'else ', 'promise = set.apply(this, arguments);');
 
             if (variant == "setImpl") {
               code.push("return promise;");
@@ -1437,7 +1437,7 @@
         }
 
         if (qx.core.Environment.get("qx.promise")) {
-          code.push("if(promise instanceof qx.Promise) return promise.then(fire, this); ");
+          code.push("if(promise instanceof qx.Promise || promise instanceof Promise) return promise.then(fire, this); ");
         }
 
         code.push("return fire.call(this);");
@@ -1447,4 +1447,4 @@
   qx.core.Property.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Property.js.map?dt=1604955469674
+//# sourceMappingURL=Property.js.map?dt=1612690396559

@@ -16,16 +16,12 @@
         "column": 0
       },
       "end": {
-        "line": 793,
+        "line": 825,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<p>AbstractDiagram.js\n copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
-        },
         {
           "name": "@description",
           "body": "<p>This plugins integrates flot (diagrams in javascript) into the visualization.\n server-side data-storage is rrd or InfluxDB.\n short documentation\n </p>\n<h4>widgets:</h4>\n<ul>\n   <li>diagram</li>\n   <li>diagram_info</li>\n </ul>\n<h4>attributes (per diagram):</h4>\n<ul>\n   <li>series:               optional, \"hour\", \"day\" (default), \"week\", \"month\", \"year\"</li>\n   <li>period:               optional, number of \"series\" to be shown</li>\n   <li>refresh:              optional, refresh-rate in seconds, no refresh if missing</li>\n   <li>gridcolor:            optional, color for dataline and grid, HTML-colorcode</li>\n   <li>width, height:        optional, width and height of \"inline\"-diagram</li>\n   <li>previewlabels:        optional, show labels on \"inline\"-diagram</li>\n   <li>popup:                optional, make diagram clickable and open popup</li>\n   <li>legend:               optional, \"none\", \"both\", \"inline\", \"popup\" select display of legend</li>\n   <li>title:                optional, diagram title (overrides label-content)</li>\n </ul>\n<h4>attributes (per graph):</h4>\n<ul>\n   <li>style:                optional, \"lines\" (default), \"bars\", \"points\" select graph type</li>\n   <li>fill:                 optional, true or false - fill the space under the line / within the bar (line / bar style graphs)</li>\n   <li>barWidth:             optional, width of bars (bar style graphs)</li>\n   <li>align:                optional, \"left\" (default), \"center\", \"right\" select qlignemnt of bars (bar style graphs)</li>\n </ul>"
@@ -98,14 +94,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>****************************************\nCONSTRUCTOR\n****************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "statics": {
     "cache": {
@@ -239,7 +228,7 @@
           "column": 4
         },
         "end": {
-          "line": 300,
+          "line": 313,
           "column": 5
         }
       },
@@ -280,11 +269,11 @@
     "_onSuccess": {
       "location": {
         "start": {
-          "line": 302,
+          "line": 315,
           "column": 4
         },
         "end": {
-          "line": 323,
+          "line": 350,
           "column": 5
         }
       },
@@ -294,11 +283,11 @@
     "_onStatusError": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 352,
           "column": 4
         },
         "end": {
-          "line": 336,
+          "line": 363,
           "column": 5
         }
       },
@@ -310,11 +299,11 @@
     "content": {
       "location": {
         "start": {
-          "line": 345,
+          "line": 372,
           "column": 4
         },
         "end": {
-          "line": 348,
+          "line": 375,
           "column": 5
         }
       },
@@ -327,11 +316,11 @@
     "title": {
       "location": {
         "start": {
-          "line": 349,
+          "line": 376,
           "column": 4
         },
         "end": {
-          "line": 353,
+          "line": 380,
           "column": 5
         }
       },
@@ -345,11 +334,11 @@
     "series": {
       "location": {
         "start": {
-          "line": 354,
+          "line": 381,
           "column": 4
         },
         "end": {
-          "line": 357,
+          "line": 384,
           "column": 5
         }
       },
@@ -370,11 +359,11 @@
     "seriesStart": {
       "location": {
         "start": {
-          "line": 358,
+          "line": 385,
           "column": 4
         },
         "end": {
-          "line": 361,
+          "line": 388,
           "column": 5
         }
       },
@@ -387,11 +376,11 @@
     "seriesEnd": {
       "location": {
         "start": {
-          "line": 362,
+          "line": 389,
           "column": 4
         },
         "end": {
-          "line": 365,
+          "line": 392,
           "column": 5
         }
       },
@@ -404,11 +393,11 @@
     "seriesResolution": {
       "location": {
         "start": {
-          "line": 366,
+          "line": 393,
           "column": 4
         },
         "end": {
-          "line": 369,
+          "line": 396,
           "column": 5
         }
       },
@@ -418,14 +407,31 @@
       "check": "Number",
       "defaultValue": 300
     },
-    "period": {
+    "forceNowDatapoint": {
       "location": {
         "start": {
-          "line": 370,
+          "line": 397,
           "column": 4
         },
         "end": {
-          "line": 373,
+          "line": 400,
+          "column": 5
+        }
+      },
+      "name": "forceNowDatapoint",
+      "propertyType": "new",
+      "init": true,
+      "check": "Boolean",
+      "defaultValue": true
+    },
+    "period": {
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4
+        },
+        "end": {
+          "line": 404,
           "column": 5
         }
       },
@@ -438,11 +444,11 @@
     "legendInline": {
       "location": {
         "start": {
-          "line": 374,
+          "line": 405,
           "column": 4
         },
         "end": {
-          "line": 377,
+          "line": 408,
           "column": 5
         }
       },
@@ -455,11 +461,11 @@
     "legendPopup": {
       "location": {
         "start": {
-          "line": 378,
+          "line": 409,
           "column": 4
         },
         "end": {
-          "line": 381,
+          "line": 412,
           "column": 5
         }
       },
@@ -472,11 +478,11 @@
     "legendposition": {
       "location": {
         "start": {
-          "line": 382,
+          "line": 413,
           "column": 4
         },
         "end": {
-          "line": 385,
+          "line": 416,
           "column": 5
         }
       },
@@ -494,11 +500,11 @@
     "timeformat": {
       "location": {
         "start": {
-          "line": 386,
+          "line": 417,
           "column": 4
         },
         "end": {
-          "line": 389,
+          "line": 420,
           "column": 5
         }
       },
@@ -511,11 +517,11 @@
     "timeformatTooltip": {
       "location": {
         "start": {
-          "line": 390,
+          "line": 421,
           "column": 4
         },
         "end": {
-          "line": 393,
+          "line": 424,
           "column": 5
         }
       },
@@ -528,11 +534,11 @@
     "zoomYAxis": {
       "location": {
         "start": {
-          "line": 394,
+          "line": 425,
           "column": 4
         },
         "end": {
-          "line": 397,
+          "line": 428,
           "column": 5
         }
       },
@@ -545,11 +551,11 @@
     "gridcolor": {
       "location": {
         "start": {
-          "line": 398,
+          "line": 429,
           "column": 4
         },
         "end": {
-          "line": 401,
+          "line": 432,
           "column": 5
         }
       },
@@ -562,11 +568,11 @@
     "previewlabels": {
       "location": {
         "start": {
-          "line": 402,
+          "line": 433,
           "column": 4
         },
         "end": {
-          "line": 405,
+          "line": 436,
           "column": 5
         }
       },
@@ -579,11 +585,11 @@
     "popup": {
       "location": {
         "start": {
-          "line": 406,
+          "line": 437,
           "column": 4
         },
         "end": {
-          "line": 409,
+          "line": 440,
           "column": 5
         }
       },
@@ -596,11 +602,11 @@
     "tooltip": {
       "location": {
         "start": {
-          "line": 410,
+          "line": 441,
           "column": 4
         },
         "end": {
-          "line": 413,
+          "line": 444,
           "column": 5
         }
       },
@@ -679,11 +685,11 @@
     "_init": {
       "location": {
         "start": {
-          "line": 423,
+          "line": 454,
           "column": 4
         },
         "end": {
-          "line": 423,
+          "line": 454,
           "column": 15
         }
       },
@@ -693,11 +699,11 @@
     "popupplot": {
       "location": {
         "start": {
-          "line": 424,
+          "line": 455,
           "column": 4
         },
         "end": {
-          "line": 424,
+          "line": 455,
           "column": 19
         }
       },
@@ -707,11 +713,11 @@
     "plot": {
       "location": {
         "start": {
-          "line": 425,
+          "line": 456,
           "column": 4
         },
         "end": {
-          "line": 425,
+          "line": 456,
           "column": 14
         }
       },
@@ -721,11 +727,11 @@
     "plotted": {
       "location": {
         "start": {
-          "line": 426,
+          "line": 457,
           "column": 4
         },
         "end": {
-          "line": 426,
+          "line": 457,
           "column": 17
         }
       },
@@ -735,11 +741,11 @@
     "_timerPopup": {
       "location": {
         "start": {
-          "line": 427,
+          "line": 458,
           "column": 4
         },
         "end": {
-          "line": 427,
+          "line": 458,
           "column": 21
         }
       },
@@ -749,11 +755,11 @@
     "__isPopup": {
       "location": {
         "start": {
-          "line": 428,
+          "line": 459,
           "column": 4
         },
         "end": {
-          "line": 428,
+          "line": 459,
           "column": 20
         }
       },
@@ -763,22 +769,15 @@
     "_applyTitle": {
       "location": {
         "start": {
-          "line": 431,
+          "line": 462,
           "column": 4
         },
         "end": {
-          "line": 436,
+          "line": 467,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -788,11 +787,11 @@
     "_setupRefreshAction": {
       "location": {
         "start": {
-          "line": 438,
+          "line": 469,
           "column": 4
         },
         "end": {
-          "line": 454,
+          "line": 485,
           "column": 5
         }
       },
@@ -802,11 +801,11 @@
     "_stopRefresh": {
       "location": {
         "start": {
-          "line": 462,
+          "line": 493,
           "column": 4
         },
         "end": {
-          "line": 466,
+          "line": 497,
           "column": 5
         }
       },
@@ -839,11 +838,11 @@
     "_startRefresh": {
       "location": {
         "start": {
-          "line": 475,
+          "line": 506,
           "column": 4
         },
         "end": {
-          "line": 484,
+          "line": 515,
           "column": 5
         }
       },
@@ -883,11 +882,11 @@
     "_action": {
       "location": {
         "start": {
-          "line": 486,
+          "line": 517,
           "column": 4
         },
         "end": {
-          "line": 518,
+          "line": 549,
           "column": 5
         }
       },
@@ -897,11 +896,11 @@
     "initDiagram": {
       "location": {
         "start": {
-          "line": 520,
+          "line": 551,
           "column": 4
         },
         "end": {
-          "line": 656,
+          "line": 687,
           "column": 5
         }
       },
@@ -911,11 +910,11 @@
     "getSeriesSettings": {
       "location": {
         "start": {
-          "line": 658,
+          "line": 689,
           "column": 4
         },
         "end": {
-          "line": 695,
+          "line": 726,
           "column": 5
         }
       },
@@ -925,11 +924,11 @@
     "loadDiagramData": {
       "location": {
         "start": {
-          "line": 697,
+          "line": 728,
           "column": 4
         },
         "end": {
-          "line": 766,
+          "line": 798,
           "column": 5
         }
       },
@@ -2137,6 +2136,58 @@
         ]
       }
     },
+    "fireEventAsync": {
+      "type": "function",
+      "name": "fireEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an event on this object; equivalent to fireEvent, except that it\n always returns a promise</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      }
+    },
     "fireNonBubblingEvent": {
       "type": "function",
       "name": "fireNonBubblingEvent",
@@ -2185,6 +2236,58 @@
             "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean",
             "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireNonBubblingEventAsync": {
+      "type": "function",
+      "name": "fireNonBubblingEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent,\n except that it always returns a promise.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -2244,6 +2347,65 @@
             "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean|qx.Promise",
             "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireDataEventAsync": {
+      "type": "function",
+      "name": "fireDataEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an non-bubbling data event on this object; equivalent to\n fireEvent, except that it always returns a promise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} User defined data attached to the event object",
+            "paramName": "data",
+            "description": " User defined data attached to the event object",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "oldData {var?null} The event's old data (optional)",
+            "paramName": "oldData",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -6239,6 +6401,96 @@
         ]
       }
     },
+    "getForceNowDatapoint": {
+      "type": "function",
+      "name": "getForceNowDatapoint",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>forceNowDatapoint</code>.\n\nFor further details take a look at the property definition: {@link #forceNowDatapoint}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for forceNowDatapoint"
+          }
+        ]
+      }
+    },
+    "isForceNowDatapoint": {
+      "type": "function",
+      "name": "isForceNowDatapoint",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>forceNowDatapoint</code>.\n\nFor further details take a look at the property definition: {@link #forceNowDatapoint}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for forceNowDatapoint"
+          }
+        ]
+      }
+    },
+    "setForceNowDatapoint": {
+      "type": "function",
+      "name": "setForceNowDatapoint",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>forceNowDatapoint</code>.\n\nFor further details take a look at the property definition: {@link #forceNowDatapoint}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for forceNowDatapoint"
+          }
+        ]
+      }
+    },
+    "resetForceNowDatapoint": {
+      "type": "function",
+      "name": "resetForceNowDatapoint",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>forceNowDatapoint</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #forceNowDatapoint}."
+          }
+        ]
+      }
+    },
     "getPeriod": {
       "type": "function",
       "name": "getPeriod",
@@ -7113,36 +7365,30 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 774,
+        "line": 806,
         "column": 12
       },
       "end": {
-        "line": 778,
-        "column": 3
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nDESTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 780,
-        "column": 9
-      },
-      "end": {
-        "line": 792,
+        "line": 810,
         "column": 3
       }
     },
     "jsdoc": {}
   },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 812,
+        "column": 9
+      },
+      "end": {
+        "line": 824,
+        "column": 3
+      }
+    },
+    "jsdoc": {}
+  },
+  "events": {},
   "descendants": [
     "cv.plugins.diagram.Diagram",
     "cv.plugins.diagram.Info"

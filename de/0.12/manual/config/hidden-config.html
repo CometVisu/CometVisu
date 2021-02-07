@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -108,7 +105,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#hintergrund">Hintergrund</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aufbau">Aufbau</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#manager">Manager</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#bekannte-name-eintrage">Bekannte <code class="docutils literal"><span class="pre">Name</span></code> Einträge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bekannte-name-eintrage">Bekannte <code class="docutils literal notranslate"><span class="pre">Name</span></code> Einträge</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
@@ -198,8 +195,8 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <span id="hidden-config"></span><h1>Versteckte Konfigurationen<a class="headerlink" href="#versteckte-konfigurationen" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="section" id="hintergrund">
 <h2>Hintergrund<a class="headerlink" href="#hintergrund" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Die &#8220;Versteckten Konfigurationen&#8221; sind Konfigurationsdaten die nicht an den Client übertragen werden und auf dem
-Server bleiben. Daher werden diese vor dem Anwender &#8220;versteckt&#8221;, sind aber auf dem Server selbst im Klartext lesbar.
+<p>Die „Versteckten Konfigurationen“ sind Konfigurationsdaten die nicht an den Client übertragen werden und auf dem
+Server bleiben. Daher werden diese vor dem Anwender „versteckt“, sind aber auf dem Server selbst im Klartext lesbar.
 Auch im Manager sind diese Informationen im Klartext lesbar.</p>
 <p>Dies erzeugt für sich noch keine sichere Umgebung. Jedoch lässt sich hierdurch eine sichere Umgebung aufbauen, in
 dem der Webserver so konfiguriert sein muss, dass der Anwender keinen Zugriff auf den Manager erhält.</p>
@@ -213,11 +210,11 @@ Konfiguration benötigen wird in deren jeweiligen Dokumentation beschrieben.</p>
 </div>
 <div class="section" id="aufbau">
 <h2>Aufbau<a class="headerlink" href="#aufbau" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Die versteckten Konfigurationen werden in der Datei <code class="docutils literal"><span class="pre">config/hidden.php</span></code> abgelegt. Diese Datei kann sowohl
+<p>Die versteckten Konfigurationen werden in der Datei <code class="docutils literal notranslate"><span class="pre">config/hidden.php</span></code> abgelegt. Diese Datei kann sowohl
 über einen normalen Text-Editor als auch über den <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> editiert werden.</p>
 <p>Der Inhalt besteht aus mehreren Einträgen die einen <em>Name</em> mit mehreren <em>Schlüssel</em> und <em>Wert</em> Paaren enthalten.
 In der Datei selbst werden diese Informationen als PHP Array abgelegt:</p>
-<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="c1">// File for configurations that shouldn&#39;t be shared with the user</span>
 <span class="nv">$hidden</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
   <span class="s1">&#39;fritzbox&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;uri&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://192.168.0.1:49443/&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;CometVisuTestUser&#39;</span><span class="p">,</span> <span class="s1">&#39;pass&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;pa3bvNM4j9z4&#39;</span><span class="p">)</span>
@@ -230,13 +227,13 @@ In der Datei selbst werden diese Informationen als PHP Array abgelegt:</p>
 <div class="section" id="manager">
 <h2>Manager<a class="headerlink" href="#manager" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Komfortabel lässt sich der Inhalt der versteckten Konfiguration über den <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a> editieren.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../_images/hidden_config_de.png" src="../_images/hidden_config_de.png" />
 </div>
 </div>
 <div class="section" id="bekannte-name-eintrage">
-<h2>Bekannte <code class="docutils literal"><span class="pre">Name</span></code> Einträge<a class="headerlink" href="#bekannte-name-eintrage" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Auch wenn die Wahl für den <code class="docutils literal"><span class="pre">Name</span></code> grundsätzlich frei ist, so gibt es dafür übliche Einträge, bei denen es sich
+<h2>Bekannte <code class="docutils literal notranslate"><span class="pre">Name</span></code> Einträge<a class="headerlink" href="#bekannte-name-eintrage" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Auch wenn die Wahl für den <code class="docutils literal notranslate"><span class="pre">Name</span></code> grundsätzlich frei ist, so gibt es dafür übliche Einträge, bei denen es sich
 anbietet diesem Schema zu folgen. So können manche Widgets bzw. Plugins ohne eine explizite Konfiguration in dem
 für dafür üblichen Namen nach Einträgen suchen, wodurch sich der Konfigurations-Aufwand reduzieren lässt.</p>
 <table border="1" class="docutils">
@@ -254,7 +251,7 @@ für dafür üblichen Namen nach Einträgen suchen, wodurch sich der Konfigurati
 <tbody valign="top">
 <tr class="row-even"><td>fritzbox</td>
 <td><a class="reference internal" href="widgets/plugins/tr064/index.html#tr064"><span class="std std-ref">Das tr064 Plugin</span></a></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>influx</td>
 <td><a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Das Diagram Plugin</span></a></td>
@@ -287,7 +284,7 @@ für dafür üblichen Namen nach Einträgen suchen, wodurch sich der Konfigurati
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -333,7 +330,7 @@ für dafür üblichen Namen nach Einträgen suchen, wodurch sich der Konfigurati
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

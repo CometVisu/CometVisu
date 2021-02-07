@@ -32,7 +32,6 @@
       "cv.TemplateEngine": {},
       "cv.Transform": {},
       "qx.io.request.Xhr": {},
-      "qx.data.store.Yql": {},
       "qx.util.ResourceManager": {},
       "qx.dom.Element": {},
       "cv.util.ScriptLoader": {
@@ -67,7 +66,7 @@
   /**
    * @author Michael Markstaller
    * @since 2011
-   * @asset(plugins/rsslog/rsslog.css)
+   * @asset(plugins/rsslog/*)
    */
   qx.Class.define('cv.plugins.RssLog', {
     extend: cv.ui.structure.AbstractWidget,
@@ -274,7 +273,8 @@
       },
       _action: function _action() {
         var brss = cv.util.String.htmlStringToDomElement('<div class="rsslog_popup" id="rss_' + this.getPath() + '_big"/>');
-        var title = document.querySelector('#' + this.getPath() + ' .label').innerText || '';
+        var label = document.querySelector('#' + this.getPath() + ' .label');
+        var title = label ? label.innerText || '' : '';
         var popup = cv.ui.PopupHandler.showPopup("rsslog", {
           title: title,
           content: brss
@@ -630,4 +630,4 @@
   cv.plugins.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1604955459347
+//# sourceMappingURL=RssLog.js.map?dt=1612690386277

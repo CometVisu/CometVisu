@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 102,
+        "line": 192,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>This class is responsible for the normalization of the native 'String' object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
@@ -163,16 +159,94 @@
       },
       "type": "function",
       "access": "public"
+    },
+    "codePointAt": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4
+        },
+        "end": {
+          "line": 126,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a non-negative integer that is the Unicode code point value.\n   see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "position {Integer} Position of an element in the string to\n   return the code point value from.",
+            "paramName": "position",
+            "description": " Position of an element in the string to\n   return the code point value from.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} A number representing the code point value of\n   the character at the given pos. If there is no element at pos,\n   returns undefined..",
+            "type": "Integer",
+            "description": " A number representing the code point value of\n   the character at the given pos. If there is no element at pos,\n   returns undefined.."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "fromCodePoint": {
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4
+        },
+        "end": {
+          "line": 166,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a string created by using the specified sequence of code points.\n   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "var_args {Integer} A sequence of code points as a variable argument list\n   The undescore is used as a throwaway variable.",
+            "paramName": "var_args",
+            "description": " A sequence of code points as a variable argument list\n   The undescore is used as a throwaway variable.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} A string created by using\n   the specified sequence of code points.",
+            "type": "qx.lang.normalize.String",
+            "description": " A string created by using\n   the specified sequence of code points."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 87,
+        "line": 169,
         "column": 10
       },
       "end": {
-        "line": 101,
+        "line": 191,
         "column": 3
       }
     },

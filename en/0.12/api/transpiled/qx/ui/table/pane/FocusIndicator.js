@@ -11,7 +11,8 @@
       },
       "qx.ui.layout.Grow": {
         "construct": true
-      }
+      },
+      "qx.theme.manager.Decoration": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -47,7 +48,7 @@
       // use the grow layout to make sure that the editing control
       // always fills the focus indicator box.
       qx.ui.container.Composite.constructor.call(this, new qx.ui.layout.Grow());
-      this.__P_406_0 = scroller;
+      this.__P_403_0 = scroller;
       this.setKeepActive(true);
       this.addListener("keypress", this._onKeyPress, this);
     },
@@ -71,7 +72,7 @@
       }
     },
     members: {
-      __P_406_0: null,
+      __P_403_0: null,
 
       /**
        * Keypress handler. Suppress all key events but "Enter" and "Escape"
@@ -91,12 +92,13 @@
        *
        * @param col {Integer?null} The table column
        * @param row {Integer?null} The table row
+       * @param editing {Boolean?null} Whether or not the cell is being edited
        */
-      moveToCell: function moveToCell(col, row) {
+      moveToCell: function moveToCell(col, row, editing) {
         // check if the focus indicator is shown and if the new column is
         // editable. if not, just exclude the indicator because the pointer events
         // should go to the cell itself linked with HTML links [BUG #4250]
-        if (!this.__P_406_0.getShowCellFocusIndicator() && !this.__P_406_0.getTable().getTableModel().isColumnEditable(col)) {
+        if (!this.__P_403_0.getShowCellFocusIndicator() && !this.__P_403_0.getTable().getTableModel().isColumnEditable(col)) {
           this.exclude();
           return;
         } else {
@@ -108,23 +110,48 @@
           this.setRow(null);
           this.setColumn(null);
         } else {
-          var xPos = this.__P_406_0.getTablePaneModel().getX(col);
+          var xPos = this.__P_403_0.getTablePaneModel().getX(col);
 
-          if (xPos == -1) {
+          if (xPos === -1) {
             this.hide();
             this.setRow(null);
             this.setColumn(null);
           } else {
-            var table = this.__P_406_0.getTable();
+            var table = this.__P_403_0.getTable();
 
             var columnModel = table.getTableColumnModel();
 
-            var paneModel = this.__P_406_0.getTablePaneModel();
+            var paneModel = this.__P_403_0.getTablePaneModel();
 
-            var firstRow = this.__P_406_0.getTablePane().getFirstVisibleRow();
+            var firstRow = this.__P_403_0.getTablePane().getFirstVisibleRow();
 
             var rowHeight = table.getRowHeight();
-            this.setUserBounds(paneModel.getColumnLeft(col) - 2, (row - firstRow) * rowHeight - 2, columnModel.getColumnWidth(col) + 3, rowHeight + 3);
+            var wt = 0;
+            var wr = 0;
+            var wb = 0;
+            var wl = 0;
+            var decoKey = this.getDecorator();
+
+            if (decoKey) {
+              var deco = qx.theme.manager.Decoration.getInstance().resolve(decoKey);
+
+              if (deco) {
+                wt = deco.getWidthTop();
+                wr = deco.getWidthRight();
+                wb = deco.getWidthBottom();
+                wl = deco.getWidthLeft();
+              }
+            }
+
+            var userHeight = rowHeight + (wl + wr - 2);
+            var userTop = (row - firstRow) * rowHeight - (wr - 1);
+
+            if (editing && this.__P_403_0.getMinCellEditHeight() && this.__P_403_0.getMinCellEditHeight() > userHeight) {
+              userTop -= Math.floor((this.__P_403_0.getMinCellEditHeight() - userHeight) / 2);
+              userHeight = this.__P_403_0.getMinCellEditHeight();
+            }
+
+            this.setUserBounds(paneModel.getColumnLeft(col) - (wt - 1), userTop, columnModel.getColumnWidth(col) + (wt + wb - 3), userHeight);
             this.show();
             this.setRow(row);
             this.setColumn(col);
@@ -133,10 +160,10 @@
       }
     },
     destruct: function destruct() {
-      this.__P_406_0 = null;
+      this.__P_403_0 = null;
     }
   });
   qx.ui.table.pane.FocusIndicator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FocusIndicator.js.map?dt=1604955489394
+//# sourceMappingURL=FocusIndicator.js.map?dt=1612690415446

@@ -9,9 +9,13 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.Engine": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
       "qx.log.Logger": {},
-      "qx.bom.client.OperatingSystem": {},
+      "qx.bom.client.OperatingSystem": {
+        "require": true
+      },
       "qx.Bootstrap": {},
       "qx.event.handler.Application": {}
     },
@@ -149,4 +153,4 @@
   qx.core.BaseInit.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseInit.js.map?dt=1604955469107
+//# sourceMappingURL=BaseInit.js.map?dt=1612690395983

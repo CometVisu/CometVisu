@@ -9,7 +9,8 @@
         "construct": true,
         "require": true
       },
-      "qxl.apiviewer.dao.Class": {}
+      "qxl.apiviewer.dao.Class": {},
+      "qx.Promise": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -79,14 +80,16 @@
         return qxl.apiviewer.ui.panels.InfoPanel.createDescriptionHtml(node, node, showDetails);
       },
       getItemTooltip: function getItemTooltip(classNode, currentClassDocNode) {
+        var tooltip;
+
         if (classNode.isAbstract()) {
-          var tooltip = "Abstract ";
+          tooltip = "Abstract ";
         } else if (classNode.isStatic()) {
-          var tooltip = "Static ";
+          tooltip = "Static ";
         } else if (classNode.isSingleton()) {
-          var tooltip = "Singleton ";
+          tooltip = "Singleton ";
         } else {
-          var tooltip = "";
+          tooltip = "";
         }
 
         switch (classNode.getType()) {
@@ -120,7 +123,7 @@
         var _this = this;
 
         if (!this.getElement()) {
-          return;
+          return qx.Promise.resolve(true);
         }
 
         return this.setDocNodeAsync(currentClassDocNode).then(function () {
@@ -153,4 +156,4 @@
   qxl.apiviewer.ui.panels.ClassPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassPanel.js.map?dt=1604955499116
+//# sourceMappingURL=ClassPanel.js.map?dt=1612690425053

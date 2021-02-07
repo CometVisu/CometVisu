@@ -63,15 +63,18 @@
       _applyTheme: function _applyTheme(value) {
         var dest = {};
 
+        this._setDynamic(dest); // reset dynamic cache
+
+
         if (value) {
           var colors = value.colors;
 
           for (var name in colors) {
-            dest[name] = this.__P_195_0(colors, name);
+            if (!dest[name]) {
+              dest[name] = this.__P_197_0(colors, name);
+            }
           }
         }
-
-        this._setDynamic(dest);
       },
 
       /**
@@ -83,14 +86,14 @@
        * @param name {String} The name of the color to check.
        * @return {String} The resolved color as string.
        */
-      __P_195_0: function __P_195_0(colors, name) {
+      __P_197_0: function __P_197_0(colors, name) {
         var color = colors[name];
 
         if (typeof color === "string") {
           if (!qx.util.ColorUtil.isCssString(color)) {
             // check for references to in theme colors
             if (colors[color] != undefined) {
-              return this.__P_195_0(colors, color);
+              return this.__P_197_0(colors, color);
             }
 
             throw new Error("Could not parse color: " + color);
@@ -99,9 +102,12 @@
           return color;
         } else if (color instanceof Array) {
           return qx.util.ColorUtil.rgbToRgbString(color);
-        }
+        } else if (color instanceof Function) {
+          return this.__P_197_0(colors, color(name));
+        } // this is might already be a rgb or hex color
 
-        throw new Error("Could not parse color: " + color);
+
+        return name;
       },
 
       /**
@@ -126,7 +132,7 @@
         var theme = this.getTheme();
 
         if (theme !== null && theme.colors[value]) {
-          return cache[value] = theme.colors[value];
+          return cache[value] = this.__P_197_0(theme.colors, value);
         }
 
         return value;
@@ -152,7 +158,7 @@
         var theme = this.getTheme();
 
         if (theme !== null && value && theme.colors[value] !== undefined) {
-          cache[value] = theme.colors[value];
+          cache[value] = this.__P_197_0(theme.colors, value);
           return true;
         }
 
@@ -163,4 +169,4 @@
   qx.theme.manager.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1604956081089
+//# sourceMappingURL=Color.js.map?dt=1612691014899

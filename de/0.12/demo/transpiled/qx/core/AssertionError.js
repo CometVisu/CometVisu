@@ -53,7 +53,7 @@
      */
     construct: function construct(comment, failMessage) {
       qx.type.BaseError.call(this, comment, failMessage);
-      this.__P_275_0 = qx.dev.StackTrace.getStackTrace();
+      this.__P_276_0 = qx.dev.StackTrace.getStackTrace();
     },
 
     /*
@@ -62,7 +62,7 @@
     *****************************************************************************
     */
     members: {
-      __P_275_0: null,
+      __P_276_0: null,
 
       /**
        * Stack trace of the error
@@ -70,11 +70,11 @@
        * @return {String[]} The stack trace of the location the exception was thrown
        */
       getStackTrace: function getStackTrace() {
-        return this.__P_275_0;
+        return this.__P_276_0;
       }
     }
   });
   qx.core.AssertionError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AssertionError.js.map?dt=1604956087176
+//# sourceMappingURL=AssertionError.js.map?dt=1612691020731

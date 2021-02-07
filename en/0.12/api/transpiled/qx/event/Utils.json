@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2018 Zenesis Ltd, john.spackman@zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n John Spackman (johnspackman)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Utility methods which implement a fast, psuedo-promises mechanism used by event handlers\n and dispatchers.\n Event handlers are allowed to return instances of <code>qx.Promise</code>, in which case the event\n queue is suspended until the promise is resolved.  The simplest way to handle this would be\n to convert the result of every event handler into a <code>qx.Promise</code> via <code>qx.Promise.resolve</code>,\n but given that by far the majority of event handlers do not return promises, this could add\n a significant overhead; the static methods in this class allow the event handlers to be\n triggered and only when a <code>qx.Promise</code> is returned from a handler does the event dispatch\n mechanism switch to using promise to suspend the event queue.\n To use this, the calling code simply creates an empty object (i.e. <code>var tracker = {};</code>)\n which is then passed to <code>qx.event.Utils.then</code>, for example:\n <code>\n var tracker = {};\n Utils.then(tracker, function() { ... });\n Utils.then(tracker, function() { ... });\n Utils.then(tracker, function() { ... });\n Utils.catch(tracker, function() { ... });\n </code>\n Following with the morphing nature of this class, the return type will be either the value\n returned from the event handlers, or a promise which evaluates to that value.\n When events are aborted (eg via <code>event.stopPropagation()</code>) that causes the promise (if there\n is one) to be rejected.\n Note that this class is not a replacement for promises and has its limitations because it\n has been built for the express purposes of the event dispatchers.</p>"
         }
       ],
@@ -90,9 +86,9 @@
           },
           {
             "name": "@param",
-            "body": "fn {Function|Object?} if a function, it's evaluated as a `then`, otherwise\n  it's encapulated in a function for `then`",
+            "body": "fn {Function|Object?} if a function, it's evaluated as a <code>then</code>, otherwise\n  it's encapulated in a function for <code>then</code>",
             "paramName": "fn",
-            "description": " if a function, it's evaluated as a `then`, otherwise\n  it's encapulated in a function for `then`",
+            "description": " if a function, it's evaluated as a <code>then</code>, otherwise\n  it's encapulated in a function for <code>then</code>",
             "optional": true,
             "type": [
               "Function",
@@ -195,9 +191,9 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.Promise?} the new promise, or the return value from `fn` if no promises are in use",
+            "body": "{qx.Promise?} the new promise, or the return value from <code>fn</code> if no promises are in use",
             "type": "qx.Promise?",
-            "description": " the new promise, or the return value from `fn` if no promises are in use"
+            "description": " the new promise, or the return value from <code>fn</code> if no promises are in use"
           }
         ]
       },
@@ -424,9 +420,9 @@
           },
           {
             "name": "@param",
-            "body": "context {Object?} the `this` for the event handler",
+            "body": "context {Object?} the <code>this</code> for the event handler",
             "paramName": "context",
-            "description": " the `this` for the event handler",
+            "description": " the <code>this</code> for the event handler",
             "optional": true,
             "type": "Object"
           },

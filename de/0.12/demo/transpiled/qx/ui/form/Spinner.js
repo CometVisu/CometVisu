@@ -36,7 +36,8 @@
       "qx.ui.form.TextField": {},
       "qx.ui.form.RepeatButton": {},
       "qx.locale.Number": {},
-      "qx.lang.String": {}
+      "qx.lang.String": {},
+      "qx.event.type.Data": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -250,13 +251,13 @@
     */
     members: {
       /** Saved last value in case invalid text is entered */
-      __P_300_0: null,
+      __P_302_0: null,
 
       /** Whether the page-up button has been pressed */
-      __P_300_1: false,
+      __P_302_1: false,
 
       /** Whether the page-down button has been pressed */
-      __P_300_2: false,
+      __P_302_2: false,
 
       /*
       ---------------------------------------------------------------------------
@@ -444,7 +445,7 @@
         this._updateButtons(); // save the last valid value of the spinner
 
 
-        this.__P_300_0 = value; // write the value of the spinner to the textfield
+        this.__P_302_0 = value; // write the value of the spinner to the textfield
 
         if (value !== null) {
           if (this.getNumberFormat()) {
@@ -505,7 +506,7 @@
           numberFormat.addListener("changeNumberFormat", this._onChangeNumberFormat, this);
         }
 
-        this._applyValue(this.__P_300_0, undefined);
+        this._applyValue(this.__P_302_0, undefined);
       },
 
       /**
@@ -572,17 +573,25 @@
         switch (e.getKeyIdentifier()) {
           case "PageUp":
             // mark that the spinner is in page mode and process further
-            this.__P_300_1 = true;
+            this.__P_302_1 = true;
+            this.getChildControl("textfield").fireNonBubblingEvent("changeValue", qx.event.type.Data);
+            this.getChildControl("upbutton").press();
+            break;
 
           case "Up":
+            this.getChildControl("textfield").fireNonBubblingEvent("changeValue", qx.event.type.Data);
             this.getChildControl("upbutton").press();
             break;
 
           case "PageDown":
             // mark that the spinner is in page mode and process further
-            this.__P_300_2 = true;
+            this.__P_302_2 = true;
+            this.getChildControl("textfield").fireNonBubblingEvent("changeValue", qx.event.type.Data);
+            this.getChildControl("downbutton").press();
+            break;
 
           case "Down":
+            this.getChildControl("textfield").fireNonBubblingEvent("changeValue", qx.event.type.Data);
             this.getChildControl("downbutton").press();
             break;
 
@@ -606,7 +615,7 @@
         switch (e.getKeyIdentifier()) {
           case "PageUp":
             this.getChildControl("upbutton").release();
-            this.__P_300_1 = false;
+            this.__P_302_1 = false;
             break;
 
           case "Up":
@@ -615,7 +624,7 @@
 
           case "PageDown":
             this.getChildControl("downbutton").release();
-            this.__P_300_2 = false;
+            this.__P_302_2 = false;
             break;
 
           case "Down":
@@ -685,14 +694,14 @@
           } // If value is the same than before, call directly _applyValue()
 
 
-          if (value === this.__P_300_0) {
-            this._applyValue(this.__P_300_0);
+          if (value === this.__P_302_0) {
+            this._applyValue(this.__P_302_0);
           } else {
             this.setValue(value);
           }
         } else {
           // otherwise, reset the last valid value
-          this._applyValue(this.__P_300_0, undefined);
+          this._applyValue(this.__P_302_0, undefined);
         }
       },
 
@@ -733,7 +742,7 @@
        *
        */
       _countUp: function _countUp() {
-        if (this.__P_300_1) {
+        if (this.__P_302_1) {
           var newValue = this.getValue() + this.getPageStep();
         } else {
           var newValue = this.getValue() + this.getSingleStep();
@@ -756,7 +765,7 @@
        *
        */
       _countDown: function _countDown() {
-        if (this.__P_300_2) {
+        if (this.__P_302_2) {
           var newValue = this.getValue() - this.getPageStep();
         } else {
           var newValue = this.getValue() - this.getSingleStep();
@@ -804,4 +813,4 @@
   qx.ui.form.Spinner.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spinner.js.map?dt=1604956088685
+//# sourceMappingURL=Spinner.js.map?dt=1612691022868

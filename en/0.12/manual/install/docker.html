@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -207,10 +204,10 @@ available at DockerHub
 <h2>Versions<a class="headerlink" href="#versions" title="Permalink to this headline">¶</a></h2>
 <p>The newest releases are available as
 <a class="reference external" href="https://hub.docker.com/r/cometvisu/cometvisu/tags/">tag</a> with their release
-name as well as <code class="docutils literal"><span class="pre">latest</span></code> for the most current release.</p>
-<p>The current development versions can be found by the tag <code class="docutils literal"><span class="pre">testing-&lt;date&gt;</span></code> as
-well as <code class="docutils literal"><span class="pre">testing</span></code> alone for the most current one. When during the development
-process a new pull request get&#8217;s merged a new <code class="docutils literal"><span class="pre">testing</span></code> container will be
+name as well as <code class="docutils literal notranslate"><span class="pre">latest</span></code> for the most current release.</p>
+<p>The current development versions can be found by the tag <code class="docutils literal notranslate"><span class="pre">testing-&lt;date&gt;</span></code> as
+well as <code class="docutils literal notranslate"><span class="pre">testing</span></code> alone for the most current one. When during the development
+process a new pull request get’s merged a new <code class="docutils literal notranslate"><span class="pre">testing</span></code> container will be
 automatically built and filed under the current date. If a tag does not exist
 for this date, it will be created, and if the tag already exists,
 it will be overwritten with the newly created container.</p>
@@ -240,43 +237,43 @@ Available is:</p>
 </tr>
 <tr class="row-odd"><td>KNX_PA</td>
 <td>1.1.238</td>
-<td>Physical address (PA) for the <code class="docutils literal"><span class="pre">knxd</span></code></td>
+<td>Physical address (PA) for the <code class="docutils literal notranslate"><span class="pre">knxd</span></code></td>
 </tr>
 <tr class="row-even"><td>KNXD_PARAMETERS</td>
 <td>-u -d/var/log/eibd.log -c</td>
-<td>Additional parameters for the <code class="docutils literal"><span class="pre">knxd</span></code></td>
+<td>Additional parameters for the <code class="docutils literal notranslate"><span class="pre">knxd</span></code></td>
 </tr>
 <tr class="row-odd"><td>CGI_URL_PATH</td>
 <td>/cgi-bin/</td>
-<td>Set the URL prefix to find the <code class="docutils literal"><span class="pre">cgi-bin</span></code> resources</td>
+<td>Set the URL prefix to find the <code class="docutils literal notranslate"><span class="pre">cgi-bin</span></code> resources</td>
 </tr>
 <tr class="row-even"><td>BACKEND_PROXY_SOURCE</td>
-<td>&nbsp;</td>
-<td>Proxy paths starting with this value, e.g. <code class="docutils literal"><span class="pre">/rest</span></code> for openHAB
+<td>&#160;</td>
+<td>Proxy paths starting with this value, e.g. <code class="docutils literal notranslate"><span class="pre">/rest</span></code> for openHAB
 backend</td>
 </tr>
 <tr class="row-odd"><td>BACKEND_PROXY_TARGET</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>Target URL for proxying the requests to BACKEND_PROXY_SOURCE, e.g.
 <cite>http://&lt;openhab-server-ip-address&gt;:8080/rest</cite> for openHAB backend</td>
 </tr>
 </tbody>
 </table>
 <div class="section" id="classiscal-knxd-with-eibread-cgi-eibwrite-cgi">
-<h4>Classiscal (<code class="docutils literal"><span class="pre">knxd</span></code> with <code class="docutils literal"><span class="pre">eibread-cgi</span></code>/<code class="docutils literal"><span class="pre">eibwrite-cgi</span></code>)<a class="headerlink" href="#classiscal-knxd-with-eibread-cgi-eibwrite-cgi" title="Permalink to this headline">¶</a></h4>
-<p>For the classical backend a <code class="docutils literal"><span class="pre">knxd</span></code> is used. It connects the CometVisu via
-<code class="docutils literal"><span class="pre">eibread-cgi</span></code> and <code class="docutils literal"><span class="pre">eibwrite-cgi</span></code> to the KNX bus.</p>
-<p>The most important environment parameter is <code class="docutils literal"><span class="pre">KNX_INTERFACE</span></code> which must be
+<h4>Classiscal (<code class="docutils literal notranslate"><span class="pre">knxd</span></code> with <code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code>/<code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code>)<a class="headerlink" href="#classiscal-knxd-with-eibread-cgi-eibwrite-cgi" title="Permalink to this headline">¶</a></h4>
+<p>For the classical backend a <code class="docutils literal notranslate"><span class="pre">knxd</span></code> is used. It connects the CometVisu via
+<code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code> and <code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code> to the KNX bus.</p>
+<p>The most important environment parameter is <code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE</span></code> which must be
 adapted to the local system to connect to the KNX interface.
-The documentation for the currently used version 0.0.5.1 of the <code class="docutils literal"><span class="pre">knxd</span></code>
+The documentation for the currently used version 0.0.5.1 of the <code class="docutils literal notranslate"><span class="pre">knxd</span></code>
 can be consulted at the
 <a class="reference external" href="https://github.com/knxd/knxd/wiki/Command-line-parameters/e49c9d1a2a81cb692cc88683920108f032d2b9bc">knxd wiki</a>.</p>
 </div>
 <div class="section" id="openhab">
 <h4>OpenHAB<a class="headerlink" href="#openhab" title="Permalink to this headline">¶</a></h4>
 <p>Example configuration for the OpenHAB backend (assuming it is running on a
-server with the address <code class="docutils literal"><span class="pre">192.168.0.10</span></code>):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">KNX_INTERFACE</span><span class="o">=</span>
+server with the address <code class="docutils literal notranslate"><span class="pre">192.168.0.10</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">KNX_INTERFACE</span><span class="o">=</span>
 <span class="nv">CGI_URL_PATH</span><span class="o">=</span>/rest/
 <span class="nv">BACKEND_PROXY_SOURCE</span><span class="o">=</span>/rest
 <span class="nv">BACKEND_PROXY_TARGET</span><span class="o">=</span>http://192.168.0.10:8080/rest
@@ -290,14 +287,14 @@ server with the address <code class="docutils literal"><span class="pre">192.168
 <h4>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h4>
 <p>To make the configuration data persistent over restarts or new setups like
 version upgrades they must be stored in a volume. For this the directory
-<code class="docutils literal"><span class="pre">/var/www/html/config</span></code> (up to version 0.10.2) or
-<code class="docutils literal"><span class="pre">/var/www/html/resource/config</span></code> (starting with release 0.11) is exported
+<code class="docutils literal notranslate"><span class="pre">/var/www/html/config</span></code> (up to version 0.10.2) or
+<code class="docutils literal notranslate"><span class="pre">/var/www/html/resource/config</span></code> (starting with release 0.11) is exported
 as a volume.</p>
 </div>
 <div class="section" id="rrd-diagram-plugin">
 <h4>RRD (diagram plugin)<a class="headerlink" href="#rrd-diagram-plugin" title="Permalink to this headline">¶</a></h4>
 <p>For the diagram plugin RRD files with the time series can be supplied.
-Those must the located and thus mounted at the path <code class="docutils literal"><span class="pre">/var/www/rrd</span></code>.
+Those must the located and thus mounted at the path <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code>.
 The RRD files themself have to be filled and updated outside of this container.
 For that the RRD volume could be mounted in a different container at the
 same time.</p>
@@ -332,7 +329,7 @@ same time.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -378,7 +375,7 @@ same time.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

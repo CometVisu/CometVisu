@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>A string builder class\n += operator is faster in Firefox and Opera.\n Array push/join is faster in Internet Explorer\n Even with this wrapper, which costs some time, this is\n faster in Firefox than the alternative Array concat in\n all browsers (which is in relation to IE's performance issues\n only marginal). The IE performance loss caused by this\n wrapper is not relevant.\n So this class seems to be the best compromise to handle\n string concatenation.</p>"
         }
       ]
@@ -44,10 +40,6 @@
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        },
         {
           "name": "@description",
           "body": "<p>Creates a new StringBuilder with the given length or as a concatenation of the given arguments substrings.\n </p>\n<pre class=\"javascript\">\n var sb1 = new qx.util.StringBuilder(length);\n var sb2 = new qx.util.StringBuilder(item0, item1, ..., itemN);\n </pre>\n<ul>\n<li><code>length</code>: The initial length of the StringBuilder.</li>\n<li><code>itemN</code>:  A substring that will make up the newly created StringBuilder.\nThe StringBuilder's length property is set to the number of arguments.</li>\n</ul>"
@@ -231,14 +223,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DEFER\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

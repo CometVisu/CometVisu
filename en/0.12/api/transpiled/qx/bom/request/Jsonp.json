@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tristan Koch (tristankoch)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>A special script loader handling JSONP responses. Automatically\n provides callbacks and populates responseJson property.\n Example:\n </p>\n<pre class=\"javascript\">\n  var req = new qx.bom.request.Jsonp();\n\n\n  req.onload = function() {\n\n    req.responseJson;\n  }\n  req.open(\"GET\", url);\n  req.send();\n </pre>"
         }
       ],
@@ -687,5 +683,6 @@
       "access": "private"
     }
   },
+  "events": {},
   "descendants": []
 }

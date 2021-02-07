@@ -7,6 +7,9 @@
       "qx.locale.LocalizedString": {
         "require": true
       },
+      "qx.bom.client.Locale": {
+        "require": true
+      },
       "qx.core.Environment": {
         "defer": "load",
         "usage": "dynamic",
@@ -21,9 +24,6 @@
         "require": true
       },
       "qx.lang.Array": {},
-      "qx.bom.client.Locale": {
-        "require": true
-      },
       "qx.lang.String": {}
     },
     "environment": {
@@ -70,6 +70,10 @@
    *
    * @require(qx.event.dispatch.Direct)
    * @require(qx.locale.LocalizedString)
+   * @require(qx.bom.client.Locale)
+   *
+   * Note: "translating" the empty string, e.g. tr("") will return the header
+   * of the respective .po file. See also https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html#PO-Files
    *
    * @cldr()
    */
@@ -460,4 +464,4 @@
   qx.locale.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1604956069873
+//# sourceMappingURL=Manager.js.map?dt=1612691004083

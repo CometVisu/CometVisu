@@ -16,7 +16,7 @@
     "icon",
     "Tango"
   ],
-  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;AAkBA;;;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,IAAAA,KAAK,EAAG,OADV;AAEEC,IAAAA,OAAO,EAAG;AACR,cAAS;AADD;AAFZ,GADA;AArBAP,EAAAA,EAAE,CAACQ,KAAH,CAASC,IAAT,CAAcC,KAAd,CAAoBP,aAApB,GAAoCA,aAApC",
+  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EACA;AACEC,IAAAA,KAAK,EAAG,OADV;AAEEC,IAAAA,OAAO,EAAG;AACR,cAAS;AADD;AAFZ,GADA;AArBAP,EAAAA,EAAE,CAACQ,KAAH,CAASC,IAAT,CAAcC,KAAd,CAAoBP,aAApB,GAAoCA,aAApC",
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n/**\n * Tango icons\n */\nqx.Theme.define(\"qx.theme.icon.Tango\",\n{\n  title : \"Tango\",\n  aliases : {\n    \"icon\" : \"qx/icon/Tango\"\n  }\n});\n"
   ]

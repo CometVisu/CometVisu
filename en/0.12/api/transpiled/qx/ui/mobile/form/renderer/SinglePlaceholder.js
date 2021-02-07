@@ -14,7 +14,9 @@
         "require": true
       },
       "qx.ui.mobile.form.TextArea": {},
-      "qx.bom.client.Scroll": {},
+      "qx.bom.client.Scroll": {
+        "require": true
+      },
       "qx.ui.mobile.layout.VBox": {},
       "qx.ui.mobile.layout.HBox": {},
       "qx.ui.mobile.form.Row": {}
@@ -105,4 +107,4 @@
   qx.ui.mobile.form.renderer.SinglePlaceholder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SinglePlaceholder.js.map?dt=1604955486549
+//# sourceMappingURL=SinglePlaceholder.js.map?dt=1612690412759

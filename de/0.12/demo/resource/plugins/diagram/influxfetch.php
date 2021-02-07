@@ -124,7 +124,7 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
       $filter = 'AND ' . str_replace( "\\'", "'", $filter );
   }
 
-  if( '' != $res && 'ELAPSED' !== $ds )
+  if( '' !== $res && '0' !== $res && 'ELAPSED' !== $ds )
   {
     if( !preg_match( '/^[0-9]+$/', $res ) )
       return 'Error: invalid res parameter [' . $res . ']';
@@ -231,8 +231,8 @@ function getTs( $tsParameter, $field, $start, $end, $ds, $res, $fill, $filter )
   foreach( $series as $thisSeries )
   {
     $arrData[] = array(
-      strtotime( $thisSeries[0] ),// * 1000,
-      array( (string)$thisSeries[1] )
+      strtotime( array_shift($thisSeries) ),// * 1000,
+      array_map('strval', $thisSeries )
     );
   }
 

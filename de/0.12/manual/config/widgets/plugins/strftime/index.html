@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -222,7 +219,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <div class="section" id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das strftime-Plugin fügt der Visuseite eine formatierbare Datums- und Uhrzeitanzeige hinzu.</p>
-<div class="figure">
+<div class="figure align-default">
 <img alt="../../../../_images/strftime_simple.png" src="../../../../_images/strftime_simple.png" />
 </div>
 </div>
@@ -233,7 +230,7 @@ Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden:
 <p>Das Verhalten und Aussehen des strftime-Plugins kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
 beides über den <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">Editor</span></a> bearbeitet werden kann.</p>
-<p>Nur die mit ..... unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+<p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
 <div class="section" id="erlaubte-attribute-im-strftime-element">
 <h3>Erlaubte Attribute im strftime-Element<a class="headerlink" href="#erlaubte-attribute-im-strftime-element" title="Link zu dieser Überschrift">¶</a></h3>
@@ -248,7 +245,7 @@ daher weg gelassen werden.</p>
 <tr class="row-odd"><th class="head">Element</th>
 <th class="head" colspan="4">Attribut</th>
 </tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
+<tr class="row-even"><th class="head">&#160;</th>
 <th class="head">Name</th>
 <th class="head">Inhalt</th>
 <th class="head">Beschreibung</th>
@@ -258,11 +255,11 @@ daher weg gelassen werden.</p>
 <tr class="row-odd"><td rowspan="3">strftime</td>
 <td>lang</td>
 <td><em>en</em>, <em>de</em> oder <em>fr</em></td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>format</td>
 <td>Text</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>class</td>
 <td>Text</td>
@@ -272,11 +269,11 @@ daher weg gelassen werden.</p>
 </table>
 <div class="figure align-center" id="id2">
 <img alt="../../../../_images/de_config_widgets_plugins_strftime_index_editor_attributes.png" src="../../../../_images/de_config_widgets_plugins_strftime_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
 </div>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
-<p class="last">Das Attribut <code class="docutils literal"><span class="pre">class</span></code> wird im Editor nur angezeigt, wenn der complex-Modus aktiviert wurde.</p>
+<p class="last">Das Attribut <code class="docutils literal notranslate"><span class="pre">class</span></code> wird im Editor nur angezeigt, wenn der complex-Modus aktiviert wurde.</p>
 </div>
 <p>Mögliche Formatierungsoptionen findet man <a class="reference external" href="http://hacks.bluesmoon.info/strftime/format_specifiers.html">hier</a>.
 Ohne Angabe wird das Standardformat der jeweiligen Sprache verwendet.</p>
@@ -302,8 +299,7 @@ Ohne Angabe wird das Standardformat der jeweiligen Sprache verwendet.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-odd"><td rowspan="17"><dl class="first last docutils">
-<dt>strftime</dt>
-<dd><ul class="first last simple">
+<dt>strftime</dt><dd><ul class="simple">
 <li>layout</li>
 </ul>
 </dd>
@@ -381,7 +377,7 @@ Ohne Angabe wird das Standardformat der jeweiligen Sprache verwendet.</p>
 </table>
 <div class="figure align-center" id="id3">
 <img alt="../../../../_images/de_config_widgets_plugins_strftime_index_editor_elements.png" src="../../../../_images/de_config_widgets_plugins_strftime_index_editor_elements.png" />
-<p class="caption"><span class="caption-text">Elemente im Editor</span></p>
+<p class="caption"><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
 </div>
 </div>
 </div>
@@ -395,11 +391,11 @@ der <a class="reference internal" href="../../../xml-format.html#xml-format"><sp
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das strftime Plugin aus dem folgenden Screenshot erzeugt:</p>
-<div class="figure" id="id4">
+<div class="figure align-default" id="id4">
 <img alt="strftime, einfaches Beispiel" src="../../../../_images/strftime_simple.png" />
-<p class="caption"><span class="caption-text">strftime, einfaches Beispiel</span></p>
+<p class="caption"><span class="caption-text">strftime, einfaches Beispiel</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
 </div>
-<div class="highlight-xml"><div class="highlight"><pre><span></span>...
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;plugins&gt;</span>
         <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;strftime&quot;</span><span class="nt">/&gt;</span>
@@ -418,27 +414,27 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <h3>Zeitanzeige in der linken Navbar<a class="headerlink" href="#zeitanzeige-in-der-linken-navbar" title="Link zu dieser Überschrift">¶</a></h3>
 <p>In der linken Navbar reicht die Breite typischerweise nicht für die Anzeige von Datum- und Uhrzeit in
 einer Zeile. Aus diesem Grund wird im nachstehenden Beispiel eine Möglichkeit beschrieben, Datum und Uhrzeit
-übereinander anzuordnen und zusätzlich ansprechend mittels <code class="docutils literal"><span class="pre">class</span></code>-Element zu formatieren.</p>
-<div class="figure">
+übereinander anzuordnen und zusätzlich ansprechend mittels <code class="docutils literal notranslate"><span class="pre">class</span></code>-Element zu formatieren.</p>
+<div class="figure align-default">
 <img alt="../../../../_images/Example_Metal_swiss_021.jpg" src="../../../../_images/Example_Metal_swiss_021.jpg" />
 </div>
-<p>In der Navbar wurde an der obersten Stelle ein Group Widget eingefügt mit dem Namen &#8220;Aktuelle Zeit&#8221;.
-Innerhalb dieser Group befindet sich ein weiteres Group Widget mit dem Attribut <code class="docutils literal"><span class="pre">nowidget=&quot;true&quot;</span></code>.
+<p>In der Navbar wurde an der obersten Stelle ein Group Widget eingefügt mit dem Namen „Aktuelle Zeit“.
+Innerhalb dieser Group befindet sich ein weiteres Group Widget mit dem Attribut <code class="docutils literal notranslate"><span class="pre">nowidget=&quot;true&quot;</span></code>.
 Darin wurden dann von oben nach unten ein strftime, ein break gefolgt von einem weiteren strftime Widget eingefügt.
 Das obere strftime Widget, dass die Zeit anzeigt hat folgende Parameter:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span><span class="err">lang=&quot;de&quot;</span>
-<span class="err">format=&quot;%H:%M&quot;</span>
-<span class="err">class=&quot;timebig&quot;</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>lang=&quot;de&quot;
+format=&quot;%H:%M&quot;
+class=&quot;timebig&quot;
 </pre></div>
 </div>
 <p>Das untere strftime, dass das Datum anzeigt hat folgende Parameter:</p>
-<div class="highlight-guess"><div class="highlight"><pre><span></span><span class="err">lang=&quot;de&quot;</span>
-<span class="err">format=&quot;%A, %d. %B %Y&quot;</span>
-<span class="err">class=&quot;timedate&quot;</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>lang=&quot;de&quot;
+format=&quot;%A, %d. %B %Y&quot;
+class=&quot;timedate&quot;
 </pre></div>
 </div>
 <p>In der config.xml sieht dieser Abschnitt wie folgt aus:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Aktuelle Zeit&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Aktuelle Zeit&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
@@ -453,8 +449,8 @@ Das obere strftime Widget, dass die Zeit anzeigt hat folgende Parameter:</p>
 </pre></div>
 </div>
 <p>Für die Formatierung (Farbe, Schriftgrösse und Schriftart) muss im Visu Verzeichniss unter
-<code class="docutils literal"><span class="pre">/designs/metal/custom.css</span></code> noch folgender Abschnitt eingefügt werden:</p>
-<div class="highlight-css"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">custom_timebig</span> <span class="p">{</span>
+<code class="docutils literal notranslate"><span class="pre">/designs/metal/custom.css</span></code> noch folgender Abschnitt eingefügt werden:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">custom_timebig</span> <span class="p">{</span>
     <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">color</span><span class="p">:</span> <span class="mh">#75d5ff</span><span class="p">;</span>
@@ -514,7 +510,7 @@ Das obere strftime Widget, dass die Zeit anzeigt hat folgende Parameter:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -560,7 +556,7 @@ Das obere strftime Widget, dass die Zeit anzeigt hat folgende Parameter:</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../../../_static/jquery.js"></script>

@@ -18,7 +18,8 @@
         "construct": true
       },
       "qx.bom.client.Engine": {
-        "construct": true
+        "construct": true,
+        "require": true
       },
       "qx.util.ResourceManager": {
         "construct": true
@@ -101,8 +102,8 @@
       this.addListener("dbltap", this._stopPropagation, this);
       this.addListener("swipe", this._stopPropagation, this);
       this.addListener("longtap", this._stopPropagation, this);
-      this.addListener("appear", this.__P_200_0, this);
-      this.addListener("disappear", this.__P_200_0, this);
+      this.addListener("appear", this.__P_197_0, this);
+      this.addListener("disappear", this.__P_197_0, this);
     },
     members: {
       /**
@@ -118,7 +119,7 @@
        * Refreshes the cursor by setting it to <code>null</code> and then to the
        * old value.
        */
-      __P_200_0: function __P_200_0() {
+      __P_197_0: function __P_197_0() {
         var currentCursor = this.getStyle("cursor");
         this.setStyle("cursor", null, true);
         this.setStyle("cursor", currentCursor, true);
@@ -128,4 +129,4 @@
   qx.html.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1604955474482
+//# sourceMappingURL=Blocker.js.map?dt=1612690401277

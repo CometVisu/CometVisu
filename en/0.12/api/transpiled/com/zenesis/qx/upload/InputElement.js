@@ -16,7 +16,8 @@
         "require": true
       },
       "qx.bom.client.Browser": {
-        "construct": true
+        "construct": true,
+        "require": true
       },
       "qx.bom.client.Engine": {
         "construct": true
@@ -42,7 +43,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   qx.Class.define("com.zenesis.qx.upload.InputElement", {
     extend: qx.html.Element,
-    construct: function construct(widget, multiple, name) {
+    construct: function construct(widget, name) {
       // styling the input[type=file]
       // element is a bit tricky. Some browsers just ignore the normal
       // css style input. Firefox is especially tricky in this regard.
@@ -81,34 +82,53 @@
         name: name,
         title: ' '
       };
+      qx.html.Element.constructor.call(this, 'input', css, attrs);
 
       if (qx.Class.hasMixin(widget.constructor, com.zenesis.qx.upload.MUploadButton)) {
-        var accept = widget.getAcceptUpload();
-        if (accept) attrs.accept = accept;
+        widget.bind("acceptUpload", this, "acceptUpload");
+        widget.bind("multiple", this, "multiple");
+        widget.bind("directory", this, "directory");
       }
 
-      qx.html.Element.constructor.call(this, 'input', css, attrs);
-      this.__P_515_0 = widget;
-      this.setMultiple(!!multiple);
+      this.__P_513_0 = widget;
     },
     properties: {
+      acceptUpload: {
+        init: null,
+        nullable: true,
+        check: "String",
+        apply: "_applyAcceptUpload"
+      },
       multiple: {
         init: false,
         check: "Boolean",
+        nullable: false,
         apply: "_applyMultiple"
+      },
+      directory: {
+        init: false,
+        check: "Boolean",
+        nullable: false,
+        apply: "_applyDirectory"
       }
     },
     members: {
-      __P_515_0: null,
+      __P_513_0: null,
       getWidget: function getWidget() {
-        return this.__P_515_0;
+        return this.__P_513_0;
       },
-      _applyMultiple: function _applyMultiple(value, oldValue) {
-        if (value) this.setAttribute("multiple", "multiple");else this.removeAttribute("multiple");
+      _applyAcceptUpload: function _applyAcceptUpload(value) {
+        if (value) this.setAttribute("accept", value, true);else this.removeAttribute("accept", true);
+      },
+      _applyDirectory: function _applyDirectory(value) {
+        if (value) this.setAttribute("webkitdirectory", "webkitdirectory", true);else this.removeAttribute("webkitdirectory", true);
+      },
+      _applyMultiple: function _applyMultiple(value) {
+        if (value) this.setAttribute("multiple", "multiple", true);else this.removeAttribute("multiple", true);
       }
     }
   });
   com.zenesis.qx.upload.InputElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InputElement.js.map?dt=1604955497808
+//# sourceMappingURL=InputElement.js.map?dt=1612690423718

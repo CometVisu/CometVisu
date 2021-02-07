@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "osparc.theme.osparcdark.Decoration": {
+      "osparc.theme.common.Decoration": {
         "require": true
       }
     }
@@ -31,7 +31,7 @@
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
   qx.Theme.define("cv.theme.dark.Decoration", {
-    extend: osparc.theme.osparcdark.Decoration,
+    extend: osparc.theme.common.Decoration,
     decorations: {
       "window-caption-active": {},
       'cv-editor-config-section': {
@@ -89,4 +89,4 @@
   cv.theme.dark.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1604956077886
+//# sourceMappingURL=Decoration.js.map?dt=1612691011679

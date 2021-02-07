@@ -47,7 +47,9 @@
       "cv.parser.WidgetParser": {},
       "cv.util.String": {},
       "cv.util.Tree": {},
-      "qx.bom.client.Html": {},
+      "qx.bom.client.Html": {
+        "require": true
+      },
       "qx.dom.Element": {},
       "qx.data.store.Json": {},
       "qx.util.ResourceManager": {}
@@ -91,10 +93,10 @@
     construct: function construct() {
       // this.base(arguments);
       this.pagePartsHandler = new cv.ui.PagePartsHandler();
-      this.__P_63_0 = new qx.data.Array();
+      this.__P_64_0 = new qx.data.Array();
       this._domFinishedQueue = [];
 
-      this.__P_63_0.addListener("changeLength", function (ev) {
+      this.__P_64_0.addListener("changeLength", function (ev) {
         this.setPartsLoaded(ev.getData() === 0);
       }, this);
 
@@ -111,6 +113,20 @@
         var manager = app.getCommandManager();
         manager.add(group);
         manager.setActive(group);
+      }
+    },
+
+    /*
+    ***********************************************
+      STATICS
+    ***********************************************
+    */
+    statics: {
+      /**
+       * Shortcut access to client
+       */
+      getClient: function getClient() {
+        return this.getInstance().visu;
       }
     },
     properties: {
@@ -191,12 +207,12 @@
       visu: null,
       pluginsToLoadCount: 0,
       xml: null,
-      __P_63_0: null,
+      __P_64_0: null,
       _domFinishedQueue: null,
       // plugins that do not need to be loaded to proceed with the initial setup
       lazyPlugins: ["plugin-openhab"],
-      __P_63_1: null,
-      __P_63_2: false,
+      __P_64_1: null,
+      __P_64_2: false,
 
       /**
        * Load parts (e.g. plugins, structure)
@@ -218,12 +234,12 @@
           });
         }
 
-        this.__P_63_0.append(parts);
+        this.__P_64_0.append(parts);
 
         qx.io.PartLoader.require(parts, function (states) {
           parts.forEach(function (part, idx) {
             if (states[idx] === "complete") {
-              this.__P_63_0.remove(part);
+              this.__P_64_0.remove(part);
 
               this.debug("successfully loaded part " + part);
 
@@ -313,15 +329,16 @@
        */
       initBackendClient: function initBackendClient() {
         var backendName = cv.Config.configSettings.backend || cv.Config.backend;
+        var mapping = {
+          oh: "openhab",
+          oh2: "openhab2"
+        };
 
-        if (backendName === "oh") {
-          this.visu = cv.Application.createClient('openhab', cv.Config.backendUrl);
-        } else if (backendName === "oh2") {
-          this.visu = cv.Application.createClient('openhab2', cv.Config.backendUrl);
-        } else {
-          this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
+        if (mapping.hasOwnProperty(backendName)) {
+          backendName = mapping[backendName];
         }
 
+        this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
         var model = cv.data.Model.getInstance();
         this.visu.update = model.update.bind(model); // override clients update function
 
@@ -363,25 +380,25 @@
         var app = qx.core.Init.getApplication();
 
         if (app.isActive()) {
-          if (!this.visu.isConnected() && this.__P_63_2) {
+          if (!this.visu.isConnected() && this.__P_64_2) {
             // reconnect
             this.visu.restart(true);
           } // wait for 3 seconds before checking the backend connection
 
 
-          if (!this.__P_63_1) {
-            this.__P_63_1 = new qx.event.Timer(3000);
+          if (!this.__P_64_1) {
+            this.__P_64_1 = new qx.event.Timer(3000);
 
-            this.__P_63_1.addListener('interval', function () {
+            this.__P_64_1.addListener('interval', function () {
               if (app.isActive()) {
                 this._checkBackendConnection();
               }
 
-              this.__P_63_1.stop();
+              this.__P_64_1.stop();
             }, this);
           }
 
-          this.__P_63_1.restart();
+          this.__P_64_1.restart();
         } else {
           this._checkBackendConnection();
         }
@@ -394,7 +411,7 @@
           severity: "urgent",
           unique: true,
           deletable: false,
-          condition: !connected && this.__P_63_2 && qx.core.Init.getApplication().isActive()
+          condition: !connected && this.__P_64_2 && qx.core.Init.getApplication().isActive()
         };
         var lastError = this.visu.getLastError();
 
@@ -405,7 +422,7 @@
             message.message = qx.locale.Manager.tr("Connection to backend is lost.");
           }
         } else {
-          this.__P_63_2 = true;
+          this.__P_64_2 = true;
         }
 
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
@@ -422,15 +439,19 @@
       },
       _handleClientError: function _handleClientError(errorCode, varargs) {
         varargs = Array.prototype.slice.call(arguments, 1);
+        varargs = JSON.stringify(varargs[0], null, 2); // escape HTML:
+
+        var div = document.createElement('div');
+        div.innerText = varargs;
+        varargs = div.innerHTML;
         var notification;
-        var message = '';
 
         switch (errorCode) {
           case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
             notification = {
               topic: "cv.error",
               title: qx.locale.Manager.tr('CometVisu protocol error'),
-              message: qx.locale.Manager.tr('The backend did send an invalid response to the %1Login%2 request: missing protocol version.', '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">', '</a>') + '<br/>' + qx.locale.Manager.tr('Please try to fix the problem in the backend.') + '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) + '</pre></div>',
+              message: qx.locale.Manager.tr('The backend did send an invalid response to the %1Login%2 request: missing protocol version.', '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">', '</a>') + '<br/>' + qx.locale.Manager.tr('Please try to fix the problem in the backend.') + '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs + '</pre></div>',
               severity: "urgent",
               unique: true,
               deletable: false
@@ -441,7 +462,7 @@
             notification = {
               topic: "cv.error",
               title: qx.locale.Manager.tr('CometVisu protocol error'),
-              message: qx.locale.Manager.tr('The backend did send an invalid response to a %1read%2 request: Missing "i" value.', '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">', '</a>') + '<br/>' + qx.locale.Manager.tr('Please try to fix the problem in the backend.') + '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + JSON.stringify(varargs[0], null, 2) + '</pre></div>',
+              message: qx.locale.Manager.tr('The backend did send an invalid response to a %1read%2 request: Missing "i" value.', '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">', '</a>') + '<br/>' + qx.locale.Manager.tr('Please try to fix the problem in the backend.') + '<br/><br/><strong>' + qx.locale.Manager.tr('Backend-Response:') + '</strong><pre>' + varargs + '</pre></div>',
               severity: "urgent",
               unique: true,
               deletable: false
@@ -493,6 +514,18 @@
 
         if (pagesNode.getAttribute("backend") !== null) {
           settings.backend = pagesNode.getAttribute("backend");
+        }
+
+        if (pagesNode.getAttribute("token") !== null) {
+          settings.credentials.token = pagesNode.getAttribute("token");
+        }
+
+        if (pagesNode.getAttribute("username") !== null) {
+          settings.credentials.username = pagesNode.getAttribute("username");
+        }
+
+        if (pagesNode.getAttribute("password") !== null) {
+          settings.credentials.password = pagesNode.getAttribute("password");
         }
 
         this.initBackendClient();
@@ -581,7 +614,7 @@
         // and now setup the pages
         this.debug("setup"); // login to backend as it might change some settings needed for further processing
 
-        this.visu.login(true, function () {
+        this.visu.login(true, cv.Config.configSettings.credentials, function () {
           this.debug("logged in");
           this.setLoggedIn(true); // as we are sure that the default CSS were loaded now:
 
@@ -983,10 +1016,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_63_1");
+      this._disposeObjects("__P_64_1");
     }
   });
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1604956070491
+//# sourceMappingURL=TemplateEngine.js.map?dt=1612691004671

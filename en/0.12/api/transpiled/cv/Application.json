@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 791,
+        "line": 793,
         "column": 3
       }
     },
@@ -35,7 +35,7 @@
         },
         {
           "name": "@asset",
-          "body": "icon/*"
+          "body": "icons/*"
         },
         {
           "name": "@asset",
@@ -66,14 +66,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>****************************************\nCONSTRUCTOR\n****************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "statics": {
     "HTML_STRUCT": {
@@ -125,7 +118,7 @@
           "column": 4
         },
         "end": {
-          "line": 92,
+          "line": 94,
           "column": 5
         }
       },
@@ -151,11 +144,11 @@
     "registerConsoleCommand": {
       "location": {
         "start": {
-          "line": 100,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 108,
           "column": 5
         }
       },
@@ -198,11 +191,11 @@
     "root": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 117,
           "column": 4
         },
         "end": {
-          "line": 117,
+          "line": 119,
           "column": 5
         }
       },
@@ -214,11 +207,11 @@
     "structureLoaded": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 124,
           "column": 4
         },
         "end": {
-          "line": 126,
+          "line": 128,
           "column": 5
         }
       },
@@ -240,11 +233,11 @@
     "commandManager": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 130,
           "column": 4
         },
         "end": {
-          "line": 131,
+          "line": 133,
           "column": 5
         }
       },
@@ -255,11 +248,11 @@
     "active": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 135,
           "column": 4
         },
         "end": {
-          "line": 137,
+          "line": 139,
           "column": 5
         }
       },
@@ -273,11 +266,11 @@
     "inManager": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 141,
           "column": 4
         },
         "end": {
-          "line": 142,
+          "line": 144,
           "column": 5
         }
       },
@@ -324,11 +317,11 @@
     "_blocker": {
       "location": {
         "start": {
-          "line": 154,
+          "line": 156,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 156,
           "column": 18
         }
       },
@@ -338,11 +331,11 @@
     "block": {
       "location": {
         "start": {
-          "line": 160,
+          "line": 162,
           "column": 4
         },
         "end": {
-          "line": 171,
+          "line": 173,
           "column": 5
         }
       },
@@ -366,11 +359,11 @@
     "main": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 179,
           "column": 4
         },
         "end": {
-          "line": 245,
+          "line": 247,
           "column": 5
         }
       },
@@ -393,11 +386,11 @@
     "showManager": {
       "location": {
         "start": {
-          "line": 251,
+          "line": 253,
           "column": 4
         },
         "end": {
-          "line": 277,
+          "line": 279,
           "column": 5
         }
       },
@@ -434,11 +427,11 @@
     "showConfigErrors": {
       "location": {
         "start": {
-          "line": 279,
+          "line": 281,
           "column": 4
         },
         "end": {
-          "line": 299,
+          "line": 301,
           "column": 5
         }
       },
@@ -448,11 +441,11 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 301,
+          "line": 303,
           "column": 4
         },
         "end": {
-          "line": 364,
+          "line": 366,
           "column": 5
         }
       },
@@ -462,11 +455,11 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 366,
+          "line": 368,
           "column": 4
         },
         "end": {
-          "line": 519,
+          "line": 521,
           "column": 5
         }
       },
@@ -476,11 +469,11 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 521,
+          "line": 523,
           "column": 4
         },
         "end": {
-          "line": 526,
+          "line": 528,
           "column": 6
         }
       },
@@ -490,11 +483,11 @@
     "__init": {
       "location": {
         "start": {
-          "line": 531,
+          "line": 533,
           "column": 4
         },
         "end": {
-          "line": 558,
+          "line": 560,
           "column": 5
         }
       },
@@ -512,11 +505,11 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 564,
+          "line": 566,
           "column": 4
         },
         "end": {
-          "line": 656,
+          "line": 658,
           "column": 5
         }
       },
@@ -543,11 +536,11 @@
     "loadIcons": {
       "location": {
         "start": {
-          "line": 661,
+          "line": 663,
           "column": 4
         },
         "end": {
-          "line": 665,
+          "line": 667,
           "column": 5
         }
       },
@@ -565,11 +558,11 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 671,
+          "line": 673,
           "column": 4
         },
         "end": {
-          "line": 678,
+          "line": 680,
           "column": 5
         }
       },
@@ -593,11 +586,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 684,
+          "line": 686,
           "column": 4
         },
         "end": {
-          "line": 691,
+          "line": 693,
           "column": 5
         }
       },
@@ -621,11 +614,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 696,
+          "line": 698,
           "column": 4
         },
         "end": {
-          "line": 756,
+          "line": 758,
           "column": 5
         }
       },
@@ -643,11 +636,11 @@
     "__detectInitialPage": {
       "location": {
         "start": {
-          "line": 758,
+          "line": 760,
           "column": 4
         },
         "end": {
-          "line": 789,
+          "line": 791,
           "column": 5
         }
       },
@@ -1344,6 +1337,58 @@
         ]
       }
     },
+    "fireEventAsync": {
+      "type": "function",
+      "name": "fireEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an event on this object; equivalent to fireEvent, except that it\n always returns a promise</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      }
+    },
     "fireNonBubblingEvent": {
       "type": "function",
       "name": "fireNonBubblingEvent",
@@ -1392,6 +1437,58 @@
             "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean",
             "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireNonBubblingEventAsync": {
+      "type": "function",
+      "name": "fireNonBubblingEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent,\n except that it always returns a promise.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -1451,6 +1548,65 @@
             "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean|qx.Promise",
             "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireDataEventAsync": {
+      "type": "function",
+      "name": "fireDataEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an non-bubbling data event on this object; equivalent to\n fireEvent, except that it always returns a promise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} User defined data attached to the event object",
+            "paramName": "data",
+            "description": " User defined data attached to the event object",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "oldData {var?null} The event's old data (optional)",
+            "paramName": "oldData",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }

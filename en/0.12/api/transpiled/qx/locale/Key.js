@@ -9,7 +9,9 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.OperatingSystem": {},
+      "qx.bom.client.OperatingSystem": {
+        "require": true
+      },
       "qx.locale.Manager": {
         "defer": "runtime"
       }
@@ -153,4 +155,4 @@
   qx.locale.Key.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Key.js.map?dt=1604955476432
+//# sourceMappingURL=Key.js.map?dt=1612690403016

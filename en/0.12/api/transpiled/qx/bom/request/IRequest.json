@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tristan Koch (tristankoch)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Interface of a low-level transport compatible with\n {@link qx.io.request.AbstractRequest}.\n Based on interface specified in\n <a href=\"http://www.w3.org/TR/XMLHttpRequest/\">XmlHttpRequest</a>. Also\n borrows some methods as described in\n <a href=\"http://www.w3.org/TR/XMLHttpRequest2/\">XmlHttpRequest2</a>.</p>"
         }
       ]
@@ -45,22 +41,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
-            "body": "<p>Properties</p>"
-          },
-          {
-            "name": "@description",
-            "body": "<p>(Plain JavaScript)</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
-          },
           {
             "name": "@description",
             "body": ""
@@ -229,18 +209,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
-            "body": "<p>Methods</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
-          },
           {
             "name": "@description",
             "body": "<p>Initializes (prepares) request.</p>"
@@ -453,18 +421,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
-            "body": "<p>Handlers</p>"
-          },
-          {
-            "name": "@description",
-            "body": ""
-          },
           {
             "name": "@description",
             "body": "<p>Event handler for event fired at every state change.</p>"

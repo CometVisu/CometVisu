@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2016 Visionet GmbH, http://www.visionet.de\n     2016 OETIKER+PARTNER AG, https://www.oetiker.ch\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Dietrich Streifert (level420)\n Tobias Oetiker (oetiker)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Dynamically load non qx scripts. This class is aware of all scripts that have\n been loaded using its instances, so if two instances load jquery, it will only\n be loaded once, and the second instance will wait for the jquery to be loaded\n before continuing to load additional scripts.\n Usage example:\n </p>\n<pre>\n  ... assets ...\n /**\n* @asset(myapp/jquery/*)\n* @asset(myapp/highcharts/*)\n*\n* @ignore(jQuery.*)\n* @ignore(Highcharts.*)\n  ...\n\n    var src = '';\n    var min = '.min';\n    if (qx.core.Environment.get(\"qx.debug\")) {\n      src = '.src';\n      min = '';\n    }\n\n    var dynLoader = new qx.util.DynamicScriptLoader([\n        \"myapp/jquery/jquery\"+min+\".js\",\n        \"myapp/highcharts/highcharts\"+src+\".js\",\n        \"myapp/highcharts/highcharts-more\"+src+\".js\",\n        \"myapp/highcharts/highcharts-modifications.js\"\n    ]);\n    dynLoader.addListenerOnce('ready',function(e){\n      console.log(\"all scripts have been loaded!\");\n    });\n    dynLoader.addListener('failed',function(e){\n      var data = e.getData();\n      console.log(\"failed to load \"+data.script);\n    });\n    dynLoader.start();\n </pre>"
         }
       ]

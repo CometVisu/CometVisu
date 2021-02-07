@@ -23,14 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<p>AbstractWidget.js\n copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
-        },
-        {
-          "name": "@description",
-          "body": "<p>noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols,JSHint</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This class defines all the building blocks for a Visu in the \"Pure\" design</p>"
         }
       ]
@@ -51,14 +43,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nCONSTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "properties": {
     "anonymous": {
@@ -242,6 +227,7 @@
       "name": "colspan",
       "propertyType": "new",
       "init": 6,
+      "transform": "string2number",
       "check": "Number",
       "defaultValue": 6
     },
@@ -259,6 +245,7 @@
       "name": "colspanM",
       "propertyType": "new",
       "init": 6,
+      "transform": "string2number",
       "check": "Number",
       "defaultValue": 6
     },
@@ -276,6 +263,7 @@
       "name": "colspanS",
       "propertyType": "new",
       "init": 6,
+      "transform": "string2number",
       "check": "Number",
       "defaultValue": 6
     },
@@ -502,14 +490,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -612,10 +593,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>jshint ignore:line</p>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Default action for tap events, does nothing but can be overridden\n by subclasses</p>"
           }
         ],
@@ -645,10 +622,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<p>jshint ignore:line</p>"
-          },
           {
             "name": "@description",
             "body": "<p>Triggered by the <code>setup.dom.finished</code> bus event</p>"
@@ -2641,14 +2614,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>***********************************************\nDESTRUCTOR\n***********************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": [
     "cv.plugins.CalendarList",

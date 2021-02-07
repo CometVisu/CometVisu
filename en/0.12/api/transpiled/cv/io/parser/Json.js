@@ -35,7 +35,8 @@
               var jsonString = i === 0 ? subData + "}" : "{" + subData;
               result = Object.assign(result, JSON.parse(jsonString));
             } catch (se) {
-              qx.log.Logger.error(se);
+              qx.log.Logger.error(se, data);
+              result = data; // return the bad input
             }
           }, this);
         }
@@ -47,4 +48,4 @@
   cv.io.parser.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1604955497182
+//# sourceMappingURL=Json.js.map?dt=1612690423067

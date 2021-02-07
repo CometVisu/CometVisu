@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 200,
+        "line": 201,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2010 Derrell Lipman\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Derrell Lipman (derrell)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>Primitives for building trees and tree nodes.\n The methods in this mixin are included directly in the SimpleTreeDataModel\n but are also useful for other types of trees (not TreeVirtual) that need\n similar tree and node creation.</p>"
@@ -61,7 +57,7 @@
           "column": 4
         },
         "end": {
-          "line": 182,
+          "line": 183,
           "column": 5
         }
       },
@@ -170,11 +166,11 @@
     "_getEmptyTree": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 191,
           "column": 4
         },
         "end": {
-          "line": 198,
+          "line": 199,
           "column": 5
         }
       },

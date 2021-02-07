@@ -9,20 +9,16 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 31,
+        "line": 32,
         "column": 0
       },
       "end": {
-        "line": 1228,
+        "line": 1241,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Til Schneider (til132)\n Sebastian Werner (wpbasti)\n Andreas Ecker (ecker)\n Fabian Jakobs (fjakobs)\n John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": ""
@@ -57,11 +53,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 44,
+        "line": 45,
         "column": 13
       },
       "end": {
-        "line": 49,
+        "line": 50,
         "column": 3
       }
     },
@@ -75,10 +71,16 @@
       "@param": [
         {
           "name": "@param",
-          "body": "labelText\n          {String} the label text describing the node type.",
+          "body": "labelText\n {String} the label text describing the node type.",
           "paramName": "labelText",
           "description": " the label text describing the node type.",
           "type": "String"
+        },
+        {
+          "name": "@param",
+          "body": "icon",
+          "paramName": "icon",
+          "type": ""
         }
       ]
     }
@@ -87,11 +89,11 @@
     "element": {
       "location": {
         "start": {
-          "line": 54,
+          "line": 55,
           "column": 4
         },
         "end": {
-          "line": 59,
+          "line": 60,
           "column": 5
         }
       },
@@ -113,11 +115,11 @@
     "isOpen": {
       "location": {
         "start": {
-          "line": 62,
+          "line": 63,
           "column": 4
         },
         "end": {
-          "line": 65,
+          "line": 66,
           "column": 5
         }
       },
@@ -138,11 +140,11 @@
     "docNode": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 68,
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 71,
           "column": 5
         }
       },
@@ -189,11 +191,11 @@
     "_labelText": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 76,
           "column": 20
         }
       },
@@ -203,11 +205,11 @@
     "_icon": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 76,
+          "line": 77,
           "column": 15
         }
       },
@@ -217,11 +219,11 @@
     "getPanelTitle": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 84,
           "column": 4
         },
         "end": {
-          "line": 85,
+          "line": 86,
           "column": 5
         }
       },
@@ -247,11 +249,11 @@
     "getPanelIcon": {
       "location": {
         "start": {
-          "line": 92,
+          "line": 93,
           "column": 4
         },
         "end": {
-          "line": 94,
+          "line": 95,
           "column": 5
         }
       },
@@ -277,11 +279,11 @@
     "canDisplayItem": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 104,
           "column": 5
         }
       },
@@ -290,6 +292,14 @@
           {
             "name": "@description",
             "body": "<p>Whether the panel can display the given item node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dao",
+            "paramName": "dao",
+            "type": ""
           }
         ],
         "@return": [
@@ -307,11 +317,11 @@
     "getItemTypeHtml": {
       "location": {
         "start": {
-          "line": 116,
+          "line": 117,
           "column": 4
         },
         "end": {
-          "line": 118,
+          "line": 119,
           "column": 5
         }
       },
@@ -359,11 +369,11 @@
     "getItemTitleHtml": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 132,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 134,
           "column": 5
         }
       },
@@ -411,11 +421,11 @@
     "getItemTextHtml": {
       "location": {
         "start": {
-          "line": 148,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 150,
+          "line": 151,
           "column": 5
         }
       },
@@ -470,11 +480,11 @@
     "getItemTooltip": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 153,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 155,
           "column": 5
         }
       },
@@ -484,11 +494,11 @@
     "getItemHtml": {
       "location": {
         "start": {
-          "line": 167,
+          "line": 168,
           "column": 4
         },
         "end": {
-          "line": 224,
+          "line": 226,
           "column": 5
         }
       },
@@ -508,14 +518,20 @@
         "@param": [
           {
             "name": "@param",
-            "body": "node\n          {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
+            "body": "node\n {qxl.apiviewer.dao.ClassItem} the doc node of the item.",
             "paramName": "node",
             "description": " the doc node of the item.",
             "type": "qxl.apiviewer.dao.ClassItem"
           },
           {
             "name": "@param",
-            "body": "showDetails\n          {Boolean} whether to show the details.",
+            "body": "currentDocNode",
+            "paramName": "currentDocNode",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "showDetails\n {Boolean} whether to show the details.",
             "paramName": "showDetails",
             "description": " whether to show the details.",
             "type": "Boolean"
@@ -536,11 +552,11 @@
     "itemHasDetails": {
       "location": {
         "start": {
-          "line": 238,
+          "line": 240,
           "column": 4
         },
         "end": {
-          "line": 240,
+          "line": 242,
           "column": 5
         }
       },
@@ -588,11 +604,11 @@
     "__encodeObject": {
       "location": {
         "start": {
-          "line": 242,
+          "line": 244,
           "column": 4
         },
         "end": {
-          "line": 244,
+          "line": 246,
           "column": 5
         }
       },
@@ -602,11 +618,11 @@
     "getPanelHtml": {
       "location": {
         "start": {
-          "line": 251,
+          "line": 253,
           "column": 4
         },
         "end": {
-          "line": 263,
+          "line": 265,
           "column": 5
         }
       },
@@ -615,6 +631,14 @@
           {
             "name": "@description",
             "body": "<p>Get the HTML fragment of the info panel</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "viewer",
+            "paramName": "viewer",
+            "type": ""
           }
         ],
         "@return": [
@@ -650,25 +674,30 @@
         "@param": [
           {
             "name": "@param",
-            "body": "showInherited\n          {Boolean} whether to show inherited items",
+            "body": "showInherited {Boolean} whether to show inherited items",
             "paramName": "showInherited",
             "description": " whether to show inherited items",
             "type": "Boolean"
           },
           {
             "name": "@param",
-            "body": "currentClassDocNode\n          {qxl.apiviewer.dao.Class} the currently displayed class",
-            "paramName": "currentClassDocNode",
-            "description": " the currently displayed class",
-            "type": "qxl.apiviewer.dao.Class"
+            "body": "showIncluded",
+            "paramName": "showIncluded",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "daoClass",
+            "paramName": "daoClass",
+            "type": ""
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{qxl.apiviewer.dao.ClassItem[]} list of all items to display in the\n         panel",
+            "body": "{qxl.apiviewer.dao.ClassItem[]} list of all items to display in the\n panel",
             "type": "qxl.apiviewer.dao.ClassItem[]",
-            "description": " list of all items to display in the\n         panel"
+            "description": " list of all items to display in the\n panel"
           }
         ]
       },
@@ -724,28 +753,34 @@
         "@param": [
           {
             "name": "@param",
-            "body": "nodeArr\n          {qxl.apiviewer.dao.ClassItem[]} array of class items",
+            "body": "nodeArr\n {qxl.apiviewer.dao.ClassItem[]} array of class items",
             "paramName": "nodeArr",
             "description": " array of class items",
             "type": "qxl.apiviewer.dao.ClassItem[]"
           },
           {
             "name": "@param",
-            "body": "showProtected\n          {Boolean} whether to show protected items",
+            "body": "expandProperties",
+            "paramName": "expandProperties",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "showProtected\n {Boolean} whether to show protected items",
             "paramName": "showProtected",
             "description": " whether to show protected items",
             "type": "Boolean"
           },
           {
             "name": "@param",
-            "body": "showPrivate\n          {Boolean} whether to show private items",
+            "body": "showPrivate\n {Boolean} whether to show private items",
             "paramName": "showPrivate",
             "description": " whether to show private items",
             "type": "Boolean"
           },
           {
             "name": "@param",
-            "body": "showInternal\n          {Boolean} whether to show internal items",
+            "body": "showInternal\n {Boolean} whether to show internal items",
             "paramName": "showInternal",
             "description": " whether to show internal items",
             "type": "Boolean"
@@ -887,11 +922,11 @@
     "getItemElement": {
       "location": {
         "start": {
-          "line": 429,
+          "line": 430,
           "column": 4
         },
         "end": {
-          "line": 440,
+          "line": 447,
           "column": 5
         }
       },
@@ -939,11 +974,11 @@
     "toggleShowItemDetails": {
       "location": {
         "start": {
-          "line": 453,
+          "line": 456,
           "column": 4
         },
         "end": {
-          "line": 490,
+          "line": 493,
           "column": 5
         }
       },
@@ -957,21 +992,13 @@
         "@param": [
           {
             "name": "@param",
-            "body": "panelHashCode\n          {Integer} hash code of the panel object.",
-            "paramName": "panelHashCode",
-            "description": " hash code of the panel object.",
-            "type": "Integer"
+            "body": "itemName",
+            "paramName": "itemName",
+            "type": ""
           },
           {
             "name": "@param",
-            "body": "name\n          {String} the name of the item.",
-            "paramName": "name",
-            "description": " the name of the item.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "fromClassName\n          {String} the name of the class the item the item was defined in.",
+            "body": "fromClassName\n {String} the name of the class the item the item was defined in.",
             "paramName": "fromClassName",
             "description": " the name of the class the item the item was defined in.",
             "type": "String"
@@ -984,11 +1011,11 @@
     "_postProcessLinks": {
       "location": {
         "start": {
-          "line": 498,
+          "line": 501,
           "column": 4
         },
         "end": {
-          "line": 535,
+          "line": 538,
           "column": 5
         }
       },
@@ -1430,11 +1457,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 544,
+        "line": 547,
         "column": 12
       },
       "end": {
-        "line": 546,
+        "line": 549,
         "column": 3
       }
     },
@@ -1451,11 +1478,11 @@
     "ITEM_SPEC_REGEX": {
       "location": {
         "start": {
-          "line": 554,
+          "line": 557,
           "column": 4
         },
         "end": {
-          "line": 554,
+          "line": 557,
           "column": 67
         }
       },
@@ -1473,11 +1500,11 @@
     "SENTENCE_END_REGEX": {
       "location": {
         "start": {
-          "line": 557,
+          "line": 560,
           "column": 4
         },
         "end": {
-          "line": 557,
+          "line": 560,
           "column": 40
         }
       },
@@ -1495,11 +1522,11 @@
     "resolveLinkAttributes": {
       "location": {
         "start": {
-          "line": 569,
+          "line": 572,
           "column": 4
         },
         "end": {
-          "line": 587,
+          "line": 590,
           "column": 5
         }
       },
@@ -1543,11 +1570,11 @@
     "createItemLinkHtml": {
       "location": {
         "start": {
-          "line": 605,
+          "line": 608,
           "column": 4
         },
         "end": {
-          "line": 765,
+          "line": 772,
           "column": 5
         }
       },
@@ -1609,11 +1636,11 @@
     "createSeeAlsoHtml": {
       "location": {
         "start": {
-          "line": 774,
+          "line": 781,
           "column": 4
         },
         "end": {
-          "line": 801,
+          "line": 808,
           "column": 5
         }
       },
@@ -1648,11 +1675,11 @@
     "createInheritedFromHtml": {
       "location": {
         "start": {
-          "line": 813,
+          "line": 820,
           "column": 4
         },
         "end": {
-          "line": 821,
+          "line": 834,
           "column": 5
         }
       },
@@ -1694,11 +1721,11 @@
     "createOverwriddenFromHtml": {
       "location": {
         "start": {
-          "line": 830,
+          "line": 843,
           "column": 4
         },
         "end": {
-          "line": 839,
+          "line": 852,
           "column": 5
         }
       },
@@ -1733,11 +1760,11 @@
     "createIncludedFromHtml": {
       "location": {
         "start": {
-          "line": 851,
+          "line": 864,
           "column": 4
         },
         "end": {
-          "line": 862,
+          "line": 874,
           "column": 5
         }
       },
@@ -1779,11 +1806,11 @@
     "__getItemFromClassHierarchy": {
       "location": {
         "start": {
-          "line": 875,
+          "line": 887,
           "column": 4
         },
         "end": {
-          "line": 889,
+          "line": 901,
           "column": 5
         }
       },
@@ -1825,11 +1852,11 @@
     "createDescriptionHtml": {
       "location": {
         "start": {
-          "line": 904,
+          "line": 916,
           "column": 4
         },
         "end": {
-          "line": 914,
+          "line": 926,
           "column": 5
         }
       },
@@ -1883,11 +1910,11 @@
     "__extractFirstSentence": {
       "location": {
         "start": {
-          "line": 923,
+          "line": 935,
           "column": 4
         },
         "end": {
-          "line": 940,
+          "line": 951,
           "column": 5
         }
       },
@@ -1922,11 +1949,11 @@
     "descriptionHasDetails": {
       "location": {
         "start": {
-          "line": 950,
+          "line": 961,
           "column": 4
         },
         "end": {
-          "line": 956,
+          "line": 967,
           "column": 5
         }
       },
@@ -1961,11 +1988,11 @@
     "createTypeHtml": {
       "location": {
         "start": {
-          "line": 971,
+          "line": 982,
           "column": 4
         },
         "end": {
-          "line": 1032,
+          "line": 1045,
           "column": 5
         }
       },
@@ -2016,11 +2043,11 @@
     "createErrorHtml": {
       "location": {
         "start": {
-          "line": 1043,
+          "line": 1056,
           "column": 4
         },
         "end": {
-          "line": 1073,
+          "line": 1086,
           "column": 5
         }
       },
@@ -2062,11 +2089,11 @@
     "createDeprecationHtml": {
       "location": {
         "start": {
-          "line": 1085,
+          "line": 1098,
           "column": 4
         },
         "end": {
-          "line": 1102,
+          "line": 1115,
           "column": 5
         }
       },
@@ -2108,11 +2135,11 @@
     "createAccessHtml": {
       "location": {
         "start": {
-          "line": 1111,
+          "line": 1124,
           "column": 4
         },
         "end": {
-          "line": 1132,
+          "line": 1145,
           "column": 5
         }
       },
@@ -2147,11 +2174,11 @@
     "createInfoRequiredByHtml": {
       "location": {
         "start": {
-          "line": 1141,
+          "line": 1154,
           "column": 4
         },
         "end": {
-          "line": 1152,
+          "line": 1165,
           "column": 5
         }
       },
@@ -2186,11 +2213,11 @@
     "createSourceLinkHtml": {
       "location": {
         "start": {
-          "line": 1161,
+          "line": 1174,
           "column": 4
         },
         "end": {
-          "line": 1183,
+          "line": 1196,
           "column": 5
         }
       },
@@ -2225,11 +2252,11 @@
     "setTitleClass": {
       "location": {
         "start": {
-          "line": 1195,
+          "line": 1208,
           "column": 4
         },
         "end": {
-          "line": 1199,
+          "line": 1212,
           "column": 5
         }
       },
@@ -2271,11 +2298,11 @@
     "getItemCssClasses": {
       "location": {
         "start": {
-          "line": 1208,
+          "line": 1221,
           "column": 4
         },
         "end": {
-          "line": 1225,
+          "line": 1238,
           "column": 5
         }
       },

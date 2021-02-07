@@ -110,7 +110,7 @@
    *
    * *External Documentation*
    *
-   * <a href='http://qooxdoo.org/docs/#layout/flow.md'>
+   * <a href='https://qooxdoo.org/documentation/#/desktop/layout/flow.md'>
    * Extended documentation</a> and links to demos of this layout in the qooxdoo manual.
    */
   qx.Class.define("qx.ui.layout.Flow", {
@@ -246,7 +246,7 @@
         while (lineCalculator.hasMoreLines()) {
           var line = lineCalculator.computeNextLine(availWidth);
 
-          this.__P_324_0(line, lineTop, availWidth, padding);
+          this.__P_321_0(line, lineTop, availWidth, padding);
 
           lineTop += line.height + this.getSpacingY();
         }
@@ -262,7 +262,7 @@
        * @param padding {Map} Map containing the padding values. Keys:
        * <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>
        */
-      __P_324_0: function __P_324_0(line, lineTop, availWidth, padding) {
+      __P_321_0: function __P_321_0(line, lineTop, availWidth, padding) {
         var util = qx.ui.layout.Util;
         var left = padding.left;
 
@@ -292,7 +292,7 @@
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
-        return this.__P_324_1(Infinity);
+        return this.__P_321_1(Infinity);
       },
       // overridden
       hasHeightForWidth: function hasHeightForWidth() {
@@ -300,7 +300,7 @@
       },
       // overridden
       getHeightForWidth: function getHeightForWidth(width) {
-        return this.__P_324_1(width).height;
+        return this.__P_321_1(width).height;
       },
 
       /**
@@ -325,7 +325,7 @@
        * @param availWidth {Integer} The available width
        * @return {Map} Map containing the preferred height and width of the layout
        */
-      __P_324_1: function __P_324_1(availWidth) {
+      __P_321_1: function __P_321_1(availWidth) {
         var lineCalculator = new qx.ui.layout.LineSizeIterator(this._getLayoutChildren(), this.getSpacingX());
         var height = 0;
         var width = 0;
@@ -348,4 +348,4 @@
   qx.ui.layout.Flow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flow.js.map?dt=1604955484049
+//# sourceMappingURL=Flow.js.map?dt=1612690410511

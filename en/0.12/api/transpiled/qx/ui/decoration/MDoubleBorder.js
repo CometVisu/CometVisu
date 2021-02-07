@@ -15,7 +15,9 @@
       "qx.ui.decoration.MBackgroundImage": {
         "require": true
       },
-      "qx.bom.client.Css": {},
+      "qx.bom.client.Css": {
+        "require": true
+      },
       "qx.theme.manager.Color": {},
       "qx.bom.Style": {},
       "qx.util.ColorUtil": {}
@@ -68,8 +70,8 @@
     include: [qx.ui.decoration.MSingleBorder, qx.ui.decoration.MBackgroundImage],
     construct: function construct() {
       // override the methods of single border and background image
-      this._getDefaultInsetsForBorder = this.__P_292_0;
-      this._styleBorder = this.__P_292_1;
+      this._getDefaultInsetsForBorder = this.__P_289_0;
+      this._styleBorder = this.__P_289_1;
     },
 
     /*
@@ -177,7 +179,7 @@
        *
        * @param styles {Map} A map to add the styles.
        */
-      __P_292_1: function __P_292_1(styles) {
+      __P_289_1: function __P_289_1(styles) {
         var propName = qx.core.Environment.get("css.boxshadow");
         var color, innerColor, innerWidth;
 
@@ -244,7 +246,7 @@
         var innerOpacity = this.getInnerOpacity();
 
         if (innerOpacity < 1) {
-          this.__P_292_2(innerColor, innerOpacity);
+          this.__P_289_2(innerColor, innerOpacity);
         } // inner border
 
 
@@ -321,7 +323,7 @@
        * @param innerColor {Map} map of top, right, bottom and left colors
        * @param innerOpacity {Number} alpha value
        */
-      __P_292_2: function __P_292_2(innerColor, innerOpacity) {
+      __P_289_2: function __P_289_2(innerColor, innerOpacity) {
         if (!qx.core.Environment.get("css.rgba")) {
           return;
         }
@@ -341,7 +343,7 @@
        * @return {Map} A map containing the default insets.
        *   (top, right, bottom, left)
        */
-      __P_292_0: function __P_292_0() {
+      __P_289_0: function __P_289_0() {
         return {
           top: this.getWidthTop() + this.getInnerWidthTop(),
           right: this.getWidthRight() + this.getInnerWidthRight(),
@@ -354,4 +356,4 @@
   qx.ui.decoration.MDoubleBorder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDoubleBorder.js.map?dt=1604955481598
+//# sourceMappingURL=MDoubleBorder.js.map?dt=1612690408316

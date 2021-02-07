@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 280,
+        "line": 282,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Sebastian Werner (wpbasti)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>The layout queue manages all widgets, which need a recalculation of their\n layout. The {@link #flush} method computes the layout of all queued widgets\n and their dependent widgets.</p>"
@@ -190,7 +186,7 @@
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 114,
           "column": 5
         }
       },
@@ -208,11 +204,11 @@
     "getNestingLevel": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 124,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 156,
           "column": 5
         }
       },
@@ -247,11 +243,11 @@
     "__getLevelGroupedWidgets": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 165,
           "column": 4
         },
         "end": {
-          "line": 197,
+          "line": 199,
           "column": 5
         }
       },
@@ -277,11 +273,11 @@
     "__getSortedQueue": {
       "location": {
         "start": {
-          "line": 210,
+          "line": 212,
           "column": 4
         },
         "end": {
-          "line": 278,
+          "line": 280,
           "column": 5
         }
       },

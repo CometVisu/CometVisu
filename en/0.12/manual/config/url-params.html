@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -215,8 +212,8 @@ Since these parameters can also be saved in the favorites of the browser,
 the corresponding variants can be accessed as effectively and quickly.</p>
 <div class="section" id="use">
 <h2>Use<a class="headerlink" href="#use" title="Permalink to this headline">¶</a></h2>
-<p>These parameters are simply appended to the URL by a &#8221;?&#8221;
-(first URL parameter), separated by a &#8220;&amp;&#8221; (all other URL parameters).</p>
+<p>These parameters are simply appended to the URL by a “?”
+(first URL parameter), separated by a “&amp;” (all other URL parameters).</p>
 <p>Examples:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -248,52 +245,52 @@ the corresponding variants can be accessed as effectively and quickly.</p>
 <h2>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="config-config-datei">
 <h3><em>config</em> - Config-Datei<a class="headerlink" href="#config-config-datei" title="Permalink to this headline">¶</a></h3>
-<p>The parameter <code class="docutils literal"><span class="pre">config</span></code> selects another config file.</p>
-<p>So, for example <code class="docutils literal"><span class="pre">config</span> <span class="pre">=</span> <span class="pre">NAME</span></code> - This config file must be
-under the name <code class="docutils literal"><span class="pre">visu_config_NAME.xml</span></code> either in the config directory
-of the Visu or in the <code class="docutils literal"><span class="pre">config/demo</span></code> directory of Visu.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">config</span></code> selects another config file.</p>
+<p>So, for example <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">=</span> <span class="pre">NAME</span></code> - This config file must be
+under the name <code class="docutils literal notranslate"><span class="pre">visu_config_NAME.xml</span></code> either in the config directory
+of the Visu or in the <code class="docutils literal notranslate"><span class="pre">config/demo</span></code> directory of Visu.</p>
 </div>
 <div class="section" id="design-design">
 <h3><em>design</em> - Design<a class="headerlink" href="#design-design" title="Permalink to this headline">¶</a></h3>
-<p>The parameter <code class="docutils literal"><span class="pre">design</span></code> overrides the design in the config file.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">design</span></code> overrides the design in the config file.</p>
 </div>
 <div class="section" id="forcereload-cache-ubersteuern">
 <h3><em>forceReload</em> - Cache übersteuern<a class="headerlink" href="#forcereload-cache-ubersteuern" title="Permalink to this headline">¶</a></h3>
-<p>The parameter <code class="docutils literal"><span class="pre">forceReload</span></code> with the value <em>true</em>
-(<code class="docutils literal"><span class="pre">forceReload=true</span></code>) safely reloads all files.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">forceReload</span></code> with the value <em>true</em>
+(<code class="docutils literal notranslate"><span class="pre">forceReload=true</span></code>) safely reloads all files.</p>
 <p>This may be important after customizing the config file.</p>
 </div>
 <div class="section" id="startpage-start-page">
 <h3><em>startpage</em> - start page<a class="headerlink" href="#startpage-start-page" title="Permalink to this headline">¶</a></h3>
-<p>The parameter <code class="docutils literal"><span class="pre">startpage</span></code> can be used to specify the sub-page which
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">startpage</span></code> can be used to specify the sub-page which
 will be displayed first after loading the visu.</p>
 <p>The easiest way to directly load a specific start page is to navigate
 to the page you want and then save the link that the browser displays.
 This always contains the ID of the currently displayed page as <em>anchor</em>
-part of the URL (e.g. <code class="docutils literal"><span class="pre">http://&lt;server&gt;/cometvisu/?Config=home#id_6_</span></code>,
-shows the page with the ID <code class="docutils literal"><span class="pre">id_6_</span></code>). For this, the <em>startpage</em>
+part of the URL (e.g. <code class="docutils literal notranslate"><span class="pre">http://&lt;server&gt;/cometvisu/?Config=home#id_6_</span></code>,
+shows the page with the ID <code class="docutils literal notranslate"><span class="pre">id_6_</span></code>). For this, the <em>startpage</em>
 parameter is not needed at all.</p>
 <p>In addition, it is still possible to specify the name of the start page
 via the <em>startpage</em> parameter. So if you want to use a subpage with
 the name <em>Bad</em> as the start page, the URL is
-<code class="docutils literal"><span class="pre">http://&lt;server&gt;/cometvisu/?Config=home&amp;startpage=Bad</span></code></p>
+<code class="docutils literal notranslate"><span class="pre">http://&lt;server&gt;/cometvisu/?Config=home&amp;startpage=Bad</span></code></p>
 <p>Especially if you have distributed visual acuity in several places
 in the house, it can make sense to display the subpage that corresponds
 to the room first, depending on the Visu location, for a complete config file.</p>
 </div>
 <div class="section" id="forcedevice-override-output-device">
 <h3><em>forceDevice</em> - Override output device<a class="headerlink" href="#forcedevice-override-output-device" title="Permalink to this headline">¶</a></h3>
-<p>With the <code class="docutils literal"><span class="pre">forceDevice</span></code> parameter, the value <code class="docutils literal"><span class="pre">mobile</span></code> can be used
-to display the page on &#8220;large&#8221; devices as well as on a small, mobile
+<p>With the <code class="docutils literal notranslate"><span class="pre">forceDevice</span></code> parameter, the value <code class="docutils literal notranslate"><span class="pre">mobile</span></code> can be used
+to display the page on “large” devices as well as on a small, mobile
 device (such as a smartphone). Any other value will display the page
 (even on mobile devices) as on the PC.</p>
 <p>This is actually only needed for developers.</p>
 </div>
 <div class="section" id="maturity-maturity">
 <h3><em>maturity</em> - maturity<a class="headerlink" href="#maturity-maturity" title="Permalink to this headline">¶</a></h3>
-<p>By the parameter <code class="docutils literal"><span class="pre">maturity</span></code> you can unlock features that are still
+<p>By the parameter <code class="docutils literal notranslate"><span class="pre">maturity</span></code> you can unlock features that are still
 in development and thus have unintended cross-effects.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">release</span> <span class="p">(</span><span class="n">maturity</span><span class="o">=</span><span class="n">release</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">release</span> <span class="p">(</span><span class="n">maturity</span><span class="o">=</span><span class="n">release</span><span class="p">)</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">release</span> <span class="p">(</span><span class="n">maturity</span><span class="o">=</span><span class="n">release</span><span class="p">),</span> <span class="n">development</span> <span class="p">(</span><span class="n">maturity</span><span class="o">=</span><span class="n">development</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -301,23 +298,23 @@ in development and thus have unintended cross-effects.</p>
 </div>
 <div class="section" id="backend-backend">
 <h3><em>backend</em> - Backend<a class="headerlink" href="#backend-backend" title="Permalink to this headline">¶</a></h3>
-<p>The parameter <code class="docutils literal"><span class="pre">backend</span></code> configures the used backend at runtime. There is
-also a <code class="docutils literal"><span class="pre">backend</span></code> parameter in the config to fix this.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span> <span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span><span class="p">)</span>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">backend</span></code> configures the used backend at runtime. There is
+also a <code class="docutils literal notranslate"><span class="pre">backend</span></code> parameter in the config to fix this.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span> <span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span><span class="p">)</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span> <span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span><span class="p">),</span> <span class="n">oh</span> <span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">oh</span><span class="p">),</span> <span class="n">oh2</span> <span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">oh2</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The default value &#8220;cgi-bin&#8221; (attention, inconsistent with xml
-element, default = &#8220;cgi&#8221;!) is usually correct and does not need to be
-changed. &#8220;r&#8221;, &#8220;w&#8221; and &#8220;l&#8221; are in /cgi-bin/.</p>
-<p>The option &#8220;oh&#8221; uses the path necessary for OpenHAB.</p>
+<p>The default value “cgi-bin” (attention, inconsistent with xml
+element, default = “cgi”!) is usually correct and does not need to be
+changed. “r”, “w” and “l” are in /cgi-bin/.</p>
+<p>The option “oh” uses the path necessary for OpenHAB.</p>
 </div>
 <div class="section" id="enablequeue-queue">
 <h3><em>enableQueue</em> - Queue<a class="headerlink" href="#enablequeue-queue" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">enableQueue</span></code> parameter influences whether all or only the group
+<p>The <code class="docutils literal notranslate"><span class="pre">enableQueue</span></code> parameter influences whether all or only the group
 addresses required on the current page are queried by the CV. This may
 lead to performance improvements.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span><span class="n">enableQueue</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span><span class="n">enableQueue</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">Options</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span><span class="n">enableQueue</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="mi">1</span> <span class="p">(</span><span class="n">enableQueue</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -326,7 +323,7 @@ is currently off by default.</p>
 </div>
 <div class="section" id="testmode-test-mode-without-real-backend">
 <h3><em>testMode</em> - Test mode without real backend<a class="headerlink" href="#testmode-test-mode-without-real-backend" title="Permalink to this headline">¶</a></h3>
-<p>With the parameter <code class="docutils literal"><span class="pre">testMode</span></code> you can test the CometVisu rudimentarily
+<p>With the parameter <code class="docutils literal notranslate"><span class="pre">testMode</span></code> you can test the CometVisu rudimentarily
 without having a running backend in the background. Normally, the CometVisu
 sends the switch-on value at the defined address to the backend when a switch
 is actuated. The backend then provides the corresponding feedback about the
@@ -338,14 +335,14 @@ CometVisu as a status update, simulating a simple backend.</p>
 <p>However, this simulated backend offers, as already mentioned, only
 rudimentary functions. If you have (as usual in the KNX world) different send
 and return addresses, this will not work with the TestMode.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span><span class="n">testMode</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span><span class="n">testMode</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">Options</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span><span class="n">testMode</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="mi">1</span> <span class="p">(</span><span class="n">testMode</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="enablecache-activate-caching">
 <span id="enablecache"></span><h3><em>enableCache</em> - Activate Caching<a class="headerlink" href="#enablecache-activate-caching" title="Permalink to this headline">¶</a></h3>
-<p>The parameter <code class="docutils literal"><span class="pre">enableCache</span></code> can be used to configure caching. This has
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">enableCache</span></code> can be used to configure caching. This has
 the effect that a config is not completely read in every reload and that an
 HTML page is generated from it, but that the rendered HTML structure including
 all other required data is stored locally in the browser (in the LocalStore).
@@ -354,7 +351,7 @@ speeding up loading the Visu on low-power devices (e.g. mobile devices).</p>
 <p>The cache can be activated via this parameter (=true), deactivated (=false)
 or deleted (=invalid).</p>
 <p>Deleting causes all values to be deleted from the cache and recreated.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">In</span> <span class="n">the</span> <span class="n">release</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">developer</span> <span class="n">version</span><span class="p">:</span> <span class="n">false</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">In</span> <span class="n">the</span> <span class="n">release</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">developer</span> <span class="n">version</span><span class="p">:</span> <span class="n">false</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">false</span><span class="p">),</span> <span class="n">true</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">invalid</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">invalid</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -366,7 +363,7 @@ recorded and made available to the developers as a replay file. They can thus
 see exactly which data has been exchanged between the CometVisu and the backend and which
 actions the user has executed. Ideally, an error can be faithfully reproduced
 with these log files, making it much easier to fix the problem.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">true</span>  <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">false</span> <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -378,8 +375,8 @@ without such sensitive data and record the session with this configuration.</p>
 <p class="last">Data from the <a class="reference internal" href="hidden-config.html#hidden-config"><span class="std std-ref">hidden config</span></a> is not transferred with.</p>
 </div>
 <p>To record these replay files, you have to load the CometVisu with
-<code class="docutils literal"><span class="pre">reporting=true</span></code>. After reaching the faulty state, you can download the
-replay file by entering <code class="docutils literal"><span class="pre">downloadLog()</span></code> in the browser console (open with F12)
+<code class="docutils literal notranslate"><span class="pre">reporting=true</span></code>. After reaching the faulty state, you can download the
+replay file by entering <code class="docutils literal notranslate"><span class="pre">downloadLog()</span></code> in the browser console (open with F12)
 and confirming with <em>enter</em>. In addition to the automatic download of
 the replay file, its content is also shown in the console.
 So you can control which data is contained in the file.</p>
@@ -401,12 +398,12 @@ notifies the CometVisu developers.</p>
 <p>Since this in addition to the error sends more information (e.g. about the
 browser used) to sentry.io, this functionality must be explicitly
 enabled via this URL parameter.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">reportErrors</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">reportErrors</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">true</span>  <span class="p">(</span><span class="n">reportErrors</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">false</span> <span class="p">(</span><span class="n">reportErrors</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To activate the error reports, the CometVisu must be loaded with
-<cite>reportErrors=true</cite>. CometVisu&#8217;s error dialogs offer the option of reloading
+<cite>reportErrors=true</cite>. CometVisu’s error dialogs offer the option of reloading
 CometVisu with this parameter, if that has not happened yet. Then the user
 can try to reproduce the error again and then send an error report with
 further explanations to sentry.io.</p>
@@ -415,7 +412,7 @@ further explanations to sentry.io.</p>
 <span id="log"></span><h3><em>log</em> - Debug-messages in the browser console<a class="headerlink" href="#log-debug-messages-in-the-browser-console" title="Permalink to this headline">¶</a></h3>
 <p>Use this parameter to turn debug messages output on and off in the browser
 console. In the developer version, these are turned on by default.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="k">for</span> <span class="n">Release</span><span class="p">,</span> <span class="n">true</span> <span class="k">for</span> <span class="n">develop</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="k">for</span> <span class="n">Release</span><span class="p">,</span> <span class="n">true</span> <span class="k">for</span> <span class="n">develop</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">true</span>  <span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">false</span> <span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -445,7 +442,7 @@ console. In the developer version, these are turned on by default.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -491,7 +488,7 @@ console. In the developer version, these are turned on by default.</p>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

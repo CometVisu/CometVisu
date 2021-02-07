@@ -15,8 +15,12 @@
       "qx.lang.Object": {},
       "qx.dom.Element": {},
       "qx.dom.Hierarchy": {},
-      "qx.bom.client.Engine": {},
-      "qx.bom.client.OperatingSystem": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
+      "qx.bom.client.OperatingSystem": {
+        "require": true
+      },
       "qx.log.Logger": {},
       "qx.bom.Event": {}
     },
@@ -244,4 +248,4 @@
   qx.bom.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1604955465315
+//# sourceMappingURL=Iframe.js.map?dt=1612690392526

@@ -11,7 +11,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.Runtime": {}
+      "qx.bom.client.Runtime": {
+        "require": true
+      }
     },
     "environment": {
       "provided": [],
@@ -1267,4 +1269,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.lang.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1604956077388
+//# sourceMappingURL=Json.js.map?dt=1612691011082

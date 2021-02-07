@@ -26,21 +26,17 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<p>ImageTrigger.js\n copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
-        },
-        {
-          "name": "@description",
-          "body": "<p>Adds an image like the {@link cv.ui.structure.pure.Image} widget, but additionally the image can be changed by incoming\n data and can send data to the backend by clicking on it.\n There are two modes to react on incoming data:\n </p>\n<ul>\n  <li><code>type=\"show\"</code>: Hides the image when incoming data === 0</li>\n  <li><code>type=\"select\"</code>: Changes the image by appending the incoming data to the initial configured image source, or hide it when incoming data === 0</li>\n </ul>\n<p>Example:\n </p>\n<pre class=\"sunlight-highlight-xml\">\n &lt;imagetrigger src=\"resource/icon/comet\" suffix=\"svg\" sendValue=\"clicked\" type=\"select\"&gt;\n    &lt;address transform=\"DPT:16.001\" mode=\"readwrite\"&gt;0/0/0&lt;/address&gt;\n &lt;/imagetrigger&gt;\n </pre>\n<p>initially shows nothing. When the CometVisu receives the string <code>_icon</code> in address <code>0/0/0</code>,\n the image <code>icon/comet_opt_icon.svg</code> is shown. When the CometVisu receives '0' on address <code>0/0/0</code>,\n this image is hidden.</p>"
+          "body": "<p>Adds an image like the {@link cv.ui.structure.pure.Image} widget, but additionally the image can be changed by incoming\n data and can send data to the backend by clicking on it.\n There are two modes to react on incoming data:\n </p>\n<ul>\n  <li><code>type=\"show\"</code>: Hides the image when incoming data === 0</li>\n  <li><code>type=\"select\"</code>: Changes the image by appending the incoming data to the initial configured image source, or hide it when incoming data === 0</li>\n </ul>\n<p>Example:\n </p>\n<pre class=\"sunlight-highlight-xml\">\n &lt;imagetrigger src=\"resource/icons/comet\" suffix=\"svg\" sendValue=\"clicked\" type=\"select\"&gt;\n    &lt;address transform=\"DPT:16.001\" mode=\"readwrite\"&gt;0/0/0&lt;/address&gt;\n &lt;/imagetrigger&gt;\n </pre>\n<p>initially shows nothing. When the CometVisu receives the string <code>_icon</code> in address <code>0/0/0</code>,\n the image <code>icons/comet_opt_icon.svg</code> is shown. When the CometVisu receives '0' on address <code>0/0/0</code>,\n this image is hidden.</p>"
         }
       ],
       "@widgetexample": [
         {
           "name": "@widgetexample",
-          "body": "<settings>\n   <screenshot name=\"image_trigger\">\n     <caption>Image changed by incoming data 'blue'</caption>\n     <data address=\"0/0/0\">blue</data>\n   </screenshot>\n   <screenshot name=\"image_trigger_changes\">\n     <caption>Image changed by incoming data 'grey'</caption>\n     <data address=\"0/0/0\">grey</data>\n   </screenshot>\n  </settings>\n  <imagetrigger src=\"resource/icon/CometVisu_\" suffix=\"png\" sendValue=\"clicked\" type=\"select\" width=\"45px\" height=\"32px\">\n    <layout colspan=\"1\" />\n    <address transform=\"DPT:16.001\" mode=\"readwrite\">0/0/0</address>\n  </imagetrigger>"
+          "body": "<settings>\n   <screenshot name=\"image_trigger\">\n     <caption>Image changed by incoming data 'blue'</caption>\n     <data address=\"0/0/0\">blue</data>\n   </screenshot>\n   <screenshot name=\"image_trigger_changes\">\n     <caption>Image changed by incoming data 'grey'</caption>\n     <data address=\"0/0/0\">grey</data>\n   </screenshot>\n  </settings>\n  <imagetrigger src=\"resource/icons/CometVisu_\" suffix=\"png\" sendValue=\"clicked\" type=\"select\" width=\"45px\" height=\"32px\">\n    <layout colspan=\"1\" />\n    <address transform=\"DPT:16.001\" mode=\"readwrite\">0/0/0</address>\n  </imagetrigger>"
         },
         {
           "name": "@widgetexample",
-          "body": "<settings>\n   <caption>Disable layout width by settings it to '0', to have widget with === image width</caption>\n   <screenshot name=\"image_trigger_colspan0\">\n     <data address=\"0/0/0\">1</data>\n   </screenshot>\n  </settings>\n  <imagetrigger src=\"resource/icon/CometVisu_orange\" suffix=\"png\" sendValue=\"clicked\" type=\"show\" width=\"45px\" height=\"32px\">\n    <layout colspan=\"0\" />\n    <address transform=\"DPT:1.001\" mode=\"readwrite\">0/0/0</address>\n  </imagetrigger>"
+          "body": "<settings>\n   <caption>Disable layout width by settings it to '0', to have widget with === image width</caption>\n   <screenshot name=\"image_trigger_colspan0\">\n     <data address=\"0/0/0\">1</data>\n   </screenshot>\n  </settings>\n  <imagetrigger src=\"resource/icons/CometVisu_orange\" suffix=\"png\" sendValue=\"clicked\" type=\"show\" width=\"45px\" height=\"32px\">\n    <layout colspan=\"0\" />\n    <address transform=\"DPT:1.001\" mode=\"readwrite\">0/0/0</address>\n  </imagetrigger>"
         }
       ],
       "@author": [
@@ -315,14 +311,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "cv.ui.structure.AbstractWidget",
@@ -2309,6 +2298,58 @@
         ]
       }
     },
+    "fireEventAsync": {
+      "type": "function",
+      "name": "fireEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an event on this object; equivalent to fireEvent, except that it\n always returns a promise</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+          }
+        ]
+      }
+    },
     "fireNonBubblingEvent": {
       "type": "function",
       "name": "fireNonBubblingEvent",
@@ -2357,6 +2398,58 @@
             "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean",
             "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireNonBubblingEventAsync": {
+      "type": "function",
+      "name": "fireNonBubblingEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent,\n except that it always returns a promise.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -2416,6 +2509,65 @@
             "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean|qx.Promise",
             "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      }
+    },
+    "fireDataEventAsync": {
+      "type": "function",
+      "name": "fireDataEventAsync",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and dispatches an non-bubbling data event on this object; equivalent to\n fireEvent, except that it always returns a promise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} User defined data attached to the event object",
+            "paramName": "data",
+            "description": " User defined data attached to the event object",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "oldData {var?null} The event's old data (optional)",
+            "paramName": "oldData",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       }
@@ -6425,5 +6577,6 @@
     },
     "jsdoc": {}
   },
+  "events": {},
   "descendants": []
 }

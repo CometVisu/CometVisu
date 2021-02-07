@@ -9,7 +9,9 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.bom.client.Html": {},
+      "qx.bom.client.Html": {
+        "require": true
+      },
       "qx.bom.storage.Web": {},
       "qx.bom.storage.UserData": {},
       "qx.bom.storage.Memory": {}
@@ -55,7 +57,7 @@
    */
   qx.Bootstrap.define("qx.bom.Storage", {
     statics: {
-      __P_133_0: null,
+      __P_134_0: null,
 
       /**
        * Get an instance of a local storage.
@@ -99,4 +101,4 @@
   qx.bom.Storage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Storage.js.map?dt=1604956077053
+//# sourceMappingURL=Storage.js.map?dt=1612691010760

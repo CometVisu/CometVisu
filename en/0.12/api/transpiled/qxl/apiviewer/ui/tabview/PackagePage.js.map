@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_0-beta_7/source/class/qxl/apiviewer/ui/tabview/PackagePage.js"
+    "/home/travis/build/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_16/source/class/qxl/apiviewer/ui/tabview/PackagePage.js"
   ],
   "names": [
     "qx",
@@ -21,7 +21,7 @@
     "PackageViewer",
     "PackagePage"
   ],
-  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;;;;;;;;;;;;;;;;;;;;AAoBA;;;;AAIAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sCAAhB,EACE;AACEC,IAAAA,MAAM,EAAGC,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,OAAjB,CAAyBC,YADpC;AAGEC,IAAAA,OAAO,EACT;AACEC,MAAAA,aAAa,EAAG,yBAAW;AACzB,eAAO,IAAIN,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBK,aAArB,EAAP;AACD;AAHH;AAJA,GADF;AAxBAP,EAAAA,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,OAAjB,CAAyBK,WAAzB,CAAqCZ,aAArC,GAAqDA,aAArD",
+  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sCAAhB,EACE;AACEC,IAAAA,MAAM,EAAGC,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,OAAjB,CAAyBC,YADpC;AAGEC,IAAAA,OAAO,EACT;AACEC,MAAAA,aAAa,EAAG,yBAAW;AACzB,eAAO,IAAIN,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBK,aAArB,EAAP;AACD;AAHH;AAJA,GADF;AAxBAP,EAAAA,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,OAAjB,CAAyBK,WAAzB,CAAqCZ,aAArC,GAAqDA,aAArD",
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n     * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)\n\n************************************************************************ */\n\n/**\n * Implements the dynamic behavior of the API viewer.\n * The GUI is defined in {@link Viewer}.\n */\nqx.Class.define(\"qxl.apiviewer.ui.tabview.PackagePage\",\n  {\n    extend : qxl.apiviewer.ui.tabview.AbstractPage,\n\n    members :\n  {\n    _createViewer : function() {\n      return new qxl.apiviewer.ui.PackageViewer();\n    }\n  }\n  });\n"
   ]

@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 102,
+        "line": 141,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2012 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>This class is responsible for the normalization of the native Object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
@@ -173,16 +169,68 @@
       },
       "type": "function",
       "access": "public"
+    },
+    "assign": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4
+        },
+        "end": {
+          "line": 117,
+          "column": 5
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Copies all enumerable own properties from one or more source objects to a target object..\n <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign\">MDN web docs: Object.assign()</a></p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(target,varArgs)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} The target object - what to apply the sources’ properties to, which is returned after it is modified.",
+            "paramName": "target",
+            "description": " The target object - what to apply the sources’ properties to, which is returned after it is modified.",
+            "type": "qx.lang.normalize.Object"
+          },
+          {
+            "name": "@param",
+            "body": "sources {Object} The source object(s) - objects containing the properties you want to apply.",
+            "paramName": "sources",
+            "description": " The source object(s) - objects containing the properties you want to apply.",
+            "type": "qx.lang.normalize.Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The target object.",
+            "type": "qx.lang.normalize.Object",
+            "description": " The target object."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 86,
+        "line": 120,
         "column": 10
       },
       "end": {
-        "line": 101,
+        "line": 140,
         "column": 3
       }
     },

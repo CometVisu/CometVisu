@@ -56,7 +56,7 @@
 
         var url = this._getClassNameFromUrl();
 
-        if (url !== "__P_161_0") {
+        if (url !== "__unknown_class__") {
           this.setTestNamespace(this._getClassNameFromUrl());
         }
 
@@ -75,4 +75,4 @@
   qx.dev.unit.TestLoaderMobile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestLoaderMobile.js.map?dt=1604955471874
+//# sourceMappingURL=TestLoaderMobile.js.map?dt=1612690398879

@@ -206,7 +206,7 @@
 
           if (!currentSegment) {
             this.__P_4_0[firstSegment] = {
-              "__P_4_4": []
+              __P_4_4: []
             };
             currentSegment = this.__P_4_0[firstSegment];
           }
@@ -214,7 +214,7 @@
           segments.forEach(function (segment) {
             if (!currentSegment[segment]) {
               currentSegment[segment] = {
-                "__P_4_4": []
+                __P_4_4: []
               };
             }
 
@@ -376,4 +376,4 @@
   cv.core.notifications.Router.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Router.js.map?dt=1604956063905
+//# sourceMappingURL=Router.js.map?dt=1612690998067

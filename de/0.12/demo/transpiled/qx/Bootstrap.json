@@ -768,10 +768,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  OBJECT UTILITY FUNCTIONS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Get the number of own properties in the object.</p>"
           }
         ],
@@ -991,10 +987,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  FUNCTION UTILITY FUNCTIONS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Returns a function whose \"this\" is altered.\n<em>Syntax</em>\n </p>\n<pre class='javascript'>qx.Bootstrap.bind(myFunction, [self, [varargs...]]);</pre>\n<p><em>Example</em>\n </p>\n<pre class='javascript'>\n function myFunction()\n {\n   this.setStyle('color', 'red');\n\n\n };\n var myBoundFunction = qx.Bootstrap.bind(myFunction, myElement);\n myBoundFunction();\n </pre>"
           }
         ],
@@ -1050,10 +1042,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  STRING UTILITY FUNCTIONS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Convert the first character of the string to upper case.</p>"
@@ -1132,10 +1120,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  TYPE UTILITY FUNCTIONS\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Get the internal class of the value. See\n http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/\n for details.</p>"
@@ -1368,14 +1352,7 @@
           "column": 15
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  LOGGING UTILITY FUNCTIONS\n---------------------------------------------------------------------------\n</code></pre>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "variable",
       "access": "public"
     },

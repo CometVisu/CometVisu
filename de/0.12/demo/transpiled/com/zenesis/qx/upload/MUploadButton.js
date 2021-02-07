@@ -59,7 +59,30 @@
       acceptUpload: {
         init: null,
         nullable: true,
-        check: "String"
+        check: "String",
+        event: "changeAcceptUpload"
+      },
+
+      /**
+       * Whether to support multiple files (default=true); this is not supported
+       * on older browsers
+       */
+      multiple: {
+        check: "Boolean",
+        init: false,
+        nullable: false,
+        event: "changeMultiple"
+      },
+
+      /**
+       * Whether to support directories only (default=false); this is not supported
+       * on older browsers
+       */
+      directory: {
+        check: "Boolean",
+        init: false,
+        nullable: false,
+        event: "changeDirectory"
       }
     },
     members: {
@@ -74,4 +97,4 @@
   com.zenesis.qx.upload.MUploadButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MUploadButton.js.map?dt=1604956083930
+//# sourceMappingURL=MUploadButton.js.map?dt=1612691017632

@@ -89,7 +89,7 @@
       // overridden
       appearance: {
         refine: true,
-        init: "button"
+        init: "toggle-button"
       },
       // overridden
       focusable: {
@@ -321,4 +321,4 @@
   qx.ui.form.ToggleButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToggleButton.js.map?dt=1604956082350
+//# sourceMappingURL=ToggleButton.js.map?dt=1612691016106

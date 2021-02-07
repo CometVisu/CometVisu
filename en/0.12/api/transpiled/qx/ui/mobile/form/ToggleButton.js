@@ -89,17 +89,17 @@
       qx.ui.mobile.core.Widget.constructor.call(this);
 
       if (labelChecked && labelUnchecked) {
-        this.__P_359_0 = labelUnchecked;
-        this.__P_359_1 = labelChecked;
+        this.__P_356_0 = labelUnchecked;
+        this.__P_356_1 = labelChecked;
       }
 
-      this._setAttribute("data-label-checked", this.__P_359_1);
+      this._setAttribute("data-label-checked", this.__P_356_1);
 
-      this._setAttribute("data-label-unchecked", this.__P_359_0);
+      this._setAttribute("data-label-unchecked", this.__P_356_0);
 
-      this.__P_359_2 = this._createSwitch();
+      this.__P_356_2 = this._createSwitch();
 
-      this._add(this.__P_359_2);
+      this._add(this.__P_356_2);
 
       if (value) {
         this.setValue(value);
@@ -117,11 +117,11 @@
       }
     },
     members: {
-      __P_359_2: null,
-      __P_359_3: false,
-      __P_359_0: "OFF",
-      __P_359_1: "ON",
-      __P_359_4: 0,
+      __P_356_2: null,
+      __P_356_3: false,
+      __P_356_0: "OFF",
+      __P_356_1: "ON",
+      __P_356_4: 0,
 
       /**
        * Returns the child control of the toggle button.
@@ -129,7 +129,7 @@
        * @return {qx.ui.mobile.container.Composite} the child control.
        */
       _getChild: function _getChild() {
-        return this.__P_359_2;
+        return this.__P_356_2;
       },
 
       /**
@@ -158,7 +158,7 @@
           this.removeCssClass("checked");
         }
 
-        this.__P_359_3 = value;
+        this.__P_356_3 = value;
       },
 
       /**
@@ -167,7 +167,7 @@
        * @return {Boolean} the value of the toggle button
        */
       _getValue: function _getValue() {
-        return this.__P_359_3;
+        return this.__P_356_3;
       },
 
       /**
@@ -200,11 +200,11 @@
           var direction = evt.getDirection();
 
           if (direction == "left") {
-            if (this.__P_359_3 == true) {
+            if (this.__P_356_3 == true) {
               this.toggle();
             }
           } else {
-            if (this.__P_359_3 == false) {
+            if (this.__P_356_3 == false) {
               this.toggle();
             }
           }
@@ -217,9 +217,9 @@
        * @return {Boolean} <code>true</code> if the last event was more than 500ms ago
        */
       _checkLastPointerTime: function _checkLastPointerTime() {
-        var elapsedTime = new Date().getTime() - this.__P_359_4;
+        var elapsedTime = new Date().getTime() - this.__P_356_4;
 
-        this.__P_359_4 = new Date().getTime();
+        this.__P_356_4 = new Date().getTime();
         return elapsedTime > 500;
       }
     },
@@ -227,10 +227,10 @@
       this.removeListener("tap", this._onTap, this);
       this.removeListener("swipe", this._onSwipe, this);
 
-      this._disposeObjects("__P_359_2", "__P_359_0", "__P_359_1");
+      this._disposeObjects("__P_356_2", "__P_356_0", "__P_356_1");
     }
   });
   qx.ui.mobile.form.ToggleButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToggleButton.js.map?dt=1604955486458
+//# sourceMappingURL=ToggleButton.js.map?dt=1612690412674

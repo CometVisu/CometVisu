@@ -160,9 +160,9 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String} formatted time, as an offset or date time depending on `formatTimeAs` property",
+            "body": "{String} formatted time, as an offset or date time depending on <code>formatTimeAs</code> property",
             "type": "String",
-            "description": " formatted time, as an offset or date time depending on `formatTimeAs` property"
+            "description": " formatted time, as an offset or date time depending on <code>formatTimeAs</code> property"
           }
         ]
       },

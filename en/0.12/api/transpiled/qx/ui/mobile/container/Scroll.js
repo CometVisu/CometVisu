@@ -19,7 +19,8 @@
       "qx.bom.element.Location": {},
       "qx.bom.element.Dimension": {},
       "qx.bom.client.Scroll": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       },
       "qx.ui.mobile.container.MIScroll": {
         "defer": "runtime"
@@ -565,4 +566,4 @@
   qx.ui.mobile.container.Scroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroll.js.map?dt=1604955485435
+//# sourceMappingURL=Scroll.js.map?dt=1612690411700

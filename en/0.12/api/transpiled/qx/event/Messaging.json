@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tino Butz (tbtz)\n Martin Wittemann (wittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>Define messages to react on certain channels.\n The channel names will be used in the {@link #on} method to define handlers which will\n be called on certain channels and routes. The {@link #emit} method can be used\n to execute a given route on a channel. {@link #onAny} defines a handler on any channel.\n<em>Example</em>\n Here is a little example of how to use the messaging.\n </p>\n<pre class='javascript'>\n   var m = new qx.event.Messaging();\n   m.on(\"get\", \"/address/{id}\", function(data) {\n     var id = data.params.id;\n\n   },this);\n   m.emit(\"get\", \"/address/1234\");\n </pre>"
         }
       ]

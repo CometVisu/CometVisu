@@ -17,9 +17,13 @@
       "qx.bom.client.Event": {
         "require": true
       },
-      "qx.bom.client.Browser": {},
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.bom.HashHistory": {},
-      "qx.bom.client.Engine": {},
+      "qx.bom.client.Engine": {
+        "require": true
+      },
       "qx.bom.IframeHistory": {},
       "qx.bom.NativeHistory": {},
       "qx.lang.Type": {},
@@ -321,7 +325,7 @@
        */
       navigateBack: function navigateBack() {
         qx.event.Timer.once(function () {
-          history.back();
+          window.history.back();
         }, this, 100);
       },
 
@@ -331,7 +335,7 @@
        */
       navigateForward: function navigateForward() {
         qx.event.Timer.once(function () {
-          history.forward();
+          window.history.forward();
         }, this, 100);
       },
 
@@ -396,4 +400,4 @@
   qx.bom.History.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=History.js.map?dt=1604955465235
+//# sourceMappingURL=History.js.map?dt=1612690392448

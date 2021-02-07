@@ -13,16 +13,12 @@
         "column": 0
       },
       "end": {
-        "line": 201,
+        "line": 197,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Til Schneider (til132)\n Carsten Lergenmueller (carstenl)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>A data cell renderer for boolean values.</p>"
@@ -42,14 +38,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "properties": {
     "iconTrue": {
@@ -191,14 +180,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -216,87 +198,25 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
         "iconFalse"
       ]
     },
-    "_insetY": {
-      "location": {
-        "start": {
-          "line": 123,
-          "column": 4
-        },
-        "end": {
-          "line": 123,
-          "column": 15
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_getCellStyle": {
-      "location": {
-        "start": {
-          "line": 126,
-          "column": 4
-        },
-        "end": {
-          "line": 128,
-          "column": 5
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "protected",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "appearsIn": [
-        "qx.ui.table.cellrenderer.Abstract"
-      ]
-    },
     "_identifyImage": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 123,
           "column": 4
         },
         "end": {
-          "line": 183,
+          "line": 179,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.table.cellrenderer.AbstractImage",
@@ -712,22 +632,15 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 192,
+        "line": 188,
         "column": 13
       },
       "end": {
-        "line": 200,
+        "line": 196,
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

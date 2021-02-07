@@ -70,7 +70,7 @@
        * @return {Boolean} whether the event has details.
        */
       itemHasDetails: function itemHasDetails(node, currentClassDocNode) {
-        return node.getClass() != currentClassDocNode || // event is inherited
+        return node.getOverriddenFrom() || // event is inherited
         node.getSee().length > 0 || node.getErrors().length > 0 || qxl.apiviewer.ui.panels.InfoPanel.descriptionHasDetails(node);
       },
       getItemTypeHtml: function getItemTypeHtml(node) {
@@ -106,4 +106,4 @@
   qxl.apiviewer.ui.panels.EventPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EventPanel.js.map?dt=1604955499299
+//# sourceMappingURL=EventPanel.js.map?dt=1612690425255

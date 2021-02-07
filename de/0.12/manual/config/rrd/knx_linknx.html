@@ -65,9 +65,6 @@
           
 
           
-            
-            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" />
-          
           </a>
 
           
@@ -119,7 +116,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#allgemeine-infos-uber-rrd">Allgemeine Infos über RRD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#rrd-und-die-cometvisu">RRD und die CometVisu</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#anlegen-der-rrd-datenbank">Anlegen der RRD-Datenbank</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#befullen-der-rrd-datenbank">&#8220;Befüllen&#8221; der RRD-Datenbank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#befullen-der-rrd-datenbank">„Befüllen“ der RRD-Datenbank</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../rrd_examples.html#fehlersuche">Fehlersuche</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../rrd_examples.html#beispiele-fur-rrds">Beispiele für RRDs</a></li>
 </ul>
@@ -206,16 +203,16 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <div class="section" id="temperatur-vom-knx-mit-linknx">
 <h1>Temperatur vom KNX mit linknx<a class="headerlink" href="#temperatur-vom-knx-mit-linknx" title="Link zu dieser Überschrift">¶</a></h1>
-<p>linknx hat die Möglichkeit KNX-Objekte als &#8220;persistent&#8221; zu markieren.</p>
+<p>linknx hat die Möglichkeit KNX-Objekte als „persistent“ zu markieren.</p>
 <p>Beispiel:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;object</span> <span class="na">type=</span><span class="s">&quot;9.xxx&quot;</span> <span class="na">id=</span><span class="s">&quot;temp_Arbeitszimmer&quot;</span> <span class="na">gad=</span><span class="s">&quot;2/1/0&quot;</span> <span class="na">flags=</span><span class="s">&quot;cwu&quot;</span> <span class="na">init=</span><span class="s">&quot;persist&quot;</span> <span class="na">log=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;object</span> <span class="na">type=</span><span class="s">&quot;9.xxx&quot;</span> <span class="na">id=</span><span class="s">&quot;temp_Arbeitszimmer&quot;</span> <span class="na">gad=</span><span class="s">&quot;2/1/0&quot;</span> <span class="na">flags=</span><span class="s">&quot;cwu&quot;</span> <span class="na">init=</span><span class="s">&quot;persist&quot;</span> <span class="na">log=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
     Temperatur Arbeitszimmer
 <span class="nt">&lt;/object&gt;</span>
 </pre></div>
 </div>
 <p>Diese Werte werden dann in /tmp als Textdateien abgelegt und können einfach in eine RRD-Datenbank geschrieben werden.</p>
 <p>Dieses Script funktioniert so wenn es unter /var/www/rrd/linknx_temp_arbeitszimmer gespeichert (und ausführbar) ist</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#</span>
 <span class="c1"># update .rrd database text file from linknx</span>
 <span class="c1">#</span>
@@ -246,7 +243,7 @@ rrdtool update linknx_temp_arbeitszimmer.rrd N:<span class="nv">$temp</span>
 </pre></div>
 </div>
 <p>Im /etc/crontab muss folgende Zeile hinzugefügt werden, um das Script alle 5 Minuten aufzurufen:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>*/5 *   * * *   root    /var/www/rrd/linknx_temp_Arbeitszimmer
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/5 *   * * *   root    /var/www/rrd/linknx_temp_Arbeitszimmer
 </pre></div>
 </div>
 </div>
@@ -273,7 +270,7 @@ rrdtool update linknx_temp_arbeitszimmer.rrd N:<span class="nv">$temp</span>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2010-2020 Christian Mayer and the CometVisu contributers.
+        &copy; Copyright 2010-2021 Christian Mayer and the CometVisu contributers.
 
     </p>
   </div> 
@@ -319,7 +316,7 @@ rrdtool update linknx_temp_arbeitszimmer.rrd N:<span class="nv">$temp</span>
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

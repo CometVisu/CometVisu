@@ -10,9 +10,15 @@
         "require": true
       },
       "qx.bom.element.Scroll": {},
-      "qx.bom.client.OperatingSystem": {},
-      "qx.bom.client.Browser": {},
-      "qx.bom.client.Event": {}
+      "qx.bom.client.OperatingSystem": {
+        "require": true
+      },
+      "qx.bom.client.Browser": {
+        "require": true
+      },
+      "qx.bom.client.Event": {
+        "require": true
+      }
     },
     "environment": {
       "provided": ["os.scrollBarOverlayed", "qx.mobile.nativescroll"],
@@ -126,4 +132,4 @@
   qx.bom.client.Scroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroll.js.map?dt=1604956088822
+//# sourceMappingURL=Scroll.js.map?dt=1612691022988

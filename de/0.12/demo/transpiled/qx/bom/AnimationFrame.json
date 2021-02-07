@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (wittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This is a cross browser wrapper for requestAnimationFrame. For further\n information about the feature, take a look at spec:\n http://www.w3.org/TR/animation-timing/\n This class offers two ways of using this feature. First, the plain\n API the spec describes.\n Here is a sample usage:\n </p>\n<pre class='javascript'>var start = Date.now();\n var cb = function(time) {\n   if (time >= start + duration) {\n\n   } else {\n     var timePassed = time - start;\n\n     qx.bom.AnimationFrame.request(cb, this);\n   }\n };\n qx.bom.AnimationFrame.request(cb, this);\n </pre>\n<p>Another way of using it is to use it as an instance emitting events.\n Here is a sample usage of that API:\n </p>\n<pre class='javascript'>var frame = new qx.bom.AnimationFrame();\n frame.on(\"end\", function() {\n\n }, this);\n frame.on(\"frame\", function(timePassed) {\n\n }, this);\n frame.startSequence(duration);\n </pre>"
         }
       ],

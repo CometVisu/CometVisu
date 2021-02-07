@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2009 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>A helper class for accessing the property system directly.\n This class is rather to be used internally. For all regular usage of the\n property system the default API should be sufficient.</p>"
         }
       ]
@@ -123,10 +119,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>-------------------------------------------------------------------------\n  USER VALUES\n-------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Returns the user value of the given property</p>"
@@ -258,10 +250,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>-------------------------------------------------------------------------\n  INIT VALUES\n-------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Returns the init value of the given property</p>"
           }
         ],
@@ -391,10 +379,6 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>-------------------------------------------------------------------------\n  THEME VALUES\n-------------------------------------------------------------------------\n</code></pre>"
-          },
-          {
-            "name": "@description",
             "body": "<p>Returns the theme value of the given property</p>"
           }
         ],
@@ -522,10 +506,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>-------------------------------------------------------------------------\n  THEMED PROPERTY\n-------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Sets a themed property</p>"

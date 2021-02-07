@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007 Derrell Lipman\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Derrell Lipman (derrell)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>The default resize behavior.  Until a resize model is loaded, the default\n behavior is to:\n </p>\n<ol>\n   <li>\n     Upon the table initially appearing, and upon any window resize, divide\n     the table space equally between the visible columns.\n   </li>\n   <li>\n     When a column is increased in width, all columns to its right are\n     pushed to the right with no change to their widths.  This may push some\n     columns off the right edge of the table, causing a horizontal scroll\n     bar to appear.\n   </li>\n   <li>\n     When a column is decreased in width, if the total width of all columns\n     is <i>greater than</i> the table width, no additional column width\n     change is made.\n   </li>\n   <li>\n     When a column is decreased in width, if the total width of all columns\n     is <i>less than</i> the table width, the visible column\n     immediately to the right of the column which decreased in width has its\n     width increased to fill the remaining space.\n   </li>\n </ol>\n<p>A resize model may be loaded to provide more guidance on how to adjust\n column width upon each of the events: initial appear, window resize, and\n column resize. *** TO BE FILLED IN ***</p>"
         }
       ],
@@ -446,14 +442,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overloaded</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
@@ -472,14 +461,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overloaded</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
@@ -498,14 +480,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overloaded</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
@@ -524,14 +499,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overloaded</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
@@ -550,14 +518,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overloaded</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
@@ -576,14 +537,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overloaded</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "overriddenFrom": "qx.ui.table.columnmodel.resizebehavior.Abstract",
@@ -1127,14 +1081,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n DESTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": []
 }

@@ -15,16 +15,12 @@
         "column": 0
       },
       "end": {
-        "line": 244,
+        "line": 246,
         "column": 3
       }
     },
     "jsdoc": {
       "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Til Schneider (til132)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
         {
           "name": "@description",
           "body": "<p>An abstract data cell renderer that does the basic coloring\n (borders, selected look, …).</p>"
@@ -178,10 +174,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<p>paddingLeft + paddingRight + borderRight</p>"
-          },
           {
             "name": "@description",
             "body": "<p>the sum of the vertical insets. This is needed to compute the box model\n independent size</p>"
@@ -436,18 +428,11 @@
           "column": 4
         },
         "end": {
-          "line": 231,
+          "line": 233,
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>interface implementation</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.table.ICellRenderer",
@@ -661,11 +646,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 236,
+        "line": 238,
         "column": 13
       },
       "end": {
-        "line": 243,
+        "line": 245,
         "column": 3
       }
     },

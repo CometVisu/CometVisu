@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Martin Wittemann (martinwittemann)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>This interface defines a data structure compatible with the data binding\n controllers.\n It defines a minimum of functionality which the controller need to work.</p>"
         }
       ]
@@ -33,16 +29,12 @@
   "type": "interface",
   "events": {
     "change": {
-      "location": {
-        "start": {
-          "line": 38,
-          "column": 4
-        },
-        "end": {
-          "line": 38,
-          "column": 35
-        }
-      },
+      "type": "event",
+      "name": "change",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
       "jsdoc": {
         "@description": [
           {
@@ -50,21 +42,15 @@
             "body": "<p>The change event which will be fired if there is a change in the data structure.\n The data contains a map with three key value pairs:\n <li>start: The start index of the change.</li>\n <li>end: The end index of the change.</li>\n <li>type: The type of the change as a String. This can be 'add',\n 'remove', 'order' or 'add/remove'</li>\n <li>added: The items which has been added (as a JavaScript array)</li>\n <li>removed: The items which has been removed (as a JavaScript array)</li></p>"
           }
         ]
-      },
-      "name": "change",
-      "type": "qx.event.type.Data"
+      }
     },
     "changeLength": {
-      "location": {
-        "start": {
-          "line": 44,
-          "column": 4
-        },
-        "end": {
-          "line": 44,
-          "column": 41
-        }
-      },
+      "type": "event",
+      "name": "changeLength",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
       "jsdoc": {
         "@description": [
           {
@@ -72,9 +58,7 @@
             "body": "<p>The changeLength event will be fired every time the length of the\n data structure changes.</p>"
           }
         ]
-      },
-      "name": "changeLength",
-      "type": "qx.event.type.Event"
+      }
     }
   },
   "members": {

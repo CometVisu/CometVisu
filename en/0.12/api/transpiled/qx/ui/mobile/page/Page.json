@@ -23,10 +23,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Tino Butz (tbtz)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>A page is a widget which provides a screen with which users\n can interact in order to do something. Most times a page provides a single task\n or a group of related tasks.\n A qooxdoo mobile application is usually composed of one or more loosely bound\n pages. Typically there is one page that presents the \"main\" view.\n Pages can have one or more child widgets from the {@link qx.ui.mobile}\n namespace. Normally a page provides a {@link qx.ui.mobile.navigationbar.NavigationBar}\n for the navigation between pages.\n To navigate between two pages, just call the {@link #show} method of the page\n that should be shown. Depending on the used page manager a page transition will be animated.\n There are several animations available. Have\n a look at the {@link qx.ui.mobile.page.Manager} manager or {@link qx.ui.mobile.layout.Card} card layout for more information.\n A page has predefined lifecycle methods that get called by the used page manager\n when a page gets shown. Each time another page is requested to be shown the currently shown page\n is stopped. The other page, will be, if shown for the first time, initialized and started\n afterwards. For all called lifecycle methods an event is fired.\n Call of the {@link #show} method triggers the following lifecycle methods:</p>\n<ul>\n<li><strong>initialize</strong>: Initializes the page to show</li>\n<li><strong>start</strong>: Gets called when the page to show is started</li>\n<li><strong>stop</strong>:  Stops the current page\nIMPORTANT: Define all child widgets of a page when the {@link #initialize} lifecycle\nmethod is called, either by listening to the {@link #initialize} event or overriding\nthe {@link #<em>initialize} method. This is because a page can be instanced during\napplication startup and would then decrease performance when the widgets would be\nadded during constructor call. The <code>initialize</code> event and the\n{@link #</em>initialize} lifecycle method are only called when the page is shown\nfor the first time.</li>\n</ul>"
         }
       ]
@@ -44,14 +40,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n CONSTRUCTOR\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "statics": {
     "_currentPage": {
@@ -325,14 +314,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "defaultCssClass",
       "propertyType": "new",
       "refine": true,
@@ -417,14 +399,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.core.Widget",
@@ -443,14 +418,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "public",
       "overriddenFrom": "qx.ui.mobile.core.Widget",
@@ -583,10 +551,6 @@
       },
       "jsdoc": {
         "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>---------------------------------------------------------------------------\n  Lifecycle Methods\n---------------------------------------------------------------------------\n</code></pre>"
-          },
           {
             "name": "@description",
             "body": "<p>Lifecycle method. Called by the page manager when the page is shown.\n Fires the <code>initialize</code> event. You should create and add all your\n child widgets of the view,  either by listening to the {@link #initialize} event or overriding\n the {@link #<em>initialize} method. This is because a page can be instanced during\n application startup and would then decrease performance when the widgets would be\n added during constructor call. The {@link #</em>initialize} lifecycle method and the\n <code>initialize</code> are only called once when the page is shown for the first time.</p>"
@@ -915,14 +879,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -2364,14 +2321,7 @@
         "column": 3
       }
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<pre><code>**********************************************************************\n  DEFER\n**********************************************************************\n</code></pre>"
-        }
-      ]
-    }
+    "jsdoc": {}
   },
   "descendants": [
     "qx.ui.mobile.page.NavigationPage"

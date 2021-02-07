@@ -49,7 +49,7 @@
       </styling>
     </stylings>
     <statusbar>
-      <status type="html">&lt;img src="resource/icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="https://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
+      <status type="html">&lt;img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="https://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
           - &lt;a href="manager.php"&gt;Config-Manager&lt;/a&gt;
           - &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt;</status>
       <status type="html" condition="!edit" hrefextend="config">- &lt;a href="editor/"&gt;Edit&lt;/a&gt;</status>

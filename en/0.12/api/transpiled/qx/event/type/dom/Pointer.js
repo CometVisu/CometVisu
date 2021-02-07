@@ -17,12 +17,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       },
       "qx.dom.Node": {},
       "qx.bom.Viewport": {},
-      "qx.bom.client.Event": {},
+      "qx.bom.client.Event": {
+        "require": true
+      },
       "qx.bom.client.Engine": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       },
       "qx.bom.client.OperatingSystem": {
-        "defer": "runtime"
+        "defer": "load",
+        "require": true
       }
     },
     "environment": {
@@ -321,4 +325,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.event.type.dom.Pointer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pointer.js.map?dt=1604955474432
+//# sourceMappingURL=Pointer.js.map?dt=1612690401230

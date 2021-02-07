@@ -9,11 +9,11 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 46,
+        "line": 59,
         "column": 0
       },
       "end": {
-        "line": 114,
+        "line": 123,
         "column": 3
       }
     },
@@ -21,11 +21,7 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2008 1&amp;1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n John Spackman (johnspackman)\n Fabian Jakobs (fjakobs)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
-          "body": "<p>Represents a parameter or return type, taken from JSDoc meta data\n Example data:\n        \"@param\": [\n          {\n            \"name\": \"@param\",\n            \"body\": \"options {Map?null} Optional layout data for widget.\",\n            \"paramName\": \"options\",\n            \"description\": \" Optional layout data for widget.\",\n            \"optional\": true,\n            \"defaultValue\": \"null\",\n            \"type\": \"Map\"\n          }\n        ],\n        \"@return\": [\n          {\n            \"name\": \"@return\",\n            \"body\": \"{Integer} The index position or <code>-1</code> when\\nthe given widget is no child of this layout.\",\n            \"type\": \"Integer\",\n            \"desc\": \" The index position or <code>-1</code> when\\nthe given widget is no child of this layout.\"\n          }\n        ]</p>"
+          "body": "<p>Represents a parameter or return type, taken from JSDoc meta data\n Example data:\n      qooxdoo style\n        \"@param\": [\n          {\n            \"name\": \"@param\",\n            \"body\": \"options {Map?null} Optional layout data for widget.\",\n            \"paramName\": \"options\",\n            \"description\": \" Optional layout data for widget.\",\n            \"optional\": true,\n            \"defaultValue\": \"null\",\n            \"type\": \"Map\"\n          }\n        ],\n        jsdoc style\n        \"@param\": [\n          {\n            \"name\": \"@param\",\n            \"body\": \"{Map?null} options Optional layout data for widget.\",\n            \"paramName\": \"options\",\n            \"description\": \" Optional layout data for widget.\",\n            \"optional\": true,\n            \"defaultValue\": \"null\",\n            \"type\": \"Map\"\n          }\n        ],\n        \"@return\": [\n          {\n            \"name\": \"@return\",\n            \"body\": \"{Integer} The index position or <code>-1</code> when\\nthe given widget is no child of this layout.\",\n            \"docComment\": \"\",\n            \"type\": \"Integer\",\n            \"desc\": \" The index position or <code>-1</code> when\\nthe given widget is no child of this layout.\"\n          }\n        ]</p>"
         }
       ]
     }
@@ -34,11 +30,11 @@
   "construct": {
     "location": {
       "start": {
-        "line": 49,
+        "line": 62,
         "column": 14
       },
       "end": {
-        "line": 69,
+        "line": 82,
         "column": 3
       }
     },
@@ -48,11 +44,11 @@
     "_method": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 85,
           "column": 17
         }
       },
@@ -62,11 +58,11 @@
     "_meta": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 73,
+          "line": 86,
           "column": 15
         }
       },
@@ -76,11 +72,11 @@
     "_types": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 87,
           "column": 4
         },
         "end": {
-          "line": 74,
+          "line": 87,
           "column": 16
         }
       },
@@ -90,11 +86,11 @@
     "_arrayDimensions": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 75,
+          "line": 88,
           "column": 23
         }
       },
@@ -104,11 +100,11 @@
     "getMethod": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 90,
           "column": 4
         },
         "end": {
-          "line": 79,
+          "line": 92,
           "column": 5
         }
       },
@@ -118,11 +114,11 @@
     "getClass": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 94,
           "column": 4
         },
         "end": {
-          "line": 83,
+          "line": 96,
           "column": 5
         }
       },
@@ -132,25 +128,11 @@
     "getName": {
       "location": {
         "start": {
-          "line": 85,
+          "line": 98,
           "column": 4
         },
         "end": {
-          "line": 87,
-          "column": 5
-        }
-      },
-      "type": "function",
-      "access": "public"
-    },
-    "getDescription": {
-      "location": {
-        "start": {
-          "line": 108,
-          "column": 4
-        },
-        "end": {
-          "line": 110,
+          "line": 100,
           "column": 5
         }
       },
@@ -160,11 +142,11 @@
     "getTypes": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 102,
           "column": 4
         },
         "end": {
-          "line": 95,
+          "line": 104,
           "column": 5
         }
       },
@@ -174,11 +156,11 @@
     "getArrayDimensions": {
       "location": {
         "start": {
-          "line": 97,
+          "line": 106,
           "column": 4
         },
         "end": {
-          "line": 99,
+          "line": 108,
           "column": 5
         }
       },
@@ -188,11 +170,11 @@
     "getDefaultValue": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 110,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 112,
           "column": 5
         }
       },
@@ -202,11 +184,25 @@
     "isOptional": {
       "location": {
         "start": {
-          "line": 105,
+          "line": 114,
           "column": 4
         },
         "end": {
-          "line": 107,
+          "line": 116,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getDescription": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4
+        },
+        "end": {
+          "line": 119,
           "column": 5
         }
       },

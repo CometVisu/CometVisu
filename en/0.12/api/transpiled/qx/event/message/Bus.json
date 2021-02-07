@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2007 Christian Boulanger\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Christian Boulanger (cboulanger)\n Sebastian Werner (wpbasti)\n Christian Hagendorn (chris_schmidt)\n Derrell Lipman (derrell)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>A simple message bus singleton.\n The message bus registers subscriptions to topics and notifies subscribers when\n a matching message is dispatched. A topic acts as a filter to select only those\n messages which match the filter. It can be the name of a message, which can\n terminated with a trailing <code>*</code> as a wildcard, or a regular expression.</p>"
         }
       ]
@@ -463,9 +459,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "topic {String|RegExp} Either a string, which can be\n terminated with a trailing `*` as a wildcard to match all message\n names that start with the prefix, or a regular expression\n object, which the message name has to match. If you use regular\n expressions, you cannot use message names that start and end\n with a slash (\"/\") at the same time, because regular expressions\n are converted to their string representation when stored.",
+            "body": "topic {String|RegExp} Either a string, which can be\n terminated with a trailing <code>*</code> as a wildcard to match all message\n names that start with the prefix, or a regular expression\n object, which the message name has to match. If you use regular\n expressions, you cannot use message names that start and end\n with a slash (\"/\") at the same time, because regular expressions\n are converted to their string representation when stored.",
             "paramName": "topic",
-            "description": " Either a string, which can be\n terminated with a trailing `*` as a wildcard to match all message\n names that start with the prefix, or a regular expression\n object, which the message name has to match. If you use regular\n expressions, you cannot use message names that start and end\n with a slash (\"/\") at the same time, because regular expressions\n are converted to their string representation when stored.",
+            "description": " Either a string, which can be\n terminated with a trailing <code>*</code> as a wildcard to match all message\n names that start with the prefix, or a regular expression\n object, which the message name has to match. If you use regular\n expressions, you cannot use message names that start and end\n with a slash (\"/\") at the same time, because regular expressions\n are converted to their string representation when stored.",
             "type": [
               "String",
               "RegExp"
@@ -575,9 +571,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "topic {String|RegExp} Either a string, which can be truncated by `*`\n to match all message names that start with the prefix, or a regular expression\n object, which the message name has to match.",
+            "body": "topic {String|RegExp} Either a string, which can be truncated by <code>*</code>\n to match all message names that start with the prefix, or a regular expression\n object, which the message name has to match.",
             "paramName": "topic",
-            "description": " Either a string, which can be truncated by `*`\n to match all message names that start with the prefix, or a regular expression\n object, which the message name has to match.",
+            "description": " Either a string, which can be truncated by <code>*</code>\n to match all message names that start with the prefix, or a regular expression\n object, which the message name has to match.",
             "type": [
               "String",
               "RegExp"

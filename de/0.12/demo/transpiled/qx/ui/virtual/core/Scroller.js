@@ -18,7 +18,8 @@
         "construct": true
       },
       "qx.bom.client.Scroll": {
-        "construct": true
+        "construct": true,
+        "require": true
       }
     },
     "environment": {
@@ -69,20 +70,20 @@
      */
     construct: function construct(rowCount, columnCount, cellHeight, cellWidth) {
       qx.ui.core.scroll.AbstractScrollArea.constructor.call(this);
-      this.__P_250_0 = new qx.ui.virtual.core.Pane(rowCount, columnCount, cellHeight, cellWidth);
+      this.__P_251_0 = new qx.ui.virtual.core.Pane(rowCount, columnCount, cellHeight, cellWidth);
 
-      this.__P_250_0.addListener("update", this._computeScrollbars, this);
+      this.__P_251_0.addListener("update", this._computeScrollbars, this);
 
-      this.__P_250_0.addListener("scrollX", this._onScrollPaneX, this);
+      this.__P_251_0.addListener("scrollX", this._onScrollPaneX, this);
 
-      this.__P_250_0.addListener("scrollY", this._onScrollPaneY, this);
+      this.__P_251_0.addListener("scrollY", this._onScrollPaneY, this);
 
       if (qx.core.Environment.get("os.scrollBarOverlayed")) {
-        this._add(this.__P_250_0, {
+        this._add(this.__P_251_0, {
           edge: 0
         });
       } else {
-        this._add(this.__P_250_0, {
+        this._add(this.__P_251_0, {
           row: 0,
           column: 0
         });
@@ -90,7 +91,7 @@
     },
     members: {
       /** @type {qx.ui.virtual.core.Pane} Virtual pane. */
-      __P_250_0: null,
+      __P_251_0: null,
 
       /*
       ---------------------------------------------------------------------------
@@ -104,7 +105,7 @@
        * @return {qx.ui.virtual.core.Pane} The scroller's pane.
        */
       getPane: function getPane() {
-        return this.__P_250_0;
+        return this.__P_251_0;
       },
 
       /*
@@ -115,7 +116,7 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         if (id === "pane") {
-          return this.__P_250_0;
+          return this.__P_251_0;
         } else {
           return qx.ui.virtual.core.Scroller.prototype._createChildControlImpl.base.call(this, id);
         }
@@ -178,20 +179,20 @@
       */
       // overridden
       _onScrollBarX: function _onScrollBarX(e) {
-        this.__P_250_0.setScrollX(e.getData());
+        this.__P_251_0.setScrollX(e.getData());
       },
       // overridden
       _onScrollBarY: function _onScrollBarY(e) {
-        this.__P_250_0.setScrollY(e.getData());
+        this.__P_251_0.setScrollY(e.getData());
       }
     },
     destruct: function destruct() {
-      this.__P_250_0.dispose();
+      this.__P_251_0.dispose();
 
-      this.__P_250_0 = null;
+      this.__P_251_0 = null;
     }
   });
   qx.ui.virtual.core.Scroller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroller.js.map?dt=1604956084923
+//# sourceMappingURL=Scroller.js.map?dt=1612691018479

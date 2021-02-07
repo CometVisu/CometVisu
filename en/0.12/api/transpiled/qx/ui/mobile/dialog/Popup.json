@@ -21,10 +21,6 @@
       "@description": [
         {
           "name": "@description",
-          "body": "<pre><code>*****************************************************************\n</code></pre>\n<p>qooxdoo - the new era of web development\n   http://qooxdoo.org\n   Copyright:\n     2004-2011 1&amp;1 Internet AG, Germany, http://www.1und1.de\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n   Authors:\n Gabriel Munteanu (gabios)\n Christopher Zuendorf (czuendorf)\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em>*</p>"
-        },
-        {
-          "name": "@description",
           "body": "<p>The popup represents a widget that gets shown above other widgets,\n usually to present more info/details regarding an item in the application.\n There are 3 usages for now:\n </p>\n<pre class='javascript'>\n var widget = new qx.ui.mobile.form.Button(\"Error!\");\n var popup = new qx.ui.mobile.dialog.Popup(widget);\n popup.show();\n </pre>\n<p>Here we show a popup consisting of a single buttons alerting the user\n that an error has occurred.\n It will be centered to the screen.\n </p>\n<pre class='javascript'>\n var label = new qx.ui.mobile.basic.Label(\"Item1\");\n var widget = new qx.ui.mobile.form.Button(\"Error!\");\n var popup = new qx.ui.mobile.dialog.Popup(widget, label);\n popup.show();\n widget.addListener(\"tap\", function(){\n   popup.hide();\n });\n </pre>\n<p>In this case everything is as above, except that the popup will get shown next to \"label\"\n so that the user can understand that the info presented is about the \"Item1\"\n we also add a tap listener to the button that will hide out popup.\n Once created, the instance is reused between show/hide calls.\n </p>\n<pre class='javascript'>\n var widget = new qx.ui.mobile.form.Button(\"Error!\");\n var popup = new qx.ui.mobile.dialog.Popup(widget);\n popup.placeTo(25,100);\n popup.show();\n </pre>\n<p>Same as the first example, but this time the popup will be shown at the 25,100 coordinates.</p>"
         }
       ]
@@ -96,14 +92,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>overridden</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "name": "defaultCssClass",
       "propertyType": "new",
       "refine": true,
@@ -706,14 +695,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -731,14 +713,7 @@
           "column": 5
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>property apply</p>"
-          }
-        ]
-      },
+      "jsdoc": {},
       "type": "function",
       "access": "protected",
       "applyFor": [
@@ -2370,6 +2345,7 @@
     },
     "jsdoc": {}
   },
+  "events": {},
   "descendants": [
     "qx.ui.mobile.dialog.Menu"
   ]

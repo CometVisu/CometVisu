@@ -16,8 +16,16 @@
       }
     },
     "environment": {
-      "provided": ["versionLabel.name", "versionLabel.version"],
+      "provided": ["qxl.versionlabel.name", "qxl.versionlabel.version"],
       "required": {
+        "qxl.versionlabel.name": {
+          "construct": true,
+          "className": "qxl.versionlabel.VersionLabel"
+        },
+        "qxl.versionlabel.version": {
+          "construct": true,
+          "className": "qxl.versionlabel.VersionLabel"
+        },
         "qx.revision": {
           "construct": true
         },
@@ -54,16 +62,16 @@
   qx.Class.define("qxl.versionlabel.VersionLabel", {
     extend: qx.ui.basic.Label,
     construct: function construct(value, version) {
-      if (value == undefined) {
+      if (!value) {
         // if no parameter value given: use the environment variable
-        value = "CometVisu";
+        value = qx.core.Environment.get("qxl.versionlabel.name");
       }
 
-      if (version == undefined) {
+      if (!version) {
         // if no parameter value given: use the environment variable
-        version = "0.12.0-dev";
+        version = qx.core.Environment.get("qxl.versionlabel.version");
 
-        if (version == null) {
+        if (!version) {
           // revision or version number as fallback
           version = qx.core.Environment.get("qx.revision");
 
@@ -80,16 +88,16 @@
        * The name of the version label which is shown in the upper right corner.
        * Defaults to 'qooxdoo'.
        */
-      qx.core.Environment.add("versionLabel.name", "qooxdoo");
+      qx.core.Environment.add("qxl.versionlabel.name", "qooxdoo");
       /**
        * The version string of the version label which is shown in the upper right corner.
        * Defaults to 'null' to be able to fallback to 'qx.revision' or 'qx.version' easily.
        */
 
-      qx.core.Environment.add("versionLabel.version", null);
+      qx.core.Environment.add("qxl.versionlabel.version", null);
     }
   });
   qxl.versionlabel.VersionLabel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VersionLabel.js.map?dt=1604955498341
+//# sourceMappingURL=VersionLabel.js.map?dt=1612690424293

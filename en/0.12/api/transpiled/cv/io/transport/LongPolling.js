@@ -116,11 +116,11 @@
           successCallback = this.handleRead;
         }
 
-        this.__P_507_0(data, successCallback);
+        this.__P_505_0(data, successCallback);
 
         this.watchdog.start(5);
       },
-      __P_507_0: function __P_507_0(data, callback) {
+      __P_505_0: function __P_505_0(data, callback) {
         data = data || this.client.buildRequest();
         callback = callback || this.handleRead;
         data.t = 0;
@@ -161,7 +161,7 @@
             }
 
             qx.event.Timer.once(function () {
-              this.__P_507_0();
+              this.__P_505_0();
 
               this.watchdog.ping(true);
             }, this, delay);
@@ -176,6 +176,7 @@
           if (!json.hasOwnProperty('i')) {
             this.error('CometVisu protocol error: backend responded to a read request without an "i"-parameter');
             this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I, json);
+            return;
           }
 
           this.lastIndex = json.i;
@@ -347,4 +348,4 @@
   cv.io.transport.LongPolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LongPolling.js.map?dt=1604955497136
+//# sourceMappingURL=LongPolling.js.map?dt=1612690423025

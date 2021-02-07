@@ -1,0 +1,55 @@
+{
+  "className": "osparc.theme.common.Font",
+  "packageName": "osparc.theme.common",
+  "name": "Font",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0
+      },
+      "end": {
+        "line": 120,
+        "column": 3
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        },
+        {
+          "name": "@description",
+          "body": "<p>The simple qooxdoo font theme.</p>"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "osparc/theme/font/*.woff"
+        },
+        {
+          "name": "@asset",
+          "body": "osparc/theme/font/*.woff2"
+        },
+        {
+          "name": "@asset",
+          "body": "osparc/theme/font/*.eot"
+        },
+        {
+          "name": "@asset",
+          "body": "osparc/theme/font/*.ttf"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": [
+    "cv.theme.dark.Font"
+  ]
+}

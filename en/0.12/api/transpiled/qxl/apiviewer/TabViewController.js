@@ -9,10 +9,8 @@
         "construct": true,
         "require": true
       },
-      "qx.ui.core.queue.Manager": {},
       "qxl.apiviewer.ui.tabview.PackagePage": {},
-      "qxl.apiviewer.ui.tabview.ClassPage": {},
-      "qxl.apiviewer.LoadingIndicator": {}
+      "qxl.apiviewer.ui.tabview.ClassPage": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -34,6 +32,7 @@
      Authors:
        * John Spackman (johnspackman)
        * Fabian Jakobs (fjakobs)
+       * Henner Kollmann (hkollmann)
   
   ************************************************************************ */
   qx.Class.define("qxl.apiviewer.TabViewController", {
@@ -43,7 +42,7 @@
       qxl.apiviewer.TabViewController.instance = this;
       this._tabView = widgetRegistry.getWidgetById("tabView");
 
-      this._tabView.addListener("changeSelection", this.__P_521_0, this);
+      this._tabView.addListener("changeSelection", this.__P_519_0, this);
     },
     events: {
       /** This event if dispatched if one of the internal links is tapped */
@@ -51,6 +50,18 @@
       "changeSelection": "qx.event.type.Data"
     },
     members: {
+      isLoaded: function isLoaded(callback) {
+        var page = this._tabView.getSelection()[0];
+
+        var child = page.getChildren()[0];
+
+        if (child.isValid()) {
+          callback();
+          return;
+        }
+
+        child.addListenerOnce("synced", callback);
+      },
       showTabView: function showTabView() {
         this._tabView.show();
       },
@@ -59,25 +70,25 @@
        * Callback for internal links to other classes/items.
        * This code is called directly from the generated HTML of the
        * class viewer.
+       * @param itemName
        */
       onSelectItem: function onSelectItem(itemName) {
         this.fireDataEvent("classLinkTapped", itemName);
       },
       showItem: function showItem(itemName) {
-        qx.ui.core.queue.Manager.flush();
-
         var page = this._tabView.getSelection()[0];
 
         page.setUserData("itemName", itemName);
-        return page.getChildren()[0].showItem(itemName);
+        var child = page.getChildren()[0];
+        return child.showItem(itemName);
       },
       openPackage: function openPackage(classNode, newTab) {
-        return this.__P_521_1(classNode, qxl.apiviewer.ui.tabview.PackagePage, newTab);
+        return this.__P_519_1(classNode, qxl.apiviewer.ui.tabview.PackagePage, newTab);
       },
       openClass: function openClass(classNode, newTab) {
-        return this.__P_521_1(classNode, qxl.apiviewer.ui.tabview.ClassPage, newTab);
+        return this.__P_519_1(classNode, qxl.apiviewer.ui.tabview.ClassPage, newTab);
       },
-      __P_521_1: function __P_521_1(classNode, clazz, newTab) {
+      __P_519_1: function __P_519_1(classNode, clazz, newTab) {
         var currentPage = this._tabView.getSelection()[0] || null;
 
         if (currentPage && (!(currentPage instanceof clazz) || newTab)) {
@@ -88,6 +99,7 @@
         }
 
         if (!currentPage) {
+          /* eslint-disable-next-line new-cap */
           currentPage = new clazz(classNode);
 
           this._tabView.add(currentPage);
@@ -96,11 +108,9 @@
         this._tabView.setSelection([currentPage]);
 
         currentPage.setUserData("itemName", null);
-        return currentPage.setClassNodeAsync(classNode).then(function () {
-          return qxl.apiviewer.LoadingIndicator.getInstance().hide();
-        });
+        return currentPage.setClassNodeAsync(classNode);
       },
-      __P_521_0: function __P_521_0(event) {
+      __P_519_0: function __P_519_0(event) {
         var oldData = event.getOldData();
         var data = event.getData();
         this.fireDataEvent("changeSelection", data, oldData);
@@ -115,4 +125,4 @@
   qxl.apiviewer.TabViewController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TabViewController.js.map?dt=1604955498374
+//# sourceMappingURL=TabViewController.js.map?dt=1612690424339
