@@ -1,0 +1,35 @@
+client:
+  - client/*
+  - client/**/*
+
+dependencies:
+  - package*.json
+  - qx-lock.json
+  - source/rest/manager/composer.json
+
+designs:
+  - source/resource/designs/*
+  - source/resource/designs/**/*
+
+docker:
+  - Dockerfile
+
+editor:
+  - source/editor/*
+  - source/editor/**/*
+  - source/class/cv/ui/manager/editor/*.js
+  - source/class/cv/ui/manager/editor/**/*.js
+
+manager:
+  - source/class/cv/ui/manager/*.js
+  - source/class/cv/ui/manager/**/*.js
+  - !source/class/cv/ui/manager/editor/*.js
+  - !source/class/cv/ui/manager/editor/**/*.js
+
+plugins:
+  - source/class/cv/plugins/*.js
+  - source/class/cv/plugins/**/*.js
+
+widgets:
+  - source/class/cv/ui/structure/*.js
+  - source/class/cv/ui/structure/**/*.js
