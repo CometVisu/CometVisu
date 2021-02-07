@@ -193,11 +193,11 @@ qx.Class.define('cv.plugins.ColorChooser', {
       if (ga === undefined) { return; }
       function toHex( x ) { var r = parseInt( x ).toString(16); return r.length === 1 ? '0'+r : r; }
       var
-        value      = cv.Transform.decode( this.getAddress()[ ga ][0], data ),
+        value      = cv.Transform.decode( this.getAddress()[ ga ].transform, data ),
         farbtastic = jQuery.farbtastic( this.getActor() ),
         color      = farbtastic.color || '#000000';
 
-      switch( this.getAddress()[ ga ][2] )
+      switch( this.getAddress()[ ga ].mode )
       {
         case 'r':
           this.setBusR(value);

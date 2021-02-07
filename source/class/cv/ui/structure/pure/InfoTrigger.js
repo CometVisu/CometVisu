@@ -187,7 +187,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
         value = Math.min(value, this.getMax());
       }
       this.sendToBackend(value, function(address) {
-        return !!(address[2] & bitMask);
+        return !!(address.mode & bitMask);
       });
     },
 
