@@ -102,7 +102,7 @@ qx.Class.define('cv.ui.structure.pure.Web', {
         var iframe = this.getDomElement().querySelector('iframe');
         this.refreshAction(iframe, iframe.getAttribute('src'));
         // reset the value
-        cv.TemplateEngine.getInstance().visu.write( address, cv.Transform.encode(addr[0], 0));
+        cv.TemplateEngine.getInstance().visu.write( address, cv.Transform.encode(addr.transform, 0));
       }
     }
   }

@@ -472,8 +472,8 @@ qx.Class.define('cv.plugins.Clock', {
     dragAction: function () {
       var address = this.getAddress();
       for (var addr in address) {
-        if (address[addr][1] === true) { continue; } // skip read only
-        cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr][0], this.getValue()));
+        if (address[addr].mode === true) { continue; } // skip read only
+        cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(address[addr].transform, this.getValue()));
       }
     },
 
