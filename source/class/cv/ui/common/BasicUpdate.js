@@ -128,7 +128,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     applyTransform: function (address, data) {
       if (address) {
-        var transform = this.getAddress()[address][0];
+        let transform = this.getAddress()[address].transform;
         // transform the raw value to a JavaScript type
         return cv.Transform.decode(transform, data);
       }
@@ -179,7 +179,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
           this.formatValueCache = [this.getFormat()];
         }
 
-        var argListPos = (this.getAddress() && this.getAddress()[address]) ? this.getAddress()[address][3] : 1;
+        var argListPos = (this.getAddress() && this.getAddress()[address]) ? this.getAddress()[address].formatPos : 1;
 
         this.formatValueCache[argListPos] = value;
 
@@ -216,7 +216,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
       }
 
       if (value && value.constructor === Date) {
-        switch (this.getAddress()[address][0]) // special case for KNX
+        switch (this.getAddress()[address].transform) // special case for KNX
         {
           case 'DPT:10.001':
             value = value.toLocaleTimeString();
@@ -249,7 +249,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      */
     defaultValue2DOM: function (value, modifyFn) {
       var element;
-      if (('string' === typeof value) || ('number' === typeof value)) {
+      if (('string' === typeof value) || ('number' === typeof value) || (value instanceof Uint8Array)) {
         modifyFn(value);
       }
       else if ('function' === typeof value) {

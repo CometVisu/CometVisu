@@ -88,6 +88,8 @@ qx.Class.define("cv.Application",
           // we only need the rest path not the login resource
           args[1] = args[1].substring(0, args[1].indexOf("cv/"));
         }
+      } else if (args[0] === "mqtt") {
+        Client = cv.io.mqtt.Client;
       }
       args.unshift(null);
       return new (Function.prototype.bind.apply(Client, args)); // jshint ignore:line

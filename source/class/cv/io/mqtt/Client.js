@@ -1,29 +1,64 @@
-/**
- * Interface all CometVisu-Client must implement.
+/* Client.js
+ *
+ * copyright (c) 2010-2021, Christian Mayer and the CometVisu contributers.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
+ * @ignore(mqtt)
  */
-qx.Interface.define('cv.io.IClient', {
+
+/**
+ * MQTT client
+ */
+qx.Class.define('cv.io.mqtt.Client', {
+  extend: qx.core.Object,
+  implement: cv.io.IClient,
+
+  /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct: function (backendName, backendUrl) {
+    this.base(arguments);
+    this.initialAddresses = [];
+    this._backendName = backendName;
+    this._backendUrl = backendUrl || "/rest";
+    this.__groups = {};
+    this.__memberLookup = {};
+  },
+
   /*
   ***********************************************
     PROPERTIES
   ***********************************************
   */
   properties: {
-
     connected: {
       check: "Boolean",
       init: false,
       event: "changeConnected"
     },
 
-    /**
-     * The server the client is currently speaking to
-     */
     server: {
       check: "String",
       nullable: true,
       event: 'changedServer'
     }
   },
+
   /*
   ***********************************************
     MEMBERS
@@ -34,27 +69,27 @@ qx.Interface.define('cv.io.IClient', {
      * Returns the current backend configuration
      * @return {Map}
      */
-    getBackend: function() { },
+    getBackend: function() { return {}; },
 
     /**
      * Returns true, when the backend provides a special data provider for this kins of data
      * @param name {String}
      * @return {Boolean}
      */
-    hasProvider: function (name) {},
+    hasProvider: function (name) { return false; },
 
     /**
      * URL to the provided data
      * @param name
      * @return {String}
      */
-    getProviderUrl: function (name) {},
+    getProviderUrl: function (name) { return null; },
 
     /**
      * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.
      * @param name {String}
      */
-    getProviderConvertFunction : function (name) { },
+    getProviderConvertFunction : function (name) { return null; },
 
     /**
      * Set a subset of addresses the client should request initially (e.g. the ones one the start page).
@@ -62,7 +97,9 @@ qx.Interface.define('cv.io.IClient', {
      * subset of addresses to the backend and send the rest later.
      * @param addresses {Array}
      */
-    setInitialAddresses: function(addresses) { },
+    setInitialAddresses: function(addresses) {
+      console.log('subscribe Initial: ', addresses);
+    },
 
     /**
      * Subscribe to the addresses in the parameter. The second parameter
@@ -72,7 +109,9 @@ qx.Interface.define('cv.io.IClient', {
      * @param filters {Array?} Filters
      *
      */
-    subscribe : function (addresses, filters) { },
+    subscribe : function (addresses, filters) {
+      addresses.forEach( value => this.client.subscribe(value) );
+    },
 
     /**
      * This function starts the communication by a login and then runs the
@@ -85,7 +124,27 @@ qx.Interface.define('cv.io.IClient', {
      * @param context {Object} context for the callback (this)
      *
      */
-    login : function (loginOnly, credentials, callback, context) {},
+    login : function (loginOnly, credentials, callback, context) {
+      let options = {
+        clientId: 'CometVisu_' + Math.random().toString(16).substr(2, 8)
+      };
+      this.client = mqtt.connect('ws://192.168.0.35:8083/', options);
+      this.client.on( 'error', function (err){
+        console.error('MQTT: ', err);
+      });
+      this.client.on( 'connect', function () {
+        if (callback) {
+          callback.call(context);
+        }
+      });
+      this.client.on( 'message', (topic, message, packet) => {
+        let update = {};
+        update[ topic ] = message;
+        this.update(update);
+      });
+
+      window.client = this.client; // DEBUG
+    },
 
     /**
      * Authorize a Request by adding the necessary headers.
@@ -121,7 +180,9 @@ qx.Interface.define('cv.io.IClient', {
      * @param options {Object} optional options, depending on backend
      *
      */
-    write : function (address, value, options) {},
+    write : function (address, value, options) {
+      this.client.publish( address, value, { qos: options.qos, retain: options.retain } );
+    },
 
     /**
      * Get the last recorded error
@@ -135,13 +196,12 @@ qx.Interface.define('cv.io.IClient', {
      */
     restart: function(full) {},
 
-
     /**
      * Handle the incoming state updates. This method is not implemented by the client itself.
      * It is injected by the project using the client.
      * @param json
      */
-    update: function(json) {},
+    update: function(json) {}, // jshint ignore:line
 
     /**
      * Can be overridden to record client communication with backend
@@ -157,5 +217,6 @@ qx.Interface.define('cv.io.IClient', {
      * @param args
      */
     showError: function(type, message, args) {}
-  },
+  }
+
 });
