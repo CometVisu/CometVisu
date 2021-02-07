@@ -415,4 +415,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1612699076124
+//# sourceMappingURL=Rest.js.map?dt=1612701220767

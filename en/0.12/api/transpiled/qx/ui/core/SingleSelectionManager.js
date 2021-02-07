@@ -279,4 +279,4 @@
   qx.ui.core.SingleSelectionManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SingleSelectionManager.js.map?dt=1612698478399
+//# sourceMappingURL=SingleSelectionManager.js.map?dt=1612700582160
