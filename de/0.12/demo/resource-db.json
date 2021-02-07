@@ -13,6 +13,21 @@
       "visu_config.xsd": {
         "resourcePath": "resourcePath"
       },
+      "config/.gitignore": {
+        "resourcePath": "resourcePath"
+      },
+      "config/.htaccess": {
+        "resourcePath": "resourcePath"
+      },
+      "config/hidden.php": {
+        "resourcePath": "resourcePath"
+      },
+      "config/structure_custom.js": {
+        "resourcePath": "resourcePath"
+      },
+      "config/visu_config.xml": {
+        "resourcePath": "resourcePath"
+      },
       "demo/floorplan_demo.xml": {
         "resourcePath": "resourcePath"
       },
@@ -49,19 +64,70 @@
       "designs/designglobals.css": {
         "resourcePath": "resourcePath"
       },
-      "config/.gitignore": {
+      "libs/COPYING": {
         "resourcePath": "resourcePath"
       },
-      "config/.htaccess": {
+      "libs/EventRecorder.js": {
         "resourcePath": "resourcePath"
       },
-      "config/hidden.php": {
+      "libs/Three.js": {
         "resourcePath": "resourcePath"
       },
-      "config/structure_custom.js": {
+      "libs/favico.js": {
         "resourcePath": "resourcePath"
       },
-      "config/visu_config.xml": {
+      "libs/inobounce.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery-ui.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery-ui.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.svg.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.svg.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/sprintf.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/strftime.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/svg4everybody.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/crc32.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/worker.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/xml.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/xmllint.js": {
+        "resourcePath": "resourcePath"
+      },
+      "sentry/bundle.js": {
+        "resourcePath": "resourcePath"
+      },
+      "sentry/bundle.js.map": {
+        "resourcePath": "resourcePath"
+      },
+      "sentry/bundle.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "sentry/bundle.min.js.map": {
+        "resourcePath": "resourcePath"
+      },
+      "test/l": {
         "resourcePath": "resourcePath"
       },
       "icons/COPYING": {
@@ -436,70 +502,16 @@
       "icons/knx-uf-iconset.svg": {
         "resourcePath": "resourcePath"
       },
-      "libs/COPYING": {
+      "config/.templates/Plugin.js": {
         "resourcePath": "resourcePath"
       },
-      "libs/EventRecorder.js": {
+      "config/.templates/visu_config.xml": {
         "resourcePath": "resourcePath"
       },
-      "libs/Three.js": {
+      "config/backup/.gitignore": {
         "resourcePath": "resourcePath"
       },
-      "libs/favico.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/inobounce.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery-ui.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery-ui.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.svg.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.svg.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/sprintf.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/strftime.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/svg4everybody.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/crc32.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/worker.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/xml.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/xmllint.js": {
-        "resourcePath": "resourcePath"
-      },
-      "sentry/bundle.js": {
-        "resourcePath": "resourcePath"
-      },
-      "sentry/bundle.js.map": {
-        "resourcePath": "resourcePath"
-      },
-      "sentry/bundle.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "sentry/bundle.min.js.map": {
-        "resourcePath": "resourcePath"
-      },
-      "test/l": {
+      "config/media/.gitignore": {
         "resourcePath": "resourcePath"
       },
       "demo/media/arrow.png": {
@@ -689,18 +701,6 @@
         "resourcePath": "resourcePath"
       },
       "designs/pure/mobile.css": {
-        "resourcePath": "resourcePath"
-      },
-      "config/.templates/Plugin.js": {
-        "resourcePath": "resourcePath"
-      },
-      "config/.templates/visu_config.xml": {
-        "resourcePath": "resourcePath"
-      },
-      "config/backup/.gitignore": {
-        "resourcePath": "resourcePath"
-      },
-      "config/media/.gitignore": {
         "resourcePath": "resourcePath"
       },
       "manager/completion-libs/qooxdoo.d.ts": {
@@ -6965,6 +6965,9 @@
       "qx/test/webfonts/fontawesome-webfont.woff": {
         "resourcePath": "resourcePath"
       },
+      "qx/test/webfonts/tobec___-webfont.eot": {
+        "resourcePath": "resourcePath"
+      },
       "qx/test/webfonts/tobec___-webfont.ttf": {
         "resourcePath": "resourcePath"
       },
@@ -6972,9 +6975,6 @@
         "resourcePath": "resourcePath"
       },
       "qx/test/webfonts/yanonekaffeesatz-regular-webfont.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/tobec___-webfont.eot": {
         "resourcePath": "resourcePath"
       },
       "qx/test/webfonts/yanonekaffeesatz-regular-webfont.ttf": {
@@ -10050,6 +10050,11 @@
         "width": 128,
         "height": 128
       },
+      "qx/icon/Oxygen/128/actions/application-exit.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
       "qx/icon/Oxygen/128/actions/appointment-new.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -10061,11 +10066,6 @@
         "height": 128
       },
       "qx/icon/Oxygen/128/actions/check-spelling.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/application-exit.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10540,12 +10540,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/apps/internet-feed-reader.png": {
+      "qx/icon/Oxygen/128/apps/internet-download-manager.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/apps/internet-download-manager.png": {
+      "qx/icon/Oxygen/128/apps/internet-feed-reader.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -11965,12 +11965,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/devices/audio-input-microphone.png": {
+      "qx/icon/Oxygen/16/devices/audio-card.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Oxygen/16/devices/audio-card.png": {
+      "qx/icon/Oxygen/16/devices/audio-input-microphone.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -12061,6 +12061,16 @@
         "height": 16
       },
       "qx/icon/Oxygen/16/devices/scanner.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/emblems/emblem-favorite.png": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/icon/Oxygen/16/emblems/emblem-important.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -12395,12 +12405,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/edit-delete.png": {
+      "qx/icon/Oxygen/22/actions/edit-cut.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/edit-cut.png": {
+      "qx/icon/Oxygen/22/actions/edit-delete.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -12545,12 +12555,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/help-faq.png": {
+      "qx/icon/Oxygen/22/actions/help-contents.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/actions/help-contents.png": {
+      "qx/icon/Oxygen/22/actions/help-faq.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -15436,56 +15446,6 @@
         "height": 48
       },
       "qx/icon/Oxygen/48/emblems/emblem-important.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Oxygen/48/emotes/face-angel.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Oxygen/48/emotes/face-embarrassed.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Oxygen/48/emotes/face-kiss.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Oxygen/48/emotes/face-laugh.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Oxygen/48/emotes/face-plain.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Oxygen/48/emotes/face-raspberry.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Oxygen/48/emotes/face-sad.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Oxygen/48/emotes/face-smile-big.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Oxygen/48/emotes/face-smile.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Oxygen/48/emotes/face-surprise.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -23536,15 +23496,55 @@
       "qx/mobile/scss/theme/indigo/_styles.scss": {
         "resourcePath": "resourcePath"
       },
-      "qx/icon/Oxygen/16/emblems/emblem-favorite.png": {
+      "qx/icon/Oxygen/48/emotes/face-angel.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 48,
+        "height": 48
       },
-      "qx/icon/Oxygen/16/emblems/emblem-important.png": {
+      "qx/icon/Oxygen/48/emotes/face-embarrassed.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 48,
+        "height": 48
+      },
+      "qx/icon/Oxygen/48/emotes/face-kiss.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
+      "qx/icon/Oxygen/48/emotes/face-laugh.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
+      "qx/icon/Oxygen/48/emotes/face-plain.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
+      "qx/icon/Oxygen/48/emotes/face-raspberry.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
+      "qx/icon/Oxygen/48/emotes/face-sad.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
+      "qx/icon/Oxygen/48/emotes/face-smile-big.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
+      "qx/icon/Oxygen/48/emotes/face-smile.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
+      "qx/icon/Oxygen/48/emotes/face-surprise.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
       }
     }
   }

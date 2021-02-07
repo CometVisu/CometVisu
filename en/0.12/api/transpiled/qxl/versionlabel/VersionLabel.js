@@ -18,14 +18,6 @@
     "environment": {
       "provided": ["qxl.versionlabel.name", "qxl.versionlabel.version"],
       "required": {
-        "qxl.versionlabel.name": {
-          "construct": true,
-          "className": "qxl.versionlabel.VersionLabel"
-        },
-        "qxl.versionlabel.version": {
-          "construct": true,
-          "className": "qxl.versionlabel.VersionLabel"
-        },
         "qx.revision": {
           "construct": true
         },
@@ -64,12 +56,12 @@
     construct: function construct(value, version) {
       if (!value) {
         // if no parameter value given: use the environment variable
-        value = qx.core.Environment.get("qxl.versionlabel.name");
+        value = "CometVisu";
       }
 
       if (!version) {
         // if no parameter value given: use the environment variable
-        version = qx.core.Environment.get("qxl.versionlabel.version");
+        version = "0.12.0-dev";
 
         if (!version) {
           // revision or version number as fallback
@@ -100,4 +92,4 @@
   qxl.versionlabel.VersionLabel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VersionLabel.js.map?dt=1612694017980
+//# sourceMappingURL=VersionLabel.js.map?dt=1612698495433
