@@ -197,7 +197,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
         farbtastic = jQuery.farbtastic( this.getActor() ),
         color      = farbtastic.color || '#000000';
 
-      switch( this.getAddress()[ ga ].mode )
+      switch( this.getAddress()[ ga ].variantInfo )
       {
         case 'r':
           this.setBusR(value);
