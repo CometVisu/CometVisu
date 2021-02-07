@@ -150,7 +150,8 @@
       "title": "CometVisu API Viewer",
       "environment": {
         "qx.icontheme": "Tango",
-        "excludeFromAPIViewer": [
+        "qxl.apiviewer.applicationName": "cv",
+        "qxl.apiviewer.exclude": [
           "qxl.*",
           "iconfont.*",
           "osparc.*"
