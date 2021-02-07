@@ -156,8 +156,8 @@
           "iconfont.*",
           "osparc.*"
         ],
-        "versionLabel.name": "CometVisu",
-        "versionLabel.version": "dev"
+        "qxl.versionlabel.name": "CometVisu",
+        "qxl.versionlabel.version": "dev"
       },
       "include": [
         "qx.*"
