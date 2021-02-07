@@ -77,8 +77,11 @@ if [[ "$NO_API" -eq 0 ]]; then
     # we need a build to generate screenshots
     qx compile -t=build -f=false
     echo "generate API screenshots"
-    ${DOCKER_RUN} grunt screenshots --subDir=source --browserName=chrome --target=build --force
+    ${DOCKER_RUN} grunt screenshots --subDir=build --browserName=chrome --target=build --force
     BUILD_CV=0
+
+    # move generated screenshots to the api viewer
+    ${CV} doc --move-apiviewer-screenshots --target-version=${VERSION_PATH}
 fi
 
 echo "updating english manual from source code doc comments"
